@@ -53,6 +53,28 @@ $( a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let counter = 0;
+const arr = [];
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpIfTest = counter < 5;
+  if (tmpIfTest) {
+    const alias = counter;
+    const tmpMCF = $string_charAt;
+    const chr = $dotCall($string_charAt, `abcdef`, `charAt`, counter);
+    arr[alias] = chr;
+    counter = counter + 1;
+  } else {
+    break;
+  }
+}
+$(arr);
+`````
+
+
 ## Todos triggered
 
 

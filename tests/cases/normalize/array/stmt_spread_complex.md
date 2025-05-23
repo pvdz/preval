@@ -48,6 +48,18 @@ const b = $( a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+$(1);
+$(3);
+let tmpCalleeParam = [4, 5];
+const tmpArrElToSpread = $(tmpCalleeParam);
+[...tmpArrElToSpread];
+`````
+
+
 ## Todos triggered
 
 

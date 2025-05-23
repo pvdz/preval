@@ -39,6 +39,20 @@ $( "/foo/g" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = undefined;
+const tmpBinBothLhs = ``;
+let tmpCalleeParam = new $regex_constructor(`foo`, `g`);
+const tmpBinBothRhs = $coerce(tmpCalleeParam, `string`);
+const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
+x = $coerce(tmpBinLhs, `plustr`);
+$(x);
+`````
+
+
 ## Todos triggered
 
 

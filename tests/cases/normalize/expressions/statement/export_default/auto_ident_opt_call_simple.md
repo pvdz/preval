@@ -65,6 +65,24 @@ $( c );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+let tmpAnonDefaultExport = undefined;
+const tmpChainRootCall = $;
+const tmpIfTest = tmpChainRootCall != null;
+if (tmpIfTest) {
+  const tmpChainElementCall = tmpChainRootCall(1);
+  tmpAnonDefaultExport = tmpChainElementCall;
+} else {
+}
+export { tmpAnonDefaultExport as default };
+$(a);
+`````
+
+
 ## Todos triggered
 
 

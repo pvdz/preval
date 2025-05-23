@@ -67,6 +67,23 @@ $dotCall( $function_call, a, "call", c, 1, 2, 3, "yep", $ );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function () {
+  const tmpPrevalAliasThis = this;
+  debugger;
+  const x = tmpPrevalAliasThis;
+  $(tmpPrevalAliasThis);
+  return undefined;
+};
+const tmpMCF = f.call;
+const tmpMCP = { pass: 1 };
+$dotCall(tmpMCF, f, `call`, tmpMCP, 1, 2, 3, `yep`, $);
+`````
+
+
 ## Todos triggered
 
 

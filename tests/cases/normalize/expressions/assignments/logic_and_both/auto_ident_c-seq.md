@@ -78,6 +78,31 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = 1;
+let a = { a: 999, b: 1000 };
+$(1);
+$(2);
+a = $(x);
+let tmpCalleeParam = a;
+if (tmpCalleeParam) {
+  $(1);
+  $(2);
+  const tmpNestedComplexRhs = $(x);
+  a = tmpNestedComplexRhs;
+  tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+  $(a, x);
+} else {
+  $(tmpCalleeParam);
+  $(a, x);
+}
+`````
+
+
 ## Todos triggered
 
 

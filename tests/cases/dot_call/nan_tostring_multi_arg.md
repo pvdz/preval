@@ -43,6 +43,17 @@ $( "NaN" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const naN = NaN;
+const tmpCallVal = naN.toString;
+const x = $dotCall(tmpCallVal, naN, `toString`, 2, $, unknown);
+$(x);
+`````
+
+
 ## Todos triggered
 
 

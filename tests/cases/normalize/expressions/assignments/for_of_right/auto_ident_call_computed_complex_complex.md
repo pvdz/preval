@@ -84,6 +84,31 @@ $( e );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let b = { $: $ };
+let a = { a: 999, b: 1000 };
+const tmpMCCO = $(b);
+const tmpMCCP = $(`\$`);
+const tmpMCF = tmpMCCO[tmpMCCP];
+a = $dotCall(tmpMCF, tmpMCCO, undefined, 1);
+let tmpCalleeParam = a;
+const tmpForOfGenNext = $forOf(a);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForOfNext = tmpForOfGenNext();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    let x = tmpForOfNext.value;
+  }
+}
+$(a);
+`````
+
+
 ## Todos triggered
 
 

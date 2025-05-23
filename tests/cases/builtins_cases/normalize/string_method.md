@@ -153,6 +153,54 @@ $( w );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const f = function ($$0) {
+  let inputstr = $$0;
+  debugger;
+  let outputstr = ``;
+  const regex = new $regex_constructor(`[^A-Za-z0-9\\+\\/\\=]`, `g`);
+  const tmpMCF = inputstr.replace;
+  const repl = $dotCall(tmpMCF, inputstr, `replace`, regex, ``);
+  const len = repl.length;
+  const test = 0 < len;
+  if (test) {
+    const tmpMCF$1 = repl.charAt;
+    const a1 = $dotCall(tmpMCF$1, repl, `charAt`, 0);
+    const tmpMCF$3 = $string_indexOf;
+    const a2 = $dotCall($string_indexOf, `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`, `indexOf`, a1);
+    const tmpMCF$5 = repl.charAt;
+    const b1 = $dotCall(tmpMCF$5, repl, `charAt`, 1);
+    const tmpMCF$7 = $string_indexOf;
+    const b2 = $dotCall($string_indexOf, `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`, `indexOf`, b1);
+    const tmpMCF$9 = repl.charAt;
+    const c1 = $dotCall(tmpMCF$9, repl, `charAt`, 2);
+    const tmpMCF$11 = $string_indexOf;
+    const c2 = $dotCall($string_indexOf, `dropme`, `indexOf`, c1);
+    const frout = a2 + b2;
+    outputstr = $coerce(frout, `plustr`);
+    return outputstr;
+  } else {
+    return outputstr;
+  }
+};
+const x = $(`co_rn`);
+const tmpCallCallee = f;
+const tmpStringFirstArg = x;
+let tmpCalleeParam$1 = $coerce(x, `string`);
+let tmpCalleeParam = f(tmpCalleeParam$1);
+$(tmpCalleeParam);
+const y = $(`m#az#e`);
+const tmpCallCallee$1 = f;
+const tmpStringFirstArg$1 = y;
+let tmpCalleeParam$5 = $coerce(y, `string`);
+let tmpCalleeParam$3 = f(tmpCalleeParam$5);
+$(tmpCalleeParam$3);
+`````
+
+
 ## Todos triggered
 
 

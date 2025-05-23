@@ -57,6 +57,39 @@ if (b) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const x = $(1);
+let f = function () {
+  debugger;
+  const tmpReturnArg = $(`f`);
+  return tmpReturnArg;
+};
+let tmpSwitchValue = x;
+let tmpSwitchCaseToStart = 0;
+const tmpIfTest = 1 === tmpSwitchValue;
+tmpSwitchBreak: {
+  if (tmpIfTest) {
+    tmpSwitchCaseToStart = 1;
+  } else {
+  }
+  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+  if (tmpIfTest$1) {
+    break tmpSwitchBreak;
+  } else {
+    const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
+    if (tmpIfTest$3) {
+      f();
+      break tmpSwitchBreak;
+    } else {
+    }
+  }
+}
+`````
+
+
 ## Todos triggered
 
 

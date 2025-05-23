@@ -64,6 +64,26 @@ $( e, a, b );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = 1;
+let y = 2;
+let a = { a: 999, b: 1000 };
+let tmpBinBothLhs = undefined;
+const tmpObjLitVal = $(3);
+const tmpObjLitVal$1 = $(4);
+const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
+x = tmpNestedAssignObjPatternRhs.x;
+y = tmpNestedAssignObjPatternRhs.y;
+tmpBinBothLhs = tmpNestedAssignObjPatternRhs;
+const tmpBinBothRhs = $(100);
+tmpBinBothLhs + tmpBinBothRhs;
+$(a, x, y);
+`````
+
+
 ## Todos triggered
 
 

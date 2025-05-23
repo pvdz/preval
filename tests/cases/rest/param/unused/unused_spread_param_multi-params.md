@@ -71,6 +71,27 @@ a( e, f );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function ($$0, $$1, ...$$2 /*:array*/) {
+  let a = $$0;
+  let b = $$1;
+  let rest = $$2;
+  debugger;
+  $(a, b, rest);
+  return undefined;
+};
+f(1, 2);
+f(`a`, `b`);
+const tmpCallCallee = f;
+let tmpCalleeParam = $spy();
+let tmpCalleeParam$1 = $spy();
+f(tmpCalleeParam, tmpCalleeParam$1);
+`````
+
+
 ## Todos triggered
 
 

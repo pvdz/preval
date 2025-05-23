@@ -36,6 +36,14 @@ $( "3.48" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+$(`3.48`);
+`````
+
+
 ## Todos triggered
 
 

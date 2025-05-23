@@ -113,6 +113,39 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpObjLitVal = { y: 1 };
+let b = { x: tmpObjLitVal };
+let a = { a: 999, b: 1000 };
+let tmpIfTest = undefined;
+const tmpChainRootCall = $;
+const tmpChainElementCall = $(b);
+const tmpIfTest$1 = tmpChainElementCall != null;
+if (tmpIfTest$1) {
+  const tmpChainRootComputed = $(`x`);
+  const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+  const tmpIfTest$3 = tmpChainElementObject != null;
+  if (tmpIfTest$3) {
+    const tmpChainRootComputed$1 = $(`y`);
+    const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
+    tmpIfTest = tmpChainElementObject$1;
+  } else {
+  }
+} else {
+}
+if (tmpIfTest) {
+  $(100);
+  $(a);
+} else {
+  $(200);
+  $(a);
+}
+`````
+
+
 ## Todos triggered
 
 

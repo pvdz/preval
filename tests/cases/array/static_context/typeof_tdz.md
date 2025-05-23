@@ -40,6 +40,16 @@ $( "object" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpUnaryArg = [crash_hard];
+let tmpCalleeParam = typeof tmpUnaryArg;
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

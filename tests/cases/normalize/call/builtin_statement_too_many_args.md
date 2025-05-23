@@ -46,6 +46,17 @@ $coerce( a, "number" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpEA1 = $spy(`a`);
+$spy(`b`);
+$spy(`c`);
+$coerce(tmpEA1, `number`);
+`````
+
+
 ## Todos triggered
 
 

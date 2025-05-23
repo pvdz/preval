@@ -66,6 +66,44 @@ $( 6 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  const tmpSwitchValue = 1;
+  let tmpSwitchCaseToStart = 3;
+  const tmpIfTest = 0 === tmpSwitchValue;
+  if (tmpIfTest) {
+    tmpSwitchCaseToStart = 0;
+  } else {
+    const tmpIfTest$1 = 1 === tmpSwitchValue;
+    if (tmpIfTest$1) {
+      tmpSwitchCaseToStart = 1;
+    } else {
+      const tmpIfTest$2 = 2 === tmpSwitchValue;
+      if (tmpIfTest$2) {
+        tmpSwitchCaseToStart = 2;
+      } else {
+      }
+    }
+  }
+  const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
+  const tmpIfTest$4 = tmpSwitchCaseToStart <= 1;
+  if (tmpIfTest$4) {
+    return 6;
+  } else {
+    const tmpIfTest$5 = tmpSwitchCaseToStart <= 2;
+    return undefined;
+  }
+};
+const tmpCallCallee = $;
+const tmpCalleeParam = f();
+tmpCallCallee(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

@@ -44,6 +44,30 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let b = [5, 6, 7];
+while (true) {
+  let tmpIfTest = undefined;
+  const tmpChainRootProp = b;
+  const tmpIfTest$1 = tmpChainRootProp != null;
+  if (tmpIfTest$1) {
+    const tmpChainRootComputed = 0;
+    const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
+    tmpIfTest = tmpChainElementObject;
+  } else {
+  }
+  if (tmpIfTest) {
+    $(1);
+  } else {
+    break;
+  }
+}
+`````
+
+
 ## Todos triggered
 
 

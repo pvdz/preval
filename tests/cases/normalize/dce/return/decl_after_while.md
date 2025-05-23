@@ -50,6 +50,24 @@ throw "Preval: TDZ triggered for this read: while (x) {";
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  while (true) {
+    throw `Preval: TDZ triggered for this read: while (x) {`;
+  }
+  return undefined;
+  let x = $(`fail`);
+  return undefined;
+};
+let tmpCalleeParam = f();
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

@@ -52,6 +52,25 @@ $( c );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const setAssignable = function ($$0) {
+  let a = $$0;
+  debugger;
+  const b = a | 48;
+  const c = b ^ 16;
+  return c;
+};
+const tmpCallCallee = setAssignable;
+let tmpCalleeParam$3 = 116;
+let tmpCalleeParam$1 = $(tmpCalleeParam$3);
+let tmpCalleeParam = setAssignable(tmpCalleeParam$1);
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

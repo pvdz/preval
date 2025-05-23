@@ -68,6 +68,37 @@ $( a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  const inlineMe = function () {
+    debugger;
+    $ <= 0;
+    return undefined;
+  };
+  const g = function () {
+    debugger;
+    if ($) {
+      inlineMe();
+      return undefined;
+    } else {
+      return undefined;
+    }
+  };
+  if (implicitGlobalOops) {
+    g();
+    return undefined;
+  } else {
+    return undefined;
+  }
+};
+$(f);
+`````
+
+
 ## Todos triggered
 
 

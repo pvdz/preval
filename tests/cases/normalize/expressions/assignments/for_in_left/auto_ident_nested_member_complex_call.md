@@ -115,6 +115,43 @@ $( a, e, f, 3 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let b = { x: 1 };
+let c = { y: 2 };
+let d = 3;
+let a = { a: 999, b: 1000 };
+let tmpCalleeParam$1 = { x: 1 };
+let tmpCalleeParam = $(tmpCalleeParam$1);
+const tmpForInGenNext = $forIn(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext = tmpForInGenNext();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    const tmpNestedAssignComMemberObj = $(b);
+    const tmpNestedAssignComMemberProp = $(`x`);
+    const tmpInitAssignLhsComputedObj = $(c);
+    const tmpInitAssignLhsComputedProp = $(`y`);
+    const tmpInitAssignLhsComputedRhs = $(d);
+    tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = tmpInitAssignLhsComputedRhs;
+    const tmpNestedAssignPropRhs = tmpInitAssignLhsComputedRhs;
+    const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
+    tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
+    a = tmpNestedPropAssignRhs;
+    const tmpAssignMemLhsObj = a;
+    const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
+    const tmpAssignMemRhs = tmpForInNext.value;
+    tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
+  }
+}
+$(a, b, c, d);
+`````
+
+
 ## Todos triggered
 
 

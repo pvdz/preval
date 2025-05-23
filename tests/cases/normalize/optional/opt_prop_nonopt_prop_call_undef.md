@@ -38,6 +38,22 @@ With rename=true
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const a = undefined;
+const tmpChainRootProp = a;
+const tmpIfTest = tmpChainRootProp != null;
+if (tmpIfTest) {
+  const tmpChainElementObject = tmpChainRootProp.b;
+  const tmpChainElementObject$1 = tmpChainElementObject.c;
+  const tmpChainElementCall = $dotCall(tmpChainElementObject$1, tmpChainElementObject, `c`, 1);
+} else {
+}
+`````
+
+
 ## Todos triggered
 
 

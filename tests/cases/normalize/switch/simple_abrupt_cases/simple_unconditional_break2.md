@@ -77,6 +77,32 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+tmpSwitchBreak: {
+  const tmpSwitchDisc = $(1);
+  const tmpIfTest = tmpSwitchDisc === 0;
+  if (tmpIfTest) {
+    $(`one`);
+    if (KEEP_ME_AROUND) {
+      break tmpSwitchBreak;
+    } else {
+      break tmpSwitchBreak;
+    }
+  } else {
+    const tmpIfTest$1 = tmpSwitchDisc === 1;
+    if (tmpIfTest$1) {
+      $(`two`);
+      break tmpSwitchBreak;
+    } else {
+    }
+  }
+}
+`````
+
+
 ## Todos triggered
 
 

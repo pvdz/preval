@@ -234,6 +234,75 @@ throw "[Preval]: Can not reach here";
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let createFreshVarInCurrentRootScope = undefined;
+let assigns = undefined;
+let AST = undefined;
+let newElements = undefined;
+let crumb = undefined;
+let isComplexNode = undefined;
+let uncrumb = undefined;
+let node = undefined;
+const tmpMCOO = node.elements;
+const tmpMCF = tmpMCOO.forEach;
+const tmpMCP = function ($$0, $$1) {
+  let anode = $$0;
+  let i = $$1;
+  debugger;
+  if (anode) {
+    let valueNode = anode;
+    const tmpBinLhs = anode.type;
+    const tmpIfTest = tmpBinLhs === `SpreadElement`;
+    if (tmpIfTest) {
+      valueNode = anode.argument;
+      crumb(anode, `argument`, valueNode);
+    } else {
+    }
+    const tmpIfTest$1 = isComplexNode(valueNode);
+    if (tmpIfTest$1) {
+      const tmpName = createFreshVarInCurrentRootScope(`tmpElement`, true);
+      const tmpMCF$3 = assigns.push;
+      const tmpMCF$5 = AST.assignmentExpression;
+      const tmpMCP$1 = $dotCall(tmpMCF$5, AST, `assignmentExpression`, tmpName, valueNode);
+      $dotCall(tmpMCF$3, assigns, `push`, tmpMCP$1);
+      const tmpMCF$7 = newElements.push;
+      let tmpMCP$3 = undefined;
+      const tmpBinLhs$1 = anode.type;
+      const tmpIfTest$3 = tmpBinLhs$1 === `SpreadElement`;
+      if (tmpIfTest$3) {
+        const tmpMCF$9 = AST.spreadElement;
+        tmpMCP$3 = $dotCall(tmpMCF$9, AST, `spreadElement`, tmpName);
+        $dotCall(tmpMCF$7, newElements, `push`, tmpMCP$3);
+      } else {
+        const tmpMCF$11 = AST.identifier;
+        tmpMCP$3 = $dotCall(tmpMCF$11, AST, `identifier`, tmpName);
+        $dotCall(tmpMCF$7, newElements, `push`, tmpMCP$3);
+      }
+    } else {
+      const tmpMCF$13 = newElements.push;
+      $dotCall(tmpMCF$13, newElements, `push`, anode);
+    }
+    const tmpBinLhs$3 = anode.type;
+    const tmpIfTest$5 = tmpBinLhs$3 === `SpreadElement`;
+    if (tmpIfTest$5) {
+      uncrumb(anode, `argument`, valueNode);
+      return undefined;
+    } else {
+      return undefined;
+    }
+  } else {
+    const tmpMCF$1 = newElements.push;
+    const tmpReturnArg = $dotCall(tmpMCF$1, newElements, `push`, null);
+    return tmpReturnArg;
+  }
+};
+$dotCall(tmpMCF, tmpMCOO, `forEach`, tmpMCP);
+`````
+
+
 ## Todos triggered
 
 

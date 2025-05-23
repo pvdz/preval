@@ -37,6 +37,15 @@ $( $string_constructor );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpClassSuper = $($string_constructor);
+let x = class extends tmpClassSuper {};
+`````
+
+
 ## Todos triggered
 
 

@@ -87,6 +87,29 @@ $( a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  const tmpStringConcatL = $coerce(desc$1, `plustr`);
+  const tmpBinBothLhs$253 = `Parser error! ${tmpStringConcatL}`;
+  let tmpBinBothRhs$253 = undefined;
+  const tmpIfTest$1787 = lastType === 2097173;
+  if (tmpIfTest$1787) {
+    tmpBinBothRhs$253 = ` (at EOF)`;
+  } else {
+    tmpBinBothRhs$253 = ``;
+  }
+  const fullErrmsg = tmpBinBothLhs$253 + tmpBinBothRhs$253;
+  _THROW(fullErrmsg, tokenStart$5, tokenStop$5, ``);
+  throw `Preval: the previous call always throws`;
+};
+$(f);
+`````
+
+
 ## Todos triggered
 
 

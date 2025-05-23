@@ -47,6 +47,25 @@ $( "bad" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
+  let tmpBindingPatternObjRoot = tmpParamBare;
+  let tmpOPND = tmpBindingPatternObjRoot.x;
+  let tmpCalleeParam = tmpOPND;
+  let tmpCalleeParam$1 = [];
+  let y = $objPatternRest(tmpCalleeParam, tmpCalleeParam$1, undefined);
+  return `bad`;
+};
+let tmpCalleeParam$3 = f(`abc`, 10);
+$(tmpCalleeParam$3);
+`````
+
+
 ## Todos triggered
 
 

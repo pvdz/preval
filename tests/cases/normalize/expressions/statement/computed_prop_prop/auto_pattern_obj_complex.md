@@ -50,6 +50,21 @@ $( 999 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let tmpBindingPatternObjRoot = { a: 999, b: 1000 };
+let a = tmpBindingPatternObjRoot.a;
+let obj = {};
+const tmpCompObj = obj;
+let tmpCalleeParam$1 = { a: 1, b: 2 };
+const tmpCalleeParam = $(tmpCalleeParam$1);
+tmpCompObj[tmpCalleeParam];
+$(a);
+`````
+
+
 ## Todos triggered
 
 

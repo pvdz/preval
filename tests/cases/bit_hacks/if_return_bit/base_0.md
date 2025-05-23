@@ -59,6 +59,27 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function ($$0) {
+  let a = $$0;
+  debugger;
+  const x = a & 16;
+  if (x) {
+    return 16;
+  } else {
+    return 0;
+  }
+};
+const tmpCallCallee = f;
+let tmpCalleeParam$1 = $(0);
+let tmpCalleeParam = f(tmpCalleeParam$1);
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

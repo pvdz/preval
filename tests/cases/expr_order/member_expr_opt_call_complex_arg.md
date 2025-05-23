@@ -43,6 +43,23 @@ throw "[Preval]: Can not reach here";
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let a = undefined;
+let x = undefined;
+const tmpChainRootProp = a;
+const tmpChainElementObject = tmpChainRootProp.b;
+const tmpIfTest = tmpChainElementObject != null;
+if (tmpIfTest) {
+  let tmpCalleeParam = x.y;
+  const tmpChainElementCall = $dotCall(tmpChainElementObject, tmpChainRootProp, `b`, tmpCalleeParam);
+} else {
+}
+`````
+
+
 ## Todos triggered
 
 

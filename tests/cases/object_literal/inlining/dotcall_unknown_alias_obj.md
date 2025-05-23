@@ -57,6 +57,21 @@ $dotCall( b, c, undefined );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const g = function () {
+  debugger;
+  $();
+  return undefined;
+};
+const obj = { f: g };
+const method = new $regex_constructor(`foo`, ``);
+$dotCall(method, obj, undefined);
+`````
+
+
 ## Todos triggered
 
 

@@ -46,6 +46,16 @@ With rename=true
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = 10;
+const tmpArrAssignPatternRhs = [1, 2, 3];
+const tmpArrPatternSplat = [...tmpArrAssignPatternRhs];
+`````
+
+
 ## Todos triggered
 
 

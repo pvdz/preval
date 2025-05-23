@@ -54,6 +54,20 @@ $( e );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const a = $(`a`);
+const b = $(`b`);
+const x = { ab: 3 };
+let tmpBindingPatternObjRoot = x;
+let tmpCK = a + b;
+let c = tmpBindingPatternObjRoot[tmpCK];
+$(c);
+`````
+
+
 ## Todos triggered
 
 

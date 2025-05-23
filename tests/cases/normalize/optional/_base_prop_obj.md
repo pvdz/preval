@@ -38,6 +38,25 @@ $( 10 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = undefined;
+f = { x: 10 };
+let tmpCalleeParam = undefined;
+const tmpChainRootProp = f;
+const tmpIfTest = tmpChainRootProp != null;
+if (tmpIfTest) {
+  const tmpChainElementObject = tmpChainRootProp.x;
+  tmpCalleeParam = tmpChainElementObject;
+  $(tmpChainElementObject);
+} else {
+  $(tmpCalleeParam);
+}
+`````
+
+
 ## Todos triggered
 
 

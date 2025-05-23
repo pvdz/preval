@@ -63,6 +63,25 @@ $( "path" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function ($$0) {
+  let x = $$0;
+  debugger;
+  const tmpMCF = $Buffer_from;
+  const tmp = $Buffer_from(x, `base64`);
+  const tmpMCF$1 = tmp.toString;
+  const tmp2 = $dotCall(tmpMCF$1, tmp, `toString`, `utf8`);
+  return tmp2;
+};
+$(f);
+let tmpCalleeParam = f(`cGF0aA`);
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

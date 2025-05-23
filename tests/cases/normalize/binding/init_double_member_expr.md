@@ -38,6 +38,16 @@ $( $number_toString );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpCompObj = 3;
+let x = tmpCompObj.toString;
+$(x);
+`````
+
+
 ## Todos triggered
 
 

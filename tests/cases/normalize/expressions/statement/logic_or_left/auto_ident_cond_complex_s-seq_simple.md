@@ -81,6 +81,28 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+let tmpIfTest = undefined;
+const tmpIfTest$1 = $(1);
+if (tmpIfTest$1) {
+  tmpIfTest = 60;
+} else {
+  let tmpCalleeParam = $(100);
+  tmpIfTest = $(tmpCalleeParam);
+}
+if (tmpIfTest) {
+  $(a);
+} else {
+  $(100);
+  $(a);
+}
+`````
+
+
 ## Todos triggered
 
 

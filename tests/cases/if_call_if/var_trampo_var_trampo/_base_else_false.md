@@ -98,6 +98,40 @@ if ($) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let outer = function () {
+  debugger;
+  let x = $(0);
+  const f = function () {
+    debugger;
+    if (x) {
+      const tmpReturnArg = $(`inner if`, x);
+      return tmpReturnArg;
+    } else {
+      const tmpReturnArg$1 = $(`inner else`, x);
+      return tmpReturnArg$1;
+    }
+  };
+  if (x) {
+    const tmpReturnArg$3 = f();
+    return tmpReturnArg$3;
+  } else {
+    x = $(2);
+    const tmpReturnArg$5 = f();
+    return tmpReturnArg$5;
+  }
+};
+if ($) {
+  let tmpCalleeParam = outer();
+  $(tmpCalleeParam, `outer`);
+} else {
+}
+`````
+
+
 ## Todos triggered
 
 

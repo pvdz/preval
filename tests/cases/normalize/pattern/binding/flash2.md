@@ -48,6 +48,29 @@ throw "Preval: This statement contained a read that reached no writes: x$1;";
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = function ($$0, $$1) {
+  const tmpParamBare = $$0;
+  const tmpParamBare$1 = $$1;
+  debugger;
+  let foo = undefined;
+  const tmpIfTest = tmpParamBare === undefined;
+  if (tmpIfTest) {
+    foo = x$1;
+  } else {
+    foo = tmpParamBare;
+  }
+  let tmpBindingPatternObjRoot = tmpParamBare$1;
+  let x$1 = tmpBindingPatternObjRoot.x;
+  return undefined;
+};
+x();
+`````
+
+
 ## Todos triggered
 
 

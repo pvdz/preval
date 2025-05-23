@@ -97,6 +97,35 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let b = true;
+$(100);
+const c = $(100);
+let a = !c;
+if (c) {
+  b = false;
+} else {
+}
+if (b) {
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    $(100);
+    const d = $(100);
+    a = !d;
+    if (a) {
+    } else {
+      break;
+    }
+  }
+  $(a);
+} else {
+  $(a);
+}
+`````
+
+
 ## Todos triggered
 
 

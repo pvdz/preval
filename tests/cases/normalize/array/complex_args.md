@@ -42,6 +42,19 @@ $( b );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpArrElement = 10;
+const tmpArrElement$1 = $();
+const tmpCompObj = $Array_prototype;
+const tmpArrElement$3 = tmpCompObj.length;
+let tmpCalleeParam = [tmpArrElement, tmpArrElement$1, tmpArrElement$3];
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

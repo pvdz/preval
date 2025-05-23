@@ -50,6 +50,49 @@ $( 3, a, 3 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let b = { x: 1 };
+let c = 3;
+let a = { a: 999, b: 1000 };
+const tmpInitAssignLhsComputedRhs$7 = c;
+b.x = tmpInitAssignLhsComputedRhs$7;
+const tmpInitAssignLhsComputedRhs$5 = tmpInitAssignLhsComputedRhs$7;
+b.x = tmpInitAssignLhsComputedRhs$5;
+const tmpInitAssignLhsComputedRhs$3 = tmpInitAssignLhsComputedRhs$5;
+b.x = tmpInitAssignLhsComputedRhs$3;
+const tmpInitAssignLhsComputedRhs$1 = tmpInitAssignLhsComputedRhs$3;
+b.x = tmpInitAssignLhsComputedRhs$1;
+const tmpInitAssignLhsComputedRhs = tmpInitAssignLhsComputedRhs$1;
+b.x = tmpInitAssignLhsComputedRhs;
+const tmpNestedAssignPropRhs = tmpInitAssignLhsComputedRhs;
+const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
+b.x = tmpNestedPropAssignRhs;
+a = tmpNestedPropAssignRhs;
+const tmpBinBothLhs = a;
+const tmpInitAssignLhsComputedRhs$17 = c;
+b.x = tmpInitAssignLhsComputedRhs$17;
+const tmpInitAssignLhsComputedRhs$15 = tmpInitAssignLhsComputedRhs$17;
+b.x = tmpInitAssignLhsComputedRhs$15;
+const tmpInitAssignLhsComputedRhs$13 = tmpInitAssignLhsComputedRhs$15;
+b.x = tmpInitAssignLhsComputedRhs$13;
+const tmpInitAssignLhsComputedRhs$11 = tmpInitAssignLhsComputedRhs$13;
+b.x = tmpInitAssignLhsComputedRhs$11;
+const tmpInitAssignLhsComputedRhs$9 = tmpInitAssignLhsComputedRhs$11;
+b.x = tmpInitAssignLhsComputedRhs$9;
+const tmpNestedAssignPropRhs$1 = tmpInitAssignLhsComputedRhs$9;
+const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs$1;
+b.x = tmpNestedPropAssignRhs$1;
+a = tmpNestedPropAssignRhs$1;
+const tmpBinBothRhs = a;
+let tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
+$(tmpCalleeParam);
+$(a, b, c);
+`````
+
+
 ## Todos triggered
 
 

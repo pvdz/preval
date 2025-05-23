@@ -41,6 +41,19 @@ With rename=true
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const arrAssignPatternRhs = [``, 4, 5];
+const arrPatternSplat = [...arrAssignPatternRhs];
+const arrPatternStep = arrPatternSplat[0];
+const arrPatternSplat$1 = [...arrPatternStep];
+const tmpMCF = arrPatternSplat$1.slice;
+$dotCall(tmpMCF, arrPatternSplat$1, `slice`, 0);
+`````
+
+
 ## Todos triggered
 
 

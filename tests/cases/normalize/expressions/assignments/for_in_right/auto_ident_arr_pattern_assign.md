@@ -97,6 +97,35 @@ $( c, 1, e );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = 1;
+let y = 2;
+let a = { a: 999, b: 1000 };
+const tmpArrElement = $(3);
+const tmpArrElement$1 = $(4);
+const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
+const tmpArrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+x$1 = tmpArrPatternSplat[0];
+y = tmpArrPatternSplat[1];
+a = tmpNestedAssignArrPatternRhs;
+let tmpCalleeParam = a;
+const tmpForInGen = $forIn(a);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext = tmpForInGen();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    let x$2 = tmpForInNext.value;
+  }
+}
+$(a, x, y);
+`````
+
+
 ## Todos triggered
 
 

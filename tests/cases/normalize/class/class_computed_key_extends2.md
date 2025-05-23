@@ -59,6 +59,22 @@ b.y;
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const y = `y`;
+let x = class {
+  x() {
+    debugger;
+    return undefined;
+  }
+};
+const tmpCompObj = x();
+tmpCompObj.y;
+`````
+
+
 ## Todos triggered
 
 

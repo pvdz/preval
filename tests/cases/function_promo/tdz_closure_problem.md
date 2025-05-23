@@ -61,6 +61,34 @@ if ($) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  let g = function () {
+    debugger;
+    throw `Preval: TDZ triggered for this read: \$(x\$1)`;
+    let x$1 = 0;
+    return undefined;
+  };
+  let x = $(`outer`);
+  g();
+  if ($) {
+    $(`prevent premature elimination`);
+    return undefined;
+  } else {
+    return undefined;
+  }
+};
+if ($) {
+  f();
+} else {
+}
+`````
+
+
 ## Todos triggered
 
 

@@ -58,6 +58,22 @@ $( e );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const a1 = [];
+const a2 = [a1];
+const a3 = [a2];
+const b1 = [];
+const b2 = [b1];
+const b3 = [b2];
+const tmpMCF = a3.concat;
+const c = $dotCall(tmpMCF, a3, `concat`, b3);
+$(c);
+`````
+
+
 ## Todos triggered
 
 

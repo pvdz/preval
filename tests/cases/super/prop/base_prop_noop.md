@@ -70,6 +70,23 @@ $( b );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let A = class {};
+let B = class extends A {
+  constructor() {
+    debugger;
+    let tmpCalleeParam = super.foo;
+    $(tmpCalleeParam);
+    return undefined;
+  }
+};
+$(B);
+`````
+
+
 ## Todos triggered
 
 

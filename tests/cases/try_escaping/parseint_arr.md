@@ -79,6 +79,30 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const arr = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`];
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const x = arr[0];
+  $(x);
+  try {
+    const y = $Number_parseInt(x);
+    if (y) {
+      const tmpMCF = arr.shift;
+      const el = $dotCall(tmpMCF, arr, `shift`);
+      const tmpMCF$1 = arr.push;
+      $dotCall(tmpMCF$1, arr, `push`, el);
+    } else {
+    }
+  } catch (e) {
+    $(`keepme`);
+  }
+}
+`````
+
+
 ## Todos triggered
 
 

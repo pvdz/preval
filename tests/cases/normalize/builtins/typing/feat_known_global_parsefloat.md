@@ -51,6 +51,17 @@ $( "number" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let tmpCalleeParam$1 = $spy(`parseFloat`);
+const tmpUnaryArg = $Number_parseFloat(tmpCalleeParam$1);
+let tmpCalleeParam = typeof tmpUnaryArg;
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

@@ -44,6 +44,18 @@ $( "bad" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpBindingPatternObjRoot = { a: 11, b: 12 };
+const tmpOPND = tmpBindingPatternObjRoot.x;
+const tmpArrPatternSplat = [...tmpOPND];
+const y = tmpArrPatternSplat[0];
+$(`bad`);
+`````
+
+
 ## Todos triggered
 
 

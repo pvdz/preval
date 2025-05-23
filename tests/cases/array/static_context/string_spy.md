@@ -71,6 +71,25 @@ $( c );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  $(`updating`);
+  arr[0] = `pass`;
+  return undefined;
+};
+const arr = [`fail`, 2, 3];
+f();
+f();
+const tmpStringFirstArg = arr;
+let tmpCalleeParam = $coerce(arr, `string`);
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

@@ -57,6 +57,24 @@ $( undefined );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  let arg = { y: 1 };
+  const tmpDeleteCompObj = $(arg);
+  const tmpDeleteCompProp = $(`y`);
+  let a = delete tmpDeleteCompObj[tmpDeleteCompProp];
+  $(a, arg);
+  return undefined;
+};
+let tmpCalleeParam = f();
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

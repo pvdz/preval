@@ -52,6 +52,19 @@ $( c );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const a = $(`a`);
+const b = $(`b`);
+const x = a === b;
+fail_hard;
+const y = $boolean_constructor(x);
+$(y);
+`````
+
+
 ## Todos triggered
 
 

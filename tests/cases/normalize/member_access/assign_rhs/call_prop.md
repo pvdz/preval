@@ -43,6 +43,17 @@ $( b );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = 10;
+const tmpAssignRhsProp = $(`foo`);
+x = tmpAssignRhsProp.length;
+$(x);
+`````
+
+
 ## Todos triggered
 
 

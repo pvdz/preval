@@ -71,6 +71,30 @@ if ($) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpArrElement$517 = function () {
+  debugger;
+  let obj = undefined;
+  const f = function ($$0) {
+    let c = $$0;
+    debugger;
+    obj.bla = c;
+    return undefined;
+  };
+  obj = { selfRef: f };
+  return undefined;
+};
+if ($) {
+  let tmpCalleeParam = tmpArrElement$517();
+  $(tmpCalleeParam);
+} else {
+}
+`````
+
+
 ## Todos triggered
 
 

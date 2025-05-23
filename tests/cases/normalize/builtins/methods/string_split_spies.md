@@ -43,6 +43,17 @@ $dotCall( $string_split, "", "split", a, b );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const x = $spy(`a`);
+const y = $spy(`b`);
+const tmpMCF = $string_split;
+$dotCall($string_split, ``, `split`, x, y);
+`````
+
+
 ## Todos triggered
 
 

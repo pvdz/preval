@@ -135,6 +135,44 @@ new c();
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let A = class {
+  constructor($$0) {
+    let x$1 = $$0;
+    debugger;
+    $(`A:`, x$1);
+    return undefined;
+  }
+};
+let B = class extends A {
+  constructor() {
+    debugger;
+    let tmpCalleeParam = super(1);
+    $(tmpCalleeParam);
+    let tmpCalleeParam$1 = super(1, ...x, 2);
+    $(tmpCalleeParam$1);
+    let tmpCalleeParam$3 = super.foo();
+    $(tmpCalleeParam$3);
+    let tmpCalleeParam$5 = super.foo(1, ...x, 2);
+    $(tmpCalleeParam$5);
+    let tmpCalleeParam$7 = super[foo]();
+    $(tmpCalleeParam$7);
+    let tmpCalleeParam$9 = super[foo](1, ...x, 2);
+    $(tmpCalleeParam$9);
+    let tmpCalleeParam$11 = super.foo;
+    $(tmpCalleeParam$11);
+    let tmpCalleeParam$13 = super[foo];
+    $(tmpCalleeParam$13);
+    return undefined;
+  }
+};
+new B();
+`````
+
+
 ## Todos triggered
 
 

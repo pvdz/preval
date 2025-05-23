@@ -42,6 +42,17 @@ $( a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpMCOO = new $regex_constructor(`foo`, ``);
+const tmpMCF = tmpMCOO.constructor;
+const f = $dotCall(tmpMCF, tmpMCOO, `constructor`, `bar`, `g`);
+$(f);
+`````
+
+
 ## Todos triggered
 
 

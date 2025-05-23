@@ -50,6 +50,19 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+if (a) {
+  const tmpAssignObjPatternRhs = 1;
+  x = tmpAssignObjPatternRhs.x;
+} else {
+  c;
+}
+`````
+
+
 ## Todos triggered
 
 

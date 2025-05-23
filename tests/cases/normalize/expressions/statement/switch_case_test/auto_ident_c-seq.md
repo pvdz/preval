@@ -60,6 +60,22 @@ $( a, 1 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = 1;
+let a = { a: 999, b: 1000 };
+const tmpSwitchDisc = $(1);
+const tmpBinBothLhs = tmpSwitchDisc;
+$(1);
+$(2);
+const tmpBinBothRhs = $(x);
+const tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
+$(a, x);
+`````
+
+
 ## Todos triggered
 
 

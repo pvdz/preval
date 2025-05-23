@@ -42,6 +42,17 @@ $( "out:", false );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let tmpCalleeParam = $(false);
+const x = $boolean_constructor(tmpCalleeParam);
+const y = x === ``;
+$(`out:`, y);
+`````
+
+
 ## Todos triggered
 
 

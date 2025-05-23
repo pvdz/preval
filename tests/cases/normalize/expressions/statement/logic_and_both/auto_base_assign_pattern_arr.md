@@ -85,6 +85,32 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let b = [];
+let a = { a: 999, b: 1000 };
+let tmpIfTest = undefined;
+const tmpArrElement = $(2);
+let tmpCalleeParam = [tmpArrElement];
+const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
+const tmpArrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+b = tmpArrPatternSplat[0];
+tmpIfTest = tmpNestedAssignArrPatternRhs;
+if (tmpIfTest) {
+  const tmpArrElement$1 = $(2);
+  let tmpCalleeParam$1 = [tmpArrElement$1];
+  const tmpArrAssignPatternRhs = $(tmpCalleeParam$1);
+  const tmpArrPatternSplat$1 = [...tmpArrAssignPatternRhs];
+  b = tmpArrPatternSplat$1[0];
+  $(a, b);
+} else {
+  $(a, b);
+}
+`````
+
+
 ## Todos triggered
 
 

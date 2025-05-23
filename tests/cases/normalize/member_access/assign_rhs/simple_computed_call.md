@@ -47,6 +47,19 @@ $( c );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const obj = { foo: 10 };
+let x = 10;
+const tmpAssignRhsCompObj = obj;
+const tmpAssignRhsCompProp = $(`foo`);
+x = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
+$(x);
+`````
+
+
 ## Todos triggered
 
 

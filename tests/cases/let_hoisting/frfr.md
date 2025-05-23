@@ -53,6 +53,31 @@ $( a, "f" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const freeFunc1 = function $free($$0, $$1) {
+  let x$1 = $$0;
+  let y = $$1;
+  debugger;
+  const tmpBinBothLhs = y;
+  const tmpBinBothRhs = x$1 + 287;
+  const tmpReturnArg = tmpBinBothLhs * tmpBinBothRhs;
+  return tmpReturnArg;
+};
+let f = function () {
+  debugger;
+  $(x, `f`);
+  return undefined;
+};
+$(1);
+$frfr(freeFunc1, 1, 2);
+let x = $(2);
+f();
+`````
+
+
 ## Todos triggered
 
 

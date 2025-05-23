@@ -52,6 +52,19 @@ $( d );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpBinBothLhs = 1;
+const tmpBinBothRhs = $(0);
+const x = tmpBinBothLhs * tmpBinBothRhs;
+const tmpArrElement = undefined ** x;
+const arr = [tmpArrElement];
+$(arr);
+`````
+
+
 ## Todos triggered
 
 

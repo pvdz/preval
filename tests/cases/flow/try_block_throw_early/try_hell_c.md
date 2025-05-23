@@ -63,6 +63,28 @@ $( 1 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = 0;
+let $implicitThrow = false;
+let $finalCatchArg = undefined;
+try {
+  fail_early;
+} catch ($finalImplicit) {
+  x = 1;
+  throw $finalImplicit;
+}
+x = 1;
+if ($implicitThrow) {
+  throw $finalCatchArg;
+} else {
+  $(x);
+}
+`````
+
+
 ## Todos triggered
 
 

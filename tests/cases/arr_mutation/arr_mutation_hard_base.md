@@ -49,6 +49,17 @@ $( b );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let a = [0];
+const d = $();
+a[0] = d;
+$(a);
+`````
+
+
 ## Todos triggered
 
 

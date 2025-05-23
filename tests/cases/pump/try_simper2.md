@@ -104,6 +104,39 @@ $( e );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const arrB = [
+  `body`,
+  `abOPIoHFut:bwlFaSsnkTXHOCpGGeeFsJMHCLEPCWr`,
+  `return (function() `,
+  `iframe`,
+  `[?&]`,
+  `translate(-50%, -50%) scale(`,
+  `url`,
+  `1362209nkUUHI`,
+  `replace`,
+];
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $(`protect`);
+  const tmpBinLhs = arrB[51];
+  const abeq = tmpBinLhs === 712261;
+  if (abeq) {
+    break;
+  } else {
+    const tmpMCF = arrB.shift;
+    const arrval = $dotCall(tmpMCF, arrB, `shift`);
+    const tmpMCF$1 = arrB.push;
+    $dotCall(tmpMCF$1, arrB, `push`, arrval);
+  }
+}
+let tmpCalleeParam = arrB[0];
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

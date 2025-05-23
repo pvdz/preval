@@ -55,6 +55,22 @@ $( c );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let tmpBindingPatternObjRoot = { a: 999, b: 1000 };
+let a = tmpBindingPatternObjRoot.a;
+let tmpSwitchDisc = undefined;
+let tmpCalleeParam = { a: 1, b: 2 };
+const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
+a = tmpNestedAssignObjPatternRhs.a;
+tmpSwitchDisc = tmpNestedAssignObjPatternRhs;
+$(100);
+$(a);
+`````
+
+
 ## Todos triggered
 
 

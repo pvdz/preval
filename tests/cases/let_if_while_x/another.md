@@ -183,6 +183,48 @@ $( r, a, d, 3 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const b = { x: 1 };
+const c = { y: 2 };
+const a = { a: 999, b: 1000 };
+let loopTest = true;
+$(100);
+const B = $(b);
+const X = $(`x`);
+const calt = $(c);
+const Y = $(`y`);
+const three = $(3);
+calt[Y] = three;
+B[X] = three;
+if (three) {
+} else {
+  loopTest = false;
+}
+while (true) {
+  if (loopTest) {
+    $(100);
+    const B$1 = $(b);
+    const X$1 = $(`x`);
+    const C = $(c);
+    const Y$1 = $(`y`);
+    const T = $(3);
+    C[Y$1] = T;
+    B$1[X$1] = T;
+    if (T) {
+    } else {
+      break;
+    }
+  } else {
+    break;
+  }
+}
+$(a, b, c, 3);
+`````
+
+
 ## Todos triggered
 
 

@@ -53,6 +53,22 @@ $( a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let problem2 = undefined;
+let problem1 = undefined;
+if (problem1) {
+} else {
+  problem1 = {};
+}
+problem1.now;
+problem2 = {};
+$(problem2);
+`````
+
+
 ## Todos triggered
 
 

@@ -38,6 +38,34 @@ $( "ok" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpArrAssignPatternRhs = [0, 20, 30];
+const tmpArrPatternSplat = [...tmpArrAssignPatternRhs];
+const tmpAPBD = tmpArrPatternSplat[0];
+let tmpArrPatternStep = undefined;
+const tmpIfTest = tmpAPBD === undefined;
+if (tmpIfTest) {
+  tmpArrPatternStep = $(`fail`);
+} else {
+  tmpArrPatternStep = tmpAPBD;
+}
+let tmpObjPatternCrashTest = tmpArrPatternStep === undefined;
+if (tmpObjPatternCrashTest) {
+} else {
+  tmpObjPatternCrashTest = tmpArrPatternStep === null;
+}
+if (tmpObjPatternCrashTest) {
+  tmpObjPatternCrashTest = tmpArrPatternStep.cannotDestructureThis;
+  $(`ok`);
+} else {
+  $(`ok`);
+}
+`````
+
+
 ## Todos triggered
 
 

@@ -58,6 +58,33 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  let n = 0;
+  while (true) {
+    $continue: {
+      const tmpPostUpdArgIdent = $coerce(n, `number`);
+      n = tmpPostUpdArgIdent + 1;
+      let tmpCalleeParam = n;
+      $(n);
+      const tmpIfTest = n < 8;
+      if (tmpIfTest) {
+        break $continue;
+      } else {
+      }
+    }
+  }
+  return undefined;
+};
+let tmpCalleeParam$1 = f();
+$(tmpCalleeParam$1);
+`````
+
+
 ## Todos triggered
 
 

@@ -61,6 +61,32 @@ throw 500;
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  foo: {
+    $(`before`);
+    $(`inside`);
+    if (x) {
+      if (y) {
+        break foo;
+      } else {
+      }
+    } else {
+    }
+  }
+  throw 500;
+};
+const x = $(true);
+const y = $(true);
+let tmpCalleeParam = f();
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

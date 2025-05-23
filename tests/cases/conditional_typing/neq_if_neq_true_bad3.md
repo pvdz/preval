@@ -65,6 +65,23 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const a = $(null);
+let x = a !== 67636;
+if (x) {
+  a = 10;
+  x = a !== 67636;
+  $(x);
+} else {
+  $(`Preval: Cannot write to const binding \`a\``);
+  $(x);
+}
+`````
+
+
 ## Todos triggered
 
 

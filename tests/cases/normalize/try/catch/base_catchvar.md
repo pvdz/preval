@@ -58,6 +58,19 @@ $( 3 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+try {
+  $(1);
+} catch (e) {
+  $(2);
+}
+$(3);
+`````
+
+
 ## Todos triggered
 
 

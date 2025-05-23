@@ -112,6 +112,40 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let itooamanumberjack = false;
+if (imanumberandilovethrees) {
+  itooamanumberjack = undefined;
+  const tmpChainRootCall = $;
+  const tmpChainElementCall = $(1);
+  const tmpIfTest = tmpChainElementCall != null;
+  if (tmpIfTest) {
+    const tmpChainElementObject = tmpChainElementCall.x;
+    itooamanumberjack = tmpChainElementObject;
+  } else {
+  }
+} else {
+  itooamanumberjack = undefined;
+  const tmpChainRootCall$1 = $;
+  const tmpChainElementCall$1 = $(2);
+  const tmpIfTest$1 = tmpChainElementCall$1 != null;
+  if (tmpIfTest$1) {
+    const tmpChainElementObject$1 = tmpChainElementCall$1.x;
+    itooamanumberjack = tmpChainElementObject$1;
+  } else {
+  }
+}
+if (itooamanumberjack) {
+  $(`a`, itooamanumberjack);
+} else {
+  $(`b`, itooamanumberjack);
+}
+`````
+
+
 ## Todos triggered
 
 

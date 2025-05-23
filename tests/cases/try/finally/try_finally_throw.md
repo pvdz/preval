@@ -44,6 +44,33 @@ throw "exit";
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let $implicitThrow = false;
+let $finalStep = false;
+let $finalCatchArg = undefined;
+let $finalArg = undefined;
+$finally: {
+  try {
+    $finalStep = true;
+    $finalArg = `exit`;
+    break $finally;
+  } catch ($finalImplicit) {
+    $(2);
+    throw $finalImplicit;
+  }
+}
+$(2);
+if ($implicitThrow) {
+  throw $finalCatchArg;
+} else {
+  throw $finalArg;
+}
+`````
+
+
 ## Todos triggered
 
 

@@ -122,6 +122,41 @@ if ($) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  let x = $(1);
+  let tmpLoopRetCode = true;
+  let tmpLoopBody = function () {
+    debugger;
+    x = $(2);
+    $(x);
+    if ($) {
+      tmpLoopRetCode = false;
+      return undefined;
+    } else {
+      return undefined;
+    }
+  };
+  while (true) {
+    if (tmpLoopRetCode) {
+      tmpLoopBody();
+    } else {
+      break;
+    }
+  }
+  return undefined;
+};
+if ($) {
+  f();
+} else {
+}
+`````
+
+
 ## Todos triggered
 
 

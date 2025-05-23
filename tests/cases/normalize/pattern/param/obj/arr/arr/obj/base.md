@@ -40,6 +40,41 @@ $( "ok" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
+  let tmpBindingPatternObjRoot = tmpParamBare;
+  let tmpOPND = tmpBindingPatternObjRoot.x;
+  let tmpArrPatternSplat = [...tmpOPND];
+  let tmpArrPatternStep = tmpArrPatternSplat[0];
+  let tmpArrPatternSplat$1 = [...tmpArrPatternStep];
+  let tmpArrPatternStep$1 = tmpArrPatternSplat$1[0];
+  let tmpObjPatternCrashTest = tmpArrPatternStep$1 === undefined;
+  if (tmpObjPatternCrashTest) {
+  } else {
+    tmpObjPatternCrashTest = tmpArrPatternStep$1 === null;
+  }
+  if (tmpObjPatternCrashTest) {
+    tmpObjPatternCrashTest = tmpArrPatternStep$1.cannotDestructureThis;
+    return `ok`;
+  } else {
+    return `ok`;
+  }
+};
+const tmpCallCallee = f;
+const tmpArrElement$1 = { a: 1, b: 2, c: 3 };
+const tmpArrElement = [tmpArrElement$1, 14];
+const tmpObjLitVal = [tmpArrElement, 13];
+let tmpCalleeParam$1 = { x: tmpObjLitVal, a: 11, b: 12 };
+let tmpCalleeParam = f(tmpCalleeParam$1, 10);
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

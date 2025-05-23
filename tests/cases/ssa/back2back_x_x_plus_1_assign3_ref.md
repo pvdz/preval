@@ -115,6 +115,43 @@ if ($) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+if ($) {
+  $inlinedFunction: {
+    if ($) {
+      let x = $(5);
+      $(x);
+      const tmpCalleeParam = {
+        toString() {
+          debugger;
+          $(`tostring`);
+          x = 20;
+          return `hi`;
+        },
+      };
+      $inlinedFunction$1: {
+        x = $(tmpCalleeParam);
+        x = x + 1;
+        if ($) {
+          $(x);
+          break $inlinedFunction$1;
+        } else {
+          break $inlinedFunction$1;
+        }
+      }
+      break $inlinedFunction;
+    } else {
+      break $inlinedFunction;
+    }
+  }
+} else {
+}
+`````
+
+
 ## Todos triggered
 
 

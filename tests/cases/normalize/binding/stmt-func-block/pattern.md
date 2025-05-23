@@ -72,6 +72,30 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  const tmpIfTest = $(true);
+  if (tmpIfTest) {
+    let z = [10, 20, 30];
+    let tmpBindingPatternArrRoot = z;
+    let tmpArrPatternSplat = [...tmpBindingPatternArrRoot];
+    let x = tmpArrPatternSplat[0];
+    let y = tmpArrPatternSplat[1];
+    $(x, y, z);
+    return undefined;
+  } else {
+    return undefined;
+  }
+};
+let tmpCalleeParam = f();
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

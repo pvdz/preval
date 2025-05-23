@@ -48,6 +48,16 @@ throw "Preval: TDZ triggered for this read: while (test) {";
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+while (true) {
+  throw `Preval: TDZ triggered for this read: while (test) {`;
+}
+`````
+
+
 ## Todos triggered
 
 

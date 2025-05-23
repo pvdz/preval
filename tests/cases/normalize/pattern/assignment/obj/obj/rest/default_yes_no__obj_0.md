@@ -43,6 +43,27 @@ $( y );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpAssignObjPatternRhs = { x: 0, b: 11, c: 12 };
+const tmpOPBD = tmpAssignObjPatternRhs.x;
+let tmpOPAD = undefined;
+const tmpIfTest = tmpOPBD === undefined;
+if (tmpIfTest) {
+  let tmpCalleeParam = { a: `fail` };
+  tmpOPAD = $(tmpCalleeParam);
+} else {
+  tmpOPAD = tmpOPBD;
+}
+let tmpCalleeParam$1 = tmpOPAD;
+let tmpCalleeParam$3 = [];
+y = $objPatternRest(tmpCalleeParam$1, tmpCalleeParam$3, undefined);
+$(y);
+`````
+
+
 ## Todos triggered
 
 

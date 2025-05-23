@@ -70,6 +70,24 @@ b();
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = $(`50`);
+const f = function ($$0) {
+  let c = $$0;
+  debugger;
+  $coerce(x, `number`);
+  $(1);
+  $(2);
+  return undefined;
+};
+f(3);
+f(4);
+`````
+
+
 ## Todos triggered
 
 

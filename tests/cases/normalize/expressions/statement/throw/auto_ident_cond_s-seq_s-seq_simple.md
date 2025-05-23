@@ -39,6 +39,23 @@ throw 60;
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+let tmpThrowArg = undefined;
+const tmpIfTest = 30;
+if (tmpIfTest) {
+  tmpThrowArg = 60;
+} else {
+  let tmpCalleeParam = $(100);
+  tmpThrowArg = $(tmpCalleeParam);
+}
+throw tmpThrowArg;
+`````
+
+
 ## Todos triggered
 
 

@@ -40,6 +40,24 @@ $( "1->is->not->2" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const obj = { a: 1, b: 2, [` `]: `->` };
+const rex = new $regex_constructor(`\\b.\\b`, `g`);
+const tmpMCF = $string_replace;
+const tmpMCP = function ($$0) {
+  let c = $$0;
+  debugger;
+  const tmpReturnArg = obj[c];
+  return tmpReturnArg;
+};
+let tmpCalleeParam = $dotCall(tmpMCF, `a is not b`, `replace`, rex, tmpMCP);
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

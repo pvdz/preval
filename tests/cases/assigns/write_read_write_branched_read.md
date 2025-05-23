@@ -59,6 +59,21 @@ if (c) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = $(1);
+$(x, `a`);
+x = $(2);
+const tmpIfTest = $(1);
+if (tmpIfTest) {
+  $(x, `b`);
+} else {
+}
+`````
+
+
 ## Todos triggered
 
 

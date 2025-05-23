@@ -105,6 +105,33 @@ catch (e) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  throw `Some error`;
+};
+try {
+  f();
+} catch (e) {}
+try {
+  f();
+} catch (e$1) {}
+try {
+  f();
+} catch (e$3) {}
+try {
+  f();
+} catch (e$5) {}
+try {
+  let tmpCalleeParam = f();
+  $(tmpCalleeParam);
+} catch (e$7) {}
+`````
+
+
 ## Todos triggered
 
 

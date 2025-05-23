@@ -41,6 +41,19 @@ $Number_prototype.foo;
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let y = undefined;
+let tmpCompObj = undefined;
+const tmpNestedAssignObjPatternRhs = 1;
+x = tmpNestedAssignObjPatternRhs.x;
+tmpCompObj = tmpNestedAssignObjPatternRhs;
+const tmpIfTest = tmpCompObj.foo;
+`````
+
+
 ## Todos triggered
 
 

@@ -47,6 +47,21 @@ $( a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpArrElement = -1;
+const tmpArrElement$1 = true;
+const tmpArrElement$3 = -0;
+const tmpArrElement$5 = 0;
+const tmpArrElement$7 = `boolean`;
+const tmpArrElement$9 = undefined;
+const arr = [tmpArrElement, tmpArrElement$1, tmpArrElement$3, tmpArrElement$5, tmpArrElement$7, tmpArrElement$9];
+$(arr);
+`````
+
+
 ## Todos triggered
 
 

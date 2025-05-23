@@ -38,6 +38,26 @@ undefined instanceof 150;
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const spy = {
+  toString() {
+    debugger;
+    $(`fail`);
+    return undefined;
+  },
+  valueOf() {
+    debugger;
+    $(`fail`);
+    return undefined;
+  },
+};
+undefined instanceof 150;
+`````
+
+
 ## Todos triggered
 
 

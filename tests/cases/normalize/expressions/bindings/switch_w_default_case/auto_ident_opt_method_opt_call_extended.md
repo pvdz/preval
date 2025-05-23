@@ -78,6 +78,62 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let b = undefined;
+let a = undefined;
+let tmpSwitchValue = 1;
+let tmpSwitchCaseToStart = 1;
+const tmpIfTest = 1 === tmpSwitchValue;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+} else {
+  const tmpIfTest$1 = 2 === tmpSwitchValue;
+  if (tmpIfTest$1) {
+    tmpSwitchCaseToStart = 2;
+  } else {
+  }
+}
+const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$3) {
+  const tmpObjLitVal$1 = { e: $ };
+  const tmpObjLitVal = { d: tmpObjLitVal$1 };
+  b = { c: tmpObjLitVal };
+  a = undefined;
+  const tmpChainRootProp = b;
+  const tmpIfTest$5 = tmpChainRootProp != null;
+  if (tmpIfTest$5) {
+    const tmpChainElementObject = tmpChainRootProp.c;
+    const tmpChainElementObject$1 = tmpChainElementObject.d;
+    const tmpChainElementObject$3 = tmpChainElementObject$1.e;
+    const tmpIfTest$7 = tmpChainElementObject$3 != null;
+    if (tmpIfTest$7) {
+      const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, `e`, 1);
+      a = tmpChainElementCall;
+      $(tmpChainElementCall);
+    } else {
+      $(a);
+    }
+  } else {
+    $(a);
+  }
+} else {
+}
+const tmpIfTest$9 = tmpSwitchCaseToStart <= 1;
+if (tmpIfTest$9) {
+  $(`fail1`);
+} else {
+}
+const tmpIfTest$11 = tmpSwitchCaseToStart <= 2;
+if (tmpIfTest$11) {
+  $(`fail2`);
+} else {
+}
+`````
+
+
 ## Todos triggered
 
 

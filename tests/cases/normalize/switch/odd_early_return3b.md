@@ -51,6 +51,31 @@ With rename=true
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const inlineMe = function () {
+  debugger;
+  $ <= 0;
+  return undefined;
+};
+const g = function () {
+  debugger;
+  if ($) {
+    inlineMe();
+    return undefined;
+  } else {
+    return undefined;
+  }
+};
+if ($) {
+  g();
+} else {
+}
+`````
+
+
 ## Todos triggered
 
 

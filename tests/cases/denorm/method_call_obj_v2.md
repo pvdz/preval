@@ -61,6 +61,23 @@ if (d) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const cook = document.cookie;
+const tmpMCF = cook.match;
+const tmpMCP = new $regex_constructor(`x`, ``);
+const stuff = $dotCall(tmpMCF, cook, `match`, tmpMCP);
+if (stuff) {
+  let tmpCalleeParam = stuff[1];
+  const deco = decodeURIComponent(tmpCalleeParam);
+  unknown = deco;
+} else {
+}
+`````
+
+
 ## Todos triggered
 
 

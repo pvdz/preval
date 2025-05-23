@@ -163,6 +163,77 @@ $( 3, a, 3 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let b = { x: 1 };
+let c = 3;
+let a = { a: 999, b: 1000 };
+const tmpNestedAssignComMemberObj = $(b);
+const tmpNestedAssignComMemberProp = $(`x`);
+const tmpInitAssignLhsComputedObj = $(b);
+const tmpInitAssignLhsComputedProp = $(`x`);
+const tmpInitAssignLhsComputedObj$1 = $(b);
+const tmpInitAssignLhsComputedProp$1 = $(`x`);
+const tmpInitAssignLhsComputedObj$3 = $(b);
+const tmpInitAssignLhsComputedProp$3 = $(`x`);
+const tmpInitAssignLhsComputedObj$5 = $(b);
+const tmpInitAssignLhsComputedProp$5 = $(`x`);
+const tmpInitAssignLhsComputedObj$7 = $(b);
+const tmpInitAssignLhsComputedProp$7 = $(`x`);
+const tmpInitAssignLhsComputedRhs$7 = c;
+tmpInitAssignLhsComputedObj$7[tmpInitAssignLhsComputedProp$7] = tmpInitAssignLhsComputedRhs$7;
+const tmpInitAssignLhsComputedRhs$5 = tmpInitAssignLhsComputedRhs$7;
+tmpInitAssignLhsComputedObj$5[tmpInitAssignLhsComputedProp$5] = tmpInitAssignLhsComputedRhs$5;
+const tmpInitAssignLhsComputedRhs$3 = tmpInitAssignLhsComputedRhs$5;
+tmpInitAssignLhsComputedObj$3[tmpInitAssignLhsComputedProp$3] = tmpInitAssignLhsComputedRhs$3;
+const tmpInitAssignLhsComputedRhs$1 = tmpInitAssignLhsComputedRhs$3;
+tmpInitAssignLhsComputedObj$1[tmpInitAssignLhsComputedProp$1] = tmpInitAssignLhsComputedRhs$1;
+const tmpInitAssignLhsComputedRhs = tmpInitAssignLhsComputedRhs$1;
+tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = tmpInitAssignLhsComputedRhs;
+const tmpNestedAssignPropRhs = tmpInitAssignLhsComputedRhs;
+const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
+tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
+a = tmpNestedPropAssignRhs;
+let tmpCalleeParam = a;
+if (tmpCalleeParam) {
+  const tmpInitAssignLhsComputedObj$9 = $(b);
+  const tmpInitAssignLhsComputedProp$9 = $(`x`);
+  const tmpInitAssignLhsComputedObj$11 = $(b);
+  const tmpInitAssignLhsComputedProp$11 = $(`x`);
+  const tmpInitAssignLhsComputedObj$13 = $(b);
+  const tmpInitAssignLhsComputedProp$13 = $(`x`);
+  const tmpInitAssignLhsComputedObj$15 = $(b);
+  const tmpInitAssignLhsComputedProp$15 = $(`x`);
+  const tmpInitAssignLhsComputedObj$17 = $(b);
+  const tmpInitAssignLhsComputedProp$17 = $(`x`);
+  const tmpInitAssignLhsComputedObj$19 = $(b);
+  const tmpInitAssignLhsComputedProp$19 = $(`x`);
+  const tmpInitAssignLhsComputedRhs$19 = c;
+  tmpInitAssignLhsComputedObj$19[tmpInitAssignLhsComputedProp$19] = tmpInitAssignLhsComputedRhs$19;
+  const tmpInitAssignLhsComputedRhs$17 = tmpInitAssignLhsComputedRhs$19;
+  tmpInitAssignLhsComputedObj$17[tmpInitAssignLhsComputedProp$17] = tmpInitAssignLhsComputedRhs$17;
+  const tmpInitAssignLhsComputedRhs$15 = tmpInitAssignLhsComputedRhs$17;
+  tmpInitAssignLhsComputedObj$15[tmpInitAssignLhsComputedProp$15] = tmpInitAssignLhsComputedRhs$15;
+  const tmpInitAssignLhsComputedRhs$13 = tmpInitAssignLhsComputedRhs$15;
+  tmpInitAssignLhsComputedObj$13[tmpInitAssignLhsComputedProp$13] = tmpInitAssignLhsComputedRhs$13;
+  const tmpInitAssignLhsComputedRhs$11 = tmpInitAssignLhsComputedRhs$13;
+  tmpInitAssignLhsComputedObj$11[tmpInitAssignLhsComputedProp$11] = tmpInitAssignLhsComputedRhs$11;
+  const tmpInitAssignLhsComputedRhs$9 = tmpInitAssignLhsComputedRhs$11;
+  tmpInitAssignLhsComputedObj$9[tmpInitAssignLhsComputedProp$9] = tmpInitAssignLhsComputedRhs$9;
+  const tmpNestedComplexRhs = tmpInitAssignLhsComputedRhs$9;
+  a = tmpNestedComplexRhs;
+  tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+  $(a, b, c);
+} else {
+  $(tmpCalleeParam);
+  $(a, b, c);
+}
+`````
+
+
 ## Todos triggered
 
 

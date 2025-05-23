@@ -57,6 +57,28 @@ $( "else" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function ($$0) {
+  let a = $$0;
+  debugger;
+  if (a) {
+    $(`then`);
+    return undefined;
+  } else {
+    $(`else`);
+    return undefined;
+  }
+};
+f(0);
+f(`ok`);
+f(true);
+f(false);
+`````
+
+
 ## Todos triggered
 
 

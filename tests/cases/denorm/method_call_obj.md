@@ -43,6 +43,16 @@ $dotCall( b, a, "removeChild", s );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpCallCompObj$23 = document.body;
+const tmpMCF = tmpCallCompObj$23.removeChild;
+$dotCall(tmpMCF, tmpCallCompObj$23, `removeChild`, s);
+`````
+
+
 ## Todos triggered
 
 

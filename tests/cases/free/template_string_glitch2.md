@@ -62,6 +62,35 @@ $( e );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const func = function ($$0, $$1) {
+  let a = $$0;
+  let b = $$1;
+  debugger;
+  const tmpBinBothLhs = `/`;
+  const tmpBinBothRhs = $coerce(a, `string`);
+  const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
+  const slashA = $coerce(tmpBinLhs, `plustr`);
+  const tmpBinBothLhs$1 = ``;
+  const tmpBinBothRhs$1 = $coerce(slashA, `string`);
+  const tmpBinLhs$1 = tmpBinBothLhs$1 + tmpBinBothRhs$1;
+  const tmpStringConcatR = $coerce(tmpBinLhs$1, `plustr`);
+  const slashAslash = `${tmpStringConcatR}/`;
+  const slashAslashB = slashAslash + b;
+  return slashAslashB;
+};
+const x = $(`a`);
+const xs = $coerce(x, `string`);
+const y = $(`b`);
+const ys = $coerce(y, `string`);
+const fxy = func(xs, ys);
+$(fxy);
+`````
+
+
 ## Todos triggered
 
 

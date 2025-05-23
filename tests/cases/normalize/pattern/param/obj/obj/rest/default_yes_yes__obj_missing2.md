@@ -41,6 +41,16 @@ $( a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpParamBare = { b: 11, c: 12 };
+let objPatternBeforeDefault = tmpParamBare.x;
+$(objPatternBeforeDefault);
+`````
+
+
 ## Todos triggered
 
 

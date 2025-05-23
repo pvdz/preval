@@ -64,6 +64,24 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = undefined;
+let tmpSwitchCaseToStart = $(0);
+tmpSwitchBreak: {
+  const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
+  if (tmpIfTest$3) {
+    x = 10;
+    break tmpSwitchBreak;
+  } else {
+  }
+}
+$(x);
+`````
+
+
 ## Todos triggered
 
 

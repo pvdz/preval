@@ -154,6 +154,54 @@ $( 8 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  nestedLoop: {
+    const tmpIfTest = $(1);
+    if (tmpIfTest) {
+      const tmpIfTest$1 = $(2);
+      if (tmpIfTest$1) {
+        break nestedLoop;
+      } else {
+      }
+    } else {
+    }
+    const tmpIfTest$3 = $(3);
+    if (tmpIfTest$3) {
+      break;
+    } else {
+    }
+  }
+}
+$(4);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let continued = false;
+  const tmpIfTest$5 = $(5);
+  if (tmpIfTest$5) {
+    const tmpIfTest$7 = $(6);
+    if (tmpIfTest$7) {
+    } else {
+      continued = true;
+    }
+  } else {
+    continued = true;
+  }
+  if (continued) {
+  } else {
+    const tmpIfTest$9 = $(7);
+    if (tmpIfTest$9) {
+      break;
+    } else {
+    }
+  }
+}
+$(8);
+`````
+
+
 ## Todos triggered
 
 

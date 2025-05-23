@@ -39,6 +39,16 @@ $( "object" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpUnaryArg = new $regex_constructor(`1`, ``);
+let tmpCalleeParam = typeof tmpUnaryArg;
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

@@ -54,6 +54,23 @@ $( 7, b, 3 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let b = { x: 2 };
+let c = 3;
+let d = 4;
+const tmpInitAssignLhsComputedObj = b;
+const tmpInitAssignLhsComputedProp = $(`x`);
+const tmpInitAssignLhsComputedRhs = c + d;
+tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = tmpInitAssignLhsComputedRhs;
+let a = tmpInitAssignLhsComputedRhs;
+export { a };
+$(a, b, c);
+`````
+
+
 ## Todos triggered
 
 

@@ -84,6 +84,26 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let itooamanumberjack = false;
+if (imanumberandilovethrees) {
+  const tmpBinLhs = $(1);
+  itooamanumberjack = tmpBinLhs % 2;
+} else {
+  const tmpBinLhs$1 = $(2);
+  itooamanumberjack = tmpBinLhs$1 % 2;
+}
+if (itooamanumberjack) {
+  $(`a`, itooamanumberjack);
+} else {
+  $(`b`, itooamanumberjack);
+}
+`````
+
+
 ## Todos triggered
 
 

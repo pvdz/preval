@@ -44,6 +44,15 @@ $( "after", a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const blob = [1, 2, 3];
+$(`after`, blob);
+`````
+
+
 ## Todos triggered
 
 

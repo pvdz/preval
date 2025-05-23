@@ -59,6 +59,20 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const x = $(100);
+const tmpIfTest = x === 100;
+if (tmpIfTest) {
+  $(x);
+} else {
+  $(`nope`);
+}
+`````
+
+
 ## Todos triggered
 
 

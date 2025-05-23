@@ -68,6 +68,27 @@ $( "ABC" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const arr = [`A`, `B`];
+const f = function () {
+  debugger;
+  const a = arr[0];
+  const b = arr[1];
+  const ab = a + b;
+  const c = `C`;
+  const abc = ab + c;
+  $(a, b, ab, c, abc);
+  return abc;
+};
+$(f);
+let tmpCalleeParam = f();
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

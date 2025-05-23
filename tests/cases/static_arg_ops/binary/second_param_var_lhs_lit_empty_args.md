@@ -54,6 +54,32 @@ $( $Number_NaN );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function ($$0, $$1, $$2, $$3, $$4) {
+  let no = $$0;
+  let noo = $$1;
+  let nooo = $$2;
+  let a = $$3;
+  let b = $$4;
+  debugger;
+  const x = !b;
+  const tmpReturnArg = x + a;
+  return tmpReturnArg;
+};
+let tmpCalleeParam = f(1, 2);
+$(tmpCalleeParam);
+let tmpCalleeParam$1 = f(2, 100);
+$(tmpCalleeParam$1);
+let tmpCalleeParam$3 = f(`a`, `x`);
+$(tmpCalleeParam$3);
+let tmpCalleeParam$5 = f(true, false);
+$(tmpCalleeParam$5);
+`````
+
+
 ## Todos triggered
 
 

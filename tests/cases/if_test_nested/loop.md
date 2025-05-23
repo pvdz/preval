@@ -61,6 +61,24 @@ if (a) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const x = $();
+if (x) {
+  while (true) {
+    if (x) {
+      $(`round and`);
+    } else {
+      break;
+    }
+  }
+} else {
+}
+`````
+
+
 ## Todos triggered
 
 

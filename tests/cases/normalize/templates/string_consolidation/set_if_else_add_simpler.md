@@ -84,6 +84,26 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const s = $(`s`);
+const t = $(`t`);
+const x = `abc`;
+let y = undefined;
+if (t) {
+  const tmpStringConcatL = $coerce(t, `plustr`);
+  y = `def${tmpStringConcatL}`;
+} else {
+  const tmpStringConcatL$1 = $coerce(s, `plustr`);
+  y = `ghi${tmpStringConcatL$1}`;
+}
+const z = x + y;
+$(z);
+`````
+
+
 ## Todos triggered
 
 

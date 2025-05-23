@@ -80,6 +80,25 @@ $( a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = $();
+$(x);
+let tmpCalleeParam = {
+  toString() {
+    debugger;
+    $(x);
+    return undefined;
+  },
+};
+const t = $(tmpCalleeParam);
+x = t + 1;
+$(x);
+`````
+
+
 ## Todos triggered
 
 

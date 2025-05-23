@@ -114,6 +114,34 @@ b();
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let curtype = 0;
+const f = function () {
+  debugger;
+  const tmpIfTest = curtype === 16472;
+  if (tmpIfTest) {
+    curtype = $(`random`);
+    const tmpIfTest$1 = curtype === 16473;
+    if (tmpIfTest$1) {
+      $(`x`);
+      return undefined;
+    } else {
+      $(`y`);
+      return undefined;
+    }
+  } else {
+    $(`a`);
+    return undefined;
+  }
+};
+f();
+f();
+`````
+
+
 ## Todos triggered
 
 

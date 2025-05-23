@@ -122,6 +122,67 @@ $( "number", "Math.SQRT2" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpMCF = $Object_is;
+const tmpMCP = $spy(`Object.is`);
+const tmpUnaryArg = $dotCall(tmpMCF, $object_constructor, `is`, tmpMCP);
+let tmpCalleeParam = typeof tmpUnaryArg;
+$(tmpCalleeParam);
+const tmpMCF$1 = $Object_isFrozen;
+const tmpMCP$1 = $spy(`Object.isFrozen`);
+const tmpUnaryArg$1 = $dotCall(tmpMCF$1, $object_constructor, `isFrozen`, tmpMCP$1);
+let tmpCalleeParam$1 = typeof tmpUnaryArg$1;
+$(tmpCalleeParam$1);
+const tmpMCF$3 = $Object_isSealed;
+const tmpMCP$3 = $spy(`Object.isSealed`);
+const tmpUnaryArg$3 = $dotCall(tmpMCF$3, $object_constructor, `isSealed`, tmpMCP$3);
+let tmpCalleeParam$3 = typeof tmpUnaryArg$3;
+$(tmpCalleeParam$3);
+const tmpMCF$5 = $String_fromCharCode;
+const tmpMCP$5 = $spy(`String.fromCharCode`);
+const tmpUnaryArg$5 = $dotCall(tmpMCF$5, $string_constructor, `fromCharCode`, tmpMCP$5);
+let tmpCalleeParam$5 = typeof tmpUnaryArg$5;
+$(tmpCalleeParam$5);
+const tmpMCF$7 = $String_fromCodePoint;
+const tmpMCP$7 = $spy(`String.fromCodePoint`);
+const tmpUnaryArg$7 = $dotCall(tmpMCF$7, $string_constructor, `fromCodePoint`, tmpMCP$7);
+let tmpCalleeParam$7 = typeof tmpUnaryArg$7;
+$(tmpCalleeParam$7);
+const tmpMCF$9 = $String_raw;
+const tmpMCP$9 = $spy(`String.raw`);
+const tmpUnaryArg$9 = $dotCall(tmpMCF$9, $string_constructor, `raw`, tmpMCP$9);
+let tmpCalleeParam$9 = typeof tmpUnaryArg$9;
+$(tmpCalleeParam$9);
+const tmpUnaryArg$11 = $Math_E;
+let tmpCalleeParam$11 = typeof tmpUnaryArg$11;
+$(tmpCalleeParam$11, `Math.E`);
+const tmpUnaryArg$13 = $Math_LN10;
+let tmpCalleeParam$13 = typeof tmpUnaryArg$13;
+$(tmpCalleeParam$13, `Math.LN10`);
+const tmpUnaryArg$15 = $Math_LN2;
+let tmpCalleeParam$15 = typeof tmpUnaryArg$15;
+$(tmpCalleeParam$15, `Math.LN2`);
+const tmpUnaryArg$17 = $Math_LOG10E;
+let tmpCalleeParam$17 = typeof tmpUnaryArg$17;
+$(tmpCalleeParam$17, `Math.LOG10E`);
+const tmpUnaryArg$19 = $Math_LOG2E;
+let tmpCalleeParam$19 = typeof tmpUnaryArg$19;
+$(tmpCalleeParam$19, `Math.LOG2E`);
+const tmpUnaryArg$21 = $Math_PI;
+let tmpCalleeParam$21 = typeof tmpUnaryArg$21;
+$(tmpCalleeParam$21, `Math.PI`);
+const tmpUnaryArg$23 = $Math_SQRT1_2;
+let tmpCalleeParam$23 = typeof tmpUnaryArg$23;
+$(tmpCalleeParam$23, `Math.SQRT1_2`);
+const tmpUnaryArg$25 = $Math_SQRT2;
+let tmpCalleeParam$25 = typeof tmpUnaryArg$25;
+$(tmpCalleeParam$25, `Math.SQRT2`);
+`````
+
+
 ## Todos triggered
 
 

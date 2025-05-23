@@ -43,6 +43,25 @@ $( "pass" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  let $implicitThrow = false;
+  let $finalCatchArg = undefined;
+  $(`pass`);
+  if ($implicitThrow) {
+    throw $finalCatchArg;
+  } else {
+    return undefined;
+  }
+};
+f();
+`````
+
+
 ## Todos triggered
 
 

@@ -88,6 +88,37 @@ $( l );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const f = function $free($$0) {
+  let a = $$0;
+  debugger;
+  const one = a + 5;
+  const tmpMCF = one.slice;
+  const two = $dotCall(tmpMCF, one, `slice`, 1);
+  return two;
+};
+const g = function $free($$0) {
+  let a$1 = $$0;
+  debugger;
+  const one$1 = a$1 + 100;
+  const tmpMCF$1 = a$1.slice;
+  const two$1 = $dotCall(tmpMCF$1, a$1, `slice`, 2);
+  return two$1;
+};
+const x = $spy(`x`);
+const xs = $coerce(x, `plustr`);
+const y = $spy(`y`);
+const ys = $coerce(y, `plustr`);
+const r = $frfr(f, xs, ys);
+const s = $frfr(g, xs, ys);
+const rs = r + s;
+$(rs);
+`````
+
+
 ## Todos triggered
 
 

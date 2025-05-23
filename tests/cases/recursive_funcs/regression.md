@@ -242,6 +242,76 @@ $( i );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpFree$1 = function $free($$0, $$1) {
+  let $dlr_$$0 = $$0;
+  let $dlr_$$1 = $$1;
+  debugger;
+  const cs$1 = $dlr_$$0;
+  const g$147 = $dlr_$$1;
+  const tmpBinBothLhs$3633 = cs$1 + 71046;
+  const tmpMCF = $string_charCodeAt;
+  const tmpBinBothRhs$3633 = $dotCall($string_charCodeAt, `xyz`, `charCodeAt`, g$147);
+  const tmpCalleeParam$9457 = tmpBinBothLhs$3633 ^ tmpBinBothRhs$3633;
+  const tmpMCF$1 = $String_fromCharCode;
+  const tmpRet$1 = $String_fromCharCode(tmpCalleeParam$9457);
+  return tmpRet$1;
+};
+const tmpObjLitVal$159 = function () {
+  debugger;
+  let t$3391 = tmpSSA_Tu();
+  if (t$3391) {
+    tmpSSA_wu(t$3391);
+  } else {
+    t$3391 = tmpSSA_Su();
+    tmpSSA_wu(t$3391);
+  }
+  if (t$3391) {
+    tmpSSA__u_t(t$3391);
+  } else {
+  }
+  const tmpMCF$3 = tmpCallObj$3807.toString;
+  const tmpClusterSSA_e$2725 = $dotCall(tmpMCF$3, tmpCallObj$3807, `toString`, 36);
+  const tmpCalleeParam$11085 = new $regex_constructor(`^0.`, ``);
+  const tmpMCF$5 = tmpCallObj$3811.replace;
+  const tmpClusterSSA_r$2027 = $dotCall(tmpMCF$5, tmpCallObj$3811, `replace`, tmpCalleeParam$11085, ``);
+  const tmpBinBothLhs$1 = ``;
+  const tmpBinBothRhs$1 = $coerce(tmpBinBothRhs$32, `string`);
+  const tmpBinLhs$1 = tmpBinBothLhs$1 + tmpBinBothRhs$1;
+  const tmpStringConcatR = $coerce(tmpBinLhs$1, `plustr`);
+  const tmpBinBothLhs = `${tmpStringConcatR}_`;
+  const tmpBinBothRhs = $coerce(tmpClusterSSA_r$2027, `string`);
+  const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
+  const tmpBinLhs$33 = $coerce(tmpBinLhs, `plustr`);
+  const tmpClusterSSA_t$9 = tmpSSA_Tu();
+  if (tmpClusterSSA_t$9) {
+    tmpClusterSSA_tmpssa3_c$245 = tmpClusterSSA_t$9;
+  } else {
+    const tmpClusterSSA_t$11 = tmpSSA_Su();
+    if (tmpClusterSSA_t$11) {
+      tmpClusterSSA_tmpssa3_c$245 = tmpClusterSSA_t$11;
+    } else {
+    }
+  }
+  let p$171 = ``;
+  let g$1 = 0;
+  while (true) {
+    if (tmpIfTest$5467) {
+      const tmpBinBothRhs$3631 = $frfr(tmpFree$1, $, $);
+      p$171 = p$171 + tmpBinBothRhs$3631;
+    } else {
+      break;
+    }
+  }
+  return undefined;
+};
+$(tmpObjLitVal$159);
+`````
+
+
 ## Todos triggered
 
 

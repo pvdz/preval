@@ -44,6 +44,16 @@ a.toString;
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+$(1);
+const tmpCompObj = $(2);
+tmpCompObj.toString;
+`````
+
+
 ## Todos triggered
 
 

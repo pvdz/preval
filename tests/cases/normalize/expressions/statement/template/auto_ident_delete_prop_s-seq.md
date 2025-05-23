@@ -80,6 +80,26 @@ $( j, f );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let arg = { y: 1 };
+let a = { a: 999, b: 1000 };
+const tmpBinBothLhs = `before  `;
+$(1);
+$(2);
+const tmpDeleteObj = arg;
+let tmpCalleeParam$1 = delete tmpDeleteObj.y;
+const tmpBinBothRhs = $coerce(tmpCalleeParam$1, `string`);
+const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
+const tmpStringConcatR = $coerce(tmpBinLhs, `plustr`);
+let tmpCalleeParam = `${tmpStringConcatR}  after`;
+$(tmpCalleeParam);
+$(a, arg);
+`````
+
+
 ## Todos triggered
 
 

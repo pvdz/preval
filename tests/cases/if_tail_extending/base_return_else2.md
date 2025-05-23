@@ -129,6 +129,53 @@ if (x) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const f = function () {
+  debugger;
+  const tmpAfterLabel = function ($$0) {
+    let $tmpLoopUnrollCheck$1 = $$0;
+    debugger;
+    if ($tmpLoopUnrollCheck$1) {
+      while ($LOOP_UNROLL_10) {
+        if (x) {
+          $(1);
+          if ($) {
+            $(2);
+          } else {
+            return undefined;
+          }
+        } else {
+          break;
+        }
+      }
+      return undefined;
+    } else {
+      return undefined;
+    }
+  };
+  let $tmpLoopUnrollCheck = true;
+  if (x) {
+    $(1);
+    if ($) {
+      $(2);
+      const tmpReturnArg$1 = tmpAfterLabel($tmpLoopUnrollCheck);
+      return tmpReturnArg$1;
+    } else {
+      return undefined;
+    }
+  } else {
+    $tmpLoopUnrollCheck = false;
+    const tmpReturnArg = tmpAfterLabel($tmpLoopUnrollCheck);
+    return tmpReturnArg;
+  }
+};
+f();
+`````
+
+
 ## Todos triggered
 
 

@@ -43,6 +43,20 @@ $( a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = true;
+if ($) {
+  $(x);
+} else {
+  x = false;
+  $(x);
+}
+`````
+
+
 ## Todos triggered
 
 

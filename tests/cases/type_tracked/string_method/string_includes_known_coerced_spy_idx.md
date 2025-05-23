@@ -56,6 +56,20 @@ $( c, f );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpMCF = $string_includes;
+const tmpMCP = $spy(1);
+const bool1 = $dotCall(tmpMCF, `123`, `includes`, tmpMCP, 1);
+const tmpMCF$1 = $string_includes;
+const tmpMCP$1 = $spy(1);
+const bool2 = $dotCall(tmpMCF$1, `321`, `includes`, tmpMCP$1, 1);
+$(bool1, bool2);
+`````
+
+
 ## Todos triggered
 
 

@@ -43,6 +43,16 @@ export { a as a,b as b };
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let a = 10;
+let b = 20;
+export { a, b };
+`````
+
+
 ## Todos triggered
 
 

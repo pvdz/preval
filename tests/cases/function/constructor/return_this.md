@@ -51,6 +51,25 @@ $( window );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let glbl = undefined;
+try {
+  const tmpCallComplexCallee = function () {
+    debugger;
+    return window;
+  };
+  const tmpReturnArg = tmpCallComplexCallee();
+  glbl = tmpReturnArg;
+} catch (e) {
+  glbl = window;
+}
+$(glbl);
+`````
+
+
 ## Todos triggered
 
 

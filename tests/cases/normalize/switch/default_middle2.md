@@ -40,6 +40,23 @@ $( 30 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let tmpSwitchValue = 6;
+let tmpSwitchCaseToStart = 0;
+const tmpBinLhs = $(30);
+const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 1;
+} else {
+}
+const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
+`````
+
+
 ## Todos triggered
 
 

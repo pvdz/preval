@@ -89,6 +89,36 @@ $( m );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const f = function $free($$0, $$1) {
+  let a = $$0;
+  let b = $$1;
+  debugger;
+  const c = a + b;
+  const d = c * 10;
+  return d;
+};
+const g = function $free($$0, $$1) {
+  let n = $$0;
+  let o = $$1;
+  debugger;
+  const p = n * 20;
+  const q = o * 40;
+  const r = $frfr(f, p, q);
+  return r;
+};
+const tmpBinLhs = $(100);
+const x = tmpBinLhs * 1;
+const tmpBinLhs$1 = $(200);
+const y = tmpBinLhs$1 * 1;
+const tmp = $frfr(g, x, y);
+$(tmp);
+`````
+
+
 ## Todos triggered
 
 

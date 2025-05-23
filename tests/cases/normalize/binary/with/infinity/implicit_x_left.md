@@ -179,6 +179,61 @@ $( v );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpArrElement = x ** Infinity;
+const tmpArrElement$1 = x * Infinity;
+const tmpArrElement$3 = x / Infinity;
+const tmpArrElement$5 = x % Infinity;
+const tmpArrElement$7 = x + Infinity;
+const tmpArrElement$9 = x - Infinity;
+const tmpArrElement$11 = x << 0;
+const tmpArrElement$13 = x >> 0;
+const tmpArrElement$15 = x >>> 0;
+const tmpArrElement$17 = x < Infinity;
+const tmpArrElement$19 = x > Infinity;
+const tmpArrElement$21 = x <= Infinity;
+const tmpArrElement$23 = x >= Infinity;
+const tmpArrElement$25 = x == Infinity;
+const tmpArrElement$27 = x != Infinity;
+const tmpArrElement$29 = x === Infinity;
+const tmpArrElement$31 = x !== Infinity;
+x & 0;
+const tmpArrElement$33 = 0;
+const tmpArrElement$35 = x ^ 0;
+const tmpArrElement$37 = x | 0;
+const arr = [
+  tmpArrElement,
+  tmpArrElement$1,
+  tmpArrElement$3,
+  tmpArrElement$5,
+  tmpArrElement$7,
+  tmpArrElement$9,
+  tmpArrElement$11,
+  tmpArrElement$13,
+  tmpArrElement$15,
+  tmpArrElement$17,
+  tmpArrElement$19,
+  tmpArrElement$21,
+  tmpArrElement$23,
+  tmpArrElement$25,
+  tmpArrElement$27,
+  tmpArrElement$29,
+  tmpArrElement$31,
+  tmpArrElement$33,
+  tmpArrElement$35,
+  tmpArrElement$37,
+];
+$(arr);
+let tmpCalleeParam = x in Infinity;
+$(tmpCalleeParam);
+let tmpCalleeParam$1 = x instanceof Infinity;
+$(tmpCalleeParam$1);
+`````
+
+
 ## Todos triggered
 
 

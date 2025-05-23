@@ -158,6 +158,53 @@ $( u );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let a = function () {
+  debugger;
+  const arr = [1, 2, 3];
+  a = function () {
+    debugger;
+    return arr;
+  };
+  const tmpReturnArg = a();
+  return tmpReturnArg;
+};
+let b = function () {
+  debugger;
+  const arr$1 = [1, 2, 3];
+  a = function () {
+    debugger;
+    return arr$1;
+  };
+  const tmpReturnArg$1 = a();
+  return tmpReturnArg$1;
+};
+const tmpBinBothLhs = b();
+const tmpBinBothRhs = a();
+let tmpCalleeParam = tmpBinBothLhs === tmpBinBothRhs;
+$(tmpCalleeParam);
+const tmpBinBothLhs$1 = b();
+const tmpBinBothRhs$1 = a();
+let tmpCalleeParam$1 = tmpBinBothLhs$1 === tmpBinBothRhs$1;
+$(tmpCalleeParam$1);
+const tmpBinBothLhs$3 = b();
+const tmpBinBothRhs$3 = b();
+let tmpCalleeParam$3 = tmpBinBothLhs$3 === tmpBinBothRhs$3;
+$(tmpCalleeParam$3);
+const tmpBinBothLhs$5 = b();
+const tmpBinBothRhs$5 = a();
+let tmpCalleeParam$5 = tmpBinBothLhs$5 === tmpBinBothRhs$5;
+$(tmpCalleeParam$5);
+const tmpBinBothLhs$7 = a();
+const tmpBinBothRhs$7 = a();
+let tmpCalleeParam$7 = tmpBinBothLhs$7 === tmpBinBothRhs$7;
+$(tmpCalleeParam$7);
+`````
+
+
 ## Todos triggered
 
 

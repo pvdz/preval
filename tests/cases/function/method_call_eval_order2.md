@@ -48,6 +48,19 @@ $dotCall( c, a, undefined, d, e );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpMCCO = $spy(`a`);
+const tmpMCCP = $spy(`b`);
+const tmpMCF = tmpMCCO[tmpMCCP];
+const tmpMCP = $spy(`c`);
+const tmpMCP$1 = $spy(`d`);
+$dotCall(tmpMCF, tmpMCCO, undefined, tmpMCP, tmpMCP$1);
+`````
+
+
 ## Todos triggered
 
 

@@ -38,6 +38,19 @@ $( "is it true that stuff" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpBinBothLhs = `is it `;
+const tmpBinBothRhs = $coerce(true, `string`);
+const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
+const tmpStringConcatR = $coerce(tmpBinLhs, `plustr`);
+const x = `${tmpStringConcatR} that stuff`;
+$(x);
+`````
+
+
 ## Todos triggered
 
 

@@ -159,6 +159,58 @@ $( s );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let s = String;
+const y = `y`;
+const tmpClassSuper = $(s);
+const tmpClassSuper$1 = tmpClassSuper;
+const tmpClassComputedKey = $(`f`);
+s = $number_constructor;
+const tmpClassComputedKey$1 = `x`;
+let x = class extends tmpClassSuper$1 {
+  [tmpClassComputedKey]() {
+    debugger;
+    const tmpReturnArg = $(100, `method`);
+    return tmpReturnArg;
+  }
+  g() {
+    debugger;
+    const tmpReturnArg$1 = $(200, `method`);
+    return tmpReturnArg$1;
+  }
+  [tmpClassComputedKey$1]() {
+    debugger;
+    const tmpReturnArg$3 = $(300, `method`);
+    return tmpReturnArg$3;
+  }
+  [y]() {
+    debugger;
+    const tmpReturnArg$5 = $(400, `method`);
+    return tmpReturnArg$5;
+  }
+};
+const tmpMCOO = new x();
+const tmpMCF = tmpMCOO.f;
+let tmpCalleeParam = $dotCall(tmpMCF, tmpMCOO, `f`);
+$(tmpCalleeParam);
+const tmpMCOO$1 = new x();
+const tmpMCF$1 = tmpMCOO$1.g;
+let tmpCalleeParam$1 = $dotCall(tmpMCF$1, tmpMCOO$1, `g`);
+$(tmpCalleeParam$1);
+const tmpMCOO$3 = new x();
+const tmpMCF$3 = tmpMCOO$3.x;
+let tmpCalleeParam$3 = $dotCall(tmpMCF$3, tmpMCOO$3, `x`);
+$(tmpCalleeParam$3);
+const tmpMCOO$5 = new x();
+const tmpMCF$5 = tmpMCOO$5.y;
+let tmpCalleeParam$5 = $dotCall(tmpMCF$5, tmpMCOO$5, `y`);
+$(tmpCalleeParam$5);
+`````
+
+
 ## Todos triggered
 
 

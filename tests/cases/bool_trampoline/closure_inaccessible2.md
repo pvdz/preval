@@ -134,6 +134,44 @@ $( e );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpObjLitVal = function () {
+  debugger;
+  let x = undefined;
+  const f$1 = function () {
+    debugger;
+    x = $(100);
+    const y = $boolean_constructor(x);
+    return y;
+  };
+  $(x);
+  return f$1;
+};
+const obj = {
+  f: tmpObjLitVal,
+  g() {
+    const tmpPrevalAliasThis = this;
+    debugger;
+    const tmpMCF = tmpPrevalAliasThis.f;
+    const tmpIfTest = $dotCall(tmpMCF, tmpPrevalAliasThis, `f`);
+    if (tmpIfTest) {
+      $(`pass`);
+      return undefined;
+    } else {
+      $(`fail`);
+      return undefined;
+    }
+  },
+};
+const tmpMCF$1 = obj.f;
+const f = $dotCall(tmpMCF$1, obj, `f`);
+$(obj);
+`````
+
+
 ## Todos triggered
 
 

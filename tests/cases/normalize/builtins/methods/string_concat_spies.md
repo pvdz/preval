@@ -48,6 +48,17 @@ $coerce( b, "string" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const x = $spy(`a`);
+const y = $spy(`b`);
+const tmpMCF = $string_concat;
+$dotCall($string_concat, ``, `concat`, x, y);
+`````
+
+
 ## Todos triggered
 
 

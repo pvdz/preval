@@ -40,6 +40,34 @@ throw "Preval: Array spread on non-string primitive must crash (caused by `[...n
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
+  let tmpBindingPatternArrRoot = tmpParamBare;
+  let tmpArrPatternSplat = [...tmpBindingPatternArrRoot];
+  let tmpAPBD = tmpArrPatternSplat[0];
+  let tmpArrPatternStep = undefined;
+  const tmpIfTest = tmpAPBD === undefined;
+  if (tmpIfTest) {
+    let tmpCalleeParam = [`fail2`];
+    tmpArrPatternStep = $(tmpCalleeParam);
+  } else {
+    tmpArrPatternStep = tmpAPBD;
+  }
+  let tmpArrPatternSplat$1 = [...tmpArrPatternStep];
+  return `bad`;
+};
+const tmpCallCallee = f;
+let tmpCalleeParam$3 = [null, 4, 5];
+let tmpCalleeParam$1 = f(tmpCalleeParam$3, 200);
+$(tmpCalleeParam$1);
+`````
+
+
 ## Todos triggered
 
 

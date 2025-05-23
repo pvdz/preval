@@ -60,6 +60,18 @@ c.length = undefined;
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let tmpCalleeParam = [];
+let a = $(tmpCalleeParam);
+let b = undefined;
+const tmpAssignMemLhsObj = $(a);
+tmpAssignMemLhsObj.length = b;
+`````
+
+
 ## Todos triggered
 
 

@@ -64,6 +64,30 @@ $( "b" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let alwaysFalse = false;
+const f = function () {
+  debugger;
+  if (alwaysFalse) {
+    $(`a`);
+    return undefined;
+  } else {
+    $(`b`);
+    return undefined;
+  }
+};
+if (alwaysFalse) {
+  alwaysFalse = false;
+  f();
+} else {
+  f();
+}
+`````
+
+
 ## Todos triggered
 
 

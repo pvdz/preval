@@ -122,6 +122,34 @@ $( "c" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = { a: 0, b: 1 };
+const tmpForInGen = $forIn(x);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext = tmpForInGen();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    const y = tmpForInNext.value;
+    while (true) {
+      $(`a`);
+      const tmpIfTest$1 = $(true);
+      if (tmpIfTest$1) {
+        break;
+      } else {
+        $(`fail`);
+      }
+    }
+  }
+}
+$(`c`);
+`````
+
+
 ## Todos triggered
 
 

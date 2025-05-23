@@ -103,6 +103,32 @@ $( 2 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  $(`call me once`);
+  return undefined;
+};
+const g = function () {
+  debugger;
+  f();
+  if (f) {
+    f = false;
+    return undefined;
+  } else {
+    return undefined;
+  }
+};
+g();
+$(1);
+g();
+$(2);
+`````
+
+
 ## Todos triggered
 
 

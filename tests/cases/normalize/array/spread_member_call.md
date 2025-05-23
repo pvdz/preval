@@ -39,6 +39,17 @@ $( a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpMCF = $boolean_toString;
+const tmpArrSpread = $dotCall($boolean_toString, true, `toString`);
+let tmpCalleeParam = [...tmpArrSpread];
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

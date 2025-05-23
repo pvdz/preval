@@ -109,6 +109,42 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpObjLitVal$1 = { z: $ };
+const tmpObjLitVal = { y: tmpObjLitVal$1 };
+let a = { x: tmpObjLitVal };
+const tmpChainRootCall = $;
+const tmpCallCallee = tmpChainRootCall;
+let tmpCalleeParam = undefined;
+const tmpChainRootCall$1 = $;
+const tmpChainElementCall$3 = $(a);
+const tmpIfTest = tmpChainElementCall$3 != null;
+if (tmpIfTest) {
+  const tmpChainRootComputed = $(`x`);
+  const tmpChainElementObject = tmpChainElementCall$3[tmpChainRootComputed];
+  const tmpIfTest$1 = tmpChainElementObject != null;
+  if (tmpIfTest$1) {
+    const tmpChainRootComputed$1 = $(`y`);
+    const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
+    const tmpChainRootComputed$3 = $(`z`);
+    const tmpChainElementObject$3 = tmpChainElementObject$1[tmpChainRootComputed$3];
+    tmpCalleeParam = tmpChainElementObject$3;
+  } else {
+  }
+} else {
+}
+const tmpChainElementCall = tmpChainRootCall(tmpCalleeParam);
+const tmpIfTest$3 = tmpChainElementCall != null;
+if (tmpIfTest$3) {
+  const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, tmpChainRootCall, undefined, 100);
+} else {
+}
+`````
+
+
 ## Todos triggered
 
 

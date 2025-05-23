@@ -70,6 +70,29 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  const tmpSwitchDisc = $(1, `disc`);
+  const tmpBinBothLhs = tmpSwitchDisc;
+  const tmpBinBothRhs = $(1, `case`);
+  const tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
+  if (tmpIfTest) {
+    const tmpThrowArg = $(2, `ret`);
+    throw tmpThrowArg;
+  } else {
+    $(`keep, do not eval`);
+    return undefined;
+  }
+};
+let tmpCalleeParam = f();
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

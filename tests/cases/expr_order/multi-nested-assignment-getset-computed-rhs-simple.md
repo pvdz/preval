@@ -389,6 +389,146 @@ a( h, i, j, k );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let a = undefined;
+let b = undefined;
+let c = undefined;
+let d = undefined;
+let e = undefined;
+let obja = undefined;
+let objb = undefined;
+let objc = undefined;
+let objd = undefined;
+let tmp = function (...$$0 /*:array*/) {
+  let a$1 = $$0;
+  debugger;
+  let tmpCalleeParam = [`\$:`, a$1, b, c, d, e, obja, objb, objc, objd, `::`, ...a$1];
+  $(tmpCalleeParam);
+  const tmpReturnArg = a$1[0];
+  return tmpReturnArg;
+};
+obja = {
+  get a() {
+    debugger;
+    tmp(`a.get`);
+    return 110;
+  },
+  set a($$0) {
+    let x = $$0;
+    debugger;
+    tmp(`a.set`, x);
+    e = `faila`;
+    return 1000;
+  },
+};
+objb = {
+  get b() {
+    debugger;
+    tmp(`b.get`);
+    a = 210;
+    return 100;
+  },
+  set b($$0) {
+    let x$1 = $$0;
+    debugger;
+    tmp(`b.set`, x$1);
+    a = 2100;
+    e = `failb`;
+    return 2000;
+  },
+};
+objc = {
+  get c() {
+    debugger;
+    tmp(`c.get`);
+    a = 310;
+    b = 320;
+    return 100;
+  },
+  set c($$0) {
+    let x$3 = $$0;
+    debugger;
+    tmp(`c.set`, x$3);
+    a = 3100;
+    b = 3200;
+    e = `failc`;
+    return 3000;
+  },
+};
+objd = {
+  get d() {
+    debugger;
+    tmp(`d.get`);
+    a = 410;
+    b = 420;
+    c = 430;
+    return 100;
+  },
+  set d($$0) {
+    let x$5 = $$0;
+    debugger;
+    tmp(`d.set`, x$5);
+    a = 4100;
+    b = 4200;
+    c = 4300;
+    e = `faild`;
+    return 4000;
+  },
+};
+a = function () {
+  debugger;
+  tmp(`a`);
+  return obja;
+};
+b = function () {
+  debugger;
+  tmp(`b`);
+  a = 21;
+  return objb;
+};
+c = function () {
+  debugger;
+  tmp(`c`);
+  a = 31;
+  b = 32;
+  return objc;
+};
+d = function () {
+  debugger;
+  tmp(`d`);
+  a = 41;
+  b = 42;
+  c = 43;
+  return objd;
+};
+e = 12345;
+const tmpCallCallee = tmp;
+const tmpInitAssignLhsComputedObj = a();
+const tmpInitAssignLhsComputedProp = tmp(`a`);
+const tmpInitAssignLhsComputedObj$1 = b();
+const tmpInitAssignLhsComputedProp$1 = tmp(`b`);
+const tmpInitAssignLhsComputedObj$3 = c();
+const tmpInitAssignLhsComputedProp$3 = tmp(`c`);
+const tmpInitAssignLhsComputedObj$5 = d();
+const tmpInitAssignLhsComputedProp$5 = tmp(`d`);
+const tmpInitAssignLhsComputedRhs$5 = e;
+tmpInitAssignLhsComputedObj$5[tmpInitAssignLhsComputedProp$5] = tmpInitAssignLhsComputedRhs$5;
+const tmpInitAssignLhsComputedRhs$3 = tmpInitAssignLhsComputedRhs$5;
+tmpInitAssignLhsComputedObj$3[tmpInitAssignLhsComputedProp$3] = tmpInitAssignLhsComputedRhs$3;
+const tmpInitAssignLhsComputedRhs$1 = tmpInitAssignLhsComputedRhs$3;
+tmpInitAssignLhsComputedObj$1[tmpInitAssignLhsComputedProp$1] = tmpInitAssignLhsComputedRhs$1;
+const tmpInitAssignLhsComputedRhs = tmpInitAssignLhsComputedRhs$1;
+tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = tmpInitAssignLhsComputedRhs;
+let tmpCalleeParam$1 = tmpInitAssignLhsComputedRhs;
+tmp(tmpInitAssignLhsComputedRhs);
+tmp(a, b, c, d, e);
+tmp(obja, objb, objc, objd);
+`````
+
+
 ## Todos triggered
 
 

@@ -37,6 +37,18 @@ $( "true" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpBinBothLhs = ``;
+const tmpBinBothRhs = $coerce(true, `string`);
+const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
+let tmpCalleeParam = $coerce(tmpBinLhs, `plustr`);
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

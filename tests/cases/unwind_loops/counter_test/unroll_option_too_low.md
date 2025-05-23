@@ -48,6 +48,28 @@ $( "b" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const arr = [`a`, `b`, `c`];
+let counter = 10;
+while (true) {
+  if (counter) {
+    const tmpMCF = arr.shift;
+    const e = $dotCall(tmpMCF, arr, `shift`);
+    const tmpMCF$1 = arr.push;
+    $dotCall(tmpMCF$1, arr, `push`, e);
+    counter = counter - 1;
+  } else {
+    break;
+  }
+}
+let tmpCalleeParam = arr[0];
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

@@ -72,6 +72,29 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+let tmpCalleeParam = $(1);
+a = $(tmpCalleeParam);
+if (a) {
+  let tmpCalleeParam$1 = $(1);
+  a = $(tmpCalleeParam$1);
+  if (a) {
+    let tmpCalleeParam$3 = $(2);
+    a = $(tmpCalleeParam$3);
+  } else {
+  }
+} else {
+}
+while (true) {
+  $(1);
+}
+`````
+
+
 ## Todos triggered
 
 

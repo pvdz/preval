@@ -85,6 +85,37 @@ $( a, 2, b, "final" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let a = undefined;
+let b = undefined;
+let x = $(10);
+a = function () {
+  debugger;
+  return x;
+};
+b = {
+  set x($$0) {
+    let n = $$0;
+    debugger;
+    x = $(30, `from set`);
+    return undefined;
+  },
+  get x() {
+    debugger;
+    const tmpReturnArg = $(40, `from get`);
+    return tmpReturnArg;
+  },
+};
+a = 2;
+b.x = x;
+x = $(20);
+$(x, a, b, `final`);
+`````
+
+
 ## Todos triggered
 
 

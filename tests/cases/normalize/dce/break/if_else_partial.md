@@ -116,6 +116,27 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+while (true) {
+  const tmpIfTest = $(true);
+  if (tmpIfTest) {
+    const tmpIfTest$1 = $(1);
+    if (tmpIfTest$1) {
+      break;
+    } else {
+      $(`keep, do not eval`);
+    }
+  } else {
+    break;
+  }
+}
+$(`after`);
+`````
+
+
 ## Todos triggered
 
 

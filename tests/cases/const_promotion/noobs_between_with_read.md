@@ -46,6 +46,22 @@ $( b, a, "final" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let a = undefined;
+let x = $(10);
+a = function () {
+  debugger;
+  return x;
+};
+a = x;
+x = $(20);
+$(x, a, `final`);
+`````
+
+
 ## Todos triggered
 
 

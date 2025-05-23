@@ -48,6 +48,33 @@ With rename=true
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let zzzz = function () {
+  debugger;
+  const a = [];
+  zzzz = function ($$0, $$1) {
+    let $dlr_$$0 = $$0;
+    let $dlr_$$1 = $$1;
+    debugger;
+    return a;
+  };
+  const tmpReturnArg$23 = zzzz();
+  return tmpReturnArg$23;
+};
+zzzz();
+const x = zzzz;
+zzzz();
+zzzz();
+x();
+x();
+x();
+zzzz();
+`````
+
+
 ## Todos triggered
 
 

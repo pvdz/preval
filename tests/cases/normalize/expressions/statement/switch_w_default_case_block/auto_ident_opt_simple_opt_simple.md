@@ -124,6 +124,58 @@ $( h );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpObjLitVal = { y: 1 };
+let b = { x: tmpObjLitVal };
+let a = { a: 999, b: 1000 };
+let tmpSwitchValue = $(1);
+let tmpSwitchCaseToStart = 1;
+const tmpBinLhs = $(1);
+const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+tmpSwitchBreak: {
+  if (tmpIfTest) {
+    tmpSwitchCaseToStart = 0;
+  } else {
+    const tmpIfTest$1 = 2 === tmpSwitchValue;
+    if (tmpIfTest$1) {
+      tmpSwitchCaseToStart = 2;
+    } else {
+    }
+  }
+  const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
+  if (tmpIfTest$3) {
+    const tmpChainRootProp = b;
+    const tmpIfTest$5 = tmpChainRootProp != null;
+    if (tmpIfTest$5) {
+      const tmpChainElementObject = tmpChainRootProp.x;
+      const tmpIfTest$7 = tmpChainElementObject != null;
+      if (tmpIfTest$7) {
+        const tmpChainElementObject$1 = tmpChainElementObject.y;
+      } else {
+      }
+    } else {
+    }
+    break tmpSwitchBreak;
+  } else {
+    const tmpIfTest$9 = tmpSwitchCaseToStart <= 1;
+    if (tmpIfTest$9) {
+      $(`fail1`);
+    } else {
+    }
+    const tmpIfTest$11 = tmpSwitchCaseToStart <= 2;
+    if (tmpIfTest$11) {
+      $(`fail2`);
+    } else {
+    }
+  }
+}
+$(a);
+`````
+
+
 ## Todos triggered
 
 

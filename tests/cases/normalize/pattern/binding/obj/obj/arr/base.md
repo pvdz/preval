@@ -42,6 +42,21 @@ $( "ok" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpObjLitVal$1 = 13;
+const tmpObjLitVal$3 = [1, 2, 3];
+const tmpObjLitVal = { x: tmpObjLitVal$1, y: tmpObjLitVal$3, z: 14 };
+const tmpBindingPatternObjRoot = { x: tmpObjLitVal, b: 11, c: 12 };
+const tmpOPND = tmpBindingPatternObjRoot.x;
+const tmpOPND$1 = tmpOPND.y;
+const tmpArrPatternSplat = [...tmpOPND$1];
+$(`ok`);
+`````
+
+
 ## Todos triggered
 
 

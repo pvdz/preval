@@ -52,6 +52,23 @@ if (b) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpObjLitVal = $(`prop`);
+const tmpBindingPatternObjRoot = { a: tmpObjLitVal };
+const tmpOPBD = tmpBindingPatternObjRoot.a;
+let b = undefined;
+const tmpIfTest = tmpOPBD === undefined;
+if (tmpIfTest) {
+  b = $(`default`);
+} else {
+  b = tmpOPBD;
+}
+`````
+
+
 ## Todos triggered
 
 

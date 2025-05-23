@@ -41,6 +41,17 @@ $( a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const arr = [];
+const tmpMCF = arr.push;
+$dotCall(tmpMCF, arr, `push`, 1);
+$(arr);
+`````
+
+
 ## Todos triggered
 
 

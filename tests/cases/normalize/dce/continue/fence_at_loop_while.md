@@ -114,6 +114,30 @@ $( "after (not invoked)" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+while (true) {
+  const tmpIfTest = $(true);
+  if (tmpIfTest) {
+    while (true) {
+      $(`loop`);
+      const tmpIfTest$1 = $(true);
+      if (tmpIfTest$1) {
+      } else {
+        break;
+      }
+    }
+    $(`infiloop, do not eliminate`);
+  } else {
+    break;
+  }
+}
+$(`after (not invoked)`);
+`````
+
+
 ## Todos triggered
 
 

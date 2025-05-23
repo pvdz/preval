@@ -128,6 +128,37 @@ $( a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const inlineMe = function () {
+  debugger;
+  const tmpIfTest = $(1);
+  if (tmpIfTest) {
+    const tmpIfTest$1 = $(1);
+    if (tmpIfTest$1) {
+      return 10;
+    } else {
+    }
+  } else {
+    $(100);
+  }
+  if ($) {
+    return 3;
+  } else {
+    return 4;
+  }
+};
+const parseIdentifierRest = function () {
+  debugger;
+  const s$15 = inlineMe(c$53);
+  return s$15;
+};
+$(parseIdentifierRest);
+`````
+
+
 ## Todos triggered
 
 

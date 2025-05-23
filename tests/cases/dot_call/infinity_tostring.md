@@ -40,6 +40,17 @@ $( "Infinity" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const inf = Infinity;
+const tmpCallVal = inf.toString;
+const x = $dotCall(tmpCallVal, inf, `toString`);
+$(x);
+`````
+
+
 ## Todos triggered
 
 

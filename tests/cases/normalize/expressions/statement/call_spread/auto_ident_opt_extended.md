@@ -49,6 +49,29 @@ $( a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpObjLitVal$1 = { z: 100 };
+const tmpObjLitVal = { y: tmpObjLitVal$1 };
+let b = { x: tmpObjLitVal };
+let a = { a: 999, b: 1000 };
+let tmpCalleeParamSpread = undefined;
+const tmpChainRootProp = b;
+const tmpIfTest = tmpChainRootProp != null;
+if (tmpIfTest) {
+  const tmpChainElementObject = tmpChainRootProp.x;
+  const tmpChainElementObject$1 = tmpChainElementObject.y;
+  const tmpChainElementObject$3 = tmpChainElementObject$1.z;
+  tmpCalleeParamSpread = tmpChainElementObject$3;
+} else {
+}
+$(...tmpCalleeParamSpread);
+$(a);
+`````
+
+
 ## Todos triggered
 
 

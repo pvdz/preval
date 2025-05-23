@@ -112,6 +112,53 @@ $( "Math.round:", "number" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpMCF = $Math_log10;
+const tmpMCP = $spy(`Math.log10`);
+const tmpUnaryArg = $dotCall(tmpMCF, Math, `log10`, tmpMCP);
+let tmpCalleeParam = typeof tmpUnaryArg;
+$(`Math.log10:`, tmpCalleeParam);
+const tmpMCF$1 = $Math_log1p;
+const tmpMCP$1 = $spy(`Math.log1p`);
+const tmpUnaryArg$1 = $dotCall(tmpMCF$1, Math, `log1p`, tmpMCP$1);
+let tmpCalleeParam$1 = typeof tmpUnaryArg$1;
+$(`Math.log1p:`, tmpCalleeParam$1);
+const tmpMCF$3 = $Math_log2;
+const tmpMCP$3 = $spy(`Math.log2`);
+const tmpUnaryArg$3 = $dotCall(tmpMCF$3, Math, `log2`, tmpMCP$3);
+let tmpCalleeParam$3 = typeof tmpUnaryArg$3;
+$(`Math.log2:`, tmpCalleeParam$3);
+const tmpMCF$5 = $Math_max;
+const tmpMCP$5 = $spy(`Math.max`);
+const tmpUnaryArg$5 = $dotCall(tmpMCF$5, Math, `max`, tmpMCP$5);
+let tmpCalleeParam$5 = typeof tmpUnaryArg$5;
+$(`Math.max:`, tmpCalleeParam$5);
+const tmpMCF$7 = $Math_min;
+const tmpMCP$7 = $spy(`Math.min`);
+const tmpUnaryArg$7 = $dotCall(tmpMCF$7, Math, `min`, tmpMCP$7);
+let tmpCalleeParam$7 = typeof tmpUnaryArg$7;
+$(`Math.min:`, tmpCalleeParam$7);
+const tmpMCF$9 = $Math_pow;
+const tmpMCP$9 = $spy(`Math.pow`);
+const tmpUnaryArg$9 = $dotCall(tmpMCF$9, Math, `pow`, tmpMCP$9);
+let tmpCalleeParam$9 = typeof tmpUnaryArg$9;
+$(`Math.pow:`, tmpCalleeParam$9);
+const tmpMCF$11 = $Math_random;
+const tmpMCP$11 = $spy(`Math.random`);
+const tmpUnaryArg$11 = $dotCall(tmpMCF$11, Math, `random`, tmpMCP$11);
+let tmpCalleeParam$11 = typeof tmpUnaryArg$11;
+$(`Math.random:`, tmpCalleeParam$11);
+const tmpMCF$13 = $Math_round;
+const tmpMCP$13 = $spy(`Math.round`);
+const tmpUnaryArg$13 = $dotCall(tmpMCF$13, Math, `round`, tmpMCP$13);
+let tmpCalleeParam$13 = typeof tmpUnaryArg$13;
+$(`Math.round:`, tmpCalleeParam$13);
+`````
+
+
 ## Todos triggered
 
 

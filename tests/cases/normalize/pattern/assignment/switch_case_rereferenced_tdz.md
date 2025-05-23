@@ -53,6 +53,41 @@ With rename=true
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let a = undefined;
+let b = undefined;
+let tmpSwitchValue = 1;
+let tmpSwitchCaseToStart = 2;
+const tmpIfTest = 0 === tmpSwitchValue;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+} else {
+  const tmpIfTest$1 = 1 === tmpSwitchValue;
+  if (tmpIfTest$1) {
+    tmpSwitchCaseToStart = 1;
+  } else {
+  }
+}
+const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$3) {
+  a = 10;
+  b = 20;
+} else {
+}
+const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
+if (tmpIfTest$5) {
+  const tmpArrAssignPatternRhs = [30, 40];
+  const tmpArrPatternSplat = [...tmpArrAssignPatternRhs];
+  a = tmpArrPatternSplat[0];
+  b = tmpArrPatternSplat[1];
+} else {
+}
+`````
+
+
 ## Todos triggered
 
 

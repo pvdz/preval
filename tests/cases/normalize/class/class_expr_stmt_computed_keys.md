@@ -43,6 +43,15 @@ $( "b" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpClassComputedKey = $(`a`);
+const tmpClassComputedKey$1 = $(`b`);
+`````
+
+
 ## Todos triggered
 
 

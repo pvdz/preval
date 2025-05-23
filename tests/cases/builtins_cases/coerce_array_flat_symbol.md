@@ -38,6 +38,15 @@ $( "function flat() { [native code] }" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const x = $coerce($array_flat, `plustr`);
+$(x);
+`````
+
+
 ## Todos triggered
 
 

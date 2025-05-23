@@ -56,6 +56,25 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let counter1 = 0;
+let counter2 = 0;
+let test = counter1 < 10;
+while (true) {
+  if (test) {
+    $(`yolo`);
+    counter1 = counter1 + 1;
+    test = counter2 < 10;
+  } else {
+    break;
+  }
+}
+`````
+
+
 ## Todos triggered
 
 

@@ -138,6 +138,52 @@ $( j );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+let tmpSwitchValue = $(1);
+let tmpSwitchCaseToStart = 1;
+const tmpBinLhs = $(1);
+const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+tmpSwitchBreak: {
+  if (tmpIfTest) {
+    tmpSwitchCaseToStart = 0;
+  } else {
+    const tmpIfTest$1 = 2 === tmpSwitchValue;
+    if (tmpIfTest$1) {
+      tmpSwitchCaseToStart = 2;
+    } else {
+    }
+  }
+  const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
+  if (tmpIfTest$3) {
+    const tmpChainRootCall = $;
+    const tmpChainElementCall = $($);
+    const tmpIfTest$5 = tmpChainElementCall != null;
+    if (tmpIfTest$5) {
+      const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, tmpChainRootCall, undefined, 1);
+    } else {
+    }
+    break tmpSwitchBreak;
+  } else {
+    const tmpIfTest$7 = tmpSwitchCaseToStart <= 1;
+    if (tmpIfTest$7) {
+      $(`fail1`);
+    } else {
+    }
+    const tmpIfTest$9 = tmpSwitchCaseToStart <= 2;
+    if (tmpIfTest$9) {
+      $(`fail2`);
+    } else {
+    }
+  }
+}
+$(a);
+`````
+
+
 ## Todos triggered
 
 

@@ -95,6 +95,33 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let tmpCalleeParam = { x: 100 };
+const tmpForInGen = $forIn(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext = tmpForInGen();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    let styleName$5 = tmpForInNext.value;
+    let checkme = $(1);
+    if (checkme) {
+      checkme = $(2);
+      if (checkme) {
+        $(3);
+      } else {
+      }
+    } else {
+    }
+  }
+}
+`````
+
+
 ## Todos triggered
 
 

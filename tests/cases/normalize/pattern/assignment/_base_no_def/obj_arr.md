@@ -41,6 +41,19 @@ const a = $Number_prototype.x;
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = 10;
+let y = 20;
+const tmpAssignObjPatternRhs = 1;
+const tmpOPND = tmpAssignObjPatternRhs.x;
+const tmpArrPatternSplat = [...tmpOPND];
+y = tmpArrPatternSplat[0];
+`````
+
+
 ## Todos triggered
 
 

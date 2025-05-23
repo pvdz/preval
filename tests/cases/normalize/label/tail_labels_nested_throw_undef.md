@@ -57,6 +57,22 @@ $( "inside" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  $(`before`);
+  $(`inside`);
+  return undefined;
+};
+const x = $(true);
+const y = $(true);
+f();
+`````
+
+
 ## Todos triggered
 
 

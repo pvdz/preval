@@ -248,6 +248,109 @@ $( l );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpCallComplexCallee = function ($$0, $$1, $$2, $$3, $$4, $$5) {
+  let p = $$0;
+  let a = $$1;
+  let c = $$2;
+  let k = $$3;
+  let e = $$4;
+  let r = $$5;
+  debugger;
+  e = function ($$0) {
+    let c$1 = $$0;
+    debugger;
+    const tmpMCF = c$1.toString;
+    const tmpReturnArg = $dotCall(tmpMCF, c$1, `toString`, a);
+    return tmpReturnArg;
+  };
+  const tmpMCF$1 = $string_replace;
+  const tmpMCP = new $regex_constructor(`^`, ``);
+  const tmpIfTest = $dotCall(tmpMCF$1, ``, `replace`, tmpMCP, $string_constructor);
+  if (tmpIfTest) {
+  } else {
+    while (true) {
+      const tmpPostUpdArgIdent = $coerce(c, `number`);
+      c = tmpPostUpdArgIdent - 1;
+      const tmpIfTest$1 = tmpPostUpdArgIdent;
+      if (tmpIfTest$1) {
+        const tmpAssignComMemLhsObj = r;
+        const tmpAssignComMemLhsProp = e(c);
+        const tmpAssignComputedObj = tmpAssignComMemLhsObj;
+        const tmpAssignComputedProp = tmpAssignComMemLhsProp;
+        let tmpAssignComputedRhs = k[c];
+        if (tmpAssignComputedRhs) {
+        } else {
+          tmpAssignComputedRhs = e(c);
+        }
+        tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+      } else {
+        break;
+      }
+    }
+    const tmpArrElement = function ($$0) {
+      let e$1 = $$0;
+      debugger;
+      const tmpReturnArg$1 = r[e$1];
+      return tmpReturnArg$1;
+    };
+    k = [tmpArrElement];
+    e = function () {
+      debugger;
+      return `\\w+`;
+    };
+    c = 1;
+  }
+  while (true) {
+    const tmpPostUpdArgIdent$1 = $coerce(c, `number`);
+    c = tmpPostUpdArgIdent$1 - 1;
+    const tmpIfTest$3 = tmpPostUpdArgIdent$1;
+    if (tmpIfTest$3) {
+      const tmpIfTest$5 = k[c];
+      if (tmpIfTest$5) {
+        const tmpMCF$3 = p.replace;
+        const tmpNewCallee = RegExp;
+        const tmpBinBothLhs = `\\b`;
+        const tmpBinBothRhs = e(c);
+        const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
+        const tmpStringConcatR = $coerce(tmpBinLhs, `plustr`);
+        let tmpCalleeParam$1 = `${tmpStringConcatR}\\b`;
+        const tmpMCP$1 = new tmpNewCallee(tmpCalleeParam$1, `g`);
+        const tmpMCP$3 = k[c];
+        p = $dotCall(tmpMCF$3, p, `replace`, tmpMCP$1, tmpMCP$3);
+      } else {
+      }
+    } else {
+      break;
+    }
+  }
+  return p;
+};
+const tmpCallCallee = tmpCallComplexCallee;
+const tmpMCF$5 = $string_split;
+let tmpCalleeParam$3 = $dotCall(
+  $string_split,
+  `|||||||||||||||function||||return||String|if|replace|while||10||eval|new|RegExp|x20f||u0020g|not_expr|split`,
+  `split`,
+  `|`,
+);
+let tmpCalleeParam$5 = {};
+let tmpCalleeParam = tmpCallComplexCallee(
+  `s(f(p,a,c,k,e,r){e=l;m(!''.n(/^/,l)){o(c--)r[c]=k[c]||c;k=[f(e){j r[e]}];e=f(){j'\\\\w+'};c=1};o(c--)m(k[c])p=p.n(t u('\\\\b'+e(c)+'\\\\b','g'),k[c]);j p}('"0\\\\\`1\\\\"2\\\\\\'3\\\\\\\\4\\\\5\\\\6\${7}8\\\\/9"',q,q,'a|b|c|d|e|v|x|y|h|i'.z('|'),0,{}))`,
+  36,
+  36,
+  tmpCalleeParam$3,
+  0,
+  tmpCalleeParam$5,
+);
+const x = eval(tmpCalleeParam);
+$(x);
+`````
+
+
 ## Todos triggered
 
 

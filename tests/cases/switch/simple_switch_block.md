@@ -100,6 +100,36 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  const tmpUnaryArg = $(`x`);
+  const tmpSwitchDisc = typeof tmpUnaryArg;
+  const tmpIfTest = tmpSwitchDisc === `string`;
+  if (tmpIfTest) {
+    return 1;
+  } else {
+    const tmpIfTest$1 = tmpSwitchDisc === `number`;
+    if (tmpIfTest$1) {
+      return 2;
+    } else {
+      const tmpIfTest$3 = tmpSwitchDisc === `boolean`;
+      if (tmpIfTest$3) {
+        return 3;
+      } else {
+        return 4;
+      }
+    }
+  }
+};
+let tmpCalleeParam = f();
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

@@ -39,6 +39,16 @@ $( "out:", true );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const x = new $regex_constructor(`hello`, ``);
+const y = x !== false;
+$(`out:`, y);
+`````
+
+
 ## Todos triggered
 
 

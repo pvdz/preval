@@ -94,6 +94,26 @@ $( c, b );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let flag = true;
+let b = 12;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  if (flag) {
+    $(100);
+    flag = b;
+    b = b + 1;
+  } else {
+    break;
+  }
+}
+const a = { a: 999, b: 1000 };
+$(a, b);
+`````
+
+
 ## Todos triggered
 
 

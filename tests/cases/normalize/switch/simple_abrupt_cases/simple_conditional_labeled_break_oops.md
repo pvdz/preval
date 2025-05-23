@@ -178,6 +178,71 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let tmpSwitchValue = $(1);
+let tmpSwitchCaseToStart = 4;
+const tmpIfTest = 0 === tmpSwitchValue;
+tmpSwitchBreak: {
+  if (tmpIfTest) {
+    tmpSwitchCaseToStart = 0;
+  } else {
+    const tmpIfTest$1 = 1 === tmpSwitchValue;
+    if (tmpIfTest$1) {
+      tmpSwitchCaseToStart = 1;
+    } else {
+      const tmpIfTest$3 = 2 === tmpSwitchValue;
+      if (tmpIfTest$3) {
+        tmpSwitchCaseToStart = 2;
+      } else {
+        const tmpIfTest$5 = 3 === tmpSwitchValue;
+        if (tmpIfTest$5) {
+          tmpSwitchCaseToStart = 3;
+        } else {
+        }
+      }
+    }
+  }
+  const tmpIfTest$7 = tmpSwitchCaseToStart <= 0;
+  if (tmpIfTest$7) {
+    oops: {
+      $(`one`);
+      if (x) {
+        break oops;
+      } else {
+      }
+    }
+  } else {
+  }
+  const tmpIfTest$9 = tmpSwitchCaseToStart <= 1;
+  if (tmpIfTest$9) {
+    $(`two`);
+    break tmpSwitchBreak;
+  } else {
+    const tmpIfTest$11 = tmpSwitchCaseToStart <= 2;
+    if (tmpIfTest$11) {
+      $(`three`);
+      break tmpSwitchBreak;
+    } else {
+      const tmpIfTest$13 = tmpSwitchCaseToStart <= 3;
+      if (tmpIfTest$13) {
+        $(`four`);
+        break tmpSwitchBreak;
+      } else {
+        const tmpIfTest$15 = tmpSwitchCaseToStart <= 4;
+        if (tmpIfTest$15) {
+          $(`def`);
+        } else {
+        }
+      }
+    }
+  }
+}
+`````
+
+
 ## Todos triggered
 
 

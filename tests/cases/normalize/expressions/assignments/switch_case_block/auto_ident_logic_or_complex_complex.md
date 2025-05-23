@@ -89,6 +89,31 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+const tmpSwitchDisc = $(1);
+const tmpBinBothLhs = tmpSwitchDisc;
+const tmpBinBothRhs = $(1);
+const tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
+if (tmpIfTest) {
+  let tmpCalleeParam = $(0);
+  a = $(tmpCalleeParam);
+  if (a) {
+    $(a);
+  } else {
+    let tmpCalleeParam$1 = $(2);
+    a = $(tmpCalleeParam$1);
+    $(a);
+  }
+} else {
+  $(a);
+}
+`````
+
+
 ## Todos triggered
 
 

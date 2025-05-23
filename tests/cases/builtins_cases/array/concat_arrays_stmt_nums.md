@@ -39,6 +39,17 @@ With rename=true
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const a = [1];
+const b = [2];
+const tmpMCF = a.concat;
+$dotCall(tmpMCF, a, `concat`, b);
+`````
+
+
 ## Todos triggered
 
 

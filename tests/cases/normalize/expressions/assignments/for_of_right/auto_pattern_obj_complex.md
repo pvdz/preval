@@ -80,6 +80,31 @@ $( c );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let tmpBindingPatternObjRoot = { a: 999, b: 1000 };
+let a = tmpBindingPatternObjRoot.a;
+let tmpCalleeParam = undefined;
+let tmpCalleeParam$1 = { a: 1, b: 2 };
+const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$1);
+a = tmpNestedAssignObjPatternRhs.a;
+tmpCalleeParam = tmpNestedAssignObjPatternRhs;
+const tmpForOfGenNext = $forOf(tmpNestedAssignObjPatternRhs);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForOfNext = tmpForOfGenNext();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    let x = tmpForOfNext.value;
+  }
+}
+$(a);
+`````
+
+
 ## Todos triggered
 
 

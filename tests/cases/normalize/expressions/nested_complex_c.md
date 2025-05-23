@@ -44,6 +44,25 @@ $( c );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let a = undefined;
+let b = undefined;
+let c = undefined;
+a = 10;
+b = 20;
+c = [];
+const tmpCompObj = $(c);
+const tmpNestedComplexRhs = tmpCompObj.length;
+b = tmpNestedComplexRhs;
+a = tmpNestedComplexRhs;
+let tmpCalleeParam = a;
+$(a);
+`````
+
+
 ## Todos triggered
 
 

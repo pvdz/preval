@@ -37,6 +37,23 @@ With rename=true
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpAssignObjPatternRhs = 1;
+let tmpObjPatternCrashTest = tmpAssignObjPatternRhs === undefined;
+if (tmpObjPatternCrashTest) {
+} else {
+  tmpObjPatternCrashTest = tmpAssignObjPatternRhs === null;
+}
+if (tmpObjPatternCrashTest) {
+  tmpObjPatternCrashTest = tmpAssignObjPatternRhs.cannotDestructureThis;
+} else {
+}
+`````
+
+
 ## Todos triggered
 
 

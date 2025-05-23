@@ -59,6 +59,22 @@ throw b;
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+let tmpCalleeParam = $(0);
+let tmpThrowArg = $(tmpCalleeParam);
+if (tmpThrowArg) {
+} else {
+  let tmpCalleeParam$1 = $(2);
+  tmpThrowArg = $(tmpCalleeParam$1);
+}
+throw tmpThrowArg;
+`````
+
+
 ## Todos triggered
 
 

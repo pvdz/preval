@@ -54,6 +54,18 @@ $( d );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const x = {};
+const a = x in NaN;
+const b = x instanceof NaN;
+const arr = [a, b];
+$(arr);
+`````
+
+
 ## Todos triggered
 
 

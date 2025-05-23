@@ -109,6 +109,39 @@ if (k) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpFree = function $free($$0, $$1) {
+  let x$1 = $$0;
+  let chr$1 = $$1;
+  debugger;
+  const tmpIfTest$3 = x$1 & 48;
+  const tmpRet = tmpIfTest$3 === 48;
+  const ret2 = tmpRet + chr$1;
+  return ret2;
+};
+const tmpUnaryArg = $spy(1);
+const x = +tmpUnaryArg;
+if (x) {
+  const unknown = $(`abc`);
+  const tmpStringFirstArg = unknown;
+  const somestr = $coerce(unknown, `string`);
+  const tmpStringConcatR = $coerce(somestr, `plustr`);
+  const extra = `${tmpStringConcatR}x`;
+  const tmpMCF = extra.charAt;
+  const chr = $dotCall(tmpMCF, extra, `charAt`, 1);
+  const tmpIfTest$5 = $frfr(tmpFree, x, chr);
+  if (tmpIfTest$5) {
+    $(`it is 58`);
+  } else {
+  }
+} else {
+}
+`````
+
+
 ## Todos triggered
 
 

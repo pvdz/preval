@@ -59,6 +59,24 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+outer: {
+  inner: {
+    const b = $(3);
+    if (b) {
+      break outer;
+    } else {
+      break inner;
+    }
+  }
+  $(`the_problem`);
+}
+`````
+
+
 ## Todos triggered
 
 

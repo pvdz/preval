@@ -37,6 +37,16 @@ $( "hello, world" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpMCF = $string_concat;
+let tmpCalleeParam = $dotCall($string_concat, `hello`, `concat`, `,`, ` `, `world`);
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

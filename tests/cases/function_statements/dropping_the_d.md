@@ -63,6 +63,20 @@ $( a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let THIS_IS_DA____$1 = function () {
+  debugger;
+  $(`hello`);
+  return undefined;
+};
+let tmpCalleeParam = THIS_IS_DA____();
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

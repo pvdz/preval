@@ -38,6 +38,18 @@ $( "pass" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const x = [`fail`, `pass`];
+const tmpCompObj = x;
+const tmpCalleeParam$1 = [1];
+let tmpCalleeParam = tmpCompObj[tmpCalleeParam$1];
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

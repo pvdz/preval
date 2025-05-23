@@ -73,6 +73,31 @@ $( b );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+let tmpCalleeParam$1 = $(1);
+a = $(tmpCalleeParam$1);
+if (a) {
+  let tmpCalleeParam$3 = $(1);
+  a = $(tmpCalleeParam$3);
+  if (a) {
+    let tmpCalleeParam$5 = $(2);
+    a = $(tmpCalleeParam$5);
+  } else {
+  }
+} else {
+}
+const tmpObjLitPropKey = a;
+const tmpObjLitPropVal = 10;
+let tmpCalleeParam = { [tmpObjLitPropKey]: tmpObjLitPropVal };
+$(tmpCalleeParam);
+$(a);
+`````
+
+
 ## Todos triggered
 
 

@@ -103,6 +103,38 @@ $( p );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpNewCallee = Map;
+const tmpNewCallee$1 = Map;
+const tmpArrElement = [`clearInterval`, `global.clearInterval`];
+const tmpArrElement$1 = [`clearTimeout`, `global.clearTimeout`];
+const tmpArrElement$3 = [`console`, `global.console`];
+const tmpArrElement$5 = [`false`, `boolean`];
+const tmpArrElement$7 = [`null`, `null`];
+const tmpArrElement$9 = [`\$`, `\$`];
+let tmpCalleeParam$3 = [tmpArrElement, tmpArrElement$1, tmpArrElement$3, tmpArrElement$5, tmpArrElement$7, tmpArrElement$9];
+const tmpMCOO$3 = new tmpNewCallee$1(tmpCalleeParam$3);
+const tmpMCF = tmpMCOO$3.keys;
+const tmpArrSpread = $dotCall(tmpMCF, tmpMCOO$3, `keys`);
+const tmpMCOO$1 = [...tmpArrSpread, `module`];
+const tmpMCF$1 = tmpMCOO$1.map;
+const tmpMCP = function ($$0) {
+  let k = $$0;
+  debugger;
+  const tmpReturnArg = [k, k];
+  return tmpReturnArg;
+};
+let tmpCalleeParam$1 = $dotCall(tmpMCF$1, tmpMCOO$1, `map`, tmpMCP);
+const tmpMCOO = new tmpNewCallee(tmpCalleeParam$1);
+const tmpMCF$3 = tmpMCOO.get;
+let tmpCalleeParam = $dotCall(tmpMCF$3, tmpMCOO, `get`, `\$`);
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

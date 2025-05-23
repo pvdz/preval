@@ -89,6 +89,55 @@ global.React = a;
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const g = function () {
+  debugger;
+  let test1 = false;
+  const h = function () {
+    debugger;
+    if (test1) {
+      const p1 = [];
+      define(p1, $);
+      return undefined;
+    } else {
+      const result = mainCall();
+      global.React = result;
+      return undefined;
+    }
+  };
+  if (test1) {
+    test1 = define.amd;
+    h();
+    return undefined;
+  } else {
+    h();
+    return undefined;
+  }
+};
+let test2 = false;
+const f = function () {
+  debugger;
+  if (test2) {
+    const result$1 = mainCall();
+    module.exports = result$1;
+    return undefined;
+  } else {
+    g();
+    return undefined;
+  }
+};
+if (test2) {
+  test2 = false;
+  f();
+} else {
+  f();
+}
+`````
+
+
 ## Todos triggered
 
 

@@ -52,6 +52,23 @@ if (a) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpIfTest = $(true);
+if (tmpIfTest) {
+  let b = { x: 2 };
+  let c = 3;
+  const tmpInitAssignLhsComputedRhs = c;
+  b.x = tmpInitAssignLhsComputedRhs;
+  let a = tmpInitAssignLhsComputedRhs;
+  $(tmpInitAssignLhsComputedRhs, b, c);
+} else {
+}
+`````
+
+
 ## Todos triggered
 
 

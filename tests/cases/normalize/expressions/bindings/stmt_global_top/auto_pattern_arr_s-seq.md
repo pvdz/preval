@@ -44,6 +44,19 @@ $( 1 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+$(10);
+$(20);
+let tmpBindingPatternArrRoot = [1, 2];
+let tmpArrPatternSplat = [...tmpBindingPatternArrRoot];
+let a = tmpArrPatternSplat[0];
+$(a);
+`````
+
+
 ## Todos triggered
 
 

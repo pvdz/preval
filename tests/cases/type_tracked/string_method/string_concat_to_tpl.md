@@ -40,6 +40,16 @@ $( c );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpMCF = $string_concat;
+const x = $dotCall($string_concat, `foo`, `concat`, a, b);
+$(x);
+`````
+
+
 ## Todos triggered
 
 

@@ -78,6 +78,32 @@ a( 3, 4, true, null );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function ($$0) {
+  let obj = $$0;
+  debugger;
+  let tmpCalleeParam = obj.a;
+  $(tmpCalleeParam);
+  let tmpCalleeParam$1 = obj.b;
+  $(tmpCalleeParam$1);
+  let tmpCalleeParam$3 = obj.c;
+  $(tmpCalleeParam$3);
+  let tmpCalleeParam$5 = obj.d;
+  $(tmpCalleeParam$5);
+  return undefined;
+};
+const tmpCallCallee = f;
+let tmpCalleeParam$7 = { a: 1, b: 2, c: `hi`, d: parseInt };
+f(tmpCalleeParam$7);
+const tmpCallCallee$1 = f;
+let tmpCalleeParam$9 = { a: 3, b: 4, c: true, d: null };
+f(tmpCalleeParam$9);
+`````
+
+
 ## Todos triggered
 
 

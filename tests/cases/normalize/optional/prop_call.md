@@ -84,6 +84,31 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpObjLitVal = function (...$$0 /*:array*/) {
+  const tmpPrevalAliasThis = this;
+  let args = $$0;
+  debugger;
+  let tmpCalleeParam = args;
+  let tmpCalleeParam$1 = tmpPrevalAliasThis.y;
+  $(tmpCalleeParam, tmpCalleeParam$1);
+  return undefined;
+};
+const a = { x: tmpObjLitVal, y: 100 };
+const tmpChainRootCall = $;
+const tmpChainElementCall = $(a);
+const tmpChainElementObject = tmpChainElementCall.x;
+const tmpIfTest = tmpChainElementObject != null;
+if (tmpIfTest) {
+  const tmpChainElementCall$1 = $dotCall(tmpChainElementObject, tmpChainElementCall, `x`, 1, 2, 3);
+} else {
+}
+`````
+
+
 ## Todos triggered
 
 

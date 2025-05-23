@@ -47,6 +47,36 @@ $( b );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let b = undefined;
+let a = undefined;
+const tmpSwitchDisc = 1;
+const tmpIfTest = tmpSwitchDisc === 1;
+if (tmpIfTest) {
+  const tmpObjLitVal$1 = { e: $ };
+  const tmpObjLitVal = { d: tmpObjLitVal$1 };
+  b = { c: tmpObjLitVal };
+  a = undefined;
+  const tmpChainRootProp = b;
+  const tmpIfTest$1 = tmpChainRootProp != null;
+  if (tmpIfTest$1) {
+    const tmpChainElementObject = tmpChainRootProp.c;
+    const tmpChainElementObject$1 = tmpChainElementObject.d;
+    const tmpChainElementObject$3 = tmpChainElementObject$1.e;
+    const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, `e`, 1);
+    a = tmpChainElementCall;
+    $(tmpChainElementCall);
+  } else {
+    $(a);
+  }
+} else {
+}
+`````
+
+
 ## Todos triggered
 
 

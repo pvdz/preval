@@ -138,6 +138,49 @@ $( g, i, k );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let obj = {
+  get a() {
+    debugger;
+    const tmpReturnArg = $(`a`);
+    return tmpReturnArg;
+  },
+  get b() {
+    debugger;
+    const tmpReturnArg$1 = {
+      get c() {
+        debugger;
+        const tmpReturnArg$3 = $(`b`);
+        return tmpReturnArg$3;
+      },
+      get d() {
+        debugger;
+        const tmpReturnArg$5 = $(`c`);
+        return tmpReturnArg$5;
+      },
+      get e() {
+        debugger;
+        const tmpReturnArg$7 = $(`d`);
+        return tmpReturnArg$7;
+      },
+    };
+    return tmpReturnArg$1;
+  },
+};
+let tmpBindingPatternObjRoot = obj;
+let a = tmpBindingPatternObjRoot.a;
+let tmpOPND = tmpBindingPatternObjRoot.b;
+let c = tmpOPND.c;
+let tmpCalleeParam = tmpOPND;
+let tmpCalleeParam$1 = [`c`];
+let rest = $objPatternRest(tmpCalleeParam, tmpCalleeParam$1, undefined);
+$(a, c, rest);
+`````
+
+
 ## Todos triggered
 
 

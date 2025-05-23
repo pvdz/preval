@@ -37,6 +37,17 @@ $( "/foo/xyz" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpBinLhs = new $regex_constructor(`foo`, ``);
+const tmpStringConcatR = $coerce(tmpBinLhs, `plustr`);
+let tmpCalleeParam = `${tmpStringConcatR}xyz`;
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

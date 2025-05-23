@@ -65,6 +65,26 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  const tmpIfTest = $(true);
+  if (tmpIfTest) {
+    throw `Preval: TDZ triggered for this read: x;`;
+  } else {
+    return undefined;
+    let x = $(`fail`);
+    return undefined;
+  }
+};
+let tmpCalleeParam = f();
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

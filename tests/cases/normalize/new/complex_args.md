@@ -42,6 +42,20 @@ $( b );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpNewCallee = Array;
+let tmpCalleeParam$1 = 10;
+let tmpCalleeParam$3 = $();
+const tmpCompObj = $Array_prototype;
+let tmpCalleeParam$5 = tmpCompObj.length;
+let tmpCalleeParam = new tmpNewCallee(tmpCalleeParam$1, tmpCalleeParam$3, tmpCalleeParam$5);
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

@@ -98,6 +98,31 @@ $( b );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let closure_cond = false;
+const repeat = function ($$0) {
+  let $dlr_$$0 = $$0;
+  debugger;
+  const arg = $dlr_$$0;
+  if (closure_cond) {
+    closure_cond = [];
+    $(`a`);
+  } else {
+    closure_cond = [];
+    $(`b`);
+  }
+  const tmpCalleeParam = arg + 1;
+  repeat(tmpCalleeParam);
+  return undefined;
+};
+repeat(0);
+$(repeat);
+`````
+
+
 ## Todos triggered
 
 

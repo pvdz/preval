@@ -74,6 +74,24 @@ if (h) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpUnaryArg = $spy(8);
+const x = +tmpUnaryArg;
+const tmpIfTest = x & 8;
+if (tmpIfTest) {
+  const tmpIfTest$1 = x & 2;
+  if (tmpIfTest$1) {
+    $(`it is ten`);
+  } else {
+  }
+} else {
+}
+`````
+
+
 ## Todos triggered
 
 

@@ -40,6 +40,16 @@ $coerce( a, "number" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const x = $spy(`a`);
+const tmpMCF = $string_charCodeAt;
+$coerce(x, `number`);
+`````
+
+
 ## Todos triggered
 
 

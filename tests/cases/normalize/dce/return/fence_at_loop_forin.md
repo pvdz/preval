@@ -124,6 +124,43 @@ $( a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  while (true) {
+    const tmpIfTest = $(true);
+    if (tmpIfTest) {
+      $(`loop`);
+      let tmpCalleeParam = { a: 1, b: 2 };
+      const tmpForInGen = $forIn(tmpCalleeParam);
+      while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+        const tmpForInNext = tmpForInGen();
+        const tmpIfTest$1 = tmpForInNext.done;
+        if (tmpIfTest$1) {
+          break;
+        } else {
+          let x = tmpForInNext.value;
+          $(`loop`, x);
+          const tmpReturnArg = $(100, `return`);
+          return tmpReturnArg;
+        }
+      }
+      $(`fail`);
+    } else {
+      break;
+    }
+  }
+  $(`after (not invoked but should not be eliminated)`);
+  return undefined;
+};
+let tmpCalleeParam$1 = f();
+$(tmpCalleeParam$1);
+`````
+
+
 ## Todos triggered
 
 

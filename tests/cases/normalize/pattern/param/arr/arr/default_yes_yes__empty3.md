@@ -53,6 +53,39 @@ $( "ok" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function ($$0) {
+  let tmpParamBare = $$0;
+  debugger;
+  let bindingPatternArrRoot = undefined;
+  const tmpIfTest = tmpParamBare === undefined;
+  let arrPatternSplat = undefined;
+  let arrPatternBeforeDefault = undefined;
+  let arrPatternStep = undefined;
+  let arrPatternSplat$1 = undefined;
+  if (tmpIfTest) {
+    const tmpAssignRhsProp = [`pass3`];
+    arrPatternBeforeDefault = tmpAssignRhsProp[0];
+    const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
+    if (tmpIfTest$1) {
+      arrPatternStep = [`fail2`];
+    } else {
+      arrPatternStep = arrPatternBeforeDefault;
+    }
+    arrPatternSplat$1 = [...arrPatternStep];
+    return `ok`;
+  } else {
+    return undefined;
+  }
+};
+let tmpCalleeParam = f();
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

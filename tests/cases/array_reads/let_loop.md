@@ -84,6 +84,24 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let arr = [1, 2, 3];
+while (true) {
+  arr = [2, 3, 4];
+  let tmpCalleeParam = arr[0];
+  $(tmpCalleeParam);
+  if ($) {
+    break;
+  } else {
+  }
+}
+$(arr);
+`````
+
+
 ## Todos triggered
 
 

@@ -97,6 +97,35 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let tmpSwitchValue = $(0);
+let tmpSwitchCaseToStart = 2;
+const tmpBinLhs = $spy(0);
+const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+} else {
+  const tmpBinLhs$1 = $spy(1);
+  const tmpIfTest$1 = tmpBinLhs$1 === tmpSwitchValue;
+  if (tmpIfTest$1) {
+    tmpSwitchCaseToStart = 1;
+  } else {
+  }
+}
+const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
+const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
+if (tmpIfTest$5) {
+  $(`found`);
+  $();
+} else {
+  $();
+}
+`````
+
+
 ## Todos triggered
 
 

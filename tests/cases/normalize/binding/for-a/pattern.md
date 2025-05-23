@@ -38,6 +38,20 @@ With rename=true
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = 1;
+let y = 2;
+let z = [10, 20, 30];
+let tmpBindingPatternArrRoot = z;
+let tmpArrPatternSplat = [...tmpBindingPatternArrRoot];
+let x$1 = tmpArrPatternSplat[0];
+let y$1 = tmpArrPatternSplat[1];
+`````
+
+
 ## Todos triggered
 
 

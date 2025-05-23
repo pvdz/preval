@@ -49,6 +49,19 @@ $( b );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let tmpCalleeParam = encodeURIComponent(`\ud800\udfff`);
+$(tmpCalleeParam);
+let tmpCalleeParam$1 = encodeURIComponent(`\ud800`);
+$(tmpCalleeParam$1);
+let tmpCalleeParam$3 = encodeURIComponent(`\udfff`);
+$(tmpCalleeParam$3);
+`````
+
+
 ## Todos triggered
 
 

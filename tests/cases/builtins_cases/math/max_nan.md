@@ -40,6 +40,16 @@ $( a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpMCF = $Math_max;
+const x = $Math_max($Number_NaN, 3.300031, 5);
+$(x);
+`````
+
+
 ## Todos triggered
 
 

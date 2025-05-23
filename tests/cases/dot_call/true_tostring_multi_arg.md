@@ -43,6 +43,17 @@ $( "true" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const bool = true;
+const tmpCallVal = bool.toString;
+const x = $dotCall(tmpCallVal, bool, `toString`, $, unknown);
+$(x);
+`````
+
+
 ## Todos triggered
 
 

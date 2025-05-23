@@ -50,6 +50,24 @@ $( "inline me" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function ($$0, $$1, $$2, $$3) {
+  let w = $$0;
+  let x = $$1;
+  let y = $$2;
+  let z = $$3;
+  debugger;
+  $(`inline me`);
+  return undefined;
+};
+f(implicitGlobalShouldCrash, a, b, c);
+f(implicitGlobalShouldCrash, a, b, c);
+`````
+
+
 ## Todos triggered
 
 

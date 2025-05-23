@@ -42,6 +42,18 @@ $( -1, 1 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let a = 1;
+let b = 2;
+b = -a;
+const ignored = b;
+$(b, a);
+`````
+
+
 ## Todos triggered
 
 

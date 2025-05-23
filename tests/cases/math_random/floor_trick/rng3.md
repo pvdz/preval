@@ -41,6 +41,31 @@ $( true );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpMCF = $Math_random;
+const r = 0.12556649118791485;
+const a = r * 3;
+const tmpMCF$1 = $Math_floor;
+const is_012 = $Math_floor(a);
+const is_123 = is_012 + 1;
+let tmpCalleeParam = is_123 === 1;
+if (tmpCalleeParam) {
+  $(tmpCalleeParam);
+} else {
+  tmpCalleeParam = is_123 === 2;
+  if (tmpCalleeParam) {
+    $(tmpCalleeParam);
+  } else {
+    tmpCalleeParam = is_123 === 3;
+    $(tmpCalleeParam);
+  }
+}
+`````
+
+
 ## Todos triggered
 
 

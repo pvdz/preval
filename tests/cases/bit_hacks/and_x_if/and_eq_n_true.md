@@ -65,6 +65,18 @@ $( h );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpUnaryArg = $(1);
+const x = +tmpUnaryArg;
+const y = x & 32768;
+const z = y === 32768;
+$(z);
+`````
+
+
 ## Todos triggered
 
 

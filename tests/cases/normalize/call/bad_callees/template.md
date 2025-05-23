@@ -48,6 +48,20 @@ $( "after" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+$(`before`);
+const tmpBinBothLhs = ``;
+const tmpBinBothRhs = $coerce($, `string`);
+const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
+const tmpCallComplexCallee = $coerce(tmpBinLhs, `plustr`);
+tmpCallComplexCallee();
+$(`after`);
+`````
+
+
 ## Todos triggered
 
 

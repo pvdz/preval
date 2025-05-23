@@ -58,6 +58,23 @@ $( "finished" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let counter = 5;
+while (true) {
+  counter = counter - 1;
+  if (counter) {
+    $(`x`);
+  } else {
+    break;
+  }
+}
+$(`finished`);
+`````
+
+
 ## Todos triggered
 
 

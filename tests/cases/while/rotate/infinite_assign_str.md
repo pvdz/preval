@@ -67,6 +67,22 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = `xyz`;
+while (true) {
+  $(x);
+  x = `foo`;
+  while (true) {
+    $(x);
+    x = `foo`;
+  }
+}
+`````
+
+
 ## Todos triggered
 
 

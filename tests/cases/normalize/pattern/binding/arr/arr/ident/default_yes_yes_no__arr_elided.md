@@ -65,6 +65,35 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpBindingPatternArrRoot = [, , , , 4, 5];
+const tmpArrPatternSplat = [...tmpBindingPatternArrRoot];
+const tmpAPBD = tmpArrPatternSplat[0];
+let tmpArrPatternStep = undefined;
+const tmpIfTest = tmpAPBD === undefined;
+if (tmpIfTest) {
+  let tmpCalleeParam = [`pass2`];
+  tmpArrPatternStep = $(tmpCalleeParam);
+} else {
+  tmpArrPatternStep = tmpAPBD;
+}
+const tmpArrPatternSplat$1 = [...tmpArrPatternStep];
+const tmpAPBD$1 = tmpArrPatternSplat$1[0];
+let x = undefined;
+const tmpIfTest$1 = tmpAPBD$1 === undefined;
+if (tmpIfTest$1) {
+  x = $(`fail`);
+  $(x);
+} else {
+  x = tmpAPBD$1;
+  $(tmpAPBD$1);
+}
+`````
+
+
 ## Todos triggered
 
 

@@ -100,6 +100,27 @@ if (b) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = $(10);
+while (true) {
+  const tmpIfTest = $(x);
+  if (tmpIfTest) {
+    x = $(0);
+    const tmpIfTest$1 = $(true);
+    if (tmpIfTest$1) {
+      $(x, `branch`);
+    } else {
+    }
+  } else {
+    break;
+  }
+}
+`````
+
+
 ## Todos triggered
 
 

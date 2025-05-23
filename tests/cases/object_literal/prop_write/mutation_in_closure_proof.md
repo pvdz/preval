@@ -131,6 +131,46 @@ $( a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  $(`a`);
+  const tmpIfTest = x.y;
+  if (tmpIfTest) {
+    $(`yeeting`);
+    delete x.y;
+  } else {
+  }
+  const tmpMCF = $Object_defineProperty;
+  const tmpMCP = {
+    set($$0) {
+      let z = $$0;
+      debugger;
+      return undefined;
+    },
+    get() {
+      debugger;
+      return `intercepted`;
+    },
+  };
+  $dotCall(tmpMCF, $object_constructor, `defineProperty`, x, `y`, tmpMCP);
+  $(`b`);
+  return undefined;
+};
+const x = { y: 0 };
+f();
+x.y = 10;
+f();
+$(x);
+let tmpCalleeParam = x.y;
+$(tmpCalleeParam);
+$(f);
+`````
+
+
 ## Todos triggered
 
 

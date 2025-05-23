@@ -95,6 +95,48 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
+  let tmpBindingPatternArrRoot = undefined;
+  const tmpIfTest = tmpParamBare === undefined;
+  if (tmpIfTest) {
+    let tmpCalleeParam = [`pass3`];
+    tmpBindingPatternArrRoot = $(tmpCalleeParam);
+  } else {
+    tmpBindingPatternArrRoot = tmpParamBare;
+  }
+  let tmpArrPatternSplat = [...tmpBindingPatternArrRoot];
+  let tmpAPBD = tmpArrPatternSplat[0];
+  let tmpArrPatternStep = undefined;
+  const tmpIfTest$1 = tmpAPBD === undefined;
+  if (tmpIfTest$1) {
+    let tmpCalleeParam$1 = [`fail2`];
+    tmpArrPatternStep = $(tmpCalleeParam$1);
+  } else {
+    tmpArrPatternStep = tmpAPBD;
+  }
+  let tmpArrPatternSplat$1 = [...tmpArrPatternStep];
+  let tmpAPBD$1 = tmpArrPatternSplat$1[0];
+  let x = undefined;
+  const tmpIfTest$3 = tmpAPBD$1 === undefined;
+  if (tmpIfTest$3) {
+    x = $(`fail`);
+    return x;
+  } else {
+    x = tmpAPBD$1;
+    return x;
+  }
+};
+let tmpCalleeParam$3 = f(undefined, 200);
+$(tmpCalleeParam$3);
+`````
+
+
 ## Todos triggered
 
 

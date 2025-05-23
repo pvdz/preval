@@ -71,6 +71,27 @@ $( b, e );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpObjLitPropKey = `hello, world!`;
+const tmpObjLitPropVal = $(1);
+const x = {
+  [tmpObjLitPropKey]: tmpObjLitPropVal,
+  [`hey, me too!`]() {
+    debugger;
+    const tmpReturnArg = $(2);
+    return tmpReturnArg;
+  },
+};
+let tmpCalleeParam = x;
+const tmpMCF = x[`Hey, me too!`];
+let tmpCalleeParam$1 = $dotCall(tmpMCF, x, undefined);
+$(tmpCalleeParam, tmpCalleeParam$1);
+`````
+
+
 ## Todos triggered
 
 

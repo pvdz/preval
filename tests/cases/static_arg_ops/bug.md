@@ -111,6 +111,40 @@ $( a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const f = function () {
+  debugger;
+  h(1);
+  g(unknown);
+  g(unknown2);
+  return undefined;
+};
+const g = function ($$0) {
+  let $dlr_$$0 = $$0;
+  debugger;
+  const $dlr_$$1 = $dlr_$$0;
+  if ($dlr_$$1) {
+    h(709);
+    return undefined;
+  } else {
+    return undefined;
+  }
+};
+$(f);
+const h = function ($$0) {
+  let $dlr_$$3 = $$0;
+  debugger;
+  const $dlr_$$5 = $dlr_$$3;
+  const y = $dlr_$$5 - 345;
+  arr[y];
+  return undefined;
+};
+`````
+
+
 ## Todos triggered
 
 

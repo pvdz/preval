@@ -80,6 +80,33 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  let tmpCalleeParam = { a: 1, b: 2 };
+  const tmpForInGen = $forIn(tmpCalleeParam);
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    const tmpForInNext = tmpForInGen();
+    const tmpIfTest = tmpForInNext.done;
+    if (tmpIfTest) {
+      break;
+    } else {
+      let x = tmpForInNext.value;
+      const tmpThrowArg = $(1, `return`);
+      throw tmpThrowArg;
+    }
+  }
+  $(`keep, do not eval`);
+  return undefined;
+};
+let tmpCalleeParam$1 = f();
+$(tmpCalleeParam$1);
+`````
+
+
 ## Todos triggered
 
 

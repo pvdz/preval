@@ -188,6 +188,46 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+while (true) {
+  let $implicitThrow = false;
+  let $finalStep = false;
+  let $finalCatchArg = undefined;
+  $finally: {
+    try {
+      const test = $(`first`);
+      $(`second`);
+      if (test) {
+        $finalStep = true;
+        break $finally;
+      } else {
+        $(`third`);
+      }
+    } catch (e) {
+      try {
+        $(`error`, e);
+      } catch ($finalImplicit) {
+        $(`finally`);
+        throw $finalImplicit;
+      }
+    }
+  }
+  $(`finally`);
+  if ($implicitThrow) {
+    throw $finalCatchArg;
+  } else {
+    if ($finalStep) {
+      break;
+    } else {
+    }
+  }
+}
+`````
+
+
 ## Todos triggered
 
 

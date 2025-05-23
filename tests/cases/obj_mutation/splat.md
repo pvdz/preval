@@ -77,6 +77,27 @@ $( a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const blob = { thing: `woop` };
+const tmpForInGen = $forIn(blob);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext = tmpForInGen();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    const a = tmpForInNext.value;
+    const b = a;
+    $(a);
+  }
+}
+$(blob);
+`````
+
+
 ## Todos triggered
 
 

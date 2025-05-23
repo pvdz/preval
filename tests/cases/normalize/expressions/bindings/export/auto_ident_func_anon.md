@@ -50,6 +50,19 @@ $( a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let a = function () {
+  debugger;
+  return undefined;
+};
+export { a };
+$(a);
+`````
+
+
 ## Todos triggered
 
 

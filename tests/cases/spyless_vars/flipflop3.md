@@ -58,6 +58,19 @@ $( e );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const x = {};
+const a = x instanceof String;
+const b = x instanceof Function;
+const c = x instanceof Array;
+const arr = [a, b, c];
+$(arr);
+`````
+
+
 ## Todos triggered
 
 

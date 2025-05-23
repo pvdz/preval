@@ -41,6 +41,26 @@ throw "Preval: Array spread on non-string primitive must crash (caused by `[...1
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let b = { x: 1 };
+let a = { a: 999, b: 1000 };
+let tmpArrElToSpread = undefined;
+const tmpChainRootProp = b;
+const tmpIfTest = tmpChainRootProp != null;
+if (tmpIfTest) {
+  const tmpChainRootComputed = `x`;
+  const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
+  tmpArrElToSpread = tmpChainElementObject;
+} else {
+}
+[...tmpArrElToSpread];
+$(a);
+`````
+
+
 ## Todos triggered
 
 

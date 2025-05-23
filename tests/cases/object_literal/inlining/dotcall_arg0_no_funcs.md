@@ -40,6 +40,25 @@ $();
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const g = function () {
+  debugger;
+  $();
+  return undefined;
+};
+const h = function () {
+  debugger;
+  $();
+  return undefined;
+};
+const obj = { f: 123 };
+$dotCall(h, obj, undefined);
+`````
+
+
 ## Todos triggered
 
 

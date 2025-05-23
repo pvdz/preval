@@ -59,6 +59,33 @@ $( c, "three" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  if ($) {
+    return true;
+  } else {
+    return false;
+  }
+};
+const tmpUnaryArg$1 = f();
+const tmpUnaryArg = !tmpUnaryArg$1;
+let tmpCalleeParam = !tmpUnaryArg;
+$(tmpCalleeParam, `one`);
+const tmpUnaryArg$5 = f();
+const tmpUnaryArg$3 = !tmpUnaryArg$5;
+let tmpCalleeParam$1 = !tmpUnaryArg$3;
+$(tmpCalleeParam$1, `two`);
+const tmpUnaryArg$9 = f();
+const tmpUnaryArg$7 = !tmpUnaryArg$9;
+let tmpCalleeParam$3 = !tmpUnaryArg$7;
+$(tmpCalleeParam$3, `three`);
+`````
+
+
 ## Todos triggered
 
 

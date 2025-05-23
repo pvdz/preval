@@ -54,6 +54,27 @@ $( f );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let a = 0;
+let b = 1;
+const tmpObjLitVal = { y: 10 };
+let c = { x: tmpObjLitVal };
+let p = { x: 20 };
+let q = 30;
+p.x;
+const tmpCompObj = $(q);
+const tmpBinBothLhs = tmpCompObj.y;
+b = c.x;
+const tmpCompObj$1 = $(b);
+const tmpBinBothRhs = tmpCompObj$1.y;
+a = tmpBinBothLhs === tmpBinBothRhs;
+$(a);
+`````
+
+
 ## Todos triggered
 
 

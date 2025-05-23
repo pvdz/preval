@@ -99,6 +99,34 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpBindingPatternObjRoot = {};
+const tmpOPBD = tmpBindingPatternObjRoot.x;
+let tmpOPAD = undefined;
+const tmpIfTest = tmpOPBD === undefined;
+if (tmpIfTest) {
+  let tmpCalleeParam = { x: `pass` };
+  tmpOPAD = $(tmpCalleeParam);
+} else {
+  tmpOPAD = tmpOPBD;
+}
+let tmpObjPatternCrashTest = tmpOPAD === undefined;
+if (tmpObjPatternCrashTest) {
+} else {
+  tmpObjPatternCrashTest = tmpOPAD === null;
+}
+if (tmpObjPatternCrashTest) {
+  tmpObjPatternCrashTest = tmpOPAD.cannotDestructureThis;
+  $(`ok`);
+} else {
+  $(`ok`);
+}
+`````
+
+
 ## Todos triggered
 
 

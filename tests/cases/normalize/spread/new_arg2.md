@@ -49,6 +49,17 @@ new $string_constructor( 8.5, 8, ...a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+$Number_prototype.c;
+$Number_prototype[6];
+const tmpObjLitVal = [7];
+new $string_constructor(8.5, 8, ...tmpObjLitVal);
+`````
+
+
 ## Todos triggered
 
 

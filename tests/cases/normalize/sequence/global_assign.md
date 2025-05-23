@@ -45,6 +45,16 @@ a.x = 1;
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+$(1);
+const tmpAssignMemLhsObj = $(2);
+tmpAssignMemLhsObj.x = 1;
+`````
+
+
 ## Todos triggered
 
 

@@ -38,6 +38,16 @@ With rename=true
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let a = undefined;
+let b = undefined;
+let c = undefined;
+`````
+
+
 ## Todos triggered
 
 

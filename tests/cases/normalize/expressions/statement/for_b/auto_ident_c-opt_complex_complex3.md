@@ -141,6 +141,33 @@ $( j );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+let b = { x: 1 };
+while (true) {
+  let maybegx = undefined;
+  const f = $;
+  const g = $(b);
+  const same = g != null;
+  if (same) {
+    const x = $(`x`);
+    const gx = g[x];
+    maybegx = gx;
+  } else {
+  }
+  if (maybegx) {
+    $(1);
+  } else {
+    break;
+  }
+}
+$(a);
+`````
+
+
 ## Todos triggered
 
 

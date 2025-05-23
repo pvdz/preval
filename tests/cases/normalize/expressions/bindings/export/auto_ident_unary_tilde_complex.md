@@ -47,6 +47,17 @@ $( b );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpUnaryArg = $(100);
+let a = ~tmpUnaryArg;
+export { a };
+$(a);
+`````
+
+
 ## Todos triggered
 
 

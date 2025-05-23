@@ -50,6 +50,19 @@ $( d );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpStringFirstArg = $spy();
+const str = $coerce(tmpStringFirstArg, `string`);
+const tmpMCF = str.includes;
+const tmpMCP = $spy();
+const bool = $dotCall(tmpMCF, str, `includes`, tmpMCP);
+$(bool);
+`````
+
+
 ## Todos triggered
 
 

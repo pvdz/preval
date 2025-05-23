@@ -72,6 +72,25 @@ $( f );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpClassComputedKey = $(`f`);
+let x = class {
+  [tmpClassComputedKey]() {
+    debugger;
+    const tmpReturnArg = $(100);
+    return tmpReturnArg;
+  }
+};
+const tmpMCOO = new x();
+const tmpMCF = tmpMCOO.f;
+let tmpCalleeParam = $dotCall(tmpMCF, tmpMCOO, `f`);
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

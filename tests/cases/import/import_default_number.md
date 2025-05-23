@@ -64,6 +64,20 @@ export { a as default };
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+import { default as x } from 'x';
+$(x);
+`````
+
+`````js filename=x
+const tmpAnonDefaultExport = 100;
+export { tmpAnonDefaultExport as default };
+`````
+
+
 ## Todos triggered
 
 

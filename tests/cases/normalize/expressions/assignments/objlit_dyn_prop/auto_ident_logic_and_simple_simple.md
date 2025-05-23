@@ -44,6 +44,24 @@ $( 2 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+a = 1;
+if (a) {
+  a = 2;
+} else {
+}
+const tmpObjLitPropKey = a;
+const tmpObjLitPropVal = 10;
+let tmpCalleeParam = { [tmpObjLitPropKey]: tmpObjLitPropVal };
+$(tmpCalleeParam);
+$(a);
+`````
+
+
 ## Todos triggered
 
 

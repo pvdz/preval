@@ -45,6 +45,30 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+while (true) {
+  let tmpIfTest = undefined;
+  const tmpIfTest$1 = 30;
+  if (tmpIfTest$1) {
+    tmpIfTest = 60;
+  } else {
+    let tmpCalleeParam = $(100);
+    tmpIfTest = $(tmpCalleeParam);
+  }
+  if (tmpIfTest) {
+    $(1);
+  } else {
+    break;
+  }
+}
+$(a);
+`````
+
+
 ## Todos triggered
 
 

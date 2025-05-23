@@ -67,6 +67,24 @@ export { a as default };
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+import { default as x } from 'x';
+$(x);
+`````
+
+`````js filename=x
+let f = function () {
+  debugger;
+  return undefined;
+};
+f = 10;
+export { f as default };
+`````
+
+
 ## Todos triggered
 
 

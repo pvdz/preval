@@ -38,6 +38,20 @@ With rename=true
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpObjLitVal = function () {
+  debugger;
+  return undefined;
+};
+const console$1 = { log: tmpObjLitVal };
+const tmpMCF = console$1.log;
+$dotCall(tmpMCF, console$1, `log`, `yooo foo`);
+`````
+
+
 ## Todos triggered
 
 

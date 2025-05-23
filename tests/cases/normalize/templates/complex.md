@@ -37,6 +37,19 @@ $( "abc 10 def" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpBinBothLhs = `abc `;
+const tmpBinBothRhs = $coerce(10, `string`);
+const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
+const tmpStringConcatR = $coerce(tmpBinLhs, `plustr`);
+let tmpCalleeParam = `${tmpStringConcatR} def`;
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

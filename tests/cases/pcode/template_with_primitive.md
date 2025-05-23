@@ -44,6 +44,24 @@ $( "abcde" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const f = function () {
+  debugger;
+  const tmpBinBothLhs = ``;
+  const tmpBinBothRhs = $coerce(`abcd`, `string`);
+  const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
+  const tmpStringConcatR = $coerce(tmpBinLhs, `plustr`);
+  const tmpReturnArg$303 = `${tmpStringConcatR}e`;
+  return tmpReturnArg$303;
+};
+const t = f();
+$(t);
+`````
+
+
 ## Todos triggered
 
 

@@ -90,6 +90,28 @@ if (h) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpUnaryArg = $spy(1);
+const x = +tmpUnaryArg;
+const tmpIfTest = x & 8;
+if (tmpIfTest) {
+  const tmpIfTest$1 = x & 2;
+  if (tmpIfTest$1) {
+    const tmpIfTest$3 = x & 32;
+    if (tmpIfTest$3) {
+      $(`it is 42`);
+    } else {
+    }
+  } else {
+  }
+} else {
+}
+`````
+
+
 ## Todos triggered
 
 

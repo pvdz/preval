@@ -37,6 +37,15 @@ With rename=true
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpEA1 = [];
+$coerce(tmpEA1, `string`);
+`````
+
+
 ## Todos triggered
 
 

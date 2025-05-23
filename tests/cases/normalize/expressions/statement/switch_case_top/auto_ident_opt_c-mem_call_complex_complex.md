@@ -116,6 +116,40 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let b = { $: $ };
+let a = { a: 999, b: 1000 };
+const tmpSwitchDisc = $(1);
+const tmpBinBothLhs = tmpSwitchDisc;
+const tmpBinBothRhs = $(1);
+const tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
+if (tmpIfTest) {
+  const tmpChainRootCall = $;
+  const tmpChainElementCall = $(b);
+  const tmpIfTest$1 = tmpChainElementCall != null;
+  if (tmpIfTest$1) {
+    const tmpChainRootComputed = $(`\$`);
+    const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+    const tmpIfTest$3 = tmpChainElementObject != null;
+    if (tmpIfTest$3) {
+      let tmpCalleeParam = $(1);
+      const tmpChainElementCall$1 = $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, tmpCalleeParam);
+      $(a);
+    } else {
+      $(a);
+    }
+  } else {
+    $(a);
+  }
+} else {
+  $(a);
+}
+`````
+
+
 ## Todos triggered
 
 

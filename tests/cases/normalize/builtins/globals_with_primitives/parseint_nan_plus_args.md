@@ -40,6 +40,16 @@ $( $Number_NaN );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+implicitGlobal;
+let tmpCalleeParam = NaN;
+$($Number_NaN);
+`````
+
+
 ## Todos triggered
 
 

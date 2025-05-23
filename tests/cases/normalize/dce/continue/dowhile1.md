@@ -165,6 +165,30 @@ $( "after, wont eval due to infinite loop" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+while (true) {
+  const tmpIfTest = $(true);
+  if (tmpIfTest) {
+    while (true) {
+      $(`loop`);
+      const tmpIfTest$1 = $(true);
+      if (tmpIfTest$1) {
+      } else {
+        break;
+      }
+    }
+    $(`keep, wont eval due to infinite loop`);
+  } else {
+    break;
+  }
+}
+$(`after, wont eval due to infinite loop`);
+`````
+
+
 ## Todos triggered
 
 

@@ -44,6 +44,22 @@ $( a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let arr = [1, 2];
+const tmpMCF = arr.reverse;
+const rra = $dotCall(tmpMCF, arr, `reverse`);
+if ($) {
+  arr = $;
+  $(rra);
+} else {
+  $(rra);
+}
+`````
+
+
 ## Todos triggered
 
 

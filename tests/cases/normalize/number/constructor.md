@@ -37,6 +37,16 @@ $( 300 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpMCF = $number_constructor;
+let tmpCalleeParam = 300;
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

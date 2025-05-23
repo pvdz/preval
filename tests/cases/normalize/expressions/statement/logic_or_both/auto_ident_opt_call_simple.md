@@ -94,6 +94,34 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+let tmpIfTest = undefined;
+const tmpChainRootCall = $;
+const tmpIfTest$1 = tmpChainRootCall != null;
+if (tmpIfTest$1) {
+  const tmpChainElementCall = tmpChainRootCall(1);
+  tmpIfTest = tmpChainElementCall;
+} else {
+}
+if (tmpIfTest) {
+  $(a);
+} else {
+  const tmpChainRootCall$1 = $;
+  const tmpIfTest$3 = tmpChainRootCall$1 != null;
+  if (tmpIfTest$3) {
+    const tmpChainElementCall$1 = tmpChainRootCall$1(1);
+    $(a);
+  } else {
+    $(a);
+  }
+}
+`````
+
+
 ## Todos triggered
 
 

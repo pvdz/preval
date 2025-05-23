@@ -104,6 +104,51 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const parseUnicodeQuadEscape = function ($$0, $$1) {
+  let a$7 = $$0;
+  let noDouble = $$1;
+  debugger;
+  const tmpBranchingC$2331 = function () {
+    debugger;
+    secondPart = tmpBinLhs$1687 | vh;
+    let tmpIfTest$9053 = secondPart < 56320;
+    const tmpBranchingC$2333 = function () {
+      debugger;
+      if (tmpIfTest$9053) {
+        return firstPart;
+      } else {
+        const head = firstPart;
+        const tail = $(secondPart);
+        return tail;
+      }
+    };
+    if (tmpIfTest$9053) {
+      const tmpReturnArg$12271 = tmpBranchingC$2333();
+      return tmpReturnArg$12271;
+    } else {
+      const tmpReturnArg$12263 = tmpBranchingC$2333();
+      return tmpReturnArg$12263;
+    }
+  };
+  let secondPart = undefined;
+  if (tmpIfTest$9045) {
+    return 1114112;
+  } else {
+    const tmpReturnArg$12309 = tmpBranchingC$2331();
+    return tmpReturnArg$12309;
+  }
+};
+const tmpCallCallee = parseUnicodeQuadEscape;
+let tmpCalleeParam = $(50);
+let tmpCalleeParam$1 = $(true);
+parseUnicodeQuadEscape(tmpCalleeParam, tmpCalleeParam$1);
+`````
+
+
 ## Todos triggered
 
 

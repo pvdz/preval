@@ -72,6 +72,27 @@ $( g );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const obj = { a: 1, b: 2 };
+const rex = new $regex_constructor(`\\w.*\\w`, `g`);
+const tmpMCF = $string_replace;
+const tmpMCP = function ($$0) {
+  let c = $$0;
+  debugger;
+  let tmpCalleeParam$1 = c;
+  let tmpCalleeParam$3 = obj[c];
+  $(tmpCalleeParam$1, tmpCalleeParam$3);
+  const tmpReturnArg = obj[c];
+  return tmpReturnArg;
+};
+let tmpCalleeParam = $dotCall(tmpMCF, `a is not b`, `replace`, rex, tmpMCP);
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

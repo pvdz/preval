@@ -51,6 +51,33 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let b = { x: 1 };
+let c = 3;
+let a = { a: 999, b: 1000 };
+const tmpInitAssignLhsComputedRhs$9 = c;
+b.x = tmpInitAssignLhsComputedRhs$9;
+const tmpInitAssignLhsComputedRhs$7 = tmpInitAssignLhsComputedRhs$9;
+b.x = tmpInitAssignLhsComputedRhs$7;
+const tmpInitAssignLhsComputedRhs$5 = tmpInitAssignLhsComputedRhs$7;
+b.x = tmpInitAssignLhsComputedRhs$5;
+const tmpInitAssignLhsComputedRhs$3 = tmpInitAssignLhsComputedRhs$5;
+b.x = tmpInitAssignLhsComputedRhs$3;
+const tmpInitAssignLhsComputedRhs$1 = tmpInitAssignLhsComputedRhs$3;
+b.x = tmpInitAssignLhsComputedRhs$1;
+const tmpInitAssignLhsComputedRhs = tmpInitAssignLhsComputedRhs$1;
+b.x = tmpInitAssignLhsComputedRhs;
+let xyz = tmpInitAssignLhsComputedRhs;
+while (true) {
+  $(xyz);
+  $(1);
+}
+`````
+
+
 ## Todos triggered
 
 

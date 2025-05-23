@@ -108,6 +108,36 @@ export { a as f };
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let c = undefined;
+let f = function () {
+  debugger;
+  return undefined;
+};
+let a = 1;
+export { a };
+const b = 2;
+export { b };
+c = 3;
+let X = class {};
+export { X };
+let g = 1;
+export { g };
+let h = 2;
+export { h as i };
+const tmpAnonDefaultExport = function () {
+  debugger;
+  return undefined;
+};
+export { tmpAnonDefaultExport as default };
+export { c };
+export { f };
+`````
+
+
 ## Todos triggered
 
 

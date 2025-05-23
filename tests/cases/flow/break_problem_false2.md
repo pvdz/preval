@@ -64,6 +64,25 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpLabeledBlockFunc = function () {
+  debugger;
+  const tmpIfTest$3 = $(false);
+  if (tmpIfTest$3) {
+    $(`fail`);
+    return undefined;
+  } else {
+    $(`pass`);
+    return undefined;
+  }
+};
+tmpLabeledBlockFunc();
+`````
+
+
 ## Todos triggered
 
 

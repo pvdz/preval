@@ -61,6 +61,23 @@ $( a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const f = function ($$0) {
+  const tmpPrevalAliasThis$1 = this;
+  let $dlr_$$0 = $$0;
+  debugger;
+  const tmpPrevalAliasThis = tmpPrevalAliasThis$1;
+  tmpPrevalAliasThis.e$;
+  tmpPrevalAliasThis.e$;
+  return undefined;
+};
+$(f);
+`````
+
+
 ## Todos triggered
 
 

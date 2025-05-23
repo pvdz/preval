@@ -53,6 +53,20 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let o = $(undefined);
+const tmpDeleteOpt = o;
+const tmpIfTest = tmpDeleteOpt != null;
+if (tmpIfTest) {
+  delete tmpDeleteOpt.x;
+} else {
+}
+`````
+
+
 ## Todos triggered
 
 

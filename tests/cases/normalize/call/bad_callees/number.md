@@ -42,6 +42,15 @@ throw "[Preval] Attempting to call a value that cannot be called: `500();`";
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+$(`before`);
+throw `[Preval] Attempting to call a value that cannot be called: \`500();\``;
+`````
+
+
 ## Todos triggered
 
 

@@ -41,6 +41,18 @@ $( "bad" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpArrAssignPatternRhs = [, , , 1, 20, 30];
+const tmpArrPatternSplat = [...tmpArrAssignPatternRhs];
+const tmpArrPatternStep = tmpArrPatternSplat[0];
+x = tmpArrPatternStep.x;
+$(`bad`);
+`````
+
+
 ## Todos triggered
 
 

@@ -78,6 +78,25 @@ $( c, d );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let b = { c: 1 };
+let a = { a: 999, b: 1000 };
+const tmpAssignMemLhsObj = b;
+tmpAssignMemLhsObj.c = 2;
+while (true) {
+  const tmpIfTest = $(0);
+  if (tmpIfTest) {
+  } else {
+    break;
+  }
+}
+$(a, b);
+`````
+
+
 ## Todos triggered
 
 

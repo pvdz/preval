@@ -45,6 +45,32 @@ $( 1 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const f = function () {
+  const tmpPrevalAliasThis = this;
+  debugger;
+  let g = undefined;
+  const tmpIfTest = $(1);
+  if (tmpIfTest) {
+    const tmpBinLhs = `undefined`;
+    const tmpIfTest$1 = tmpBinLhs !== `undefined`;
+    if (tmpIfTest$1) {
+      g = tmpPrevalAliasThis;
+      return undefined;
+    } else {
+      return undefined;
+    }
+  } else {
+    return undefined;
+  }
+};
+f();
+`````
+
+
 ## Todos triggered
 
 

@@ -100,6 +100,42 @@ $( a, b, c, d, e, f );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let a = function () {
+  debugger;
+  return undefined;
+};
+let b = function () {
+  debugger;
+  return undefined;
+};
+let d = function () {
+  debugger;
+  return undefined;
+};
+let f = function () {
+  debugger;
+  return undefined;
+};
+let h = function () {
+  debugger;
+  return undefined;
+};
+let l = function () {
+  debugger;
+  return undefined;
+};
+let x = function () {
+  debugger;
+  return undefined;
+};
+$(a, b, d, f, h, x);
+`````
+
+
 ## Todos triggered
 
 

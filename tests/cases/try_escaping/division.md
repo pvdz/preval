@@ -76,6 +76,25 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+while (true) {
+  const tmpNumberFirstArg = $(1);
+  const x = $coerce(tmpNumberFirstArg, `number`);
+  const tmpNumberFirstArg$1 = $(2);
+  const y = $coerce(tmpNumberFirstArg$1, `number`);
+  try {
+    const z = x / y;
+    $(z);
+  } catch (e) {
+    $(`keepme`);
+  }
+}
+`````
+
+
 ## Todos triggered
 
 

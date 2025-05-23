@@ -60,6 +60,26 @@ if (a) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let count = true;
+let chk = $(true);
+if (chk) {
+} else {
+  count = false;
+}
+while (true) {
+  if (count) {
+    $(`inside`);
+  } else {
+    break;
+  }
+}
+`````
+
+
 ## Todos triggered
 
 

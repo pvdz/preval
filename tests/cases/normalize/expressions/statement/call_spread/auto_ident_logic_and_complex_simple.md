@@ -80,6 +80,22 @@ $( d );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+let tmpCalleeParam = $(1);
+let tmpCalleeParamSpread = $(tmpCalleeParam);
+if (tmpCalleeParamSpread) {
+  tmpCalleeParamSpread = 2;
+} else {
+}
+$(...tmpCalleeParamSpread);
+$(a);
+`````
+
+
 ## Todos triggered
 
 

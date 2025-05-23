@@ -40,6 +40,17 @@ const a = $Number_prototype.x;
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpBindingPatternObjRoot = 1;
+const tmpOPND = tmpBindingPatternObjRoot.x;
+const tmpArrPatternSplat = [...tmpOPND];
+const y = tmpArrPatternSplat[0];
+`````
+
+
 ## Todos triggered
 
 

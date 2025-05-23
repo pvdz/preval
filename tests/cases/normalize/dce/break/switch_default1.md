@@ -133,6 +133,34 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+while (true) {
+  const tmpIfTest = $(true);
+  if (tmpIfTest) {
+    tmpSwitchBreak: {
+      const tmpSwitchDisc = $(1, `disc`);
+      const tmpBinBothLhs = tmpSwitchDisc;
+      const tmpBinBothRhs = $(0);
+      const tmpIfTest$1 = tmpBinBothLhs === tmpBinBothRhs;
+      if (tmpIfTest$1) {
+        $(`keep, do not eval`);
+        break tmpSwitchBreak;
+      } else {
+        break tmpSwitchBreak;
+      }
+    }
+    $(`keep`);
+  } else {
+    break;
+  }
+}
+$(`after, do not evaluate (infinite loop)`);
+`````
+
+
 ## Todos triggered
 
 

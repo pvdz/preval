@@ -71,6 +71,31 @@ $( 3 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let tmpSwitchCaseToStart = 1;
+let tmpIfTest$1 = true;
+const tmpIfTest = true;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+} else {
+  tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+}
+if (tmpIfTest$1) {
+  try {
+    $(x, 1);
+  } catch ($finalImplicit) {}
+  $(2);
+  $(3);
+} else {
+  $(`oops`);
+  $(3);
+}
+`````
+
+
 ## Todos triggered
 
 

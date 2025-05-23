@@ -38,6 +38,16 @@ $( 4603 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpMCF = $Math_trunc;
+const x = 4603;
+$(x);
+`````
+
+
 ## Todos triggered
 
 

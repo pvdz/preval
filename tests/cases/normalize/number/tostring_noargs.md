@@ -38,6 +38,16 @@ $( "31" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpMCF = $number_toString;
+const f = $dotCall($number_toString, 31, `toString`);
+$(f);
+`````
+
+
 ## Todos triggered
 
 

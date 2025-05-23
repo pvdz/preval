@@ -38,6 +38,16 @@ $( $array_constructor );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const obj = { f: Array };
+let tmpCalleeParam = obj.f;
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

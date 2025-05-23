@@ -40,6 +40,17 @@ $( "3.48" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const flt = 3.48;
+const tmpCallVal = flt.toString;
+const x = $dotCall(tmpCallVal, flt, `toString`);
+$(x);
+`````
+
+
 ## Todos triggered
 
 

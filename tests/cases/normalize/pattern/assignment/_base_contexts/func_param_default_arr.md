@@ -48,6 +48,30 @@ $( a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const f = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
+  let a = undefined;
+  const tmpIfTest = tmpParamBare === undefined;
+  if (tmpIfTest) {
+    const tmpNestedAssignArrPatternRhs = [100];
+    const tmpArrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+    x = tmpArrPatternSplat[0];
+    a = tmpNestedAssignArrPatternRhs;
+  } else {
+    a = tmpParamBare;
+  }
+  const tmpReturnArg = $(a);
+  return tmpReturnArg;
+};
+f();
+`````
+
+
 ## Todos triggered
 
 

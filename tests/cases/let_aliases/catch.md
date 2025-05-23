@@ -101,6 +101,32 @@ catch (e) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  x = 2;
+  f = function () {
+    debugger;
+    return x;
+  };
+  const tmpReturnArg = f();
+  return tmpReturnArg;
+};
+let x = $(1);
+const a = x;
+try {
+  $();
+} catch (e) {
+  const b = x;
+  $(a, x);
+  $(f);
+}
+`````
+
+
 ## Todos triggered
 
 

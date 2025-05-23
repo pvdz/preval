@@ -50,6 +50,45 @@ $( b );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
+  let p = undefined;
+  const tmpIfTest = tmpParamBare === undefined;
+  if (tmpIfTest) {
+    let tmpNestedComplexRhs = undefined;
+    const tmpChainRootProp = b;
+    const tmpIfTest$1 = tmpChainRootProp != null;
+    if (tmpIfTest$1) {
+      const tmpChainElementObject = tmpChainRootProp.c;
+      const tmpChainElementObject$1 = tmpChainElementObject.d;
+      const tmpChainElementObject$3 = tmpChainElementObject$1.e;
+      const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, `e`, 1);
+      tmpNestedComplexRhs = tmpChainElementCall;
+    } else {
+    }
+    a = tmpNestedComplexRhs;
+    p = tmpNestedComplexRhs;
+    return undefined;
+  } else {
+    p = tmpParamBare;
+    return undefined;
+  }
+};
+const tmpObjLitVal$1 = { e: $ };
+const tmpObjLitVal = { d: tmpObjLitVal$1 };
+let b = { c: tmpObjLitVal };
+let a = { a: 999, b: 1000 };
+let tmpCalleeParam = f();
+$(tmpCalleeParam);
+$(a);
+`````
+
+
 ## Todos triggered
 
 

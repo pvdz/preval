@@ -93,6 +93,35 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let b = { x: 1 };
+let c = { y: 2 };
+let d = 3;
+let e = 4;
+let a = { a: 999, b: 1000 };
+const tmpIfTest = $(1);
+if (tmpIfTest) {
+  const tmpAssignComMemLhsObj = $(b);
+  const tmpAssignComMemLhsProp = $(`x`);
+  const tmpAssignComputedObj = tmpAssignComMemLhsObj;
+  const tmpAssignComputedProp = tmpAssignComMemLhsProp;
+  const tmpInitAssignLhsComputedObj = $(c);
+  const tmpInitAssignLhsComputedProp = $(`y`);
+  const tmpInitAssignLhsComputedRhs = d + e;
+  tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = tmpInitAssignLhsComputedRhs;
+  const tmpAssignComputedRhs = tmpInitAssignLhsComputedRhs;
+  tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+  $(a, b, c, d, e);
+} else {
+  $(200);
+  $(a, b, c, d, e);
+}
+`````
+
+
 ## Todos triggered
 
 

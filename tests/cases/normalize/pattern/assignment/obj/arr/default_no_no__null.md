@@ -41,6 +41,17 @@ throw "[Preval]: Can not reach here";
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpAssignObjPatternRhs = null;
+const tmpOPND = tmpAssignObjPatternRhs.x;
+const tmpArrPatternSplat = [...tmpOPND];
+$(`bad`);
+`````
+
+
 ## Todos triggered
 
 

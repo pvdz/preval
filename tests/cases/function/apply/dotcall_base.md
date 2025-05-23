@@ -58,6 +58,24 @@ $( undefined );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const f = function () {
+  const tmpPrevalAliasArgumentsAny = arguments;
+  debugger;
+  $(...tmpPrevalAliasArgumentsAny);
+  return undefined;
+};
+const tmpCompObj = $Function_prototype;
+const apply = tmpCompObj.apply;
+let tmpCalleeParam$1 = [`x`];
+let tmpCalleeParam = $dotCall(apply, f, `prop-unused`, undefined, tmpCalleeParam$1);
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

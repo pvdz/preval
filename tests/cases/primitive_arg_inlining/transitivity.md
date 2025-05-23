@@ -102,6 +102,50 @@ $( p, "second D" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function ($$0, $$1) {
+  let a = $$0;
+  let b = $$1;
+  debugger;
+  const tmpReturnArg = $(a, b);
+  return tmpReturnArg;
+};
+const tmpCallCallee = f;
+let tmpCalleeParam$1 = $(`b`);
+let tmpCalleeParam = f(`a`, tmpCalleeParam$1);
+$(tmpCalleeParam, `first A`);
+const tmpCallCallee$1 = f;
+let tmpCalleeParam$5 = $(`a`);
+let tmpCalleeParam$3 = f(tmpCalleeParam$5, `b`);
+$(tmpCalleeParam$3, `first B`);
+const tmpCallCallee$3 = f;
+let tmpCalleeParam$9 = $(`a`);
+let tmpCalleeParam$11 = $(`b`);
+let tmpCalleeParam$7 = f(tmpCalleeParam$9, tmpCalleeParam$11);
+$(tmpCalleeParam$7, `first C`);
+let tmpCalleeParam$13 = f(`a`, `b`);
+$(tmpCalleeParam$13, `first D`);
+const tmpCallCallee$5 = f;
+let tmpCalleeParam$17 = $(`b`);
+let tmpCalleeParam$15 = f(`a`, tmpCalleeParam$17);
+$(tmpCalleeParam$15, `second A`);
+const tmpCallCallee$7 = f;
+let tmpCalleeParam$21 = $(`a`);
+let tmpCalleeParam$19 = f(tmpCalleeParam$21, `b`);
+$(tmpCalleeParam$19, `second B`);
+const tmpCallCallee$9 = f;
+let tmpCalleeParam$25 = $(`a`);
+let tmpCalleeParam$27 = $(`b`);
+let tmpCalleeParam$23 = f(tmpCalleeParam$25, tmpCalleeParam$27);
+$(tmpCalleeParam$23, `second C`);
+let tmpCalleeParam$29 = f(`a`, `b`);
+$(tmpCalleeParam$29, `second D`);
+`````
+
+
 ## Todos triggered
 
 

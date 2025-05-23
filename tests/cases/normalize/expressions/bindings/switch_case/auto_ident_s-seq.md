@@ -49,6 +49,25 @@ $( 1, 1 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = undefined;
+let a = undefined;
+const tmpSwitchDisc = 1;
+const tmpIfTest = tmpSwitchDisc === 1;
+if (tmpIfTest) {
+  x = 1;
+  $(1);
+  $(2);
+  a = x;
+  $(x, x);
+} else {
+}
+`````
+
+
 ## Todos triggered
 
 

@@ -43,6 +43,17 @@ $( b, a, "final" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = $(10);
+const a = x;
+x = $(20);
+$(x, a, `final`);
+`````
+
+
 ## Todos triggered
 
 

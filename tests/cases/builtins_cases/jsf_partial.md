@@ -47,6 +47,32 @@ $( "$(1, 2)" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const arr_inner1 = [];
+const arr_outer1 = [arr_inner1];
+const arr_inner2 = [];
+const arr_outer2 = [arr_inner2];
+const tmpMCF = arr_outer1.concat;
+const arrs = $dotCall(tmpMCF, arr_outer1, `concat`, arr_outer2);
+const comma = $coerce(arrs, `plustr`);
+const tmpBinBothLhs = `return"\$(1`;
+const tmpBinBothRhs = $coerce(comma, `string`);
+const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
+const the_return_part1 = $coerce(tmpBinLhs, `plustr`);
+const tmpBinBothLhs$1 = ``;
+const tmpBinBothRhs$1 = $coerce(the_return_part1, `string`);
+const tmpBinLhs$1 = tmpBinBothLhs$1 + tmpBinBothRhs$1;
+const tmpStringConcatR = $coerce(tmpBinLhs$1, `plustr`);
+const return_12 = `${tmpStringConcatR} 2)"`;
+const tmpCallComplexCallee = $function_constructor(return_12);
+const tmpCalleeParam = tmpCallComplexCallee();
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

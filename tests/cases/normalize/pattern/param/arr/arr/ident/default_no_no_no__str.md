@@ -40,6 +40,25 @@ $( "a" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
+  let tmpBindingPatternArrRoot = tmpParamBare;
+  let tmpArrPatternSplat = [...tmpBindingPatternArrRoot];
+  let tmpArrPatternStep = tmpArrPatternSplat[0];
+  let tmpArrPatternSplat$1 = [...tmpArrPatternStep];
+  let x = tmpArrPatternSplat$1[0];
+  return x;
+};
+let tmpCalleeParam = f(`abc`, 200);
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

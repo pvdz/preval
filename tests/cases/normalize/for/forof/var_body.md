@@ -66,6 +66,26 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = undefined;
+let tmpCalleeParam = [1, 2, 3];
+const tmpForOfGenNext = $forOf(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForOfNext = tmpForOfGenNext();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    const n = tmpForOfNext.value;
+    x = n;
+  }
+}
+`````
+
+
 ## Todos triggered
 
 

@@ -79,6 +79,34 @@ throw "[Preval] Attempting to call a value that cannot be called: `const tmpCall
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function ($$0) {
+  let x = $$0;
+  debugger;
+  $(`no`);
+  $(`inlining`);
+  $(`please`);
+  const y = x();
+  return y;
+};
+const tmpCallCallee = f;
+let tmpCalleeParam$1 = function () {
+  debugger;
+  $(`pass`);
+  return undefined;
+};
+let tmpCalleeParam = f(tmpCalleeParam$1);
+$(tmpCalleeParam);
+let tmpCalleeParam$3 = f(2);
+$(tmpCalleeParam$3);
+let tmpCalleeParam$5 = f(`three`);
+$(tmpCalleeParam$5);
+`````
+
+
 ## Todos triggered
 
 

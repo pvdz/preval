@@ -57,6 +57,26 @@ $( "pass" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let cTmp = $(1);
+let n = 1;
+while ($LOOP_UNROLL_10) {
+  $(3);
+  n = n + 1;
+  const tmpIfTest$1 = n < 2;
+  if (tmpIfTest$1) {
+  } else {
+    cTmp = `pass`;
+    break;
+  }
+}
+$(cTmp);
+`````
+
+
 ## Todos triggered
 
 

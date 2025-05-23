@@ -81,6 +81,28 @@ $( d );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const arr = [1, 2, 3, 4, 5];
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const test = $(`never`);
+  if (test) {
+    break;
+  } else {
+    const tmpMCF = arr.shift;
+    const tmp = $dotCall(tmpMCF, arr, `shift`);
+    const tmpMCF$1 = arr.push;
+    $dotCall(tmpMCF$1, arr, `push`, tmp);
+  }
+}
+const tmpMCF$3 = arr.slice;
+let tmpCalleeParam = $dotCall(tmpMCF$3, arr, `slice`, 0);
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

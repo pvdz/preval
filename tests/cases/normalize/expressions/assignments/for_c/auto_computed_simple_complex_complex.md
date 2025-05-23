@@ -97,6 +97,30 @@ $( a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+while (true) {
+  const tmpIfTest = $(1);
+  if (tmpIfTest) {
+    const tmpObjLitVal = $(1);
+    a = { b: tmpObjLitVal };
+  } else {
+    break;
+  }
+}
+const tmpAssignComMemLhsObj = a;
+const tmpAssignComMemLhsProp = $(`b`);
+const tmpAssignComputedObj = tmpAssignComMemLhsObj;
+const tmpAssignComputedProp = tmpAssignComMemLhsProp;
+const tmpAssignComputedRhs = $(2);
+tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+$(a);
+`````
+
+
 ## Todos triggered
 
 

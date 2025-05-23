@@ -209,6 +209,104 @@ $( "x instanceof /foo/g:", bp );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpBinBothLhs = 1;
+const tmpBinBothRhs = $(1);
+const x = tmpBinBothLhs * tmpBinBothRhs;
+const tmpBinBothLhs$1 = x;
+const tmpBinBothRhs$1 = new $regex_constructor(`foo`, `g`);
+let tmpCalleeParam = tmpBinBothLhs$1 ** tmpBinBothRhs$1;
+$(`x ** /foo/g:`, tmpCalleeParam);
+const tmpBinBothLhs$3 = x;
+const tmpBinBothRhs$3 = new $regex_constructor(`foo`, `g`);
+let tmpCalleeParam$1 = tmpBinBothLhs$3 * tmpBinBothRhs$3;
+$(`x * /foo/g:`, tmpCalleeParam$1);
+const tmpBinBothLhs$5 = x;
+const tmpBinBothRhs$5 = new $regex_constructor(`foo`, `g`);
+let tmpCalleeParam$3 = tmpBinBothLhs$5 / tmpBinBothRhs$5;
+$(`x / /foo/g:`, tmpCalleeParam$3);
+const tmpBinBothLhs$7 = x;
+const tmpBinBothRhs$7 = new $regex_constructor(`foo`, `g`);
+let tmpCalleeParam$5 = tmpBinBothLhs$7 % tmpBinBothRhs$7;
+$(`x % /foo/g:`, tmpCalleeParam$5);
+const tmpBinBothLhs$9 = x;
+const tmpBinBothRhs$9 = new $regex_constructor(`foo`, `g`);
+let tmpCalleeParam$7 = tmpBinBothLhs$9 + tmpBinBothRhs$9;
+$(`x + /foo/g:`, tmpCalleeParam$7);
+const tmpBinBothLhs$11 = x;
+const tmpBinBothRhs$11 = new $regex_constructor(`foo`, `g`);
+let tmpCalleeParam$9 = tmpBinBothLhs$11 - tmpBinBothRhs$11;
+$(`x - /foo/g:`, tmpCalleeParam$9);
+const tmpBinBothLhs$13 = x;
+const tmpBinBothRhs$13 = new $regex_constructor(`foo`, `g`);
+let tmpCalleeParam$11 = tmpBinBothLhs$13 << tmpBinBothRhs$13;
+$(`x << /foo/g:`, tmpCalleeParam$11);
+const tmpBinBothLhs$15 = x;
+const tmpBinBothRhs$15 = new $regex_constructor(`foo`, `g`);
+let tmpCalleeParam$13 = tmpBinBothLhs$15 >> tmpBinBothRhs$15;
+$(`x >> /foo/g:`, tmpCalleeParam$13);
+const tmpBinBothLhs$17 = x;
+const tmpBinBothRhs$17 = new $regex_constructor(`foo`, `g`);
+let tmpCalleeParam$15 = tmpBinBothLhs$17 >>> tmpBinBothRhs$17;
+$(`x >>> /foo/g:`, tmpCalleeParam$15);
+const tmpBinBothLhs$19 = x;
+const tmpBinBothRhs$19 = new $regex_constructor(`foo`, `g`);
+let tmpCalleeParam$17 = tmpBinBothLhs$19 < tmpBinBothRhs$19;
+$(`x < /foo/g:`, tmpCalleeParam$17);
+const tmpBinBothLhs$21 = x;
+const tmpBinBothRhs$21 = new $regex_constructor(`foo`, `g`);
+let tmpCalleeParam$19 = tmpBinBothLhs$21 > tmpBinBothRhs$21;
+$(`x > /foo/g:`, tmpCalleeParam$19);
+const tmpBinBothLhs$23 = x;
+const tmpBinBothRhs$23 = new $regex_constructor(`foo`, `g`);
+let tmpCalleeParam$21 = tmpBinBothLhs$23 <= tmpBinBothRhs$23;
+$(`x <= /foo/g:`, tmpCalleeParam$21);
+const tmpBinBothLhs$25 = x;
+const tmpBinBothRhs$25 = new $regex_constructor(`foo`, `g`);
+let tmpCalleeParam$23 = tmpBinBothLhs$25 >= tmpBinBothRhs$25;
+$(`x >= /foo/g:`, tmpCalleeParam$23);
+const tmpBinBothLhs$27 = x;
+const tmpBinBothRhs$27 = new $regex_constructor(`foo`, `g`);
+let tmpCalleeParam$25 = tmpBinBothLhs$27 == tmpBinBothRhs$27;
+$(`x == /foo/g:`, tmpCalleeParam$25);
+const tmpBinBothLhs$29 = x;
+const tmpBinBothRhs$29 = new $regex_constructor(`foo`, `g`);
+let tmpCalleeParam$27 = tmpBinBothLhs$29 != tmpBinBothRhs$29;
+$(`x != /foo/g:`, tmpCalleeParam$27);
+const tmpBinBothLhs$31 = x;
+const tmpBinBothRhs$31 = new $regex_constructor(`foo`, `g`);
+let tmpCalleeParam$29 = tmpBinBothLhs$31 === tmpBinBothRhs$31;
+$(`x === /foo/g:`, tmpCalleeParam$29);
+const tmpBinBothLhs$33 = x;
+const tmpBinBothRhs$33 = new $regex_constructor(`foo`, `g`);
+let tmpCalleeParam$31 = tmpBinBothLhs$33 !== tmpBinBothRhs$33;
+$(`x !== /foo/g:`, tmpCalleeParam$31);
+const tmpBinBothLhs$35 = x;
+const tmpBinBothRhs$35 = new $regex_constructor(`foo`, `g`);
+let tmpCalleeParam$33 = tmpBinBothLhs$35 & tmpBinBothRhs$35;
+$(`x & /foo/g:`, tmpCalleeParam$33);
+const tmpBinBothLhs$37 = x;
+const tmpBinBothRhs$37 = new $regex_constructor(`foo`, `g`);
+let tmpCalleeParam$35 = tmpBinBothLhs$37 ^ tmpBinBothRhs$37;
+$(`x ^ /foo/g:`, tmpCalleeParam$35);
+const tmpBinBothLhs$39 = x;
+const tmpBinBothRhs$39 = new $regex_constructor(`foo`, `g`);
+let tmpCalleeParam$37 = tmpBinBothLhs$39 | tmpBinBothRhs$39;
+$(`x | /foo/g:`, tmpCalleeParam$37);
+const tmpBinBothLhs$41 = x;
+const tmpBinBothRhs$41 = new $regex_constructor(`foo`, `g`);
+let tmpCalleeParam$39 = tmpBinBothLhs$41 in tmpBinBothRhs$41;
+$(`x in /foo/g:`, tmpCalleeParam$39);
+const tmpBinBothLhs$43 = x;
+const tmpBinBothRhs$43 = new $regex_constructor(`foo`, `g`);
+let tmpCalleeParam$41 = tmpBinBothLhs$43 instanceof tmpBinBothRhs$43;
+$(`x instanceof /foo/g:`, tmpCalleeParam$41);
+`````
+
+
 ## Todos triggered
 
 

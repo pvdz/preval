@@ -42,6 +42,19 @@ $( "number" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let foo = undefined;
+foo = 1;
+let tmpCalleeParam = true;
+$(tmpCalleeParam);
+let tmpCalleeParam$1 = typeof foo;
+$(tmpCalleeParam$1);
+`````
+
+
 ## Todos triggered
 
 

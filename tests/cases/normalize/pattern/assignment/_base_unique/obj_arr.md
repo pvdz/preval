@@ -44,6 +44,19 @@ y = b[ 0 ];
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let y$3 = 1;
+const tmpAssignObjPatternRhs = 1;
+const tmpOPND = tmpAssignObjPatternRhs.x;
+const tmpArrPatternSplat = [...tmpOPND];
+y = tmpArrPatternSplat[0];
+let y$1 = 1;
+`````
+
+
 ## Todos triggered
 
 

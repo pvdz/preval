@@ -44,6 +44,17 @@ $( "out:", true );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpNumberFirstArg = $(100);
+const x = $coerce(tmpNumberFirstArg, `number`);
+const y = x !== ``;
+$(`out:`, y);
+`````
+
+
 ## Todos triggered
 
 

@@ -50,6 +50,27 @@ $( 1, 2, 3 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpArrElement = 1;
+const tmpArrElement$1 = 2;
+const tmpObjLitVal = [3];
+const tmpArrElement$3 = { c: tmpObjLitVal };
+let tmpBindingPatternArrRoot = [tmpArrElement, tmpArrElement$1, tmpArrElement$3];
+let tmpArrPatternSplat = [...tmpBindingPatternArrRoot];
+let a = tmpArrPatternSplat[0];
+let b = tmpArrPatternSplat[1];
+let tmpArrPatternStep = tmpArrPatternSplat[2];
+let tmpOPND = tmpArrPatternStep.c;
+let tmpArrPatternSplat$1 = [...tmpOPND];
+let d = tmpArrPatternSplat$1[0];
+export { a, b, d };
+$(a, b, d);
+`````
+
+
 ## Todos triggered
 
 

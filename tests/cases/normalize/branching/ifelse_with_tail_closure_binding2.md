@@ -58,6 +58,31 @@ throw "Preval: TDZ triggered for this read: $(xyz)";
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const f = function () {
+  debugger;
+  const g = function () {
+    debugger;
+    $(xyz);
+    return undefined;
+  };
+  $(xyz);
+  if ($) {
+    $(1);
+  } else {
+  }
+  const xyz = $();
+  const tmpReturnArg = g();
+  return tmpReturnArg;
+};
+let tmpCalleeParam = f();
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

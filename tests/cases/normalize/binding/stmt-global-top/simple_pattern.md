@@ -49,6 +49,23 @@ $( a, c, d, a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = 1;
+let y = 2;
+let z = [10, 20, 30];
+let a = undefined;
+const tmpNestedAssignArrPatternRhs = z;
+const tmpArrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+x = tmpArrPatternSplat[0];
+y = tmpArrPatternSplat[1];
+a = tmpNestedAssignArrPatternRhs;
+$(tmpNestedAssignArrPatternRhs, x, y, z);
+`````
+
+
 ## Todos triggered
 
 

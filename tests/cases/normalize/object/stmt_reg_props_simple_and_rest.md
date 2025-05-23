@@ -40,6 +40,15 @@ const a = { a: 10 };
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpObjSpreadArg = { a: 10 };
+({ ...tmpObjSpreadArg });
+`````
+
+
 ## Todos triggered
 
 

@@ -48,6 +48,22 @@ if (c) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpBindingPatternObjRoot = 1;
+const tmpOPBD = tmpBindingPatternObjRoot.x;
+let x = undefined;
+const tmpIfTest = tmpOPBD === undefined;
+if (tmpIfTest) {
+  x = b;
+} else {
+  x = tmpOPBD;
+}
+`````
+
+
 ## Todos triggered
 
 

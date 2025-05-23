@@ -123,6 +123,31 @@ $( h, a, b );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = 1;
+let y = 2;
+let a = { a: 999, b: 1000 };
+let z = $(3);
+while (true) {
+  const test = $(z);
+  if (test) {
+    const p = $(3);
+    const q = $(4);
+    const obj = { x: p, y: q };
+    x = obj.x;
+    y = z;
+    z = 0;
+  } else {
+    break;
+  }
+}
+$(a, x, y);
+`````
+
+
 ## Todos triggered
 
 

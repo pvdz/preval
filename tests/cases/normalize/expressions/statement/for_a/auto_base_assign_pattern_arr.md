@@ -89,6 +89,28 @@ $( h, e );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let b = [];
+let a = { a: 999, b: 1000 };
+const tmpArrElement = $(2);
+let tmpCalleeParam = [tmpArrElement];
+const tmpArrAssignPatternRhs = $(tmpCalleeParam);
+const tmpArrPatternSplat = [...tmpArrAssignPatternRhs];
+b = tmpArrPatternSplat[0];
+while (true) {
+  const tmpIfTest = $(0);
+  if (tmpIfTest) {
+  } else {
+    break;
+  }
+}
+$(a, b);
+`````
+
+
 ## Todos triggered
 
 

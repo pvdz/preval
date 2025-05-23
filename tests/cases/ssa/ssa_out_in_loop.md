@@ -169,6 +169,53 @@ if ($) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+if ($) {
+  let A = `jhayon.vercel.app`;
+  let B = `jhayon.vercel.app`;
+  let tmpClusterSSA__0x2c65c8$1 = 1;
+  const tmpClusterSSA__0x15f773 = $(`x`);
+  const tmpIfTest$8 = tmpClusterSSA__0x2c65c8$1 < 1;
+  A = tmpClusterSSA__0x15f773.length;
+  const tmpBinBothLhs$30 = A[0];
+  const tmpIfTest$10 = tmpBinBothLhs$30 === `.`;
+  if (tmpIfTest$10) {
+    const tmpMCF = A.slice;
+    B = $dotCall(tmpMCF, A, `slice`, 1);
+  } else {
+    B = A;
+  }
+  const tmpBinBothLhs$32 = tmpClusterSSA__0x26b289.length;
+  const tmpBinBothRhs$32 = B.length;
+  tmpClusterSSA__0x30c47e = tmpBinBothLhs$32 - tmpBinBothRhs$32;
+  const tmpMCF$1 = tmpClusterSSA__0x26b289.indexOf;
+  tmpClusterSSA__0x2a669d = $dotCall(tmpMCF$1, tmpClusterSSA__0x26b289, `indexOf`, B, tmpClusterSSA__0x30c47e);
+  tmpClusterSSA__0x5dc746 = tmpClusterSSA__0x2a669d !== -1;
+  if (tmpClusterSSA__0x5dc746) {
+    tmpClusterSSA__0x5dc746 = tmpClusterSSA__0x2a669d === tmpClusterSSA__0x30c47e;
+    if (tmpClusterSSA__0x5dc746) {
+      const tmpBinBothLhs$34 = tmpClusterSSA__0x26b289.length;
+      const tmpBinBothRhs$34 = A.length;
+      let tmpIfTest$12 = tmpBinBothLhs$34 === tmpBinBothRhs$34;
+      if (tmpIfTest$12) {
+      } else {
+        const tmpMCF$3 = A.indexOf;
+        const tmpBinLhs$23 = $dotCall(tmpMCF$3, A, `indexOf`, `.`);
+        tmpIfTest$12 = tmpBinLhs$23 === 0;
+      }
+    } else {
+    }
+  } else {
+  }
+  tmpClusterSSA__0x2c65c8$1 = tmpClusterSSA__0x2c65c8$1 + 1;
+} else {
+}
+`````
+
+
 ## Todos triggered
 
 

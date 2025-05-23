@@ -46,6 +46,30 @@ eval( "$('win')" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpBinBothRhs$205 = `String`;
+const tmpStringConcatL = $coerce(tmpBinBothRhs$205, `plustr`);
+const tmpBinBothLhs = `to`;
+const tmpBinBothRhs = $coerce(tmpStringConcatL, `string`);
+const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
+const tmpCallCompProp$1 = $coerce(tmpBinLhs, `plustr`);
+const tmpCallCompVal$1 = $Number_prototype[tmpCallCompProp$1];
+const tmpBinBothRhs$141 = $dotCall(tmpCallCompVal$1, 31, `toString`, `32`);
+const tmpStringConcatL$2 = $coerce(tmpBinBothRhs$141, `plustr`);
+const tmpBinBothLhs$1 = `return e`;
+const tmpBinBothRhs$1 = $coerce(tmpStringConcatL$2, `string`);
+const tmpBinLhs$1 = tmpBinBothLhs$1 + tmpBinBothRhs$1;
+const tmpStringConcatR = $coerce(tmpBinLhs$1, `plustr`);
+const tmpCalleeParam$1 = `${tmpStringConcatR}al`;
+const tmpCallComplexCallee = $function_constructor(tmpCalleeParam$1);
+const tmpCallCallee = tmpCallComplexCallee();
+tmpCallCallee(`$('win')`);
+`````
+
+
 ## Todos triggered
 
 

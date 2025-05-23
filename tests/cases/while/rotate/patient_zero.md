@@ -64,6 +64,21 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = new $regex_constructor(`foo`, ``);
+x.foo = `object`;
+while ($LOOP_UNROLL_10) {
+  const tmp = x.foo;
+  $(tmp);
+  x = new $regex_constructor(`foo`, ``);
+  x.foo = `object`;
+}
+`````
+
+
 ## Todos triggered
 
 

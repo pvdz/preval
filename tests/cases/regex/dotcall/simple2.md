@@ -47,6 +47,18 @@ $( c );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const arg = $(`give food`);
+const tmpCallObj = new $regex_constructor(`foo`, ``);
+const tmpMCF = tmpCallObj.test;
+const tmpCalleeParam = $dotCall(tmpMCF, tmpCallObj, `test`, arg);
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

@@ -170,6 +170,63 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  let tmpSwitchValue = $(1);
+  let tmpSwitchCaseToStart = 4;
+  const tmpIfTest = 0 === tmpSwitchValue;
+  if (tmpIfTest) {
+    tmpSwitchCaseToStart = 0;
+  } else {
+    const tmpBinLhs = $(1);
+    const tmpIfTest$1 = tmpBinLhs === tmpSwitchValue;
+    if (tmpIfTest$1) {
+      tmpSwitchCaseToStart = 1;
+    } else {
+      const tmpBinLhs$1 = $(4);
+      const tmpIfTest$3 = tmpBinLhs$1 === tmpSwitchValue;
+      if (tmpIfTest$3) {
+        tmpSwitchCaseToStart = 2;
+      } else {
+        const tmpBinLhs$3 = $(7);
+        const tmpIfTest$5 = tmpBinLhs$3 === tmpSwitchValue;
+        if (tmpIfTest$5) {
+          tmpSwitchCaseToStart = 3;
+        } else {
+        }
+      }
+    }
+  }
+  const tmpIfTest$7 = tmpSwitchCaseToStart <= 0;
+  if (tmpIfTest$7) {
+    $(2);
+    return undefined;
+  } else {
+    const tmpIfTest$9 = tmpSwitchCaseToStart <= 1;
+    if (tmpIfTest$9) {
+      $(3);
+    } else {
+    }
+    const tmpIfTest$11 = tmpSwitchCaseToStart <= 2;
+    if (tmpIfTest$11) {
+      $(5);
+      const tmpReturnArg = $(6);
+      return tmpReturnArg;
+    } else {
+      const tmpIfTest$13 = tmpSwitchCaseToStart <= 3;
+      return undefined;
+    }
+  }
+};
+let tmpCalleeParam = f();
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

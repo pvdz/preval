@@ -96,6 +96,32 @@ $( c, b );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpObjLitVal = function () {
+  debugger;
+  $(`c flag now:`, flag);
+  return undefined;
+};
+let c = { valueOf: tmpObjLitVal };
+let flag = 0;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpIfTest = flag < 10;
+  if (tmpIfTest) {
+    const tmpPostUpdArgIdent = $coerce(c, `number`);
+    c = tmpPostUpdArgIdent + 1;
+    flag = c;
+    $(`++c`, c);
+  } else {
+    break;
+  }
+}
+$(c, flag);
+`````
+
+
 ## Todos triggered
 
 

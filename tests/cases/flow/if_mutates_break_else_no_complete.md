@@ -72,6 +72,30 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  let x = `pass`;
+  foo: {
+    const tmpIfTest = $(true);
+    if (tmpIfTest) {
+      $(x, `not mutating, not completing`);
+      $(x, `should not be considered mutated`);
+    } else {
+      x = `fail`;
+      break foo;
+    }
+  }
+  $(x, `after label`);
+  return undefined;
+};
+f();
+`````
+
+
 ## Todos triggered
 
 

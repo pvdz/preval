@@ -43,6 +43,16 @@ a[ b ];
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpCompObj = $(1);
+const tmpCalleeParam = $(2);
+tmpCompObj[tmpCalleeParam];
+`````
+
+
 ## Todos triggered
 
 

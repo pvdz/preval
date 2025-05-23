@@ -48,6 +48,17 @@ $( c );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpObjLitPropKey = $(1);
+const tmpObjLitPropVal = $(2);
+const obj = { [tmpObjLitPropKey]: tmpObjLitPropVal };
+$(obj);
+`````
+
+
 ## Todos triggered
 
 

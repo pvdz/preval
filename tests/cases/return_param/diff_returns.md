@@ -114,6 +114,35 @@ $( g );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function ($$0) {
+  let x = $$0;
+  debugger;
+  $(`no`);
+  $(`inlining`);
+  $(`please`);
+  const y = ~x;
+  const tmpIfTest = $(true);
+  if (tmpIfTest) {
+    $(`a`);
+    return y;
+  } else {
+    $(`b`);
+    return 5;
+  }
+};
+let tmpCalleeParam = f(1);
+$(tmpCalleeParam);
+let tmpCalleeParam$1 = f(2);
+$(tmpCalleeParam$1);
+let tmpCalleeParam$3 = f(`three`);
+$(tmpCalleeParam$3);
+`````
+
+
 ## Todos triggered
 
 

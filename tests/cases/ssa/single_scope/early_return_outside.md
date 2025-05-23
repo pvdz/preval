@@ -106,6 +106,33 @@ $( a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpLabeledBlockFunc$3 = function ($$0) {
+  let x = $$0;
+  debugger;
+  const tmpIfTest = $(1);
+  if (tmpIfTest) {
+    if ($) {
+      x = $(1);
+      $(x);
+      return undefined;
+    } else {
+      $(2);
+      return undefined;
+    }
+  } else {
+    $(3);
+    $(x);
+    return undefined;
+  }
+};
+$(tmpLabeledBlockFunc$3);
+`````
+
+
 ## Todos triggered
 
 

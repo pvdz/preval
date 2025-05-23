@@ -54,6 +54,31 @@ $( b );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const toString = $(`toString`);
+const g = function ($$0, $$1) {
+  let o = $$0;
+  let p = $$1;
+  debugger;
+  const tmpMCF = o[p];
+  const y = $dotCall(tmpMCF, o, undefined);
+  return y;
+};
+const f = function ($$0, $$1) {
+  let m = $$0;
+  let n = $$1;
+  debugger;
+  const x = g(m);
+  return x;
+};
+const r = f($string_constructor, toString);
+$(r);
+`````
+
+
 ## Todos triggered
 
 

@@ -80,6 +80,26 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let b = { c: 10, d: 20 };
+let a = { a: 999, b: 1000 };
+const tmpIfTest = $(100);
+if (tmpIfTest) {
+  $(a, b);
+} else {
+  const tmpAssignMemLhsObj = b;
+  const tmpCompObj = $(b);
+  const tmpCalleeParam = $(`d`);
+  const tmpAssignMemRhs = tmpCompObj[tmpCalleeParam];
+  tmpAssignMemLhsObj.c = tmpAssignMemRhs;
+  $(a, b);
+}
+`````
+
+
 ## Todos triggered
 
 

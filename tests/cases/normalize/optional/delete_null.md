@@ -37,6 +37,22 @@ $( true );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpDeleteOpt = null;
+let tmpCalleeParam = true;
+const tmpIfTest = tmpDeleteOpt != null;
+if (tmpIfTest) {
+  tmpCalleeParam = delete tmpDeleteOpt.x;
+  $(tmpCalleeParam);
+} else {
+  $(tmpCalleeParam);
+}
+`````
+
+
 ## Todos triggered
 
 

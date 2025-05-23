@@ -54,6 +54,25 @@ $( 0 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let futureFunc = undefined;
+$inlinedFunction: {
+  const f = function () {
+    debugger;
+    $(x);
+    return undefined;
+  };
+  futureFunc = f;
+  break $inlinedFunction;
+  const x = 0;
+}
+futureFunc();
+`````
+
+
 ## Todos triggered
 
 

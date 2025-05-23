@@ -99,6 +99,37 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  let a = { a: 999, b: 1000 };
+  let tmpCalleeParam = $(0);
+  const tmpIfTest = $(tmpCalleeParam);
+  if (tmpIfTest) {
+    $(a);
+    return undefined;
+  } else {
+    let tmpCalleeParam$1 = $(1);
+    const tmpIfTest$1 = $(tmpCalleeParam$1);
+    if (tmpIfTest$1) {
+      let tmpCalleeParam$3 = $(2);
+      $(tmpCalleeParam$3);
+      $(a);
+      return undefined;
+    } else {
+      $(a);
+      return undefined;
+    }
+  }
+};
+let tmpCalleeParam$5 = f();
+$(tmpCalleeParam$5);
+`````
+
+
 ## Todos triggered
 
 

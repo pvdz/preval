@@ -100,6 +100,39 @@ if ($) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  let i = 0;
+  while (true) {
+    const tmpPostUpdArgIdent = $coerce(i, `number`);
+    i = tmpPostUpdArgIdent + 1;
+    const tmpBinLhs = i;
+    const tmpIfTest = tmpBinLhs < 10;
+    if (tmpIfTest) {
+      const tmpIfTest$1 = i < 5;
+      if (tmpIfTest$1) {
+        $(i, `sub`);
+      } else {
+        $(i, `sup`);
+      }
+    } else {
+      break;
+    }
+  }
+  $(i);
+  return undefined;
+};
+if ($) {
+  f();
+} else {
+}
+`````
+
+
 ## Todos triggered
 
 

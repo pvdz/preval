@@ -78,6 +78,30 @@ b.c = c;
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let b = {
+  get c() {
+    debugger;
+    $(`get`);
+    return undefined;
+  },
+  set c($$0) {
+    let x = $$0;
+    debugger;
+    $(`set`);
+    return undefined;
+  },
+};
+const tmpAssignMemLhsObj = $(b);
+const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
+const tmpAssignMemRhs = $(2);
+tmpAssignMemLhsObj$1.c = tmpAssignMemRhs;
+`````
+
+
 ## Todos triggered
 
 

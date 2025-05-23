@@ -69,6 +69,30 @@ if (a) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpIfTest = $(true);
+if (tmpIfTest) {
+  let x = 1;
+  let y = 2;
+  let z = [10, 20, 30];
+  let tmpBindingPatternArrRoot = undefined;
+  const tmpNestedAssignArrPatternRhs = z;
+  const tmpArrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
+  x = tmpArrPatternSplat$1[1];
+  y = tmpArrPatternSplat$1[2];
+  tmpBindingPatternArrRoot = tmpNestedAssignArrPatternRhs;
+  let tmpArrPatternSplat = [...tmpBindingPatternArrRoot];
+  let a = tmpArrPatternSplat[0];
+  let b = tmpArrPatternSplat[1];
+  $(a, b, x, y, z);
+} else {
+}
+`````
+
+
 ## Todos triggered
 
 

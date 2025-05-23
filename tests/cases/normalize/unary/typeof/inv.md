@@ -40,6 +40,16 @@ $( "boolean" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+$(100);
+let tmpCalleeParam = `boolean`;
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

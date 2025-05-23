@@ -38,6 +38,17 @@ throw "[Preval] Attempting to call a value that cannot be called: `const tmpCall
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const o = { oops: `fail` };
+const tmpMCF = o.oops;
+let tmpCalleeParam = $dotCall(tmpMCF, o, `oops`);
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

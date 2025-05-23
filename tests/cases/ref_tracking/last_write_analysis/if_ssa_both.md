@@ -82,6 +82,25 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = $(`a`);
+$(x);
+x = $(`b`);
+if ($) {
+  x = $(`c`);
+  $(`break if hoisting optimization ooops`);
+  $(x);
+} else {
+  x = $(`d`);
+  $(`break if hoisting optimization ooops`);
+  $(x);
+}
+`````
+
+
 ## Todos triggered
 
 

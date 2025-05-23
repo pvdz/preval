@@ -149,6 +149,52 @@ $( q );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const arrB = [
+  `body`,
+  `abOPIoHFut:bwlFaSsnkTXHOCpGGeeFsJMHCLEPCWr`,
+  `return (function() `,
+  `iframe`,
+  `[?&]`,
+  `translate(-50%, -50%) scale(`,
+  `url`,
+  `1362209nkUUHI`,
+  `replace`,
+];
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $(`protect`);
+  const a = arrB[51];
+  const aint = $Number_parseInt(a);
+  const b = arrB[18];
+  const bint = $Number_parseInt(b);
+  const a1 = aint / 1;
+  const b2 = bint / 2;
+  const ab = a1 * b2;
+  const abeq = ab === 712261;
+  if (abeq) {
+    break;
+  } else {
+    try {
+      const tmpMCF = arrB.shift;
+      const arrval = $dotCall(tmpMCF, arrB, `shift`);
+      const tmpMCF$1 = arrB.push;
+      $dotCall(tmpMCF$1, arrB, `push`, arrval);
+    } catch (_0x22a091) {
+      const tmpMCF$3 = arrB.shift;
+      const ignoreval = $dotCall(tmpMCF$3, arrB, `shift`);
+      const tmpMCF$5 = arrB.push;
+      $dotCall(tmpMCF$5, arrB, `push`, ignoreval);
+    }
+  }
+}
+let tmpCalleeParam = arrB[0];
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

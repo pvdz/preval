@@ -43,6 +43,24 @@ $( undefined );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const f = function ($$0) {
+  let aa = $$0;
+  debugger;
+  const a = aa;
+  const tmpMCF = $string_slice;
+  $dotCall($string_slice, `foo`, `slice`, a);
+  return undefined;
+};
+f(`0`);
+const t = f(`1`);
+$(t);
+`````
+
+
 ## Todos triggered
 
 

@@ -60,6 +60,20 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpBinLhs = $(0);
+const x = tmpBinLhs & 33;
+if (x) {
+  $(`fail`, x);
+} else {
+  $(`pass`, x);
+}
+`````
+
+
 ## Todos triggered
 
 

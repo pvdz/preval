@@ -43,6 +43,21 @@ With rename=true
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function ($$0) {
+  let tmpParamBare = $$0;
+  debugger;
+  const tmpChainRootProp$1 = b;
+  return undefined;
+};
+const tmpObjLitVal = $;
+let b = { x: tmpObjLitVal };
+`````
+
+
 ## Todos triggered
 
 

@@ -37,6 +37,17 @@ $( true );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpMCF = $Array_isArray;
+const tmpMCP = [1, 2, 3];
+let tmpCalleeParam = $dotCall(tmpMCF, $array_constructor, `isArray`, tmpMCP);
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

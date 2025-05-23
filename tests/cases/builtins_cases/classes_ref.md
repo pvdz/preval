@@ -85,6 +85,26 @@ $( $set_constructor );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+$($boolean_constructor);
+$($number_constructor);
+$($string_constructor);
+$($array_constructor);
+$($object_constructor);
+$($date_constructor);
+$($function_constructor);
+$($regex_constructor);
+$(Math);
+$(JSON);
+$($buffer_constructor);
+$($map_constructor);
+$($set_constructor);
+`````
+
+
 ## Todos triggered
 
 

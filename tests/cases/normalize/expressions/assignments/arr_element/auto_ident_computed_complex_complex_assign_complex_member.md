@@ -88,6 +88,36 @@ $( k, a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let b = { c: 10, d: 20 };
+let a = { a: 999, b: 1000 };
+const tmpNestedAssignComMemberObj = $(b);
+const tmpNestedAssignComMemberProp = $(`c`);
+const tmpCompObj = $(b);
+const tmpCalleeParam$1 = $(`d`);
+const tmpNestedAssignPropRhs = tmpCompObj[tmpCalleeParam$1];
+const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
+tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
+a = tmpNestedPropAssignRhs;
+const tmpBinBothLhs = a;
+const tmpNestedAssignComMemberObj$1 = $(b);
+const tmpNestedAssignComMemberProp$1 = $(`c`);
+const tmpCompObj$1 = $(b);
+const tmpCalleeParam$3 = $(`d`);
+const tmpNestedAssignPropRhs$1 = tmpCompObj$1[tmpCalleeParam$3];
+const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs$1;
+tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = tmpNestedPropAssignRhs$1;
+a = tmpNestedPropAssignRhs$1;
+const tmpBinBothRhs = a;
+let tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
+$(tmpCalleeParam);
+$(a, b);
+`````
+
+
 ## Todos triggered
 
 

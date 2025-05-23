@@ -120,6 +120,31 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let b = { x: 1 };
+let a = { a: 999, b: 1000 };
+while (true) {
+  $(100);
+  let tmpCalleeParam = $(b);
+  const tmpUpdObj = $(tmpCalleeParam);
+  const tmpUpdProp = tmpUpdObj.x;
+  const tmpUpdNum = $coerce(tmpUpdProp, `number`);
+  const tmpUpdInc = tmpUpdNum - 1;
+  tmpUpdObj.x = tmpUpdInc;
+  a = tmpUpdInc;
+  const tmpIfTest = a;
+  if (tmpIfTest) {
+  } else {
+    break;
+  }
+}
+$(a, b);
+`````
+
+
 ## Todos triggered
 
 

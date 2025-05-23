@@ -43,6 +43,17 @@ $dotCall( $string_match, "", "match", a, b );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const x = $spy(`a`);
+const y = $spy(`b`);
+const tmpMCF = $string_match;
+$dotCall($string_match, ``, `match`, x, y);
+`````
+
+
 ## Todos triggered
 
 

@@ -63,6 +63,25 @@ $( d, a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let arg = { y: 1 };
+let a = { a: 999, b: 1000 };
+const tmpSwitchDisc = $(1);
+const tmpBinBothLhs = tmpSwitchDisc;
+$(1);
+$(2);
+const tmpDeleteCompObj = $(arg);
+const tmpDeleteCompProp = $(`y`);
+a = delete tmpDeleteCompObj[tmpDeleteCompProp];
+const tmpBinBothRhs = a;
+const tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
+$(a, arg);
+`````
+
+
 ## Todos triggered
 
 

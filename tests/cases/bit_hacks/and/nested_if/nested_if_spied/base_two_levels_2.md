@@ -63,6 +63,23 @@ if (b) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const x = $spy(2);
+const tmpIfTest = x & 8;
+if (tmpIfTest) {
+  const tmpIfTest$1 = x & 2;
+  if (tmpIfTest$1) {
+    $(`it is ten`);
+  } else {
+  }
+} else {
+}
+`````
+
+
 ## Todos triggered
 
 

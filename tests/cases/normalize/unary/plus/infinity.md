@@ -37,6 +37,15 @@ $( $Number_POSITIVE_INFINITY );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let tmpCalleeParam = $Number_POSITIVE_INFINITY;
+$($Number_POSITIVE_INFINITY);
+`````
+
+
 ## Todos triggered
 
 

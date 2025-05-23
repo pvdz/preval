@@ -43,6 +43,17 @@ $( b );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const str = $(`abc`);
+const tmpMCF = $Array_from;
+const arr = $Array_from(str);
+$(arr);
+`````
+
+
 ## Todos triggered
 
 

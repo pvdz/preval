@@ -57,6 +57,20 @@ $( f );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpMCF = $Array_from;
+const tmpMCP = $spy();
+const arr = $dotCall(tmpMCF, $array_constructor, `from`, tmpMCP);
+const tmpMCF$1 = arr.includes;
+$dotCall(tmpMCF$1, arr, `includes`, a, b, c);
+let tmpCalleeParam = arr.length;
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

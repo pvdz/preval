@@ -52,6 +52,24 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+while (true) {
+  const tmpObjLitVal = $(1);
+  const tmpObjLitVal$1 = $(2);
+  const tmpIfTest = { a: tmpObjLitVal, b: tmpObjLitVal$1 };
+  if (tmpIfTest) {
+    $(`loop`);
+  } else {
+    break;
+  }
+}
+$(`after`);
+`````
+
+
 ## Todos triggered
 
 

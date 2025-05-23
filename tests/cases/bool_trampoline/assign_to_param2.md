@@ -85,6 +85,28 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function ($$0) {
+  let y = $$0;
+  debugger;
+  const x = $(0);
+  y = $boolean_constructor(x);
+  return y;
+};
+$(f);
+$(f);
+const tmpIfTest = f();
+if (tmpIfTest) {
+  $(`fail`);
+} else {
+  $(`pass`);
+}
+`````
+
+
 ## Todos triggered
 
 

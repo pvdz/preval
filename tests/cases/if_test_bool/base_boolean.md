@@ -78,6 +78,32 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function ($$0) {
+  let x = $$0;
+  debugger;
+  if (x) {
+    let tmpCalleeParam = $boolean_constructor(x);
+    $(`a`, tmpCalleeParam);
+    return undefined;
+  } else {
+    let tmpCalleeParam$1 = $boolean_constructor(x);
+    $(`b`, tmpCalleeParam$1);
+    return undefined;
+  }
+};
+const tmpCallCallee = f;
+let tmpCalleeParam$3 = $(1);
+f(tmpCalleeParam$3);
+const tmpCallCallee$1 = f;
+let tmpCalleeParam$5 = $(0);
+f(tmpCalleeParam$5);
+`````
+
+
 ## Todos triggered
 
 

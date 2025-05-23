@@ -155,6 +155,36 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+while (true) {
+  const tmpIfTest = $(true);
+  if (tmpIfTest) {
+    tmpSwitchBreak: {
+      $(`loop`);
+      const tmpSwitchDisc = $(true, `dis`);
+      const tmpBinBothLhs = tmpSwitchDisc;
+      const tmpBinBothRhs = $(true, `case`);
+      const tmpIfTest$1 = tmpBinBothLhs === tmpBinBothRhs;
+      if (tmpIfTest$1) {
+        $(`case`);
+        break tmpSwitchBreak;
+      } else {
+        $(`do not visit, default`);
+        break tmpSwitchBreak;
+      }
+    }
+    $(`infiloop, do not eliminate`);
+  } else {
+    break;
+  }
+}
+$(`after (not invoked)`);
+`````
+
+
 ## Todos triggered
 
 

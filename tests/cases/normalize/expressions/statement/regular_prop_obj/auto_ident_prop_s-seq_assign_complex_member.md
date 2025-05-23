@@ -68,6 +68,24 @@ $( e, a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let b = { c: 10, d: 20 };
+let a = { a: 999, b: 1000 };
+let obj = {};
+const tmpInitAssignLhsComputedObj = b;
+const tmpCompObj$1 = $(b);
+const tmpCalleeParam = $(`d`);
+const tmpInitAssignLhsComputedRhs = tmpCompObj$1[tmpCalleeParam];
+tmpInitAssignLhsComputedObj.c = tmpInitAssignLhsComputedRhs;
+const tmpCompObj = tmpInitAssignLhsComputedRhs;
+tmpCompObj.a;
+$(a, b);
+`````
+
+
 ## Todos triggered
 
 

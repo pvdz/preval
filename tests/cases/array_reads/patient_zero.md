@@ -96,6 +96,30 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let arr = undefined;
+while (true) {
+  arr = [0];
+  const tmpAssignComputedObj = arr;
+  const tmpAssignComputedProp = 0;
+  const tmpBinLhs = arr[0];
+  const tmpAssignComputedRhs = tmpBinLhs + 1;
+  tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+  $(arr);
+  const tmpBinLhs$1 = arr[0];
+  const tmpIfTest = tmpBinLhs$1 < 10;
+  if (tmpIfTest) {
+  } else {
+    break;
+  }
+}
+$(arr);
+`````
+
+
 ## Todos triggered
 
 

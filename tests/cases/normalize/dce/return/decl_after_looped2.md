@@ -78,6 +78,31 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  while (true) {
+    unlabeledBreak: {
+      const tmpIfTest = $(false);
+      if (tmpIfTest) {
+        $(`fail too`);
+        throw `Preval: TDZ triggered for this assignment: x = \$('fail too')`;
+      } else {
+        break unlabeledBreak;
+      }
+    }
+    let x = $(`fail`);
+  }
+  return undefined;
+};
+let tmpCalleeParam = f();
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

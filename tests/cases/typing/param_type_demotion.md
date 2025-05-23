@@ -87,6 +87,28 @@ $( undefined );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const calling_this_func = function ($$0) {
+  let $dlr_$$0 = $$0;
+  debugger;
+  const theparam = $dlr_$$0;
+  const tmpCalleeParam = theparam + 1;
+  const tmpIfTest = $(1);
+  if (tmpIfTest) {
+    return undefined;
+  } else {
+    calling_this_func(tmpCalleeParam);
+    return undefined;
+  }
+};
+let tmpCalleeParam$1 = calling_this_func(0);
+$(tmpCalleeParam$1);
+`````
+
+
 ## Todos triggered
 
 

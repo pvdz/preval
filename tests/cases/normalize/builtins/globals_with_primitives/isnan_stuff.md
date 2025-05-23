@@ -53,6 +53,28 @@ $( false );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let tmpCalleeParam$1 = $Number_NaN;
+let tmpCalleeParam = true;
+$(tmpCalleeParam);
+let tmpCalleeParam$5 = $Number_POSITIVE_INFINITY;
+let tmpCalleeParam$3 = false;
+$(tmpCalleeParam$3);
+let tmpCalleeParam$9 = $Number_NEGATIVE_INFINITY;
+let tmpCalleeParam$7 = false;
+$(tmpCalleeParam$7);
+let tmpCalleeParam$13 = $Number_MAX_SAFE_INTEGER;
+let tmpCalleeParam$11 = false;
+$(tmpCalleeParam$11);
+let tmpCalleeParam$17 = $Number_MIN_SAFE_INTEGER;
+let tmpCalleeParam$15 = false;
+$(tmpCalleeParam$15);
+`````
+
+
 ## Todos triggered
 
 

@@ -82,6 +82,25 @@ $( 3 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = 1;
+$finally: {
+  $(x);
+  try {
+    $(x);
+    x = 2;
+    break $finally;
+  } catch (_) {}
+}
+$(x);
+x = 3;
+$(x);
+`````
+
+
 ## Todos triggered
 
 

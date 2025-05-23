@@ -41,6 +41,25 @@ $( "okay, do not DCE" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let tmpCalleeParam = undefined;
+const tmpChainRootProp = undefined;
+const tmpIfTest = tmpChainRootProp != null;
+if (tmpIfTest) {
+  const tmpChainElementObject = tmpChainRootProp.foo;
+  tmpCalleeParam = tmpChainElementObject;
+  $(tmpChainElementObject);
+  $(`okay, do not DCE`);
+} else {
+  $(tmpCalleeParam);
+  $(`okay, do not DCE`);
+}
+`````
+
+
 ## Todos triggered
 
 

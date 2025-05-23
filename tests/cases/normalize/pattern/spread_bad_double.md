@@ -44,6 +44,15 @@ throw "Preval: Array spread on non-string primitive must crash (caused by `let t
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+$(`before`);
+throw `Preval: Array spread on non-string primitive must crash (caused by \`let tmpCalleeParam = [1, 2, ...3, ...4, 5, 6];\`)`;
+`````
+
+
 ## Todos triggered
 
 

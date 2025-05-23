@@ -54,6 +54,21 @@ $( e );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const wat = $(`xyz`);
+const str = $coerce(wat, `plustr`);
+const wat2 = $(`y`);
+const s = $coerce(wat2, `plustr`);
+const args = [s];
+const tmpMCF = str.split;
+const res = $dotCall(tmpMCF, str, `split`, args);
+$(res);
+`````
+
+
 ## Todos triggered
 
 

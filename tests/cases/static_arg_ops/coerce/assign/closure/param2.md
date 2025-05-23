@@ -95,6 +95,34 @@ $( 4 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpObjLitVal = function () {
+  debugger;
+  $(`PASS`);
+  return undefined;
+};
+let tmpCalleeParam = { valueOf: tmpObjLitVal };
+let x = $(tmpCalleeParam);
+const tmpEA1 = x;
+$coerce(x, `number`);
+const f = function ($$0) {
+  let c = $$0;
+  debugger;
+  x = $coerce(c, `number`);
+  $(1);
+  $(2);
+  $(c);
+  return undefined;
+};
+f(3);
+f(4);
+$(x);
+`````
+
+
 ## Todos triggered
 
 

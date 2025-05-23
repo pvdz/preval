@@ -75,6 +75,34 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
+  let tmpBindingPatternObjRoot = tmpParamBare;
+  let tmpOPND = tmpBindingPatternObjRoot.x;
+  let tmpObjPatternCrashTest = tmpOPND === undefined;
+  if (tmpObjPatternCrashTest) {
+  } else {
+    tmpObjPatternCrashTest = tmpOPND === null;
+  }
+  if (tmpObjPatternCrashTest) {
+    tmpObjPatternCrashTest = tmpOPND.cannotDestructureThis;
+    return `bad`;
+  } else {
+    return `bad`;
+  }
+};
+const tmpCallCallee = f;
+let tmpCalleeParam$1 = {};
+let tmpCalleeParam = f(tmpCalleeParam$1, 10);
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

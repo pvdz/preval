@@ -42,6 +42,36 @@ $( a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
+  let tmpBindingPatternArrRoot = tmpParamBare;
+  let tmpArrPatternSplat = [...tmpBindingPatternArrRoot];
+  let tmpAPBD = tmpArrPatternSplat[0];
+  let tmpArrPatternStep = undefined;
+  const tmpIfTest = tmpAPBD === undefined;
+  if (tmpIfTest) {
+    tmpArrPatternStep = $(`fail`);
+  } else {
+    tmpArrPatternStep = tmpAPBD;
+  }
+  let tmpArrPatternSplat$1 = [...tmpArrPatternStep];
+  const tmpMCF = tmpArrPatternSplat$1.slice;
+  let x = $dotCall(tmpMCF, tmpArrPatternSplat$1, `slice`, 0);
+  return x;
+};
+const tmpCallCallee = f;
+const tmpArrElement = [1, 2, 3];
+let tmpCalleeParam$1 = [tmpArrElement, 4, 5];
+let tmpCalleeParam = f(tmpCalleeParam$1, 200);
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

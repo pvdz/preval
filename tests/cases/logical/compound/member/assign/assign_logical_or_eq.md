@@ -82,6 +82,29 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = $(`old`);
+let tmpCalleeParam = { c: 1 };
+let b = $(tmpCalleeParam);
+const tmpIfTest = $(true);
+if (tmpIfTest) {
+  let tmpNestedPropCompoundComplexRhs = b.c;
+  if (tmpNestedPropCompoundComplexRhs) {
+  } else {
+    tmpNestedPropCompoundComplexRhs = $(`b`);
+  }
+  b.c = tmpNestedPropCompoundComplexRhs;
+  x = tmpNestedPropCompoundComplexRhs;
+  $(tmpNestedPropCompoundComplexRhs, b);
+} else {
+  $(x, b);
+}
+`````
+
+
 ## Todos triggered
 
 

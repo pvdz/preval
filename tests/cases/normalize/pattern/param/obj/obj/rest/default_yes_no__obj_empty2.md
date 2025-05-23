@@ -79,6 +79,26 @@ $( f );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let tmpCalleeParam$1 = undefined;
+const tmpOPBD = $Object_prototype.x;
+const tmpIfTest = tmpOPBD === undefined;
+if (tmpIfTest) {
+  const tmpCalleeParam = { a: `pass` };
+  const tmpClusterSSA_tmpOPAD = $(tmpCalleeParam);
+  tmpCalleeParam$1 = tmpClusterSSA_tmpOPAD;
+} else {
+  tmpCalleeParam$1 = tmpOPBD;
+}
+const tmpCalleeParam$3 = [];
+const y = $objPatternRest(tmpCalleeParam$1, tmpCalleeParam$3, undefined);
+$(y);
+`````
+
+
 ## Todos triggered
 
 

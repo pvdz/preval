@@ -45,6 +45,23 @@ $( 1 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = true;
+while (true) {
+  if (x) {
+    $(`inside`);
+    x = false;
+  } else {
+    break;
+  }
+}
+$(1);
+`````
+
+
 ## Todos triggered
 
 

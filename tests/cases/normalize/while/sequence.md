@@ -110,6 +110,34 @@ if (b) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = 1;
+while (true) {
+  x * 0;
+  x = $Number_NaN;
+  x = x * 8;
+  x = x * x;
+  x = x.x;
+  let tmpIfTest = undefined;
+  const tmpChainRootProp = x;
+  const tmpIfTest$1 = tmpChainRootProp != null;
+  if (tmpIfTest$1) {
+    const tmpChainElementObject = tmpChainRootProp.x;
+    const tmpChainElementCall = $dotCall(tmpChainElementObject, tmpChainRootProp, `x`, x);
+    tmpIfTest = tmpChainElementCall;
+  } else {
+  }
+  if (tmpIfTest) {
+  } else {
+    break;
+  }
+}
+`````
+
+
 ## Todos triggered
 
 

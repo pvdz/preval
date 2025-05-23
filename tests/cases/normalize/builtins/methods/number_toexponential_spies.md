@@ -45,6 +45,18 @@ $dotCall( $number_toExponential, 200, "toExponential", a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const x = $spy(`a`);
+const y = $spy(`b`);
+const tmpMCF = $number_toExponential;
+const tmpStringFirstArg = x;
+$dotCall($number_toExponential, 200, `toExponential`, x);
+`````
+
+
 ## Todos triggered
 
 

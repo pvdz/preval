@@ -66,6 +66,21 @@ $( "after", a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const blob = { thing: `woop` };
+try {
+  $(`try`);
+} catch (e) {
+  blob.thing = `boing`;
+  $(`catch`);
+}
+$(`after`, blob);
+`````
+
+
 ## Todos triggered
 
 

@@ -121,6 +121,28 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+$(-1);
+$(0);
+$(1);
+$(2);
+let i = 3;
+let tst = true;
+while (true) {
+  if (tst) {
+    $(i);
+    i = i + 1;
+    tst = i > -5;
+  } else {
+    break;
+  }
+}
+`````
+
+
 ## Todos triggered
 
 

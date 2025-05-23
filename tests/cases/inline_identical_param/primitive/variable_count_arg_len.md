@@ -91,6 +91,31 @@ a( 8, 2, 9 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function ($$0, $$1, $$2, $$3) {
+  const tmpPrevalAliasArgumentsLen = arguments.length;
+  let a = $$0;
+  let b = $$1;
+  let c = $$2;
+  let d = $$3;
+  debugger;
+  if ($) {
+    $(a, b, c, d, tmpPrevalAliasArgumentsLen, `hopefully b is a literal afterwards`);
+    return undefined;
+  } else {
+    return undefined;
+  }
+};
+f(1, 2, 3, `oops`);
+f(4, 2, 5);
+f(6, 2, 7);
+f(8, 2, 9);
+`````
+
+
 ## Todos triggered
 
 

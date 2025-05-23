@@ -93,6 +93,30 @@ $( g );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const f = function () {
+  debugger;
+  const x = $spy();
+  const t = x & 8192;
+  if (t) {
+    return 128;
+  } else {
+    const r = x & 128;
+    return r;
+  }
+};
+let tmpCalleeParam = f();
+$(tmpCalleeParam);
+let tmpCalleeParam$1 = f();
+$(tmpCalleeParam$1);
+let tmpCalleeParam$3 = f();
+$(tmpCalleeParam$3);
+`````
+
+
 ## Todos triggered
 
 

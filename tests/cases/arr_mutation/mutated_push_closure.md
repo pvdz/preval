@@ -45,6 +45,24 @@ $( a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  const tmpMCF = arr.splice;
+  $dotCall(tmpMCF, arr, `splice`, 1, 5);
+  return undefined;
+};
+const arr = [1, 2, 3, 4];
+f();
+const tmpMCF$1 = arr.push;
+$dotCall(tmpMCF$1, arr, `push`, `a`, `b`);
+$(arr);
+`````
+
+
 ## Todos triggered
 
 

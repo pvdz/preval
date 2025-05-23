@@ -40,6 +40,45 @@ $( "ok" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
+  let tmpBindingPatternArrRoot = tmpParamBare;
+  let tmpArrPatternSplat = [...tmpBindingPatternArrRoot];
+  let tmpArrPatternStep = tmpArrPatternSplat[0];
+  let tmpArrPatternSplat$1 = [...tmpArrPatternStep];
+  let tmpArrPatternStep$1 = tmpArrPatternSplat$1[0];
+  let tmpArrPatternSplat$3 = [...tmpArrPatternStep$1];
+  let tmpArrPatternStep$3 = tmpArrPatternSplat$3[0];
+  let tmpArrPatternSplat$5 = [...tmpArrPatternStep$3];
+  let tmpArrPatternStep$5 = tmpArrPatternSplat$5[0];
+  let tmpObjPatternCrashTest = tmpArrPatternStep$5 === undefined;
+  if (tmpObjPatternCrashTest) {
+  } else {
+    tmpObjPatternCrashTest = tmpArrPatternStep$5 === null;
+  }
+  if (tmpObjPatternCrashTest) {
+    tmpObjPatternCrashTest = tmpArrPatternStep$5.cannotDestructureThis;
+    return `ok`;
+  } else {
+    return `ok`;
+  }
+};
+const tmpCallCallee = f;
+const tmpArrElement$5 = { x: 1 };
+const tmpArrElement$3 = [tmpArrElement$5, 6, 7];
+const tmpArrElement$1 = [tmpArrElement$3, 4, 5];
+const tmpArrElement = [tmpArrElement$1, 20, 30];
+let tmpCalleeParam$1 = [tmpArrElement, 40, 50];
+let tmpCalleeParam = f(tmpCalleeParam$1, 200);
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

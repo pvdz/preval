@@ -84,6 +84,28 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = $(1);
+lab: {
+  const tmpIfTest = x < 0;
+  if (tmpIfTest) {
+    break lab;
+  } else {
+    const tmpIfTest$1 = x === 1;
+    if (tmpIfTest$1) {
+      break lab;
+    } else {
+      x = 2;
+    }
+  }
+}
+$(x);
+`````
+
+
 ## Todos triggered
 
 

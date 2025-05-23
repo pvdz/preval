@@ -61,6 +61,25 @@ if (b) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let flag = false;
+const t = $(5);
+const x = 0 < t;
+flag = x;
+while (true) {
+  if (flag) {
+    $(`inner`);
+    flag = false;
+  } else {
+    break;
+  }
+}
+`````
+
+
 ## Todos triggered
 
 

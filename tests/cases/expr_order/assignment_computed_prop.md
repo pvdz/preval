@@ -82,6 +82,32 @@ b[c] = d;
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let b = {
+  get c() {
+    debugger;
+    $(`get`);
+    return undefined;
+  },
+  set c($$0) {
+    let x = $$0;
+    debugger;
+    $(`set`);
+    return undefined;
+  },
+};
+const tmpAssignComMemLhsObj = $(b);
+const tmpAssignComMemLhsProp = $(`c`);
+const tmpAssignComputedObj = tmpAssignComMemLhsObj;
+const tmpAssignComputedProp = tmpAssignComMemLhsProp;
+const tmpAssignComputedRhs = $(3);
+tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+`````
+
+
 ## Todos triggered
 
 

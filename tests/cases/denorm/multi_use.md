@@ -71,6 +71,25 @@ if (expires) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+if (expires) {
+  const date = new $date_constructor();
+  const settime = $date_setTime;
+  const tmpMCF = $date_getTime;
+  const time = $dotCall($date_getTime, date, `getTime`);
+  const exp = expires * 1000;
+  const endtime = time + exp;
+  $dotCall(settime, date, `setTime`, endtime);
+  a8.expires = date;
+  unknown = date;
+} else {
+}
+`````
+
+
 ## Todos triggered
 
 

@@ -41,6 +41,24 @@ $( 0 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const max = $(10);
+let i = 0;
+while (true) {
+  const tmpIfTest = i < 10;
+  if (tmpIfTest) {
+    $(i);
+    i = i + Infinity;
+  } else {
+    break;
+  }
+}
+`````
+
+
 ## Todos triggered
 
 

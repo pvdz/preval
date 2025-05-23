@@ -56,6 +56,23 @@ $( d );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let b = { $: $ };
+let a = { a: 999, b: 1000 };
+const tmpMCOO = $(b);
+const tmpMCF = tmpMCOO.$;
+a = $dotCall(tmpMCF, tmpMCOO, `\$`, 1);
+const tmpObjLitPropKey = a;
+const tmpObjLitPropVal = 10;
+let tmpCalleeParam = { [tmpObjLitPropKey]: tmpObjLitPropVal };
+$(tmpCalleeParam);
+$(a);
+`````
+
+
 ## Todos triggered
 
 

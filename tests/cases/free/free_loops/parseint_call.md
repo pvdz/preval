@@ -55,6 +55,32 @@ $( a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let counter = 0;
+const arr = [];
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpMCF = arr.push;
+  $dotCall(tmpMCF, arr, `push`, counter);
+  counter = counter + 1;
+  const test = counter > 20;
+  if (test) {
+    break;
+  } else {
+    const tmpBinLhs = isNaN(counter);
+    const tmpIfTest = tmpBinLhs === 5;
+    if (tmpIfTest) {
+      counter = counter + 10;
+    } else {
+    }
+  }
+}
+$(arr);
+`````
+
+
 ## Todos triggered
 
 

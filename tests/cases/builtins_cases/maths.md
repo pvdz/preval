@@ -85,6 +85,27 @@ $( m );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const max = $Math_max;
+const min = $Math_min;
+const sin = $Math_sin;
+const pow = $Math_pow;
+const tmpBinLhs = $(120);
+const ten = tmpBinLhs / 12;
+const twoten = $dotCall(pow, Math, `pow`, 2, ten);
+const zero = 0 * twoten;
+const divvy = zero / 695;
+const sinned = $dotCall(sin, Math, `sin`, divvy);
+const lottasin = 1000000 * sinned;
+const minned = $dotCall(min, Math, `min`, 10000, lottasin);
+const maxed = $dotCall(max, Math, `max`, -10000, minned);
+$(maxed);
+`````
+
+
 ## Todos triggered
 
 

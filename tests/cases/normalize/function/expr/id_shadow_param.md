@@ -45,6 +45,25 @@ $( 10, "function" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const r$1 = function ($$0) {
+  let r$2 = $$0;
+  debugger;
+  let tmpCalleeParam = typeof r$2;
+  $(tmpCalleeParam);
+  return r$2;
+};
+const f = r$1;
+const x = r$1(10);
+let tmpCalleeParam$1 = x;
+let tmpCalleeParam$3 = typeof f;
+$(tmpCalleeParam$1, tmpCalleeParam$3);
+`````
+
+
 ## Todos triggered
 
 

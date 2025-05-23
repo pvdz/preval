@@ -85,6 +85,29 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = 1;
+if ($) {
+  $(x, `first read (A)`);
+  const tmpIfTest = $();
+  if (tmpIfTest) {
+    x = 2;
+    $(x, `second read (B)`);
+    $(x, `third read (C)`);
+  } else {
+    x = 3;
+    $(x, `second read (B)`);
+    $(x, `third read (C)`);
+  }
+} else {
+  $(x, `third read (C)`);
+}
+`````
+
+
 ## Todos triggered
 
 

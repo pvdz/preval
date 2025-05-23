@@ -40,6 +40,20 @@ $( 1 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const f = function ($$0) {
+  let x = $$0;
+  debugger;
+  $(x);
+  return undefined;
+};
+f(1);
+`````
+
+
 ## Todos triggered
 
 

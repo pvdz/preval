@@ -55,6 +55,23 @@ a.name;
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const fdata = { name: 1 };
+let tmpElement_1 = 2;
+let tmpElement = undefined;
+let tmpArg_1 = undefined;
+tmpElement_1 = fdata.name;
+tmpElement = [tmpElement_1, fdata];
+tmpArg_1 = [tmpElement];
+const tmpObjLitVal = new $map_constructor(tmpArg_1);
+const tmpObjLitVal$1 = fdata.name;
+const program = { modules: tmpObjLitVal, main: tmpObjLitVal$1 };
+`````
+
+
 ## Todos triggered
 
 

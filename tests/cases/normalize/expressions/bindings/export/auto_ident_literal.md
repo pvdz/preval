@@ -44,6 +44,16 @@ $( "foo" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let a = `foo`;
+export { a };
+$(a);
+`````
+
+
 ## Todos triggered
 
 

@@ -51,6 +51,19 @@ $( d );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const arr1 = [`a`, `b`, `c`];
+const secretArr = $(arr1);
+const ARR = [...secretArr];
+const tmpMCF = ARR.shift;
+const NOT_AN_ARRAY = $dotCall(tmpMCF, ARR, `shift`);
+$(NOT_AN_ARRAY);
+`````
+
+
 ## Todos triggered
 
 

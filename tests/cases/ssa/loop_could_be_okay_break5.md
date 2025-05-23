@@ -106,6 +106,36 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let $tmpLoopUnrollCheck = true;
+let tmpLoopRetCode = !$;
+if (tmpLoopRetCode) {
+  if ($) {
+    tmpLoopRetCode = false;
+  } else {
+  }
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_9) {
+    if (tmpLoopRetCode) {
+      if ($) {
+        tmpLoopRetCode = false;
+      } else {
+      }
+    } else {
+      break;
+    }
+  }
+} else {
+}
+`````
+
+
 ## Todos triggered
 
 

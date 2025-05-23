@@ -45,6 +45,17 @@ $( b );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const o = { f: $ };
+const tmpMCF = o.f;
+let tmpCalleeParam = $dotCall(tmpMCF, o, `f`, `200`, 15);
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

@@ -38,6 +38,24 @@ With rename=true
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let a = undefined;
+let b = undefined;
+let c = undefined;
+let x = undefined;
+x = {};
+a = 1;
+b = 2;
+c = 3;
+const tmpAssignComMemLhsObj = x;
+const tmpAssignComMemLhsProp = a + b;
+tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = c;
+`````
+
+
 ## Todos triggered
 
 

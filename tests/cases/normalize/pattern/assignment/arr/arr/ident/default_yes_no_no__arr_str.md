@@ -41,6 +41,26 @@ $( "a" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpArrAssignPatternRhs = [`abc`, 4, 5];
+const tmpArrPatternSplat = [...tmpArrAssignPatternRhs];
+const tmpArrPatternStep = tmpArrPatternSplat[0];
+const tmpArrPatternSplat$1 = [...tmpArrPatternStep];
+const tmpAPBD = tmpArrPatternSplat$1[0];
+const tmpIfTest = tmpAPBD === undefined;
+if (tmpIfTest) {
+  x = $(`fail`);
+  $(x);
+} else {
+  x = tmpAPBD;
+  $(tmpAPBD);
+}
+`````
+
+
 ## Todos triggered
 
 

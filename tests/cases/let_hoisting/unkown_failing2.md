@@ -58,6 +58,22 @@ $( a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let A = false;
+let f = function () {
+  debugger;
+  let tmpssa2_A = undefined;
+  let y = 0;
+  tmpssa2_A = true;
+  return y;
+};
+$(f);
+`````
+
+
 ## Todos triggered
 
 

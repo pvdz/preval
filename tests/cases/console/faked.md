@@ -75,6 +75,24 @@ $dotCall( $console_groupEnd, console, "groupEnd", "a", "b", ...c );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let tmpCalleeParam = [1, 2, 3, `consle test case`];
+const arr = $(tmpCalleeParam);
+$dotCall($console_log, console, `log`, `a`, `b`, ...c);
+$dotCall($console_warn, console, `warn`, `a`, `b`, ...c);
+$dotCall($console_error, console, `error`, `a`, `b`, ...c);
+$dotCall($console_dir, console, `dir`, `a`, `b`, ...c);
+$dotCall($console_debug, console, `debug`, `a`, `b`, ...c);
+$dotCall($console_time, console, `time`, `a`, `b`, ...c);
+$dotCall($console_timeEnd, console, `timeEnd`, `a`, `b`, ...c);
+$dotCall($console_group, console, `group`, `a`, `b`, ...c);
+$dotCall($console_groupEnd, console, `groupEnd`, `a`, `b`, ...c);
+`````
+
+
 ## Todos triggered
 
 

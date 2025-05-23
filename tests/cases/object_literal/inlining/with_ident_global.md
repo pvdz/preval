@@ -38,6 +38,16 @@ $( wat );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const obj = { f: wat };
+let tmpCalleeParam = obj.f;
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

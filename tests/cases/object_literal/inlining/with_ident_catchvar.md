@@ -66,6 +66,24 @@ catch (b) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+try {
+  const tmpIfTest = $(true);
+  if (tmpIfTest) {
+    throw `fail`;
+  } else {
+  }
+} catch (e) {
+  const obj = { f: e };
+  let tmpCalleeParam = obj.f;
+  $(tmpCalleeParam);
+}
+`````
+
+
 ## Todos triggered
 
 

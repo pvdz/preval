@@ -71,6 +71,28 @@ a in b;
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const spy = {
+  toString() {
+    debugger;
+    $(`pass`);
+    return undefined;
+  },
+  valueOf() {
+    debugger;
+    $(`fail`);
+    return undefined;
+  },
+};
+const tmpBinBothLhs = spy;
+const tmpBinBothRhs = {};
+tmpBinBothLhs in tmpBinBothRhs;
+`````
+
+
 ## Todos triggered
 
 

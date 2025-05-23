@@ -52,6 +52,22 @@ $( a, "closure" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  $(x, `closure`);
+  return undefined;
+};
+let x = $(1);
+x = $(2);
+$(x);
+f();
+`````
+
+
 ## Todos triggered
 
 

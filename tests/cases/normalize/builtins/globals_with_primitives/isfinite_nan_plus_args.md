@@ -40,6 +40,16 @@ $( false );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+implicitGlobal;
+let tmpCalleeParam = false;
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

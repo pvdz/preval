@@ -98,6 +98,36 @@ $( 3, a, b );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let a = 1;
+let b = {
+  get c() {
+    debugger;
+    $(`b.get`);
+    b = undefined;
+    d = undefined;
+    return 5;
+  },
+  set c($$0) {
+    let x = $$0;
+    debugger;
+    $(`b.set`);
+    b = null;
+    d = null;
+    return 7;
+  },
+};
+let d = 3;
+const tmpNestedPropAssignRhs = d;
+b.c = tmpNestedPropAssignRhs;
+a = tmpNestedPropAssignRhs;
+$(tmpNestedPropAssignRhs, b, d);
+`````
+
+
 ## Todos triggered
 
 

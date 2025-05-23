@@ -50,6 +50,24 @@ $( b );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+let tmpArrElToSpread = undefined;
+const tmpIfTest = 30;
+if (tmpIfTest) {
+  tmpArrElToSpread = $(2);
+} else {
+  let tmpCalleeParam = $(100);
+  tmpArrElToSpread = $(tmpCalleeParam);
+}
+[...tmpArrElToSpread];
+$(a);
+`````
+
+
 ## Todos triggered
 
 

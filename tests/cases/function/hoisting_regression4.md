@@ -92,6 +92,29 @@ $( b );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const f = function () {
+  debugger;
+  const incorrectlyhoisted = function () {
+    debugger;
+    $(thisrefgetslost);
+    return undefined;
+  };
+  if ($) {
+    return undefined;
+  } else {
+    $(`not a decl`);
+    const thisrefgetslost$1 = $();
+    return incorrectlyhoisted;
+  }
+};
+$(f);
+`````
+
+
 ## Todos triggered
 
 

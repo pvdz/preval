@@ -57,6 +57,23 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let a = $spy(`a`);
+let c = a;
+if (c) {
+  const tmpNestedComplexRhs = $(`b`);
+  a = tmpNestedComplexRhs;
+  c = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+} else {
+  $(c);
+}
+`````
+
+
 ## Todos triggered
 
 

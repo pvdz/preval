@@ -71,6 +71,23 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = a;
+if (x) {
+  x = b;
+} else {
+}
+if (x) {
+  c;
+} else {
+  d;
+}
+`````
+
+
 ## Todos triggered
 
 

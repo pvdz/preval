@@ -55,6 +55,36 @@ $( undefined );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  $(`call me once`);
+  return undefined;
+};
+let g = function () {
+  debugger;
+  let x = f;
+  const t = function () {
+    debugger;
+    f();
+    if (f) {
+      f = false;
+      return undefined;
+    } else {
+      return undefined;
+    }
+  };
+  return t;
+};
+const tmpCallComplexCallee = g();
+let tmpCalleeParam = tmpCallComplexCallee();
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

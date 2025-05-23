@@ -38,6 +38,15 @@ With rename=true
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const obj = { foo: 10 };
+obj.foo;
+`````
+
+
 ## Todos triggered
 
 

@@ -92,6 +92,34 @@ $( undefined );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const f = function () {
+  debugger;
+  const g = function () {
+    debugger;
+    $(xyz, `g`);
+    return undefined;
+  };
+  let tmpCalleeParam = [g];
+  const t = $(tmpCalleeParam);
+  if ($) {
+    $(1);
+  } else {
+  }
+  const xyz = $();
+  const tmpMCF = t[0];
+  $dotCall(tmpMCF, t, undefined);
+  const tmpReturnArg = g();
+  return tmpReturnArg;
+};
+let tmpCalleeParam$1 = f();
+$(tmpCalleeParam$1);
+`````
+
+
 ## Todos triggered
 
 

@@ -38,6 +38,18 @@ $( "I am a string" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpBinBothLhs = ``;
+const tmpBinBothRhs = $coerce(`I am a string`, `string`);
+const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
+let x = $coerce(tmpBinLhs, `plustr`);
+$(x);
+`````
+
+
 ## Todos triggered
 
 

@@ -40,6 +40,15 @@ $( a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const x = new $string_constructor(true);
+$(x);
+`````
+
+
 ## Todos triggered
 
 

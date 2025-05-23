@@ -42,6 +42,16 @@ $( b, a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let tmpCalleeParam = [`abc `, ` def`];
+let tmpCalleeParam$1 = $(1);
+$(tmpCalleeParam, tmpCalleeParam$1);
+`````
+
+
 ## Todos triggered
 
 

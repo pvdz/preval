@@ -129,6 +129,37 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const s = $(10);
+let count = true;
+$(`before`);
+let wat = s | 10;
+let chk = $(true);
+if (chk) {
+  while (true) {
+    if (count) {
+      $(`inside`);
+      wat = wat | 10;
+      chk = $(true);
+      if (chk) {
+      } else {
+        break;
+      }
+    } else {
+      break;
+    }
+  }
+  $(wat);
+} else {
+  count = false;
+  $(wat);
+}
+`````
+
+
 ## Todos triggered
 
 

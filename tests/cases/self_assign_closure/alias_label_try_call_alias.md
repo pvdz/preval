@@ -214,6 +214,68 @@ $( a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const main_data_arr = [`ike there `, `wgcCwgZikg`, `LmNvbmNhdC`, `eBestCandi`, ` using the`];
+let the_self_closing_func = function ($$0, $$1) {
+  let $dlr_$$0 = $$0;
+  let $dlr_$$1 = $$1;
+  debugger;
+  const dud_arg1 = $dlr_$$0;
+  const dud_arg2 = $dlr_$$1;
+  the_self_closing_func = function ($$0, $$1) {
+    let $dlr_$$2 = $$0;
+    let $dlr_$$4 = $$1;
+    debugger;
+    const noop_arg = $dlr_$$2;
+    const tmp1 = noop_arg - 387;
+    const tmp2 = main_data_arr[tmp1];
+    return tmp2;
+  };
+  const once = the_self_closing_func(dud_arg1, dud_arg2);
+  return once;
+};
+const the_scf_alias = the_self_closing_func;
+loopStop$1: {
+  try {
+    let tmpCalleeParam = the_scf_alias(4639);
+    const tmpUnaryArg$6 = $Number_parseInt(tmpCalleeParam);
+    let tmpCalleeParam$1 = the_scf_alias(710);
+    const tmpBinLhs$166 = $Number_parseInt(tmpCalleeParam$1);
+    const tmpIfTest = tmpUnaryArg$6 + tmpBinLhs$166;
+    if (tmpIfTest) {
+      break loopStop$1;
+    } else {
+      const e = $dotCall($array_shift, main_data_arr, `shift`);
+      $dotCall($array_push, main_data_arr, `push`, e);
+    }
+  } catch (_0x17f097) {
+    const f = $dotCall($array_shift, main_data_arr, `shift`);
+    $dotCall($array_push, main_data_arr, `push`, f);
+  }
+  try {
+    let tmpCalleeParam$3 = the_scf_alias(4639);
+    const tmpUnaryArg$12 = $Number_parseInt(tmpCalleeParam$3);
+    let tmpCalleeParam$5 = the_scf_alias(710);
+    const tmpBinLhs$143 = $Number_parseInt(tmpCalleeParam$5);
+    const tmpIfTest$1 = tmpUnaryArg$12 + tmpBinLhs$143;
+    if (tmpIfTest$1) {
+      break loopStop$1;
+    } else {
+      const g = $dotCall($array_shift, main_data_arr, `shift`);
+      $dotCall($array_push, main_data_arr, `push`, g);
+    }
+  } catch (_0x17f097$1) {
+    const h = $dotCall($array_shift, main_data_arr, `shift`);
+    $dotCall($array_push, main_data_arr, `push`, h);
+  }
+}
+$(main_data_arr);
+`````
+
+
 ## Todos triggered
 
 

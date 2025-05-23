@@ -45,6 +45,19 @@ $( a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const x = [1, 2, 3];
+const tmpMCF = x.join;
+let tmpCalleeParam = $dotCall(tmpMCF, x, `join`, ``);
+$(tmpCalleeParam);
+const y = [`a`, ...x, `b`];
+$(y);
+`````
+
+
 ## Todos triggered
 
 

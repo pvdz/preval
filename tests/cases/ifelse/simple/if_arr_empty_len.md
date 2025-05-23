@@ -37,6 +37,18 @@ With rename=true
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpIfTest = 0;
+if (tmpIfTest) {
+  $();
+} else {
+}
+`````
+
+
 ## Todos triggered
 
 

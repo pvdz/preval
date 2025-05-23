@@ -208,6 +208,43 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+while (true) {
+  const tmpIfTest = $(true);
+  if (tmpIfTest) {
+    $(`loop`);
+    let tmpCalleeParam = { a: 1, b: 2 };
+    const tmpForInGen = $forIn(tmpCalleeParam);
+    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+      const tmpForInNext = tmpForInGen();
+      const tmpIfTest$1 = tmpForInNext.done;
+      if (tmpIfTest$1) {
+        break;
+      } else {
+        let x = tmpForInNext.value;
+        $(`loop`, x);
+        const tmpIfTest$3 = $(1);
+        if (tmpIfTest$3) {
+          $(`pass`);
+          break;
+        } else {
+          $(`do not visit`);
+          break;
+        }
+      }
+    }
+    $(`infiloop, do not eliminate`);
+  } else {
+    break;
+  }
+}
+$(`after (not invoked)`);
+`````
+
+
 ## Todos triggered
 
 

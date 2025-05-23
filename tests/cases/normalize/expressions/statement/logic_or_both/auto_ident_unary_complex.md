@@ -49,6 +49,23 @@ $( a, 1 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = 1;
+let a = { a: 999, b: 1000 };
+const tmpUnaryArg = $(x);
+const tmpIfTest = typeof tmpUnaryArg;
+if (tmpIfTest) {
+  $(a, x);
+} else {
+  $(x);
+  $(a, x);
+}
+`````
+
+
 ## Todos triggered
 
 

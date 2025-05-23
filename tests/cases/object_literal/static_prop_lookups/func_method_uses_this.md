@@ -58,6 +58,26 @@ $( "You got it!" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const f = function () {
+  const tmpPrevalAliasThis = this;
+  debugger;
+  $(`piss`);
+  $(`pass`);
+  $(`poss`);
+  const tmpReturnArg = tmpPrevalAliasThis.foo;
+  return tmpReturnArg;
+};
+const o = { f: f, foo: `You got it!` };
+const tmpMCF = o.f;
+let tmpCalleeParam = $dotCall(tmpMCF, o, `f`);
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

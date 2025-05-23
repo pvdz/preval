@@ -50,6 +50,17 @@ if ($) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+if ($) {
+  $(`keep me`);
+} else {
+}
+`````
+
+
 ## Todos triggered
 
 

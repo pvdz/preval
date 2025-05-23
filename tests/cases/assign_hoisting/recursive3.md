@@ -42,6 +42,17 @@ $( 2, a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = 1;
+const cheeky = $(`oops?`);
+x = x + 1;
+$(x, cheeky);
+`````
+
+
 ## Todos triggered
 
 

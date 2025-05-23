@@ -69,6 +69,39 @@ $( e );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpFree$157 = function $free($$0, $$1) {
+  let $dlr_$$0 = $$0;
+  let $dlr_$$1 = $$1;
+  debugger;
+  const $dlr_$$749 = $dlr_$$0;
+  const $dlr_$$751 = $dlr_$$1;
+  const tmpBinBothRhs$4 = $dlr_$$749;
+  const tmpBinBothLhs = `/`;
+  const tmpBinBothRhs = $coerce(tmpBinBothRhs$4, `string`);
+  const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
+  const tmpBinLhs$4 = $coerce(tmpBinLhs, `plustr`);
+  const tmpBinBothLhs$1 = ``;
+  const tmpBinBothRhs$1 = $coerce(tmpBinLhs$4, `string`);
+  const tmpBinLhs$1 = tmpBinBothLhs$1 + tmpBinBothRhs$1;
+  const tmpStringConcatR = $coerce(tmpBinLhs$1, `plustr`);
+  const tmpBinBothLhs$2 = `${tmpStringConcatR}/`;
+  const tmpBinBothRhs$2 = $dlr_$$751;
+  const tmpBinLhs$2 = tmpBinBothLhs$2 + tmpBinBothRhs$2;
+  return tmpBinLhs$2;
+};
+const x = $();
+const xs = $coerce(x, `string`);
+const y = $();
+const ys = $coerce(y, `string`);
+const fxy = $frfr(tmpFree$157, xs, ys);
+$(fxy);
+`````
+
+
 ## Todos triggered
 
 

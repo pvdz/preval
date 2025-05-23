@@ -69,6 +69,33 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let b = { x: 1 };
+let a = { a: 999, b: 1000 };
+const tmpSwitchDisc = $(1);
+const tmpBinBothLhs = tmpSwitchDisc;
+const tmpBinBothRhs = $(1);
+const tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
+if (tmpIfTest) {
+  a = undefined;
+  const tmpChainRootProp = b;
+  const tmpIfTest$1 = tmpChainRootProp != null;
+  if (tmpIfTest$1) {
+    const tmpChainElementObject = tmpChainRootProp.x;
+    a = tmpChainElementObject;
+    $(tmpChainElementObject);
+  } else {
+    $(a);
+  }
+} else {
+  $(a);
+}
+`````
+
+
 ## Todos triggered
 
 

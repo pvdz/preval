@@ -140,6 +140,73 @@ $( k );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpBinBothLhs = ``;
+const tmpBinBothRhs = $(`ok`);
+const x = tmpBinBothLhs + tmpBinBothRhs;
+x * 0;
+const tmpArrElement = NaN;
+x * 0;
+const tmpArrElement$1 = NaN;
+x * 0;
+const tmpArrElement$3 = NaN;
+x * 0;
+const tmpArrElement$5 = NaN;
+const tmpArrElement$7 = x + undefined;
+x * 0;
+const tmpArrElement$9 = NaN;
+const tmpArrElement$11 = x << 0;
+const tmpArrElement$13 = x >> 0;
+const tmpArrElement$15 = x >>> 0;
+$coerce(x, `number`);
+const tmpArrElement$17 = false;
+$coerce(x, `number`);
+const tmpArrElement$19 = false;
+$coerce(x, `number`);
+const tmpArrElement$21 = false;
+$coerce(x, `number`);
+const tmpArrElement$23 = false;
+const tmpArrElement$25 = x == undefined;
+const tmpArrElement$27 = x != undefined;
+const tmpArrElement$29 = x === undefined;
+const tmpArrElement$31 = x !== undefined;
+x & 0;
+const tmpArrElement$33 = 0;
+const tmpArrElement$35 = x ^ 0;
+const tmpArrElement$37 = x | 0;
+const arr = [
+  tmpArrElement,
+  tmpArrElement$1,
+  tmpArrElement$3,
+  tmpArrElement$5,
+  tmpArrElement$7,
+  tmpArrElement$9,
+  tmpArrElement$11,
+  tmpArrElement$13,
+  tmpArrElement$15,
+  tmpArrElement$17,
+  tmpArrElement$19,
+  tmpArrElement$21,
+  tmpArrElement$23,
+  tmpArrElement$25,
+  tmpArrElement$27,
+  tmpArrElement$29,
+  tmpArrElement$31,
+  tmpArrElement$33,
+  tmpArrElement$35,
+  tmpArrElement$37,
+];
+$(arr);
+let tmpCalleeParam = x in undefined;
+$(tmpCalleeParam);
+let tmpCalleeParam$1 = x instanceof undefined;
+$(tmpCalleeParam$1);
+`````
+
+
 ## Todos triggered
 
 

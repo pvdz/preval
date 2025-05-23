@@ -41,6 +41,29 @@ throw "[Preval]: Can not reach here";
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let a = undefined;
+let b = undefined;
+let c = undefined;
+let d = undefined;
+let e = undefined;
+let f = undefined;
+let g = undefined;
+let h = undefined;
+let x = undefined;
+let y = undefined;
+const tmpMCF = x.y;
+a = b.c;
+d = e[f];
+const tmpCompObj = g;
+const tmpMCSP = tmpCompObj.h;
+$dotCall(tmpMCF, x, `y`, x, 8, ...tmpMCSP);
+`````
+
+
 ## Todos triggered
 
 

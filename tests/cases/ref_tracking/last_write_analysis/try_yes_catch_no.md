@@ -72,6 +72,30 @@ $( b );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const oops = function () {
+  debugger;
+  if ($) {
+    throw `oops`;
+  } else {
+    return undefined;
+  }
+};
+let x = $(`a`);
+$(x);
+x = $(`b`);
+try {
+  x = $(`c`);
+} catch (e) {
+  $(`fail`);
+}
+$(x);
+`````
+
+
 ## Todos triggered
 
 

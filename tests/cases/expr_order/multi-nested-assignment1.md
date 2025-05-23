@@ -263,6 +263,81 @@ $( b, c, d, e, f );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let a = undefined;
+let b = undefined;
+let c = undefined;
+let d = undefined;
+let e = undefined;
+let obj = {
+  get c() {
+    debugger;
+    $(`get`);
+    return undefined;
+  },
+  set c($$0) {
+    let x = $$0;
+    debugger;
+    obj = `boom`;
+    $(`set`);
+    return undefined;
+  },
+};
+a = function () {
+  debugger;
+  $(`a`);
+  return obj;
+};
+b = function () {
+  debugger;
+  $(`b`);
+  a = 21;
+  return obj;
+};
+c = function () {
+  debugger;
+  $(`c`);
+  a = 31;
+  b = 32;
+  return obj;
+};
+d = function () {
+  debugger;
+  $(`d`);
+  a = 41;
+  b = 42;
+  c = 43;
+  return obj;
+};
+e = function () {
+  debugger;
+  $(`e`);
+  a = 51;
+  b = 52;
+  c = 53;
+  d = 54;
+  return obj;
+};
+const tmpAssignMemLhsObj = a();
+const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
+const varInitAssignLhsComputedObj = b();
+const varInitAssignLhsComputedObj$1 = c();
+const varInitAssignLhsComputedObj$3 = d();
+const varInitAssignLhsComputedRhs$3 = e();
+varInitAssignLhsComputedObj$3.x = varInitAssignLhsComputedRhs$3;
+const varInitAssignLhsComputedRhs$1 = varInitAssignLhsComputedRhs$3;
+varInitAssignLhsComputedObj$1.x = varInitAssignLhsComputedRhs$1;
+const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
+varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
+const tmpAssignMemRhs = varInitAssignLhsComputedRhs;
+tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
+$(a, b, c, d, e);
+`````
+
+
 ## Todos triggered
 
 

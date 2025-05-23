@@ -65,6 +65,22 @@ $( b );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const f = function () {
+  debugger;
+  blob.thing = `boing`;
+  return undefined;
+};
+const blob = { thing: `woop` };
+$(f);
+f();
+$(blob);
+`````
+
+
 ## Todos triggered
 
 

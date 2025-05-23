@@ -71,6 +71,27 @@ a( 8 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function ($$0, $$1, $$2) {
+  let a = $$0;
+  let b = $$1;
+  let c = $$2;
+  debugger;
+  const tmpBinLhs = $(1);
+  let tmpCalleeParam = tmpBinLhs + a;
+  $(tmpCalleeParam);
+  return undefined;
+};
+f(1, 2, 3);
+f(4, 2, 5);
+f(6, 2, 7);
+f(8, 2, 9);
+`````
+
+
 ## Todos triggered
 
 

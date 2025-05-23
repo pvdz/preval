@@ -41,6 +41,18 @@ throw "number";
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let arg = 1;
+let a = { a: 999, b: 1000 };
+a = typeof arg;
+const tmpThrowArg = a;
+throw tmpThrowArg;
+`````
+
+
 ## Todos triggered
 
 

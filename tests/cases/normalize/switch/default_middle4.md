@@ -42,6 +42,19 @@ With rename=true
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let onlyNumbers = 0;
+if ($) {
+  onlyNumbers = 1;
+} else {
+}
+onlyNumbers ** 0;
+`````
+
+
 ## Todos triggered
 
 

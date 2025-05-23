@@ -393,6 +393,184 @@ $( ef );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpMCF = $Array_from;
+let tmpCalleeParam = [];
+const tmpMCP = $(tmpCalleeParam);
+const tmpBinLhs = $dotCall(tmpMCF, $array_constructor, `from`, tmpMCP);
+const tmpArrElement = tmpBinLhs ** x;
+const tmpMCF$1 = $Array_from;
+let tmpCalleeParam$1 = [];
+const tmpMCP$1 = $(tmpCalleeParam$1);
+const tmpBinLhs$1 = $dotCall(tmpMCF$1, $array_constructor, `from`, tmpMCP$1);
+const tmpArrElement$1 = tmpBinLhs$1 * x;
+const tmpMCF$3 = $Array_from;
+let tmpCalleeParam$3 = [];
+const tmpMCP$3 = $(tmpCalleeParam$3);
+const tmpBinLhs$3 = $dotCall(tmpMCF$3, $array_constructor, `from`, tmpMCP$3);
+const tmpArrElement$3 = tmpBinLhs$3 / x;
+const tmpMCF$5 = $Array_from;
+let tmpCalleeParam$5 = [];
+const tmpMCP$5 = $(tmpCalleeParam$5);
+const tmpBinLhs$5 = $dotCall(tmpMCF$5, $array_constructor, `from`, tmpMCP$5);
+const tmpArrElement$5 = tmpBinLhs$5 % x;
+const tmpMCF$7 = $Array_from;
+let tmpCalleeParam$7 = [];
+const tmpMCP$7 = $(tmpCalleeParam$7);
+const tmpBinLhs$7 = $dotCall(tmpMCF$7, $array_constructor, `from`, tmpMCP$7);
+const tmpArrElement$7 = tmpBinLhs$7 + x;
+const tmpMCF$9 = $Array_from;
+let tmpCalleeParam$9 = [];
+const tmpMCP$9 = $(tmpCalleeParam$9);
+const tmpBinLhs$9 = $dotCall(tmpMCF$9, $array_constructor, `from`, tmpMCP$9);
+const tmpArrElement$9 = tmpBinLhs$9 - x;
+const tmpMCF$11 = $Array_from;
+let tmpCalleeParam$11 = [];
+const tmpMCP$11 = $(tmpCalleeParam$11);
+const tmpBinLhs$11 = $dotCall(tmpMCF$11, $array_constructor, `from`, tmpMCP$11);
+const tmpArrElement$11 = tmpBinLhs$11 << x;
+const tmpMCF$13 = $Array_from;
+let tmpCalleeParam$13 = [];
+const tmpMCP$13 = $(tmpCalleeParam$13);
+const tmpBinLhs$13 = $dotCall(tmpMCF$13, $array_constructor, `from`, tmpMCP$13);
+const tmpArrElement$13 = tmpBinLhs$13 >> x;
+const tmpMCF$15 = $Array_from;
+let tmpCalleeParam$15 = [];
+const tmpMCP$15 = $(tmpCalleeParam$15);
+const tmpBinLhs$15 = $dotCall(tmpMCF$15, $array_constructor, `from`, tmpMCP$15);
+const tmpArrElement$15 = tmpBinLhs$15 >>> x;
+const tmpMCF$17 = $Array_from;
+let tmpCalleeParam$17 = [];
+const tmpMCP$17 = $(tmpCalleeParam$17);
+const tmpBinLhs$17 = $dotCall(tmpMCF$17, $array_constructor, `from`, tmpMCP$17);
+const tmpArrElement$17 = tmpBinLhs$17 < x;
+const tmpMCF$19 = $Array_from;
+let tmpCalleeParam$19 = [];
+const tmpMCP$19 = $(tmpCalleeParam$19);
+const tmpBinLhs$19 = $dotCall(tmpMCF$19, $array_constructor, `from`, tmpMCP$19);
+const tmpArrElement$19 = tmpBinLhs$19 > x;
+const tmpMCF$21 = $Array_from;
+let tmpCalleeParam$21 = [];
+const tmpMCP$21 = $(tmpCalleeParam$21);
+const tmpBinLhs$21 = $dotCall(tmpMCF$21, $array_constructor, `from`, tmpMCP$21);
+const tmpArrElement$21 = tmpBinLhs$21 <= x;
+const tmpMCF$23 = $Array_from;
+let tmpCalleeParam$23 = [];
+const tmpMCP$23 = $(tmpCalleeParam$23);
+const tmpBinLhs$23 = $dotCall(tmpMCF$23, $array_constructor, `from`, tmpMCP$23);
+const tmpArrElement$23 = tmpBinLhs$23 >= x;
+const tmpMCF$25 = $Array_from;
+let tmpCalleeParam$25 = [];
+const tmpMCP$25 = $(tmpCalleeParam$25);
+const tmpBinLhs$25 = $dotCall(tmpMCF$25, $array_constructor, `from`, tmpMCP$25);
+const tmpArrElement$25 = tmpBinLhs$25 == x;
+const tmpMCF$27 = $Array_from;
+let tmpCalleeParam$27 = [];
+const tmpMCP$27 = $(tmpCalleeParam$27);
+const tmpBinLhs$27 = $dotCall(tmpMCF$27, $array_constructor, `from`, tmpMCP$27);
+const tmpArrElement$27 = tmpBinLhs$27 != x;
+const tmpMCF$29 = $Array_from;
+let tmpCalleeParam$29 = [];
+const tmpMCP$29 = $(tmpCalleeParam$29);
+const tmpBinLhs$29 = $dotCall(tmpMCF$29, $array_constructor, `from`, tmpMCP$29);
+const tmpArrElement$29 = tmpBinLhs$29 === x;
+const tmpMCF$31 = $Array_from;
+let tmpCalleeParam$31 = [];
+const tmpMCP$31 = $(tmpCalleeParam$31);
+const tmpBinLhs$31 = $dotCall(tmpMCF$31, $array_constructor, `from`, tmpMCP$31);
+const tmpArrElement$31 = tmpBinLhs$31 !== x;
+const tmpMCF$33 = $Array_from;
+let tmpCalleeParam$33 = [];
+const tmpMCP$33 = $(tmpCalleeParam$33);
+const tmpBinLhs$33 = $dotCall(tmpMCF$33, $array_constructor, `from`, tmpMCP$33);
+const tmpArrElement$33 = tmpBinLhs$33 & x;
+const tmpMCF$35 = $Array_from;
+let tmpCalleeParam$35 = [];
+const tmpMCP$35 = $(tmpCalleeParam$35);
+const tmpBinLhs$35 = $dotCall(tmpMCF$35, $array_constructor, `from`, tmpMCP$35);
+const tmpArrElement$35 = tmpBinLhs$35 ^ x;
+const tmpMCF$37 = $Array_from;
+let tmpCalleeParam$37 = [];
+const tmpMCP$37 = $(tmpCalleeParam$37);
+const tmpBinLhs$37 = $dotCall(tmpMCF$37, $array_constructor, `from`, tmpMCP$37);
+const tmpArrElement$37 = tmpBinLhs$37 | x;
+const tmpMCF$39 = $Array_from;
+let tmpCalleeParam$39 = [];
+const tmpMCP$39 = $(tmpCalleeParam$39);
+const tmpUnaryArg = $dotCall(tmpMCF$39, $array_constructor, `from`, tmpMCP$39);
+const tmpArrElement$39 = ~tmpUnaryArg;
+const tmpMCF$41 = $Array_from;
+let tmpCalleeParam$41 = [];
+const tmpMCP$41 = $(tmpCalleeParam$41);
+const tmpUnaryArg$1 = $dotCall(tmpMCF$41, $array_constructor, `from`, tmpMCP$41);
+const tmpArrElement$41 = !tmpUnaryArg$1;
+const tmpMCF$43 = $Array_from;
+let tmpCalleeParam$43 = [];
+const tmpMCP$43 = $(tmpCalleeParam$43);
+const tmpUnaryArg$3 = $dotCall(tmpMCF$43, $array_constructor, `from`, tmpMCP$43);
+const tmpArrElement$43 = -tmpUnaryArg$3;
+const tmpMCF$45 = $Array_from;
+let tmpCalleeParam$45 = [];
+const tmpMCP$45 = $(tmpCalleeParam$45);
+const tmpUnaryArg$5 = $dotCall(tmpMCF$45, $array_constructor, `from`, tmpMCP$45);
+const tmpArrElement$45 = +tmpUnaryArg$5;
+const tmpMCF$47 = $Array_from;
+let tmpCalleeParam$47 = [];
+const tmpMCP$47 = $(tmpCalleeParam$47);
+const tmpUnaryArg$7 = $dotCall(tmpMCF$47, $array_constructor, `from`, tmpMCP$47);
+const tmpArrElement$47 = typeof tmpUnaryArg$7;
+const tmpMCF$49 = $Array_from;
+let tmpCalleeParam$49 = [];
+const tmpMCP$49 = $(tmpCalleeParam$49);
+$dotCall(tmpMCF$49, $array_constructor, `from`, tmpMCP$49);
+const tmpArrElement$49 = undefined;
+const arr = [
+  tmpArrElement,
+  tmpArrElement$1,
+  tmpArrElement$3,
+  tmpArrElement$5,
+  tmpArrElement$7,
+  tmpArrElement$9,
+  tmpArrElement$11,
+  tmpArrElement$13,
+  tmpArrElement$15,
+  tmpArrElement$17,
+  tmpArrElement$19,
+  tmpArrElement$21,
+  tmpArrElement$23,
+  tmpArrElement$25,
+  tmpArrElement$27,
+  tmpArrElement$29,
+  tmpArrElement$31,
+  tmpArrElement$33,
+  tmpArrElement$35,
+  tmpArrElement$37,
+  tmpArrElement$39,
+  tmpArrElement$41,
+  tmpArrElement$43,
+  tmpArrElement$45,
+  tmpArrElement$47,
+  tmpArrElement$49,
+];
+$(arr);
+const tmpMCF$51 = $Array_from;
+let tmpCalleeParam$51 = [];
+const tmpMCP$51 = $(tmpCalleeParam$51);
+const tmpBinLhs$39 = $dotCall(tmpMCF$51, $array_constructor, `from`, tmpMCP$51);
+const tmpArrElement$51 = tmpBinLhs$39 in x;
+const tmpMCF$53 = $Array_from;
+let tmpCalleeParam$53 = [];
+const tmpMCP$53 = $(tmpCalleeParam$53);
+const tmpBinLhs$41 = $dotCall(tmpMCF$53, $array_constructor, `from`, tmpMCP$53);
+const tmpArrElement$53 = tmpBinLhs$41 instanceof x;
+const arr2 = [tmpArrElement$51, tmpArrElement$53];
+$(arr2);
+`````
+
+
 ## Todos triggered
 
 

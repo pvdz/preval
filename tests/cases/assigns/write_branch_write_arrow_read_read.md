@@ -65,6 +65,28 @@ $( d, "final" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = $(1);
+const tmpIfTest = $(1);
+if (tmpIfTest) {
+  x = $(2, `branch`);
+  const f = function () {
+    debugger;
+    const tmpReturnArg = $(x, `arrow`);
+    return tmpReturnArg;
+  };
+  let tmpCalleeParam = f();
+  $(tmpCalleeParam, `result`);
+} else {
+}
+x = $(3, `after`);
+$(x, `final`);
+`````
+
+
 ## Todos triggered
 
 

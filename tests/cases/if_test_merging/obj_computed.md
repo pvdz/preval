@@ -60,6 +60,24 @@ $( d );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let tmpCalleeParam = $(true);
+const bool = $boolean_constructor(tmpCalleeParam);
+const a = $();
+let x = undefined;
+if (bool) {
+  x = { [a]: 1, b: true };
+  $(x);
+} else {
+  x = { [a]: 1, b: false };
+  $(x);
+}
+`````
+
+
 ## Todos triggered
 
 

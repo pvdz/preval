@@ -75,6 +75,24 @@ $( "end" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let test = 0;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  if (test) {
+    $(`breaking`);
+    break;
+  } else {
+    $(`loop`);
+    test = test + 1;
+  }
+}
+$(`end`);
+`````
+
+
 ## Todos triggered
 
 

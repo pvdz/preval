@@ -88,6 +88,24 @@ $( e );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+while (true) {
+  $(100);
+  const tmpCallComplexCallee = $($);
+  const tmpIfTest = tmpCallComplexCallee(1);
+  if (tmpIfTest) {
+  } else {
+    break;
+  }
+}
+$(a);
+`````
+
+
 ## Todos triggered
 
 

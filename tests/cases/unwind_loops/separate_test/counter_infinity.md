@@ -43,6 +43,24 @@ $( "yolo" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let counter = Infinity;
+let test = counter >= 0;
+while (true) {
+  if (test) {
+    $(`yolo`);
+    counter = counter + 1;
+    test = counter < 10;
+  } else {
+    break;
+  }
+}
+`````
+
+
 ## Todos triggered
 
 

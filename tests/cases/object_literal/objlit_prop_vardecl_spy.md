@@ -150,6 +150,48 @@ l();
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpObjLitPropKey = Symbol.iterator;
+const tmpObjLitVal$1 = [1, 2, 3, 4, 5];
+const oops = {
+  toString() {
+    debugger;
+    $(`tostring`);
+    return undefined;
+  },
+  valueOf() {
+    debugger;
+    $(`tostring`);
+    return undefined;
+  },
+  [tmpObjLitPropKey]() {
+    const tmpPrevalAliasThis = this;
+    debugger;
+    let tmpCalleeParam = o.x;
+    $(`iterator called, o.x=`, tmpCalleeParam);
+    const tmpMCCO = tmpPrevalAliasThis.values;
+    const tmpMCCP = Symbol.iterator;
+    const tmpMCF = tmpMCCO[tmpMCCP];
+    const tmpReturnArg = $dotCall(tmpMCF, tmpMCCO, undefined);
+    return tmpReturnArg;
+  },
+  values: tmpObjLitVal$1,
+};
+const tmpObjLitVal = $(1);
+const o = { x: tmpObjLitVal };
+const f = [...oops];
+const tmpCalleeParam$1 = o.x;
+$(tmpCalleeParam$1);
+o.x = 10;
+f();
+f();
+f();
+`````
+
+
 ## Todos triggered
 
 

@@ -46,6 +46,18 @@ crash( a, b, c );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpCallCallee = crash;
+let tmpCalleeParam = $spy(`a`);
+let tmpCalleeParam$1 = $spy(`b`);
+let tmpCalleeParam$3 = $spy(`c`);
+crash(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
+`````
+
+
 ## Todos triggered
 
 

@@ -123,6 +123,33 @@ $( undefined );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  let s = $(10);
+  let x = true;
+  while (true) {
+    if (x) {
+      const nowAssignable$3 = parseExpression(lexerFlags$285, astProp$181);
+      s = s | 10;
+      x = $(true);
+    } else {
+      break;
+    }
+  }
+  $(s);
+  return undefined;
+};
+let tmpCalleeParam = f();
+$(tmpCalleeParam);
+let tmpCalleeParam$1 = f();
+$(tmpCalleeParam$1);
+`````
+
+
 ## Todos triggered
 
 

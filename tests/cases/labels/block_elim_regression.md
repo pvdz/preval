@@ -45,6 +45,16 @@ $( "oops" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let A = $(`mefirst`);
+A = `oops`;
+$(A);
+`````
+
+
 ## Todos triggered
 
 

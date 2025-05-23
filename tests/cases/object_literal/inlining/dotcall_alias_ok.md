@@ -40,6 +40,21 @@ $( "win" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const g = function () {
+  debugger;
+  return `win`;
+};
+const obj = { f: g };
+const alias = obj.f;
+let tmpCalleeParam = $dotCall(alias, obj, `f`);
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

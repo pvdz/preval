@@ -44,6 +44,20 @@ $( 2 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpNewCallee = $($);
+const tmpIfTest = new tmpNewCallee();
+if (tmpIfTest) {
+  $(2);
+} else {
+  $(3);
+}
+`````
+
+
 ## Todos triggered
 
 

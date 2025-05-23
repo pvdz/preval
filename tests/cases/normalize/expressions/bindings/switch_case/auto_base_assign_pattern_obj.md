@@ -53,6 +53,27 @@ $( c, d );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let b = undefined;
+let a = undefined;
+const tmpSwitchDisc = 1;
+const tmpIfTest = tmpSwitchDisc === 1;
+if (tmpIfTest) {
+  b = {};
+  const tmpObjLitVal = $(2);
+  let tmpCalleeParam = { b: tmpObjLitVal };
+  const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
+  b = tmpNestedAssignObjPatternRhs.b;
+  a = tmpNestedAssignObjPatternRhs;
+  $(tmpNestedAssignObjPatternRhs, b);
+} else {
+}
+`````
+
+
 ## Todos triggered
 
 

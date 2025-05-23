@@ -60,6 +60,26 @@ $( 0, 0 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let y = 5;
+let x = true;
+while (true) {
+  if (x) {
+    $(x);
+    const tmpNestedComplexRhs = y - 1;
+    y = tmpNestedComplexRhs;
+    x = tmpNestedComplexRhs;
+  } else {
+    break;
+  }
+}
+$(x, y);
+`````
+
+
 ## Todos triggered
 
 

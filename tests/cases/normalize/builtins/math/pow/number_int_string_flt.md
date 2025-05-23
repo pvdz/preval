@@ -39,6 +39,16 @@ $( a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpMCF = $Math_pow;
+let tmpCalleeParam = $Math_pow(3, `3.7`);
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

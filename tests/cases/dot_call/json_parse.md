@@ -75,6 +75,27 @@ $( a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const getMessages = async function ($$0) {
+  let $dlr_$$0 = $$0;
+  debugger;
+  const D$15 = $dlr_$$0;
+  const tmpAwaitArg = fetchFromStore($dlr_$$0);
+  const l$11 = await tmpAwaitArg;
+  const tmpCallCompVal = $JSON_parse;
+  const tmpCompObj$1 = l$11[0];
+  const tmpCompObj = tmpCompObj$1.dataValues;
+  const tmpCalleeParam = tmpCompObj.bucket;
+  const tmpReturnArg$13 = $dotCall(tmpCallCompVal, JSON, `parse`, tmpCalleeParam);
+  return tmpReturnArg$13;
+};
+$(getMessages);
+`````
+
+
 ## Todos triggered
 
 

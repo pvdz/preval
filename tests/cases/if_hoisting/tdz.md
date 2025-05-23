@@ -44,6 +44,16 @@ throw "Preval: TDZ triggered for this read: if (fail) {";
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = 0;
+throw `Preval: TDZ triggered for this read: if (fail) {`;
+let fail = 0;
+`````
+
+
 ## Todos triggered
 
 

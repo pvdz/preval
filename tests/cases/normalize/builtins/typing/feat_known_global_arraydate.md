@@ -127,6 +127,63 @@ $( "number" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpMCF = $Array_from;
+const tmpMCP = $spy(`Array.from`);
+const tmpUnaryArg = $dotCall(tmpMCF, $array_constructor, `from`, tmpMCP);
+let tmpCalleeParam = typeof tmpUnaryArg;
+$(tmpCalleeParam);
+const tmpMCF$1 = $Array_isArray;
+const tmpMCP$1 = $spy(`Array.isArray`);
+const tmpUnaryArg$1 = $dotCall(tmpMCF$1, $array_constructor, `isArray`, tmpMCP$1);
+let tmpCalleeParam$1 = typeof tmpUnaryArg$1;
+$(tmpCalleeParam$1);
+const tmpMCF$3 = $Array_of;
+const tmpMCP$3 = $spy(`Array.of`);
+const tmpUnaryArg$3 = $dotCall(tmpMCF$3, $array_constructor, `of`, tmpMCP$3);
+let tmpCalleeParam$3 = typeof tmpUnaryArg$3;
+$(tmpCalleeParam$3);
+const tmpMCF$5 = $Date_now;
+const tmpMCP$5 = $spy(`Date.now`);
+const tmpUnaryArg$5 = $dotCall(tmpMCF$5, $date_constructor, `now`, tmpMCP$5);
+let tmpCalleeParam$5 = typeof tmpUnaryArg$5;
+$(tmpCalleeParam$5);
+const tmpMCF$7 = $Date_UTC;
+const tmpMCP$7 = $spy(`Date.UTC`);
+const tmpUnaryArg$7 = $dotCall(tmpMCF$7, $date_constructor, `UTC`, tmpMCP$7);
+let tmpCalleeParam$7 = typeof tmpUnaryArg$7;
+$(tmpCalleeParam$7);
+const tmpMCF$9 = $Date_parse;
+const tmpMCP$9 = $spy(`Date.parse`);
+const tmpUnaryArg$9 = $dotCall(tmpMCF$9, $date_constructor, `parse`, tmpMCP$9);
+let tmpCalleeParam$9 = typeof tmpUnaryArg$9;
+$(tmpCalleeParam$9);
+const tmpMCF$11 = $JSON_stringify;
+const tmpMCP$11 = $spy(`JSON.stringify`);
+const tmpUnaryArg$11 = $dotCall(tmpMCF$11, JSON, `stringify`, tmpMCP$11);
+let tmpCalleeParam$11 = typeof tmpUnaryArg$11;
+$(tmpCalleeParam$11);
+const tmpMCF$13 = $Math_abs;
+const tmpMCP$13 = $spy(`Math.abs`);
+const tmpUnaryArg$13 = $dotCall(tmpMCF$13, Math, `abs`, tmpMCP$13);
+let tmpCalleeParam$13 = typeof tmpUnaryArg$13;
+$(tmpCalleeParam$13);
+const tmpMCF$15 = $Math_acos;
+const tmpMCP$15 = $spy(`Math.acos`);
+const tmpUnaryArg$15 = $dotCall(tmpMCF$15, Math, `acos`, tmpMCP$15);
+let tmpCalleeParam$15 = typeof tmpUnaryArg$15;
+$(tmpCalleeParam$15);
+const tmpMCF$17 = $Math_acosh;
+const tmpMCP$17 = $spy(`Math.acosh`);
+const tmpUnaryArg$17 = $dotCall(tmpMCF$17, Math, `acosh`, tmpMCP$17);
+let tmpCalleeParam$17 = typeof tmpUnaryArg$17;
+$(tmpCalleeParam$17);
+`````
+
+
 ## Todos triggered
 
 

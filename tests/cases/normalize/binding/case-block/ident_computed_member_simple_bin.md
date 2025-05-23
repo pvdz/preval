@@ -68,6 +68,35 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let a = 1;
+let b = { x: 2 };
+let c = 3;
+let d = 4;
+tmpSwitchBreak: {
+  let a$1 = undefined;
+  const tmpSwitchDisc = $(`a`);
+  const tmpBinBothLhs = tmpSwitchDisc;
+  const tmpBinBothRhs = $(`a`);
+  const tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
+  if (tmpIfTest) {
+    const tmpNestedAssignComMemberObj = b;
+    const tmpNestedAssignComMemberProp = $(`x`);
+    const tmpNestedAssignPropRhs = c + d;
+    const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
+    tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
+    a$1 = tmpNestedPropAssignRhs;
+    break tmpSwitchBreak;
+  } else {
+  }
+}
+$(a, b, c);
+`````
+
+
 ## Todos triggered
 
 

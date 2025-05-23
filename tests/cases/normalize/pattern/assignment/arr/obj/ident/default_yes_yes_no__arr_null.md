@@ -41,6 +41,33 @@ throw "[Preval]: Can not reach here";
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpArrAssignPatternRhs = [null, 20, 30];
+const tmpArrPatternSplat = [...tmpArrAssignPatternRhs];
+const tmpAPBD = tmpArrPatternSplat[0];
+let tmpArrPatternStep = undefined;
+const tmpIfTest = tmpAPBD === undefined;
+if (tmpIfTest) {
+  let tmpCalleeParam = { x: `fail2` };
+  tmpArrPatternStep = $(tmpCalleeParam);
+} else {
+  tmpArrPatternStep = tmpAPBD;
+}
+const tmpOPBD = tmpArrPatternStep.x;
+const tmpIfTest$1 = tmpOPBD === undefined;
+if (tmpIfTest$1) {
+  x = $(`pass`);
+  $(`bad`);
+} else {
+  x = tmpOPBD;
+  $(`bad`);
+}
+`````
+
+
 ## Todos triggered
 
 

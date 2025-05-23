@@ -89,6 +89,31 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let lhs = undefined;
+const tmpForInGenNext = $forIn(rhs);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext = tmpForInGenNext();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    lhs = tmpForInNext.value;
+    if ($) {
+      throw `Preval: TDZ triggered for this read: [firstElement]`;
+      const rhs$1 = 0;
+    } else {
+      $(`init`);
+      let firstElement = undefined;
+    }
+  }
+}
+`````
+
+
 ## Todos triggered
 
 

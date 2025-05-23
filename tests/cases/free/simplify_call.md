@@ -114,6 +114,41 @@ $( "thend" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpFree$21 = function $free($$0) {
+  let tmpUnaryArg$489 = $$0;
+  debugger;
+  const tmpBinLhs$139 = -tmpUnaryArg$489;
+  const tmpBinLhs$141 = -tmpBinLhs$139;
+  return tmpBinLhs$141;
+};
+const _0xb34c4b = [`a`, `b`];
+const _0xcb1177 = $;
+try {
+  let tmpCalleeParam = tmpFree$21;
+  let tmpCalleeParam$3 = _0xcb1177(824);
+  let tmpCalleeParam$1 = $Number_parseInt(tmpCalleeParam$3);
+  const tmpIfTest = $frfr(tmpFree$21, tmpCalleeParam$1);
+  if (tmpIfTest) {
+  } else {
+    const tmpMCF = _0xb34c4b.push;
+    const tmpMCF$1 = _0xb34c4b.shift;
+    const tmpMCP = $dotCall(tmpMCF$1, _0xb34c4b, `shift`);
+    $dotCall(tmpMCF, _0xb34c4b, `push`, tmpMCP);
+  }
+} catch (_0xa7aced$11) {
+  const tmpMCF$3 = _0xb34c4b.push;
+  const tmpMCF$5 = _0xb34c4b.shift;
+  const tmpMCP$1 = $dotCall(tmpMCF$5, _0xb34c4b, `shift`);
+  $dotCall(tmpMCF$3, _0xb34c4b, `push`, tmpMCP$1);
+}
+$(`thend`);
+`````
+
+
 ## Todos triggered
 
 

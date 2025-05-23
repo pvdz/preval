@@ -45,6 +45,26 @@ $( "purpleRule:reset \"You have to listen to me\"" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const rule = function ($$0) {
+  let desc = $$0;
+  debugger;
+  const tmpBinBothLhs = `purpleRule:reset "`;
+  const tmpBinBothRhs = $coerce(desc, `string`);
+  const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
+  const tmpStringConcatR = $coerce(tmpBinLhs, `plustr`);
+  const e = `${tmpStringConcatR}"`;
+  $(e);
+  return undefined;
+};
+rule(`I want it my \\way`);
+rule(`You have to listen to me`);
+`````
+
+
 ## Todos triggered
 
 

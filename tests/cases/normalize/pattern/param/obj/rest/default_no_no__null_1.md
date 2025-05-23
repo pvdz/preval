@@ -42,6 +42,23 @@ $objPatternRest( null, a, "x" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
+  let tmpBindingPatternObjRoot = tmpParamBare;
+  let tmpCalleeParam = tmpBindingPatternObjRoot;
+  let tmpCalleeParam$1 = [];
+  let x = $objPatternRest(tmpCalleeParam, tmpCalleeParam$1, `x`);
+  return `bad`;
+};
+f(null);
+`````
+
+
 ## Todos triggered
 
 

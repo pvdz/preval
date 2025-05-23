@@ -75,6 +75,20 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let tmpCalleeParam = new $regex_constructor(`foo`, `g`);
+const x = $(tmpCalleeParam);
+if (x) {
+  $(`truthy`, ...x);
+} else {
+  $(`falsy`, ...x);
+}
+`````
+
+
 ## Todos triggered
 
 

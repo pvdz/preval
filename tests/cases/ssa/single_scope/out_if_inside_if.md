@@ -61,6 +61,21 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let dedupeMe = !tmpUnaryArg$83;
+if (dedupeMe) {
+  $(true, `abc`);
+} else {
+  const c = props$15.children;
+  dedupeMe = c == null;
+  $(dedupeMe, `xyz`);
+}
+`````
+
+
 ## Todos triggered
 
 

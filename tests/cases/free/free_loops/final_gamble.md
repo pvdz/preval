@@ -65,6 +65,149 @@ $( "//\u00c0\u000a\u000a(function(j,o){var _fix_ios6=j;for(var b,a,h,m,f,k,l,n,e
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let counter = 11;
+const arr = [
+  `/`,
+  `/`,
+  `\u00c0`,
+  `
+`,
+  `
+`,
+  `(`,
+  `f`,
+  `u`,
+  `n`,
+  `c`,
+  `t`,
+  105,
+  111,
+  110,
+  40,
+  106,
+  44,
+  111,
+  41,
+  123,
+  118,
+  97,
+  114,
+  32,
+  95,
+  102,
+  105,
+  120,
+  95,
+  105,
+  111,
+  115,
+  54,
+  61,
+  106,
+  59,
+  102,
+  111,
+  114,
+  40,
+  118,
+  97,
+  114,
+  32,
+  98,
+  44,
+  97,
+  44,
+  104,
+  44,
+  109,
+  44,
+  102,
+  44,
+  107,
+  44,
+  108,
+  44,
+  110,
+  44,
+  101,
+  44,
+  103,
+  44,
+  99,
+  61,
+  48,
+  44,
+  100,
+  61,
+  91,
+  93,
+  44,
+  112,
+  61,
+  91,
+  51,
+  53,
+  44,
+  52,
+  56,
+  44,
+  55,
+  50,
+  44,
+  49,
+  50,
+  56,
+  93,
+  59,
+  99,
+  60,
+  106,
+  46,
+  108,
+  101,
+  110,
+  103,
+  116,
+  104,
+  59,
+  41,
+  97,
+  61,
+  106,
+  46,
+  99,
+  104,
+  97,
+  114,
+  67,
+  111,
+  100,
+  101,
+];
+while (true) {
+  const tmpBinBothLhs = counter;
+  const tmpBinBothRhs = arr.length;
+  const tmpIfTest = tmpBinBothLhs < tmpBinBothRhs;
+  if (tmpIfTest) {
+    const tmpMCF = $String_fromCharCode;
+    const tmpMCP = arr[counter];
+    const tmp = $dotCall(tmpMCF, $string_constructor, `fromCharCode`, tmpMCP);
+    arr[counter] = tmp;
+    counter = counter + 1;
+  } else {
+    break;
+  }
+}
+const tmpMCF$1 = arr.join;
+let tmpCalleeParam = $dotCall(tmpMCF$1, arr, `join`, ``);
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

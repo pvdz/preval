@@ -51,6 +51,18 @@ $( a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+a = { x: 1, y: 2, z: 3 };
+const tmpSwitchDisc = a;
+$(100);
+$(a);
+`````
+
+
 ## Todos triggered
 
 

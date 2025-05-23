@@ -67,6 +67,25 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let a = $(67637);
+let x = a === 67636;
+if (x) {
+  $(x);
+} else {
+  if ($) {
+    a = 67636;
+  } else {
+  }
+  x = a === 67636;
+  $(x);
+}
+`````
+
+
 ## Todos triggered
 
 

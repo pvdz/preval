@@ -114,6 +114,39 @@ $( b, a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let s = ``;
+let a = 0;
+const obj = {
+  get x() {
+    debugger;
+    const tmpStringConcatR = $coerce(s, `plustr`);
+    s = `${tmpStringConcatR}read;`;
+    return a;
+  },
+  set x($$0) {
+    let v = $$0;
+    debugger;
+    const tmpBinBothLhs = s;
+    const tmpStringConcatL = $coerce(v, `plustr`);
+    const tmpBinLhs = `write[${tmpStringConcatL}`;
+    const tmpStringConcatR$1 = $coerce(tmpBinLhs, `plustr`);
+    const tmpBinBothRhs = `${tmpStringConcatR$1}];`;
+    s = tmpBinBothLhs + tmpBinBothRhs;
+    a = a + v;
+    return a;
+  },
+};
+const tmpAssignMemLhsObj = obj;
+const tmpAssignMemRhs = new $date_constructor(12345);
+tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+$(a, s);
+`````
+
+
 ## Todos triggered
 
 

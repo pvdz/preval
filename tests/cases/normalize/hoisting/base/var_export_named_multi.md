@@ -54,6 +54,21 @@ export { b as y };
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = undefined;
+let y = undefined;
+$(x, undefined);
+x = 10;
+y = 20;
+$(x, y);
+export { x };
+export { y };
+`````
+
+
 ## Todos triggered
 
 

@@ -42,6 +42,16 @@ $( b );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpUnaryArg = Date.length;
+let tmpCalleeParam = ~tmpUnaryArg;
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

@@ -101,6 +101,34 @@ a();
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let $continue = function () {
+  debugger;
+  const tmpIfTest = $();
+  if (tmpIfTest) {
+    const tmpIfTest$1 = $();
+    if (tmpIfTest$1) {
+      $continue();
+      return undefined;
+    } else {
+    }
+  } else {
+  }
+  const tmpIfTest$3 = $();
+  if (tmpIfTest$3) {
+    return undefined;
+  } else {
+    $continue();
+    return undefined;
+  }
+};
+$continue();
+`````
+
+
 ## Todos triggered
 
 

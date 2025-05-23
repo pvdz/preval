@@ -52,6 +52,24 @@ $( a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+while (true) {
+  $(100);
+  $(100);
+  const tmpIfTest = undefined;
+  if (tmpIfTest) {
+  } else {
+    break;
+  }
+}
+$(a);
+`````
+
+
 ## Todos triggered
 
 

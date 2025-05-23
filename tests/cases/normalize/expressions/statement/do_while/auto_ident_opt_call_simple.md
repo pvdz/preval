@@ -114,6 +114,30 @@ $( e );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+while (true) {
+  $(100);
+  let tmpIfTest = undefined;
+  const tmpChainRootCall = $;
+  const tmpIfTest$1 = tmpChainRootCall != null;
+  if (tmpIfTest$1) {
+    const tmpChainElementCall = tmpChainRootCall(1);
+    tmpIfTest = tmpChainElementCall;
+  } else {
+  }
+  if (tmpIfTest) {
+  } else {
+    break;
+  }
+}
+$(a);
+`````
+
+
 ## Todos triggered
 
 

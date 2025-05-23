@@ -83,6 +83,24 @@ a( undefined, drop3 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function (...$$0 /*:array*/) {
+  let args = $$0;
+  debugger;
+  $(...args);
+  return undefined;
+};
+drop1();
+c(keep1);
+f(1, drop2);
+let e = undefined;
+f(undefined, drop3);
+`````
+
+
 ## Todos triggered
 
 

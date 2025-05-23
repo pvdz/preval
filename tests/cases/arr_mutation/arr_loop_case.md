@@ -185,6 +185,40 @@ $( q );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const arr = [`one`, `two`, `three`, `four`, `five`];
+while (true) {
+  $(1);
+  try {
+    const tmpBinLhs = arr[2];
+    const test = tmpBinLhs === 820304;
+    if (test) {
+      break;
+    } else {
+      const tmpMCF = arr.shift;
+      const next = $dotCall(tmpMCF, arr, `shift`);
+      const tmpMCF$1 = arr.push;
+      $dotCall(tmpMCF$1, arr, `push`, next);
+      const tmpMCF$3 = arr.slice;
+      let tmpCalleeParam = $dotCall(tmpMCF$3, arr, `slice`, 0);
+      $(tmpCalleeParam);
+    }
+  } catch (e) {
+    const tmpMCF$5 = arr.shift;
+    const v = $dotCall(tmpMCF$5, arr, `shift`);
+    const tmpMCF$7 = arr.push;
+    $dotCall(tmpMCF$7, arr, `push`, v);
+  }
+}
+const tmpMCF$9 = arr.slice;
+let tmpCalleeParam$1 = $dotCall(tmpMCF$9, arr, `slice`, 0, 3);
+$(tmpCalleeParam$1);
+`````
+
+
 ## Todos triggered
 
 

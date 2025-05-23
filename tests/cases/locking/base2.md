@@ -95,6 +95,33 @@ $( undefined );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpFuncLock = function () {
+  debugger;
+  $(`call me once`);
+  return undefined;
+};
+let f = true;
+const g = function () {
+  debugger;
+  if (f) {
+    tmpFuncLock();
+    f = false;
+    return undefined;
+  } else {
+    return undefined;
+  }
+};
+g();
+$(undefined);
+g();
+$(undefined);
+`````
+
+
 ## Todos triggered
 
 

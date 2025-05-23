@@ -46,6 +46,38 @@ $( 3, a, 3 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let b = undefined;
+let c = undefined;
+let a = undefined;
+const tmpSwitchDisc = 1;
+const tmpIfTest = tmpSwitchDisc === 1;
+if (tmpIfTest) {
+  b = { x: 1 };
+  c = 3;
+  const tmpInitAssignLhsComputedRhs$7 = c;
+  b.x = tmpInitAssignLhsComputedRhs$7;
+  const tmpInitAssignLhsComputedRhs$5 = tmpInitAssignLhsComputedRhs$7;
+  b.x = tmpInitAssignLhsComputedRhs$5;
+  const tmpInitAssignLhsComputedRhs$3 = tmpInitAssignLhsComputedRhs$5;
+  b.x = tmpInitAssignLhsComputedRhs$3;
+  const tmpInitAssignLhsComputedRhs$1 = tmpInitAssignLhsComputedRhs$3;
+  b.x = tmpInitAssignLhsComputedRhs$1;
+  const tmpInitAssignLhsComputedRhs = tmpInitAssignLhsComputedRhs$1;
+  b.x = tmpInitAssignLhsComputedRhs;
+  const tmpNestedAssignPropRhs = tmpInitAssignLhsComputedRhs;
+  const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
+  b.x = tmpNestedPropAssignRhs;
+  a = tmpNestedPropAssignRhs;
+  $(tmpNestedPropAssignRhs, b, c);
+} else {
+}
+`````
+
+
 ## Todos triggered
 
 

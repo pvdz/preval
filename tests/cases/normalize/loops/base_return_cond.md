@@ -117,6 +117,31 @@ $( "f():", 11 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  let n = 0;
+  while (true) {
+    const tmpPostUpdArgIdent = $coerce(n, `number`);
+    n = tmpPostUpdArgIdent + 1;
+    let tmpCalleeParam = n;
+    $(`n:`, n);
+    const tmpIfTest = n > 10;
+    if (tmpIfTest) {
+      return n;
+    } else {
+    }
+  }
+  return undefined;
+};
+let tmpCalleeParam$1 = f();
+$(`f():`, tmpCalleeParam$1);
+`````
+
+
 ## Todos triggered
 
 

@@ -73,6 +73,26 @@ $( undefined );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const _0x2751bd$3 = function ($$0, $$1) {
+  let _0x1a6934 = $$0;
+  let _0x37f449 = $$1;
+  debugger;
+  const tmpCalleeParam$1763 = _0x37f449 - -1034;
+  const tmpReturnArg$489 = $(_0x1a6934, tmpCalleeParam$1763);
+  $(tmpReturnArg$489);
+  return undefined;
+};
+const tmpCallCompProp$449 = _0x2751bd$3(112, 528);
+const tmpCallCompProp$451 = _0x2751bd$3(859, 656);
+$(tmpCallCompProp$449);
+$(tmpCallCompProp$451);
+`````
+
+
 ## Todos triggered
 
 

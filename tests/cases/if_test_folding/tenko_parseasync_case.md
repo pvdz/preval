@@ -42,6 +42,19 @@ tmpCalleeParam$1359 = fromStmtOrExpr$1 !== 1;
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpIfTest$3265 = fromStmtOrExpr$1 === 1;
+if (tmpIfTest$3265) {
+  tmpCalleeParam$1359 = false;
+} else {
+  tmpCalleeParam$1359 = true;
+}
+`````
+
+
 ## Todos triggered
 
 

@@ -131,6 +131,50 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+tmpSwitchBreak: {
+  const tmpSwitchDisc = $(1);
+  const tmpIfTest = tmpSwitchDisc === 0;
+  if (tmpIfTest) {
+    $(`one`);
+    while (true) {
+      const tmpIfTest$1 = $(1);
+      if (tmpIfTest$1) {
+        $(2);
+        break;
+      } else {
+        break;
+      }
+    }
+    break tmpSwitchBreak;
+  } else {
+    const tmpIfTest$3 = tmpSwitchDisc === 1;
+    if (tmpIfTest$3) {
+      $(`two`);
+      break tmpSwitchBreak;
+    } else {
+      const tmpIfTest$5 = tmpSwitchDisc === 2;
+      if (tmpIfTest$5) {
+        $(`three`);
+        break tmpSwitchBreak;
+      } else {
+        const tmpIfTest$7 = tmpSwitchDisc === 3;
+        if (tmpIfTest$7) {
+          $(`four`);
+          break tmpSwitchBreak;
+        } else {
+          $(`def`);
+        }
+      }
+    }
+  }
+}
+`````
+
+
 ## Todos triggered
 
 

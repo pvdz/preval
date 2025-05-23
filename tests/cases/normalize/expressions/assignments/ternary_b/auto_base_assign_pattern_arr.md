@@ -84,6 +84,34 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let b = [];
+let a = { a: 999, b: 1000 };
+let tmpCalleeParam = undefined;
+const tmpIfTest = $(1);
+if (tmpIfTest) {
+  let tmpNestedComplexRhs = undefined;
+  const tmpArrElement = $(2);
+  let tmpCalleeParam$1 = [tmpArrElement];
+  const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam$1);
+  const tmpArrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+  b = tmpArrPatternSplat[0];
+  tmpNestedComplexRhs = tmpNestedAssignArrPatternRhs;
+  a = tmpNestedComplexRhs;
+  tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+  $(a, b);
+} else {
+  tmpCalleeParam = $(200);
+  $(tmpCalleeParam);
+  $(a, b);
+}
+`````
+
+
 ## Todos triggered
 
 

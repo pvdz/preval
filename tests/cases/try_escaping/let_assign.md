@@ -107,6 +107,34 @@ $( a, b );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const arr = [1, 2, 3];
+let x = undefined;
+let y = 1;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  try {
+    let tmpCalleeParam = arr[0];
+    $(tmpCalleeParam);
+    x = arr;
+    const tmpMCF = arr.reverse;
+    $dotCall(tmpMCF, arr, `reverse`);
+    y = [5, 6];
+    const tmpIfTest = y === $;
+    if (tmpIfTest) {
+      break;
+    } else {
+    }
+  } catch (e) {
+    $(`fail`);
+  }
+}
+$(x, y);
+`````
+
+
 ## Todos triggered
 
 

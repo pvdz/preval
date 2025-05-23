@@ -60,6 +60,24 @@ $( "the end :)" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const f = function () {
+  debugger;
+  return x;
+};
+try {
+  f();
+} catch (e) {
+  $(`caught the tdz error!`);
+}
+let x = 5;
+$(`the end :)`);
+`````
+
+
 ## Todos triggered
 
 

@@ -47,6 +47,22 @@ $( "after" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+while (true) {
+  const tmpIfTest = $(true);
+  if (tmpIfTest) {
+    break;
+  } else {
+    break;
+  }
+}
+$(`after`);
+`````
+
+
 ## Todos triggered
 
 

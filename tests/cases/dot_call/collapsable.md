@@ -52,6 +52,18 @@ $( d );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const str = $(`hello`);
+const method = str.replace;
+const regex = new $regex_constructor(`e`, `g`);
+const out = $dotCall(method, str, `replace`, regex, `u`);
+$(out);
+`````
+
+
 ## Todos triggered
 
 

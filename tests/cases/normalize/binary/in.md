@@ -39,6 +39,15 @@ $( a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let tmpCalleeParam = 5 in Infinity;
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

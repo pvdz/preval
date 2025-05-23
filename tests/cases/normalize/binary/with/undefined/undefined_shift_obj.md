@@ -87,6 +87,29 @@ $( e );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const x = {
+  toString() {
+    debugger;
+    const tmpReturnArg = $(`toString`);
+    return tmpReturnArg;
+  },
+  valueOf() {
+    debugger;
+    $(`valueOf`);
+    return 100;
+  },
+};
+const tmpArrElement = 0 << x;
+const tmpArrElement$1 = 0 >> x;
+const arr = [tmpArrElement, tmpArrElement$1];
+$(arr);
+`````
+
+
 ## Todos triggered
 
 

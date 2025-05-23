@@ -61,6 +61,29 @@ $( e, a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let b = undefined;
+let a = undefined;
+const tmpSwitchDisc = 1;
+const tmpIfTest = tmpSwitchDisc === 1;
+if (tmpIfTest) {
+  b = { x: 1 };
+  let tmpCalleeParam = $(b);
+  const tmpUpdObj = $(tmpCalleeParam);
+  const tmpUpdProp = tmpUpdObj.x;
+  const tmpUpdNum = $coerce(tmpUpdProp, `number`);
+  const tmpUpdInc = tmpUpdNum + 1;
+  tmpUpdObj.x = tmpUpdInc;
+  a = tmpUpdNum;
+  $(tmpUpdNum, b);
+} else {
+}
+`````
+
+
 ## Todos triggered
 
 

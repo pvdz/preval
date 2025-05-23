@@ -56,6 +56,33 @@ $( undefined );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpBranchingB = function ($$0) {
+  let v = $$0;
+  debugger;
+  const x = 1 === v;
+  if (x) {
+    $(0);
+    return undefined;
+  } else {
+    const y = 2 === v;
+    if (y) {
+      $(1);
+      return undefined;
+    } else {
+      $(2);
+      return undefined;
+    }
+  }
+};
+const tmpReturnArg$11 = tmpBranchingB(1);
+$(tmpReturnArg$11);
+`````
+
+
 ## Todos triggered
 
 

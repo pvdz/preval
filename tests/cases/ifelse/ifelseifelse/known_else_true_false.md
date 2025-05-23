@@ -50,6 +50,30 @@ $( "a" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let condition = true;
+const f = function () {
+  debugger;
+  if (condition) {
+    $(`a`);
+    return undefined;
+  } else {
+    $(`b`);
+    return undefined;
+  }
+};
+if (condition) {
+  f();
+} else {
+  condition = false;
+  f();
+}
+`````
+
+
 ## Todos triggered
 
 

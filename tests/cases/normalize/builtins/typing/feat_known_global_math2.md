@@ -114,6 +114,53 @@ $( "number" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpMCF = $Math_cos;
+const tmpMCP = $spy(`Math.cos`);
+const tmpUnaryArg = $dotCall(tmpMCF, Math, `cos`, tmpMCP);
+let tmpCalleeParam = typeof tmpUnaryArg;
+$(tmpCalleeParam);
+const tmpMCF$1 = $Math_cosh;
+const tmpMCP$1 = $spy(`Math.cosh`);
+const tmpUnaryArg$1 = $dotCall(tmpMCF$1, Math, `cosh`, tmpMCP$1);
+let tmpCalleeParam$1 = typeof tmpUnaryArg$1;
+$(tmpCalleeParam$1);
+const tmpMCF$3 = $Math_exp;
+const tmpMCP$3 = $spy(`Math.exp`);
+const tmpUnaryArg$3 = $dotCall(tmpMCF$3, Math, `exp`, tmpMCP$3);
+let tmpCalleeParam$3 = typeof tmpUnaryArg$3;
+$(tmpCalleeParam$3);
+const tmpMCF$5 = $Math_expm1;
+const tmpMCP$5 = $spy(`Math.expm1`);
+const tmpUnaryArg$5 = $dotCall(tmpMCF$5, Math, `expm1`, tmpMCP$5);
+let tmpCalleeParam$5 = typeof tmpUnaryArg$5;
+$(tmpCalleeParam$5);
+const tmpMCF$7 = $Math_floor;
+const tmpMCP$7 = $spy(`Math.floor`);
+const tmpUnaryArg$7 = $dotCall(tmpMCF$7, Math, `floor`, tmpMCP$7);
+let tmpCalleeParam$7 = typeof tmpUnaryArg$7;
+$(tmpCalleeParam$7);
+const tmpMCF$9 = $Math_fround;
+const tmpMCP$9 = $spy(`Math.fround`);
+const tmpUnaryArg$9 = $dotCall(tmpMCF$9, Math, `fround`, tmpMCP$9);
+let tmpCalleeParam$9 = typeof tmpUnaryArg$9;
+$(tmpCalleeParam$9);
+const tmpMCF$11 = $Math_imul;
+const tmpMCP$11 = $spy(`Math.imul`);
+const tmpUnaryArg$11 = $dotCall(tmpMCF$11, Math, `imul`, tmpMCP$11);
+let tmpCalleeParam$11 = typeof tmpUnaryArg$11;
+$(tmpCalleeParam$11);
+const tmpMCF$13 = $Math_log;
+const tmpMCP$13 = $spy(`Math.log`);
+const tmpUnaryArg$13 = $dotCall(tmpMCF$13, Math, `log`, tmpMCP$13);
+let tmpCalleeParam$13 = typeof tmpUnaryArg$13;
+$(tmpCalleeParam$13);
+`````
+
+
 ## Todos triggered
 
 

@@ -191,6 +191,35 @@ $( a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let counter = 0;
+const arr = [];
+while (true) {
+  const tmpBinBothLhs = counter;
+  const tmpBinBothRhs = 69;
+  const tmpIfTest = tmpBinBothLhs < tmpBinBothRhs;
+  if (tmpIfTest) {
+    const tmpAssignComputedProp = counter;
+    const tmpMCF = $string_charAt;
+    const tmpAssignComputedRhs = $dotCall(
+      $string_charAt,
+      `lrlatnuoMv_yLotebgsaAihuhrL%nmBA%lopFbttitarsecieeLdEcsGgnlodeinmeoyn`,
+      `charAt`,
+      counter,
+    );
+    arr[tmpAssignComputedProp] = tmpAssignComputedRhs;
+    counter = counter + 1;
+  } else {
+    break;
+  }
+}
+$(arr);
+`````
+
+
 ## Todos triggered
 
 

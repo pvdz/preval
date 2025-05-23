@@ -49,6 +49,17 @@ $( 1.1805916207174113e+21 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+$(1494);
+$(1494);
+$(590295810358705700000);
+$(1.1805916207174113e21);
+`````
+
+
 ## Todos triggered
 
 

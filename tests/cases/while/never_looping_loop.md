@@ -169,6 +169,52 @@ if ($) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+if ($) {
+  let A = `jhayon.vercel.app`;
+  let B = `jhayon.vercel.app`;
+  let y = 1;
+  const x = $(`x`);
+  A = x.length;
+  const tmpBinBothLhs$30 = A[0];
+  const tmpIfTest$10 = tmpBinBothLhs$30 === `.`;
+  if (tmpIfTest$10) {
+    const tmpMCF = A.slice;
+    B = $dotCall(tmpMCF, A, `slice`, 1);
+  } else {
+    B = A;
+  }
+  const len = $.length;
+  const len2 = B.length;
+  let diff = len - len2;
+  const tmpMCF$1 = $.indexOf;
+  let pos = $dotCall(tmpMCF$1, $, `indexOf`, B, diff);
+  let isnot = pos !== -1;
+  if (isnot) {
+    isnot = pos === diff;
+    if (isnot) {
+      const len3 = $.length;
+      const lena2 = A.length;
+      let isa2 = len3 === lena2;
+      if (isa2) {
+      } else {
+        const tmpMCF$3 = A.indexOf;
+        const pos4 = $dotCall(tmpMCF$3, A, `indexOf`, `.`);
+        isa2 = pos4 === 0;
+      }
+    } else {
+    }
+  } else {
+  }
+  y = y + 1;
+} else {
+}
+`````
+
+
 ## Todos triggered
 
 

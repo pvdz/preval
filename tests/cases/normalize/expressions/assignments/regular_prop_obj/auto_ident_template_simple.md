@@ -38,6 +38,19 @@ $( "fo1o" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpBinBothLhs = `fo`;
+const tmpBinBothRhs = $coerce(1, `string`);
+const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
+const tmpStringConcatR = $coerce(tmpBinLhs, `plustr`);
+let a = `${tmpStringConcatR}o`;
+$(a);
+`````
+
+
 ## Todos triggered
 
 

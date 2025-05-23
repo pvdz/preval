@@ -50,6 +50,24 @@ $( b );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+let tmpAnonDefaultExport = undefined;
+const tmpIfTest = 30;
+if (tmpIfTest) {
+  tmpAnonDefaultExport = $(2);
+} else {
+  let tmpCalleeParam = $(100);
+  tmpAnonDefaultExport = $(tmpCalleeParam);
+}
+export { tmpAnonDefaultExport as default };
+$(a);
+`````
+
+
 ## Todos triggered
 
 

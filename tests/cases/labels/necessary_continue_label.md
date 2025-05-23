@@ -82,6 +82,22 @@ if (a) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+while (true) {
+  $(1, `outer`);
+  $(1, `inner`);
+  const tmpIfTest = $(false);
+  if (tmpIfTest) {
+  } else {
+    break;
+  }
+}
+`````
+
+
 ## Todos triggered
 
 

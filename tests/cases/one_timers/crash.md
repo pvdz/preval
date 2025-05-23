@@ -50,6 +50,30 @@ apparently_this_is_relevant;
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const f = function () {
+  debugger;
+  $();
+  return undefined;
+};
+const g = function () {
+  debugger;
+  h();
+  return undefined;
+};
+f();
+const h = function () {
+  debugger;
+  $();
+  return undefined;
+};
+g.prop = apparently_this_is_relevant;
+`````
+
+
 ## Todos triggered
 
 

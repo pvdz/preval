@@ -68,6 +68,24 @@ $( e );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const pre = [1, 2, 3];
+const map = pre.map;
+const f = function ($$0) {
+  let item = $$0;
+  debugger;
+  $(`hello`, item);
+  const tmpReturnArg = item + 1;
+  return tmpReturnArg;
+};
+const arr = $dotCall(map, pre, `map`, f);
+$(arr);
+`````
+
+
 ## Todos triggered
 
 

@@ -40,6 +40,16 @@ $( "NaNfunction flat() { [native code] }" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpBinBothRhs$893 = $array_flat;
+const tmpCompObj$459 = NaN + tmpBinBothRhs$893;
+$(tmpCompObj$459);
+`````
+
+
 ## Todos triggered
 
 

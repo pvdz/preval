@@ -44,6 +44,27 @@ $( -2, 1 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let arg = 1;
+let a = { a: 999, b: 1000 };
+a = ~arg;
+let tmpCalleeParam = a;
+if (tmpCalleeParam) {
+  const tmpNestedComplexRhs = ~arg;
+  a = tmpNestedComplexRhs;
+  tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+  $(a, arg);
+} else {
+  $(tmpCalleeParam);
+  $(a, arg);
+}
+`````
+
+
 ## Todos triggered
 
 

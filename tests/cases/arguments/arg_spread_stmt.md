@@ -40,6 +40,23 @@ With rename=true
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function ($$0, $$1, $$2) {
+  const tmpPrevalAliasArgumentsAny = arguments;
+  let a = $$0;
+  let b = $$1;
+  let c = $$2;
+  debugger;
+  [...tmpPrevalAliasArgumentsAny];
+  return undefined;
+};
+f();
+`````
+
+
 ## Todos triggered
 
 

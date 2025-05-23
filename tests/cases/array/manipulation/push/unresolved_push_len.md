@@ -54,6 +54,23 @@ $( 4 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const ARR = [`a`, `b`, `c`];
+const NOOP = function () {
+  debugger;
+  $(ARR);
+  return undefined;
+};
+$(`block heuristics`);
+const tmpMCF = ARR.push;
+const count = $dotCall(tmpMCF, ARR, `push`, x);
+$(count);
+`````
+
+
 ## Todos triggered
 
 

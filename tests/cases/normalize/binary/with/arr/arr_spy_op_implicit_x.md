@@ -302,6 +302,104 @@ $( cq );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpArrElement$39 = $(`** operator`);
+const tmpBinLhs = [tmpArrElement$39];
+const tmpArrElement = tmpBinLhs ** x;
+const tmpArrElement$41 = $(`* operator`);
+const tmpBinLhs$1 = [tmpArrElement$41];
+const tmpArrElement$1 = tmpBinLhs$1 * x;
+const tmpArrElement$43 = $(`/ operator`);
+const tmpBinLhs$3 = [tmpArrElement$43];
+const tmpArrElement$3 = tmpBinLhs$3 / x;
+const tmpArrElement$45 = $(`% operator`);
+const tmpBinLhs$5 = [tmpArrElement$45];
+const tmpArrElement$5 = tmpBinLhs$5 % x;
+const tmpArrElement$47 = $(`+ operator`);
+const tmpBinLhs$7 = [tmpArrElement$47];
+const tmpArrElement$7 = tmpBinLhs$7 + x;
+const tmpArrElement$49 = $(`- operator`);
+const tmpBinLhs$9 = [tmpArrElement$49];
+const tmpArrElement$9 = tmpBinLhs$9 - x;
+const tmpArrElement$51 = $(`<< operator`);
+const tmpBinLhs$11 = [tmpArrElement$51];
+const tmpArrElement$11 = tmpBinLhs$11 << x;
+const tmpArrElement$53 = $(`>> operator`);
+const tmpBinLhs$13 = [tmpArrElement$53];
+const tmpArrElement$13 = tmpBinLhs$13 >> x;
+const tmpArrElement$55 = $(`>>> operator`);
+const tmpBinLhs$15 = [tmpArrElement$55];
+const tmpArrElement$15 = tmpBinLhs$15 >>> x;
+const tmpArrElement$57 = $(`< operator`);
+const tmpBinLhs$17 = [tmpArrElement$57];
+const tmpArrElement$17 = tmpBinLhs$17 < x;
+const tmpArrElement$59 = $(`> operator`);
+const tmpBinLhs$19 = [tmpArrElement$59];
+const tmpArrElement$19 = tmpBinLhs$19 > x;
+const tmpArrElement$61 = $(`<= operator`);
+const tmpBinLhs$21 = [tmpArrElement$61];
+const tmpArrElement$21 = tmpBinLhs$21 <= x;
+const tmpArrElement$63 = $(`>= operator`);
+const tmpBinLhs$23 = [tmpArrElement$63];
+const tmpArrElement$23 = tmpBinLhs$23 >= x;
+const tmpArrElement$65 = $(`== operator`);
+const tmpBinLhs$25 = [tmpArrElement$65];
+const tmpArrElement$25 = tmpBinLhs$25 == x;
+const tmpArrElement$67 = $(`!= operator`);
+const tmpBinLhs$27 = [tmpArrElement$67];
+const tmpArrElement$27 = tmpBinLhs$27 != x;
+const tmpArrElement$69 = $(`=== operator`);
+const tmpBinLhs$29 = [tmpArrElement$69];
+const tmpArrElement$29 = tmpBinLhs$29 === x;
+const tmpArrElement$71 = $(`!== operator`);
+const tmpBinLhs$31 = [tmpArrElement$71];
+const tmpArrElement$31 = tmpBinLhs$31 !== x;
+const tmpArrElement$73 = $(`& operator`);
+const tmpBinLhs$33 = [tmpArrElement$73];
+const tmpArrElement$33 = tmpBinLhs$33 & x;
+const tmpArrElement$75 = $(`^ operator`);
+const tmpBinLhs$35 = [tmpArrElement$75];
+const tmpArrElement$35 = tmpBinLhs$35 ^ x;
+const tmpArrElement$77 = $(`| operator`);
+const tmpBinLhs$37 = [tmpArrElement$77];
+const tmpArrElement$37 = tmpBinLhs$37 | x;
+const arr = [
+  tmpArrElement,
+  tmpArrElement$1,
+  tmpArrElement$3,
+  tmpArrElement$5,
+  tmpArrElement$7,
+  tmpArrElement$9,
+  tmpArrElement$11,
+  tmpArrElement$13,
+  tmpArrElement$15,
+  tmpArrElement$17,
+  tmpArrElement$19,
+  tmpArrElement$21,
+  tmpArrElement$23,
+  tmpArrElement$25,
+  tmpArrElement$27,
+  tmpArrElement$29,
+  tmpArrElement$31,
+  tmpArrElement$33,
+  tmpArrElement$35,
+  tmpArrElement$37,
+];
+$(arr);
+const tmpArrElement$83 = $spy(`in operator`);
+const tmpBinLhs$39 = [tmpArrElement$83];
+const tmpArrElement$79 = tmpBinLhs$39 in x;
+const tmpArrElement$85 = $spy(`instanceof operator`);
+const tmpBinLhs$41 = [tmpArrElement$85];
+const tmpArrElement$81 = tmpBinLhs$41 instanceof x;
+const arr2 = [tmpArrElement$79, tmpArrElement$81];
+$(arr2);
+`````
+
+
 ## Todos triggered
 
 

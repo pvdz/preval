@@ -41,6 +41,15 @@ throw "[Preval]: Can not reach here";
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let tmpCalleeParam = null.foo;
+throw `[Preval]: Can not reach here`;
+`````
+
+
 ## Todos triggered
 
 

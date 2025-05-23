@@ -44,6 +44,20 @@ $( "inline me" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  $(`inline me`);
+  return undefined;
+};
+f();
+f();
+`````
+
+
 ## Todos triggered
 
 

@@ -40,6 +40,17 @@ $( false );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const rex = new $regex_constructor(`foo`, ``);
+const tmpCallVal = rex.test;
+const x = $dotCall(tmpCallVal, rex, `test`);
+$(x);
+`````
+
+
 ## Todos triggered
 
 

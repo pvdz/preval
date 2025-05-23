@@ -61,6 +61,32 @@ $( "-9007199254740991" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let tmpCalleeParam = `Infinity`;
+$(tmpCalleeParam);
+let tmpCalleeParam$1 = `-Infinity`;
+$(tmpCalleeParam$1);
+const tmpStringFirstArg = $Number_NaN;
+let tmpCalleeParam$3 = $coerce($Number_NaN, `string`);
+$(tmpCalleeParam$3);
+const tmpStringFirstArg$1 = $Number_POSITIVE_INFINITY;
+let tmpCalleeParam$5 = $coerce($Number_POSITIVE_INFINITY, `string`);
+$(tmpCalleeParam$5);
+const tmpStringFirstArg$3 = $Number_NEGATIVE_INFINITY;
+let tmpCalleeParam$7 = $coerce($Number_NEGATIVE_INFINITY, `string`);
+$(tmpCalleeParam$7);
+const tmpStringFirstArg$5 = $Number_MAX_SAFE_INTEGER;
+let tmpCalleeParam$9 = $coerce($Number_MAX_SAFE_INTEGER, `string`);
+$(tmpCalleeParam$9);
+const tmpStringFirstArg$7 = $Number_MIN_SAFE_INTEGER;
+let tmpCalleeParam$11 = $coerce($Number_MIN_SAFE_INTEGER, `string`);
+$(tmpCalleeParam$11);
+`````
+
+
 ## Todos triggered
 
 

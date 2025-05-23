@@ -88,6 +88,25 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let tmpBindingPatternObjRoot = { a: 999, b: 1000 };
+let a = tmpBindingPatternObjRoot.a;
+while (true) {
+  let tmpCalleeParam = { a: 1, b: 2 };
+  const tmpIfTest = $(tmpCalleeParam);
+  if (tmpIfTest) {
+    $(1);
+  } else {
+    break;
+  }
+}
+$(a);
+`````
+
+
 ## Todos triggered
 
 

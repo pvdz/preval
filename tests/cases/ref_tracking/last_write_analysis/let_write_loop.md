@@ -75,6 +75,25 @@ $( a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const useless = new $(1);
+let simplifyMe = useless;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $(100);
+  const tmp = $(1);
+  simplifyMe = tmp;
+  if (simplifyMe) {
+    break;
+  } else {
+  }
+}
+$(simplifyMe);
+`````
+
+
 ## Todos triggered
 
 

@@ -172,6 +172,52 @@ $( a, b, e, d );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let a = 0;
+let b = 0;
+const tmpObjLitVal = function () {
+  debugger;
+  $(`c flag now:`, flag);
+  return undefined;
+};
+let c = { valueOf: tmpObjLitVal };
+const tmpObjLitVal$1 = function () {
+  debugger;
+  $(`d flag now:`, flag);
+  return undefined;
+};
+let d = { valueOf: tmpObjLitVal$1 };
+let flag = 0;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpIfTest = flag < 10;
+  if (tmpIfTest) {
+    const tmpPostUpdArgIdent = $coerce(a, `number`);
+    a = tmpPostUpdArgIdent + 1;
+    flag = tmpPostUpdArgIdent;
+    $(`a++`, tmpPostUpdArgIdent);
+    const tmpPostUpdArgIdent$1 = $coerce(b, `number`);
+    b = tmpPostUpdArgIdent$1 + 1;
+    flag = b;
+    $(`++b`, b);
+    const tmpPostUpdArgIdent$3 = $coerce(c, `number`);
+    c = tmpPostUpdArgIdent$3 + 1;
+    flag = c;
+    $(`++c`, c);
+    const tmpPostUpdArgIdent$5 = $coerce(d, `number`);
+    d = tmpPostUpdArgIdent$5 + 1;
+    flag = tmpPostUpdArgIdent$5;
+    $(`d++`, tmpPostUpdArgIdent$5);
+  } else {
+    break;
+  }
+}
+$(a, b, c, flag);
+`````
+
+
 ## Todos triggered
 
 

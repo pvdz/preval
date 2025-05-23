@@ -43,6 +43,22 @@ $( undefined );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpObjLitVal = function () {
+  debugger;
+  $(`inline me`);
+  return undefined;
+};
+const obj = { encode: tmpObjLitVal };
+const tmpMCF = obj.encode;
+let tmpCalleeParam = $dotCall(tmpMCF, obj, `encode`);
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

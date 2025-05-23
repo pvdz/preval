@@ -60,6 +60,25 @@ $( "inner" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let a = undefined;
+a = function () {
+  debugger;
+  a = function () {
+    debugger;
+    $(`inner`);
+    return undefined;
+  };
+  const tmpReturnArg = a();
+  return tmpReturnArg;
+};
+a();
+`````
+
+
 ## Todos triggered
 
 

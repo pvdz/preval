@@ -44,6 +44,29 @@ $( b );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  let tmpCalleeParam = undefined;
+  const tmpChainRootCall = parseInt;
+  const tmpChainElementCall = 15;
+  const tmpIfTest = tmpChainElementCall != null;
+  if (tmpIfTest) {
+    const tmpChainElementObject = tmpChainElementCall.foo;
+    tmpCalleeParam = tmpChainElementObject;
+  } else {
+  }
+  const tmpReturnArg = $(tmpCalleeParam);
+  return tmpReturnArg;
+};
+let tmpCalleeParam$1 = f();
+$(tmpCalleeParam$1);
+`````
+
+
 ## Todos triggered
 
 

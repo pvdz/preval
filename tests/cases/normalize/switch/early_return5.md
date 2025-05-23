@@ -60,6 +60,36 @@ $( "after outer" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  const x = 0;
+  if (x) {
+    $(`a`);
+    $(`after outer`);
+    return undefined;
+  } else {
+    const y = 1;
+    if (y) {
+      $(`b`);
+      $(`after inner`);
+      $(`after outer`);
+      return undefined;
+    } else {
+      $(`c`);
+      $(`after inner`);
+      $(`after outer`);
+      return undefined;
+    }
+  }
+};
+f();
+`````
+
+
 ## Todos triggered
 
 

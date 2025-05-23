@@ -48,6 +48,31 @@ $( a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const _0x11B59 = [`u`, `s`, `e`, ` `, `s`, `t`, `r`, `i`, `c`, `t`, `%`, `_`, `_`, `e`, `x`, `t`, `e`, `n`, `d`, `s`];
+const tmpMCF = _0x11B59.join;
+const tmpCallObj$11 = $dotCall(tmpMCF, _0x11B59, `join`, ``);
+const tmpMCF$1 = tmpCallObj$11.split;
+const tmpCallObj$9 = $dotCall(tmpMCF$1, tmpCallObj$11, `split`, `%`);
+const tmpMCF$3 = tmpCallObj$9.join;
+const tmpCallObj$7 = $dotCall(tmpMCF$3, tmpCallObj$9, `join`, `^`);
+const tmpMCF$5 = tmpCallObj$7.split;
+const tmpCallObj$5 = $dotCall(tmpMCF$5, tmpCallObj$7, `split`, `#1`);
+const tmpMCF$7 = tmpCallObj$5.join;
+const tmpCallObj$3 = $dotCall(tmpMCF$7, tmpCallObj$5, `join`, `%`);
+const tmpMCF$9 = tmpCallObj$3.split;
+const tmpCallObj$1 = $dotCall(tmpMCF$9, tmpCallObj$3, `split`, `#0`);
+const tmpMCF$11 = tmpCallObj$1.join;
+const tmpCallObj = $dotCall(tmpMCF$11, tmpCallObj$1, `join`, `#`);
+const tmpMCF$13 = tmpCallObj.split;
+const tmpReturnArg = $dotCall(tmpMCF$13, tmpCallObj, `split`, `^`);
+$(tmpReturnArg);
+`````
+
+
 ## Todos triggered
 
 

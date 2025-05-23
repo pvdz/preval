@@ -38,6 +38,20 @@ $( "pass" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpCallComplexCallee = { eliminate: `me` };
+const x = function () {
+  debugger;
+  return `pass`;
+};
+let tmpCalleeParam = x();
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

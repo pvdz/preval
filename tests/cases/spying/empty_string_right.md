@@ -68,6 +68,25 @@ a();
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  const tmpBinBothLhs = ``;
+  const tmpBinBothRhs = $spy();
+  const a = tmpBinBothLhs + tmpBinBothRhs;
+  $(a, `a`);
+  const b = $coerce(a, `plustr`);
+  $(b, `b`);
+  return undefined;
+};
+f();
+f();
+`````
+
+
 ## Todos triggered
 
 

@@ -50,6 +50,31 @@ $( "wat" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let g = function () {
+  debugger;
+  return `wat`;
+};
+const obj = { f: g };
+const tmpMCF = obj.f;
+let tmpCalleeParam = $dotCall(tmpMCF, obj, `f`);
+$(tmpCalleeParam);
+const tmp = function () {
+  debugger;
+  g = 1;
+  return undefined;
+};
+let tmpCalleeParam$1 = tmp();
+$(tmpCalleeParam$1);
+const tmpMCF$1 = obj.f;
+let tmpCalleeParam$3 = $dotCall(tmpMCF$1, obj, `f`);
+$(tmpCalleeParam$3);
+`````
+
+
 ## Todos triggered
 
 

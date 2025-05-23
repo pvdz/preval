@@ -38,6 +38,37 @@ $( "ok" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpArrElement$5 = { x: 1 };
+const tmpArrElement$3 = [tmpArrElement$5, 6, 7];
+const tmpArrElement$1 = [tmpArrElement$3, 4, 5];
+const tmpArrElement = [tmpArrElement$1, 20, 30];
+const tmpBindingPatternArrRoot = [tmpArrElement, 40, 50];
+const tmpArrPatternSplat = [...tmpBindingPatternArrRoot];
+const tmpArrPatternStep = tmpArrPatternSplat[0];
+const tmpArrPatternSplat$1 = [...tmpArrPatternStep];
+const tmpArrPatternStep$1 = tmpArrPatternSplat$1[0];
+const tmpArrPatternSplat$3 = [...tmpArrPatternStep$1];
+const tmpArrPatternStep$3 = tmpArrPatternSplat$3[0];
+const tmpArrPatternSplat$5 = [...tmpArrPatternStep$3];
+const tmpArrPatternStep$5 = tmpArrPatternSplat$5[0];
+let tmpObjPatternCrashTest = tmpArrPatternStep$5 === undefined;
+if (tmpObjPatternCrashTest) {
+} else {
+  tmpObjPatternCrashTest = tmpArrPatternStep$5 === null;
+}
+if (tmpObjPatternCrashTest) {
+  tmpObjPatternCrashTest = tmpArrPatternStep$5.cannotDestructureThis;
+  $(`ok`);
+} else {
+  $(`ok`);
+}
+`````
+
+
 ## Todos triggered
 
 

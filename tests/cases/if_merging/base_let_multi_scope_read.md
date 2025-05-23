@@ -126,6 +126,46 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  $(`block inlinine`);
+  $(`block inlinine`);
+  $(`block inlinine`);
+  const tmpReturnArg = $(x);
+  return tmpReturnArg;
+};
+let x = undefined;
+const tmpIfTest = $(true);
+if (tmpIfTest) {
+  const tmpUnaryArg = $(true);
+  x = !tmpUnaryArg;
+} else {
+  const tmpUnaryArg$1 = $(false);
+  x = !tmpUnaryArg$1;
+}
+if (x) {
+  $(`a`);
+} else {
+  $(`b`);
+}
+if (x) {
+  $(`d`);
+  f();
+  f();
+  f();
+} else {
+  $(`c`);
+  f();
+  f();
+  f();
+}
+`````
+
+
 ## Todos triggered
 
 

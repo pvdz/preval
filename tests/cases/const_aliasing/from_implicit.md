@@ -42,6 +42,17 @@ $( unknown, unknown );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmp = unknown;
+const x = tmp;
+const y = tmp;
+$(x, tmp);
+`````
+
+
 ## Todos triggered
 
 

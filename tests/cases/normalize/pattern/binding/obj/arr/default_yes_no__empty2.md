@@ -65,6 +65,24 @@ $( "ok" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpBindingPatternObjRoot = 1;
+const tmpOPBD = tmpBindingPatternObjRoot.x;
+let tmpOPAD = undefined;
+const tmpIfTest = tmpOPBD === undefined;
+if (tmpIfTest) {
+  tmpOPAD = [`fail`];
+} else {
+  tmpOPAD = tmpOPBD;
+}
+const tmpArrPatternSplat = [...tmpOPAD];
+$(`ok`);
+`````
+
+
 ## Todos triggered
 
 

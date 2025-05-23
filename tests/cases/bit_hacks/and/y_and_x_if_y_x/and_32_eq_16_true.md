@@ -65,6 +65,22 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const spy = $spy(33);
+const x = spy & 32;
+if (x) {
+  let tmpCalleeParam = spy === 16;
+  $(`pass`, tmpCalleeParam);
+} else {
+  let tmpCalleeParam$1 = spy === 16;
+  $(`fail`, tmpCalleeParam$1);
+}
+`````
+
+
 ## Todos triggered
 
 

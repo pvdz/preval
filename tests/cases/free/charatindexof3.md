@@ -158,6 +158,51 @@ $( s );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpFree$1 = function $free() {
+  debugger;
+  const tmpMCF = tmpCalleeParam$5.charAt;
+  const tmpSaooB = $dotCall(tmpMCF, tmpCalleeParam$5, `charAt`, 0);
+  const tmpMCF$1 = $string_indexOf;
+  const tmpRet$1 = $dotCall($string_indexOf, `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`, `indexOf`, tmpSaooB);
+  return tmpRet$1;
+};
+const tmpFree = function $free() {
+  debugger;
+  const tmpMCF$3 = tmpCalleeParam$1.charAt;
+  const tmpSaooB$1 = $dotCall(tmpMCF$3, tmpCalleeParam$1, `charAt`, 0);
+  const tmpMCF$5 = $string_indexOf;
+  const tmpRet = $dotCall($string_indexOf, `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`, `indexOf`, tmpSaooB$1);
+  return tmpRet;
+};
+const f = function ($$0) {
+  let $dlr_$$0 = $$0;
+  debugger;
+  const targetparam = $dlr_$$0;
+  const out = targetparam + b2;
+  unknown = $coerce(out, `plustr`);
+  return unknown;
+};
+const x = $(`co_rn`);
+const tmpCalleeParam$1 = $coerce(x, `string`);
+const tmpSaooB$4 = $frfr(tmpFree);
+const tmpMCF$7 = tmpCalleeParam$1.charAt;
+$dotCall(tmpMCF$7, tmpCalleeParam$1, `charAt`, 1);
+const tmpCalleeParam = f(tmpSaooB$4);
+$(tmpCalleeParam);
+const y = $(`m#az#e`);
+const tmpCalleeParam$5 = $coerce(y, `string`);
+const tmpSaooB$2 = $frfr(tmpFree$1);
+const tmpMCF$9 = tmpCalleeParam$5.charAt;
+$dotCall(tmpMCF$9, tmpCalleeParam$5, `charAt`, 1);
+const tmpCalleeParam$3 = f(tmpSaooB$2);
+$(tmpCalleeParam$3);
+`````
+
+
 ## Todos triggered
 
 

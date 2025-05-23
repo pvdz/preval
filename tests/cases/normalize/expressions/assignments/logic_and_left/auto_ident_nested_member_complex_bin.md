@@ -73,6 +73,37 @@ $( 7, a, d, 3, 4 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let b = { x: 1 };
+let c = { y: 2 };
+let d = 3;
+let e = 4;
+let a = { a: 999, b: 1000 };
+const tmpNestedAssignComMemberObj = $(b);
+const tmpNestedAssignComMemberProp = $(`x`);
+const tmpInitAssignLhsComputedObj = $(c);
+const tmpInitAssignLhsComputedProp = $(`y`);
+const tmpInitAssignLhsComputedRhs = d + e;
+tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = tmpInitAssignLhsComputedRhs;
+const tmpNestedAssignPropRhs = tmpInitAssignLhsComputedRhs;
+const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
+tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
+a = tmpNestedPropAssignRhs;
+let tmpCalleeParam = a;
+if (tmpCalleeParam) {
+  tmpCalleeParam = $(100);
+  $(tmpCalleeParam);
+  $(a, b, c, d, e);
+} else {
+  $(tmpCalleeParam);
+  $(a, b, c, d, e);
+}
+`````
+
+
 ## Todos triggered
 
 

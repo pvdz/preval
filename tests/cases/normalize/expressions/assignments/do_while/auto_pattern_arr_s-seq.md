@@ -62,6 +62,31 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let tmpBindingPatternArrRoot = { a: 999, b: 1000 };
+let tmpArrPatternSplat = [...tmpBindingPatternArrRoot];
+let a = tmpArrPatternSplat[0];
+while (true) {
+  $(100);
+  let tmpIfTest = undefined;
+  $(10);
+  $(20);
+  const tmpNestedAssignArrPatternRhs = [1, 2];
+  const tmpArrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
+  a = tmpArrPatternSplat$1[0];
+  tmpIfTest = tmpNestedAssignArrPatternRhs;
+  if (tmpIfTest) {
+  } else {
+    break;
+  }
+}
+$(a);
+`````
+
+
 ## Todos triggered
 
 

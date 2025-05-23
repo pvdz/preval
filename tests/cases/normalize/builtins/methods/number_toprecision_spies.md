@@ -49,6 +49,19 @@ $( c );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const x = $spy(`a`);
+const y = $spy(`b`);
+const tmpMCF = $number_toPrecision;
+$dotCall($number_toPrecision, 200, `toPrecision`, x, y);
+let tmpCalleeParam = $Number_prototype.foo;
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

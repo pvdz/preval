@@ -111,6 +111,39 @@ $( a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  while (true) {
+    const tmpIfTest = $(true);
+    if (tmpIfTest) {
+      $(`loop`);
+      while (true) {
+        const tmpIfTest$1 = $(true);
+        if (tmpIfTest$1) {
+          $(`loop`);
+          const tmpReturnArg = $(100, `return`);
+          return tmpReturnArg;
+        } else {
+          break;
+        }
+      }
+      $(`do not visit, do not eliminate`);
+    } else {
+      break;
+    }
+  }
+  $(`after (not invoked)`);
+  return undefined;
+};
+let tmpCalleeParam = f();
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

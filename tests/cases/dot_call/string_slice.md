@@ -40,6 +40,17 @@ $( "rl" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const str = `worldy`;
+const tmpCallVal = str.slice;
+const x = $dotCall(tmpCallVal, str, `slice`, 2, 4);
+$(x);
+`````
+
+
 ## Todos triggered
 
 

@@ -99,6 +99,31 @@ $( k );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const spy = {
+  valueOf() {
+    debugger;
+    return `a`;
+  },
+  toString() {
+    debugger;
+    return `b`;
+  },
+};
+const tmpStringConcatL = $coerce(spy, `plustr`);
+const tmpBinBothLhs = `a${tmpStringConcatL}`;
+const tmpBinBothLhs$1 = `a`;
+const tmpBinBothRhs$1 = $coerce(spy, `string`);
+const tmpBinLhs = tmpBinBothLhs$1 + tmpBinBothRhs$1;
+const tmpBinBothRhs = $coerce(tmpBinLhs, `plustr`);
+let tmpCalleeParam = tmpBinBothLhs === tmpBinBothRhs;
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

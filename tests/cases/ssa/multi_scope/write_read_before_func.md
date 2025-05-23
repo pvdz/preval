@@ -81,6 +81,31 @@ if (b) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const x = $(`a`);
+let y = x === `undefined`;
+const g = function () {
+  debugger;
+  const tmpAssignRhsProp$105 = tmpthis$63.getInitialState;
+  y = tmpAssignRhsProp$105._isMockFunction;
+  if (y) {
+    $(1);
+    return undefined;
+  } else {
+    $(2);
+    return undefined;
+  }
+};
+if (y) {
+  g();
+} else {
+}
+`````
+
+
 ## Todos triggered
 
 

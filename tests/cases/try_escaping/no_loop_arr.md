@@ -106,6 +106,69 @@ $( a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const arr = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`];
+let tmpCalleeParam = arr[0];
+$(tmpCalleeParam);
+try {
+  const a = arr[286];
+  const b = $Number_parseInt(a);
+  const c = b / 1;
+  const d = arr[181];
+  const e = $Number_parseInt(d);
+  const f = -e;
+  const g = f / 2;
+  const h = arr[308];
+  const i = $Number_parseInt(h);
+  const j = -i;
+  const k = j / 3;
+  const l = g * k;
+  const m = c + l;
+  const n = arr[32];
+  const o = $Number_parseInt(n);
+  const p = -o;
+  const q = p / 4;
+  const r = m + q;
+  const s = arr[86];
+  const t = $Number_parseInt(s);
+  const u = t / 5;
+  const v = r + u;
+  const w = arr[87];
+  const x = $Number_parseInt(w);
+  const y = x / 6;
+  const z = v + y;
+  const A = arr[30];
+  const B = $Number_parseInt(A);
+  const C = -B;
+  const D = C / 7;
+  const E = z + D;
+  const F = arr[356];
+  const G = $Number_parseInt(F);
+  const H = -G;
+  const I = H / 8;
+  const K = E + I;
+  const L = K === 644244;
+  if (L) {
+    $(`FAIL`);
+  } else {
+    const tmpMCF = arr.shift;
+    const M = $dotCall(tmpMCF, arr, `shift`);
+    const tmpMCF$1 = arr.push;
+    $dotCall(tmpMCF$1, arr, `push`, M);
+  }
+} catch (P) {
+  const tmpMCF$3 = arr.shift;
+  const N = $dotCall(tmpMCF$3, arr, `shift`);
+  const tmpMCF$5 = arr.push;
+  $dotCall(tmpMCF$5, arr, `push`, N);
+}
+$(arr);
+`````
+
+
 ## Todos triggered
 
 

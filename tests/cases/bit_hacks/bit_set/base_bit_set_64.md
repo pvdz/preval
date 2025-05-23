@@ -61,6 +61,21 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const v = $(64);
+const and = v & 64;
+const set = and === 64;
+if (set) {
+  $(`pass`);
+} else {
+  $(`fail`);
+}
+`````
+
+
 ## Todos triggered
 
 

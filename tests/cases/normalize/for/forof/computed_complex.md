@@ -88,6 +88,32 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let a = {};
+let b = { x: 1, y: 2 };
+let tmpCalleeParam = $(b);
+const tmpForOfGen = $forOf(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForOfNext = tmpForOfGen();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    const tmpAssignComMemLhsObj = $(a);
+    const tmpAssignComMemLhsProp = $(`foo`);
+    const tmpAssignComputedObj = tmpAssignComMemLhsObj;
+    const tmpAssignComputedProp = tmpAssignComMemLhsProp;
+    const tmpAssignComputedRhs = tmpForOfNext.value;
+    tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+    $(a);
+  }
+}
+`````
+
+
 ## Todos triggered
 
 

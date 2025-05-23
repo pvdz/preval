@@ -77,6 +77,33 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  let tmpCalleeParam = [1, 2];
+  const tmpForOfGenNext = $forOf(tmpCalleeParam);
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    const tmpForOfNext = tmpForOfGenNext();
+    const tmpIfTest = tmpForOfNext.done;
+    if (tmpIfTest) {
+      break;
+    } else {
+      let x = tmpForOfNext.value;
+      $(`for`, x);
+      return undefined;
+    }
+  }
+  $(`unreachable (but keep because the for body may not be visited...)`);
+  return undefined;
+};
+let tmpCalleeParam$1 = f();
+$(tmpCalleeParam$1);
+`````
+
+
 ## Todos triggered
 
 

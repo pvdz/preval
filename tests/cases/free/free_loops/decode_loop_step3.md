@@ -70,6 +70,57 @@ $( 72537 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const freeFunc1 = function $free($$0, $$1) {
+  let tmpClusterSSA__0x11AE1$3 = $$0;
+  let _0x11B11$3 = $$1;
+  debugger;
+  const tmpBinBothLhs = _0x11B11$3;
+  const tmpBinBothRhs = tmpClusterSSA__0x11AE1$3 + 287;
+  const tmp = tmpBinBothLhs * tmpBinBothRhs;
+  return tmp;
+};
+const freeFunc2 = function $free($$0, $$1) {
+  let tmpClusterSSA__0x11AE1$1 = $$0;
+  let _0x11B11$1 = $$1;
+  debugger;
+  const tmpBinBothLhs$1 = _0x11B11$1;
+  const tmpBinBothRhs$1 = tmpClusterSSA__0x11AE1$1 + 356;
+  const tmp$1 = tmpBinBothLhs$1 * tmpBinBothRhs$1;
+  return tmp$1;
+};
+let limiter = 1;
+let counter = 0;
+const _0x11B59 = [`p`, `s`, `e`];
+while (true) {
+  const tmpIfTest = counter < 2;
+  if (tmpIfTest) {
+    const a = $frfr(freeFunc1, counter, limiter);
+    const a2 = limiter % 41344;
+    const b = $frfr(freeFunc2, counter, limiter);
+    const b2 = limiter % 16941;
+    const aa2 = a + a2;
+    const a3 = aa2 % 8882;
+    const chr_a3 = _0x11B59[a3];
+    const bb2 = b + b2;
+    const b3 = bb2 % 8882;
+    const chr_b3 = _0x11B59[b3];
+    _0x11B59[a3] = chr_b3;
+    _0x11B59[b3] = chr_a3;
+    const tmpBinLhs = aa2 + bb2;
+    limiter = tmpBinLhs % 1973047;
+    counter = counter + 1;
+  } else {
+    break;
+  }
+}
+$(72537);
+`````
+
+
 ## Todos triggered
 
 

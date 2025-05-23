@@ -41,6 +41,27 @@ throw "[Preval]: Can not reach here";
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpAssignObjPatternRhs = null;
+const tmpOPBD = tmpAssignObjPatternRhs.x;
+let tmpOPAD = undefined;
+const tmpIfTest = tmpOPBD === undefined;
+if (tmpIfTest) {
+  let tmpCalleeParam = { a: `fail` };
+  tmpOPAD = $(tmpCalleeParam);
+} else {
+  tmpOPAD = tmpOPBD;
+}
+let tmpCalleeParam$1 = tmpOPAD;
+let tmpCalleeParam$3 = [];
+y = $objPatternRest(tmpCalleeParam$1, tmpCalleeParam$3, undefined);
+$(`bad`);
+`````
+
+
 ## Todos triggered
 
 

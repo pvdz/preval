@@ -55,6 +55,22 @@ if (b) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = 1;
+const tmpSwitchDisc = x;
+const tmpBinBothLhs = tmpSwitchDisc;
+const tmpBinBothRhs = $(1);
+const tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
+if (tmpIfTest) {
+  $(`A`);
+} else {
+}
+`````
+
+
 ## Todos triggered
 
 

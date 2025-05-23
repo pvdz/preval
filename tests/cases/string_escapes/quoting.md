@@ -49,6 +49,17 @@ eval( "hello\\\"\\`world\"" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+eval(`hello"\`world"`);
+eval(`hello"'world"`);
+eval(`hello'\`world'`);
+eval(`hello\\"\\\`world"`);
+`````
+
+
 ## Todos triggered
 
 

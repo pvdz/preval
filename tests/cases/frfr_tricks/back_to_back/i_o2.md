@@ -57,6 +57,30 @@ $( b );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let g = function $free($$0) {
+  let $dlr_$$0 = $$0;
+  debugger;
+  let x$1 = $dlr_$$0;
+  const r = $frfr(f, $dlr_$$0);
+  return r;
+};
+const f = function $free($$0, $$1) {
+  let $dlr_$$1 = $$0;
+  let $dlr_$$3 = $$1;
+  debugger;
+  return $dlr_$$1;
+};
+const x = $();
+let xs = $coerce(x, `plustr`);
+let rs = $frfr(g, xs);
+$(rs);
+`````
+
+
 ## Todos triggered
 
 

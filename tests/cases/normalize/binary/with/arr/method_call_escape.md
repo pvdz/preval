@@ -61,6 +61,23 @@ $( e );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpArrElement = function () {
+  const tmpPrevalAliasThis = this;
+  debugger;
+  return tmpPrevalAliasThis;
+};
+const arr = [tmpArrElement];
+const tmpMCF = arr[0];
+const tmpBinLhs = $dotCall(tmpMCF, arr, undefined);
+let tmpCalleeParam = tmpBinLhs === arr;
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

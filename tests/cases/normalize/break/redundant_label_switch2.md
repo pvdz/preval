@@ -177,6 +177,61 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = $(2);
+exit: {
+  const tmpSwitchValue = $(100);
+  let tmpSwitchCaseToStart = 3;
+  const tmpIfTest = 1 === tmpSwitchValue;
+  tmpSwitchBreak: {
+    if (tmpIfTest) {
+      tmpSwitchCaseToStart = 0;
+    } else {
+      const tmpIfTest$1 = 2 === tmpSwitchValue;
+      if (tmpIfTest$1) {
+        tmpSwitchCaseToStart = 1;
+      } else {
+        const tmpIfTest$3 = 100 === tmpSwitchValue;
+        if (tmpIfTest$3) {
+          tmpSwitchCaseToStart = 2;
+        } else {
+        }
+      }
+    }
+    const tmpIfTest$5 = tmpSwitchCaseToStart <= 0;
+    if (tmpIfTest$5) {
+      $(1);
+      break tmpSwitchBreak;
+    } else {
+      const tmpIfTest$7 = tmpSwitchCaseToStart <= 1;
+      if (tmpIfTest$7) {
+        $(2);
+      } else {
+      }
+      const tmpIfTest$9 = tmpSwitchCaseToStart <= 2;
+      if (tmpIfTest$9) {
+        $(`yo`);
+        const tmpIfTest$11 = $(1);
+        if (tmpIfTest$11) {
+          x = $(3);
+        } else {
+        }
+        if (x) {
+          break exit;
+        } else {
+          x = $(4);
+        }
+      } else {
+      }
+    }
+  }
+}
+`````
+
+
 ## Todos triggered
 
 

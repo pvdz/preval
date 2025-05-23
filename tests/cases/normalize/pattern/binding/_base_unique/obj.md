@@ -39,6 +39,17 @@ $Number_prototype.x;
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x$1 = 1;
+const tmpBindingPatternObjRoot = 1;
+const x = tmpBindingPatternObjRoot.x;
+let x$3 = 1;
+`````
+
+
 ## Todos triggered
 
 

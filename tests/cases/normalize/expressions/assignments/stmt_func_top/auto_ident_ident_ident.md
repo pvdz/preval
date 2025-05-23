@@ -48,6 +48,25 @@ $( undefined );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  let b = 1;
+  let c = 2;
+  let a = { a: 999, b: 1000 };
+  b = 2;
+  a = 2;
+  $(a, b, c);
+  return undefined;
+};
+let tmpCalleeParam = f();
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

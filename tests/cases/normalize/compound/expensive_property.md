@@ -50,6 +50,23 @@ a.x = c;
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let superExpensiveFunction = function () {
+  debugger;
+  const tmpReturnArg = $();
+  return tmpReturnArg;
+};
+const tmpAssignMemLhsObj = superExpensiveFunction();
+const tmpCompoundAssignLhs = tmpAssignMemLhsObj.x;
+const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
+const tmpAssignMemRhs = tmpCompoundAssignLhs + 5;
+tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
+`````
+
+
 ## Todos triggered
 
 

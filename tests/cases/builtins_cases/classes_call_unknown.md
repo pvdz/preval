@@ -117,6 +117,41 @@ $( "JSON:", z );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let tmpCalleeParam = $boolean_constructor(a);
+$(`Boolean:`, tmpCalleeParam);
+const tmpNumberFirstArg = b;
+let tmpCalleeParam$1 = $coerce(b, `number`);
+$(`Number:`, tmpCalleeParam$1);
+const tmpStringFirstArg = c;
+let tmpCalleeParam$3 = $coerce(c, `string`);
+$(`String:`, tmpCalleeParam$3);
+let tmpCalleeParam$5 = $array_constructor(d);
+$(`Array:`, tmpCalleeParam$5);
+let tmpCalleeParam$7 = $object_constructor(e);
+$(`Object:`, tmpCalleeParam$7);
+let tmpCalleeParam$9 = $date_constructor(f);
+$(`Date:`, tmpCalleeParam$9);
+let tmpCalleeParam$11 = $function_constructor(g);
+$(`Function:`, tmpCalleeParam$11);
+let tmpCalleeParam$13 = $regex_constructor(h);
+$(`RegExp:`, tmpCalleeParam$13);
+let tmpCalleeParam$15 = $map_constructor(i);
+$(`Map:`, tmpCalleeParam$15);
+let tmpCalleeParam$17 = $set_constructor(j);
+$(`Set:`, tmpCalleeParam$17);
+let tmpCalleeParam$19 = $buffer_constructor(k);
+$(`Buffer:`, tmpCalleeParam$19);
+let tmpCalleeParam$21 = Math(l);
+$(`Math:`, tmpCalleeParam$21);
+let tmpCalleeParam$23 = JSON(m);
+$(`JSON:`, tmpCalleeParam$23);
+`````
+
+
 ## Todos triggered
 
 

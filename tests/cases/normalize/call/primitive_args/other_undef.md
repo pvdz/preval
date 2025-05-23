@@ -49,6 +49,21 @@ $( undefined );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let tmpCalleeParam = NaN;
+$($Number_NaN);
+let tmpCalleeParam$1 = -1;
+$(tmpCalleeParam$1);
+let tmpCalleeParam$3 = `undefined`;
+$(tmpCalleeParam$3);
+let tmpCalleeParam$5 = undefined;
+$(undefined);
+`````
+
+
 ## Todos triggered
 
 

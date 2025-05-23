@@ -96,6 +96,40 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let b = { c: 10, d: 20 };
+let a = { a: 999, b: 1000 };
+const tmpNestedAssignComMemberObj = b;
+const tmpNestedAssignComMemberProp = $(`c`);
+const tmpCompObj = $(b);
+const tmpCalleeParam$1 = $(`d`);
+const tmpNestedAssignPropRhs = tmpCompObj[tmpCalleeParam$1];
+const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
+tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
+a = tmpNestedPropAssignRhs;
+let tmpCalleeParam = a;
+if (tmpCalleeParam) {
+  const tmpInitAssignLhsComputedObj = b;
+  const tmpInitAssignLhsComputedProp = $(`c`);
+  const tmpCompObj$1 = $(b);
+  const tmpCalleeParam$3 = $(`d`);
+  const tmpInitAssignLhsComputedRhs = tmpCompObj$1[tmpCalleeParam$3];
+  tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = tmpInitAssignLhsComputedRhs;
+  const tmpNestedComplexRhs = tmpInitAssignLhsComputedRhs;
+  a = tmpNestedComplexRhs;
+  tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+  $(a, b);
+} else {
+  $(tmpCalleeParam);
+  $(a, b);
+}
+`````
+
+
 ## Todos triggered
 
 

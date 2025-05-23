@@ -159,6 +159,61 @@ $( x );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function ($$0) {
+  let x = $$0;
+  debugger;
+  $(`no`);
+  $(`inlining`);
+  $(`please`);
+  const y = x(1, `two`, foo, $Number_NaN);
+  return y;
+};
+const tmpCallCallee = f;
+let tmpCalleeParam$1 = function ($$0, $$1, $$2, $$3, $$4) {
+  let a = $$0;
+  let b = $$1;
+  let c = $$2;
+  let d = $$3;
+  let e = $$4;
+  debugger;
+  $(`pass1`, a, b, c, d, e);
+  return undefined;
+};
+let tmpCalleeParam = f(tmpCalleeParam$1);
+$(tmpCalleeParam);
+const tmpCallCallee$1 = f;
+let tmpCalleeParam$5 = function ($$0, $$1, $$2, $$3, $$4) {
+  let a$1 = $$0;
+  let b$1 = $$1;
+  let c$1 = $$2;
+  let d$1 = $$3;
+  let e$1 = $$4;
+  debugger;
+  $(`pass2`, a$1, b$1, c$1, d$1, e$1);
+  return undefined;
+};
+let tmpCalleeParam$3 = f(tmpCalleeParam$5);
+$(tmpCalleeParam$3);
+const tmpCallCallee$3 = f;
+let tmpCalleeParam$9 = function ($$0, $$1, $$2, $$3, $$4) {
+  let a$3 = $$0;
+  let b$3 = $$1;
+  let c$3 = $$2;
+  let d$3 = $$3;
+  let e$3 = $$4;
+  debugger;
+  $(`pass3`, a$3, b$3, c$3, d$3, e$3);
+  return undefined;
+};
+let tmpCalleeParam$7 = f(tmpCalleeParam$9);
+$(tmpCalleeParam$7);
+`````
+
+
 ## Todos triggered
 
 

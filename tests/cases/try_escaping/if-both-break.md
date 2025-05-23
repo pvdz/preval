@@ -51,6 +51,26 @@ $( 1 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const arr = [1, 2, 3];
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const x = $(1);
+  try {
+    if (x) {
+      break;
+    } else {
+      break;
+    }
+  } catch (e) {
+    $(`fail`);
+  }
+}
+`````
+
+
 ## Todos triggered
 
 

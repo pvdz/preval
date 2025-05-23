@@ -47,6 +47,17 @@ $( "boolean" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let tmpCalleeParam$1 = $spy(`isFinite`);
+const tmpUnaryArg = isFinite(tmpCalleeParam$1);
+let tmpCalleeParam = typeof tmpUnaryArg;
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

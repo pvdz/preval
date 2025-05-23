@@ -113,6 +113,41 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = $(2);
+const tmpNewCallee = Set;
+let tmpCalleeParam$3 = [`a`, `b`];
+let tmpCalleeParam$1 = new tmpNewCallee(tmpCalleeParam$3);
+let tmpCalleeParam = $(tmpCalleeParam$1);
+const tmpForOfGenNext = $forOf(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForOfNext = tmpForOfGenNext();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    const key = tmpForOfNext.value;
+    $continue: {
+      $(`key:`, key);
+      const tmpIfTest$1 = $(1);
+      if (tmpIfTest$1) {
+        x = $(3);
+      } else {
+      }
+      if (x) {
+        break $continue;
+      } else {
+        x = $(4);
+      }
+    }
+  }
+}
+`````
+
+
 ## Todos triggered
 
 

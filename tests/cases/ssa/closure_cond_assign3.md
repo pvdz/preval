@@ -73,6 +73,37 @@ if ($) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+if ($) {
+  let x = $();
+  let g = function ($$0) {
+    let t = $$0;
+    debugger;
+    const tmpBranchingC = function () {
+      debugger;
+      if ($) {
+        $(x);
+        return undefined;
+      } else {
+        return undefined;
+      }
+    };
+    if ($) {
+      tmpBranchingC();
+      return undefined;
+    } else {
+      return undefined;
+    }
+  };
+  g();
+} else {
+}
+`````
+
+
 ## Todos triggered
 
 

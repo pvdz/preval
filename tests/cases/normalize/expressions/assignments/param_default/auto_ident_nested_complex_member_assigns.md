@@ -107,6 +107,58 @@ $( 3, a, 3 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
+  let p = undefined;
+  const tmpIfTest = tmpParamBare === undefined;
+  if (tmpIfTest) {
+    const tmpInitAssignLhsComputedObj = $(b);
+    const tmpInitAssignLhsComputedProp = $(`x`);
+    const tmpInitAssignLhsComputedObj$1 = $(b);
+    const tmpInitAssignLhsComputedProp$1 = $(`x`);
+    const tmpInitAssignLhsComputedObj$3 = $(b);
+    const tmpInitAssignLhsComputedProp$3 = $(`x`);
+    const tmpInitAssignLhsComputedObj$5 = $(b);
+    const tmpInitAssignLhsComputedProp$5 = $(`x`);
+    const tmpInitAssignLhsComputedObj$7 = $(b);
+    const tmpInitAssignLhsComputedProp$7 = $(`x`);
+    const tmpInitAssignLhsComputedObj$9 = $(b);
+    const tmpInitAssignLhsComputedProp$9 = $(`x`);
+    const tmpInitAssignLhsComputedRhs$9 = c;
+    tmpInitAssignLhsComputedObj$9[tmpInitAssignLhsComputedProp$9] = tmpInitAssignLhsComputedRhs$9;
+    const tmpInitAssignLhsComputedRhs$7 = tmpInitAssignLhsComputedRhs$9;
+    tmpInitAssignLhsComputedObj$7[tmpInitAssignLhsComputedProp$7] = tmpInitAssignLhsComputedRhs$7;
+    const tmpInitAssignLhsComputedRhs$5 = tmpInitAssignLhsComputedRhs$7;
+    tmpInitAssignLhsComputedObj$5[tmpInitAssignLhsComputedProp$5] = tmpInitAssignLhsComputedRhs$5;
+    const tmpInitAssignLhsComputedRhs$3 = tmpInitAssignLhsComputedRhs$5;
+    tmpInitAssignLhsComputedObj$3[tmpInitAssignLhsComputedProp$3] = tmpInitAssignLhsComputedRhs$3;
+    const tmpInitAssignLhsComputedRhs$1 = tmpInitAssignLhsComputedRhs$3;
+    tmpInitAssignLhsComputedObj$1[tmpInitAssignLhsComputedProp$1] = tmpInitAssignLhsComputedRhs$1;
+    const tmpInitAssignLhsComputedRhs = tmpInitAssignLhsComputedRhs$1;
+    tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = tmpInitAssignLhsComputedRhs;
+    const tmpNestedComplexRhs = tmpInitAssignLhsComputedRhs;
+    a = tmpNestedComplexRhs;
+    p = tmpNestedComplexRhs;
+    return undefined;
+  } else {
+    p = tmpParamBare;
+    return undefined;
+  }
+};
+let b = { x: 1 };
+let c = 3;
+let a = { a: 999, b: 1000 };
+let tmpCalleeParam = f();
+$(tmpCalleeParam);
+$(a, b, c);
+`````
+
+
 ## Todos triggered
 
 

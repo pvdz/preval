@@ -66,6 +66,19 @@ $( a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = 0;
+try {
+  fail_early;
+  x = 1;
+} catch (e) {}
+$(x);
+`````
+
+
 ## Todos triggered
 
 

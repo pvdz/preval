@@ -82,6 +82,26 @@ export { a as default };
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+import { default as x } from 'x';
+let tmpCalleeParam = x();
+$(tmpCalleeParam);
+let tmpCalleeParam$1 = x.name;
+$(tmpCalleeParam$1);
+`````
+
+`````js filename=x
+const tmpAnonDefaultExport = function () {
+  debugger;
+  return 100;
+};
+export { tmpAnonDefaultExport as default };
+`````
+
+
 ## Todos triggered
 
 

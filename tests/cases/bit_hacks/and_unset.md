@@ -79,6 +79,26 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const a = x & 1;
+const atest = a === 0;
+if (atest) {
+  const b = x & 4;
+  const btest = b === 0;
+  if (btest) {
+    $(`yes`);
+  } else {
+    $(`no 2`);
+  }
+} else {
+  $(`no 1`);
+}
+`````
+
+
 ## Todos triggered
 
 

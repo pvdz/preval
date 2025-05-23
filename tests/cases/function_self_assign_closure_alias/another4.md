@@ -44,6 +44,26 @@ With rename=true
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let zzzz = function () {
+  debugger;
+  a = [1, 2, 3];
+  return a;
+};
+let a = undefined;
+const x = zzzz;
+zzzz();
+zzzz();
+x();
+x();
+x();
+zzzz();
+`````
+
+
 ## Todos triggered
 
 

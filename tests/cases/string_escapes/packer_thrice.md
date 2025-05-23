@@ -399,6 +399,129 @@ eval( bq );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpCallComplexCallee = function ($$0, $$1, $$2, $$3, $$4, $$5) {
+  let p = $$0;
+  let a = $$1;
+  let c = $$2;
+  let k = $$3;
+  let e = $$4;
+  let r = $$5;
+  debugger;
+  e = function ($$0) {
+    let c$1 = $$0;
+    debugger;
+    let tmpBinBothLhs = undefined;
+    const tmpIfTest = c$1 < a;
+    if (tmpIfTest) {
+      tmpBinBothLhs = ``;
+    } else {
+      const tmpCallCallee = e;
+      let tmpCalleeParam$3 = c$1 / a;
+      let tmpCalleeParam$1 = $Number_parseInt(tmpCalleeParam$3);
+      tmpBinBothLhs = e(tmpCalleeParam$1);
+    }
+    let tmpBinBothRhs = undefined;
+    c$1 = c$1 % a;
+    const tmpBinLhs = c$1;
+    const tmpIfTest$1 = tmpBinLhs > 35;
+    if (tmpIfTest$1) {
+      const tmpMCF = $String_fromCharCode;
+      const tmpMCP = c$1 + 29;
+      tmpBinBothRhs = $dotCall(tmpMCF, $string_constructor, `fromCharCode`, tmpMCP);
+    } else {
+      const tmpMCF$1 = c$1.toString;
+      tmpBinBothRhs = $dotCall(tmpMCF$1, c$1, `toString`, 36);
+    }
+    const tmpReturnArg = tmpBinBothLhs + tmpBinBothRhs;
+    return tmpReturnArg;
+  };
+  const tmpMCF$3 = $string_replace;
+  const tmpMCP$1 = new $regex_constructor(`^`, ``);
+  const tmpIfTest$3 = $dotCall(tmpMCF$3, ``, `replace`, tmpMCP$1, $string_constructor);
+  if (tmpIfTest$3) {
+  } else {
+    while (true) {
+      const tmpPostUpdArgIdent = $coerce(c, `number`);
+      c = tmpPostUpdArgIdent - 1;
+      const tmpIfTest$5 = tmpPostUpdArgIdent;
+      if (tmpIfTest$5) {
+        const tmpAssignComMemLhsObj = r;
+        const tmpAssignComMemLhsProp = e(c);
+        const tmpAssignComputedObj = tmpAssignComMemLhsObj;
+        const tmpAssignComputedProp = tmpAssignComMemLhsProp;
+        let tmpAssignComputedRhs = k[c];
+        if (tmpAssignComputedRhs) {
+        } else {
+          tmpAssignComputedRhs = e(c);
+        }
+        tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+      } else {
+        break;
+      }
+    }
+    const tmpArrElement = function ($$0) {
+      let e$1 = $$0;
+      debugger;
+      const tmpReturnArg$1 = r[e$1];
+      return tmpReturnArg$1;
+    };
+    k = [tmpArrElement];
+    e = function () {
+      debugger;
+      return `\\w+`;
+    };
+    c = 1;
+  }
+  while (true) {
+    const tmpPostUpdArgIdent$1 = $coerce(c, `number`);
+    c = tmpPostUpdArgIdent$1 - 1;
+    const tmpIfTest$7 = tmpPostUpdArgIdent$1;
+    if (tmpIfTest$7) {
+      const tmpIfTest$9 = k[c];
+      if (tmpIfTest$9) {
+        const tmpMCF$5 = p.replace;
+        const tmpNewCallee = RegExp;
+        const tmpBinBothLhs$1 = `\\b`;
+        const tmpBinBothRhs$1 = e(c);
+        const tmpBinLhs$1 = tmpBinBothLhs$1 + tmpBinBothRhs$1;
+        const tmpStringConcatR = $coerce(tmpBinLhs$1, `plustr`);
+        let tmpCalleeParam$5 = `${tmpStringConcatR}\\b`;
+        const tmpMCP$3 = new tmpNewCallee(tmpCalleeParam$5, `g`);
+        const tmpMCP$5 = k[c];
+        p = $dotCall(tmpMCF$5, p, `replace`, tmpMCP$3, tmpMCP$5);
+      } else {
+      }
+    } else {
+      break;
+    }
+  }
+  return p;
+};
+const tmpCallCallee$1 = tmpCallComplexCallee;
+const tmpMCF$7 = $string_split;
+let tmpCalleeParam$7 = $dotCall(
+  $string_split,
+  `||||||||||||||||||||||||||||function|return|if|replace||while|eval|String|new|RegExp|28|split|toString|console|log|bo|x20o`,
+  `split`,
+  `|`,
+);
+let tmpCalleeParam$9 = {};
+let tmpCalleeParam = tmpCallComplexCallee(
+  `y(s(p,a,c,k,e,r){e=s(c){t c.E(a)};u(!''.v(/^/,z)){x(c--)r[e(c)]=k[c]||e(c);k=[s(e){t r[e]}];e=s(){t'\\\\w+'};c=1};x(c--)u(k[c])p=p.v(A B('\\\\b'+e(c)+'\\\\b','g'),k[c]);t p}('f(5(p,a,c,k,e,r){e=7;8(!\\'\\'.9(/^/,7)){d(c--)r[c]=k[c]||c;k=[5(e){6 r[e]}];e=5(){6\\'\\\\\\\\h+\\'};c=1};d(c--)8(k[c])p=p.9(i j(\\'\\\\\\\\b\\'+e(c)+\\'\\\\\\\\b\\',\\'g\\'),k[c]);6 p}(\\'0.1(\\\\\\'2\\\\\\\\\`\\\\\\\\\\\\\\'\\\\\\\\"\\\\\\\\3\\\\\\')\\',4,4,\\'l|m|n|o\\'.q(\\'|\\'),0,{}))',C,C,'|||||s|t|z|u|v||||x||y||w|A|B||F|G|H|I||D|'.D('|'),0,{}))`,
+  45,
+  45,
+  tmpCalleeParam$7,
+  0,
+  tmpCalleeParam$9,
+);
+eval(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

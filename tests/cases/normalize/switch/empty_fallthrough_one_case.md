@@ -46,6 +46,18 @@ $();
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpSwitchDisc = $(1);
+const tmpBinBothLhs = tmpSwitchDisc;
+const tmpBinBothRhs = $spy(0);
+const tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
+$();
+`````
+
+
 ## Todos triggered
 
 

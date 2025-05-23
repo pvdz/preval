@@ -87,6 +87,26 @@ catch (a) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+try {
+  if ($) {
+    throw `pass`;
+  } else {
+    $(`fail`);
+  }
+} catch (e) {
+  try {
+    $(`inner`);
+  } catch (e$1) {
+    $(`outer`);
+  }
+}
+`````
+
+
 ## Todos triggered
 
 

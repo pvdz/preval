@@ -43,6 +43,17 @@ $dotCall( $string_replace, "", "replace", a, b );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const x = $spy(`a`);
+const y = $(`b`);
+const tmpMCF = $string_replace;
+$dotCall($string_replace, ``, `replace`, x, y);
+`````
+
+
 ## Todos triggered
 
 

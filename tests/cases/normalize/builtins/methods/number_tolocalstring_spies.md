@@ -46,6 +46,17 @@ $dotCall( $number_toLocaleString, 200, "toLocaleString", a, b );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const x = $spy(`a`);
+const y = $spy(`b`);
+const tmpMCF = $number_toLocaleString;
+$dotCall($number_toLocaleString, 200, `toLocaleString`, x, y);
+`````
+
+
 ## Todos triggered
 
 

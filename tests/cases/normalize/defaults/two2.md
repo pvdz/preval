@@ -122,6 +122,43 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const outer = function ($$0) {
+  let x = $$0;
+  debugger;
+  const r = [x];
+  $(r);
+  return undefined;
+};
+let main = function () {
+  debugger;
+  const inner = function ($$0) {
+    let x$1 = $$0;
+    debugger;
+    outer();
+    if ($) {
+      outer(x$1);
+      return undefined;
+    } else {
+      return undefined;
+    }
+  };
+  inner();
+  if ($) {
+    inner();
+    return undefined;
+  } else {
+    return undefined;
+  }
+};
+const tmpCalleeParam = main();
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

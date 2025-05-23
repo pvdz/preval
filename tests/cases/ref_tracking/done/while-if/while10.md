@@ -184,6 +184,30 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = 1;
+if ($) {
+  while (true) {
+    nestedLoop: {
+      if ($) {
+        $(x);
+      } else {
+        $(x);
+        x = 2;
+        break nestedLoop;
+      }
+    }
+  }
+} else {
+  $(`oh`);
+  $(`end`, x);
+}
+`````
+
+
 ## Todos triggered
 
 

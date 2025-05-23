@@ -68,6 +68,30 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let check = function ($$0) {
+  let r = $$0;
+  debugger;
+  let tmpCalleeParam = r.foo;
+  $(tmpCalleeParam);
+  return undefined;
+};
+let x = new $regex_constructor(`foo`, ``);
+while (true) {
+  if (x) {
+    check(x);
+    x = new $regex_constructor(`foo`, ``);
+    x.foo = `object`;
+  } else {
+    break;
+  }
+}
+`````
+
+
 ## Todos triggered
 
 

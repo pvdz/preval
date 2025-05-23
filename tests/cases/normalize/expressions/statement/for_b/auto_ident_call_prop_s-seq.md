@@ -84,6 +84,26 @@ $( e );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let b = { $: $ };
+let a = { a: 999, b: 1000 };
+while (true) {
+  const tmpMCOO = b;
+  const tmpMCF = tmpMCOO.$;
+  const tmpIfTest = $dotCall(tmpMCF, tmpMCOO, `\$`, 1);
+  if (tmpIfTest) {
+    $(1);
+  } else {
+    break;
+  }
+}
+$(a);
+`````
+
+
 ## Todos triggered
 
 

@@ -93,6 +93,31 @@ $( "outer", d );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let A = class {
+  constructor() {
+    debugger;
+    $(`cA`);
+    return undefined;
+  }
+};
+let B = class extends A {
+  constructor() {
+    debugger;
+    let tmpCalleeParam = super();
+    $(`inner`, tmpCalleeParam);
+    $(`cB`);
+    return undefined;
+  }
+};
+let tmpCalleeParam$1 = new B();
+$(`outer`, tmpCalleeParam$1);
+`````
+
+
 ## Todos triggered
 
 

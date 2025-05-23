@@ -40,6 +40,17 @@ $( "-500" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const num = -500;
+const tmpCallVal = num.toString;
+const x = $dotCall(tmpCallVal, num, `toString`);
+$(x);
+`````
+
+
 ## Todos triggered
 
 

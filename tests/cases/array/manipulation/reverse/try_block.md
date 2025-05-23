@@ -77,6 +77,25 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const arr = [1, 2, 3];
+const obj = { [`1,2,3`]: `pass` };
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  try {
+    let tmpCalleeParam = obj[arr];
+    $(tmpCalleeParam);
+    const tmpMCF = arr.reverse;
+    $dotCall(tmpMCF, arr, `reverse`);
+  } catch (e) {
+    $(`fail`);
+  }
+}
+`````
+
+
 ## Todos triggered
 
 

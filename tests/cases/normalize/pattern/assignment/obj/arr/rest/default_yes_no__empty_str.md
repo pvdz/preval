@@ -69,6 +69,27 @@ $( y );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpAssignObjPatternRhs = ``;
+const tmpOPBD = tmpAssignObjPatternRhs.x;
+let tmpOPAD = undefined;
+const tmpIfTest = tmpOPBD === undefined;
+if (tmpIfTest) {
+  let tmpCalleeParam = [`pass`];
+  tmpOPAD = $(tmpCalleeParam);
+} else {
+  tmpOPAD = tmpOPBD;
+}
+const tmpArrPatternSplat = [...tmpOPAD];
+const tmpMCF = tmpArrPatternSplat.slice;
+y = $dotCall(tmpMCF, tmpArrPatternSplat, `slice`, 0);
+$(y);
+`````
+
+
 ## Todos triggered
 
 

@@ -42,6 +42,18 @@ $( "boolean" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpMCF = $Object_is;
+const tmpMCP = $spy(`Object.is`);
+const tmpUnaryArg = $dotCall(tmpMCF, $object_constructor, `is`, tmpMCP);
+let tmpCalleeParam = typeof tmpUnaryArg;
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

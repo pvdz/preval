@@ -85,6 +85,35 @@ $( e, "closure-global2" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let closure = function () {
+  debugger;
+  const tmpReturnArg = $(x, `closure-return`);
+  return tmpReturnArg;
+};
+let f = function () {
+  debugger;
+  const tmpIfTest = $();
+  if (tmpIfTest) {
+    const tmpReturnArg$1 = $(1, `f-return`);
+    return tmpReturnArg$1;
+  } else {
+    return undefined;
+  }
+};
+let x = $(100, `init`);
+let tmpCalleeParam = closure();
+$(tmpCalleeParam, `closure-global1`);
+x = f();
+$(x, `x-global`);
+let tmpCalleeParam$1 = closure();
+$(tmpCalleeParam$1, `closure-global2`);
+`````
+
+
 ## Todos triggered
 
 

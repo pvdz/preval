@@ -61,6 +61,23 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = undefined;
+const tmpIfTest = $(true);
+if (tmpIfTest) {
+  x = 100;
+} else {
+  x = 200;
+}
+const tmpStringConcatR = $coerce(x, `plustr`);
+const y = `${tmpStringConcatR}right`;
+$(y);
+`````
+
+
 ## Todos triggered
 
 

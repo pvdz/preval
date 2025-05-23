@@ -79,6 +79,28 @@ $( e, a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let b = 1;
+let a = { a: 999, b: 1000 };
+b = $(2);
+let tmpCalleeParam = b;
+const tmpForInGen = $forIn(b);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext = tmpForInGen();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    let x = tmpForInNext.value;
+  }
+}
+$(a, b);
+`````
+
+
 ## Todos triggered
 
 

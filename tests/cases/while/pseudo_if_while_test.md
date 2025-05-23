@@ -107,6 +107,41 @@ $( e );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let chk = true;
+const x = $(1);
+let test = $(x);
+if (test) {
+  $(100);
+  test = true;
+} else {
+  chk = false;
+}
+if (chk) {
+  while ($LOOP_UNROLL_10) {
+    if (test) {
+      const y = $(1);
+      test = $(y);
+      if (test) {
+        $(100);
+        test = true;
+      } else {
+        break;
+      }
+    } else {
+      break;
+    }
+  }
+} else {
+}
+const a = { a: 999, b: 1000 };
+$(a);
+`````
+
+
 ## Todos triggered
 
 

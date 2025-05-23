@@ -82,6 +82,42 @@ a( "first2", 3, "last2", 4, true, null );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function ($$0, $$1, $$2) {
+  let x = $$0;
+  let obj = $$1;
+  let y = $$2;
+  debugger;
+  let tmpCalleeParam = x;
+  let tmpCalleeParam$1 = y;
+  let tmpCalleeParam$3 = obj.a;
+  $(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
+  let tmpCalleeParam$5 = x;
+  let tmpCalleeParam$7 = y;
+  let tmpCalleeParam$9 = obj.b;
+  $(tmpCalleeParam$5, tmpCalleeParam$7, tmpCalleeParam$9);
+  let tmpCalleeParam$11 = x;
+  let tmpCalleeParam$13 = y;
+  let tmpCalleeParam$15 = obj.c;
+  $(tmpCalleeParam$11, tmpCalleeParam$13, tmpCalleeParam$15);
+  let tmpCalleeParam$17 = x;
+  let tmpCalleeParam$19 = y;
+  let tmpCalleeParam$21 = obj.d;
+  $(tmpCalleeParam$17, tmpCalleeParam$19, tmpCalleeParam$21);
+  return undefined;
+};
+const tmpCallCallee = f;
+let tmpCalleeParam$23 = { a: 1, b: 2, c: `hi`, d: parseInt };
+f(`first1`, tmpCalleeParam$23, `last1`);
+const tmpCallCallee$1 = f;
+let tmpCalleeParam$25 = { a: 3, b: 4, c: true, d: null };
+f(`first2`, tmpCalleeParam$25, `last2`);
+`````
+
+
 ## Todos triggered
 
 

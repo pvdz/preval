@@ -203,6 +203,79 @@ $( undefined );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  let tmpSwitchValue = $(1);
+  let tmpSwitchCaseToStart = 4;
+  const tmpIfTest = 0 === tmpSwitchValue;
+  if (tmpIfTest) {
+    tmpSwitchCaseToStart = 0;
+  } else {
+    const tmpIfTest$1 = 1 === tmpSwitchValue;
+    if (tmpIfTest$1) {
+      tmpSwitchCaseToStart = 1;
+    } else {
+      const tmpIfTest$3 = 2 === tmpSwitchValue;
+      if (tmpIfTest$3) {
+        tmpSwitchCaseToStart = 2;
+      } else {
+        const tmpIfTest$5 = 3 === tmpSwitchValue;
+        if (tmpIfTest$5) {
+          tmpSwitchCaseToStart = 3;
+        } else {
+        }
+      }
+    }
+  }
+  const tmpIfTest$7 = tmpSwitchCaseToStart <= 0;
+  if (tmpIfTest$7) {
+    $(`one`);
+    while (true) {
+      const tmpIfTest$9 = $(1);
+      if (tmpIfTest$9) {
+        $(2);
+        return undefined;
+      } else {
+        break;
+      }
+    }
+  } else {
+  }
+  const tmpIfTest$11 = tmpSwitchCaseToStart <= 1;
+  if (tmpIfTest$11) {
+    $(`two`);
+    return undefined;
+  } else {
+    const tmpIfTest$13 = tmpSwitchCaseToStart <= 2;
+    if (tmpIfTest$13) {
+      $(`three`);
+      return undefined;
+    } else {
+      const tmpIfTest$15 = tmpSwitchCaseToStart <= 3;
+      if (tmpIfTest$15) {
+        $(`four`);
+        return undefined;
+      } else {
+        const tmpIfTest$17 = tmpSwitchCaseToStart <= 4;
+        if (tmpIfTest$17) {
+          $(`def`);
+          return undefined;
+        } else {
+          return undefined;
+        }
+      }
+    }
+  }
+};
+let tmpCalleeParam = f();
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

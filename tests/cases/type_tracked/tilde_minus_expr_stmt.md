@@ -39,6 +39,16 @@ $( "finished" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const x = 3;
+x >> 0;
+$(`finished`);
+`````
+
+
 ## Todos triggered
 
 

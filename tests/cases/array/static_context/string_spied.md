@@ -75,6 +75,27 @@ $coerce( b, "string" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const spy = {
+  valueOf() {
+    debugger;
+    $(`x`);
+    return undefined;
+  },
+  toString() {
+    debugger;
+    $(`y`);
+    return undefined;
+  },
+};
+const tmpEA1 = [spy, spy];
+$coerce(tmpEA1, `string`);
+`````
+
+
 ## Todos triggered
 
 

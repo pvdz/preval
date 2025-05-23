@@ -86,6 +86,30 @@ $( a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  let x = `fail`;
+  try {
+    if ($) {
+      x = `pass`;
+      throw `yes`;
+    } else {
+      throw `too`;
+    }
+  } catch (e) {
+    $(x, `mutation is observable in the catch`);
+  }
+  $(x);
+  return undefined;
+};
+f();
+`````
+
+
 ## Todos triggered
 
 

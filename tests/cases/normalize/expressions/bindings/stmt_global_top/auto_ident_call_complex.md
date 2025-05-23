@@ -43,6 +43,16 @@ $( b );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpCallComplexCallee = $($);
+let a = tmpCallComplexCallee(1);
+$(a);
+`````
+
+
 ## Todos triggered
 
 

@@ -48,6 +48,19 @@ $( undefined );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+$(100);
+a = undefined;
+const tmpSwitchDisc = a;
+$(100);
+$(a);
+`````
+
+
 ## Todos triggered
 
 

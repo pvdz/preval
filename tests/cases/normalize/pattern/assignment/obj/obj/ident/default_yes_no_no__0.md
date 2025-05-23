@@ -64,6 +64,24 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpAssignObjPatternRhs = 0;
+const tmpOPND = tmpAssignObjPatternRhs.x;
+const tmpOPBD = tmpOPND.y;
+const tmpIfTest = tmpOPBD === undefined;
+if (tmpIfTest) {
+  y = $(`fail`);
+  $(`bad`);
+} else {
+  y = tmpOPBD;
+  $(`bad`);
+}
+`````
+
+
 ## Todos triggered
 
 

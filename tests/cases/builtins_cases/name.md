@@ -45,6 +45,19 @@ $( "parseInt" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let tmpCalleeParam = `String`;
+$(tmpCalleeParam);
+let tmpCalleeParam$1 = `Array`;
+$(tmpCalleeParam$1);
+let tmpCalleeParam$3 = `parseInt`;
+$(tmpCalleeParam$3);
+`````
+
+
 ## Todos triggered
 
 

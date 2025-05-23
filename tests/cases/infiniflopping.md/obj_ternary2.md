@@ -59,6 +59,44 @@ With rename=true
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  let objPatternCrashTest = undefined;
+  let bindingPatternObjRoot = undefined;
+  const tmpBranchingC = function () {
+    debugger;
+    bindingPatternObjRoot = 2;
+    const tmpBranchingB$1 = function () {
+      debugger;
+      if (objPatternCrashTest) {
+        objPatternCrashTest = bindingPatternObjRoot;
+        return undefined;
+      } else {
+        return undefined;
+      }
+    };
+    if (objPatternCrashTest) {
+      tmpBranchingB$1();
+      return undefined;
+    } else {
+      return undefined;
+    }
+  };
+  if ($) {
+    tmpBranchingC();
+    return undefined;
+  } else {
+    return undefined;
+  }
+};
+f();
+`````
+
+
 ## Todos triggered
 
 

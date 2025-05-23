@@ -71,6 +71,26 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let itooamanumberjack = 0;
+if (imanumberandilovethrees) {
+  let tmpCalleeParam = $(true);
+  itooamanumberjack = $boolean_constructor(tmpCalleeParam);
+} else {
+  let tmpCalleeParam$1 = $(false);
+  itooamanumberjack = $boolean_constructor(tmpCalleeParam$1);
+}
+if (itooamanumberjack) {
+  $(`a`, itooamanumberjack);
+} else {
+  $(`b`, itooamanumberjack);
+}
+`````
+
+
 ## Todos triggered
 
 

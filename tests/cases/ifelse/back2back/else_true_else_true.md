@@ -75,6 +75,23 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = $(1);
+if (x) {
+} else {
+  $(x, `pass`);
+  x = $(1);
+  if (x) {
+  } else {
+    $(x, `hit`);
+  }
+}
+`````
+
+
 ## Todos triggered
 
 

@@ -110,6 +110,31 @@ while (true) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = $(10);
+while (true) {
+  const tmpIfTest = $(true);
+  if (tmpIfTest) {
+    x = $(20, `set`);
+    while (true) {
+      const tmpIfTest$1 = $(true);
+      if (tmpIfTest$1) {
+        $(x, `loop`);
+      } else {
+        break;
+      }
+    }
+    $(x);
+  } else {
+    break;
+  }
+}
+`````
+
+
 ## Todos triggered
 
 

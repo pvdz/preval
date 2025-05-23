@@ -42,6 +42,17 @@ $( "function toString() { [native code] }" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const f = $number_toString;
+$($number_toString);
+let tmpCalleeParam = $coerce(f, `plustr`);
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

@@ -43,6 +43,26 @@ With rename=true
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpSwitchDisc = $;
+const tmpIfTest = tmpSwitchDisc === 3;
+if (tmpIfTest) {
+  tmpSwitchBreak$1: {
+    const tmpSwitchDisc$1 = $;
+    const tmpIfTest$1 = tmpSwitchDisc$1 === 3;
+    if (tmpIfTest$1) {
+      break tmpSwitchBreak$1;
+    } else {
+    }
+  }
+} else {
+}
+`````
+
+
 ## Todos triggered
 
 

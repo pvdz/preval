@@ -61,6 +61,20 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const x = $(true);
+const b = { [x]: 1 };
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  b.x = 3;
+  b.x = 3;
+  $(1);
+}
+`````
+
+
 ## Todos triggered
 
 

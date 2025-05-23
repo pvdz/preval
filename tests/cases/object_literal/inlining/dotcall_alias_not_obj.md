@@ -60,6 +60,21 @@ $dotCall( b, c, "f", 1 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const g = function () {
+  debugger;
+  return `win`;
+};
+const obj = { f: g };
+const alias = $.f;
+$();
+$dotCall(alias, obj, `f`, 1);
+`````
+
+
 ## Todos triggered
 
 

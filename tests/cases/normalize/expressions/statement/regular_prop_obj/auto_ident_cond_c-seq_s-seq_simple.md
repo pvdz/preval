@@ -68,6 +68,25 @@ $( d );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+let obj = {};
+let tmpCompObj = undefined;
+const tmpIfTest = $(30);
+if (tmpIfTest) {
+  tmpCompObj = 60;
+} else {
+  let tmpCalleeParam = $(100);
+  tmpCompObj = $(tmpCalleeParam);
+}
+tmpCompObj.a;
+$(a);
+`````
+
+
 ## Todos triggered
 
 

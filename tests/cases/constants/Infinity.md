@@ -39,6 +39,16 @@ $( $Number_POSITIVE_INFINITY );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const foo = Infinity;
+const bar = foo;
+$(foo);
+`````
+
+
 ## Todos triggered
 
 

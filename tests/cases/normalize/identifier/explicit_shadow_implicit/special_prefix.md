@@ -47,6 +47,16 @@ $( $implicit$foo );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const $implicit$foo$1 = $(1);
+$($implicit$foo$1);
+$($implicit$foo);
+`````
+
+
 ## Todos triggered
 
 

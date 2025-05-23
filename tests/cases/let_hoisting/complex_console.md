@@ -70,6 +70,32 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let danger = function () {
+  debugger;
+  if ($) {
+    danger = null;
+    return 1;
+  } else {
+    return undefined;
+  }
+};
+const tmpMCF = $console_log;
+const f = $dotCall($console_log, console, `log`, `ok`);
+let x = danger();
+if ($) {
+  $(f);
+  x = $(`do not inline me`);
+  $(x);
+} else {
+  $(x);
+}
+`````
+
+
 ## Todos triggered
 
 

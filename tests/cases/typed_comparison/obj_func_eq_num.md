@@ -39,6 +39,19 @@ $( "out:", false );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const x = function () {
+  debugger;
+  return undefined;
+};
+const y = x === false;
+$(`out:`, y);
+`````
+
+
 ## Todos triggered
 
 

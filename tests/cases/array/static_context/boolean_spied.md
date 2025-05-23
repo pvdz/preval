@@ -41,6 +41,28 @@ $( true );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const spy = {
+  valueOf() {
+    debugger;
+    $(`x`);
+    return undefined;
+  },
+  toString() {
+    debugger;
+    $(`y`);
+    return undefined;
+  },
+};
+let tmpCalleeParam$1 = [spy, spy];
+let tmpCalleeParam = $boolean_constructor(tmpCalleeParam$1);
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

@@ -104,6 +104,31 @@ $( g );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let i = 0;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const r = $(i);
+  const n = r * 1;
+  const tmpMCF = $Math_pow;
+  const a = $Math_pow(n, 2);
+  const b = a / 2;
+  const tmpStringFirstArg = b;
+  const c = $coerce(b, `string`);
+  $(i, c);
+  i = i + 1;
+  const tmpIfTest = i > 10;
+  if (tmpIfTest) {
+    break;
+  } else {
+  }
+}
+$(i);
+`````
+
+
 ## Todos triggered
 
 

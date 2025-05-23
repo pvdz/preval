@@ -40,6 +40,20 @@ With rename=true
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const y = `y`;
+let x = class {
+  [y]() {
+    debugger;
+    return undefined;
+  }
+};
+`````
+
+
 ## Todos triggered
 
 

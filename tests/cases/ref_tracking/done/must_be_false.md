@@ -86,6 +86,28 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpIfTest = $(true);
+let t = true;
+if (tmpIfTest) {
+  const tmpIfTest$1 = $(false);
+  if (tmpIfTest$1) {
+    $(`fail too`);
+    throw `Preval: TDZ triggered for this assignment: x = \$('fail too')`;
+  } else {
+    t = false;
+    $(t);
+  }
+} else {
+  t = false;
+  $(t);
+}
+`````
+
+
 ## Todos triggered
 
 

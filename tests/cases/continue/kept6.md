@@ -53,6 +53,22 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  nestedLoop: {
+    const test = $(1);
+    if (test) {
+      break nestedLoop;
+    } else {
+    }
+  }
+}
+`````
+
+
 ## Todos triggered
 
 

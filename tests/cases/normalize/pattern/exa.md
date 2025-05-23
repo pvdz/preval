@@ -80,6 +80,38 @@ a.val_1_4;
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let arr_1 = undefined;
+let arr_2 = undefined;
+let arr_4 = undefined;
+let val_1_2 = undefined;
+let val_1_4 = undefined;
+let val_2_1 = undefined;
+let val_3_1 = undefined;
+const tmpAssignObjPatternRhs = foo();
+const tmpOPND = tmpAssignObjPatternRhs.val_1_1;
+val_2_1 = tmpOPND.val_2_1;
+let tmpCalleeParam = tmpOPND;
+let tmpCalleeParam$1 = [`val_2_1`];
+val_2_rest = $objPatternRest(tmpCalleeParam, tmpCalleeParam$1, undefined);
+val_1_2 = tmpAssignObjPatternRhs.val_1_2;
+const tmpOPND$1 = tmpAssignObjPatternRhs.val_1_3;
+const tmpArrPatternSplat = [...tmpOPND$1];
+arr_1 = tmpArrPatternSplat[0];
+arr_2 = tmpArrPatternSplat[1];
+const tmpArrPatternStep = tmpArrPatternSplat[2];
+val_3_1 = tmpArrPatternStep.val_3_1;
+let tmpCalleeParam$3 = tmpArrPatternStep;
+let tmpCalleeParam$5 = [`val_3_1`];
+val_3_rest = $objPatternRest(tmpCalleeParam$3, tmpCalleeParam$5, undefined);
+arr_4 = tmpArrPatternSplat[3];
+val_1_4 = tmpAssignObjPatternRhs.val_1_4;
+`````
+
+
 ## Todos triggered
 
 

@@ -40,6 +40,21 @@ $( 1 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+b: {
+  const tmpIfTest = $(1);
+  if (tmpIfTest) {
+    break b;
+  } else {
+    break b;
+  }
+}
+`````
+
+
 ## Todos triggered
 
 

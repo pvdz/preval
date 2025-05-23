@@ -43,6 +43,22 @@ $( 1 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let run = true;
+while (true) {
+  if (run) {
+    $(1);
+    run = false;
+  } else {
+    break;
+  }
+}
+`````
+
+
 ## Todos triggered
 
 

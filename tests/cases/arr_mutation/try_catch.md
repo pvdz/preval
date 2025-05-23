@@ -64,6 +64,24 @@ $( "after", a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const blob = [1, 2, 3];
+try {
+  const tmpMCF = blob.shift;
+  let tmpCalleeParam = $dotCall(tmpMCF, blob, `shift`);
+  $(`try`, tmpCalleeParam);
+} catch (e) {
+  const tmpMCF$1 = blob.shift;
+  let tmpCalleeParam$1 = $dotCall(tmpMCF$1, blob, `shift`);
+  $(`catch`, tmpCalleeParam$1);
+}
+$(`after`, blob);
+`````
+
+
 ## Todos triggered
 
 

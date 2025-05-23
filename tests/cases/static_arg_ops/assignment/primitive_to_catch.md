@@ -89,6 +89,28 @@ catch (a) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+try {
+  $();
+} catch (e) {
+  const f = function () {
+    debugger;
+    e = 1;
+    $(`filler`);
+    $(`more filler`);
+    return undefined;
+  };
+  let tmpCalleeParam = f();
+  $(tmpCalleeParam);
+  let tmpCalleeParam$1 = f();
+  $(tmpCalleeParam$1);
+}
+`````
+
+
 ## Todos triggered
 
 

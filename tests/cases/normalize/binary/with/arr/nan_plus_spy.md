@@ -48,6 +48,18 @@ $( c );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const x = $spy();
+const tmpBinLhs = [];
+const tmpArrElement = tmpBinLhs + x;
+const arr = [tmpArrElement];
+$(arr);
+`````
+
+
 ## Todos triggered
 
 

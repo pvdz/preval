@@ -72,6 +72,35 @@ $( $console_log, $console_warn, $console_error, $console_dir, $console_debug, $c
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let tmpCalleeParam = $console_log;
+let tmpCalleeParam$1 = $console_warn;
+let tmpCalleeParam$3 = $console_error;
+let tmpCalleeParam$5 = $console_dir;
+let tmpCalleeParam$7 = $console_debug;
+let tmpCalleeParam$9 = $console_time;
+let tmpCalleeParam$11 = $console_timeEnd;
+let tmpCalleeParam$13 = $console_group;
+let tmpCalleeParam$15 = $console_groupEnd;
+let tmpCalleeParam$17 = console.foo;
+$(
+  tmpCalleeParam,
+  tmpCalleeParam$1,
+  tmpCalleeParam$3,
+  tmpCalleeParam$5,
+  tmpCalleeParam$7,
+  tmpCalleeParam$9,
+  tmpCalleeParam$11,
+  tmpCalleeParam$13,
+  tmpCalleeParam$15,
+  tmpCalleeParam$17,
+);
+`````
+
+
 ## Todos triggered
 
 

@@ -101,6 +101,28 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const blob = { thing: `woop`, xyz: 0 };
+while (true) {
+  const tmpAssignMemLhsObj = blob;
+  const tmpBinLhs = blob.xyz;
+  const tmpAssignMemRhs = tmpBinLhs + 1;
+  tmpAssignMemLhsObj.xyz = tmpAssignMemRhs;
+  $(blob);
+  const tmpBinLhs$1 = blob.xyz;
+  const tmpIfTest = tmpBinLhs$1 < 10;
+  if (tmpIfTest) {
+  } else {
+    break;
+  }
+}
+$(blob);
+`````
+
+
 ## Todos triggered
 
 

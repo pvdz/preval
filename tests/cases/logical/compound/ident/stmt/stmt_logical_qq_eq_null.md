@@ -74,6 +74,26 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let b = $(null);
+const tmpIfTest = $(true);
+if (tmpIfTest) {
+  const tmpIfTest$1 = b == null;
+  if (tmpIfTest$1) {
+    b = $(`b`);
+    $(b);
+  } else {
+    $(b);
+  }
+} else {
+  $(b);
+}
+`````
+
+
 ## Todos triggered
 
 

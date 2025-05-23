@@ -92,6 +92,37 @@ $dotCall( c, b, "x", e );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let spy = undefined;
+let spy2 = undefined;
+spy = {
+  get x() {
+    debugger;
+    $(`x1`);
+    const tmpReturnArg = function () {
+      debugger;
+      $(`call`);
+      return undefined;
+    };
+    return tmpReturnArg;
+  },
+};
+spy2 = {
+  get x() {
+    debugger;
+    $(`x2`);
+    return undefined;
+  },
+};
+const tmpMCF = spy.x;
+const tmpMCP = spy2.x;
+$dotCall(tmpMCF, spy, `x`, tmpMCP);
+`````
+
+
 ## Todos triggered
 
 

@@ -113,6 +113,36 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+let tmpCalleeParam = $(100);
+if (tmpCalleeParam) {
+  $(tmpCalleeParam);
+  $(a);
+} else {
+  let tmpCalleeParam$1 = $(0);
+  let tmpNestedComplexRhs = $(tmpCalleeParam$1);
+  if (tmpNestedComplexRhs) {
+  } else {
+    let tmpCalleeParam$3 = $(1);
+    tmpNestedComplexRhs = $(tmpCalleeParam$3);
+    if (tmpNestedComplexRhs) {
+    } else {
+      let tmpCalleeParam$5 = $(2);
+      tmpNestedComplexRhs = $(tmpCalleeParam$5);
+    }
+  }
+  a = tmpNestedComplexRhs;
+  tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+  $(a);
+}
+`````
+
+
 ## Todos triggered
 
 

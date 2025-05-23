@@ -72,6 +72,32 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const freeFunc1 = function $free($$0, $$1) {
+  let x = $$0;
+  let y = $$1;
+  debugger;
+  const tmpBinBothLhs = y;
+  const tmpBinBothRhs = x + 287;
+  const tmpReturnArg = tmpBinBothLhs * tmpBinBothRhs;
+  return tmpReturnArg;
+};
+let limiter = 0;
+while (true) {
+  const a = $frfr(freeFunc1, 1, limiter);
+  const b = limiter % 41344;
+  $(unknown);
+  let tmpCalleeParam = a + b;
+  $(tmpCalleeParam);
+  const tmpBinLhs = $(1);
+  limiter = tmpBinLhs | 0;
+}
+`````
+
+
 ## Todos triggered
 
 

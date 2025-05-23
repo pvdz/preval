@@ -56,6 +56,26 @@ e[a] = d;
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let a = 1;
+let b = { x: 2 };
+let c = 3;
+let d = 4;
+const tmpInitAssignLhsComputedObj = b;
+const tmpInitAssignLhsComputedProp = $(`x`);
+const tmpInitAssignLhsComputedObj$1 = $(c);
+const tmpInitAssignLhsComputedProp$1 = $(`y`);
+const tmpInitAssignLhsComputedRhs$1 = $(d);
+tmpInitAssignLhsComputedObj$1[tmpInitAssignLhsComputedProp$1] = tmpInitAssignLhsComputedRhs$1;
+const tmpInitAssignLhsComputedRhs = tmpInitAssignLhsComputedRhs$1;
+tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = tmpInitAssignLhsComputedRhs;
+let a$1 = tmpInitAssignLhsComputedRhs;
+`````
+
+
 ## Todos triggered
 
 

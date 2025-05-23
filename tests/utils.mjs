@@ -234,7 +234,7 @@ export function toPreNormalSection(obj) {
 
 export function toNormalizedSection(obj) {
   return (
-    '## Normalized\n\n\n' + // two empty lines. this way diff always captures this as the hunk header (with the default U3)
+    '## Normalized\n(This is what phase1 received the first time)\n\n' + // two empty lines. this way diff always captures this as the hunk header (with the default U3)
     Object.keys(obj)
       .sort((a, b) => (a === 'intro' ? -1 : b === 'intro' ? 1 : a < b ? -1 : a > b ? 1 : 0))
       .map((key) => '`````js filename=' + key + '\n' + fmat(obj[key]).trim() + '\n`````')
@@ -480,10 +480,10 @@ export function toMarkdownCase({ md, mdHead, mdOptions, mdChunks, fname, fin, ou
       toSettledSection(output.files),
       toDenormalizedSection(output.denormed),
       toPstSettledSection(output.settledPst, output.implicitGlobals, output.explicitGlobals),
+      //(wasRefTest || CONFIG.onlyOutput ? '' : toPreNormalSection(output.pre)),
+      (wasRefTest || wasPcodeTest || CONFIG.onlyOutput ? '' : toNormalizedSection(output.normalized)),
       toTodosSection(todos),
       toEvaluationResult(evalled, output.implicitGlobals, false, mdOptions.globals),
-      //(wasRefTest || CONFIG.onlyOutput ? '' : toPreNormalSection(output.pre)),
-      //(wasRefTest || wasPcodeTest || CONFIG.onlyOutput ? '' : toNormalizedSection(output.normalized)),
     ].filter(Boolean).join('\n\n\n');
   }
 

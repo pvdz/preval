@@ -38,6 +38,19 @@ $( 2 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpIfTest = 0;
+if (tmpIfTest) {
+  $(1);
+} else {
+  $(2);
+}
+`````
+
+
 ## Todos triggered
 
 

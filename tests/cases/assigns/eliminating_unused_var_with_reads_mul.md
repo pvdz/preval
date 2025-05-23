@@ -59,6 +59,19 @@ $( c );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = $(`unknown 1`);
+let z = $(`unknown 2`);
+$(x);
+let unused = x * z;
+x = $(`unknown 3`);
+$(x);
+`````
+
+
 ## Todos triggered
 
 

@@ -111,6 +111,42 @@ $( f, e, a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const arr = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000];
+let func = function ($$0, $$1) {
+  let arg1 = $$0;
+  let arg2 = $$1;
+  debugger;
+  func = function ($$0, $$1) {
+    const tmpPrevalAliasArgumentsAny = arguments;
+    let newArg1 = $$0;
+    let unusedNewArg2 = $$1;
+    debugger;
+    const index = newArg1 - 1;
+    const arrval = arr[index];
+    if (arg1) {
+      $(`always arg1:`, arg1);
+      return arg1;
+    } else {
+      arg1 = tmpPrevalAliasArgumentsAny;
+      $(`always arg1:`, tmpPrevalAliasArgumentsAny);
+      return arg1;
+    }
+  };
+  const r = func(arg1, arg2);
+  return r;
+};
+const alias = func;
+const b = func(3, 4);
+const a = func(1, 2);
+const c = func(5, 6);
+$(a, b, c);
+`````
+
+
 ## Todos triggered
 
 

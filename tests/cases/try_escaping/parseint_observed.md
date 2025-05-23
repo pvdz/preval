@@ -80,6 +80,27 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+while (true) {
+  let tmpCalleeParam = {
+    toString() {
+      debugger;
+      $(`PASS`);
+      return undefined;
+    },
+  };
+  const x = $(tmpCalleeParam);
+  try {
+    const y = $Number_parseInt(x);
+    $(y);
+  } catch (e) {}
+}
+`````
+
+
 ## Todos triggered
 
 

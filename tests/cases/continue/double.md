@@ -889,6 +889,56 @@ $( "woohoo" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+while (true) {
+  $continue: {
+    const tmpIfTest = $(false);
+    if (tmpIfTest) {
+      $(`uhoh`);
+      break $continue;
+    } else {
+      const tmpIfTest$1 = $(false);
+      if (tmpIfTest$1) {
+        $(`neither`);
+        break $continue;
+      } else {
+        $(`exit`);
+        break;
+      }
+    }
+  }
+}
+$(`woohoo`);
+while (true) {
+  let continued = false;
+  const tmpIfTest$3 = $(false);
+  if (tmpIfTest$3) {
+    $(`uhoh`);
+  } else {
+    continued = true;
+  }
+  if (continued) {
+  } else {
+    const tmpIfTest$5 = $(false);
+    if (tmpIfTest$5) {
+      $(`neither`);
+    } else {
+      continued = true;
+    }
+    if (continued) {
+    } else {
+      $(`exit`);
+      break;
+    }
+  }
+}
+$(`woohoo`);
+`````
+
+
 ## Todos triggered
 
 

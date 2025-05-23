@@ -46,6 +46,16 @@ new a();
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let X = class {};
+export { X };
+new X();
+`````
+
+
 ## Todos triggered
 
 

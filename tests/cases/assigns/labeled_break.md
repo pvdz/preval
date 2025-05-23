@@ -63,6 +63,23 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = 10;
+foo: {
+  if ($) {
+    x = 20;
+    break foo;
+  } else {
+    $(x);
+  }
+}
+$(x);
+`````
+
+
 ## Todos triggered
 
 

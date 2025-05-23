@@ -50,6 +50,39 @@ $( 3 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let tmpSwitchValue = 1;
+let tmpSwitchCaseToStart = 2;
+const tmpIfTest = 1 === tmpSwitchValue;
+tmpSwitchBreak: {
+  if (tmpIfTest) {
+    tmpSwitchCaseToStart = 0;
+  } else {
+    const tmpIfTest$1 = 4 === tmpSwitchValue;
+    if (tmpIfTest$1) {
+      tmpSwitchCaseToStart = 1;
+    } else {
+    }
+  }
+  const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
+  if (tmpIfTest$3) {
+    $(3);
+    break tmpSwitchBreak;
+  } else {
+    const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
+    if (tmpIfTest$5) {
+      $(6);
+      break tmpSwitchBreak;
+    } else {
+    }
+  }
+}
+`````
+
+
 ## Todos triggered
 
 

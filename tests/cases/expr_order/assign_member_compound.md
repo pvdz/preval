@@ -45,6 +45,21 @@ b + a;
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let a = {};
+const tmpCompoundAssignLhs = a.foo;
+const tmpAssignMemLhsObj = a;
+const tmpBinBothLhs = tmpCompoundAssignLhs;
+a = $();
+const tmpBinBothRhs = a;
+const tmpAssignMemRhs = tmpBinBothLhs + tmpBinBothRhs;
+tmpAssignMemLhsObj.foo = tmpAssignMemRhs;
+`````
+
+
 ## Todos triggered
 
 

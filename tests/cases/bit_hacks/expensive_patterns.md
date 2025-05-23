@@ -96,6 +96,23 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let y = undefined;
+const bit = objDestructible & 1;
+const set = bit === 1;
+if (set) {
+  y = 16;
+  $(y);
+} else {
+  y = 32;
+  $(y);
+}
+`````
+
+
 ## Todos triggered
 
 

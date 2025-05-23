@@ -63,6 +63,23 @@ $( 1 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = 0;
+$inlinedFunction: {
+  try {
+    x = 1;
+    throw `one`;
+  } catch (e) {
+    break $inlinedFunction;
+  }
+}
+$(x);
+`````
+
+
 ## Todos triggered
 
 

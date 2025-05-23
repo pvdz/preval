@@ -93,6 +93,30 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let arg = { y: 1 };
+let a = { a: 999, b: 1000 };
+$(1);
+$(2);
+const tmpDeleteCompObj = $(arg);
+const tmpDeleteCompProp = $(`y`);
+const tmpIfTest = delete tmpDeleteCompObj[tmpDeleteCompProp];
+if (tmpIfTest) {
+  $(a, arg);
+} else {
+  $(1);
+  $(2);
+  const tmpDeleteCompObj$1 = $(arg);
+  const tmpDeleteCompProp$1 = $(`y`);
+  delete tmpDeleteCompObj$1[tmpDeleteCompProp$1];
+  $(a, arg);
+}
+`````
+
+
 ## Todos triggered
 
 

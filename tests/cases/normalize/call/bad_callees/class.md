@@ -50,6 +50,17 @@ $( "after" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+$(`before`);
+const tmpCallComplexCallee = class x {};
+tmpCallComplexCallee();
+$(`after`);
+`````
+
+
 ## Todos triggered
 
 

@@ -48,6 +48,25 @@ $( "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let str = ``;
+while (true) {
+  const tmpStringConcatR = $coerce(str, `plustr`);
+  str = `${tmpStringConcatR}x`;
+  const tmpBinLhs = str.length;
+  const tmpIfTest = tmpBinLhs > 30;
+  if (tmpIfTest) {
+    break;
+  } else {
+  }
+}
+$(str);
+`````
+
+
 ## Todos triggered
 
 

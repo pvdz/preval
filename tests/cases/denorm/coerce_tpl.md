@@ -44,6 +44,20 @@ $( b );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const x = $coerce(val, `plustr`);
+const tmpBinBothLhs = `(`;
+const tmpBinBothRhs = $coerce(x, `string`);
+const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
+const tmpStringConcatR = $coerce(tmpBinLhs, `plustr`);
+const y = `${tmpStringConcatR})`;
+$(y);
+`````
+
+
 ## Todos triggered
 
 

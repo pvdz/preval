@@ -59,6 +59,25 @@ $( f );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+const tmpBinBothLhs = `before  `;
+const tmpArrElement = $(1);
+const tmpArrElement$1 = 2;
+const tmpArrElement$3 = $(3);
+let tmpCalleeParam$1 = [tmpArrElement, tmpArrElement$1, tmpArrElement$3];
+const tmpBinBothRhs = $coerce(tmpCalleeParam$1, `string`);
+const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
+const tmpStringConcatR = $coerce(tmpBinLhs, `plustr`);
+let tmpCalleeParam = `${tmpStringConcatR}  after`;
+$(tmpCalleeParam);
+$(a);
+`````
+
+
 ## Todos triggered
 
 

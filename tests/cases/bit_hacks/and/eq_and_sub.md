@@ -53,6 +53,23 @@ if (b) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const a = $(33);
+const tmpIfTest = a === 32;
+if (tmpIfTest) {
+  const tmpIfTest$1 = a & 32;
+  if (tmpIfTest$1) {
+    $(`pass`);
+  } else {
+  }
+} else {
+}
+`````
+
+
 ## Todos triggered
 
 

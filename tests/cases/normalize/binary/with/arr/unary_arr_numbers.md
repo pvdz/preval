@@ -47,6 +47,26 @@ $( a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpUnaryArg = [10, 20, 30];
+const tmpArrElement = ~tmpUnaryArg;
+const tmpUnaryArg$1 = [10, 20, 30];
+const tmpArrElement$1 = !tmpUnaryArg$1;
+const tmpUnaryArg$3 = [10, 20, 30];
+const tmpArrElement$3 = -tmpUnaryArg$3;
+const tmpUnaryArg$5 = [10, 20, 30];
+const tmpArrElement$5 = +tmpUnaryArg$5;
+const tmpUnaryArg$7 = [10, 20, 30];
+const tmpArrElement$7 = typeof tmpUnaryArg$7;
+const tmpArrElement$9 = undefined;
+const arr = [tmpArrElement, tmpArrElement$1, tmpArrElement$3, tmpArrElement$5, tmpArrElement$7, tmpArrElement$9];
+$(arr);
+`````
+
+
 ## Todos triggered
 
 

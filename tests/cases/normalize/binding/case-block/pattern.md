@@ -65,6 +65,33 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = 1;
+let y = 2;
+let z = [10, 20, 30];
+tmpSwitchBreak: {
+  let x$1 = undefined;
+  let y$1 = undefined;
+  const tmpSwitchDisc = $(`a`);
+  const tmpBinBothLhs = tmpSwitchDisc;
+  const tmpBinBothRhs = $(`a`);
+  const tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
+  if (tmpIfTest) {
+    const tmpArrAssignPatternRhs = z;
+    const tmpArrPatternSplat = [...tmpArrAssignPatternRhs];
+    x$1 = tmpArrPatternSplat[0];
+    y$1 = tmpArrPatternSplat[1];
+    break tmpSwitchBreak;
+  } else {
+  }
+}
+$(x, y, z);
+`````
+
+
 ## Todos triggered
 
 

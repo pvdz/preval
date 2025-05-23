@@ -55,6 +55,30 @@ $( b );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function ($$0) {
+  let op = $$0;
+  debugger;
+  let ap = undefined;
+  const useDef = op === undefined;
+  if (useDef) {
+    const p = { a: `fail` };
+    ap = $(p);
+  } else {
+    ap = op;
+  }
+  const tmpCalleeParam$2 = [];
+  let x = objPatternRest(ap, tmpCalleeParam$2, undefined);
+  return x;
+};
+const out = f(`abc`);
+$(out);
+`````
+
+
 ## Todos triggered
 
 

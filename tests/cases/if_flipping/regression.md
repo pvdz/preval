@@ -103,6 +103,52 @@ if (tmpIfTest$45) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+if (tmpIfTest$45) {
+  const f = function () {
+    const tmpPrevalAliasThis = this;
+    debugger;
+    const that = tmpPrevalAliasThis;
+    let g = tmpCalleeParam$127;
+    let locked = undefined;
+    if (tmpSSA__0x2d5594) {
+      locked = function () {
+        debugger;
+        return undefined;
+      };
+      return tmpReturnArg$39;
+    } else {
+      locked = function () {
+        const tmpPrevalAliasArgumentsAny = arguments;
+        debugger;
+        const tmpPrevalAliasArgumentsAny$1 = tmpPrevalAliasArgumentsAny;
+        if (g) {
+          const tmpMCF = g.apply;
+          const result = $dotCall(tmpMCF, g, `apply`, that, tmpPrevalAliasArgumentsAny$1);
+          g = null;
+          return result;
+        } else {
+          return undefined;
+        }
+      };
+      return tmpReturnArg$39;
+    }
+  };
+  const h = f();
+  const ignored = h(e, d);
+  const nothing = getParameterByName();
+  const stuff = unknown(297);
+  const morestuff = alsoUnknown(310);
+  const c = $dotCall(a, document, undefined, b);
+  $(c);
+} else {
+}
+`````
+
+
 ## Todos triggered
 
 

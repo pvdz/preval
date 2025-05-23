@@ -44,6 +44,20 @@ $( 2 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let a = 0;
+if (a) {
+} else {
+  a = 2;
+}
+export { a };
+$(a);
+`````
+
+
 ## Todos triggered
 
 

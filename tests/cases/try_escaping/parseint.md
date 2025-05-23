@@ -71,6 +71,23 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+while (true) {
+  const tmpStringFirstArg = $(`1`);
+  const x = $coerce(tmpStringFirstArg, `string`);
+  try {
+    const y = $Number_parseInt(x);
+    $(y);
+  } catch (e) {
+    $(`keepme`);
+  }
+}
+`````
+
+
 ## Todos triggered
 
 

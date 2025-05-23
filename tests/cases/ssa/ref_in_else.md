@@ -46,6 +46,25 @@ With rename=true
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  let x = $(1);
+  if ($) {
+    x = $(2);
+    $(x);
+    return undefined;
+  } else {
+    $(x);
+    return undefined;
+  }
+};
+`````
+
+
 ## Todos triggered
 
 

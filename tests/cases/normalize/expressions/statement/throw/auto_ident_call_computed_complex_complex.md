@@ -54,6 +54,20 @@ throw e;
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let b = { $: $ };
+let a = { a: 999, b: 1000 };
+const tmpMCCO = $(b);
+const tmpMCCP = $(`\$`);
+const tmpMCF = tmpMCCO[tmpMCCP];
+const tmpThrowArg = $dotCall(tmpMCF, tmpMCCO, undefined, 1);
+throw tmpThrowArg;
+`````
+
+
 ## Todos triggered
 
 

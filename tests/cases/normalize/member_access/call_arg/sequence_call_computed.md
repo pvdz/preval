@@ -54,6 +54,19 @@ $( c );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+$(1);
+const tmpCompObj = $(2);
+const tmpCalleeParam$1 = $(`toString`);
+let tmpCalleeParam = tmpCompObj[tmpCalleeParam$1];
+$(tmpCalleeParam);
+$(c);
+`````
+
+
 ## Todos triggered
 
 

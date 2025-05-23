@@ -60,6 +60,20 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const x = $(1);
+const y = x !== 1;
+if (y) {
+  $(`if`);
+} else {
+  $(`else`);
+}
+`````
+
+
 ## Todos triggered
 
 

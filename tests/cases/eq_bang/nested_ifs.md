@@ -135,6 +135,42 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpBinBothLhs = $(1);
+const tmpBinBothRhs = $(2);
+const a = tmpBinBothLhs === tmpBinBothRhs;
+if (a) {
+  $(`else a1`);
+  const tmpBinBothLhs$1 = $(1);
+  const tmpBinBothRhs$1 = $(2);
+  const c = tmpBinBothLhs$1 === tmpBinBothRhs$1;
+  if (c) {
+    $(`else c1`);
+  } else {
+    $(`then c1`);
+  }
+} else {
+  $(`then a1`);
+  const tmpBinBothLhs$3 = $(1);
+  const tmpBinBothRhs$3 = $(2);
+  const b = tmpBinBothLhs$3 === tmpBinBothRhs$3;
+  if (b) {
+    $(`else b1`);
+  } else {
+    $(`then b1`);
+  }
+}
+if (a) {
+  $(`else a2`);
+} else {
+  $(`then a2`);
+}
+`````
+
+
 ## Todos triggered
 
 

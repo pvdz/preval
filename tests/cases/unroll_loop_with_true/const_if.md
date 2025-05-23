@@ -41,6 +41,14 @@ $( "PASS" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+$(`PASS`);
+`````
+
+
 ## Todos triggered
 
 

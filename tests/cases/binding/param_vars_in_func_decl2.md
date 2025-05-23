@@ -51,6 +51,20 @@ $( c );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let m = undefined;
+const a = undefined;
+const tmpClusterSSA_a = $(10);
+const b = $(20);
+const t = [tmpClusterSSA_a, b];
+m = t;
+$(t);
+`````
+
+
 ## Todos triggered
 
 

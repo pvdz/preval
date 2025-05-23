@@ -53,6 +53,21 @@ $( e );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let tmpCalleeParam = $spy(100);
+const tmpUpdObj = $(tmpCalleeParam);
+const tmpUpdProp = tmpUpdObj.x;
+const tmpUpdNum = $coerce(tmpUpdProp, `number`);
+const tmpUpdInc = tmpUpdNum - 1;
+tmpUpdObj.x = tmpUpdInc;
+let y = tmpUpdInc;
+$(tmpUpdInc);
+`````
+
+
 ## Todos triggered
 
 

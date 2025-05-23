@@ -73,6 +73,27 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const wat = { a: 1, b: 2 };
+const tmpForInGen = $forIn(wat);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext = tmpForInGen();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    const x = tmpForInNext.value;
+    $(x);
+    break;
+  }
+}
+$();
+`````
+
+
 ## Todos triggered
 
 

@@ -101,6 +101,32 @@ if (x) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  while (true) {
+    if (x) {
+      $continue: {
+        $(1);
+        if ($) {
+          break $continue;
+        } else {
+          $(2);
+        }
+      }
+    } else {
+      break;
+    }
+  }
+  return undefined;
+};
+f();
+`````
+
+
 ## Todos triggered
 
 

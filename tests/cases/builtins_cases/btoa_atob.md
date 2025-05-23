@@ -37,6 +37,16 @@ $( "isn't encoding fun?" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let tmpCalleeParam$1 = `aXNuJ3QgZW5jb2RpbmcgZnVuPw==`;
+let tmpCalleeParam = atob(tmpCalleeParam$1);
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

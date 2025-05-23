@@ -271,6 +271,91 @@ a();
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let $continue = function () {
+  debugger;
+  const tmpIfTest = $();
+  if (tmpIfTest) {
+    const tmpIfTest$1 = $();
+    if (tmpIfTest$1) {
+      $continue();
+      return undefined;
+    } else {
+    }
+  } else {
+  }
+  const tmpIfTest$3 = $();
+  if (tmpIfTest$3) {
+    return undefined;
+  } else {
+    $continue();
+    return undefined;
+  }
+};
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $continue: {
+    const tmpIfTest$5 = $();
+    if (tmpIfTest$5) {
+      const tmpIfTest$7 = $();
+      if (tmpIfTest$7) {
+        break $continue;
+      } else {
+      }
+    } else {
+    }
+    const tmpIfTest$9 = $();
+    if (tmpIfTest$9) {
+      break;
+    } else {
+    }
+  }
+}
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  nestedLoop: {
+    const tmpIfTest$11 = $();
+    if (tmpIfTest$11) {
+      const tmpIfTest$13 = $();
+      if (tmpIfTest$13) {
+        break nestedLoop;
+      } else {
+      }
+    } else {
+    }
+    const tmpIfTest$15 = $();
+    if (tmpIfTest$15) {
+      break;
+    } else {
+    }
+  }
+}
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let continued = false;
+  const tmpIfTest$17 = $();
+  if (tmpIfTest$17) {
+    const tmpIfTest$19 = $();
+    if (tmpIfTest$19) {
+    } else {
+      continued = true;
+    }
+  } else {
+    continued = true;
+  }
+  if (continued) {
+  } else {
+    const tmpIfTest$21 = $();
+    if (tmpIfTest$21) {
+      break;
+    } else {
+    }
+  }
+}
+$continue();
+`````
+
+
 ## Todos triggered
 
 

@@ -112,6 +112,44 @@ $( n, a, 3 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let b = { x: 1 };
+let c = 3;
+let a = { a: 999, b: 1000 };
+const tmpSwitchDisc = $(1);
+const tmpAssignComMemLhsObj = $(b);
+const tmpAssignComMemLhsProp = $(`x`);
+const tmpAssignComputedObj = tmpAssignComMemLhsObj;
+const tmpAssignComputedProp = tmpAssignComMemLhsProp;
+const tmpInitAssignLhsComputedObj = $(b);
+const tmpInitAssignLhsComputedProp = $(`x`);
+const tmpInitAssignLhsComputedObj$1 = $(b);
+const tmpInitAssignLhsComputedProp$1 = $(`x`);
+const tmpInitAssignLhsComputedObj$3 = $(b);
+const tmpInitAssignLhsComputedProp$3 = $(`x`);
+const tmpInitAssignLhsComputedObj$5 = $(b);
+const tmpInitAssignLhsComputedProp$5 = $(`x`);
+const tmpInitAssignLhsComputedObj$7 = $(b);
+const tmpInitAssignLhsComputedProp$7 = $(`x`);
+const tmpInitAssignLhsComputedRhs$7 = c;
+tmpInitAssignLhsComputedObj$7[tmpInitAssignLhsComputedProp$7] = tmpInitAssignLhsComputedRhs$7;
+const tmpInitAssignLhsComputedRhs$5 = tmpInitAssignLhsComputedRhs$7;
+tmpInitAssignLhsComputedObj$5[tmpInitAssignLhsComputedProp$5] = tmpInitAssignLhsComputedRhs$5;
+const tmpInitAssignLhsComputedRhs$3 = tmpInitAssignLhsComputedRhs$5;
+tmpInitAssignLhsComputedObj$3[tmpInitAssignLhsComputedProp$3] = tmpInitAssignLhsComputedRhs$3;
+const tmpInitAssignLhsComputedRhs$1 = tmpInitAssignLhsComputedRhs$3;
+tmpInitAssignLhsComputedObj$1[tmpInitAssignLhsComputedProp$1] = tmpInitAssignLhsComputedRhs$1;
+const tmpInitAssignLhsComputedRhs = tmpInitAssignLhsComputedRhs$1;
+tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = tmpInitAssignLhsComputedRhs;
+const tmpAssignComputedRhs = tmpInitAssignLhsComputedRhs;
+tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+$(a, b, c);
+`````
+
+
 ## Todos triggered
 
 

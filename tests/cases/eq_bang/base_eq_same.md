@@ -50,6 +50,18 @@ $( c );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const a = $(1);
+const b = $(1);
+const same = a === b;
+let diff = !same;
+$(diff);
+`````
+
+
 ## Todos triggered
 
 

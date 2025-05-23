@@ -60,6 +60,25 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpUnaryArg = $spy(10);
+const y = !tmpUnaryArg;
+if (y) {
+  $(`a`);
+} else {
+  $(`b`);
+}
+if (y) {
+  $(`d`);
+} else {
+  $(`c`);
+}
+`````
+
+
 ## Todos triggered
 
 

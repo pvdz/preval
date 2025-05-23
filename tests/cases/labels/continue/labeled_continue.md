@@ -78,6 +78,27 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = $(1);
+while (true) {
+  unlabeledBreak: {
+    $(x);
+    x = $(2);
+    if ($) {
+      break unlabeledBreak;
+    } else {
+      x = $(3);
+      $(x);
+      break unlabeledBreak;
+    }
+  }
+}
+`````
+
+
 ## Todos triggered
 
 

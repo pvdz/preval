@@ -96,6 +96,28 @@ $( "after, do not evaluate (infinite loop)" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+while (true) {
+  const tmpIfTest = $(true);
+  if (tmpIfTest) {
+    while (true) {
+      const tmpIfTest$1 = $(true);
+      if (tmpIfTest$1) {
+      } else {
+        break;
+      }
+    }
+  } else {
+    break;
+  }
+}
+$(`after, do not evaluate (infinite loop)`);
+`````
+
+
 ## Todos triggered
 
 

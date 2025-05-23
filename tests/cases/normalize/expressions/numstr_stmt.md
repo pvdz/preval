@@ -41,6 +41,15 @@ $coerce( a, "plustr" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpBinLhs = $spy();
+$coerce(tmpBinLhs, `plustr`);
+`````
+
+
 ## Todos triggered
 
 

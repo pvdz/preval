@@ -93,6 +93,31 @@ $( i );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let tmpCalleeParam = $array_constructor();
+$(tmpCalleeParam);
+let tmpCalleeParam$1 = $array_constructor(x);
+$(tmpCalleeParam$1);
+let tmpCalleeParam$3 = $array_constructor(x, y, z);
+$(tmpCalleeParam$3);
+let tmpCalleeParam$5 = $array_constructor();
+$(tmpCalleeParam$5);
+let tmpCalleeParam$7 = $array_constructor(x);
+$(tmpCalleeParam$7);
+let tmpCalleeParam$9 = $array_constructor(x, y, z);
+$(tmpCalleeParam$9);
+let tmpCalleeParam$11 = [];
+$(tmpCalleeParam$11);
+let tmpCalleeParam$13 = [x];
+$(tmpCalleeParam$13);
+let tmpCalleeParam$15 = [x, y, z];
+$(tmpCalleeParam$15);
+`````
+
+
 ## Todos triggered
 
 

@@ -122,6 +122,42 @@ $( k );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function ($$0, $$1) {
+  const tmpParamBare = $$0;
+  const tmpParamBare$1 = $$1;
+  debugger;
+  let a = undefined;
+  const tmpIfTest = tmpParamBare === undefined;
+  if (tmpIfTest) {
+    throw `Preval: TDZ triggered for this read: ((tmpParamBare === undefined)? b : tmpParamBare)`;
+  } else {
+    a = tmpParamBare;
+    let b = undefined;
+    const tmpIfTest$1 = tmpParamBare$1 === undefined;
+    if (tmpIfTest$1) {
+      b = `bar`;
+    } else {
+      b = tmpParamBare$1;
+    }
+    const tmpReturnArg = [a, b];
+    return tmpReturnArg;
+  }
+};
+let tmpCalleeParam = f();
+$(tmpCalleeParam);
+let tmpCalleeParam$1 = f(`x`);
+$(tmpCalleeParam$1);
+let tmpCalleeParam$3 = f(undefined, `y`);
+$(tmpCalleeParam$3);
+let tmpCalleeParam$5 = f(`x`, `y`);
+$(tmpCalleeParam$5);
+`````
+
+
 ## Todos triggered
 
 

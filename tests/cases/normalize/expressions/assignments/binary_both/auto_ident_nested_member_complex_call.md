@@ -99,6 +99,42 @@ $( l, a, d, 3 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let b = { x: 1 };
+let c = { y: 2 };
+let d = 3;
+let a = { a: 999, b: 1000 };
+const tmpNestedAssignComMemberObj = $(b);
+const tmpNestedAssignComMemberProp = $(`x`);
+const tmpInitAssignLhsComputedObj = $(c);
+const tmpInitAssignLhsComputedProp = $(`y`);
+const tmpInitAssignLhsComputedRhs = $(d);
+tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = tmpInitAssignLhsComputedRhs;
+const tmpNestedAssignPropRhs = tmpInitAssignLhsComputedRhs;
+const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
+tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
+a = tmpNestedPropAssignRhs;
+const tmpBinBothLhs = a;
+const tmpNestedAssignComMemberObj$1 = $(b);
+const tmpNestedAssignComMemberProp$1 = $(`x`);
+const tmpInitAssignLhsComputedObj$1 = $(c);
+const tmpInitAssignLhsComputedProp$1 = $(`y`);
+const tmpInitAssignLhsComputedRhs$1 = $(d);
+tmpInitAssignLhsComputedObj$1[tmpInitAssignLhsComputedProp$1] = tmpInitAssignLhsComputedRhs$1;
+const tmpNestedAssignPropRhs$1 = tmpInitAssignLhsComputedRhs$1;
+const tmpNestedPropAssignRhs$1 = tmpNestedAssignPropRhs$1;
+tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = tmpNestedPropAssignRhs$1;
+a = tmpNestedPropAssignRhs$1;
+const tmpBinBothRhs = a;
+let tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
+$(tmpCalleeParam);
+$(a, b, c, d);
+`````
+
+
 ## Todos triggered
 
 

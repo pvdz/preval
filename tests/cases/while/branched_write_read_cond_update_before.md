@@ -98,6 +98,30 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = $(1);
+while (true) {
+  const tmpIfTest = x % 3;
+  if (tmpIfTest) {
+    x = $(10, `ten`);
+  } else {
+  }
+  const tmpIfTest$1 = x % 2;
+  if (tmpIfTest$1) {
+    const tmpPostUpdArgIdent = $coerce(x, `number`);
+    x = tmpPostUpdArgIdent + 1;
+    let tmpCalleeParam = x;
+    $(x, `write`);
+  } else {
+    $(x, `read`);
+  }
+}
+`````
+
+
 ## Todos triggered
 
 

@@ -46,6 +46,26 @@ $( "def", 400, $Number_NaN, 530 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const f = function ($$0, $$1, $$2, $$3) {
+  let a = $$0;
+  let b = $$1;
+  let c = $$2;
+  let d = $$3;
+  debugger;
+  const x = b - 10;
+  const y = c - -30;
+  $(b, a, x, y);
+  return undefined;
+};
+f(100, `abc`, 200, 300);
+f(400, `def`, 500, 600);
+`````
+
+
 ## Todos triggered
 
 

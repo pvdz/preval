@@ -279,6 +279,55 @@ $( "end" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let pcode = function ($$0) {
+  let num_arg = $$0;
+  debugger;
+  let out_str = ``;
+  const tmpIfTest = num_arg < 62;
+  if (tmpIfTest) {
+  } else {
+    const div = num_arg / 62;
+    const pint = $Number_parseInt(div);
+    out_str = pcode(pint);
+  }
+  const perc = num_arg % 62;
+  const tmpIfTest$1 = perc > 35;
+  if (tmpIfTest$1) {
+    const plus = perc + 29;
+    const tmpMCF = $String_fromCharCode;
+    const chr = $String_fromCharCode(plus);
+    const str = out_str + chr;
+    return str;
+  } else {
+    const tmpMCF$1 = perc.toString;
+    const alt = $dotCall(tmpMCF$1, perc, `toString`, 36);
+    const altstr = out_str + alt;
+    return altstr;
+  }
+};
+pcode(1);
+pcode(2);
+let i = 477;
+while (true) {
+  const tmpPostUpdArgIdent = $coerce(i, `number`);
+  i = tmpPostUpdArgIdent - 1;
+  const tmpBinLhs = i;
+  const tmpIfTest$2 = tmpBinLhs > 0;
+  if (tmpIfTest$2) {
+    const s = pcode(i);
+    $(s);
+  } else {
+    break;
+  }
+}
+$(`end`);
+`````
+
+
 ## Todos triggered
 
 

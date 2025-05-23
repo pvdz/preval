@@ -37,6 +37,18 @@ $( "Infinity" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpBinBothLhs = ``;
+const tmpBinBothRhs = $coerce($Number_POSITIVE_INFINITY, `string`);
+const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
+let tmpCalleeParam = $coerce(tmpBinLhs, `plustr`);
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

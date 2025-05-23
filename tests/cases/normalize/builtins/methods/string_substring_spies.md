@@ -48,6 +48,17 @@ $coerce( b, "number" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const x = $spy(`a`);
+const y = $spy(`b`);
+const tmpMCF = $string_substring;
+$dotCall($string_substring, ``, `substring`, x, y);
+`````
+
+
 ## Todos triggered
 
 

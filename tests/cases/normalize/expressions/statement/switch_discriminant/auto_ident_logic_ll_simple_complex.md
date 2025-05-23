@@ -55,6 +55,24 @@ $( b );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+let tmpSwitchDisc = 0;
+if (tmpSwitchDisc) {
+  $(100);
+  $(a);
+} else {
+  let tmpCalleeParam = $(1);
+  tmpSwitchDisc = $(tmpCalleeParam);
+  $(100);
+  $(a);
+}
+`````
+
+
 ## Todos triggered
 
 

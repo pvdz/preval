@@ -359,6 +359,81 @@ $( c );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  while (true) {
+    $continue: {
+      let $implicitThrow = false;
+      let $finalStep = false;
+      let $finalStep$1 = false;
+      let $finalStep$3 = false;
+      let $finalStep$5 = false;
+      let $finalCatchArg = undefined;
+      let $finalArg = undefined;
+      let $finalArg$1 = undefined;
+      $finally: {
+        try {
+          $(a);
+          if ($1) {
+            $finalStep = true;
+            break $finally;
+          } else {
+            if ($2) {
+              $finalStep$1 = true;
+              $finalArg = value;
+              break $finally;
+            } else {
+              if ($3) {
+                $finalStep$3 = true;
+                $finalArg$1 = x;
+                break $finally;
+              } else {
+                if ($4) {
+                  $finalStep$5 = true;
+                  break $finally;
+                } else {
+                }
+              }
+            }
+          }
+        } catch ($finalImplicit) {
+          $(b);
+          throw $finalImplicit;
+        }
+      }
+      $(b);
+      if ($implicitThrow) {
+        throw $finalCatchArg;
+      } else {
+        if ($finalStep) {
+          break;
+        } else {
+          if ($finalStep$1) {
+            return $finalArg;
+          } else {
+            if ($finalStep$3) {
+              throw $finalArg$1;
+            } else {
+              if ($finalStep$5) {
+                break $continue;
+              } else {
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  return undefined;
+};
+$(f);
+`````
+
+
 ## Todos triggered
 
 

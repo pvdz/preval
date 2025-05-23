@@ -85,6 +85,24 @@ if (g) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpUnaryArg = $spy(1);
+const x = +tmpUnaryArg;
+if (x) {
+  const tmpIfTest$3 = x & 48;
+  const tmpIfTest$5 = tmpIfTest$3 === 48;
+  if (tmpIfTest$5) {
+    $(`it is 58`);
+  } else {
+  }
+} else {
+}
+`````
+
+
 ## Todos triggered
 
 

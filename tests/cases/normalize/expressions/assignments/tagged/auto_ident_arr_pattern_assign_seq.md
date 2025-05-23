@@ -71,6 +71,29 @@ $( c, e, f );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = 1;
+let y = 2;
+let a = { a: 999, b: 1000 };
+let tmpCalleeParam = [`before `, ` after`];
+$(x);
+$(y);
+const tmpArrElement = $(3);
+const tmpArrElement$1 = $(4);
+const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
+const tmpArrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+x = tmpArrPatternSplat[0];
+y = tmpArrPatternSplat[1];
+a = tmpNestedAssignArrPatternRhs;
+let tmpCalleeParam$1 = a;
+$(tmpCalleeParam, a);
+$(a, x, y);
+`````
+
+
 ## Todos triggered
 
 

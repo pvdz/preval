@@ -48,6 +48,19 @@ $( d );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let tmpCalleeParam = [`a`, `b`, `c`];
+const tmpArrSpread = $(tmpCalleeParam);
+const ARR = [...tmpArrSpread];
+const tmpMCF = ARR.shift;
+const N = $dotCall(tmpMCF, ARR, `shift`);
+$(N);
+`````
+
+
 ## Todos triggered
 
 

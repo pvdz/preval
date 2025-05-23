@@ -80,6 +80,24 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let tmpLoopRetCode = true;
+while (true) {
+  if (tmpLoopRetCode) {
+    if ($) {
+      tmpLoopRetCode = false;
+    } else {
+    }
+  } else {
+    break;
+  }
+}
+`````
+
+
 ## Todos triggered
 
 

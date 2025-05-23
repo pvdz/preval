@@ -39,6 +39,17 @@ x = (1).x;
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x$3 = 1;
+const tmpAssignObjPatternRhs = 1;
+x = tmpAssignObjPatternRhs.x;
+let x$1 = 1;
+`````
+
+
 ## Todos triggered
 
 

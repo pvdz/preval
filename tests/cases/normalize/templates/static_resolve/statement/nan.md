@@ -37,6 +37,17 @@ With rename=true
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpBinBothLhs = ``;
+const tmpBinBothRhs = $coerce($Number_NaN, `string`);
+const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
+$coerce(tmpBinLhs, `plustr`);
+`````
+
+
 ## Todos triggered
 
 

@@ -47,6 +47,31 @@ new $string_constructor( 8.5, 8, ...a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let a = 1;
+let b = 2;
+let c = 3;
+let d = 4;
+let e = 5;
+let f = 6;
+const tmpObjLitVal = [7];
+let g = { h: tmpObjLitVal };
+let h = 8;
+let x = 8.5;
+let y = String;
+const tmpNewCallee = y;
+let tmpCalleeParam = x;
+a = b.c;
+d = e[f];
+const tmpCompObj = g;
+let tmpCalleeParamSpread = tmpCompObj.h;
+new tmpNewCallee(tmpCalleeParam, 8, ...tmpCalleeParamSpread);
+`````
+
+
 ## Todos triggered
 
 

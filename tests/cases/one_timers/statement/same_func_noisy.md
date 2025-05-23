@@ -78,6 +78,38 @@ $( 8 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  let a = function () {
+    debugger;
+    $(`a`);
+    return undefined;
+  };
+  let b = function () {
+    debugger;
+    $(`b`);
+    return undefined;
+  };
+  $(3);
+  $(4);
+  a();
+  $(5);
+  $(6);
+  b();
+  $(7);
+  return undefined;
+};
+$(1);
+$(2);
+f();
+$(8);
+`````
+
+
 ## Todos triggered
 
 

@@ -48,6 +48,18 @@ $dotCall( $regex_test, b, "test", a, c );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const arg = $(`give food`);
+const f = $regex_test;
+const regex = new $regex_constructor(`foo`, ``);
+const tmpCalleeParam$5 = { some: `stuff` };
+$dotCall(f, regex, `test`, arg, tmpCalleeParam$5);
+`````
+
+
 ## Todos triggered
 
 

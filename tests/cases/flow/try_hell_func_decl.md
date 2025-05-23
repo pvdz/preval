@@ -95,6 +95,61 @@ $( 2 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  let $implicitThrow = false;
+  let $finalStep = false;
+  let $finalCatchArg = undefined;
+  let $finalArg = undefined;
+  try {
+    x = 1;
+    throw `one`;
+  } catch (e) {
+    try {
+      $finalStep = true;
+      $finalArg = `two`;
+      return undefined;
+    } catch ($finalImplicit) {
+      $implicitThrow = true;
+      $finalCatchArg = $finalImplicit;
+    }
+  }
+  return undefined;
+};
+let x = 0;
+f();
+$(x);
+let f$1 = function () {
+  debugger;
+  let $implicitThrow$1 = false;
+  let $finalStep$1 = false;
+  let $finalCatchArg$1 = undefined;
+  let $finalArg$1 = undefined;
+  try {
+    throw `one`;
+  } catch (e$1) {
+    try {
+      x$1 = 2;
+      $finalStep$1 = true;
+      $finalArg$1 = `two`;
+      return undefined;
+    } catch ($finalImplicit$1) {
+      $implicitThrow$1 = true;
+      $finalCatchArg$1 = $finalImplicit$1;
+    }
+  }
+  return undefined;
+};
+let x$1 = 0;
+f$1();
+$(x$1);
+`````
+
+
 ## Todos triggered
 
 

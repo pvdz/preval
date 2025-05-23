@@ -47,6 +47,21 @@ $( a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpArrElement = -1;
+const tmpArrElement$1 = false;
+const tmpArrElement$3 = $Number_POSITIVE_INFINITY;
+const tmpArrElement$5 = $Number_NEGATIVE_INFINITY;
+const tmpArrElement$7 = `number`;
+const tmpArrElement$9 = undefined;
+const arr = [tmpArrElement, tmpArrElement$1, tmpArrElement$3, tmpArrElement$5, tmpArrElement$7, tmpArrElement$9];
+$(arr);
+`````
+
+
 ## Todos triggered
 
 

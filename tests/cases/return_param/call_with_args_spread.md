@@ -136,6 +136,49 @@ $( undefined );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function ($$0) {
+  let x = $$0;
+  debugger;
+  $(`no`);
+  $(`inlining`);
+  $(`please`);
+  const y = x(1, `two`, null, $Number_NaN);
+  return y;
+};
+const tmpCallCallee = f;
+let tmpCalleeParam$1 = function (...$$0 /*:array*/) {
+  let args = $$0;
+  debugger;
+  $(`pass1`, args);
+  return undefined;
+};
+let tmpCalleeParam = f(tmpCalleeParam$1);
+$(tmpCalleeParam);
+const tmpCallCallee$1 = f;
+let tmpCalleeParam$5 = function (...$$0 /*:array*/) {
+  let args$1 = $$0;
+  debugger;
+  $(`pass2`, args$1);
+  return undefined;
+};
+let tmpCalleeParam$3 = f(tmpCalleeParam$5);
+$(tmpCalleeParam$3);
+const tmpCallCallee$3 = f;
+let tmpCalleeParam$9 = function (...$$0 /*:array*/) {
+  let args$3 = $$0;
+  debugger;
+  $(`pass3`, args$3);
+  return undefined;
+};
+let tmpCalleeParam$7 = f(tmpCalleeParam$9);
+$(tmpCalleeParam$7);
+`````
+
+
 ## Todos triggered
 
 

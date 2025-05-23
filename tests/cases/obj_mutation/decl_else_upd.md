@@ -61,6 +61,20 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const blob = { thing: `woop` };
+if ($) {
+  $(blob);
+} else {
+  blob.thing = `boing`;
+  $(blob);
+}
+`````
+
+
 ## Todos triggered
 
 

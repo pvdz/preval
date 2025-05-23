@@ -117,6 +117,41 @@ $( undefined );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function ($$0, $$1, $$2) {
+  const tmpPrevalAliasThis = this;
+  let a = $$0;
+  let b = $$1;
+  let c = $$2;
+  debugger;
+  $(`call me once`, tmpPrevalAliasThis, a, b, c);
+  return undefined;
+};
+let g = function () {
+  debugger;
+  let x = f;
+  const obj = {};
+  const tmpMCF = f.call;
+  const y = $dotCall(tmpMCF, f, `call`, obj, 1, 2, 3);
+  if (f) {
+    f = false;
+    $(y);
+    return undefined;
+  } else {
+    $(y);
+    return undefined;
+  }
+};
+let tmpCalleeParam = g();
+$(tmpCalleeParam);
+let tmpCalleeParam$1 = g();
+$(tmpCalleeParam$1);
+`````
+
+
 ## Todos triggered
 
 

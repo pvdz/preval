@@ -37,6 +37,14 @@ $( "\u0013\u00171\u0008\u0012)!\"\u0007\u0016\u0008\u0007\u0009" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+$(`\u0013\u00171\u0012)!"\u0007\u0016\u0007\u0009`);
+`````
+
+
 ## Todos triggered
 
 

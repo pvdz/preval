@@ -68,6 +68,29 @@ $( undefined );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  let b = { c: 10, d: 20 };
+  let a = { a: 999, b: 1000 };
+  const tmpNestedAssignObj = $(b);
+  const tmpCompObj = $(b);
+  const tmpCalleeParam = $(`d`);
+  const tmpNestedAssignPropRhs = tmpCompObj[tmpCalleeParam];
+  const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
+  tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
+  a = tmpNestedPropAssignRhs;
+  $(tmpNestedPropAssignRhs, b);
+  return undefined;
+};
+let tmpCalleeParam$1 = f();
+$(tmpCalleeParam$1);
+`````
+
+
 ## Todos triggered
 
 

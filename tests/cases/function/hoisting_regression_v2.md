@@ -94,6 +94,30 @@ $( b );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let outer = function () {
+  debugger;
+  let inner = function () {
+    debugger;
+    $(okdezemoetjezoeken);
+    return undefined;
+  };
+  const tmpIfTest = $();
+  if (tmpIfTest) {
+    return undefined;
+  } else {
+  }
+  let okdezemoetjezoeken = 1;
+  $(inner);
+  return undefined;
+};
+$(outer);
+`````
+
+
 ## Todos triggered
 
 

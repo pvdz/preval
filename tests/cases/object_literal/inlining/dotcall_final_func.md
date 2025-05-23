@@ -41,6 +41,21 @@ $( "attempt to distract" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const f = function () {
+  debugger;
+  return undefined;
+};
+const objlit = { f: f };
+const x = objlit.f;
+$(`attempt to distract`);
+$dotCall(f, objlit, undefined);
+`````
+
+
 ## Todos triggered
 
 

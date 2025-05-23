@@ -61,6 +61,21 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpBinLhs = $(`is`);
+let tmpIfTest$1917 = tmpBinLhs === 67636;
+if (tmpIfTest$1917) {
+  $(`it was`);
+} else {
+  tmpIfTest$1917 = false;
+  $(`it was not`);
+}
+`````
+
+
 ## Todos triggered
 
 

@@ -45,6 +45,18 @@ $dotCall( $number_toFixed, 200, "toFixed", a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const x = $spy(`a`);
+const y = $spy(`b`);
+const tmpMCF = $number_toFixed;
+const tmpStringFirstArg = x;
+$dotCall($number_toFixed, 200, `toFixed`, x);
+`````
+
+
 ## Todos triggered
 
 

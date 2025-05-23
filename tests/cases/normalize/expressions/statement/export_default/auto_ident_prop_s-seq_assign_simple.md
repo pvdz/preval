@@ -54,6 +54,21 @@ $( b, c );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let b = { c: 1 };
+let a = { a: 999, b: 1000 };
+const tmpInitAssignLhsComputedObj = b;
+const tmpInitAssignLhsComputedRhs = 2;
+tmpInitAssignLhsComputedObj.c = tmpInitAssignLhsComputedRhs;
+const tmpAnonDefaultExport = tmpInitAssignLhsComputedRhs;
+export { tmpAnonDefaultExport as default };
+$(a, b);
+`````
+
+
 ## Todos triggered
 
 

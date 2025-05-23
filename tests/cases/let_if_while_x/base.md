@@ -121,6 +121,38 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let n = 0;
+let flag = true;
+$(`before`);
+const tmpBinBothLhs = n;
+const tmpBinBothRhs = $(5);
+const x = tmpBinBothLhs < tmpBinBothRhs;
+if (x) {
+} else {
+  flag = false;
+}
+while (true) {
+  if (flag) {
+    $(`inner`, n);
+    const tmpPostUpdArgIdent = $coerce(n, `number`);
+    n = tmpPostUpdArgIdent + 1;
+    const tmpIfTest = n >= 5;
+    if (tmpIfTest) {
+      flag = false;
+    } else {
+    }
+  } else {
+    break;
+  }
+}
+$(`after`);
+`````
+
+
 ## Todos triggered
 
 

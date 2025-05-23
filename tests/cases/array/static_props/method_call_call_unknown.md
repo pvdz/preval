@@ -52,6 +52,20 @@ $( c );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const arr = [1, 2, 3];
+const tmpMCOO = arr.splice;
+const tmpMCF = tmpMCOO.call;
+const tmpMCP = $(1);
+$dotCall(tmpMCF, tmpMCOO, `call`, arr, tmpMCP, 2, 10, 20);
+let tmpCalleeParam = arr.length;
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

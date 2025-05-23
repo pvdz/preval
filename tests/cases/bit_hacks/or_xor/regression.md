@@ -84,6 +84,28 @@ if (d) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpUnaryArg = $(1);
+let x = +tmpUnaryArg;
+if ($) {
+  $(x);
+  const tmpUnaryArg$1 = $(2);
+  x = +tmpUnaryArg$1;
+} else {
+}
+const tmpIfTest = $(true);
+if (tmpIfTest) {
+  const t = x | 256;
+  x = t ^ 256;
+  $(x);
+} else {
+}
+`````
+
+
 ## Todos triggered
 
 

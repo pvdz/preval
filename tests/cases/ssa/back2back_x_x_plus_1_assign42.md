@@ -171,6 +171,68 @@ if ($) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const f = function () {
+  debugger;
+  if ($) {
+    const g = function () {
+      debugger;
+      if ($) {
+        $(x, `dis`);
+        return undefined;
+      } else {
+        return undefined;
+      }
+    };
+    let x = $(5);
+    $(x);
+    const t = function () {
+      debugger;
+      if ($) {
+        $(x, `t`);
+        return undefined;
+      } else {
+        return undefined;
+      }
+    };
+    let tmpCalleeParam = {
+      toString() {
+        debugger;
+        x = 200;
+        t();
+        $(x);
+        if ($) {
+          $(11);
+          return `hi`;
+        } else {
+          return `hi`;
+        }
+      },
+    };
+    x = $(tmpCalleeParam);
+    x = x + 1;
+    g();
+    t();
+    if ($) {
+      $(10);
+      return undefined;
+    } else {
+      return undefined;
+    }
+  } else {
+    return undefined;
+  }
+};
+if ($) {
+  f();
+} else {
+}
+`````
+
+
 ## Todos triggered
 
 

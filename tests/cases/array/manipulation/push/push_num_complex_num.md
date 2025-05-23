@@ -67,6 +67,25 @@ $( b );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const ARR = [`a`, `b`, `c`];
+const NOOP = function () {
+  debugger;
+  $(ARR);
+  return undefined;
+};
+const tmpMCF = ARR.push;
+const count = $dotCall(tmpMCF, ARR, `push`, 10, $, 20);
+$(count);
+const tmpMCF$1 = ARR.push;
+$dotCall(tmpMCF$1, ARR, `push`, count);
+$(NOOP);
+`````
+
+
 ## Todos triggered
 
 

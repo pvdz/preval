@@ -155,6 +155,51 @@ $( "-------- a.foo = 4" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  $(`-------- start`);
+  const b = {
+    get foo() {
+      debugger;
+      const tmpReturnArg = $(2);
+      return tmpReturnArg;
+    },
+    set foo($$0) {
+      let x = $$0;
+      debugger;
+      const tmpReturnArg$1 = $(3);
+      return tmpReturnArg$1;
+    },
+  };
+  $(`-------- bound`);
+  let a = 1;
+  $(`-------- let 1`);
+  const tmpNestedPropAssignRhs = 5;
+  b.foo = tmpNestedPropAssignRhs;
+  a = tmpNestedPropAssignRhs;
+  let tmpCalleeParam = a;
+  $(a);
+  $(`-------- test case`);
+  $(a);
+  $(`-------- a`);
+  let tmpCalleeParam$1 = b.foo;
+  $(tmpCalleeParam$1);
+  $(`-------- a.foo`);
+  const tmpInitAssignLhsComputedRhs = 4;
+  b.foo = tmpInitAssignLhsComputedRhs;
+  let tmpCalleeParam$3 = tmpInitAssignLhsComputedRhs;
+  $(tmpInitAssignLhsComputedRhs);
+  $(`-------- a.foo = 4`);
+  return undefined;
+};
+f();
+`````
+
+
 ## Todos triggered
 
 

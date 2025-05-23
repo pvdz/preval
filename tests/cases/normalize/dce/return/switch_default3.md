@@ -77,6 +77,29 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpSwitchValue = $(1, `disc`);
+let tmpSwitchCaseToStart = 1;
+const tmpBinLhs = $(0);
+const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+} else {
+}
+const tmpSaooB = tmpSwitchCaseToStart <= 0;
+if (tmpSaooB) {
+  $(`keep, do not eval`);
+  $(undefined);
+} else {
+  const tmpReturnArg$1 = $(2, `ret`);
+  $(tmpReturnArg$1);
+}
+`````
+
+
 ## Todos triggered
 
 

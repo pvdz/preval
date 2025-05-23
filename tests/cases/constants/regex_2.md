@@ -45,6 +45,16 @@ $( a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const foo = new $regex_constructor(`foo`, `g`);
+const bar = foo;
+$(foo);
+`````
+
+
 ## Todos triggered
 
 

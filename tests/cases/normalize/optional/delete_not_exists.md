@@ -49,6 +49,23 @@ $( a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let o = {};
+$(o);
+const tmpDeleteOpt = o;
+const tmpIfTest = tmpDeleteOpt != null;
+if (tmpIfTest) {
+  delete tmpDeleteOpt.x;
+  $(o);
+} else {
+  $(o);
+}
+`````
+
+
 ## Todos triggered
 
 

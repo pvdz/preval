@@ -94,6 +94,25 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let arg = 1;
+let a = { a: 999, b: 1000 };
+while (true) {
+  const tmpIfTest = $(1);
+  if (tmpIfTest) {
+    const tmpUnaryArg = $(arg);
+    a = typeof tmpUnaryArg;
+  } else {
+    break;
+  }
+}
+$(a, arg);
+`````
+
+
 ## Todos triggered
 
 

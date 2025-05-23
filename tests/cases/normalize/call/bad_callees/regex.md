@@ -48,6 +48,17 @@ $( "after" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+$(`before`);
+const tmpCallComplexCallee = new $regex_constructor(`nope`, ``);
+tmpCallComplexCallee();
+$(`after`);
+`````
+
+
 ## Todos triggered
 
 

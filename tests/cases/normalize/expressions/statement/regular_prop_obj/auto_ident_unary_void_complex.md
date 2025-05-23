@@ -46,6 +46,19 @@ throw "[Preval]: Can not reach here";
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+let obj = {};
+$(100);
+const tmpCompObj = undefined;
+tmpCompObj.a;
+$(a);
+`````
+
+
 ## Todos triggered
 
 

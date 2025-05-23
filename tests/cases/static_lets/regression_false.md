@@ -104,6 +104,32 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const oops = function (...$$0 /*:array*/) {
+  let args = $$0;
+  debugger;
+  $(...args);
+  x = `fail`;
+  return undefined;
+};
+let x = 5;
+$(x);
+const tmpIfTest = $(false);
+if (tmpIfTest) {
+  x = 10;
+  oops(x, `a`);
+  $(x);
+} else {
+  x = 20;
+  oops(x, `b`);
+  $(x);
+}
+`````
+
+
 ## Todos triggered
 
 

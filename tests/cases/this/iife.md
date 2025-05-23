@@ -53,6 +53,30 @@ if (a) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const f = function () {
+  const tmpPrevalAliasThis = this;
+  debugger;
+  let t = $(1);
+  if (t) {
+    t = $(2);
+    if (t) {
+      const g = tmpPrevalAliasThis;
+      return undefined;
+    } else {
+      return undefined;
+    }
+  } else {
+    return undefined;
+  }
+};
+f();
+`````
+
+
 ## Todos triggered
 
 

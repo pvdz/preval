@@ -42,6 +42,34 @@ With rename=true
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  let tmpBindingPatternObjRoot = undefined;
+  if ($) {
+    tmpBindingPatternObjRoot = 1;
+  } else {
+    tmpBindingPatternObjRoot = 2;
+  }
+  let tmpObjPatternCrashTest = tmpBindingPatternObjRoot === undefined;
+  if (tmpObjPatternCrashTest) {
+  } else {
+    tmpObjPatternCrashTest = tmpBindingPatternObjRoot === null;
+  }
+  if (tmpObjPatternCrashTest) {
+    tmpObjPatternCrashTest = tmpBindingPatternObjRoot.cannotDestructureThis;
+    return undefined;
+  } else {
+    return undefined;
+  }
+};
+f();
+`````
+
+
 ## Todos triggered
 
 

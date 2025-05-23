@@ -52,6 +52,19 @@ $( 6 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+$(1);
+$(2);
+$(3);
+$(4);
+$(5);
+$(6);
+`````
+
+
 ## Todos triggered
 
 

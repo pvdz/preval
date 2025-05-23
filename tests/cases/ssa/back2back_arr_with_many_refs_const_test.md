@@ -78,6 +78,39 @@ if ($) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  if (abc) {
+    let x = $(undefined);
+    x = [1, x, 2, x, 3, x, 4, x];
+    abc(x);
+    const g = function () {
+      debugger;
+      if (abc) {
+        abc(x);
+        return undefined;
+      } else {
+        return undefined;
+      }
+    };
+    g();
+    return undefined;
+  } else {
+    return undefined;
+  }
+};
+const abc = $;
+if (abc) {
+  f();
+} else {
+}
+`````
+
+
 ## Todos triggered
 
 

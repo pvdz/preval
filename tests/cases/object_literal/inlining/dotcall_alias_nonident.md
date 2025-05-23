@@ -75,6 +75,26 @@ $( a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let order = function () {
+  debugger;
+  let tmpCalleeParam = $dotCall(alias, obj, undefined);
+  $(tmpCalleeParam);
+  return undefined;
+};
+const g = function () {
+  debugger;
+  return `win`;
+};
+const obj = { f: g };
+const alias = $Number_prototype[`f f`];
+$(order);
+`````
+
+
 ## Todos triggered
 
 

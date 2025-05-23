@@ -107,6 +107,39 @@ $( b );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let g = function ($$0) {
+  let x = $$0;
+  debugger;
+  let tmpCalleeParam = x();
+  $(tmpCalleeParam);
+  return undefined;
+};
+const objd = {
+  get foo() {
+    debugger;
+    return 100;
+  },
+  set foo($$0) {
+    let a = $$0;
+    debugger;
+    return 4000;
+  },
+};
+const d = function () {
+  debugger;
+  $(`a`);
+  $(`b`);
+  return objd;
+};
+d();
+g(d);
+`````
+
+
 ## Todos triggered
 
 

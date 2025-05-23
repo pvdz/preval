@@ -81,6 +81,33 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let THIS_IS_BOOL = 0;
+const tmpIfTest = $(true);
+if (tmpIfTest) {
+  const tmpUnaryArg = $(true);
+  THIS_IS_BOOL = !tmpUnaryArg;
+} else {
+  const tmpUnaryArg$1 = $(false);
+  THIS_IS_BOOL = !tmpUnaryArg$1;
+}
+if (THIS_IS_BOOL) {
+  $(`a`);
+} else {
+  $(`b`);
+  THIS_IS_BOOL = true;
+}
+if (THIS_IS_BOOL) {
+  $(`d`);
+} else {
+  $(`c`);
+}
+`````
+
+
 ## Todos triggered
 
 

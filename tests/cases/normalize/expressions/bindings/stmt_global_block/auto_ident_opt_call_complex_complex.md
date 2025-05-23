@@ -62,6 +62,25 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let a = undefined;
+const tmpChainRootCall = $;
+const tmpChainElementCall = $($);
+const tmpIfTest = tmpChainElementCall != null;
+if (tmpIfTest) {
+  let tmpCalleeParam = $(1);
+  const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, tmpChainRootCall, undefined, tmpCalleeParam);
+  a = tmpChainElementCall$1;
+  $(tmpChainElementCall$1);
+} else {
+  $(a);
+}
+`````
+
+
 ## Todos triggered
 
 

@@ -110,6 +110,34 @@ $( undefined );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const _THROW = function () {
+  debugger;
+  $(`do`);
+  $(`not`);
+  $(`inline`);
+  $(`please`);
+  if ($) {
+    return undefined;
+  } else {
+    const tmpThrowArg = new Error(`always throws`);
+    throw tmpThrowArg;
+  }
+};
+let tmpCalleeParam = _THROW();
+$(tmpCalleeParam);
+let tmpCalleeParam$1 = _THROW();
+$(tmpCalleeParam$1);
+let tmpCalleeParam$3 = _THROW();
+$(tmpCalleeParam$3);
+let tmpCalleeParam$5 = _THROW();
+$(tmpCalleeParam$5);
+`````
+
+
 ## Todos triggered
 
 

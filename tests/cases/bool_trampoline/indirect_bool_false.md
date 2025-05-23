@@ -90,6 +90,30 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function ($$0) {
+  let arg = $$0;
+  debugger;
+  const x = $(arg);
+  const y = $boolean_constructor(x);
+  return y;
+};
+$(f);
+$(f);
+const tmpCallCallee = f;
+let tmpCalleeParam = $(0);
+const tmpIfTest = f(tmpCalleeParam);
+if (tmpIfTest) {
+  $(`fail`);
+} else {
+  $(`pass`);
+}
+`````
+
+
 ## Todos triggered
 
 

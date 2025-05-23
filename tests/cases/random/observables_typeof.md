@@ -76,6 +76,25 @@ $( d );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const f = function () {
+  debugger;
+  const x = $(1);
+  let y = false;
+  y = typeof x;
+  $(`block`);
+  $(`block`);
+  return y;
+};
+f();
+const tmpCalleeParam = f();
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

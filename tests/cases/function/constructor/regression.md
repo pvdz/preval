@@ -50,6 +50,25 @@ $( a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const f = function () {
+  debugger;
+  const tmpMCOO = function () {
+    debugger;
+    return undefined;
+  };
+  const tmpMCF = tmpMCOO.constructor;
+  const tmpCallComplexCallee = $dotCall(tmpMCF, tmpMCOO, `constructor`, `return this`);
+  const tmpReturnArg = tmpCallComplexCallee();
+  return tmpReturnArg;
+};
+$(f);
+`````
+
+
 ## Todos triggered
 
 

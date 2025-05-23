@@ -187,6 +187,62 @@ $( q, r );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const arr = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000];
+let func = function ($$0, $$1) {
+  let arg1 = $$0;
+  let arg2 = $$1;
+  debugger;
+  func = function ($$0, $$1) {
+    const tmpPrevalAliasArgumentsAny = arguments;
+    let newArg1 = $$0;
+    let unusedNewArg2 = $$1;
+    debugger;
+    $(`a`, newArg1, unusedNewArg2);
+    const index = newArg1 - 1;
+    const arrval = arr[index];
+    $(`b`, index);
+    const tmpBinLhs = func.IS_EXPANDO_SET;
+    const tmpIfTest = tmpBinLhs === undefined;
+    if (tmpIfTest) {
+      $(`c`);
+      func.THIS_IS_AN_EXPANDO = $spy;
+      arg1 = tmpPrevalAliasArgumentsAny;
+      func.IS_EXPANDO_SET = true;
+    } else {
+    }
+    const tmpBinBothLhs = index;
+    const tmpBinBothRhs = arr[0];
+    const newIndex = tmpBinBothLhs + tmpBinBothRhs;
+    $(`d`, newIndex);
+    const arguments_x = arg1[newIndex];
+    if (arguments_x) {
+      $(`e`);
+      return arguments_x;
+    } else {
+      $(`f`);
+      const tmpMCF = func.THIS_IS_AN_EXPANDO;
+      const expando_result = $dotCall(tmpMCF, func, `THIS_IS_AN_EXPANDO`, arrval);
+      let tmpCalleeParam = typeof arg1;
+      $(`arg is`, tmpCalleeParam);
+      arg1[newIndex] = expando_result;
+      $(`returning`, expando_result);
+      return expando_result;
+    }
+  };
+  const r = func(arg1, arg2);
+  return r;
+};
+const alias = func;
+const a = func(3, 4);
+const b = func(1, 2);
+$(a, b);
+`````
+
+
 ## Todos triggered
 
 

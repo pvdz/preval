@@ -138,6 +138,46 @@ $( m, "outer" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let g = function ($$0) {
+  let a = $$0;
+  debugger;
+  let f = function () {
+    debugger;
+    $(a, `inner`);
+    return a;
+  };
+  if ($) {
+    f.foo = a;
+    let tmpCalleeParam = f.foo;
+    $(tmpCalleeParam, `init`);
+  } else {
+  }
+  const tmpReturnArg = function () {
+    debugger;
+    const tmpReturnArg$1 = f();
+    return tmpReturnArg$1;
+  };
+  return tmpReturnArg;
+};
+const tmpCallComplexCallee = g(1);
+let tmpCalleeParam$1 = tmpCallComplexCallee();
+$(tmpCalleeParam$1, `outer`);
+const tmpCallComplexCallee$1 = g(2);
+let tmpCalleeParam$3 = tmpCallComplexCallee$1();
+$(tmpCalleeParam$3, `outer`);
+const tmpCallComplexCallee$3 = g(3);
+let tmpCalleeParam$5 = tmpCallComplexCallee$3();
+$(tmpCalleeParam$5, `outer`);
+const tmpCallComplexCallee$5 = g(4);
+let tmpCalleeParam$7 = tmpCallComplexCallee$5();
+$(tmpCalleeParam$7, `outer`);
+`````
+
+
 ## Todos triggered
 
 

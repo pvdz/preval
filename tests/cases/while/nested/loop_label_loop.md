@@ -99,6 +99,26 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = 10;
+while (true) {
+  while (true) {
+    const t = $(x);
+    if (t) {
+      break;
+    } else {
+      x = 20;
+      $(x);
+    }
+  }
+  $(x);
+}
+`````
+
+
 ## Todos triggered
 
 

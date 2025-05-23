@@ -78,6 +78,33 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = undefined;
+const f = function () {
+  debugger;
+  if ($) {
+    $(`block inlining`);
+    $(x);
+    return undefined;
+  } else {
+    return undefined;
+  }
+};
+x = $(2);
+if ($) {
+  f();
+  x = $(3);
+  $(x);
+} else {
+  $(x);
+  $(x);
+}
+`````
+
+
 ## Todos triggered
 
 

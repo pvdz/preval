@@ -91,6 +91,37 @@ $( 5 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let $implicitThrow = false;
+let $finalCatchArg = undefined;
+try {
+  $(1);
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    $continue: {
+      $(2);
+      const tmpIfTest = $(3);
+      if (tmpIfTest) {
+        break $continue;
+      } else {
+        $(4);
+      }
+    }
+  }
+} catch ($finalImplicit) {
+  $(5);
+  throw $finalImplicit;
+}
+$(5);
+if ($implicitThrow) {
+  throw $finalCatchArg;
+} else {
+}
+`````
+
+
 ## Todos triggered
 
 

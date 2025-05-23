@@ -39,6 +39,16 @@ $dotCall( $console_log, console, "log", a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpMCF = $console_log;
+const tmpMCP = [`console tet case`];
+$dotCall(tmpMCF, console, `log`, tmpMCP);
+`````
+
+
 ## Todos triggered
 
 

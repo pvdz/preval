@@ -156,6 +156,38 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+while (true) {
+  $continue: {
+    const tmpIfTest = $(false);
+    if (tmpIfTest) {
+      $(`uhoh`);
+      break $continue;
+    } else {
+      $(`exit`);
+      break;
+    }
+  }
+}
+$(`woohoo`);
+while (true) {
+  let continued = false;
+  const tmpIfTest$1 = $(false);
+  if (tmpIfTest$1) {
+    $(`uhoh`);
+  } else {
+    continued = true;
+    $(`exit`);
+    break;
+  }
+}
+$(`woohoo`);
+`````
+
+
 ## Todos triggered
 
 

@@ -47,6 +47,22 @@ $( a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+const tmpIfTest = new $regex_constructor(`foo`, ``);
+if (tmpIfTest) {
+  $(100);
+  $(a);
+} else {
+  $(200);
+  $(a);
+}
+`````
+
+
 ## Todos triggered
 
 

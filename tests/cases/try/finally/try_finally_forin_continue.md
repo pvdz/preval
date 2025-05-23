@@ -92,6 +92,34 @@ $( 3 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let tmpCalleeParam = { a: 1 };
+const tmpForInGen = $forIn(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext = tmpForInGen();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    const x = tmpForInNext.value;
+    let $implicitThrow = false;
+    let $finalCatchArg = undefined;
+    try {
+      $(x, 1);
+    } catch ($finalImplicit) {
+      $implicitThrow = true;
+      $finalCatchArg = $finalImplicit;
+    }
+    $(2);
+  }
+}
+$(3);
+`````
+
+
 ## Todos triggered
 
 

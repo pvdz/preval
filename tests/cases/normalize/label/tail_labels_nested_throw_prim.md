@@ -65,6 +65,33 @@ throw c;
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  $(`before`);
+  const xy = x + y;
+  foo: {
+    $(`inside`);
+    if (x) {
+      if (y) {
+        break foo;
+      } else {
+      }
+    } else {
+    }
+  }
+  throw xy;
+};
+const x = $(true);
+const y = $(true);
+let tmpCalleeParam = f();
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

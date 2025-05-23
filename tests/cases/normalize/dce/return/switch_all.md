@@ -106,6 +106,38 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  const tmpSwitchDisc = $(1, `disc`);
+  const tmpBinBothLhs = tmpSwitchDisc;
+  const tmpBinBothRhs = $(0);
+  const tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
+  if (tmpIfTest) {
+    $(`keep, do not eval`);
+    return undefined;
+  } else {
+    const tmpBinBothLhs$1 = tmpSwitchDisc;
+    const tmpBinBothRhs$1 = $(1);
+    const tmpIfTest$1 = tmpBinBothLhs$1 === tmpBinBothRhs$1;
+    if (tmpIfTest$1) {
+      $(`keep, eval`);
+      return undefined;
+    } else {
+      $(`keep, do not eval`);
+      const tmpReturnArg = $(2, `ret`);
+      return tmpReturnArg;
+    }
+  }
+};
+let tmpCalleeParam = f();
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

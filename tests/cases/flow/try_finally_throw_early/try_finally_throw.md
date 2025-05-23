@@ -62,6 +62,41 @@ throw "yes";
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  let x = `fail`;
+  let $implicitThrow = false;
+  let $finalStep = false;
+  let $finalCatchArg = undefined;
+  let $finalArg = undefined;
+  $finally: {
+    try {
+      x = `pass`;
+      $finalStep = true;
+      $finalArg = `yes`;
+      break $finally;
+    } catch ($finalImplicit) {
+      $implicitThrow = true;
+      $finalCatchArg = $finalImplicit;
+    }
+  }
+  throw_early;
+  $(`still throws`);
+  $(x);
+  if ($implicitThrow) {
+    throw $finalCatchArg;
+  } else {
+    throw $finalArg;
+  }
+};
+f();
+`````
+
+
 ## Todos triggered
 
 

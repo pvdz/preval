@@ -57,6 +57,26 @@ $( c, a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let arg = undefined;
+let a = undefined;
+const tmpSwitchDisc = 1;
+const tmpIfTest = tmpSwitchDisc === 1;
+if (tmpIfTest) {
+  arg = { y: 1 };
+  $(1);
+  $(2);
+  const tmpDeleteObj = $(arg);
+  a = delete tmpDeleteObj.y;
+  $(a, arg);
+} else {
+}
+`````
+
+
 ## Todos triggered
 
 

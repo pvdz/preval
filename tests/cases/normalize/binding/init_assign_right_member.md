@@ -39,6 +39,18 @@ With rename=true
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let b = 10;
+let c = 20;
+const tmpInitAssignLhsComputedRhs = c;
+b.x = tmpInitAssignLhsComputedRhs;
+let a = tmpInitAssignLhsComputedRhs;
+`````
+
+
 ## Todos triggered
 
 

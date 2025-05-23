@@ -55,6 +55,20 @@ $( a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = async function () {
+  debugger;
+  const x = await true;
+  $(x);
+  return undefined;
+};
+$(f);
+`````
+
+
 ## Todos triggered
 
 

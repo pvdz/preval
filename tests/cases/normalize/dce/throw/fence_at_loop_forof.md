@@ -167,6 +167,43 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  while (true) {
+    const tmpIfTest = $(true);
+    if (tmpIfTest) {
+      $(`loop`);
+      let tmpCalleeParam = [1, 2];
+      const tmpForOfGenNext = $forOf(tmpCalleeParam);
+      while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+        const tmpForOfNext = tmpForOfGenNext();
+        const tmpIfTest$1 = tmpForOfNext.done;
+        if (tmpIfTest$1) {
+          break;
+        } else {
+          let x = tmpForOfNext.value;
+          $(`loop`, x);
+          const tmpThrowArg = $(7, `throw`);
+          throw tmpThrowArg;
+        }
+      }
+      $(`do not visit, do not eliminate`);
+    } else {
+      break;
+    }
+  }
+  $(`after (not invoked)`);
+  return undefined;
+};
+let tmpCalleeParam$1 = f();
+$(tmpCalleeParam$1);
+`````
+
+
 ## Todos triggered
 
 

@@ -65,6 +65,23 @@ $( e, b );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let arg = { y: 1 };
+let a = { a: 999, b: 1000 };
+$(1);
+$(2);
+const tmpDeleteCompObj = arg;
+const tmpDeleteCompProp = $(`y`);
+const tmpBinBothLhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
+const tmpBinBothRhs = $(100);
+tmpBinBothLhs + tmpBinBothRhs;
+$(a, arg);
+`````
+
+
 ## Todos triggered
 
 

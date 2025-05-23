@@ -259,6 +259,69 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = 1;
+if ($) {
+  $(x, 2);
+} else {
+  $(x, 3);
+}
+x = 4;
+$(x);
+let x$1 = 1;
+if ($) {
+  $(x$1, 2);
+} else {
+}
+x$1 = 4;
+$(x$1);
+let x$3 = 1;
+if ($) {
+} else {
+  $(x$3, 3);
+}
+x$3 = 4;
+$(x$3);
+let x$5 = 1;
+x$5 = 4;
+$(x$5);
+let x$7 = 1;
+if ($) {
+  $(x$7, 2);
+  x$7 = 10;
+  $(x$7);
+} else {
+  $(x$7, 3);
+}
+x$7 = 4;
+$(x$7);
+let x$9 = 1;
+if ($) {
+} else {
+  $(x$9, 2);
+  x$9 = 10;
+  $(x$9, 3);
+}
+x$9 = 4;
+$(x$9);
+let x$11 = 1;
+if ($) {
+  $(x$11, 2);
+  x$11 = 10;
+  $(x$11, 3);
+} else {
+  $(x$11, 4);
+  x$11 = 10;
+  $(x$11, 5);
+}
+x$11 = 4;
+$(x$11);
+`````
+
+
 ## Todos triggered
 
 

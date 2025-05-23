@@ -58,6 +58,21 @@ $( "nope" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+import { default as e } from 'xyz';
+const obj = { f: e };
+let tmpCalleeParam = obj.f;
+$(tmpCalleeParam);
+`````
+
+`````js filename=xyz
+$(`nope`);
+`````
+
+
 ## Todos triggered
 
 

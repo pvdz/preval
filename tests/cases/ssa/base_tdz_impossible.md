@@ -64,6 +64,21 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+if ($) {
+  throw `Preval: TDZ triggered for this read: \$(x)`;
+} else {
+  let x = $(5);
+  $(x);
+  x = $(10);
+  $(x);
+}
+`````
+
+
 ## Todos triggered
 
 

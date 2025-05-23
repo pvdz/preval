@@ -98,6 +98,26 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let y = $(5);
+let x = true;
+while (true) {
+  if (x) {
+    $(x);
+    const tmpPostUpdArgIdent = $coerce(y, `number`);
+    y = tmpPostUpdArgIdent - 1;
+    x = y;
+  } else {
+    break;
+  }
+}
+$(x, y);
+`````
+
+
 ## Todos triggered
 
 

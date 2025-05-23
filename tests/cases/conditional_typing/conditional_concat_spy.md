@@ -85,6 +85,32 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  const tmpBinBothLhs = `Parser error! `;
+  const tmpBinBothRhs = $spy();
+  const tmpBinBothLhs$253 = tmpBinBothLhs + tmpBinBothRhs;
+  let tmpBinBothRhs$253 = undefined;
+  const tmpIfTest$1787 = lastType === 2097173;
+  if (tmpIfTest$1787) {
+    tmpBinBothRhs$253 = ` (at EOF)`;
+  } else {
+    tmpBinBothRhs$253 = ``;
+  }
+  const fullErrmsg = tmpBinBothLhs$253 + tmpBinBothRhs$253;
+  $(`-->`, fullErrmsg);
+  return undefined;
+};
+const lastType = $(2097173);
+let tmpCalleeParam = f();
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

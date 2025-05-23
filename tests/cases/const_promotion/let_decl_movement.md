@@ -42,6 +42,17 @@ $( undefined, a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let tmpCalleeParam$1 = undefined;
+const tmpCalleeParam$3 = [, , , 1, 20, 30];
+const arrPatternSplat = [...tmpCalleeParam$3];
+$(tmpCalleeParam$1, arrPatternSplat);
+`````
+
+
 ## Todos triggered
 
 

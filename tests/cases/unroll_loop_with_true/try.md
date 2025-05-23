@@ -478,6 +478,26 @@ loopStop: {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+while (true) {
+  try {
+    const test = $(`first`);
+    $(`second`);
+    if (test) {
+      break;
+    } else {
+      $(`third`);
+    }
+  } catch (e) {
+    $(`error`, e);
+  }
+}
+`````
+
+
 ## Todos triggered
 
 

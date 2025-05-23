@@ -56,6 +56,27 @@ $( 100 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  $(`outer`);
+  while (true) {
+    $(`middle`);
+    while (true) {
+      $(`inner`);
+      return 100;
+    }
+  }
+  return undefined;
+};
+let tmpCalleeParam = f();
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

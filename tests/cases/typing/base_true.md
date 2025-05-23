@@ -98,6 +98,38 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function ($$0) {
+  let x = $$0;
+  debugger;
+  const b = x === 10;
+  if (b) {
+    $(`a`, b);
+    const tmpReturnArg = g(b);
+    return tmpReturnArg;
+  } else {
+    $(`b`, b);
+    const tmpReturnArg$1 = g(b);
+    return tmpReturnArg$1;
+  }
+};
+let g = function ($$0) {
+  let arg = $$0;
+  debugger;
+  $(arg);
+  $(arg);
+  $(arg);
+  return undefined;
+};
+const tmpCallCallee = f;
+let tmpCalleeParam = $(10);
+f(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

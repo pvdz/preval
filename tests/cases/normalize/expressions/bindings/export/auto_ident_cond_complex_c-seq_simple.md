@@ -64,6 +64,23 @@ $( a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let a = undefined;
+const tmpIfTest = $(1);
+if (tmpIfTest) {
+  a = $(60);
+} else {
+  let tmpCalleeParam = $(100);
+  a = $(tmpCalleeParam);
+}
+export { a };
+$(a);
+`````
+
+
 ## Todos triggered
 
 

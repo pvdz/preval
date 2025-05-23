@@ -46,6 +46,19 @@ $( "u" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let a = $();
+const A = a;
+const B = a;
+const C = a;
+a = $(`u`);
+const aa = [A, B, C];
+`````
+
+
 ## Todos triggered
 
 

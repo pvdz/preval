@@ -77,6 +77,27 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let arg = { y: 1 };
+let a = { a: 999, b: 1000 };
+const tmpSwitchDisc = $(1);
+const tmpBinBothLhs = tmpSwitchDisc;
+const tmpBinBothRhs = $(1);
+const tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
+if (tmpIfTest) {
+  const tmpDeleteCompObj = arg;
+  const tmpDeleteCompProp = $(`y`);
+  a = delete tmpDeleteCompObj[tmpDeleteCompProp];
+  $(a, arg);
+} else {
+  $(a, arg);
+}
+`````
+
+
 ## Todos triggered
 
 

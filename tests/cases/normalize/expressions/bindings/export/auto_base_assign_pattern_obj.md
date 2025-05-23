@@ -57,6 +57,22 @@ $( e, d );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let b = {};
+let a = undefined;
+const tmpObjLitVal = $(2);
+let tmpCalleeParam = { b: tmpObjLitVal };
+const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
+b = tmpNestedAssignObjPatternRhs.b;
+a = tmpNestedAssignObjPatternRhs;
+export { a };
+$(a, b);
+`````
+
+
 ## Todos triggered
 
 

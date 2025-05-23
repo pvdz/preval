@@ -48,6 +48,18 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+while (true) {
+  const tmpMCF = $Math_random;
+  const rnd = $Math_random();
+  $(rnd);
+}
+`````
+
+
 ## Todos triggered
 
 

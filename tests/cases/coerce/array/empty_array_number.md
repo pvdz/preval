@@ -37,6 +37,16 @@ $( 0 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const a = [];
+const b = $coerce(a, `number`);
+$(b);
+`````
+
+
 ## Todos triggered
 
 

@@ -37,6 +37,16 @@ $( "PF" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpMCF = $String_fromCharCode;
+let tmpCalleeParam = $String_fromCharCode(80, 70);
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

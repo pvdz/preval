@@ -110,6 +110,33 @@ $( b );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let count = 77;
+let str = `var 44=["\\13\\17\\31\\8\\12\\29\\21\\22\\7\\16\\8\\7\\9`;
+const arr = [``, ``, ``, ``, ``, ``, ``, `x5C`, `x35`, `x36`, ``, `x31`];
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpPostUpdArgIdent$1 = count;
+  count = count - 1;
+  if (tmpPostUpdArgIdent$1) {
+    const chr = arr[count];
+    if (chr) {
+      const chr2 = arr[count];
+      const regex = new $regex_constructor(`xyz`, `g`);
+      const tmpMCF = str.replace;
+      str = $dotCall(tmpMCF, str, `replace`, regex, chr2);
+    } else {
+    }
+  } else {
+    break;
+  }
+}
+$(str);
+`````
+
+
 ## Todos triggered
 
 

@@ -41,6 +41,16 @@ $( b );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpBinLhs = $spy(3.402823669209385e38);
+let tmpCalleeParam = tmpBinLhs ^ 0;
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

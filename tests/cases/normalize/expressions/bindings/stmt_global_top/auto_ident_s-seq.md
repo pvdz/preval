@@ -46,6 +46,18 @@ $( 1, 1 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = 1;
+$(1);
+$(2);
+let a = x;
+$(x, x);
+`````
+
+
 ## Todos triggered
 
 

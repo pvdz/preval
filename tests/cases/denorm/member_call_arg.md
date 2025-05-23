@@ -44,6 +44,17 @@ $( b );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const a = inline.value;
+const b = encodeURIComponent(a);
+const c = $coerce(b, `plustr`);
+$(c);
+`````
+
+
 ## Todos triggered
 
 

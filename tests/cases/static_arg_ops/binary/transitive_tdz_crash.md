@@ -53,6 +53,30 @@ $( 1262 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const f = function ($$0) {
+  let arg = $$0;
+  debugger;
+  const tmp = arg - 1902;
+  g(tmp);
+  return undefined;
+};
+const g = function ($$0) {
+  let a2 = $$0;
+  debugger;
+  const x = a2 - -990;
+  $(x);
+  return undefined;
+};
+f(1495);
+f(1800);
+g(272);
+`````
+
+
 ## Todos triggered
 
 

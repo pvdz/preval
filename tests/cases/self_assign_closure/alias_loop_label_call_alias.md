@@ -212,6 +212,68 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const main_data_arr = [`ike there `, `wgcCwgZikg`, `LmNvbmNhdC`, `eBestCandi`, ` using the`];
+let the_self_closing_func = function ($$0, $$1) {
+  let $dlr_$$0 = $$0;
+  let $dlr_$$1 = $$1;
+  debugger;
+  const dud_arg1 = $dlr_$$0;
+  const dud_arg2 = $dlr_$$1;
+  the_self_closing_func = function ($$0, $$1) {
+    let $dlr_$$2 = $$0;
+    let $dlr_$$4 = $$1;
+    debugger;
+    const noop_arg = $dlr_$$2;
+    const tmp1 = noop_arg - 387;
+    const tmp2 = main_data_arr[tmp1];
+    return tmp2;
+  };
+  const once = the_self_closing_func(dud_arg1, dud_arg2);
+  return once;
+};
+const the_scf_alias = the_self_closing_func;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  foo: {
+    const a = the_scf_alias(4639);
+    const b = $Number_parseInt(a);
+    const c = the_scf_alias(710);
+    const d = $Number_parseInt(c);
+    const e = the_scf_alias(851);
+    const f = $Number_parseInt(e);
+    const g = the_scf_alias(2173);
+    const h = $Number_parseInt(g);
+    const i = the_scf_alias(2207);
+    const j = $Number_parseInt(i);
+    const k = the_scf_alias(5120);
+    const l = $Number_parseInt(k);
+    const m = the_scf_alias(4863);
+    const n = $Number_parseInt(m);
+    const o = the_scf_alias(6199);
+    const p = $Number_parseInt(o);
+    const q = the_scf_alias(4934);
+    const r = $Number_parseInt(q);
+    const s = the_scf_alias(5245);
+    const t = $Number_parseInt(s);
+    const u = the_scf_alias(4723);
+    const v = $Number_parseInt(u);
+    const w = v === 330166;
+    $(`testing`);
+    if (w) {
+      break;
+    } else {
+      const tmpMCPa = $dotCall($array_shift, main_data_arr, `shift`);
+      $dotCall($array_push, main_data_arr, `push`, tmpMCPa);
+      break foo;
+    }
+  }
+}
+`````
+
+
 ## Todos triggered
 
 

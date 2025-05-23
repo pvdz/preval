@@ -45,6 +45,31 @@ throw "Preval: This statement contained a read that reached no writes: propTDZ;"
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = function ($$0, $$1) {
+  let a = $$0;
+  let b = $$1;
+  debugger;
+  let foo = undefined;
+  const tmpIfTest = a === undefined;
+  if (tmpIfTest) {
+    foo = propTDZ;
+  } else {
+    foo = a;
+  }
+  let tmpBindingPatternObjRoot = b;
+  let propTDZ = tmpBindingPatternObjRoot.x;
+  return undefined;
+};
+const tmpCallCallee = x;
+let tmpCalleeParam = { x: 1 };
+x(undefined, tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

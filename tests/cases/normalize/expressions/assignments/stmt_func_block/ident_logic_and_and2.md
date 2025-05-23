@@ -113,6 +113,42 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let theneedle = { a: 999, b: 1000 };
+const tmpCalleeParam = $(1);
+theneedle = $(tmpCalleeParam);
+const tmpBranchingC$1 = function () {
+  debugger;
+  $(theneedle);
+  return undefined;
+};
+const tmpBranchingC = function () {
+  debugger;
+  if (theneedle) {
+    const tmpCalleeParam$7 = $(2);
+    theneedle = $(tmpCalleeParam$7);
+    tmpBranchingC$1();
+    return undefined;
+  } else {
+    tmpBranchingC$1();
+    return undefined;
+  }
+};
+if (theneedle) {
+  const tmpCalleeParam$3 = $(1);
+  theneedle = $(tmpCalleeParam$3);
+  tmpBranchingC();
+  $(undefined);
+} else {
+  tmpBranchingC();
+  $(undefined);
+}
+`````
+
+
 ## Todos triggered
 
 

@@ -43,6 +43,19 @@ b.z;
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let z$1 = 1;
+const tmpBindingPatternObjRoot = 1;
+const tmpOPND = tmpBindingPatternObjRoot.x;
+const tmpOPND$1 = tmpOPND.y;
+const z = tmpOPND$1.z;
+let z$3 = 1;
+`````
+
+
 ## Todos triggered
 
 

@@ -40,6 +40,16 @@ $( undefined, 1 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let arg = 1;
+let a = undefined;
+$(undefined, arg);
+`````
+
+
 ## Todos triggered
 
 

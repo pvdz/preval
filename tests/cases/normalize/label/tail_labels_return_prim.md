@@ -80,6 +80,29 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  $(`before`);
+  const xy = x + y;
+  $(`inside`);
+  if (x) {
+    $(`ok?`);
+    return xy;
+  } else {
+    return xy;
+  }
+};
+const x = $(true);
+const y = $(true);
+let tmpCalleeParam = f();
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

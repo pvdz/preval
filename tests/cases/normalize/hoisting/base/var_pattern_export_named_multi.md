@@ -54,6 +54,25 @@ export { b as y };
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = undefined;
+let y = undefined;
+$(x, undefined);
+const tmpArrAssignPatternRhs = [10];
+const tmpArrPatternSplat = [...tmpArrAssignPatternRhs];
+x = tmpArrPatternSplat[0];
+const tmpArrAssignPatternRhs$1 = [20];
+const tmpArrPatternSplat$1 = [...tmpArrAssignPatternRhs$1];
+y = tmpArrPatternSplat$1[0];
+$(x, y);
+export { x };
+export { y };
+`````
+
+
 ## Todos triggered
 
 

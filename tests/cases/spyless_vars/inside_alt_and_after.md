@@ -71,6 +71,23 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpUnaryArg = $(`1`);
+const a = +tmpUnaryArg;
+const x = a * 2;
+if ($) {
+  $(`foo`);
+  $(x);
+} else {
+  $(x);
+  $(x);
+}
+`````
+
+
 ## Todos triggered
 
 

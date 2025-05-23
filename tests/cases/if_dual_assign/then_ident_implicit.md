@@ -57,6 +57,28 @@ $( a, "end" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = false;
+const a = b === c;
+if (a) {
+  x = a;
+  $(a, `middle`);
+} else {
+  $(x, `middle`);
+}
+if (a) {
+  x = true;
+  $(x, `end`);
+} else {
+  x = false;
+  $(x, `end`);
+}
+`````
+
+
 ## Todos triggered
 
 

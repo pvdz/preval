@@ -51,6 +51,38 @@ $( 4 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = undefined;
+let tmpSwitchValue = 1;
+let tmpSwitchCaseToStart = 2;
+const tmpIfTest = 1 === tmpSwitchValue;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+} else {
+  const tmpIfTest$1 = 2 === tmpSwitchValue;
+  if (tmpIfTest$1) {
+    tmpSwitchCaseToStart = 1;
+  } else {
+  }
+}
+const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$3) {
+  const tmpArrAssignPatternRhs = [4, 5, 6];
+  const tmpArrPatternSplat = [...tmpArrAssignPatternRhs];
+  x = tmpArrPatternSplat[0];
+} else {
+}
+const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
+if (tmpIfTest$5) {
+  $(x);
+} else {
+}
+`````
+
+
 ## Todos triggered
 
 

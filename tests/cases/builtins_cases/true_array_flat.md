@@ -37,6 +37,18 @@ $( "truefunction flat() { [native code] }" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpBinBothLhs = true;
+const tmpCompObj = [];
+const tmpBinBothRhs = tmpCompObj.flat;
+let tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

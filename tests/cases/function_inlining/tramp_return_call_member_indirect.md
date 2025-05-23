@@ -46,6 +46,28 @@ $( "function String() { [native code] }" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const g = function ($$0) {
+  let b = $$0;
+  debugger;
+  const tmpMCF = b.toString;
+  const y = $dotCall(tmpMCF, b, `toString`);
+  return y;
+};
+const f = function ($$0) {
+  let a = $$0;
+  debugger;
+  const x = g(a);
+  return x;
+};
+const r = f($string_constructor);
+$(r);
+`````
+
+
 ## Todos triggered
 
 

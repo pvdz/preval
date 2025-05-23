@@ -84,6 +84,52 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let obj = {
+  get c() {
+    debugger;
+    $(`get`);
+    return undefined;
+  },
+  set c($$0) {
+    let x = $$0;
+    debugger;
+    $(`set`);
+    return undefined;
+  },
+};
+let a = 1;
+let b = { x: 2 };
+let c = 3;
+let d = 4;
+tmpSwitchBreak: {
+  let a$1 = undefined;
+  const tmpSwitchDisc = $(`a`);
+  const tmpBinBothLhs = tmpSwitchDisc;
+  const tmpBinBothRhs = $(`a`);
+  const tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
+  if (tmpIfTest) {
+    const tmpNestedAssignComMemberObj = b;
+    const tmpNestedAssignComMemberProp = $(`x`);
+    const tmpInitAssignLhsComputedObj = $(c);
+    const tmpInitAssignLhsComputedProp = $(`y`);
+    const tmpInitAssignLhsComputedRhs = $(d);
+    tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = tmpInitAssignLhsComputedRhs;
+    const tmpNestedAssignPropRhs = tmpInitAssignLhsComputedRhs;
+    const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
+    tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
+    a$1 = tmpNestedPropAssignRhs;
+    break tmpSwitchBreak;
+  } else {
+  }
+}
+$(a, b, c);
+`````
+
+
 ## Todos triggered
 
 

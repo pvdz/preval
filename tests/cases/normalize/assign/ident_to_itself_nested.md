@@ -50,6 +50,17 @@ $( a, a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let a = $(10);
+let x = $(20);
+x = a;
+$(a, a);
+`````
+
+
 ## Todos triggered
 
 

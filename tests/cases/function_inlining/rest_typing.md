@@ -55,6 +55,20 @@ a( 1, 2, 3 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function (...$$0 /*:array*/) {
+  let arr = $$0;
+  debugger;
+  $(arr);
+  return undefined;
+};
+f(1, 2, 3);
+`````
+
+
 ## Todos triggered
 
 

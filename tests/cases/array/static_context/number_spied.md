@@ -77,6 +77,28 @@ $( c );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const spy = {
+  valueOf() {
+    debugger;
+    $(`x`);
+    return undefined;
+  },
+  toString() {
+    debugger;
+    $(`y`);
+    return undefined;
+  },
+};
+const tmpNumberFirstArg = [spy, spy];
+let tmpCalleeParam = $coerce(tmpNumberFirstArg, `number`);
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

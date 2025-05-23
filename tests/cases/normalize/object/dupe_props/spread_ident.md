@@ -51,6 +51,18 @@ $( d );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let tmpCalleeParam = { a: `ignored` };
+const tmpObjSpread = $(tmpCalleeParam);
+const tmpObjLitVal = $(`prop`);
+const x = { ...tmpObjSpread, a: tmpObjLitVal };
+$(x);
+`````
+
+
 ## Todos triggered
 
 

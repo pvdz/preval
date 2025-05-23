@@ -242,6 +242,70 @@ $( a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const push = function ($$0, $$1) {
+  let heap = $$0;
+  let node$1 = $$1;
+  debugger;
+  const index$1 = heap.length;
+  const tmpSaooB$1 = index$1 > 0;
+  const tmpMCF = heap.push;
+  $dotCall(tmpMCF, heap, `push`, node$1);
+  siftUp(heap, node$1, index$1, true);
+  siftUp(heap, node$1, index$1, true);
+  siftUp(heap, node$1, index$1, false);
+  siftUp(heap, node$1, index$1, false);
+  return undefined;
+};
+const siftUp = function ($$0, $$1, $$2, $$3) {
+  let heap$1 = $$0;
+  let node = $$1;
+  let i = $$2;
+  let cond = $$3;
+  debugger;
+  if (cond) {
+    const index = i - 1;
+    const parentIndex = index >>> 1;
+    const parent = heap$1[parentIndex];
+    const lhs = $(parent, node);
+    const test = lhs > 0;
+    if (test) {
+      heap$1[parentIndex] = node;
+      heap$1[i] = parent;
+      let index2 = parentIndex;
+      let test2 = parentIndex > 0;
+      while ($LOOP_UNROLL_100) {
+        if (test2) {
+          $(123);
+        } else {
+          break;
+        }
+      }
+      return undefined;
+    } else {
+      return undefined;
+    }
+  } else {
+    heap$1[i] = node;
+    let index$2 = i;
+    let parentIndex$1 = index$2 > 0;
+    while ($LOOP_UNROLL_100) {
+      if (parentIndex$1) {
+        $(123);
+      } else {
+        break;
+      }
+    }
+    return undefined;
+  }
+};
+$(push);
+`````
+
+
 ## Todos triggered
 
 

@@ -43,6 +43,24 @@ $( "hello, world" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const decodebase64 = function ($$0) {
+  let arg = $$0;
+  debugger;
+  const tmpMCF = $Buffer_from;
+  const buf = $Buffer_from(arg, `base64`);
+  const tmpMCF$1 = buf.toString;
+  const str = $dotCall(tmpMCF$1, buf, `toString`, `ascii`);
+  return str;
+};
+const x = decodebase64(`aGVsbG8sIHdvcmxk=`);
+$(x);
+`````
+
+
 ## Todos triggered
 
 

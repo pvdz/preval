@@ -46,6 +46,17 @@ $( c );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const key = $(`dakey`);
+const obj = { [key]: 1 };
+let tmpCalleeParam = obj.dakey;
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

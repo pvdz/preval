@@ -60,6 +60,25 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const arrAssignPatternRhs = [``, 4, 5];
+const arrPatternSplat = [...arrAssignPatternRhs];
+const arrPatternStep = arrPatternSplat[0];
+const arrPatternSplat$1 = [...arrPatternStep];
+let x = undefined;
+if ($) {
+  const tmpMCF = arrPatternSplat$1.slice;
+  x = $dotCall(tmpMCF, arrPatternSplat$1, `slice`, 0);
+  $(x);
+} else {
+  $(x);
+}
+`````
+
+
 ## Todos triggered
 
 

@@ -58,6 +58,21 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let bindingPatternObjRoot = undefined;
+if ($) {
+  bindingPatternObjRoot = 1;
+  $(bindingPatternObjRoot);
+} else {
+  bindingPatternObjRoot = 2;
+  $(bindingPatternObjRoot);
+}
+`````
+
+
 ## Todos triggered
 
 

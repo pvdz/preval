@@ -63,6 +63,29 @@ throw "<max pcode call depth exceeded>; calling `const tmpCalleeParam$1 = g(0);`
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function ($$0) {
+  let n = $$0;
+  debugger;
+  const tmpReturnArg = g(n);
+  return tmpReturnArg;
+};
+let g = function ($$0) {
+  let n$1 = $$0;
+  debugger;
+  const tmpCallCallee = f;
+  let tmpCalleeParam = n$1 + 1;
+  const tmpReturnArg$1 = f(tmpCalleeParam);
+  return tmpReturnArg$1;
+};
+let tmpCalleeParam$1 = f(0);
+$(tmpCalleeParam$1);
+`````
+
+
 ## Todos triggered
 
 

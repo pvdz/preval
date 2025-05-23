@@ -70,6 +70,21 @@ $( b );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+drop1 + 0;
+drop2;
+const x = 1 + drop2;
+$(x);
+let y = $();
+drop3;
+y = 1 + drop3;
+$(y);
+`````
+
+
 ## Todos triggered
 
 

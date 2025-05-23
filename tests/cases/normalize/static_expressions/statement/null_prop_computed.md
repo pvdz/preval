@@ -46,6 +46,16 @@ throw "[Preval]: Can not reach here";
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+$(`keep me`);
+let tmpCalleeParam = null.eliminatedComputedProp;
+throw `[Preval]: Can not reach here`;
+`````
+
+
 ## Todos triggered
 
 

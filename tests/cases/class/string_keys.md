@@ -68,6 +68,24 @@ $( e );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = class {
+  [`very stringy`]() {
+    debugger;
+    const tmpReturnArg = $(1);
+    return tmpReturnArg;
+  }
+};
+const tmpMCOO = new x();
+const tmpMCF = tmpMCOO[`very stringy`];
+let tmpCalleeParam = $dotCall(tmpMCF, tmpMCOO, undefined);
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

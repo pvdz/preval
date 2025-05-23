@@ -243,6 +243,80 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let tmpSwitchValue = 6;
+let tmpSwitchCaseToStart = 2;
+const tmpBinLhs = $(10);
+const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+tmpSwitchBreak: {
+  if (tmpIfTest) {
+    tmpSwitchCaseToStart = 0;
+  } else {
+    const tmpBinLhs$1 = $(20);
+    const tmpIfTest$1 = tmpBinLhs$1 === tmpSwitchValue;
+    if (tmpIfTest$1) {
+      tmpSwitchCaseToStart = 1;
+    } else {
+      const tmpBinLhs$3 = $(30);
+      const tmpIfTest$3 = tmpBinLhs$3 === tmpSwitchValue;
+      if (tmpIfTest$3) {
+        tmpSwitchCaseToStart = 3;
+      } else {
+        const tmpBinLhs$5 = $(40);
+        const tmpIfTest$5 = tmpBinLhs$5 === tmpSwitchValue;
+        if (tmpIfTest$5) {
+          tmpSwitchCaseToStart = 4;
+        } else {
+          const tmpBinLhs$7 = $(50);
+          const tmpIfTest$7 = tmpBinLhs$7 === tmpSwitchValue;
+          if (tmpIfTest$7) {
+            tmpSwitchCaseToStart = 5;
+          } else {
+          }
+        }
+      }
+    }
+  }
+  const tmpIfTest$9 = tmpSwitchCaseToStart <= 0;
+  if (tmpIfTest$9) {
+    $(1);
+    break tmpSwitchBreak;
+  } else {
+    const tmpIfTest$11 = tmpSwitchCaseToStart <= 1;
+    if (tmpIfTest$11) {
+      $(2);
+    } else {
+    }
+    const tmpIfTest$13 = tmpSwitchCaseToStart <= 2;
+    if (tmpIfTest$13) {
+      $(`d`);
+    } else {
+    }
+    const tmpIfTest$15 = tmpSwitchCaseToStart <= 3;
+    if (tmpIfTest$15) {
+      $(3);
+    } else {
+    }
+    const tmpIfTest$17 = tmpSwitchCaseToStart <= 4;
+    if (tmpIfTest$17) {
+      $(4);
+      break tmpSwitchBreak;
+    } else {
+      const tmpIfTest$19 = tmpSwitchCaseToStart <= 5;
+      if (tmpIfTest$19) {
+        $(5);
+        break tmpSwitchBreak;
+      } else {
+      }
+    }
+  }
+}
+`````
+
+
 ## Todos triggered
 
 

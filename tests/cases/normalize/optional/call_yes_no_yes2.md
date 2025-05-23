@@ -52,6 +52,29 @@ $( "pass" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const a = function () {
+  debugger;
+  const a$1 = {
+    a() {
+      debugger;
+      return a$1;
+    },
+  };
+  return a$1;
+};
+const tmpIfTest = a == null;
+if (tmpIfTest) {
+  $(`fail`);
+} else {
+  $(`pass`);
+}
+`````
+
+
 ## Todos triggered
 
 

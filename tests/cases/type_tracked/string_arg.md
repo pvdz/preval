@@ -75,6 +75,26 @@ $( undefined, undefined, undefined );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const f = function ($$0) {
+  let thisisastring = $$0;
+  debugger;
+  const regex = new $regex_constructor(`[^A-Za-z0-9\\+\\/\\=]`, `g`);
+  const tmpMCF = thisisastring.replace;
+  const str = $dotCall(tmpMCF, thisisastring, `replace`, regex, ``);
+  $(str);
+  return undefined;
+};
+const a = f(`a!bc`);
+const b = f(`de?f`);
+const c = f(`g##h##i`);
+$(a, b, c);
+`````
+
+
 ## Todos triggered
 
 

@@ -43,6 +43,18 @@ $( "bad" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpAssignObjPatternRhs = null;
+let tmpCalleeParam = tmpAssignObjPatternRhs;
+let tmpCalleeParam$1 = [];
+x = $objPatternRest(tmpCalleeParam, tmpCalleeParam$1, `x`);
+$(`bad`);
+`````
+
+
 ## Todos triggered
 
 

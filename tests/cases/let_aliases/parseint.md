@@ -103,6 +103,32 @@ $( g );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  the_let_binding = 2;
+  f = function () {
+    debugger;
+    return the_let_binding;
+  };
+  const tmpReturnArg = f();
+  return tmpReturnArg;
+};
+const n = $(`1`);
+let the_let_binding = $(1);
+const a = the_let_binding;
+const m = $Number_parseInt(n);
+const mm = m / 33;
+const the_let_alias_to_eliminate = a;
+$(a, a);
+$(f);
+$(mm);
+`````
+
+
 ## Todos triggered
 
 

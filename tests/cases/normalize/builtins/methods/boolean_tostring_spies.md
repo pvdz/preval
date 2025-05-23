@@ -42,6 +42,17 @@ $spy( "b" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const x = $spy(`a`);
+const y = $spy(`b`);
+const tmpMCF = $boolean_toString;
+$dotCall($boolean_toString, true, `toString`, x, y);
+`````
+
+
 ## Todos triggered
 
 

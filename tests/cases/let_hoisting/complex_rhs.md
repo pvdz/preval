@@ -76,6 +76,39 @@ if ($) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let danger = function () {
+  debugger;
+  if ($) {
+    danger = null;
+    return 1;
+  } else {
+    return undefined;
+  }
+};
+const f = function () {
+  debugger;
+  if ($) {
+    $(x);
+    return undefined;
+  } else {
+    return undefined;
+  }
+};
+let x = danger();
+if ($) {
+  f();
+  x = $(`do not inline me`);
+  $(x);
+} else {
+  $(x);
+}
+`````
+
+
 ## Todos triggered
 
 

@@ -80,6 +80,27 @@ $( d );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const f = function () {
+  debugger;
+  const x = $(1);
+  let y = false;
+  const tmpMCF = $console_log;
+  $dotCall($console_log, console, `log`, `hi`);
+  y = !x;
+  $(`block`);
+  $(`block`);
+  return y;
+};
+f();
+const tmpCalleeParam = f();
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

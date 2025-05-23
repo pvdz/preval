@@ -69,6 +69,27 @@ $( "bad" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpBindingPatternObjRoot = 1;
+const tmpOPBD = tmpBindingPatternObjRoot.x;
+let tmpOPAD = undefined;
+const tmpIfTest = tmpOPBD === undefined;
+if (tmpIfTest) {
+  let tmpCalleeParam = { a: `fail` };
+  tmpOPAD = $(tmpCalleeParam);
+} else {
+  tmpOPAD = tmpOPBD;
+}
+let tmpCalleeParam$1 = tmpOPAD;
+let tmpCalleeParam$3 = [];
+const y = $objPatternRest(tmpCalleeParam$1, tmpCalleeParam$3, undefined);
+$(`bad`);
+`````
+
+
 ## Todos triggered
 
 

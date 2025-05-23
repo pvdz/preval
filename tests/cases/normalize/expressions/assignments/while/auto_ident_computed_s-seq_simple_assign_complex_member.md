@@ -118,6 +118,32 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let b = { c: 10, d: 20 };
+let a = { a: 999, b: 1000 };
+while (true) {
+  const tmpNestedAssignComMemberObj = b;
+  const tmpNestedAssignComMemberProp = $(`c`);
+  const tmpCompObj = $(b);
+  const tmpCalleeParam = $(`d`);
+  const tmpNestedAssignPropRhs = tmpCompObj[tmpCalleeParam];
+  const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
+  tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
+  a = tmpNestedPropAssignRhs;
+  const tmpIfTest = a;
+  if (tmpIfTest) {
+    $(100);
+  } else {
+    break;
+  }
+}
+$(a, b);
+`````
+
+
 ## Todos triggered
 
 

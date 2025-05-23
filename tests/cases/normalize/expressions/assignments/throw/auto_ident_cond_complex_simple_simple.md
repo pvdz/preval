@@ -60,6 +60,23 @@ throw b;
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+const tmpIfTest = $(1);
+if (tmpIfTest) {
+  a = 2;
+} else {
+  let tmpCalleeParam = $(100);
+  a = $(tmpCalleeParam);
+}
+const tmpThrowArg = a;
+throw tmpThrowArg;
+`````
+
+
 ## Todos triggered
 
 

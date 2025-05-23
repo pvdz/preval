@@ -63,6 +63,26 @@ export { a as default };
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+$(1);
+const tmpAnonDefaultExport = function () {
+  debugger;
+  let f = function () {
+    debugger;
+    const tmpReturnArg = $(2);
+    return tmpReturnArg;
+  };
+  let tmpCalleeParam = f(1);
+  $(tmpCalleeParam);
+  return undefined;
+};
+export { tmpAnonDefaultExport as default };
+`````
+
+
 ## Todos triggered
 
 

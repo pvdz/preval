@@ -111,6 +111,44 @@ $( k );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let evil = function ($$0) {
+  let func = $$0;
+  debugger;
+  $(`once`);
+  const tmpMCF = func.call;
+  const tmpMCP = { f: 1, x: `burn` };
+  $dotCall(tmpMCF, func, `call`, tmpMCP);
+  return undefined;
+};
+const tmpObjLitVal = `pass`;
+const tmpObjLitVal$1 = function () {
+  const tmpPrevalAliasThis = this;
+  debugger;
+  const tmpBinLhs = tmpPrevalAliasThis.x;
+  const tmpIfTest = tmpBinLhs === `burn`;
+  if (tmpIfTest) {
+    const tmpReturnArg = $(`burned`);
+    return tmpReturnArg;
+  } else {
+    const tmpCallCallee = evil;
+    let tmpCalleeParam = tmpPrevalAliasThis.f;
+    evil(tmpCalleeParam);
+    let tmpCalleeParam$1 = tmpPrevalAliasThis.x;
+    $(tmpCalleeParam$1);
+    return `win`;
+  }
+};
+const obj = { x: tmpObjLitVal, f: tmpObjLitVal$1 };
+const tmpMCF$1 = obj.f;
+let tmpCalleeParam$3 = $dotCall(tmpMCF$1, obj, `f`);
+$(tmpCalleeParam$3);
+`````
+
+
 ## Todos triggered
 
 

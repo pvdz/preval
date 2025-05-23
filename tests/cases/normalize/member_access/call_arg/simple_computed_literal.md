@@ -38,6 +38,16 @@ $( 10 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const obj = { foo: 10 };
+let tmpCalleeParam = obj.foo;
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

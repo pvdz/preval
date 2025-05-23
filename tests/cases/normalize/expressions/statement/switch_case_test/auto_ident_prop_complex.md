@@ -59,6 +59,21 @@ $( c, a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let b = { c: 1 };
+let a = { a: 999, b: 1000 };
+const tmpSwitchDisc = $(1);
+const tmpBinBothLhs = tmpSwitchDisc;
+const tmpCompObj = $(b);
+const tmpBinBothRhs = tmpCompObj.c;
+const tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
+$(a, b);
+`````
+
+
 ## Todos triggered
 
 

@@ -694,6 +694,34 @@ $( cu );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+while (true) {
+  $(100);
+  let tmpCalleeParam = $(0);
+  let tmpIfTest = $(tmpCalleeParam);
+  if (tmpIfTest) {
+  } else {
+    let tmpCalleeParam$1 = $(1);
+    tmpIfTest = $(tmpCalleeParam$1);
+    if (tmpIfTest) {
+    } else {
+      let tmpCalleeParam$3 = $(2);
+      tmpIfTest = $(tmpCalleeParam$3);
+      if (tmpIfTest) {
+      } else {
+        break;
+      }
+    }
+  }
+}
+$(a);
+`````
+
+
 ## Todos triggered
 
 

@@ -40,6 +40,20 @@ $( "fwep" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function (...$$0 /*:array*/) {
+  let rest = $$0;
+  debugger;
+  const tmpReturnArg = $(`fwep`);
+  return tmpReturnArg;
+};
+f();
+`````
+
+
 ## Todos triggered
 
 

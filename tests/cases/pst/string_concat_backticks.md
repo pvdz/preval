@@ -43,6 +43,19 @@ $( c );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const here = $(`here`);
+const tmpStringConcatL = $coerce(here, `plustr`);
+const tmpBinLhs = `this \`thing\`${tmpStringConcatL}`;
+const tmpStringConcatR = $coerce(tmpBinLhs, `plustr`);
+let tmpCalleeParam = `${tmpStringConcatR}is \`quoted\``;
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

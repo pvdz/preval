@@ -80,6 +80,32 @@ $( 3, a, 3 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let a = 1;
+let b = {
+  get c() {
+    debugger;
+    $(`should not be called`);
+    return undefined;
+  },
+  set c($$0) {
+    let x = $$0;
+    debugger;
+    $(`set`);
+    return undefined;
+  },
+};
+let d = 3;
+const tmpNestedPropAssignRhs = d;
+b.c = tmpNestedPropAssignRhs;
+a = tmpNestedPropAssignRhs;
+$(tmpNestedPropAssignRhs, b, d);
+`````
+
+
 ## Todos triggered
 
 

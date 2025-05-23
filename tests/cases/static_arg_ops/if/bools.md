@@ -106,6 +106,45 @@ if ($) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  let x = 0;
+  let g = function ($$0) {
+    let t = $$0;
+    debugger;
+    if (t) {
+      x = x + 1;
+      $(x);
+      return undefined;
+    } else {
+      return undefined;
+    }
+  };
+  if ($) {
+    g(true);
+    g(false);
+    g(true);
+    g(false);
+    g(false);
+    g(true);
+    g(true);
+    return undefined;
+  } else {
+    return undefined;
+  }
+};
+if ($) {
+  let tmpCalleeParam = f();
+  $(tmpCalleeParam);
+} else {
+}
+`````
+
+
 ## Todos triggered
 
 

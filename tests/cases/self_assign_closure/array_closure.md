@@ -52,6 +52,30 @@ $( true );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let a = undefined;
+a = function () {
+  debugger;
+  const arr = [1, 2, 3];
+  a = function () {
+    debugger;
+    return arr;
+  };
+  const tmpReturnArg = a();
+  return tmpReturnArg;
+};
+let tmpCalleeParam = a();
+$(tmpCalleeParam);
+const tmpBinBothLhs = a();
+const tmpBinBothRhs = a();
+let tmpCalleeParam$1 = tmpBinBothLhs === tmpBinBothRhs;
+$(tmpCalleeParam$1);
+`````
+
+
 ## Todos triggered
 
 

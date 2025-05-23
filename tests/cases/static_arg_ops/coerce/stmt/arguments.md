@@ -64,6 +64,25 @@ a();
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = $(`50`);
+const f = function ($$0) {
+  const tmpPrevalAliasArgumentsAny = arguments;
+  let c = $$0;
+  debugger;
+  $coerce(tmpPrevalAliasArgumentsAny, `number`);
+  $(1);
+  $(2);
+  return undefined;
+};
+f(3);
+f(4);
+`````
+
+
 ## Todos triggered
 
 

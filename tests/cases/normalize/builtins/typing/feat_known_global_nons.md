@@ -112,6 +112,48 @@ $( "number" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpMCF = $Math_sign;
+const tmpMCP = $spy(`Math.sign`);
+const tmpUnaryArg = $dotCall(tmpMCF, Math, `sign`, tmpMCP);
+let tmpCalleeParam = typeof tmpUnaryArg;
+$(tmpCalleeParam);
+const tmpMCF$1 = $Math_sin;
+const tmpMCP$1 = $spy(`Math.sin`);
+const tmpUnaryArg$1 = $dotCall(tmpMCF$1, Math, `sin`, tmpMCP$1);
+let tmpCalleeParam$1 = typeof tmpUnaryArg$1;
+$(tmpCalleeParam$1);
+const tmpMCF$3 = $Math_hypot;
+const tmpMCP$3 = $spy(`Math.hypot`);
+const tmpUnaryArg$3 = $dotCall(tmpMCF$3, Math, `hypot`, tmpMCP$3);
+let tmpCalleeParam$3 = typeof tmpUnaryArg$3;
+$(tmpCalleeParam$3);
+const tmpStringFirstArg = $spy(`String`);
+const tmpUnaryArg$5 = $coerce(tmpStringFirstArg, `string`);
+let tmpCalleeParam$5 = typeof tmpUnaryArg$5;
+$(tmpCalleeParam$5);
+const tmpNumberFirstArg = $spy(`Number`);
+const tmpUnaryArg$7 = $coerce(tmpNumberFirstArg, `number`);
+let tmpCalleeParam$7 = typeof tmpUnaryArg$7;
+$(tmpCalleeParam$7);
+let tmpCalleeParam$11 = $spy(`Boolean`);
+const tmpUnaryArg$9 = $boolean_constructor(tmpCalleeParam$11);
+let tmpCalleeParam$9 = typeof tmpUnaryArg$9;
+$(tmpCalleeParam$9);
+let tmpCalleeParam$15 = $spy(`parseInt`);
+const tmpUnaryArg$11 = $Number_parseInt(tmpCalleeParam$15);
+let tmpCalleeParam$13 = typeof tmpUnaryArg$11;
+$(tmpCalleeParam$13);
+let tmpCalleeParam$19 = $spy(`parseFloat`);
+const tmpUnaryArg$13 = $Number_parseFloat(tmpCalleeParam$19);
+let tmpCalleeParam$17 = typeof tmpUnaryArg$13;
+$(tmpCalleeParam$17);
+`````
+
+
 ## Todos triggered
 
 

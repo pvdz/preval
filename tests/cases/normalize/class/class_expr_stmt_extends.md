@@ -37,6 +37,14 @@ $( $number_constructor );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpClassSuper = $($number_constructor);
+`````
+
+
 ## Todos triggered
 
 

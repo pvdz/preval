@@ -46,6 +46,19 @@ $( 0, 0 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let b = 1;
+const tmpPostUpdArgIdent = $coerce(b, `number`);
+b = tmpPostUpdArgIdent - 1;
+let a = b;
+export { a };
+$(a, b);
+`````
+
+
 ## Todos triggered
 
 

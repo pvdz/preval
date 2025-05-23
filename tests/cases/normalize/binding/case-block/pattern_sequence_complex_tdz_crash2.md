@@ -48,6 +48,16 @@ $( "fail" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = undefined;
+const tmpSwitchDisc = 1;
+$(`fail`);
+`````
+
+
 ## Todos triggered
 
 

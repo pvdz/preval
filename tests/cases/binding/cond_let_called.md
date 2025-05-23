@@ -61,6 +61,21 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = ``;
+if (a) {
+  x = `source`;
+} else {
+  x = `arguments`;
+}
+const y = parseExpression(x);
+$(y);
+`````
+
+
 ## Todos triggered
 
 

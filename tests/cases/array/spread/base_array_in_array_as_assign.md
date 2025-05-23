@@ -59,6 +59,21 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const x = [1, 2, 3];
+let y = [];
+if ($) {
+  y = [`a`, ...x, `b`];
+  $(y);
+} else {
+  $(y);
+}
+`````
+
+
 ## Todos triggered
 
 

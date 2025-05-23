@@ -37,6 +37,16 @@ $( "/foo/1" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpBinLhs = new $regex_constructor(`foo`, ``);
+let tmpCalleeParam = tmpBinLhs + 1;
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

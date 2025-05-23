@@ -313,6 +313,65 @@ if (a) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = $(2);
+while (true) {
+  if (x) {
+    $continue: {
+      $(1);
+      const tmpIfTest = $(1);
+      if (tmpIfTest) {
+        x = $(3);
+      } else {
+      }
+      if (x) {
+        let tmpSwitchValue = $(1);
+        let tmpSwitchCaseToStart = 3;
+        const tmpIfTest$1 = 0 === tmpSwitchValue;
+        if (tmpIfTest$1) {
+          tmpSwitchCaseToStart = 0;
+        } else {
+          const tmpIfTest$3 = 1 === tmpSwitchValue;
+          if (tmpIfTest$3) {
+            tmpSwitchCaseToStart = 1;
+          } else {
+            const tmpIfTest$5 = 2 === tmpSwitchValue;
+            if (tmpIfTest$5) {
+              tmpSwitchCaseToStart = 2;
+            } else {
+            }
+          }
+        }
+        const tmpIfTest$7 = tmpSwitchCaseToStart <= 0;
+        if (tmpIfTest$7) {
+          $(0);
+        } else {
+        }
+        const tmpIfTest$9 = tmpSwitchCaseToStart <= 1;
+        if (tmpIfTest$9) {
+          $(1);
+          break $continue;
+        } else {
+          const tmpIfTest$11 = tmpSwitchCaseToStart <= 2;
+          if (tmpIfTest$11) {
+            $(2);
+          } else {
+          }
+        }
+      } else {
+        x = $(4);
+      }
+    }
+  } else {
+    break;
+  }
+}
+`````
+
+
 ## Todos triggered
 
 

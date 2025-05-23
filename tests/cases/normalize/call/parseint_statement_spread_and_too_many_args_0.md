@@ -48,6 +48,18 @@ $Number_parseInt( ...b, c, d );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let tmpCalleeParam$3 = [];
+let tmpCalleeParamSpread = $(tmpCalleeParam$3);
+let tmpCalleeParam = $spy(`b`);
+let tmpCalleeParam$1 = $spy(`c`);
+$Number_parseInt(...tmpCalleeParamSpread, tmpCalleeParam, tmpCalleeParam$1);
+`````
+
+
 ## Todos triggered
 
 

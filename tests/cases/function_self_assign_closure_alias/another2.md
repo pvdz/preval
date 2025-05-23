@@ -105,6 +105,38 @@ $( m );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let zzzz = function () {
+  debugger;
+  const a = [];
+  zzzz = function ($$0, $$1) {
+    let $dlr_$$0 = $$0;
+    let $dlr_$$1 = $$1;
+    debugger;
+    return a;
+  };
+  const tmpReturnArg$23 = zzzz();
+  return tmpReturnArg$23;
+};
+const x = zzzz;
+const tmpBinBothLhs = zzzz();
+const tmpBinBothRhs = zzzz();
+let tmpCalleeParam = tmpBinBothLhs === tmpBinBothRhs;
+$(tmpCalleeParam);
+const tmpBinBothLhs$1 = x();
+const tmpBinBothRhs$1 = x();
+let tmpCalleeParam$1 = tmpBinBothLhs$1 !== tmpBinBothRhs$1;
+$(tmpCalleeParam$1);
+const tmpBinBothLhs$3 = x();
+const tmpBinBothRhs$3 = zzzz();
+let tmpCalleeParam$3 = tmpBinBothLhs$3 === tmpBinBothRhs$3;
+$(tmpCalleeParam$3);
+`````
+
+
 ## Todos triggered
 
 

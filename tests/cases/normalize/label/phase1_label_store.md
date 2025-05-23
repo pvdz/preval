@@ -51,6 +51,28 @@ s;
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const f = function ($$0) {
+  let x = $$0;
+  debugger;
+  while (true) {
+    let t = 1;
+    const tmpIfTest = 3 === s;
+    if (tmpIfTest) {
+      t = 0;
+    } else {
+    }
+  }
+  return undefined;
+};
+f();
+f();
+`````
+
+
 ## Todos triggered
 
 

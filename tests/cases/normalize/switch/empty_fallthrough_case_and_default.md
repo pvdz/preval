@@ -47,6 +47,24 @@ $();
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let tmpSwitchValue = $(1);
+let tmpSwitchCaseToStart = 1;
+const tmpBinLhs = $spy(0);
+const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+} else {
+}
+const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
+$();
+`````
+
+
 ## Todos triggered
 
 

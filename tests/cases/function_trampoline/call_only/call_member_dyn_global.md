@@ -44,6 +44,22 @@ $dotCall( $, a, undefined, 1 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const obj = { $: $ };
+const str = `\$`;
+const f = function () {
+  debugger;
+  const tmpMCF = obj[str];
+  $dotCall(tmpMCF, obj, undefined, 1);
+  return undefined;
+};
+f();
+`````
+
+
 ## Todos triggered
 
 

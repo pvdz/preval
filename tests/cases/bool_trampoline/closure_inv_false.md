@@ -100,6 +100,30 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  x = $(0);
+  const y = !x;
+  return y;
+};
+let x = 1;
+$(f);
+$(f);
+const tmpIfTest = f();
+if (tmpIfTest) {
+  $(`pass`);
+  $(x);
+} else {
+  $(`fail`);
+  $(x);
+}
+`````
+
+
 ## Todos triggered
 
 

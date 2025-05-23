@@ -63,6 +63,27 @@ export { a as g };
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let g = function () {
+  debugger;
+  let f = function () {
+    debugger;
+    const tmpReturnArg = $(2);
+    return tmpReturnArg;
+  };
+  let tmpCalleeParam = f(3);
+  $(tmpCalleeParam);
+  return undefined;
+};
+let tmpCalleeParam$1 = g();
+$(tmpCalleeParam$1);
+export { g };
+`````
+
+
 ## Todos triggered
 
 

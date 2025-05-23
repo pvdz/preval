@@ -105,6 +105,29 @@ c();
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function ($$0) {
+  let a = $$0;
+  debugger;
+  try {
+    if (a) {
+      $(`then`);
+    } else {
+      $(`else`);
+    }
+  } catch (e) {}
+  return undefined;
+};
+f(0);
+f(`ok`);
+f(true);
+f(false);
+`````
+
+
 ## Todos triggered
 
 

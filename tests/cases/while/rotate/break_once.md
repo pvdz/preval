@@ -107,6 +107,26 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = new $regex_constructor(`foo`, ``);
+x.foo = `object`;
+while ($LOOP_UNROLL_10) {
+  const tmp = x.foo;
+  $(tmp);
+  const end = $(x);
+  if (end) {
+    break;
+  } else {
+    x = new $regex_constructor(`foo`, ``);
+    x.foo = `object`;
+  }
+}
+`````
+
+
 ## Todos triggered
 
 

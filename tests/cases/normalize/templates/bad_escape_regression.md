@@ -48,6 +48,28 @@ f();
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let parseDecimalEscape = function ($$0) {
+  let c = $$0;
+  debugger;
+  let reason = `Cannot escape \\8 or \\9 in a regex char class with u-flag`;
+  const tmpIfTest = webCompat === true;
+  if (tmpIfTest) {
+    updateRegexUflagIsIllegal(0, reason);
+    const tmpReturnArg = c | 16777216;
+    return tmpReturnArg;
+  } else {
+    regexSyntaxError(reason);
+    return 1114112;
+  }
+};
+f();
+`````
+
+
 ## Todos triggered
 
 

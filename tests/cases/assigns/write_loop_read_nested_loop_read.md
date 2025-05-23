@@ -100,6 +100,30 @@ while (true) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = $(1);
+while (true) {
+  const tmpIfTest = $(true);
+  if (tmpIfTest) {
+    $(x, `loop1`);
+    while (true) {
+      const tmpIfTest$1 = $(true);
+      if (tmpIfTest$1) {
+        $(x, `loop2`);
+      } else {
+        break;
+      }
+    }
+  } else {
+    break;
+  }
+}
+`````
+
+
 ## Todos triggered
 
 

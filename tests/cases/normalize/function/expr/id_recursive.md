@@ -80,6 +80,30 @@ $( g );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const r = function ($$0) {
+  let n = $$0;
+  debugger;
+  const tmpIfTest = n > 100;
+  if (tmpIfTest) {
+    return 10;
+  } else {
+    const tmpCallCallee = r;
+    let tmpCalleeParam = n + 1;
+    const tmpReturnArg = r(tmpCalleeParam);
+    return tmpReturnArg;
+  }
+};
+const f = r;
+const a = $(10);
+const x = f(a);
+$(x);
+`````
+
+
 ## Todos triggered
 
 

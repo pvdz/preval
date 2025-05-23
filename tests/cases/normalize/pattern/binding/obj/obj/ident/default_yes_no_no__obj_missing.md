@@ -60,6 +60,25 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpBindingPatternObjRoot = { b: 11, c: 12 };
+const tmpOPND = tmpBindingPatternObjRoot.x;
+const tmpOPBD = tmpOPND.y;
+let y = undefined;
+const tmpIfTest = tmpOPBD === undefined;
+if (tmpIfTest) {
+  y = $(`fail`);
+  $(`bad`);
+} else {
+  y = tmpOPBD;
+  $(`bad`);
+}
+`````
+
+
 ## Todos triggered
 
 

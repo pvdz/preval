@@ -50,6 +50,21 @@ $( false );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const a = $(67637);
+let x = a !== 67636;
+if (x) {
+  x = a === 67636;
+  $(x);
+} else {
+  $(x);
+}
+`````
+
+
 ## Todos triggered
 
 

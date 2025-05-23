@@ -61,6 +61,24 @@ $( "" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpCalleeParam$11 = {};
+let p = ``;
+let tmpSSA_e = function ($$0) {
+  let $dlr_$$0 = $$0;
+  debugger;
+  const tmpCallCallee = tmpSSA_e;
+  let tmpCalleeParam = $(2);
+  tmpBinBothLhs = tmpSSA_e(tmpCalleeParam);
+  return tmpBinBothLhs;
+};
+$(p);
+`````
+
+
 ## Todos triggered
 
 

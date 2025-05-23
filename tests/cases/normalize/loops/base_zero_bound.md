@@ -44,6 +44,30 @@ $( 100 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  let i = 0;
+  while (true) {
+    const tmpIfTest = i < 0;
+    if (tmpIfTest) {
+      $(i);
+      const tmpPostUpdArgIdent = $coerce(i, `number`);
+      i = tmpPostUpdArgIdent + 1;
+    } else {
+      break;
+    }
+  }
+  return 100;
+};
+const r = f();
+$(r);
+`````
+
+
 ## Todos triggered
 
 

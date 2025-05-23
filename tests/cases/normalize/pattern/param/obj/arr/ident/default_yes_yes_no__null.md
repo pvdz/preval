@@ -43,6 +43,40 @@ throw "[Preval]: Can not reach here";
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
+  let tmpBindingPatternObjRoot = tmpParamBare;
+  let tmpOPBD = tmpBindingPatternObjRoot.x;
+  let tmpOPAD = undefined;
+  const tmpIfTest = tmpOPBD === undefined;
+  if (tmpIfTest) {
+    let tmpCalleeParam = [`fail2`];
+    tmpOPAD = $(tmpCalleeParam);
+  } else {
+    tmpOPAD = tmpOPBD;
+  }
+  let tmpArrPatternSplat = [...tmpOPAD];
+  let tmpAPBD = tmpArrPatternSplat[0];
+  let y = undefined;
+  const tmpIfTest$1 = tmpAPBD === undefined;
+  if (tmpIfTest$1) {
+    y = `fail`;
+    return `bad`;
+  } else {
+    y = tmpAPBD;
+    return `bad`;
+  }
+};
+let tmpCalleeParam$1 = f(null, 10);
+$(tmpCalleeParam$1);
+`````
+
+
 ## Todos triggered
 
 

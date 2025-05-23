@@ -56,6 +56,21 @@ $( b );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let tmpCalleeParam = $(1);
+let a = $(tmpCalleeParam);
+if (a) {
+  a = 2;
+} else {
+}
+export { a };
+$(a);
+`````
+
+
 ## Todos triggered
 
 

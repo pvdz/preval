@@ -145,6 +145,53 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = undefined;
+let fallthrough = false;
+exit: {
+  let tmpIfTest = fallthrough;
+  if (tmpIfTest) {
+  } else {
+    const tmpBinBothLhs = x;
+    const tmpBinBothRhs = $(1);
+    tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
+  }
+  if (tmpIfTest) {
+    $(`A`);
+    fallthrough = true;
+  } else {
+  }
+  let tmpIfTest$1 = fallthrough;
+  if (tmpIfTest$1) {
+  } else {
+    const tmpBinBothLhs$1 = x;
+    const tmpBinBothRhs$1 = $(2);
+    tmpIfTest$1 = tmpBinBothLhs$1 === tmpBinBothRhs$1;
+  }
+  if (tmpIfTest$1) {
+    $(`B`);
+    break exit;
+  } else {
+    let tmpIfTest$3 = fallthrough;
+    if (tmpIfTest$3) {
+    } else {
+      const tmpBinBothLhs$3 = x;
+      const tmpBinBothRhs$3 = $(3);
+      tmpIfTest$3 = tmpBinBothLhs$3 === tmpBinBothRhs$3;
+    }
+    if (tmpIfTest$3) {
+      $(`C`);
+      break exit;
+    } else {
+    }
+  }
+}
+`````
+
+
 ## Todos triggered
 
 

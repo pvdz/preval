@@ -80,6 +80,30 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = $(2);
+if ($) {
+  $inlinedFunction: {
+    if ($) {
+      $(`block inlining`);
+      $(x);
+      break $inlinedFunction;
+    } else {
+      break $inlinedFunction;
+    }
+  }
+  x = $(3);
+  $(x);
+} else {
+  $(x);
+  $(x);
+}
+`````
+
+
 ## Todos triggered
 
 

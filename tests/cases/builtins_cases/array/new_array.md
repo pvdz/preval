@@ -50,6 +50,51 @@ $( a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let error = function ($$0) {
+  const tmpPrevalAliasArgumentsAny = arguments;
+  const tmpPrevalAliasArgumentsLen = arguments.length;
+  let format = $$0;
+  debugger;
+  let args = undefined;
+  let key = undefined;
+  let len = undefined;
+  len = tmpPrevalAliasArgumentsLen;
+  const tmpNewCallee = Array;
+  let tmpCalleeParam = undefined;
+  const tmpIfTest = len > 1;
+  if (tmpIfTest) {
+    tmpCalleeParam = len - 1;
+  } else {
+    tmpCalleeParam = 0;
+  }
+  args = new tmpNewCallee(tmpCalleeParam);
+  key = 1;
+  while (true) {
+    const tmpIfTest$1 = key < len;
+    if (tmpIfTest$1) {
+      const tmpAssignComMemLhsObj = args;
+      const tmpAssignComMemLhsProp = key - 1;
+      const tmpAssignComputedObj = tmpAssignComMemLhsObj;
+      const tmpAssignComputedProp = tmpAssignComMemLhsProp;
+      const tmpAssignComputedRhs = tmpPrevalAliasArgumentsAny[key];
+      tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+      const tmpPostUpdArgIdent = $coerce(key, `number`);
+      key = tmpPostUpdArgIdent + 1;
+    } else {
+      break;
+    }
+  }
+  return args;
+};
+let tmpCalleeParam$1 = error();
+$(tmpCalleeParam$1);
+`````
+
+
 ## Todos triggered
 
 

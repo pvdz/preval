@@ -63,6 +63,27 @@ $( d );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function ($$0) {
+  const tmpPrevalAliasArgumentsAny = arguments;
+  let a = $$0;
+  debugger;
+  let g = function () {
+    debugger;
+    return x;
+  };
+  const x = tmpPrevalAliasArgumentsAny;
+  const tmpReturnArg = g();
+  return tmpReturnArg;
+};
+let tmpCalleeParam = f();
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

@@ -41,6 +41,22 @@ With rename=true
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let g = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
+  let tmpBindingPatternObjRoot = tmpParamBare;
+  let x$1 = tmpBindingPatternObjRoot.x;
+  let x$3 = 2;
+  return x$1;
+};
+let x = 1;
+`````
+
+
 ## Todos triggered
 
 

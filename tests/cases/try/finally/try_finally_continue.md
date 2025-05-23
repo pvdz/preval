@@ -63,6 +63,24 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let $implicitThrow = false;
+  let $finalCatchArg = undefined;
+  try {
+    $(1);
+  } catch ($finalImplicit) {
+    $implicitThrow = true;
+    $finalCatchArg = $finalImplicit;
+  }
+  $(2);
+}
+`````
+
+
 ## Todos triggered
 
 

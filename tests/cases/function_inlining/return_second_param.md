@@ -40,6 +40,21 @@ $( 20 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function ($$0, $$1) {
+  let a = $$0;
+  let b = $$1;
+  debugger;
+  return b;
+};
+let tmpCalleeParam = f(10, 20);
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

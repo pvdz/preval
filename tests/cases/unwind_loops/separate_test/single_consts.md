@@ -98,6 +98,28 @@ if (b) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const arr = [101, 102, 103, 104, 105, 106, 107, 108, 109, 1010];
+const len = arr.length;
+const max = $(10);
+let counter = 2;
+let test = 2 < max;
+while (true) {
+  if (test) {
+    const tmpCalleeParam$1891 = arr[counter];
+    $(tmpCalleeParam$1891);
+    counter = counter + 1;
+    test = counter < len;
+  } else {
+    break;
+  }
+}
+`````
+
+
 ## Todos triggered
 
 

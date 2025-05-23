@@ -62,6 +62,35 @@ $( e );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpFree$157 = function $free($$0, $$1) {
+  let a = $$0;
+  let b = $$1;
+  debugger;
+  const tmpBinBothLhs = `/`;
+  const tmpBinBothRhs = $coerce(a, `string`);
+  const tmpBinLhs$1 = tmpBinBothLhs + tmpBinBothRhs;
+  const tmpBinLhs = $coerce(tmpBinLhs$1, `plustr`);
+  const tmpBinBothLhs$1 = ``;
+  const tmpBinBothRhs$1 = $coerce(tmpBinLhs, `string`);
+  const tmpBinLhs$3 = tmpBinBothLhs$1 + tmpBinBothRhs$1;
+  const tmpStringConcatR = $coerce(tmpBinLhs$3, `plustr`);
+  const tmpBinBothLhs$2 = `${tmpStringConcatR}/`;
+  const tmpBinLhs$2 = tmpBinBothLhs$2 + b;
+  return tmpBinLhs$2;
+};
+const x = $();
+const xs = $coerce(x, `string`);
+const y = $();
+const ys = $coerce(y, `string`);
+const fxy = $frfr(tmpFree$157, xs, ys);
+$(fxy);
+`````
+
+
 ## Todos triggered
 
 

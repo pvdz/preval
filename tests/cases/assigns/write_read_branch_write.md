@@ -57,6 +57,21 @@ $( c );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = $(1);
+const tmpIfTest = $(10);
+if (tmpIfTest) {
+  $(x, `branch`);
+} else {
+}
+x = $(2);
+$(x);
+`````
+
+
 ## Todos triggered
 
 

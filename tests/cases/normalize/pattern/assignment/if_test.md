@@ -38,6 +38,18 @@ x = (1).x;
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let y = undefined;
+let tmpIfTest = undefined;
+const tmpNestedAssignObjPatternRhs = 1;
+x = tmpNestedAssignObjPatternRhs.x;
+tmpIfTest = tmpNestedAssignObjPatternRhs;
+`````
+
+
 ## Todos triggered
 
 

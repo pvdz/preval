@@ -65,6 +65,29 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let tmpArg = undefined;
+let tmpBinaryLeft = undefined;
+let tmpTernaryTest = undefined;
+let g = function () {
+  debugger;
+  return undefined;
+};
+tmpBinaryLeft = a.x;
+tmpTernaryTest = tmpBinaryLeft !== 1;
+if (tmpTernaryTest) {
+  tmpArg = 2;
+  f(tmpArg);
+} else {
+  tmpArg = 3;
+  f(tmpArg);
+}
+`````
+
+
 ## Todos triggered
 
 

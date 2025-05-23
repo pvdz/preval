@@ -87,6 +87,30 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let y = 1;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  try {
+    missing;
+    $(y);
+    const tmpPostUpdArgIdent = $coerce(y, `number`);
+    y = tmpPostUpdArgIdent + 1;
+    const tmpBinLhs = y;
+    const tmpIfTest = tmpBinLhs === $;
+    if (tmpIfTest) {
+      break;
+    } else {
+    }
+  } catch (e) {
+    $(`fail`);
+  }
+}
+`````
+
+
 ## Todos triggered
 
 

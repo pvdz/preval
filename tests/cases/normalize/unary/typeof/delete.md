@@ -43,6 +43,17 @@ $( "boolean" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpDeleteObj = $(100);
+delete tmpDeleteObj.x;
+let tmpCalleeParam = `boolean`;
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

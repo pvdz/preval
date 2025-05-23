@@ -40,6 +40,28 @@ undefined instanceof a;
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const spy = {
+  toString() {
+    debugger;
+    $(`fail`);
+    return undefined;
+  },
+  valueOf() {
+    debugger;
+    $(`fail`);
+    return undefined;
+  },
+};
+const tmpBinBothLhs = undefined;
+const tmpBinBothRhs = {};
+undefined instanceof tmpBinBothRhs;
+`````
+
+
 ## Todos triggered
 
 

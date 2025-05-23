@@ -117,6 +117,45 @@ b();
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  const tmpBinLhs = getType();
+  const tmpIfTest = tmpBinLhs !== 16472;
+  if (tmpIfTest) {
+    $(`a`);
+    return undefined;
+  } else {
+    skip(lexerFlags);
+    const tmpBinLhs$1 = getType();
+    const tmpIfTest$1 = tmpBinLhs$1 === 16473;
+    if (tmpIfTest$1) {
+      $(`x`);
+      return undefined;
+    } else {
+      $(`y`);
+      return undefined;
+    }
+  }
+};
+let getType = function () {
+  debugger;
+  return curtype;
+};
+let skip = function () {
+  debugger;
+  curtype = $(`random`);
+  return undefined;
+};
+let curtype = 0;
+f();
+f();
+`````
+
+
 ## Todos triggered
 
 

@@ -44,6 +44,17 @@ export { c as default };
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpBinBothLhs = $(1);
+const tmpBinBothRhs = $(2);
+const tmpAnonDefaultExport = tmpBinBothLhs + tmpBinBothRhs;
+export { tmpAnonDefaultExport as default };
+`````
+
+
 ## Todos triggered
 
 

@@ -53,6 +53,21 @@ $coerce( d, "number" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let tmpCalleeParam = [1, 2, 3, 4];
+const tmpArrSpread = $(tmpCalleeParam);
+const tmpCompObj = [...tmpArrSpread];
+const tmpArgOverflow = tmpCompObj[0];
+$spy(`b`);
+$spy(`c`);
+const tmpEA1 = tmpArgOverflow;
+$coerce(tmpArgOverflow, `number`);
+`````
+
+
 ## Todos triggered
 
 

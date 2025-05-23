@@ -56,6 +56,23 @@ $( b );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+const tmpObjLitVal = $(1);
+a = { b: tmpObjLitVal };
+const tmpObjSpread = a;
+let tmpCalleeParam = { ...tmpObjSpread };
+$(tmpCalleeParam);
+const tmpAssignMemLhsObj = a;
+const tmpAssignMemRhs = $(2);
+tmpAssignMemLhsObj.b = tmpAssignMemRhs;
+$(a);
+`````
+
+
 ## Todos triggered
 
 

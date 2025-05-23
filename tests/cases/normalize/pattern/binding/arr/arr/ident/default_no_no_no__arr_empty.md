@@ -38,6 +38,19 @@ throw "Preval: Array spread on non-string primitive must crash (caused by `[...u
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpBindingPatternArrRoot = [];
+const tmpArrPatternSplat = [...tmpBindingPatternArrRoot];
+const tmpArrPatternStep = tmpArrPatternSplat[0];
+const tmpArrPatternSplat$1 = [...tmpArrPatternStep];
+const x = tmpArrPatternSplat$1[0];
+$(`bad`);
+`````
+
+
 ## Todos triggered
 
 

@@ -68,6 +68,26 @@ $dotCall( a, e, "c" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpObjLitVal$1 = function (...$$0 /*:array*/) {
+  const tmpPrevalAliasThis$1 = this;
+  let $dlr_$$0 = $$0;
+  debugger;
+  const tmpPrevalAliasThis = tmpPrevalAliasThis$1;
+  const a$1 = $dlr_$$0;
+  const tmpCalleeParam = $($dlr_$$0);
+  $(tmpCalleeParam, tmpPrevalAliasThis);
+  return undefined;
+};
+const tmpObjLitVal = { c: tmpObjLitVal$1 };
+const tmpMCF = tmpObjLitVal.c;
+$dotCall(tmpMCF, tmpObjLitVal, `c`);
+`````
+
+
 ## Todos triggered
 
 

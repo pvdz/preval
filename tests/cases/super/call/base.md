@@ -87,6 +87,29 @@ new c();
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let A = class {
+  constructor($$0) {
+    let x = $$0;
+    debugger;
+    $(`A:`, x);
+    return undefined;
+  }
+};
+let B = class extends A {
+  constructor() {
+    debugger;
+    super(1);
+    return undefined;
+  }
+};
+new B();
+`````
+
+
 ## Todos triggered
 
 

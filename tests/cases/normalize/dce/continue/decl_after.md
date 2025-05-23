@@ -116,6 +116,31 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+while (true) {
+  const tmpIfTest = $(true);
+  if (tmpIfTest) {
+    $continue: {
+      const tmpIfTest$1 = $(false);
+      if (tmpIfTest$1) {
+        $(`fail too`);
+        throw `Preval: TDZ triggered for this assignment: x = \$('fail too')`;
+      } else {
+        break $continue;
+        let x = $(`fail`);
+      }
+    }
+  } else {
+    break;
+  }
+}
+$(`after, wont eval due to infinite loop`);
+`````
+
+
 ## Todos triggered
 
 

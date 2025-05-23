@@ -53,6 +53,17 @@ throw "Preval: TDZ triggered for this read: [firstElement]";
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+throw `Preval: TDZ triggered for this read: [firstElement]`;
+const rhs = 0;
+let lhs = 0;
+let firstElement = 0;
+`````
+
+
 ## Todos triggered
 
 

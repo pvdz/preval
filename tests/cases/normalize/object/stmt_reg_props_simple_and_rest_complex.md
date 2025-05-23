@@ -43,6 +43,16 @@ const b = { a: a };
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpObjLitVal = $(10);
+const tmpObjSpreadArg = { a: tmpObjLitVal };
+({ ...tmpObjSpreadArg });
+`````
+
+
 ## Todos triggered
 
 

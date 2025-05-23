@@ -45,6 +45,21 @@ $( f );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpMCOO = function () {
+  debugger;
+  return undefined;
+};
+const tmpMCF = tmpMCOO.constructor;
+const f = $dotCall(tmpMCF, tmpMCOO, `constructor`, a, b, c, d);
+let tmpCalleeParam = f();
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

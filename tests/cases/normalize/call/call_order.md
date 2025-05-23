@@ -46,6 +46,19 @@ a( b, c, d );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpCallComplexCallee = $spy(isNaN);
+const tmpCallCallee = tmpCallComplexCallee;
+let tmpCalleeParam = $spy(`a`);
+let tmpCalleeParam$1 = $spy(`b`);
+let tmpCalleeParam$3 = $spy(`c`);
+tmpCallComplexCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
+`````
+
+
 ## Todos triggered
 
 

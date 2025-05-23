@@ -55,6 +55,20 @@ $( b, a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let arg = { y: 1 };
+$(1);
+$(2);
+const tmpDeleteObj = arg;
+let a = delete tmpDeleteObj.y;
+export { a };
+$(a, arg);
+`````
+
+
 ## Todos triggered
 
 

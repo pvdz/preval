@@ -123,6 +123,37 @@ $( a, "last" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let y = undefined;
+while (true) {
+  y = $(true);
+  if (y) {
+    $(y, `before`);
+    let x = undefined;
+    const obj = { a: 1, b: 2 };
+    const tmpForInGenNext = $forIn(obj);
+    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+      const tmpForInNext = tmpForInGenNext();
+      const tmpIfTest = tmpForInNext.done;
+      if (tmpIfTest) {
+        break;
+      } else {
+        x = tmpForInNext.value;
+        $(x, y);
+      }
+    }
+    $(x, y, `after`);
+  } else {
+    break;
+  }
+}
+$(y, `last`);
+`````
+
+
 ## Todos triggered
 
 

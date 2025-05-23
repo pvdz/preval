@@ -51,6 +51,25 @@ $( 0 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let tmpCallComplexCallee = undefined;
+$inlinedFunction: {
+  const f = function () {
+    debugger;
+    $(0);
+    return undefined;
+  };
+  tmpCallComplexCallee = f;
+  break $inlinedFunction;
+  const x = undefined;
+}
+tmpCallComplexCallee();
+`````
+
+
 ## Todos triggered
 
 

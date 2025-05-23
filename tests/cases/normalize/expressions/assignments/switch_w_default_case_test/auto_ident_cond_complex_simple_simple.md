@@ -130,6 +130,47 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+let tmpSwitchValue = $(1);
+let tmpSwitchCaseToStart = 1;
+const tmpIfTest$1 = $(1);
+if (tmpIfTest$1) {
+  a = 2;
+} else {
+  let tmpCalleeParam = $(100);
+  a = $(tmpCalleeParam);
+}
+const tmpBinLhs = a;
+const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+} else {
+  const tmpIfTest$3 = 2 === tmpSwitchValue;
+  if (tmpIfTest$3) {
+    tmpSwitchCaseToStart = 2;
+  } else {
+  }
+}
+const tmpIfTest$5 = tmpSwitchCaseToStart <= 0;
+const tmpIfTest$7 = tmpSwitchCaseToStart <= 1;
+if (tmpIfTest$7) {
+  $(`fail1`);
+} else {
+}
+const tmpIfTest$9 = tmpSwitchCaseToStart <= 2;
+if (tmpIfTest$9) {
+  $(`fail2`);
+  $(a);
+} else {
+  $(a);
+}
+`````
+
+
 ## Todos triggered
 
 

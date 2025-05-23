@@ -101,6 +101,30 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let b = undefined;
+const objb = $(2);
+const btest = objb == null;
+let aliasb = undefined;
+if (btest) {
+} else {
+  const actualb = objb.toString;
+  b = actualb;
+  aliasb = actualb;
+}
+const ctest = b == null;
+if (ctest) {
+  $(undefined);
+} else {
+  const c = aliasb.length;
+  $(c);
+}
+`````
+
+
 ## Todos triggered
 
 

@@ -42,6 +42,16 @@ throw a;
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+const tmpThrowArg = new $regex_constructor(`foo`, ``);
+throw tmpThrowArg;
+`````
+
+
 ## Todos triggered
 
 

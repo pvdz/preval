@@ -43,6 +43,23 @@ a.y = b;
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let a = 1;
+let b = 2;
+let c = 3;
+let d = 4;
+const tmpNestedAssignObj = $(c);
+const tmpNestedAssignPropRhs = $(d);
+const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
+tmpNestedAssignObj.y = tmpNestedPropAssignRhs;
+b = tmpNestedPropAssignRhs;
+let a$1 = b;
+`````
+
+
 ## Todos triggered
 
 

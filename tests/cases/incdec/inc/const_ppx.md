@@ -45,6 +45,19 @@ throw "Preval: Cannot write to const binding `x`";
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const x = $(0);
+const tmpPostUpdArgIdent = $coerce(x, `number`);
+x = tmpPostUpdArgIdent + 1;
+const y = x;
+$(x);
+$(x);
+`````
+
+
 ## Todos triggered
 
 

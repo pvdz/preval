@@ -72,6 +72,22 @@ export { a as X };
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+import { default as x } from 'x';
+$(x);
+let tmpCalleeParam = x.name;
+$(tmpCalleeParam);
+`````
+
+`````js filename=x
+let X = class {};
+export { X };
+`````
+
+
 ## Todos triggered
 
 

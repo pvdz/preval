@@ -104,6 +104,45 @@ $( s );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpMCF = $Array_from;
+let tmpCalleeParam = [];
+const tmpMCP = $(tmpCalleeParam);
+const tmpUnaryArg = $dotCall(tmpMCF, $array_constructor, `from`, tmpMCP);
+const tmpArrElement = ~tmpUnaryArg;
+const tmpMCF$1 = $Array_from;
+let tmpCalleeParam$1 = [];
+const tmpMCP$1 = $(tmpCalleeParam$1);
+const tmpUnaryArg$1 = $dotCall(tmpMCF$1, $array_constructor, `from`, tmpMCP$1);
+const tmpArrElement$1 = !tmpUnaryArg$1;
+const tmpMCF$3 = $Array_from;
+let tmpCalleeParam$3 = [];
+const tmpMCP$3 = $(tmpCalleeParam$3);
+const tmpUnaryArg$3 = $dotCall(tmpMCF$3, $array_constructor, `from`, tmpMCP$3);
+const tmpArrElement$3 = -tmpUnaryArg$3;
+const tmpMCF$5 = $Array_from;
+let tmpCalleeParam$5 = [];
+const tmpMCP$5 = $(tmpCalleeParam$5);
+const tmpUnaryArg$5 = $dotCall(tmpMCF$5, $array_constructor, `from`, tmpMCP$5);
+const tmpArrElement$5 = +tmpUnaryArg$5;
+const tmpMCF$7 = $Array_from;
+let tmpCalleeParam$7 = [];
+const tmpMCP$7 = $(tmpCalleeParam$7);
+const tmpUnaryArg$7 = $dotCall(tmpMCF$7, $array_constructor, `from`, tmpMCP$7);
+const tmpArrElement$7 = typeof tmpUnaryArg$7;
+const tmpMCF$9 = $Array_from;
+let tmpCalleeParam$9 = [];
+const tmpMCP$9 = $(tmpCalleeParam$9);
+$dotCall(tmpMCF$9, $array_constructor, `from`, tmpMCP$9);
+const tmpArrElement$9 = undefined;
+const arr = [tmpArrElement, tmpArrElement$1, tmpArrElement$3, tmpArrElement$5, tmpArrElement$7, tmpArrElement$9];
+$(arr);
+`````
+
+
 ## Todos triggered
 
 

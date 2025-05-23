@@ -57,6 +57,25 @@ $( "finished" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let counter = 5;
+while (true) {
+  if (counter) {
+    const tmpStringConcatL = $coerce(counter, `plustr`);
+    let tmpCalleeParam = `x${tmpStringConcatL}`;
+    $(tmpCalleeParam);
+    counter = counter - 1;
+  } else {
+    break;
+  }
+}
+$(`finished`);
+`````
+
+
 ## Todos triggered
 
 

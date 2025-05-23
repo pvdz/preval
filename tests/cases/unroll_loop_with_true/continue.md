@@ -115,6 +115,33 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let i = 10;
+while (true) {
+  $continue: {
+    const tmpPostUpdArgIdent = $coerce(i, `number`);
+    i = tmpPostUpdArgIdent - 1;
+    const tmpBinLhs = tmpPostUpdArgIdent;
+    const tmpIfTest = tmpBinLhs > 0;
+    if (tmpIfTest) {
+      break $continue;
+    } else {
+      const test = $(`first`);
+      $(`second`);
+      if (test) {
+        break;
+      } else {
+        $(`third`);
+      }
+    }
+  }
+}
+`````
+
+
 ## Todos triggered
 
 

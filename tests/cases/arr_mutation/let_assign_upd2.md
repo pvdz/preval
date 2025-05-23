@@ -66,6 +66,25 @@ if (c) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let a = [0];
+const b = a;
+const c = a[0];
+const d = c + 1;
+b[0] = d;
+$(a);
+const e = a[0];
+const f = e < 10;
+if (f) {
+  $(a, b, c, d, e, f);
+} else {
+}
+`````
+
+
 ## Todos triggered
 
 

@@ -47,6 +47,22 @@ $( c );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  let tmpCalleeParam = { x: 1 };
+  const tmpReturnArg = $(tmpCalleeParam);
+  return tmpReturnArg;
+};
+const tmpObjSpread = f();
+let tmpCalleeParam$1 = { ...tmpObjSpread };
+$(tmpCalleeParam$1);
+`````
+
+
 ## Todos triggered
 
 

@@ -97,6 +97,34 @@ c();
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const oops = {
+  toString() {
+    debugger;
+    $(`toString`);
+    return undefined;
+  },
+  valueOf() {
+    debugger;
+    $(`valueOf`);
+    return undefined;
+  },
+};
+const tmpObjLitVal = $(1);
+const o = { x: tmpObjLitVal };
+const f = { [oops]: 123 };
+const tmpCalleeParam$1 = o.x;
+$(tmpCalleeParam$1);
+o.x = 10;
+f();
+f();
+f();
+`````
+
+
 ## Todos triggered
 
 

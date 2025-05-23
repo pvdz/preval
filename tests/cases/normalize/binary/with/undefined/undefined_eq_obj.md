@@ -49,6 +49,31 @@ $( a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const x = {
+  toString() {
+    debugger;
+    const tmpReturnArg = $(`toString`);
+    return tmpReturnArg;
+  },
+  valueOf() {
+    debugger;
+    $(`valueOf`);
+    return 100;
+  },
+};
+const tmpArrElement = undefined == x;
+const tmpArrElement$1 = undefined != x;
+const tmpArrElement$3 = undefined === x;
+const tmpArrElement$5 = undefined !== x;
+const arr = [tmpArrElement, tmpArrElement$1, tmpArrElement$3, tmpArrElement$5];
+$(arr);
+`````
+
+
 ## Todos triggered
 
 

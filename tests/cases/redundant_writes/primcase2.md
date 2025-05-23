@@ -103,6 +103,45 @@ $( i );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpFree = function $free($$0) {
+  let $dlr_$$0 = $$0;
+  debugger;
+  const tmpBinBothRhs$1 = $dlr_$$0;
+  const tmpBinBothLhs = `before  `;
+  const tmpBinBothRhs$2 = $coerce(tmpBinBothRhs$1, `string`);
+  const tmpBinLhs$1 = tmpBinBothLhs + tmpBinBothRhs$2;
+  const tmpBinLhs = $coerce(tmpBinLhs$1, `plustr`);
+  const tmpBinBothLhs$1 = ``;
+  const tmpBinBothRhs$4 = $coerce(tmpBinLhs, `string`);
+  const tmpBinLhs$3 = tmpBinBothLhs$1 + tmpBinBothRhs$4;
+  const tmpStringConcatR = $coerce(tmpBinLhs$3, `plustr`);
+  const tmpRet = `${tmpStringConcatR}  after`;
+  return tmpRet;
+};
+const tmpCalleeParam$3 = $(0);
+const tmpCalleeParam$1 = $(tmpCalleeParam$3);
+let tmpBinBothRhs = ``;
+let tmpCalleeParam = undefined;
+if (tmpCalleeParam$1) {
+  tmpBinBothRhs = $coerce(tmpCalleeParam$1, `string`);
+  tmpCalleeParam = $frfr(tmpFree, tmpBinBothRhs);
+  $(tmpCalleeParam);
+} else {
+  const tmpCalleeParam$5 = $(2);
+  const tmpClusterSSA_tmpCalleeParam$1 = $(tmpCalleeParam$5);
+  tmpBinBothRhs = $coerce(tmpClusterSSA_tmpCalleeParam$1, `string`);
+  tmpCalleeParam = $frfr(tmpFree, tmpBinBothRhs);
+  $(tmpCalleeParam);
+}
+const a = { a: 999, b: 1000 };
+$(a);
+`````
+
+
 ## Todos triggered
 
 

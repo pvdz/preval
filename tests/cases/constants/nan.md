@@ -39,6 +39,16 @@ $( $Number_NaN );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const foo = NaN;
+const bar = foo;
+$(foo);
+`````
+
+
 ## Todos triggered
 
 

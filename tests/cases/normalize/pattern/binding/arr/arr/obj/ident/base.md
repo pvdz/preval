@@ -38,6 +38,22 @@ $( 1 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpArrElement$1 = { x: 1 };
+const tmpArrElement = [tmpArrElement$1, 20, 30];
+const tmpBindingPatternArrRoot = [tmpArrElement, 40, 50];
+const tmpArrPatternSplat = [...tmpBindingPatternArrRoot];
+const tmpArrPatternStep = tmpArrPatternSplat[0];
+const tmpArrPatternSplat$1 = [...tmpArrPatternStep];
+const tmpArrPatternStep$1 = tmpArrPatternSplat$1[0];
+const x = tmpArrPatternStep$1.x;
+$(x);
+`````
+
+
 ## Todos triggered
 
 

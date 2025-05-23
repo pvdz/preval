@@ -44,6 +44,37 @@ $( undefined );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
+  let a = undefined;
+  const tmpIfTest = tmpParamBare === undefined;
+  if (tmpIfTest) {
+    a = {};
+  } else {
+    a = tmpParamBare;
+  }
+  let tmpBindingPatternObjRoot = a;
+  let tmpOPBD = tmpBindingPatternObjRoot.x;
+  let x = undefined;
+  const tmpIfTest$1 = tmpOPBD === undefined;
+  if (tmpIfTest$1) {
+    x = false;
+    return undefined;
+  } else {
+    x = tmpOPBD;
+    return undefined;
+  }
+};
+let tmpCalleeParam = f();
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

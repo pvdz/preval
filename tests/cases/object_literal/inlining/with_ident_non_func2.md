@@ -41,6 +41,17 @@ $( a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let g = new $regex_constructor(`regex`, ``);
+const obj = { f: g };
+let tmpCalleeParam = obj.f;
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

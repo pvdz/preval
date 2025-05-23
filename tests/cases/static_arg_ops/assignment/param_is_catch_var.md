@@ -73,6 +73,29 @@ $( 3 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+try {
+  $(1);
+  throw `foo`;
+} catch (err) {
+  let f = function ($$0) {
+    let b = $$0;
+    debugger;
+    b = err;
+    $(err, err);
+    return undefined;
+  };
+  f(11);
+  f(12);
+  $(err);
+}
+$(3);
+`````
+
+
 ## Todos triggered
 
 

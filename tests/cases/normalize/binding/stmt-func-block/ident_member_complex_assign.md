@@ -80,6 +80,35 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  const tmpIfTest = $(true);
+  if (tmpIfTest) {
+    let b = { x: 2 };
+    let c = 3;
+    let d = 4;
+    const tmpInitAssignLhsComputedObj = $(b);
+    const tmpInitAssignLhsComputedObj$1 = $(c);
+    const tmpInitAssignLhsComputedRhs$1 = $(d);
+    tmpInitAssignLhsComputedObj$1.y = tmpInitAssignLhsComputedRhs$1;
+    const tmpInitAssignLhsComputedRhs = tmpInitAssignLhsComputedRhs$1;
+    tmpInitAssignLhsComputedObj.x = tmpInitAssignLhsComputedRhs;
+    let a = tmpInitAssignLhsComputedRhs;
+    $(tmpInitAssignLhsComputedRhs, b, c, d);
+    return undefined;
+  } else {
+    return undefined;
+  }
+};
+let tmpCalleeParam = f();
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

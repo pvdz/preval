@@ -57,6 +57,22 @@ $( c );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+const tmpObjLitVal$1 = $(1);
+const tmpObjLitVal$3 = 2;
+const tmpObjLitVal$5 = $(3);
+a = { x: tmpObjLitVal$1, y: tmpObjLitVal$3, z: tmpObjLitVal$5 };
+const tmpObjLitVal = a;
+let tmpCalleeParam = { x: tmpObjLitVal };
+$(tmpCalleeParam);
+$(a);
+`````
+
+
 ## Todos triggered
 
 

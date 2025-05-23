@@ -42,6 +42,18 @@ $( 10 );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = undefined;
+try {
+  x = 10;
+} catch (e) {}
+$(x);
+`````
+
+
 ## Todos triggered
 
 

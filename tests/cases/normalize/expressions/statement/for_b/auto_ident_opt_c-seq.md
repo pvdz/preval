@@ -21,7 +21,7 @@ $(a);
 
 
 `````js filename=intro
-let tmpIfTest /*:unknown*/ = undefined;
+let tmpIfTest /*:unknown*/ /*ternaryConst*/ = undefined;
 const b /*:object*/ = { x: 1 };
 const tmpChainRootProp /*:unknown*/ = $(b);
 const tmpIfTest$1 /*:boolean*/ = tmpChainRootProp == null;
@@ -32,7 +32,7 @@ if (tmpIfTest$1) {
 if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
     $(1);
-    let tmpIfTest$2 /*:unknown*/ = undefined;
+    let tmpIfTest$2 /*:unknown*/ /*ternaryConst*/ = undefined;
     const tmpChainRootProp$1 /*:unknown*/ = $(b);
     const tmpIfTest$4 /*:boolean*/ = tmpChainRootProp$1 == null;
     if (tmpIfTest$4) {

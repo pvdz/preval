@@ -21,11 +21,11 @@ $(a);
 
 
 `````js filename=intro
-let a /*:unknown*/ = undefined;
+let a /*:unknown*/ /*ternaryConst*/ = undefined;
 const b /*:object*/ = { x: 1 };
 const tmpChainRootProp /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainRootProp == null;
-let tmpForOfGenNext /*:unknown*/ = undefined;
+let tmpForOfGenNext /*:unknown*/ /*ternaryConst*/ = undefined;
 if (tmpIfTest) {
   tmpForOfGenNext = $forOf(undefined);
 } else {

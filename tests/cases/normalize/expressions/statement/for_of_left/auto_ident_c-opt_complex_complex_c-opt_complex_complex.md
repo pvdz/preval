@@ -32,7 +32,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   if (tmpIfTest) {
     break;
   } else {
-    let tmpAssignMemLhsObj /*:unknown*/ = undefined;
+    let tmpAssignMemLhsObj /*:unknown*/ /*ternaryConst*/ = undefined;
     const tmpChainElementCall /*:unknown*/ = $(b);
     const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
     if (tmpIfTest$1) {

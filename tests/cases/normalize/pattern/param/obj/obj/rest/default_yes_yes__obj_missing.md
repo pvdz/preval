@@ -20,7 +20,7 @@ $(f({ b: 11, c: 12 }, 10));
 
 
 `````js filename=intro
-let tmpOPAD /*:unknown*/ = undefined;
+let tmpOPAD /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpOPBD /*:unknown*/ = $Object_prototype.x;
 const tmpIfTest$1 /*:boolean*/ = tmpOPBD === undefined;
 if (tmpIfTest$1) {

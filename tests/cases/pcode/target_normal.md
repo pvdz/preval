@@ -76,7 +76,7 @@ const tmpFree /*:(number)=>number*/ = function $free($$0) {
 const pcode /*:(number)=>string*/ = function ($$0) {
   const num_arg$1 /*:number*/ = $$0;
   debugger;
-  let out_str$3 /*:string*/ = ``;
+  let out_str$3 /*:string*/ /*ternaryConst*/ = ``;
   const tmpIfTest /*:boolean*/ = num_arg$1 < 62;
   if (tmpIfTest) {
   } else {

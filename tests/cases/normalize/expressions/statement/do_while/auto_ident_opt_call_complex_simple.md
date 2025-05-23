@@ -22,7 +22,7 @@ $(a);
 
 `````js filename=intro
 $(100);
-let tmpIfTest /*:unknown*/ = undefined;
+let tmpIfTest /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpChainElementCall /*:unknown*/ = $($);
 const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest$1) {
@@ -32,7 +32,7 @@ if (tmpIfTest$1) {
 if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
     $(100);
-    let tmpIfTest$2 /*:unknown*/ = undefined;
+    let tmpIfTest$2 /*:unknown*/ /*ternaryConst*/ = undefined;
     const tmpChainElementCall$1 /*:unknown*/ = $($);
     const tmpIfTest$4 /*:boolean*/ = tmpChainElementCall$1 == null;
     if (tmpIfTest$4) {

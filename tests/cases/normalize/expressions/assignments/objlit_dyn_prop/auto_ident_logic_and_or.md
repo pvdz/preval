@@ -26,7 +26,7 @@ if (a) {
   a = $(tmpCalleeParam$3);
 } else {
 }
-let tmpObjLitPropKey /*:unknown*/ = undefined;
+let tmpObjLitPropKey /*:unknown*/ /*ternaryConst*/ = undefined;
 if (a) {
   tmpObjLitPropKey = a;
 } else {

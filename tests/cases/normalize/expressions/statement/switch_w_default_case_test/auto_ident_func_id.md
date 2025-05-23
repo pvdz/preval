@@ -27,7 +27,7 @@ $(a);
 
 `````js filename=intro
 const tmpSwitchValue /*:unknown*/ = $(1);
-let tmpSwitchCaseToStart /*:number*/ = 1;
+let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
 const tmpBinLhs /*:()=>undefined*/ = function () {
   debugger;
   return undefined;

@@ -21,7 +21,7 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam$1 /*:unknown*/ = $(1);
 let a /*:unknown*/ = $(tmpCalleeParam$1);
-let tmpForInGen /*:unknown*/ = undefined;
+let tmpForInGen /*:unknown*/ /*ternaryConst*/ = undefined;
 if (a) {
   a = 2;
   tmpForInGen = $forIn(2);

@@ -36,7 +36,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
       a = $(tmpCalleeParam$5);
     } else {
     }
-    let tmpAssignMemLhsObj$1 /*:unknown*/ = undefined;
+    let tmpAssignMemLhsObj$1 /*:unknown*/ /*ternaryConst*/ = undefined;
     if (a) {
       tmpAssignMemLhsObj$1 = a;
     } else {

@@ -22,10 +22,10 @@ $(c);
 
 
 `````js filename=intro
-let b /*:unknown*/ = undefined;
+let b /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpChainRootProp /*:unknown*/ = $(2);
 const tmpIfTest /*:boolean*/ = tmpChainRootProp == null;
-let tmpChainRootProp$1 /*:unknown*/ = undefined;
+let tmpChainRootProp$1 /*:unknown*/ /*ternaryConst*/ = undefined;
 if (tmpIfTest) {
 } else {
   b = tmpChainRootProp.toString;

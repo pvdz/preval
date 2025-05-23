@@ -19,7 +19,7 @@ $('bad');
 
 `````js filename=intro
 const tmpOPBD /*:unknown*/ = $Number_prototype.x;
-let tmpOPAD /*:unknown*/ = undefined;
+let tmpOPAD /*:unknown*/ /*ternaryConst*/ = undefined;
 let tmpObjPatternCrashTest /*:boolean*/ = false;
 const tmpIfTest /*:boolean*/ = tmpOPBD === undefined;
 if (tmpIfTest) {

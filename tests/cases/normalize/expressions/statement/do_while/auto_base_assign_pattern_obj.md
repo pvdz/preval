@@ -27,7 +27,7 @@ $(100);
 const tmpObjLitVal /*:unknown*/ = $(2);
 const tmpCalleeParam /*:object*/ = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam);
-let b /*:unknown*/ = tmpNestedAssignObjPatternRhs.b;
+let b /*:unknown*/ /*ternaryConst*/ = tmpNestedAssignObjPatternRhs.b;
 if (tmpNestedAssignObjPatternRhs) {
   while ($LOOP_UNROLL_10) {
     $(100);

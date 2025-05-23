@@ -36,7 +36,7 @@ $(a);
 
 
 `````js filename=intro
-let maybegx /*:unknown*/ = undefined;
+let maybegx /*:unknown*/ /*ternaryConst*/ = undefined;
 const b /*:object*/ = { x: 1 };
 const g /*:unknown*/ = $(b);
 const same /*:boolean*/ = g == null;
@@ -48,7 +48,7 @@ if (same) {
 if (maybegx) {
   while ($LOOP_UNROLL_10) {
     $(1);
-    let maybegx$1 /*:unknown*/ = undefined;
+    let maybegx$1 /*:unknown*/ /*ternaryConst*/ = undefined;
     const g$1 /*:unknown*/ = $(b);
     const same$1 /*:boolean*/ = g$1 == null;
     if (same$1) {

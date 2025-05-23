@@ -35,7 +35,7 @@ $(closure(), 'closure-global2');
 const x /*:unknown*/ = $(100, `init`);
 const tmpCalleeParam /*:unknown*/ = $(x, `closure-return`);
 $(tmpCalleeParam, `closure-global1`);
-let tmpClusterSSA_x /*:unknown*/ = undefined;
+let tmpClusterSSA_x /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpIfTest /*:unknown*/ = $();
 if (tmpIfTest) {
   tmpClusterSSA_x = $(1, `f-return`);

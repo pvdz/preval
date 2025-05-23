@@ -19,7 +19,7 @@ $(a);
 
 
 `````js filename=intro
-let tmpArrElToSpread /*:unknown*/ = undefined;
+let tmpArrElToSpread /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpIfTest /*:boolean*/ = $ == null;
 if (tmpIfTest) {
 } else {

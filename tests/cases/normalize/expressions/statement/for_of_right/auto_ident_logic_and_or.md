@@ -26,7 +26,7 @@ if (tmpCalleeParam) {
   tmpCalleeParam = $(tmpCalleeParam$3);
 } else {
 }
-let tmpForOfGenNext /*:unknown*/ = undefined;
+let tmpForOfGenNext /*:unknown*/ /*ternaryConst*/ = undefined;
 if (tmpCalleeParam) {
   tmpForOfGenNext = $forOf(tmpCalleeParam);
 } else {

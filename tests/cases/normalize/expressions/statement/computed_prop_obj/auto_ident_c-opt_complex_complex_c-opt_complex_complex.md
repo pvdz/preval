@@ -22,7 +22,7 @@ $(a);
 
 
 `````js filename=intro
-let tmpCompObj /*:unknown*/ = undefined;
+let tmpCompObj /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpObjLitVal /*:object*/ = { y: 1 };
 const b /*:object*/ = { x: tmpObjLitVal };
 const tmpChainElementCall /*:unknown*/ = $(b);

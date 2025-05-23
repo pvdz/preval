@@ -28,7 +28,7 @@ if (a) {
   a = $(tmpCalleeParam$3);
 } else {
 }
-let tmpBinBothLhs /*:unknown*/ = undefined;
+let tmpBinBothLhs /*:unknown*/ /*ternaryConst*/ = undefined;
 if (a) {
   tmpBinBothLhs = a;
 } else {

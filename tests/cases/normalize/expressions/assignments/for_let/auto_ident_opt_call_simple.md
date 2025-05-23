@@ -20,7 +20,7 @@ $(a);
 
 `````js filename=intro
 const tmpIfTest /*:boolean*/ = $ == null;
-let xyz /*:unknown*/ = undefined;
+let xyz /*:unknown*/ /*ternaryConst*/ = undefined;
 if (tmpIfTest) {
 } else {
   xyz = $(1);

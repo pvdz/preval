@@ -21,7 +21,7 @@ $(a);
 
 
 `````js filename=intro
-let tmpArrElToSpread /*:unknown*/ = undefined;
+let tmpArrElToSpread /*:unknown*/ /*ternaryConst*/ = undefined;
 const b /*:object*/ = { x: 1 };
 const tmpChainElementCall /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;

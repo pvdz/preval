@@ -24,7 +24,7 @@ $(a);
 const b /*:object*/ = { x: 1 };
 const tmpChainRootProp /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainRootProp == null;
-let tmpThrowArg /*:unknown*/ = undefined;
+let tmpThrowArg /*:unknown*/ /*ternaryConst*/ = undefined;
 if (tmpIfTest) {
 } else {
   tmpThrowArg = tmpChainRootProp.x;

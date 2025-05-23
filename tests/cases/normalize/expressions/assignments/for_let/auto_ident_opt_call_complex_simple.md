@@ -21,7 +21,7 @@ $(a);
 `````js filename=intro
 const tmpChainElementCall /*:unknown*/ = $($);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
-let xyz /*:unknown*/ = undefined;
+let xyz /*:unknown*/ /*ternaryConst*/ = undefined;
 if (tmpIfTest) {
 } else {
   xyz = $dotCall(tmpChainElementCall, $, undefined, 1);

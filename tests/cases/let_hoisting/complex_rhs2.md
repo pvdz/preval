@@ -31,7 +31,7 @@ $(x);
 
 
 `````js filename=intro
-let x /*:primitive*/ = undefined;
+let x /*:primitive*/ /*ternaryConst*/ = undefined;
 const tmpIfTest /*:unknown*/ = $(true);
 if (tmpIfTest) {
   x = 1;

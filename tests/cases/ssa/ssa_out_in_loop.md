@@ -62,7 +62,7 @@
 
 `````js filename=intro
 if ($) {
-  let B /*:unknown*/ = `jhayon.vercel.app`;
+  let B /*:unknown*/ /*ternaryConst*/ = `jhayon.vercel.app`;
   const tmpClusterSSA__0x15f773 /*:unknown*/ = $(`x`);
   const A /*:unknown*/ = tmpClusterSSA__0x15f773.length;
   const tmpBinBothLhs$30 /*:unknown*/ = A[0];

@@ -25,7 +25,7 @@ if (x) {
 
 
 `````js filename=intro
-let x /*:unknown*/ = a;
+let x /*:unknown*/ /*ternaryConst*/ = a;
 if (a) {
   x = b;
 } else {

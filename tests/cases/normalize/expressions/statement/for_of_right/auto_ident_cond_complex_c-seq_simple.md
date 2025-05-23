@@ -20,7 +20,7 @@ $(a);
 
 `````js filename=intro
 const tmpIfTest /*:unknown*/ = $(1);
-let tmpForOfGenNext /*:unknown*/ = undefined;
+let tmpForOfGenNext /*:unknown*/ /*ternaryConst*/ = undefined;
 if (tmpIfTest) {
   const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(60);
   tmpForOfGenNext = $forOf(tmpClusterSSA_tmpCalleeParam);

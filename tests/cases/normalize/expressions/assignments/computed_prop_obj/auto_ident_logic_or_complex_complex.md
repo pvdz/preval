@@ -22,7 +22,7 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(0);
 let a /*:unknown*/ = $(tmpCalleeParam);
-let tmpCompObj /*:unknown*/ = undefined;
+let tmpCompObj /*:unknown*/ /*ternaryConst*/ = undefined;
 if (a) {
   tmpCompObj = a;
 } else {

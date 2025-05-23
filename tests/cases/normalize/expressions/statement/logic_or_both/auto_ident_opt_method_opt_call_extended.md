@@ -21,7 +21,7 @@ $(a);
 
 
 `````js filename=intro
-let tmpIfTest /*:unknown*/ = undefined;
+let tmpIfTest /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpIfTest$3 /*:boolean*/ = $ == null;
 const tmpObjLitVal$1 /*:object*/ = { e: $ };
 if (tmpIfTest$3) {

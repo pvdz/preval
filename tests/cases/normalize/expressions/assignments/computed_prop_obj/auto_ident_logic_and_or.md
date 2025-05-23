@@ -27,7 +27,7 @@ if (a) {
   a = $(tmpCalleeParam$1);
 } else {
 }
-let tmpCompObj /*:unknown*/ = undefined;
+let tmpCompObj /*:unknown*/ /*ternaryConst*/ = undefined;
 if (a) {
   tmpCompObj = a;
 } else {

@@ -33,7 +33,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   } else {
     const tmpChainRootProp /*:unknown*/ = $(b);
     const tmpIfTest$1 /*:boolean*/ = tmpChainRootProp == null;
-    let tmpAssignMemLhsObj$1 /*:unknown*/ = undefined;
+    let tmpAssignMemLhsObj$1 /*:unknown*/ /*ternaryConst*/ = undefined;
     if (tmpIfTest$1) {
     } else {
       tmpAssignMemLhsObj$1 = tmpChainRootProp.x;

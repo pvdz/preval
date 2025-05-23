@@ -29,7 +29,7 @@ $(a);
 
 `````js filename=intro
 const tmpSwitchValue /*:unknown*/ = $(1);
-let tmpSwitchCaseToStart /*:number*/ = 1;
+let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
 const tmpCalleeParam /*:unknown*/ = $(1);
 const tmpCalleeParam$1 /*:unknown*/ = $(2);
 const tmpBinLhs /*:object*/ = new $(tmpCalleeParam, tmpCalleeParam$1);

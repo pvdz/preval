@@ -24,7 +24,7 @@ $(a);
 const b /*:object*/ = { x: 1 };
 const tmpChainElementCall /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
-let tmpForOfGenNext /*:unknown*/ = undefined;
+let tmpForOfGenNext /*:unknown*/ /*ternaryConst*/ = undefined;
 if (tmpIfTest) {
   tmpForOfGenNext = $forOf(undefined);
 } else {

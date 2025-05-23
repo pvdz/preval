@@ -19,7 +19,7 @@ $(a);
 
 
 `````js filename=intro
-let tmpBinBothLhs /*:unknown*/ = 60;
+let tmpBinBothLhs /*:unknown*/ /*ternaryConst*/ = 60;
 const tmpIfTest /*:unknown*/ = $(30);
 if (tmpIfTest) {
 } else {

@@ -19,7 +19,7 @@ $(a);
 
 
 `````js filename=intro
-let tmpArrElToSpread /*:unknown*/ = undefined;
+let tmpArrElToSpread /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpChainElementCall /*:unknown*/ = $($);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest) {

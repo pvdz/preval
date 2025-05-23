@@ -19,9 +19,9 @@ $(a);
 
 
 `````js filename=intro
-let a /*:unknown*/ = 60;
+let a /*:unknown*/ /*ternaryConst*/ = 60;
 const tmpIfTest /*:unknown*/ = $(1);
-let tmpForOfGenNext /*:unknown*/ = undefined;
+let tmpForOfGenNext /*:unknown*/ /*ternaryConst*/ = undefined;
 if (tmpIfTest) {
   tmpForOfGenNext = $forOf(60);
 } else {

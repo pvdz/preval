@@ -19,7 +19,7 @@ $(a);
 
 
 `````js filename=intro
-let tmpThrowArg /*:unknown*/ = undefined;
+let tmpThrowArg /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   tmpThrowArg = $(60);

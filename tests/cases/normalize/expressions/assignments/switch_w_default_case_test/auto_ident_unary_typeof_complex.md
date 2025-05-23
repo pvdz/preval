@@ -28,7 +28,7 @@ $(a, arg);
 
 `````js filename=intro
 const tmpSwitchValue /*:unknown*/ = $(1);
-let tmpSwitchCaseToStart /*:number*/ = 1;
+let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
 const tmpUnaryArg /*:unknown*/ = $(1);
 const a /*:string*/ = typeof tmpUnaryArg;
 const tmpIfTest /*:boolean*/ = a === tmpSwitchValue;

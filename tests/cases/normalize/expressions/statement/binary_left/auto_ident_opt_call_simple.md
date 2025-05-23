@@ -19,7 +19,7 @@ $(a);
 
 
 `````js filename=intro
-let tmpBinBothLhs /*:unknown*/ = undefined;
+let tmpBinBothLhs /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpIfTest /*:boolean*/ = $ == null;
 if (tmpIfTest) {
 } else {

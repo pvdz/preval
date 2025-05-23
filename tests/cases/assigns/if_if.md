@@ -32,7 +32,7 @@
 
 
 `````js filename=intro
-let x /*:number*/ = 20;
+let x /*:number*/ /*ternaryConst*/ = 20;
 $(20);
 const tmpIfTest /*:unknown*/ = $(1);
 $(20);

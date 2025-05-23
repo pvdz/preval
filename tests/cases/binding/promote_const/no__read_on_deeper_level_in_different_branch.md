@@ -33,7 +33,7 @@ if ($(1)) {
 `````js filename=intro
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
-  let x /*:primitive*/ = undefined;
+  let x /*:primitive*/ /*ternaryConst*/ = undefined;
   const tmpIfTest$1 /*:unknown*/ = $(2);
   if (tmpIfTest$1) {
     x = 10;

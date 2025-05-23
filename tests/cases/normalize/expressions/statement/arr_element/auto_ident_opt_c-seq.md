@@ -21,7 +21,7 @@ $(a);
 
 
 `````js filename=intro
-let tmpBinBothLhs /*:unknown*/ = undefined;
+let tmpBinBothLhs /*:unknown*/ /*ternaryConst*/ = undefined;
 const b /*:object*/ = { x: 1 };
 const tmpChainRootProp /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainRootProp == null;
@@ -29,7 +29,7 @@ if (tmpIfTest) {
 } else {
   tmpBinBothLhs = tmpChainRootProp.x;
 }
-let tmpBinBothRhs /*:unknown*/ = undefined;
+let tmpBinBothRhs /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpChainRootProp$1 /*:unknown*/ = $(b);
 const tmpIfTest$1 /*:boolean*/ = tmpChainRootProp$1 == null;
 if (tmpIfTest$1) {

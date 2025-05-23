@@ -21,7 +21,7 @@ $(a);
 
 
 `````js filename=intro
-let tmpThrowArg /*:unknown*/ = undefined;
+let tmpThrowArg /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpIfTest$1 /*:boolean*/ = $ == null;
 if (tmpIfTest$1) {
 } else {

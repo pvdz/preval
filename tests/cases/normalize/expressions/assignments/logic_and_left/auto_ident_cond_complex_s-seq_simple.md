@@ -19,7 +19,7 @@ $(a);
 
 
 `````js filename=intro
-let a /*:unknown*/ = 60;
+let a /*:unknown*/ /*ternaryConst*/ = 60;
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
 } else {

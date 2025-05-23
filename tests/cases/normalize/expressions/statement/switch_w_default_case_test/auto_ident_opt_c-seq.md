@@ -29,11 +29,11 @@ $(a);
 
 `````js filename=intro
 const tmpSwitchValue /*:unknown*/ = $(1);
-let tmpSwitchCaseToStart /*:number*/ = 1;
+let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
 const b /*:object*/ = { x: 1 };
 const tmpChainRootProp /*:unknown*/ = $(b);
 const tmpIfTest$1 /*:boolean*/ = tmpChainRootProp == null;
-let tmpIfTest /*:boolean*/ = false;
+let tmpIfTest /*:boolean*/ /*ternaryConst*/ = false;
 if (tmpIfTest$1) {
   tmpIfTest = undefined === tmpSwitchValue;
 } else {

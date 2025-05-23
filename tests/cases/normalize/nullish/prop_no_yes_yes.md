@@ -20,7 +20,7 @@ $(a.b??c??d);
 `````js filename=intro
 let tmpCalleeParam /*:unknown*/ = $Object_prototype.b;
 const tmpIfTest /*:boolean*/ = tmpCalleeParam == null;
-let tmpIfTest$1 /*:boolean*/ = false;
+let tmpIfTest$1 /*:boolean*/ /*ternaryConst*/ = false;
 if (tmpIfTest) {
   tmpCalleeParam = c;
   tmpIfTest$1 = tmpCalleeParam == null;

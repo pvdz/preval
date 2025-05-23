@@ -217,18 +217,18 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
     const declName = declNode.id.name;
     if (declNode.kind === 'const' || declNode.kind === 'let') {
       const meta = getMeta(declName, fdata);
+      if (declNode.kind === 'let') {
+        if (isTernaryPattern(declNode, meta)) {
+          log('  -', declName, 'is a ternary constant!');
+          meta.isTernaryConst = true;
+          // i'd rather control it through a var such that we can easily update this in the future.
+          // We may expand support with higher write counts later and I don't want to search for them everywhere :)
+          if (meta.writes.length !== 2) meta.ternaryWritesIgnoreFirst = true;
+        }
+      }
       if (!meta.typing.mustBeType || meta.typing.mustBeType === 'primitive') {
         vlog('## queued type resolving for decl of', [declName], '(mustbetype:', meta.typing.mustBeType, ', isprimitive:', meta.typing.mustBePrimitive, ')');
         untypedVarDecls.add({node: declNode, meta});
-        if (declNode.kind === 'let') {
-          if (isTernaryPattern(declNode, meta)) {
-            vlog('  -', declName, 'is a ternary constant!');
-            meta.isTernaryConst = true;
-            // i'd rather control it through a var such that we can easily update this in the future.
-            // We may expand support with higher write counts later and I don't want to search for them everywhere :)
-            if (meta.writes.length !== 2) meta.ternaryWritesIgnoreFirst = true;
-          }
-        }
       } else {
         vlog('## decl for', [declName], 'already has typing;', meta.typing.mustBeType, meta.typing.mustBePrimitive)
       }

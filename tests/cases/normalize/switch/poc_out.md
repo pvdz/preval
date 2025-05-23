@@ -55,9 +55,9 @@ exit: {
 
 
 `````js filename=intro
-let fallthrough /*:boolean*/ = false;
+let fallthrough /*:boolean*/ /*ternaryConst*/ = false;
 const tmpBinBothRhs /*:unknown*/ = $(1);
-let tmpIfTest$1 /*:boolean*/ = true;
+let tmpIfTest$1 /*:boolean*/ /*ternaryConst*/ = true;
 const tmpIfTest /*:boolean*/ = undefined === tmpBinBothRhs;
 if (tmpIfTest) {
   $(`A`);
@@ -69,7 +69,7 @@ if (tmpIfTest) {
 if (tmpIfTest$1) {
   $(`B`);
 } else {
-  let tmpIfTest$3 /*:unknown*/ = fallthrough;
+  let tmpIfTest$3 /*:unknown*/ /*ternaryConst*/ = fallthrough;
   if (fallthrough) {
   } else {
     const tmpBinBothRhs$3 /*:unknown*/ = $(3);

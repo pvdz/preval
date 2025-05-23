@@ -29,7 +29,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     break;
   } else {
     const tmpIfTest$1 /*:boolean*/ = $ == null;
-    let tmpAssignMemLhsObj$1 /*:unknown*/ = undefined;
+    let tmpAssignMemLhsObj$1 /*:unknown*/ /*ternaryConst*/ = undefined;
     if (tmpIfTest$1) {
     } else {
       tmpAssignMemLhsObj$1 = $(1);

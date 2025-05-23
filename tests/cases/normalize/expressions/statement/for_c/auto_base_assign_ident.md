@@ -21,7 +21,7 @@ $(a, b);
 
 
 `````js filename=intro
-let b /*:unknown*/ = 1;
+let b /*:unknown*/ /*ternaryConst*/ = 1;
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {

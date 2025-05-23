@@ -19,9 +19,9 @@ $(a);
 
 
 `````js filename=intro
-let a /*:unknown*/ = undefined;
+let a /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpIfTest /*:boolean*/ = $ == null;
-let tmpForInGen /*:unknown*/ = undefined;
+let tmpForInGen /*:unknown*/ /*ternaryConst*/ = undefined;
 if (tmpIfTest) {
   tmpForInGen = $forIn(undefined);
 } else {

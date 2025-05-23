@@ -21,7 +21,7 @@ $(a);
 
 
 `````js filename=intro
-let tmpBinBothRhs /*:unknown*/ = undefined;
+let tmpBinBothRhs /*:unknown*/ /*ternaryConst*/ = undefined;
 const b /*:object*/ = { $: $ };
 const tmpChainElementCall /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;

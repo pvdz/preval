@@ -33,10 +33,10 @@ if (ctest) {
 
 
 `````js filename=intro
-let b /*:unknown*/ = undefined;
+let b /*:unknown*/ /*ternaryConst*/ = undefined;
 const objb /*:unknown*/ = $(2);
 const btest /*:boolean*/ = objb == null;
-let aliasb /*:unknown*/ = undefined;
+let aliasb /*:unknown*/ /*ternaryConst*/ = undefined;
 if (btest) {
 } else {
   const actualb /*:unknown*/ = objb.toString;

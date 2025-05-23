@@ -31,7 +31,7 @@ switch (1) {
 
 
 `````js filename=intro
-let tmpSwitchCaseToStart /*:number*/ = 2;
+let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 2;
 const tmpBinLhs /*:unknown*/ = $(1);
 const tmpIfTest /*:boolean*/ = tmpBinLhs === 1;
 if (tmpIfTest) {

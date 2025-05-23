@@ -28,7 +28,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   if (tmpIfTest) {
     break;
   } else {
-    let tmpAssignMemLhsObj /*:unknown*/ = undefined;
+    let tmpAssignMemLhsObj /*:unknown*/ /*ternaryConst*/ = undefined;
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       tmpAssignMemLhsObj = $(60);

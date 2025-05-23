@@ -23,7 +23,7 @@ $(f());
 const tmpBindingPatternArrRoot /*:unknown*/ = $(`pass2`);
 const tmpArrPatternSplat /*:array*/ = [...tmpBindingPatternArrRoot];
 const tmpAPBD /*:unknown*/ = tmpArrPatternSplat[0];
-let tmpArrPatternStep /*:unknown*/ = undefined;
+let tmpArrPatternStep /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpIfTest$1 /*:boolean*/ = tmpAPBD === undefined;
 if (tmpIfTest$1) {
   tmpArrPatternStep = $(`fail`);

@@ -22,7 +22,7 @@ $(a);
 
 `````js filename=intro
 const tmpIfTest$1 /*:boolean*/ = $ == null;
-let tmpForInGen /*:unknown*/ = undefined;
+let tmpForInGen /*:unknown*/ /*ternaryConst*/ = undefined;
 if (tmpIfTest$1) {
   tmpForInGen = $forIn(undefined);
 } else {

@@ -32,7 +32,7 @@ $(f());
 
 
 `````js filename=intro
-let problem1 /*:unknown*/ = x;
+let problem1 /*:unknown*/ /*ternaryConst*/ = x;
 if (x) {
 } else {
   problem1 = {};

@@ -21,7 +21,7 @@ $(a);
 
 
 `````js filename=intro
-let tmpCalleeParam$1 /*:unknown*/ = undefined;
+let tmpCalleeParam$1 /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpObjLitVal /*:object*/ = { y: 1 };
 const b /*:object*/ = { x: tmpObjLitVal };
 const tmpChainElementCall /*:unknown*/ = $(b);

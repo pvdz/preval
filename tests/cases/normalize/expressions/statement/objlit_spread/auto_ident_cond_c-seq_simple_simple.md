@@ -19,7 +19,7 @@ $(a);
 
 
 `````js filename=intro
-let tmpObjSpreadArg /*:unknown*/ = undefined;
+let tmpObjSpreadArg /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpIfTest /*:unknown*/ = $(30);
 if (tmpIfTest) {
   tmpObjSpreadArg = $(2);

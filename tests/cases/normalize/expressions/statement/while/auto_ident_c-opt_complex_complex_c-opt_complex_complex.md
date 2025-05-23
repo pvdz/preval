@@ -21,7 +21,7 @@ $(a);
 
 
 `````js filename=intro
-let tmpIfTest /*:unknown*/ = undefined;
+let tmpIfTest /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpObjLitVal /*:object*/ = { y: 1 };
 const b /*:object*/ = { x: tmpObjLitVal };
 const tmpChainElementCall /*:unknown*/ = $(b);
@@ -40,7 +40,7 @@ if (tmpIfTest$1) {
 if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
     $(100);
-    let tmpIfTest$2 /*:unknown*/ = undefined;
+    let tmpIfTest$2 /*:unknown*/ /*ternaryConst*/ = undefined;
     const tmpChainElementCall$1 /*:unknown*/ = $(b);
     const tmpIfTest$4 /*:boolean*/ = tmpChainElementCall$1 == null;
     if (tmpIfTest$4) {

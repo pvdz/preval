@@ -26,7 +26,7 @@ if (a) {
   a = $(tmpCalleeParam$1);
 } else {
 }
-let tmpThrowArg /*:unknown*/ = undefined;
+let tmpThrowArg /*:unknown*/ /*ternaryConst*/ = undefined;
 if (a) {
   tmpThrowArg = a;
 } else {

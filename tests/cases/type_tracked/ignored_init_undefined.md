@@ -30,7 +30,7 @@ if (itooamanumberjack) {
 
 
 `````js filename=intro
-let itooamanumberjack /*:unknown*/ = undefined;
+let itooamanumberjack /*:unknown*/ /*ternaryConst*/ = undefined;
 if (imanumberandilovethrees) {
   const tmpChainElementCall /*:unknown*/ = $(1);
   const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;

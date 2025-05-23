@@ -20,14 +20,14 @@ $(a);
 
 
 `````js filename=intro
-let tmpBinBothLhs /*:unknown*/ = 60;
+let tmpBinBothLhs /*:unknown*/ /*ternaryConst*/ = 60;
 const tmpIfTest /*:unknown*/ = $(30);
 if (tmpIfTest) {
 } else {
   const tmpCalleeParam /*:unknown*/ = $(100);
   tmpBinBothLhs = $(tmpCalleeParam);
 }
-let tmpBinBothRhs /*:unknown*/ = 60;
+let tmpBinBothRhs /*:unknown*/ /*ternaryConst*/ = 60;
 const tmpIfTest$1 /*:unknown*/ = $(30);
 if (tmpIfTest$1) {
 } else {

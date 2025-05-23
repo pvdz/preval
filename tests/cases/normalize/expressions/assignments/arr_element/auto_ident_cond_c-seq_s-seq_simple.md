@@ -23,7 +23,7 @@ $(a);
 
 `````js filename=intro
 const tmpIfTest /*:unknown*/ = $(30);
-let tmpBinBothLhs /*:unknown*/ = 60;
+let tmpBinBothLhs /*:unknown*/ /*ternaryConst*/ = 60;
 if (tmpIfTest) {
 } else {
   const tmpCalleeParam$1 /*:unknown*/ = $(100);

@@ -35,7 +35,7 @@ if (y) {
 `````js filename=intro
 const a /*:unknown*/ = $(1);
 const b /*:unknown*/ = $(2);
-let y /*:boolean*/ = true;
+let y /*:boolean*/ /*ternaryConst*/ = true;
 if (a) {
   y = !b;
 } else {

@@ -19,7 +19,7 @@ $(a);
 
 
 `````js filename=intro
-let tmpBinBothLhs /*:unknown*/ = undefined;
+let tmpBinBothLhs /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpChainElementCall /*:unknown*/ = $($);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest) {
@@ -27,7 +27,7 @@ if (tmpIfTest) {
   const tmpCalleeParam /*:unknown*/ = $(1);
   tmpBinBothLhs = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam);
 }
-let tmpBinBothRhs /*:unknown*/ = undefined;
+let tmpBinBothRhs /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpChainElementCall$3 /*:unknown*/ = $($);
 const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall$3 == null;
 if (tmpIfTest$1) {

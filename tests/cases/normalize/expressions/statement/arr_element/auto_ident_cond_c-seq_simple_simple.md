@@ -19,7 +19,7 @@ $(a);
 
 
 `````js filename=intro
-let tmpBinBothLhs /*:unknown*/ = undefined;
+let tmpBinBothLhs /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpIfTest /*:unknown*/ = $(30);
 if (tmpIfTest) {
   tmpBinBothLhs = $(2);
@@ -27,7 +27,7 @@ if (tmpIfTest) {
   const tmpCalleeParam /*:unknown*/ = $(100);
   tmpBinBothLhs = $(tmpCalleeParam);
 }
-let tmpBinBothRhs /*:unknown*/ = undefined;
+let tmpBinBothRhs /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpIfTest$1 /*:unknown*/ = $(30);
 if (tmpIfTest$1) {
   tmpBinBothRhs = $(2);

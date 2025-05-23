@@ -27,9 +27,9 @@ $(a);
 
 `````js filename=intro
 const tmpSwitchValue /*:unknown*/ = $(1);
-let tmpSwitchCaseToStart /*:number*/ = 1;
+let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
 const tmpIfTest$1 /*:unknown*/ = $(30);
-let tmpIfTest /*:boolean*/ = false;
+let tmpIfTest /*:boolean*/ /*ternaryConst*/ = false;
 if (tmpIfTest$1) {
   const tmpClusterSSA_tmpBinLhs /*:unknown*/ = $(2);
   tmpIfTest = tmpClusterSSA_tmpBinLhs === tmpSwitchValue;

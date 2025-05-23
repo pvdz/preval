@@ -36,7 +36,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 let x /*:unknown*/ = $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const imanumberandilovethrees /*:number*/ = x % 3;
-  let itooamanumberjack /*:number*/ = 0;
+  let itooamanumberjack /*:number*/ /*ternaryConst*/ = 0;
   if (imanumberandilovethrees) {
     x = $(10, `ten`);
     itooamanumberjack = x % 2;

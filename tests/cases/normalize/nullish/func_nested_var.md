@@ -27,8 +27,8 @@ $(f());
 `````js filename=intro
 const b /*:unknown*/ = $(2);
 const tmpIfTest /*:boolean*/ = b == null;
-let c /*:unknown*/ = undefined;
-let tmpIfTest$1 /*:boolean*/ = false;
+let c /*:unknown*/ /*ternaryConst*/ = undefined;
+let tmpIfTest$1 /*:boolean*/ /*ternaryConst*/ = false;
 if (tmpIfTest) {
   c = toString;
   tmpIfTest$1 = c == null;

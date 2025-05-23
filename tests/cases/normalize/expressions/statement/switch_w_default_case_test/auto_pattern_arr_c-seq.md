@@ -30,7 +30,7 @@ const tmpBindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
 const tmpArrPatternSplat /*:array*/ = [...tmpBindingPatternArrRoot];
 const a /*:unknown*/ = tmpArrPatternSplat[0];
 const tmpSwitchValue /*:unknown*/ = $(1);
-let tmpSwitchCaseToStart /*:number*/ = 1;
+let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
 $(10);
 $(20);
 const tmpCalleeParam /*:array*/ = [1, 2];

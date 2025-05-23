@@ -27,10 +27,10 @@ $(a);
 
 `````js filename=intro
 const tmpSwitchValue /*:unknown*/ = $(1);
-let tmpSwitchCaseToStart /*:number*/ = 1;
+let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
 const tmpCalleeParam /*:unknown*/ = $(1);
 const tmpBinLhs /*:unknown*/ = $(tmpCalleeParam);
-let tmpIfTest /*:boolean*/ = false;
+let tmpIfTest /*:boolean*/ /*ternaryConst*/ = false;
 if (tmpBinLhs) {
   tmpIfTest = 2 === tmpSwitchValue;
 } else {

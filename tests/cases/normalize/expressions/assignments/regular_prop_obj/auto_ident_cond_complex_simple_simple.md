@@ -20,9 +20,9 @@ $(a);
 
 
 `````js filename=intro
-let a /*:unknown*/ = 2;
+let a /*:unknown*/ /*ternaryConst*/ = 2;
 const tmpIfTest /*:unknown*/ = $(1);
-let tmpCompObj /*:unknown*/ = 2;
+let tmpCompObj /*:unknown*/ /*ternaryConst*/ = 2;
 if (tmpIfTest) {
 } else {
   const tmpCalleeParam /*:unknown*/ = $(100);

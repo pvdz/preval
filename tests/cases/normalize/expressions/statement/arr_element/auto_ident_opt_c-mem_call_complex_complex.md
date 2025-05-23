@@ -21,7 +21,7 @@ $(a);
 
 
 `````js filename=intro
-let tmpBinBothLhs /*:unknown*/ = undefined;
+let tmpBinBothLhs /*:unknown*/ /*ternaryConst*/ = undefined;
 const b /*:object*/ = { $: $ };
 const tmpChainElementCall /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
@@ -36,7 +36,7 @@ if (tmpIfTest) {
     tmpBinBothLhs = $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, tmpCalleeParam);
   }
 }
-let tmpBinBothRhs /*:unknown*/ = undefined;
+let tmpBinBothRhs /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpChainElementCall$3 /*:unknown*/ = $(b);
 const tmpIfTest$3 /*:boolean*/ = tmpChainElementCall$3 == null;
 if (tmpIfTest$3) {

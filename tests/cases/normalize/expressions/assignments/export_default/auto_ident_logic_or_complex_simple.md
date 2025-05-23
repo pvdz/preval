@@ -21,7 +21,7 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(0);
 let a /*:unknown*/ = $(tmpCalleeParam);
-let tmpAnonDefaultExport /*:unknown*/ = 2;
+let tmpAnonDefaultExport /*:unknown*/ /*ternaryConst*/ = 2;
 if (a) {
   tmpAnonDefaultExport = a;
 } else {

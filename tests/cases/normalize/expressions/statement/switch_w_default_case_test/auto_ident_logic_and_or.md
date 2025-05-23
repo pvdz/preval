@@ -27,7 +27,7 @@ $(a);
 
 `````js filename=intro
 const tmpSwitchValue /*:unknown*/ = $(1);
-let tmpSwitchCaseToStart /*:number*/ = 1;
+let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
 const tmpCalleeParam /*:unknown*/ = $(1);
 let tmpBinLhs /*:unknown*/ = $(tmpCalleeParam);
 if (tmpBinLhs) {
@@ -35,7 +35,7 @@ if (tmpBinLhs) {
   tmpBinLhs = $(tmpCalleeParam$1);
 } else {
 }
-let tmpIfTest /*:boolean*/ = false;
+let tmpIfTest /*:boolean*/ /*ternaryConst*/ = false;
 if (tmpBinLhs) {
   tmpIfTest = tmpBinLhs === tmpSwitchValue;
 } else {

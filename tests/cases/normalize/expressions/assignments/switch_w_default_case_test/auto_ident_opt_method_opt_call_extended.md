@@ -28,10 +28,10 @@ $(a);
 
 `````js filename=intro
 const tmpSwitchValue /*:unknown*/ = $(1);
-let tmpSwitchCaseToStart /*:number*/ = 1;
-let a /*:unknown*/ = undefined;
+let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
+let a /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpIfTest$3 /*:boolean*/ = $ == null;
-let tmpIfTest /*:boolean*/ = false;
+let tmpIfTest /*:boolean*/ /*ternaryConst*/ = false;
 if (tmpIfTest$3) {
   tmpIfTest = undefined === tmpSwitchValue;
 } else {

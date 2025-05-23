@@ -21,7 +21,7 @@ $(f('', 10));
 
 `````js filename=intro
 const tmpOPBD /*:unknown*/ = $String_prototype.x;
-let tmpOPAD /*:unknown*/ = undefined;
+let tmpOPAD /*:unknown*/ /*ternaryConst*/ = undefined;
 let tmpObjPatternCrashTest /*:boolean*/ = false;
 const tmpIfTest$1 /*:boolean*/ = tmpOPBD === undefined;
 if (tmpIfTest$1) {

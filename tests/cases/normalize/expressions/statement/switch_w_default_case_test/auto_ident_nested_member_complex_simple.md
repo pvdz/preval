@@ -31,7 +31,7 @@ $(a, b, c, d);
 
 `````js filename=intro
 const tmpSwitchValue /*:unknown*/ = $(1);
-let tmpSwitchCaseToStart /*:number*/ = 1;
+let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
 const b /*:object*/ = { x: 1 };
 const tmpInitAssignLhsComputedObj /*:unknown*/ = $(b);
 const tmpInitAssignLhsComputedProp /*:unknown*/ = $(`x`);

@@ -18,7 +18,7 @@ $('ok');
 
 
 `````js filename=intro
-let tmpOPAD /*:unknown*/ = undefined;
+let tmpOPAD /*:unknown*/ /*ternaryConst*/ = undefined;
 let tmpObjPatternCrashTest /*:boolean*/ = false;
 const tmpOPBD /*:unknown*/ = $Object_prototype.x;
 const tmpIfTest /*:boolean*/ = tmpOPBD === undefined;

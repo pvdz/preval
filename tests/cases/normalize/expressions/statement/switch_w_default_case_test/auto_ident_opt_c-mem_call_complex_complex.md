@@ -29,8 +29,8 @@ $(a);
 
 `````js filename=intro
 const tmpSwitchValue /*:unknown*/ = $(1);
-let tmpSwitchCaseToStart /*:number*/ = 1;
-let tmpBinLhs /*:unknown*/ = undefined;
+let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
+let tmpBinLhs /*:unknown*/ /*ternaryConst*/ = undefined;
 const b /*:object*/ = { $: $ };
 const tmpChainElementCall /*:unknown*/ = $(b);
 const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;

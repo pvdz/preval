@@ -61,7 +61,7 @@
 
 `````js filename=intro
 if ($) {
-  let B /*:unknown*/ = `jhayon.vercel.app`;
+  let B /*:unknown*/ /*ternaryConst*/ = `jhayon.vercel.app`;
   const x /*:unknown*/ = $(`x`);
   const A /*:unknown*/ = x.length;
   const tmpBinBothLhs$30 /*:unknown*/ = A[0];

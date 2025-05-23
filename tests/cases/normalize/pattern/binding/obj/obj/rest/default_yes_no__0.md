@@ -19,7 +19,7 @@ $(y);
 
 `````js filename=intro
 const tmpOPBD /*:unknown*/ = $Number_prototype.x;
-let tmpOPAD /*:unknown*/ = undefined;
+let tmpOPAD /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpIfTest /*:boolean*/ = tmpOPBD === undefined;
 if (tmpIfTest) {
   const tmpCalleeParam /*:object*/ = { a: `pass` };

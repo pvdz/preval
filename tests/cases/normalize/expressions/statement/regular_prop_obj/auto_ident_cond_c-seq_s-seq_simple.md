@@ -20,7 +20,7 @@ $(a);
 
 
 `````js filename=intro
-let tmpCompObj /*:unknown*/ = 60;
+let tmpCompObj /*:unknown*/ /*ternaryConst*/ = 60;
 const tmpIfTest /*:unknown*/ = $(30);
 if (tmpIfTest) {
 } else {

@@ -24,10 +24,10 @@ $(a);
 
 
 `````js filename=intro
-let a /*:object*/ = { a: 999, b: 1000 };
+let a /*:object*/ /*ternaryConst*/ = { a: 999, b: 1000 };
 const tmpBinBothLhs /*:unknown*/ = $(1);
 const tmpBinBothRhs /*:unknown*/ = $(1);
-let tmpAssignMemLhsObj /*:unknown*/ = undefined;
+let tmpAssignMemLhsObj /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpIfTest /*:boolean*/ = tmpBinBothLhs === tmpBinBothRhs;
 if (tmpIfTest) {
   const tmpObjLitVal /*:unknown*/ = $(1);

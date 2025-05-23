@@ -26,7 +26,7 @@ if (a) {
   a = $(tmpCalleeParam$1);
 } else {
 }
-let xyz /*:unknown*/ = undefined;
+let xyz /*:unknown*/ /*ternaryConst*/ = undefined;
 if (a) {
   xyz = a;
 } else {

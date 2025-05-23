@@ -22,7 +22,7 @@ $(a);
 
 `````js filename=intro
 const tmpIfTest$1 /*:boolean*/ = $ == null;
-let tmpBinBothLhs /*:unknown*/ = undefined;
+let tmpBinBothLhs /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpObjLitVal$1 /*:object*/ = { e: $ };
 if (tmpIfTest$1) {
 } else {

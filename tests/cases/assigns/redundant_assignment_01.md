@@ -23,7 +23,7 @@ $(x + $('prevent inlining'));
 
 
 `````js filename=intro
-let tmpBinBothLhs /*:number*/ = 0;
+let tmpBinBothLhs /*:number*/ /*ternaryConst*/ = 0;
 if ($) {
 } else {
   tmpBinBothLhs = 1;

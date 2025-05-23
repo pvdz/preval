@@ -21,7 +21,7 @@ $(a);
 
 
 `````js filename=intro
-let a /*:unknown*/ = undefined;
+let a /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpObjLitVal /*:object*/ = { y: 1 };
 const b /*:object*/ = { x: tmpObjLitVal };
 const tmpChainElementCall /*:unknown*/ = $(b);
@@ -38,7 +38,7 @@ if (tmpIfTest) {
   }
 }
 const tmpBinBothLhs /*:unknown*/ = a;
-let tmpClusterSSA_a /*:unknown*/ = undefined;
+let tmpClusterSSA_a /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpChainElementCall$1 /*:unknown*/ = $(b);
 const tmpIfTest$3 /*:boolean*/ = tmpChainElementCall$1 == null;
 if (tmpIfTest$3) {

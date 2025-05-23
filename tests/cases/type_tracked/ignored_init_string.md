@@ -28,7 +28,7 @@ if (itooamanumberjack) {
 
 
 `````js filename=intro
-let itooamanumberjack /*:string*/ = ``;
+let itooamanumberjack /*:string*/ /*ternaryConst*/ = ``;
 if (imanumberandilovethrees) {
   const tmpStringFirstArg /*:unknown*/ = $(1);
   itooamanumberjack = $coerce(tmpStringFirstArg, `string`);

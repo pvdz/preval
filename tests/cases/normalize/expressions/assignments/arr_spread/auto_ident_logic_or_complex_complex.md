@@ -21,7 +21,7 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam$1 /*:unknown*/ = $(0);
 let a /*:unknown*/ = $(tmpCalleeParam$1);
-let tmpArrSpread /*:unknown*/ = undefined;
+let tmpArrSpread /*:unknown*/ /*ternaryConst*/ = undefined;
 if (a) {
   tmpArrSpread = a;
 } else {

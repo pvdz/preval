@@ -21,14 +21,14 @@ $(a);
 
 
 `````js filename=intro
-let tmpBinBothLhs /*:unknown*/ = undefined;
+let tmpBinBothLhs /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpIfTest$1 /*:boolean*/ = $ == null;
 const tmpObjLitVal$1 /*:object*/ = { e: $ };
 if (tmpIfTest$1) {
 } else {
   tmpBinBothLhs = $dotCall($, tmpObjLitVal$1, `e`, 1);
 }
-let tmpBinBothRhs /*:unknown*/ = undefined;
+let tmpBinBothRhs /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpChainElementObject$9 /*:unknown*/ = tmpObjLitVal$1.e;
 const tmpIfTest$5 /*:boolean*/ = tmpChainElementObject$9 == null;
 if (tmpIfTest$5) {

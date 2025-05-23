@@ -30,7 +30,7 @@ $(a, x, y);
 
 `````js filename=intro
 const tmpSwitchValue /*:unknown*/ = $(1);
-let tmpSwitchCaseToStart /*:number*/ = 1;
+let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
 $(1);
 $(2);
 const tmpObjLitVal /*:unknown*/ = $(3);

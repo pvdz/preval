@@ -19,9 +19,9 @@ $(a);
 
 
 `````js filename=intro
-let a /*:unknown*/ = undefined;
+let a /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpIfTest /*:unknown*/ = $(1);
-let tmpAnonDefaultExport /*:unknown*/ = undefined;
+let tmpAnonDefaultExport /*:unknown*/ /*ternaryConst*/ = undefined;
 if (tmpIfTest) {
   a = $(60);
   tmpAnonDefaultExport = a;

@@ -29,11 +29,11 @@ $(a, x, y);
 
 
 `````js filename=intro
-let x /*:unknown*/ = 1;
-let y /*:unknown*/ = 2;
-let a /*:object*/ = { a: 999, b: 1000 };
+let x /*:unknown*/ /*ternaryConst*/ = 1;
+let y /*:unknown*/ /*ternaryConst*/ = 2;
+let a /*:object*/ /*ternaryConst*/ = { a: 999, b: 1000 };
 const tmpSwitchValue /*:unknown*/ = $(1);
-let tmpSwitchCaseToStart /*:number*/ = 1;
+let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
 const tmpBinLhs /*:unknown*/ = $(1);
 const tmpIfTest /*:boolean*/ = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {

@@ -24,7 +24,7 @@ $(c);
 `````js filename=intro
 let b /*:unknown*/ = $(2);
 const tmpIfTest /*:boolean*/ = b == null;
-let c /*:unknown*/ = undefined;
+let c /*:unknown*/ /*ternaryConst*/ = undefined;
 if (tmpIfTest) {
   b = toString;
   c = b;

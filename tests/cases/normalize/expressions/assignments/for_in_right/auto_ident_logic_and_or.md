@@ -26,7 +26,7 @@ if (a) {
   a = $(tmpCalleeParam$3);
 } else {
 }
-let tmpForInGen /*:unknown*/ = undefined;
+let tmpForInGen /*:unknown*/ /*ternaryConst*/ = undefined;
 if (a) {
   tmpForInGen = $forIn(a);
 } else {

@@ -41,7 +41,7 @@ const tmpCalleeParam$9 /*:object*/ = {};
 let e /*:(number)=>unknown*/ = function ($$0) {
   const c$2 /*:number*/ = $$0;
   debugger;
-  let tmpBinBothLhs /*:unknown*/ = ``;
+  let tmpBinBothLhs /*:unknown*/ /*ternaryConst*/ = ``;
   const tmpIfTest /*:boolean*/ = c$2 < 45;
   if (tmpIfTest) {
   } else {

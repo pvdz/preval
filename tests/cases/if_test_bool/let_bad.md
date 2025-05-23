@@ -32,8 +32,8 @@ f();
 `````js filename=intro
 const f /*:()=>undefined*/ = function () {
   debugger;
-  let x /*:unknown*/ = $(1);
-  let tmpCalleeParam /*:boolean*/ = false;
+  let x /*:unknown*/ /*ternaryConst*/ = $(1);
+  let tmpCalleeParam /*:boolean*/ /*ternaryConst*/ = false;
   if ($) {
     x = 10;
   } else {

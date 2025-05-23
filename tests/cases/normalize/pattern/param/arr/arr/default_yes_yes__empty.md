@@ -24,7 +24,7 @@ const tmpCalleeParam /*:array*/ = [`pass3`];
 const tmpBindingPatternArrRoot /*:unknown*/ = $(tmpCalleeParam);
 const tmpArrPatternSplat /*:array*/ = [...tmpBindingPatternArrRoot];
 const tmpAPBD /*:unknown*/ = tmpArrPatternSplat[0];
-let tmpArrPatternStep /*:unknown*/ = undefined;
+let tmpArrPatternStep /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpIfTest$1 /*:boolean*/ = tmpAPBD === undefined;
 if (tmpIfTest$1) {
   const tmpCalleeParam$1 /*:array*/ = [`fail2`];

@@ -26,7 +26,7 @@ if (a) {
   a = $(tmpCalleeParam$1);
 } else {
 }
-let tmpAnonDefaultExport /*:unknown*/ = undefined;
+let tmpAnonDefaultExport /*:unknown*/ /*ternaryConst*/ = undefined;
 if (a) {
   tmpAnonDefaultExport = a;
 } else {

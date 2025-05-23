@@ -33,7 +33,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   } else {
     const tmpChainElementObject$3 /*:unknown*/ = tmpObjLitVal$1.e;
     const tmpIfTest$3 /*:boolean*/ = tmpChainElementObject$3 == null;
-    let tmpAssignMemLhsObj$1 /*:unknown*/ = undefined;
+    let tmpAssignMemLhsObj$1 /*:unknown*/ /*ternaryConst*/ = undefined;
     if (tmpIfTest$3) {
     } else {
       tmpAssignMemLhsObj$1 = $dotCall(tmpChainElementObject$3, tmpObjLitVal$1, `e`, 1);

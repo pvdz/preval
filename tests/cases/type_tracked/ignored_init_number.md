@@ -28,7 +28,7 @@ if (itooamanumberjack) {
 
 
 `````js filename=intro
-let itooamanumberjack /*:number*/ = 0;
+let itooamanumberjack /*:number*/ /*ternaryConst*/ = 0;
 if (imanumberandilovethrees) {
   const tmpBinLhs /*:unknown*/ = $(1);
   itooamanumberjack = tmpBinLhs % 2;

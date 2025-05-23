@@ -86,7 +86,7 @@ if (a) {
 
 
 `````js filename=intro
-let tmpIfTest /*:unknown*/ = a;
+let tmpIfTest /*:unknown*/ /*ternaryConst*/ = a;
 if (a) {
   tmpIfTest = b;
 } else {

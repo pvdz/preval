@@ -23,20 +23,17 @@ $(a);
 
 
 `````js filename=intro
-let a /*:object*/ = { a: 999, b: 1000 };
+let a /*:object*/ /*ternaryConst*/ = { a: 999, b: 1000 };
 const tmpBinBothLhs /*:unknown*/ = $(1);
 const tmpBinBothRhs /*:unknown*/ = $(1);
-let tmpAssignMemLhsObj /*:unknown*/ = undefined;
 const tmpIfTest /*:boolean*/ = tmpBinBothLhs === tmpBinBothRhs;
 if (tmpIfTest) {
   const tmpObjLitVal /*:unknown*/ = $(1);
   a = { b: tmpObjLitVal };
-  tmpAssignMemLhsObj = a;
 } else {
-  tmpAssignMemLhsObj = a;
 }
 const tmpAssignMemRhs /*:unknown*/ = $(2);
-tmpAssignMemLhsObj.b = tmpAssignMemRhs;
+a.b = tmpAssignMemRhs;
 $(a);
 `````
 
@@ -46,17 +43,11 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpBinBothLhs = $(1);
-const tmpBinBothRhs = $(1);
-let tmpAssignMemLhsObj = undefined;
-if (tmpBinBothLhs === tmpBinBothRhs) {
+if ($(1) === $(1)) {
   const tmpObjLitVal = $(1);
   a = { b: tmpObjLitVal };
-  tmpAssignMemLhsObj = a;
-} else {
-  tmpAssignMemLhsObj = a;
 }
-tmpAssignMemLhsObj.b = $(2);
+a.b = $(2);
 $(a);
 `````
 
@@ -71,18 +62,13 @@ let a = {
 };
 const b = $( 1 );
 const c = $( 1 );
-let d = undefined;
-const e = b === c;
-if (e) {
-  const f = $( 1 );
-  a = { b: f };
-  d = a;
+const d = b === c;
+if (d) {
+  const e = $( 1 );
+  a = { b: e };
 }
-else {
-  d = a;
-}
-const g = $( 2 );
-d.b = g;
+const f = $( 2 );
+a.b = f;
 $( a );
 `````
 

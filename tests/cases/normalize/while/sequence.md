@@ -19,7 +19,7 @@ while (((x = x * 'str'), (x = x * 8), (x = x), (x = x * x), (x = x.x), x?.x(x)))
 
 `````js filename=intro
 let tmpClusterSSA_x /*:unknown*/ = $Number_prototype.x;
-let tmpIfTest /*:unknown*/ = undefined;
+let tmpIfTest /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpIfTest$1 /*:boolean*/ = tmpClusterSSA_x == null;
 if (tmpIfTest$1) {
 } else {
@@ -30,7 +30,7 @@ if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
     tmpClusterSSA_x ** 0;
     tmpClusterSSA_x = NaN.x;
-    let tmpIfTest$2 /*:unknown*/ = undefined;
+    let tmpIfTest$2 /*:unknown*/ /*ternaryConst*/ = undefined;
     const tmpIfTest$4 /*:boolean*/ = tmpClusterSSA_x == null;
     if (tmpIfTest$4) {
     } else {

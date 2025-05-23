@@ -24,7 +24,7 @@ const tmpObjLitVal /*:array*/ = [`pass2`];
 const tmpCalleeParam /*:object*/ = { x: tmpObjLitVal };
 const tmpBindingPatternObjRoot /*:unknown*/ = $(tmpCalleeParam);
 const tmpOPBD /*:unknown*/ = tmpBindingPatternObjRoot.x;
-let tmpOPAD /*:unknown*/ = undefined;
+let tmpOPAD /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpIfTest$1 /*:boolean*/ = tmpOPBD === undefined;
 if (tmpIfTest$1) {
   const tmpCalleeParam$1 /*:array*/ = [`fail`];

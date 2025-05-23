@@ -28,9 +28,9 @@ $(a);
 `````js filename=intro
 const tmpBindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
 const tmpArrPatternSplat /*:array*/ = [...tmpBindingPatternArrRoot];
-let a /*:unknown*/ = tmpArrPatternSplat[0];
+let a /*:unknown*/ /*ternaryConst*/ = tmpArrPatternSplat[0];
 const tmpSwitchValue /*:unknown*/ = $(1);
-let tmpSwitchCaseToStart /*:number*/ = 1;
+let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
 const tmpBinLhs /*:unknown*/ = $(1);
 const tmpIfTest /*:boolean*/ = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {

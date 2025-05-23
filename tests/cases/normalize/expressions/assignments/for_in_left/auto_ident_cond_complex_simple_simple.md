@@ -30,7 +30,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     break;
   } else {
     const tmpIfTest$1 /*:unknown*/ = $(1);
-    let tmpAssignMemLhsObj$1 /*:unknown*/ = 2;
+    let tmpAssignMemLhsObj$1 /*:unknown*/ /*ternaryConst*/ = 2;
     if (tmpIfTest$1) {
       a = 2;
     } else {

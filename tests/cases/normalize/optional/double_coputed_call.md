@@ -18,7 +18,7 @@ $($(a)?.[$('x')]?.[$('y')][$('z')])?.(100);
 
 
 `````js filename=intro
-let tmpCalleeParam /*:unknown*/ = undefined;
+let tmpCalleeParam /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpObjLitVal$1 /*:object*/ = { z: $ };
 const tmpObjLitVal /*:object*/ = { y: tmpObjLitVal$1 };
 const a /*:object*/ = { x: tmpObjLitVal };

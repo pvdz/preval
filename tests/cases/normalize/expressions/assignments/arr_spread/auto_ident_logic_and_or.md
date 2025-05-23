@@ -26,7 +26,7 @@ if (a) {
   a = $(tmpCalleeParam$3);
 } else {
 }
-let tmpArrSpread /*:unknown*/ = undefined;
+let tmpArrSpread /*:unknown*/ /*ternaryConst*/ = undefined;
 if (a) {
   tmpArrSpread = a;
 } else {

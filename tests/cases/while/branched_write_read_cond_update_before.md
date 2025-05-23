@@ -29,7 +29,7 @@ while (true) {
 let x /*:unknown*/ = $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpIfTest /*:number*/ = x % 3;
-  let tmpIfTest$1 /*:number*/ = 0;
+  let tmpIfTest$1 /*:number*/ /*ternaryConst*/ = 0;
   if (tmpIfTest) {
     x = $(10, `ten`);
     tmpIfTest$1 = x % 2;

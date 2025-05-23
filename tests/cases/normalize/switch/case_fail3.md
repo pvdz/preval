@@ -23,7 +23,7 @@ $();
 
 `````js filename=intro
 const tmpSwitchValue /*:unknown*/ = $(2);
-let tmpSwitchCaseToStart /*:number*/ = 2;
+let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 2;
 const tmpBinLhs /*:unknown*/ = $spy(0);
 const tmpIfTest /*:boolean*/ = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {

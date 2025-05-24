@@ -109,6 +109,7 @@ import { ifWeaving } from '../reduce_static/if_weaving.mjs';
 import { ifTestNested } from '../reduce_static/if_test_nested.mjs';
 import { frfrTricks } from '../reduce_static/frfr_tricks.mjs';
 import { arrCoerce } from '../reduce_static/arr_coerce.mjs';
+import { ifTestAliased } from '../reduce_static/if_test_aliased.mjs';
 
 //import { phasePrimitiveArgInlining } from '../reduce_static/phase_primitive_arg_inlining.mjs';
 
@@ -220,6 +221,7 @@ export const ORDER = [
   ['objlitInlining', objlitInlining],
   ['arrMethodCall', arrMethodCall],
   ['bufferBase64', bufferBase64],
+  ['ifTestAliased', ifTestAliased],
 
   ['freeLoops', freeLoops], // Most other stuff should probably precede this?
 

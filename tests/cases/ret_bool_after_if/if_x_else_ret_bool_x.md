@@ -31,8 +31,8 @@ const f /*:()=>unknown*/ = function () {
   if (y) {
     return y;
   } else {
-    const x /*:boolean*/ = $boolean_constructor(y);
-    return x;
+    y;
+    return false;
   }
 };
 const tmpCalleeParam /*:unknown*/ = f();
@@ -50,8 +50,8 @@ const f = function () {
   if (y) {
     return y;
   } else {
-    const x = $boolean_constructor(y);
-    return x;
+    y;
+    return false;
   }
 };
 $(f());
@@ -69,14 +69,14 @@ const a = function() {
     return y;
   }
   else {
-    const b = $boolean_constructor( y );
-    return b;
+    y;
+    return false;
   }
 };
+const b = a();
+$( b );
 const c = a();
 $( c );
-const d = a();
-$( d );
 `````
 
 

@@ -9,6 +9,7 @@
 ## Input
 
 `````js filename=intro
+const c = $(true);
 let a = !c;
 if (c) {
   while (c) {
@@ -32,13 +33,10 @@ if (c) {
 
 
 `````js filename=intro
+const c /*:unknown*/ = $(true);
 if (c) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     $(1);
-    if (c) {
-    } else {
-      break;
-    }
   }
 } else {
 }
@@ -49,12 +47,9 @@ if (c) {
 (This ought to be the final result)
 
 `````js filename=intro
-if (c) {
+if ($(true)) {
   while (true) {
     $(1);
-    if (!c) {
-      break;
-    }
   }
 }
 `````
@@ -64,15 +59,10 @@ if (c) {
 With rename=true
 
 `````js filename=intro
-if (c) {
-  while ($LOOP_UNROLL_10) {
+const a = $( true );
+if (a) {
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     $( 1 );
-    if (c) {
-
-    }
-    else {
-      break;
-    }
   }
 }
 `````
@@ -82,6 +72,7 @@ if (c) {
 (This is what phase1 received the first time)
 
 `````js filename=intro
+const c = $(true);
 let a = !c;
 if (c) {
   while (true) {
@@ -106,16 +97,40 @@ None
 ## Globals
 
 
-BAD@! Found 1 implicit global bindings:
-
-c
+None
 
 
 ## Runtime Outcome
 
 
 Should call `$` with:
- - eval returned: ('<crash[ <ref> is not defined ]>')
+ - 1: true
+ - 2: 1
+ - 3: 1
+ - 4: 1
+ - 5: 1
+ - 6: 1
+ - 7: 1
+ - 8: 1
+ - 9: 1
+ - 10: 1
+ - 11: 1
+ - 12: 1
+ - 13: 1
+ - 14: 1
+ - 15: 1
+ - 16: 1
+ - 17: 1
+ - 18: 1
+ - 19: 1
+ - 20: 1
+ - 21: 1
+ - 22: 1
+ - 23: 1
+ - 24: 1
+ - 25: 1
+ - 26: 1
+ - eval returned: ('<crash[ Loop aborted by Preval test runner (this simply curbs infinite loops in tests) ]>')
 
 Pre normalization calls: Same
 

@@ -9,8 +9,9 @@
 ## Input
 
 `````js filename=intro
+const c = $(true);
 if (c) {
-  $(a); // expect: $(a)
+  $(a); // expect: $(a) -> TDZ
 }
 let a = !c;
 `````
@@ -20,10 +21,10 @@ let a = !c;
 
 
 `````js filename=intro
+const c /*:unknown*/ = $(true);
 if (c) {
   throw `Preval: TDZ triggered for this read: \$(a)`;
 } else {
-  c;
 }
 `````
 
@@ -32,10 +33,8 @@ if (c) {
 (This ought to be the final result)
 
 `````js filename=intro
-if (c) {
+if ($(true)) {
   throw `Preval: TDZ triggered for this read: \$(a)`;
-} else {
-  c;
 }
 `````
 
@@ -44,11 +43,9 @@ if (c) {
 With rename=true
 
 `````js filename=intro
-if (c) {
+const a = $( true );
+if (a) {
   throw "Preval: TDZ triggered for this read: $(a)";
-}
-else {
-  c;
 }
 `````
 
@@ -57,6 +54,7 @@ else {
 (This is what phase1 received the first time)
 
 `````js filename=intro
+const c = $(true);
 if (c) {
   throw `Preval: TDZ triggered for this read: \$(a)`;
 } else {
@@ -74,16 +72,15 @@ None
 ## Globals
 
 
-BAD@! Found 1 implicit global bindings:
-
-c
+None
 
 
 ## Runtime Outcome
 
 
 Should call `$` with:
- - eval returned: ('<crash[ <ref> is not defined ]>')
+ - 1: true
+ - eval returned: ("<crash[ Cannot access '<ref>' before initialization ]>")
 
 Pre normalization calls: Same
 

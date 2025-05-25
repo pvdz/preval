@@ -9,6 +9,7 @@
 ## Input
 
 `````js filename=intro
+const c = $(true);
 let a = !c;
 if (c) {
 } else {
@@ -32,11 +33,11 @@ if (c) {
 
 
 `````js filename=intro
-const a /*:boolean*/ = !c;
+const c /*:unknown*/ = $(true);
 if (c) {
 } else {
   try {
-    $(a);
+    $(true);
   } catch (e) {}
 }
 `````
@@ -46,10 +47,9 @@ if (c) {
 (This ought to be the final result)
 
 `````js filename=intro
-const a = !c;
-if (!c) {
+if (!$(true)) {
   try {
-    $(a);
+    $(true);
   } catch (e) {}
 }
 `````
@@ -59,13 +59,13 @@ if (!c) {
 With rename=true
 
 `````js filename=intro
-const a = !c;
-if (c) {
+const a = $( true );
+if (a) {
 
 }
 else {
   try {
-    $( a );
+    $( true );
   }
   catch (b) {
 
@@ -78,6 +78,7 @@ else {
 (This is what phase1 received the first time)
 
 `````js filename=intro
+const c = $(true);
 let a = !c;
 if (c) {
 } else {
@@ -97,16 +98,15 @@ if (c) {
 ## Globals
 
 
-BAD@! Found 1 implicit global bindings:
-
-c
+None
 
 
 ## Runtime Outcome
 
 
 Should call `$` with:
- - eval returned: ('<crash[ <ref> is not defined ]>')
+ - 1: true
+ - eval returned: undefined
 
 Pre normalization calls: Same
 

@@ -9,6 +9,7 @@
 ## Input
 
 `````js filename=intro
+const r = $(true);
 if (r) {
   const s = !r;
   $(s); // expect: $(false)
@@ -20,8 +21,8 @@ if (r) {
 
 
 `````js filename=intro
+const r /*:unknown*/ = $(true);
 if (r) {
-  r;
   $(false);
 } else {
 }
@@ -32,8 +33,7 @@ if (r) {
 (This ought to be the final result)
 
 `````js filename=intro
-if (r) {
-  r;
+if ($(true)) {
   $(false);
 }
 `````
@@ -43,8 +43,8 @@ if (r) {
 With rename=true
 
 `````js filename=intro
-if (r) {
-  r;
+const a = $( true );
+if (a) {
   $( false );
 }
 `````
@@ -54,6 +54,7 @@ if (r) {
 (This is what phase1 received the first time)
 
 `````js filename=intro
+const r = $(true);
 if (r) {
   const s = !r;
   $(s);
@@ -71,16 +72,16 @@ None
 ## Globals
 
 
-BAD@! Found 1 implicit global bindings:
-
-r
+None
 
 
 ## Runtime Outcome
 
 
 Should call `$` with:
- - eval returned: ('<crash[ <ref> is not defined ]>')
+ - 1: true
+ - 2: false
+ - eval returned: undefined
 
 Pre normalization calls: Same
 

@@ -9,12 +9,14 @@
 ## Input
 
 `````js filename=intro
+const c = $(true);
 let a = !c;
-function foo() {
+function f() {
   if (c) {
     $(a); // expect: $(a)
   }
 }
+$(f());
 `````
 
 
@@ -22,7 +24,13 @@ function foo() {
 
 
 `````js filename=intro
-c;
+const c /*:unknown*/ = $(true);
+if (c) {
+  $(false);
+  $(undefined);
+} else {
+  $(undefined);
+}
 `````
 
 
@@ -30,7 +38,12 @@ c;
 (This ought to be the final result)
 
 `````js filename=intro
-c;
+if ($(true)) {
+  $(false);
+  $(undefined);
+} else {
+  $(undefined);
+}
 `````
 
 
@@ -38,7 +51,14 @@ c;
 With rename=true
 
 `````js filename=intro
-c;
+const a = $( true );
+if (a) {
+  $( false );
+  $( undefined );
+}
+else {
+  $( undefined );
+}
 `````
 
 
@@ -46,7 +66,7 @@ c;
 (This is what phase1 received the first time)
 
 `````js filename=intro
-let foo = function () {
+let f = function () {
   debugger;
   if (c) {
     $(a);
@@ -55,7 +75,10 @@ let foo = function () {
     return undefined;
   }
 };
+const c = $(true);
 let a = !c;
+let tmpCalleeParam = f();
+$(tmpCalleeParam);
 `````
 
 
@@ -68,16 +91,17 @@ None
 ## Globals
 
 
-BAD@! Found 1 implicit global bindings:
-
-c
+None
 
 
 ## Runtime Outcome
 
 
 Should call `$` with:
- - eval returned: ('<crash[ <ref> is not defined ]>')
+ - 1: true
+ - 2: false
+ - 3: undefined
+ - eval returned: undefined
 
 Pre normalization calls: Same
 

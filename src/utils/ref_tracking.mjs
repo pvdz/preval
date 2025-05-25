@@ -247,6 +247,17 @@ export function openRefsOnAfterLoop(refTrackState, kind /* loop | in | of */, no
 
   if (REF_TRACK_TRACING) console.log('Current exitWrite status of loop body:', debugStringMapOfSetOfReadOrWrites(treblo.exitWrites));
 
+  if (REF_TRACK_TRACING) {
+    console.log('[loop] EntryWrites in loop body:');
+    treblo.entryWrites.forEach((set, name) => {
+      console.log(`  ${name}:`, Array.from(set).map(w => w.node.$p.pid));
+    });
+    console.log('[loop] ExitWrites in loop body:');
+    treblo.exitWrites.forEach((set, name) => {
+      console.log(`  ${name}:`, Array.from(set).map(w => w.node.$p.pid));
+    });
+  }
+
   if (REF_TRACK_TRACING) console.group('RTT: findAndQueueContinuationBlock(loop, @', +node.body.$p.pid, ')');
   findAndQueueContinuationBlock(refTrackState, treblo, +node.body.$p.pid, treblo.wasAbruptType, treblo.wasAbruptLabel, walkerPath, globallyUniqueLabelRegistry, loopStack, catchStack);
   if (REF_TRACK_TRACING) console.groupEnd();
@@ -259,6 +270,13 @@ export function openRefsOnAfterLoop(refTrackState, kind /* loop | in | of */, no
   const parentOverwritten = parentTreblo.overwritten;
   const parentEntryReads = parentTreblo.entryReads;
   const parentEntryWrites = parentTreblo.entryWrites;
+
+  if (REF_TRACK_TRACING) {
+    console.log('[loop] Parent ExitWrites before propagate:');
+    parentExitWrites.forEach((set, name) => {
+      console.log(`  ${name}:`, Array.from(set).map(w => w.node.$p.pid));
+    });
+  }
 
   propagateEntryReadWrites(+node.body.$p.pid, treblo, parentEntryReads, parentEntryWrites, parentDefined, parentOverwritten, +parentBlock.$p.pid);
 
@@ -306,13 +324,16 @@ export function openRefsOnAfterLoop(refTrackState, kind /* loop | in | of */, no
         if (REF_TRACK_TRACING) console.group();
         refTrackState.trabs.get(node).pendingLoopWriteChecks.forEach(({ srcPid, exitWrites, mutatedRefs }, i) => {
           if (REF_TRACK_TRACING) console.group(`TTR: pendingLoopWriteChecks[${bindingNameBeforeLoop}][${i}][write@${write.node.$p.pid}]; from @${srcPid}, mutatedRefs: ${Array.from(mutatedRefs).join(',')||'<none>'}`);
+
+          // TODO: This condition is causing invalid loop exit write analysis in some cases, example: tests/cases/ref_tracking/loop_regression.md
           // Note: this mutatedRefs is a live _reference_ to refTrackState.trebs.get(srcBlock).pendingNext[].mutatedBetweenSrcAndDst
           if (mutatedRefs.has(bindingNameBeforeLoop)) {
             if (REF_TRACK_TRACING) console.log(`TTR: - from @`, srcPid, `NOT adding write @$`, +write.node.$p.pid, `for "${bindingNameBeforeLoop}" to exitWrites of srcBlock @`, srcPid, `because it was already overwritten so the current exitWrite(s) should be the correct one`);
           } else {
             if (REF_TRACK_TRACING) console.log(`TTR: - from @`, srcPid, `Adding write @`, +write.node.$p.pid, `for "${bindingNameBeforeLoop}" to exitWrites of srcBlock @`, srcPid, `(because of loop)`);
-            upsertGetSet(exitWrites, bindingNameBeforeLoop, write)
+            upsertGetSet(exitWrites, bindingNameBeforeLoop, write);
             if (treblo.overwritten.has(bindingNameBeforeLoop)) {
+              if (REF_TRACK_TRACING) console.log(`[mutatedRefs] Added ${bindingNameBeforeLoop} to mutatedRefs in block @${srcPid}`);
               if (REF_TRACK_TRACING) console.log(`TTR: - Marking "${bindingNameBeforeLoop}" as (always) overwritten in queued continuation from block @${srcPid} because it was such at end of loop body`);
               mutatedRefs.add(bindingNameBeforeLoop);
             }
@@ -332,7 +353,21 @@ export function openRefsOnAfterLoop(refTrackState, kind /* loop | in | of */, no
 
   const pendingNext = parentTreblo.pendingNext;
 
+  if (REF_TRACK_TRACING) {
+    console.log('[loop] Parent ExitWrites just before propagateExitWrites:');
+    parentExitWrites.forEach((set, name) => {
+      console.log(`  ${name}:`, Array.from(set).map(w => w.node.$p.pid));
+    });
+  }
+
   propagateExitWrites(pendingNext, parentDefined, parentExitWrites, parentOverwritten, +parentBlock.$p.pid);
+
+  if (REF_TRACK_TRACING) {
+    console.log('[loop] Parent ExitWrites after propagateExitWrites:');
+    parentExitWrites.forEach((set, name) => {
+      console.log(`  ${name}:`, Array.from(set).map(w => w.node.$p.pid));
+    });
+  }
 
   // The parent block should now have an updated exitWrites set for each o1f its bindings
 
@@ -677,20 +712,18 @@ function findAndQueueContinuationBlock(refTrackState, fromBlockTreblo, fromBlock
     return;
   }
 
+  const srcBlockMutatedBetweenSrcAndDst = new Set(fromBlockTreblo.overwritten);
   // Find the "parentBlock" of the statement that's executed _after_ each block.
   // This is the one we need to update, break, or not abrupt at all.
   // Return null if there's no need to update anything due to a `return`
   // There s always ever one. The implicit throw case is handled in the catch explicitly
   // and there is no finally (but even with finally it would be one).
-
   // First get the original target without checking for a catch
   // because regardless of anything else, that's a valid code path.
   // The given node is the parent block where code flow continues. The index is the statement.
   // If the index overflows then it continues in its parent, but we can ignore that here.
   // If the node is null then the code continues in an outer scope and we can ignore it here.
   let continuationBlock = findSimpleContinuationBlock(wasAbruptType, wasAbruptLabel, walkerPath, globallyUniqueLabelRegistry, loopStack);
-
-  const srcBlockMutatedBetweenSrcAndDst = new Set(fromBlockTreblo.overwritten)
 
   const nodes = walkerPath.nodes;
   const topIndex = nodes.length - 1;
@@ -936,6 +969,19 @@ function propagateEntryReadWrites(pid, treblo, parentEntryReads, parentEntryWrit
 }
 
 function propagateExitWrites(pendingNext, parentDefined, parentExitWrites, parentOverwritten, parentBlockPid) {
+  if (REF_TRACK_TRACING) {
+    console.log('[propagateExitWrites] called for parentBlockPid:', parentBlockPid);
+    console.log('  parentDefined:', Array.from(parentDefined));
+    console.log('  parentExitWrites (before):', debugStringMapOfSetOfReadOrWrites(parentExitWrites));
+    console.log('  parentOverwritten (before):', Array.from(parentOverwritten));
+    console.log('  pendingNext.length:', pendingNext.length);
+    pendingNext.forEach((p, i) => {
+      console.log(`    pendingNext[${i}]: pid=${p.pid}, mutatedBetweenSrcAndDst=${Array.from(p.mutatedBetweenSrcAndDst).join(',')}`);
+      if (p.exitWrites) {
+        console.log(`      exitWrites:`, debugStringMapOfSetOfReadOrWrites(p.exitWrites));
+      }
+    });
+  }
   if (pendingNext.length === 0) {
     // Nothing to do here. All branches are scheduled to complete elsewhere.
     // What if a loop breaks to the parent? or throws? or returns? Then it wouldn't be scheduled in this pendingNext list, right? So, whatever..?
@@ -996,6 +1042,10 @@ function propagateExitWrites(pendingNext, parentDefined, parentExitWrites, paren
 
     // Remove processed nodes from queue
     pendingNext.length = 0;
+  }
+  if (REF_TRACK_TRACING) {
+    console.log('  parentExitWrites (after):', debugStringMapOfSetOfReadOrWrites(parentExitWrites));
+    console.log('  parentOverwritten (after):', Array.from(parentOverwritten));
   }
   if (REF_TRACK_TRACING) console.groupEnd();
 }

@@ -3,7 +3,7 @@ import * as AST from '../ast.mjs';
 import { ASSERT, assertNoDupeNodes, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, rule, example, before, source, after, riskyRule, useRiskyRules, todo, currentState, } from '../utils.mjs';
 
 import { VERBOSE_TRACING, ASSUME_BUILTINS, DCE_ERROR_MSG, ERR_MSG_ILLEGAL_ARRAY_SPREAD, ERR_MSG_ILLEGAL_CALLEE, FRESH, OLD, RED, BLUE, RESET, } from '../constants.mjs';
-import { BUILTIN_GLOBAL_FUNCS_TO_SYMBOL, BUILTIN_FUNC_NO_CTX, BUILTIN_FUNCS_NO_CTX_COERCE_FIRST_TO_NUMBER, BUILTIN_FUNCS_NO_CTX_COERCE_FIRST_TO_STRING, BUILTIN_FUNCS_NO_CTXT_NON_COERCE, BUILTIN_SYMBOLS, GLOBAL_NAMESPACES_FOR_STATIC_METHODS, protoToInstName, symbo, } from '../symbols_builtins.mjs';
+import { BUILTIN_GLOBAL_FUNCS_TO_SYMBOL, BUILTIN_FUNC_NO_CTX, BUILTIN_FUNCS_NO_CTX_COERCE_FIRST_TO_NUMBER, BUILTIN_FUNCS_NO_CTX_COERCE_FIRST_TO_STRING, BUILTIN_FUNCS_NO_CTXT_NON_COERCE, BUILTIN_SYMBOLS, GLOBAL_NAMESPACES_FOR_STATIC_METHODS, protoToInstName, symbo, OBJECT, } from '../symbols_builtins.mjs';
 import { BUILTIN_REST_HANDLER_NAME, SYMBOL_COERCE, SYMBOL_FORIN, SYMBOL_FOROF, SYMBOL_FRFR, SYMBOL_THROW_TDZ_ERROR, } from '../symbols_preval.mjs';
 import { SYMBOL_DOTCALL, SYMBOL_LOOP_UNROLL, SYMBOL_MAX_LOOP_UNROLL } from '../symbols_preval.mjs';
 import { createFreshVar, } from '../bindings.mjs';
@@ -6815,6 +6815,27 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             assertNoDupeNodes(body, 'body');
             return true;
           }
+
+          // I don't think we should enable to rule by default. But if we want to eliminate Object.prototype stuff, we can.
+          // if (
+          //   node.object.type === 'Identifier' &&
+          //   node.object.name === symbo('Object', 'prototype') &&
+          //   !node.computed &&
+          //   // Convert Object.prototype.trash to undefined? This will break certain checks, succeed other checks.
+          //   !OBJECT.has(symbo('object', node.property.name))
+          // ) {
+          //   riskyRule('Searching for unknown properties on Object.prototype is undefined...');
+          //   example('Object.prototype.foo', 'undefined');
+          //   before(body[i]);
+          //
+          //   const finalNode = AST.undef();
+          //   const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+          //   body.splice(i, 1, finalParent);
+          //
+          //   after(body[i]);
+          //   assertNoDupeNodes(body, 'body');
+          //   return true;
+          // }
         }
 
         if (AST.isNull(node.object) || AST.isUndefined(node.object)) {

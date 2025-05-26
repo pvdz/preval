@@ -1,34 +1,27 @@
 # Preval test case
 
-# let_else_true.md
+# base_let_else.md
 
-> If test only > Let else true
+> If test merging > Base let else
 >
 > When back to back ifs test on the same constant, the ifs can be merged safely
 
 ## Input
 
 `````js filename=intro
-let THIS_IS_BOOL /*:primitive*/ = 0;                // <-- this should be a boolean
-const tmpIfTest /*:unknown*/ = $(true);
-if (tmpIfTest) {
-  const tmpUnaryArg /*:unknown*/ = $(true);
-  THIS_IS_BOOL = !tmpUnaryArg;
+let x 
+if ($(true)) {
+  x = !$(true);
 } else {
-  const tmpUnaryArg$1 /*:unknown*/ = $(false);
-  THIS_IS_BOOL = !tmpUnaryArg$1;
+  x = !$(false);
 }
-if (THIS_IS_BOOL) {
-  $(`a`);
+if (x) {
+  $('a');
 } else {
-  $(`b`);
-  THIS_IS_BOOL = true;
+  $('b');
+  x = 10; // Blocks the merge
 }
-if (THIS_IS_BOOL) {
-  $(`d`);
-} else {
-  $(`c`);
-}
+if (x) $('d'); else $('c');
 `````
 
 
@@ -85,22 +78,22 @@ else {
 (This is what phase1 received the first time)
 
 `````js filename=intro
-let THIS_IS_BOOL = 0;
+let x = undefined;
 const tmpIfTest = $(true);
 if (tmpIfTest) {
   const tmpUnaryArg = $(true);
-  THIS_IS_BOOL = !tmpUnaryArg;
+  x = !tmpUnaryArg;
 } else {
   const tmpUnaryArg$1 = $(false);
-  THIS_IS_BOOL = !tmpUnaryArg$1;
+  x = !tmpUnaryArg$1;
 }
-if (THIS_IS_BOOL) {
+if (x) {
   $(`a`);
 } else {
   $(`b`);
-  THIS_IS_BOOL = true;
+  x = 10;
 }
-if (THIS_IS_BOOL) {
+if (x) {
   $(`d`);
 } else {
   $(`c`);

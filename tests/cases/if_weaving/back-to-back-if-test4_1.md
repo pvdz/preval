@@ -1,15 +1,20 @@
 # Preval test case
 
-# back-to-back-if-test2.md
+# back-to-back-if-test4_1.md
 
-> If weaving > Back-to-back-if-test2
+> If weaving > Back-to-back-if-test4 1
 >
 > In this case $(c) is unreachable because $(d) is invariably visited.
+
+## Options
+
+- globals: tmpUnaryArg
 
 ## Input
 
 `````js filename=intro
-let x = !$();
+// const tmpUnaryArg = $(true);
+let x = !tmpUnaryArg;
 if (x) {
   $(`a`);
 } else {
@@ -28,7 +33,6 @@ if (x) {
 
 
 `````js filename=intro
-const tmpUnaryArg /*:unknown*/ = $();
 if (tmpUnaryArg) {
   $(`b`);
   $(`d`);
@@ -43,7 +47,7 @@ if (tmpUnaryArg) {
 (This ought to be the final result)
 
 `````js filename=intro
-if ($()) {
+if (tmpUnaryArg) {
   $(`b`);
   $(`d`);
 } else {
@@ -57,8 +61,7 @@ if ($()) {
 With rename=true
 
 `````js filename=intro
-const a = $();
-if (a) {
+if (tmpUnaryArg) {
   $( "b" );
   $( "d" );
 }
@@ -73,7 +76,6 @@ else {
 (This is what phase1 received the first time)
 
 `````js filename=intro
-const tmpUnaryArg = $();
 let x = !tmpUnaryArg;
 if (x) {
   $(`a`);
@@ -98,17 +100,14 @@ None
 ## Globals
 
 
-None
+None (except for the 1 globals expected by the test)
 
 
 ## Runtime Outcome
 
 
 Should call `$` with:
- - 1: 
- - 2: 'a'
- - 3: 'd'
- - eval returned: undefined
+ - eval returned: ('<crash[ <ref> is not defined ]>')
 
 Pre normalization calls: Same
 

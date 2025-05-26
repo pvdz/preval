@@ -1,34 +1,23 @@
 # Preval test case
 
-# let_else_true.md
+# base_let_inside.md
 
-> If test only > Let else true
+> If test merging > Base let inside
 >
 > When back to back ifs test on the same constant, the ifs can be merged safely
 
 ## Input
 
 `````js filename=intro
-let THIS_IS_BOOL /*:primitive*/ = 0;                // <-- this should be a boolean
-const tmpIfTest /*:unknown*/ = $(true);
-if (tmpIfTest) {
-  const tmpUnaryArg /*:unknown*/ = $(true);
-  THIS_IS_BOOL = !tmpUnaryArg;
+let x 
+if ($(true)) {
+  x = !$(true);
 } else {
-  const tmpUnaryArg$1 /*:unknown*/ = $(false);
-  THIS_IS_BOOL = !tmpUnaryArg$1;
+  x = !$(false);
 }
-if (THIS_IS_BOOL) {
-  $(`a`);
-} else {
-  $(`b`);
-  THIS_IS_BOOL = true;
-}
-if (THIS_IS_BOOL) {
-  $(`d`);
-} else {
-  $(`c`);
-}
+if (x) { x = 10; $('a'); } // blocks the merge 
+else $('b');
+if (x) $('d'); else $('c');
 `````
 
 
@@ -41,7 +30,7 @@ const tmpBool /*:boolean*/ = $boolean_constructor(tmpIfTest);
 const tmpUnaryArg /*:unknown*/ = $(tmpBool);
 if (tmpUnaryArg) {
   $(`b`);
-  $(`d`);
+  $(`c`);
 } else {
   $(`a`);
   $(`d`);
@@ -55,7 +44,7 @@ if (tmpUnaryArg) {
 `````js filename=intro
 if ($($boolean_constructor($(true)))) {
   $(`b`);
-  $(`d`);
+  $(`c`);
 } else {
   $(`a`);
   $(`d`);
@@ -72,7 +61,7 @@ const b = $boolean_constructor( a );
 const c = $( b );
 if (c) {
   $( "b" );
-  $( "d" );
+  $( "c" );
 }
 else {
   $( "a" );
@@ -85,22 +74,22 @@ else {
 (This is what phase1 received the first time)
 
 `````js filename=intro
-let THIS_IS_BOOL = 0;
+let x = undefined;
 const tmpIfTest = $(true);
 if (tmpIfTest) {
   const tmpUnaryArg = $(true);
-  THIS_IS_BOOL = !tmpUnaryArg;
+  x = !tmpUnaryArg;
 } else {
   const tmpUnaryArg$1 = $(false);
-  THIS_IS_BOOL = !tmpUnaryArg$1;
+  x = !tmpUnaryArg$1;
 }
-if (THIS_IS_BOOL) {
+if (x) {
+  x = 10;
   $(`a`);
 } else {
   $(`b`);
-  THIS_IS_BOOL = true;
 }
-if (THIS_IS_BOOL) {
+if (x) {
   $(`d`);
 } else {
   $(`c`);
@@ -127,7 +116,7 @@ Should call `$` with:
  - 1: true
  - 2: true
  - 3: 'b'
- - 4: 'd'
+ - 4: 'c'
  - eval returned: undefined
 
 Pre normalization calls: Same

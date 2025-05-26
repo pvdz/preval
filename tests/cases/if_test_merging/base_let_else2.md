@@ -1,25 +1,28 @@
 # Preval test case
 
-# back-to-back-if-test2.md
+# base_let_else2.md
 
-> If weaving > Back-to-back-if-test2
+> If test merging > Base let else2
 >
-> In this case $(c) is unreachable because $(d) is invariably visited.
+> When back to back ifs test on the same constant, the ifs can be merged safely
+
+Regression output from this test
 
 ## Input
 
 `````js filename=intro
-let x = !$();
-if (x) {
-  $(`a`);
-} else {
+const testVar /*:unknown*/ = $(true);
+let tern /*:boolean*/ = !testVar;         // tern is a "ternary const"
+if (testVar) {
   $(`b`);
-  x = true;
+  tern = true;                            // testvar=true so tern was false, but now it's true
+} else {
+  $(`a`);                                 // testvar=false so second is true
 }
-if (x) {
+if (tern) {                               // always true
   $(`d`);
 } else {
-  $(`c`);
+  $(`c`);                                 // dead code
 }
 `````
 
@@ -28,8 +31,8 @@ if (x) {
 
 
 `````js filename=intro
-const tmpUnaryArg /*:unknown*/ = $();
-if (tmpUnaryArg) {
+const testVar /*:unknown*/ = $(true);
+if (testVar) {
   $(`b`);
   $(`d`);
 } else {
@@ -43,7 +46,7 @@ if (tmpUnaryArg) {
 (This ought to be the final result)
 
 `````js filename=intro
-if ($()) {
+if ($(true)) {
   $(`b`);
   $(`d`);
 } else {
@@ -57,7 +60,7 @@ if ($()) {
 With rename=true
 
 `````js filename=intro
-const a = $();
+const a = $( true );
 if (a) {
   $( "b" );
   $( "d" );
@@ -73,15 +76,15 @@ else {
 (This is what phase1 received the first time)
 
 `````js filename=intro
-const tmpUnaryArg = $();
-let x = !tmpUnaryArg;
-if (x) {
-  $(`a`);
-} else {
+const testVar = $(true);
+let tern = !testVar;
+if (testVar) {
   $(`b`);
-  x = true;
+  tern = true;
+} else {
+  $(`a`);
 }
-if (x) {
+if (tern) {
   $(`d`);
 } else {
   $(`c`);
@@ -105,8 +108,8 @@ None
 
 
 Should call `$` with:
- - 1: 
- - 2: 'a'
+ - 1: true
+ - 2: 'b'
  - 3: 'd'
  - eval returned: undefined
 

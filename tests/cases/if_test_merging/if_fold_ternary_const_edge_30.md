@@ -1,26 +1,42 @@
 # Preval test case
 
-# back-to-back-if-test2.md
+# if_fold_ternary_const_edge_30.md
 
-> If weaving > Back-to-back-if-test2
+> If test merging > If fold ternary const edge 30
 >
-> In this case $(c) is unreachable because $(d) is invariably visited.
+> Edge Case 30: Scenario D - y assigned NaN in else
 
 ## Input
 
 `````js filename=intro
-let x = !$();
+let x = $(true);
+let y = !x; // x=T,y=F; x=F,y=T
+
 if (x) {
-  $(`a`);
+  // x is true, y was false. Not reassigned.
 } else {
-  $(`b`);
-  x = true;
+  // x is false, y was true.
+  y = NaN; // y becomes falsy
 }
+
+// y is always falsy
+if (y) {
+  $('THEN');
+} else {
+  $('ELSE');
+}
+
+/* Expected output:
+let x = $(true);
+let y = !x;
 if (x) {
-  $(`d`);
 } else {
-  $(`c`);
+  y = NaN;
 }
+{ // Simplified from if(y)
+  $('ELSE');
+}
+*/
 `````
 
 
@@ -28,14 +44,8 @@ if (x) {
 
 
 `````js filename=intro
-const tmpUnaryArg /*:unknown*/ = $();
-if (tmpUnaryArg) {
-  $(`b`);
-  $(`d`);
-} else {
-  $(`a`);
-  $(`d`);
-}
+$(true);
+$(`ELSE`);
 `````
 
 
@@ -43,13 +53,8 @@ if (tmpUnaryArg) {
 (This ought to be the final result)
 
 `````js filename=intro
-if ($()) {
-  $(`b`);
-  $(`d`);
-} else {
-  $(`a`);
-  $(`d`);
-}
+$(true);
+$(`ELSE`);
 `````
 
 
@@ -57,15 +62,8 @@ if ($()) {
 With rename=true
 
 `````js filename=intro
-const a = $();
-if (a) {
-  $( "b" );
-  $( "d" );
-}
-else {
-  $( "a" );
-  $( "d" );
-}
+$( true );
+$( "ELSE" );
 `````
 
 
@@ -73,18 +71,16 @@ else {
 (This is what phase1 received the first time)
 
 `````js filename=intro
-const tmpUnaryArg = $();
-let x = !tmpUnaryArg;
+let x = $(true);
+let y = !x;
 if (x) {
-  $(`a`);
 } else {
-  $(`b`);
-  x = true;
+  y = $Number_NaN;
 }
-if (x) {
-  $(`d`);
+if (y) {
+  $(`THEN`);
 } else {
-  $(`c`);
+  $(`ELSE`);
 }
 `````
 
@@ -105,9 +101,8 @@ None
 
 
 Should call `$` with:
- - 1: 
- - 2: 'a'
- - 3: 'd'
+ - 1: true
+ - 2: 'ELSE'
  - eval returned: undefined
 
 Pre normalization calls: Same

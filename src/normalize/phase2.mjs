@@ -110,7 +110,7 @@ import { ifTestNested } from '../reduce_static/if_test_nested.mjs';
 import { frfrTricks } from '../reduce_static/frfr_tricks.mjs';
 import { arrCoerce } from '../reduce_static/arr_coerce.mjs';
 import { ifTestAliased } from '../reduce_static/if_test_aliased.mjs';
-// import { ifFoldTernaryConst } from '../reduce_static/if_fold_ternary_const.mjs';
+import { ifFoldTernaryConst } from '../reduce_static/if_fold_ternary_const.mjs';
 
 //import { phasePrimitiveArgInlining } from '../reduce_static/phase_primitive_arg_inlining.mjs';
 
@@ -164,7 +164,7 @@ export const BASE_PHASE2_RULES_LIST = [
   ['returnArg', returnArg],
   ['ifTestInvIdent', ifTestInvIdent],
   ['ifWeaving', ifWeaving],
-  // ['ifFoldTernaryConst', ifFoldTernaryConst],
+  ['ifFoldTernaryConst', ifFoldTernaryConst],
   ['typeTrackedTricks', typeTrackedTricks],
   ['arrSpreads', arrSpreads],
   ['conditionalTyping', conditionalTyping],

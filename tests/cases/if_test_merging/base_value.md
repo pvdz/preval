@@ -1,26 +1,17 @@
 # Preval test case
 
-# back-to-back-if-test2.md
+# base_value.md
 
-> If weaving > Back-to-back-if-test2
+> If test merging > Base value
 >
-> In this case $(c) is unreachable because $(d) is invariably visited.
+> When back to back ifs test on the same constant, the ifs can be merged safely
 
 ## Input
 
 `````js filename=intro
-let x = !$();
-if (x) {
-  $(`a`);
-} else {
-  $(`b`);
-  x = true;
-}
-if (x) {
-  $(`d`);
-} else {
-  $(`c`);
-}
+const y = !$spy(10);
+if (y) $('a'); else $('b');
+if (y) $('d'); else $('c');
 `````
 
 
@@ -28,10 +19,10 @@ if (x) {
 
 
 `````js filename=intro
-const tmpUnaryArg /*:unknown*/ = $();
+const tmpUnaryArg /*:unknown*/ = $spy(10);
 if (tmpUnaryArg) {
   $(`b`);
-  $(`d`);
+  $(`c`);
 } else {
   $(`a`);
   $(`d`);
@@ -43,9 +34,9 @@ if (tmpUnaryArg) {
 (This ought to be the final result)
 
 `````js filename=intro
-if ($()) {
+if ($spy(10)) {
   $(`b`);
-  $(`d`);
+  $(`c`);
 } else {
   $(`a`);
   $(`d`);
@@ -57,10 +48,10 @@ if ($()) {
 With rename=true
 
 `````js filename=intro
-const a = $();
+const a = $spy( 10 );
 if (a) {
   $( "b" );
-  $( "d" );
+  $( "c" );
 }
 else {
   $( "a" );
@@ -73,15 +64,14 @@ else {
 (This is what phase1 received the first time)
 
 `````js filename=intro
-const tmpUnaryArg = $();
-let x = !tmpUnaryArg;
-if (x) {
+const tmpUnaryArg = $spy(10);
+const y = !tmpUnaryArg;
+if (y) {
   $(`a`);
 } else {
   $(`b`);
-  x = true;
 }
-if (x) {
+if (y) {
   $(`d`);
 } else {
   $(`c`);
@@ -105,9 +95,9 @@ None
 
 
 Should call `$` with:
- - 1: 
- - 2: 'a'
- - 3: 'd'
+ - 1: 'Creating spy', 1, 1, [10, 10]
+ - 2: 'b'
+ - 3: 'c'
  - eval returned: undefined
 
 Pre normalization calls: Same

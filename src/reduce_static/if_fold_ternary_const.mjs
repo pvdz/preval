@@ -17,18 +17,18 @@
 // Works the same with falsy. Supports various cases.
 //
 
-import { ASSERT, log, group, groupEnd, vlog, rule, example, before, after, todo, currentState } from '../utils.mjs';
+import { after, before, currentState, example, group, groupEnd, log, rule, vlog } from '../utils.mjs';
 import * as AST from '../ast.mjs';
-import { symbo, BUILTIN_SYMBOLS } from '../symbols_builtins.mjs';
-import { printer, setPrintPids, setPrintVarTyping } from '../../lib/printer.mjs';
+import { BUILTIN_SYMBOLS, symbo } from '../symbols_builtins.mjs';
+import { setPrintPids } from '../../lib/printer.mjs';
 
 export function ifFoldTernaryConst(fdata) {
   group('\n\n\n[ifFoldTernaryConst] Attempting to fold if statements based on ternary consts initialized with negation (registry walk v11)');
   currentState(fdata, 'ifFoldTernaryConst', true, fdata);
 
-  setPrintPids(true);
-  currentState(fdata, 'ifFoldTernaryConst', true, fdata);
-  setPrintPids(false);
+  // setPrintPids(true);
+  // currentState(fdata, 'ifFoldTernaryConst', true, fdata);
+  // setPrintPids(false);
 
   const r = _ifFoldTernaryConst(fdata);
   groupEnd();
@@ -60,23 +60,17 @@ function _ifFoldTernaryConst(fdata) {
 
     const initNode = varDeclNode.init;
 
+    // Look for a var that is initialized as the boolean !inverse or Boolean(state) or !!state of another var
     if (initNode.type === 'UnaryExpression' && initNode.operator === '!') {
       if (initNode.argument.type === 'Identifier') {
         yTracksXInversely = true;
         controlVarName = initNode.argument.name;
-      } else if (initNode.argument.type === 'UnaryExpression' && initNode.argument.operator === '!') {
-        // !!x
-        if (initNode.argument.argument.type === 'Identifier') {
-          yTracksXDirectly = true;
-          controlVarName = initNode.argument.argument.name;
-        }
       }
     }
     else if (initNode.type === 'CallExpression' && initNode.callee.type === 'Identifier') {
       // Check for Boolean(x)
       const calleeName = initNode.callee.name;
-      const calleeMeta = fdata.globallyUniqueNamingRegistry.get(calleeName);
-      if (calleeMeta && calleeMeta.isBuiltin && calleeMeta.symbol === symbo('boolean', 'constructor')) {
+      if (calleeName === symbo('boolean', 'constructor')) {
         if (initNode.arguments.length === 1 && initNode.arguments[0].type === 'Identifier') {
           yTracksXDirectly = true;
           controlVarName = initNode.arguments[0].name;
@@ -92,7 +86,7 @@ function _ifFoldTernaryConst(fdata) {
     if (!yTracksXInversely && !yTracksXDirectly) return; // Not a recognized pattern
     if (!controlVarName) return; // Should not happen if tracksDirectly/Inversely is true
 
-    // This is the variable that "controls" the value of the current var
+    // This is the variable that "controls" the value of the current var. This is TDZ, ignore here.
     if (controlVarName === varName) return; // `let x = x` or `let x = !x`
 
     // Check if any read of this ident is an if-test
@@ -100,9 +94,9 @@ function _ifFoldTernaryConst(fdata) {
       const secondIfNode = read.parentNode;
       const secondIfBlock = read.blockBody;
       const secondIfIndex = read.blockIndex;
-      if (secondIfNode.type !== 'IfStatement' || read.parentProp !== 'test') return;
+      if (secondIfNode.type !== 'IfStatement' || read.parentProp !== 'test') return; // or true? can this recover?
 
-      if (!(+varDeclNode.$p.pid < +secondIfNode.$p.pid)) return; // first read must be after var decl
+      if (!(+varDeclNode.$p.pid < +secondIfNode.$p.pid)) return true; // first read must be after var decl
 
       // Now find the first `if`, it will test on the control var
       // `let x = !CONTROL; if (CONTROL) x=true; if (x) ...`
@@ -131,36 +125,36 @@ function _ifFoldTernaryConst(fdata) {
       // Example of an INTERVENING WRITE (current transformation should be SKIPPED):
       //   let y = !x;
       //   if (x) { /* firstIfNode */ y = true; } 
-      //   y = someGlobal; // <-- Intervening write to y
+      //   y = someGlobal;                                // <-- Intervening write to y
       //   if (y) { /* secondIfNode */ ... }
       //
       // Example of a write that is NOT INTERVENING (it's part of firstIfNode analysis):
       //   let y = !x;
-      //   if (x) { /* firstIfNode */ y = true; } // <-- Write is INSIDE firstIfNode
+      //   if (x) { /* firstIfNode */ y = true; }         // <-- Write is INSIDE firstIfNode
       //   /* No other writes to y here */
       //   if (y) { /* secondIfNode */ ... }
       //
       let hasInterveningWrite = false;
       const firstIfNodePID = firstIfNode.$p.pid;
       const secondIfNodePID = secondIfNode.$p.pid;
-      log(`[ifFoldTernaryConst] Intervening write check for var '${varName}'. ControlIf PID: ${firstIfNodePID}, TargetIf PID: ${secondIfNodePID}. Num writes: ${meta.writes.length}`);
+      vlog(`- Intervening write check for var '${varName}'. ControlIf PID: ${firstIfNodePID}, TargetIf PID: ${secondIfNodePID}. Num writes: ${meta.writes.length}`);
       for (let j = 1; j < meta.writes.length; j++) { // Start from 1 to skip var declaration
         const writeRef = meta.writes[j];
-        log(`[ifFoldTernaryConst] Checking writeRef index ${j}, kind: ${writeRef.kind}, node type: ${writeRef.node.type}, PID of writeRef.node: ${writeRef.node.$p ? writeRef.node.$p.pid : 'N/A'}`);
+        vlog(`- Checking writeRef index ${j}, kind: ${writeRef.kind}, node type: ${writeRef.node.type}, PID of writeRef.node: ${writeRef.node.$p ? writeRef.node.$p.pid : 'N/A'}`);
         
         const interveningStmtNode = writeRef.blockBody[writeRef.blockIndex];
         const interveningWritePID = +interveningStmtNode.$p.pid;
 
         const conditionMetPID = interveningWritePID > firstIfNodePID && interveningWritePID < secondIfNodePID;
-        log(`[ifFoldTernaryConst]   Write Stmt Node Type: ${interveningStmtNode.type}, PID: ${interveningWritePID} (original: '${interveningWritePID}'). PID Condition (${interveningWritePID} > ${firstIfNodePID} && ${interveningWritePID} < ${secondIfNodePID}) is ${conditionMetPID}`);
+        vlog(`  - Write Stmt Node Type: ${interveningStmtNode.type}, PID: ${interveningWritePID} (original: '${interveningWritePID}'). PID Condition (${interveningWritePID} > ${firstIfNodePID} && ${interveningWritePID} < ${secondIfNodePID}) is ${conditionMetPID}`);
 
         if (conditionMetPID) {
           // Now check if interveningStmtNode is a descendant of firstIfNode
           let isDescendant = false;
           const writeStmtBlock = writeRef.blockBody; // The array containing interveningStmtNode
-          log(`[ifFoldTernaryConst]     Starting descendant check. Intervening Stmt PID: ${interveningStmtNode.$p ? interveningStmtNode.$p.pid : 'N/A'}. ControlIf PID: ${firstIfNode.$p ? firstIfNode.$p.pid : 'N/A'}.`);
-          log(`[ifFoldTernaryConst]     writeRef.blockBody === firstIfNode.consequent?.body : ${writeStmtBlock === firstIfNode.consequent?.body}`);
-          log(`[ifFoldTernaryConst]     writeRef.blockBody === firstIfNode.alternate?.body : ${writeStmtBlock === firstIfNode.alternate?.body}`);
+          vlog(`    - Starting descendant check. Intervening Stmt PID: ${interveningStmtNode.$p ? interveningStmtNode.$p.pid : 'N/A'}. ControlIf PID: ${firstIfNode.$p ? firstIfNode.$p.pid : 'N/A'}.`);
+          vlog(`    - writeRef.blockBody === firstIfNode.consequent?.body : ${writeStmtBlock === firstIfNode.consequent?.body}`);
+          vlog(`    - writeRef.blockBody === firstIfNode.alternate?.body : ${writeStmtBlock === firstIfNode.alternate?.body}`);
 
           if (firstIfNode.consequent.body === writeRef.blockBody) {
             isDescendant = true;
@@ -169,16 +163,16 @@ function _ifFoldTernaryConst(fdata) {
           } else {
             // Fallback to parent traversal if not in the immediate block bodies
           }
-          log(`[ifFoldTernaryConst]     Is descendant of controlIf (final): ${isDescendant}`);
+          vlog(`    - Is descendant of controlIf (final): ${isDescendant}`);
 
           if (!isDescendant) {
-            log(`[ifFoldTernaryConst]   INTERVENING WRITE DETECTED (not descendant) for var '${varName}'.`);
+            vlog(`   - bail: intervening write detected for var '${varName}'.`);
             hasInterveningWrite = true;
             break;
           }
         }
       }
-      log(`[ifFoldTernaryConst] Final hasInterveningWrite for '${varName}' (read in PID ${secondIfNodePID}): ${hasInterveningWrite}`);
+      vlog(`- Final hasInterveningWrite for '${varName}' (read in PID ${secondIfNodePID}): ${hasInterveningWrite}`);
       if (hasInterveningWrite) {
         return; // Skip this (firstIfNode, secondIfNode) pair due to intervening write
       }
@@ -196,7 +190,6 @@ function _ifFoldTernaryConst(fdata) {
       let yMadeControlVarInverseInElse = false;   // y = !x
 
       // Walk all statements in the consequent. Search for assignments to the alias.
-      // TODO: this should probably just use the reads refs and be more generic
       firstIfNode.consequent.body.forEach(stmt => {
         if (stmt.type === 'ExpressionStatement' && stmt.expression.type === 'AssignmentExpression') {
           const assign = stmt.expression;
@@ -234,7 +227,7 @@ function _ifFoldTernaryConst(fdata) {
         }
       });
 
-      // Same TODO's as consequent checks above
+      // Repeat for the alternate branch
       if (firstIfNode.alternate && firstIfNode.alternate.type === 'BlockStatement') {
         firstIfNode.alternate.body.forEach(stmt => {
           if (stmt.type === 'ExpressionStatement' && stmt.expression.type === 'AssignmentExpression') {
@@ -289,7 +282,6 @@ function _ifFoldTernaryConst(fdata) {
         (yTracksXDirectly && (yMadeTruthyInThen || (!yReassignedInThen && controlVarName)) && (yMadeTruthyInElse || (!yReassignedInElse && !controlVarName /* this !controlVarName means x is false, so y stays true */))) ||
         (yTracksXDirectly && (yMadeTruthyInThen || (!yReassignedInThen && controlVarName)) && (!yReassignedInElse && yTracksXDirectly)) // y=x, if(x){y=true}else{} -> y is true
       ) {
-        // Corrected refined conditions for yEffectivelyTrue from previous diff
         let determinedTrue = false;
         if (yTracksXInversely) {
           const yInElseIsTrue = !yReassignedInElse || yMadeTruthyInElse || yMadeControlVarInverseInElse;
@@ -304,7 +296,6 @@ function _ifFoldTernaryConst(fdata) {
       
       // Case 2: y is always false after if/else
       if (!yEffectivelyTrue) { 
-        // Placeholder for the actual complex logic for yEffectivelyFalse
         let determinedFalse = false;
         if (yTracksXInversely) {
           const yInThenIsFalse = !yReassignedInThen || yMadeFalsyInThen || yMadeControlVarInverseInThen;

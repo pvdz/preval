@@ -1,26 +1,17 @@
 # Preval test case
 
-# back-to-back-if-test2.md
+# base_implicit.md
 
-> If weaving > Back-to-back-if-test2
+> If test merging > Base implicit
 >
-> In this case $(c) is unreachable because $(d) is invariably visited.
+> When back to back ifs test on the same constant, the ifs can be merged safely
 
 ## Input
 
 `````js filename=intro
-let x = !$();
-if (x) {
-  $(`a`);
-} else {
-  $(`b`);
-  x = true;
-}
-if (x) {
-  $(`d`);
-} else {
-  $(`c`);
-}
+const x = !unknown;
+if (x) $('a'); else $('b');
+if (x) $('d'); else $('c');
 `````
 
 
@@ -28,10 +19,9 @@ if (x) {
 
 
 `````js filename=intro
-const tmpUnaryArg /*:unknown*/ = $();
-if (tmpUnaryArg) {
+if (unknown) {
   $(`b`);
-  $(`d`);
+  $(`c`);
 } else {
   $(`a`);
   $(`d`);
@@ -43,9 +33,9 @@ if (tmpUnaryArg) {
 (This ought to be the final result)
 
 `````js filename=intro
-if ($()) {
+if (unknown) {
   $(`b`);
-  $(`d`);
+  $(`c`);
 } else {
   $(`a`);
   $(`d`);
@@ -57,10 +47,9 @@ if ($()) {
 With rename=true
 
 `````js filename=intro
-const a = $();
-if (a) {
+if (unknown) {
   $( "b" );
-  $( "d" );
+  $( "c" );
 }
 else {
   $( "a" );
@@ -73,13 +62,11 @@ else {
 (This is what phase1 received the first time)
 
 `````js filename=intro
-const tmpUnaryArg = $();
-let x = !tmpUnaryArg;
+const x = !unknown;
 if (x) {
   $(`a`);
 } else {
   $(`b`);
-  x = true;
 }
 if (x) {
   $(`d`);
@@ -92,23 +79,22 @@ if (x) {
 ## Todos triggered
 
 
-None
+- (todo) when is a constant an implicit global too?
 
 
 ## Globals
 
 
-None
+BAD@! Found 1 implicit global bindings:
+
+unknown
 
 
 ## Runtime Outcome
 
 
 Should call `$` with:
- - 1: 
- - 2: 'a'
- - 3: 'd'
- - eval returned: undefined
+ - eval returned: ('<crash[ <ref> is not defined ]>')
 
 Pre normalization calls: Same
 

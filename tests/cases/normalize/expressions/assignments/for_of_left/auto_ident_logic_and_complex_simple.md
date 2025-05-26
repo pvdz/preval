@@ -33,6 +33,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     a = $(tmpCalleeParam$3);
     let tmpAssignMemLhsObj$1 /*:unknown*/ /*ternaryConst*/ = 2;
     if (a) {
+      a = 2;
     } else {
       tmpAssignMemLhsObj$1 = a;
     }
@@ -57,7 +58,9 @@ while (true) {
   } else {
     a = $($(1));
     let tmpAssignMemLhsObj$1 = 2;
-    if (!a) {
+    if (a) {
+      a = 2;
+    } else {
       tmpAssignMemLhsObj$1 = a;
     }
     tmpAssignMemLhsObj$1.x = tmpForOfNext.value;
@@ -89,7 +92,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     a = $( g );
     let h = 2;
     if (a) {
-
+      a = 2;
     }
     else {
       h = a;

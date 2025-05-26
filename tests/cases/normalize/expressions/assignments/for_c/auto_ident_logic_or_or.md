@@ -22,37 +22,37 @@ $(a);
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   const tmpCalleeParam /*:unknown*/ = $(0);
-  let tmpClusterSSA_a$2 /*:unknown*/ = $(tmpCalleeParam);
-  if (tmpClusterSSA_a$2) {
+  let tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam);
+  if (tmpClusterSSA_a) {
   } else {
     const tmpCalleeParam$1 /*:unknown*/ = $(1);
-    const tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam$1);
+    tmpClusterSSA_a = $(tmpCalleeParam$1);
     if (tmpClusterSSA_a) {
     } else {
       const tmpCalleeParam$3 /*:unknown*/ = $(2);
-      $(tmpCalleeParam$3);
+      tmpClusterSSA_a = $(tmpCalleeParam$3);
     }
   }
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       const tmpCalleeParam$2 /*:unknown*/ = $(0);
-      tmpClusterSSA_a$2 = $(tmpCalleeParam$2);
-      if (tmpClusterSSA_a$2) {
+      tmpClusterSSA_a = $(tmpCalleeParam$2);
+      if (tmpClusterSSA_a) {
       } else {
         const tmpCalleeParam$4 /*:unknown*/ = $(1);
-        const tmpClusterSSA_a$1 /*:unknown*/ = $(tmpCalleeParam$4);
-        if (tmpClusterSSA_a$1) {
+        tmpClusterSSA_a = $(tmpCalleeParam$4);
+        if (tmpClusterSSA_a) {
         } else {
           const tmpCalleeParam$6 /*:unknown*/ = $(2);
-          $(tmpCalleeParam$6);
+          tmpClusterSSA_a = $(tmpCalleeParam$6);
         }
       }
     } else {
       break;
     }
   }
-  $(tmpClusterSSA_a$2);
+  $(tmpClusterSSA_a);
 } else {
   const a /*:object*/ = { a: 999, b: 1000 };
   $(a);
@@ -65,25 +65,27 @@ if (tmpIfTest) {
 
 `````js filename=intro
 if ($(1)) {
-  let tmpClusterSSA_a$2 = $($(0));
-  if (!tmpClusterSSA_a$2) {
-    if (!$($(1))) {
-      $($(2));
+  let tmpClusterSSA_a = $($(0));
+  if (!tmpClusterSSA_a) {
+    tmpClusterSSA_a = $($(1));
+    if (!tmpClusterSSA_a) {
+      tmpClusterSSA_a = $($(2));
     }
   }
   while (true) {
     if ($(1)) {
-      tmpClusterSSA_a$2 = $($(0));
-      if (!tmpClusterSSA_a$2) {
-        if (!$($(1))) {
-          $($(2));
+      tmpClusterSSA_a = $($(0));
+      if (!tmpClusterSSA_a) {
+        tmpClusterSSA_a = $($(1));
+        if (!tmpClusterSSA_a) {
+          tmpClusterSSA_a = $($(2));
         }
       }
     } else {
       break;
     }
   }
-  $(tmpClusterSSA_a$2);
+  $(tmpClusterSSA_a);
 } else {
   $({ a: 999, b: 1000 });
 }
@@ -103,32 +105,32 @@ if (a) {
   }
   else {
     const d = $( 1 );
-    const e = $( d );
-    if (e) {
+    c = $( d );
+    if (c) {
 
     }
     else {
-      const f = $( 2 );
-      $( f );
+      const e = $( 2 );
+      c = $( e );
     }
   }
   while ($LOOP_UNROLL_10) {
-    const g = $( 1 );
-    if (g) {
-      const h = $( 0 );
-      c = $( h );
+    const f = $( 1 );
+    if (f) {
+      const g = $( 0 );
+      c = $( g );
       if (c) {
 
       }
       else {
-        const i = $( 1 );
-        const j = $( i );
-        if (j) {
+        const h = $( 1 );
+        c = $( h );
+        if (c) {
 
         }
         else {
-          const k = $( 2 );
-          $( k );
+          const i = $( 2 );
+          c = $( i );
         }
       }
     }
@@ -139,11 +141,11 @@ if (a) {
   $( c );
 }
 else {
-  const l = {
+  const j = {
     a: 999,
     b: 1000,
   };
-  $( l );
+  $( j );
 }
 `````
 

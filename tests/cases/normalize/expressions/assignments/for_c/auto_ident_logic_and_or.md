@@ -31,7 +31,7 @@ if (tmpIfTest) {
   if (tmpClusterSSA_a) {
   } else {
     const tmpCalleeParam$3 /*:unknown*/ = $(2);
-    $(tmpCalleeParam$3);
+    tmpClusterSSA_a = $(tmpCalleeParam$3);
   }
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
@@ -46,7 +46,7 @@ if (tmpIfTest) {
       if (tmpClusterSSA_a) {
       } else {
         const tmpCalleeParam$6 /*:unknown*/ = $(2);
-        $(tmpCalleeParam$6);
+        tmpClusterSSA_a = $(tmpCalleeParam$6);
       }
     } else {
       break;
@@ -70,7 +70,7 @@ if ($(1)) {
     tmpClusterSSA_a = $($(1));
   }
   if (!tmpClusterSSA_a) {
-    $($(2));
+    tmpClusterSSA_a = $($(2));
   }
   while (true) {
     if ($(1)) {
@@ -79,7 +79,7 @@ if ($(1)) {
         tmpClusterSSA_a = $($(1));
       }
       if (!tmpClusterSSA_a) {
-        $($(2));
+        tmpClusterSSA_a = $($(2));
       }
     } else {
       break;
@@ -109,7 +109,7 @@ if (a) {
   }
   else {
     const e = $( 2 );
-    $( e );
+    c = $( e );
   }
   while ($LOOP_UNROLL_10) {
     const f = $( 1 );
@@ -125,7 +125,7 @@ if (a) {
       }
       else {
         const i = $( 2 );
-        $( i );
+        c = $( i );
       }
     }
     else {

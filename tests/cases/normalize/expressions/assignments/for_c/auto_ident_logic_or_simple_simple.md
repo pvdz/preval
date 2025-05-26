@@ -28,7 +28,7 @@ if (tmpIfTest) {
       break;
     }
   }
-  $(0);
+  $(2);
 } else {
   const a /*:object*/ = { a: 999, b: 1000 };
   $(a);
@@ -46,7 +46,7 @@ if ($(1)) {
       break;
     }
   }
-  $(0);
+  $(2);
 } else {
   $({ a: 999, b: 1000 });
 }
@@ -68,7 +68,7 @@ if (a) {
       break;
     }
   }
-  $( 0 );
+  $( 2 );
 }
 else {
   const c = {

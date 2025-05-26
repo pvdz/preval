@@ -22,17 +22,17 @@ $(a);
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   const tmpCalleeParam /*:unknown*/ = $(1);
-  $(tmpCalleeParam);
+  let tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam);
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       const tmpCalleeParam$1 /*:unknown*/ = $(1);
-      $(tmpCalleeParam$1);
+      tmpClusterSSA_a = $(tmpCalleeParam$1);
     } else {
       break;
     }
   }
-  $(1);
+  $(tmpClusterSSA_a);
 } else {
   const a /*:object*/ = { a: 999, b: 1000 };
   $(a);
@@ -45,15 +45,15 @@ if (tmpIfTest) {
 
 `````js filename=intro
 if ($(1)) {
-  $($(1));
+  let tmpClusterSSA_a = $($(1));
   while (true) {
     if ($(1)) {
-      $($(1));
+      tmpClusterSSA_a = $($(1));
     } else {
       break;
     }
   }
-  $(1);
+  $(tmpClusterSSA_a);
 } else {
   $({ a: 999, b: 1000 });
 }
@@ -67,25 +67,25 @@ With rename=true
 const a = $( 1 );
 if (a) {
   const b = $( 1 );
-  $( b );
+  let c = $( b );
   while ($LOOP_UNROLL_10) {
-    const c = $( 1 );
-    if (c) {
-      const d = $( 1 );
-      $( d );
+    const d = $( 1 );
+    if (d) {
+      const e = $( 1 );
+      c = $( e );
     }
     else {
       break;
     }
   }
-  $( 1 );
+  $( c );
 }
 else {
-  const e = {
+  const f = {
     a: 999,
     b: 1000,
   };
-  $( e );
+  $( f );
 }
 `````
 

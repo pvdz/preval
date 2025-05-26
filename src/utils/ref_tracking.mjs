@@ -1,14 +1,8 @@
-import {
-  ASSERT,
-  vlog,
-  vgroup,
-  vgroupEnd,
-  REF_TRACK_TRACING,
-  debugStringMapOfSetOfReadOrWrites,
-  debugStringListOfReadOrWrites,
-} from '../utils.mjs';
+import { ASSERT, vlog, vgroup, vgroupEnd, REF_TRACK_TRACING, debugStringMapOfSetOfReadOrWrites, debugStringListOfReadOrWrites, currentState, createOpenRefsState, } from '../utils.mjs';
 import {createTrebra} from "../trebra.mjs"
 import {createTreblo} from "../treblo.mjs"
+import { BLUE, RED, RESET, YELLOW } from '../../tests/utils.mjs';
+
 
 // This analysis is only useful for single scope bindings. For them we can assert source code order matches temporal.
 // Goal is to determine for each binding reference which writes it may observe in the worst case, or which writes
@@ -74,20 +68,38 @@ export function createState() {
   };
 }
 
-export function openRefsOnBeforeProgram(refTrackState, node) {
+export function logExitWritesX(refTrackState, blockNode, label) {
+  if (REF_TRACK_TRACING) {
+    const treblo = refTrackState.trebs.get(blockNode);
+    if (!treblo) console.log(RED+'[X] wrong node? no treblo found' + RESET);
+    const inset = Array.from(treblo?.entryWrites?.get('x') ?? []).map(w => +w.node.$p.pid);
+    const outset = Array.from(treblo?.exitWrites?.get('x') ?? []).map(w => +w.node.$p.pid);
+    console.log(BLUE + `[X] [${label}] writes for 'x'` + RESET + `; entry:`, inset.length ? inset : ['<none>'], ', exit:', outset.length ? outset : ['<none>']);
+  }
+}
+
+export function openRefsOnBeforeProgram(refTrackState, node, fdata) {
   if (REF_TRACK_TRACING) console.group('RTT: PROGRAM');
   if (REF_TRACK_TRACING) console.group('RTT: PROGRAM:before');
+  // logExitWritesX(refTrackState, node, 'onBeforeProgram');
+
+  if (REF_TRACK_TRACING) currentState(fdata, 'BeforeRefTracking', false, fdata, true, true);
 
   refTrackState.trebs.set(node, createTreblo(refTrackState, new Set, new Map));
 
   if (REF_TRACK_TRACING) console.groupEnd(); // PROGRAM:before
 }
 
-export function openRefsOnAfterProgram(refTrackState, node) {
+export function openRefsOnAfterProgram(refTrackState, node, fdata) {
   if (REF_TRACK_TRACING) console.group('RTT: PROGRAM:after');
+  logExitWritesX(refTrackState, node, 'onAfterProgram');
   if (REF_TRACK_TRACING) console.groupEnd(); // PROGRAM:after
   if (REF_TRACK_TRACING) console.groupEnd(); // PROGRAM
   if (REF_TRACK_TRACING) console.log('/PROGRAM');
+
+  if (REF_TRACK_TRACING) console.log('');
+  if (REF_TRACK_TRACING) console.log('Reference reachability:');
+  if (REF_TRACK_TRACING) console.log(createOpenRefsState(fdata.globallyUniqueNamingRegistry));
 }
 
 export function openRefsOnBeforeBlock(refTrackState, node, parentNode, parentProp, grandNode, parentBlock, globallyUniqueNamingRegistry) {
@@ -102,6 +114,7 @@ export function openRefsOnBeforeBlock(refTrackState, node, parentNode, parentPro
     ptreblo.defined,
     ptreblo.exitWrites,
   ));
+  logExitWritesX(refTrackState, node, 'onBeforeBlock');
 
   // Special case visit the Try children
   switch (parentNode.type) {
@@ -142,6 +155,8 @@ export function openRefsOnAfterBlock(refTrackState, node, walkerPath, parentNode
     }
   }
 
+  logExitWritesX(refTrackState, node, 'onAfterBlock');
+
   if (REF_TRACK_TRACING) console.groupEnd(); // BLOCK:after
   if (REF_TRACK_TRACING) console.groupEnd(); // BLOCK
   if (REF_TRACK_TRACING) console.log('/BLOCK');
@@ -150,6 +165,7 @@ export function openRefsOnAfterBlock(refTrackState, node, walkerPath, parentNode
 export function openRefsOnBeforeIf(refTrackState, node, parentBlock) {
   if (REF_TRACK_TRACING) console.group('RTT: IF,', refTrackState.trebs.get(parentBlock).defined.size, 'known bindings');
   if (REF_TRACK_TRACING) console.group('RTT: IF:before');
+  logExitWritesX(refTrackState, parentBlock, 'onBeforeIf');
 
   if (REF_TRACK_TRACING) console.groupEnd(); // IF:before
 }
@@ -188,6 +204,7 @@ export function openRefsOnAfterIf(refTrackState, node, parentBlock, walkerPath, 
 
   // The parent block should now have an updated exitWrites set for each of its bindings
 
+  logExitWritesX(refTrackState, parentBlock, 'onAfterIf');
   if (REF_TRACK_TRACING) console.groupEnd(); // IF:after
   if (REF_TRACK_TRACING) console.groupEnd(); // IF
   if (REF_TRACK_TRACING) console.log('/IF');
@@ -196,6 +213,7 @@ export function openRefsOnAfterIf(refTrackState, node, parentBlock, walkerPath, 
 export function openRefsOnBeforeLabel(refTrackState, node, parentBlock) {
   if (REF_TRACK_TRACING) console.group('RTT: LABEL,', refTrackState.trebs.get(parentBlock).defined.size, 'known bindings');
   if (REF_TRACK_TRACING) console.group('RTT: LABEL:before');
+  logExitWritesX(refTrackState, node, 'onBeforeLabel');
 
   if (REF_TRACK_TRACING) console.groupEnd(); // LABEL:before
 }
@@ -224,6 +242,7 @@ export function openRefsOnAfterLabel(refTrackState, node, parentBlock, walkerPat
     propagateExitWrites(pendingNext, parentDefined, parentExitWrites, parentOverwritten, +parentBlock.$p.pid);
   }
 
+  logExitWritesX(refTrackState, node, 'onAfterLabel');
   if (REF_TRACK_TRACING) console.groupEnd(); // LABEL:after
   if (REF_TRACK_TRACING) console.groupEnd(); // LABEL
   if (REF_TRACK_TRACING) console.log('/LABEL');
@@ -232,13 +251,14 @@ export function openRefsOnAfterLabel(refTrackState, node, parentBlock, walkerPat
 export function openRefsOnBeforeLoop(refTrackState, kind /*: while */, node, parentBlock) {
   if (REF_TRACK_TRACING) console.group('RTT: LOOP,', kind);
   if (REF_TRACK_TRACING) console.group('RTT: LOOP:before,', kind, ', has', refTrackState.trebs.get(parentBlock).defined.size, 'known bindings');
+  logExitWritesX(refTrackState, parentBlock, 'onBeforeLoop');
 
   refTrackState.trabs.set(node, createTrebra());
 
   if (REF_TRACK_TRACING) console.groupEnd(); // LOOP:before
 }
 
-export function openRefsOnAfterLoop(refTrackState, kind /* loop | in | of */, node, parentBlock, walkerPath, globallyUniqueLabelRegistry, loopStack, tryNodeStack, catchStack) {
+export function openRefsOnAfterLoop(refTrackState, kind /* loop | in | of */, node, parentBlock, walkerPath, globallyUniqueLabelRegistry, loopStack, tryNodeStack, catchStack, isUnreachableAfter = false) {
   if (REF_TRACK_TRACING) console.group('RTT: LOOP:after,', kind, 'after @', +node.$p.pid);
 
   /** @var {Treblo} */
@@ -285,6 +305,7 @@ export function openRefsOnAfterLoop(refTrackState, kind /* loop | in | of */, no
 
   const pendingLoop = treblo.pendingLoop;
   if (REF_TRACK_TRACING) console.group('TTR: pendingLoop has', pendingLoop.length, `blocks that jump to repeat the loop (from ${pendingLoop.map(({pid, dst}) => `@${pid}->@${dst.$p.pid}`)}). Processing`, parentDefined.size, 'bindings that were known in the parent.');
+  const queue = [];
   parentDefined.forEach(bindingNameBeforeLoop => {
     if (REF_TRACK_TRACING) console.group(`TTR: - \`${bindingNameBeforeLoop}\`: Loop body has ${treblo.entryReads.get(bindingNameBeforeLoop)?.size??0} entryReads and ${treblo.entryWrites.get(bindingNameBeforeLoop)?.size??0} entryWrites, now for each pendingLoop for this var:`);
     pendingLoop.forEach(({pid, exitWrites}, i) => {
@@ -325,22 +346,24 @@ export function openRefsOnAfterLoop(refTrackState, kind /* loop | in | of */, no
         refTrackState.trabs.get(node).pendingLoopWriteChecks.forEach(({ srcPid, exitWrites, mutatedRefs }, i) => {
           if (REF_TRACK_TRACING) console.group(`TTR: pendingLoopWriteChecks[${bindingNameBeforeLoop}][${i}][write@${write.node.$p.pid}]; from @${srcPid}, mutatedRefs: ${Array.from(mutatedRefs).join(',')||'<none>'}`);
 
-          // TODO: This condition is causing invalid loop exit write analysis in some cases, example: tests/cases/ref_tracking/loop_regression.md
-          // Note: this mutatedRefs is a live _reference_ to refTrackState.trebs.get(srcBlock).pendingNext[].mutatedBetweenSrcAndDst
+          // Note: This mutatedRefs is a live _reference_ to refTrackState.trebs.get(srcBlock).pendingNext[].mutatedBetweenSrcAndDst
+          //       The loop will mutated it but those mutations are deferred until after the loop.
           if (mutatedRefs.has(bindingNameBeforeLoop)) {
-            if (REF_TRACK_TRACING) console.log(`TTR: - from @`, srcPid, `NOT adding write @$`, +write.node.$p.pid, `for "${bindingNameBeforeLoop}" to exitWrites of srcBlock @`, srcPid, `because it was already overwritten so the current exitWrite(s) should be the correct one`);
+            if (REF_TRACK_TRACING) console.log(`TTR: - from @`, srcPid, `NOT adding write @$`, +write.node.$p.pid, `for "${bindingNameBeforeLoop}" to exitWrites of srcBlock @`, srcPid, `because mutatedRefs already contained it, so it was already overwritten so the current exitWrite(s) should be the correct one`);
           } else {
             if (REF_TRACK_TRACING) console.log(`TTR: - from @`, srcPid, `Adding write @`, +write.node.$p.pid, `for "${bindingNameBeforeLoop}" to exitWrites of srcBlock @`, srcPid, `(because of loop)`);
             upsertGetSet(exitWrites, bindingNameBeforeLoop, write);
             if (treblo.overwritten.has(bindingNameBeforeLoop)) {
               if (REF_TRACK_TRACING) console.log(`[mutatedRefs] Added ${bindingNameBeforeLoop} to mutatedRefs in block @${srcPid}`);
               if (REF_TRACK_TRACING) console.log(`TTR: - Marking "${bindingNameBeforeLoop}" as (always) overwritten in queued continuation from block @${srcPid} because it was such at end of loop body`);
-              mutatedRefs.add(bindingNameBeforeLoop);
+              // Defer updating mutatedRefs otherwise this loop will incorrectly consider other mutations for the
+              // same var as "already mutated, ignore", which leads to bugs. example: tests/cases/ref_tracking/loop_regression.md
+              queue.push(() => mutatedRefs.add(bindingNameBeforeLoop)); // defer
             }
           }
-          if (REF_TRACK_TRACING) console.groupEnd();
+          if (REF_TRACK_TRACING) console.groupEnd(); // pendingLoopWriteChecks inner
         });
-        if (REF_TRACK_TRACING) console.groupEnd(); // pendingLoopWriteChecks
+        if (REF_TRACK_TRACING) console.groupEnd(); // pendingLoopWriteChecks outer
       });
 
       if (REF_TRACK_TRACING) console.groupEnd(); // pendingLoop iteration
@@ -348,6 +371,7 @@ export function openRefsOnAfterLoop(refTrackState, kind /* loop | in | of */, no
     if (REF_TRACK_TRACING) console.groupEnd();
   });
   if (REF_TRACK_TRACING) console.groupEnd();
+  queue.forEach(f => f());
 
   // Do the normal thing with pending continuations
 
@@ -360,7 +384,30 @@ export function openRefsOnAfterLoop(refTrackState, kind /* loop | in | of */, no
     });
   }
 
-  propagateExitWrites(pendingNext, parentDefined, parentExitWrites, parentOverwritten, +parentBlock.$p.pid);
+  // TODO: figure out if this is what I want/need and why this patch is incomplete
+  // // If all code paths exiting the loop (i.e., all entries in parentTreblo.pendingNext)
+  // // have the variable in mutatedBetweenSrcAndDst, then all loop body paths assign to it.
+  // // In that case, we prune the parent's exitWrites for that variable to only the writes
+  // // created in the loop body (i.e., those in treblo.entryWrites). This prevents pre-loop
+  // // writes from being considered reachable after the loop, which is correct for normalized
+  // // code where the loop body is always entered at least once.
+  // parentDefined.forEach((name) => {
+  //   const entryWrites = treblo.entryWrites.get(name);
+  //   if (entryWrites && entryWrites.size > 0) {
+  //     parentExitWrites.set(name, new Set(entryWrites));
+  //     parentOverwritten.add(name);
+  //   }
+  // });
+
+  // // After the loop, check if the loop is infinite (no path escapes)
+  // const escapesLoop = parentTreblo.pendingNext.some(
+  //   pending => pending.pid !== +node.body.$p.pid
+  // );
+  // if (!escapesLoop) {
+  //   parentExitWrites.clear();
+  // } else {
+    propagateExitWrites(pendingNext, parentDefined, parentExitWrites, parentOverwritten, +parentBlock.$p.pid);
+  // }
 
   if (REF_TRACK_TRACING) {
     console.log('[loop] Parent ExitWrites after propagateExitWrites:');
@@ -371,6 +418,7 @@ export function openRefsOnAfterLoop(refTrackState, kind /* loop | in | of */, no
 
   // The parent block should now have an updated exitWrites set for each o1f its bindings
 
+  logExitWritesX(refTrackState, parentBlock, 'onAfterLoop');
   if (REF_TRACK_TRACING) console.groupEnd(); // LOOP:after
   if (REF_TRACK_TRACING) console.groupEnd(); // LOOP
   if (REF_TRACK_TRACING) console.log('/LOOP');
@@ -379,6 +427,7 @@ export function openRefsOnAfterLoop(refTrackState, kind /* loop | in | of */, no
 export function openRefsOnBeforeBreak(refTrackState, node, blockStack) {
   if (REF_TRACK_TRACING) console.group('RTT: BREAK');
   if (REF_TRACK_TRACING) console.group('RTT: BREAK:before');
+  logExitWritesX(refTrackState, blockStack[blockStack.length - 1], 'onBeforeBreak');
 
   refTrackState.trebs.get(blockStack[blockStack.length - 1]).wasAbruptType = 'break';
   refTrackState.trebs.get(blockStack[blockStack.length - 1]).wasAbruptLabel = node.label?.name;
@@ -389,6 +438,7 @@ export function openRefsOnBeforeBreak(refTrackState, node, blockStack) {
 export function openRefsOnAfterBreak(refTrackState, node, blockStack) {
   if (REF_TRACK_TRACING) console.group('RTT: BREAK:after');
 
+  logExitWritesX(refTrackState, blockStack[blockStack.length - 1], 'onAfterBreak');
   if (REF_TRACK_TRACING) console.groupEnd(); // BREAK:after
   if (REF_TRACK_TRACING) console.groupEnd(); // BREAK
 }
@@ -396,6 +446,7 @@ export function openRefsOnAfterBreak(refTrackState, node, blockStack) {
 export function openRefsOnBeforeReturn(refTrackState, blockStack, node) {
   if (REF_TRACK_TRACING) console.group('RTT: RETURN');
   if (REF_TRACK_TRACING) console.group('RTT: RETURN:before');
+  logExitWritesX(refTrackState, blockStack[blockStack.length - 1], 'onBeforeReturn');
 
   refTrackState.trebs.get(blockStack[blockStack.length - 1]).wasAbruptType = 'return';
   refTrackState.trebs.get(blockStack[blockStack.length - 1]).wasAbruptLabel = undefined;
@@ -406,6 +457,7 @@ export function openRefsOnBeforeReturn(refTrackState, blockStack, node) {
 export function openRefsOnAfterReturn(refTrackState, blockStack, node) {
   if (REF_TRACK_TRACING) console.group('RTT: RETURN:after');
 
+  logExitWritesX(refTrackState, blockStack[blockStack.length - 1], 'onAfterReturn');
   if (REF_TRACK_TRACING) console.groupEnd(); // RETURN:after
   if (REF_TRACK_TRACING) console.groupEnd(); // RETURN
 }
@@ -413,6 +465,7 @@ export function openRefsOnAfterReturn(refTrackState, blockStack, node) {
 export function openRefsOnBeforeThrow(refTrackState, blockStack, node) {
   if (REF_TRACK_TRACING) console.group('RTT: THROW');
   if (REF_TRACK_TRACING) console.group('RTT: THROW:before');
+  logExitWritesX(refTrackState, blockStack[blockStack.length - 1], 'onBeforeThrow');
 
   refTrackState.trebs.get(blockStack[blockStack.length - 1]).wasAbruptType = 'throw';
   refTrackState.trebs.get(blockStack[blockStack.length - 1]).wasAbruptLabel = undefined;
@@ -423,6 +476,7 @@ export function openRefsOnBeforeThrow(refTrackState, blockStack, node) {
 export function openRefsOnAfterThrow(refTrackState, blockStack, node) {
   if (REF_TRACK_TRACING) console.group('RTT: THROW:after');
 
+  logExitWritesX(refTrackState, blockStack[blockStack.length - 1], 'onAfterThrow');
   if (REF_TRACK_TRACING) console.groupEnd(); // THROW:before
   if (REF_TRACK_TRACING) console.groupEnd(); // THROW
 }
@@ -432,6 +486,7 @@ export function openRefsOnBeforeTryNode(refTrackState, node, parentBlock) {
 
   if (REF_TRACK_TRACING) console.group('RTT: TRY');
   if (REF_TRACK_TRACING) console.group('RTT: TRY:before,', refTrackState.trebs.get(parentBlock).defined.size, 'known bindings before the `try`');
+  logExitWritesX(refTrackState, parentBlock, 'onBeforeTryNode');
 
   //refTrackState.trabs.get(node) = createTrebra();
 
@@ -453,6 +508,7 @@ export function openRefsOnAfterTryNode(refTrackState, node, parentBlock, globall
 
   propagateExitWrites(pendingNext, parentDefined, parentExitWrites, parentOverwritten, +parentBlock.$p.pid)
 
+  logExitWritesX(refTrackState, parentBlock, 'onAfterTryNode');
   if (REF_TRACK_TRACING) console.groupEnd(); // TRY:after
   if (REF_TRACK_TRACING) console.groupEnd(); // TRY
   if (REF_TRACK_TRACING) console.log('/TRY');
@@ -464,6 +520,7 @@ export function openRefsOnBeforeTryBody(refTrackState, node, parentBlock) {
 
   if (REF_TRACK_TRACING) console.group('RTT: TRY:BODY');
   if (REF_TRACK_TRACING) console.group('RTT: TRY:BODY:before');
+  logExitWritesX(refTrackState, parentBlock, 'onBeforeTryBody');
 
   if (REF_TRACK_TRACING) console.groupEnd(); // TRY:BODY:before
 }
@@ -492,6 +549,7 @@ export function openRefsOnAfterTryBody(refTrackState, node, parentTryNode, paren
 
   propagateEntryReadWrites(+node.$p.pid, treblo, parentEntryReads, parentEntryWrites, parentDefined, parentOverwritten, parentBlock.$p.pid);
 
+  logExitWritesX(refTrackState, parentBlock, 'onAfterTryBody');
   if (REF_TRACK_TRACING) console.groupEnd(); // TRY:BODY:after
   if (REF_TRACK_TRACING) console.groupEnd(); // TRY:BODY
 }
@@ -501,6 +559,7 @@ export function openRefsOnBeforeCatchBody(refTrackState, node, parentNode, paren
 
   if (REF_TRACK_TRACING) console.group('RTT: TRY:CATCH');
   if (REF_TRACK_TRACING) console.group('RTT: TRY:CATCH:before');
+  logExitWritesX(refTrackState, parentBlock, 'onBeforeCatchBody'); // TODO: what's the proper block?
   ASSERT(parentTryNode.type === 'TryStatement', 'right?');
   ASSERT(parentNode.type === 'CatchClause', 'right?');
 
@@ -567,6 +626,7 @@ export function openRefsOnAfterCatchBody(refTrackState, node, walkerPath, parent
 
   propagateEntryReadWrites(+node.$p.pid, catchTreblo, parentEntryReads, parentEntryWrites, parentDefined, parentOverwritten, parentBlock.$p.pid);
 
+  logExitWritesX(refTrackState, node, 'onAfterCatchBody'); // TODO: what's the proper block?
   if (REF_TRACK_TRACING) console.groupEnd(); // TRY:CATCH:after
   if (REF_TRACK_TRACING) console.groupEnd(); // TRY:CATCH
   if (REF_TRACK_TRACING) console.log('/CATCH');
@@ -602,6 +662,7 @@ export function openRefsOnBeforeRead(refTrackState, read, blockNode) {
   if (name === '$') return; // Special debugging symbol. Should be global. This analysis doesn't apply to globals. Noisy in tests. So skip it.
 
   if (REF_TRACK_TRACING) console.group('RTT: on::read:before, recording', /read/, 'reference to', [name]);
+  if (name === 'x') logExitWritesX(refTrackState, blockNode, 'onBeforeReadRef');
 
   /** @var {Treblo} */
   const treblo = refTrackState.trebs.get(blockNode);
@@ -632,6 +693,7 @@ export function openRefsOnBeforeRead(refTrackState, read, blockNode) {
   upsertGetSet(treblo.reads, name, read);
   upsertGetPush(treblo.rwOrder, name, read);
 
+  if (name === 'x') logExitWritesX(refTrackState, blockNode, 'onAfterReadRef');
   if (REF_TRACK_TRACING) console.groupEnd(); // ref:read:before
 }
 
@@ -641,6 +703,7 @@ export function openRefsOnBeforeWrite(refTrackState, write, blockNode) {
   if (name === '$') return; // Special debugging symbol. Should be global. This analysis doesn't apply to globals. Noisy in tests. So skip it.
 
   if (REF_TRACK_TRACING) console.group('RTT: on::write:before, recording', /write/, 'reference');
+  if (name === 'x') logExitWritesX(refTrackState, blockNode, 'onBeforeRefWrite');
 
   /** @var {Treblo} */
   const treblo = refTrackState.trebs.get(blockNode);
@@ -675,6 +738,7 @@ export function openRefsOnBeforeWrite(refTrackState, write, blockNode) {
   upsertGetPush(treblo.writes, name, write);
   upsertGetPush(treblo.rwOrder, name, write);
 
+  if (name === 'x') logExitWritesX(refTrackState, blockNode, 'onAfterRefWrite');
   if (REF_TRACK_TRACING) console.groupEnd(); // ref:write:before
 }
 
@@ -983,7 +1047,7 @@ function propagateExitWrites(pendingNext, parentDefined, parentExitWrites, paren
     });
   }
   if (pendingNext.length === 0) {
-    // Nothing to do here. All branches are scheduled to complete elsewhere.
+    // All branches are scheduled to complete elsewhere.
     // What if a loop breaks to the parent? or throws? or returns? Then it wouldn't be scheduled in this pendingNext list, right? So, whatever..?
     // TODO: we should add a check to see if a loop has an abrupt completion at all. And if it's not Catch trapped then consider the tail unreachable. Etc.
     // TODO: if a loop body does not contain a natural break then the code after it is dead code unless the loop is not the child of a block...

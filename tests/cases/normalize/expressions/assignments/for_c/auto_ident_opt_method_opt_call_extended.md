@@ -23,26 +23,28 @@ $(a);
 `````js filename=intro
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
+  let tmpClusterSSA_a /*:unknown*/ = undefined;
   const tmpIfTest$3 /*:boolean*/ = $ == null;
   const tmpObjLitVal$1 /*:object*/ = { e: $ };
   if (tmpIfTest$3) {
   } else {
-    $dotCall($, tmpObjLitVal$1, `e`, 1);
+    tmpClusterSSA_a = $dotCall($, tmpObjLitVal$1, `e`, 1);
   }
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
+      tmpClusterSSA_a = undefined;
       const tmpChainElementObject$1 /*:unknown*/ = tmpObjLitVal$1.e;
       const tmpIfTest$4 /*:boolean*/ = tmpChainElementObject$1 == null;
       if (tmpIfTest$4) {
       } else {
-        $dotCall(tmpChainElementObject$1, tmpObjLitVal$1, `e`, 1);
+        tmpClusterSSA_a = $dotCall(tmpChainElementObject$1, tmpObjLitVal$1, `e`, 1);
       }
     } else {
       break;
     }
   }
-  $(undefined);
+  $(tmpClusterSSA_a);
 } else {
   const a /*:object*/ = { a: 999, b: 1000 };
   $(a);
@@ -55,22 +57,24 @@ if (tmpIfTest) {
 
 `````js filename=intro
 if ($(1)) {
+  let tmpClusterSSA_a = undefined;
   const tmpIfTest$3 = $ == null;
   const tmpObjLitVal$1 = { e: $ };
   if (!tmpIfTest$3) {
-    $dotCall($, tmpObjLitVal$1, `e`, 1);
+    tmpClusterSSA_a = $dotCall($, tmpObjLitVal$1, `e`, 1);
   }
   while (true) {
     if ($(1)) {
+      tmpClusterSSA_a = undefined;
       const tmpChainElementObject$1 = tmpObjLitVal$1.e;
       if (!(tmpChainElementObject$1 == null)) {
-        $dotCall(tmpChainElementObject$1, tmpObjLitVal$1, `e`, 1);
+        tmpClusterSSA_a = $dotCall(tmpChainElementObject$1, tmpObjLitVal$1, `e`, 1);
       }
     } else {
       break;
     }
   }
-  $(undefined);
+  $(tmpClusterSSA_a);
 } else {
   $({ a: 999, b: 1000 });
 }
@@ -83,38 +87,40 @@ With rename=true
 `````js filename=intro
 const a = $( 1 );
 if (a) {
-  const b = $ == null;
-  const c = { e: $ };
-  if (b) {
+  let b = undefined;
+  const c = $ == null;
+  const d = { e: $ };
+  if (c) {
 
   }
   else {
-    $dotCall( $, c, "e", 1 );
+    b = $dotCall( $, d, "e", 1 );
   }
   while ($LOOP_UNROLL_10) {
-    const d = $( 1 );
-    if (d) {
-      const e = c.e;
-      const f = e == null;
-      if (f) {
+    const e = $( 1 );
+    if (e) {
+      b = undefined;
+      const f = d.e;
+      const g = f == null;
+      if (g) {
 
       }
       else {
-        $dotCall( e, c, "e", 1 );
+        b = $dotCall( f, d, "e", 1 );
       }
     }
     else {
       break;
     }
   }
-  $( undefined );
+  $( b );
 }
 else {
-  const g = {
+  const h = {
     a: 999,
     b: 1000,
   };
-  $( g );
+  $( h );
 }
 `````
 

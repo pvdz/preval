@@ -35,6 +35,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     if (a) {
       tmpAssignMemLhsObj$1 = a;
     } else {
+      a = 2;
     }
     const tmpAssignMemRhs /*:unknown*/ = tmpForInNext.value;
     tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
@@ -59,6 +60,8 @@ while (true) {
     let tmpAssignMemLhsObj$1 = 2;
     if (a) {
       tmpAssignMemLhsObj$1 = a;
+    } else {
+      a = 2;
     }
     tmpAssignMemLhsObj$1.x = tmpForInNext.value;
   }
@@ -90,6 +93,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     let h = 2;
     if (a) {
       h = a;
+    }
+    else {
+      a = 2;
     }
     const i = e.value;
     h.x = i;

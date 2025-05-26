@@ -23,27 +23,29 @@ $(a);
 `````js filename=intro
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
+  let tmpClusterSSA_a /*:unknown*/ = undefined;
   const b /*:object*/ = { x: 1 };
   const tmpChainElementCall /*:unknown*/ = $(b);
   const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
   if (tmpIfTest$1) {
   } else {
-    tmpChainElementCall.x;
+    tmpClusterSSA_a = tmpChainElementCall.x;
   }
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$2 /*:unknown*/ = $(1);
     if (tmpIfTest$2) {
+      tmpClusterSSA_a = undefined;
       const tmpChainElementCall$1 /*:unknown*/ = $(b);
       const tmpIfTest$4 /*:boolean*/ = tmpChainElementCall$1 == null;
       if (tmpIfTest$4) {
       } else {
-        tmpChainElementCall$1.x;
+        tmpClusterSSA_a = tmpChainElementCall$1.x;
       }
     } else {
       break;
     }
   }
-  $(undefined);
+  $(tmpClusterSSA_a);
 } else {
   const a /*:object*/ = { a: 999, b: 1000 };
   $(a);
@@ -56,22 +58,24 @@ if (tmpIfTest) {
 
 `````js filename=intro
 if ($(1)) {
+  let tmpClusterSSA_a = undefined;
   const b = { x: 1 };
   const tmpChainElementCall = $(b);
   if (!(tmpChainElementCall == null)) {
-    tmpChainElementCall.x;
+    tmpClusterSSA_a = tmpChainElementCall.x;
   }
   while (true) {
     if ($(1)) {
+      tmpClusterSSA_a = undefined;
       const tmpChainElementCall$1 = $(b);
       if (!(tmpChainElementCall$1 == null)) {
-        tmpChainElementCall$1.x;
+        tmpClusterSSA_a = tmpChainElementCall$1.x;
       }
     } else {
       break;
     }
   }
-  $(undefined);
+  $(tmpClusterSSA_a);
 } else {
   $({ a: 999, b: 1000 });
 }
@@ -84,39 +88,41 @@ With rename=true
 `````js filename=intro
 const a = $( 1 );
 if (a) {
-  const b = { x: 1 };
-  const c = $( b );
-  const d = c == null;
-  if (d) {
+  let b = undefined;
+  const c = { x: 1 };
+  const d = $( c );
+  const e = d == null;
+  if (e) {
 
   }
   else {
-    c.x;
+    b = d.x;
   }
   while ($LOOP_UNROLL_10) {
-    const e = $( 1 );
-    if (e) {
-      const f = $( b );
-      const g = f == null;
-      if (g) {
+    const f = $( 1 );
+    if (f) {
+      b = undefined;
+      const g = $( c );
+      const h = g == null;
+      if (h) {
 
       }
       else {
-        f.x;
+        b = g.x;
       }
     }
     else {
       break;
     }
   }
-  $( undefined );
+  $( b );
 }
 else {
-  const h = {
+  const i = {
     a: 999,
     b: 1000,
   };
-  $( h );
+  $( i );
 }
 `````
 

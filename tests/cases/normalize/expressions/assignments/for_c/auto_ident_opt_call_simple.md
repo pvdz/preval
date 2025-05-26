@@ -21,24 +21,26 @@ $(a);
 `````js filename=intro
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
+  let tmpClusterSSA_a /*:unknown*/ = undefined;
   const tmpIfTest$1 /*:boolean*/ = $ == null;
   if (tmpIfTest$1) {
   } else {
-    $(1);
+    tmpClusterSSA_a = $(1);
   }
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$2 /*:unknown*/ = $(1);
     if (tmpIfTest$2) {
+      tmpClusterSSA_a = undefined;
       const tmpIfTest$4 /*:boolean*/ = $ == null;
       if (tmpIfTest$4) {
       } else {
-        $(1);
+        tmpClusterSSA_a = $(1);
       }
     } else {
       break;
     }
   }
-  $(undefined);
+  $(tmpClusterSSA_a);
 } else {
   const a /*:object*/ = { a: 999, b: 1000 };
   $(a);
@@ -51,19 +53,21 @@ if (tmpIfTest) {
 
 `````js filename=intro
 if ($(1)) {
+  let tmpClusterSSA_a = undefined;
   if (!($ == null)) {
-    $(1);
+    tmpClusterSSA_a = $(1);
   }
   while (true) {
     if ($(1)) {
+      tmpClusterSSA_a = undefined;
       if (!($ == null)) {
-        $(1);
+        tmpClusterSSA_a = $(1);
       }
     } else {
       break;
     }
   }
-  $(undefined);
+  $(tmpClusterSSA_a);
 } else {
   $({ a: 999, b: 1000 });
 }
@@ -76,36 +80,38 @@ With rename=true
 `````js filename=intro
 const a = $( 1 );
 if (a) {
-  const b = $ == null;
-  if (b) {
+  let b = undefined;
+  const c = $ == null;
+  if (c) {
 
   }
   else {
-    $( 1 );
+    b = $( 1 );
   }
   while ($LOOP_UNROLL_10) {
-    const c = $( 1 );
-    if (c) {
-      const d = $ == null;
-      if (d) {
+    const d = $( 1 );
+    if (d) {
+      b = undefined;
+      const e = $ == null;
+      if (e) {
 
       }
       else {
-        $( 1 );
+        b = $( 1 );
       }
     }
     else {
       break;
     }
   }
-  $( undefined );
+  $( b );
 }
 else {
-  const e = {
+  const f = {
     a: 999,
     b: 1000,
   };
-  $( e );
+  $( f );
 }
 `````
 

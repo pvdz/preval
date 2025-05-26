@@ -272,7 +272,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         blockIds.push(+node.$p.pid);
         blockStack.push(node); // Do we assign node or node.body?
 
-        if (ENABLE_REF_TRACKING) openRefsOnBeforeProgram(refTrackState, node);
+        if (ENABLE_REF_TRACKING) openRefsOnBeforeProgram(refTrackState, node, fdata);
 
         node.$p.promoParent = null;
         node.$p.blockChain = '0,';
@@ -311,7 +311,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         loopStack.pop();
         ASSERT(loopStack.length === 0, 'stack should be empty now');
 
-        if (ENABLE_REF_TRACKING) openRefsOnAfterProgram(refTrackState, node);
+        if (ENABLE_REF_TRACKING) openRefsOnAfterProgram(refTrackState, node, fdata);
 
         if (node.$p.alwaysCompletes?.size) {
           vlog('Global always completes explicitly, never implicitly');

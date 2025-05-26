@@ -30,7 +30,7 @@ if (tmpIfTest) {
       break;
     }
   }
-  $(undefined);
+  $(1);
 } else {
   const a /*:object*/ = { a: 999, b: 1000 };
   $(a);
@@ -48,7 +48,7 @@ if ($(1)) {
       break;
     }
   }
-  $(undefined);
+  $(1);
 } else {
   $({ a: 999, b: 1000 });
 }
@@ -70,7 +70,7 @@ if (a) {
       break;
     }
   }
-  $( undefined );
+  $( 1 );
 }
 else {
   const c = {
@@ -111,6 +111,7 @@ $(a);
 ## Todos triggered
 
 
+- (todo) do we want to support ObjectExpression as expression statement in free loops?
 - (todo) objects in isFree check
 
 

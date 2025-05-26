@@ -22,13 +22,13 @@ $(a);
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   const tmpCalleeParam /*:unknown*/ = $(1);
-  let tmpClusterSSA_a$2 /*:unknown*/ = $(tmpCalleeParam);
-  if (tmpClusterSSA_a$2) {
+  let tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam);
+  if (tmpClusterSSA_a) {
     const tmpCalleeParam$1 /*:unknown*/ = $(1);
-    const tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam$1);
+    tmpClusterSSA_a = $(tmpCalleeParam$1);
     if (tmpClusterSSA_a) {
       const tmpCalleeParam$3 /*:unknown*/ = $(2);
-      $(tmpCalleeParam$3);
+      tmpClusterSSA_a = $(tmpCalleeParam$3);
     } else {
     }
   } else {
@@ -37,13 +37,13 @@ if (tmpIfTest) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       const tmpCalleeParam$2 /*:unknown*/ = $(1);
-      tmpClusterSSA_a$2 = $(tmpCalleeParam$2);
-      if (tmpClusterSSA_a$2) {
+      tmpClusterSSA_a = $(tmpCalleeParam$2);
+      if (tmpClusterSSA_a) {
         const tmpCalleeParam$4 /*:unknown*/ = $(1);
-        const tmpClusterSSA_a$1 /*:unknown*/ = $(tmpCalleeParam$4);
-        if (tmpClusterSSA_a$1) {
+        tmpClusterSSA_a = $(tmpCalleeParam$4);
+        if (tmpClusterSSA_a) {
           const tmpCalleeParam$6 /*:unknown*/ = $(2);
-          $(tmpCalleeParam$6);
+          tmpClusterSSA_a = $(tmpCalleeParam$6);
         } else {
         }
       } else {
@@ -52,7 +52,7 @@ if (tmpIfTest) {
       break;
     }
   }
-  $(tmpClusterSSA_a$2);
+  $(tmpClusterSSA_a);
 } else {
   const a /*:object*/ = { a: 999, b: 1000 };
   $(a);
@@ -65,25 +65,27 @@ if (tmpIfTest) {
 
 `````js filename=intro
 if ($(1)) {
-  let tmpClusterSSA_a$2 = $($(1));
-  if (tmpClusterSSA_a$2) {
-    if ($($(1))) {
-      $($(2));
+  let tmpClusterSSA_a = $($(1));
+  if (tmpClusterSSA_a) {
+    tmpClusterSSA_a = $($(1));
+    if (tmpClusterSSA_a) {
+      tmpClusterSSA_a = $($(2));
     }
   }
   while (true) {
     if ($(1)) {
-      tmpClusterSSA_a$2 = $($(1));
-      if (tmpClusterSSA_a$2) {
-        if ($($(1))) {
-          $($(2));
+      tmpClusterSSA_a = $($(1));
+      if (tmpClusterSSA_a) {
+        tmpClusterSSA_a = $($(1));
+        if (tmpClusterSSA_a) {
+          tmpClusterSSA_a = $($(2));
         }
       }
     } else {
       break;
     }
   }
-  $(tmpClusterSSA_a$2);
+  $(tmpClusterSSA_a);
 } else {
   $({ a: 999, b: 1000 });
 }
@@ -100,23 +102,23 @@ if (a) {
   let c = $( b );
   if (c) {
     const d = $( 1 );
-    const e = $( d );
-    if (e) {
-      const f = $( 2 );
-      $( f );
+    c = $( d );
+    if (c) {
+      const e = $( 2 );
+      c = $( e );
     }
   }
   while ($LOOP_UNROLL_10) {
-    const g = $( 1 );
-    if (g) {
-      const h = $( 1 );
-      c = $( h );
+    const f = $( 1 );
+    if (f) {
+      const g = $( 1 );
+      c = $( g );
       if (c) {
-        const i = $( 1 );
-        const j = $( i );
-        if (j) {
-          const k = $( 2 );
-          $( k );
+        const h = $( 1 );
+        c = $( h );
+        if (c) {
+          const i = $( 2 );
+          c = $( i );
         }
       }
     }
@@ -127,11 +129,11 @@ if (a) {
   $( c );
 }
 else {
-  const l = {
+  const j = {
     a: 999,
     b: 1000,
   };
-  $( l );
+  $( j );
 }
 `````
 

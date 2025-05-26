@@ -34,7 +34,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     let tmpAssignMemLhsObj$1 /*:unknown*/ /*ternaryConst*/ = undefined;
     if (a) {
       const tmpCalleeParam$5 /*:unknown*/ = $(2);
-      tmpAssignMemLhsObj$1 = $(tmpCalleeParam$5);
+      a = $(tmpCalleeParam$5);
+      tmpAssignMemLhsObj$1 = a;
     } else {
       tmpAssignMemLhsObj$1 = a;
     }
@@ -60,7 +61,8 @@ while (true) {
     a = $($(1));
     let tmpAssignMemLhsObj$1 = undefined;
     if (a) {
-      tmpAssignMemLhsObj$1 = $($(2));
+      a = $($(2));
+      tmpAssignMemLhsObj$1 = a;
     } else {
       tmpAssignMemLhsObj$1 = a;
     }
@@ -94,7 +96,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     let h = undefined;
     if (a) {
       const i = $( 2 );
-      h = $( i );
+      a = $( i );
+      h = a;
     }
     else {
       h = a;

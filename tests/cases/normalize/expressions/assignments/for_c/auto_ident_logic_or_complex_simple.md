@@ -23,11 +23,19 @@ const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   const tmpCalleeParam /*:unknown*/ = $(0);
   let tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam);
+  if (tmpClusterSSA_a) {
+  } else {
+    tmpClusterSSA_a = 2;
+  }
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       const tmpCalleeParam$1 /*:unknown*/ = $(0);
       tmpClusterSSA_a = $(tmpCalleeParam$1);
+      if (tmpClusterSSA_a) {
+      } else {
+        tmpClusterSSA_a = 2;
+      }
     } else {
       break;
     }
@@ -46,9 +54,15 @@ if (tmpIfTest) {
 `````js filename=intro
 if ($(1)) {
   let tmpClusterSSA_a = $($(0));
+  if (!tmpClusterSSA_a) {
+    tmpClusterSSA_a = 2;
+  }
   while (true) {
     if ($(1)) {
       tmpClusterSSA_a = $($(0));
+      if (!tmpClusterSSA_a) {
+        tmpClusterSSA_a = 2;
+      }
     } else {
       break;
     }
@@ -68,11 +82,23 @@ const a = $( 1 );
 if (a) {
   const b = $( 0 );
   let c = $( b );
+  if (c) {
+
+  }
+  else {
+    c = 2;
+  }
   while ($LOOP_UNROLL_10) {
     const d = $( 1 );
     if (d) {
       const e = $( 0 );
       c = $( e );
+      if (c) {
+
+      }
+      else {
+        c = 2;
+      }
     }
     else {
       break;

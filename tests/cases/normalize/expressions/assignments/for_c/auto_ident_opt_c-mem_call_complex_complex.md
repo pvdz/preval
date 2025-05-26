@@ -23,6 +23,7 @@ $(a);
 `````js filename=intro
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
+  let tmpClusterSSA_a /*:unknown*/ = undefined;
   const b /*:object*/ = { $: $ };
   const tmpChainElementCall /*:unknown*/ = $(b);
   const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
@@ -34,12 +35,13 @@ if (tmpIfTest) {
     if (tmpIfTest$3) {
     } else {
       const tmpCalleeParam /*:unknown*/ = $(1);
-      $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, tmpCalleeParam);
+      tmpClusterSSA_a = $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, tmpCalleeParam);
     }
   }
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$2 /*:unknown*/ = $(1);
     if (tmpIfTest$2) {
+      tmpClusterSSA_a = undefined;
       const tmpChainElementCall$1 /*:unknown*/ = $(b);
       const tmpIfTest$4 /*:boolean*/ = tmpChainElementCall$1 == null;
       if (tmpIfTest$4) {
@@ -50,14 +52,14 @@ if (tmpIfTest) {
         if (tmpIfTest$6) {
         } else {
           const tmpCalleeParam$1 /*:unknown*/ = $(1);
-          $dotCall(tmpChainElementObject$1, tmpChainElementCall$1, undefined, tmpCalleeParam$1);
+          tmpClusterSSA_a = $dotCall(tmpChainElementObject$1, tmpChainElementCall$1, undefined, tmpCalleeParam$1);
         }
       }
     } else {
       break;
     }
   }
-  $(undefined);
+  $(tmpClusterSSA_a);
 } else {
   const a /*:object*/ = { a: 999, b: 1000 };
   $(a);
@@ -70,30 +72,32 @@ if (tmpIfTest) {
 
 `````js filename=intro
 if ($(1)) {
+  let tmpClusterSSA_a = undefined;
   const b = { $: $ };
   const tmpChainElementCall = $(b);
   if (!(tmpChainElementCall == null)) {
     const tmpChainRootComputed = $(`\$`);
     const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
     if (!(tmpChainElementObject == null)) {
-      $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, $(1));
+      tmpClusterSSA_a = $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, $(1));
     }
   }
   while (true) {
     if ($(1)) {
+      tmpClusterSSA_a = undefined;
       const tmpChainElementCall$1 = $(b);
       if (!(tmpChainElementCall$1 == null)) {
         const tmpChainRootComputed$1 = $(`\$`);
         const tmpChainElementObject$1 = tmpChainElementCall$1[tmpChainRootComputed$1];
         if (!(tmpChainElementObject$1 == null)) {
-          $dotCall(tmpChainElementObject$1, tmpChainElementCall$1, undefined, $(1));
+          tmpClusterSSA_a = $dotCall(tmpChainElementObject$1, tmpChainElementCall$1, undefined, $(1));
         }
       }
     } else {
       break;
     }
   }
-  $(undefined);
+  $(tmpClusterSSA_a);
 } else {
   $({ a: 999, b: 1000 });
 }
@@ -106,42 +110,44 @@ With rename=true
 `````js filename=intro
 const a = $( 1 );
 if (a) {
-  const b = { $: $ };
-  const c = $( b );
-  const d = c == null;
-  if (d) {
+  let b = undefined;
+  const c = { $: $ };
+  const d = $( c );
+  const e = d == null;
+  if (e) {
 
   }
   else {
-    const e = $( "$" );
-    const f = c[ e ];
-    const g = f == null;
-    if (g) {
+    const f = $( "$" );
+    const g = d[ f ];
+    const h = g == null;
+    if (h) {
 
     }
     else {
-      const h = $( 1 );
-      $dotCall( f, c, undefined, h );
+      const i = $( 1 );
+      b = $dotCall( g, d, undefined, i );
     }
   }
   while ($LOOP_UNROLL_10) {
-    const i = $( 1 );
-    if (i) {
-      const j = $( b );
-      const k = j == null;
-      if (k) {
+    const j = $( 1 );
+    if (j) {
+      b = undefined;
+      const k = $( c );
+      const l = k == null;
+      if (l) {
 
       }
       else {
-        const l = $( "$" );
-        const m = j[ l ];
-        const n = m == null;
-        if (n) {
+        const m = $( "$" );
+        const n = k[ m ];
+        const o = n == null;
+        if (o) {
 
         }
         else {
-          const o = $( 1 );
-          $dotCall( m, j, undefined, o );
+          const p = $( 1 );
+          b = $dotCall( n, k, undefined, p );
         }
       }
     }
@@ -149,14 +155,14 @@ if (a) {
       break;
     }
   }
-  $( undefined );
+  $( b );
 }
 else {
-  const p = {
+  const q = {
     a: 999,
     b: 1000,
   };
-  $( p );
+  $( q );
 }
 `````
 

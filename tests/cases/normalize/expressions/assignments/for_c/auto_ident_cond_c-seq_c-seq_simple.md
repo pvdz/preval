@@ -27,7 +27,7 @@ if (tmpIfTest) {
     a = $(60);
   } else {
     const tmpCalleeParam /*:unknown*/ = $(100);
-    $(tmpCalleeParam);
+    a = $(tmpCalleeParam);
   }
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$2 /*:unknown*/ = $(1);
@@ -37,7 +37,7 @@ if (tmpIfTest) {
         a = $(60);
       } else {
         const tmpCalleeParam$1 /*:unknown*/ = $(100);
-        $(tmpCalleeParam$1);
+        a = $(tmpCalleeParam$1);
       }
     } else {
       break;
@@ -59,14 +59,14 @@ if ($(1)) {
   if ($(30)) {
     a = $(60);
   } else {
-    $($(100));
+    a = $($(100));
   }
   while (true) {
     if ($(1)) {
       if ($(30)) {
         a = $(60);
       } else {
-        $($(100));
+        a = $($(100));
       }
     } else {
       break;
@@ -95,7 +95,7 @@ if (b) {
   }
   else {
     const d = $( 100 );
-    $( d );
+    a = $( d );
   }
   while ($LOOP_UNROLL_10) {
     const e = $( 1 );
@@ -106,7 +106,7 @@ if (b) {
       }
       else {
         const g = $( 100 );
-        $( g );
+        a = $( g );
       }
     }
     else {

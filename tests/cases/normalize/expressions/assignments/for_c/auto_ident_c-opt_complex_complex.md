@@ -23,29 +23,31 @@ $(a);
 `````js filename=intro
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
+  let tmpClusterSSA_a /*:unknown*/ = undefined;
   const b /*:object*/ = { x: 1 };
   const tmpChainElementCall /*:unknown*/ = $(b);
   const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
   if (tmpIfTest$1) {
   } else {
     const tmpChainRootComputed /*:unknown*/ = $(`x`);
-    tmpChainElementCall[tmpChainRootComputed];
+    tmpClusterSSA_a = tmpChainElementCall[tmpChainRootComputed];
   }
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$2 /*:unknown*/ = $(1);
     if (tmpIfTest$2) {
+      tmpClusterSSA_a = undefined;
       const tmpChainElementCall$1 /*:unknown*/ = $(b);
       const tmpIfTest$4 /*:boolean*/ = tmpChainElementCall$1 == null;
       if (tmpIfTest$4) {
       } else {
         const tmpChainRootComputed$1 /*:unknown*/ = $(`x`);
-        tmpChainElementCall$1[tmpChainRootComputed$1];
+        tmpClusterSSA_a = tmpChainElementCall$1[tmpChainRootComputed$1];
       }
     } else {
       break;
     }
   }
-  $(undefined);
+  $(tmpClusterSSA_a);
 } else {
   const a /*:object*/ = { a: 999, b: 1000 };
   $(a);
@@ -58,24 +60,26 @@ if (tmpIfTest) {
 
 `````js filename=intro
 if ($(1)) {
+  let tmpClusterSSA_a = undefined;
   const b = { x: 1 };
   const tmpChainElementCall = $(b);
   if (!(tmpChainElementCall == null)) {
     const tmpChainRootComputed = $(`x`);
-    tmpChainElementCall[tmpChainRootComputed];
+    tmpClusterSSA_a = tmpChainElementCall[tmpChainRootComputed];
   }
   while (true) {
     if ($(1)) {
+      tmpClusterSSA_a = undefined;
       const tmpChainElementCall$1 = $(b);
       if (!(tmpChainElementCall$1 == null)) {
         const tmpChainRootComputed$1 = $(`x`);
-        tmpChainElementCall$1[tmpChainRootComputed$1];
+        tmpClusterSSA_a = tmpChainElementCall$1[tmpChainRootComputed$1];
       }
     } else {
       break;
     }
   }
-  $(undefined);
+  $(tmpClusterSSA_a);
 } else {
   $({ a: 999, b: 1000 });
 }
@@ -88,41 +92,43 @@ With rename=true
 `````js filename=intro
 const a = $( 1 );
 if (a) {
-  const b = { x: 1 };
-  const c = $( b );
-  const d = c == null;
-  if (d) {
+  let b = undefined;
+  const c = { x: 1 };
+  const d = $( c );
+  const e = d == null;
+  if (e) {
 
   }
   else {
-    const e = $( "x" );
-    c[ e ];
+    const f = $( "x" );
+    b = d[ f ];
   }
   while ($LOOP_UNROLL_10) {
-    const f = $( 1 );
-    if (f) {
-      const g = $( b );
-      const h = g == null;
-      if (h) {
+    const g = $( 1 );
+    if (g) {
+      b = undefined;
+      const h = $( c );
+      const i = h == null;
+      if (i) {
 
       }
       else {
-        const i = $( "x" );
-        g[ i ];
+        const j = $( "x" );
+        b = h[ j ];
       }
     }
     else {
       break;
     }
   }
-  $( undefined );
+  $( b );
 }
 else {
-  const j = {
+  const k = {
     a: 999,
     b: 1000,
   };
-  $( j );
+  $( k );
 }
 `````
 

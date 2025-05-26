@@ -1,11 +1,9 @@
-//import Prettier from 'prettier';
 import Prettier from '../lib/prettier.mjs';
 import { printer, setPrintPids, setPrintVarTyping } from '../lib/printer.mjs';
 import walk from '../lib/walk.mjs';
 
 import { VERBOSE_TRACING, setVerboseTracing, YELLOW, ORANGE_DIM, PURPLE, RESET, DIM, ORANGE, GREEN, BLUE } from './constants.mjs';
 import { SYMBOL_MAX_LOOP_UNROLL } from './symbols_preval.mjs';
-import { $p } from './$p.mjs';
 
 /**
  * Allow the use of risky rules? These are rules that are not completely sound but should be okay in normal environments.
@@ -271,13 +269,14 @@ export function after(node, parentNode) {
   }
 }
 
-export function currentState(fdata, suffix, withTyping=false, fdataForTyping) {
+export function currentState(fdata, suffix, withTyping=false, fdataForTyping, force=false, withPids = false) {
   ASSERT((typeof fdata === 'object' && fdata) || typeof fdata === 'string', 'arg type bad', fdata);
   ASSERT(!withTyping || fdataForTyping, 'when requesting typing you have to set fdata as teh last arg but you didnt');
   //ASSERT(suffix !== undefined, 'give me something');
-  if (VERBOSE_TRACING) {
+  if (VERBOSE_TRACING || force) {
+    if (withTyping) setPrintVarTyping(true, fdataForTyping); // Handy typing details
+    if (withPids) setPrintPids(true); // TODO: huh why is this ignored
     try {
-      if (withTyping) setPrintVarTyping(true, fdataForTyping); // Handy typing details
       let code;
       try {
         if (typeof fdata === 'string') {
@@ -299,7 +298,6 @@ export function currentState(fdata, suffix, withTyping=false, fdataForTyping) {
         console.log('tmat failed...');
         ASSERT(false, 'dont throw while tmat the ast', e);
       }
-      if (withTyping) setPrintVarTyping(false);
       console.log('\n'+PURPLE+'## Current state'+RESET+' '+suffix+'\n--------------\n' + code + '\n--------------\n');
     } catch (e) {
       console.log('*gasp* printing ast failed');
@@ -308,7 +306,35 @@ export function currentState(fdata, suffix, withTyping=false, fdataForTyping) {
       console.log('*gasp* printing ast failed');
       ASSERT(false, 'dont throw while printing the ast', e);
     }
+    if (withTyping) setPrintVarTyping(false);
+    if (withPids) setPrintPids(false);
   }
+}
+
+export function createOpenRefsState(globallyUniqueNamingRegistry) {
+  const arr = [];
+  let maxlen = 10;
+  Array.from(globallyUniqueNamingRegistry.entries()).map(([name, meta]) => {
+    if (meta.isImplicitGlobal || meta.isGlobal || meta.isBuiltin) return;
+    arr.push(`${name}:`);
+    // Note: meta.reOrder is created in phase2
+    (meta.reads || []).concat(meta.writes || []).sort(({ node: { $p: { pid: a } } }, { node: { $p: { pid: b } } }) =>
+      +a < +b ? -1 : +a > +b ? 1 : 0,
+    ).forEach(rw => {
+      maxlen = Math.max(maxlen, rw.node.name.length);
+      arr.push([
+          '  - ' + rw.action[0] + (' @' + rw.node.$p.pid).padEnd(maxlen - 2, ' ') + ' ',
+          rw.action === 'read' ? (rw.reachesWrites.size ? ' | ' + Array.from(rw.reachesWrites).map(write => +write.node.$p.pid).sort((a,b)=>a-b) : ' | none (unreachable?)').padEnd(10, ' ') : ' | '.padEnd(13, '#'),
+          rw.action === 'write' ? (rw.reachedByReads.size ? ' | ' + Array.from(rw.reachedByReads).map(read => +read.node.$p.pid).sort((a,b)=>a-b) : ' | not read').padEnd(14, ' ') : '',
+          rw.action === 'write' ? (rw.reachesWrites.size ? ' | ' + Array.from(rw.reachesWrites).map(write => +write.node.$p.pid).sort((a,b)=>a-b) : ' | none').padEnd(17, ' ') : '',
+          rw.action === 'write' ? (rw.reachedByWrites.size ? ' | ' + Array.from(rw.reachedByWrites).map(write => +write.node.$p.pid).sort((a,b)=>a-b) : ' | none') : '',
+        ].filter(Boolean).join('').trimEnd()
+      );
+    });
+    arr.push('');
+  });
+  arr.unshift('    ' + (' '.repeat(maxlen)) + ' | reads      | read by     | overWrites     | overwritten by');
+  return arr.join('\n');
 }
 
 export function assertNoDupeNodes(rootNode, prop, force = false, ...desc) {

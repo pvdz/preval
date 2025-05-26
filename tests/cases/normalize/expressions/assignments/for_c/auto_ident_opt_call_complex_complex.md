@@ -21,28 +21,30 @@ $(a);
 `````js filename=intro
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
+  let tmpClusterSSA_a /*:unknown*/ = undefined;
   const tmpChainElementCall /*:unknown*/ = $($);
   const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
   if (tmpIfTest$1) {
   } else {
     const tmpCalleeParam /*:unknown*/ = $(1);
-    $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam);
+    tmpClusterSSA_a = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam);
   }
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$2 /*:unknown*/ = $(1);
     if (tmpIfTest$2) {
+      tmpClusterSSA_a = undefined;
       const tmpChainElementCall$1 /*:unknown*/ = $($);
       const tmpIfTest$4 /*:boolean*/ = tmpChainElementCall$1 == null;
       if (tmpIfTest$4) {
       } else {
         const tmpCalleeParam$1 /*:unknown*/ = $(1);
-        $dotCall(tmpChainElementCall$1, $, undefined, tmpCalleeParam$1);
+        tmpClusterSSA_a = $dotCall(tmpChainElementCall$1, $, undefined, tmpCalleeParam$1);
       }
     } else {
       break;
     }
   }
-  $(undefined);
+  $(tmpClusterSSA_a);
 } else {
   const a /*:object*/ = { a: 999, b: 1000 };
   $(a);
@@ -55,21 +57,23 @@ if (tmpIfTest) {
 
 `````js filename=intro
 if ($(1)) {
+  let tmpClusterSSA_a = undefined;
   const tmpChainElementCall = $($);
   if (!(tmpChainElementCall == null)) {
-    $dotCall(tmpChainElementCall, $, undefined, $(1));
+    tmpClusterSSA_a = $dotCall(tmpChainElementCall, $, undefined, $(1));
   }
   while (true) {
     if ($(1)) {
+      tmpClusterSSA_a = undefined;
       const tmpChainElementCall$1 = $($);
       if (!(tmpChainElementCall$1 == null)) {
-        $dotCall(tmpChainElementCall$1, $, undefined, $(1));
+        tmpClusterSSA_a = $dotCall(tmpChainElementCall$1, $, undefined, $(1));
       }
     } else {
       break;
     }
   }
-  $(undefined);
+  $(tmpClusterSSA_a);
 } else {
   $({ a: 999, b: 1000 });
 }
@@ -82,40 +86,42 @@ With rename=true
 `````js filename=intro
 const a = $( 1 );
 if (a) {
-  const b = $( $ );
-  const c = b == null;
-  if (c) {
+  let b = undefined;
+  const c = $( $ );
+  const d = c == null;
+  if (d) {
 
   }
   else {
-    const d = $( 1 );
-    $dotCall( b, $, undefined, d );
+    const e = $( 1 );
+    b = $dotCall( c, $, undefined, e );
   }
   while ($LOOP_UNROLL_10) {
-    const e = $( 1 );
-    if (e) {
-      const f = $( $ );
-      const g = f == null;
-      if (g) {
+    const f = $( 1 );
+    if (f) {
+      b = undefined;
+      const g = $( $ );
+      const h = g == null;
+      if (h) {
 
       }
       else {
-        const h = $( 1 );
-        $dotCall( f, $, undefined, h );
+        const i = $( 1 );
+        b = $dotCall( g, $, undefined, i );
       }
     }
     else {
       break;
     }
   }
-  $( undefined );
+  $( b );
 }
 else {
-  const i = {
+  const j = {
     a: 999,
     b: 1000,
   };
-  $( i );
+  $( j );
 }
 `````
 

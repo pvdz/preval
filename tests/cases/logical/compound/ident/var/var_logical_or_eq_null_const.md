@@ -19,13 +19,13 @@ $(c);
 
 
 `````js filename=intro
-const c /*:unknown*/ = $(null);
-const tmpIfTest /*:boolean*/ = c == null;
+const a /*:unknown*/ = $(null);
+const tmpIfTest /*:boolean*/ = a == null;
 if (tmpIfTest) {
   $(`b`);
-  throw `Preval: Assignment to constant variable: \`a = tmpNestedComplexRhs;\``;
+  throw `Preval: Cannot write to const binding \`a\``;
 } else {
-  $(c);
+  $(a);
 }
 `````
 
@@ -34,12 +34,12 @@ if (tmpIfTest) {
 (This ought to be the final result)
 
 `````js filename=intro
-const c = $(null);
-if (c == null) {
+const a = $(null);
+if (a == null) {
   $(`b`);
-  throw `Preval: Assignment to constant variable: \`a = tmpNestedComplexRhs;\``;
+  throw `Preval: Cannot write to const binding \`a\``;
 } else {
-  $(c);
+  $(a);
 }
 `````
 
@@ -52,7 +52,7 @@ const a = $( null );
 const b = a == null;
 if (b) {
   $( "b" );
-  throw "Preval: Assignment to constant variable: `a = tmpNestedComplexRhs;`";
+  throw "Preval: Cannot write to const binding `a`";
 }
 else {
   $( a );

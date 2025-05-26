@@ -70,6 +70,7 @@ if (tmpIfTest) {
 - (todo) Deal with array spreads in arr mutation?
 - (todo) can we always safely clone ident refs in this case?
 - (todo) support array reads statement type ExpressionStatement
+- (todo) support array reads statement type VarStatement
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
 
 
@@ -85,7 +86,7 @@ x
 
 
 Should call `$` with:
- - eval returned: ('<crash[ <ref> is not defined ]>')
+ - eval returned: ('<crash[ Cannot set property x of #<Object> which has only a getter ]>')
 
 Pre normalization calls: Same
 

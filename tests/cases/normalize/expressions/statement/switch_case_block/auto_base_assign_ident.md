@@ -30,8 +30,8 @@ const tmpBinBothRhs /*:unknown*/ = $(1);
 const tmpIfTest /*:boolean*/ = tmpBinBothLhs === tmpBinBothRhs;
 const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
-  const b /*:unknown*/ = $(2);
-  $(a, b);
+  const tmpClusterSSA_b /*:unknown*/ = $(2);
+  $(a, tmpClusterSSA_b);
 } else {
   $(a, 1);
 }

@@ -20,14 +20,14 @@ $(f());
 
 
 `````js filename=intro
-const tmpBindingPatternObjRoot /*:unknown*/ = $(`pass`);
-let tmpObjPatternCrashTest /*:boolean*/ = tmpBindingPatternObjRoot === undefined;
-if (tmpObjPatternCrashTest) {
+const tmpClusterSSA_tmpBindingPatternObjRoot /*:unknown*/ = $(`pass`);
+let tmpClusterSSA_tmpObjPatternCrashTest /*:boolean*/ = tmpClusterSSA_tmpBindingPatternObjRoot === undefined;
+if (tmpClusterSSA_tmpObjPatternCrashTest) {
 } else {
-  tmpObjPatternCrashTest = tmpBindingPatternObjRoot === null;
+  tmpClusterSSA_tmpObjPatternCrashTest = tmpClusterSSA_tmpBindingPatternObjRoot === null;
 }
-if (tmpObjPatternCrashTest) {
-  tmpBindingPatternObjRoot.cannotDestructureThis;
+if (tmpClusterSSA_tmpObjPatternCrashTest) {
+  tmpClusterSSA_tmpBindingPatternObjRoot.cannotDestructureThis;
   $(`ok`);
 } else {
   $(`ok`);
@@ -39,13 +39,13 @@ if (tmpObjPatternCrashTest) {
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpBindingPatternObjRoot = $(`pass`);
-let tmpObjPatternCrashTest = tmpBindingPatternObjRoot === undefined;
-if (!tmpObjPatternCrashTest) {
-  tmpObjPatternCrashTest = tmpBindingPatternObjRoot === null;
+const tmpClusterSSA_tmpBindingPatternObjRoot = $(`pass`);
+let tmpClusterSSA_tmpObjPatternCrashTest = tmpClusterSSA_tmpBindingPatternObjRoot === undefined;
+if (!tmpClusterSSA_tmpObjPatternCrashTest) {
+  tmpClusterSSA_tmpObjPatternCrashTest = tmpClusterSSA_tmpBindingPatternObjRoot === null;
 }
-if (tmpObjPatternCrashTest) {
-  tmpBindingPatternObjRoot.cannotDestructureThis;
+if (tmpClusterSSA_tmpObjPatternCrashTest) {
+  tmpClusterSSA_tmpBindingPatternObjRoot.cannotDestructureThis;
   $(`ok`);
 } else {
   $(`ok`);

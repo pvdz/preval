@@ -26,9 +26,9 @@ $(1);
 $(2);
 const tmpObjLitVal /*:unknown*/ = $(3);
 const tmpObjLitVal$1 /*:unknown*/ = $(4);
-const tmpNestedAssignObjPatternRhs /*:object*/ = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
+const xyz /*:object*/ = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(tmpNestedAssignObjPatternRhs);
+  $(xyz);
   $(1);
 }
 `````
@@ -42,9 +42,9 @@ $(1);
 $(2);
 const tmpObjLitVal = $(3);
 const tmpObjLitVal$1 = $(4);
-const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
+const xyz = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
 while (true) {
-  $(tmpNestedAssignObjPatternRhs);
+  $(xyz);
   $(1);
 }
 `````

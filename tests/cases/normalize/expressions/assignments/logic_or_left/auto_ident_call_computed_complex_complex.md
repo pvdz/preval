@@ -30,8 +30,8 @@ if (a) {
   $(a);
   $(a);
 } else {
-  const tmpCalleeParam /*:unknown*/ = $(100);
-  $(tmpCalleeParam);
+  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
+  $(tmpClusterSSA_tmpCalleeParam);
   $(a);
 }
 `````

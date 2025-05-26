@@ -36,10 +36,10 @@ if (tmpUpdInc) {
   const tmpUpdObj$1 /*:unknown*/ = $(tmpCalleeParam$3);
   const tmpUpdProp$1 /*:unknown*/ = tmpUpdObj$1.x;
   const tmpUpdNum$1 /*:number*/ = $coerce(tmpUpdProp$1, `number`);
-  const tmpUpdInc$1 /*:number*/ = tmpUpdNum$1 + 1;
-  tmpUpdObj$1.x = tmpUpdInc$1;
-  $(tmpUpdInc$1);
-  $(tmpUpdInc$1, b);
+  const tmpUpdInc$4 /*:number*/ = tmpUpdNum$1 + 1;
+  tmpUpdObj$1.x = tmpUpdInc$4;
+  $(tmpUpdInc$4);
+  $(tmpUpdInc$4, b);
 }
 `````
 
@@ -57,10 +57,10 @@ if (tmpUpdInc) {
   $(tmpUpdInc, b);
 } else {
   const tmpUpdObj$1 = $($(b));
-  const tmpUpdInc$1 = $coerce(tmpUpdObj$1.x, `number`) + 1;
-  tmpUpdObj$1.x = tmpUpdInc$1;
-  $(tmpUpdInc$1);
-  $(tmpUpdInc$1, b);
+  const tmpUpdInc$4 = $coerce(tmpUpdObj$1.x, `number`) + 1;
+  tmpUpdObj$1.x = tmpUpdInc$4;
+  $(tmpUpdInc$4);
+  $(tmpUpdInc$4, b);
 }
 `````
 

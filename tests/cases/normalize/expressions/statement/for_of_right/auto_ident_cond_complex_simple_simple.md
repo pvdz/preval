@@ -25,8 +25,8 @@ if (tmpIfTest) {
   tmpForOfGenNext = $forOf(2);
 } else {
   const tmpCalleeParam$1 /*:unknown*/ = $(100);
-  const tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$1);
-  tmpForOfGenNext = $forOf(tmpCalleeParam);
+  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$1);
+  tmpForOfGenNext = $forOf(tmpClusterSSA_tmpCalleeParam);
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();

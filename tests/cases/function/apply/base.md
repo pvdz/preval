@@ -79,6 +79,7 @@ $(tmpCalleeParam);
 
 
 - (todo) access object property that also exists on prototype? $function_apply
+- (todo) support array reads statement type VarStatement
 
 
 ## Globals

@@ -20,14 +20,14 @@ $(f([undefined, 20, 30], 200));
 
 
 `````js filename=intro
-const tmpArrPatternStep /*:unknown*/ = $(`fail`);
-let tmpObjPatternCrashTest /*:boolean*/ = tmpArrPatternStep === undefined;
-if (tmpObjPatternCrashTest) {
+const tmpClusterSSA_tmpArrPatternStep /*:unknown*/ = $(`fail`);
+let tmpClusterSSA_tmpObjPatternCrashTest /*:boolean*/ = tmpClusterSSA_tmpArrPatternStep === undefined;
+if (tmpClusterSSA_tmpObjPatternCrashTest) {
 } else {
-  tmpObjPatternCrashTest = tmpArrPatternStep === null;
+  tmpClusterSSA_tmpObjPatternCrashTest = tmpClusterSSA_tmpArrPatternStep === null;
 }
-if (tmpObjPatternCrashTest) {
-  tmpArrPatternStep.cannotDestructureThis;
+if (tmpClusterSSA_tmpObjPatternCrashTest) {
+  tmpClusterSSA_tmpArrPatternStep.cannotDestructureThis;
   $(`ok`);
 } else {
   $(`ok`);
@@ -39,13 +39,13 @@ if (tmpObjPatternCrashTest) {
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpArrPatternStep = $(`fail`);
-let tmpObjPatternCrashTest = tmpArrPatternStep === undefined;
-if (!tmpObjPatternCrashTest) {
-  tmpObjPatternCrashTest = tmpArrPatternStep === null;
+const tmpClusterSSA_tmpArrPatternStep = $(`fail`);
+let tmpClusterSSA_tmpObjPatternCrashTest = tmpClusterSSA_tmpArrPatternStep === undefined;
+if (!tmpClusterSSA_tmpObjPatternCrashTest) {
+  tmpClusterSSA_tmpObjPatternCrashTest = tmpClusterSSA_tmpArrPatternStep === null;
 }
-if (tmpObjPatternCrashTest) {
-  tmpArrPatternStep.cannotDestructureThis;
+if (tmpClusterSSA_tmpObjPatternCrashTest) {
+  tmpClusterSSA_tmpArrPatternStep.cannotDestructureThis;
   $(`ok`);
 } else {
   $(`ok`);
@@ -123,6 +123,7 @@ $(tmpCalleeParam$1);
 
 - (todo) Deal with array spreads in arr mutation?
 - (todo) support array reads statement type ExpressionStatement
+- (todo) support array reads statement type VarStatement
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
 
 

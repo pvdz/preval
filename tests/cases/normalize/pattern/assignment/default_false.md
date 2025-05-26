@@ -26,8 +26,8 @@ $(b);
 const tmpObjLitVal /*:unknown*/ = $(`prop`);
 const tmpIfTest /*:boolean*/ = tmpObjLitVal === undefined;
 if (tmpIfTest) {
-  const b /*:unknown*/ = $(`default`);
-  $(b);
+  const tmpClusterSSA_b /*:unknown*/ = $(`default`);
+  $(tmpClusterSSA_b);
 } else {
   $(tmpObjLitVal);
 }

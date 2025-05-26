@@ -21,8 +21,8 @@ $(a);
 `````js filename=intro
 const tmpUnaryArg /*:unknown*/ = $(100);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const xyz /*:boolean*/ = !tmpUnaryArg;
-  $(xyz);
+  const a /*:boolean*/ = !tmpUnaryArg;
+  $(a);
   $(1);
 }
 `````

@@ -59,8 +59,7 @@ $(chr);
 ## Todos triggered
 
 
-- (todo) free with zero args, we can eliminate this?
-- (todo) type trackeed tricks can possibly support static $Math_floor
+None
 
 
 ## Globals

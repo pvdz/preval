@@ -33,8 +33,8 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
   } else {
     const tmpCalleeParam$1 /*:unknown*/ = $(1);
-    const tmpCalleeParam /*:unknown*/ = $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, tmpCalleeParam$1);
-    $coerce(tmpCalleeParam, `string`);
+    const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, tmpCalleeParam$1);
+    $coerce(tmpClusterSSA_tmpCalleeParam, `string`);
   }
 }
 const a /*:object*/ = { a: 999, b: 1000 };

@@ -25,9 +25,9 @@ $(a, b);
 const b /*:object*/ = { c: 1 };
 const tmpCompObj /*:unknown*/ = $(b);
 const tmpCalleeParam /*:unknown*/ = $(`c`);
-const a /*:unknown*/ = tmpCompObj[tmpCalleeParam];
+const tmpClusterSSA_a /*:unknown*/ = tmpCompObj[tmpCalleeParam];
 $(undefined);
-$(a, b);
+$(tmpClusterSSA_a, b);
 `````
 
 
@@ -38,9 +38,9 @@ $(a, b);
 const b = { c: 1 };
 const tmpCompObj = $(b);
 const tmpCalleeParam = $(`c`);
-const a = tmpCompObj[tmpCalleeParam];
+const tmpClusterSSA_a = tmpCompObj[tmpCalleeParam];
 $(undefined);
-$(a, b);
+$(tmpClusterSSA_a, b);
 `````
 
 

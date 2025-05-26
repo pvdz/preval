@@ -38,8 +38,8 @@ if (tmpIfTest) {
     $(undefined);
   } else {
     const tmpChainRootComputed$1 /*:unknown*/ = $(`y`);
-    const tmpCalleeParam /*:unknown*/ = tmpChainElementObject[tmpChainRootComputed$1];
-    $(tmpCalleeParam);
+    const tmpClusterSSA_tmpReturnArg /*:unknown*/ = tmpChainElementObject[tmpChainRootComputed$1];
+    $(tmpClusterSSA_tmpReturnArg);
   }
 }
 const a /*:object*/ = { a: 999, b: 1000 };

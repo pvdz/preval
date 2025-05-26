@@ -46,8 +46,8 @@ const tmpAssignMemLhsObj /*:object*/ = {
     const v /*:unknown*/ = $$0;
     debugger;
     const tmpBinBothLhs /*:unknown*/ = s;
-    const tmpStringConcatL /*:string*/ = $coerce(v, `plustr`);
-    const tmpBinBothRhs /*:string*/ = `write[${tmpStringConcatL}];`;
+    const tmpStringConcatL$1 /*:string*/ = $coerce(v, `plustr`);
+    const tmpBinBothRhs /*:string*/ = `write[${tmpStringConcatL$1}];`;
     s = tmpBinBothLhs + tmpBinBothRhs;
     a = a + v;
     return a;
@@ -73,8 +73,8 @@ const tmpAssignMemLhsObj = {
   },
   set x(v) {
     const tmpBinBothLhs = s;
-    const tmpStringConcatL = $coerce(v, `plustr`);
-    s = tmpBinBothLhs + `write[${tmpStringConcatL}];`;
+    const tmpStringConcatL$1 = $coerce(v, `plustr`);
+    s = tmpBinBothLhs + `write[${tmpStringConcatL$1}];`;
     a = a + v;
     return a;
   },

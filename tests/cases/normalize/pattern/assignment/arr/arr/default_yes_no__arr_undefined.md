@@ -19,8 +19,8 @@ $('ok');
 
 `````js filename=intro
 const tmpCalleeParam /*:array*/ = [`pass2`];
-const tmpArrPatternStep /*:unknown*/ = $(tmpCalleeParam);
-[...tmpArrPatternStep];
+const tmpClusterSSA_tmpArrPatternStep /*:unknown*/ = $(tmpCalleeParam);
+[...tmpClusterSSA_tmpArrPatternStep];
 $(`ok`);
 `````
 
@@ -29,8 +29,8 @@ $(`ok`);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpArrPatternStep = $([`pass2`]);
-[...tmpArrPatternStep];
+const tmpClusterSSA_tmpArrPatternStep = $([`pass2`]);
+[...tmpClusterSSA_tmpArrPatternStep];
 $(`ok`);
 `````
 

@@ -74,7 +74,7 @@ $(a, x);
 
 
 - (todo) do we want to support ObjectExpression as expression statement in free loops?
-- (todo) do we want to support UnaryExpression as expression statement in free loops?
+- (todo) objects in isFree check
 
 
 ## Globals

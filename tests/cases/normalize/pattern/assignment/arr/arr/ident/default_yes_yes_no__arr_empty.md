@@ -19,8 +19,8 @@ $(x);
 
 `````js filename=intro
 const tmpCalleeParam /*:array*/ = [`pass2`];
-const tmpArrPatternStep /*:unknown*/ = $(tmpCalleeParam);
-const tmpArrPatternSplat$1 /*:array*/ = [...tmpArrPatternStep];
+const tmpSSA_tmpArrPatternStep /*:unknown*/ = $(tmpCalleeParam);
+const tmpArrPatternSplat$1 /*:array*/ = [...tmpSSA_tmpArrPatternStep];
 const tmpAPBD$1 /*:unknown*/ = tmpArrPatternSplat$1[0];
 const tmpIfTest$1 /*:boolean*/ = tmpAPBD$1 === undefined;
 if (tmpIfTest$1) {
@@ -37,8 +37,8 @@ if (tmpIfTest$1) {
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpArrPatternStep = $([`pass2`]);
-const tmpAPBD$1 = [...tmpArrPatternStep][0];
+const tmpSSA_tmpArrPatternStep = $([`pass2`]);
+const tmpAPBD$1 = [...tmpSSA_tmpArrPatternStep][0];
 if (tmpAPBD$1 === undefined) {
   x = $(`fail`);
   $(x);
@@ -119,7 +119,7 @@ x
 
 Should call `$` with:
  - 1: ['pass2']
- - eval returned: ('<crash[ <ref> is not defined ]>')
+ - eval returned: ('<crash[ Cannot set property x of #<Object> which has only a getter ]>')
 
 Pre normalization calls: Same
 

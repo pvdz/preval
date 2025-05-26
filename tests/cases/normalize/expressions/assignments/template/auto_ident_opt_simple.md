@@ -72,7 +72,7 @@ $(a);
 ## Todos triggered
 
 
-- (todo) free with zero args, we can eliminate this?
+None
 
 
 ## Globals

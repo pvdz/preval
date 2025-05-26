@@ -36,8 +36,8 @@ if (tmpIfTest) {
     a = $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, tmpCalleeParam$3);
   }
 }
-const tmpBinBothRhs /*:string*/ = $coerce(a, `string`);
-const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
+const tmpStringConcatL /*:string*/ = $coerce(a, `string`);
+const tmpCalleeParam /*:string*/ = `before  ${tmpStringConcatL}  after`;
 $(tmpCalleeParam);
 $(a);
 `````

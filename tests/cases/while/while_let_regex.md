@@ -21,8 +21,8 @@ while (x) {
 
 `````js filename=intro
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const x /*:regex*/ = new $regex_constructor(`foo`, ``);
-  $(x);
+  const tmpClusterSSA_x /*:regex*/ = new $regex_constructor(`foo`, ``);
+  $(tmpClusterSSA_x);
 }
 `````
 

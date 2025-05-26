@@ -26,8 +26,8 @@ $(r);
 
 
 `````js filename=intro
-const r /*:unknown*/ = $(10);
-$(r);
+const y /*:unknown*/ = $(10);
+$(y);
 `````
 
 

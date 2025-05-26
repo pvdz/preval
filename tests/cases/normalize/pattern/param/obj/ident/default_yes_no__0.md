@@ -23,8 +23,8 @@ $(f(0, 10));
 const tmpOPBD /*:unknown*/ = $Number_prototype.x;
 const tmpIfTest /*:boolean*/ = tmpOPBD === undefined;
 if (tmpIfTest) {
-  const tmpCalleeParam /*:unknown*/ = $(`pass`);
-  $(tmpCalleeParam);
+  const tmpClusterSSA_x /*:unknown*/ = $(`pass`);
+  $(tmpClusterSSA_x);
 } else {
   $(tmpOPBD);
 }

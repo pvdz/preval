@@ -20,8 +20,8 @@ $(a);
 
 
 `````js filename=intro
-const tmpCompObj /*:unknown*/ = $(2);
-tmpCompObj.a;
+const tmpClusterSSA_tmpCompObj /*:unknown*/ = $(2);
+tmpClusterSSA_tmpCompObj.a;
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````

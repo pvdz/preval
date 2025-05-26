@@ -22,14 +22,14 @@ $(a);
 
 
 `````js filename=intro
-const a /*:unknown*/ = $(60);
-if (a) {
-  const tmpNestedComplexRhs /*:unknown*/ = $(60);
-  $(tmpNestedComplexRhs);
-  $(tmpNestedComplexRhs);
+const tmpClusterSSA_a /*:unknown*/ = $(60);
+if (tmpClusterSSA_a) {
+  const tmpClusterSSA_tmpNestedComplexRhs /*:unknown*/ = $(60);
+  $(tmpClusterSSA_tmpNestedComplexRhs);
+  $(tmpClusterSSA_tmpNestedComplexRhs);
 } else {
-  $(a);
-  $(a);
+  $(tmpClusterSSA_a);
+  $(tmpClusterSSA_a);
 }
 `````
 
@@ -38,14 +38,14 @@ if (a) {
 (This ought to be the final result)
 
 `````js filename=intro
-const a = $(60);
-if (a) {
-  const tmpNestedComplexRhs = $(60);
-  $(tmpNestedComplexRhs);
-  $(tmpNestedComplexRhs);
+const tmpClusterSSA_a = $(60);
+if (tmpClusterSSA_a) {
+  const tmpClusterSSA_tmpNestedComplexRhs = $(60);
+  $(tmpClusterSSA_tmpNestedComplexRhs);
+  $(tmpClusterSSA_tmpNestedComplexRhs);
 } else {
-  $(a);
-  $(a);
+  $(tmpClusterSSA_a);
+  $(tmpClusterSSA_a);
 }
 `````
 

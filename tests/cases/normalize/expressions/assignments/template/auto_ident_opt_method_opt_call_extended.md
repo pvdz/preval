@@ -27,11 +27,11 @@ if (tmpIfTest$1) {
   $(undefined);
 } else {
   const tmpObjLitVal$1 /*:object*/ = { e: $ };
-  const a /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
-  const tmpStringConcatL /*:string*/ = $coerce(a, `string`);
-  const tmpCalleeParam /*:string*/ = `before  ${tmpStringConcatL}  after`;
-  $(tmpCalleeParam);
-  $(a);
+  const tmpClusterSSA_a /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
+  const tmpClusterSSA_tmpStringConcatL /*:string*/ = $coerce(tmpClusterSSA_a, `string`);
+  const tmpClusterSSA_tmpCalleeParam /*:string*/ = `before  ${tmpClusterSSA_tmpStringConcatL}  after`;
+  $(tmpClusterSSA_tmpCalleeParam);
+  $(tmpClusterSSA_a);
 }
 `````
 
@@ -44,9 +44,9 @@ if ($ == null) {
   $(`before  undefined  after`);
   $(undefined);
 } else {
-  const a = $dotCall($, { e: $ }, `e`, 1);
-  $(`before  ${a}  after`);
-  $(a);
+  const tmpClusterSSA_a = $dotCall($, { e: $ }, `e`, 1);
+  $(`before  ${tmpClusterSSA_a}  after`);
+  $(tmpClusterSSA_a);
 }
 `````
 

@@ -19,10 +19,10 @@ $(a);
 
 
 `````js filename=intro
-const a /*:unknown*/ = $(2);
+const tmpClusterSSA_a /*:unknown*/ = $(2);
 const tmpCalleeParam /*:array*/ = [`before `, ` after`];
-$(tmpCalleeParam, a);
-$(a);
+$(tmpCalleeParam, tmpClusterSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 
@@ -30,9 +30,9 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const a = $(2);
-$([`before `, ` after`], a);
-$(a);
+const tmpClusterSSA_a = $(2);
+$([`before `, ` after`], tmpClusterSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 

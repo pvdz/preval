@@ -24,8 +24,8 @@ $(f());
 `````js filename=intro
 const tmpIfTest /*:unknown*/ = $(0);
 if (tmpIfTest) {
-  const tmpCalleeParam /*:unknown*/ = $(1);
-  $(tmpCalleeParam);
+  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(1);
+  $(tmpClusterSSA_tmpCalleeParam);
 } else {
   $(undefined);
 }

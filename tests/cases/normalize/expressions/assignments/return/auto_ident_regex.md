@@ -22,9 +22,9 @@ $(a);
 
 
 `````js filename=intro
-const a /*:regex*/ = new $regex_constructor(`foo`, ``);
-$(a);
-$(a);
+const tmpClusterSSA_a /*:regex*/ = new $regex_constructor(`foo`, ``);
+$(tmpClusterSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 
@@ -32,9 +32,9 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const a = new $regex_constructor(`foo`, ``);
-$(a);
-$(a);
+const tmpClusterSSA_a = new $regex_constructor(`foo`, ``);
+$(tmpClusterSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 

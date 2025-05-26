@@ -27,8 +27,8 @@ const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest) {
   $(...undefined);
 } else {
-  const tmpCalleeParamSpread /*:unknown*/ = tmpChainElementCall.x;
-  $(...tmpCalleeParamSpread);
+  const tmpClusterSSA_tmpCalleeParamSpread /*:unknown*/ = tmpChainElementCall.x;
+  $(...tmpClusterSSA_tmpCalleeParamSpread);
 }
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
@@ -43,8 +43,8 @@ const tmpChainElementCall = $({ x: 1 });
 if (tmpChainElementCall == null) {
   $(...undefined);
 } else {
-  const tmpCalleeParamSpread = tmpChainElementCall.x;
-  $(...tmpCalleeParamSpread);
+  const tmpClusterSSA_tmpCalleeParamSpread = tmpChainElementCall.x;
+  $(...tmpClusterSSA_tmpCalleeParamSpread);
 }
 $({ a: 999, b: 1000 });
 `````

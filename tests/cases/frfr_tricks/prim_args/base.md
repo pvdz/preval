@@ -35,8 +35,8 @@ const tmpFree /*:(string, string)=>string*/ = function $free($$0, $$1) {
   const tmpCalleeParam /*:string*/ = xs$1 + 5;
   const one /*:number*/ = $Number_parseInt(tmpCalleeParam, 10);
   const tmpMCF /*:unknown*/ = one.slice;
-  const r /*:unknown*/ = $dotCall(tmpMCF, one, `slice`, 1, ys$1);
-  const tmpRet /*:string*/ = $coerce(r, `plustr`);
+  const two /*:unknown*/ = $dotCall(tmpMCF, one, `slice`, 1, ys$1);
+  const tmpRet /*:string*/ = $coerce(two, `plustr`);
   return tmpRet;
 };
 const x /*:unknown*/ = $spy(`x`);

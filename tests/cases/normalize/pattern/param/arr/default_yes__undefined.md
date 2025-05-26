@@ -20,8 +20,8 @@ $(f(undefined, 200));
 
 
 `````js filename=intro
-const tmpBindingPatternArrRoot /*:unknown*/ = $(`pass`);
-[...tmpBindingPatternArrRoot];
+const tmpSSA_tmpBindingPatternArrRoot /*:unknown*/ = $(`pass`);
+[...tmpSSA_tmpBindingPatternArrRoot];
 $(`ok`);
 `````
 
@@ -30,8 +30,8 @@ $(`ok`);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpBindingPatternArrRoot = $(`pass`);
-[...tmpBindingPatternArrRoot];
+const tmpSSA_tmpBindingPatternArrRoot = $(`pass`);
+[...tmpSSA_tmpBindingPatternArrRoot];
 $(`ok`);
 `````
 
@@ -71,7 +71,7 @@ $(tmpCalleeParam);
 ## Todos triggered
 
 
-None
+- (todo) Deal with array spreads in arr mutation?
 
 
 ## Globals

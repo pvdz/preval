@@ -21,9 +21,9 @@ $(a);
 `````js filename=intro
 const tmpBinBothLhs /*:unknown*/ = $(1);
 const tmpBinBothRhs /*:unknown*/ = $(2);
-const xyz /*:primitive*/ = tmpBinBothLhs + tmpBinBothRhs;
+const a /*:primitive*/ = tmpBinBothLhs + tmpBinBothRhs;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(xyz);
+  $(a);
   $(1);
 }
 `````
@@ -33,9 +33,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 (This ought to be the final result)
 
 `````js filename=intro
-const xyz = $(1) + $(2);
+const a = $(1) + $(2);
 while (true) {
-  $(xyz);
+  $(a);
   $(1);
 }
 `````

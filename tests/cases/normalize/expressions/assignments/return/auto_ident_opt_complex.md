@@ -31,9 +31,9 @@ if (tmpIfTest) {
   $(undefined);
   $(undefined);
 } else {
-  const a /*:unknown*/ = tmpChainElementCall.x;
-  $(a);
-  $(a);
+  const tmpClusterSSA_a /*:unknown*/ = tmpChainElementCall.x;
+  $(tmpClusterSSA_a);
+  $(tmpClusterSSA_a);
 }
 `````
 
@@ -47,9 +47,9 @@ if (tmpChainElementCall == null) {
   $(undefined);
   $(undefined);
 } else {
-  const a = tmpChainElementCall.x;
-  $(a);
-  $(a);
+  const tmpClusterSSA_a = tmpChainElementCall.x;
+  $(tmpClusterSSA_a);
+  $(tmpClusterSSA_a);
 }
 `````
 

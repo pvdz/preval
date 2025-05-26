@@ -20,9 +20,9 @@ $(f('abc', 10));
 
 
 `````js filename=intro
-const tmpCalleeParam /*:unknown*/ = $String_prototype.x;
+const tmpOPND /*:unknown*/ = $String_prototype.x;
 const tmpCalleeParam$1 /*:array*/ = [];
-$objPatternRest(tmpCalleeParam, tmpCalleeParam$1, undefined);
+$objPatternRest(tmpOPND, tmpCalleeParam$1, undefined);
 $(`bad`);
 `````
 
@@ -70,6 +70,7 @@ $(tmpCalleeParam$3);
 
 
 - (todo) support array reads statement type ExpressionStatement
+- (todo) support array reads statement type VarStatement
 
 
 ## Globals

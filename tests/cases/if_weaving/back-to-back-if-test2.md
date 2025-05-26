@@ -29,12 +29,17 @@ if (x) {
 
 `````js filename=intro
 const tmpUnaryArg /*:unknown*/ = $();
+let tmpClusterSSA_x /*:boolean*/ /*ternaryConst*/ = !tmpUnaryArg;
 if (tmpUnaryArg) {
   $(`b`);
-  $(`d`);
+  tmpClusterSSA_x = true;
 } else {
   $(`a`);
+}
+if (tmpClusterSSA_x) {
   $(`d`);
+} else {
+  $(`c`);
 }
 `````
 
@@ -43,12 +48,18 @@ if (tmpUnaryArg) {
 (This ought to be the final result)
 
 `````js filename=intro
-if ($()) {
+const tmpUnaryArg = $();
+let tmpClusterSSA_x = !tmpUnaryArg;
+if (tmpUnaryArg) {
   $(`b`);
-  $(`d`);
+  tmpClusterSSA_x = true;
 } else {
   $(`a`);
+}
+if (tmpClusterSSA_x) {
   $(`d`);
+} else {
+  $(`c`);
 }
 `````
 
@@ -58,13 +69,19 @@ With rename=true
 
 `````js filename=intro
 const a = $();
+let b = !a;
 if (a) {
   $( "b" );
-  $( "d" );
+  b = true;
 }
 else {
   $( "a" );
+}
+if (b) {
   $( "d" );
+}
+else {
+  $( "c" );
 }
 `````
 

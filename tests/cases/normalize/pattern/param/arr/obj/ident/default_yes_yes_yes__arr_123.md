@@ -23,8 +23,8 @@ $(f([1, 2, 3, 20, 30], 200));
 const tmpOPBD /*:unknown*/ = $Number_prototype.x;
 const tmpIfTest$3 /*:boolean*/ = tmpOPBD === undefined;
 if (tmpIfTest$3) {
-  const tmpCalleeParam$3 /*:unknown*/ = $(`pass`);
-  $(tmpCalleeParam$3);
+  const tmpClusterSSA_tmpCalleeParam$3 /*:unknown*/ = $(`pass`);
+  $(tmpClusterSSA_tmpCalleeParam$3);
 } else {
   $(tmpOPBD);
 }
@@ -109,6 +109,7 @@ $(tmpCalleeParam$3);
 
 - (todo) Deal with array spreads in arr mutation?
 - (todo) support array reads statement type ExpressionStatement
+- (todo) support array reads statement type VarStatement
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
 
 

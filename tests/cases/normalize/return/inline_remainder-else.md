@@ -33,8 +33,8 @@ if (tmpIfTest) {
   $(undefined);
 } else {
   $(3);
-  const tmpCalleeParam /*:unknown*/ = $(4);
-  $(tmpCalleeParam);
+  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(4);
+  $(tmpClusterSSA_tmpCalleeParam);
 }
 `````
 

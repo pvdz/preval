@@ -22,9 +22,9 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { c: $ };
-const xyz /*:unknown*/ = $dotCall($, b, `c`, 1);
+const tmpClusterSSA_xyz /*:unknown*/ = $dotCall($, b, `c`, 1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(xyz);
+  $(tmpClusterSSA_xyz);
   $(1);
 }
 `````
@@ -34,9 +34,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 (This ought to be the final result)
 
 `````js filename=intro
-const xyz = $dotCall($, { c: $ }, `c`, 1);
+const tmpClusterSSA_xyz = $dotCall($, { c: $ }, `c`, 1);
 while (true) {
-  $(xyz);
+  $(tmpClusterSSA_xyz);
   $(1);
 }
 `````
@@ -82,7 +82,6 @@ while (true) {
 
 
 - (todo) - at least one of the frfr args was not isFree, bailing
-- (todo) can we support this const aliasing blocking statement? WhileStatement
 
 
 ## Globals

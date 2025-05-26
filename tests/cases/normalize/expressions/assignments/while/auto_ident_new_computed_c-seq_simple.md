@@ -22,14 +22,11 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { $: $ };
-const tmpCompObj /*:unknown*/ = $(b);
-const tmpNewCallee /*:unknown*/ = tmpCompObj.$;
-new tmpNewCallee(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpCompObj /*:unknown*/ = $(b);
+  const tmpNewCallee /*:unknown*/ = tmpCompObj.$;
+  new tmpNewCallee(1);
   $(100);
-  const tmpCompObj$1 /*:unknown*/ = $(b);
-  const tmpNewCallee$1 /*:unknown*/ = tmpCompObj$1.$;
-  new tmpNewCallee$1(1);
 }
 `````
 
@@ -39,12 +36,10 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 `````js filename=intro
 const b = { $: $ };
-const tmpNewCallee = $(b).$;
-new tmpNewCallee(1);
 while (true) {
+  const tmpNewCallee = $(b).$;
+  new tmpNewCallee(1);
   $(100);
-  const tmpNewCallee$1 = $(b).$;
-  new tmpNewCallee$1(1);
 }
 `````
 
@@ -54,14 +49,11 @@ With rename=true
 
 `````js filename=intro
 const a = { $: $ };
-const b = $( a );
-const c = b.$;
-new c( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const b = $( a );
+  const c = b.$;
+  new c( 1 );
   $( 100 );
-  const d = $( a );
-  const e = d.$;
-  new e( 1 );
 }
 `````
 
@@ -90,7 +82,6 @@ $(a);
 ## Todos triggered
 
 
-- (todo) do we want to support NewExpression as expression statement in free loops?
 - (todo) objects in isFree check
 
 

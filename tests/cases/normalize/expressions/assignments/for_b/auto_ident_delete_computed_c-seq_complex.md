@@ -26,8 +26,9 @@ $(2);
 const arg /*:object*/ = { y: 1 };
 const tmpDeleteCompObj /*:unknown*/ = $(arg);
 const tmpDeleteCompProp /*:unknown*/ = $(`y`);
-let a /*:boolean*/ = delete tmpDeleteCompObj[tmpDeleteCompProp];
-if (a) {
+const tmpClusterSSA_a /*:boolean*/ = delete tmpDeleteCompObj[tmpDeleteCompProp];
+if (tmpClusterSSA_a) {
+  let a /*:boolean*/ = false;
   while ($LOOP_UNROLL_10) {
     $(1);
     $(1);
@@ -42,7 +43,7 @@ if (a) {
   }
   $(a, arg);
 } else {
-  $(a, arg);
+  $(false, arg);
 }
 `````
 
@@ -56,8 +57,8 @@ $(2);
 const arg = { y: 1 };
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $(`y`);
-let a = delete tmpDeleteCompObj[tmpDeleteCompProp];
-if (a) {
+if (delete tmpDeleteCompObj[tmpDeleteCompProp]) {
+  let a = false;
   while (true) {
     $(1);
     $(1);
@@ -71,7 +72,7 @@ if (a) {
   }
   $(a, arg);
 } else {
-  $(a, arg);
+  $(false, arg);
 }
 `````
 
@@ -85,26 +86,27 @@ $( 2 );
 const a = { y: 1 };
 const b = $( a );
 const c = $( "y" );
-let d = delete b[ c ];
+const d = delete b[ c ];
 if (d) {
+  let e = false;
   while ($LOOP_UNROLL_10) {
     $( 1 );
     $( 1 );
     $( 2 );
-    const e = $( a );
-    const f = $( "y" );
-    d = delete e[ f ];
-    if (d) {
+    const f = $( a );
+    const g = $( "y" );
+    e = delete f[ g ];
+    if (e) {
 
     }
     else {
       break;
     }
   }
-  $( d, a );
+  $( e, a );
 }
 else {
-  $( d, a );
+  $( false, a );
 }
 `````
 

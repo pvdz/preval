@@ -28,8 +28,8 @@ if (tmpReturnArg) {
   $(tmpReturnArg);
 } else {
   const tmpCalleeParam$1 /*:unknown*/ = $(2);
-  const tmpCalleeParam$3 /*:unknown*/ = $(tmpCalleeParam$1);
-  $(tmpCalleeParam$3);
+  const tmpClusterSSA_tmpCalleeParam$3 /*:unknown*/ = $(tmpCalleeParam$1);
+  $(tmpClusterSSA_tmpCalleeParam$3);
 }
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);

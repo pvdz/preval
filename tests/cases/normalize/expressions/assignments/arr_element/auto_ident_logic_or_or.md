@@ -31,7 +31,6 @@ if (a) {
     a = $(tmpCalleeParam$5);
   }
 }
-const tmpBinBothLhs /*:unknown*/ = a;
 const tmpCalleeParam$7 /*:unknown*/ = $(0);
 let tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam$7);
 if (tmpClusterSSA_a) {
@@ -44,8 +43,7 @@ if (tmpClusterSSA_a) {
     tmpClusterSSA_a = $(tmpCalleeParam$11);
   }
 }
-const tmpBinBothRhs /*:unknown*/ = tmpClusterSSA_a;
-const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + tmpBinBothRhs;
+const tmpCalleeParam /*:primitive*/ = a + tmpClusterSSA_a;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a);
 `````
@@ -62,7 +60,6 @@ if (!a) {
     a = $($(2));
   }
 }
-const tmpBinBothLhs = a;
 let tmpClusterSSA_a = $($(0));
 if (!tmpClusterSSA_a) {
   tmpClusterSSA_a = $($(1));
@@ -70,7 +67,7 @@ if (!tmpClusterSSA_a) {
     tmpClusterSSA_a = $($(2));
   }
 }
-$(tmpBinBothLhs + tmpClusterSSA_a);
+$(a + tmpClusterSSA_a);
 $(tmpClusterSSA_a);
 `````
 
@@ -95,27 +92,25 @@ else {
     b = $( d );
   }
 }
-const e = b;
-const f = $( 0 );
-let g = $( f );
-if (g) {
+const e = $( 0 );
+let f = $( e );
+if (f) {
 
 }
 else {
-  const h = $( 1 );
-  g = $( h );
-  if (g) {
+  const g = $( 1 );
+  f = $( g );
+  if (f) {
 
   }
   else {
-    const i = $( 2 );
-    g = $( i );
+    const h = $( 2 );
+    f = $( h );
   }
 }
-const j = g;
-const k = e + j;
-$( k );
-$( g );
+const i = b + f;
+$( i );
+$( f );
 `````
 
 

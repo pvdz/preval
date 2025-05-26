@@ -49,21 +49,21 @@ $('end');
 
 
 `````js filename=intro
-const tmpFree$3 /*:(number, string)=>string*/ = function $free($$0, $$1) {
-  const perc /*:number*/ = $$0;
-  const out_str /*:string*/ = $$1;
+const tmpFree$2 /*:(number, string)=>string*/ = function $free($$0, $$1) {
+  const perc$3 /*:number*/ = $$0;
+  const out_str$1 /*:string*/ = $$1;
   debugger;
-  const alt /*:string*/ = $dotCall($number_toString, perc, `toString`, 36);
-  const tmpRet$3 /*:string*/ = out_str + alt;
-  return tmpRet$3;
+  const alt /*:string*/ = $dotCall($number_toString, perc$3, `toString`, 36);
+  const tmpRet$2 /*:string*/ = out_str$1 + alt;
+  return tmpRet$2;
 };
 const tmpFree$1 /*:(number, string)=>string*/ = function $free($$0, $$1) {
   const perc$1 /*:number*/ = $$0;
-  const out_str$1 /*:string*/ = $$1;
+  const out_str /*:string*/ = $$1;
   debugger;
   const plus /*:number*/ = perc$1 + 29;
   const chr /*:string*/ = $String_fromCharCode(plus);
-  const tmpRet$1 /*:string*/ = out_str$1 + chr;
+  const tmpRet$1 /*:string*/ = out_str + chr;
   return tmpRet$1;
 };
 const tmpFree /*:(number)=>number*/ = function $free($$0) {
@@ -76,20 +76,20 @@ const tmpFree /*:(number)=>number*/ = function $free($$0) {
 const pcode /*:(number)=>string*/ = function ($$0) {
   const num_arg$1 /*:number*/ = $$0;
   debugger;
-  let out_str$3 /*:string*/ /*ternaryConst*/ = ``;
+  let out_str$2 /*:string*/ /*ternaryConst*/ = ``;
   const tmpIfTest /*:boolean*/ = num_arg$1 < 62;
   if (tmpIfTest) {
   } else {
     const pint /*:number*/ = $frfr(tmpFree, num_arg$1);
-    out_str$3 = pcode(pint);
+    out_str$2 = pcode(pint);
   }
-  const perc$3 /*:number*/ = num_arg$1 % 62;
-  const tmpIfTest$1 /*:boolean*/ = perc$3 > 35;
+  const perc$2 /*:number*/ = num_arg$1 % 62;
+  const tmpIfTest$1 /*:boolean*/ = perc$2 > 35;
   if (tmpIfTest$1) {
-    const str /*:string*/ = $frfr(tmpFree$1, perc$3, out_str$3);
+    const str /*:string*/ = $frfr(tmpFree$1, perc$2, out_str$2);
     return str;
   } else {
-    const altstr /*:string*/ = $frfr(tmpFree$3, perc$3, out_str$3);
+    const altstr /*:string*/ = $frfr(tmpFree$2, perc$2, out_str$2);
     return altstr;
   }
 };
@@ -136,12 +136,12 @@ $(`end`);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpFree$3 = function $free(perc, out_str) {
-  const tmpRet$3 = out_str + $dotCall($number_toString, perc, `toString`, 36);
-  return tmpRet$3;
+const tmpFree$2 = function $free(perc$3, out_str$1) {
+  const tmpRet$2 = out_str$1 + $dotCall($number_toString, perc$3, `toString`, 36);
+  return tmpRet$2;
 };
-const tmpFree$1 = function $free(perc$1, out_str$1) {
-  const tmpRet$1 = out_str$1 + $String_fromCharCode(perc$1 + 29);
+const tmpFree$1 = function $free(perc$1, out_str) {
+  const tmpRet$1 = out_str + $String_fromCharCode(perc$1 + 29);
   return tmpRet$1;
 };
 const tmpFree = function $free(num_arg) {
@@ -149,16 +149,16 @@ const tmpFree = function $free(num_arg) {
   return tmpRet;
 };
 const pcode = function (num_arg$1) {
-  let out_str$3 = ``;
+  let out_str$2 = ``;
   if (!(num_arg$1 < 62)) {
-    out_str$3 = pcode($frfr(tmpFree, num_arg$1));
+    out_str$2 = pcode($frfr(tmpFree, num_arg$1));
   }
-  const perc$3 = num_arg$1 % 62;
-  if (perc$3 > 35) {
-    const str = $frfr(tmpFree$1, perc$3, out_str$3);
+  const perc$2 = num_arg$1 % 62;
+  if (perc$2 > 35) {
+    const str = $frfr(tmpFree$1, perc$2, out_str$2);
     return str;
   } else {
-    const altstr = $frfr(tmpFree$3, perc$3, out_str$3);
+    const altstr = $frfr(tmpFree$2, perc$2, out_str$2);
     return altstr;
   }
 };

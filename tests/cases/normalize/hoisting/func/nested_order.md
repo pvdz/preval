@@ -24,10 +24,10 @@ function f() {
 
 
 `````js filename=intro
-const tmpCalleeParam /*:unknown*/ = $();
-const tmpCalleeParam$1 /*:unknown*/ = $();
-const tmpCalleeParam$3 /*:unknown*/ = $();
-$(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
+const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $();
+const tmpClusterSSA_tmpCalleeParam$1 /*:unknown*/ = $();
+const tmpReturnArg$3 /*:unknown*/ = $();
+$(tmpClusterSSA_tmpCalleeParam, tmpClusterSSA_tmpCalleeParam$1, tmpReturnArg$3);
 $(undefined);
 `````
 

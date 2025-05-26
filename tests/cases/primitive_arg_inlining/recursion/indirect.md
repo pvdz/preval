@@ -27,20 +27,20 @@ $(f(0));
 
 
 `````js filename=intro
-const h /*:(primitive)=>primitive*/ = function ($$0) {
-  const n$3 /*:primitive*/ = $$0;
+const f /*:(primitive)=>primitive*/ = function ($$0) {
+  const n$2 /*:primitive*/ = $$0;
   debugger;
-  const tmpBinLhs /*:unknown*/ = $(n$3);
+  const tmpCalleeParam /*:primitive*/ = n$2 + 1;
+  const tmpBinLhs /*:unknown*/ = $(tmpCalleeParam);
   const tmpIfTest /*:boolean*/ = tmpBinLhs > 1000;
   if (tmpIfTest) {
-    return n$3;
+    return tmpCalleeParam;
   } else {
-    const tmpSaooB$1 /*:primitive*/ = n$3 + 1;
-    const tmpReturnArg$3 /*:primitive*/ = h(tmpSaooB$1);
-    return tmpReturnArg$3;
+    const tmpClusterSSA_tmpReturnArg$3 /*:primitive*/ = f(tmpCalleeParam);
+    return tmpClusterSSA_tmpReturnArg$3;
   }
 };
-const tmpCalleeParam$1 /*:primitive*/ = h(1);
+const tmpCalleeParam$1 /*:primitive*/ = f(0);
 $(tmpCalleeParam$1);
 `````
 
@@ -49,15 +49,16 @@ $(tmpCalleeParam$1);
 (This ought to be the final result)
 
 `````js filename=intro
-const h = function (n$3) {
-  if ($(n$3) > 1000) {
-    return n$3;
+const f = function (n$2) {
+  const tmpCalleeParam = n$2 + 1;
+  if ($(tmpCalleeParam) > 1000) {
+    return tmpCalleeParam;
   } else {
-    const tmpReturnArg$3 = h(n$3 + 1);
-    return tmpReturnArg$3;
+    const tmpClusterSSA_tmpReturnArg$3 = f(tmpCalleeParam);
+    return tmpClusterSSA_tmpReturnArg$3;
   }
 };
-$(h(1));
+$(f(0));
 `````
 
 
@@ -68,18 +69,18 @@ With rename=true
 const a = function($$0 ) {
   const b = $$0;
   debugger;
-  const c = $( b );
-  const d = c > 1000;
-  if (d) {
-    return b;
+  const c = b + 1;
+  const d = $( c );
+  const e = d > 1000;
+  if (e) {
+    return c;
   }
   else {
-    const e = b + 1;
-    const f = a( e );
+    const f = a( c );
     return f;
   }
 };
-const g = a( 1 );
+const g = a( 0 );
 $( g );
 `````
 

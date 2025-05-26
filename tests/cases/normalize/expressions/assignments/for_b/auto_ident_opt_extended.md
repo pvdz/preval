@@ -80,8 +80,9 @@ $(a);
 ## Todos triggered
 
 
+- (todo) do we want to support Literal as expression statement in free loops?
 - (todo) do we want to support ObjectExpression as expression statement in free loops?
-- (todo) regular property access of an ident feels tricky;
+- (todo) objects in isFree check
 
 
 ## Globals

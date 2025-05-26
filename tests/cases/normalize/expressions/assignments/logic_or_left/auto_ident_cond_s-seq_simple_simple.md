@@ -19,14 +19,14 @@ $(a);
 
 
 `````js filename=intro
-const a /*:unknown*/ = $(2);
-if (a) {
-  $(a);
-  $(a);
+const tmpClusterSSA_a /*:unknown*/ = $(2);
+if (tmpClusterSSA_a) {
+  $(tmpClusterSSA_a);
+  $(tmpClusterSSA_a);
 } else {
-  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
-  $(tmpClusterSSA_tmpCalleeParam);
-  $(a);
+  const tmpClusterSSA_tmpCalleeParam$1 /*:unknown*/ = $(100);
+  $(tmpClusterSSA_tmpCalleeParam$1);
+  $(tmpClusterSSA_a);
 }
 `````
 
@@ -35,13 +35,13 @@ if (a) {
 (This ought to be the final result)
 
 `````js filename=intro
-const a = $(2);
-if (a) {
-  $(a);
-  $(a);
+const tmpClusterSSA_a = $(2);
+if (tmpClusterSSA_a) {
+  $(tmpClusterSSA_a);
+  $(tmpClusterSSA_a);
 } else {
   $($(100));
-  $(a);
+  $(tmpClusterSSA_a);
 }
 `````
 

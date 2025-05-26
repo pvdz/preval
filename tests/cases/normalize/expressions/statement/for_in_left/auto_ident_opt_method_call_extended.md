@@ -32,9 +32,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     break;
   } else {
     const tmpChainElementObject$3 /*:unknown*/ = tmpObjLitVal$1.e;
-    const tmpAssignMemLhsObj$1 /*:unknown*/ = $dotCall(tmpChainElementObject$3, tmpObjLitVal$1, `e`, 1);
+    const tmpClusterSSA_tmpAssignMemLhsObj$1 /*:unknown*/ = $dotCall(tmpChainElementObject$3, tmpObjLitVal$1, `e`, 1);
     const tmpAssignMemRhs /*:unknown*/ = tmpForInNext.value;
-    tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
+    tmpClusterSSA_tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
   }
 }
 const a /*:object*/ = { a: 999, b: 1000 };
@@ -53,8 +53,8 @@ while (true) {
   if (tmpForInNext.done) {
     break;
   } else {
-    const tmpAssignMemLhsObj$1 = tmpObjLitVal$1.e(1);
-    tmpAssignMemLhsObj$1.x = tmpForInNext.value;
+    const tmpClusterSSA_tmpAssignMemLhsObj$1 = tmpObjLitVal$1.e(1);
+    tmpClusterSSA_tmpAssignMemLhsObj$1.x = tmpForInNext.value;
   }
 }
 $({ a: 999, b: 1000 });
@@ -130,6 +130,7 @@ $(a);
 ## Todos triggered
 
 
+- (todo) do we want to support ObjectExpression as expression statement in free loops?
 - (todo) objects in isFree check
 
 

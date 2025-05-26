@@ -25,10 +25,10 @@ const tmpIfTest /*:boolean*/ = tmpBinBothLhs === tmpBinBothRhs;
 const z /*:array*/ = [10, 20, 30];
 if (tmpIfTest) {
   const tmpArrPatternSplat$1 /*:array*/ = [...z];
-  const x /*:unknown*/ = tmpArrPatternSplat$1[1];
-  const y /*:unknown*/ = tmpArrPatternSplat$1[2];
+  const tmpClusterSSA_x /*:unknown*/ = tmpArrPatternSplat$1[1];
+  const tmpClusterSSA_y /*:unknown*/ = tmpArrPatternSplat$1[2];
   [...z];
-  $(1, 2, x, y, z);
+  $(1, 2, tmpClusterSSA_x, tmpClusterSSA_y, z);
 } else {
   $(1, 2, 1, 2, z);
 }
@@ -43,10 +43,10 @@ const tmpIfTest = $(`a`) === $(`a`);
 const z = [10, 20, 30];
 if (tmpIfTest) {
   const tmpArrPatternSplat$1 = [...z];
-  const x = tmpArrPatternSplat$1[1];
-  const y = tmpArrPatternSplat$1[2];
+  const tmpClusterSSA_x = tmpArrPatternSplat$1[1];
+  const tmpClusterSSA_y = tmpArrPatternSplat$1[2];
   [...z];
-  $(1, 2, x, y, z);
+  $(1, 2, tmpClusterSSA_x, tmpClusterSSA_y, z);
 } else {
   $(1, 2, 1, 2, z);
 }
@@ -112,6 +112,7 @@ $(a, b, x, y, z);
 
 
 - (todo) Deal with array spreads in arr mutation?
+- (todo) support array reads statement type EmptyStatement
 - (todo) support array reads statement type ExpressionStatement
 - (todo) support array reads statement type VarStatement
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

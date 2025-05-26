@@ -37,8 +37,12 @@ $(x, y);
 
 
 `````js filename=intro
-const tmpBool /*:boolean*/ = !$;
-$(tmpBool, tmpBool);
+if ($) {
+  $(false, false);
+} else {
+  const tmpClusterSSA_x /*:boolean*/ = !$;
+  $(tmpClusterSSA_x, true);
+}
 `````
 
 
@@ -46,8 +50,11 @@ $(tmpBool, tmpBool);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpBool = !$;
-$(tmpBool, tmpBool);
+if ($) {
+  $(false, false);
+} else {
+  $(!$, true);
+}
 `````
 
 
@@ -55,8 +62,13 @@ $(tmpBool, tmpBool);
 With rename=true
 
 `````js filename=intro
-const a = !$;
-$( a, a );
+if ($) {
+  $( false, false );
+}
+else {
+  const a = !$;
+  $( a, true );
+}
 `````
 
 

@@ -27,8 +27,8 @@ if (tmpIfTest$1) {
   tmpForOfGenNext = $forOf(undefined);
 } else {
   const tmpObjLitVal$1 /*:object*/ = { e: $ };
-  const tmpCalleeParam /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
-  tmpForOfGenNext = $forOf(tmpCalleeParam);
+  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
+  tmpForOfGenNext = $forOf(tmpClusterSSA_tmpCalleeParam);
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();

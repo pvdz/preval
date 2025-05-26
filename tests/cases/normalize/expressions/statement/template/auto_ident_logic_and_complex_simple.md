@@ -24,9 +24,9 @@ const tmpCalleeParam$1 /*:unknown*/ = $(tmpCalleeParam$3);
 if (tmpCalleeParam$1) {
   $(`before  2  after`);
 } else {
-  const tmpStringConcatL /*:string*/ = $coerce(tmpCalleeParam$1, `string`);
-  const tmpCalleeParam /*:string*/ = `before  ${tmpStringConcatL}  after`;
-  $(tmpCalleeParam);
+  const tmpClusterSSA_tmpBinBothRhs /*:string*/ = $coerce(tmpCalleeParam$1, `string`);
+  const tmpClusterSSA_tmpCalleeParam /*:string*/ = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
+  $(tmpClusterSSA_tmpCalleeParam);
 }
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
@@ -93,7 +93,7 @@ $(a);
 ## Todos triggered
 
 
-None
+- (todo) maybe we can inline a primitive into a frfr that is called multiple times, too?
 
 
 ## Globals

@@ -22,9 +22,9 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { c: $ };
-const tmpIfTest /*:unknown*/ = $dotCall($, b, `c`, 1);
+const tmpClusterSSA_tmpIfTest /*:unknown*/ = $dotCall($, b, `c`, 1);
 const a /*:object*/ = { a: 999, b: 1000 };
-if (tmpIfTest) {
+if (tmpClusterSSA_tmpIfTest) {
   $(100);
   $(a);
 } else {
@@ -38,9 +38,9 @@ if (tmpIfTest) {
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpIfTest = $dotCall($, { c: $ }, `c`, 1);
+const tmpClusterSSA_tmpIfTest = $dotCall($, { c: $ }, `c`, 1);
 const a = { a: 999, b: 1000 };
-if (tmpIfTest) {
+if (tmpClusterSSA_tmpIfTest) {
   $(100);
   $(a);
 } else {

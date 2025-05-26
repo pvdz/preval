@@ -25,9 +25,9 @@ $(a);
 
 `````js filename=intro
 const tmpMCCP /*:unknown*/ = $(`\$`);
-const b /*:object*/ = { $: $ };
-const tmpMCF /*:unknown*/ = b[tmpMCCP];
-const tmpReturnArg /*:unknown*/ = $dotCall(tmpMCF, b, undefined, 1);
+const tmpMCCO /*:object*/ = { $: $ };
+const tmpMCF /*:unknown*/ = tmpMCCO[tmpMCCP];
+const tmpReturnArg /*:unknown*/ = $dotCall(tmpMCF, tmpMCCO, undefined, 1);
 $(tmpReturnArg);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
@@ -39,8 +39,8 @@ $(a);
 
 `````js filename=intro
 const tmpMCCP = $(`\$`);
-const b = { $: $ };
-$(b[tmpMCCP](1));
+const tmpMCCO = { $: $ };
+$(tmpMCCO[tmpMCCP](1));
 $({ a: 999, b: 1000 });
 `````
 

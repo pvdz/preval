@@ -23,11 +23,11 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal /*:unknown*/ = $(1);
 $(undefined);
-const a /*:object*/ = { b: tmpObjLitVal };
-const tmpAssignComMemLhsObj /*:unknown*/ = $(a);
+const tmpSSA_a /*:object*/ = { b: tmpObjLitVal };
+const tmpAssignComMemLhsObj /*:unknown*/ = $(tmpSSA_a);
 const tmpAssignComMemLhsProp /*:unknown*/ = $(`b`);
 tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 2;
-$(a);
+$(tmpSSA_a);
 `````
 
 
@@ -37,11 +37,11 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal = $(1);
 $(undefined);
-const a = { b: tmpObjLitVal };
-const tmpAssignComMemLhsObj = $(a);
+const tmpSSA_a = { b: tmpObjLitVal };
+const tmpAssignComMemLhsObj = $(tmpSSA_a);
 const tmpAssignComMemLhsProp = $(`b`);
 tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 2;
-$(a);
+$(tmpSSA_a);
 `````
 
 

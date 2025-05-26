@@ -52,8 +52,8 @@ if (tmpIfTest) {
     $(undefined);
   } else {
     $(`keep, do not eval`);
-    const tmpCalleeParam /*:unknown*/ = $(2, `ret`);
-    $(tmpCalleeParam);
+    const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(2, `ret`);
+    $(tmpClusterSSA_tmpCalleeParam);
   }
 }
 `````

@@ -24,11 +24,11 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal /*:unknown*/ = $(1);
-const a /*:object*/ = { b: tmpObjLitVal };
-$(a);
+const tmpClusterSSA_a /*:object*/ = { b: tmpObjLitVal };
+$(tmpClusterSSA_a);
 const tmpAssignMemRhs /*:unknown*/ = $(2);
-a.b = tmpAssignMemRhs;
-$(a);
+tmpClusterSSA_a.b = tmpAssignMemRhs;
+$(tmpClusterSSA_a);
 `````
 
 
@@ -37,10 +37,10 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal = $(1);
-const a = { b: tmpObjLitVal };
-$(a);
-a.b = $(2);
-$(a);
+const tmpClusterSSA_a = { b: tmpObjLitVal };
+$(tmpClusterSSA_a);
+tmpClusterSSA_a.b = $(2);
+$(tmpClusterSSA_a);
 `````
 
 

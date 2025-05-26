@@ -41,8 +41,8 @@ if (tmpIfTest$1787) {
   $(`-->`, tmpClusterSSA_fullErrmsg);
   $(undefined);
 } else {
-  const tmpClusterSSA_fullErrmsg$1 /*:string*/ = `Parser error! ${tmpStringConcatL}`;
-  $(`-->`, tmpClusterSSA_fullErrmsg$1);
+  const tmpBinBothLhs$253 /*:string*/ = `Parser error! ${tmpStringConcatL}`;
+  $(`-->`, tmpBinBothLhs$253);
   $(undefined);
 }
 `````

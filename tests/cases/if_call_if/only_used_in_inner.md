@@ -41,8 +41,8 @@ if ($) $(f());
 if ($) {
   const outerTest /*:unknown*/ = $(0);
   if (outerTest) {
-    const innerTest /*:unknown*/ = $(3);
-    if (innerTest) {
+    const tmpClusterSSA_innerTest /*:unknown*/ = $(3);
+    if (tmpClusterSSA_innerTest) {
       $(undefined);
     } else {
       $(2);

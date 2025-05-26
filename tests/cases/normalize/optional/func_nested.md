@@ -22,8 +22,8 @@ $(f());
 
 `````js filename=intro
 const tmpObjLitVal$1 /*:unknown*/ = $();
-const tmpReturnArg /*:unknown*/ = $(tmpObjLitVal$1);
-$(tmpReturnArg);
+const tmpClusterSSA_tmpReturnArg$1 /*:unknown*/ = $(tmpObjLitVal$1);
+$(tmpClusterSSA_tmpReturnArg$1);
 `````
 
 

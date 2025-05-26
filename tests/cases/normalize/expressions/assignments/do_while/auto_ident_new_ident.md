@@ -21,8 +21,6 @@ $(a);
 
 
 `````js filename=intro
-$(100);
-new $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
   new $(1);
@@ -34,8 +32,6 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 (This ought to be the final result)
 
 `````js filename=intro
-$(100);
-new $(1);
 while (true) {
   $(100);
   new $(1);
@@ -47,8 +43,6 @@ while (true) {
 With rename=true
 
 `````js filename=intro
-$( 100 );
-new $( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 100 );
   new $( 1 );
@@ -77,8 +71,8 @@ $(a);
 ## Todos triggered
 
 
-- (todo) do we want to support NewExpression as expression statement in free loops?
 - (todo) do we want to support ObjectExpression as expression statement in free loops?
+- (todo) objects in isFree check
 
 
 ## Globals

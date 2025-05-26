@@ -32,8 +32,8 @@ const tmpInitAssignLhsComputedProp /*:unknown*/ = $(`y`);
 const tmpInitAssignLhsComputedRhs /*:unknown*/ = $(3);
 tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = tmpInitAssignLhsComputedRhs;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpInitAssignLhsComputedRhs;
-const tmpBinBothRhs /*:string*/ = $coerce(tmpInitAssignLhsComputedRhs, `string`);
-const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
+const tmpStringConcatL /*:string*/ = $coerce(tmpInitAssignLhsComputedRhs, `string`);
+const tmpCalleeParam /*:string*/ = `before  ${tmpStringConcatL}  after`;
 $(tmpCalleeParam);
 $(tmpInitAssignLhsComputedRhs, b, c, 3);
 `````

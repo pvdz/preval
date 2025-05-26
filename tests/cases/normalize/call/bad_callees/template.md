@@ -20,8 +20,8 @@ $('after');
 
 `````js filename=intro
 $(`before`);
-const tmpCallComplexCallee /*:string*/ = $coerce($, `string`);
-tmpCallComplexCallee();
+const tmpBinBothRhs /*:string*/ = $coerce($, `string`);
+tmpBinBothRhs();
 $(`after`);
 `````
 
@@ -31,8 +31,8 @@ $(`after`);
 
 `````js filename=intro
 $(`before`);
-const tmpCallComplexCallee = $coerce($, `string`);
-tmpCallComplexCallee();
+const tmpBinBothRhs = $coerce($, `string`);
+tmpBinBothRhs();
 $(`after`);
 `````
 

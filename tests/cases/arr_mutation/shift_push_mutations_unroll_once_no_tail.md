@@ -109,10 +109,13 @@ while ($LOOP_UNROLL_2) {
 ## Todos triggered
 
 
+- (todo) - at least one of the frfr args was not isFree, bailing
 - (todo) access object property that also exists on prototype? $array_push
 - (todo) access object property that also exists on prototype? $array_shift
 - (todo) do we want to support Literal as expression statement in free loops?
 - (todo) outline any args for tdz
+- (todo) support array reads statement type ExpressionStatement
+- (todo) support array reads statement type VarStatement
 - (todo) support array reads statement type WhileStatement
 
 

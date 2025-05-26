@@ -26,10 +26,10 @@ if (tmpIfTest) {
   $(tmpClusterSSA_tmpCalleeParam);
   $(undefined);
 } else {
-  const a /*:unknown*/ = $(1);
-  const tmpClusterSSA_tmpCalleeParam$1 /*:primitive*/ = tmpBinBothLhs + a;
+  const tmpClusterSSA_a /*:unknown*/ = $(1);
+  const tmpClusterSSA_tmpCalleeParam$1 /*:primitive*/ = tmpBinBothLhs + tmpClusterSSA_a;
   $(tmpClusterSSA_tmpCalleeParam$1);
-  $(a);
+  $(tmpClusterSSA_a);
 }
 `````
 
@@ -43,9 +43,9 @@ if ($ == null) {
   $(tmpBinBothLhs + undefined);
   $(undefined);
 } else {
-  const a = $(1);
-  $(tmpBinBothLhs + a);
-  $(a);
+  const tmpClusterSSA_a = $(1);
+  $(tmpBinBothLhs + tmpClusterSSA_a);
+  $(tmpClusterSSA_a);
 }
 `````
 

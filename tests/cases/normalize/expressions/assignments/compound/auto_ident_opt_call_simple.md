@@ -26,10 +26,10 @@ if (tmpIfTest) {
   $($Number_NaN);
   $($Number_NaN);
 } else {
-  const tmpBinBothRhs /*:unknown*/ = $(1);
-  const tmpClusterSSA_a /*:number*/ = a * tmpBinBothRhs;
-  $(tmpClusterSSA_a);
-  $(tmpClusterSSA_a);
+  const tmpClusterSSA_tmpBinBothRhs /*:unknown*/ = $(1);
+  const tmpClusterSSA_a$3 /*:number*/ = a * tmpClusterSSA_tmpBinBothRhs;
+  $(tmpClusterSSA_a$3);
+  $(tmpClusterSSA_a$3);
 }
 `````
 
@@ -45,9 +45,9 @@ if (tmpIfTest) {
   $($Number_NaN);
   $($Number_NaN);
 } else {
-  const tmpClusterSSA_a = a * $(1);
-  $(tmpClusterSSA_a);
-  $(tmpClusterSSA_a);
+  const tmpClusterSSA_a$3 = a * $(1);
+  $(tmpClusterSSA_a$3);
+  $(tmpClusterSSA_a$3);
 }
 `````
 

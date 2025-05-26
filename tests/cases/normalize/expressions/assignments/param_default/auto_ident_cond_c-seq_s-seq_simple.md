@@ -26,9 +26,9 @@ if (tmpIfTest$1) {
   $(60);
 } else {
   const tmpCalleeParam /*:unknown*/ = $(100);
-  const a /*:unknown*/ = $(tmpCalleeParam);
+  const tmpClusterSSA_a$1 /*:unknown*/ = $(tmpCalleeParam);
   $(undefined);
-  $(a);
+  $(tmpClusterSSA_a$1);
 }
 `````
 
@@ -41,9 +41,9 @@ if ($(30)) {
   $(undefined);
   $(60);
 } else {
-  const a = $($(100));
+  const tmpClusterSSA_a$1 = $($(100));
   $(undefined);
-  $(a);
+  $(tmpClusterSSA_a$1);
 }
 `````
 

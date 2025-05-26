@@ -31,8 +31,8 @@ $(f());
 `````js filename=intro
 const tmpIfTest /*:unknown*/ = $(false);
 if (tmpIfTest) {
-  const tmpCalleeParam /*:unknown*/ = $(2, `prevent optim`);
-  $(tmpCalleeParam);
+  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(2, `prevent optim`);
+  $(tmpClusterSSA_tmpCalleeParam);
 } else {
   const tmpClusterSSA_x$1 /*:unknown*/ = $(3, `prevent optim`);
   $(`prevent return hoisting`);

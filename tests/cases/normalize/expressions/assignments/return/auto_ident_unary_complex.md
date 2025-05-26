@@ -25,9 +25,9 @@ $(a, x);
 
 `````js filename=intro
 const tmpUnaryArg /*:unknown*/ = $(1);
-const a /*:string*/ = typeof tmpUnaryArg;
-$(a);
-$(a, 1);
+const tmpClusterSSA_a /*:string*/ = typeof tmpUnaryArg;
+$(tmpClusterSSA_a);
+$(tmpClusterSSA_a, 1);
 `````
 
 
@@ -36,9 +36,9 @@ $(a, 1);
 
 `````js filename=intro
 const tmpUnaryArg = $(1);
-const a = typeof tmpUnaryArg;
-$(a);
-$(a, 1);
+const tmpClusterSSA_a = typeof tmpUnaryArg;
+$(tmpClusterSSA_a);
+$(tmpClusterSSA_a, 1);
 `````
 
 

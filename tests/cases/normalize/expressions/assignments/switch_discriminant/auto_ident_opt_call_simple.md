@@ -27,9 +27,9 @@ if (tmpIfTest) {
   $(100);
   $(undefined);
 } else {
-  const a /*:unknown*/ = $(1);
+  const tmpClusterSSA_a /*:unknown*/ = $(1);
   $(100);
-  $(a);
+  $(tmpClusterSSA_a);
 }
 `````
 
@@ -42,9 +42,9 @@ if ($ == null) {
   $(100);
   $(undefined);
 } else {
-  const a = $(1);
+  const tmpClusterSSA_a = $(1);
   $(100);
-  $(a);
+  $(tmpClusterSSA_a);
 }
 `````
 

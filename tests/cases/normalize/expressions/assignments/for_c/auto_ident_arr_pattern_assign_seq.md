@@ -30,26 +30,26 @@ if (tmpIfTest) {
   const tmpArrElement$1 /*:unknown*/ = $(4);
   const tmpNestedAssignArrPatternRhs /*:array*/ = [tmpArrElement, tmpArrElement$1];
   const tmpArrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
-  let x /*:unknown*/ = tmpArrPatternSplat[0];
-  let y /*:unknown*/ = tmpArrPatternSplat[1];
+  let tmpClusterSSA_x /*:unknown*/ = tmpArrPatternSplat[0];
+  let tmpClusterSSA_y /*:unknown*/ = tmpArrPatternSplat[1];
   let tmpClusterSSA_a /*:unknown*/ = tmpNestedAssignArrPatternRhs;
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
-      $(x);
-      $(y);
+      $(tmpClusterSSA_x);
+      $(tmpClusterSSA_y);
       const tmpArrElement$2 /*:unknown*/ = $(3);
       const tmpArrElement$4 /*:unknown*/ = $(4);
       const tmpNestedAssignArrPatternRhs$1 /*:array*/ = [tmpArrElement$2, tmpArrElement$4];
       const tmpArrPatternSplat$1 /*:array*/ = [...tmpNestedAssignArrPatternRhs$1];
-      x = tmpArrPatternSplat$1[0];
-      y = tmpArrPatternSplat$1[1];
+      tmpClusterSSA_x = tmpArrPatternSplat$1[0];
+      tmpClusterSSA_y = tmpArrPatternSplat$1[1];
       tmpClusterSSA_a = tmpNestedAssignArrPatternRhs$1;
     } else {
       break;
     }
   }
-  $(tmpClusterSSA_a, x, y);
+  $(tmpClusterSSA_a, tmpClusterSSA_x, tmpClusterSSA_y);
 } else {
   const a /*:object*/ = { a: 999, b: 1000 };
   $(a, 1, 2);
@@ -68,25 +68,25 @@ if ($(1)) {
   const tmpArrElement$1 = $(4);
   const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
   const tmpArrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-  let x = tmpArrPatternSplat[0];
-  let y = tmpArrPatternSplat[1];
+  let tmpClusterSSA_x = tmpArrPatternSplat[0];
+  let tmpClusterSSA_y = tmpArrPatternSplat[1];
   let tmpClusterSSA_a = tmpNestedAssignArrPatternRhs;
   while (true) {
     if ($(1)) {
-      $(x);
-      $(y);
+      $(tmpClusterSSA_x);
+      $(tmpClusterSSA_y);
       const tmpArrElement$2 = $(3);
       const tmpArrElement$4 = $(4);
       const tmpNestedAssignArrPatternRhs$1 = [tmpArrElement$2, tmpArrElement$4];
       const tmpArrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs$1];
-      x = tmpArrPatternSplat$1[0];
-      y = tmpArrPatternSplat$1[1];
+      tmpClusterSSA_x = tmpArrPatternSplat$1[0];
+      tmpClusterSSA_y = tmpArrPatternSplat$1[1];
       tmpClusterSSA_a = tmpNestedAssignArrPatternRhs$1;
     } else {
       break;
     }
   }
-  $(tmpClusterSSA_a, x, y);
+  $(tmpClusterSSA_a, tmpClusterSSA_x, tmpClusterSSA_y);
 } else {
   $({ a: 999, b: 1000 }, 1, 2);
 }

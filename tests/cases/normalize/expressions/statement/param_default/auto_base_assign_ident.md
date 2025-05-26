@@ -22,10 +22,10 @@ $(a, b);
 
 
 `````js filename=intro
-const b /*:unknown*/ = $(2);
+const tmpSSA_b /*:unknown*/ = $(2);
 $(undefined);
 const a /*:object*/ = { a: 999, b: 1000 };
-$(a, b);
+$(a, tmpSSA_b);
 `````
 
 
@@ -33,9 +33,9 @@ $(a, b);
 (This ought to be the final result)
 
 `````js filename=intro
-const b = $(2);
+const tmpSSA_b = $(2);
 $(undefined);
-$({ a: 999, b: 1000 }, b);
+$({ a: 999, b: 1000 }, tmpSSA_b);
 `````
 
 

@@ -29,9 +29,9 @@ if (tmpIfTest$1) {
   $(undefined);
   $(undefined);
 } else {
-  const a /*:unknown*/ = tmpChainRootProp.x;
+  const tmpClusterSSA_tmpSSA_a /*:unknown*/ = tmpChainRootProp.x;
   $(undefined);
-  $(a);
+  $(tmpClusterSSA_tmpSSA_a);
 }
 `````
 
@@ -45,9 +45,9 @@ if (tmpChainRootProp == null) {
   $(undefined);
   $(undefined);
 } else {
-  const a = tmpChainRootProp.x;
+  const tmpClusterSSA_tmpSSA_a = tmpChainRootProp.x;
   $(undefined);
-  $(a);
+  $(tmpClusterSSA_tmpSSA_a);
 }
 `````
 

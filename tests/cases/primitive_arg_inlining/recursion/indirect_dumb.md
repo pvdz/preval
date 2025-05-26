@@ -25,14 +25,14 @@ $(f(0));
 
 
 `````js filename=intro
-const g /*:(primitive)=>unknown*/ = function ($$0) {
-  const n$1 /*:primitive*/ = $$0;
+const f /*:(primitive)=>unknown*/ = function ($$0) {
+  const n$2 /*:primitive*/ = $$0;
   debugger;
-  const tmpCalleeParam /*:primitive*/ = n$1 + 1;
-  const tmpReturnArg$1 /*:unknown*/ = g(tmpCalleeParam);
-  return tmpReturnArg$1;
+  const tmpCalleeParam /*:primitive*/ = n$2 + 1;
+  const tmpClusterSSA_tmpReturnArg /*:unknown*/ = f(tmpCalleeParam);
+  return tmpClusterSSA_tmpReturnArg;
 };
-throw `<max pcode call depth exceeded>; calling \`const tmpCalleeParam\$1 = g(0);\``;
+throw `<max pcode call depth exceeded>; calling \`const tmpCalleeParam\$1 = f(0);\``;
 `````
 
 
@@ -40,11 +40,11 @@ throw `<max pcode call depth exceeded>; calling \`const tmpCalleeParam\$1 = g(0)
 (This ought to be the final result)
 
 `````js filename=intro
-const g = function (n$1) {
-  const tmpReturnArg$1 = g(n$1 + 1);
-  return tmpReturnArg$1;
+const f = function (n$2) {
+  const tmpClusterSSA_tmpReturnArg = f(n$2 + 1);
+  return tmpClusterSSA_tmpReturnArg;
 };
-throw `<max pcode call depth exceeded>; calling \`const tmpCalleeParam\$1 = g(0);\``;
+throw `<max pcode call depth exceeded>; calling \`const tmpCalleeParam\$1 = f(0);\``;
 `````
 
 
@@ -59,7 +59,7 @@ const a = function($$0 ) {
   const d = a( c );
   return d;
 };
-throw "<max pcode call depth exceeded>; calling `const tmpCalleeParam$1 = g(0);`";
+throw "<max pcode call depth exceeded>; calling `const tmpCalleeParam$1 = f(0);`";
 `````
 
 

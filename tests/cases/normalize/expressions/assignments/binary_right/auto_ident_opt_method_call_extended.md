@@ -23,10 +23,10 @@ $(a);
 `````js filename=intro
 const tmpBinBothLhs /*:unknown*/ = $(100);
 const tmpObjLitVal$1 /*:object*/ = { e: $ };
-const a /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
-const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + a;
+const tmpClusterSSA_a /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
+const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + tmpClusterSSA_a;
 $(tmpCalleeParam);
-$(a);
+$(tmpClusterSSA_a);
 `````
 
 
@@ -35,9 +35,9 @@ $(a);
 
 `````js filename=intro
 const tmpBinBothLhs = $(100);
-const a = $dotCall($, { e: $ }, `e`, 1);
-$(tmpBinBothLhs + a);
-$(a);
+const tmpClusterSSA_a = $dotCall($, { e: $ }, `e`, 1);
+$(tmpBinBothLhs + tmpClusterSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 

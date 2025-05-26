@@ -21,10 +21,9 @@ $(a);
 
 
 `````js filename=intro
-new $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(100);
   new $(1);
+  $(100);
 }
 `````
 
@@ -33,10 +32,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 (This ought to be the final result)
 
 `````js filename=intro
-new $(1);
 while (true) {
-  $(100);
   new $(1);
+  $(100);
 }
 `````
 
@@ -45,10 +43,9 @@ while (true) {
 With rename=true
 
 `````js filename=intro
-new $( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $( 100 );
   new $( 1 );
+  $( 100 );
 }
 `````
 
@@ -77,9 +74,10 @@ $(a);
 ## Todos triggered
 
 
-- (todo) Support this node type in isFree: NewExpression
+- (todo) Support referencing this builtin in isFree: $
 - (todo) do we want to support NewExpression as expression statement in free loops?
 - (todo) do we want to support ObjectExpression as expression statement in free loops?
+- (todo) objects in isFree check
 
 
 ## Globals

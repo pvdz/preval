@@ -24,12 +24,12 @@ $(a, b);
 
 `````js filename=intro
 $(100);
-let b /*:unknown*/ = $(2);
-if (b) {
+let tmpClusterSSA_b /*:unknown*/ = $(2);
+if (tmpClusterSSA_b) {
   while ($LOOP_UNROLL_10) {
     $(100);
-    b = $(2);
-    if (b) {
+    tmpClusterSSA_b = $(2);
+    if (tmpClusterSSA_b) {
     } else {
       break;
     }
@@ -37,7 +37,7 @@ if (b) {
 } else {
 }
 const a /*:object*/ = { a: 999, b: 1000 };
-$(a, b);
+$(a, tmpClusterSSA_b);
 `````
 
 
@@ -46,17 +46,17 @@ $(a, b);
 
 `````js filename=intro
 $(100);
-let b = $(2);
-if (b) {
+let tmpClusterSSA_b = $(2);
+if (tmpClusterSSA_b) {
   while (true) {
     $(100);
-    b = $(2);
-    if (!b) {
+    tmpClusterSSA_b = $(2);
+    if (!tmpClusterSSA_b) {
       break;
     }
   }
 }
-$({ a: 999, b: 1000 }, b);
+$({ a: 999, b: 1000 }, tmpClusterSSA_b);
 `````
 
 

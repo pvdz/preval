@@ -21,30 +21,151 @@ $(a);
 
 
 `````js filename=intro
-$(100);
-let tmpIfTest /*:unknown*/ /*ternaryConst*/ = 1;
-const tmpIfTest$1 /*:unknown*/ = $(30);
-if (tmpIfTest$1) {
-} else {
-  const tmpCalleeParam /*:unknown*/ = $(100);
-  tmpIfTest = $(tmpCalleeParam);
-}
-if (tmpIfTest) {
-  while ($LOOP_UNROLL_10) {
+loopStop: {
+  $(100);
+  const tmpIfTest$1 /*:unknown*/ = $(30);
+  if (tmpIfTest$1) {
     $(100);
-    let tmpIfTest$2 /*:unknown*/ /*ternaryConst*/ = 1;
-    const tmpIfTest$4 /*:unknown*/ = $(30);
-    if (tmpIfTest$4) {
+  } else {
+    const tmpCalleeParam /*:unknown*/ = $(100);
+    const tmpClusterSSA_tmpIfTest /*:unknown*/ = $(tmpCalleeParam);
+    if (tmpClusterSSA_tmpIfTest) {
+      $(100);
     } else {
-      const tmpCalleeParam$1 /*:unknown*/ = $(100);
-      tmpIfTest$2 = $(tmpCalleeParam$1);
-    }
-    if (tmpIfTest$2) {
-    } else {
-      break;
+      break loopStop;
     }
   }
-} else {
+  const tmpIfTest$2 /*:unknown*/ = $(30);
+  if (tmpIfTest$2) {
+    $(100);
+  } else {
+    const tmpCalleeParam$1 /*:unknown*/ = $(100);
+    const tmpClusterSSA_tmpIfTest$1 /*:unknown*/ = $(tmpCalleeParam$1);
+    if (tmpClusterSSA_tmpIfTest$1) {
+      $(100);
+    } else {
+      break loopStop;
+    }
+  }
+  const tmpIfTest$3 /*:unknown*/ = $(30);
+  if (tmpIfTest$3) {
+    $(100);
+  } else {
+    const tmpCalleeParam$2 /*:unknown*/ = $(100);
+    const tmpClusterSSA_tmpIfTest$2 /*:unknown*/ = $(tmpCalleeParam$2);
+    if (tmpClusterSSA_tmpIfTest$2) {
+      $(100);
+    } else {
+      break loopStop;
+    }
+  }
+  const tmpIfTest$4 /*:unknown*/ = $(30);
+  if (tmpIfTest$4) {
+    $(100);
+  } else {
+    const tmpCalleeParam$3 /*:unknown*/ = $(100);
+    const tmpClusterSSA_tmpIfTest$3 /*:unknown*/ = $(tmpCalleeParam$3);
+    if (tmpClusterSSA_tmpIfTest$3) {
+      $(100);
+    } else {
+      break loopStop;
+    }
+  }
+  const tmpIfTest$5 /*:unknown*/ = $(30);
+  if (tmpIfTest$5) {
+    $(100);
+  } else {
+    const tmpCalleeParam$4 /*:unknown*/ = $(100);
+    const tmpClusterSSA_tmpIfTest$4 /*:unknown*/ = $(tmpCalleeParam$4);
+    if (tmpClusterSSA_tmpIfTest$4) {
+      $(100);
+    } else {
+      break loopStop;
+    }
+  }
+  const tmpIfTest$6 /*:unknown*/ = $(30);
+  if (tmpIfTest$6) {
+    $(100);
+  } else {
+    const tmpCalleeParam$5 /*:unknown*/ = $(100);
+    const tmpClusterSSA_tmpIfTest$5 /*:unknown*/ = $(tmpCalleeParam$5);
+    if (tmpClusterSSA_tmpIfTest$5) {
+      $(100);
+    } else {
+      break loopStop;
+    }
+  }
+  const tmpIfTest$7 /*:unknown*/ = $(30);
+  if (tmpIfTest$7) {
+    $(100);
+  } else {
+    const tmpCalleeParam$6 /*:unknown*/ = $(100);
+    const tmpClusterSSA_tmpIfTest$6 /*:unknown*/ = $(tmpCalleeParam$6);
+    if (tmpClusterSSA_tmpIfTest$6) {
+      $(100);
+    } else {
+      break loopStop;
+    }
+  }
+  const tmpIfTest$8 /*:unknown*/ = $(30);
+  if (tmpIfTest$8) {
+    $(100);
+  } else {
+    const tmpCalleeParam$7 /*:unknown*/ = $(100);
+    const tmpClusterSSA_tmpIfTest$7 /*:unknown*/ = $(tmpCalleeParam$7);
+    if (tmpClusterSSA_tmpIfTest$7) {
+      $(100);
+    } else {
+      break loopStop;
+    }
+  }
+  const tmpIfTest$9 /*:unknown*/ = $(30);
+  if (tmpIfTest$9) {
+    $(100);
+  } else {
+    const tmpCalleeParam$8 /*:unknown*/ = $(100);
+    const tmpClusterSSA_tmpIfTest$8 /*:unknown*/ = $(tmpCalleeParam$8);
+    if (tmpClusterSSA_tmpIfTest$8) {
+      $(100);
+    } else {
+      break loopStop;
+    }
+  }
+  const tmpIfTest$10 /*:unknown*/ = $(30);
+  if (tmpIfTest$10) {
+    $(100);
+  } else {
+    const tmpCalleeParam$9 /*:unknown*/ = $(100);
+    const tmpClusterSSA_tmpIfTest$9 /*:unknown*/ = $(tmpCalleeParam$9);
+    if (tmpClusterSSA_tmpIfTest$9) {
+      $(100);
+    } else {
+      break loopStop;
+    }
+  }
+  const tmpIfTest$11 /*:unknown*/ = $(30);
+  if (tmpIfTest$11) {
+  } else {
+    const tmpCalleeParam$10 /*:unknown*/ = $(100);
+    const tmpClusterSSA_tmpIfTest$10 /*:unknown*/ = $(tmpCalleeParam$10);
+    if (tmpClusterSSA_tmpIfTest$10) {
+    } else {
+      break loopStop;
+    }
+  }
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    $(100);
+    const tmpIfTest$12 /*:unknown*/ = $(30);
+    if (tmpIfTest$12) {
+    } else {
+      const tmpCalleeParam$11 /*:unknown*/ = $(100);
+      const tmpClusterSSA_tmpIfTest$11 /*:unknown*/ = $(tmpCalleeParam$11);
+      if (tmpClusterSSA_tmpIfTest$11) {
+      } else {
+        break;
+      }
+    }
+  }
 }
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
@@ -55,20 +176,109 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-$(100);
-let tmpIfTest = 1;
-if (!$(30)) {
-  tmpIfTest = $($(100));
-}
-if (tmpIfTest) {
+loopStop: {
+  $(100);
+  if ($(30)) {
+    $(100);
+  } else {
+    if ($($(100))) {
+      $(100);
+    } else {
+      break loopStop;
+    }
+  }
+  if ($(30)) {
+    $(100);
+  } else {
+    if ($($(100))) {
+      $(100);
+    } else {
+      break loopStop;
+    }
+  }
+  if ($(30)) {
+    $(100);
+  } else {
+    if ($($(100))) {
+      $(100);
+    } else {
+      break loopStop;
+    }
+  }
+  if ($(30)) {
+    $(100);
+  } else {
+    if ($($(100))) {
+      $(100);
+    } else {
+      break loopStop;
+    }
+  }
+  if ($(30)) {
+    $(100);
+  } else {
+    if ($($(100))) {
+      $(100);
+    } else {
+      break loopStop;
+    }
+  }
+  if ($(30)) {
+    $(100);
+  } else {
+    if ($($(100))) {
+      $(100);
+    } else {
+      break loopStop;
+    }
+  }
+  if ($(30)) {
+    $(100);
+  } else {
+    if ($($(100))) {
+      $(100);
+    } else {
+      break loopStop;
+    }
+  }
+  if ($(30)) {
+    $(100);
+  } else {
+    if ($($(100))) {
+      $(100);
+    } else {
+      break loopStop;
+    }
+  }
+  if ($(30)) {
+    $(100);
+  } else {
+    if ($($(100))) {
+      $(100);
+    } else {
+      break loopStop;
+    }
+  }
+  if ($(30)) {
+    $(100);
+  } else {
+    if ($($(100))) {
+      $(100);
+    } else {
+      break loopStop;
+    }
+  }
+  if (!$(30)) {
+    if (!$($(100))) {
+      break loopStop;
+    }
+  }
   while (true) {
     $(100);
-    let tmpIfTest$2 = 1;
     if (!$(30)) {
-      tmpIfTest$2 = $($(100));
-    }
-    if (!tmpIfTest$2) {
-      break;
+      if (!$($(100))) {
+        break;
+      }
     }
   }
 }
@@ -80,41 +290,185 @@ $({ a: 999, b: 1000 });
 With rename=true
 
 `````js filename=intro
-$( 100 );
-let a = 1;
-const b = $( 30 );
-if (b) {
-
-}
-else {
-  const c = $( 100 );
-  a = $( c );
-}
-if (a) {
-  while ($LOOP_UNROLL_10) {
+loopStop: {
+  $( 100 );
+  const a = $( 30 );
+  if (a) {
     $( 100 );
-    let d = 1;
-    const e = $( 30 );
-    if (e) {
+  }
+  else {
+    const b = $( 100 );
+    const c = $( b );
+    if (c) {
+      $( 100 );
+    }
+    else {
+      break loopStop;
+    }
+  }
+  const d = $( 30 );
+  if (d) {
+    $( 100 );
+  }
+  else {
+    const e = $( 100 );
+    const f = $( e );
+    if (f) {
+      $( 100 );
+    }
+    else {
+      break loopStop;
+    }
+  }
+  const g = $( 30 );
+  if (g) {
+    $( 100 );
+  }
+  else {
+    const h = $( 100 );
+    const i = $( h );
+    if (i) {
+      $( 100 );
+    }
+    else {
+      break loopStop;
+    }
+  }
+  const j = $( 30 );
+  if (j) {
+    $( 100 );
+  }
+  else {
+    const k = $( 100 );
+    const l = $( k );
+    if (l) {
+      $( 100 );
+    }
+    else {
+      break loopStop;
+    }
+  }
+  const m = $( 30 );
+  if (m) {
+    $( 100 );
+  }
+  else {
+    const n = $( 100 );
+    const o = $( n );
+    if (o) {
+      $( 100 );
+    }
+    else {
+      break loopStop;
+    }
+  }
+  const p = $( 30 );
+  if (p) {
+    $( 100 );
+  }
+  else {
+    const q = $( 100 );
+    const r = $( q );
+    if (r) {
+      $( 100 );
+    }
+    else {
+      break loopStop;
+    }
+  }
+  const s = $( 30 );
+  if (s) {
+    $( 100 );
+  }
+  else {
+    const t = $( 100 );
+    const u = $( t );
+    if (u) {
+      $( 100 );
+    }
+    else {
+      break loopStop;
+    }
+  }
+  const v = $( 30 );
+  if (v) {
+    $( 100 );
+  }
+  else {
+    const w = $( 100 );
+    const x = $( w );
+    if (x) {
+      $( 100 );
+    }
+    else {
+      break loopStop;
+    }
+  }
+  const y = $( 30 );
+  if (y) {
+    $( 100 );
+  }
+  else {
+    const z = $( 100 );
+    const ba = $( z );
+    if (ba) {
+      $( 100 );
+    }
+    else {
+      break loopStop;
+    }
+  }
+  const bb = $( 30 );
+  if (bb) {
+    $( 100 );
+  }
+  else {
+    const bc = $( 100 );
+    const bd = $( bc );
+    if (bd) {
+      $( 100 );
+    }
+    else {
+      break loopStop;
+    }
+  }
+  const be = $( 30 );
+  if (be) {
+
+  }
+  else {
+    const bf = $( 100 );
+    const bg = $( bf );
+    if (bg) {
 
     }
     else {
-      const f = $( 100 );
-      d = $( f );
+      break loopStop;
     }
-    if (d) {
+  }
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    $( 100 );
+    const bh = $( 30 );
+    if (bh) {
 
     }
     else {
-      break;
+      const bi = $( 100 );
+      const bj = $( bi );
+      if (bj) {
+
+      }
+      else {
+        break;
+      }
     }
   }
 }
-const g = {
+const bk = {
   a: 999,
   b: 1000,
 };
-$( g );
+$( bk );
 `````
 
 

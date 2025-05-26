@@ -79,7 +79,9 @@ $(tmpCalleeParam$3);
 ## Todos triggered
 
 
-None
+- (todo) support array reads statement type ExpressionStatement
+- (todo) support array reads statement type ReturnStatement
+- (todo) support array reads statement type VarStatement
 
 
 ## Globals

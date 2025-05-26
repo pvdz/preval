@@ -24,9 +24,9 @@ const tmpCalleeParam /*:unknown*/ = $(1);
 const tmpNestedComplexRhs /*:unknown*/ = $(tmpCalleeParam);
 if (tmpNestedComplexRhs) {
   const tmpCalleeParam$1 /*:unknown*/ = $(2);
-  const a /*:unknown*/ = $(tmpCalleeParam$1);
+  const tmpClusterSSA_a$1 /*:unknown*/ = $(tmpCalleeParam$1);
   $(undefined);
-  $(a);
+  $(tmpClusterSSA_a$1);
 } else {
   $(undefined);
   $(tmpNestedComplexRhs);
@@ -40,9 +40,9 @@ if (tmpNestedComplexRhs) {
 `````js filename=intro
 const tmpNestedComplexRhs = $($(1));
 if (tmpNestedComplexRhs) {
-  const a = $($(2));
+  const tmpClusterSSA_a$1 = $($(2));
   $(undefined);
-  $(a);
+  $(tmpClusterSSA_a$1);
 } else {
   $(undefined);
   $(tmpNestedComplexRhs);

@@ -25,7 +25,7 @@ $(arr);
 
 
 `````js filename=intro
-const arr /*:array*/ = [-1, true, NaN, NaN, `number`, undefined];
+const arr /*:array*/ = [-1, true, -NaN, NaN, `number`, undefined];
 $(arr);
 `````
 
@@ -34,7 +34,7 @@ $(arr);
 (This ought to be the final result)
 
 `````js filename=intro
-$([-1, true, NaN, NaN, `number`, undefined]);
+$([-1, true, -NaN, NaN, `number`, undefined]);
 `````
 
 
@@ -42,7 +42,7 @@ $([-1, true, NaN, NaN, `number`, undefined]);
 With rename=true
 
 `````js filename=intro
-const a = [ -1, true, NaN, NaN, "number", undefined ];
+const a = [ -1, true, -NaN, NaN, "number", undefined ];
 $( a );
 `````
 

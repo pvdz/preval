@@ -19,8 +19,8 @@ $(a);
 
 
 `````js filename=intro
-const tmpObjSpreadArg /*:unknown*/ = $(60);
-({ ...tmpObjSpreadArg });
+const tmpClusterSSA_tmpObjSpreadArg /*:unknown*/ = $(60);
+({ ...tmpClusterSSA_tmpObjSpreadArg });
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
@@ -30,8 +30,8 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpObjSpreadArg = $(60);
-({ ...tmpObjSpreadArg });
+const tmpClusterSSA_tmpObjSpreadArg = $(60);
+({ ...tmpClusterSSA_tmpObjSpreadArg });
 $({ a: 999, b: 1000 });
 `````
 

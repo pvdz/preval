@@ -21,8 +21,8 @@ $(a);
 
 `````js filename=intro
 $(undefined);
-const a /*:array*/ = [1, 2, 3];
-$(a);
+const tmpClusterSSA_a /*:array*/ = [1, 2, 3];
+$(tmpClusterSSA_a);
 `````
 
 
@@ -74,6 +74,7 @@ $(a);
 ## Todos triggered
 
 
+- (todo) support array reads statement type EmptyStatement
 - (todo) support array reads statement type ExpressionStatement
 
 

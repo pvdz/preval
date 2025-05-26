@@ -22,10 +22,10 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal$1 /*:object*/ = { e: $ };
-const tmpCalleeParam /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
-const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
+const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
+const tmpClusterSSA_tmpForInGen /*:unknown*/ = $forIn(tmpClusterSSA_tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForInNext /*:unknown*/ = tmpForInGen();
+  const tmpForInNext /*:unknown*/ = tmpClusterSSA_tmpForInGen();
   const tmpIfTest$1 /*:unknown*/ = tmpForInNext.done;
   if (tmpIfTest$1) {
     break;
@@ -42,9 +42,9 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpForInGen = $forIn($dotCall($, { e: $ }, `e`, 1));
+const tmpClusterSSA_tmpForInGen = $forIn($dotCall($, { e: $ }, `e`, 1));
 while (true) {
-  const tmpForInNext = tmpForInGen();
+  const tmpForInNext = tmpClusterSSA_tmpForInGen();
   if (tmpForInNext.done) {
     break;
   } else {

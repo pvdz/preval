@@ -30,26 +30,26 @@ if (itooamanumberjack) {
 
 
 `````js filename=intro
-let itooamanumberjack /*:unknown*/ /*ternaryConst*/ = undefined;
+let tmpClusterSSA_itooamanumberjack /*:unknown*/ /*ternaryConst*/ = undefined;
 if (imanumberandilovethrees) {
   const tmpChainElementCall /*:unknown*/ = $(1);
   const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
   if (tmpIfTest) {
   } else {
-    itooamanumberjack = tmpChainElementCall.x;
+    tmpClusterSSA_itooamanumberjack = tmpChainElementCall.x;
   }
 } else {
   const tmpChainElementCall$1 /*:unknown*/ = $(2);
   const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall$1 == null;
   if (tmpIfTest$1) {
   } else {
-    itooamanumberjack = tmpChainElementCall$1.x;
+    tmpClusterSSA_itooamanumberjack = tmpChainElementCall$1.x;
   }
 }
-if (itooamanumberjack) {
-  $(`a`, itooamanumberjack);
+if (tmpClusterSSA_itooamanumberjack) {
+  $(`a`, tmpClusterSSA_itooamanumberjack);
 } else {
-  $(`b`, itooamanumberjack);
+  $(`b`, tmpClusterSSA_itooamanumberjack);
 }
 `````
 
@@ -58,22 +58,22 @@ if (itooamanumberjack) {
 (This ought to be the final result)
 
 `````js filename=intro
-let itooamanumberjack = undefined;
+let tmpClusterSSA_itooamanumberjack = undefined;
 if (imanumberandilovethrees) {
   const tmpChainElementCall = $(1);
   if (!(tmpChainElementCall == null)) {
-    itooamanumberjack = tmpChainElementCall.x;
+    tmpClusterSSA_itooamanumberjack = tmpChainElementCall.x;
   }
 } else {
   const tmpChainElementCall$1 = $(2);
   if (!(tmpChainElementCall$1 == null)) {
-    itooamanumberjack = tmpChainElementCall$1.x;
+    tmpClusterSSA_itooamanumberjack = tmpChainElementCall$1.x;
   }
 }
-if (itooamanumberjack) {
-  $(`a`, itooamanumberjack);
+if (tmpClusterSSA_itooamanumberjack) {
+  $(`a`, tmpClusterSSA_itooamanumberjack);
 } else {
-  $(`b`, itooamanumberjack);
+  $(`b`, tmpClusterSSA_itooamanumberjack);
 }
 `````
 

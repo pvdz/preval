@@ -24,8 +24,9 @@ $(a);
 $(100);
 const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam);
-let a /*:unknown*/ = tmpNestedAssignObjPatternRhs.a;
+const tmpClusterSSA_a /*:unknown*/ = tmpNestedAssignObjPatternRhs.a;
 if (tmpNestedAssignObjPatternRhs) {
+  let a /*:unknown*/ = 999;
   while ($LOOP_UNROLL_10) {
     $(100);
     const tmpCalleeParam$1 /*:object*/ = { a: 1, b: 2 };
@@ -38,7 +39,7 @@ if (tmpNestedAssignObjPatternRhs) {
   }
   $(a);
 } else {
-  $(a);
+  $(tmpClusterSSA_a);
 }
 `````
 
@@ -49,8 +50,9 @@ if (tmpNestedAssignObjPatternRhs) {
 `````js filename=intro
 $(100);
 const tmpNestedAssignObjPatternRhs = $({ a: 1, b: 2 });
-let a = tmpNestedAssignObjPatternRhs.a;
+const tmpClusterSSA_a = tmpNestedAssignObjPatternRhs.a;
 if (tmpNestedAssignObjPatternRhs) {
+  let a = 999;
   while (true) {
     $(100);
     const tmpNestedAssignObjPatternRhs$1 = $({ a: 1, b: 2 });
@@ -61,7 +63,7 @@ if (tmpNestedAssignObjPatternRhs) {
   }
   $(a);
 } else {
-  $(a);
+  $(tmpClusterSSA_a);
 }
 `````
 
@@ -76,24 +78,25 @@ const a = {
   b: 2,
 };
 const b = $( a );
-let c = b.a;
+const c = b.a;
 if (b) {
+  let d = 999;
   while ($LOOP_UNROLL_10) {
     $( 100 );
-    const d = {
+    const e = {
       a: 1,
       b: 2,
     };
-    const e = $( d );
-    c = e.a;
-    if (e) {
+    const f = $( e );
+    d = f.a;
+    if (f) {
 
     }
     else {
       break;
     }
   }
-  $( c );
+  $( d );
 }
 else {
   $( c );

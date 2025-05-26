@@ -23,8 +23,8 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { c: $ };
-const tmpCompObj /*:unknown*/ = $dotCall($, b, `c`, 1);
-tmpCompObj.a;
+const tmpClusterSSA_tmpCompObj /*:unknown*/ = $dotCall($, b, `c`, 1);
+tmpClusterSSA_tmpCompObj.a;
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````

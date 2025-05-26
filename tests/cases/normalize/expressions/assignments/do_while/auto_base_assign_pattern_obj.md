@@ -27,9 +27,10 @@ $(100);
 const tmpObjLitVal /*:unknown*/ = $(2);
 const tmpCalleeParam /*:object*/ = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam);
-let b /*:unknown*/ = tmpNestedAssignObjPatternRhs.b;
-let a /*:unknown*/ = tmpNestedAssignObjPatternRhs;
+const tmpClusterSSA_b /*:unknown*/ = tmpNestedAssignObjPatternRhs.b;
 if (tmpNestedAssignObjPatternRhs) {
+  let b /*:unknown*/ = undefined;
+  let a /*:unknown*/ = undefined;
   while ($LOOP_UNROLL_10) {
     $(100);
     const tmpObjLitVal$1 /*:unknown*/ = $(2);
@@ -44,7 +45,7 @@ if (tmpNestedAssignObjPatternRhs) {
   }
   $(a, b);
 } else {
-  $(a, b);
+  $(tmpNestedAssignObjPatternRhs, tmpClusterSSA_b);
 }
 `````
 
@@ -56,9 +57,10 @@ if (tmpNestedAssignObjPatternRhs) {
 $(100);
 const tmpObjLitVal = $(2);
 const tmpNestedAssignObjPatternRhs = $({ b: tmpObjLitVal });
-let b = tmpNestedAssignObjPatternRhs.b;
-let a = tmpNestedAssignObjPatternRhs;
+const tmpClusterSSA_b = tmpNestedAssignObjPatternRhs.b;
 if (tmpNestedAssignObjPatternRhs) {
+  let b = undefined;
+  let a = undefined;
   while (true) {
     $(100);
     const tmpObjLitVal$1 = $(2);
@@ -71,7 +73,7 @@ if (tmpNestedAssignObjPatternRhs) {
   }
   $(a, b);
 } else {
-  $(a, b);
+  $(tmpNestedAssignObjPatternRhs, tmpClusterSSA_b);
 }
 `````
 
@@ -84,27 +86,28 @@ $( 100 );
 const a = $( 2 );
 const b = { b: a };
 const c = $( b );
-let d = c.b;
-let e = c;
+const d = c.b;
 if (c) {
+  let e = undefined;
+  let f = undefined;
   while ($LOOP_UNROLL_10) {
     $( 100 );
-    const f = $( 2 );
-    const g = { b: f };
-    const h = $( g );
-    d = h.b;
-    e = h;
-    if (h) {
+    const g = $( 2 );
+    const h = { b: g };
+    const i = $( h );
+    e = i.b;
+    f = i;
+    if (i) {
 
     }
     else {
       break;
     }
   }
-  $( e, d );
+  $( f, e );
 }
 else {
-  $( e, d );
+  $( c, d );
 }
 `````
 
@@ -136,6 +139,7 @@ $(a, b);
 
 
 - (todo) do we want to support ObjectExpression as expression statement in free loops?
+- (todo) objects in isFree check
 
 
 ## Globals

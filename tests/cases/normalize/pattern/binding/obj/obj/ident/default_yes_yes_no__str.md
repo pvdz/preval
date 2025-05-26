@@ -30,8 +30,8 @@ if (tmpIfTest) {
 const tmpOPBD$1 /*:unknown*/ = tmpOPAD.y;
 const tmpIfTest$1 /*:boolean*/ = tmpOPBD$1 === undefined;
 if (tmpIfTest$1) {
-  const y /*:unknown*/ = $(`fail`);
-  $(y);
+  const tmpClusterSSA_y /*:unknown*/ = $(`fail`);
+  $(tmpClusterSSA_y);
 } else {
   $(tmpOPBD$1);
 }

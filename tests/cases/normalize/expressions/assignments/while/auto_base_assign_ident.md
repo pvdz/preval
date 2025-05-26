@@ -22,9 +22,9 @@ $(a, b);
 
 `````js filename=intro
 const tmpNestedComplexRhs /*:unknown*/ = $(2);
-let b /*:unknown*/ = tmpNestedComplexRhs;
-let a /*:unknown*/ = tmpNestedComplexRhs;
 if (tmpNestedComplexRhs) {
+  let b /*:unknown*/ = 1;
+  let a /*:unknown*/ = undefined;
   while ($LOOP_UNROLL_10) {
     $(100);
     const tmpNestedComplexRhs$1 /*:unknown*/ = $(2);
@@ -37,7 +37,7 @@ if (tmpNestedComplexRhs) {
   }
   $(a, b);
 } else {
-  $(a, b);
+  $(tmpNestedComplexRhs, tmpNestedComplexRhs);
 }
 `````
 
@@ -47,9 +47,9 @@ if (tmpNestedComplexRhs) {
 
 `````js filename=intro
 const tmpNestedComplexRhs = $(2);
-let b = tmpNestedComplexRhs;
-let a = tmpNestedComplexRhs;
 if (tmpNestedComplexRhs) {
+  let b = 1;
+  let a = undefined;
   while (true) {
     $(100);
     const tmpNestedComplexRhs$1 = $(2);
@@ -61,7 +61,7 @@ if (tmpNestedComplexRhs) {
   }
   $(a, b);
 } else {
-  $(a, b);
+  $(tmpNestedComplexRhs, tmpNestedComplexRhs);
 }
 `````
 
@@ -71,9 +71,9 @@ With rename=true
 
 `````js filename=intro
 const a = $( 2 );
-let b = a;
-let c = a;
 if (a) {
+  let b = 1;
+  let c = undefined;
   while ($LOOP_UNROLL_10) {
     $( 100 );
     const d = $( 2 );
@@ -89,7 +89,7 @@ if (a) {
   $( c, b );
 }
 else {
-  $( c, b );
+  $( a, a );
 }
 `````
 
@@ -119,6 +119,7 @@ $(a, b);
 
 
 - (todo) do we want to support ObjectExpression as expression statement in free loops?
+- (todo) objects in isFree check
 
 
 ## Globals

@@ -19,12 +19,12 @@ $(y);
 
 `````js filename=intro
 const tmpCalleeParam /*:object*/ = { y: `pass2` };
-const tmpOPAD /*:unknown*/ = $(tmpCalleeParam);
-const tmpOPBD$1 /*:unknown*/ = tmpOPAD.y;
+const tmpSSA_tmpOPAD /*:unknown*/ = $(tmpCalleeParam);
+const tmpOPBD$1 /*:unknown*/ = tmpSSA_tmpOPAD.y;
 const tmpIfTest$1 /*:boolean*/ = tmpOPBD$1 === undefined;
 if (tmpIfTest$1) {
-  const y /*:unknown*/ = $(`fail`);
-  $(y);
+  const tmpClusterSSA_y /*:unknown*/ = $(`fail`);
+  $(tmpClusterSSA_y);
 } else {
   $(tmpOPBD$1);
 }

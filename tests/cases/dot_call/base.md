@@ -54,7 +54,7 @@ $(x);
 ## Todos triggered
 
 
-- (todo) arr mutation may be able to inline this method: tmpCallVal
+- (todo) support array reads statement type VarStatement
 
 
 ## Globals

@@ -23,15 +23,17 @@ const tmpUnaryArg /*:unknown*/ = $(100);
 if (tmpUnaryArg) {
   $(false);
 } else {
+  let a /*:boolean*/ = false;
   while ($LOOP_UNROLL_10) {
     $(100);
     const tmpUnaryArg$1 /*:unknown*/ = $(100);
+    a = !tmpUnaryArg$1;
     if (tmpUnaryArg$1) {
       break;
     } else {
     }
   }
-  $(false);
+  $(a);
 }
 `````
 
@@ -43,13 +45,16 @@ if (tmpUnaryArg) {
 if ($(100)) {
   $(false);
 } else {
+  let a = false;
   while (true) {
     $(100);
-    if ($(100)) {
+    const tmpUnaryArg$1 = $(100);
+    a = !tmpUnaryArg$1;
+    if (tmpUnaryArg$1) {
       break;
     }
   }
-  $(false);
+  $(a);
 }
 `````
 
@@ -63,14 +68,16 @@ if (a) {
   $( false );
 }
 else {
+  let b = false;
   while ($LOOP_UNROLL_10) {
     $( 100 );
-    const b = $( 100 );
-    if (b) {
+    const c = $( 100 );
+    b = !c;
+    if (c) {
       break;
     }
   }
-  $( false );
+  $( b );
 }
 `````
 
@@ -98,6 +105,7 @@ $(a);
 
 
 - (todo) do we want to support ObjectExpression as expression statement in free loops?
+- (todo) objects in isFree check
 
 
 ## Globals

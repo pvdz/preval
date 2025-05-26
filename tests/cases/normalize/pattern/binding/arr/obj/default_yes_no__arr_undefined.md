@@ -18,14 +18,14 @@ $('ok');
 
 
 `````js filename=intro
-const tmpArrPatternStep /*:unknown*/ = $(`fail`);
-let tmpObjPatternCrashTest /*:boolean*/ = tmpArrPatternStep === undefined;
-if (tmpObjPatternCrashTest) {
+const tmpClusterSSA_tmpArrPatternStep /*:unknown*/ = $(`fail`);
+let tmpClusterSSA_tmpObjPatternCrashTest /*:boolean*/ = tmpClusterSSA_tmpArrPatternStep === undefined;
+if (tmpClusterSSA_tmpObjPatternCrashTest) {
 } else {
-  tmpObjPatternCrashTest = tmpArrPatternStep === null;
+  tmpClusterSSA_tmpObjPatternCrashTest = tmpClusterSSA_tmpArrPatternStep === null;
 }
-if (tmpObjPatternCrashTest) {
-  tmpArrPatternStep.cannotDestructureThis;
+if (tmpClusterSSA_tmpObjPatternCrashTest) {
+  tmpClusterSSA_tmpArrPatternStep.cannotDestructureThis;
   $(`ok`);
 } else {
   $(`ok`);
@@ -37,13 +37,13 @@ if (tmpObjPatternCrashTest) {
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpArrPatternStep = $(`fail`);
-let tmpObjPatternCrashTest = tmpArrPatternStep === undefined;
-if (!tmpObjPatternCrashTest) {
-  tmpObjPatternCrashTest = tmpArrPatternStep === null;
+const tmpClusterSSA_tmpArrPatternStep = $(`fail`);
+let tmpClusterSSA_tmpObjPatternCrashTest = tmpClusterSSA_tmpArrPatternStep === undefined;
+if (!tmpClusterSSA_tmpObjPatternCrashTest) {
+  tmpClusterSSA_tmpObjPatternCrashTest = tmpClusterSSA_tmpArrPatternStep === null;
 }
-if (tmpObjPatternCrashTest) {
-  tmpArrPatternStep.cannotDestructureThis;
+if (tmpClusterSSA_tmpObjPatternCrashTest) {
+  tmpClusterSSA_tmpArrPatternStep.cannotDestructureThis;
   $(`ok`);
 } else {
   $(`ok`);

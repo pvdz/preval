@@ -24,8 +24,8 @@ $(a);
 
 
 `````js filename=intro
-const b /*:object*/ = { $: $ };
-const tmpReturnArg /*:unknown*/ = $dotCall($, b, `\$`, 1);
+const tmpMCOO /*:object*/ = { $: $ };
+const tmpReturnArg /*:unknown*/ = $dotCall($, tmpMCOO, `\$`, 1);
 $(tmpReturnArg);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);

@@ -20,7 +20,7 @@ $(f(undefined, 200));
 
 
 `````js filename=intro
-throw `Preval: Array spread on non-string primitive must crash (caused by \`const tmpArrPatternSplat = [...undefined];\`)`;
+throw `Preval: Array spread on non-string primitive must crash (caused by \`[...undefined];\`)`;
 `````
 
 
@@ -28,7 +28,7 @@ throw `Preval: Array spread on non-string primitive must crash (caused by \`cons
 (This ought to be the final result)
 
 `````js filename=intro
-throw `Preval: Array spread on non-string primitive must crash (caused by \`const tmpArrPatternSplat = [...undefined];\`)`;
+throw `Preval: Array spread on non-string primitive must crash (caused by \`[...undefined];\`)`;
 `````
 
 
@@ -36,7 +36,7 @@ throw `Preval: Array spread on non-string primitive must crash (caused by \`cons
 With rename=true
 
 `````js filename=intro
-throw "Preval: Array spread on non-string primitive must crash (caused by `const tmpArrPatternSplat = [...undefined];`)";
+throw "Preval: Array spread on non-string primitive must crash (caused by `[...undefined];`)";
 `````
 
 
@@ -61,6 +61,7 @@ $(tmpCalleeParam);
 
 
 - (todo) Deal with array spreads in arr mutation?
+- (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
 
 
 ## Globals

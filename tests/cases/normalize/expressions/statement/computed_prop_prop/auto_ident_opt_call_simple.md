@@ -23,8 +23,8 @@ $(a);
 const tmpIfTest /*:boolean*/ = $ == null;
 if (tmpIfTest) {
 } else {
-  const tmpCalleeParam /*:unknown*/ = $(1);
-  $coerce(tmpCalleeParam, `string`);
+  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(1);
+  $coerce(tmpClusterSSA_tmpCalleeParam, `string`);
 }
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);

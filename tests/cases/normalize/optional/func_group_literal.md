@@ -21,8 +21,8 @@ $(f());
 
 
 `````js filename=intro
-const y /*:unknown*/ = $Number_prototype.foo;
-const tmpReturnArg /*:unknown*/ = $(y);
+const tmpSSA_y /*:unknown*/ = $Number_prototype.foo;
+const tmpReturnArg /*:unknown*/ = $(tmpSSA_y);
 $(tmpReturnArg);
 `````
 

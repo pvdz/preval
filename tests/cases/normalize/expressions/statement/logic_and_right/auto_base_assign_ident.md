@@ -24,8 +24,8 @@ $(a, b);
 const tmpIfTest /*:unknown*/ = $(100);
 const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
-  const b /*:unknown*/ = $(2);
-  $(a, b);
+  const tmpClusterSSA_b /*:unknown*/ = $(2);
+  $(a, tmpClusterSSA_b);
 } else {
   $(a, 1);
 }

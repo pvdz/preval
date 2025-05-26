@@ -22,8 +22,8 @@ a.foo = a += $();
 `````js filename=intro
 const tmpBinBothRhs /*:unknown*/ = $();
 const a /*:object*/ = {};
-const tmpAssignMemRhs /*:primitive*/ = a + tmpBinBothRhs;
-a.foo = tmpAssignMemRhs;
+const tmpClusterSSA_a /*:primitive*/ = a + tmpBinBothRhs;
+a.foo = tmpClusterSSA_a;
 `````
 
 

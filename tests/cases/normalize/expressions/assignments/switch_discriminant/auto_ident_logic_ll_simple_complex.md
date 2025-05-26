@@ -23,9 +23,9 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(1);
-const a /*:unknown*/ = $(tmpCalleeParam);
+const tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam);
 $(100);
-$(a);
+$(tmpClusterSSA_a);
 `````
 
 
@@ -33,9 +33,9 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const a = $($(1));
+const tmpClusterSSA_a = $($(1));
 $(100);
-$(a);
+$(tmpClusterSSA_a);
 `````
 
 

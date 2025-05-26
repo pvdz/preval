@@ -31,9 +31,9 @@ $(a);
 const tmpSwitchValue /*:unknown*/ = $(1);
 let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
 const tmpObjLitVal$1 /*:object*/ = { e: $ };
-const tmpBinLhs /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
-const tmpIfTest /*:boolean*/ = tmpBinLhs === tmpSwitchValue;
-if (tmpIfTest) {
+const tmpClusterSSA_tmpBinLhs /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
+const tmpClusterSSA_tmpIfTest /*:boolean*/ = tmpClusterSSA_tmpBinLhs === tmpSwitchValue;
+if (tmpClusterSSA_tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
   const tmpIfTest$3 /*:boolean*/ = 2 === tmpSwitchValue;

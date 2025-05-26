@@ -26,9 +26,9 @@ if (tmpCalleeParam) {
   $(a);
 } else {
   const tmpCalleeParam$1 /*:unknown*/ = $(1);
-  const tmpNestedComplexRhs /*:unknown*/ = $(tmpCalleeParam$1);
-  $(tmpNestedComplexRhs);
-  $(tmpNestedComplexRhs);
+  const tmpSSA_tmpNestedComplexRhs /*:unknown*/ = $(tmpCalleeParam$1);
+  $(tmpSSA_tmpNestedComplexRhs);
+  $(tmpSSA_tmpNestedComplexRhs);
 }
 `````
 
@@ -42,9 +42,9 @@ if (tmpCalleeParam) {
   $(tmpCalleeParam);
   $({ a: 999, b: 1000 });
 } else {
-  const tmpNestedComplexRhs = $($(1));
-  $(tmpNestedComplexRhs);
-  $(tmpNestedComplexRhs);
+  const tmpSSA_tmpNestedComplexRhs = $($(1));
+  $(tmpSSA_tmpNestedComplexRhs);
+  $(tmpSSA_tmpNestedComplexRhs);
 }
 `````
 

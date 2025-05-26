@@ -25,10 +25,10 @@ if (tmpIfTest) {
   $(`before  undefined  after`);
 } else {
   const tmpCalleeParam$3 /*:unknown*/ = $(1);
-  const tmpCalleeParam$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam$3);
-  const tmpStringConcatL /*:string*/ = $coerce(tmpCalleeParam$1, `string`);
-  const tmpCalleeParam /*:string*/ = `before  ${tmpStringConcatL}  after`;
-  $(tmpCalleeParam);
+  const tmpClusterSSA_tmpCalleeParam$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam$3);
+  const tmpClusterSSA_tmpStringConcatL /*:string*/ = $coerce(tmpClusterSSA_tmpCalleeParam$1, `string`);
+  const tmpClusterSSA_tmpCalleeParam /*:string*/ = `before  ${tmpClusterSSA_tmpStringConcatL}  after`;
+  $(tmpClusterSSA_tmpCalleeParam);
 }
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);

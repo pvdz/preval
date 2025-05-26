@@ -21,12 +21,12 @@ $(a);
 `````js filename=intro
 const tmpUnaryArg /*:unknown*/ = $(100);
 if (tmpUnaryArg) {
-  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(200);
-  $(tmpClusterSSA_tmpCalleeParam);
+  const tmpClusterSSA_tmpCalleeParam$1 /*:unknown*/ = $(200);
+  $(tmpClusterSSA_tmpCalleeParam$1);
   $(false);
 } else {
-  const tmpClusterSSA_tmpCalleeParam$1 /*:unknown*/ = $(100);
-  $(tmpClusterSSA_tmpCalleeParam$1);
+  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
+  $(tmpClusterSSA_tmpCalleeParam);
   $(true);
 }
 `````

@@ -19,16 +19,16 @@ $(a);
 
 
 `````js filename=intro
-let a /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpIfTest /*:unknown*/ = $(30);
+let xyz /*:unknown*/ /*ternaryConst*/ = undefined;
 if (tmpIfTest) {
-  a = $(2);
+  xyz = $(2);
 } else {
   const tmpCalleeParam /*:unknown*/ = $(100);
-  a = $(tmpCalleeParam);
+  xyz = $(tmpCalleeParam);
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(a);
+  $(xyz);
   $(1);
 }
 `````
@@ -38,14 +38,15 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 (This ought to be the final result)
 
 `````js filename=intro
-let a = undefined;
-if ($(30)) {
-  a = $(2);
+const tmpIfTest = $(30);
+let xyz = undefined;
+if (tmpIfTest) {
+  xyz = $(2);
 } else {
-  a = $($(100));
+  xyz = $($(100));
 }
 while (true) {
-  $(a);
+  $(xyz);
   $(1);
 }
 `````
@@ -55,17 +56,17 @@ while (true) {
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = $( 30 );
-if (b) {
-  a = $( 2 );
+const a = $( 30 );
+let b = undefined;
+if (a) {
+  b = $( 2 );
 }
 else {
   const c = $( 100 );
-  a = $( c );
+  b = $( c );
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $( a );
+  $( b );
   $( 1 );
 }
 `````
@@ -94,7 +95,7 @@ while (true) {
 ## Todos triggered
 
 
-- (todo) can we support this const aliasing blocking statement? WhileStatement
+None
 
 
 ## Globals

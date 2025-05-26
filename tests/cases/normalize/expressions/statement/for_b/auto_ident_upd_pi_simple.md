@@ -31,17 +31,17 @@ $(1);
 $(1);
 $(1);
 $(1);
-let b /*:number*/ = 12;
+let tmpClusterSSA_b$2 /*:number*/ = 12;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
-  b = b + 1;
-  if (b) {
+  tmpClusterSSA_b$2 = tmpClusterSSA_b$2 + 1;
+  if (tmpClusterSSA_b$2) {
   } else {
     break;
   }
 }
 const a /*:object*/ = { a: 999, b: 1000 };
-$(a, b);
+$(a, tmpClusterSSA_b$2);
 `````
 
 
@@ -59,15 +59,15 @@ $(1);
 $(1);
 $(1);
 $(1);
-let b = 12;
+let tmpClusterSSA_b$2 = 12;
 while (true) {
   $(1);
-  b = b + 1;
-  if (!b) {
+  tmpClusterSSA_b$2 = tmpClusterSSA_b$2 + 1;
+  if (!tmpClusterSSA_b$2) {
     break;
   }
 }
-$({ a: 999, b: 1000 }, b);
+$({ a: 999, b: 1000 }, tmpClusterSSA_b$2);
 `````
 
 

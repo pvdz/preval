@@ -19,9 +19,9 @@ $(a);
 
 
 `````js filename=intro
-const tmpBinBothLhs /*:unknown*/ = $(2);
-const tmpBinBothRhs /*:unknown*/ = $(2);
-tmpBinBothLhs + tmpBinBothRhs;
+const tmpClusterSSA_tmpBinBothLhs /*:unknown*/ = $(2);
+const tmpClusterSSA_tmpBinBothRhs /*:unknown*/ = $(2);
+tmpClusterSSA_tmpBinBothLhs + tmpClusterSSA_tmpBinBothRhs;
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````

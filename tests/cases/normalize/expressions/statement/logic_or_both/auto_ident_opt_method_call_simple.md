@@ -22,9 +22,9 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { c: $ };
-const tmpIfTest /*:unknown*/ = $dotCall($, b, `c`, 1);
+const tmpClusterSSA_tmpIfTest /*:unknown*/ = $dotCall($, b, `c`, 1);
 const a /*:object*/ = { a: 999, b: 1000 };
-if (tmpIfTest) {
+if (tmpClusterSSA_tmpIfTest) {
   $(a);
 } else {
   const tmpChainElementObject$1 /*:unknown*/ = b.c;
@@ -39,9 +39,9 @@ if (tmpIfTest) {
 
 `````js filename=intro
 const b = { c: $ };
-const tmpIfTest = $dotCall($, b, `c`, 1);
+const tmpClusterSSA_tmpIfTest = $dotCall($, b, `c`, 1);
 const a = { a: 999, b: 1000 };
-if (tmpIfTest) {
+if (tmpClusterSSA_tmpIfTest) {
   $(a);
 } else {
   b.c(1);

@@ -20,8 +20,8 @@ a.foo += a = $();
 
 
 `````js filename=intro
-const tmpClusterSSA_a /*:unknown*/ = $();
 const tmpCompoundAssignLhs /*:unknown*/ = $Object_prototype.foo;
+const tmpClusterSSA_a /*:unknown*/ = $();
 tmpCompoundAssignLhs + tmpClusterSSA_a;
 `````
 
@@ -30,8 +30,7 @@ tmpCompoundAssignLhs + tmpClusterSSA_a;
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpClusterSSA_a = $();
-$Object_prototype.foo + tmpClusterSSA_a;
+$Object_prototype.foo + $();
 `````
 
 
@@ -39,9 +38,9 @@ $Object_prototype.foo + tmpClusterSSA_a;
 With rename=true
 
 `````js filename=intro
-const a = $();
-const b = $Object_prototype.foo;
-b + a;
+const a = $Object_prototype.foo;
+const b = $();
+a + b;
 `````
 
 

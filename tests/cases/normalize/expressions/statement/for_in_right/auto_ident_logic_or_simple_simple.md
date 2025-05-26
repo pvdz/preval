@@ -19,9 +19,9 @@ $(a);
 
 
 `````js filename=intro
-const tmpForInGen /*:unknown*/ = $forIn(2);
+const tmpClusterSSA_tmpForInGen /*:unknown*/ = $forIn(2);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForInNext /*:unknown*/ = tmpForInGen();
+  const tmpForInNext /*:unknown*/ = tmpClusterSSA_tmpForInGen();
   const tmpIfTest /*:unknown*/ = tmpForInNext.done;
   if (tmpIfTest) {
     break;
@@ -38,9 +38,9 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpForInGen = $forIn(2);
+const tmpClusterSSA_tmpForInGen = $forIn(2);
 while (true) {
-  const tmpForInNext = tmpForInGen();
+  const tmpForInNext = tmpClusterSSA_tmpForInGen();
   if (tmpForInNext.done) {
     break;
   } else {

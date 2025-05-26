@@ -21,17 +21,16 @@ $(a);
 
 
 `````js filename=intro
+let a /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpIfTest$1 /*:boolean*/ = $ == null;
-const tmpCalleeParam /*:array*/ = [`before `, ` after`];
 if (tmpIfTest$1) {
-  $(tmpCalleeParam, undefined);
-  $(undefined);
 } else {
   const tmpObjLitVal$1 /*:object*/ = { e: $ };
-  const a /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
-  $(tmpCalleeParam, a);
-  $(a);
+  a = $dotCall($, tmpObjLitVal$1, `e`, 1);
 }
+const tmpCalleeParam /*:array*/ = [`before `, ` after`];
+$(tmpCalleeParam, a);
+$(a);
 `````
 
 
@@ -39,16 +38,12 @@ if (tmpIfTest$1) {
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpIfTest$1 = $ == null;
-const tmpCalleeParam = [`before `, ` after`];
-if (tmpIfTest$1) {
-  $(tmpCalleeParam, undefined);
-  $(undefined);
-} else {
-  const a = $dotCall($, { e: $ }, `e`, 1);
-  $(tmpCalleeParam, a);
-  $(a);
+let a = undefined;
+if (!($ == null)) {
+  a = $dotCall($, { e: $ }, `e`, 1);
 }
+$([`before `, ` after`], a);
+$(a);
 `````
 
 
@@ -56,18 +51,18 @@ if (tmpIfTest$1) {
 With rename=true
 
 `````js filename=intro
-const a = $ == null;
-const b = [ "before ", " after" ];
-if (a) {
-  $( b, undefined );
-  $( undefined );
+let a = undefined;
+const b = $ == null;
+if (b) {
+
 }
 else {
   const c = { e: $ };
-  const d = $dotCall( $, c, "e", 1 );
-  $( b, d );
-  $( d );
+  a = $dotCall( $, c, "e", 1 );
 }
+const d = [ "before ", " after" ];
+$( d, a );
+$( a );
 `````
 
 
@@ -104,9 +99,7 @@ $(a);
 ## Todos triggered
 
 
-- (todo) support array reads statement type EmptyStatement
 - (todo) support array reads statement type ExpressionStatement
-- (todo) support array reads statement type VarStatement
 
 
 ## Globals

@@ -91,7 +91,8 @@ let x = function ($$0, $$1) {
 ## Todos triggered
 
 
-None
+- (todo) Deal with array spreads in arr mutation?
+- (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
 
 
 ## Globals

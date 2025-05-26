@@ -19,9 +19,9 @@ $(a);
 
 
 `````js filename=intro
-const tmpIfTest /*:unknown*/ = $(2);
+const tmpClusterSSA_tmpIfTest /*:unknown*/ = $(2);
 const a /*:object*/ = { a: 999, b: 1000 };
-if (tmpIfTest) {
+if (tmpClusterSSA_tmpIfTest) {
   $(2);
   $(a);
 } else {
@@ -34,9 +34,9 @@ if (tmpIfTest) {
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpIfTest = $(2);
+const tmpClusterSSA_tmpIfTest = $(2);
 const a = { a: 999, b: 1000 };
-if (tmpIfTest) {
+if (tmpClusterSSA_tmpIfTest) {
   $(2);
   $(a);
 } else {

@@ -23,8 +23,8 @@ $(a);
 `````js filename=intro
 $(1);
 $(undefined);
-const a /*:object*/ = { b: 2 };
-$(a);
+const tmpSSA_a /*:object*/ = { b: 2 };
+$(tmpSSA_a);
 `````
 
 
@@ -80,7 +80,7 @@ $(a);
 ## Todos triggered
 
 
-None
+- (todo) nodeMightMutateNameUntrapped; Which statement are we missing here? BlockStatement
 
 
 ## Globals

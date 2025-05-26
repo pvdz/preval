@@ -21,8 +21,8 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(1);
-const tmpCompObj /*:unknown*/ = $(tmpCalleeParam);
-tmpCompObj.a;
+const tmpClusterSSA_tmpCompObj /*:unknown*/ = $(tmpCalleeParam);
+tmpClusterSSA_tmpCompObj.a;
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````

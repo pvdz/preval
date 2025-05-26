@@ -70,7 +70,7 @@ while (true) {
 ## Todos triggered
 
 
-None
+- (todo) can we support this const aliasing blocking statement? WhileStatement
 
 
 ## Globals

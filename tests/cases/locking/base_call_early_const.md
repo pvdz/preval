@@ -44,9 +44,9 @@ const g /*:()=>undefined*/ = function () {
   debugger;
   if (tmpFuncLock) {
     const obj /*:object*/ = {};
-    const y /*:unknown*/ = $dotCall($function_call, f, `call`, obj, 1, 2, 3);
+    const tmpClusterSSA_y /*:unknown*/ = $dotCall($function_call, f, `call`, obj, 1, 2, 3);
     tmpFuncLock = false;
-    $(y);
+    $(tmpClusterSSA_y);
     return undefined;
   } else {
     throw `Preval: cannot call a locked function (binding overwritten with non-func)`;
@@ -69,9 +69,9 @@ const f = function (a, b, c) {
 };
 const g = function () {
   if (tmpFuncLock) {
-    const y = $dotCall($function_call, f, `call`, {}, 1, 2, 3);
+    const tmpClusterSSA_y = $dotCall($function_call, f, `call`, {}, 1, 2, 3);
     tmpFuncLock = false;
-    $(y);
+    $(tmpClusterSSA_y);
   } else {
     throw `Preval: cannot call a locked function (binding overwritten with non-func)`;
   }

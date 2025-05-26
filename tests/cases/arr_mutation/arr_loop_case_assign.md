@@ -55,8 +55,8 @@ try {
 $(false);
 $(1);
 const tmpBinLhs$1 /*:primitive*/ = arr[2];
-const test$1 /*:boolean*/ = tmpBinLhs$1 === 820304;
-if (test$1) {
+const tmpClusterSSA_test$1 /*:boolean*/ = tmpBinLhs$1 === 820304;
+if (tmpClusterSSA_test$1) {
 } else {
   const next$1 /*:unknown*/ = $dotCall($array_shift, arr, `shift`);
   $dotCall($array_push, arr, `push`, next$1);
@@ -71,8 +71,8 @@ if (test$1) {
     $(false);
     $(1);
     const tmpBinLhs$2 /*:primitive*/ = arr[2];
-    const test$2 /*:boolean*/ = tmpBinLhs$2 === 820304;
-    if (test$2) {
+    const tmpClusterSSA_test$2 /*:boolean*/ = tmpBinLhs$2 === 820304;
+    if (tmpClusterSSA_test$2) {
       break;
     } else {
       const next$2 /*:unknown*/ = $dotCall($array_shift, arr, `shift`);
@@ -238,6 +238,7 @@ $(tmpCalleeParam$1);
 - (todo) can try-escaping support this expr node type? CallExpression
 - (todo) outline any args for tdz
 - (todo) phase1_1 support this array method call? $array_slice
+- (todo) support array reads statement type ExpressionStatement
 - (todo) support array reads statement type VarStatement
 - (todo) support array reads statement type WhileStatement
 - (todo) type trackeed tricks can possibly support static $array_slice

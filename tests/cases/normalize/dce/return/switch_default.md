@@ -34,8 +34,8 @@ if (tmpIfTest) {
   $(`wrong branch`);
   $(undefined);
 } else {
-  const tmpCalleeParam /*:unknown*/ = $(2, `ret`);
-  $(tmpCalleeParam);
+  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(2, `ret`);
+  $(tmpClusterSSA_tmpCalleeParam);
 }
 `````
 

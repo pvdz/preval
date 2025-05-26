@@ -19,8 +19,8 @@ $(y);
 
 
 `````js filename=intro
-const tmpBinBothRhs /*:string*/ = $coerce(val, `plustr`);
-const y /*:string*/ = `(${tmpBinBothRhs})`;
+const x /*:string*/ = $coerce(val, `plustr`);
+const y /*:string*/ = `(${x})`;
 $(y);
 `````
 
@@ -29,8 +29,8 @@ $(y);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpBinBothRhs = $coerce(val, `plustr`);
-$(`(${tmpBinBothRhs})`);
+const x = $coerce(val, `plustr`);
+$(`(${x})`);
 `````
 
 

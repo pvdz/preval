@@ -23,10 +23,10 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(0);
-const a /*:unknown*/ = $(tmpCalleeParam);
-if (a) {
-  $(a);
-  $(a);
+const tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam);
+if (tmpClusterSSA_a) {
+  $(tmpClusterSSA_a);
+  $(tmpClusterSSA_a);
 } else {
   $(2);
   $(2);
@@ -38,10 +38,10 @@ if (a) {
 (This ought to be the final result)
 
 `````js filename=intro
-const a = $($(0));
-if (a) {
-  $(a);
-  $(a);
+const tmpClusterSSA_a = $($(0));
+if (tmpClusterSSA_a) {
+  $(tmpClusterSSA_a);
+  $(tmpClusterSSA_a);
 } else {
   $(2);
   $(2);

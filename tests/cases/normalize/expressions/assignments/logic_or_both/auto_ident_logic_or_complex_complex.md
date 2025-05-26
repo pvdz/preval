@@ -21,13 +21,16 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam$1 /*:unknown*/ = $(0);
 let a /*:unknown*/ = $(tmpCalleeParam$1);
+let tmpCalleeParam /*:unknown*/ /*ternaryConst*/ = undefined;
 if (a) {
+  tmpCalleeParam = a;
 } else {
   const tmpCalleeParam$3 /*:unknown*/ = $(2);
   a = $(tmpCalleeParam$3);
+  tmpCalleeParam = a;
 }
 if (a) {
-  $(a);
+  $(tmpCalleeParam);
   $(a);
 } else {
   const tmpCalleeParam$5 /*:unknown*/ = $(0);
@@ -50,11 +53,15 @@ if (a) {
 
 `````js filename=intro
 let a = $($(0));
-if (!a) {
+let tmpCalleeParam = undefined;
+if (a) {
+  tmpCalleeParam = a;
+} else {
   a = $($(2));
+  tmpCalleeParam = a;
 }
 if (a) {
-  $(a);
+  $(tmpCalleeParam);
   $(a);
 } else {
   const tmpNestedComplexRhs = $($(0));
@@ -76,29 +83,31 @@ With rename=true
 `````js filename=intro
 const a = $( 0 );
 let b = $( a );
+let c = undefined;
 if (b) {
-
+  c = b;
 }
 else {
-  const c = $( 2 );
-  b = $( c );
+  const d = $( 2 );
+  b = $( d );
+  c = b;
 }
 if (b) {
-  $( b );
+  $( c );
   $( b );
 }
 else {
-  const d = $( 0 );
-  const e = $( d );
-  if (e) {
-    $( e );
-    $( e );
+  const e = $( 0 );
+  const f = $( e );
+  if (f) {
+    $( f );
+    $( f );
   }
   else {
-    const f = $( 2 );
-    const g = $( f );
-    $( g );
-    $( g );
+    const g = $( 2 );
+    const h = $( g );
+    $( h );
+    $( h );
   }
 }
 `````

@@ -68,8 +68,8 @@ if ($) f();
 if ($) {
   const test /*:unknown*/ = $(1);
   if (test) {
-    const tmpIfelseifelse /*:unknown*/ = $(1);
-    if (tmpIfelseifelse) {
+    const tmpClusterSSA_tmpIfelseifelse /*:unknown*/ = $(1);
+    if (tmpClusterSSA_tmpIfelseifelse) {
       $(`A`);
     } else {
       $(`B`);

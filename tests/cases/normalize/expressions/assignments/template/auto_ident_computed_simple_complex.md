@@ -24,8 +24,8 @@ $(a, b);
 const tmpAssignRhsCompProp /*:unknown*/ = $(`c`);
 const b /*:object*/ = { c: 1 };
 const a /*:unknown*/ = b[tmpAssignRhsCompProp];
-const tmpStringConcatL /*:string*/ = $coerce(a, `string`);
-const tmpCalleeParam /*:string*/ = `before  ${tmpStringConcatL}  after`;
+const tmpBinBothRhs /*:string*/ = $coerce(a, `string`);
+const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
 $(a, b);
 `````

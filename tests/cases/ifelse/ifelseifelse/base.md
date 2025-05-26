@@ -32,8 +32,8 @@ if (condition) {
 `````js filename=intro
 const condition /*:unknown*/ = $(true);
 if (condition) {
-  const tmpIfelseifelse /*:unknown*/ = $(true);
-  if (tmpIfelseifelse) {
+  const tmpClusterSSA_tmpIfelseifelse /*:unknown*/ = $(true);
+  if (tmpClusterSSA_tmpIfelseifelse) {
     $(`a`);
   } else {
     $(`b`);

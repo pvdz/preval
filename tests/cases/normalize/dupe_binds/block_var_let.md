@@ -26,8 +26,8 @@ $(f());
 
 
 `````js filename=intro
-const tmpCalleeParam /*:unknown*/ = $(1);
-$(tmpCalleeParam);
+const x$1 /*:unknown*/ = $(1);
+$(x$1);
 `````
 
 

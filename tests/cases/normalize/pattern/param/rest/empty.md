@@ -61,6 +61,7 @@ $(tmpCalleeParam);
 
 - (todo) drop unused rest param?
 - (todo) support array reads statement type ExpressionStatement
+- (todo) support array reads statement type ReturnStatement
 
 
 ## Globals

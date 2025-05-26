@@ -76,17 +76,17 @@ const push /*:(unknown, unknown)=>undefined*/ = function ($$0, $$1) {
   const tmpMCF /*:unknown*/ = heap.push;
   $dotCall(tmpMCF, heap, `push`, node$1);
   if (tmpSaooB$1) {
-    const tmpSaooB /*:number*/ = index$1 - 1;
-    const tmpSaooB$9 /*:number*/ = tmpSaooB >>> 1;
-    siftUp_t(heap, node$1, index$1, tmpSaooB$9);
     const tmpSaooB$2 /*:number*/ = index$1 - 1;
-    const tmpSaooB$7 /*:number*/ = tmpSaooB$2 >>> 1;
-    siftUp_t(heap, node$1, index$1, tmpSaooB$7);
+    const tmpSaooB$9 /*:number*/ = tmpSaooB$2 >>> 1;
+    siftUp_t(heap, node$1, index$1, tmpSaooB$9);
     const tmpSaooB$4 /*:number*/ = index$1 - 1;
-    const tmpSaooB$5 /*:number*/ = tmpSaooB$4 >>> 1;
-    siftUp_t(heap, node$1, index$1, tmpSaooB$5);
+    const tmpSaooB$7 /*:number*/ = tmpSaooB$4 >>> 1;
+    siftUp_t(heap, node$1, index$1, tmpSaooB$7);
     const tmpSaooB$6 /*:number*/ = index$1 - 1;
-    const tmpSaooB$3 /*:number*/ = tmpSaooB$6 >>> 1;
+    const tmpSaooB$5 /*:number*/ = tmpSaooB$6 >>> 1;
+    siftUp_t(heap, node$1, index$1, tmpSaooB$5);
+    const tmpSaooB$8 /*:number*/ = index$1 - 1;
+    const tmpSaooB$3 /*:number*/ = tmpSaooB$8 >>> 1;
     siftUp_t(heap, node$1, index$1, tmpSaooB$3);
     return undefined;
   } else {
@@ -97,16 +97,16 @@ const siftUp_t /*:(unknown, unknown, unknown, number)=>undefined*/ = function ($
   const heap$5 /*:unknown*/ = $$0;
   const node$3 /*:unknown*/ = $$1;
   const i$13 /*:unknown*/ = $$2;
-  const tmpOutlinedParam$1 /*:number*/ = $$3;
+  const tmpOutlinedParam$4 /*:number*/ = $$3;
   debugger;
-  const tmpClusterSSA_parent /*:unknown*/ = heap$5[tmpOutlinedParam$1];
+  const tmpClusterSSA_parent /*:unknown*/ = heap$5[tmpOutlinedParam$4];
   const tmpBinLhs$263 /*:unknown*/ = compare(tmpClusterSSA_parent, node$3);
   const tmpIfTest$369 /*:boolean*/ = tmpBinLhs$263 > 0;
   if (tmpIfTest$369) {
-    heap$5[tmpOutlinedParam$1] = node$3;
+    heap$5[tmpOutlinedParam$4] = node$3;
     heap$5[i$13] = tmpClusterSSA_parent;
-    let tmpClusterSSA_index$3 /*:unknown*/ = tmpOutlinedParam$1;
-    let tmpClusterSSA_tmpIfTest$367 /*:boolean*/ = tmpOutlinedParam$1 > 0;
+    let tmpClusterSSA_index$3 /*:unknown*/ = tmpOutlinedParam$4;
+    let tmpClusterSSA_tmpIfTest$367 /*:boolean*/ = tmpOutlinedParam$4 > 0;
     while ($LOOP_UNROLL_100) {
       if (tmpClusterSSA_tmpIfTest$367) {
         const tmpBinLhs$1 /*:number*/ = tmpClusterSSA_index$3 - 1;
@@ -150,13 +150,13 @@ const push = function (heap, node$1) {
     siftUp_t(heap, node$1, index$1, (index$1 - 1) >>> 1);
   }
 };
-const siftUp_t = function (heap$5, node$3, i$13, tmpOutlinedParam$1) {
-  const tmpClusterSSA_parent = heap$5[tmpOutlinedParam$1];
+const siftUp_t = function (heap$5, node$3, i$13, tmpOutlinedParam$4) {
+  const tmpClusterSSA_parent = heap$5[tmpOutlinedParam$4];
   if (compare(tmpClusterSSA_parent, node$3) > 0) {
-    heap$5[tmpOutlinedParam$1] = node$3;
+    heap$5[tmpOutlinedParam$4] = node$3;
     heap$5[i$13] = tmpClusterSSA_parent;
-    let tmpClusterSSA_index$3 = tmpOutlinedParam$1;
-    let tmpClusterSSA_tmpIfTest$367 = tmpOutlinedParam$1 > 0;
+    let tmpClusterSSA_index$3 = tmpOutlinedParam$4;
+    let tmpClusterSSA_tmpIfTest$367 = tmpOutlinedParam$4 > 0;
     while (true) {
       if (tmpClusterSSA_tmpIfTest$367) {
         const tmpClusterSSA_parentIndex$1 = (tmpClusterSSA_index$3 - 1) >>> 1;

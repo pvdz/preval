@@ -22,8 +22,8 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam /*:unknown*/ = $(1);
-$(tmpCalleeParam);
+const tmpReturnArg /*:unknown*/ = $(1);
+$(tmpReturnArg);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````

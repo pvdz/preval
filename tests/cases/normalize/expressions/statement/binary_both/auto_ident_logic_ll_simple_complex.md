@@ -20,10 +20,10 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(1);
-const tmpBinBothLhs /*:unknown*/ = $(tmpCalleeParam);
+const tmpClusterSSA_tmpBinBothLhs /*:unknown*/ = $(tmpCalleeParam);
 const tmpCalleeParam$1 /*:unknown*/ = $(1);
-const tmpBinBothRhs /*:unknown*/ = $(tmpCalleeParam$1);
-tmpBinBothLhs + tmpBinBothRhs;
+const tmpClusterSSA_tmpBinBothRhs /*:unknown*/ = $(tmpCalleeParam$1);
+tmpClusterSSA_tmpBinBothLhs + tmpClusterSSA_tmpBinBothRhs;
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````

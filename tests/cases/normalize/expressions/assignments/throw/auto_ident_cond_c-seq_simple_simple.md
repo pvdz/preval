@@ -19,15 +19,15 @@ $(a);
 
 
 `````js filename=intro
-let a /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpIfTest /*:unknown*/ = $(30);
+let tmpThrowArg /*:unknown*/ /*ternaryConst*/ = undefined;
 if (tmpIfTest) {
-  a = $(2);
+  tmpThrowArg = $(2);
 } else {
   const tmpCalleeParam /*:unknown*/ = $(100);
-  a = $(tmpCalleeParam);
+  tmpThrowArg = $(tmpCalleeParam);
 }
-throw a;
+throw tmpThrowArg;
 `````
 
 
@@ -35,13 +35,14 @@ throw a;
 (This ought to be the final result)
 
 `````js filename=intro
-let a = undefined;
-if ($(30)) {
-  a = $(2);
+const tmpIfTest = $(30);
+let tmpThrowArg = undefined;
+if (tmpIfTest) {
+  tmpThrowArg = $(2);
 } else {
-  a = $($(100));
+  tmpThrowArg = $($(100));
 }
-throw a;
+throw tmpThrowArg;
 `````
 
 
@@ -49,16 +50,16 @@ throw a;
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = $( 30 );
-if (b) {
-  a = $( 2 );
+const a = $( 30 );
+let b = undefined;
+if (a) {
+  b = $( 2 );
 }
 else {
   const c = $( 100 );
-  a = $( c );
+  b = $( c );
 }
-throw a;
+throw b;
 `````
 
 

@@ -23,8 +23,8 @@ $(f());
 
 `````js filename=intro
 $();
-const a /*:unknown*/ = $();
-$(a);
+const tmpSSA_a /*:unknown*/ = $();
+$(tmpSSA_a);
 `````
 
 

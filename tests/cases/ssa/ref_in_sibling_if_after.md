@@ -31,10 +31,10 @@ if ($) f();
 if ($) {
   $(1);
   if ($) {
-    const x /*:unknown*/ = $(2);
-    $(x);
+    const tmpClusterSSA_x /*:unknown*/ = $(2);
+    $(tmpClusterSSA_x);
     if ($) {
-      $(x);
+      $(tmpClusterSSA_x);
     } else {
     }
   } else {
@@ -51,10 +51,10 @@ if ($) {
 if ($) {
   $(1);
   if ($) {
-    const x = $(2);
-    $(x);
+    const tmpClusterSSA_x = $(2);
+    $(tmpClusterSSA_x);
     if ($) {
-      $(x);
+      $(tmpClusterSSA_x);
     }
   }
 }

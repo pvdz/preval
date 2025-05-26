@@ -20,11 +20,11 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam$1 /*:unknown*/ = $(1);
-const tmpBinBothRhs /*:unknown*/ = $(tmpCalleeParam$1);
+const tmpClusterSSA_tmpBinBothRhs /*:unknown*/ = $(tmpCalleeParam$1);
 const a /*:object*/ = { a: 999, b: 1000 };
-const tmpClusterSSA_a /*:number*/ = a * tmpBinBothRhs;
-$(tmpClusterSSA_a);
-$(tmpClusterSSA_a);
+const tmpClusterSSA_a$1 /*:number*/ = a * tmpClusterSSA_tmpBinBothRhs;
+$(tmpClusterSSA_a$1);
+$(tmpClusterSSA_a$1);
 `````
 
 
@@ -32,10 +32,10 @@ $(tmpClusterSSA_a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpBinBothRhs = $($(1));
-const tmpClusterSSA_a = { a: 999, b: 1000 } * tmpBinBothRhs;
-$(tmpClusterSSA_a);
-$(tmpClusterSSA_a);
+const tmpClusterSSA_tmpBinBothRhs = $($(1));
+const tmpClusterSSA_a$1 = { a: 999, b: 1000 } * tmpClusterSSA_tmpBinBothRhs;
+$(tmpClusterSSA_a$1);
+$(tmpClusterSSA_a$1);
 `````
 
 

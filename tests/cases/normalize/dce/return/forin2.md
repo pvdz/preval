@@ -35,8 +35,8 @@ if (tmpIfTest) {
   $(undefined);
 } else {
   tmpForOfNext.value;
-  const tmpCalleeParam$1 /*:unknown*/ = $(1, `return`);
-  $(tmpCalleeParam$1);
+  const tmpClusterSSA_tmpCalleeParam$1 /*:unknown*/ = $(1, `return`);
+  $(tmpClusterSSA_tmpCalleeParam$1);
 }
 `````
 

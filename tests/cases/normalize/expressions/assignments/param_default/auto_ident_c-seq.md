@@ -24,9 +24,9 @@ $(a, x);
 `````js filename=intro
 $(1);
 $(2);
-const a /*:unknown*/ = $(1);
+const tmpClusterSSA_a /*:unknown*/ = $(1);
 $(undefined);
-$(a, 1);
+$(tmpClusterSSA_a, 1);
 `````
 
 
@@ -36,9 +36,9 @@ $(a, 1);
 `````js filename=intro
 $(1);
 $(2);
-const a = $(1);
+const tmpClusterSSA_a = $(1);
 $(undefined);
-$(a, 1);
+$(tmpClusterSSA_a, 1);
 `````
 
 

@@ -57,7 +57,9 @@ $(x);
 
 - (todo) Deal with array spreads in arr mutation?
 - (todo) access object property that also exists on prototype? $array_slice
+- (todo) arr mutation may be able to inline this method: tmpMCF
 - (todo) support array reads statement type ExpressionStatement
+- (todo) support array reads statement type VarStatement
 - (todo) type trackeed tricks can possibly support static $array_slice
 
 

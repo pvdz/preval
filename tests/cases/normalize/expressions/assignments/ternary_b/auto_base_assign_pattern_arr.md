@@ -31,8 +31,8 @@ if (tmpIfTest) {
   $(tmpNestedAssignArrPatternRhs);
   $(tmpNestedAssignArrPatternRhs, tmpClusterSSA_b);
 } else {
-  const tmpCalleeParam /*:unknown*/ = $(200);
-  $(tmpCalleeParam);
+  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(200);
+  $(tmpClusterSSA_tmpCalleeParam);
   const a /*:object*/ = { a: 999, b: 1000 };
   const b /*:array*/ = [];
   $(a, b);

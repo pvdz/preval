@@ -38,15 +38,15 @@ if ($) {
   if (x) {
     const tmpClusterSSA_x /*:unknown*/ = $(2);
     if (tmpClusterSSA_x) {
-      const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(`inner if`, tmpClusterSSA_x);
-      $(tmpClusterSSA_tmpCalleeParam, `outer`);
-    } else {
-      const tmpClusterSSA_tmpCalleeParam$1 /*:unknown*/ = $(`inner else`, tmpClusterSSA_x);
+      const tmpClusterSSA_tmpCalleeParam$1 /*:unknown*/ = $(`inner if`, tmpClusterSSA_x);
       $(tmpClusterSSA_tmpCalleeParam$1, `outer`);
+    } else {
+      const tmpClusterSSA_tmpCalleeParam$3 /*:unknown*/ = $(`inner else`, tmpClusterSSA_x);
+      $(tmpClusterSSA_tmpCalleeParam$3, `outer`);
     }
   } else {
-    const tmpClusterSSA_tmpCalleeParam$3 /*:unknown*/ = $(`inner else`, x);
-    $(tmpClusterSSA_tmpCalleeParam$3, `outer`);
+    const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(`inner else`, x);
+    $(tmpClusterSSA_tmpCalleeParam, `outer`);
   }
 } else {
 }

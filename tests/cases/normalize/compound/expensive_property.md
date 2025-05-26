@@ -23,10 +23,10 @@ superExpensiveFunction().x += 5;
 
 
 `````js filename=intro
-const tmpAssignMemLhsObj /*:unknown*/ = $();
-const tmpCompoundAssignLhs /*:unknown*/ = tmpAssignMemLhsObj.x;
+const tmpClusterSSA_tmpAssignMemLhsObj /*:unknown*/ = $();
+const tmpCompoundAssignLhs /*:unknown*/ = tmpClusterSSA_tmpAssignMemLhsObj.x;
 const tmpAssignMemRhs /*:primitive*/ = tmpCompoundAssignLhs + 5;
-tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+tmpClusterSSA_tmpAssignMemLhsObj.x = tmpAssignMemRhs;
 `````
 
 
@@ -34,8 +34,8 @@ tmpAssignMemLhsObj.x = tmpAssignMemRhs;
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpAssignMemLhsObj = $();
-tmpAssignMemLhsObj.x = tmpAssignMemLhsObj.x + 5;
+const tmpClusterSSA_tmpAssignMemLhsObj = $();
+tmpClusterSSA_tmpAssignMemLhsObj.x = tmpClusterSSA_tmpAssignMemLhsObj.x + 5;
 `````
 
 

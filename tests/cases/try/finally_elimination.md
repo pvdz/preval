@@ -6,32 +6,36 @@
 >
 > This turned ugly fast.
 
+## Options
+
+- globals: a b c d e f ABC DEF
+
 ## Input
 
 `````js filename=intro
-// Consider a silly try with a bunch of abrupt completions.
-function f() {
+// Consider a try with a bunch of abrupt completions.
+function g() {
   ABC: while (true) {
     try {
       $(a);
-      if ($1) {
+      if (b) {
         break ABC;
       }
-      if ($2) {
-        return value;
+      if (c) {
+        return DEF;
       }
-      if ($3) {
+      if (d) {
         throw x;
       }
-      if ($4) {
+      if (e) {
         continue ABC;
       }
     } finally {
-      $(b);
+      $(f);
     }
   }
 }
-$(f);
+$(g());
 
 // into ->
 
@@ -81,91 +85,89 @@ if (action === 5) throw use;
 
 
 `````js filename=intro
-const f /*:()=>unknown*/ = function () {
-  debugger;
-  let $finalStep /*:boolean*/ = false;
-  let $finalStep$1 /*:boolean*/ = false;
-  let $finalStep$3 /*:boolean*/ = false;
-  let $finalArg /*:unknown*/ = undefined;
-  let $finalArg$1 /*:unknown*/ = undefined;
-  try {
-    $(a);
-    if ($1) {
-      $finalStep = true;
+let $finalStep /*:boolean*/ = false;
+let $finalStep$1 /*:boolean*/ = false;
+let $finalStep$3 /*:boolean*/ = false;
+let $finalArg /*:unknown*/ = undefined;
+let $finalArg$1 /*:unknown*/ = undefined;
+try {
+  $(a);
+  if (b) {
+    $finalStep = true;
+  } else {
+    if (c) {
+      $finalStep$1 = true;
+      $finalArg = DEF;
     } else {
-      if ($2) {
-        $finalStep$1 = true;
-        $finalArg = value;
+      if (d) {
+        $finalStep$3 = true;
+        $finalArg$1 = x;
       } else {
-        if ($3) {
-          $finalStep$3 = true;
-          $finalArg$1 = x;
-        } else {
-          $4;
-        }
+        e;
       }
     }
-  } catch ($finalImplicit) {
-    $(b);
-    throw $finalImplicit;
   }
-  $(b);
-  if ($finalStep) {
-    return undefined;
+} catch ($finalImplicit) {
+  $(f);
+  throw $finalImplicit;
+}
+$(f);
+if ($finalStep) {
+  $(undefined);
+} else {
+  if ($finalStep$1) {
+    $($finalArg);
   } else {
-    if ($finalStep$1) {
-      return $finalArg;
+    if ($finalStep$3) {
+      throw $finalArg$1;
     } else {
-      if ($finalStep$3) {
-        throw $finalArg$1;
-      } else {
-        while ($LOOP_UNROLL_10) {
-          let $finalStep$2 /*:boolean*/ = false;
-          let $finalStep$4 /*:boolean*/ = false;
-          let $finalStep$6 /*:boolean*/ = false;
-          let $finalArg$2 /*:unknown*/ = undefined;
-          let $finalArg$4 /*:unknown*/ = undefined;
-          try {
-            $(a);
-            if ($1) {
-              $finalStep$2 = true;
+      let tmpCalleeParam /*:unknown*/ = undefined;
+      while ($LOOP_UNROLL_10) {
+        let $finalStep$2 /*:boolean*/ = false;
+        let $finalStep$4 /*:boolean*/ = false;
+        let $finalStep$6 /*:boolean*/ = false;
+        let $finalArg$2 /*:unknown*/ = undefined;
+        let $finalArg$4 /*:unknown*/ = undefined;
+        try {
+          $(a);
+          if (b) {
+            $finalStep$2 = true;
+          } else {
+            if (c) {
+              $finalStep$4 = true;
+              $finalArg$2 = DEF;
             } else {
-              if ($2) {
-                $finalStep$4 = true;
-                $finalArg$2 = value;
+              if (d) {
+                $finalStep$6 = true;
+                $finalArg$4 = x;
               } else {
-                if ($3) {
-                  $finalStep$6 = true;
-                  $finalArg$4 = x;
-                } else {
-                  $4;
-                }
+                e;
               }
             }
-          } catch ($finalImplicit$1) {
-            $(b);
-            throw $finalImplicit$1;
           }
-          $(b);
-          if ($finalStep$2) {
+        } catch ($finalImplicit$1) {
+          $(f);
+          throw $finalImplicit$1;
+        }
+        $(f);
+        if ($finalStep$2) {
+          break;
+        } else {
+          if ($finalStep$4) {
+            tmpCalleeParam = $finalArg$2;
             break;
           } else {
-            if ($finalStep$4) {
-              return $finalArg$2;
+            if ($finalStep$6) {
+              throw $finalArg$4;
             } else {
-              if ($finalStep$6) {
-                throw $finalArg$4;
-              } else {
-              }
             }
           }
         }
-        return undefined;
       }
+      $(tmpCalleeParam);
     }
   }
-};
-$(f);
+}
 `````
 
 
@@ -173,85 +175,88 @@ $(f);
 (This ought to be the final result)
 
 `````js filename=intro
-$(function () {
-  let $finalStep = false;
-  let $finalStep$1 = false;
-  let $finalStep$3 = false;
-  let $finalArg = undefined;
-  let $finalArg$1 = undefined;
-  try {
-    $(a);
-    if ($1) {
-      $finalStep = true;
+let $finalStep = false;
+let $finalStep$1 = false;
+let $finalStep$3 = false;
+let $finalArg = undefined;
+let $finalArg$1 = undefined;
+try {
+  $(a);
+  if (b) {
+    $finalStep = true;
+  } else {
+    if (c) {
+      $finalStep$1 = true;
+      $finalArg = DEF;
     } else {
-      if ($2) {
-        $finalStep$1 = true;
-        $finalArg = value;
+      if (d) {
+        $finalStep$3 = true;
+        $finalArg$1 = x;
       } else {
-        if ($3) {
-          $finalStep$3 = true;
-          $finalArg$1 = x;
-        } else {
-          $4;
-        }
+        e;
       }
     }
-  } catch ($finalImplicit) {
-    $(b);
-    throw $finalImplicit;
   }
-  $(b);
-  if (!$finalStep) {
-    if ($finalStep$1) {
-      return $finalArg;
+} catch ($finalImplicit) {
+  $(f);
+  throw $finalImplicit;
+}
+$(f);
+if ($finalStep) {
+  $(undefined);
+} else {
+  if ($finalStep$1) {
+    $($finalArg);
+  } else {
+    if ($finalStep$3) {
+      throw $finalArg$1;
     } else {
-      if ($finalStep$3) {
-        throw $finalArg$1;
-      } else {
-        while (true) {
-          let $finalStep$2 = false;
-          let $finalStep$4 = false;
-          let $finalStep$6 = false;
-          let $finalArg$2 = undefined;
-          let $finalArg$4 = undefined;
-          try {
-            $(a);
-            if ($1) {
-              $finalStep$2 = true;
+      let tmpCalleeParam = undefined;
+      while (true) {
+        let $finalStep$2 = false;
+        let $finalStep$4 = false;
+        let $finalStep$6 = false;
+        let $finalArg$2 = undefined;
+        let $finalArg$4 = undefined;
+        try {
+          $(a);
+          if (b) {
+            $finalStep$2 = true;
+          } else {
+            if (c) {
+              $finalStep$4 = true;
+              $finalArg$2 = DEF;
             } else {
-              if ($2) {
-                $finalStep$4 = true;
-                $finalArg$2 = value;
+              if (d) {
+                $finalStep$6 = true;
+                $finalArg$4 = x;
               } else {
-                if ($3) {
-                  $finalStep$6 = true;
-                  $finalArg$4 = x;
-                } else {
-                  $4;
-                }
+                e;
               }
             }
-          } catch ($finalImplicit$1) {
-            $(b);
-            throw $finalImplicit$1;
           }
-          $(b);
-          if ($finalStep$2) {
+        } catch ($finalImplicit$1) {
+          $(f);
+          throw $finalImplicit$1;
+        }
+        $(f);
+        if ($finalStep$2) {
+          break;
+        } else {
+          if ($finalStep$4) {
+            tmpCalleeParam = $finalArg$2;
             break;
           } else {
-            if ($finalStep$4) {
-              return $finalArg$2;
-            } else {
-              if ($finalStep$6) {
-                throw $finalArg$4;
-              }
+            if ($finalStep$6) {
+              throw $finalArg$4;
             }
           }
         }
       }
+      $(tmpCalleeParam);
     }
   }
-});
+}
 `````
 
 
@@ -259,103 +264,101 @@ $(function () {
 With rename=true
 
 `````js filename=intro
-const c = function() {
-  debugger;
-  let d = false;
-  let e = false;
-  let f = false;
-  let g = undefined;
-  let h = undefined;
-  try {
-    $( a );
-    if ($1) {
-      d = true;
-    }
-    else {
-      if ($2) {
-        e = true;
-        g = value;
-      }
-      else {
-        if ($3) {
-          f = true;
-          h = x;
-        }
-        else {
-          $4;
-        }
-      }
-    }
-  }
-  catch (i) {
-    $( b );
-    throw i;
-  }
-  $( b );
-  if (d) {
-    return undefined;
+let g = false;
+let h = false;
+let i = false;
+let j = undefined;
+let k = undefined;
+try {
+  $( a );
+  if (b) {
+    g = true;
   }
   else {
-    if (e) {
-      return g;
+    if (c) {
+      h = true;
+      j = DEF;
     }
     else {
-      if (f) {
-        throw h;
+      if (d) {
+        i = true;
+        k = x;
       }
       else {
-        while ($LOOP_UNROLL_10) {
-          let j = false;
-          let k = false;
-          let l = false;
-          let m = undefined;
-          let n = undefined;
-          try {
-            $( a );
-            if ($1) {
-              j = true;
+        e;
+      }
+    }
+  }
+}
+catch (l) {
+  $( f );
+  throw l;
+}
+$( f );
+if (g) {
+  $( undefined );
+}
+else {
+  if (h) {
+    $( j );
+  }
+  else {
+    if (i) {
+      throw k;
+    }
+    else {
+      let m = undefined;
+      while ($LOOP_UNROLL_10) {
+        let n = false;
+        let o = false;
+        let p = false;
+        let q = undefined;
+        let r = undefined;
+        try {
+          $( a );
+          if (b) {
+            n = true;
+          }
+          else {
+            if (c) {
+              o = true;
+              q = DEF;
             }
             else {
-              if ($2) {
-                k = true;
-                m = value;
+              if (d) {
+                p = true;
+                r = x;
               }
               else {
-                if ($3) {
-                  l = true;
-                  n = x;
-                }
-                else {
-                  $4;
-                }
+                e;
               }
             }
           }
-          catch (o) {
-            $( b );
-            throw o;
-          }
-          $( b );
-          if (j) {
+        }
+        catch (s) {
+          $( f );
+          throw s;
+        }
+        $( f );
+        if (n) {
+          break;
+        }
+        else {
+          if (o) {
+            m = q;
             break;
           }
           else {
-            if (k) {
-              return m;
-            }
-            else {
-              if (l) {
-                throw n;
-              }
+            if (p) {
+              throw r;
             }
           }
         }
-        return undefined;
       }
+      $( m );
     }
   }
-};
-$( c );
+}
 `````
 
 
@@ -363,7 +366,7 @@ $( c );
 (This is what phase1 received the first time)
 
 `````js filename=intro
-let f = function () {
+let g = function () {
   debugger;
   while (true) {
     $continue: {
@@ -378,21 +381,21 @@ let f = function () {
       $finally: {
         try {
           $(a);
-          if ($1) {
+          if (b) {
             $finalStep = true;
             break $finally;
           } else {
-            if ($2) {
+            if (c) {
               $finalStep$1 = true;
-              $finalArg = value;
+              $finalArg = DEF;
               break $finally;
             } else {
-              if ($3) {
+              if (d) {
                 $finalStep$3 = true;
                 $finalArg$1 = x;
                 break $finally;
               } else {
-                if ($4) {
+                if (e) {
                   $finalStep$5 = true;
                   break $finally;
                 } else {
@@ -401,11 +404,11 @@ let f = function () {
             }
           }
         } catch ($finalImplicit) {
-          $(b);
+          $(f);
           throw $finalImplicit;
         }
       }
-      $(b);
+      $(f);
       if ($implicitThrow) {
         throw $finalCatchArg;
       } else {
@@ -430,14 +433,14 @@ let f = function () {
   }
   return undefined;
 };
-$(f);
+let tmpCalleeParam = g();
+$(tmpCalleeParam);
 `````
 
 
 ## Todos triggered
 
 
-- (todo) Support this node type in isFree: DebuggerStatement
 - (todo) Support this node type in isFree: LabeledStatement
 - (todo) can try-escaping support this expr node type? CallExpression
 
@@ -445,17 +448,16 @@ $(f);
 ## Globals
 
 
-BAD@! Found 8 implicit global bindings:
+BAD@! Found 1 implicit global bindings:
 
-a, $1, $2, value, $3, x, $4, b
+x
 
 
 ## Runtime Outcome
 
 
 Should call `$` with:
- - 1: '<function>'
- - eval returned: undefined
+ - eval returned: ('<crash[ <ref> is not defined ]>')
 
 Pre normalization calls: Same
 

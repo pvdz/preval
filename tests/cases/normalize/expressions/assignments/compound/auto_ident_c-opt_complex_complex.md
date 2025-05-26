@@ -31,10 +31,10 @@ if (tmpIfTest) {
   $($Number_NaN);
 } else {
   const tmpChainRootComputed /*:unknown*/ = $(`x`);
-  const tmpBinBothRhs /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
-  const tmpClusterSSA_a /*:number*/ = a * tmpBinBothRhs;
-  $(tmpClusterSSA_a);
-  $(tmpClusterSSA_a);
+  const tmpClusterSSA_tmpBinBothRhs /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
+  const tmpClusterSSA_a$3 /*:number*/ = a * tmpClusterSSA_tmpBinBothRhs;
+  $(tmpClusterSSA_a$3);
+  $(tmpClusterSSA_a$3);
 }
 `````
 
@@ -52,9 +52,9 @@ if (tmpIfTest) {
   $($Number_NaN);
 } else {
   const tmpChainRootComputed = $(`x`);
-  const tmpClusterSSA_a = a * tmpChainElementCall[tmpChainRootComputed];
-  $(tmpClusterSSA_a);
-  $(tmpClusterSSA_a);
+  const tmpClusterSSA_a$3 = a * tmpChainElementCall[tmpChainRootComputed];
+  $(tmpClusterSSA_a$3);
+  $(tmpClusterSSA_a$3);
 }
 `````
 

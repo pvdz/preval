@@ -19,11 +19,11 @@ $(a);
 
 
 `````js filename=intro
-const a /*:unknown*/ = $(2);
-const tmpBinBothRhs /*:string*/ = $coerce(a, `string`);
-const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
+const tmpSSA_a /*:unknown*/ = $(2);
+const tmpStringConcatL /*:string*/ = $coerce(tmpSSA_a, `string`);
+const tmpCalleeParam /*:string*/ = `before  ${tmpStringConcatL}  after`;
 $(tmpCalleeParam);
-$(a);
+$(tmpSSA_a);
 `````
 
 
@@ -31,9 +31,9 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const a = $(2);
-$(`before  ${a}  after`);
-$(a);
+const tmpSSA_a = $(2);
+$(`before  ${tmpSSA_a}  after`);
+$(tmpSSA_a);
 `````
 
 

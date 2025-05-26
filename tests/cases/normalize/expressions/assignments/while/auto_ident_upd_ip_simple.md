@@ -21,7 +21,7 @@ $(a, b);
 
 
 `````js filename=intro
-let a /*:unknown*/ = 11;
+let a /*:unknown*/ = 10;
 $(100);
 $(100);
 $(100);
@@ -32,18 +32,19 @@ $(100);
 $(100);
 $(100);
 $(100);
-let b /*:number*/ = 12;
+let tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_b /*:number*/ = 12;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
-  const tmpPostUpdArgIdent$1 /*:unknown*/ = b;
-  b = b + 1;
+  const tmpPostUpdArgIdent$1 /*:unknown*/ = tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_b;
+  tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_b =
+    tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_b + 1;
   a = tmpPostUpdArgIdent$1;
   if (tmpPostUpdArgIdent$1) {
   } else {
     break;
   }
 }
-$(a, b);
+$(a, tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_b);
 `````
 
 
@@ -51,7 +52,7 @@ $(a, b);
 (This ought to be the final result)
 
 `````js filename=intro
-let a = 11;
+let a = 10;
 $(100);
 $(100);
 $(100);
@@ -62,17 +63,18 @@ $(100);
 $(100);
 $(100);
 $(100);
-let b = 12;
+let tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_b = 12;
 while (true) {
   $(100);
-  const tmpPostUpdArgIdent$1 = b;
-  b = b + 1;
+  const tmpPostUpdArgIdent$1 = tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_b;
+  tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_b =
+    tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_b + 1;
   a = tmpPostUpdArgIdent$1;
   if (!tmpPostUpdArgIdent$1) {
     break;
   }
 }
-$(a, b);
+$(a, tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_b);
 `````
 
 
@@ -80,7 +82,7 @@ $(a, b);
 With rename=true
 
 `````js filename=intro
-let a = 11;
+let a = 10;
 $( 100 );
 $( 100 );
 $( 100 );
@@ -132,7 +134,9 @@ $(a, b);
 ## Todos triggered
 
 
+- (todo) do we want to support Literal as expression statement in free loops?
 - (todo) do we want to support ObjectExpression as expression statement in free loops?
+- (todo) objects in isFree check
 
 
 ## Globals

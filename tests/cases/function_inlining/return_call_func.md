@@ -23,8 +23,8 @@ $(f(), 'outer');
 
 
 `````js filename=intro
-const tmpCalleeParam /*:unknown*/ = $(10, `g`);
-$(tmpCalleeParam, `outer`);
+const tmpClusterSSA_tmpReturnArg /*:unknown*/ = $(10, `g`);
+$(tmpClusterSSA_tmpReturnArg, `outer`);
 `````
 
 

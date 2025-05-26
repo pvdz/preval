@@ -23,9 +23,9 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { $: $ };
-const a /*:unknown*/ = $dotCall($, b, `\$`, 1);
+const tmpSSA_a /*:unknown*/ = $dotCall($, b, `\$`, 1);
 $(undefined);
-$(a);
+$(tmpSSA_a);
 `````
 
 
@@ -33,9 +33,9 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const a = $dotCall($, { $: $ }, `\$`, 1);
+const tmpSSA_a = $dotCall($, { $: $ }, `\$`, 1);
 $(undefined);
-$(a);
+$(tmpSSA_a);
 `````
 
 

@@ -21,17 +21,19 @@ $(a);
 
 
 `````js filename=intro
-let tmpBinBothRhs /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpIfTest$1 /*:boolean*/ = $ == null;
+const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest$1) {
+  a ** 0;
+  $($Number_NaN);
+  $($Number_NaN);
 } else {
   const tmpObjLitVal$1 /*:object*/ = { e: $ };
-  tmpBinBothRhs = $dotCall($, tmpObjLitVal$1, `e`, 1);
+  const tmpClusterSSA_tmpBinBothRhs /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
+  const tmpClusterSSA_a$3 /*:number*/ = a * tmpClusterSSA_tmpBinBothRhs;
+  $(tmpClusterSSA_a$3);
+  $(tmpClusterSSA_a$3);
 }
-const a /*:object*/ = { a: 999, b: 1000 };
-const tmpClusterSSA_a /*:number*/ = a * tmpBinBothRhs;
-$(tmpClusterSSA_a);
-$(tmpClusterSSA_a);
 `````
 
 
@@ -39,13 +41,17 @@ $(tmpClusterSSA_a);
 (This ought to be the final result)
 
 `````js filename=intro
-let tmpBinBothRhs = undefined;
-if (!($ == null)) {
-  tmpBinBothRhs = $dotCall($, { e: $ }, `e`, 1);
+const tmpIfTest$1 = $ == null;
+const a = { a: 999, b: 1000 };
+if (tmpIfTest$1) {
+  a ** 0;
+  $($Number_NaN);
+  $($Number_NaN);
+} else {
+  const tmpClusterSSA_a$3 = a * $dotCall($, { e: $ }, `e`, 1);
+  $(tmpClusterSSA_a$3);
+  $(tmpClusterSSA_a$3);
 }
-const tmpClusterSSA_a = { a: 999, b: 1000 } * tmpBinBothRhs;
-$(tmpClusterSSA_a);
-$(tmpClusterSSA_a);
 `````
 
 
@@ -53,22 +59,23 @@ $(tmpClusterSSA_a);
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = $ == null;
-if (b) {
-
-}
-else {
-  const c = { e: $ };
-  a = $dotCall( $, c, "e", 1 );
-}
-const d = {
+const a = $ == null;
+const b = {
   a: 999,
   b: 1000,
 };
-const e = d * a;
-$( e );
-$( e );
+if (a) {
+  b ** 0;
+  $( $Number_NaN );
+  $( $Number_NaN );
+}
+else {
+  const c = { e: $ };
+  const d = $dotCall( $, c, "e", 1 );
+  const e = b * d;
+  $( e );
+  $( e );
+}
 `````
 
 

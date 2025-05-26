@@ -22,9 +22,9 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam);
-const a /*:unknown*/ = tmpNestedAssignObjPatternRhs.a;
+const tmpClusterSSA_a /*:unknown*/ = tmpNestedAssignObjPatternRhs.a;
 $(undefined);
-$(a);
+$(tmpClusterSSA_a);
 `````
 
 
@@ -32,9 +32,9 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const a = $({ a: 1, b: 2 }).a;
+const tmpClusterSSA_a = $({ a: 1, b: 2 }).a;
 $(undefined);
-$(a);
+$(tmpClusterSSA_a);
 `````
 
 

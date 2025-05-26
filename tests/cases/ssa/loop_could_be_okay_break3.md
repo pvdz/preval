@@ -42,14 +42,14 @@ f();
 
 `````js filename=intro
 $(1);
-const x /*:unknown*/ = $(2);
-$(x);
+const tmpClusterSSA_x /*:unknown*/ = $(2);
+$(tmpClusterSSA_x);
 if ($) {
 } else {
   let tmpLoopRetCode /*:boolean*/ = true;
   while ($LOOP_UNROLL_10) {
-    const x$1 /*:unknown*/ = $(2);
-    $(x$1);
+    const tmpClusterSSA_x$1 /*:unknown*/ = $(2);
+    $(tmpClusterSSA_x$1);
     if ($) {
       tmpLoopRetCode = false;
     } else {
@@ -149,7 +149,7 @@ f();
 ## Todos triggered
 
 
-None
+- (todo) Support this node type in isFree: LabeledStatement
 
 
 ## Globals

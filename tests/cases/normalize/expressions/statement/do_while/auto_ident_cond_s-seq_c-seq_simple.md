@@ -22,12 +22,12 @@ $(a);
 
 `````js filename=intro
 $(100);
-const tmpIfTest /*:unknown*/ = $(60);
-if (tmpIfTest) {
+const tmpClusterSSA_tmpIfTest /*:unknown*/ = $(60);
+if (tmpClusterSSA_tmpIfTest) {
   while ($LOOP_UNROLL_10) {
     $(100);
-    const tmpIfTest$1 /*:unknown*/ = $(60);
-    if (tmpIfTest$1) {
+    const tmpClusterSSA_tmpIfTest$1 /*:unknown*/ = $(60);
+    if (tmpClusterSSA_tmpIfTest$1) {
     } else {
       break;
     }

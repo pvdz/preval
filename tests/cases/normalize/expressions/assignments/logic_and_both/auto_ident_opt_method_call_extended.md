@@ -22,15 +22,15 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal$1 /*:object*/ = { e: $ };
-const a /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
-if (a) {
+const tmpClusterSSA_a$1 /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
+if (tmpClusterSSA_a$1) {
   const tmpChainElementObject$9 /*:unknown*/ = tmpObjLitVal$1.e;
-  const tmpNestedComplexRhs /*:unknown*/ = $dotCall(tmpChainElementObject$9, tmpObjLitVal$1, `e`, 1);
-  $(tmpNestedComplexRhs);
-  $(tmpNestedComplexRhs);
+  const tmpClusterSSA_tmpNestedComplexRhs /*:unknown*/ = $dotCall(tmpChainElementObject$9, tmpObjLitVal$1, `e`, 1);
+  $(tmpClusterSSA_tmpNestedComplexRhs);
+  $(tmpClusterSSA_tmpNestedComplexRhs);
 } else {
-  $(a);
-  $(a);
+  $(tmpClusterSSA_a$1);
+  $(tmpClusterSSA_a$1);
 }
 `````
 
@@ -40,14 +40,14 @@ if (a) {
 
 `````js filename=intro
 const tmpObjLitVal$1 = { e: $ };
-const a = $dotCall($, tmpObjLitVal$1, `e`, 1);
-if (a) {
-  const tmpNestedComplexRhs = tmpObjLitVal$1.e(1);
-  $(tmpNestedComplexRhs);
-  $(tmpNestedComplexRhs);
+const tmpClusterSSA_a$1 = $dotCall($, tmpObjLitVal$1, `e`, 1);
+if (tmpClusterSSA_a$1) {
+  const tmpClusterSSA_tmpNestedComplexRhs = tmpObjLitVal$1.e(1);
+  $(tmpClusterSSA_tmpNestedComplexRhs);
+  $(tmpClusterSSA_tmpNestedComplexRhs);
 } else {
-  $(a);
-  $(a);
+  $(tmpClusterSSA_a$1);
+  $(tmpClusterSSA_a$1);
 }
 `````
 

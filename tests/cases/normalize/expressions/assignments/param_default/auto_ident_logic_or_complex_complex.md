@@ -27,9 +27,9 @@ if (tmpNestedComplexRhs) {
   $(tmpNestedComplexRhs);
 } else {
   const tmpCalleeParam$1 /*:unknown*/ = $(2);
-  const a /*:unknown*/ = $(tmpCalleeParam$1);
+  const tmpClusterSSA_a$1 /*:unknown*/ = $(tmpCalleeParam$1);
   $(undefined);
-  $(a);
+  $(tmpClusterSSA_a$1);
 }
 `````
 
@@ -43,9 +43,9 @@ if (tmpNestedComplexRhs) {
   $(undefined);
   $(tmpNestedComplexRhs);
 } else {
-  const a = $($(2));
+  const tmpClusterSSA_a$1 = $($(2));
   $(undefined);
-  $(a);
+  $(tmpClusterSSA_a$1);
 }
 `````
 

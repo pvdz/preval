@@ -20,9 +20,9 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(1);
-const tmpBinBothLhs /*:unknown*/ = $(tmpCalleeParam);
+const tmpClusterSSA_tmpBinBothLhs /*:unknown*/ = $(tmpCalleeParam);
 const tmpBinBothRhs /*:unknown*/ = $(100);
-tmpBinBothLhs + tmpBinBothRhs;
+tmpClusterSSA_tmpBinBothLhs + tmpBinBothRhs;
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````

@@ -24,8 +24,8 @@ const tmpChainElementCall /*:unknown*/ = $($);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest) {
 } else {
-  const tmpCalleeParam /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, 1);
-  $coerce(tmpCalleeParam, `string`);
+  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, 1);
+  $coerce(tmpClusterSSA_tmpCalleeParam, `string`);
 }
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);

@@ -19,12 +19,12 @@ $(x);
 
 `````js filename=intro
 const tmpCalleeParam /*:object*/ = { x: `pass2` };
-const tmpArrPatternStep /*:unknown*/ = $(tmpCalleeParam);
-const tmpOPBD /*:unknown*/ = tmpArrPatternStep.x;
+const tmpSSA_tmpArrPatternStep /*:unknown*/ = $(tmpCalleeParam);
+const tmpOPBD /*:unknown*/ = tmpSSA_tmpArrPatternStep.x;
 const tmpIfTest$1 /*:boolean*/ = tmpOPBD === undefined;
 if (tmpIfTest$1) {
-  const x /*:unknown*/ = $(`pass`);
-  $(x);
+  const tmpClusterSSA_x /*:unknown*/ = $(`pass`);
+  $(tmpClusterSSA_x);
 } else {
   $(tmpOPBD);
 }

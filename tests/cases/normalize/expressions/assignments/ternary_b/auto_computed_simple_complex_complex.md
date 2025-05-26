@@ -28,8 +28,8 @@ if (tmpIfTest) {
   a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 } else {
-  const tmpCalleeParam /*:unknown*/ = $(200);
-  $(tmpCalleeParam);
+  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(200);
+  $(tmpClusterSSA_tmpCalleeParam);
 }
 const tmpAssignComMemLhsProp /*:unknown*/ = $(`b`);
 const tmpAssignComputedRhs /*:unknown*/ = $(2);

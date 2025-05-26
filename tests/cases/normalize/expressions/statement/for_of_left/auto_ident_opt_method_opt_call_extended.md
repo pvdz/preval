@@ -31,15 +31,15 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   if (tmpIfTest) {
     break;
   } else {
+    let tmpAssignMemLhsObj /*:unknown*/ /*ternaryConst*/ = undefined;
     const tmpChainElementObject$3 /*:unknown*/ = tmpObjLitVal$1.e;
     const tmpIfTest$3 /*:boolean*/ = tmpChainElementObject$3 == null;
-    let tmpAssignMemLhsObj$1 /*:unknown*/ /*ternaryConst*/ = undefined;
     if (tmpIfTest$3) {
     } else {
-      tmpAssignMemLhsObj$1 = $dotCall(tmpChainElementObject$3, tmpObjLitVal$1, `e`, 1);
+      tmpAssignMemLhsObj = $dotCall(tmpChainElementObject$3, tmpObjLitVal$1, `e`, 1);
     }
     const tmpAssignMemRhs /*:unknown*/ = tmpForOfNext.value;
-    tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
+    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
   }
 }
 const a /*:object*/ = { a: 999, b: 1000 };
@@ -58,13 +58,12 @@ while (true) {
   if (tmpForOfNext.done) {
     break;
   } else {
+    let tmpAssignMemLhsObj = undefined;
     const tmpChainElementObject$3 = tmpObjLitVal$1.e;
-    const tmpIfTest$3 = tmpChainElementObject$3 == null;
-    let tmpAssignMemLhsObj$1 = undefined;
-    if (!tmpIfTest$3) {
-      tmpAssignMemLhsObj$1 = $dotCall(tmpChainElementObject$3, tmpObjLitVal$1, `e`, 1);
+    if (!(tmpChainElementObject$3 == null)) {
+      tmpAssignMemLhsObj = $dotCall(tmpChainElementObject$3, tmpObjLitVal$1, `e`, 1);
     }
-    tmpAssignMemLhsObj$1.x = tmpForOfNext.value;
+    tmpAssignMemLhsObj.x = tmpForOfNext.value;
   }
 }
 $({ a: 999, b: 1000 });
@@ -86,17 +85,17 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     break;
   }
   else {
-    const g = d.e;
-    const h = g == null;
-    let i = undefined;
-    if (h) {
+    let g = undefined;
+    const h = d.e;
+    const i = h == null;
+    if (i) {
 
     }
     else {
-      i = $dotCall( g, d, "e", 1 );
+      g = $dotCall( h, d, "e", 1 );
     }
     const j = e.value;
-    i.x = j;
+    g.x = j;
   }
 }
 const k = {
@@ -151,6 +150,7 @@ $(a);
 ## Todos triggered
 
 
+- (todo) do we want to support ObjectExpression as expression statement in free loops?
 - (todo) objects in isFree check
 
 

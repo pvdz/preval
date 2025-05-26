@@ -19,10 +19,10 @@ $(a);
 
 
 `````js filename=intro
-const a /*:unknown*/ = $(2);
-const tmpAnonDefaultExport /*:unknown*/ = a;
+const tmpClusterSSA_a /*:unknown*/ = $(2);
+const tmpAnonDefaultExport /*:unknown*/ = tmpClusterSSA_a;
 export { tmpAnonDefaultExport as default };
-$(a);
+$(tmpClusterSSA_a);
 `````
 
 
@@ -30,10 +30,10 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const a = $(2);
-const tmpAnonDefaultExport = a;
+const tmpClusterSSA_a = $(2);
+const tmpAnonDefaultExport = tmpClusterSSA_a;
 export { tmpAnonDefaultExport as default };
-$(a);
+$(tmpClusterSSA_a);
 `````
 
 

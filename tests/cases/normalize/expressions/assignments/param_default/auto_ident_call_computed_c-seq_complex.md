@@ -26,9 +26,9 @@ const b /*:object*/ = { $: $ };
 const tmpMCCO /*:unknown*/ = $(b);
 const tmpMCCP /*:unknown*/ = $(`\$`);
 const tmpMCF /*:unknown*/ = tmpMCCO[tmpMCCP];
-const a /*:unknown*/ = $dotCall(tmpMCF, tmpMCCO, undefined, 1);
+const tmpSSA_a /*:unknown*/ = $dotCall(tmpMCF, tmpMCCO, undefined, 1);
 $(undefined);
-$(a);
+$(tmpSSA_a);
 `````
 
 
@@ -38,9 +38,9 @@ $(a);
 `````js filename=intro
 const tmpMCCO = $({ $: $ });
 const tmpMCCP = $(`\$`);
-const a = tmpMCCO[tmpMCCP](1);
+const tmpSSA_a = tmpMCCO[tmpMCCP](1);
 $(undefined);
-$(a);
+$(tmpSSA_a);
 `````
 
 

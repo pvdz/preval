@@ -33,8 +33,8 @@ const f /*:()=>unknown*/ = function () {
   debugger;
   $(tmpPrevalAliasThis);
   $(tmpPrevalAliasThis);
-  const tmpReturnArg$1 /*:unknown*/ = tmpPrevalAliasThis.y;
-  return tmpReturnArg$1;
+  const tmpClusterSSA_tmpReturnArg$1 /*:unknown*/ = tmpPrevalAliasThis.y;
+  return tmpClusterSSA_tmpReturnArg$1;
 };
 const tmpMCP /*:object*/ = { y: 1 };
 const tmpCalleeParam /*:unknown*/ = $dotCall($function_call, f, `call`, tmpMCP);
@@ -50,8 +50,8 @@ const f = function () {
   const tmpPrevalAliasThis = this;
   $(tmpPrevalAliasThis);
   $(tmpPrevalAliasThis);
-  const tmpReturnArg$1 = tmpPrevalAliasThis.y;
-  return tmpReturnArg$1;
+  const tmpClusterSSA_tmpReturnArg$1 = tmpPrevalAliasThis.y;
+  return tmpClusterSSA_tmpReturnArg$1;
 };
 $($dotCall($function_call, f, `call`, { y: 1 }));
 `````

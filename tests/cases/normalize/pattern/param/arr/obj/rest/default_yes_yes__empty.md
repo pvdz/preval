@@ -22,19 +22,19 @@ $(f());
 `````js filename=intro
 const tmpArrElement /*:object*/ = { a: `pass2` };
 const tmpCalleeParam /*:array*/ = [tmpArrElement];
-const tmpBindingPatternArrRoot /*:unknown*/ = $(tmpCalleeParam);
-const tmpArrPatternSplat /*:array*/ = [...tmpBindingPatternArrRoot];
+const tmpClusterSSA_tmpBindingPatternArrRoot /*:unknown*/ = $(tmpCalleeParam);
+const tmpArrPatternSplat /*:array*/ = [...tmpClusterSSA_tmpBindingPatternArrRoot];
 const tmpAPBD /*:unknown*/ = tmpArrPatternSplat[0];
-let tmpArrPatternStep /*:unknown*/ /*ternaryConst*/ = undefined;
+let tmpCalleeParam$3 /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpIfTest$1 /*:boolean*/ = tmpAPBD === undefined;
 if (tmpIfTest$1) {
   const tmpCalleeParam$1 /*:object*/ = { a: `fail` };
-  tmpArrPatternStep = $(tmpCalleeParam$1);
+  tmpCalleeParam$3 = $(tmpCalleeParam$1);
 } else {
-  tmpArrPatternStep = tmpAPBD;
+  tmpCalleeParam$3 = tmpAPBD;
 }
 const tmpCalleeParam$5 /*:array*/ = [];
-const x /*:unknown*/ = $objPatternRest(tmpArrPatternStep, tmpCalleeParam$5, undefined);
+const x /*:unknown*/ = $objPatternRest(tmpCalleeParam$3, tmpCalleeParam$5, undefined);
 $(x);
 `````
 
@@ -44,15 +44,15 @@ $(x);
 
 `````js filename=intro
 const tmpArrElement = { a: `pass2` };
-const tmpBindingPatternArrRoot = $([tmpArrElement]);
-const tmpAPBD = [...tmpBindingPatternArrRoot][0];
-let tmpArrPatternStep = undefined;
+const tmpClusterSSA_tmpBindingPatternArrRoot = $([tmpArrElement]);
+const tmpAPBD = [...tmpClusterSSA_tmpBindingPatternArrRoot][0];
+let tmpCalleeParam$3 = undefined;
 if (tmpAPBD === undefined) {
-  tmpArrPatternStep = $({ a: `fail` });
+  tmpCalleeParam$3 = $({ a: `fail` });
 } else {
-  tmpArrPatternStep = tmpAPBD;
+  tmpCalleeParam$3 = tmpAPBD;
 }
-$($objPatternRest(tmpArrPatternStep, [], undefined));
+$($objPatternRest(tmpCalleeParam$3, [], undefined));
 `````
 
 
@@ -120,6 +120,7 @@ $(tmpCalleeParam$7);
 
 
 - (todo) Deal with array spreads in arr mutation?
+- (todo) support array reads statement type ExpressionStatement
 - (todo) support array reads statement type VarStatement
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
 

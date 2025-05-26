@@ -18,8 +18,8 @@ $(!!!!$(1));
 
 `````js filename=intro
 const tmpUnaryArg$5 /*:unknown*/ = $(1);
-const tmpUnaryArg$1 /*:boolean*/ = $boolean_constructor(tmpUnaryArg$5);
-$(tmpUnaryArg$1);
+const tmpCalleeParam /*:boolean*/ = $boolean_constructor(tmpUnaryArg$5);
+$(tmpCalleeParam);
 `````
 
 

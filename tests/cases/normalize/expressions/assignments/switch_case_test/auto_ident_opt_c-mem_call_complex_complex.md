@@ -37,8 +37,8 @@ if (tmpIfTest$1) {
     $(undefined);
   } else {
     const tmpCalleeParam /*:unknown*/ = $(1);
-    const a /*:unknown*/ = $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, tmpCalleeParam);
-    $(a);
+    const tmpClusterSSA_a /*:unknown*/ = $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, tmpCalleeParam);
+    $(tmpClusterSSA_a);
   }
 }
 `````

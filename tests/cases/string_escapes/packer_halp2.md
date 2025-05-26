@@ -24,7 +24,7 @@ $(x);
 
 
 `````js filename=intro
-const tmpCalleeParam$5 /*:object*/ = {
+const r /*:object*/ = {
   z: `split`,
   y: `not_expr`,
   x: `u0020g`,
@@ -86,7 +86,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     } else {
       tmpAssignComputedRhs$1 = $dotCall($number_toString, tmpClusterSSA_c$1, `toString`, 36);
     }
-    tmpCalleeParam$5[tmpAssignComMemLhsProp$1] = tmpAssignComputedRhs$1;
+    r[tmpAssignComMemLhsProp$1] = tmpAssignComputedRhs$1;
   } else {
     break;
   }
@@ -94,18 +94,18 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 const tmpArrElement /*:(unknown)=>unknown*/ = function ($$0) {
   const e$1 /*:unknown*/ = $$0;
   debugger;
-  const tmpReturnArg$1 /*:unknown*/ = tmpCalleeParam$5[e$1];
+  const tmpReturnArg$1 /*:unknown*/ = r[e$1];
   return tmpReturnArg$1;
 };
 const tmpMCP$1 /*:regex*/ = new $regex_constructor(`\\b\\w+\\b`, `g`);
-const p /*:string*/ = $dotCall(
+const tmpSSA_p /*:string*/ = $dotCall(
   $string_replace,
   `s(f(p,a,c,k,e,r){e=l;m(!''.n(/^/,l)){o(c--)r[c]=k[c]||c;k=[f(e){j r[e]}];e=f(){j'\\\\w+'};c=1};o(c--)m(k[c])p=p.n(t u('\\\\b'+e(c)+'\\\\b','g'),k[c]);j p}('"0\\\\\`1\\\\"2\\\\\\'3\\\\\\\\4\\\\5\\\\6\${7}8\\\\/9"',q,q,'a|b|c|d|e|v|x|y|h|i'.z('|'),0,{}))`,
   `replace`,
   tmpMCP$1,
   tmpArrElement,
 );
-const x /*:unknown*/ = eval(p);
+const x /*:unknown*/ = eval(tmpSSA_p);
 $(x);
 `````
 
@@ -114,19 +114,7 @@ $(x);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCalleeParam$5 = {
-  z: `split`,
-  y: `not_expr`,
-  x: `u0020g`,
-  w: `w`,
-  v: `x20f`,
-  u: `RegExp`,
-  t: `new`,
-  s: `eval`,
-  r: `r`,
-  q: `10`,
-  p: `p`,
-};
+const r = { z: `split`, y: `not_expr`, x: `u0020g`, w: `w`, v: `x20f`, u: `RegExp`, t: `new`, s: `eval`, r: `r`, q: `10`, p: `p` };
 let tmpClusterSSA_c$1 = 25;
 const k = [
   ``,
@@ -175,13 +163,13 @@ while (true) {
     if (!tmpAssignComputedRhs$1) {
       tmpAssignComputedRhs$1 = $dotCall($number_toString, tmpClusterSSA_c$1, `toString`, 36);
     }
-    tmpCalleeParam$5[tmpAssignComMemLhsProp$1] = tmpAssignComputedRhs$1;
+    r[tmpAssignComMemLhsProp$1] = tmpAssignComputedRhs$1;
   } else {
     break;
   }
 }
 const tmpArrElement = function (e$1) {
-  const tmpReturnArg$1 = tmpCalleeParam$5[e$1];
+  const tmpReturnArg$1 = r[e$1];
   return tmpReturnArg$1;
 };
 $(
@@ -354,6 +342,7 @@ $(x);
 ## Todos triggered
 
 
+- (todo) - at least one of the frfr args was not isFree, bailing
 - (todo) Support this ident in isFree CallExpression: $number_toString
 - (todo) can we always safely clone ident refs in this case?
 - (todo) objects in isFree check

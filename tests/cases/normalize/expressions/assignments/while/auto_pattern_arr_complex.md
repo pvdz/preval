@@ -24,8 +24,9 @@ const tmpBindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
 const tmpCalleeParam /*:array*/ = [1, 2];
 const tmpNestedAssignArrPatternRhs /*:unknown*/ = $(tmpCalleeParam);
 const tmpArrPatternSplat$1 /*:array*/ = [...tmpNestedAssignArrPatternRhs];
-let a /*:unknown*/ = tmpArrPatternSplat$1[0];
+const tmpClusterSSA_a /*:unknown*/ = tmpArrPatternSplat$1[0];
 if (tmpNestedAssignArrPatternRhs) {
+  let a /*:unknown*/ = undefined;
   while ($LOOP_UNROLL_10) {
     $(100);
     const tmpCalleeParam$1 /*:array*/ = [1, 2];
@@ -39,7 +40,7 @@ if (tmpNestedAssignArrPatternRhs) {
   }
   $(a);
 } else {
-  $(a);
+  $(tmpClusterSSA_a);
 }
 `````
 
@@ -51,8 +52,9 @@ if (tmpNestedAssignArrPatternRhs) {
 const tmpBindingPatternArrRoot = { a: 999, b: 1000 };
 [...tmpBindingPatternArrRoot];
 const tmpNestedAssignArrPatternRhs = $([1, 2]);
-let a = [...tmpNestedAssignArrPatternRhs][0];
+const tmpClusterSSA_a = [...tmpNestedAssignArrPatternRhs][0];
 if (tmpNestedAssignArrPatternRhs) {
+  let a = undefined;
   while (true) {
     $(100);
     const tmpNestedAssignArrPatternRhs$1 = $([1, 2]);
@@ -63,7 +65,7 @@ if (tmpNestedAssignArrPatternRhs) {
   }
   $(a);
 } else {
-  $(a);
+  $(tmpClusterSSA_a);
 }
 `````
 
@@ -80,22 +82,23 @@ const a = {
 const b = [ 1, 2 ];
 const c = $( b );
 const d = [ ...c ];
-let e = d[ 0 ];
+const e = d[ 0 ];
 if (c) {
+  let f = undefined;
   while ($LOOP_UNROLL_10) {
     $( 100 );
-    const f = [ 1, 2 ];
-    const g = $( f );
-    const h = [ ...g ];
-    e = h[ 0 ];
-    if (g) {
+    const g = [ 1, 2 ];
+    const h = $( g );
+    const i = [ ...h ];
+    f = i[ 0 ];
+    if (h) {
 
     }
     else {
       break;
     }
   }
-  $( e );
+  $( f );
 }
 else {
   $( e );
@@ -132,6 +135,7 @@ $(a);
 
 - (todo) Deal with array spreads in arr mutation?
 - (todo) do we want to support ArrayExpression as expression statement in free loops?
+- (todo) regular property access of an ident feels tricky;
 - (todo) support array reads statement type VarStatement
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
 

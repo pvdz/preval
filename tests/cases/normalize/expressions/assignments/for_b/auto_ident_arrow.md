@@ -19,19 +19,9 @@ $(a);
 
 
 `````js filename=intro
-let a /*:unknown*/ = undefined;
-while (true) {
-  a = function () {
-    debugger;
-    return undefined;
-  };
-  if (a) {
-    $(1);
-  } else {
-    break;
-  }
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $(1);
 }
-$(a);
 `````
 
 
@@ -39,16 +29,9 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-let a = undefined;
 while (true) {
-  a = function () {};
-  if (a) {
-    $(1);
-  } else {
-    break;
-  }
+  $(1);
 }
-$(a);
 `````
 
 
@@ -56,20 +39,9 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-while (true) {
-  a = function() {
-    debugger;
-    return undefined;
-  };
-  if (a) {
-    $( 1 );
-  }
-  else {
-    break;
-  }
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $( 1 );
 }
-$( a );
 `````
 
 
@@ -97,7 +69,9 @@ $(a);
 ## Todos triggered
 
 
+- (todo) do we want to support FunctionExpression as expression statement in free loops?
 - (todo) do we want to support ObjectExpression as expression statement in free loops?
+- (todo) objects in isFree check
 
 
 ## Globals

@@ -26,10 +26,10 @@ const tmpArrElement /*:unknown*/ = $(2);
 const tmpCalleeParam /*:array*/ = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs /*:unknown*/ = $(tmpCalleeParam);
 const tmpArrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
-const b /*:unknown*/ = tmpArrPatternSplat[0];
+const tmpSSA_b /*:unknown*/ = tmpArrPatternSplat[0];
 $(undefined);
 const a /*:object*/ = { a: 999, b: 1000 };
-$(a, b);
+$(a, tmpSSA_b);
 `````
 
 
@@ -39,9 +39,9 @@ $(a, b);
 `````js filename=intro
 const tmpArrElement = $(2);
 const tmpNestedAssignArrPatternRhs = $([tmpArrElement]);
-const b = [...tmpNestedAssignArrPatternRhs][0];
+const tmpSSA_b = [...tmpNestedAssignArrPatternRhs][0];
 $(undefined);
-$({ a: 999, b: 1000 }, b);
+$({ a: 999, b: 1000 }, tmpSSA_b);
 `````
 
 
@@ -97,6 +97,8 @@ $(a, b);
 
 
 - (todo) Deal with array spreads in arr mutation?
+- (todo) support array reads statement type EmptyStatement
+- (todo) support array reads statement type ExpressionStatement
 - (todo) support array reads statement type VarStatement
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
 

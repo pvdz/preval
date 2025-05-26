@@ -74,7 +74,7 @@ if ($implicitThrow) {
 ## Todos triggered
 
 
-- (todo) can try-escaping support this expr node type? TemplateLiteral
+- (todo) can try-escaping support this expr node type? Literal
 
 
 ## Globals

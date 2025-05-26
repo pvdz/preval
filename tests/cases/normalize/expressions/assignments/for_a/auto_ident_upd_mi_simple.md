@@ -65,7 +65,7 @@ while (true) {
 ## Todos triggered
 
 
-- (todo) do we want to support BinaryExpression as expression statement in free loops?
+- (todo) Support $frfr that has multiple/no/generic returns type;
 
 
 ## Globals

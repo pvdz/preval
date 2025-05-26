@@ -29,21 +29,21 @@ $(maxed);
 
 
 `````js filename=intro
-const tmpFree /*:(number)=>number*/ = function $free($$0) {
+const tmpFree$1 /*:(number)=>number*/ = function $free($$0) {
   const ten$1 /*:number*/ = $$0;
   debugger;
   const twoten /*:number*/ = $Math_pow(2, ten$1);
-  const zero /*:number*/ = 0 * twoten;
-  const divvy /*:number*/ = zero / 695;
+  const tmpRet /*:number*/ = 0 * twoten;
+  const divvy /*:number*/ = tmpRet / 695;
   const sinned /*:number*/ = $Math_sin(divvy);
   const lottasin /*:number*/ = 1000000 * sinned;
   const minned /*:number*/ = $Math_min(10000, lottasin);
-  const tmpRet /*:number*/ = $Math_max(-10000, minned);
-  return tmpRet;
+  const tmpRet$1 /*:number*/ = $Math_max(-10000, minned);
+  return tmpRet$1;
 };
 const tmpBinLhs /*:unknown*/ = $(120);
 const ten /*:number*/ = tmpBinLhs / 12;
-const maxed /*:number*/ = $frfr(tmpFree, ten);
+const maxed /*:number*/ = $frfr(tmpFree$1, ten);
 $(maxed);
 `````
 
@@ -52,13 +52,13 @@ $(maxed);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpFree = function $free(ten$1) {
+const tmpFree$1 = function $free(ten$1) {
   const twoten = $Math_pow(2, ten$1);
   const sinned = $Math_sin((0 * twoten) / 695);
-  const tmpRet = $Math_max(-10000, $Math_min(10000, 1000000 * sinned));
-  return tmpRet;
+  const tmpRet$1 = $Math_max(-10000, $Math_min(10000, 1000000 * sinned));
+  return tmpRet$1;
 };
-$($frfr(tmpFree, $(120) / 12));
+$($frfr(tmpFree$1, $(120) / 12));
 `````
 
 

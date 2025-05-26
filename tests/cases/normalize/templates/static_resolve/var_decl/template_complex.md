@@ -19,8 +19,8 @@ $(x);
 
 `````js filename=intro
 const tmpCalleeParam$1 /*:unknown*/ = $(1);
-const tmpBinBothRhs$1 /*:string*/ = $coerce(tmpCalleeParam$1, `string`);
-const tmpCalleeParam /*:string*/ = `a ${tmpBinBothRhs$1} b`;
+const tmpStringConcatL /*:string*/ = $coerce(tmpCalleeParam$1, `string`);
+const tmpCalleeParam /*:string*/ = `a ${tmpStringConcatL} b`;
 $(tmpCalleeParam);
 `````
 

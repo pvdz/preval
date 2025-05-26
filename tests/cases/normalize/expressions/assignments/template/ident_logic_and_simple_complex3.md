@@ -33,11 +33,11 @@ const obj /*:object*/ = {
   },
 };
 const tmpCalleeParam$3 /*:unknown*/ = $(obj);
-const a /*:unknown*/ = $(tmpCalleeParam$3);
-const tmpBinBothRhs /*:string*/ = $coerce(a, `string`);
-const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
+const tmpSSA_a /*:unknown*/ = $(tmpCalleeParam$3);
+const tmpStringConcatL /*:string*/ = $coerce(tmpSSA_a, `string`);
+const tmpCalleeParam /*:string*/ = `before  ${tmpStringConcatL}  after`;
 $(tmpCalleeParam);
-$(a);
+$(tmpSSA_a);
 `````
 
 
@@ -45,7 +45,7 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const a = $(
+const tmpSSA_a = $(
   $({
     toString() {
       $(`toString`);
@@ -57,8 +57,8 @@ const a = $(
     },
   }),
 );
-$(`before  ${a}  after`);
-$(a);
+$(`before  ${tmpSSA_a}  after`);
+$(tmpSSA_a);
 `````
 
 

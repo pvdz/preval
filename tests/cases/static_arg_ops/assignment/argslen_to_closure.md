@@ -21,9 +21,9 @@ $(one, two);
 
 
 `````js filename=intro
-const one /*:unknown*/ = $(1);
-const two /*:unknown*/ = $(1);
-$(one, two);
+const tmpClusterSSA_one /*:unknown*/ = $(1);
+const tmpClusterSSA_two /*:unknown*/ = $(1);
+$(tmpClusterSSA_one, tmpClusterSSA_two);
 `````
 
 

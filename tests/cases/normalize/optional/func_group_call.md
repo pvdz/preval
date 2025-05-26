@@ -27,8 +27,8 @@ if (tmpIfTest) {
   const tmpClusterSSA_tmpReturnArg /*:unknown*/ = $(undefined);
   $(tmpClusterSSA_tmpReturnArg);
 } else {
-  const y /*:unknown*/ = tmpChainRootCall();
-  const tmpClusterSSA_tmpReturnArg$1 /*:unknown*/ = $(y);
+  const tmpClusterSSA_y /*:unknown*/ = tmpChainRootCall();
+  const tmpClusterSSA_tmpReturnArg$1 /*:unknown*/ = $(tmpClusterSSA_y);
   $(tmpClusterSSA_tmpReturnArg$1);
 }
 `````

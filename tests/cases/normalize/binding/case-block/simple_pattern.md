@@ -25,9 +25,9 @@ const tmpIfTest /*:boolean*/ = tmpBinBothLhs === tmpBinBothRhs;
 const z /*:array*/ = [10, 20, 30];
 if (tmpIfTest) {
   const tmpArrPatternSplat /*:array*/ = [...z];
-  const x /*:unknown*/ = tmpArrPatternSplat[0];
-  const y /*:unknown*/ = tmpArrPatternSplat[1];
-  $(1, x, y, z);
+  const tmpClusterSSA_x /*:unknown*/ = tmpArrPatternSplat[0];
+  const tmpClusterSSA_y /*:unknown*/ = tmpArrPatternSplat[1];
+  $(1, tmpClusterSSA_x, tmpClusterSSA_y, z);
 } else {
   $(1, 1, 2, z);
 }
@@ -101,6 +101,7 @@ $(a, x, y, z);
 
 
 - (todo) Deal with array spreads in arr mutation?
+- (todo) support array reads statement type EmptyStatement
 - (todo) support array reads statement type ExpressionStatement
 - (todo) support array reads statement type VarStatement
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

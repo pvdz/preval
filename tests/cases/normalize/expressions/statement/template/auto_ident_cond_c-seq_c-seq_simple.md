@@ -22,14 +22,14 @@ $(a);
 const tmpIfTest /*:unknown*/ = $(30);
 if (tmpIfTest) {
   const tmpClusterSSA_tmpCalleeParam$1 /*:unknown*/ = $(60);
-  const tmpClusterSSA_tmpBinBothRhs /*:string*/ = $coerce(tmpClusterSSA_tmpCalleeParam$1, `string`);
-  const tmpClusterSSA_tmpCalleeParam /*:string*/ = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
+  const tmpClusterSSA_tmpStringConcatL /*:string*/ = $coerce(tmpClusterSSA_tmpCalleeParam$1, `string`);
+  const tmpClusterSSA_tmpCalleeParam /*:string*/ = `before  ${tmpClusterSSA_tmpStringConcatL}  after`;
   $(tmpClusterSSA_tmpCalleeParam);
 } else {
   const tmpCalleeParam$3 /*:unknown*/ = $(100);
   const tmpClusterSSA_tmpCalleeParam$2 /*:unknown*/ = $(tmpCalleeParam$3);
-  const tmpClusterSSA_tmpBinBothRhs$1 /*:string*/ = $coerce(tmpClusterSSA_tmpCalleeParam$2, `string`);
-  const tmpClusterSSA_tmpCalleeParam$3 /*:string*/ = `before  ${tmpClusterSSA_tmpBinBothRhs$1}  after`;
+  const tmpClusterSSA_tmpStringConcatL$1 /*:string*/ = $coerce(tmpClusterSSA_tmpCalleeParam$2, `string`);
+  const tmpClusterSSA_tmpCalleeParam$3 /*:string*/ = `before  ${tmpClusterSSA_tmpStringConcatL$1}  after`;
   $(tmpClusterSSA_tmpCalleeParam$3);
 }
 const a /*:object*/ = { a: 999, b: 1000 };

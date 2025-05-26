@@ -26,8 +26,8 @@ if (dedupeMe) {
 `````js filename=intro
 if (tmpUnaryArg$83) {
   const c /*:unknown*/ = props$15.children;
-  const dedupeMe /*:boolean*/ = c == null;
-  $(dedupeMe, `xyz`);
+  const tmpClusterSSA_dedupeMe /*:boolean*/ = c == null;
+  $(tmpClusterSSA_dedupeMe, `xyz`);
 } else {
   $(true, `abc`);
 }

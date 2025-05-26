@@ -23,8 +23,9 @@ $(a);
 `````js filename=intro
 $(100);
 const tmpUnaryArg /*:unknown*/ = $(100);
-let a /*:number*/ = +tmpUnaryArg;
-if (a) {
+const tmpClusterSSA_a /*:number*/ = +tmpUnaryArg;
+if (tmpClusterSSA_a) {
+  let a /*:number*/ = 0;
   while ($LOOP_UNROLL_10) {
     $(100);
     const tmpUnaryArg$1 /*:unknown*/ = $(100);
@@ -36,7 +37,7 @@ if (a) {
   }
   $(a);
 } else {
-  $(a);
+  $(tmpClusterSSA_a);
 }
 `````
 
@@ -47,8 +48,9 @@ if (a) {
 `````js filename=intro
 $(100);
 const tmpUnaryArg = $(100);
-let a = +tmpUnaryArg;
-if (a) {
+const tmpClusterSSA_a = +tmpUnaryArg;
+if (tmpClusterSSA_a) {
+  let a = 0;
   while (true) {
     $(100);
     const tmpUnaryArg$1 = $(100);
@@ -59,7 +61,7 @@ if (a) {
   }
   $(a);
 } else {
-  $(a);
+  $(tmpClusterSSA_a);
 }
 `````
 
@@ -70,20 +72,21 @@ With rename=true
 `````js filename=intro
 $( 100 );
 const a = $( 100 );
-let b = +a;
+const b = +a;
 if (b) {
+  let c = 0;
   while ($LOOP_UNROLL_10) {
     $( 100 );
-    const c = $( 100 );
-    b = +c;
-    if (b) {
+    const d = $( 100 );
+    c = +d;
+    if (c) {
 
     }
     else {
       break;
     }
   }
-  $( b );
+  $( c );
 }
 else {
   $( b );
@@ -114,6 +117,7 @@ $(a);
 
 
 - (todo) do we want to support ObjectExpression as expression statement in free loops?
+- (todo) objects in isFree check
 
 
 ## Globals

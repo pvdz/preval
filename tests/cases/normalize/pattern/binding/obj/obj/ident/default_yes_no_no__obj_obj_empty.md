@@ -21,8 +21,8 @@ $(y);
 const tmpOPBD /*:unknown*/ = $Object_prototype.y;
 const tmpIfTest /*:boolean*/ = tmpOPBD === undefined;
 if (tmpIfTest) {
-  const y /*:unknown*/ = $(`pass`);
-  $(y);
+  const tmpClusterSSA_y /*:unknown*/ = $(`pass`);
+  $(tmpClusterSSA_y);
 } else {
   $(tmpOPBD);
 }

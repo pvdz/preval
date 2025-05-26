@@ -78,12 +78,12 @@ const push /*:(unknown, unknown)=>undefined*/ = function ($$0, $$1) {
   index$1 ** 0;
   const tmpMCF /*:unknown*/ = heap.push;
   $dotCall(tmpMCF, heap, `push`, node$1);
-  const tmpSaooB$1 /*:number*/ = index$1 - 1;
-  const tmpSaooB$4 /*:number*/ = tmpSaooB$1 >>> 1;
+  const tmpSaooB$2 /*:number*/ = index$1 - 1;
+  const tmpSaooB$4 /*:number*/ = tmpSaooB$2 >>> 1;
   siftUp_t(heap, node$1, index$1, tmpSaooB$4);
   const tmpSaooB /*:number*/ = index$1 - 1;
-  const tmpSaooB$2 /*:number*/ = tmpSaooB >>> 1;
-  siftUp_t(heap, node$1, index$1, tmpSaooB$2);
+  const tmpSaooB$5 /*:number*/ = tmpSaooB >>> 1;
+  siftUp_t(heap, node$1, index$1, tmpSaooB$5);
   siftUp_f(heap, node$1, index$1);
   siftUp_f(heap, node$1, index$1);
   return undefined;
@@ -92,16 +92,16 @@ const siftUp_t /*:(unknown, unknown, unknown, number)=>undefined*/ = function ($
   const heap$1 /*:unknown*/ = $$0;
   const node /*:unknown*/ = $$1;
   const i /*:unknown*/ = $$2;
-  const tmpOutlinedParam$1 /*:number*/ = $$3;
+  const tmpOutlinedParam$4 /*:number*/ = $$3;
   debugger;
-  const parent /*:unknown*/ = heap$1[tmpOutlinedParam$1];
+  const parent /*:unknown*/ = heap$1[tmpOutlinedParam$4];
   const lhs /*:unknown*/ = $(parent, node);
   const test /*:boolean*/ = lhs > 0;
   if (test) {
-    heap$1[tmpOutlinedParam$1] = node;
+    heap$1[tmpOutlinedParam$4] = node;
     heap$1[i] = parent;
     while ($LOOP_UNROLL_100) {
-      const test2 /*:boolean*/ = tmpOutlinedParam$1 > 0;
+      const test2 /*:boolean*/ = tmpOutlinedParam$4 > 0;
       if (test2) {
         $(123);
       } else {
@@ -146,13 +146,13 @@ const push = function (heap, node$1) {
   siftUp_f(heap, node$1, index$1);
   siftUp_f(heap, node$1, index$1);
 };
-const siftUp_t = function (heap$1, node, i, tmpOutlinedParam$1) {
-  const parent = heap$1[tmpOutlinedParam$1];
+const siftUp_t = function (heap$1, node, i, tmpOutlinedParam$4) {
+  const parent = heap$1[tmpOutlinedParam$4];
   if ($(parent, node) > 0) {
-    heap$1[tmpOutlinedParam$1] = node;
+    heap$1[tmpOutlinedParam$4] = node;
     heap$1[i] = parent;
     while (true) {
-      if (tmpOutlinedParam$1 > 0) {
+      if (tmpOutlinedParam$4 > 0) {
         $(123);
       } else {
         break;

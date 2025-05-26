@@ -25,7 +25,7 @@ x(undefined, {x: 1});
 
 
 `````js filename=intro
-throw `Preval: This statement contained a read that reached no writes: propTDZ;`;
+throw `Preval: TDZ triggered for this read: foo = propTDZ`;
 `````
 
 
@@ -33,7 +33,7 @@ throw `Preval: This statement contained a read that reached no writes: propTDZ;`
 (This ought to be the final result)
 
 `````js filename=intro
-throw `Preval: This statement contained a read that reached no writes: propTDZ;`;
+throw `Preval: TDZ triggered for this read: foo = propTDZ`;
 `````
 
 
@@ -41,7 +41,7 @@ throw `Preval: This statement contained a read that reached no writes: propTDZ;`
 With rename=true
 
 `````js filename=intro
-throw "Preval: This statement contained a read that reached no writes: propTDZ;";
+throw "Preval: TDZ triggered for this read: foo = propTDZ";
 `````
 
 

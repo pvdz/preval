@@ -16,7 +16,7 @@ import { parseTestArgs } from './process-env.mjs';
 import { Worker, isMainThread, parentPort, workerData } from 'worker_threads';
 import { runPcode } from '../src/pcode.mjs';
 import { createBuiltinSymbolGlobals } from './global_symbol_mapper.mjs';
-import { ORDER } from '../src/normalize/phase2.mjs';
+import { BASE_PHASE2_RULES_LIST } from '../src/normalize/phase2.mjs';
 
 Error.stackTraceLimit = Infinity;
 
@@ -358,6 +358,21 @@ function runTestCase(
           if (phaseIndex !== 0) setPrintVarTyping(true, fdata);
           const code = tmat(fdata.tenkoOutput.ast, true);
           if (phaseIndex !== 0) setPrintVarTyping(false);
+
+          const consoleLogArgs = [];
+          if (changed) {
+            consoleLogArgs.push(
+              `Phase ${phaseIndex}/3: changed by`,
+              [changed.what],
+              ',',
+              changed.changes,
+              `x, nth: ${changed.actionOrderIndex+1}/${BASE_PHASE2_RULES_LIST.length},`,
+              +changed.actionOwnTime,
+              `ms, into ${changed.next}`
+            );
+          }
+
+
           if (options.logPhases) {
             const fstr = fi ? `f${fi}.` : '';
             if (passIndex >= options.logFrom) {
@@ -367,7 +382,8 @@ function runTestCase(
 
                 //`preval.pass.${passIndex}.loop.${phaseLoopIndex}.phase${phaseIndex}.${fstr}log.js`;
                 const f = path.join(options.logDir, `preval.pass.denormalize.${fstr}log.js`);
-                console.log(`--log: Logging state of ${passString} to disk:`, f, '(', code.length, 'bytes)', lastWrite ? `, ${now - lastWrite}ms since last write` : '', changed ? `Phase ${phaseIndex}/3: changed by ${changed.what}, ${changed.changes}x, t ${changed.actionOrderIndex+1}/${ORDER.length}, ${changed.actionOwnTime}ms into ${changed.next}` : '');
+                consoleLogArgs.unshift(`--log: Logging state of ${passString} to disk:`, f, '(', code.length, 'bytes)', lastWrite ? `, ${now - lastWrite}ms since last write` : '');
+                console.log(...consoleLogArgs);
                 fs.writeFileSync(f,
                   `// Resulting output at ${passString} [${fname}]\n` +
                   `// Command: ${process.argv.join(' ')}\n` +
@@ -379,7 +395,8 @@ function runTestCase(
               } else {
                 const logFname =`preval.pass.${passIndex}.loop.${phaseLoopIndex}.phase${phaseIndex}.${fstr}log.js`;
                 const f = path.join(options.logDirExtra, logFname);
-                console.log(`--log: Logging state of ${passString} to disk:`, f, '(', code.length, 'bytes)', lastWrite ? `, ${now - lastWrite}ms since last write` : '', changed ? `Phase ${phaseIndex}/3: changed by ${changed.what}, ${changed.changes}x, t ${changed.actionOrderIndex+1}/${ORDER.length}, ${changed.actionOwnTime}ms, into ${changed.next}` : '');
+                consoleLogArgs.unshift(`--log: Logging state of ${passString} to disk:`, f, '(', code.length, 'bytes)', lastWrite ? `, ${now - lastWrite}ms since last write` : '');
+                console.log(...consoleLogArgs);
                 const content =
                   `// Resulting output at ${passString} [${fname}]\n` +
                   `// Command: ${process.argv.join(' ')}\n` +
@@ -389,10 +406,12 @@ function runTestCase(
                 lastWrittenContent = content;
               }
             } else {
-              console.log(`--log: Not logging ${passString} (${code.length} bytes) because logFrom is ${options.logFrom}`, lastWrite ? `, ${now - lastWrite}ms since last write` : '', changed ? `Phase ${phaseIndex}/3: changed by ${changed.what}, ${changed.changes}x, t ${changed.actionOrderIndex+1}/${ORDER.length}, ${changed.actionOwnTime}ms, into ${changed.next}` : '');
+              consoleLogArgs.unshift(`--log: Not logging ${passString} (${code.length} bytes) because logFrom is ${options.logFrom}`, lastWrite ? `, ${now - lastWrite}ms since last write` : '');
+              console.log(...consoleLogArgs);
             }
           } else if (!CONFIG.targetDir && !CONFIG.updateSnapshots) {
-            console.log(`\n-- onAfterPhase: ${passString} (${code.length} bytes)`, lastWrite ? `, ${now - lastWrite}ms since last write` : '', changed ? `Phase ${phaseIndex}/3: changed by ${changed.what}, ${changed.changes}x, t ${changed.actionOrderIndex+1}/${ORDER.length}, ${changed.actionOwnTime}ms, into ${changed.next}` : '');
+            consoleLogArgs.unshift(`\n-- onAfterPhase: ${passString} (${code.length} bytes)`, lastWrite ? `, ${now - lastWrite}ms since last write` : '');
+            console.log(...consoleLogArgs);
 
             if (phaseIndex === 2) currentState(code, 'onAfterPhase' + ' ' + phaseIndex, true, fdata);
           }

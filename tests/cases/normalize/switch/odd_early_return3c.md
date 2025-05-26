@@ -44,8 +44,8 @@ const a /*:()=>unknown*/ = function () {
   $(`x`);
   $(`y`);
   $(`z`);
-  const tmpReturnArg$1 /*:unknown*/ = $(2);
-  return tmpReturnArg$1;
+  const tmpClusterSSA_tmpReturnArg$1 /*:unknown*/ = $(2);
+  return tmpClusterSSA_tmpReturnArg$1;
 };
 $(a);
 `````
@@ -63,8 +63,8 @@ $(function () {
   $(`x`);
   $(`y`);
   $(`z`);
-  const tmpReturnArg$1 = $(2);
-  return tmpReturnArg$1;
+  const tmpClusterSSA_tmpReturnArg$1 = $(2);
+  return tmpClusterSSA_tmpReturnArg$1;
 });
 `````
 

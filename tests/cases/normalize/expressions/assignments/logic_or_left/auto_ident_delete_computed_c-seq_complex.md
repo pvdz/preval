@@ -31,8 +31,8 @@ if (a) {
   $(true);
   $(true, arg);
 } else {
-  const tmpCalleeParam /*:unknown*/ = $(100);
-  $(tmpCalleeParam);
+  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
+  $(tmpClusterSSA_tmpCalleeParam);
   $(false, arg);
 }
 `````

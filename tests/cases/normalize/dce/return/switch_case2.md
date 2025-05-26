@@ -29,8 +29,8 @@ const tmpBinBothLhs /*:unknown*/ = $(1, `disc`);
 const tmpBinBothRhs /*:unknown*/ = $(1, `case`);
 const tmpIfTest /*:boolean*/ = tmpBinBothLhs === tmpBinBothRhs;
 if (tmpIfTest) {
-  const tmpCalleeParam /*:unknown*/ = $(2, `ret`);
-  $(tmpCalleeParam);
+  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(2, `ret`);
+  $(tmpClusterSSA_tmpCalleeParam);
 } else {
   $(`keep, do not eval`);
   $(undefined);

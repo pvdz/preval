@@ -25,8 +25,8 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { c: $ };
-const tmpCalleeParam /*:unknown*/ = $dotCall($, b, `c`, 1);
-$(tmpCalleeParam);
+const tmpClusterSSA_tmpReturnArg /*:unknown*/ = $dotCall($, b, `c`, 1);
+$(tmpClusterSSA_tmpReturnArg);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````

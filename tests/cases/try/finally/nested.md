@@ -219,6 +219,7 @@ if ($implicitThrow$1) {
 
 
 - (todo) can try-escaping support this expr node type? CallExpression
+- (todo) can try-escaping support this expr node type? Literal
 
 
 ## Globals

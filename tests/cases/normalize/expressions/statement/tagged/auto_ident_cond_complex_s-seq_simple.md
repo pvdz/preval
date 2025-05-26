@@ -27,8 +27,8 @@ if (tmpIfTest) {
   $(a);
 } else {
   const tmpCalleeParam$3 /*:unknown*/ = $(100);
-  const tmpCalleeParam$1 /*:unknown*/ = $(tmpCalleeParam$3);
-  $(tmpCalleeParam, tmpCalleeParam$1);
+  const tmpClusterSSA_tmpCalleeParam$1 /*:unknown*/ = $(tmpCalleeParam$3);
+  $(tmpCalleeParam, tmpClusterSSA_tmpCalleeParam$1);
   $(a);
 }
 `````

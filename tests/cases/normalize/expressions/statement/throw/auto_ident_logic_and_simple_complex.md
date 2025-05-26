@@ -20,8 +20,8 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(1);
-const tmpThrowArg /*:unknown*/ = $(tmpCalleeParam);
-throw tmpThrowArg;
+const tmpClusterSSA_tmpThrowArg /*:unknown*/ = $(tmpCalleeParam);
+throw tmpClusterSSA_tmpThrowArg;
 `````
 
 
@@ -29,8 +29,8 @@ throw tmpThrowArg;
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpThrowArg = $($(1));
-throw tmpThrowArg;
+const tmpClusterSSA_tmpThrowArg = $($(1));
+throw tmpClusterSSA_tmpThrowArg;
 `````
 
 

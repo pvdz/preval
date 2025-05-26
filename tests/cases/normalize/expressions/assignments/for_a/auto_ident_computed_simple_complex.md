@@ -71,6 +71,7 @@ while (true) {
 
 
 - (todo) Support non-primitive in first arg to $coerce
+- (todo) regular property access of an ident feels tricky;
 
 
 ## Globals

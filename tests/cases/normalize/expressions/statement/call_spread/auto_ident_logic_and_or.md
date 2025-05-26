@@ -31,7 +31,12 @@ if (tmpCalleeParamSpread) {
 } else {
   const tmpCalleeParam$3 /*:unknown*/ = $(2);
   const tmpClusterSSA_tmpCalleeParamSpread /*:unknown*/ = $(tmpCalleeParam$3);
-  $(...tmpClusterSSA_tmpCalleeParamSpread);
+  const tmpIfTest /*:boolean*/ = tmpClusterSSA_tmpCalleeParamSpread === ``;
+  if (tmpIfTest) {
+    $();
+  } else {
+    throw `Preval: Attempting to spread a falsy primitive that is not an empty string`;
+  }
 }
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
@@ -49,8 +54,11 @@ if (tmpCalleeParamSpread) {
 if (tmpCalleeParamSpread) {
   $(...tmpCalleeParamSpread);
 } else {
-  const tmpClusterSSA_tmpCalleeParamSpread = $($(2));
-  $(...tmpClusterSSA_tmpCalleeParamSpread);
+  if ($($(2)) === ``) {
+    $();
+  } else {
+    throw `Preval: Attempting to spread a falsy primitive that is not an empty string`;
+  }
 }
 $({ a: 999, b: 1000 });
 `````
@@ -72,13 +80,19 @@ if (b) {
 else {
   const d = $( 2 );
   const e = $( d );
-  $( ...e );
+  const f = e === "";
+  if (f) {
+    $();
+  }
+  else {
+    throw "Preval: Attempting to spread a falsy primitive that is not an empty string";
+  }
 }
-const f = {
+const g = {
   a: 999,
   b: 1000,
 };
-$( f );
+$( g );
 `````
 
 

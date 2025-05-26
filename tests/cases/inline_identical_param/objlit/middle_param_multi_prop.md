@@ -29,14 +29,14 @@ const f /*:(string, number, string, number, primitive, unknown)=>undefined*/ = f
   const d /*:unknown*/ = $$5;
   const c /*:primitive*/ = $$4;
   const b /*:number*/ = $$3;
-  const x /*:string*/ = $$0;
+  const x$1 /*:string*/ = $$0;
   const a /*:number*/ = $$1;
-  const y /*:string*/ = $$2;
+  const y$1 /*:string*/ = $$2;
   debugger;
-  $(x, y, a);
-  $(x, y, b);
-  $(x, y, c);
-  $(x, y, d);
+  $(x$1, y$1, a);
+  $(x$1, y$1, b);
+  $(x$1, y$1, c);
+  $(x$1, y$1, d);
   return undefined;
 };
 f(`first1`, 1, `last1`, 2, `hi`, $Number_parseInt);
@@ -48,11 +48,11 @@ f(`first2`, 3, `last2`, 4, true, null);
 (This ought to be the final result)
 
 `````js filename=intro
-const f = function (x, a, y, b, c, d) {
-  $(x, y, a);
-  $(x, y, b);
-  $(x, y, c);
-  $(x, y, d);
+const f = function (x$1, a, y$1, b, c, d) {
+  $(x$1, y$1, a);
+  $(x$1, y$1, b);
+  $(x$1, y$1, c);
+  $(x$1, y$1, d);
 };
 f(`first1`, 1, `last1`, 2, `hi`, $Number_parseInt);
 f(`first2`, 3, `last2`, 4, true, null);

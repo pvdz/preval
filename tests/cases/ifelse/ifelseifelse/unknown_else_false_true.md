@@ -34,8 +34,8 @@ const condition /*:unknown*/ = $(false);
 if (condition) {
   $(`a`);
 } else {
-  const tmpIfelseifelse /*:unknown*/ = $(true);
-  if (tmpIfelseifelse) {
+  const tmpClusterSSA_tmpIfelseifelse /*:unknown*/ = $(true);
+  if (tmpClusterSSA_tmpIfelseifelse) {
     $(`a`);
   } else {
     $(`b`);

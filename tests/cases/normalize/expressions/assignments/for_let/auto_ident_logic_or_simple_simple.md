@@ -69,7 +69,7 @@ while (true) {
 ## Todos triggered
 
 
-- (todo) can we support this const aliasing blocking statement? WhileStatement
+- (todo) do we want to support Literal as expression statement in free loops?
 
 
 ## Globals

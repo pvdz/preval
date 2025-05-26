@@ -26,7 +26,7 @@ function f(arg) {
     const len    /*:number*/  = onestr.length;
     const isone  /*:boolean*/ = len === 1;
     if (isone) {
-      arg % 0;                                                     // <- seems silly to keep this but maybe
+      arg % 0;                                                     // <- seems contrived to keep this but maybe
     } else {
     }
     const argup = arg + 1;

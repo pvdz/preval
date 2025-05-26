@@ -21,13 +21,13 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(1);
-let p /*:unknown*/ = $(tmpCalleeParam);
-if (p) {
+let tmpClusterSSA_p /*:unknown*/ = $(tmpCalleeParam);
+if (tmpClusterSSA_p) {
   const tmpCalleeParam$1 /*:unknown*/ = $(1);
-  p = $(tmpCalleeParam$1);
+  tmpClusterSSA_p = $(tmpCalleeParam$1);
 } else {
 }
-if (p) {
+if (tmpClusterSSA_p) {
   $(undefined);
 } else {
   const tmpCalleeParam$3 /*:unknown*/ = $(2);
@@ -43,11 +43,11 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-let p = $($(1));
-if (p) {
-  p = $($(1));
+let tmpClusterSSA_p = $($(1));
+if (tmpClusterSSA_p) {
+  tmpClusterSSA_p = $($(1));
 }
-if (p) {
+if (tmpClusterSSA_p) {
   $(undefined);
 } else {
   $($(2));

@@ -19,8 +19,8 @@ $('ok');
 
 `````js filename=intro
 const tmpCalleeParam /*:array*/ = [`fail`];
-const tmpOPAD /*:unknown*/ = $(tmpCalleeParam);
-[...tmpOPAD];
+const tmpSSA_tmpOPAD /*:unknown*/ = $(tmpCalleeParam);
+[...tmpSSA_tmpOPAD];
 $(`ok`);
 `````
 
@@ -29,8 +29,8 @@ $(`ok`);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpOPAD = $([`fail`]);
-[...tmpOPAD];
+const tmpSSA_tmpOPAD = $([`fail`]);
+[...tmpSSA_tmpOPAD];
 $(`ok`);
 `````
 

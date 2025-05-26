@@ -30,10 +30,10 @@ if (tmpIfTest) {
   $(tmpClusterSSA_tmpCalleeParam);
   $(undefined);
 } else {
-  const a /*:unknown*/ = tmpChainRootProp.x;
-  const tmpClusterSSA_tmpCalleeParam$1 /*:primitive*/ = tmpBinBothLhs + a;
+  const tmpClusterSSA_a /*:unknown*/ = tmpChainRootProp.x;
+  const tmpClusterSSA_tmpCalleeParam$1 /*:primitive*/ = tmpBinBothLhs + tmpClusterSSA_a;
   $(tmpClusterSSA_tmpCalleeParam$1);
-  $(a);
+  $(tmpClusterSSA_a);
 }
 `````
 
@@ -48,9 +48,9 @@ if (tmpChainRootProp == null) {
   $(tmpBinBothLhs + undefined);
   $(undefined);
 } else {
-  const a = tmpChainRootProp.x;
-  $(tmpBinBothLhs + a);
-  $(a);
+  const tmpClusterSSA_a = tmpChainRootProp.x;
+  $(tmpBinBothLhs + tmpClusterSSA_a);
+  $(tmpClusterSSA_a);
 }
 `````
 

@@ -24,8 +24,8 @@ if (tmpUnaryArg) {
   $(false);
   $(false);
 } else {
-  const tmpCalleeParam /*:unknown*/ = $(100);
-  $(tmpCalleeParam);
+  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
+  $(tmpClusterSSA_tmpCalleeParam);
   $(true);
 }
 `````

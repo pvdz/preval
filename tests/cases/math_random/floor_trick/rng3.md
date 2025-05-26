@@ -69,7 +69,7 @@ if (tmpCalleeParam) {
 ## Todos triggered
 
 
-- (todo) type trackeed tricks can possibly support static $Math_floor
+None
 
 
 ## Globals

@@ -25,12 +25,14 @@ let a /*:unknown*/ /*ternaryConst*/ = undefined;
 const b /*:object*/ = { x: 1 };
 const tmpChainElementCall /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
+let tmpCalleeParam /*:unknown*/ /*ternaryConst*/ = undefined;
 if (tmpIfTest) {
 } else {
   a = tmpChainElementCall.x;
+  tmpCalleeParam = a;
 }
 if (a) {
-  $(a);
+  $(tmpCalleeParam);
   $(a);
 } else {
   const tmpChainElementCall$1 /*:unknown*/ = $(b);
@@ -39,9 +41,9 @@ if (a) {
     $(undefined);
     $(undefined);
   } else {
-    const tmpNestedComplexRhs /*:unknown*/ = tmpChainElementCall$1.x;
-    $(tmpNestedComplexRhs);
-    $(tmpNestedComplexRhs);
+    const tmpClusterSSA_tmpNestedComplexRhs /*:unknown*/ = tmpChainElementCall$1.x;
+    $(tmpClusterSSA_tmpNestedComplexRhs);
+    $(tmpClusterSSA_tmpNestedComplexRhs);
   }
 }
 `````
@@ -54,11 +56,14 @@ if (a) {
 let a = undefined;
 const b = { x: 1 };
 const tmpChainElementCall = $(b);
-if (!(tmpChainElementCall == null)) {
+const tmpIfTest = tmpChainElementCall == null;
+let tmpCalleeParam = undefined;
+if (!tmpIfTest) {
   a = tmpChainElementCall.x;
+  tmpCalleeParam = a;
 }
 if (a) {
-  $(a);
+  $(tmpCalleeParam);
   $(a);
 } else {
   const tmpChainElementCall$1 = $(b);
@@ -66,9 +71,9 @@ if (a) {
     $(undefined);
     $(undefined);
   } else {
-    const tmpNestedComplexRhs = tmpChainElementCall$1.x;
-    $(tmpNestedComplexRhs);
-    $(tmpNestedComplexRhs);
+    const tmpClusterSSA_tmpNestedComplexRhs = tmpChainElementCall$1.x;
+    $(tmpClusterSSA_tmpNestedComplexRhs);
+    $(tmpClusterSSA_tmpNestedComplexRhs);
   }
 }
 `````
@@ -82,27 +87,29 @@ let a = undefined;
 const b = { x: 1 };
 const c = $( b );
 const d = c == null;
+let e = undefined;
 if (d) {
 
 }
 else {
   a = c.x;
+  e = a;
 }
 if (a) {
-  $( a );
+  $( e );
   $( a );
 }
 else {
-  const e = $( b );
-  const f = e == null;
-  if (f) {
+  const f = $( b );
+  const g = f == null;
+  if (g) {
     $( undefined );
     $( undefined );
   }
   else {
-    const g = e.x;
-    $( g );
-    $( g );
+    const h = f.x;
+    $( h );
+    $( h );
   }
 }
 `````

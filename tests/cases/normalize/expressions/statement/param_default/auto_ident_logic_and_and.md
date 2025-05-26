@@ -21,11 +21,11 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(1);
-const p /*:unknown*/ = $(tmpCalleeParam);
-if (p) {
+const tmpClusterSSA_p /*:unknown*/ = $(tmpCalleeParam);
+if (tmpClusterSSA_p) {
   const tmpCalleeParam$1 /*:unknown*/ = $(1);
-  const tmpClusterSSA_p /*:unknown*/ = $(tmpCalleeParam$1);
-  if (tmpClusterSSA_p) {
+  const tmpClusterSSA_p$1 /*:unknown*/ = $(tmpCalleeParam$1);
+  if (tmpClusterSSA_p$1) {
     const tmpCalleeParam$3 /*:unknown*/ = $(2);
     $(tmpCalleeParam$3);
     $(undefined);

@@ -20,9 +20,9 @@ $(f({ x: 1, b: 2, c: 3 }, 10));
 
 
 `````js filename=intro
-const tmpBindingPatternObjRoot /*:object*/ = { x: 1, b: 2, c: 3 };
+const tmpSSA_tmpCalleeParam$1 /*:object*/ = { x: 1, b: 2, c: 3 };
 const tmpCalleeParam$3 /*:array*/ = [];
-const x /*:unknown*/ = $objPatternRest(tmpBindingPatternObjRoot, tmpCalleeParam$3, `x`);
+const x /*:unknown*/ = $objPatternRest(tmpSSA_tmpCalleeParam$1, tmpCalleeParam$3, `x`);
 $(x);
 `````
 
@@ -31,8 +31,8 @@ $(x);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpBindingPatternObjRoot = { x: 1, b: 2, c: 3 };
-$($objPatternRest(tmpBindingPatternObjRoot, [], `x`));
+const tmpSSA_tmpCalleeParam$1 = { x: 1, b: 2, c: 3 };
+$($objPatternRest(tmpSSA_tmpCalleeParam$1, [], `x`));
 `````
 
 

@@ -157,6 +157,7 @@ $(a, b, c);
 ## Todos triggered
 
 
+- (todo) Found a self-closing function shell but it did not match a known pattern...
 - (todo) support array reads statement type VarStatement
 
 

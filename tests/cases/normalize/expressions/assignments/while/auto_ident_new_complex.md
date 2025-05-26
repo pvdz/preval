@@ -19,12 +19,10 @@ $(a);
 
 
 `````js filename=intro
-const tmpNewCallee /*:unknown*/ = $($);
-new tmpNewCallee(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpNewCallee /*:unknown*/ = $($);
+  new tmpNewCallee(1);
   $(100);
-  const tmpNewCallee$1 /*:unknown*/ = $($);
-  new tmpNewCallee$1(1);
 }
 `````
 
@@ -33,12 +31,10 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpNewCallee = $($);
-new tmpNewCallee(1);
 while (true) {
+  const tmpNewCallee = $($);
+  new tmpNewCallee(1);
   $(100);
-  const tmpNewCallee$1 = $($);
-  new tmpNewCallee$1(1);
 }
 `````
 
@@ -47,12 +43,10 @@ while (true) {
 With rename=true
 
 `````js filename=intro
-const a = $( $ );
-new a( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const a = $( $ );
+  new a( 1 );
   $( 100 );
-  const b = $( $ );
-  new b( 1 );
 }
 `````
 
@@ -79,8 +73,8 @@ $(a);
 ## Todos triggered
 
 
-- (todo) do we want to support NewExpression as expression statement in free loops?
 - (todo) do we want to support ObjectExpression as expression statement in free loops?
+- (todo) objects in isFree check
 
 
 ## Globals

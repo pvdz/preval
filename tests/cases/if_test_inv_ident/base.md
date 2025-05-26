@@ -22,10 +22,10 @@ if (b) {
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     $(100);
     const d = $(100);
-    a = !d;                   // <--
+    a = !d;                   // <-- not obsered. d should be dropped
     if (a) {                  // <--
     } else {
-      break;
+      break;                  // <-- at this point d must be false but who cares
     }
   }
 } else {
@@ -43,15 +43,17 @@ const c /*:unknown*/ = $(100);
 if (c) {
   $(false);
 } else {
+  let a /*:boolean*/ = false;
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     $(100);
     const d /*:unknown*/ = $(100);
+    a = !d;
     if (d) {
       break;
     } else {
     }
   }
-  $(false);
+  $(a);
 }
 `````
 
@@ -64,13 +66,16 @@ $(100);
 if ($(100)) {
   $(false);
 } else {
+  let a = false;
   while (true) {
     $(100);
-    if ($(100)) {
+    const d = $(100);
+    a = !d;
+    if (d) {
       break;
     }
   }
-  $(false);
+  $(a);
 }
 `````
 
@@ -85,14 +90,16 @@ if (a) {
   $( false );
 }
 else {
+  let b = false;
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     $( 100 );
-    const b = $( 100 );
-    if (b) {
+    const c = $( 100 );
+    b = !c;
+    if (c) {
       break;
     }
   }
-  $( false );
+  $( b );
 }
 `````
 

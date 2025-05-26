@@ -38,9 +38,9 @@ if (tmpIfTest$1) {
     $(undefined);
   } else {
     const tmpChainRootComputed$1 /*:unknown*/ = $(`y`);
-    const tmpNestedComplexRhs /*:unknown*/ = tmpChainElementObject[tmpChainRootComputed$1];
+    const tmpClusterSSA_tmpNestedComplexRhs /*:unknown*/ = tmpChainElementObject[tmpChainRootComputed$1];
     $(undefined);
-    $(tmpNestedComplexRhs);
+    $(tmpClusterSSA_tmpNestedComplexRhs);
   }
 }
 `````
@@ -63,9 +63,9 @@ if (tmpChainElementCall == null) {
     $(undefined);
   } else {
     const tmpChainRootComputed$1 = $(`y`);
-    const tmpNestedComplexRhs = tmpChainElementObject[tmpChainRootComputed$1];
+    const tmpClusterSSA_tmpNestedComplexRhs = tmpChainElementObject[tmpChainRootComputed$1];
     $(undefined);
-    $(tmpNestedComplexRhs);
+    $(tmpClusterSSA_tmpNestedComplexRhs);
   }
 }
 `````

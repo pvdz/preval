@@ -22,8 +22,8 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { c: $ };
-const tmpObjSpreadArg /*:unknown*/ = $dotCall($, b, `c`, 1);
-({ ...tmpObjSpreadArg });
+const tmpClusterSSA_tmpObjSpreadArg /*:unknown*/ = $dotCall($, b, `c`, 1);
+({ ...tmpClusterSSA_tmpObjSpreadArg });
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
@@ -33,8 +33,8 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpObjSpreadArg = $dotCall($, { c: $ }, `c`, 1);
-({ ...tmpObjSpreadArg });
+const tmpClusterSSA_tmpObjSpreadArg = $dotCall($, { c: $ }, `c`, 1);
+({ ...tmpClusterSSA_tmpObjSpreadArg });
 $({ a: 999, b: 1000 });
 `````
 

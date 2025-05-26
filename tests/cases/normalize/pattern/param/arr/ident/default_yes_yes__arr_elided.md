@@ -20,8 +20,8 @@ $(f([, , 1], 200));
 
 
 `````js filename=intro
-const tmpCalleeParam /*:unknown*/ = $(`pass`);
-$(tmpCalleeParam);
+const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(`pass`);
+$(tmpClusterSSA_tmpCalleeParam);
 `````
 
 
@@ -79,6 +79,8 @@ $(tmpCalleeParam);
 
 
 - (todo) Deal with array spreads in arr mutation?
+- (todo) support array reads statement type ExpressionStatement
+- (todo) support array reads statement type VarStatement
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
 
 

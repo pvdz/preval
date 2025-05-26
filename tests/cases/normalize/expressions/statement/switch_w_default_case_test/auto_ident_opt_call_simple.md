@@ -33,8 +33,8 @@ let tmpIfTest /*:boolean*/ /*ternaryConst*/ = false;
 if (tmpIfTest$1) {
   tmpIfTest = undefined === tmpSwitchValue;
 } else {
-  const tmpBinLhs /*:unknown*/ = $(1);
-  tmpIfTest = tmpBinLhs === tmpSwitchValue;
+  const tmpClusterSSA_tmpBinLhs /*:unknown*/ = $(1);
+  tmpIfTest = tmpClusterSSA_tmpBinLhs === tmpSwitchValue;
 }
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;

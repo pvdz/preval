@@ -76,6 +76,7 @@ while (true) {
 ## Todos triggered
 
 
+- (todo) regular property access of an ident feels tricky;
 - (todo) support delete in free loop?
 
 

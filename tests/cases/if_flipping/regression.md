@@ -8,6 +8,10 @@
 > The problem was that it would only delete a var decl and not the assign and
 > then not do a full cycle, leading to incomplete meta.
 
+## Options
+
+- globals: tmpIfTest$45 tmpCalleeParam$127 tmpSSA__0x2d5594 tmpPrevalAliasArgumentsAny$1 tmpReturnArg$39 a b e d getParameterByName unknown document alsoUnknown
+
 ## Input
 
 `````js filename=intro
@@ -55,9 +59,7 @@ if (tmpIfTest$45) {
 `````js filename=intro
 if (tmpIfTest$45) {
   tmpCalleeParam$127;
-  const h /*:unknown*/ = tmpReturnArg$39;
-  tmpSSA__0x2d5594;
-  h(e, d);
+  tmpReturnArg$39(e, d);
   getParameterByName();
   unknown(297);
   alsoUnknown(310);
@@ -74,9 +76,7 @@ if (tmpIfTest$45) {
 `````js filename=intro
 if (tmpIfTest$45) {
   tmpCalleeParam$127;
-  const h = tmpReturnArg$39;
-  tmpSSA__0x2d5594;
-  h(e, d);
+  tmpReturnArg$39(e, d);
   getParameterByName();
   unknown(297);
   alsoUnknown(310);
@@ -91,14 +91,12 @@ With rename=true
 `````js filename=intro
 if (tmpIfTest$45) {
   tmpCalleeParam$127;
-  const c = tmpReturnArg$39;
-  tmpSSA__0x2d5594;
-  c( e, d );
+  tmpReturnArg$39( e, d );
   getParameterByName();
   unknown( 297 );
   alsoUnknown( 310 );
-  const f = $dotCall( a, document, undefined, b );
-  $( f );
+  const c = $dotCall( a, document, undefined, b );
+  $( c );
 }
 `````
 
@@ -158,9 +156,7 @@ None
 ## Globals
 
 
-BAD@! Found 11 implicit global bindings:
-
-tmpIfTest$45, tmpCalleeParam$127, tmpReturnArg$39, tmpSSA__0x2d5594, e, d, getParameterByName, unknown, alsoUnknown, a, b
+None (except for the 10 globals expected by the test)
 
 
 ## Runtime Outcome

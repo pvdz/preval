@@ -89,6 +89,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 
 - (todo) Support this node type in isFree: ThrowStatement
+- (todo) do we want to support ArrayExpression as expression statement in free loops?
 
 
 ## Globals

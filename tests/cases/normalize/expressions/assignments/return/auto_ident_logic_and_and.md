@@ -23,22 +23,22 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(1);
-const a /*:unknown*/ = $(tmpCalleeParam);
-if (a) {
+const tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam);
+if (tmpClusterSSA_a) {
   const tmpCalleeParam$1 /*:unknown*/ = $(1);
-  const tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam$1);
-  if (tmpClusterSSA_a) {
+  const tmpClusterSSA_a$1 /*:unknown*/ = $(tmpCalleeParam$1);
+  if (tmpClusterSSA_a$1) {
     const tmpCalleeParam$3 /*:unknown*/ = $(2);
-    const tmpClusterSSA_a$1 /*:unknown*/ = $(tmpCalleeParam$3);
-    $(tmpClusterSSA_a$1);
-    $(tmpClusterSSA_a$1);
+    const tmpClusterSSA_a$3 /*:unknown*/ = $(tmpCalleeParam$3);
+    $(tmpClusterSSA_a$3);
+    $(tmpClusterSSA_a$3);
   } else {
-    $(tmpClusterSSA_a);
-    $(tmpClusterSSA_a);
+    $(tmpClusterSSA_a$1);
+    $(tmpClusterSSA_a$1);
   }
 } else {
-  $(a);
-  $(a);
+  $(tmpClusterSSA_a);
+  $(tmpClusterSSA_a);
 }
 `````
 
@@ -47,20 +47,20 @@ if (a) {
 (This ought to be the final result)
 
 `````js filename=intro
-const a = $($(1));
-if (a) {
-  const tmpClusterSSA_a = $($(1));
-  if (tmpClusterSSA_a) {
-    const tmpClusterSSA_a$1 = $($(2));
-    $(tmpClusterSSA_a$1);
-    $(tmpClusterSSA_a$1);
+const tmpClusterSSA_a = $($(1));
+if (tmpClusterSSA_a) {
+  const tmpClusterSSA_a$1 = $($(1));
+  if (tmpClusterSSA_a$1) {
+    const tmpClusterSSA_a$3 = $($(2));
+    $(tmpClusterSSA_a$3);
+    $(tmpClusterSSA_a$3);
   } else {
-    $(tmpClusterSSA_a);
-    $(tmpClusterSSA_a);
+    $(tmpClusterSSA_a$1);
+    $(tmpClusterSSA_a$1);
   }
 } else {
-  $(a);
-  $(a);
+  $(tmpClusterSSA_a);
+  $(tmpClusterSSA_a);
 }
 `````
 

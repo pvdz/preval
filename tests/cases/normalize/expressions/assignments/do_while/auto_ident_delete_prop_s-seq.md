@@ -27,8 +27,9 @@ $(100);
 $(1);
 $(2);
 const arg /*:object*/ = { y: 1 };
-let a /*:boolean*/ = delete arg.y;
-if (a) {
+const tmpClusterSSA_a /*:boolean*/ = delete arg.y;
+if (tmpClusterSSA_a) {
+  let a /*:boolean*/ = false;
   while ($LOOP_UNROLL_10) {
     $(100);
     $(1);
@@ -41,7 +42,7 @@ if (a) {
   }
   $(a, arg);
 } else {
-  $(a, arg);
+  $(false, arg);
 }
 `````
 
@@ -54,8 +55,8 @@ $(100);
 $(1);
 $(2);
 const arg = { y: 1 };
-let a = delete arg.y;
-if (a) {
+if (delete arg.y) {
+  let a = false;
   while (true) {
     $(100);
     $(1);
@@ -67,7 +68,7 @@ if (a) {
   }
   $(a, arg);
 } else {
-  $(a, arg);
+  $(false, arg);
 }
 `````
 
@@ -80,24 +81,25 @@ $( 100 );
 $( 1 );
 $( 2 );
 const a = { y: 1 };
-let b = delete a.y;
+const b = delete a.y;
 if (b) {
+  let c = false;
   while ($LOOP_UNROLL_10) {
     $( 100 );
     $( 1 );
     $( 2 );
-    b = delete a.y;
-    if (b) {
+    c = delete a.y;
+    if (c) {
 
     }
     else {
       break;
     }
   }
-  $( b, a );
+  $( c, a );
 }
 else {
-  $( b, a );
+  $( false, a );
 }
 `````
 

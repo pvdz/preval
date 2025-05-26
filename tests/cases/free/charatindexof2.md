@@ -31,16 +31,16 @@ $(f(String(y)));
 
 `````js filename=intro
 const tmpFree /*:(string)=>number*/ = function $free($$0) {
-  const repl /*:string*/ = $$0;
+  const repl$1 /*:string*/ = $$0;
   debugger;
-  const a1 /*:string*/ = $dotCall($string_charAt, repl, `charAt`, 0);
+  const a1 /*:string*/ = $dotCall($string_charAt, repl$1, `charAt`, 0);
   const tmpRet /*:number*/ = $dotCall($string_indexOf, `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`, `indexOf`, a1);
   return tmpRet;
 };
 const f /*:(string)=>string*/ = function ($$0) {
-  const repl$1 /*:string*/ = $$0;
+  const repl$2 /*:string*/ = $$0;
   debugger;
-  const a2 /*:number*/ = $frfr(tmpFree, repl$1);
+  const a2 /*:number*/ = $frfr(tmpFree, repl$2);
   const frout /*:primitive*/ = a2 + b2;
   outputstr = $coerce(frout, `plustr`);
   return outputstr;
@@ -60,17 +60,17 @@ $(tmpCalleeParam$3);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpFree = function $free(repl) {
+const tmpFree = function $free(repl$1) {
   const tmpRet = $dotCall(
     $string_indexOf,
     `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`,
     `indexOf`,
-    $dotCall($string_charAt, repl, `charAt`, 0),
+    $dotCall($string_charAt, repl$1, `charAt`, 0),
   );
   return tmpRet;
 };
-const f = function (repl$1) {
-  outputstr = $coerce($frfr(tmpFree, repl$1) + b2, `plustr`);
+const f = function (repl$2) {
+  outputstr = $coerce($frfr(tmpFree, repl$2) + b2, `plustr`);
   return outputstr;
 };
 $(f($coerce($(`co_rn`), `string`)));

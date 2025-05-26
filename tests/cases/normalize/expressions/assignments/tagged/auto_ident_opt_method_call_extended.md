@@ -22,10 +22,10 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal$1 /*:object*/ = { e: $ };
-const a /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
+const tmpClusterSSA_a /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
 const tmpCalleeParam /*:array*/ = [`before `, ` after`];
-$(tmpCalleeParam, a);
-$(a);
+$(tmpCalleeParam, tmpClusterSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 
@@ -33,9 +33,9 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const a = $dotCall($, { e: $ }, `e`, 1);
-$([`before `, ` after`], a);
-$(a);
+const tmpClusterSSA_a = $dotCall($, { e: $ }, `e`, 1);
+$([`before `, ` after`], tmpClusterSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 
@@ -80,7 +80,6 @@ $(a);
 ## Todos triggered
 
 
-- (todo) support array reads statement type EmptyStatement
 - (todo) support array reads statement type ExpressionStatement
 
 

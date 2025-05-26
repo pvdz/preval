@@ -22,9 +22,9 @@ $(a);
 `````js filename=intro
 const tmpBinBothLhs /*:unknown*/ = $(1);
 const tmpBinBothRhs /*:unknown*/ = $(2);
-const a /*:primitive*/ = tmpBinBothLhs + tmpBinBothRhs;
+const tmpClusterSSA_a /*:primitive*/ = tmpBinBothLhs + tmpBinBothRhs;
 $(undefined);
-$(a);
+$(tmpClusterSSA_a);
 `````
 
 
@@ -32,9 +32,9 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const a = $(1) + $(2);
+const tmpClusterSSA_a = $(1) + $(2);
 $(undefined);
-$(a);
+$(tmpClusterSSA_a);
 `````
 
 

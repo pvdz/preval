@@ -48,8 +48,8 @@ const f /*:(unknown)=>boolean*/ = function ($$0) {
     const tmpClusterSSA_promoMe /*:boolean*/ = r === `.`;
     if (tmpClusterSSA_promoMe) {
       const t /*:unknown*/ = $(``);
-      const v /*:boolean*/ = t !== `.`;
-      return v;
+      const tmpClusterSSA_v /*:boolean*/ = t !== `.`;
+      return tmpClusterSSA_v;
     } else {
       return false;
     }
@@ -71,8 +71,8 @@ const f = function (s) {
     return true;
   } else {
     if ($(`.`) === `.`) {
-      const v = $(``) !== `.`;
-      return v;
+      const tmpClusterSSA_v = $(``) !== `.`;
+      return tmpClusterSSA_v;
     } else {
       return false;
     }

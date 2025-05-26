@@ -38,8 +38,8 @@ if (x) {
   if (tmpClusterSSA_x) {
     $(tmpClusterSSA_x);
   } else {
-    const tmpCalleeParam /*:unknown*/ = $(3);
-    $(tmpCalleeParam);
+    const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(3);
+    $(tmpClusterSSA_tmpCalleeParam);
   }
 }
 `````

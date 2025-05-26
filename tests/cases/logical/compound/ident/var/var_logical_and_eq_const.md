@@ -19,12 +19,12 @@ $(c);
 
 
 `````js filename=intro
-const c /*:unknown*/ = $spy(`a`);
-if (c) {
+const a /*:unknown*/ = $spy(`a`);
+if (a) {
   $(`b`);
-  throw `Preval: Assignment to constant variable: \`a = tmpNestedComplexRhs;\``;
+  throw `Preval: Cannot write to const binding \`a\``;
 } else {
-  $(c);
+  $(a);
 }
 `````
 
@@ -33,12 +33,12 @@ if (c) {
 (This ought to be the final result)
 
 `````js filename=intro
-const c = $spy(`a`);
-if (c) {
+const a = $spy(`a`);
+if (a) {
   $(`b`);
-  throw `Preval: Assignment to constant variable: \`a = tmpNestedComplexRhs;\``;
+  throw `Preval: Cannot write to const binding \`a\``;
 } else {
-  $(c);
+  $(a);
 }
 `````
 
@@ -50,7 +50,7 @@ With rename=true
 const a = $spy( "a" );
 if (a) {
   $( "b" );
-  throw "Preval: Assignment to constant variable: `a = tmpNestedComplexRhs;`";
+  throw "Preval: Cannot write to const binding `a`";
 }
 else {
   $( a );

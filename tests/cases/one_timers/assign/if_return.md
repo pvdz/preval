@@ -32,18 +32,18 @@ $(closure(), 'closure-global2');
 
 
 `````js filename=intro
-const x /*:unknown*/ = $(100, `init`);
+let x /*:unknown*/ = $(100, `init`);
 const tmpCalleeParam /*:unknown*/ = $(x, `closure-return`);
 $(tmpCalleeParam, `closure-global1`);
-let tmpClusterSSA_x /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpIfTest /*:unknown*/ = $();
 if (tmpIfTest) {
-  tmpClusterSSA_x = $(1, `f-return`);
-  $(tmpClusterSSA_x, `x-global`);
+  x = $(1, `f-return`);
+  $(x, `x-global`);
 } else {
+  x = undefined;
   $(undefined, `x-global`);
 }
-const tmpCalleeParam$1 /*:unknown*/ = $(tmpClusterSSA_x, `closure-return`);
+const tmpCalleeParam$1 /*:unknown*/ = $(x, `closure-return`);
 $(tmpCalleeParam$1, `closure-global2`);
 `````
 
@@ -52,15 +52,16 @@ $(tmpCalleeParam$1, `closure-global2`);
 (This ought to be the final result)
 
 `````js filename=intro
-$($($(100, `init`), `closure-return`), `closure-global1`);
-let tmpClusterSSA_x = undefined;
+let x = $(100, `init`);
+$($(x, `closure-return`), `closure-global1`);
 if ($()) {
-  tmpClusterSSA_x = $(1, `f-return`);
-  $(tmpClusterSSA_x, `x-global`);
+  x = $(1, `f-return`);
+  $(x, `x-global`);
 } else {
+  x = undefined;
   $(undefined, `x-global`);
 }
-$($(tmpClusterSSA_x, `closure-return`), `closure-global2`);
+$($(x, `closure-return`), `closure-global2`);
 `````
 
 
@@ -68,20 +69,20 @@ $($(tmpClusterSSA_x, `closure-return`), `closure-global2`);
 With rename=true
 
 `````js filename=intro
-const a = $( 100, "init" );
+let a = $( 100, "init" );
 const b = $( a, "closure-return" );
 $( b, "closure-global1" );
-let c = undefined;
-const d = $();
-if (d) {
-  c = $( 1, "f-return" );
-  $( c, "x-global" );
+const c = $();
+if (c) {
+  a = $( 1, "f-return" );
+  $( a, "x-global" );
 }
 else {
+  a = undefined;
   $( undefined, "x-global" );
 }
-const e = $( c, "closure-return" );
-$( e, "closure-global2" );
+const d = $( a, "closure-return" );
+$( d, "closure-global2" );
 `````
 
 

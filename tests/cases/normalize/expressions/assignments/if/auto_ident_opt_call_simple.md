@@ -23,8 +23,8 @@ const tmpIfTest$1 /*:boolean*/ = $ == null;
 if (tmpIfTest$1) {
   $(undefined);
 } else {
-  const a /*:unknown*/ = $(1);
-  $(a);
+  const tmpClusterSSA_a /*:unknown*/ = $(1);
+  $(tmpClusterSSA_a);
 }
 `````
 

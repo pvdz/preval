@@ -39,12 +39,17 @@ if (THIS_IS_BOOL) {
 const tmpIfTest /*:unknown*/ = $(true);
 const tmpBool /*:boolean*/ = $boolean_constructor(tmpIfTest);
 const tmpUnaryArg /*:unknown*/ = $(tmpBool);
+let tmpClusterSSA_THIS_IS_BOOL$1 /*:boolean*/ /*ternaryConst*/ = !tmpUnaryArg;
 if (tmpUnaryArg) {
   $(`b`);
-  $(`d`);
+  tmpClusterSSA_THIS_IS_BOOL$1 = true;
 } else {
   $(`a`);
+}
+if (tmpClusterSSA_THIS_IS_BOOL$1) {
   $(`d`);
+} else {
+  $(`c`);
 }
 `````
 
@@ -53,12 +58,18 @@ if (tmpUnaryArg) {
 (This ought to be the final result)
 
 `````js filename=intro
-if ($($boolean_constructor($(true)))) {
+const tmpUnaryArg = $($boolean_constructor($(true)));
+let tmpClusterSSA_THIS_IS_BOOL$1 = !tmpUnaryArg;
+if (tmpUnaryArg) {
   $(`b`);
-  $(`d`);
+  tmpClusterSSA_THIS_IS_BOOL$1 = true;
 } else {
   $(`a`);
+}
+if (tmpClusterSSA_THIS_IS_BOOL$1) {
   $(`d`);
+} else {
+  $(`c`);
 }
 `````
 
@@ -70,13 +81,19 @@ With rename=true
 const a = $( true );
 const b = $boolean_constructor( a );
 const c = $( b );
+let d = !c;
 if (c) {
   $( "b" );
-  $( "d" );
+  d = true;
 }
 else {
   $( "a" );
+}
+if (d) {
   $( "d" );
+}
+else {
+  $( "c" );
 }
 `````
 

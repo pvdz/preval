@@ -23,8 +23,9 @@ $(a, b);
 `````js filename=intro
 const tmpAssignRhsCompProp /*:unknown*/ = $(`c`);
 const b /*:object*/ = { c: 1 };
-let a /*:unknown*/ = b[tmpAssignRhsCompProp];
-if (a) {
+const tmpClusterSSA_a /*:unknown*/ = b[tmpAssignRhsCompProp];
+if (tmpClusterSSA_a) {
+  let a /*:unknown*/ = undefined;
   while ($LOOP_UNROLL_10) {
     $(1);
     const tmpAssignRhsCompProp$1 /*:unknown*/ = $(`c`);
@@ -36,7 +37,7 @@ if (a) {
   }
   $(a, b);
 } else {
-  $(a, b);
+  $(tmpClusterSSA_a, b);
 }
 `````
 
@@ -47,8 +48,9 @@ if (a) {
 `````js filename=intro
 const tmpAssignRhsCompProp = $(`c`);
 const b = { c: 1 };
-let a = b[tmpAssignRhsCompProp];
-if (a) {
+const tmpClusterSSA_a = b[tmpAssignRhsCompProp];
+if (tmpClusterSSA_a) {
+  let a = undefined;
   while (true) {
     $(1);
     const tmpAssignRhsCompProp$1 = $(`c`);
@@ -59,7 +61,7 @@ if (a) {
   }
   $(a, b);
 } else {
-  $(a, b);
+  $(tmpClusterSSA_a, b);
 }
 `````
 
@@ -70,20 +72,21 @@ With rename=true
 `````js filename=intro
 const a = $( "c" );
 const b = { c: 1 };
-let c = b[ a ];
+const c = b[ a ];
 if (c) {
+  let d = undefined;
   while ($LOOP_UNROLL_10) {
     $( 1 );
-    const d = $( "c" );
-    c = b[ d ];
-    if (c) {
+    const e = $( "c" );
+    d = b[ e ];
+    if (d) {
 
     }
     else {
       break;
     }
   }
-  $( c, b );
+  $( d, b );
 }
 else {
   $( c, b );

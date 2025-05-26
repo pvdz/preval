@@ -25,8 +25,8 @@ const tmpCalleeParam$3 /*:unknown*/ = $(`\$`);
 const b /*:object*/ = { $: $ };
 const tmpNewCallee /*:unknown*/ = b[tmpCalleeParam$3];
 const a /*:object*/ = new tmpNewCallee(1);
-const tmpStringConcatL /*:string*/ = $coerce(a, `string`);
-const tmpCalleeParam /*:string*/ = `before  ${tmpStringConcatL}  after`;
+const tmpBinBothRhs /*:string*/ = $coerce(a, `string`);
+const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
 $(a);
 `````

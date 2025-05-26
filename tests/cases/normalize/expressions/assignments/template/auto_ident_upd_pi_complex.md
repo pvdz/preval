@@ -24,8 +24,8 @@ $(a, b);
 const tmpFree /*:(number)=>string*/ = function $free($$0) {
   const tmpUpdInc$1 /*:number*/ = $$0;
   debugger;
-  const tmpBinBothRhs /*:string*/ = $coerce(tmpUpdInc$1, `string`);
-  const tmpRet /*:string*/ = `before  ${tmpBinBothRhs}  after`;
+  const tmpStringConcatL /*:string*/ = $coerce(tmpUpdInc$1, `string`);
+  const tmpRet /*:string*/ = `before  ${tmpStringConcatL}  after`;
   return tmpRet;
 };
 const b /*:object*/ = { x: 1 };

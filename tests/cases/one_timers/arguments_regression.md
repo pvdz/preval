@@ -6,6 +6,10 @@
 >
 > x
 
+## Options
+
+- globals: arguments unknown
+
 ## Input
 
 `````js filename=intro
@@ -75,9 +79,7 @@ None
 ## Globals
 
 
-BAD@! Found 1 implicit global bindings:
-
-unknown
+None (except for the 1 globals expected by the test)
 
 
 ## Runtime Outcome

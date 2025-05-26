@@ -80,7 +80,7 @@ $(x);
 ## Todos triggered
 
 
-None
+- (todo) can try-escaping support this expr node type? Literal
 
 
 ## Globals

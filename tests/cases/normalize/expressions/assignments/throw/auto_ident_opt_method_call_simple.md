@@ -22,8 +22,8 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { c: $ };
-const tmpThrowArg /*:unknown*/ = $dotCall($, b, `c`, 1);
-throw tmpThrowArg;
+const tmpClusterSSA_tmpThrowArg /*:unknown*/ = $dotCall($, b, `c`, 1);
+throw tmpClusterSSA_tmpThrowArg;
 `````
 
 
@@ -31,8 +31,8 @@ throw tmpThrowArg;
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpThrowArg = $dotCall($, { c: $ }, `c`, 1);
-throw tmpThrowArg;
+const tmpClusterSSA_tmpThrowArg = $dotCall($, { c: $ }, `c`, 1);
+throw tmpClusterSSA_tmpThrowArg;
 `````
 
 

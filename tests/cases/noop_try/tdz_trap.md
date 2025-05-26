@@ -24,11 +24,6 @@ $('the end :)')
 
 
 `````js filename=intro
-try {
-  throw `Preval: This statement contained a read that reached no writes: x;`;
-} catch (e) {
-  $(`caught the tdz error!`);
-}
 $(`the end :)`);
 `````
 
@@ -37,11 +32,6 @@ $(`the end :)`);
 (This ought to be the final result)
 
 `````js filename=intro
-try {
-  throw `Preval: This statement contained a read that reached no writes: x;`;
-} catch (e) {
-  $(`caught the tdz error!`);
-}
 $(`the end :)`);
 `````
 
@@ -50,12 +40,6 @@ $(`the end :)`);
 With rename=true
 
 `````js filename=intro
-try {
-  throw "Preval: This statement contained a read that reached no writes: x;";
-}
-catch (a) {
-  $( "caught the tdz error!" );
-}
 $( "the end :)" );
 `````
 
@@ -102,6 +86,10 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Post settled calls: Same
+Post settled calls: BAD!!
+ - !1: 'the end :)'
+ - !eval returned: undefined
 
-Denormalized calls: Same
+Denormalized calls: BAD!!
+ - !1: 'the end :)'
+ - !eval returned: undefined

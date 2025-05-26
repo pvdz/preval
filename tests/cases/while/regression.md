@@ -31,8 +31,8 @@ $(cTmp);
 c;
 if ($) {
   $(`keep`);
-  const cTmp /*:unknown*/ = $($);
-  $(cTmp);
+  const tmpClusterSSA_cTmp /*:unknown*/ = $($);
+  $(tmpClusterSSA_cTmp);
 } else {
   $(c);
 }

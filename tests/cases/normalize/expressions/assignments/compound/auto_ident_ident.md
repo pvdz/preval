@@ -22,9 +22,9 @@ $(a, b);
 
 `````js filename=intro
 const a /*:object*/ = { a: 999, b: 1000 };
-const tmpClusterSSA_a /*:number*/ = a * 1;
-$(tmpClusterSSA_a);
-$(tmpClusterSSA_a, 1);
+const tmpSSA_a /*:number*/ = a * 1;
+$(tmpSSA_a);
+$(tmpSSA_a, 1);
 `````
 
 
@@ -32,9 +32,9 @@ $(tmpClusterSSA_a, 1);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpClusterSSA_a = { a: 999, b: 1000 } * 1;
-$(tmpClusterSSA_a);
-$(tmpClusterSSA_a, 1);
+const tmpSSA_a = { a: 999, b: 1000 } * 1;
+$(tmpSSA_a);
+$(tmpSSA_a, 1);
 `````
 
 

@@ -21,7 +21,9 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam$1 /*:unknown*/ = $(0);
 let a /*:unknown*/ = $(tmpCalleeParam$1);
+let tmpCalleeParam /*:unknown*/ /*ternaryConst*/ = 2;
 if (a) {
+  tmpCalleeParam = a;
 } else {
   a = 2;
 }
@@ -30,7 +32,7 @@ if (a) {
   $(tmpClusterSSA_tmpCalleeParam);
   $(a);
 } else {
-  $(a);
+  $(tmpCalleeParam);
   $(a);
 }
 `````
@@ -41,14 +43,17 @@ if (a) {
 
 `````js filename=intro
 let a = $($(0));
-if (!a) {
+let tmpCalleeParam = 2;
+if (a) {
+  tmpCalleeParam = a;
+} else {
   a = 2;
 }
 if (a) {
   $($(100));
   $(a);
 } else {
-  $(a);
+  $(tmpCalleeParam);
   $(a);
 }
 `````
@@ -60,19 +65,20 @@ With rename=true
 `````js filename=intro
 const a = $( 0 );
 let b = $( a );
+let c = 2;
 if (b) {
-
+  c = b;
 }
 else {
   b = 2;
 }
 if (b) {
-  const c = $( 100 );
-  $( c );
+  const d = $( 100 );
+  $( d );
   $( b );
 }
 else {
-  $( b );
+  $( c );
   $( b );
 }
 `````

@@ -24,8 +24,8 @@ $(c);
 
 `````js filename=intro
 if ($) {
-  const c /*:array*/ = [1, 2];
-  $(c);
+  const tmpClusterSSA_c /*:array*/ = [1, 2];
+  $(tmpClusterSSA_c);
 } else {
   $(undefined);
 }
@@ -79,7 +79,9 @@ if ($) {
 
 
 - (todo) access object property that also exists on prototype? $array_concat
+- (todo) arr mutation may be able to inline this method: tmpMCF
 - (todo) support array reads statement type ExpressionStatement
+- (todo) support array reads statement type VarStatement
 
 
 ## Globals

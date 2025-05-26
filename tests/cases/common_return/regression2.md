@@ -62,15 +62,15 @@ if ($) {
   $(`a`);
   if ($) {
     $(`b`);
-    const tmpClusterSSA_tmpCalleeParam$1 /*:unknown*/ = c();
-    $(tmpClusterSSA_tmpCalleeParam$1);
-  } else {
     const tmpClusterSSA_tmpCalleeParam$2 /*:unknown*/ = c();
     $(tmpClusterSSA_tmpCalleeParam$2);
+  } else {
+    const tmpClusterSSA_tmpCalleeParam$4 /*:unknown*/ = c();
+    $(tmpClusterSSA_tmpCalleeParam$4);
   }
 } else {
-  const tmpClusterSSA_tmpCalleeParam$4 /*:unknown*/ = c();
-  $(tmpClusterSSA_tmpCalleeParam$4);
+  const tmpClusterSSA_tmpCalleeParam$1 /*:unknown*/ = c();
+  $(tmpClusterSSA_tmpCalleeParam$1);
 }
 `````
 

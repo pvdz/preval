@@ -29,13 +29,13 @@ if ($) $(f());
 
 
 `````js filename=intro
+const g /*:()=>undefined*/ = function () {
+  debugger;
+  const tmpClusterSSA_tmpssa3_x /*:unknown*/ = $(`first`);
+  $(tmpClusterSSA_tmpssa3_x);
+  return undefined;
+};
 if ($) {
-  const g /*:()=>undefined*/ = function () {
-    debugger;
-    const tmpssa3_x /*:unknown*/ = $(`first`);
-    $(tmpssa3_x);
-    return undefined;
-  };
   g();
   g();
   g();
@@ -50,10 +50,10 @@ if ($) {
 (This ought to be the final result)
 
 `````js filename=intro
+const g = function () {
+  $($(`first`));
+};
 if ($) {
-  const g = function () {
-    $($(`first`));
-  };
   g();
   g();
   g();
@@ -67,13 +67,13 @@ if ($) {
 With rename=true
 
 `````js filename=intro
+const a = function() {
+  debugger;
+  const b = $( "first" );
+  $( b );
+  return undefined;
+};
 if ($) {
-  const a = function() {
-    debugger;
-    const b = $( "first" );
-    $( b );
-    return undefined;
-  };
   a();
   a();
   a();

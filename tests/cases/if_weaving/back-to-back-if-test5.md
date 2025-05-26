@@ -9,6 +9,7 @@
 ## Input
 
 `````js filename=intro
+const tmpUnaryArg = $(false);
 let x = !tmpUnaryArg;
 if (x) {
   $(`a`);
@@ -16,7 +17,7 @@ if (x) {
   $(`b`);
   x = true;
 }
-if (x) {
+if (x) {      // <-- always true
   $(`d`);
 } else {
   $(`c`);
@@ -28,12 +29,18 @@ if (x) {
 
 
 `````js filename=intro
+const tmpUnaryArg /*:unknown*/ = $(false);
+let tmpClusterSSA_x /*:boolean*/ /*ternaryConst*/ = !tmpUnaryArg;
 if (tmpUnaryArg) {
   $(`b`);
-  $(`d`);
+  tmpClusterSSA_x = true;
 } else {
   $(`a`);
+}
+if (tmpClusterSSA_x) {
   $(`d`);
+} else {
+  $(`c`);
 }
 `````
 
@@ -42,12 +49,18 @@ if (tmpUnaryArg) {
 (This ought to be the final result)
 
 `````js filename=intro
+const tmpUnaryArg = $(false);
+let tmpClusterSSA_x = !tmpUnaryArg;
 if (tmpUnaryArg) {
   $(`b`);
-  $(`d`);
+  tmpClusterSSA_x = true;
 } else {
   $(`a`);
+}
+if (tmpClusterSSA_x) {
   $(`d`);
+} else {
+  $(`c`);
 }
 `````
 
@@ -56,13 +69,20 @@ if (tmpUnaryArg) {
 With rename=true
 
 `````js filename=intro
-if (tmpUnaryArg) {
+const a = $( false );
+let b = !a;
+if (a) {
   $( "b" );
-  $( "d" );
+  b = true;
 }
 else {
   $( "a" );
+}
+if (b) {
   $( "d" );
+}
+else {
+  $( "c" );
 }
 `````
 
@@ -71,6 +91,7 @@ else {
 (This is what phase1 received the first time)
 
 `````js filename=intro
+const tmpUnaryArg = $(false);
 let x = !tmpUnaryArg;
 if (x) {
   $(`a`);
@@ -95,16 +116,17 @@ None
 ## Globals
 
 
-BAD@! Found 1 implicit global bindings:
-
-tmpUnaryArg
+None
 
 
 ## Runtime Outcome
 
 
 Should call `$` with:
- - eval returned: ('<crash[ <ref> is not defined ]>')
+ - 1: false
+ - 2: 'a'
+ - 3: 'd'
+ - eval returned: undefined
 
 Pre normalization calls: Same
 

@@ -25,9 +25,10 @@ const tmpArrElement /*:unknown*/ = $(2);
 const tmpCalleeParam /*:array*/ = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs /*:unknown*/ = $(tmpCalleeParam);
 const tmpArrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
-let b /*:unknown*/ = tmpArrPatternSplat[0];
-let a /*:unknown*/ = tmpNestedAssignArrPatternRhs;
+const tmpClusterSSA_b /*:unknown*/ = tmpArrPatternSplat[0];
 if (tmpNestedAssignArrPatternRhs) {
+  let b /*:unknown*/ = undefined;
+  let a /*:unknown*/ = undefined;
   while ($LOOP_UNROLL_10) {
     $(1);
     const tmpArrElement$1 /*:unknown*/ = $(2);
@@ -43,7 +44,7 @@ if (tmpNestedAssignArrPatternRhs) {
   }
   $(a, b);
 } else {
-  $(a, b);
+  $(tmpNestedAssignArrPatternRhs, tmpClusterSSA_b);
 }
 `````
 
@@ -54,9 +55,10 @@ if (tmpNestedAssignArrPatternRhs) {
 `````js filename=intro
 const tmpArrElement = $(2);
 const tmpNestedAssignArrPatternRhs = $([tmpArrElement]);
-let b = [...tmpNestedAssignArrPatternRhs][0];
-let a = tmpNestedAssignArrPatternRhs;
+const tmpClusterSSA_b = [...tmpNestedAssignArrPatternRhs][0];
 if (tmpNestedAssignArrPatternRhs) {
+  let b = undefined;
+  let a = undefined;
   while (true) {
     $(1);
     const tmpArrElement$1 = $(2);
@@ -69,7 +71,7 @@ if (tmpNestedAssignArrPatternRhs) {
   }
   $(a, b);
 } else {
-  $(a, b);
+  $(tmpNestedAssignArrPatternRhs, tmpClusterSSA_b);
 }
 `````
 
@@ -82,28 +84,29 @@ const a = $( 2 );
 const b = [ a ];
 const c = $( b );
 const d = [ ...c ];
-let e = d[ 0 ];
-let f = c;
+const e = d[ 0 ];
 if (c) {
+  let f = undefined;
+  let g = undefined;
   while ($LOOP_UNROLL_10) {
     $( 1 );
-    const g = $( 2 );
-    const h = [ g ];
-    const i = $( h );
-    const j = [ ...i ];
-    e = j[ 0 ];
-    f = i;
-    if (i) {
+    const h = $( 2 );
+    const i = [ h ];
+    const j = $( i );
+    const k = [ ...j ];
+    f = k[ 0 ];
+    g = j;
+    if (j) {
 
     }
     else {
       break;
     }
   }
-  $( f, e );
+  $( g, f );
 }
 else {
-  $( f, e );
+  $( c, e );
 }
 `````
 
@@ -137,6 +140,7 @@ $(a, b);
 
 - (todo) Deal with array spreads in arr mutation?
 - (todo) do we want to support ObjectExpression as expression statement in free loops?
+- (todo) objects in isFree check
 - (todo) support array reads statement type VarStatement
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
 

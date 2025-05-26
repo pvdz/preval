@@ -52,9 +52,9 @@ if (a) {
       $(undefined);
     } else {
       const tmpChainRootComputed$5 /*:unknown*/ = $(`y`);
-      const tmpNestedComplexRhs /*:unknown*/ = tmpChainElementObject$3[tmpChainRootComputed$5];
-      $(tmpNestedComplexRhs);
-      $(tmpNestedComplexRhs);
+      const tmpClusterSSA_tmpNestedComplexRhs /*:unknown*/ = tmpChainElementObject$3[tmpChainRootComputed$5];
+      $(tmpClusterSSA_tmpNestedComplexRhs);
+      $(tmpClusterSSA_tmpNestedComplexRhs);
     }
   }
 } else {
@@ -93,9 +93,9 @@ if (a) {
       $(undefined);
     } else {
       const tmpChainRootComputed$5 = $(`y`);
-      const tmpNestedComplexRhs = tmpChainElementObject$3[tmpChainRootComputed$5];
-      $(tmpNestedComplexRhs);
-      $(tmpNestedComplexRhs);
+      const tmpClusterSSA_tmpNestedComplexRhs = tmpChainElementObject$3[tmpChainRootComputed$5];
+      $(tmpClusterSSA_tmpNestedComplexRhs);
+      $(tmpClusterSSA_tmpNestedComplexRhs);
     }
   }
 } else {

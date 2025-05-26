@@ -25,13 +25,15 @@ let a /*:unknown*/ /*ternaryConst*/ = undefined;
 const b /*:object*/ = { x: 1 };
 const tmpChainElementCall /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
+let tmpCalleeParam /*:unknown*/ /*ternaryConst*/ = undefined;
 if (tmpIfTest) {
 } else {
   const tmpChainRootComputed /*:unknown*/ = $(`x`);
   a = tmpChainElementCall[tmpChainRootComputed];
+  tmpCalleeParam = a;
 }
 if (a) {
-  $(a);
+  $(tmpCalleeParam);
   $(a);
 } else {
   const tmpChainElementCall$1 /*:unknown*/ = $(b);
@@ -41,9 +43,9 @@ if (a) {
     $(undefined);
   } else {
     const tmpChainRootComputed$1 /*:unknown*/ = $(`x`);
-    const tmpNestedComplexRhs /*:unknown*/ = tmpChainElementCall$1[tmpChainRootComputed$1];
-    $(tmpNestedComplexRhs);
-    $(tmpNestedComplexRhs);
+    const tmpClusterSSA_tmpNestedComplexRhs /*:unknown*/ = tmpChainElementCall$1[tmpChainRootComputed$1];
+    $(tmpClusterSSA_tmpNestedComplexRhs);
+    $(tmpClusterSSA_tmpNestedComplexRhs);
   }
 }
 `````
@@ -56,12 +58,15 @@ if (a) {
 let a = undefined;
 const b = { x: 1 };
 const tmpChainElementCall = $(b);
-if (!(tmpChainElementCall == null)) {
+const tmpIfTest = tmpChainElementCall == null;
+let tmpCalleeParam = undefined;
+if (!tmpIfTest) {
   const tmpChainRootComputed = $(`x`);
   a = tmpChainElementCall[tmpChainRootComputed];
+  tmpCalleeParam = a;
 }
 if (a) {
-  $(a);
+  $(tmpCalleeParam);
   $(a);
 } else {
   const tmpChainElementCall$1 = $(b);
@@ -70,9 +75,9 @@ if (a) {
     $(undefined);
   } else {
     const tmpChainRootComputed$1 = $(`x`);
-    const tmpNestedComplexRhs = tmpChainElementCall$1[tmpChainRootComputed$1];
-    $(tmpNestedComplexRhs);
-    $(tmpNestedComplexRhs);
+    const tmpClusterSSA_tmpNestedComplexRhs = tmpChainElementCall$1[tmpChainRootComputed$1];
+    $(tmpClusterSSA_tmpNestedComplexRhs);
+    $(tmpClusterSSA_tmpNestedComplexRhs);
   }
 }
 `````
@@ -86,29 +91,31 @@ let a = undefined;
 const b = { x: 1 };
 const c = $( b );
 const d = c == null;
+let e = undefined;
 if (d) {
 
 }
 else {
-  const e = $( "x" );
-  a = c[ e ];
+  const f = $( "x" );
+  a = c[ f ];
+  e = a;
 }
 if (a) {
-  $( a );
+  $( e );
   $( a );
 }
 else {
-  const f = $( b );
-  const g = f == null;
-  if (g) {
+  const g = $( b );
+  const h = g == null;
+  if (h) {
     $( undefined );
     $( undefined );
   }
   else {
-    const h = $( "x" );
-    const i = f[ h ];
-    $( i );
-    $( i );
+    const i = $( "x" );
+    const j = g[ i ];
+    $( j );
+    $( j );
   }
 }
 `````

@@ -20,14 +20,15 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(1);
-let a /*:unknown*/ = $(tmpCalleeParam);
-if (a) {
+const tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam);
+if (tmpClusterSSA_a) {
   const tmpCalleeParam$1 /*:unknown*/ = $(1);
-  const tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam$1);
-  if (tmpClusterSSA_a) {
+  const tmpClusterSSA_a$1 /*:unknown*/ = $(tmpCalleeParam$1);
+  if (tmpClusterSSA_a$1) {
     const tmpCalleeParam$3 /*:unknown*/ = $(2);
-    const tmpClusterSSA_a$1 /*:unknown*/ = $(tmpCalleeParam$3);
-    if (tmpClusterSSA_a$1) {
+    const tmpClusterSSA_a$3 /*:unknown*/ = $(tmpCalleeParam$3);
+    if (tmpClusterSSA_a$3) {
+      let a /*:unknown*/ = undefined;
       $(1);
       while ($LOOP_UNROLL_10) {
         const tmpCalleeParam$2 /*:unknown*/ = $(1);
@@ -52,13 +53,13 @@ if (a) {
       }
       $(a);
     } else {
-      $(tmpClusterSSA_a$1);
+      $(tmpClusterSSA_a$3);
     }
   } else {
-    $(tmpClusterSSA_a);
+    $(tmpClusterSSA_a$1);
   }
 } else {
-  $(a);
+  $(tmpClusterSSA_a);
 }
 `````
 
@@ -67,12 +68,13 @@ if (a) {
 (This ought to be the final result)
 
 `````js filename=intro
-let a = $($(1));
-if (a) {
-  const tmpClusterSSA_a = $($(1));
-  if (tmpClusterSSA_a) {
-    const tmpClusterSSA_a$1 = $($(2));
-    if (tmpClusterSSA_a$1) {
+const tmpClusterSSA_a = $($(1));
+if (tmpClusterSSA_a) {
+  const tmpClusterSSA_a$1 = $($(1));
+  if (tmpClusterSSA_a$1) {
+    const tmpClusterSSA_a$3 = $($(2));
+    if (tmpClusterSSA_a$3) {
+      let a = undefined;
       $(1);
       while (true) {
         a = $($(1));
@@ -94,13 +96,13 @@ if (a) {
       }
       $(a);
     } else {
-      $(tmpClusterSSA_a$1);
+      $(tmpClusterSSA_a$3);
     }
   } else {
-    $(tmpClusterSSA_a);
+    $(tmpClusterSSA_a$1);
   }
 } else {
-  $(a);
+  $(tmpClusterSSA_a);
 }
 `````
 
@@ -110,7 +112,7 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-let b = $( a );
+const b = $( a );
 if (b) {
   const c = $( 1 );
   const d = $( c );
@@ -118,17 +120,18 @@ if (b) {
     const e = $( 2 );
     const f = $( e );
     if (f) {
+      let g = undefined;
       $( 1 );
       while ($LOOP_UNROLL_10) {
-        const g = $( 1 );
-        b = $( g );
-        if (b) {
-          const h = $( 1 );
-          b = $( h );
-          if (b) {
-            const i = $( 2 );
-            b = $( i );
-            if (b) {
+        const h = $( 1 );
+        g = $( h );
+        if (g) {
+          const i = $( 1 );
+          g = $( i );
+          if (g) {
+            const j = $( 2 );
+            g = $( j );
+            if (g) {
               $( 1 );
             }
             else {
@@ -143,7 +146,7 @@ if (b) {
           break;
         }
       }
-      $( b );
+      $( g );
     }
     else {
       $( f );
@@ -192,6 +195,7 @@ $(a);
 
 
 - (todo) do we want to support ObjectExpression as expression statement in free loops?
+- (todo) objects in isFree check
 
 
 ## Globals

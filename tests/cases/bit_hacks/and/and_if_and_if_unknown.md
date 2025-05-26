@@ -27,10 +27,10 @@ f($(1));
 
 
 `````js filename=intro
-const tmpCalleeParam /*:unknown*/ = $(1);
-const x /*:number*/ = tmpCalleeParam & 1;
+const a /*:unknown*/ = $(1);
+const x /*:number*/ = a & 1;
 if (x) {
-  const y /*:number*/ = tmpCalleeParam & 4;
+  const y /*:number*/ = a & 4;
   if (y) {
     $(`pass`);
   } else {
@@ -44,9 +44,9 @@ if (x) {
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCalleeParam = $(1);
-if (tmpCalleeParam & 1) {
-  if (tmpCalleeParam & 4) {
+const a = $(1);
+if (a & 1) {
+  if (a & 4) {
     $(`pass`);
   }
 }

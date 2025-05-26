@@ -22,12 +22,14 @@ $(a);
 let a /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpChainElementCall /*:unknown*/ = $($);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
+let tmpCalleeParam /*:unknown*/ /*ternaryConst*/ = undefined;
 if (tmpIfTest) {
 } else {
   a = $dotCall(tmpChainElementCall, $, undefined, 1);
+  tmpCalleeParam = a;
 }
 if (a) {
-  $(a);
+  $(tmpCalleeParam);
   $(a);
 } else {
   const tmpChainElementCall$3 /*:unknown*/ = $($);
@@ -36,9 +38,9 @@ if (a) {
     $(undefined);
     $(undefined);
   } else {
-    const tmpNestedComplexRhs /*:unknown*/ = $dotCall(tmpChainElementCall$3, $, undefined, 1);
-    $(tmpNestedComplexRhs);
-    $(tmpNestedComplexRhs);
+    const tmpClusterSSA_tmpNestedComplexRhs /*:unknown*/ = $dotCall(tmpChainElementCall$3, $, undefined, 1);
+    $(tmpClusterSSA_tmpNestedComplexRhs);
+    $(tmpClusterSSA_tmpNestedComplexRhs);
   }
 }
 `````
@@ -50,11 +52,14 @@ if (a) {
 `````js filename=intro
 let a = undefined;
 const tmpChainElementCall = $($);
-if (!(tmpChainElementCall == null)) {
+const tmpIfTest = tmpChainElementCall == null;
+let tmpCalleeParam = undefined;
+if (!tmpIfTest) {
   a = $dotCall(tmpChainElementCall, $, undefined, 1);
+  tmpCalleeParam = a;
 }
 if (a) {
-  $(a);
+  $(tmpCalleeParam);
   $(a);
 } else {
   const tmpChainElementCall$3 = $($);
@@ -62,9 +67,9 @@ if (a) {
     $(undefined);
     $(undefined);
   } else {
-    const tmpNestedComplexRhs = $dotCall(tmpChainElementCall$3, $, undefined, 1);
-    $(tmpNestedComplexRhs);
-    $(tmpNestedComplexRhs);
+    const tmpClusterSSA_tmpNestedComplexRhs = $dotCall(tmpChainElementCall$3, $, undefined, 1);
+    $(tmpClusterSSA_tmpNestedComplexRhs);
+    $(tmpClusterSSA_tmpNestedComplexRhs);
   }
 }
 `````
@@ -77,27 +82,29 @@ With rename=true
 let a = undefined;
 const b = $( $ );
 const c = b == null;
+let d = undefined;
 if (c) {
 
 }
 else {
   a = $dotCall( b, $, undefined, 1 );
+  d = a;
 }
 if (a) {
-  $( a );
+  $( d );
   $( a );
 }
 else {
-  const d = $( $ );
-  const e = d == null;
-  if (e) {
+  const e = $( $ );
+  const f = e == null;
+  if (f) {
     $( undefined );
     $( undefined );
   }
   else {
-    const f = $dotCall( d, $, undefined, 1 );
-    $( f );
-    $( f );
+    const g = $dotCall( e, $, undefined, 1 );
+    $( g );
+    $( g );
   }
 }
 `````

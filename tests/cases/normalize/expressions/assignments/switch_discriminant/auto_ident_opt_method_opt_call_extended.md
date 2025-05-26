@@ -30,9 +30,9 @@ if (tmpIfTest$1) {
   $(undefined);
 } else {
   const tmpObjLitVal$1 /*:object*/ = { e: $ };
-  const a /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
+  const tmpClusterSSA_a /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
   $(100);
-  $(a);
+  $(tmpClusterSSA_a);
 }
 `````
 
@@ -45,9 +45,9 @@ if ($ == null) {
   $(100);
   $(undefined);
 } else {
-  const a = $dotCall($, { e: $ }, `e`, 1);
+  const tmpClusterSSA_a = $dotCall($, { e: $ }, `e`, 1);
   $(100);
-  $(a);
+  $(tmpClusterSSA_a);
 }
 `````
 

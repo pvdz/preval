@@ -24,8 +24,8 @@ $(a, arg);
 const tmpFree /*:(boolean)=>string*/ = function $free($$0) {
   const tmpCalleeParam$2 /*:boolean*/ = $$0;
   debugger;
-  const tmpBinBothRhs /*:string*/ = $coerce(tmpCalleeParam$2, `string`);
-  const tmpRet /*:string*/ = `before  ${tmpBinBothRhs}  after`;
+  const tmpStringConcatL /*:string*/ = $coerce(tmpCalleeParam$2, `string`);
+  const tmpRet /*:string*/ = `before  ${tmpStringConcatL}  after`;
   return tmpRet;
 };
 const arg /*:object*/ = { y: 1 };

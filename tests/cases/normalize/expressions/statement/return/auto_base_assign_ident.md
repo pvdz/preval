@@ -24,10 +24,10 @@ $(a, b);
 
 
 `````js filename=intro
-const b /*:unknown*/ = $(2);
-$(b);
+const tmpClusterSSA_b /*:unknown*/ = $(2);
+$(tmpClusterSSA_b);
 const a /*:object*/ = { a: 999, b: 1000 };
-$(a, b);
+$(a, tmpClusterSSA_b);
 `````
 
 
@@ -35,9 +35,9 @@ $(a, b);
 (This ought to be the final result)
 
 `````js filename=intro
-const b = $(2);
-$(b);
-$({ a: 999, b: 1000 }, b);
+const tmpClusterSSA_b = $(2);
+$(tmpClusterSSA_b);
+$({ a: 999, b: 1000 }, tmpClusterSSA_b);
 `````
 
 

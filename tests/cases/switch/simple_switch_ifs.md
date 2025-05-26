@@ -31,16 +31,16 @@ $(f());
 
 `````js filename=intro
 const tmpUnaryArg /*:unknown*/ = $(`x`);
-const x /*:string*/ = typeof tmpUnaryArg;
-const tmpIfTest /*:boolean*/ = x === `string`;
+const x$1 /*:string*/ = typeof tmpUnaryArg;
+const tmpIfTest /*:boolean*/ = x$1 === `string`;
 if (tmpIfTest) {
   $(0);
 } else {
-  const tmpIfTest$1 /*:boolean*/ = x === `number`;
+  const tmpIfTest$1 /*:boolean*/ = x$1 === `number`;
   if (tmpIfTest$1) {
     $(2);
   } else {
-    const tmpIfTest$3 /*:boolean*/ = x === `boolean`;
+    const tmpIfTest$3 /*:boolean*/ = x$1 === `boolean`;
     if (tmpIfTest$3) {
       $(3);
     } else {
@@ -56,14 +56,14 @@ if (tmpIfTest) {
 
 `````js filename=intro
 const tmpUnaryArg = $(`x`);
-const x = typeof tmpUnaryArg;
-if (x === `string`) {
+const x$1 = typeof tmpUnaryArg;
+if (x$1 === `string`) {
   $(0);
 } else {
-  if (x === `number`) {
+  if (x$1 === `number`) {
     $(2);
   } else {
-    if (x === `boolean`) {
+    if (x$1 === `boolean`) {
       $(3);
     } else {
       $(4);

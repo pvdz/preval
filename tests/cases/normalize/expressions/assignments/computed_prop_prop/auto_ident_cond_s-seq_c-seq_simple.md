@@ -20,9 +20,9 @@ $(a);
 
 
 `````js filename=intro
-const a /*:unknown*/ = $(60);
-$coerce(a, `string`);
-$(a);
+const tmpClusterSSA_a /*:unknown*/ = $(60);
+$coerce(tmpClusterSSA_a, `string`);
+$(tmpClusterSSA_a);
 `````
 
 
@@ -30,9 +30,9 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const a = $(60);
-$coerce(a, `string`);
-$(a);
+const tmpClusterSSA_a = $(60);
+$coerce(tmpClusterSSA_a, `string`);
+$(tmpClusterSSA_a);
 `````
 
 

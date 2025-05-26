@@ -27,8 +27,8 @@ $(a);
 `````js filename=intro
 const tmpSwitchValue /*:unknown*/ = $(1);
 let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
-const a /*:unknown*/ = $(60);
-const tmpIfTest /*:boolean*/ = a === tmpSwitchValue;
+const tmpClusterSSA_a /*:unknown*/ = $(60);
+const tmpIfTest /*:boolean*/ = tmpClusterSSA_a === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
@@ -42,10 +42,10 @@ const tmpIfTest$7 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
 if (tmpIfTest$7) {
   $(`fail1`);
   $(`fail2`);
-  $(a);
+  $(tmpClusterSSA_a);
 } else {
   $(`fail2`);
-  $(a);
+  $(tmpClusterSSA_a);
 }
 `````
 
@@ -56,8 +56,8 @@ if (tmpIfTest$7) {
 `````js filename=intro
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
-const a = $(60);
-if (a === tmpSwitchValue) {
+const tmpClusterSSA_a = $(60);
+if (tmpClusterSSA_a === tmpSwitchValue) {
   tmpSwitchCaseToStart = 0;
 } else {
   if (2 === tmpSwitchValue) {
@@ -67,10 +67,10 @@ if (a === tmpSwitchValue) {
 if (tmpSwitchCaseToStart <= 1) {
   $(`fail1`);
   $(`fail2`);
-  $(a);
+  $(tmpClusterSSA_a);
 } else {
   $(`fail2`);
-  $(a);
+  $(tmpClusterSSA_a);
 }
 `````
 

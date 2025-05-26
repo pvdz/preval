@@ -20,11 +20,12 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(1);
-let a /*:unknown*/ = $(tmpCalleeParam);
-if (a) {
+const tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam);
+if (tmpClusterSSA_a) {
   const tmpCalleeParam$1 /*:unknown*/ = $(2);
-  const tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam$1);
-  if (tmpClusterSSA_a) {
+  const tmpClusterSSA_a$1 /*:unknown*/ = $(tmpCalleeParam$1);
+  if (tmpClusterSSA_a$1) {
+    let a /*:unknown*/ = undefined;
     $(1);
     while ($LOOP_UNROLL_10) {
       const tmpCalleeParam$2 /*:unknown*/ = $(1);
@@ -43,10 +44,10 @@ if (a) {
     }
     $(a);
   } else {
-    $(tmpClusterSSA_a);
+    $(tmpClusterSSA_a$1);
   }
 } else {
-  $(a);
+  $(tmpClusterSSA_a);
 }
 `````
 
@@ -55,10 +56,11 @@ if (a) {
 (This ought to be the final result)
 
 `````js filename=intro
-let a = $($(1));
-if (a) {
-  const tmpClusterSSA_a = $($(2));
-  if (tmpClusterSSA_a) {
+const tmpClusterSSA_a = $($(1));
+if (tmpClusterSSA_a) {
+  const tmpClusterSSA_a$1 = $($(2));
+  if (tmpClusterSSA_a$1) {
+    let a = undefined;
     $(1);
     while (true) {
       a = $($(1));
@@ -75,10 +77,10 @@ if (a) {
     }
     $(a);
   } else {
-    $(tmpClusterSSA_a);
+    $(tmpClusterSSA_a$1);
   }
 } else {
-  $(a);
+  $(tmpClusterSSA_a);
 }
 `````
 
@@ -88,19 +90,20 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-let b = $( a );
+const b = $( a );
 if (b) {
   const c = $( 2 );
   const d = $( c );
   if (d) {
+    let e = undefined;
     $( 1 );
     while ($LOOP_UNROLL_10) {
-      const e = $( 1 );
-      b = $( e );
-      if (b) {
-        const f = $( 2 );
-        b = $( f );
-        if (b) {
+      const f = $( 1 );
+      e = $( f );
+      if (e) {
+        const g = $( 2 );
+        e = $( g );
+        if (e) {
           $( 1 );
         }
         else {
@@ -111,7 +114,7 @@ if (b) {
         break;
       }
     }
-    $( b );
+    $( e );
   }
   else {
     $( d );
@@ -151,6 +154,7 @@ $(a);
 
 
 - (todo) do we want to support ObjectExpression as expression statement in free loops?
+- (todo) objects in isFree check
 
 
 ## Globals

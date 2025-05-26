@@ -71,8 +71,8 @@ if (tmpIfTest$7) {
   const tmpIfTest$11 /*:boolean*/ = tmpSwitchCaseToStart <= 2;
   if (tmpIfTest$11) {
     $(5);
-    const tmpCalleeParam /*:unknown*/ = $(6);
-    $(tmpCalleeParam);
+    const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(6);
+    $(tmpClusterSSA_tmpCalleeParam);
   } else {
     $(`after`);
     $(undefined);

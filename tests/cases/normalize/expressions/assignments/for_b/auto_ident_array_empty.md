@@ -68,10 +68,9 @@ $(a);
 
 - (todo) do we want to support ArrayExpression as expression statement in free loops?
 - (todo) do we want to support ObjectExpression as expression statement in free loops?
+- (todo) objects in isFree check
 - (todo) support array reads statement type BreakStatement
-- (todo) support array reads statement type EmptyStatement
 - (todo) support array reads statement type ExpressionStatement
-- (todo) support array reads statement type WhileStatement
 
 
 ## Globals

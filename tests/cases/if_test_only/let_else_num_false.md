@@ -38,8 +38,8 @@ if (THIS_IS_BOOL) {
 `````js filename=intro
 const tmpIfTest /*:unknown*/ = $(true);
 const tmpBool /*:boolean*/ = $boolean_constructor(tmpIfTest);
-const THIS_IS_BOOL /*:unknown*/ = $(tmpBool);
-if (THIS_IS_BOOL) {
+const tmpUnaryArg /*:unknown*/ = $(tmpBool);
+if (tmpUnaryArg) {
   $(`b`);
   $(`c`);
 } else {

@@ -21,8 +21,8 @@ $(f({ x: undefined, a: 11, b: 12 }, 10));
 
 `````js filename=intro
 const tmpCalleeParam /*:array*/ = [`fail`];
-const tmpOPAD /*:unknown*/ = $(tmpCalleeParam);
-[...tmpOPAD];
+const tmpSSA_tmpOPAD /*:unknown*/ = $(tmpCalleeParam);
+[...tmpSSA_tmpOPAD];
 $(`ok`);
 `````
 
@@ -31,8 +31,8 @@ $(`ok`);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpOPAD = $([`fail`]);
-[...tmpOPAD];
+const tmpSSA_tmpOPAD = $([`fail`]);
+[...tmpSSA_tmpOPAD];
 $(`ok`);
 `````
 
@@ -78,6 +78,7 @@ $(tmpCalleeParam$1);
 ## Todos triggered
 
 
+- (todo) Deal with array spreads in arr mutation?
 - (todo) support array reads statement type ExpressionStatement
 - (todo) support array reads statement type VarStatement
 

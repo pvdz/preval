@@ -27,8 +27,8 @@ const tmpChainRootProp /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainRootProp == null;
 if (tmpIfTest) {
 } else {
-  const tmpCalleeParam /*:unknown*/ = tmpChainRootProp.x;
-  $coerce(tmpCalleeParam, `string`);
+  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = tmpChainRootProp.x;
+  $coerce(tmpClusterSSA_tmpCalleeParam, `string`);
 }
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);

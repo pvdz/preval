@@ -24,14 +24,14 @@ $(a, b);
 const tmpObjLitVal /*:unknown*/ = $(2);
 const tmpCalleeParam /*:object*/ = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam);
-let b /*:unknown*/ /*ternaryConst*/ = tmpNestedAssignObjPatternRhs.b;
+let tmpClusterSSA_b /*:unknown*/ /*ternaryConst*/ = tmpNestedAssignObjPatternRhs.b;
 if (tmpNestedAssignObjPatternRhs) {
   while ($LOOP_UNROLL_10) {
     $(100);
     const tmpObjLitVal$1 /*:unknown*/ = $(2);
     const tmpCalleeParam$1 /*:object*/ = { b: tmpObjLitVal$1 };
     const tmpNestedAssignObjPatternRhs$1 /*:unknown*/ = $(tmpCalleeParam$1);
-    b = tmpNestedAssignObjPatternRhs$1.b;
+    tmpClusterSSA_b = tmpNestedAssignObjPatternRhs$1.b;
     if (tmpNestedAssignObjPatternRhs$1) {
     } else {
       break;
@@ -40,7 +40,7 @@ if (tmpNestedAssignObjPatternRhs) {
 } else {
 }
 const a /*:object*/ = { a: 999, b: 1000 };
-$(a, b);
+$(a, tmpClusterSSA_b);
 `````
 
 
@@ -50,19 +50,19 @@ $(a, b);
 `````js filename=intro
 const tmpObjLitVal = $(2);
 const tmpNestedAssignObjPatternRhs = $({ b: tmpObjLitVal });
-let b = tmpNestedAssignObjPatternRhs.b;
+let tmpClusterSSA_b = tmpNestedAssignObjPatternRhs.b;
 if (tmpNestedAssignObjPatternRhs) {
   while (true) {
     $(100);
     const tmpObjLitVal$1 = $(2);
     const tmpNestedAssignObjPatternRhs$1 = $({ b: tmpObjLitVal$1 });
-    b = tmpNestedAssignObjPatternRhs$1.b;
+    tmpClusterSSA_b = tmpNestedAssignObjPatternRhs$1.b;
     if (!tmpNestedAssignObjPatternRhs$1) {
       break;
     }
   }
 }
-$({ a: 999, b: 1000 }, b);
+$({ a: 999, b: 1000 }, tmpClusterSSA_b);
 `````
 
 
@@ -124,6 +124,7 @@ $(a, b);
 
 
 - (todo) do we want to support ObjectExpression as expression statement in free loops?
+- (todo) objects in isFree check
 
 
 ## Globals

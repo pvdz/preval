@@ -22,10 +22,10 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { c: $ };
-const tmpBinBothLhs /*:unknown*/ = $dotCall($, b, `c`, 1);
+const tmpClusterSSA_tmpBinBothLhs /*:unknown*/ = $dotCall($, b, `c`, 1);
 const tmpChainElementObject$1 /*:unknown*/ = b.c;
-const tmpBinBothRhs /*:unknown*/ = $dotCall(tmpChainElementObject$1, b, `c`, 1);
-tmpBinBothLhs + tmpBinBothRhs;
+const tmpClusterSSA_tmpBinBothRhs /*:unknown*/ = $dotCall(tmpChainElementObject$1, b, `c`, 1);
+tmpClusterSSA_tmpBinBothLhs + tmpClusterSSA_tmpBinBothRhs;
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````

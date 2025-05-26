@@ -24,10 +24,10 @@ f(8, 2, 9);
 
 `````js filename=intro
 const f /*:(number)=>undefined*/ = function ($$0) {
-  const a /*:number*/ = $$0;
+  const a$1 /*:number*/ = $$0;
   debugger;
   const tmpBinBothRhs /*:unknown*/ = $(1);
-  const tmpCalleeParam /*:primitive*/ = a + tmpBinBothRhs;
+  const tmpCalleeParam /*:primitive*/ = a$1 + tmpBinBothRhs;
   $(tmpCalleeParam);
   return undefined;
 };
@@ -42,8 +42,8 @@ f(8);
 (This ought to be the final result)
 
 `````js filename=intro
-const f = function (a) {
-  $(a + $(1));
+const f = function (a$1) {
+  $(a$1 + $(1));
 };
 f(1);
 f(4);

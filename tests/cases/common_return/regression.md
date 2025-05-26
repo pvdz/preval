@@ -72,15 +72,15 @@ if ($) {
     $(`prevent`);
     $(`simple`);
     $(`inlining`);
-    const tmpClusterSSA_tmpCalleeParam$1 /*:unknown*/ = k();
-    $(tmpClusterSSA_tmpCalleeParam$1);
-  } else {
     const tmpClusterSSA_tmpCalleeParam$2 /*:unknown*/ = k();
     $(tmpClusterSSA_tmpCalleeParam$2);
+  } else {
+    const tmpClusterSSA_tmpCalleeParam$4 /*:unknown*/ = k();
+    $(tmpClusterSSA_tmpCalleeParam$4);
   }
 } else {
-  const tmpClusterSSA_tmpCalleeParam$4 /*:unknown*/ = k();
-  $(tmpClusterSSA_tmpCalleeParam$4);
+  const tmpClusterSSA_tmpCalleeParam$1 /*:unknown*/ = k();
+  $(tmpClusterSSA_tmpCalleeParam$1);
 }
 `````
 

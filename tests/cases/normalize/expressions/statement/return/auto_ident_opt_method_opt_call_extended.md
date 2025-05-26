@@ -29,8 +29,8 @@ if (tmpIfTest$1) {
   $(undefined);
 } else {
   const tmpObjLitVal$1 /*:object*/ = { e: $ };
-  const tmpCalleeParam /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
-  $(tmpCalleeParam);
+  const tmpClusterSSA_tmpReturnArg /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
+  $(tmpClusterSSA_tmpReturnArg);
 }
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);

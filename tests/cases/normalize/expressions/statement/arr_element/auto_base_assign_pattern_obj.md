@@ -28,10 +28,10 @@ tmpNestedAssignObjPatternRhs.b;
 const tmpObjLitVal$1 /*:unknown*/ = $(2);
 const tmpCalleeParam$1 /*:object*/ = { b: tmpObjLitVal$1 };
 const tmpNestedAssignObjPatternRhs$1 /*:unknown*/ = $(tmpCalleeParam$1);
-const b /*:unknown*/ = tmpNestedAssignObjPatternRhs$1.b;
+const tmpSSA_b /*:unknown*/ = tmpNestedAssignObjPatternRhs$1.b;
 tmpNestedAssignObjPatternRhs + tmpNestedAssignObjPatternRhs$1;
 const a /*:object*/ = { a: 999, b: 1000 };
-$(a, b);
+$(a, tmpSSA_b);
 `````
 
 
@@ -44,9 +44,9 @@ const tmpNestedAssignObjPatternRhs = $({ b: tmpObjLitVal });
 tmpNestedAssignObjPatternRhs.b;
 const tmpObjLitVal$1 = $(2);
 const tmpNestedAssignObjPatternRhs$1 = $({ b: tmpObjLitVal$1 });
-const b = tmpNestedAssignObjPatternRhs$1.b;
+const tmpSSA_b = tmpNestedAssignObjPatternRhs$1.b;
 tmpNestedAssignObjPatternRhs + tmpNestedAssignObjPatternRhs$1;
-$({ a: 999, b: 1000 }, b);
+$({ a: 999, b: 1000 }, tmpSSA_b);
 `````
 
 

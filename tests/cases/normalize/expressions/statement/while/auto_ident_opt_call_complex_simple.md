@@ -143,7 +143,7 @@ $(a);
 ## Todos triggered
 
 
-None
+- (todo) Support referencing this builtin in isFree: $
 
 
 ## Globals

@@ -35,6 +35,7 @@ $(f());
 `````js filename=intro
 const f /*:()=>boolean*/ = function () {
   debugger;
+  x;
   $(`block`);
   $(`block`);
   const tmpBool /*:boolean*/ = $boolean_constructor(x);
@@ -51,6 +52,7 @@ $(tmpCalleeParam);
 
 `````js filename=intro
 const f = function () {
+  x;
   $(`block`);
   $(`block`);
   const tmpBool = $boolean_constructor(x);
@@ -67,6 +69,7 @@ With rename=true
 `````js filename=intro
 const a = function() {
   debugger;
+  x;
   $( "block" );
   $( "block" );
   const b = $boolean_constructor( x );
@@ -125,12 +128,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Post settled calls: BAD!!
- - !1: 'block'
- - !2: 'block'
- - !eval returned: ('<crash[ <ref> is not defined ]>')
+Post settled calls: Same
 
-Denormalized calls: BAD!!
- - !1: 'block'
- - !2: 'block'
- - !eval returned: ('<crash[ <ref> is not defined ]>')
+Denormalized calls: Same

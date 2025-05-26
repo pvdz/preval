@@ -59,9 +59,10 @@ $(arr);
 ## Todos triggered
 
 
-- (todo) arr mutation may be able to inline this method: tmpMCF
 - (todo) outline any args for tdz
 - (todo) support array reads statement type ExpressionStatement
+- (todo) support array reads statement type VarStatement
+- (todo) type trackeed tricks can possibly support static $array_pop
 
 
 ## Globals

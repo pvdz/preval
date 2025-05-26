@@ -26,8 +26,8 @@ $(res);
 const wat /*:unknown*/ = $(`xyz`);
 const str /*:string*/ = $coerce(wat, `plustr`);
 const wat2 /*:unknown*/ = $(`y`);
-const args /*:string*/ = $coerce(wat2, `plustr`);
-const res /*:array*/ = $dotCall($string_split, str, `split`, args);
+const s /*:string*/ = $coerce(wat2, `plustr`);
+const res /*:array*/ = $dotCall($string_split, str, `split`, s);
 $(res);
 `````
 
@@ -72,7 +72,7 @@ $(res);
 ## Todos triggered
 
 
-None
+- (todo) support array reads statement type VarStatement
 
 
 ## Globals

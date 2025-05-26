@@ -23,11 +23,12 @@ $(arr);
 
 
 `````js filename=intro
-let arr /*:array*/ = [2, 3, 4];
 $(2);
 if ($) {
-  $(arr);
+  const tmpClusterSSA_arr /*:array*/ = [2, 3, 4];
+  $(tmpClusterSSA_arr);
 } else {
+  let arr /*:unknown*/ = undefined;
   while ($LOOP_UNROLL_10) {
     arr = [2, 3, 4];
     $(2);
@@ -45,11 +46,11 @@ if ($) {
 (This ought to be the final result)
 
 `````js filename=intro
-let arr = [2, 3, 4];
 $(2);
 if ($) {
-  $(arr);
+  $([2, 3, 4]);
 } else {
+  let arr = undefined;
   while (true) {
     arr = [2, 3, 4];
     $(2);
@@ -66,20 +67,21 @@ if ($) {
 With rename=true
 
 `````js filename=intro
-let a = [ 2, 3, 4 ];
 $( 2 );
 if ($) {
+  const a = [ 2, 3, 4 ];
   $( a );
 }
 else {
+  let b = undefined;
   while ($LOOP_UNROLL_10) {
-    a = [ 2, 3, 4 ];
+    b = [ 2, 3, 4 ];
     $( 2 );
     if ($) {
       break;
     }
   }
-  $( a );
+  $( b );
 }
 `````
 
@@ -106,7 +108,9 @@ $(arr);
 
 
 - (todo) do we want to support ArrayExpression as expression statement in free loops?
+- (todo) support array reads statement type EmptyStatement
 - (todo) support array reads statement type ExpressionStatement
+- (todo) support array reads statement type WhileStatement
 
 
 ## Globals

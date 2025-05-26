@@ -44,13 +44,13 @@ $(a, x, y, z);
 `````js filename=intro
 const tmpSwitchValue /*:unknown*/ = $(`a`);
 const tmpBinLhs /*:unknown*/ = $(`a`);
-const tmpIfTest$1 /*:boolean*/ = tmpBinLhs === tmpSwitchValue;
+const tmpIfTest /*:boolean*/ = tmpBinLhs === tmpSwitchValue;
 const z /*:array*/ = [10, 20, 30];
-if (tmpIfTest$1) {
+if (tmpIfTest) {
   const arrPatternSplat /*:array*/ = [...z];
-  const x /*:unknown*/ = arrPatternSplat[0];
-  const y /*:unknown*/ = arrPatternSplat[1];
-  $(1, x, y, z);
+  const tmpClusterSSA_x /*:unknown*/ = arrPatternSplat[0];
+  const tmpClusterSSA_y /*:unknown*/ = arrPatternSplat[1];
+  $(1, tmpClusterSSA_x, tmpClusterSSA_y, z);
 } else {
   $(1, 1, 2, z);
 }
@@ -62,9 +62,9 @@ if (tmpIfTest$1) {
 
 `````js filename=intro
 const tmpSwitchValue = $(`a`);
-const tmpIfTest$1 = $(`a`) === tmpSwitchValue;
+const tmpIfTest = $(`a`) === tmpSwitchValue;
 const z = [10, 20, 30];
-if (tmpIfTest$1) {
+if (tmpIfTest) {
   const arrPatternSplat = [...z];
   $(1, arrPatternSplat[0], arrPatternSplat[1], z);
 } else {
@@ -130,6 +130,7 @@ $(a, x, y, z);
 
 
 - (todo) Deal with array spreads in arr mutation?
+- (todo) support array reads statement type EmptyStatement
 - (todo) support array reads statement type ExpressionStatement
 - (todo) support array reads statement type VarStatement
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

@@ -20,8 +20,8 @@ $(f([{ x: undefined, y: 2, z: 3 }, 20, 30], 200));
 
 
 `````js filename=intro
-const tmpCalleeParam /*:unknown*/ = $(`pass`);
-$(tmpCalleeParam);
+const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(`pass`);
+$(tmpClusterSSA_tmpCalleeParam);
 `````
 
 
@@ -76,6 +76,7 @@ $(tmpCalleeParam);
 
 - (todo) Deal with array spreads in arr mutation?
 - (todo) can we always safely clone ident refs in this case?
+- (todo) support array reads statement type VarStatement
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
 
 

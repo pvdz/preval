@@ -26,23 +26,23 @@ if ($) f();
 
 `````js filename=intro
 if ($) {
-  let i /*:number*/ = 1;
+  let tmpClusterSSA_i$1 /*:number*/ = 1;
   $(1, `sub`);
   while ($LOOP_UNROLL_10) {
-    i = i + 1;
-    const tmpIfTest$2 /*:boolean*/ = i < 10;
+    tmpClusterSSA_i$1 = tmpClusterSSA_i$1 + 1;
+    const tmpIfTest$2 /*:boolean*/ = tmpClusterSSA_i$1 < 10;
     if (tmpIfTest$2) {
-      const tmpIfTest$4 /*:boolean*/ = i < 5;
+      const tmpIfTest$4 /*:boolean*/ = tmpClusterSSA_i$1 < 5;
       if (tmpIfTest$4) {
-        $(i, `sub`);
+        $(tmpClusterSSA_i$1, `sub`);
       } else {
-        $(i, `sup`);
+        $(tmpClusterSSA_i$1, `sup`);
       }
     } else {
       break;
     }
   }
-  $(i);
+  $(tmpClusterSSA_i$1);
 } else {
 }
 `````
@@ -53,21 +53,21 @@ if ($) {
 
 `````js filename=intro
 if ($) {
-  let i = 1;
+  let tmpClusterSSA_i$1 = 1;
   $(1, `sub`);
   while (true) {
-    i = i + 1;
-    if (i < 10) {
-      if (i < 5) {
-        $(i, `sub`);
+    tmpClusterSSA_i$1 = tmpClusterSSA_i$1 + 1;
+    if (tmpClusterSSA_i$1 < 10) {
+      if (tmpClusterSSA_i$1 < 5) {
+        $(tmpClusterSSA_i$1, `sub`);
       } else {
-        $(i, `sup`);
+        $(tmpClusterSSA_i$1, `sup`);
       }
     } else {
       break;
     }
   }
-  $(i);
+  $(tmpClusterSSA_i$1);
 }
 `````
 

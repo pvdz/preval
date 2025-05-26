@@ -58,8 +58,8 @@ if (tmpIfTest) {
   tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
   let tmpClusterSSA_a /*:unknown*/ = tmpNestedPropCompoundComplexRhs;
   while ($LOOP_UNROLL_10) {
-    const tmpClusterSSA_tmpIfTest /*:unknown*/ = $(1);
-    if (tmpClusterSSA_tmpIfTest) {
+    const tmpClusterSSA_tmpIfTest$1 /*:unknown*/ = $(1);
+    if (tmpClusterSSA_tmpIfTest$1) {
       const tmpCalleeParam$1 /*:unknown*/ = $(b);
       const tmpNestedAssignObj$1 /*:unknown*/ = $(tmpCalleeParam$1);
       const tmpBinLhs$1 /*:unknown*/ = tmpNestedAssignObj$1.x;

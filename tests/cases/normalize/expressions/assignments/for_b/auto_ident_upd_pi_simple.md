@@ -31,18 +31,18 @@ $(1);
 $(1);
 $(1);
 $(1);
-let b /*:number*/ = 12;
-let a /*:unknown*/ = 12;
+let a /*:unknown*/ = undefined;
+let tmpClusterSSA_b$2 /*:number*/ = 12;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
-  b = b + 1;
-  a = b;
+  tmpClusterSSA_b$2 = tmpClusterSSA_b$2 + 1;
+  a = tmpClusterSSA_b$2;
   if (a) {
   } else {
     break;
   }
 }
-$(a, b);
+$(a, tmpClusterSSA_b$2);
 `````
 
 
@@ -60,17 +60,17 @@ $(1);
 $(1);
 $(1);
 $(1);
-let b = 12;
-let a = 12;
+let a = undefined;
+let tmpClusterSSA_b$2 = 12;
 while (true) {
   $(1);
-  b = b + 1;
-  a = b;
+  tmpClusterSSA_b$2 = tmpClusterSSA_b$2 + 1;
+  a = tmpClusterSSA_b$2;
   if (!a) {
     break;
   }
 }
-$(a, b);
+$(a, tmpClusterSSA_b$2);
 `````
 
 
@@ -88,20 +88,20 @@ $( 1 );
 $( 1 );
 $( 1 );
 $( 1 );
-let a = 12;
+let a = undefined;
 let b = 12;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );
-  a = a + 1;
-  b = a;
-  if (b) {
+  b = b + 1;
+  a = b;
+  if (a) {
 
   }
   else {
     break;
   }
 }
-$( b, a );
+$( a, b );
 `````
 
 
@@ -130,6 +130,7 @@ $(a, b);
 
 
 - (todo) do we want to support ObjectExpression as expression statement in free loops?
+- (todo) objects in isFree check
 
 
 ## Globals

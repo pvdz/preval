@@ -33,9 +33,9 @@ if (tmpCalleeParam) {
     $(undefined);
   } else {
     const tmpObjLitVal$1 /*:object*/ = { e: $ };
-    const tmpNestedComplexRhs /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
-    $(tmpNestedComplexRhs);
-    $(tmpNestedComplexRhs);
+    const tmpClusterSSA_tmpNestedComplexRhs /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
+    $(tmpClusterSSA_tmpNestedComplexRhs);
+    $(tmpClusterSSA_tmpNestedComplexRhs);
   }
 }
 `````
@@ -54,9 +54,9 @@ if (tmpCalleeParam) {
     $(undefined);
     $(undefined);
   } else {
-    const tmpNestedComplexRhs = $dotCall($, { e: $ }, `e`, 1);
-    $(tmpNestedComplexRhs);
-    $(tmpNestedComplexRhs);
+    const tmpClusterSSA_tmpNestedComplexRhs = $dotCall($, { e: $ }, `e`, 1);
+    $(tmpClusterSSA_tmpNestedComplexRhs);
+    $(tmpClusterSSA_tmpNestedComplexRhs);
   }
 }
 `````

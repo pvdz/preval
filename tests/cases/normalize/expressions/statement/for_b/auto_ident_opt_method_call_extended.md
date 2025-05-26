@@ -22,13 +22,13 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal$1 /*:object*/ = { e: $ };
-const tmpIfTest /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
-if (tmpIfTest) {
+const tmpClusterSSA_tmpIfTest /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
+if (tmpClusterSSA_tmpIfTest) {
   while ($LOOP_UNROLL_10) {
     $(1);
     const tmpChainElementObject$1 /*:unknown*/ = tmpObjLitVal$1.e;
-    const tmpIfTest$1 /*:unknown*/ = $dotCall(tmpChainElementObject$1, tmpObjLitVal$1, `e`, 1);
-    if (tmpIfTest$1) {
+    const tmpClusterSSA_tmpIfTest$1 /*:unknown*/ = $dotCall(tmpChainElementObject$1, tmpObjLitVal$1, `e`, 1);
+    if (tmpClusterSSA_tmpIfTest$1) {
     } else {
       break;
     }

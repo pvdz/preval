@@ -23,8 +23,9 @@ $(a, arg);
 `````js filename=intro
 const tmpDeleteCompProp /*:unknown*/ = $(`y`);
 const arg /*:object*/ = { y: 1 };
-let a /*:boolean*/ = delete arg[tmpDeleteCompProp];
-if (a) {
+const tmpClusterSSA_a /*:boolean*/ = delete arg[tmpDeleteCompProp];
+if (tmpClusterSSA_a) {
+  let a /*:boolean*/ = false;
   while ($LOOP_UNROLL_10) {
     $(100);
     const tmpDeleteCompProp$1 /*:unknown*/ = $(`y`);
@@ -36,7 +37,7 @@ if (a) {
   }
   $(a, arg);
 } else {
-  $(a, arg);
+  $(false, arg);
 }
 `````
 
@@ -47,8 +48,8 @@ if (a) {
 `````js filename=intro
 const tmpDeleteCompProp = $(`y`);
 const arg = { y: 1 };
-let a = delete arg[tmpDeleteCompProp];
-if (a) {
+if (delete arg[tmpDeleteCompProp]) {
+  let a = false;
   while (true) {
     $(100);
     const tmpDeleteCompProp$1 = $(`y`);
@@ -59,7 +60,7 @@ if (a) {
   }
   $(a, arg);
 } else {
-  $(a, arg);
+  $(false, arg);
 }
 `````
 
@@ -70,23 +71,24 @@ With rename=true
 `````js filename=intro
 const a = $( "y" );
 const b = { y: 1 };
-let c = delete b[ a ];
+const c = delete b[ a ];
 if (c) {
+  let d = false;
   while ($LOOP_UNROLL_10) {
     $( 100 );
-    const d = $( "y" );
-    c = delete b[ d ];
-    if (c) {
+    const e = $( "y" );
+    d = delete b[ e ];
+    if (d) {
 
     }
     else {
       break;
     }
   }
-  $( c, b );
+  $( d, b );
 }
 else {
-  $( c, b );
+  $( false, b );
 }
 `````
 

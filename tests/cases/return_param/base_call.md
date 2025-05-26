@@ -110,6 +110,7 @@ $(tmpCalleeParam$5);
 ## Todos triggered
 
 
+- (todo) Encountered non-ident as callee
 - (todo) infertyping on a non-ident? is that a crash or bug? Literal
 - (todo) infertyping on a non-ident? is that a crash or bug? TemplateLiteral
 

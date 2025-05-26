@@ -21,8 +21,8 @@ $({...f()});
 
 `````js filename=intro
 const tmpCalleeParam /*:object*/ = { x: 1 };
-const tmpObjSpread /*:unknown*/ = $(tmpCalleeParam);
-const tmpCalleeParam$1 /*:object*/ = { ...tmpObjSpread };
+const tmpClusterSSA_tmpObjSpread /*:unknown*/ = $(tmpCalleeParam);
+const tmpCalleeParam$1 /*:object*/ = { ...tmpClusterSSA_tmpObjSpread };
 $(tmpCalleeParam$1);
 `````
 
@@ -31,8 +31,8 @@ $(tmpCalleeParam$1);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpObjSpread = $({ x: 1 });
-$({ ...tmpObjSpread });
+const tmpClusterSSA_tmpObjSpread = $({ x: 1 });
+$({ ...tmpClusterSSA_tmpObjSpread });
 `````
 
 

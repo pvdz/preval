@@ -25,8 +25,8 @@ export default function() {
 $(1);
 const tmpAnonDefaultExport /*:()=>undefined*/ = function () {
   debugger;
-  const tmpCalleeParam /*:unknown*/ = $(2);
-  $(tmpCalleeParam);
+  const tmpReturnArg /*:unknown*/ = $(2);
+  $(tmpReturnArg);
   return undefined;
 };
 export { tmpAnonDefaultExport as default };

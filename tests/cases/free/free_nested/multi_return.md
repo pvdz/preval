@@ -46,8 +46,8 @@ const g /*:(number, number)=>number*/ = function $free($$0, $$1) {
   const d /*:number*/ = c * 10;
   const tmpIfTest /*:boolean*/ = d > 40;
   if (tmpIfTest) {
-    const r /*:number*/ = d * 10;
-    return r;
+    const tmpClusterSSA_r /*:number*/ = d * 10;
+    return tmpClusterSSA_r;
   } else {
     return d;
   }
@@ -69,8 +69,8 @@ const g = function $free(n, o) {
   const p = n * 20;
   const d = (p + o * 40) * 10;
   if (d > 40) {
-    const r = d * 10;
-    return r;
+    const tmpClusterSSA_r = d * 10;
+    return tmpClusterSSA_r;
   } else {
     return d;
   }

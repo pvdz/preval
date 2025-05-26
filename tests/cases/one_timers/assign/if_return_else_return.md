@@ -38,13 +38,13 @@ const x /*:unknown*/ = $(100);
 $(x);
 const tmpIfTest /*:unknown*/ = $();
 if (tmpIfTest) {
-  const tmpClusterSSA_x$1 /*:unknown*/ = $(1);
-  $(tmpClusterSSA_x$1);
-  $(tmpClusterSSA_x$1);
+  const tmpClusterSSA_x /*:unknown*/ = $(1);
+  $(tmpClusterSSA_x);
+  $(tmpClusterSSA_x);
 } else {
-  const tmpClusterSSA_x$3 /*:unknown*/ = $(2);
-  $(tmpClusterSSA_x$3);
-  $(tmpClusterSSA_x$3);
+  const tmpClusterSSA_x$1 /*:unknown*/ = $(2);
+  $(tmpClusterSSA_x$1);
+  $(tmpClusterSSA_x$1);
 }
 `````
 
@@ -55,13 +55,13 @@ if (tmpIfTest) {
 `````js filename=intro
 $($(100));
 if ($()) {
-  const tmpClusterSSA_x$1 = $(1);
-  $(tmpClusterSSA_x$1);
-  $(tmpClusterSSA_x$1);
+  const tmpClusterSSA_x = $(1);
+  $(tmpClusterSSA_x);
+  $(tmpClusterSSA_x);
 } else {
-  const tmpClusterSSA_x$3 = $(2);
-  $(tmpClusterSSA_x$3);
-  $(tmpClusterSSA_x$3);
+  const tmpClusterSSA_x$1 = $(2);
+  $(tmpClusterSSA_x$1);
+  $(tmpClusterSSA_x$1);
 }
 `````
 

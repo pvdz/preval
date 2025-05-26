@@ -24,8 +24,8 @@ $(g());
 
 
 `````js filename=intro
-const tmpCalleeParam /*:unknown*/ = $(10);
-$(tmpCalleeParam);
+const tmpClusterSSA_tmpReturnArg /*:unknown*/ = $(10);
+$(tmpClusterSSA_tmpReturnArg);
 `````
 
 

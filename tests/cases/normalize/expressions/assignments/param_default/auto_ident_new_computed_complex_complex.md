@@ -26,9 +26,9 @@ const b /*:object*/ = { $: $ };
 const tmpCompObj /*:unknown*/ = $(b);
 const tmpCalleeParam /*:unknown*/ = $(`\$`);
 const tmpNewCallee /*:unknown*/ = tmpCompObj[tmpCalleeParam];
-const a /*:object*/ = new tmpNewCallee(1);
+const tmpSSA_a /*:object*/ = new tmpNewCallee(1);
 $(undefined);
-$(a);
+$(tmpSSA_a);
 `````
 
 
@@ -39,9 +39,9 @@ $(a);
 const tmpCompObj = $({ $: $ });
 const tmpCalleeParam = $(`\$`);
 const tmpNewCallee = tmpCompObj[tmpCalleeParam];
-const a = new tmpNewCallee(1);
+const tmpSSA_a = new tmpNewCallee(1);
 $(undefined);
-$(a);
+$(tmpSSA_a);
 `````
 
 

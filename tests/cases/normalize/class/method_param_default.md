@@ -29,8 +29,8 @@ const x /*:class*/ = class {
     debugger;
     const tmpIfTest /*:boolean*/ = tmpParamBare === undefined;
     if (tmpIfTest) {
-      const arg /*:unknown*/ = $(10, `default`);
-      return arg;
+      const tmpClusterSSA_arg /*:unknown*/ = $(10, `default`);
+      return tmpClusterSSA_arg;
     } else {
       return tmpParamBare;
     }
@@ -50,8 +50,8 @@ $(tmpCalleeParam);
 const x = class {
   y(tmpParamBare) {
     if (tmpParamBare === undefined) {
-      const arg = $(10, `default`);
-      return arg;
+      const tmpClusterSSA_arg = $(10, `default`);
+      return tmpClusterSSA_arg;
     } else {
       return tmpParamBare;
     }

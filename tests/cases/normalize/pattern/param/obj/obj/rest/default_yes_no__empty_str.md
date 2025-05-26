@@ -21,16 +21,16 @@ $(f('', 10));
 
 `````js filename=intro
 const tmpOPBD /*:unknown*/ = $String_prototype.x;
-let tmpOPAD /*:unknown*/ /*ternaryConst*/ = undefined;
+let tmpCalleeParam$1 /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpIfTest /*:boolean*/ = tmpOPBD === undefined;
 if (tmpIfTest) {
   const tmpCalleeParam /*:object*/ = { a: `pass` };
-  tmpOPAD = $(tmpCalleeParam);
+  tmpCalleeParam$1 = $(tmpCalleeParam);
 } else {
-  tmpOPAD = tmpOPBD;
+  tmpCalleeParam$1 = tmpOPBD;
 }
 const tmpCalleeParam$3 /*:array*/ = [];
-const y /*:unknown*/ = $objPatternRest(tmpOPAD, tmpCalleeParam$3, undefined);
+const y /*:unknown*/ = $objPatternRest(tmpCalleeParam$1, tmpCalleeParam$3, undefined);
 $(y);
 `````
 
@@ -40,13 +40,13 @@ $(y);
 
 `````js filename=intro
 const tmpOPBD = $String_prototype.x;
-let tmpOPAD = undefined;
+let tmpCalleeParam$1 = undefined;
 if (tmpOPBD === undefined) {
-  tmpOPAD = $({ a: `pass` });
+  tmpCalleeParam$1 = $({ a: `pass` });
 } else {
-  tmpOPAD = tmpOPBD;
+  tmpCalleeParam$1 = tmpOPBD;
 }
-$($objPatternRest(tmpOPAD, [], undefined));
+$($objPatternRest(tmpCalleeParam$1, [], undefined));
 `````
 
 

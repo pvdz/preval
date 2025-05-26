@@ -42,11 +42,11 @@ const tmpFree /*:(string, string)=>primitive*/ = function $free($$0, $$1) {
   const tmpCalleeParam /*:string*/ = xs$1 + 5;
   const one /*:number*/ = $Number_parseInt(tmpCalleeParam, ys$1);
   const tmpMCF /*:unknown*/ = one.slice;
-  const r /*:unknown*/ = $dotCall(tmpMCF, one, `slice`, 1);
-  r + 0;
-  const tmpMCF$1 /*:unknown*/ = r.slice;
-  const s /*:unknown*/ = $dotCall(tmpMCF$1, r, `slice`, 2);
-  const tmpRet /*:primitive*/ = r + s;
+  const two /*:unknown*/ = $dotCall(tmpMCF, one, `slice`, 1);
+  two + 0;
+  const tmpMCF$1 /*:unknown*/ = two.slice;
+  const two$1 /*:unknown*/ = $dotCall(tmpMCF$1, two, `slice`, 2);
+  const tmpRet /*:primitive*/ = two + two$1;
   return tmpRet;
 };
 const x /*:unknown*/ = $spy(`x`);
@@ -64,9 +64,9 @@ $(rs);
 `````js filename=intro
 const tmpFree = function $free(xs$1, ys$1) {
   const one = $Number_parseInt(xs$1 + 5, ys$1);
-  const r = one.slice(1);
-  r + 0;
-  const tmpRet = r + r.slice(2);
+  const two = one.slice(1);
+  two + 0;
+  const tmpRet = two + two.slice(2);
   return tmpRet;
 };
 const xs = $coerce($spy(`x`), `plustr`);

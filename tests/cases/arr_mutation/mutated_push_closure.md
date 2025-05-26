@@ -66,8 +66,9 @@ $(arr);
 ## Todos triggered
 
 
+- (todo) access object property that also exists on prototype? $array_push
+- (todo) access object property that also exists on prototype? $array_splice
 - (todo) arr mutation may be able to inline this method: tmpMCF
-- (todo) arr mutation may be able to inline this method: tmpMCF$1
 - (todo) support array reads statement type ExpressionStatement
 
 

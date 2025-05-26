@@ -21,12 +21,14 @@ $(a);
 `````js filename=intro
 let a /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpIfTest /*:boolean*/ = $ == null;
+let tmpCalleeParam /*:unknown*/ /*ternaryConst*/ = undefined;
 if (tmpIfTest) {
 } else {
   a = $(1);
+  tmpCalleeParam = a;
 }
 if (a) {
-  $(a);
+  $(tmpCalleeParam);
   $(a);
 } else {
   const tmpIfTest$1 /*:boolean*/ = $ == null;
@@ -34,9 +36,9 @@ if (a) {
     $(undefined);
     $(undefined);
   } else {
-    const tmpNestedComplexRhs /*:unknown*/ = $(1);
-    $(tmpNestedComplexRhs);
-    $(tmpNestedComplexRhs);
+    const tmpClusterSSA_tmpNestedComplexRhs /*:unknown*/ = $(1);
+    $(tmpClusterSSA_tmpNestedComplexRhs);
+    $(tmpClusterSSA_tmpNestedComplexRhs);
   }
 }
 `````
@@ -47,20 +49,23 @@ if (a) {
 
 `````js filename=intro
 let a = undefined;
-if (!($ == null)) {
+const tmpIfTest = $ == null;
+let tmpCalleeParam = undefined;
+if (!tmpIfTest) {
   a = $(1);
+  tmpCalleeParam = a;
 }
 if (a) {
-  $(a);
+  $(tmpCalleeParam);
   $(a);
 } else {
   if ($ == null) {
     $(undefined);
     $(undefined);
   } else {
-    const tmpNestedComplexRhs = $(1);
-    $(tmpNestedComplexRhs);
-    $(tmpNestedComplexRhs);
+    const tmpClusterSSA_tmpNestedComplexRhs = $(1);
+    $(tmpClusterSSA_tmpNestedComplexRhs);
+    $(tmpClusterSSA_tmpNestedComplexRhs);
   }
 }
 `````
@@ -72,26 +77,28 @@ With rename=true
 `````js filename=intro
 let a = undefined;
 const b = $ == null;
+let c = undefined;
 if (b) {
 
 }
 else {
   a = $( 1 );
+  c = a;
 }
 if (a) {
-  $( a );
+  $( c );
   $( a );
 }
 else {
-  const c = $ == null;
-  if (c) {
+  const d = $ == null;
+  if (d) {
     $( undefined );
     $( undefined );
   }
   else {
-    const d = $( 1 );
-    $( d );
-    $( d );
+    const e = $( 1 );
+    $( e );
+    $( e );
   }
 }
 `````

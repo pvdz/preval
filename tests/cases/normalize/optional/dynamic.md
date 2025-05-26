@@ -19,8 +19,8 @@ $(obj?.[$()]);
 
 `````js filename=intro
 const tmpChainRootComputed /*:unknown*/ = $();
-const tmpChainRootProp /*:object*/ = { foo: 10 };
-const tmpChainElementObject /*:unknown*/ = tmpChainRootProp[tmpChainRootComputed];
+const obj /*:object*/ = { foo: 10 };
+const tmpChainElementObject /*:unknown*/ = obj[tmpChainRootComputed];
 $(tmpChainElementObject);
 `````
 

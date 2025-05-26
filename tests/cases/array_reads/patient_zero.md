@@ -24,11 +24,12 @@ $(arr);
 
 
 `````js filename=intro
-let arr /*:array*/ = [1];
-$(arr);
-const tmpBinLhs$1 /*:unknown*/ = arr[0];
+const tmpClusterSSA_arr /*:array*/ = [1];
+$(tmpClusterSSA_arr);
+const tmpBinLhs$1 /*:primitive*/ = tmpClusterSSA_arr[0];
 const tmpIfTest /*:boolean*/ = tmpBinLhs$1 < 10;
 if (tmpIfTest) {
+  let arr /*:unknown*/ = undefined;
   while ($LOOP_UNROLL_10) {
     arr = [1];
     $(arr);
@@ -41,7 +42,7 @@ if (tmpIfTest) {
   }
   $(arr);
 } else {
-  $(arr);
+  $(tmpClusterSSA_arr);
 }
 `````
 
@@ -50,9 +51,10 @@ if (tmpIfTest) {
 (This ought to be the final result)
 
 `````js filename=intro
-let arr = [1];
-$(arr);
-if (arr[0] < 10) {
+const tmpClusterSSA_arr = [1];
+$(tmpClusterSSA_arr);
+if (tmpClusterSSA_arr[0] < 10) {
+  let arr = undefined;
   while (true) {
     arr = [1];
     $(arr);
@@ -62,7 +64,7 @@ if (arr[0] < 10) {
   }
   $(arr);
 } else {
-  $(arr);
+  $(tmpClusterSSA_arr);
 }
 `````
 
@@ -71,24 +73,25 @@ if (arr[0] < 10) {
 With rename=true
 
 `````js filename=intro
-let a = [ 1 ];
+const a = [ 1 ];
 $( a );
 const b = a[ 0 ];
 const c = b < 10;
 if (c) {
+  let d = undefined;
   while ($LOOP_UNROLL_10) {
-    a = [ 1 ];
-    $( a );
-    const d = a[ 0 ];
-    const e = d < 10;
-    if (e) {
+    d = [ 1 ];
+    $( d );
+    const e = d[ 0 ];
+    const f = e < 10;
+    if (f) {
 
     }
     else {
       break;
     }
   }
-  $( a );
+  $( d );
 }
 else {
   $( a );

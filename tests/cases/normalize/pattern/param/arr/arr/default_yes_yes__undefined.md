@@ -21,8 +21,8 @@ $(f(undefined, 200));
 
 `````js filename=intro
 const tmpCalleeParam /*:array*/ = [`pass3`];
-const tmpBindingPatternArrRoot /*:unknown*/ = $(tmpCalleeParam);
-const tmpArrPatternSplat /*:array*/ = [...tmpBindingPatternArrRoot];
+const tmpSSA_tmpBindingPatternArrRoot /*:unknown*/ = $(tmpCalleeParam);
+const tmpArrPatternSplat /*:array*/ = [...tmpSSA_tmpBindingPatternArrRoot];
 const tmpAPBD /*:unknown*/ = tmpArrPatternSplat[0];
 let tmpArrPatternStep /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpIfTest$1 /*:boolean*/ = tmpAPBD === undefined;
@@ -41,8 +41,8 @@ $(`ok`);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpBindingPatternArrRoot = $([`pass3`]);
-const tmpAPBD = [...tmpBindingPatternArrRoot][0];
+const tmpSSA_tmpBindingPatternArrRoot = $([`pass3`]);
+const tmpAPBD = [...tmpSSA_tmpBindingPatternArrRoot][0];
 let tmpArrPatternStep = undefined;
 if (tmpAPBD === undefined) {
   tmpArrPatternStep = $([`fail2`]);

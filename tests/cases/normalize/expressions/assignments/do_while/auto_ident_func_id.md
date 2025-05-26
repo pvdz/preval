@@ -21,19 +21,9 @@ $(a);
 
 
 `````js filename=intro
-let a /*:unknown*/ = undefined;
-while (true) {
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
-  a = function () {
-    debugger;
-    return undefined;
-  };
-  if (a) {
-  } else {
-    break;
-  }
 }
-$(a);
 `````
 
 
@@ -41,15 +31,9 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-let a = undefined;
 while (true) {
   $(100);
-  a = function () {};
-  if (!a) {
-    break;
-  }
 }
-$(a);
 `````
 
 
@@ -57,21 +41,9 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-while (true) {
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 100 );
-  a = function() {
-    debugger;
-    return undefined;
-  };
-  if (a) {
-
-  }
-  else {
-    break;
-  }
 }
-$( a );
 `````
 
 
@@ -101,6 +73,7 @@ $(a);
 
 
 - (todo) do we want to support ObjectExpression as expression statement in free loops?
+- (todo) objects in isFree check
 
 
 ## Globals

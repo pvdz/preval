@@ -22,8 +22,8 @@ $(a);
 const tmpFree /*:(primitive)=>string*/ = function $free($$0) {
   const a$1 /*:primitive*/ = $$0;
   debugger;
-  const tmpBinBothRhs /*:string*/ = $coerce(a$1, `string`);
-  const tmpRet /*:string*/ = `before  ${tmpBinBothRhs}  after`;
+  const tmpStringConcatL /*:string*/ = $coerce(a$1, `string`);
+  const tmpRet /*:string*/ = `before  ${tmpStringConcatL}  after`;
   return tmpRet;
 };
 const tmpBinBothLhs$1 /*:unknown*/ = $(1);

@@ -22,8 +22,8 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal$1 /*:object*/ = { e: $ };
-const tmpCalleeParamSpread /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
-$(...tmpCalleeParamSpread);
+const tmpClusterSSA_tmpCalleeParamSpread /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
+$(...tmpClusterSSA_tmpCalleeParamSpread);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
@@ -33,8 +33,8 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCalleeParamSpread = $dotCall($, { e: $ }, `e`, 1);
-$(...tmpCalleeParamSpread);
+const tmpClusterSSA_tmpCalleeParamSpread = $dotCall($, { e: $ }, `e`, 1);
+$(...tmpClusterSSA_tmpCalleeParamSpread);
 $({ a: 999, b: 1000 });
 `````
 

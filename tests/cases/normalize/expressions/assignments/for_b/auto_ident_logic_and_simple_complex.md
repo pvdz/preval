@@ -20,8 +20,9 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(1);
-let a /*:unknown*/ = $(tmpCalleeParam);
-if (a) {
+const tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam);
+if (tmpClusterSSA_a) {
+  let a /*:unknown*/ = 1;
   while ($LOOP_UNROLL_10) {
     $(1);
     const tmpCalleeParam$1 /*:unknown*/ = $(1);
@@ -33,7 +34,7 @@ if (a) {
   }
   $(a);
 } else {
-  $(a);
+  $(tmpClusterSSA_a);
 }
 `````
 
@@ -42,8 +43,9 @@ if (a) {
 (This ought to be the final result)
 
 `````js filename=intro
-let a = $($(1));
-if (a) {
+const tmpClusterSSA_a = $($(1));
+if (tmpClusterSSA_a) {
+  let a = 1;
   while (true) {
     $(1);
     a = $($(1));
@@ -53,7 +55,7 @@ if (a) {
   }
   $(a);
 } else {
-  $(a);
+  $(tmpClusterSSA_a);
 }
 `````
 
@@ -63,20 +65,21 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-let b = $( a );
+const b = $( a );
 if (b) {
+  let c = 1;
   while ($LOOP_UNROLL_10) {
     $( 1 );
-    const c = $( 1 );
-    b = $( c );
-    if (b) {
+    const d = $( 1 );
+    c = $( d );
+    if (c) {
 
     }
     else {
       break;
     }
   }
-  $( b );
+  $( c );
 }
 else {
   $( b );
@@ -111,6 +114,7 @@ $(a);
 
 
 - (todo) do we want to support Literal as expression statement in free loops?
+- (todo) objects in isFree check
 
 
 ## Globals

@@ -20,9 +20,9 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam$1 /*:unknown*/ = $(1);
-const a /*:unknown*/ = $(tmpCalleeParam$1);
-$(a);
-$(a);
+const tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam$1);
+$(tmpClusterSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 
@@ -30,9 +30,9 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const a = $($(1));
-$(a);
-$(a);
+const tmpClusterSSA_a = $($(1));
+$(tmpClusterSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 

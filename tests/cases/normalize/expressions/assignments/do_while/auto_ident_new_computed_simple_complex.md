@@ -23,16 +23,12 @@ $(a);
 
 
 `````js filename=intro
-$(100);
-const tmpCalleeParam /*:unknown*/ = $(`\$`);
 const b /*:object*/ = { $: $ };
-const tmpNewCallee /*:unknown*/ = b[tmpCalleeParam];
-new tmpNewCallee(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
-  const tmpCalleeParam$1 /*:unknown*/ = $(`\$`);
-  const tmpNewCallee$1 /*:unknown*/ = b[tmpCalleeParam$1];
-  new tmpNewCallee$1(1);
+  const tmpCalleeParam /*:unknown*/ = $(`\$`);
+  const tmpNewCallee /*:unknown*/ = b[tmpCalleeParam];
+  new tmpNewCallee(1);
 }
 `````
 
@@ -41,16 +37,12 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 (This ought to be the final result)
 
 `````js filename=intro
-$(100);
-const tmpCalleeParam = $(`\$`);
 const b = { $: $ };
-const tmpNewCallee = b[tmpCalleeParam];
-new tmpNewCallee(1);
 while (true) {
   $(100);
-  const tmpCalleeParam$1 = $(`\$`);
-  const tmpNewCallee$1 = b[tmpCalleeParam$1];
-  new tmpNewCallee$1(1);
+  const tmpCalleeParam = $(`\$`);
+  const tmpNewCallee = b[tmpCalleeParam];
+  new tmpNewCallee(1);
 }
 `````
 
@@ -59,16 +51,12 @@ while (true) {
 With rename=true
 
 `````js filename=intro
-$( 100 );
-const a = $( "$" );
-const b = { $: $ };
-const c = b[ a ];
-new c( 1 );
+const a = { $: $ };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 100 );
-  const d = $( "$" );
-  const e = b[ d ];
-  new e( 1 );
+  const b = $( "$" );
+  const c = a[ b ];
+  new c( 1 );
 }
 `````
 
@@ -98,7 +86,6 @@ $(a);
 ## Todos triggered
 
 
-- (todo) do we want to support NewExpression as expression statement in free loops?
 - (todo) objects in isFree check
 
 

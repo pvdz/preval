@@ -34,11 +34,11 @@ if ($) f();
 
 `````js filename=intro
 if ($) {
-  const tmpssa3_x /*:unknown*/ = $(1, `shared`);
+  const tmpClusterSSA_x /*:unknown*/ = $(1, `shared`);
   if ($) {
-    $(tmpssa3_x, `a`);
+    $(tmpClusterSSA_x, `a`);
   } else {
-    $(tmpssa3_x, `b`);
+    $(tmpClusterSSA_x, `b`);
   }
 } else {
 }
@@ -50,11 +50,11 @@ if ($) {
 
 `````js filename=intro
 if ($) {
-  const tmpssa3_x = $(1, `shared`);
+  const tmpClusterSSA_x = $(1, `shared`);
   if ($) {
-    $(tmpssa3_x, `a`);
+    $(tmpClusterSSA_x, `a`);
   } else {
-    $(tmpssa3_x, `b`);
+    $(tmpClusterSSA_x, `b`);
   }
 }
 `````

@@ -44,20 +44,20 @@ if ($) $(f($));
 `````js filename=intro
 if ($) {
   const a /*:unknown*/ = $(1);
-  const b /*:unknown*/ = $(2);
-  const c /*:unknown*/ = $(3);
+  const tmpClusterSSA_b /*:unknown*/ = $(2);
+  const tmpClusterSSA_c /*:unknown*/ = $(3);
   if ($) {
     $(a);
     if ($) {
-      $(b);
+      $(tmpClusterSSA_b);
       if ($) {
-        $(c);
+        $(tmpClusterSSA_c);
       } else {
       }
     } else {
     }
-    const tmpCalleeParam /*:array*/ = [a, b, c];
-    $(tmpCalleeParam);
+    const tmpClusterSSA_tmpCalleeParam /*:array*/ = [a, tmpClusterSSA_b, tmpClusterSSA_c];
+    $(tmpClusterSSA_tmpCalleeParam);
   } else {
     $(undefined);
   }
@@ -72,17 +72,17 @@ if ($) {
 `````js filename=intro
 if ($) {
   const a = $(1);
-  const b = $(2);
-  const c = $(3);
+  const tmpClusterSSA_b = $(2);
+  const tmpClusterSSA_c = $(3);
   if ($) {
     $(a);
     if ($) {
-      $(b);
+      $(tmpClusterSSA_b);
       if ($) {
-        $(c);
+        $(tmpClusterSSA_c);
       }
     }
-    $([a, b, c]);
+    $([a, tmpClusterSSA_b, tmpClusterSSA_c]);
   } else {
     $(undefined);
   }

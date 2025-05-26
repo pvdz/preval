@@ -21,14 +21,14 @@ $(a);
 `````js filename=intro
 const tmpIfTest /*:unknown*/ = $(0);
 if (tmpIfTest) {
-  const tmpCalleeParam /*:unknown*/ = $(100);
-  $(tmpCalleeParam);
+  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
+  $(tmpClusterSSA_tmpCalleeParam);
   const a /*:object*/ = { a: 999, b: 1000 };
   $(a);
 } else {
-  const tmpNestedComplexRhs /*:unknown*/ = $(60);
-  $(tmpNestedComplexRhs);
-  $(tmpNestedComplexRhs);
+  const tmpSSA_tmpNestedComplexRhs /*:unknown*/ = $(60);
+  $(tmpSSA_tmpNestedComplexRhs);
+  $(tmpSSA_tmpNestedComplexRhs);
 }
 `````
 
@@ -41,9 +41,9 @@ if ($(0)) {
   $($(100));
   $({ a: 999, b: 1000 });
 } else {
-  const tmpNestedComplexRhs = $(60);
-  $(tmpNestedComplexRhs);
-  $(tmpNestedComplexRhs);
+  const tmpSSA_tmpNestedComplexRhs = $(60);
+  $(tmpSSA_tmpNestedComplexRhs);
+  $(tmpSSA_tmpNestedComplexRhs);
 }
 `````
 

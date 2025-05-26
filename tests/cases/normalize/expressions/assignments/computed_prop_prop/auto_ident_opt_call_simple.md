@@ -24,9 +24,9 @@ const tmpIfTest /*:boolean*/ = $ == null;
 if (tmpIfTest) {
   $(undefined);
 } else {
-  const a /*:unknown*/ = $(1);
-  $coerce(a, `string`);
-  $(a);
+  const tmpClusterSSA_a /*:unknown*/ = $(1);
+  $coerce(tmpClusterSSA_a, `string`);
+  $(tmpClusterSSA_a);
 }
 `````
 
@@ -38,9 +38,9 @@ if (tmpIfTest) {
 if ($ == null) {
   $(undefined);
 } else {
-  const a = $(1);
-  $coerce(a, `string`);
-  $(a);
+  const tmpClusterSSA_a = $(1);
+  $coerce(tmpClusterSSA_a, `string`);
+  $(tmpClusterSSA_a);
 }
 `````
 

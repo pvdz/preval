@@ -18,7 +18,7 @@ $('bad');
 
 
 `````js filename=intro
-throw `Preval: Array spread on non-string primitive must crash (caused by \`[...0];\`)`;
+throw `Preval: Array spread on non-string primitive must crash (caused by \`const tmpArrPatternSplat = [...0];\`)`;
 `````
 
 
@@ -26,7 +26,7 @@ throw `Preval: Array spread on non-string primitive must crash (caused by \`[...
 (This ought to be the final result)
 
 `````js filename=intro
-throw `Preval: Array spread on non-string primitive must crash (caused by \`[...0];\`)`;
+throw `Preval: Array spread on non-string primitive must crash (caused by \`const tmpArrPatternSplat = [...0];\`)`;
 `````
 
 
@@ -34,7 +34,7 @@ throw `Preval: Array spread on non-string primitive must crash (caused by \`[...
 With rename=true
 
 `````js filename=intro
-throw "Preval: Array spread on non-string primitive must crash (caused by `[...0];`)";
+throw "Preval: Array spread on non-string primitive must crash (caused by `const tmpArrPatternSplat = [...0];`)";
 `````
 
 

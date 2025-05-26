@@ -22,8 +22,8 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal$1 /*:object*/ = { e: $ };
-const a /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
-const tmpForOfGenNext /*:unknown*/ = $forOf(a);
+const tmpClusterSSA_a /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
+const tmpForOfGenNext /*:unknown*/ = $forOf(tmpClusterSSA_a);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
   const tmpIfTest$1 /*:unknown*/ = tmpForOfNext.done;
@@ -33,7 +33,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     tmpForOfNext.value;
   }
 }
-$(a);
+$(tmpClusterSSA_a);
 `````
 
 
@@ -41,8 +41,8 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const a = $dotCall($, { e: $ }, `e`, 1);
-const tmpForOfGenNext = $forOf(a);
+const tmpClusterSSA_a = $dotCall($, { e: $ }, `e`, 1);
+const tmpForOfGenNext = $forOf(tmpClusterSSA_a);
 while (true) {
   const tmpForOfNext = tmpForOfGenNext();
   if (tmpForOfNext.done) {
@@ -51,7 +51,7 @@ while (true) {
     tmpForOfNext.value;
   }
 }
-$(a);
+$(tmpClusterSSA_a);
 `````
 
 

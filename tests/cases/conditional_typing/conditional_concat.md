@@ -34,14 +34,14 @@ $(f);
 `````js filename=intro
 const f /*:()=>unknown*/ = function () {
   debugger;
-  const tmpStringConcatL /*:string*/ = $coerce(desc$1, `plustr`);
+  const tmpStringConcatL$2 /*:string*/ = $coerce(desc$1, `plustr`);
   const tmpIfTest$1787 /*:boolean*/ = lastType === 2097173;
   if (tmpIfTest$1787) {
-    const tmpClusterSSA_fullErrmsg /*:string*/ = `Parser error! ${tmpStringConcatL} (at EOF)`;
+    const tmpClusterSSA_fullErrmsg /*:string*/ = `Parser error! ${tmpStringConcatL$2} (at EOF)`;
     _THROW(tmpClusterSSA_fullErrmsg, tokenStart$5, tokenStop$5, ``);
   } else {
-    const tmpClusterSSA_fullErrmsg$1 /*:string*/ = `Parser error! ${tmpStringConcatL}`;
-    _THROW(tmpClusterSSA_fullErrmsg$1, tokenStart$5, tokenStop$5, ``);
+    const tmpBinBothLhs$253 /*:string*/ = `Parser error! ${tmpStringConcatL$2}`;
+    _THROW(tmpBinBothLhs$253, tokenStart$5, tokenStop$5, ``);
   }
   throw `Preval: the previous call always throws`;
 };
@@ -54,11 +54,11 @@ $(f);
 
 `````js filename=intro
 $(function () {
-  const tmpStringConcatL = $coerce(desc$1, `plustr`);
+  const tmpStringConcatL$2 = $coerce(desc$1, `plustr`);
   if (lastType === 2097173) {
-    _THROW(`Parser error! ${tmpStringConcatL} (at EOF)`, tokenStart$5, tokenStop$5, ``);
+    _THROW(`Parser error! ${tmpStringConcatL$2} (at EOF)`, tokenStart$5, tokenStop$5, ``);
   } else {
-    _THROW(`Parser error! ${tmpStringConcatL}`, tokenStart$5, tokenStop$5, ``);
+    _THROW(`Parser error! ${tmpStringConcatL$2}`, tokenStart$5, tokenStop$5, ``);
   }
   throw `Preval: the previous call always throws`;
 });

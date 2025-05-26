@@ -28,9 +28,9 @@ const tmpIfTest /*:boolean*/ = tmpChainRootProp == null;
 if (tmpIfTest) {
   $(undefined);
 } else {
-  const a /*:unknown*/ = tmpChainRootProp.x;
-  $coerce(a, `string`);
-  $(a);
+  const tmpClusterSSA_a /*:unknown*/ = tmpChainRootProp.x;
+  $coerce(tmpClusterSSA_a, `string`);
+  $(tmpClusterSSA_a);
 }
 `````
 
@@ -43,9 +43,9 @@ const tmpChainRootProp = $({ x: 1 });
 if (tmpChainRootProp == null) {
   $(undefined);
 } else {
-  const a = tmpChainRootProp.x;
-  $coerce(a, `string`);
-  $(a);
+  const tmpClusterSSA_a = tmpChainRootProp.x;
+  $coerce(tmpClusterSSA_a, `string`);
+  $(tmpClusterSSA_a);
 }
 `````
 

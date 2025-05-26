@@ -57,8 +57,7 @@ if (tmpIfTest) {
 ## Todos triggered
 
 
-- (todo) Encountered non-ident as callee
-- (todo) infertyping on a non-ident? is that a crash or bug? Literal
+None
 
 
 ## Globals

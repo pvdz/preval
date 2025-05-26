@@ -9,13 +9,14 @@
 ## Input
 
 `````js filename=intro
+const g = $({$});
 let danger = function () {
   if ($) {
     danger = null;
     return 1;
   }
 };
-const f = console.log('ok');
+const f = g()('ok');
 let x = danger(); // End goal is to move this to be between `danger` and `f`
 if ($) {
   $(f);
@@ -29,13 +30,21 @@ $(x);
 
 
 `````js filename=intro
-const f /*:unknown*/ = $dotCall($console_log, console, `log`, `ok`);
+const tmpCalleeParam /*:object*/ = { $: $ };
+const g /*:unknown*/ = $(tmpCalleeParam);
+const tmpCallComplexCallee /*:unknown*/ = g();
+const f /*:unknown*/ = tmpCallComplexCallee(`ok`);
+let x /*:primitive*/ /*ternaryConst*/ = 1;
+if ($) {
+} else {
+  x = undefined;
+}
 if ($) {
   $(f);
   const tmpClusterSSA_x /*:unknown*/ = $(`do not inline me`);
   $(tmpClusterSSA_x);
 } else {
-  $(undefined);
+  $(x);
 }
 `````
 
@@ -44,12 +53,18 @@ if ($) {
 (This ought to be the final result)
 
 `````js filename=intro
-const f = $dotCall($console_log, console, `log`, `ok`);
+const g = $({ $: $ });
+const tmpCallComplexCallee = g();
+const f = tmpCallComplexCallee(`ok`);
+let x = 1;
+if (!$) {
+  x = undefined;
+}
 if ($) {
   $(f);
   $($(`do not inline me`));
 } else {
-  $(undefined);
+  $(x);
 }
 `````
 
@@ -58,14 +73,24 @@ if ($) {
 With rename=true
 
 `````js filename=intro
-const a = $dotCall( $console_log, console, "log", "ok" );
+const a = { $: $ };
+const b = $( a );
+const c = b();
+const d = c( "ok" );
+let e = 1;
 if ($) {
-  $( a );
-  const b = $( "do not inline me" );
-  $( b );
+
 }
 else {
-  $( undefined );
+  e = undefined;
+}
+if ($) {
+  $( d );
+  const f = $( "do not inline me" );
+  $( f );
+}
+else {
+  $( e );
 }
 `````
 
@@ -74,6 +99,8 @@ else {
 (This is what phase1 received the first time)
 
 `````js filename=intro
+let tmpCalleeParam = { $: $ };
+const g = $(tmpCalleeParam);
 let danger = function () {
   debugger;
   if ($) {
@@ -83,8 +110,8 @@ let danger = function () {
     return undefined;
   }
 };
-const tmpMCF = $console_log;
-const f = $dotCall($console_log, console, `log`, `ok`);
+const tmpCallComplexCallee = g();
+const f = tmpCallComplexCallee(`ok`);
 let x = danger();
 if ($) {
   $(f);
@@ -112,30 +139,13 @@ None
 
 
 Should call `$` with:
- - 1: undefined
- - 2: 'do not inline me'
- - 3: 'do not inline me'
- - eval returned: undefined
+ - 1: { $: '"<$>"' }
+ - eval returned: ('<crash[ <ref> is not function/iterable ]>')
 
 Pre normalization calls: Same
 
-Normalized calls: BAD!?
- - !1: 'called $console_log:', 'ok'
- - !2: undefined
- -  3: 'do not inline me'
- - !4: 'do not inline me'
- - !eval returned: undefined
+Normalized calls: Same
 
-Post settled calls: BAD!!
- - !1: 'called $console_log:', 'ok'
- - !2: undefined
- -  3: 'do not inline me'
- - !4: 'do not inline me'
- - !eval returned: undefined
+Post settled calls: Same
 
-Denormalized calls: BAD!!
- - !1: 'called $console_log:', 'ok'
- - !2: undefined
- -  3: 'do not inline me'
- - !4: 'do not inline me'
- - !eval returned: undefined
+Denormalized calls: Same

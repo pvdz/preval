@@ -24,9 +24,9 @@ $(a);
 const tmpCalleeParam /*:unknown*/ = $(100);
 if (tmpCalleeParam) {
   const tmpObjLitVal$1 /*:object*/ = { e: $ };
-  const tmpNestedComplexRhs /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
-  $(tmpNestedComplexRhs);
-  $(tmpNestedComplexRhs);
+  const tmpClusterSSA_tmpNestedComplexRhs /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
+  $(tmpClusterSSA_tmpNestedComplexRhs);
+  $(tmpClusterSSA_tmpNestedComplexRhs);
 } else {
   $(tmpCalleeParam);
   const a /*:object*/ = { a: 999, b: 1000 };
@@ -41,9 +41,9 @@ if (tmpCalleeParam) {
 `````js filename=intro
 const tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
-  const tmpNestedComplexRhs = $dotCall($, { e: $ }, `e`, 1);
-  $(tmpNestedComplexRhs);
-  $(tmpNestedComplexRhs);
+  const tmpClusterSSA_tmpNestedComplexRhs = $dotCall($, { e: $ }, `e`, 1);
+  $(tmpClusterSSA_tmpNestedComplexRhs);
+  $(tmpClusterSSA_tmpNestedComplexRhs);
 } else {
   $(tmpCalleeParam);
   $({ a: 999, b: 1000 });

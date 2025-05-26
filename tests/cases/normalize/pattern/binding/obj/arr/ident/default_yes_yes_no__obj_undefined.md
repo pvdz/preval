@@ -19,8 +19,8 @@ $('bad');
 
 `````js filename=intro
 const tmpCalleeParam /*:array*/ = [`pass2`];
-const tmpOPAD /*:unknown*/ = $(tmpCalleeParam);
-[...tmpOPAD];
+const tmpClusterSSA_tmpOPAD /*:unknown*/ = $(tmpCalleeParam);
+[...tmpClusterSSA_tmpOPAD];
 $(`bad`);
 `````
 
@@ -29,8 +29,8 @@ $(`bad`);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpOPAD = $([`pass2`]);
-[...tmpOPAD];
+const tmpClusterSSA_tmpOPAD = $([`pass2`]);
+[...tmpClusterSSA_tmpOPAD];
 $(`bad`);
 `````
 

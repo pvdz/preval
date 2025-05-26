@@ -37,8 +37,8 @@ if (tmpIfTest) {
   $(tmpInitAssignLhsComputedRhs$1);
   $(tmpInitAssignLhsComputedRhs$1, b, c, 3);
 } else {
-  const tmpCalleeParam /*:unknown*/ = $(200);
-  $(tmpCalleeParam);
+  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(200);
+  $(tmpClusterSSA_tmpCalleeParam);
   const a /*:object*/ = { a: 999, b: 1000 };
   $(a, b, c, 3);
 }

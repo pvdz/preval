@@ -25,8 +25,8 @@ $(x);
 `````js filename=intro
 const tmpIfTest /*:unknown*/ = $();
 if (tmpIfTest) {
-  const x /*:unknown*/ = $(1);
-  $(x);
+  const tmpClusterSSA_x /*:unknown*/ = $(1);
+  $(tmpClusterSSA_x);
 } else {
   $(undefined);
 }

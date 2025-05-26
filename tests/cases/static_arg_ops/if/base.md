@@ -27,8 +27,8 @@ $(tmpCalleeParam);
 `````js filename=intro
 $(undefined);
 if ($) {
-  const tmpCalleeParam /*:array*/ = [$];
-  $(tmpCalleeParam);
+  const tmpClusterSSA_tmpCalleeParam /*:array*/ = [$];
+  $(tmpClusterSSA_tmpCalleeParam);
 } else {
 }
 `````

@@ -30,8 +30,8 @@ const tmpIfTest$1 /*:boolean*/ = tmpChainRootProp == null;
 if (tmpIfTest$1) {
   $(undefined);
 } else {
-  const a /*:unknown*/ = tmpChainRootProp.x;
-  $(a);
+  const tmpClusterSSA_a /*:unknown*/ = tmpChainRootProp.x;
+  $(tmpClusterSSA_a);
 }
 `````
 

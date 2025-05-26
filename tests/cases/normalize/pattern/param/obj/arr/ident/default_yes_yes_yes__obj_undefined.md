@@ -21,8 +21,8 @@ $(f({ x: undefined, a: 11, b: 12 }, 10));
 
 `````js filename=intro
 const tmpCalleeParam$1 /*:array*/ = [`pass2`];
-const tmpOPAD /*:unknown*/ = $(tmpCalleeParam$1);
-const tmpArrPatternSplat /*:array*/ = [...tmpOPAD];
+const tmpSSA_tmpOPAD /*:unknown*/ = $(tmpCalleeParam$1);
+const tmpArrPatternSplat /*:array*/ = [...tmpSSA_tmpOPAD];
 const tmpAPBD /*:unknown*/ = tmpArrPatternSplat[0];
 const tmpIfTest$3 /*:boolean*/ = tmpAPBD === undefined;
 if (tmpIfTest$3) {
@@ -37,8 +37,8 @@ if (tmpIfTest$3) {
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpOPAD = $([`pass2`]);
-const tmpAPBD = [...tmpOPAD][0];
+const tmpSSA_tmpOPAD = $([`pass2`]);
+const tmpAPBD = [...tmpSSA_tmpOPAD][0];
 if (tmpAPBD === undefined) {
   $(`fail`);
 } else {

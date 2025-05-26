@@ -22,11 +22,11 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal$1 /*:object*/ = { e: $ };
-const a /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
+const tmpClusterSSA_a /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
 const tmpBinBothRhs /*:unknown*/ = $(100);
-const tmpCalleeParam /*:primitive*/ = a + tmpBinBothRhs;
+const tmpCalleeParam /*:primitive*/ = tmpClusterSSA_a + tmpBinBothRhs;
 $(tmpCalleeParam);
-$(a);
+$(tmpClusterSSA_a);
 `````
 
 
@@ -34,9 +34,9 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const a = $dotCall($, { e: $ }, `e`, 1);
-$(a + $(100));
-$(a);
+const tmpClusterSSA_a = $dotCall($, { e: $ }, `e`, 1);
+$(tmpClusterSSA_a + $(100));
+$(tmpClusterSSA_a);
 `````
 
 

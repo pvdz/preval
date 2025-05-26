@@ -21,13 +21,13 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(0);
-const p /*:unknown*/ = $(tmpCalleeParam);
-if (p) {
+const tmpClusterSSA_p /*:unknown*/ = $(tmpCalleeParam);
+if (tmpClusterSSA_p) {
   $(undefined);
 } else {
   const tmpCalleeParam$1 /*:unknown*/ = $(1);
-  const tmpClusterSSA_p /*:unknown*/ = $(tmpCalleeParam$1);
-  if (tmpClusterSSA_p) {
+  const tmpClusterSSA_p$1 /*:unknown*/ = $(tmpCalleeParam$1);
+  if (tmpClusterSSA_p$1) {
     $(undefined);
   } else {
     const tmpCalleeParam$3 /*:unknown*/ = $(2);

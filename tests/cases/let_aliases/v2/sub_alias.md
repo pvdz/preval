@@ -30,9 +30,9 @@ $(a, b);
 `````js filename=intro
 const tmp /*:unknown*/ = $(100);
 if (tmp) {
-  const b /*:unknown*/ = $(2);
-  $(b);
-  $(b, b);
+  const tmpClusterSSA_b /*:unknown*/ = $(2);
+  $(tmpClusterSSA_b);
+  $(tmpClusterSSA_b, tmpClusterSSA_b);
 } else {
   $(tmp);
   const a /*:object*/ = { a: 999, b: 1000 };
@@ -47,9 +47,9 @@ if (tmp) {
 `````js filename=intro
 const tmp = $(100);
 if (tmp) {
-  const b = $(2);
-  $(b);
-  $(b, b);
+  const tmpClusterSSA_b = $(2);
+  $(tmpClusterSSA_b);
+  $(tmpClusterSSA_b, tmpClusterSSA_b);
 } else {
   $(tmp);
   $({ a: 999, b: 1000 }, 1);

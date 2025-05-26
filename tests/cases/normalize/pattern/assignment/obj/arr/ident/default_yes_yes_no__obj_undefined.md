@@ -19,8 +19,8 @@ $('bad');
 
 `````js filename=intro
 const tmpCalleeParam /*:array*/ = [`pass2`];
-const tmpOPAD /*:unknown*/ = $(tmpCalleeParam);
-const tmpArrPatternSplat /*:array*/ = [...tmpOPAD];
+const tmpSSA_tmpOPAD /*:unknown*/ = $(tmpCalleeParam);
+const tmpArrPatternSplat /*:array*/ = [...tmpSSA_tmpOPAD];
 const tmpAPBD /*:unknown*/ = tmpArrPatternSplat[0];
 const tmpIfTest$1 /*:boolean*/ = tmpAPBD === undefined;
 if (tmpIfTest$1) {
@@ -37,8 +37,8 @@ if (tmpIfTest$1) {
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpOPAD = $([`pass2`]);
-const tmpAPBD = [...tmpOPAD][0];
+const tmpSSA_tmpOPAD = $([`pass2`]);
+const tmpAPBD = [...tmpSSA_tmpOPAD][0];
 if (tmpAPBD === undefined) {
   y = `fail`;
   $(`bad`);

@@ -26,8 +26,8 @@ const tmpCompObj /*:unknown*/ = $(b);
 const tmpCalleeParam /*:unknown*/ = $(`d`);
 const tmpNestedPropAssignRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam];
 b.c = tmpNestedPropAssignRhs;
-let a /*:unknown*/ = tmpNestedPropAssignRhs;
 if (tmpNestedPropAssignRhs) {
+  let a /*:unknown*/ = undefined;
   while ($LOOP_UNROLL_10) {
     $(1);
     const tmpCompObj$1 /*:unknown*/ = $(b);
@@ -42,7 +42,7 @@ if (tmpNestedPropAssignRhs) {
   }
   $(a, b);
 } else {
-  $(a, b);
+  $(tmpNestedPropAssignRhs, b);
 }
 `````
 
@@ -56,8 +56,8 @@ const tmpCompObj = $(b);
 const tmpCalleeParam = $(`d`);
 const tmpNestedPropAssignRhs = tmpCompObj[tmpCalleeParam];
 b.c = tmpNestedPropAssignRhs;
-let a = tmpNestedPropAssignRhs;
 if (tmpNestedPropAssignRhs) {
+  let a = undefined;
   while (true) {
     $(1);
     const tmpCompObj$1 = $(b);
@@ -71,7 +71,7 @@ if (tmpNestedPropAssignRhs) {
   }
   $(a, b);
 } else {
-  $(a, b);
+  $(tmpNestedPropAssignRhs, b);
 }
 `````
 
@@ -88,8 +88,8 @@ const b = $( a );
 const c = $( "d" );
 const d = b[ c ];
 a.c = d;
-let e = d;
 if (d) {
+  let e = undefined;
   while ($LOOP_UNROLL_10) {
     $( 1 );
     const f = $( a );
@@ -107,7 +107,7 @@ if (d) {
   $( e, a );
 }
 else {
-  $( e, a );
+  $( d, a );
 }
 `````
 

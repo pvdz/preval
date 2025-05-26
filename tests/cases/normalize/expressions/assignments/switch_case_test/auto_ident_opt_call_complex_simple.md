@@ -27,8 +27,8 @@ const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest$1) {
   $(undefined);
 } else {
-  const a /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, 1);
-  $(a);
+  const tmpClusterSSA_a /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, 1);
+  $(tmpClusterSSA_a);
 }
 `````
 

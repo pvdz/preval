@@ -29,8 +29,8 @@ if (tmpIfTest) {
   $(tmpNestedComplexRhs);
   $(1);
 } else {
-  const tmpCalleeParam /*:unknown*/ = $(200);
-  $(tmpCalleeParam);
+  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(200);
+  $(tmpClusterSSA_tmpCalleeParam);
   $(1);
 }
 const tmpAssignMemLhsObj$1 /*:unknown*/ = $(a);

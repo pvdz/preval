@@ -36,8 +36,8 @@ if (tmpIfTest$3) {
   tmpIfTest = undefined === tmpSwitchValue;
 } else {
   const tmpObjLitVal$1 /*:object*/ = { e: $ };
-  const tmpBinLhs /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
-  tmpIfTest = tmpBinLhs === tmpSwitchValue;
+  const tmpClusterSSA_tmpBinLhs /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
+  tmpIfTest = tmpClusterSSA_tmpBinLhs === tmpSwitchValue;
 }
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;

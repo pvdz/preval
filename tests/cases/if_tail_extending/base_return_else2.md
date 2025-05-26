@@ -179,7 +179,7 @@ f();
 ## Todos triggered
 
 
-None
+- (todo) Support this node type in isFree: DebuggerStatement
 
 
 ## Globals

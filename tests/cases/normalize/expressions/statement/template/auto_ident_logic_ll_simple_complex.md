@@ -20,9 +20,9 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam$3 /*:unknown*/ = $(1);
-const tmpCalleeParam$1 /*:unknown*/ = $(tmpCalleeParam$3);
-const tmpBinBothRhs /*:string*/ = $coerce(tmpCalleeParam$1, `string`);
-const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
+const tmpSSA_tmpCalleeParam$1 /*:unknown*/ = $(tmpCalleeParam$3);
+const tmpStringConcatL /*:string*/ = $coerce(tmpSSA_tmpCalleeParam$1, `string`);
+const tmpCalleeParam /*:string*/ = `before  ${tmpStringConcatL}  after`;
 $(tmpCalleeParam);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);

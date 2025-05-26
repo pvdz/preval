@@ -38,8 +38,8 @@ $(f(100));
 const f /*:()=>unknown*/ = function () {
   const tmpPrevalAliasArgumentsAny /*:arguments*/ = arguments;
   debugger;
-  const tmpReturnArg$1 /*:unknown*/ = tmpPrevalAliasArgumentsAny[0];
-  return tmpReturnArg$1;
+  const tmpClusterSSA_tmpReturnArg$1 /*:unknown*/ = tmpPrevalAliasArgumentsAny[0];
+  return tmpClusterSSA_tmpReturnArg$1;
 };
 const tmpCalleeParam /*:unknown*/ = f(100);
 $(tmpCalleeParam);
@@ -51,8 +51,8 @@ $(tmpCalleeParam);
 
 `````js filename=intro
 const f = function () {
-  const tmpReturnArg$1 = arguments[0];
-  return tmpReturnArg$1;
+  const tmpClusterSSA_tmpReturnArg$1 = arguments[0];
+  return tmpClusterSSA_tmpReturnArg$1;
 };
 $(f(100));
 `````

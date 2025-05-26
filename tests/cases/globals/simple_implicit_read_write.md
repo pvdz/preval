@@ -6,11 +6,15 @@
 >
 > Writing to an implicit global
 
+This exposed a problem with free functions where the fresh free function would create
+a local var with the same name as the global, leading to the global being renamed. oops.
+
 ## Options
 
 Shrug
 
 - skipEval
+- globals: a
 
 ## Input
 
@@ -70,9 +74,7 @@ None
 ## Globals
 
 
-BAD@! Found 1 implicit global bindings:
-
-a
+None (except for the 1 globals expected by the test)
 
 
 ## Runtime Outcome

@@ -58,8 +58,8 @@ $(a);
 ## Todos triggered
 
 
+- (todo) support array reads statement type EmptyStatement
 - (todo) support array reads statement type ExpressionStatement
-- (todo) what other ways do member expressions still appear? ExpressionStatement
 
 
 ## Globals

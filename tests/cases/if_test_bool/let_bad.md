@@ -33,17 +33,15 @@ f();
 const f /*:()=>undefined*/ = function () {
   debugger;
   let x /*:unknown*/ /*ternaryConst*/ = $(1);
-  let tmpCalleeParam /*:boolean*/ /*ternaryConst*/ = false;
   if ($) {
-    x = 10;
+    x = true;
   } else {
-    tmpCalleeParam = !x;
   }
   if (x) {
-    $(`a`, tmpCalleeParam);
+    $(`a`, false);
     return undefined;
   } else {
-    $(`b`, tmpCalleeParam);
+    $(`b`, true);
     return undefined;
   }
 };
@@ -59,16 +57,13 @@ f();
 `````js filename=intro
 const f = function () {
   let x = $(1);
-  let tmpCalleeParam = false;
   if ($) {
-    x = 10;
-  } else {
-    tmpCalleeParam = !x;
+    x = true;
   }
   if (x) {
-    $(`a`, tmpCalleeParam);
+    $(`a`, false);
   } else {
-    $(`b`, tmpCalleeParam);
+    $(`b`, true);
   }
 };
 f();
@@ -84,19 +79,15 @@ With rename=true
 const a = function() {
   debugger;
   let b = $( 1 );
-  let c = false;
   if ($) {
-    b = 10;
-  }
-  else {
-    c = !b;
+    b = true;
   }
   if (b) {
-    $( "a", c );
+    $( "a", false );
     return undefined;
   }
   else {
-    $( "b", c );
+    $( "b", true );
     return undefined;
   }
 };

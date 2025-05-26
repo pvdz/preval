@@ -147,7 +147,7 @@ $(a);
 ## Todos triggered
 
 
-None
+- (todo) objects in isFree check
 
 
 ## Globals

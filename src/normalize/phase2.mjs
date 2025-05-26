@@ -1,5 +1,5 @@
-import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, source, before, assertNoDupeNodes, currentState, } from '../utils.mjs';
-import { VERBOSE_TRACING } from '../constants.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, source, before, assertNoDupeNodes, currentState, ENABLE_REF_TRACKING, } from '../utils.mjs';
+import { DIM, RESET, VERBOSE_TRACING } from '../constants.mjs';
 import { mergeTyping } from '../bindings.mjs';
 
 import { pruneEmptyFunctions } from '../reduce_static/empty_func.mjs';
@@ -110,11 +110,11 @@ import { ifTestNested } from '../reduce_static/if_test_nested.mjs';
 import { frfrTricks } from '../reduce_static/frfr_tricks.mjs';
 import { arrCoerce } from '../reduce_static/arr_coerce.mjs';
 import { ifTestAliased } from '../reduce_static/if_test_aliased.mjs';
+// import { ifFoldTernaryConst } from '../reduce_static/if_fold_ternary_const.mjs';
 
 //import { phasePrimitiveArgInlining } from '../reduce_static/phase_primitive_arg_inlining.mjs';
 
-export const ORDER = [
-  ['redundantInit', redundantInit],
+export const BASE_PHASE2_RULES_LIST = [
   ['assignHoisting', assignHoisting],
   ['dotcallSelfAssigning', dotcallSelfAssigning], // This is a real fast one, it only walks the dotcalls
   ['freeFuncs', freeFuncs], // Do this first...?
@@ -123,13 +123,9 @@ export const ORDER = [
   ['resolveBoundValueSet', resolveBoundValueSet],
   ['removeUnusedConstants', removeUnusedConstants],
   ['builtinCases', builtinCases], // fast
-  // Do early because it's likely to catch common cases
-  ['refTracked', refTracked],
   // Do early because it can be expensive with many writes
   ['arrMutation', arrMutation],
-  ['letHoisting', letHoisting],
   ['findThrowers', findThrowers],
-  ['singleScopeTdz', singleScopeTdz], // Mostly superseded by the TDZ analysis in prepare or phase1 (but still for-in/of cases to fix first)
   ['constAssigns', constAssigns],
   ['constAliasing', constAliasing],
   ['aliasedGlobals', aliasedGlobals],
@@ -142,7 +138,6 @@ export const ORDER = [
   ['inlineConstants', inlineConstants],
   ['writeOnly', writeOnly],
   ['dealiasing', dealiasing],
-  ['singleScopeSSA', singleScopeSSA],
   ['multiScopeSSA', multiScopeSSA],
   ['pruneExcessiveParams', pruneExcessiveParams],
   ['excessiveArgs', excessiveArgs],
@@ -159,14 +154,17 @@ export const ORDER = [
   ['recursiveFuncs', recursiveFuncs],
   ['labelScoping', labelScoping],
   ['objlitPropAccess', objlitPropAccess],
+  ['singleScopeTdz', singleScopeTdz], // Mostly superseded by the TDZ analysis in prepare or phase1 (but still for-in/of cases to fix first)
   ['bitSetTests', bitSetTests],
   ['ifUpdateCall', ifUpdateCall],
   ['inlineArgLen', inlineArgLen],
   ['inlineIdenticalParam', inlineIdenticalParam],
+  ['letHoisting', letHoisting], // Should try to improve this one to prevent it making one change per iteration
   ['returnClosure', returnClosure],
   ['returnArg', returnArg],
   ['ifTestInvIdent', ifTestInvIdent],
   ['ifWeaving', ifWeaving],
+  // ['ifFoldTernaryConst', ifFoldTernaryConst],
   ['typeTrackedTricks', typeTrackedTricks],
   ['arrSpreads', arrSpreads],
   ['conditionalTyping', conditionalTyping],
@@ -181,8 +179,6 @@ export const ORDER = [
   ['tryEscaping', tryEscaping],
   ['binExprStmt', binExprStmt],
   ['protoPropReads', protoPropReads],
-  ['ifLetInit', ifLetInit],
-  ['redundantWrites', redundantWrites],
   ['ifHoisting', ifHoisting],
   ['orXor', orXor],
   ['typedComparison', typedComparison],
@@ -219,7 +215,6 @@ export const ORDER = [
   ['fakeDoWhile', fakeDoWhile],
   ['unusedAssigns', unusedAssigns],
   ['objlitInlining', objlitInlining],
-  ['arrMethodCall', arrMethodCall],
   ['bufferBase64', bufferBase64],
   ['ifTestAliased', ifTestAliased],
 
@@ -227,14 +222,30 @@ export const ORDER = [
 
   ['freeing', freeing], // Do this last. Let other tricks precede it.
 
+  ...ENABLE_REF_TRACKING?[
+    ['redundantInit', redundantInit], // RT
+    // Do early because it's likely to catch common cases
+    ['refTracked', refTracked], // RT
+    ['singleScopeSSA', singleScopeSSA], // RT
+    ['ifLetInit', ifLetInit], // RT
+    ['redundantWrites', redundantWrites], // RT
+    ['arrMethodCall', arrMethodCall], // RT
+  ]:[]
+
+
   //// This one is very invasive and expands the code. Needs more work.
   //['phasePrimitiveArgInlining', phasePrimitiveArgInlining],
 ];
 
-// Track time spent per func, globally
-const GLO_TIMES = new Map(ORDER.map(([key]) => [key, {calls: 0, hits: 0, time: 0, last: 0}]))
+export function getFreshPhase2RulesState() {
+  // Phase2 will rotate the rules as they get used so we need to create a fresh list
+  // for every file (for the sake of consistency and reproducability, relevant for
+  // debugging and tests).
+  // The main running basically passes on this list by reference every time phase2 runs.
+  return BASE_PHASE2_RULES_LIST.slice(0);
+}
 
-export function phase2(program, fdata, resolve, req, passes, phase1s, verboseTracing, prng, options) {
+export function phase2(program, fdata, rulesListState, resolve, req, passes, phase1s, verboseTracing, prng, options) {
   const ast = fdata.tenkoOutput.ast;
   group('\n\n\n##################################\n## phase2  ::  ' + fdata.fname + '\n##################################\n\n\n');
   if (VERBOSE_TRACING) {
@@ -252,7 +263,7 @@ export function phase2(program, fdata, resolve, req, passes, phase1s, verboseTra
   assertNoDupeNodes(ast, 'body');
 
   vlog('Phase 2 options:', options);
-  const r = _phase2(fdata, prng, options);
+  const r = _phase2(fdata, rulesListState, prng, options);
   groupEnd();
 
   // For phase1 it should have unique nodes/pids
@@ -260,7 +271,7 @@ export function phase2(program, fdata, resolve, req, passes, phase1s, verboseTra
 
   return r;
 }
-function _phase2(fdata, prng, options = {prngSeed: 1}) {
+function _phase2(fdata, rulesListState, prng, options = {prngSeed: 1}) {
   // Initially we only care about bindings whose writes have one var decl and only assignments otherwise
   // Due to normalization, the assignments will be a statement. The var decl can not contain an assignment as init.
   // Elimination of var decls or assignments will be deferred. This way we can preserve parent/node
@@ -268,14 +279,11 @@ function _phase2(fdata, prng, options = {prngSeed: 1}) {
   // even though it's technically still part of the AST. But since we take the books as leading in this step
   // that should not be a problem.
 
-  fdata.globallyUniqueNamingRegistry.forEach((meta, name) => {
-    // Since we regenerate the pid during every phase1, we should be able to rely on it for DFS ordering.
-    // Note: this is not necessarily source order. `x = y` will visit `y` before `x`.
-    const rwOrder = meta.reads.concat(meta.writes).sort(({ node: { $p: { pid: a } } }, { node: { $p: { pid: b } } }) =>
-      +a < +b ? -1 : +a > +b ? 1 : 0,
-    );
-    meta.rwOrder = rwOrder;
+  // Track time spent per func, globally
+  const GLO_TIMES = new Map(rulesListState.map(([key]) => [key, {calls: 0, hits: 0, time: 0, last: 0}]))
 
+  fdata.globallyUniqueNamingRegistry.forEach((meta, name) => {
+    // TODO: can this be moved to phase1 as well? or is it going to break phase1_1 heuristics?
     if (meta.isConstant && meta.varDeclRef.node.type === 'Identifier') {
       const name2 = meta.varDeclRef.node.name;
       if (name2 !== 'arguments') {
@@ -288,82 +296,49 @@ function _phase2(fdata, prng, options = {prngSeed: 1}) {
         }
       }
     }
-
-    // We can also settle this in phase1...
-    let lastScope = undefined;
-    let lastScopeRead = undefined;
-    let lastScopeWrite = undefined;
-    let lastInnerIf = undefined;
-    let lastInnerElse = undefined;
-    let lastInnerLoop = undefined;
-    let lastInnerCatch = undefined;
-    meta.singleScoped = true;
-    meta.singleInner = true;
-    meta.singleScopeReads = true;
-    meta.singleScopeWrites = true;
-    rwOrder.some((ref) => {
-      if (lastScope === undefined) {
-        lastScope = ref.scope;
-        lastInnerLoop = ref.innerLoop;
-        lastInnerIf = ref.innerIf;
-        lastInnerElse = ref.innerElse;
-        lastInnerCatch = ref.innerCatch;
-      }
-      if (lastScope !== ref.scope) {
-        meta.singleScoped = false;
-      }
-      if (lastScope !== ref.scope || lastInnerLoop !== ref.innerLoop || lastInnerIf !== ref.innerIf || lastInnerElse !== ref.innerElse || lastInnerCatch !== ref.innerCatch) {
-        meta.singleInner = false;
-      }
-
-      if (ref.type === 'read') {
-        if (lastScopeRead === undefined) lastScopeRead = ref.scope;
-        else if (lastScopeRead !== ref.scope) meta.singleScopeReads = false;
-      }
-      if (ref.type === 'write') {
-        if (lastScopeWrite === undefined) lastScopeWrite = ref.scope;
-        else if (lastScopeWrite !== ref.scope) meta.singleScopeWrites = false;
-      }
-
-      if (!meta.singleScopeReads && !meta.singleScopeWrites) {
-        return true;
-      }
-    });
   });
 
+  // Apply the next eligible rule until one applies a change or the last one is called
   let action;
   let ti = 0;
-  for (const [tname, tfunc] of ORDER) {
+  let max = rulesListState.length;
+  for (; ti<max;) {
+    const [tname, tfunc] = rulesListState[0];
     const mnow = options.time && performance.now();
     action = tfunc(fdata, prng, options);
     const mtime = options.time && performance.now();
     const mlen = mtime-mnow;
     if (options.time) {
-      const obj = GLO_TIMES.get(tname);
+      let obj = GLO_TIMES.get(tname);
+      if (!obj) GLO_TIMES.set(tname, obj = {calls: 0, hits: 0, time: 0, last: 0});
       obj.last = mlen;
       obj.time += mlen;
       obj.calls += 1;
     }
+    rulesListState.push(rulesListState.shift()); // rotate
     if (action) {
       action.actionOrderIndex = ti;
-      action.actionOwnTime = options.time ? under(Math.round(mlen)) : '--';
+      action.actionOwnTime = options.time ? under(mlen) : '--';
       break;
     }
     ti += 1;
   }
 
+  vlog('\n\nEnd of phase2. Rules processed:', ti + 1, ', max:', max,', result:', action);
   if (options.time) {
     const obj = {};
-    ORDER.slice(0, ti+1).forEach(([key]) => obj[key] = under(Math.round(GLO_TIMES.get(key).last * 1000)));
-    console.log('Phase2   timing:',
+    rulesListState.slice(-(ti+1)).forEach(([key]) => obj[key] = under(GLO_TIMES.get(key)?.last * 1000));
+    console.log(DIM + 'Phase2   timing:',
       JSON.stringify(obj)
       .replace(/"/g, '')
-      .replace(/(:|,)/g, '$1 ')
-      .replace(/(\w\w\w)\w+/g, '$1')
+      .replace(/([:,])/g, '$1 ')
+      .replace(/([a-z]{3})\w+/ig, '$1'),
+      RESET
     );
   }
 
-  ASSERT(action === undefined || (action && typeof action === 'object'), 'plugins must return an object or undefined', action);
+  ASSERT(action === false || action === undefined || (action && typeof action === 'object'), 'transform rules must return an object or undefined', action, ', last:', rulesListState[rulesListState.length-1][0]);
+  if (action === false) console.log('rule', [rulesListState[rulesListState.length-1][0]], 'returned false...');
   if (!action) {
     vlog('Phase 2 applied no rules, no changes');
     return;
@@ -377,6 +352,11 @@ function _phase2(fdata, prng, options = {prngSeed: 1}) {
 }
 
 function under(num) {
-  // meh.
-  return new Intl.NumberFormat('en-US').format(num).replace(/,/g, '_');
+  const str = String(Math.round(num));
+  let result = str.slice(0, str.length % 3 || 3);
+  for (let i=result.length; i<str.length; i += 3) {
+    result += '_' + str.slice(i, i+3);
+  }
+  return result;
+
 }

@@ -58,8 +58,8 @@ exit: {
 let fallthrough /*:boolean*/ /*ternaryConst*/ = false;
 const tmpBinBothRhs /*:unknown*/ = $(1);
 let tmpIfTest$1 /*:boolean*/ /*ternaryConst*/ = true;
-const tmpIfTest /*:boolean*/ = undefined === tmpBinBothRhs;
-if (tmpIfTest) {
+const tmpClusterSSA_tmpIfTest /*:boolean*/ = undefined === tmpBinBothRhs;
+if (tmpClusterSSA_tmpIfTest) {
   $(`A`);
   fallthrough = true;
 } else {

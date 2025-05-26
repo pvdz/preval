@@ -21,8 +21,8 @@ $(f(undefined, 100));
 
 `````js filename=intro
 const tmpCalleeParam /*:array*/ = [`fail2`];
-const tmpBindingPatternArrRoot /*:unknown*/ = $(tmpCalleeParam);
-const tmpArrPatternSplat /*:array*/ = [...tmpBindingPatternArrRoot];
+const tmpClusterSSA_tmpBindingPatternArrRoot /*:unknown*/ = $(tmpCalleeParam);
+const tmpArrPatternSplat /*:array*/ = [...tmpClusterSSA_tmpBindingPatternArrRoot];
 const tmpAPBD /*:unknown*/ = tmpArrPatternSplat[0];
 let tmpArrPatternStep /*:unknown*/ /*ternaryConst*/ = undefined;
 let tmpObjPatternCrashTest /*:boolean*/ = false;
@@ -50,8 +50,8 @@ if (tmpObjPatternCrashTest) {
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpBindingPatternArrRoot = $([`fail2`]);
-const tmpAPBD = [...tmpBindingPatternArrRoot][0];
+const tmpClusterSSA_tmpBindingPatternArrRoot = $([`fail2`]);
+const tmpAPBD = [...tmpClusterSSA_tmpBindingPatternArrRoot][0];
 let tmpArrPatternStep = undefined;
 let tmpObjPatternCrashTest = false;
 if (tmpAPBD === undefined) {
@@ -151,6 +151,7 @@ $(tmpCalleeParam$1);
 
 
 - (todo) Deal with array spreads in arr mutation?
+- (todo) support array reads statement type ExpressionStatement
 - (todo) support array reads statement type VarStatement
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
 

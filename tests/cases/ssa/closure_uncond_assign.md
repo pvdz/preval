@@ -30,13 +30,13 @@ if ($) $(f());
 
 `````js filename=intro
 if ($) {
-  const x /*:()=>unknown*/ = function () {
+  const tmpClusterSSA_x /*:()=>unknown*/ = function () {
     debugger;
     return undefined;
   };
   $();
-  $(x);
-  $(x);
+  $(tmpClusterSSA_x);
+  $(tmpClusterSSA_x);
 } else {
 }
 `````
@@ -47,10 +47,10 @@ if ($) {
 
 `````js filename=intro
 if ($) {
-  const x = function () {};
+  const tmpClusterSSA_x = function () {};
   $();
-  $(x);
-  $(x);
+  $(tmpClusterSSA_x);
+  $(tmpClusterSSA_x);
 }
 `````
 

@@ -9,6 +9,7 @@
 ## Input
 
 `````js filename=intro
+const tmpUnaryArg = $(true);
 const x = !tmpUnaryArg;
 if (x) {
   $(`a`);
@@ -28,6 +29,7 @@ if (x) {
 
 
 `````js filename=intro
+const tmpUnaryArg /*:unknown*/ = $(true);
 if (tmpUnaryArg) {
   $(`b`);
   throw `Preval: Cannot write to const binding \`x\``;
@@ -42,7 +44,7 @@ if (tmpUnaryArg) {
 (This ought to be the final result)
 
 `````js filename=intro
-if (tmpUnaryArg) {
+if ($(true)) {
   $(`b`);
   throw `Preval: Cannot write to const binding \`x\``;
 } else {
@@ -56,7 +58,8 @@ if (tmpUnaryArg) {
 With rename=true
 
 `````js filename=intro
-if (tmpUnaryArg) {
+const a = $( true );
+if (a) {
   $( "b" );
   throw "Preval: Cannot write to const binding `x`";
 }
@@ -71,6 +74,7 @@ else {
 (This is what phase1 received the first time)
 
 `````js filename=intro
+const tmpUnaryArg = $(true);
 const x = !tmpUnaryArg;
 if (x) {
   $(`a`);
@@ -89,22 +93,22 @@ if (x) {
 ## Todos triggered
 
 
-- (todo) when is a constant an implicit global too?
+None
 
 
 ## Globals
 
 
-BAD@! Found 1 implicit global bindings:
-
-tmpUnaryArg
+None
 
 
 ## Runtime Outcome
 
 
 Should call `$` with:
- - eval returned: ('<crash[ <ref> is not defined ]>')
+ - 1: true
+ - 2: 'b'
+ - eval returned: ('<crash[ Assignment to constant variable. ]>')
 
 Pre normalization calls: Same
 

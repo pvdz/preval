@@ -37,8 +37,8 @@ else $('fail');
 `````js filename=intro
 const f$1 /*:()=>boolean*/ = function () {
   debugger;
-  const tmpssa3_x /*:unknown*/ = $(100);
-  const y /*:boolean*/ = $boolean_constructor(tmpssa3_x);
+  const tmpClusterSSA_tmpssa3_x /*:unknown*/ = $(100);
+  const y /*:boolean*/ = $boolean_constructor(tmpClusterSSA_tmpssa3_x);
   return y;
 };
 $(undefined);

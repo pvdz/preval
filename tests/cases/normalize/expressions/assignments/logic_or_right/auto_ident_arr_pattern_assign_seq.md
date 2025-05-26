@@ -34,10 +34,10 @@ if (tmpCalleeParam) {
   const tmpArrElement$1 /*:unknown*/ = $(4);
   const tmpNestedAssignArrPatternRhs /*:array*/ = [tmpArrElement, tmpArrElement$1];
   const tmpArrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
-  const x /*:unknown*/ = tmpArrPatternSplat[0];
-  const y /*:unknown*/ = tmpArrPatternSplat[1];
+  const tmpClusterSSA_x /*:unknown*/ = tmpArrPatternSplat[0];
+  const tmpClusterSSA_y /*:unknown*/ = tmpArrPatternSplat[1];
   $(tmpNestedAssignArrPatternRhs);
-  $(tmpNestedAssignArrPatternRhs, x, y);
+  $(tmpNestedAssignArrPatternRhs, tmpClusterSSA_x, tmpClusterSSA_y);
 }
 `````
 
@@ -57,10 +57,10 @@ if (tmpCalleeParam) {
   const tmpArrElement$1 = $(4);
   const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
   const tmpArrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-  const x = tmpArrPatternSplat[0];
-  const y = tmpArrPatternSplat[1];
+  const tmpClusterSSA_x = tmpArrPatternSplat[0];
+  const tmpClusterSSA_y = tmpArrPatternSplat[1];
   $(tmpNestedAssignArrPatternRhs);
-  $(tmpNestedAssignArrPatternRhs, x, y);
+  $(tmpNestedAssignArrPatternRhs, tmpClusterSSA_x, tmpClusterSSA_y);
 }
 `````
 

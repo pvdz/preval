@@ -20,7 +20,7 @@ $(f({ x: 0, a: 11, b: 12 }, 10));
 
 
 `````js filename=intro
-throw `Preval: Array spread on non-string primitive must crash (caused by \`const tmpArrPatternSplat = [...0];\`)`;
+throw `Preval: Array spread on non-string primitive must crash (caused by \`[...0];\`)`;
 `````
 
 
@@ -28,7 +28,7 @@ throw `Preval: Array spread on non-string primitive must crash (caused by \`cons
 (This ought to be the final result)
 
 `````js filename=intro
-throw `Preval: Array spread on non-string primitive must crash (caused by \`const tmpArrPatternSplat = [...0];\`)`;
+throw `Preval: Array spread on non-string primitive must crash (caused by \`[...0];\`)`;
 `````
 
 
@@ -36,7 +36,7 @@ throw `Preval: Array spread on non-string primitive must crash (caused by \`cons
 With rename=true
 
 `````js filename=intro
-throw "Preval: Array spread on non-string primitive must crash (caused by `const tmpArrPatternSplat = [...0];`)";
+throw "Preval: Array spread on non-string primitive must crash (caused by `[...0];`)";
 `````
 
 

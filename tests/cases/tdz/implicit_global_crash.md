@@ -6,6 +6,10 @@
 >
 > The call should be inlined but the implicit globals should still crash at runtime
 
+## Options
+
+- globals: a b c implicitGlobalShouldCrash
+
 ## Input
 
 `````js filename=intro
@@ -22,8 +26,14 @@ f(implicitGlobalShouldCrash, a, b, c);
 
 `````js filename=intro
 implicitGlobalShouldCrash;
+a;
+b;
+c;
 $(`inline me`);
 implicitGlobalShouldCrash;
+a;
+b;
+c;
 $(`inline me`);
 `````
 
@@ -33,8 +43,14 @@ $(`inline me`);
 
 `````js filename=intro
 implicitGlobalShouldCrash;
+a;
+b;
+c;
 $(`inline me`);
 implicitGlobalShouldCrash;
+a;
+b;
+c;
 $(`inline me`);
 `````
 
@@ -44,8 +60,14 @@ With rename=true
 
 `````js filename=intro
 implicitGlobalShouldCrash;
+a;
+b;
+c;
 $( "inline me" );
 implicitGlobalShouldCrash;
+a;
+b;
+c;
 $( "inline me" );
 `````
 
@@ -77,9 +99,7 @@ None
 ## Globals
 
 
-BAD@! Found 1 implicit global bindings:
-
-implicitGlobalShouldCrash
+None (except for the 4 globals expected by the test)
 
 
 ## Runtime Outcome

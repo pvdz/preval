@@ -31,11 +31,11 @@ $(x);
 
 
 `````js filename=intro
-let x /*:primitive*/ /*ternaryConst*/ = undefined;
+let x /*:primitive*/ /*ternaryConst*/ = 1;
 const tmpIfTest /*:unknown*/ = $(true);
 if (tmpIfTest) {
-  x = 1;
 } else {
+  x = undefined;
 }
 const tmpIfTest$3 /*:unknown*/ = $(true);
 if (tmpIfTest$3) {
@@ -56,9 +56,9 @@ if (tmpIfTest$3) {
 (This ought to be the final result)
 
 `````js filename=intro
-let x = undefined;
-if ($(true)) {
-  x = 1;
+let x = 1;
+if (!$(true)) {
+  x = undefined;
 }
 if ($(true)) {
   if ($(true)) {
@@ -75,10 +75,13 @@ if ($(true)) {
 With rename=true
 
 `````js filename=intro
-let a = undefined;
+let a = 1;
 const b = $( true );
 if (b) {
-  a = 1;
+
+}
+else {
+  a = undefined;
 }
 const c = $( true );
 if (c) {

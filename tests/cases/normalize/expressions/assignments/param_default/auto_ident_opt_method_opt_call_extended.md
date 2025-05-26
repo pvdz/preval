@@ -28,9 +28,9 @@ if (tmpIfTest$3) {
   $(undefined);
 } else {
   const tmpObjLitVal$1 /*:object*/ = { e: $ };
-  const tmpNestedComplexRhs /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
+  const tmpClusterSSA_a$1 /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
   $(undefined);
-  $(tmpNestedComplexRhs);
+  $(tmpClusterSSA_a$1);
 }
 `````
 
@@ -43,9 +43,9 @@ if ($ == null) {
   $(undefined);
   $(undefined);
 } else {
-  const tmpNestedComplexRhs = $dotCall($, { e: $ }, `e`, 1);
+  const tmpClusterSSA_a$1 = $dotCall($, { e: $ }, `e`, 1);
   $(undefined);
-  $(tmpNestedComplexRhs);
+  $(tmpClusterSSA_a$1);
 }
 `````
 

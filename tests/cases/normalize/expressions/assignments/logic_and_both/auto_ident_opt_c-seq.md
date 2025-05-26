@@ -25,9 +25,11 @@ let a /*:unknown*/ /*ternaryConst*/ = undefined;
 const b /*:object*/ = { x: 1 };
 const tmpChainRootProp /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainRootProp == null;
+let tmpCalleeParam /*:unknown*/ /*ternaryConst*/ = undefined;
 if (tmpIfTest) {
 } else {
   a = tmpChainRootProp.x;
+  tmpCalleeParam = a;
 }
 if (a) {
   const tmpChainRootProp$1 /*:unknown*/ = $(b);
@@ -36,12 +38,12 @@ if (a) {
     $(undefined);
     $(undefined);
   } else {
-    const tmpNestedComplexRhs /*:unknown*/ = tmpChainRootProp$1.x;
-    $(tmpNestedComplexRhs);
-    $(tmpNestedComplexRhs);
+    const tmpClusterSSA_tmpNestedComplexRhs /*:unknown*/ = tmpChainRootProp$1.x;
+    $(tmpClusterSSA_tmpNestedComplexRhs);
+    $(tmpClusterSSA_tmpNestedComplexRhs);
   }
 } else {
-  $(a);
+  $(tmpCalleeParam);
   $(a);
 }
 `````
@@ -54,8 +56,11 @@ if (a) {
 let a = undefined;
 const b = { x: 1 };
 const tmpChainRootProp = $(b);
-if (!(tmpChainRootProp == null)) {
+const tmpIfTest = tmpChainRootProp == null;
+let tmpCalleeParam = undefined;
+if (!tmpIfTest) {
   a = tmpChainRootProp.x;
+  tmpCalleeParam = a;
 }
 if (a) {
   const tmpChainRootProp$1 = $(b);
@@ -63,12 +68,12 @@ if (a) {
     $(undefined);
     $(undefined);
   } else {
-    const tmpNestedComplexRhs = tmpChainRootProp$1.x;
-    $(tmpNestedComplexRhs);
-    $(tmpNestedComplexRhs);
+    const tmpClusterSSA_tmpNestedComplexRhs = tmpChainRootProp$1.x;
+    $(tmpClusterSSA_tmpNestedComplexRhs);
+    $(tmpClusterSSA_tmpNestedComplexRhs);
   }
 } else {
-  $(a);
+  $(tmpCalleeParam);
   $(a);
 }
 `````
@@ -82,27 +87,29 @@ let a = undefined;
 const b = { x: 1 };
 const c = $( b );
 const d = c == null;
+let e = undefined;
 if (d) {
 
 }
 else {
   a = c.x;
+  e = a;
 }
 if (a) {
-  const e = $( b );
-  const f = e == null;
-  if (f) {
+  const f = $( b );
+  const g = f == null;
+  if (g) {
     $( undefined );
     $( undefined );
   }
   else {
-    const g = e.x;
-    $( g );
-    $( g );
+    const h = f.x;
+    $( h );
+    $( h );
   }
 }
 else {
-  $( a );
+  $( e );
   $( a );
 }
 `````

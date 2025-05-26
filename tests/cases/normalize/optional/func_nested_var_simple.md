@@ -38,8 +38,8 @@ if (tmpIfTest$1) {
   const tmpClusterSSA_tmpReturnArg /*:unknown*/ = $(undefined);
   $(tmpClusterSSA_tmpReturnArg);
 } else {
-  const c /*:unknown*/ = b.length;
-  const tmpClusterSSA_tmpReturnArg$1 /*:unknown*/ = $(c);
+  const tmpClusterSSA_c /*:unknown*/ = b.length;
+  const tmpClusterSSA_tmpReturnArg$1 /*:unknown*/ = $(tmpClusterSSA_c);
   $(tmpClusterSSA_tmpReturnArg$1);
 }
 `````

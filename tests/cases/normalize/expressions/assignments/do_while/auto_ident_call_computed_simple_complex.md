@@ -27,8 +27,9 @@ $(100);
 const tmpMCCP /*:unknown*/ = $(`\$`);
 const b /*:object*/ = { $: $ };
 const tmpMCF /*:unknown*/ = b[tmpMCCP];
-let a /*:unknown*/ = $dotCall(tmpMCF, b, undefined, 1);
-if (a) {
+const tmpClusterSSA_a /*:unknown*/ = $dotCall(tmpMCF, b, undefined, 1);
+if (tmpClusterSSA_a) {
+  let a /*:unknown*/ = undefined;
   while ($LOOP_UNROLL_10) {
     $(100);
     const tmpMCCP$1 /*:unknown*/ = $(`\$`);
@@ -41,7 +42,7 @@ if (a) {
   }
   $(a);
 } else {
-  $(a);
+  $(tmpClusterSSA_a);
 }
 `````
 
@@ -53,8 +54,9 @@ if (a) {
 $(100);
 const tmpMCCP = $(`\$`);
 const b = { $: $ };
-let a = b[tmpMCCP](1);
-if (a) {
+const tmpClusterSSA_a = b[tmpMCCP](1);
+if (tmpClusterSSA_a) {
+  let a = undefined;
   while (true) {
     $(100);
     const tmpMCCP$1 = $(`\$`);
@@ -65,7 +67,7 @@ if (a) {
   }
   $(a);
 } else {
-  $(a);
+  $(tmpClusterSSA_a);
 }
 `````
 
@@ -78,21 +80,22 @@ $( 100 );
 const a = $( "$" );
 const b = { $: $ };
 const c = b[ a ];
-let d = $dotCall( c, b, undefined, 1 );
+const d = $dotCall( c, b, undefined, 1 );
 if (d) {
+  let e = undefined;
   while ($LOOP_UNROLL_10) {
     $( 100 );
-    const e = $( "$" );
-    const f = b[ e ];
-    d = $dotCall( f, b, undefined, 1 );
-    if (d) {
+    const f = $( "$" );
+    const g = b[ f ];
+    e = $dotCall( g, b, undefined, 1 );
+    if (e) {
 
     }
     else {
       break;
     }
   }
-  $( d );
+  $( e );
 }
 else {
   $( d );

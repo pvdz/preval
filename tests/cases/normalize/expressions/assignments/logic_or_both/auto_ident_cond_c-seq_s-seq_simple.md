@@ -24,13 +24,15 @@ $(a);
 `````js filename=intro
 let a /*:unknown*/ /*ternaryConst*/ = 60;
 const tmpIfTest /*:unknown*/ = $(30);
+let tmpCalleeParam /*:unknown*/ /*ternaryConst*/ = 60;
 if (tmpIfTest) {
 } else {
   const tmpCalleeParam$1 /*:unknown*/ = $(100);
   a = $(tmpCalleeParam$1);
+  tmpCalleeParam = a;
 }
 if (a) {
-  $(a);
+  $(tmpCalleeParam);
   $(a);
 } else {
   const tmpIfTest$1 /*:unknown*/ = $(30);
@@ -39,9 +41,9 @@ if (a) {
     $(60);
   } else {
     const tmpCalleeParam$3 /*:unknown*/ = $(100);
-    const tmpNestedComplexRhs /*:unknown*/ = $(tmpCalleeParam$3);
-    $(tmpNestedComplexRhs);
-    $(tmpNestedComplexRhs);
+    const tmpClusterSSA_tmpNestedComplexRhs /*:unknown*/ = $(tmpCalleeParam$3);
+    $(tmpClusterSSA_tmpNestedComplexRhs);
+    $(tmpClusterSSA_tmpNestedComplexRhs);
   }
 }
 `````
@@ -52,20 +54,23 @@ if (a) {
 
 `````js filename=intro
 let a = 60;
-if (!$(30)) {
+const tmpIfTest = $(30);
+let tmpCalleeParam = 60;
+if (!tmpIfTest) {
   a = $($(100));
+  tmpCalleeParam = a;
 }
 if (a) {
-  $(a);
+  $(tmpCalleeParam);
   $(a);
 } else {
   if ($(30)) {
     $(60);
     $(60);
   } else {
-    const tmpNestedComplexRhs = $($(100));
-    $(tmpNestedComplexRhs);
-    $(tmpNestedComplexRhs);
+    const tmpClusterSSA_tmpNestedComplexRhs = $($(100));
+    $(tmpClusterSSA_tmpNestedComplexRhs);
+    $(tmpClusterSSA_tmpNestedComplexRhs);
   }
 }
 `````
@@ -77,28 +82,30 @@ With rename=true
 `````js filename=intro
 let a = 60;
 const b = $( 30 );
+let c = 60;
 if (b) {
 
 }
 else {
-  const c = $( 100 );
-  a = $( c );
+  const d = $( 100 );
+  a = $( d );
+  c = a;
 }
 if (a) {
-  $( a );
+  $( c );
   $( a );
 }
 else {
-  const d = $( 30 );
-  if (d) {
+  const e = $( 30 );
+  if (e) {
     $( 60 );
     $( 60 );
   }
   else {
-    const e = $( 100 );
-    const f = $( e );
-    $( f );
-    $( f );
+    const f = $( 100 );
+    const g = $( f );
+    $( g );
+    $( g );
   }
 }
 `````

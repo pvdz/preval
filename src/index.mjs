@@ -9,7 +9,7 @@ import { phaseNormalOnce } from './normalize/normal_once.mjs';
 import { prepareNormalization } from './normalize/prepare.mjs';
 import { phase0 } from './normalize/phase0.mjs';
 import { phase1 } from './normalize/phase1.mjs';
-import { phase2 } from './normalize/phase2.mjs';
+import { getFreshPhase2RulesState, phase2 } from './normalize/phase2.mjs';
 import { phase3 } from './normalize/phase3.mjs';
 import { phase1_1 } from './normalize/phase1_1.mjs';
 import { ASSERT } from './utils.mjs';
@@ -264,6 +264,7 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
       let inputCode = mod.normalizedCode;
       let passes = 0;
       let phase1s = 0;
+      const phase2RulesListState = getFreshPhase2RulesState();
       const maxPasses = options.maxPass > 0 ? options.maxPass : 0;
       while (changed) {
         ++passes;
@@ -294,7 +295,7 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
 
           firstAfterParse = false;
 
-          changed = phase2(program, fdata, resolve, req, passes, phase1s, verboseTracing, prng, {implicitThisIdent: options.implicitThisIdent, prngSeed: rngSeed, time: options.time});
+          changed = phase2(program, fdata, phase2RulesListState, resolve, req, passes, phase1s, verboseTracing, prng, {implicitThisIdent: options.implicitThisIdent, prngSeed: rngSeed, time: options.time});
           options?.onAfterPhase?.(2, passes, phaseLoop, fdata, changed, options);
           if (!changed) {
             // Force a normalize pass before moving to phase3. Loop if it changed anything anyways.

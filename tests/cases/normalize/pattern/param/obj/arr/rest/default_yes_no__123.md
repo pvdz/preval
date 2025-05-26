@@ -78,6 +78,7 @@ $(tmpCalleeParam$1);
 - (todo) Deal with array spreads in arr mutation?
 - (todo) access object property that also exists on prototype? $array_slice
 - (todo) support array reads statement type ExpressionStatement
+- (todo) support array reads statement type VarStatement
 - (todo) type trackeed tricks can possibly support static $array_slice
 
 

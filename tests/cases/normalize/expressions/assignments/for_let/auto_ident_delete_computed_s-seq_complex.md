@@ -25,9 +25,9 @@ $(1);
 $(2);
 const tmpDeleteCompProp /*:unknown*/ = $(`y`);
 const arg /*:object*/ = { y: 1 };
-const xyz /*:boolean*/ = delete arg[tmpDeleteCompProp];
+const a /*:boolean*/ = delete arg[tmpDeleteCompProp];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(xyz);
+  $(a);
   $(1);
 }
 `````
@@ -41,9 +41,9 @@ $(1);
 $(2);
 const tmpDeleteCompProp = $(`y`);
 const arg = { y: 1 };
-const xyz = delete arg[tmpDeleteCompProp];
+const a = delete arg[tmpDeleteCompProp];
 while (true) {
-  $(xyz);
+  $(a);
   $(1);
 }
 `````

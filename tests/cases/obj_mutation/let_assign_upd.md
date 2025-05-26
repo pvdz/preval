@@ -23,11 +23,12 @@ $(blob);
 
 
 `````js filename=intro
-let blob /*:object*/ = { thing: `woop`, xyz: 1 };
-$(blob);
-const tmpBinLhs$1 /*:unknown*/ = blob.xyz;
+const tmpClusterSSA_blob /*:object*/ = { thing: `woop`, xyz: 1 };
+$(tmpClusterSSA_blob);
+const tmpBinLhs$1 /*:unknown*/ = tmpClusterSSA_blob.xyz;
 const tmpIfTest /*:boolean*/ = tmpBinLhs$1 < 10;
 if (tmpIfTest) {
+  let blob /*:unknown*/ = undefined;
   while ($LOOP_UNROLL_10) {
     blob = { thing: `woop`, xyz: 1 };
     $(blob);
@@ -40,7 +41,7 @@ if (tmpIfTest) {
   }
   $(blob);
 } else {
-  $(blob);
+  $(tmpClusterSSA_blob);
 }
 `````
 
@@ -49,9 +50,10 @@ if (tmpIfTest) {
 (This ought to be the final result)
 
 `````js filename=intro
-let blob = { thing: `woop`, xyz: 1 };
-$(blob);
-if (blob.xyz < 10) {
+const tmpClusterSSA_blob = { thing: `woop`, xyz: 1 };
+$(tmpClusterSSA_blob);
+if (tmpClusterSSA_blob.xyz < 10) {
+  let blob = undefined;
   while (true) {
     blob = { thing: `woop`, xyz: 1 };
     $(blob);
@@ -61,7 +63,7 @@ if (blob.xyz < 10) {
   }
   $(blob);
 } else {
-  $(blob);
+  $(tmpClusterSSA_blob);
 }
 `````
 
@@ -70,7 +72,7 @@ if (blob.xyz < 10) {
 With rename=true
 
 `````js filename=intro
-let a = {
+const a = {
   thing: "woop",
   xyz: 1,
 };
@@ -78,22 +80,23 @@ $( a );
 const b = a.xyz;
 const c = b < 10;
 if (c) {
+  let d = undefined;
   while ($LOOP_UNROLL_10) {
-    a = {
+    d = {
       thing: "woop",
       xyz: 1,
     };
-    $( a );
-    const d = a.xyz;
-    const e = d < 10;
-    if (e) {
+    $( d );
+    const e = d.xyz;
+    const f = e < 10;
+    if (f) {
 
     }
     else {
       break;
     }
   }
-  $( a );
+  $( d );
 }
 else {
   $( a );

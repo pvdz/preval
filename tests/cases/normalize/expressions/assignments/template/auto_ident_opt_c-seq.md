@@ -28,11 +28,11 @@ if (tmpIfTest) {
   $(`before  undefined  after`);
   $(undefined);
 } else {
-  const a /*:unknown*/ = tmpChainRootProp.x;
-  const tmpBinBothRhs /*:string*/ = $coerce(a, `string`);
-  const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
-  $(tmpCalleeParam);
-  $(a);
+  const tmpClusterSSA_a /*:unknown*/ = tmpChainRootProp.x;
+  const tmpClusterSSA_tmpStringConcatL /*:string*/ = $coerce(tmpClusterSSA_a, `string`);
+  const tmpClusterSSA_tmpCalleeParam /*:string*/ = `before  ${tmpClusterSSA_tmpStringConcatL}  after`;
+  $(tmpClusterSSA_tmpCalleeParam);
+  $(tmpClusterSSA_a);
 }
 `````
 
@@ -46,9 +46,9 @@ if (tmpChainRootProp == null) {
   $(`before  undefined  after`);
   $(undefined);
 } else {
-  const a = tmpChainRootProp.x;
-  $(`before  ${a}  after`);
-  $(a);
+  const tmpClusterSSA_a = tmpChainRootProp.x;
+  $(`before  ${tmpClusterSSA_a}  after`);
+  $(tmpClusterSSA_a);
 }
 `````
 

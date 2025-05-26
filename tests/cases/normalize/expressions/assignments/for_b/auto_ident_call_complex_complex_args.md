@@ -24,8 +24,9 @@ $(a);
 const tmpCallComplexCallee /*:unknown*/ = $($);
 const tmpCalleeParam /*:unknown*/ = $(1);
 const tmpCalleeParam$1 /*:unknown*/ = $(2);
-let a /*:unknown*/ = tmpCallComplexCallee(tmpCalleeParam, tmpCalleeParam$1);
-if (a) {
+const tmpClusterSSA_a /*:unknown*/ = tmpCallComplexCallee(tmpCalleeParam, tmpCalleeParam$1);
+if (tmpClusterSSA_a) {
+  let a /*:unknown*/ = undefined;
   while ($LOOP_UNROLL_10) {
     $(1);
     const tmpCallComplexCallee$1 /*:unknown*/ = $($);
@@ -39,7 +40,7 @@ if (a) {
   }
   $(a);
 } else {
-  $(a);
+  $(tmpClusterSSA_a);
 }
 `````
 
@@ -49,8 +50,9 @@ if (a) {
 
 `````js filename=intro
 const tmpCallComplexCallee = $($);
-let a = tmpCallComplexCallee($(1), $(2));
-if (a) {
+const tmpClusterSSA_a = tmpCallComplexCallee($(1), $(2));
+if (tmpClusterSSA_a) {
+  let a = undefined;
   while (true) {
     $(1);
     const tmpCallComplexCallee$1 = $($);
@@ -61,7 +63,7 @@ if (a) {
   }
   $(a);
 } else {
-  $(a);
+  $(tmpClusterSSA_a);
 }
 `````
 
@@ -73,22 +75,23 @@ With rename=true
 const a = $( $ );
 const b = $( 1 );
 const c = $( 2 );
-let d = a( b, c );
+const d = a( b, c );
 if (d) {
+  let e = undefined;
   while ($LOOP_UNROLL_10) {
     $( 1 );
-    const e = $( $ );
-    const f = $( 1 );
-    const g = $( 2 );
-    d = e( f, g );
-    if (d) {
+    const f = $( $ );
+    const g = $( 1 );
+    const h = $( 2 );
+    e = f( g, h );
+    if (e) {
 
     }
     else {
       break;
     }
   }
-  $( d );
+  $( e );
 }
 else {
   $( d );
@@ -123,6 +126,7 @@ $(a);
 
 
 - (todo) do we want to support ObjectExpression as expression statement in free loops?
+- (todo) objects in isFree check
 
 
 ## Globals

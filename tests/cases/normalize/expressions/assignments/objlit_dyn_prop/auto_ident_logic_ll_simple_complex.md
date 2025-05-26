@@ -20,10 +20,10 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam$1 /*:unknown*/ = $(1);
-const a /*:unknown*/ = $(tmpCalleeParam$1);
-const tmpCalleeParam /*:object*/ = { [a]: 10 };
+const tmpSSA_a /*:unknown*/ = $(tmpCalleeParam$1);
+const tmpCalleeParam /*:object*/ = { [tmpSSA_a]: 10 };
 $(tmpCalleeParam);
-$(a);
+$(tmpSSA_a);
 `````
 
 
@@ -31,9 +31,9 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const a = $($(1));
-$({ [a]: 10 });
-$(a);
+const tmpSSA_a = $($(1));
+$({ [tmpSSA_a]: 10 });
+$(tmpSSA_a);
 `````
 
 

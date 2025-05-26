@@ -28,8 +28,8 @@ let tmpForInGen /*:unknown*/ /*ternaryConst*/ = undefined;
 if (tmpIfTest) {
   tmpForInGen = $forIn(undefined);
 } else {
-  const tmpCalleeParam /*:unknown*/ = tmpChainRootProp.x;
-  tmpForInGen = $forIn(tmpCalleeParam);
+  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = tmpChainRootProp.x;
+  tmpForInGen = $forIn(tmpClusterSSA_tmpCalleeParam);
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForInNext /*:unknown*/ = tmpForInGen();

@@ -19,8 +19,9 @@ $(a);
 
 
 `````js filename=intro
-let a /*:unknown*/ = arguments;
+const tmpClusterSSA_a /*:unknown*/ = arguments;
 if (arguments) {
+  let a /*:unknown*/ = undefined;
   while ($LOOP_UNROLL_10) {
     $(100);
     a = arguments;
@@ -31,7 +32,7 @@ if (arguments) {
   }
   $(a);
 } else {
-  $(a);
+  $(tmpClusterSSA_a);
 }
 `````
 
@@ -40,8 +41,9 @@ if (arguments) {
 (This ought to be the final result)
 
 `````js filename=intro
-let a = arguments;
+const tmpClusterSSA_a = arguments;
 if (arguments) {
+  let a = undefined;
   while (true) {
     $(100);
     a = arguments;
@@ -51,7 +53,7 @@ if (arguments) {
   }
   $(a);
 } else {
-  $(a);
+  $(tmpClusterSSA_a);
 }
 `````
 
@@ -60,19 +62,20 @@ if (arguments) {
 With rename=true
 
 `````js filename=intro
-let a = arguments;
+const a = arguments;
 if (arguments) {
+  let b = undefined;
   while ($LOOP_UNROLL_10) {
     $( 100 );
-    a = arguments;
-    if (a) {
+    b = arguments;
+    if (b) {
 
     }
     else {
       break;
     }
   }
-  $( a );
+  $( b );
 }
 else {
   $( a );
@@ -102,6 +105,7 @@ $(a);
 
 
 - (todo) do we want to support ObjectExpression as expression statement in free loops?
+- (todo) objects in isFree check
 
 
 ## Globals

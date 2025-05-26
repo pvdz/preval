@@ -27,8 +27,9 @@ $(100);
 const b /*:object*/ = { c: 1 };
 const tmpAssignRhsCompObj /*:unknown*/ = $(b);
 const tmpAssignRhsCompProp /*:unknown*/ = $(`c`);
-let a /*:unknown*/ = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
-if (a) {
+const tmpClusterSSA_a /*:unknown*/ = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
+if (tmpClusterSSA_a) {
+  let a /*:unknown*/ = undefined;
   while ($LOOP_UNROLL_10) {
     $(100);
     const tmpAssignRhsCompObj$1 /*:unknown*/ = $(b);
@@ -41,7 +42,7 @@ if (a) {
   }
   $(a, b);
 } else {
-  $(a, b);
+  $(tmpClusterSSA_a, b);
 }
 `````
 
@@ -54,8 +55,9 @@ $(100);
 const b = { c: 1 };
 const tmpAssignRhsCompObj = $(b);
 const tmpAssignRhsCompProp = $(`c`);
-let a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
-if (a) {
+const tmpClusterSSA_a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
+if (tmpClusterSSA_a) {
+  let a = undefined;
   while (true) {
     $(100);
     const tmpAssignRhsCompObj$1 = $(b);
@@ -67,7 +69,7 @@ if (a) {
   }
   $(a, b);
 } else {
-  $(a, b);
+  $(tmpClusterSSA_a, b);
 }
 `````
 
@@ -80,21 +82,22 @@ $( 100 );
 const a = { c: 1 };
 const b = $( a );
 const c = $( "c" );
-let d = b[ c ];
+const d = b[ c ];
 if (d) {
+  let e = undefined;
   while ($LOOP_UNROLL_10) {
     $( 100 );
-    const e = $( a );
-    const f = $( "c" );
-    d = e[ f ];
-    if (d) {
+    const f = $( a );
+    const g = $( "c" );
+    e = f[ g ];
+    if (e) {
 
     }
     else {
       break;
     }
   }
-  $( d, a );
+  $( e, a );
 }
 else {
   $( d, a );

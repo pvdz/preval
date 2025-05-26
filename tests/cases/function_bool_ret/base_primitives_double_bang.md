@@ -29,10 +29,10 @@ $(!!f(), 'three');
 `````js filename=intro
 const tmpCalleeParam /*:boolean*/ = $boolean_constructor($);
 $(tmpCalleeParam, `one`);
-const tmpCalleeParam$1 /*:boolean*/ = $boolean_constructor($);
-$(tmpCalleeParam$1, `two`);
-const tmpCalleeParam$3 /*:boolean*/ = $boolean_constructor($);
-$(tmpCalleeParam$3, `three`);
+const tmpUnaryArg$5 /*:boolean*/ = $boolean_constructor($);
+$(tmpUnaryArg$5, `two`);
+const tmpUnaryArg$9 /*:boolean*/ = $boolean_constructor($);
+$(tmpUnaryArg$9, `three`);
 `````
 
 

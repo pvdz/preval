@@ -34,7 +34,7 @@ $(100);
 $(100);
 $(100);
 $(100);
-let a /*:unknown*/ = 1;
+let a /*:unknown*/ = undefined;
 const b /*:object*/ = { c: 1 };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
@@ -63,7 +63,7 @@ $(100);
 $(100);
 $(100);
 $(100);
-let a = 1;
+let a = undefined;
 const b = { c: 1 };
 while (true) {
   $(100);
@@ -91,7 +91,7 @@ $( 100 );
 $( 100 );
 $( 100 );
 $( 100 );
-let a = 1;
+let a = undefined;
 const b = { c: 1 };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 100 );

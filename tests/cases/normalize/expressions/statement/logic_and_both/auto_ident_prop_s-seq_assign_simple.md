@@ -60,7 +60,7 @@ tmpInitAssignLhsComputedObj.c = tmpInitAssignLhsComputedRhs;
 const tmpIfTest = tmpInitAssignLhsComputedRhs;
 if (tmpIfTest) {
   const tmpAssignMemLhsObj = b;
-  tmpAssignMemLhsObj.c = 2;
+  b.c = 2;
   $(a, b);
 } else {
   $(a, b);

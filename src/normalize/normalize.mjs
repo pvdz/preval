@@ -1543,6 +1543,25 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             return true;
           }
 
+          // `const x = y; x.z = foo;` is just `const x = y; y.z = foo` when back to back
+          if (
+            i &&
+            body[i-1].type === 'VarStatement' &&
+            body[i-1].init.type === 'Identifier' &&
+            a.type === 'Identifier' &&
+            body[i-1].id.name === a.name // obj name equal to prev var id? ok!
+          ) {
+            rule('Member on ident alias declared on previous line can be inlined');
+            example('const a = b; a.c = x;', 'const a = b; b.c = x;');
+            before(body[i]);
+
+            mem.object = AST.identifier(body[i-1].init.name);
+
+            before(body[i]);
+            assertNoDupeNodes(body, 'body');
+            return true;
+          }
+
           // lhs must now be `a.b` or `a[b]`; a simple member expression
         }
 

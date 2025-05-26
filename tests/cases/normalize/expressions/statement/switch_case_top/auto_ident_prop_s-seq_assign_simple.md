@@ -88,7 +88,7 @@ const tmpBinBothRhs = $(1);
 const tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
 if (tmpIfTest) {
   const tmpAssignMemLhsObj = b;
-  tmpAssignMemLhsObj.c = 2;
+  b.c = 2;
   $(a, b);
 } else {
   $(a, b);

@@ -339,6 +339,20 @@ export function createBuiltinSymbolGlobals() {
     [symbo('buffer', 'toString')]: (typeof Buffer !== 'undefined' ? Buffer : {})?.prototype.toString, // eh.
     [symbo('buffer', 'valueOf')]: (typeof Buffer !== 'undefined' ? Buffer : {})?.prototype.valueOf, // eh.
 
+    [symbo('Uint8Array', 'prototype')]: Uint8Array.prototype,
+    [symbo('Uint8Array', 'BYTES_PER_ELEMENT')]: Uint8Array.BYTES_PER_ELEMENT,
+    [symbo('Uint8Array', 'fromBase64')]: Uint8Array.prototype.fromBase64,
+    [symbo('Uint8Array', 'fromHex')]: Uint8Array.prototype.fromHex,
+    [symbo('uint8Array', 'setFromBase64')]: Uint8Array.prototype.setFromBase64,
+    [symbo('uint8Array', 'setFromHex')]: Uint8Array.prototype.setFromHex,
+    [symbo('uint8Array', 'toBase64')]: Uint8Array.prototype.toBase64,
+    [symbo('uint8Array', 'toHex')]: Uint8Array.prototype.toHex,
+
+    [symbo('TextDecoder', 'prototype')]: TextDecoder.prototype,
+    [symbo('textDecoder', 'decode')]: TextDecoder.prototype.decode,
+
+
+
     // Mmmmm
     //Function: function(...args){ return function(...args2){ $('Function() invoked! Function:', args, ', invoked with:', args2); } },
     // Sadly (ironic, I know) can't do the same to `eval` in strict mode

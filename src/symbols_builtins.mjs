@@ -502,8 +502,43 @@ export const BUFFER = new Map([
 
 
 
+/**
+ *      Uint8Array
+ */
+
+
+export const UINT8ARRAY = new Map([
+  [symbo('Uint8Array', 'prototype'),         {prop: 'prototype',         isProto: false, typings: { sname: symbo('Uint8Array', 'prototype'),         mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }}],
+  [symbo('Uint8Array', 'BYTES_PER_ELEMENT'), {prop: 'BYTES_PER_ELEMENT', isProto: false, typings: { sname: symbo('Uint8Array', 'BYTES_PER_ELEMENT'), mustBeType: 'number', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: true, mustBeValue: 1 }}],
+  [symbo('Uint8Array', 'fromBase64'),        {prop: 'fromBase64',        isProto: false, typings: { sname: symbo('Uint8Array', 'fromBase64'),        mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'uint8Array'  }}],
+  [symbo('Uint8Array', 'fromHex'),           {prop: 'fromHex',           isProto: false, typings: { sname: symbo('Uint8Array', 'fromHex'),           mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'uint8Array'  }}],
+
+  [symbo('uint8Array', 'setFromBase64'),  {prop: 'setFromBase64',  isProto: true, typings: { sname: symbo('uint8Array', 'setFromBase64'),  mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'object' }}],
+  [symbo('uint8Array', 'setFromHex'),     {prop: 'setFromHex',     isProto: true, typings: { sname: symbo('uint8Array', 'setFromHex'),     mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'object' }}],
+  [symbo('uint8Array', 'toBase64'),       {prop: 'toBase64',       isProto: true, typings: { sname: symbo('uint8Array', 'toBase64'),       mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string' }}],
+  [symbo('uint8Array', 'toHex'),          {prop: 'toHex',          isProto: true, typings: { sname: symbo('uint8Array', 'toHex'),          mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string' }}],
+
+  // Static: .encoding, .fatal, .ignoreBOM
+]);
+
+
+/**
+ *      TextDecoder
+ */
+
+
+export const TEXTDECODER = new Map([
+  [symbo('TextDecoder', 'prototype'), {prop: 'prototype', isProto: false, typings: { sname: symbo('Map', 'prototype'), mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }}],
+
+  [symbo('textDecoder', 'decode'),    {prop: 'decode',    isProto: true, typings: { sname: symbo('textDecoder', 'decode'),     mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string' }}],
+
+  // Static: .size (treat like array.length)
+]);
+
+
+
 export const GLOBAL_NAMESPACES_FOR_STATIC_METHODS = new Set([
-  'Boolean', 'Number', 'String', 'Array', 'Object', 'Date', 'Function', 'JSON', 'Math', 'RegExp', 'Buffer', 'Map', 'Set',
+  'Boolean', 'Number', 'String', 'Array', 'Object', 'Date', 'Function', 'JSON', 'Math', 'RegExp', 'Buffer', 'Map', 'Set', 'Uint8Array', 'TextDecoder',
 ]);
 /** @var {Map<string, symbol>} */
 export const BUILTIN_GLOBAL_FUNCS_TO_SYMBOL = new Map([
@@ -552,6 +587,8 @@ export const BUILTIN_SYMBOLS = new Map([
   Array.from(MAP.entries()),
   Array.from(SET.entries()),
   Array.from(BUFFER.entries()),
+  Array.from(UINT8ARRAY.entries()),
+  Array.from(TEXTDECODER.entries()),
   // WeakMap, WeakSet, AraryBuffer, etc?
 ].flat());
 

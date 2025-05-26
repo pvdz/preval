@@ -75,7 +75,7 @@ import { implicitThis } from '../reduce_static/implicit_this.mjs';
 import { expandoSplitting } from '../reduce_static/expando_splitting.mjs';
 import { selfAssignClosure } from '../reduce_static/self_assign_closure.mjs';
 import { selfAssignNoop } from '../reduce_static/self_assign_noop.mjs';
-import { letAliasing } from '../reduce_static/let_aliase.mjs';
+import { letAliasing } from '../reduce_static/let_aliasing.mjs';
 import { aliasedGlobals } from '../reduce_static/aliasing_globals.mjs';
 import { simplifyDotCall } from '../reduce_static/dotcall.mjs';
 import { testingAlias } from '../reduce_static/testing_alias.mjs';

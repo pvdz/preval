@@ -1,0 +1,194 @@
+# Preval test case
+
+# inside_use_promo_complex.md
+
+> Ref tracking > Inside use promo complex
+>
+> When the ref is only used in an inner block scope, promote the decl
+
+## Input
+
+`````js filename=intro
+let a /*:unknown*/ = 999;
+const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
+const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam);
+const tmpClusterSSA_a /*:unknown*/ = tmpNestedAssignObjPatternRhs.a;
+if (tmpNestedAssignObjPatternRhs) {
+  while ($LOOP_UNROLL_10) {
+    $(100);
+    const tmpCalleeParam$1 /*:object*/ = { a: 1, b: 2 };
+    const tmpNestedAssignObjPatternRhs$1 /*:unknown*/ = $(tmpCalleeParam$1);
+    a = tmpNestedAssignObjPatternRhs$1.a;
+    if (tmpNestedAssignObjPatternRhs$1) {
+    } else {
+      break;
+    }
+  }
+  $(a);
+} else {
+  $(tmpClusterSSA_a);
+}
+`````
+
+
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
+const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam);
+const tmpClusterSSA_a /*:unknown*/ = tmpNestedAssignObjPatternRhs.a;
+if (tmpNestedAssignObjPatternRhs) {
+  let a /*:unknown*/ = 999;
+  while ($LOOP_UNROLL_10) {
+    $(100);
+    const tmpCalleeParam$1 /*:object*/ = { a: 1, b: 2 };
+    const tmpNestedAssignObjPatternRhs$1 /*:unknown*/ = $(tmpCalleeParam$1);
+    a = tmpNestedAssignObjPatternRhs$1.a;
+    if (tmpNestedAssignObjPatternRhs$1) {
+    } else {
+      break;
+    }
+  }
+  $(a);
+} else {
+  $(tmpClusterSSA_a);
+}
+`````
+
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpNestedAssignObjPatternRhs = $({ a: 1, b: 2 });
+const tmpClusterSSA_a = tmpNestedAssignObjPatternRhs.a;
+if (tmpNestedAssignObjPatternRhs) {
+  let a = 999;
+  while (true) {
+    $(100);
+    const tmpNestedAssignObjPatternRhs$1 = $({ a: 1, b: 2 });
+    a = tmpNestedAssignObjPatternRhs$1.a;
+    if (!tmpNestedAssignObjPatternRhs$1) {
+      break;
+    }
+  }
+  $(a);
+} else {
+  $(tmpClusterSSA_a);
+}
+`````
+
+
+## PST Settled
+With rename=true
+
+`````js filename=intro
+const a = {
+  a: 1,
+  b: 2,
+};
+const b = $( a );
+const c = b.a;
+if (b) {
+  let d = 999;
+  while ($LOOP_UNROLL_10) {
+    $( 100 );
+    const e = {
+      a: 1,
+      b: 2,
+    };
+    const f = $( e );
+    d = f.a;
+    if (f) {
+
+    }
+    else {
+      break;
+    }
+  }
+  $( d );
+}
+else {
+  $( c );
+}
+`````
+
+
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let a = 999;
+const tmpCalleeParam = { a: 1, b: 2 };
+const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
+const tmpClusterSSA_a = tmpNestedAssignObjPatternRhs.a;
+if (tmpNestedAssignObjPatternRhs) {
+  while ($LOOP_UNROLL_10) {
+    $(100);
+    const tmpCalleeParam$1 = { a: 1, b: 2 };
+    const tmpNestedAssignObjPatternRhs$1 = $(tmpCalleeParam$1);
+    a = tmpNestedAssignObjPatternRhs$1.a;
+    if (tmpNestedAssignObjPatternRhs$1) {
+    } else {
+      break;
+    }
+  }
+  $(a);
+} else {
+  $(tmpClusterSSA_a);
+}
+`````
+
+
+## Todos triggered
+
+
+None
+
+
+## Globals
+
+
+None
+
+
+## Runtime Outcome
+
+
+Should call `$` with:
+ - 1: { a: '1', b: '2' }
+ - 2: 100
+ - 3: { a: '1', b: '2' }
+ - 4: 100
+ - 5: { a: '1', b: '2' }
+ - 6: 100
+ - 7: { a: '1', b: '2' }
+ - 8: 100
+ - 9: { a: '1', b: '2' }
+ - 10: 100
+ - 11: { a: '1', b: '2' }
+ - 12: 100
+ - 13: { a: '1', b: '2' }
+ - 14: 100
+ - 15: { a: '1', b: '2' }
+ - 16: 100
+ - 17: { a: '1', b: '2' }
+ - 18: 100
+ - 19: { a: '1', b: '2' }
+ - 20: 100
+ - 21: { a: '1', b: '2' }
+ - 22: 100
+ - 23: { a: '1', b: '2' }
+ - 24: 100
+ - 25: { a: '1', b: '2' }
+ - 26: 100
+ - eval returned: ('<crash[ Loop aborted by Preval test runner (this simply curbs infinite loops in tests) ]>')
+
+Pre normalization calls: Same
+
+Normalized calls: Same
+
+Post settled calls: Same
+
+Denormalized calls: Same

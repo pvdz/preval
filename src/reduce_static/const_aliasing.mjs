@@ -41,20 +41,23 @@ function _constAliasing(fdata) {
   const queue = [];
 
   fdata.globallyUniqueNamingRegistry.forEach((meta, lhsName) => {
-    if (meta.isBuiltin) return;
-    if (meta.isImplicitGlobal) return;
-    if (meta.isCatchVar) return;
-    if (meta.isExport) return; // Exports are "live" bindings so any update to it might be observable in strange ways
     if (!meta.isConstant) {
+      if (meta.isBuiltin) return;
+      if (meta.isImplicitGlobal) return;
+      if (meta.isCatchVar) return;
+      if (meta.isExport) return; // Exports are "live" bindings so any update to it might be observable in strange ways
+
       if (meta.isTernaryConst) {
         handleTernaryConst(meta);
       }
       return;
     }
-    if (meta.writes.length !== 1) return;
-    if (meta.writes[0].kind !== 'var') return; // catch or smth
+    ASSERT(!meta.isBuiltin && !meta.isImplicitGlobal && !meta.isCatchVar, 'constant supersedes these', meta);
+    if (meta.writes.length !== 1) return; // caught elsewhere
+    if (meta.writes[0].kind !== 'var') return todo('what is a constant with one write but not a var as first write?'); // catch or smth
     if (meta.varDeclRef.varDeclNode.init.type !== 'Identifier') return;
 
+    // We have a `const lhs = rhs`
     const rhsName = meta.varDeclRef.varDeclNode.init.name;
     vlog('- Testing:', [lhsName], 'with', [rhsName]);
     if (rhsName === lhsName) return vlog('- bail: this is tdz'); // TDZ but not my problem, should be caught elsewhere
@@ -67,7 +70,13 @@ function _constAliasing(fdata) {
       // Replace all occurrences of the binding name with the global name
       // Since built-ins are not constants, they can be overridden, so we must be a bit careful here
       if (ASSUME_BUILTINS) {
-        vlog('Replacing all cases of "', rhsName, '" with "', lhsName, '"');
+        if (meta.isExport) {
+          // Example that breaks: `const x = undefned; export {x as y};` -> `export {undefined as y}` fails
+          todo('Exported members must have a local binding so this leads to failure but we could still inline other local occurrences');
+          return;
+        }
+
+        vlog('Rhs is a builtin. Replacing all cases of "', lhsName, '" with builtin "', rhsName, '"');
 
         riskyRule('An alias to a built-in global should be renamed to that global');
         example('const x = Array; f(x);', 'f(Array);');
@@ -92,15 +101,13 @@ function _constAliasing(fdata) {
       return
     }
 
-    //if (meta2.isImplicitGlobal) return;
-    //if (meta2.isExport) return; // Exports are "live" bindings so any update to it might be observable in strange ways
-
     if (meta2.isConstant) {
       // Main case we target here. `const x = 1; const y = x;`
+      // I think here the export case is not important? Both are immutable after all.
 
-      vlog('Replacing all cases of "', rhsName, '" with "', lhsName, '"');
+      vlog('Replacing all cases of "', lhsName, '" with constant "', rhsName, '"');
 
-      rule('A constant that aliases another constant should have all refs to the second one replaced by the name of the first');
+      rule('A constant that aliases another constant should have all refs to the lhs replaced by the rhs');
       example('const x = foo; const y = x; f(y);', 'const x = foo; const y = x; f(x);');
       before(meta.varDeclRef.varDeclNode);
       before(meta2.varDeclRef.varDeclNode);
@@ -123,11 +130,16 @@ function _constAliasing(fdata) {
       return;
     }
 
-    // This is alt-path. The rhs is not a constant, maybe even an implicit global.
+    if (meta.isExport) {
+      return;
+    }
 
-    // Case 1: all usages of the const happen before the rhs has an opportunity to change
+    // This is alt-path. The rhs is not a constant, maybe even an implicit global, catch var, and potentially exported.
+
+    // Assert: all usages of the const happen before the rhs has an opportunity to change
     // Example: `let rhs = x; const lhs = rhs; $(lhs);` in that case we want to change $(lhs) to $(rhs)
     // Example: `let rhs = x; const lhs = rhs; $(lhs); x = 10; $(lhs);` in that case we can only change the first usage, not both
+    // Have to do solid side effect analysis
 
     const FOUND = 1;
     const SPIES = 2;

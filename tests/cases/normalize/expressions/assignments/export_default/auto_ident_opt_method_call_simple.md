@@ -23,8 +23,7 @@ $(a);
 `````js filename=intro
 const b /*:object*/ = { c: $ };
 const tmpClusterSSA_a /*:unknown*/ = $dotCall($, b, `c`, 1);
-const tmpAnonDefaultExport /*:unknown*/ = tmpClusterSSA_a;
-export { tmpAnonDefaultExport as default };
+export { tmpClusterSSA_a as default };
 $(tmpClusterSSA_a);
 `````
 
@@ -34,8 +33,7 @@ $(tmpClusterSSA_a);
 
 `````js filename=intro
 const tmpClusterSSA_a = $dotCall($, { c: $ }, `c`, 1);
-const tmpAnonDefaultExport = tmpClusterSSA_a;
-export { tmpAnonDefaultExport as default };
+export { tmpClusterSSA_a as default };
 $(tmpClusterSSA_a);
 `````
 
@@ -46,8 +44,7 @@ With rename=true
 `````js filename=intro
 const a = { c: $ };
 const b = $dotCall( $, a, "c", 1 );
-const c = b;
-export { c as default };
+export { b as default };
 $( b );
 `````
 

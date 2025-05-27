@@ -25,8 +25,7 @@ const tmpCallComplexCallee /*:unknown*/ = $($);
 const tmpCalleeParam /*:unknown*/ = $(1);
 const tmpCalleeParam$1 /*:unknown*/ = $(2);
 const a /*:unknown*/ = tmpCallComplexCallee(tmpCalleeParam, tmpCalleeParam$1);
-const tmpAnonDefaultExport /*:unknown*/ = a;
-export { tmpAnonDefaultExport as default };
+export { a as default };
 $(a);
 `````
 
@@ -37,8 +36,7 @@ $(a);
 `````js filename=intro
 const tmpCallComplexCallee = $($);
 const a = tmpCallComplexCallee($(1), $(2));
-const tmpAnonDefaultExport = a;
-export { tmpAnonDefaultExport as default };
+export { a as default };
 $(a);
 `````
 
@@ -51,8 +49,7 @@ const a = $( $ );
 const b = $( 1 );
 const c = $( 2 );
 const d = a( b, c );
-const e = d;
-export { e as default };
+export { d as default };
 $( d );
 `````
 

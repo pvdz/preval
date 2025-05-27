@@ -21,8 +21,8 @@ $(a, b);
 
 
 `````js filename=intro
-const tmpAnonDefaultExport /*:number*/ = 1;
-export { tmpAnonDefaultExport as default };
+const tmpPostUpdArgIdent /*:number*/ = 1;
+export { tmpPostUpdArgIdent as default };
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a, 0);
 `````
@@ -32,8 +32,8 @@ $(a, 0);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpAnonDefaultExport = 1;
-export { tmpAnonDefaultExport as default };
+const tmpPostUpdArgIdent = 1;
+export { tmpPostUpdArgIdent as default };
 $({ a: 999, b: 1000 }, 0);
 `````
 

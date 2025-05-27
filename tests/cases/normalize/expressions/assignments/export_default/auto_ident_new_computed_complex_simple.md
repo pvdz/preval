@@ -25,8 +25,7 @@ const b /*:object*/ = { $: $ };
 const tmpCompObj /*:unknown*/ = $(b);
 const tmpNewCallee /*:unknown*/ = tmpCompObj.$;
 const a /*:object*/ = new tmpNewCallee(1);
-const tmpAnonDefaultExport /*:unknown*/ = a;
-export { tmpAnonDefaultExport as default };
+export { a as default };
 $(a);
 `````
 
@@ -37,8 +36,7 @@ $(a);
 `````js filename=intro
 const tmpNewCallee = $({ $: $ }).$;
 const a = new tmpNewCallee(1);
-const tmpAnonDefaultExport = a;
-export { tmpAnonDefaultExport as default };
+export { a as default };
 $(a);
 `````
 
@@ -51,8 +49,7 @@ const a = { $: $ };
 const b = $( a );
 const c = b.$;
 const d = new c( 1 );
-const e = d;
-export { e as default };
+export { d as default };
 $( d );
 `````
 

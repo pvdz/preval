@@ -22,8 +22,7 @@ $(a);
 const tmpBinBothLhs /*:unknown*/ = $(1);
 const tmpBinBothRhs /*:unknown*/ = $(2);
 const a /*:primitive*/ = tmpBinBothLhs + tmpBinBothRhs;
-const tmpAnonDefaultExport /*:unknown*/ = a;
-export { tmpAnonDefaultExport as default };
+export { a as default };
 $(a);
 `````
 
@@ -33,8 +32,7 @@ $(a);
 
 `````js filename=intro
 const a = $(1) + $(2);
-const tmpAnonDefaultExport = a;
-export { tmpAnonDefaultExport as default };
+export { a as default };
 $(a);
 `````
 
@@ -46,8 +44,7 @@ With rename=true
 const a = $( 1 );
 const b = $( 2 );
 const c = a + b;
-const d = c;
-export { d as default };
+export { c as default };
 $( c );
 `````
 

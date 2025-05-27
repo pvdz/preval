@@ -21,8 +21,8 @@ $(a);
 
 
 `````js filename=intro
-const tmpAnonDefaultExport /*:number*/ = 100;
-export { tmpAnonDefaultExport as default };
+const tmpClusterSSA_a /*:number*/ = 100;
+export { tmpClusterSSA_a as default };
 $(100);
 `````
 
@@ -31,8 +31,8 @@ $(100);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpAnonDefaultExport = 100;
-export { tmpAnonDefaultExport as default };
+const tmpClusterSSA_a = 100;
+export { tmpClusterSSA_a as default };
 $(100);
 `````
 

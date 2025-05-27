@@ -26,8 +26,7 @@ const tmpCalleeParam /*:array*/ = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs /*:unknown*/ = $(tmpCalleeParam);
 const tmpArrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
 const b /*:unknown*/ = tmpArrPatternSplat[0];
-const tmpAnonDefaultExport /*:unknown*/ = tmpNestedAssignArrPatternRhs;
-export { tmpAnonDefaultExport as default };
+export { tmpNestedAssignArrPatternRhs as default };
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a, b);
 `````
@@ -40,8 +39,7 @@ $(a, b);
 const tmpArrElement = $(2);
 const tmpNestedAssignArrPatternRhs = $([tmpArrElement]);
 const b = [...tmpNestedAssignArrPatternRhs][0];
-const tmpAnonDefaultExport = tmpNestedAssignArrPatternRhs;
-export { tmpAnonDefaultExport as default };
+export { tmpNestedAssignArrPatternRhs as default };
 $({ a: 999, b: 1000 }, b);
 `````
 
@@ -55,13 +53,12 @@ const b = [ a ];
 const c = $( b );
 const d = [ ...c ];
 const e = d[ 0 ];
-const f = c;
-export { f as default };
-const g = {
+export { c as default };
+const f = {
   a: 999,
   b: 1000,
 };
-$( g, e );
+$( f, e );
 `````
 
 

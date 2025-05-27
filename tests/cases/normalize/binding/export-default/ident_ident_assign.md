@@ -22,9 +22,8 @@ $(a, b, c);
 const tmpNestedAssignObj /*:unknown*/ = $(3);
 const tmpNestedPropAssignRhs /*:unknown*/ = $(4);
 tmpNestedAssignObj.y = tmpNestedPropAssignRhs;
-const a /*:unknown*/ = tmpNestedPropAssignRhs;
-export { a };
-$(a, tmpNestedPropAssignRhs, 3);
+export { tmpNestedPropAssignRhs as a };
+$(tmpNestedPropAssignRhs, tmpNestedPropAssignRhs, 3);
 `````
 
 
@@ -35,9 +34,8 @@ $(a, tmpNestedPropAssignRhs, 3);
 const tmpNestedAssignObj = $(3);
 const tmpNestedPropAssignRhs = $(4);
 tmpNestedAssignObj.y = tmpNestedPropAssignRhs;
-const a = tmpNestedPropAssignRhs;
-export { a };
-$(a, tmpNestedPropAssignRhs, 3);
+export { tmpNestedPropAssignRhs as a };
+$(tmpNestedPropAssignRhs, tmpNestedPropAssignRhs, 3);
 `````
 
 
@@ -48,9 +46,8 @@ With rename=true
 const a = $( 3 );
 const b = $( 4 );
 a.y = b;
-const c = b;
-export { c as a };
-$( c, b, 3 );
+export { b as a };
+$( b, b, 3 );
 `````
 
 

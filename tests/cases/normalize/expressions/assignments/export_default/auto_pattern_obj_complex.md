@@ -22,8 +22,7 @@ $(a);
 const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam);
 const a /*:unknown*/ = tmpNestedAssignObjPatternRhs.a;
-const tmpAnonDefaultExport /*:unknown*/ = tmpNestedAssignObjPatternRhs;
-export { tmpAnonDefaultExport as default };
+export { tmpNestedAssignObjPatternRhs as default };
 $(a);
 `````
 
@@ -34,8 +33,7 @@ $(a);
 `````js filename=intro
 const tmpNestedAssignObjPatternRhs = $({ a: 1, b: 2 });
 const a = tmpNestedAssignObjPatternRhs.a;
-const tmpAnonDefaultExport = tmpNestedAssignObjPatternRhs;
-export { tmpAnonDefaultExport as default };
+export { tmpNestedAssignObjPatternRhs as default };
 $(a);
 `````
 
@@ -50,8 +48,7 @@ const a = {
 };
 const b = $( a );
 const c = b.a;
-const d = b;
-export { d as default };
+export { b as default };
 $( c );
 `````
 

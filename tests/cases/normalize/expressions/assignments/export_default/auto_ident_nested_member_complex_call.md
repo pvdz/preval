@@ -32,8 +32,7 @@ const tmpInitAssignLhsComputedProp /*:unknown*/ = $(`y`);
 const tmpInitAssignLhsComputedRhs /*:unknown*/ = $(3);
 tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = tmpInitAssignLhsComputedRhs;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpInitAssignLhsComputedRhs;
-const tmpAnonDefaultExport /*:unknown*/ = tmpInitAssignLhsComputedRhs;
-export { tmpAnonDefaultExport as default };
+export { tmpInitAssignLhsComputedRhs as default };
 $(tmpInitAssignLhsComputedRhs, b, c, 3);
 `````
 
@@ -51,8 +50,7 @@ const tmpInitAssignLhsComputedProp = $(`y`);
 const tmpInitAssignLhsComputedRhs = $(3);
 tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = tmpInitAssignLhsComputedRhs;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpInitAssignLhsComputedRhs;
-const tmpAnonDefaultExport = tmpInitAssignLhsComputedRhs;
-export { tmpAnonDefaultExport as default };
+export { tmpInitAssignLhsComputedRhs as default };
 $(tmpInitAssignLhsComputedRhs, b, c, 3);
 `````
 
@@ -70,8 +68,7 @@ const f = $( "y" );
 const g = $( 3 );
 e[f] = g;
 b[c] = g;
-const h = g;
-export { h as default };
+export { g as default };
 $( g, a, d, 3 );
 `````
 

@@ -23,9 +23,8 @@ const z /*:array*/ = [10, 20, 30];
 const tmpArrPatternSplat /*:array*/ = [...z];
 const x /*:unknown*/ = tmpArrPatternSplat[0];
 const y /*:unknown*/ = tmpArrPatternSplat[1];
-const a /*:unknown*/ = z;
-export { a };
-$(a, x, y, z);
+export { z as a };
+$(z, x, y, z);
 `````
 
 
@@ -37,9 +36,8 @@ const z = [10, 20, 30];
 const tmpArrPatternSplat = [...z];
 const x = tmpArrPatternSplat[0];
 const y = tmpArrPatternSplat[1];
-const a = z;
-export { a };
-$(a, x, y, z);
+export { z as a };
+$(z, x, y, z);
 `````
 
 
@@ -51,9 +49,8 @@ const a = [ 10, 20, 30 ];
 const b = [ ...a ];
 const c = b[ 0 ];
 const d = b[ 1 ];
-const e = a;
-export { e as a };
-$( e, c, d, a );
+export { a as a };
+$( a, c, d, a );
 `````
 
 

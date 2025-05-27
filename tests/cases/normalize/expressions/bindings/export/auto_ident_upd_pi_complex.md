@@ -27,9 +27,8 @@ const tmpUpdProp /*:unknown*/ = tmpUpdObj.x;
 const tmpUpdNum /*:number*/ = $coerce(tmpUpdProp, `number`);
 const tmpUpdInc /*:number*/ = tmpUpdNum + 1;
 tmpUpdObj.x = tmpUpdInc;
-const a /*:unknown*/ = tmpUpdInc;
-export { a };
-$(a, b);
+export { tmpUpdInc as a };
+$(tmpUpdInc, b);
 `````
 
 
@@ -41,9 +40,8 @@ const b = { x: 1 };
 const tmpUpdObj = $($(b));
 const tmpUpdInc = $coerce(tmpUpdObj.x, `number`) + 1;
 tmpUpdObj.x = tmpUpdInc;
-const a = tmpUpdInc;
-export { a };
-$(a, b);
+export { tmpUpdInc as a };
+$(tmpUpdInc, b);
 `````
 
 
@@ -58,9 +56,8 @@ const d = c.x;
 const e = $coerce( d, "number" );
 const f = e + 1;
 c.x = f;
-const g = f;
-export { g as a };
-$( g, a );
+export { f as a };
+$( f, a );
 `````
 
 

@@ -25,8 +25,7 @@ const tmpCalleeParam /*:unknown*/ = $(`\$`);
 const b /*:object*/ = { $: $ };
 const tmpNewCallee /*:unknown*/ = b[tmpCalleeParam];
 const a /*:object*/ = new tmpNewCallee(1);
-const tmpAnonDefaultExport /*:unknown*/ = a;
-export { tmpAnonDefaultExport as default };
+export { a as default };
 $(a);
 `````
 
@@ -38,8 +37,7 @@ $(a);
 const tmpCalleeParam = $(`\$`);
 const tmpNewCallee = { $: $ }[tmpCalleeParam];
 const a = new tmpNewCallee(1);
-const tmpAnonDefaultExport = a;
-export { tmpAnonDefaultExport as default };
+export { a as default };
 $(a);
 `````
 
@@ -52,8 +50,7 @@ const a = $( "$" );
 const b = { $: $ };
 const c = b[ a ];
 const d = new c( 1 );
-const e = d;
-export { e as default };
+export { d as default };
 $( d );
 `````
 

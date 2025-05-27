@@ -22,8 +22,7 @@ $(a);
 const tmpArrElement /*:unknown*/ = $(1);
 const tmpArrElement$3 /*:unknown*/ = $(3);
 const a /*:array*/ = [tmpArrElement, 2, tmpArrElement$3];
-const tmpAnonDefaultExport /*:unknown*/ = a;
-export { tmpAnonDefaultExport as default };
+export { a as default };
 $(a);
 `````
 
@@ -35,8 +34,7 @@ $(a);
 const tmpArrElement = $(1);
 const tmpArrElement$3 = $(3);
 const a = [tmpArrElement, 2, tmpArrElement$3];
-const tmpAnonDefaultExport = a;
-export { tmpAnonDefaultExport as default };
+export { a as default };
 $(a);
 `````
 
@@ -48,8 +46,7 @@ With rename=true
 const a = $( 1 );
 const b = $( 3 );
 const c = [ a, 2, b ];
-const d = c;
-export { d as default };
+export { c as default };
 $( c );
 `````
 

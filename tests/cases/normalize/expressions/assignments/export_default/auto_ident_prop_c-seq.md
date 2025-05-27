@@ -24,8 +24,7 @@ $(a, b);
 const b /*:object*/ = { c: 1 };
 const tmpAssignRhsProp /*:unknown*/ = $(b);
 const a /*:unknown*/ = tmpAssignRhsProp.c;
-const tmpAnonDefaultExport /*:unknown*/ = a;
-export { tmpAnonDefaultExport as default };
+export { a as default };
 $(a, b);
 `````
 
@@ -36,8 +35,7 @@ $(a, b);
 `````js filename=intro
 const b = { c: 1 };
 const a = $(b).c;
-const tmpAnonDefaultExport = a;
-export { tmpAnonDefaultExport as default };
+export { a as default };
 $(a, b);
 `````
 
@@ -49,8 +47,7 @@ With rename=true
 const a = { c: 1 };
 const b = $( a );
 const c = b.c;
-const d = c;
-export { d as default };
+export { c as default };
 $( c, a );
 `````
 

@@ -19,12 +19,11 @@ $(a);
 
 
 `````js filename=intro
-const a /*:()=>undefined*/ = function () {
+const a /*:()=>unknown*/ = function () {
   debugger;
   return undefined;
 };
-const tmpAnonDefaultExport /*:unknown*/ = a;
-export { tmpAnonDefaultExport as default };
+export { a as default };
 $(a);
 `````
 
@@ -34,8 +33,7 @@ $(a);
 
 `````js filename=intro
 const a = function () {};
-const tmpAnonDefaultExport = a;
-export { tmpAnonDefaultExport as default };
+export { a as default };
 $(a);
 `````
 
@@ -48,8 +46,7 @@ const a = function() {
   debugger;
   return undefined;
 };
-const b = a;
-export { b as default };
+export { a as default };
 $( a );
 `````
 

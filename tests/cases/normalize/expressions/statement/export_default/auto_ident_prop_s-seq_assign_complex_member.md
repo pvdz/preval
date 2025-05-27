@@ -26,8 +26,7 @@ const tmpCompObj /*:unknown*/ = $(b);
 const tmpCalleeParam /*:unknown*/ = $(`d`);
 const tmpInitAssignLhsComputedRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam];
 b.c = tmpInitAssignLhsComputedRhs;
-const tmpAnonDefaultExport /*:unknown*/ = tmpInitAssignLhsComputedRhs;
-export { tmpAnonDefaultExport as default };
+export { tmpInitAssignLhsComputedRhs as default };
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a, b);
 `````
@@ -42,8 +41,7 @@ const tmpCompObj = $(b);
 const tmpCalleeParam = $(`d`);
 const tmpInitAssignLhsComputedRhs = tmpCompObj[tmpCalleeParam];
 b.c = tmpInitAssignLhsComputedRhs;
-const tmpAnonDefaultExport = tmpInitAssignLhsComputedRhs;
-export { tmpAnonDefaultExport as default };
+export { tmpInitAssignLhsComputedRhs as default };
 $({ a: 999, b: 1000 }, b);
 `````
 
@@ -60,13 +58,12 @@ const b = $( a );
 const c = $( "d" );
 const d = b[ c ];
 a.c = d;
-const e = d;
-export { e as default };
-const f = {
+export { d as default };
+const e = {
   a: 999,
   b: 1000,
 };
-$( f, a );
+$( e, a );
 `````
 
 

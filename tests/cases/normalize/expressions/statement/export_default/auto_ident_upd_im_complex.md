@@ -28,8 +28,7 @@ const tmpUpdProp /*:unknown*/ = tmpUpdObj.x;
 const tmpUpdNum /*:number*/ = $coerce(tmpUpdProp, `number`);
 const tmpUpdInc /*:number*/ = tmpUpdNum - 1;
 tmpUpdObj.x = tmpUpdInc;
-const tmpAnonDefaultExport /*:unknown*/ = tmpUpdNum;
-export { tmpAnonDefaultExport as default };
+export { tmpUpdNum as default };
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a, b);
 `````
@@ -43,8 +42,7 @@ const b = { x: 1 };
 const tmpUpdObj = $($(b));
 const tmpUpdNum = $coerce(tmpUpdObj.x, `number`);
 tmpUpdObj.x = tmpUpdNum - 1;
-const tmpAnonDefaultExport = tmpUpdNum;
-export { tmpAnonDefaultExport as default };
+export { tmpUpdNum as default };
 $({ a: 999, b: 1000 }, b);
 `````
 
@@ -60,13 +58,12 @@ const d = c.x;
 const e = $coerce( d, "number" );
 const f = e - 1;
 c.x = f;
-const g = e;
-export { g as default };
-const h = {
+export { e as default };
+const g = {
   a: 999,
   b: 1000,
 };
-$( h, a );
+$( g, a );
 `````
 
 

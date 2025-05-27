@@ -27,8 +27,7 @@ const arg /*:object*/ = { y: 1 };
 const tmpDeleteCompObj /*:unknown*/ = $(arg);
 const tmpDeleteCompProp /*:unknown*/ = $(`y`);
 const a /*:boolean*/ = delete tmpDeleteCompObj[tmpDeleteCompProp];
-const tmpAnonDefaultExport /*:unknown*/ = a;
-export { tmpAnonDefaultExport as default };
+export { a as default };
 $(a, arg);
 `````
 
@@ -43,8 +42,7 @@ const arg = { y: 1 };
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $(`y`);
 const a = delete tmpDeleteCompObj[tmpDeleteCompProp];
-const tmpAnonDefaultExport = a;
-export { tmpAnonDefaultExport as default };
+export { a as default };
 $(a, arg);
 `````
 
@@ -59,8 +57,7 @@ const a = { y: 1 };
 const b = $( a );
 const c = $( "y" );
 const d = delete b[ c ];
-const e = d;
-export { e as default };
+export { d as default };
 $( d, a );
 `````
 

@@ -21,8 +21,7 @@ $(a);
 
 `````js filename=intro
 const a /*:unknown*/ = $(1);
-const b /*:unknown*/ = a;
-export { b };
+export { a as b };
 $(a);
 `````
 
@@ -32,8 +31,7 @@ $(a);
 
 `````js filename=intro
 const a = $(1);
-const b = a;
-export { b };
+export { a as b };
 $(a);
 `````
 
@@ -43,8 +41,7 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-const b = a;
-export { b as b };
+export { a as b };
 $( a );
 `````
 

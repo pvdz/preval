@@ -28,8 +28,7 @@ const tmpNestedAssignArrPatternRhs /*:array*/ = [tmpArrElement, tmpArrElement$1]
 const tmpArrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
 const x /*:unknown*/ = tmpArrPatternSplat[0];
 const y /*:unknown*/ = tmpArrPatternSplat[1];
-const tmpAnonDefaultExport /*:unknown*/ = tmpNestedAssignArrPatternRhs;
-export { tmpAnonDefaultExport as default };
+export { tmpNestedAssignArrPatternRhs as default };
 $(tmpNestedAssignArrPatternRhs, x, y);
 `````
 
@@ -44,8 +43,7 @@ const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
 const tmpArrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 const x = tmpArrPatternSplat[0];
 const y = tmpArrPatternSplat[1];
-const tmpAnonDefaultExport = tmpNestedAssignArrPatternRhs;
-export { tmpAnonDefaultExport as default };
+export { tmpNestedAssignArrPatternRhs as default };
 $(tmpNestedAssignArrPatternRhs, x, y);
 `````
 
@@ -60,8 +58,7 @@ const c = [ a, b ];
 const d = [ ...c ];
 const e = d[ 0 ];
 const f = d[ 1 ];
-const g = c;
-export { g as default };
+export { c as default };
 $( c, e, f );
 `````
 

@@ -21,8 +21,7 @@ $(a);
 `````js filename=intro
 const tmpNewCallee /*:unknown*/ = $($);
 const a /*:object*/ = new tmpNewCallee(1);
-const tmpAnonDefaultExport /*:unknown*/ = a;
-export { tmpAnonDefaultExport as default };
+export { a as default };
 $(a);
 `````
 
@@ -33,8 +32,7 @@ $(a);
 `````js filename=intro
 const tmpNewCallee = $($);
 const a = new tmpNewCallee(1);
-const tmpAnonDefaultExport = a;
-export { tmpAnonDefaultExport as default };
+export { a as default };
 $(a);
 `````
 
@@ -45,8 +43,7 @@ With rename=true
 `````js filename=intro
 const a = $( $ );
 const b = new a( 1 );
-const c = b;
-export { c as default };
+export { b as default };
 $( b );
 `````
 

@@ -25,8 +25,7 @@ const b /*:object*/ = { $: $ };
 const tmpMCOO /*:unknown*/ = $(b);
 const tmpMCF /*:unknown*/ = tmpMCOO.$;
 const a /*:unknown*/ = $dotCall(tmpMCF, tmpMCOO, `\$`, 1);
-const tmpAnonDefaultExport /*:unknown*/ = a;
-export { tmpAnonDefaultExport as default };
+export { a as default };
 $(a);
 `````
 
@@ -37,8 +36,7 @@ $(a);
 `````js filename=intro
 const tmpMCOO = $({ $: $ });
 const a = tmpMCOO.$(1);
-const tmpAnonDefaultExport = a;
-export { tmpAnonDefaultExport as default };
+export { a as default };
 $(a);
 `````
 
@@ -51,8 +49,7 @@ const a = { $: $ };
 const b = $( a );
 const c = b.$;
 const d = $dotCall( c, b, "$", 1 );
-const e = d;
-export { e as default };
+export { d as default };
 $( d );
 `````
 

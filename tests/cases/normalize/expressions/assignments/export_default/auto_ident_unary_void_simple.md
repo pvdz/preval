@@ -63,7 +63,7 @@ $(a, arg);
 ## Todos triggered
 
 
-None
+- (todo) Exported members must have a local binding so this leads to failure but we could still inline other local occurrences
 
 
 ## Globals

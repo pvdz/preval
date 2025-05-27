@@ -21,8 +21,7 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(1);
 const tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam);
-const tmpAnonDefaultExport /*:unknown*/ = tmpClusterSSA_a;
-export { tmpAnonDefaultExport as default };
+export { tmpClusterSSA_a as default };
 $(tmpClusterSSA_a);
 `````
 
@@ -32,8 +31,7 @@ $(tmpClusterSSA_a);
 
 `````js filename=intro
 const tmpClusterSSA_a = $($(1));
-const tmpAnonDefaultExport = tmpClusterSSA_a;
-export { tmpAnonDefaultExport as default };
+export { tmpClusterSSA_a as default };
 $(tmpClusterSSA_a);
 `````
 
@@ -44,8 +42,7 @@ With rename=true
 `````js filename=intro
 const a = $( 1 );
 const b = $( a );
-const c = b;
-export { c as default };
+export { b as default };
 $( b );
 `````
 

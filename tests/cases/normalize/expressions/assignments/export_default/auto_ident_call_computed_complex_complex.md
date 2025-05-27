@@ -26,8 +26,7 @@ const tmpMCCO /*:unknown*/ = $(b);
 const tmpMCCP /*:unknown*/ = $(`\$`);
 const tmpMCF /*:unknown*/ = tmpMCCO[tmpMCCP];
 const a /*:unknown*/ = $dotCall(tmpMCF, tmpMCCO, undefined, 1);
-const tmpAnonDefaultExport /*:unknown*/ = a;
-export { tmpAnonDefaultExport as default };
+export { a as default };
 $(a);
 `````
 
@@ -39,8 +38,7 @@ $(a);
 const tmpMCCO = $({ $: $ });
 const tmpMCCP = $(`\$`);
 const a = tmpMCCO[tmpMCCP](1);
-const tmpAnonDefaultExport = a;
-export { tmpAnonDefaultExport as default };
+export { a as default };
 $(a);
 `````
 
@@ -54,8 +52,7 @@ const b = $( a );
 const c = $( "$" );
 const d = b[ c ];
 const e = $dotCall( d, b, undefined, 1 );
-const f = e;
-export { f as default };
+export { e as default };
 $( e );
 `````
 

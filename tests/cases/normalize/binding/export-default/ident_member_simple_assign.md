@@ -22,10 +22,9 @@ $(a, b, c);
 const tmpInitAssignLhsComputedObj /*:unknown*/ = $(3);
 const tmpInitAssignLhsComputedRhs$1 /*:unknown*/ = $(4);
 tmpInitAssignLhsComputedObj.y = tmpInitAssignLhsComputedRhs$1;
-const a /*:unknown*/ = tmpInitAssignLhsComputedRhs$1;
-export { a };
+export { tmpInitAssignLhsComputedRhs$1 as a };
 const b /*:object*/ = { x: tmpInitAssignLhsComputedRhs$1 };
-$(a, b, 3);
+$(tmpInitAssignLhsComputedRhs$1, b, 3);
 `````
 
 
@@ -36,9 +35,8 @@ $(a, b, 3);
 const tmpInitAssignLhsComputedObj = $(3);
 const tmpInitAssignLhsComputedRhs$1 = $(4);
 tmpInitAssignLhsComputedObj.y = tmpInitAssignLhsComputedRhs$1;
-const a = tmpInitAssignLhsComputedRhs$1;
-export { a };
-$(a, { x: tmpInitAssignLhsComputedRhs$1 }, 3);
+export { tmpInitAssignLhsComputedRhs$1 as a };
+$(tmpInitAssignLhsComputedRhs$1, { x: tmpInitAssignLhsComputedRhs$1 }, 3);
 `````
 
 
@@ -49,10 +47,9 @@ With rename=true
 const a = $( 3 );
 const b = $( 4 );
 a.y = b;
-const c = b;
-export { c as a };
-const d = { x: b };
-$( c, d, 3 );
+export { b as a };
+const c = { x: b };
+$( b, c, 3 );
 `````
 
 

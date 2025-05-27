@@ -25,8 +25,7 @@ $(a, x, y);
 const tmpObjLitVal /*:unknown*/ = $(3);
 const tmpObjLitVal$1 /*:unknown*/ = $(4);
 const tmpNestedAssignObjPatternRhs /*:object*/ = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-const tmpAnonDefaultExport /*:unknown*/ = tmpNestedAssignObjPatternRhs;
-export { tmpAnonDefaultExport as default };
+export { tmpNestedAssignObjPatternRhs as default };
 $(tmpNestedAssignObjPatternRhs, tmpObjLitVal, tmpObjLitVal$1);
 `````
 
@@ -38,8 +37,7 @@ $(tmpNestedAssignObjPatternRhs, tmpObjLitVal, tmpObjLitVal$1);
 const tmpObjLitVal = $(3);
 const tmpObjLitVal$1 = $(4);
 const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-const tmpAnonDefaultExport = tmpNestedAssignObjPatternRhs;
-export { tmpAnonDefaultExport as default };
+export { tmpNestedAssignObjPatternRhs as default };
 $(tmpNestedAssignObjPatternRhs, tmpObjLitVal, tmpObjLitVal$1);
 `````
 
@@ -54,8 +52,7 @@ const c = {
   x: a,
   y: b,
 };
-const d = c;
-export { d as default };
+export { c as default };
 $( c, a, b );
 `````
 

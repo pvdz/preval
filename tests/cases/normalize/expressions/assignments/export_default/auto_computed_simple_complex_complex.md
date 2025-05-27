@@ -22,8 +22,7 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal /*:unknown*/ = $(1);
 const a /*:object*/ = { b: tmpObjLitVal };
-const tmpAnonDefaultExport /*:unknown*/ = a;
-export { tmpAnonDefaultExport as default };
+export { a as default };
 const tmpAssignComMemLhsProp /*:unknown*/ = $(`b`);
 const tmpAssignComputedRhs /*:unknown*/ = $(2);
 a[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
@@ -37,8 +36,7 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal = $(1);
 const a = { b: tmpObjLitVal };
-const tmpAnonDefaultExport = a;
-export { tmpAnonDefaultExport as default };
+export { a as default };
 const tmpAssignComMemLhsProp = $(`b`);
 const tmpAssignComputedRhs = $(2);
 a[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
@@ -52,11 +50,10 @@ With rename=true
 `````js filename=intro
 const a = $( 1 );
 const b = { b: a };
-const c = b;
-export { c as default };
-const d = $( "b" );
-const e = $( 2 );
-b[d] = e;
+export { b as default };
+const c = $( "b" );
+const d = $( 2 );
+b[c] = d;
 $( b );
 `````
 

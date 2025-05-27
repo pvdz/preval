@@ -24,9 +24,8 @@ const tmpObjLitVal /*:unknown*/ = $(2);
 const tmpCalleeParam /*:object*/ = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam);
 const b /*:unknown*/ = tmpNestedAssignObjPatternRhs.b;
-const a /*:unknown*/ = tmpNestedAssignObjPatternRhs;
-export { a };
-$(a, b);
+export { tmpNestedAssignObjPatternRhs as a };
+$(tmpNestedAssignObjPatternRhs, b);
 `````
 
 
@@ -37,9 +36,8 @@ $(a, b);
 const tmpObjLitVal = $(2);
 const tmpNestedAssignObjPatternRhs = $({ b: tmpObjLitVal });
 const b = tmpNestedAssignObjPatternRhs.b;
-const a = tmpNestedAssignObjPatternRhs;
-export { a };
-$(a, b);
+export { tmpNestedAssignObjPatternRhs as a };
+$(tmpNestedAssignObjPatternRhs, b);
 `````
 
 
@@ -51,9 +49,8 @@ const a = $( 2 );
 const b = { b: a };
 const c = $( b );
 const d = c.b;
-const e = c;
-export { e as a };
-$( e, d );
+export { c as a };
+$( c, d );
 `````
 
 

@@ -29,9 +29,8 @@ const tmpNestedAssignArrPatternRhs /*:array*/ = [tmpArrElement, tmpArrElement$1]
 const tmpArrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
 const tmpSSA_x /*:unknown*/ = tmpArrPatternSplat[0];
 const tmpSSA_y /*:unknown*/ = tmpArrPatternSplat[1];
-const a /*:unknown*/ = tmpNestedAssignArrPatternRhs;
-export { a };
-$(a, tmpSSA_x, tmpSSA_y);
+export { tmpNestedAssignArrPatternRhs as a };
+$(tmpNestedAssignArrPatternRhs, tmpSSA_x, tmpSSA_y);
 `````
 
 
@@ -47,9 +46,8 @@ const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
 const tmpArrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 const tmpSSA_x = tmpArrPatternSplat[0];
 const tmpSSA_y = tmpArrPatternSplat[1];
-const a = tmpNestedAssignArrPatternRhs;
-export { a };
-$(a, tmpSSA_x, tmpSSA_y);
+export { tmpNestedAssignArrPatternRhs as a };
+$(tmpNestedAssignArrPatternRhs, tmpSSA_x, tmpSSA_y);
 `````
 
 
@@ -65,9 +63,8 @@ const c = [ a, b ];
 const d = [ ...c ];
 const e = d[ 0 ];
 const f = d[ 1 ];
-const g = c;
-export { g as a };
-$( g, e, f );
+export { c as a };
+$( c, e, f );
 `````
 
 

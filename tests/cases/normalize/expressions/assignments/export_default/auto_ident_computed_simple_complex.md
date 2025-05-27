@@ -24,8 +24,7 @@ $(a, b);
 const tmpAssignRhsCompProp /*:unknown*/ = $(`c`);
 const b /*:object*/ = { c: 1 };
 const a /*:unknown*/ = b[tmpAssignRhsCompProp];
-const tmpAnonDefaultExport /*:unknown*/ = a;
-export { tmpAnonDefaultExport as default };
+export { a as default };
 $(a, b);
 `````
 
@@ -37,8 +36,7 @@ $(a, b);
 const tmpAssignRhsCompProp = $(`c`);
 const b = { c: 1 };
 const a = b[tmpAssignRhsCompProp];
-const tmpAnonDefaultExport = a;
-export { tmpAnonDefaultExport as default };
+export { a as default };
 $(a, b);
 `````
 
@@ -50,8 +48,7 @@ With rename=true
 const a = $( "c" );
 const b = { c: 1 };
 const c = b[ a ];
-const d = c;
-export { d as default };
+export { c as default };
 $( c, b );
 `````
 

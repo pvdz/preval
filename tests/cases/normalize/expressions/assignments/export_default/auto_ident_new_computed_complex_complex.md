@@ -26,8 +26,7 @@ const tmpCompObj /*:unknown*/ = $(b);
 const tmpCalleeParam /*:unknown*/ = $(`\$`);
 const tmpNewCallee /*:unknown*/ = tmpCompObj[tmpCalleeParam];
 const a /*:object*/ = new tmpNewCallee(1);
-const tmpAnonDefaultExport /*:unknown*/ = a;
-export { tmpAnonDefaultExport as default };
+export { a as default };
 $(a);
 `````
 
@@ -40,8 +39,7 @@ const tmpCompObj = $({ $: $ });
 const tmpCalleeParam = $(`\$`);
 const tmpNewCallee = tmpCompObj[tmpCalleeParam];
 const a = new tmpNewCallee(1);
-const tmpAnonDefaultExport = a;
-export { tmpAnonDefaultExport as default };
+export { a as default };
 $(a);
 `````
 
@@ -55,8 +53,7 @@ const b = $( a );
 const c = $( "$" );
 const d = b[ c ];
 const e = new d( 1 );
-const f = e;
-export { f as default };
+export { e as default };
 $( e );
 `````
 

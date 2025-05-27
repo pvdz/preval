@@ -26,8 +26,7 @@ $(2);
 const arg /*:object*/ = { y: 1 };
 const tmpDeleteObj /*:unknown*/ = $(arg);
 const a /*:boolean*/ = delete tmpDeleteObj.y;
-const tmpAnonDefaultExport /*:unknown*/ = a;
-export { tmpAnonDefaultExport as default };
+export { a as default };
 $(a, arg);
 `````
 
@@ -41,8 +40,7 @@ $(2);
 const arg = { y: 1 };
 const tmpDeleteObj = $(arg);
 const a = delete tmpDeleteObj.y;
-const tmpAnonDefaultExport = a;
-export { tmpAnonDefaultExport as default };
+export { a as default };
 $(a, arg);
 `````
 
@@ -56,8 +54,7 @@ $( 2 );
 const a = { y: 1 };
 const b = $( a );
 const c = delete b.y;
-const d = c;
-export { d as default };
+export { c as default };
 $( c, a );
 `````
 

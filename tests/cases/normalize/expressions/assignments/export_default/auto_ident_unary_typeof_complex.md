@@ -23,8 +23,7 @@ $(a, arg);
 `````js filename=intro
 const tmpUnaryArg /*:unknown*/ = $(1);
 const a /*:string*/ = typeof tmpUnaryArg;
-const tmpAnonDefaultExport /*:unknown*/ = a;
-export { tmpAnonDefaultExport as default };
+export { a as default };
 $(a, 1);
 `````
 
@@ -35,8 +34,7 @@ $(a, 1);
 `````js filename=intro
 const tmpUnaryArg = $(1);
 const a = typeof tmpUnaryArg;
-const tmpAnonDefaultExport = a;
-export { tmpAnonDefaultExport as default };
+export { a as default };
 $(a, 1);
 `````
 
@@ -47,8 +45,7 @@ With rename=true
 `````js filename=intro
 const a = $( 1 );
 const b = typeof a;
-const c = b;
-export { c as default };
+export { b as default };
 $( b, 1 );
 `````
 

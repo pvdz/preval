@@ -98,7 +98,7 @@ x
 
 Should call `$` with:
  - 1: 'pass'
- - eval returned: ('<crash[ <ref> is not defined ]>')
+ - eval returned: ('<crash[ Cannot set property x of #<Object> which has only a getter ]>')
 
 Pre normalization calls: Same
 

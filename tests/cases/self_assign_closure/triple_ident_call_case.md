@@ -427,7 +427,6 @@ $(tmpCalleeParam$11);
 
 
 - (todo) ExpressionStatement; how else might an array be used that we may want to support in phase1_1?
-- (todo) Found a self-closing function shell but it did not match a known pattern...
 - (todo) VarStatement; how else might an array be used that we may want to support in phase1_1?
 - (todo) access object property that also exists on prototype? $array_push
 - (todo) access object property that also exists on prototype? $array_shift

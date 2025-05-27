@@ -141,7 +141,7 @@ $(h);
 ## Todos triggered
 
 
-- (todo) Found a self-closing function shell but it did not match a known pattern...
+None
 
 
 ## Globals

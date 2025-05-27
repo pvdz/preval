@@ -253,7 +253,6 @@ $(outer);
 
 
 - (todo) Deal with array spreads in arr mutation?
-- (todo) Found a self-closing function shell but it did not match a known pattern...
 - (todo) support array reads statement type ExpressionStatement
 - (todo) support array reads statement type ReturnStatement
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

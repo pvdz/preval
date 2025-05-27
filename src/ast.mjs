@@ -1474,6 +1474,7 @@ export function primitive(value) {
 
 export function isNoob(node, verbose) {
   // is non-observable
+  // (Note: may still mutate a property but should not trigger a spy.)
   const r = _isNoob(node, verbose);
   if (verbose) vlog('  - Node:', node.type, ', noob?', r);
   return r;
@@ -1493,10 +1494,17 @@ function _isNoob(node, verbose) {
   }
 
   if (node.type === 'AssignmentExpression') {
+    // Is a property mutation an observable side effect? This depends on the goal:
+    // do we want to scan for user observable side effects or for things that may trigger a spy? They are not the same.
+    // This will return whether it triggers a spy, a property mutation does not as long as it's not a setter.
     return isNoob(node.left, verbose) && isNoob(node.right, verbose);
   }
 
-  if (node.type === 'FunctionExpression' || node.type === 'ArrowFunctionExpression') {
+  if (node.type === 'FunctionExpression') {
+    return true;
+  }
+  if (node.type === 'ArrowFunctionExpression') {
+    // This is called from normalized so we allow it
     return true;
   }
 
@@ -1519,8 +1527,8 @@ function _isNoob(node, verbose) {
     node.type === 'Identifier' ||
     node.type === 'Literal' ||
     isPrimitive(node) ||
-    // Typeof on an identifier does not trigger an observable side effect
-    (node.type === 'UnaryExpression' && node.operator === 'typeof' && node.argument.type === 'Identifier')
+    // Typeof and ! on an identifier does not trigger an observable side effect
+    (node.type === 'UnaryExpression' && (node.operator === 'typeof' || node.operator === '!') && node.argument.type === 'Identifier')
   );
 }
 
@@ -1621,6 +1629,7 @@ export function nodeHasNoObservableSideEffectIncStatements(node, noDelete) {
   ASSERT(node, 'should receive a node');
   // This function assumes normalized code (!)
   // This function DOES assume to be visiting statements
+  // How a `delete` is reported is controlled through param
 
   // Given node represents an expression (including an ExpressionStatement), return true if the
   // node contained an expression with an observable side effect, and false if it doesn't.
@@ -1643,6 +1652,7 @@ export function nodeHasNoObservableSideEffectIncStatements(node, noDelete) {
   }
 
   if (node.type === 'VariableDeclaration') {
+    todo('when does nodeHasNoObservableSideEffectIncStatements receive varDecl when its supposed to see only normalized code?');
     // This one is tricky. The binding itself is observable insofar that it may trigger TDZ errors if moved later.
     // But I think for the intention of this function, the question is whether the init is observable.
     // Probably need to revise this a bit later on.
@@ -1698,6 +1708,7 @@ export function nodeHasNoObservableSideEffectIncStatements(node, noDelete) {
   }
 
   if (node.type === 'TryStatement') {
+    if (node.finalizer) todo('when does nodeHasNoObservableSideEffectIncStatements receive finally when its supposed to see only normalized code?');
     return (
       node.block.body.every((cnode) => nodeHasNoObservableSideEffectIncStatements(cnode, noDelete)) &&
       (!node.handler || node.handler.body.body.every((cnode) => nodeHasNoObservableSideEffectIncStatements(cnode, noDelete))) &&
@@ -1705,11 +1716,11 @@ export function nodeHasNoObservableSideEffectIncStatements(node, noDelete) {
     );
   }
 
+  if (node.type === 'ContinueStatement') todo('when does nodeHasNoObservableSideEffectIncStatements receive continue when its supposed to see only normalized code?');
   if (
     node.type === 'ReturnStatement' ||
     node.type === 'ThrowStatement' ||
-    node.type === 'BreakStatement' ||
-    node.type === 'ContinueStatement'
+    node.type === 'BreakStatement'
   ) {
     // Tricky. But the statement itself should not really have a _side_ effect. Like, it can't just change the value of a property before
     // reaching the target ref. So I think we should ignore it, as the argument for return and throw should be simple when normalized.
@@ -2695,12 +2706,12 @@ function hasObservableSideEffectsBetween(startBody, fromNode, toNode, mayMiss = 
     let currentPathBodyIndex = path.blockBodies.length - 1;
     let currentPathIndexIndex = path.blockIndexes.length - 1;
 
-    const parentNode = path.nodes[path.nodes.length - 2];
-    const parentProp = path.props[path.props.length - 1];
-    const parentIndex = path.indexes[path.indexes.length - 1];
-    const grandNode = path.nodes[path.nodes.length - 3];
-    const grandProp = path.props[path.props.length - 2];
-    const grandIndex = path.indexes[path.indexes.length - 2];
+    // const parentNode = path.nodes[path.nodes.length - 2];
+    // const parentProp = path.props[path.props.length - 1];
+    // const parentIndex = path.indexes[path.indexes.length - 1];
+    // const grandNode = path.nodes[path.nodes.length - 3];
+    // const grandProp = path.props[path.props.length - 2];
+    // const grandIndex = path.indexes[path.indexes.length - 2];
     const blockBody = path.blockBodies[currentPathBodyIndex];
     const blockIndex = path.blockIndexes[currentPathIndexIndex];
 

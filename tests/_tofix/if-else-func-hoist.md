@@ -62,7 +62,7 @@ let closure_cond /*:unknown*/ = false;
 const repeat /*:(unknown)=>undefined*/ = function ($$0) {
   const arg /*:unknown*/ = $$0;
   debugger;
-  let inline_me /*:unknown*/ = undefined;
+  let inline_me /*:unknown*/ /*ternaryConst*/ = undefined;
   if (closure_cond) {
     inline_me = function () {
       debugger;
@@ -146,10 +146,44 @@ $( b );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let closure_cond = false;
+const repeat = function ($$0) {
+  let arg = $$0;
+  debugger;
+  let inline_me = undefined;
+  if (closure_cond) {
+    inline_me = function () {
+      debugger;
+      $(`a`);
+      return undefined;
+    };
+  } else {
+    inline_me = function () {
+      debugger;
+      $(`b`);
+      return undefined;
+    };
+  }
+  closure_cond = [];
+  inline_me();
+  const tmpCallCallee = repeat;
+  let tmpCalleeParam = arg + 1;
+  repeat(tmpCalleeParam);
+  return undefined;
+};
+repeat(0);
+$(repeat);
+`````
+
+
 ## Todos triggered
 
 
-None
+- (todo) support array reads statement type ExpressionStatement
 
 
 ## Globals

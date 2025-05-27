@@ -108,9 +108,46 @@ $( a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const g = function ($$0, $$1, $$2) {
+  let $dlr_$$0 = $$0;
+  let e$763 = $$1;
+  let r$635 = $$2;
+  debugger;
+  const f = function ($$0, $$1) {
+    const tmpPrevalAliasThis = this;
+    let t$987 = $$0;
+    let e$767 = $$1;
+    debugger;
+    const tmpPrevalAliasThis$241 = tmpPrevalAliasThis;
+    const tmpAssignMemLhsObj = tmpPrevalAliasThis$241;
+    const tmpAssignMemRhs = [];
+    tmpAssignMemLhsObj._pairs = tmpAssignMemRhs;
+    if (t$987) {
+      let tmpCalleeParam = i$441.a;
+      const tmpCallComplexCallee$25 = $object_constructor(tmpCalleeParam);
+      tmpCallComplexCallee$25(t$987, tmpPrevalAliasThis$241, e$767);
+      return undefined;
+    } else {
+      return undefined;
+    }
+  };
+  const i$441 = $(`e467`);
+  const o$233 = f.prototype;
+  $(o$233);
+  return undefined;
+};
+$(g);
+`````
+
+
 ## Todos triggered
 
 
+- (todo) support array reads statement type ExpressionStatement
 - (todo) type trackeed tricks can possibly support static $object_constructor
 
 

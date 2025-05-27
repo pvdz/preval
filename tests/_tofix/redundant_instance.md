@@ -104,6 +104,25 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const anything = $(1);
+let obj = { b: anything };
+while ($LOOP_UNROLL_10) {
+  const test = $(1);
+  if (test) {
+    const newvalue = $(1);
+    obj = { b: newvalue };
+  } else {
+    break;
+  }
+}
+$(obj);
+`````
+
+
 ## Todos triggered
 
 

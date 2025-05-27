@@ -93,10 +93,35 @@ $( h );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function ($$0) {
+  let x = $$0;
+  debugger;
+  $(`no`);
+  $(`inlining`);
+  $(`please`);
+  const tmpMCF = x.toString;
+  const y = $dotCall(tmpMCF, x, `toString`);
+  return y;
+};
+const tmpCallCallee = f;
+let tmpCalleeParam$1 = [1, 2, 3];
+let tmpCalleeParam = f(tmpCalleeParam$1);
+$(tmpCalleeParam);
+let tmpCalleeParam$3 = f(300);
+$(tmpCalleeParam$3);
+let tmpCalleeParam$5 = f(`three`);
+$(tmpCalleeParam$5);
+`````
+
+
 ## Todos triggered
 
 
-None
+- (todo) support array reads statement type VarStatement
 
 
 ## Globals

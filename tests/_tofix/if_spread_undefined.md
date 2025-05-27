@@ -36,11 +36,11 @@ $(a);
 
 
 `````js filename=intro
-let a /*:unknown*/ = undefined;
+let a /*:unknown*/ /*ternaryConst*/ = undefined;
 const b /*:object*/ = { x: 1 };
 const tmpChainElementCall /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
-let tmpArrSpread /*:unknown*/ = undefined;
+let tmpArrSpread /*:unknown*/ /*ternaryConst*/ = undefined;
 if (tmpIfTest) {
 } else {
   const tmpChainElementObject /*:unknown*/ = tmpChainElementCall.x;
@@ -91,6 +91,27 @@ else {
 const g = [ ...e ];
 $( g );
 $( a );
+`````
+
+
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let a = undefined;
+const b = { x: 1 };
+const tmpChainElementCall = $(b);
+const tmpIfTest = tmpChainElementCall == null;
+let tmpArrSpread = undefined;
+if (tmpIfTest) {
+} else {
+  const tmpChainElementObject = tmpChainElementCall.x;
+  a = tmpChainElementObject;
+  tmpArrSpread = tmpChainElementObject;
+}
+const tmpCalleeParam = [...tmpArrSpread];
+$(tmpCalleeParam);
+$(a);
 `````
 
 

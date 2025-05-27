@@ -39,6 +39,17 @@ $( "" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpMCF = $string_replace;
+const tmpMCP = new $regex_constructor(`^`, ``);
+let tmpCalleeParam = $dotCall(tmpMCF, ``, `replace`, tmpMCP, $string_constructor);
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

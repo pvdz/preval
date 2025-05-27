@@ -33,8 +33,7 @@ if (x) {
 
 `````js filename=intro
 x = !tmpUnaryArg;
-const tmpBool /*:boolean*/ = !tmpUnaryArg;
-x = tmpBool;
+x = !tmpUnaryArg;
 if (tmpUnaryArg) {
   $(`b`);
   x = true;
@@ -74,8 +73,7 @@ With rename=true
 
 `````js filename=intro
 x = !tmpUnaryArg;
-const a = !tmpUnaryArg;
-x = a;
+x = !tmpUnaryArg;
 if (tmpUnaryArg) {
   $( "b" );
   x = true;
@@ -88,6 +86,25 @@ if (x) {
 }
 else {
   $( "c" );
+}
+`````
+
+
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+x = !tmpUnaryArg;
+if (x) {
+  $(`a`);
+} else {
+  $(`b`);
+  x = true;
+}
+if (x) {
+  $(`d`);
+} else {
+  $(`c`);
 }
 `````
 

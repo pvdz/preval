@@ -51,9 +51,23 @@ $( c );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const arr = [`toString`];
+const tmpMCF = $Array_from;
+const arr2 = $Array_from(arr);
+const tmpMCF$1 = String[arr];
+const xyz = $dotCall(tmpMCF$1, $string_constructor, undefined);
+$(xyz);
+`````
+
+
 ## Todos triggered
 
 
+- (todo) support array reads statement type ExpressionStatement
 - (todo) type trackeed tricks can possibly support static $Array_from
 
 

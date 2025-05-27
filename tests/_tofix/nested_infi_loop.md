@@ -71,6 +71,23 @@ if ($) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+if ($) {
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let x = $(1);
+    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+      $(x);
+      x = $(2);
+    }
+  }
+} else {
+}
+`````
+
+
 ## Todos triggered
 
 

@@ -198,13 +198,117 @@ const g = function() {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let c = function ($$0, $$1) {
+  let b = $$0;
+  let l = $$1;
+  debugger;
+  const tmpMCF = WebAssembly.instantiate;
+  const tmpNewCallee = Int8Array;
+  const tmpArrElement = 97;
+  const tmpArrElement$1 = 115;
+  const tmpArrElement$3 = 109;
+  const tmpArrElement$5 = 1;
+  const tmpArrElement$7 = 1;
+  const tmpArrElement$9 = 5;
+  const tmpArrElement$11 = 1;
+  const tmpArrElement$13 = 96;
+  const tmpArrElement$15 = 1;
+  const tmpArrElement$17 = 127;
+  const tmpArrElement$19 = 3;
+  const tmpArrElement$21 = 2;
+  const tmpArrElement$23 = 1;
+  const tmpArrElement$25 = 7;
+  const tmpArrElement$27 = 4;
+  const tmpArrElement$29 = 1;
+  const tmpArrElement$31 = 10;
+  const tmpMCF$1 = b.split;
+  const tmpMCP$1 = [` `];
+  const tmpMCOO$1 = $dotCall(tmpMCF$1, b, `split`, tmpMCP$1);
+  const tmpMCF$3 = tmpMCOO$1.flatMap;
+  const tmpMCP$3 = function ($$0) {
+    let t = $$0;
+    debugger;
+    let tmpReturnArg$1 = undefined;
+    const tmpIfTest = t > -1;
+    if (tmpIfTest) {
+      tmpReturnArg$1 = [65, t];
+      return tmpReturnArg$1;
+    } else {
+      const tmpBinBothLhs = 107;
+      const tmpMCF$5 = $string_indexOf;
+      const tmpBinBothRhs = $dotCall($string_indexOf, `-*/`, `indexOf`, t);
+      tmpReturnArg$1 = tmpBinBothLhs + tmpBinBothRhs;
+      return tmpReturnArg$1;
+    }
+  };
+  b = $dotCall(tmpMCF$3, tmpMCOO$1, `flatMap`, tmpMCP$3);
+  const tmpCompObj$3 = b;
+  const tmpBinLhs = tmpCompObj$3.length;
+  l = tmpBinLhs + 4;
+  const tmpArrElement$33 = l;
+  const tmpArrElement$35 = 1;
+  const tmpArrElement$37 = l - 2;
+  let tmpCalleeParam = [
+    ,
+    tmpArrElement,
+    tmpArrElement$1,
+    tmpArrElement$3,
+    tmpArrElement$5,
+    ,
+    ,
+    ,
+    tmpArrElement$7,
+    tmpArrElement$9,
+    tmpArrElement$11,
+    tmpArrElement$13,
+    ,
+    tmpArrElement$15,
+    tmpArrElement$17,
+    tmpArrElement$19,
+    tmpArrElement$21,
+    tmpArrElement$23,
+    ,
+    tmpArrElement$25,
+    tmpArrElement$27,
+    tmpArrElement$29,
+    ,
+    ,
+    ,
+    tmpArrElement$31,
+    tmpArrElement$33,
+    tmpArrElement$35,
+    tmpArrElement$37,
+    ,
+    ...b,
+    11,
+  ];
+  const tmpMCP = new tmpNewCallee(tmpCalleeParam);
+  const tmpCallComplexCallee = $dotCall(tmpMCF, WebAssembly, `instantiate`, tmpMCP);
+  const tmpCallCallee = tmpCallComplexCallee;
+  let tmpCalleeParam$1 = c(`11 11 1 - + 4 * 2 /`);
+  const tmpCompObj$1 = tmpCallComplexCallee(tmpCalleeParam$1);
+  const tmpCompObj = tmpCompObj$1.instance;
+  const tmpMCOO = tmpCompObj.exports;
+  const tmpMCF$7 = tmpMCOO[``];
+  const tmpReturnArg = $dotCall(tmpMCF$7, tmpMCOO, undefined);
+  return tmpReturnArg;
+};
+`````
+
+
 ## Todos triggered
 
 
 - (todo) Deal with array spreads in arr mutation?
 - (todo) access object property that also exists on prototype? $array_flatMap
-- (todo) support $array_flatmap with arguments?
 - (todo) arr mutation may be able to inline this method: $array_flatMap
+- (todo) support $array_flatmap with arguments?
+- (todo) support array reads statement type ReturnStatement
+- (todo) support array reads statement type VarStatement
 
 
 ## Globals

@@ -155,6 +155,46 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = 1;
+here: {
+  let $finalAbruptAction = 0;
+  let $finalCatchArg = undefined;
+  $finally: {
+    try {
+      if ($) {
+        x = 2;
+        $finalAbruptAction = 1;
+        break $finally;
+      } else {
+        x = 3;
+      }
+    } catch ($finalImplicit) {
+      $finalAbruptAction = 2;
+      $finalCatchArg = $finalImplicit;
+    }
+  }
+  $(x);
+  const tmpIfTest = $finalAbruptAction === 1;
+  if (tmpIfTest) {
+    break here;
+  } else {
+    const tmpIfTest$1 = $finalAbruptAction === 2;
+    if (tmpIfTest$1) {
+      throw $finalCatchArg;
+    } else {
+      $(x);
+      x = 4;
+    }
+  }
+}
+$(x);
+`````
+
+
 ## Todos triggered
 
 

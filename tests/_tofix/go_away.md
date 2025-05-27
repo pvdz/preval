@@ -212,11 +212,142 @@ $( undefined );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  const chars = [`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`, `J`, `K`];
+  const index2char = [];
+  const tmpMCF = $string_charCodeAt;
+  const tmpAssignComMemLhsProp$14 = $dotCall(
+    $string_charCodeAt,
+    `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`,
+    `charCodeAt`,
+    0,
+  );
+  index2char[tmpAssignComMemLhsProp$14] = 0;
+  const tmpMCF$1 = $string_charCodeAt;
+  const tmpAssignComMemLhsProp$12 = $dotCall(
+    $string_charCodeAt,
+    `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`,
+    `charCodeAt`,
+    1,
+  );
+  index2char[tmpAssignComMemLhsProp$12] = 1;
+  const tmpMCF$3 = $string_charCodeAt;
+  const tmpAssignComMemLhsProp$16 = $dotCall(
+    $string_charCodeAt,
+    `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`,
+    `charCodeAt`,
+    2,
+  );
+  index2char[tmpAssignComMemLhsProp$16] = 2;
+  const tmpMCF$5 = $string_charCodeAt;
+  const tmpAssignComMemLhsProp$17 = $dotCall(
+    $string_charCodeAt,
+    `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`,
+    `charCodeAt`,
+    3,
+  );
+  index2char[tmpAssignComMemLhsProp$17] = 3;
+  const tmpMCF$7 = $string_charCodeAt;
+  const tmpAssignComMemLhsProp$18 = $dotCall(
+    $string_charCodeAt,
+    `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`,
+    `charCodeAt`,
+    4,
+  );
+  index2char[tmpAssignComMemLhsProp$18] = 4;
+  const tmpMCF$9 = $string_charCodeAt;
+  const tmpAssignComMemLhsProp$19 = $dotCall(
+    $string_charCodeAt,
+    `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`,
+    `charCodeAt`,
+    5,
+  );
+  index2char[tmpAssignComMemLhsProp$19] = 5;
+  const tmpMCF$11 = $string_charCodeAt;
+  const tmpAssignComMemLhsProp$20 = $dotCall(
+    $string_charCodeAt,
+    `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`,
+    `charCodeAt`,
+    6,
+  );
+  index2char[tmpAssignComMemLhsProp$20] = 6;
+  const tmpMCF$13 = $string_charCodeAt;
+  const tmpAssignComMemLhsProp$21 = $dotCall(
+    $string_charCodeAt,
+    `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`,
+    `charCodeAt`,
+    7,
+  );
+  index2char[tmpAssignComMemLhsProp$21] = 7;
+  const tmpMCF$15 = $string_charCodeAt;
+  const tmpAssignComMemLhsProp$22 = $dotCall(
+    $string_charCodeAt,
+    `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`,
+    `charCodeAt`,
+    8,
+  );
+  index2char[tmpAssignComMemLhsProp$22] = 8;
+  const tmpMCF$17 = $string_charCodeAt;
+  const tmpAssignComMemLhsProp$24 = $dotCall(
+    $string_charCodeAt,
+    `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`,
+    `charCodeAt`,
+    9,
+  );
+  index2char[tmpAssignComMemLhsProp$24] = 9;
+  const tmpMCF$19 = $string_charCodeAt;
+  const tmpAssignComMemLhsProp$25 = $dotCall(
+    $string_charCodeAt,
+    `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`,
+    `charCodeAt`,
+    10,
+  );
+  index2char[tmpAssignComMemLhsProp$25] = 10;
+  let tmpClusterSSA_s$27 = 11;
+  while (true) {
+    const tmpIfTest = tmpClusterSSA_s$27 < 64;
+    if (tmpIfTest) {
+      const tmpAssignComputedRhs$73 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`[tmpClusterSSA_s$27];
+      chars[tmpClusterSSA_s$27] = tmpAssignComputedRhs$73;
+      const tmpMCF$21 = $string_charCodeAt;
+      const tmpAssignComMemLhsProp$26 = $dotCall(
+        $string_charCodeAt,
+        `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`,
+        `charCodeAt`,
+        tmpClusterSSA_s$27,
+      );
+      index2char[tmpAssignComMemLhsProp$26] = tmpClusterSSA_s$27;
+      tmpClusterSSA_s$27 = tmpClusterSSA_s$27 + 1;
+    } else {
+      break;
+    }
+  }
+  const tmpMCF$23 = $string_charCodeAt;
+  const tmpAssignComMemLhsProp$13 = $dotCall($string_charCodeAt, `-`, `charCodeAt`, 0);
+  index2char[tmpAssignComMemLhsProp$13] = 62;
+  const tmpMCF$25 = $string_charCodeAt;
+  const tmpAssignComMemLhsProp$15 = $dotCall($string_charCodeAt, `_`, `charCodeAt`, 0);
+  index2char[tmpAssignComMemLhsProp$15] = 63;
+  $(index2char, chars);
+  return undefined;
+};
+let tmpCalleeParam = f();
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 
 - (todo) Support string.charCodeAt when the arg is not a string literal
 - (todo) computed property of a primitive access on an unknown expr;
+- (todo) support array reads statement type ExpressionStatement
+- (todo) support array reads statement type WhileStatement
 
 
 ## Globals

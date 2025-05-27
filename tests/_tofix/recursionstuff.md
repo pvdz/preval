@@ -61,14 +61,14 @@ const tmpFree2 /*:(primitive)=>boolean*/ = function $free($$0) {
   return tmpRet$2;
 };
 const selfcaller /*:(primitive)=>undefined*/ = function ($$0) {
-  const $dlr_$$3 /*:primitive*/ = $$0;
+  const $dlr_$$2 /*:primitive*/ = $$0;
   debugger;
-  $($dlr_$$3);
-  const tmpIfTest /*:boolean*/ = $frfr(tmpFree2, $dlr_$$3);
+  $($dlr_$$2);
+  const tmpIfTest /*:boolean*/ = $frfr(tmpFree2, $dlr_$$2);
   if (tmpIfTest) {
     return undefined;
   } else {
-    const nextnum /*:primitive*/ = $dlr_$$3 + 1;
+    const nextnum /*:primitive*/ = $dlr_$$2 + 1;
     selfcaller(nextnum);
     return undefined;
   }
@@ -90,11 +90,11 @@ const tmpFree2 = function $free($dlr_$$1) {
   const tmpRet$2 = typeof $dlr_$$1 === `string`;
   return tmpRet$2;
 };
-const selfcaller = function ($dlr_$$3) {
-  $($dlr_$$3);
-  const tmpIfTest = $frfr(tmpFree2, $dlr_$$3);
+const selfcaller = function ($dlr_$$2) {
+  $($dlr_$$2);
+  const tmpIfTest = $frfr(tmpFree2, $dlr_$$2);
   if (!tmpIfTest) {
-    selfcaller($dlr_$$3 + 1);
+    selfcaller($dlr_$$2 + 1);
   }
 };
 try {
@@ -137,6 +137,50 @@ try {
 }
 catch (k) {
   $( "fail" );
+}
+`````
+
+
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpFree1 = function $free($$0) {
+  let $dlr_$$0 = $$0;
+  debugger;
+  const _0x5249c7 = $dlr_$$0;
+  const tmpBinBothRhs$1 = _0x5249c7 / _0x5249c7;
+  const tmpRet = $coerce(tmpBinBothRhs$1, `string`);
+  return tmpRet;
+};
+const tmpFree2 = function $free($$0) {
+  let $dlr_$$1 = $$0;
+  debugger;
+  const _0x5249c7$1 = $dlr_$$1;
+  const tmpBinBothLhs = typeof _0x5249c7$1;
+  const tmpRet$2 = tmpBinBothLhs === `string`;
+  return tmpRet$2;
+};
+const selfcaller = function ($$0) {
+  let $dlr_$$3 = $$0;
+  debugger;
+  const arg_is_number = $dlr_$$3;
+  $($dlr_$$3);
+  const tmpIfTest = $frfr(tmpFree2, arg_is_number);
+  if (tmpIfTest) {
+    return undefined;
+  } else {
+    const okstring = $frfr(tmpFree1, arg_is_number);
+    const nextnum = arg_is_number + 1;
+    selfcaller(nextnum);
+    return undefined;
+  }
+};
+try {
+  selfcaller(0);
+  $(`pass`);
+} catch (e) {
+  $(`fail`);
 }
 `````
 

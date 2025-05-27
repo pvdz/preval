@@ -57,3 +57,6 @@ tests/cases/binary/neq_weak/diff_objs.md
 +const tmpBinBothRhs /*:object*/ = {};
 +const tmpCalleeParam /*:boolean*/ = tmpBinBothLhs != tmpBinBothRhs;
 +$(tmpCalleeParam);
+
+ternaryConst annotated test cases might have something interesting to build out
+we should have an `innerLabel`, like innerLoop etc. we should update cases that refer to innerLoop because in most of those cases it's about getting certainty about something and label-break is another form of not executing a certain branch of code.

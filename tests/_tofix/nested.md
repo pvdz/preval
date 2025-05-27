@@ -94,10 +94,41 @@ $( f );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const g = function () {
+  debugger;
+  const a = [1, 2, 3];
+  const b = [1, 2, 3];
+  const ab = a === b;
+  $(ab);
+  const c = [1, 2, 3];
+  const d = [1, 2, 3];
+  const cd = c !== d;
+  $(cd);
+  const e = [1, 2, 3];
+  const f = [1, 2, 3];
+  const ef = e === f;
+  $(ef);
+  const g$1 = [1, 2, 3];
+  return g$1;
+};
+const x = g();
+const y = g();
+const xy = x === y;
+$(xy);
+const z = g();
+$(z);
+`````
+
+
 ## Todos triggered
 
 
-None
+- (todo) support array reads statement type ExpressionStatement
+- (todo) support array reads statement type ReturnStatement
 
 
 ## Globals

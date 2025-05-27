@@ -33,16 +33,16 @@ $(f(String(y)));
 
 `````js filename=intro
 const tmpFree /*:(string)=>number*/ = function $free($$0) {
-  const repl /*:string*/ = $$0;
+  const repl$1 /*:string*/ = $$0;
   debugger;
-  const a1 /*:string*/ = $dotCall($string_charAt, repl, `charAt`, 0);
+  const a1 /*:string*/ = $dotCall($string_charAt, repl$1, `charAt`, 0);
   const tmpRet /*:number*/ = $dotCall($string_indexOf, `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`, `indexOf`, a1);
   return tmpRet;
 };
 const f /*:(string)=>string*/ = function ($$0) {
-  const repl$1 /*:string*/ = $$0;
+  const repl$2 /*:string*/ = $$0;
   debugger;
-  const a2 /*:number*/ = $frfr(tmpFree, repl$1);
+  const a2 /*:number*/ = $frfr(tmpFree, repl$2);
   const frout /*:primitive*/ = a2 + b2;
   outputstr = $coerce(frout, `plustr`);
   return outputstr;
@@ -62,17 +62,17 @@ $(tmpCalleeParam$3);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpFree = function $free(repl) {
+const tmpFree = function $free(repl$1) {
   const tmpRet = $dotCall(
     $string_indexOf,
     `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`,
     `indexOf`,
-    $dotCall($string_charAt, repl, `charAt`, 0),
+    $dotCall($string_charAt, repl$1, `charAt`, 0),
   );
   return tmpRet;
 };
-const f = function (repl$1) {
-  outputstr = $coerce($frfr(tmpFree, repl$1) + b2, `plustr`);
+const f = function (repl$2) {
+  outputstr = $coerce($frfr(tmpFree, repl$2) + b2, `plustr`);
   return outputstr;
 };
 $(f($coerce($(`co_rn`), `string`)));
@@ -107,6 +107,38 @@ const n = $( "m#az#e" );
 const o = $coerce( n, "string" );
 const p = f( o );
 $( p );
+`````
+
+
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const f = function ($$0) {
+  let repl = $$0;
+  debugger;
+  const tmpMCF = repl.charAt;
+  const a1 = $dotCall(tmpMCF, repl, `charAt`, 0);
+  const tmpMCF$1 = $string_indexOf;
+  const a2 = $dotCall($string_indexOf, `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`, `indexOf`, a1);
+  const tmpMCF$3 = repl.charAt;
+  const b1 = $dotCall(tmpMCF$3, repl, `charAt`, 1);
+  const frout = a2 + b2;
+  outputstr = $coerce(frout, `plustr`);
+  return outputstr;
+};
+const x = $(`co_rn`);
+const tmpCallCallee = f;
+const tmpStringFirstArg = x;
+let tmpCalleeParam$1 = $coerce(x, `string`);
+let tmpCalleeParam = f(tmpCalleeParam$1);
+$(tmpCalleeParam);
+const y = $(`m#az#e`);
+const tmpCallCallee$1 = f;
+const tmpStringFirstArg$1 = y;
+let tmpCalleeParam$5 = $coerce(y, `string`);
+let tmpCalleeParam$3 = f(tmpCalleeParam$5);
+$(tmpCalleeParam$3);
 `````
 
 

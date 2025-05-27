@@ -107,6 +107,32 @@ $( undefined );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let tmpFuncLock = true;
+const g = function () {
+  debugger;
+  if (tmpFuncLock) {
+    $(`call me once`);
+    if (tmpFuncLock) {
+      tmpFuncLock = false;
+      return undefined;
+    } else {
+      return undefined;
+    }
+  } else {
+    throw `Preval: cannot call a locked function (binding overwritten with non-func)`;
+  }
+};
+g();
+$(undefined);
+g();
+$(undefined);
+`````
+
+
 ## Todos triggered
 
 

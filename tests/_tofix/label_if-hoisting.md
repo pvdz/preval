@@ -90,6 +90,33 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpIfTest = $(1);
+if (tmpIfTest) {
+  A: {
+    const tmpIfTest$1 = $(2);
+    if (tmpIfTest$1) {
+      break A;
+    } else {
+      $(3);
+    }
+  }
+} else {
+  B: {
+    const tmpIfTest$3 = $(3);
+    if (tmpIfTest$3) {
+      break B;
+    } else {
+      $(4);
+    }
+  }
+}
+`````
+
+
 ## Todos triggered
 
 

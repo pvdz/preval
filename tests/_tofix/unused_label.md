@@ -25,8 +25,8 @@ $(s);
 
 
 `````js filename=intro
-const t /*:unknown*/ = $(1, `return`);
-$(t);
+const tmpSSA_s /*:unknown*/ = $(1, `return`);
+$(tmpSSA_s);
 `````
 
 
@@ -44,6 +44,23 @@ With rename=true
 `````js filename=intro
 const a = $( 1, "return" );
 $( a );
+`````
+
+
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const f = function () {
+  debugger;
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    const t = $(1, `return`);
+    return t;
+  }
+  return undefined;
+};
+const s = f();
+$(s);
 `````
 
 

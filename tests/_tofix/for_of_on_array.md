@@ -72,10 +72,29 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const arr = [1, 2, 3];
+const tmpForOfGenNext = $forOf(arr);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForOfNext = tmpForOfGenNext();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    const x = tmpForOfNext.value;
+    $(x);
+  }
+}
+`````
+
+
 ## Todos triggered
 
 
-None
+- (todo) support array reads statement type VarStatement
 
 
 ## Globals

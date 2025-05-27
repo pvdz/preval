@@ -78,6 +78,26 @@ $( "done" );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const obj = { x: 1, y: `two` };
+const tmpForInGen = $forIn(obj);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext = tmpForInGen();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    const key = tmpForInNext.value;
+    $(`key`, key);
+  }
+}
+$(`done`);
+`````
+
+
 ## Todos triggered
 
 

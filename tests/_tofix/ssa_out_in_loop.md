@@ -57,7 +57,7 @@
 
 `````js filename=intro
 if ($) {
-  let B /*:unknown*/ = `jhayon.vercel.app`;
+  let B /*:unknown*/ /*ternaryConst*/ = `jhayon.vercel.app`;
   const ex /*:unknown*/ = $(`x`);
   const A /*:unknown*/ = ex.length;
   const first /*:unknown*/ = A[0];
@@ -148,6 +148,47 @@ if ($) {
       c.length;
     }
   }
+}
+`````
+
+
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+if ($) {
+  let A = `jhayon.vercel.app`;
+  let B = `jhayon.vercel.app`;
+  let one = 1;
+  const ex = $(`x`);
+  const test = one < 1;
+  A = ex.length;
+  const first = A[0];
+  const isdot = first === `.`;
+  if (isdot) {
+    const tmpMCF = A.slice;
+    B = $dotCall(tmpMCF, A, `slice`, 1);
+  } else {
+    B = A;
+  }
+  const tmpClusterSSA__0x26b289 = $(`abc`);
+  const len = tmpClusterSSA__0x26b289.length;
+  const len2 = B.length;
+  const tmpClusterSSA__0x30c47e = len - len2;
+  const tmpMCF$1 = tmpClusterSSA__0x26b289.indexOf;
+  const tmpClusterSSA__0x2a669d = $dotCall(tmpMCF$1, tmpClusterSSA__0x26b289, `indexOf`, B, tmpClusterSSA__0x30c47e);
+  const tmpClusterSSA__0x5dc746 = tmpClusterSSA__0x2a669d !== -1;
+  if (tmpClusterSSA__0x5dc746) {
+    const tmpClusterSSA__0x5dc746$1 = tmpClusterSSA__0x2a669d === tmpClusterSSA__0x30c47e;
+    if (tmpClusterSSA__0x5dc746$1) {
+      const tmpBinBothLhs$34 = tmpClusterSSA__0x26b289.length;
+      const tmpBinBothRhs$34 = A.length;
+    } else {
+    }
+  } else {
+  }
+  one = one + 1;
+} else {
 }
 `````
 

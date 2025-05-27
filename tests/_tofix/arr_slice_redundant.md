@@ -52,10 +52,23 @@ $( d );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let tmpCalleeParam = [1, 2, 3];
+const tmpArrSpread = $(tmpCalleeParam);
+const arrPatternSplat = [...tmpArrSpread];
+const y = $dotCall($array_slice, arrPatternSplat, `slice`, 0);
+$(y);
+`````
+
+
 ## Todos triggered
 
 
 - (todo) Deal with array spreads in arr mutation?
+- (todo) support array reads statement type VarStatement
 - (todo) type trackeed tricks can possibly support static $array_slice
 
 

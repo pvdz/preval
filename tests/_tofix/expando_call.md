@@ -78,6 +78,28 @@ $( d );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  $(1);
+  return undefined;
+};
+const tmpAssignMemLhsObj = f;
+const tmpAssignMemRhs = function () {
+  debugger;
+  $(`pass`);
+  return undefined;
+};
+tmpAssignMemLhsObj.foo = tmpAssignMemRhs;
+const tmpMCF = f.foo;
+let tmpCalleeParam = $dotCall(tmpMCF, f, `foo`);
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

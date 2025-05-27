@@ -103,11 +103,38 @@ new d();
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let A = class {
+  constructor($$0) {
+    const tmpPrevalAliasThis = this;
+    let x = $$0;
+    debugger;
+    $(`A:`, x, tmpPrevalAliasThis);
+    return undefined;
+  }
+};
+let B = class extends A {
+  constructor() {
+    const tmpPrevalAliasThis$1 = this;
+    debugger;
+    const a = $(`important`);
+    const x$1 = super(a);
+    $(x$1, tmpPrevalAliasThis$1);
+    return undefined;
+  }
+};
+new B();
+`````
+
+
 ## Todos triggered
 
 
-- (todo) infertyping on a non-ident? is that a crash or bug? Super
 - (todo) Encountered non-ident as callee
+- (todo) infertyping on a non-ident? is that a crash or bug? Super
 
 
 ## Globals

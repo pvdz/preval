@@ -58,6 +58,21 @@ const a = function() {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function () {
+  const tmpPrevalAliasThis = this;
+  const tmpPrevalAliasArgumentsAny = arguments;
+  debugger;
+  const tmpMCF = f.apply;
+  $dotCall(tmpMCF, f, `apply`, tmpPrevalAliasThis, tmpPrevalAliasArgumentsAny);
+  return undefined;
+};
+`````
+
+
 ## Todos triggered
 
 

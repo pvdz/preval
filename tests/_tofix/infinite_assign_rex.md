@@ -35,8 +35,8 @@ $(x);             // unreachable
 
 `````js filename=intro
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpClusterSSA_x /*:regex*/ = new $regex_constructor(`tmp`, ``);
-  $(tmpClusterSSA_x);
+  const x /*:regex*/ = new $regex_constructor(`tmp`, ``);
+  $(x);
 }
 `````
 
@@ -58,6 +58,18 @@ With rename=true
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const a = new $regex_constructor( "tmp", "" );
   $( a );
+}
+`````
+
+
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = undefined;
+while (true) {
+  x = new $regex_constructor(`tmp`, ``);
+  $(x);
 }
 `````
 

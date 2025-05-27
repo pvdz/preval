@@ -54,10 +54,31 @@ $( a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let _0x5576 = function () {
+  debugger;
+  const _0x2f0a53 = [`W4BcO8kAW5RdGa`, `AH7cVXhdHa`];
+  _0x5576 = function () {
+    debugger;
+    return _0x2f0a53;
+  };
+  const tmpReturnArg$65 = _0x5576();
+  return tmpReturnArg$65;
+};
+let tmpCalleeParam = _0x5576();
+$(tmpCalleeParam);
+let tmpCalleeParam$1 = _0x5576();
+$(tmpCalleeParam$1);
+`````
+
+
 ## Todos triggered
 
 
-None
+- (todo) support array reads statement type ExpressionStatement
 
 
 ## Globals

@@ -33,14 +33,14 @@ $(tmpCalleeParam$1);
 
 `````js filename=intro
 const f /*:(primitive)=>array*/ = function ($$0) {
-  const $dlr_$$1 /*:primitive*/ = $$0;
+  const $dlr_$$2 /*:primitive*/ = $$0;
   debugger;
-  const tmpIfTest$1 /*:boolean*/ = $dlr_$$1 === undefined;
+  const tmpIfTest$1 /*:boolean*/ = $dlr_$$2 === undefined;
   if (tmpIfTest$1) {
     const c /*:array*/ = [`x`, `bar`];
     return c;
   } else {
-    const d /*:array*/ = [`x`, $dlr_$$1];
+    const d /*:array*/ = [`x`, $dlr_$$2];
     return d;
   }
 };
@@ -55,12 +55,12 @@ $(tmpCalleeParam$1);
 (This ought to be the final result)
 
 `````js filename=intro
-const f = function ($dlr_$$1) {
-  if ($dlr_$$1 === undefined) {
+const f = function ($dlr_$$2) {
+  if ($dlr_$$2 === undefined) {
     const c = [`x`, `bar`];
     return c;
   } else {
-    const d = [`x`, $dlr_$$1];
+    const d = [`x`, $dlr_$$2];
     return d;
   }
 };
@@ -93,10 +93,34 @@ $( g );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const f = function ($$0) {
+  let $dlr_$$0 = $$0;
+  debugger;
+  const $dlr_$$1 = $dlr_$$0;
+  const tmpIfTest$1 = $dlr_$$1 === undefined;
+  if (tmpIfTest$1) {
+    const c = [`x`, `bar`];
+    return c;
+  } else {
+    const d = [`x`, $dlr_$$1];
+    return d;
+  }
+};
+const tmpCalleeParam = f();
+$(tmpCalleeParam);
+const tmpCalleeParam$1 = f(`y`);
+$(tmpCalleeParam$1);
+`````
+
+
 ## Todos triggered
 
 
-None
+- (todo) support array reads statement type ReturnStatement
 
 
 ## Globals

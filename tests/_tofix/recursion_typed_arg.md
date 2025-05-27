@@ -117,6 +117,31 @@ $( m );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const func = function ($$0) {
+  let $dlr_$$0 = $$0;
+  debugger;
+  const arg = $dlr_$$0;
+  const onesie = arg / arg;
+  const onestrie = $coerce(onesie, `string`);
+  const onetoo = onestrie.length;
+  const test = 1 === onetoo;
+  if (test) {
+    return `end`;
+  } else {
+    const next = arg + 1;
+    func(next);
+    return `pass`;
+  }
+};
+let tmpCalleeParam = func(0);
+$(tmpCalleeParam);
+`````
+
+
 ## Todos triggered
 
 

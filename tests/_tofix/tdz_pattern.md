@@ -29,8 +29,7 @@ x(undefined, {x: 1});
 `````js filename=intro
 const tmpIfTest /*:unknown*/ = $(true);
 if (tmpIfTest) {
-  propTDZ;
-  throw `Preval: This statement contained a read that reached no writes: \$(propTDZ);`;
+  $(propTDZ);
 } else {
 }
 `````
@@ -41,8 +40,7 @@ if (tmpIfTest) {
 
 `````js filename=intro
 if ($(true)) {
-  propTDZ;
-  throw `Preval: This statement contained a read that reached no writes: \$(propTDZ);`;
+  $(propTDZ);
 }
 `````
 
@@ -53,16 +51,49 @@ With rename=true
 `````js filename=intro
 const a = $( true );
 if (a) {
-  propTDZ;
-  throw "Preval: This statement contained a read that reached no writes: $(propTDZ);";
+  $( propTDZ );
 }
+`````
+
+
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = function ($$0, $$1) {
+  let a = $$0;
+  let b = $$1;
+  debugger;
+  const tmpIfTest = $(true);
+  if (tmpIfTest) {
+    let tmpCalleeParam = undefined;
+    const tmpIfTest$1 = a === undefined;
+    if (tmpIfTest$1) {
+      tmpCalleeParam = propTDZ;
+      $(propTDZ);
+      return a;
+    } else {
+      tmpCalleeParam = a;
+      $(a);
+      return a;
+      let tmpBindingPatternObjRoot = b;
+      let propTDZ = tmpBindingPatternObjRoot.x;
+      return undefined;
+    }
+  } else {
+    return a;
+  }
+};
+const tmpCallCallee = x;
+let tmpCalleeParam$1 = { x: 1 };
+x(undefined, tmpCalleeParam$1);
 `````
 
 
 ## Todos triggered
 
 
-- (todo) i think this let_hoisting case is unreachable
+None
 
 
 ## Globals

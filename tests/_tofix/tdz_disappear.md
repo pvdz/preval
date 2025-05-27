@@ -31,6 +31,7 @@ $(f());
 `````js filename=intro
 const f /*:()=>boolean*/ = function () {
   debugger;
+  x;
   $(`block`);
   $(`block`);
   const tmpBool /*:boolean*/ = $boolean_constructor(x);
@@ -47,6 +48,7 @@ $(tmpCalleeParam);
 
 `````js filename=intro
 const f = function () {
+  x;
   $(`block`);
   $(`block`);
   const tmpBool = $boolean_constructor(x);
@@ -63,6 +65,7 @@ With rename=true
 `````js filename=intro
 const a = function() {
   debugger;
+  x;
   $( "block" );
   $( "block" );
   const b = $boolean_constructor( x );
@@ -71,6 +74,31 @@ const a = function() {
 a();
 const c = a();
 $( c );
+`````
+
+
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  let y = undefined;
+  if (x) {
+    y = true;
+    $(`block`);
+    $(`block`);
+    return y;
+  } else {
+    y = false;
+    $(`block`);
+    $(`block`);
+    return y;
+  }
+};
+f();
+let tmpCalleeParam = f();
+$(tmpCalleeParam);
 `````
 
 
@@ -98,12 +126,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Post settled calls: BAD!!
- - !1: 'block'
- - !2: 'block'
- - !eval returned: ('<crash[ <ref> is not defined ]>')
+Post settled calls: Same
 
-Denormalized calls: BAD!!
- - !1: 'block'
- - !2: 'block'
- - !eval returned: ('<crash[ <ref> is not defined ]>')
+Denormalized calls: Same

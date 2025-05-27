@@ -79,10 +79,32 @@ if (c) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpSwitchDisc = $(`a`);
+const tmpBinBothRhs = $(`a`);
+$(1);
+const tmpIfTest = tmpSwitchDisc === tmpBinBothRhs;
+if (tmpIfTest) {
+  $(2);
+  const z = [10, 20, 30];
+  const arrPatternSplat = [...z];
+  arrPatternSplat[0];
+  arrPatternSplat[1];
+  $(1, 2, z);
+} else {
+}
+`````
+
+
 ## Todos triggered
 
 
 - (todo) Deal with array spreads in arr mutation?
+- (todo) support array reads statement type ExpressionStatement
+- (todo) support array reads statement type VarStatement
 
 
 ## Globals

@@ -48,9 +48,28 @@ $( a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const f = function $free() {
+  debugger;
+  const one = `1005`;
+  const tmpMCF = one.slice;
+  const two = $dotCall(tmpMCF, one, `slice`, 1);
+  return two;
+};
+const r = $frfr(f);
+const tmpMCF$1 = r.repeat;
+const t = $dotCall(tmpMCF$1, r, `repeat`, 2);
+$(t);
+`````
+
+
 ## Todos triggered
 
 
+- (todo) We should be able to resolve the $frfr call but pcode failed to complete with a Node, hasExplicitGlobal=false
 - (todo) free with zero args, we can eliminate this?
 - (todo) type trackeed tricks can possibly support static $string_repeat
 

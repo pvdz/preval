@@ -44,6 +44,16 @@ $( b );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const x = new $regex_constructor(`abc`, `g`);
+const newLineRegex = new $regex_constructor(x);
+$(newLineRegex);
+`````
+
+
 ## Todos triggered
 
 

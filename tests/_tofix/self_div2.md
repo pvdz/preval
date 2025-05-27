@@ -116,6 +116,36 @@ else {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const f = function ($$0) {
+  let arg = $$0;
+  debugger;
+  const oneOrNan = arg / arg;
+  const onestr = $coerce(oneOrNan, `string`);
+  const len = onestr.length;
+  const isone = len === 1;
+  if (isone) {
+    arg % 0;
+  } else {
+  }
+  const argup = arg + 1;
+  $(argup);
+  return undefined;
+};
+f(500);
+const tmpCalleeParam = $spy();
+const tmpSaooB = typeof tmpCalleeParam;
+const tmpSaooB$1 = tmpSaooB === `string`;
+if (tmpSaooB$1) {
+} else {
+  f(tmpCalleeParam);
+}
+`````
+
+
 ## Todos triggered
 
 

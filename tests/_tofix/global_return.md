@@ -164,6 +164,52 @@ $( s );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const a = function $free() {
+  debugger;
+  const tmpMCF = tmpCalleeParam$5.charAt;
+  const tmpSaooB = $dotCall(tmpMCF, tmpCalleeParam$5, `charAt`, 0);
+  const tmpMCF$1 = $string_indexOf;
+  const tmpRet$1 = $dotCall($string_indexOf, `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`, `indexOf`, tmpSaooB);
+  return tmpRet$1;
+};
+const b = function $free() {
+  debugger;
+  const tmpMCF$3 = tmpCalleeParam$1.charAt;
+  const tmpSaooB$1 = $dotCall(tmpMCF$3, tmpCalleeParam$1, `charAt`, 0);
+  const tmpMCF$5 = $string_indexOf;
+  const tmpRet = $dotCall($string_indexOf, `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`, `indexOf`, tmpSaooB$1);
+  return tmpRet;
+};
+const CALLME = function ($$0) {
+  let $dlr_$$0 = $$0;
+  debugger;
+  const NEEDLE = $dlr_$$0;
+  const out = NEEDLE + b2;
+  unknown = $coerce(out, `plustr`);
+  $(`if this updates unknown then whats the return type`);
+  return unknown;
+};
+const x = $(`co_rn`);
+const tmpCalleeParam$1 = $coerce(x, `string`);
+const tmpSaooB$4 = $frfr(b);
+const tmpMCF$7 = tmpCalleeParam$1.charAt;
+$dotCall(tmpMCF$7, tmpCalleeParam$1, `charAt`, 1);
+const tmpCalleeParam = CALLME(tmpSaooB$4);
+$(tmpCalleeParam);
+const y = $(`m#az#e`);
+const tmpCalleeParam$5 = $coerce(y, `string`);
+const tmpSaooB$2 = $frfr(a);
+const tmpMCF$9 = tmpCalleeParam$5.charAt;
+$dotCall(tmpMCF$9, tmpCalleeParam$5, `charAt`, 1);
+const tmpCalleeParam$3 = CALLME(tmpSaooB$2);
+$(tmpCalleeParam$3);
+`````
+
+
 ## Todos triggered
 
 

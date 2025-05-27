@@ -32,13 +32,13 @@ $(cTmp);
 
 
 `````js filename=intro
-$fail;
+const cTail /*:unknown*/ = $fail;
 if ($) {
   $(`keep`);
   const tmpClusterSSA_cTmp /*:unknown*/ = $($);
   $(tmpClusterSSA_cTmp);
 } else {
-  $($fail);
+  $(cTail);
 }
 `````
 
@@ -47,12 +47,12 @@ if ($) {
 (This ought to be the final result)
 
 `````js filename=intro
-$fail;
+const cTail = $fail;
 if ($) {
   $(`keep`);
   $($($));
 } else {
-  $($fail);
+  $(cTail);
 }
 `````
 
@@ -61,14 +61,31 @@ if ($) {
 With rename=true
 
 `````js filename=intro
-$fail;
+const a = $fail;
 if ($) {
   $( "keep" );
-  const a = $( $ );
-  $( a );
+  const b = $( $ );
+  $( b );
 }
 else {
-  $( $fail );
+  $( a );
+}
+`````
+
+
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let cTmp = $;
+let cTail = $fail;
+if ($) {
+  cTail = $(`keep`);
+  cTmp = $(cTmp);
+  $(cTmp);
+} else {
+  cTmp = cTail;
+  $(cTail);
 }
 `````
 

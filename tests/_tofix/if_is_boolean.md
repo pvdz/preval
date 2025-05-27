@@ -39,13 +39,9 @@ if (y) {
 
 
 `````js filename=intro
+let tmpClusterSSA_x /*:boolean*/ = !$;
 if ($) {
 } else {
-  let tmpClusterSSA_x /*:boolean*/ = true;
-  if ($) {
-    tmpClusterSSA_x = false;
-  } else {
-  }
   while ($LOOP_UNROLL_9) {
     if (tmpClusterSSA_x) {
       if ($) {
@@ -64,11 +60,8 @@ if ($) {
 (This ought to be the final result)
 
 `````js filename=intro
+let tmpClusterSSA_x = !$;
 if (!$) {
-  let tmpClusterSSA_x = true;
-  if ($) {
-    tmpClusterSSA_x = false;
-  }
   while (true) {
     if (tmpClusterSSA_x) {
       if ($) {
@@ -86,14 +79,11 @@ if (!$) {
 With rename=true
 
 `````js filename=intro
+let a = !$;
 if ($) {
 
 }
 else {
-  let a = true;
-  if ($) {
-    a = false;
-  }
   while ($LOOP_UNROLL_9) {
     if (a) {
       if ($) {
@@ -104,6 +94,36 @@ else {
       break;
     }
   }
+}
+`````
+
+
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let y = true;
+let x = !$;
+if (x) {
+  if ($) {
+    x = false;
+  } else {
+  }
+} else {
+  y = false;
+}
+if (y) {
+  while ($LOOP_UNROLL_9) {
+    if (x) {
+      if ($) {
+        x = false;
+      } else {
+      }
+    } else {
+      break;
+    }
+  }
+} else {
 }
 `````
 

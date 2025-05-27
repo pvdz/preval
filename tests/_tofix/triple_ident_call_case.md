@@ -132,16 +132,16 @@ const alias2 /*:unknown*/ = b;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(`loop`);
   try {
-    const tmpCalleeParam /*:unknown*/ = alias2(714);
-    $coerce(tmpCalleeParam, `string`);
-    const tmpCalleeParam$1 /*:unknown*/ = alias2(434);
-    $coerce(tmpCalleeParam$1, `string`);
-    const tmpCalleeParam$3 /*:unknown*/ = alias2(849);
-    $coerce(tmpCalleeParam$3, `string`);
-    const tmpCalleeParam$5 /*:unknown*/ = alias2(679);
-    $coerce(tmpCalleeParam$5, `string`);
-    const tmpCalleeParam$7 /*:unknown*/ = alias2(599);
-    $coerce(tmpCalleeParam$7, `string`);
+    const tmpEA1 /*:unknown*/ = alias2(714);
+    $coerce(tmpEA1, `string`);
+    const tmpEA1$1 /*:unknown*/ = alias2(434);
+    $coerce(tmpEA1$1, `string`);
+    const tmpEA1$3 /*:unknown*/ = alias2(849);
+    $coerce(tmpEA1$3, `string`);
+    const tmpEA1$5 /*:unknown*/ = alias2(679);
+    $coerce(tmpEA1$5, `string`);
+    const tmpEA1$7 /*:unknown*/ = alias2(599);
+    $coerce(tmpEA1$7, `string`);
     const tmpCalleeParam$9 /*:unknown*/ = alias2(457);
     const tmpBinLhs$166 /*:number*/ = $Number_parseInt(tmpCalleeParam$9);
     if (tmpBinLhs$166) {
@@ -286,15 +286,125 @@ $( a );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let a = function () {
+  debugger;
+  const arr = [
+    `o+qs5DkTS`,
+    `displayNam`,
+    `VQ5vY4Jbig`,
+    `previous`,
+    `nk">`,
+    `TqTwnd5/c+`,
+    `FaGG+cRqIi`,
+    `getPrototy`,
+    `ch2p7teUW5`,
+    `binary`,
+    `1549114mYdRSK`,
+    `qfVUyPGyG`,
+    `nV7NqmuKE`,
+    `MVWzWKgjww`,
+    `mark`,
+    `//BaPJuXX`,
+    `loaded`,
+    `call`,
+    `he WebCryp`,
+    `RSASSA-PKC`,
+    `E31n2Gh9QE`,
+    `N8h3TKFzuv`,
+    `Stb3euiWtm`,
+    `return`,
+    `ILhA`,
+    `G9w0BAQEFA`,
+    `7340072VkQjzG`,
+    `c-link" ta`,
+    `63rBGDGDE`,
+    `b6cIzo9YK`,
+    `RuH/AHrSL6`,
+    `replace`,
+    `encode`,
+    `Vk2ghqMihj`,
+    `setPrototy`,
+    `ker.`,
+    `asyncItera`,
+    `t provide `,
+  ];
+  a = function () {
+    debugger;
+    return arr;
+  };
+  const tmpReturnArg = a();
+  return tmpReturnArg;
+};
+let b = function ($$0, $$1) {
+  let _0x27b75f = $$0;
+  let _0x20302b = $$1;
+  debugger;
+  const _0x216d5b = a();
+  b = function ($$0, $$1) {
+    let _0x51d865 = $$0;
+    let $dlr_$$1 = $$1;
+    debugger;
+    const tmpClusterSSA__0x51d865 = _0x51d865 - 345;
+    const _0x5e349d = _0x216d5b[tmpClusterSSA__0x51d865];
+    return _0x5e349d;
+  };
+  const tmpReturnArg$14 = b(_0x27b75f, _0x20302b);
+  return tmpReturnArg$14;
+};
+const alias1 = a;
+const alias2 = b;
+const alias3 = alias1();
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $(`loop`);
+  try {
+    let tmpCalleeParam = alias2(714);
+    const tmpUnaryArg$65 = $Number_parseInt(tmpCalleeParam);
+    let tmpCalleeParam$1 = alias2(434);
+    const tmpBinLhs$155 = $Number_parseInt(tmpCalleeParam$1);
+    let tmpCalleeParam$3 = alias2(849);
+    const tmpUnaryArg$67 = $Number_parseInt(tmpCalleeParam$3);
+    let tmpCalleeParam$5 = alias2(679);
+    const tmpBinLhs$162 = $Number_parseInt(tmpCalleeParam$5);
+    let tmpCalleeParam$7 = alias2(599);
+    const tmpUnaryArg$69 = $Number_parseInt(tmpCalleeParam$7);
+    let tmpCalleeParam$9 = alias2(457);
+    const tmpBinLhs$166 = $Number_parseInt(tmpCalleeParam$9);
+    if (tmpBinLhs$166) {
+      break;
+    } else {
+      const tmpMCF = alias3.push;
+      const tmpMCF$1 = alias3.shift;
+      const tmpMCP = $dotCall(tmpMCF$1, alias3, `shift`);
+      $dotCall(tmpMCF, alias3, `push`, tmpMCP);
+    }
+  } catch (_0x4f54af$22) {
+    const tmpMCF$3 = alias3.push;
+    const tmpMCF$5 = alias3.shift;
+    const tmpMCP$1 = $dotCall(tmpMCF$5, alias3, `shift`);
+    $dotCall(tmpMCF$3, alias3, `push`, tmpMCP$1);
+  }
+}
+let tmpCalleeParam$11 = a();
+$(tmpCalleeParam$11);
+`````
+
+
 ## Todos triggered
 
 
-- (todo) type trackeed tricks can possibly support static $Number_parseInt
-- (todo) can try-escaping support this expr node type? CallExpression
+- (todo) ExpressionStatement; how else might an array be used that we may want to support in phase1_1?
+- (todo) Found a self-closing function shell but it did not match a known pattern...
+- (todo) VarStatement; how else might an array be used that we may want to support in phase1_1?
 - (todo) access object property that also exists on prototype? $array_push
 - (todo) access object property that also exists on prototype? $array_shift
-- (todo) ReturnStatement; how else might an array be used that we may want to support in phase1_1?
-- (todo) can we support this const aliasing blocking statement? WhileStatement
+- (todo) can try-escaping support this expr node type? CallExpression
+- (todo) support array reads statement type ExpressionStatement
+- (todo) support array reads statement type VarStatement
+- (todo) type trackeed tricks can possibly support static $Number_parseInt
 
 
 ## Globals

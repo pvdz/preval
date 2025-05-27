@@ -32,7 +32,7 @@ $(f('x', 'y')); // [x, y]
 const f /*:(primitive)=>array*/ = function ($$0) {
   const tmpParamBare$1 /*:primitive*/ = $$0;
   debugger;
-  let b /*:unknown*/ = `bar`;
+  let b /*:unknown*/ /*ternaryConst*/ = `bar`;
   const tmpIfTest$1 /*:boolean*/ = tmpParamBare$1 === undefined;
   if (tmpIfTest$1) {
   } else {
@@ -90,10 +90,42 @@ $( g );
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function ($$0, $$1) {
+  const tmpParamBare = $$0;
+  const tmpParamBare$1 = $$1;
+  debugger;
+  let a = undefined;
+  const tmpIfTest = tmpParamBare === undefined;
+  if (tmpIfTest) {
+    throw `Preval: TDZ triggered for this read: ((tmpParamBare === undefined)? b : tmpParamBare)`;
+  } else {
+    a = tmpParamBare;
+    let b = undefined;
+    const tmpIfTest$1 = tmpParamBare$1 === undefined;
+    if (tmpIfTest$1) {
+      b = `bar`;
+    } else {
+      b = tmpParamBare$1;
+    }
+    const tmpReturnArg = [a, b];
+    return tmpReturnArg;
+  }
+};
+let tmpCalleeParam = f(`x`);
+$(tmpCalleeParam);
+let tmpCalleeParam$1 = f(`x`, `y`);
+$(tmpCalleeParam$1);
+`````
+
+
 ## Todos triggered
 
 
-None
+- (todo) support array reads statement type ReturnStatement
 
 
 ## Globals

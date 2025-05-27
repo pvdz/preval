@@ -43,8 +43,8 @@ if (alias_for_x_to_test) {
 
 
 `````js filename=intro
-let x /*:unknown*/ = undefined;
-let alias_for_x_to_test /*:unknown*/ = undefined;
+let x /*:unknown*/ /*ternaryConst*/ = undefined;
+let alias_for_x_to_test /*:unknown*/ /*ternaryConst*/ = undefined;
 const test /*:boolean*/ = $ == null;
 if (test) {
 } else {
@@ -109,6 +109,31 @@ else {
   const f = $( 200 );
   $( f );
   $( a );
+}
+`````
+
+
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let x = undefined;
+let alias_for_x_to_test = undefined;
+const test = $ == null;
+if (test) {
+} else {
+  const next = $(1);
+  x = next;
+  alias_for_x_to_test = next;
+}
+if (alias_for_x_to_test) {
+  const t = $(100);
+  $(t);
+  $(x);
+} else {
+  const r = $(200);
+  $(r);
+  $(x);
 }
 `````
 

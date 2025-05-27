@@ -26,7 +26,7 @@ $(alias);
 
 
 `````js filename=intro
-throw `<max pcode call depth exceeded>; calling \`let tmpCalleeParam = f(428);\``;
+throw `<max pcode call depth exceeded>; calling \`const tmp\$5 = f(428, undefined);\``;
 `````
 
 
@@ -34,7 +34,7 @@ throw `<max pcode call depth exceeded>; calling \`let tmpCalleeParam = f(428);\`
 (This ought to be the final result)
 
 `````js filename=intro
-throw `<max pcode call depth exceeded>; calling \`let tmpCalleeParam = f(428);\``;
+throw `<max pcode call depth exceeded>; calling \`const tmp\$5 = f(428, undefined);\``;
 `````
 
 
@@ -42,7 +42,36 @@ throw `<max pcode call depth exceeded>; calling \`let tmpCalleeParam = f(428);\`
 With rename=true
 
 `````js filename=intro
-throw "<max pcode call depth exceeded>; calling `let tmpCalleeParam = f(428);`";
+throw "<max pcode call depth exceeded>; calling `const tmp$5 = f(428, undefined);`";
+`````
+
+
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const arr = [1, 2, 3, 4];
+const f = function ($$0, $$1) {
+  let a = $$0;
+  let b = $$1;
+  debugger;
+  const tmp = f(a, b);
+  return tmp;
+};
+const alias = f;
+const tmpCallCallee = f;
+let tmpCalleeParam$1 = 428;
+let tmpCalleeParam = f(tmpCalleeParam$1);
+$(tmpCalleeParam);
+const tmpCallCallee$1 = f;
+let tmpCalleeParam$5 = 429;
+let tmpCalleeParam$3 = f(tmpCalleeParam$5);
+$(tmpCalleeParam$3);
+const tmpCallCallee$3 = f;
+let tmpCalleeParam$9 = 430;
+let tmpCalleeParam$7 = f(tmpCalleeParam$9);
+$(tmpCalleeParam$7);
+$(alias);
 `````
 
 

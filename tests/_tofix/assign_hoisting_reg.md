@@ -92,6 +92,31 @@ if ($) {
 `````
 
 
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+const tmpArrElement$513 = function () {
+  debugger;
+  let needle = undefined;
+  $(144);
+  const a = function () {
+    debugger;
+    const tmpMCF = needle.f;
+    $dotCall(tmpMCF, needle, `f`);
+    return undefined;
+  };
+  needle = { a: a };
+  $(needle);
+  return undefined;
+};
+if ($) {
+  tmpArrElement$513();
+} else {
+}
+`````
+
+
 ## Todos triggered
 
 

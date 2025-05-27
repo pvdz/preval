@@ -109,10 +109,10 @@ export const pcodeSupportedBuiltinFuncs = new Set([
   symbo('string', 'includes'),
   symbo('string', 'indexOf'),
   symbo('string', 'lastIndexOf'),
-  //'string.match', // TODO: regex and callbacks make this oenewkward?
-  //'string.replace', // TODO: regex case makes this awkward?
+  // symbo('string', 'match'), // TODO: regex and callbacks make this awkward?
+  // symbo('string', 'replace'), // TODO: regex case makes this awkward?
   symbo('string', 'slice'),
-  symbo('string', 'split'),
+  // symbo('string', 'split'),
   symbo('string', 'substring'),
   symbo('string', 'substr'),
   symbo('string', 'toString'),
@@ -1171,14 +1171,14 @@ function prunExpr(registers, op, pcodeData, fdata, prng, usePrng, depth) {
           vlog('String.prototype.lastIndexOf.call(', context, ',', arr[0], ') =', [r]);
           return r;
         }
-        case symbo('string', 'match'): { ASSERT(false, 'TODO') }
-        case symbo('string', 'replace'): { ASSERT(false, 'TODO') }
+        case symbo('string', 'match'): { ASSERT(false, 'TODO string match') }
+        case symbo('string', 'replace'): { ASSERT(false, 'TODO string replace') }
         case symbo('string', 'slice'): {
           const r = String.prototype.slice.call(context, ...arr);
           vlog('String.prototype.slice.call(', context, ',', arr[0], ') =', [r]);
           return r;
         }
-        case symbo('string', 'split'): { ASSERT(false, 'TODO') }
+        case symbo('string', 'split'): { ASSERT(false, 'TODO string split') }
         case symbo('string', 'substring'): {
           const r = String.prototype.substring.call(context, ...arr);
           vlog('String.prototype.substring.call(', context, ',', arr[0], ') =', [r]);

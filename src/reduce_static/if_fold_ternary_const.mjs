@@ -24,7 +24,7 @@ import { setPrintPids } from '../../lib/printer.mjs';
 
 export function ifFoldTernaryConst(fdata) {
   group('\n\n\n[ifFoldTernaryConst] Attempting to fold if statements based on ternary consts initialized with negation (registry walk v11)');
-  currentState(fdata, 'ifFoldTernaryConst', true, fdata);
+  // currentState(fdata, 'ifFoldTernaryConst', true, fdata);
 
   // setPrintPids(true);
   // currentState(fdata, 'ifFoldTernaryConst', true, fdata);

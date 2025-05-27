@@ -35,17 +35,21 @@ import { mayBindingMutateBetweenRefs } from '../bindings.mjs';
 
 export function frfrTricks(fdata) {
   group('\n\n\n[frfrTricks] Searching $frfr calls to optimize\n');
-  const r = _frfr_tricks(fdata);
+  const changed = _frfr_tricks(fdata);
   groupEnd();
-  return r;
+
+  if (changed) {
+    log('$frfrs optimized:', changed, '. Restarting from phase1');
+    return {what: 'frfr_tricks', changes: changed, next: 'phase1'};
+  }
+
+  log('$frfrs optimized: 0.');
 }
 function _frfr_tricks(fdata) {
-  const ast = fdata.tenkoOutput.ast;
-
   let changed = 0;
 
   const meta = fdata.globallyUniqueNamingRegistry.get('$frfr');
-  if (!meta) return; // May not be used at all.
+  if (!meta) return 0; // May not be used at all.
 
   meta.reads.forEach(read => {
     // Cases to look out for:
@@ -115,10 +119,5 @@ function _frfr_tricks(fdata) {
     }
   });
 
-  if (changed) {
-    log('$frfrs optimized:', changed, '. Restarting from phase1');
-    return {what: 'frfr_tricks', changes: changed, next: 'phase1'};
-  }
-
-  log('$frfrs optimized: 0.');
+  return changed;
 }

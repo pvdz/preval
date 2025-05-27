@@ -1321,6 +1321,8 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
 
   groupEnd();
 
+  log('\nRegistered variables:', globallyUniqueNamingRegistry.size, ', of which', globals.size, 'builtins and', globallyUniqueNamingRegistry.size-globals.size, 'locals/implicits');
+
   refTrackState.trebs.clear(); // Clear ref tracking state...
   refTrackState.trabs.clear(); // Clear ref tracking state...
 

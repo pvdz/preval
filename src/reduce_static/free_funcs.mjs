@@ -28,7 +28,6 @@ export function _freeFuncs(fdata, prng, usePrng, pcodeTestMode) {
   const ast = fdata.tenkoOutput.ast;
 
   let changed = 0;
-  const start = Date.now();
 
   // Find function expression nodes.
   // For each such function, apply a loose pcode-test, which should collect all
@@ -194,10 +193,6 @@ export function _freeFuncs(fdata, prng, usePrng, pcodeTestMode) {
   }
 
   assertNoDupeNodes(ast, 'body');
-
-  log('\n\nEnd of phase 1.2, walker took', Date.now() - start, 'ms');
-
-  groupEnd();
 
   if (changed) {
     log('Free func calls dropped:', changed, '. Restarting from phase1');

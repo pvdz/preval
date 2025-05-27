@@ -98,7 +98,6 @@ function _excessiveArgs(fdata) {
           },
         });
       }
-      vgroupEnd();
     });
     vgroupEnd();
   });

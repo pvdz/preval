@@ -1589,6 +1589,8 @@ export function phaseNormalOnce(fdata) {
   }
 
   //currentState(fdata, 'end of once', true, fdata);
+
+  groupEnd();
 }
 function hoistingOnce(hoistingRoot, from) {
   ASSERT(

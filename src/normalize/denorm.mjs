@@ -25,18 +25,18 @@ export function denorm(fdata, resolve, req, options) {
   walk(_walker, ast, 'ast');
   function _walker(node, beforeWalk, nodeType, path) {
     const wat = nodeType + (beforeWalk ? ':before' : ':after');
-    if (beforeWalk) vgroup('-- ', nodeType);
-    else {
-      vlog('  /' + nodeType);
-      vgroupEnd();
-    }
+    // if (beforeWalk) vgroup('-- ', nodeType);
+    // else {
+    //   vlog('  /' + nodeType);
+    //   vgroupEnd();
+    // }
 
     // Reminder: only return when replacing the node itself, not for mutating one of its properties
     // This denorm is called repeatedly until it settles
     switch (wat) {
       case 'CallExpression:before': {
         // When you call $dotCall with a member expression as first arg, and the ident equal to the
-        // object of that member expressio as second arg, you can just call that member expression
+        // object of that member expression as second arg, you can just call that member expression
         // directly, dropping the first two args. $dotCall is just func.call() after all.
         // - `$dotCall(a.b, a, 'b', 1, 2)` => `a.b(1, 2)`
         // - `$dotCall(a[b], a, undefined, 1, 2)` => `a.b(1, 2)`
@@ -423,6 +423,8 @@ export function denorm(fdata, resolve, req, options) {
   }
 
   log(`\n\nAST should be denormed a bit... Anything change? ${changed}\n\n\n\n\n`);
+
+  groupEnd();
 
   return changed;
 }

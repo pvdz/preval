@@ -13,7 +13,7 @@ import { getFreshPhase2RulesState, phase2 } from './normalize/phase2.mjs';
 import { phase3 } from './normalize/phase3.mjs';
 import { phase1_1 } from './normalize/phase1_1.mjs';
 import { ASSERT } from './utils.mjs';
-import { freeFuncs, freeFuncsForTest } from './reduce_static/free_funcs.mjs';
+import { freeFuncsForTest } from './reduce_static/free_funcs.mjs';
 import { denorm } from './normalize/denorm.mjs';
 import { astToPst } from './utils/ast_to_pst.mjs';
 

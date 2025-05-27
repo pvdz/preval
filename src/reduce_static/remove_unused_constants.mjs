@@ -19,17 +19,21 @@ export function removeUnusedConstants(fdata) {
   let queue2 = [];
   //currentState(fdata, 'removeUnusedConstants', true, fdata);
   const changes = _inlineConstants(fdata, queue, queue2);
-  groupEnd();
 
   if (changes) {
     vgroup('Running callbacks from first queue...');
     queue.sort(({ index: a }, { index: b }) => (a < b ? -1 : a > b ? 1 : 0)); // ascending! most of the time we do back to front but this time i want first to last
     queue.forEach(({ func }) => func());
+    vgroupEnd();
     vgroup('Running callbacks from second queue...');
     queue2.sort(({ index: a }, { index: b }) => (a < b ? 1 : a > b ? -1 : 0));
     queue2.forEach(({ func }) => func());
     vgroupEnd();
+  }
 
+  groupEnd();
+
+  if (changes) {
     log('Unused constants eliminated:', changes, '. Restarting from phase1 to fix up read/write registry');
     return {what: 'removeUnusedConstants', changes: changes, next: 'phase1'};
   }

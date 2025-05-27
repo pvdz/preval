@@ -2,20 +2,19 @@
 // `const x = $array_push; $(x)`
 // -> `$($array_push)`
 
-import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, rule, example, before, source, after } from '../utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, rule, example, before, source, after, currentState } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import globalNames from "../globals.mjs"
 import { symbo } from '../symbols_builtins.mjs';
 
 export function aliasedGlobals(fdata) {
   group('\n\n\n[aliasedGlobals] Inlining implicit globals assigned to constants\n');
+  // currentState(fdata, 'aliasedGlobals', true, fdata);
   const r = _aliasedGlobals(fdata);
   groupEnd();
   return r;
 }
 function _aliasedGlobals(fdata) {
-  const ast = fdata.tenkoOutput.ast;
-
   // `const a = x; f(a);` --> `f(x);`
 
   let dropped = 0;
@@ -52,7 +51,6 @@ function _aliasedGlobals(fdata) {
     reads.forEach(read => {
       read.node.name = globalName;
     });
-
 
     after(write.blockBody[write.blockIndex]);
     ++dropped;

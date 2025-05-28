@@ -163,6 +163,7 @@ function processAttempt(fdata, queue) {
       }
       if (read.parentNode.type === 'BinaryExpression') {
         // - `arr * 1`
+        // - `arr + arr`   <- careful, this doesn't escape either but...
 
         const other = read.parentNode.left === read.node ? read.parentNode.right : read.parentNode.left;
         switch (read.parentNode.operator) {
@@ -194,24 +195,45 @@ function processAttempt(fdata, queue) {
           }
           case '===':
           case '!==': {
-            // This array did not escape. As such, we should be able to always reliably resolve ===/!== no matter the other side.
-            rule('Strictly comparing an array that does not escape should allow us to resolve it regardless of other side');
-            example('[] === x', 'false');
-            example('[] !== []', 'true');
-            before(read.blockBody[read.blockIndex]);
+            if (arrName === other.name) {
+              // Comparing the array to itself is ... weird but yeah ok.
+              rule('Strictly comparing an array to itself is trivial');
+              example('const x = []; x === x', 'true');
+              example('const x = []; x !== x', 'false');
+              before(read.blockBody[read.blockIndex]);
 
-            read.grandNode[read.grandProp] = AST.primitive(read.parentNode.operator !== '===');
-            queue.push({
-              index: +read.node.$p.pid,
-              func: () => {
-                // Store the other expr as a statement to preserve TDZ/ref errors
-                read.blockBody.splice(read.blockIndex, 0, AST.expressionStatement(other));
-              }
-            });
+              read.grandNode[read.grandProp] = AST.primitive(read.parentNode.operator === '===');
+              queue.push({
+                index: +read.node.$p.pid,
+                func: () => {
+                  // Store the other expr as a statement to preserve TDZ/ref errors
+                  read.blockBody.splice(read.blockIndex, 0, AST.expressionStatement(other));
+                }
+              });
 
-            after(read.blockBody[read.blockIndex]);
-            updated += 1;
-            return;
+              after(read.blockBody[read.blockIndex]);
+              updated += 1;
+              return;
+            } else {
+              // This array did not escape. As such, we should be able to always reliably resolve ===/!== no matter the other side.
+              rule('Strictly comparing an array that does not escape should allow us to resolve it regardless of other side');
+              example('[] === x', 'false');
+              example('[] !== []', 'true');
+              before(read.blockBody[read.blockIndex]);
+
+              read.grandNode[read.grandProp] = AST.primitive(read.parentNode.operator !== '===');
+              queue.push({
+                index: +read.node.$p.pid,
+                func: () => {
+                  // Store the other expr as a statement to preserve TDZ/ref errors
+                  read.blockBody.splice(read.blockIndex, 0, AST.expressionStatement(other));
+                }
+              });
+
+              after(read.blockBody[read.blockIndex]);
+              updated += 1;
+              return;
+            }
           }
           case '+': {
             // - `[1,2,3] + 'x'`

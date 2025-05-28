@@ -1187,8 +1187,11 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
           vlog('- marking', meta.uniqueName, 'as constant, ref set to', init.type);
           ASSERT(meta);
           meta.isConstant = true;
+        } else if (node.kind === 'let') {
+          meta.isLet = true;
         }
         meta.isImplicitGlobal = false;
+        meta.isExplicitVar = true;
         ASSERT(
           parentNode.type === 'BlockStatement' || parentNode.type === 'Program',
           'all normalized var decls appear in blocks, right?',

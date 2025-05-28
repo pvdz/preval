@@ -411,6 +411,8 @@ export function registerGlobalIdent(
     uniqueName: name,
     isExport, // exports should not have their name changed. we ensure this as the last step of this phase.
     isImplicitGlobal, // There exists explicit declaration of this ident. These can be valid, like `process` or `window`. Currently also `catch` clause bindings.
+    isExplicitVar: false, // Set from phase1 in the var decl case
+    isLet: false, // Set from phase1 in the var decl case when it is actually a let
     isConstant: false, // Set from phase1 in the var decl case when it is actually a const
     //varDeclRef, // {node:init,varDeclNode,varDeclBody,varDeclIndex}. Set from phase1 in the var delc case, regardless of const/let. varDeclBody[varDeclIndex] === varDeclNode
     isCatchVar: false, // Set by phase1 TryStatement:after on catch vars

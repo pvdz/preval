@@ -223,6 +223,9 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
       node.$p.funcDepth = funcStack.length;
       node.$p.blockChain = blockIds.join(',') + ','; // Trailing comma prevents ambiguity when doing a.blockChain.startsWith(b.blockChain)
       fdata.flatNodeMap.set(node.$p.pid, node);
+    } else {
+      // Set lastPid on all nodes. If the node had no child-nodes then pid==lastPid, that's fine.
+      node.$p.lastPid = getUid();
     }
 
     if (before && parentNode?.type === 'IfStatement' && parentProp !== 'test') {
@@ -379,7 +382,6 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         break;
       }
       case 'BlockStatement:after': {
-        node.$p.lastPid = getUid();
         blockStack.pop();
         blockBodies.pop();
         blockIds.pop();
@@ -485,7 +487,6 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
 
         break;
       }
-
       case 'CatchClause:after': {
         const parentBlock = blockStack[blockStack.length - 1];
         if (ENABLE_REF_TRACKING) openRefsOnAfterCatchNode(refTrackState, node, parentBlock, globallyUniqueLabelRegistry, loopStack, tryNodeStack);

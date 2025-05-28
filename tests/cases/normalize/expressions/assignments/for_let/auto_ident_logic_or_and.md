@@ -31,8 +31,9 @@ if (a) {
   } else {
   }
 }
+const xyz /*:unknown*/ = a;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(a);
+  $(xyz);
   $(1);
 }
 `````
@@ -49,8 +50,9 @@ if (!a) {
     a = $($(2));
   }
 }
+const xyz = a;
 while (true) {
-  $(a);
+  $(xyz);
   $(1);
 }
 `````
@@ -73,8 +75,9 @@ else {
     b = $( d );
   }
 }
+const e = b;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $( b );
+  $( e );
   $( 1 );
 }
 `````
@@ -108,7 +111,7 @@ while (true) {
 ## Todos triggered
 
 
-None
+- (todo) we can still proceed with the loop as long as there is no let-write anywhere in the loop, inc nested
 
 
 ## Globals

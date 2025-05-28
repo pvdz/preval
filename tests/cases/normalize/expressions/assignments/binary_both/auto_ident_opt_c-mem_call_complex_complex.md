@@ -36,7 +36,6 @@ if (tmpIfTest) {
     a = $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, tmpCalleeParam$1);
   }
 }
-const tmpBinBothLhs /*:unknown*/ = a;
 let tmpClusterSSA_a /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpChainElementCall$3 /*:unknown*/ = $(b);
 const tmpIfTest$3 /*:boolean*/ = tmpChainElementCall$3 == null;
@@ -51,7 +50,7 @@ if (tmpIfTest$3) {
     tmpClusterSSA_a = $dotCall(tmpChainElementObject$1, tmpChainElementCall$3, undefined, tmpCalleeParam$3);
   }
 }
-const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + tmpClusterSSA_a;
+const tmpCalleeParam /*:primitive*/ = a + tmpClusterSSA_a;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a);
 `````
@@ -71,7 +70,6 @@ if (!(tmpChainElementCall == null)) {
     a = $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, $(1));
   }
 }
-const tmpBinBothLhs = a;
 let tmpClusterSSA_a = undefined;
 const tmpChainElementCall$3 = $(b);
 if (!(tmpChainElementCall$3 == null)) {
@@ -81,7 +79,7 @@ if (!(tmpChainElementCall$3 == null)) {
     tmpClusterSSA_a = $dotCall(tmpChainElementObject$1, tmpChainElementCall$3, undefined, $(1));
   }
 }
-$(tmpBinBothLhs + tmpClusterSSA_a);
+$(a + tmpClusterSSA_a);
 $(tmpClusterSSA_a);
 `````
 
@@ -109,28 +107,27 @@ else {
     a = $dotCall( f, c, undefined, h );
   }
 }
-const i = a;
-let j = undefined;
-const k = $( b );
-const l = k == null;
-if (l) {
+let i = undefined;
+const j = $( b );
+const k = j == null;
+if (k) {
 
 }
 else {
-  const m = $( "$" );
-  const n = k[ m ];
-  const o = n == null;
-  if (o) {
+  const l = $( "$" );
+  const m = j[ l ];
+  const n = m == null;
+  if (n) {
 
   }
   else {
-    const p = $( 1 );
-    j = $dotCall( n, k, undefined, p );
+    const o = $( 1 );
+    i = $dotCall( m, j, undefined, o );
   }
 }
-const q = i + j;
-$( q );
-$( j );
+const p = a + i;
+$( p );
+$( i );
 `````
 
 

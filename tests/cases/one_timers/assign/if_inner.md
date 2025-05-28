@@ -39,8 +39,8 @@ $(closure());
 
 
 `````js filename=intro
-const tmpCalleeParam /*:unknown*/ = $(100);
-$(tmpCalleeParam);
+const x /*:unknown*/ = $(100);
+$(x);
 const g /*:()=>undefined*/ = function () {
   debugger;
   const tmpIfTest /*:unknown*/ = $(1);

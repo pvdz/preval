@@ -69,7 +69,7 @@ while (true) {
 ## Todos triggered
 
 
-- (todo) Support $frfr that has multiple/no/generic returns type;
+- (todo) do we want to support ObjectExpression as expression statement in free loops?
 
 
 ## Globals

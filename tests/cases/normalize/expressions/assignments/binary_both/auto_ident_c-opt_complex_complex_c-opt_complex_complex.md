@@ -37,7 +37,6 @@ if (tmpIfTest) {
     a = tmpChainElementObject[tmpChainRootComputed$1];
   }
 }
-const tmpBinBothLhs /*:unknown*/ = a;
 let tmpClusterSSA_a /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpChainElementCall$1 /*:unknown*/ = $(b);
 const tmpIfTest$3 /*:boolean*/ = tmpChainElementCall$1 == null;
@@ -52,7 +51,7 @@ if (tmpIfTest$3) {
     tmpClusterSSA_a = tmpChainElementObject$3[tmpChainRootComputed$5];
   }
 }
-const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + tmpClusterSSA_a;
+const tmpCalleeParam /*:primitive*/ = a + tmpClusterSSA_a;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a);
 `````
@@ -74,7 +73,6 @@ if (!(tmpChainElementCall == null)) {
     a = tmpChainElementObject[tmpChainRootComputed$1];
   }
 }
-const tmpBinBothLhs = a;
 let tmpClusterSSA_a = undefined;
 const tmpChainElementCall$1 = $(b);
 if (!(tmpChainElementCall$1 == null)) {
@@ -85,7 +83,7 @@ if (!(tmpChainElementCall$1 == null)) {
     tmpClusterSSA_a = tmpChainElementObject$3[tmpChainRootComputed$5];
   }
 }
-$(tmpBinBothLhs + tmpClusterSSA_a);
+$(a + tmpClusterSSA_a);
 $(tmpClusterSSA_a);
 `````
 
@@ -114,28 +112,27 @@ else {
     a = g[ i ];
   }
 }
-const j = a;
-let k = undefined;
-const l = $( c );
-const m = l == null;
-if (m) {
+let j = undefined;
+const k = $( c );
+const l = k == null;
+if (l) {
 
 }
 else {
-  const n = $( "x" );
-  const o = l[ n ];
-  const p = o == null;
-  if (p) {
+  const m = $( "x" );
+  const n = k[ m ];
+  const o = n == null;
+  if (o) {
 
   }
   else {
-    const q = $( "y" );
-    k = o[ q ];
+    const p = $( "y" );
+    j = n[ p ];
   }
 }
-const r = j + k;
-$( r );
-$( k );
+const q = a + j;
+$( q );
+$( j );
 `````
 
 

@@ -37,8 +37,9 @@ if (tmpIfTest) {
     a = tmpChainElementObject[tmpChainRootComputed$1];
   }
 }
+const xyz /*:unknown*/ = a;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(a);
+  $(xyz);
   $(1);
 }
 `````
@@ -59,8 +60,9 @@ if (!(tmpChainElementCall == null)) {
     a = tmpChainElementObject[tmpChainRootComputed$1];
   }
 }
+const xyz = a;
 while (true) {
-  $(a);
+  $(xyz);
   $(1);
 }
 `````
@@ -90,8 +92,9 @@ else {
     a = g[ i ];
   }
 }
+const j = a;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $( a );
+  $( j );
   $( 1 );
 }
 `````
@@ -131,7 +134,7 @@ while (true) {
 ## Todos triggered
 
 
-None
+- (todo) we can still proceed with the loop as long as there is no let-write anywhere in the loop, inc nested
 
 
 ## Globals

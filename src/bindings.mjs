@@ -2718,3 +2718,13 @@ export function getMeta(name, fdata) {
   ASSERT(meta, 'if you call getMeta, you should be expecting it to exist', name); // Prevents us having to assert it everywhere
   return meta;
 }
+
+export function hasSingleScopedWrites(meta) {
+  if (meta.singleScoped) return true;
+  let func;
+  return meta.writes.every(write => {
+    if (func) return func === write.funcChain
+    func = write.funcChain;
+    return true;
+  });
+}

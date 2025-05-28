@@ -21,15 +21,15 @@ $(a);
 
 
 `````js filename=intro
-let a /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpIfTest$1 /*:boolean*/ = $ == null;
+let xyz /*:unknown*/ /*ternaryConst*/ = undefined;
 if (tmpIfTest$1) {
 } else {
   const tmpObjLitVal$1 /*:object*/ = { e: $ };
-  a = $dotCall($, tmpObjLitVal$1, `e`, 1);
+  xyz = $dotCall($, tmpObjLitVal$1, `e`, 1);
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(a);
+  $(xyz);
   $(1);
 }
 `````
@@ -39,12 +39,13 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 (This ought to be the final result)
 
 `````js filename=intro
-let a = undefined;
-if (!($ == null)) {
-  a = $dotCall($, { e: $ }, `e`, 1);
+const tmpIfTest$1 = $ == null;
+let xyz = undefined;
+if (!tmpIfTest$1) {
+  xyz = $dotCall($, { e: $ }, `e`, 1);
 }
 while (true) {
-  $(a);
+  $(xyz);
   $(1);
 }
 `````
@@ -54,17 +55,17 @@ while (true) {
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = $ == null;
-if (b) {
+const a = $ == null;
+let b = undefined;
+if (a) {
 
 }
 else {
   const c = { e: $ };
-  a = $dotCall( $, c, "e", 1 );
+  b = $dotCall( $, c, "e", 1 );
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $( a );
+  $( b );
   $( 1 );
 }
 `````
@@ -104,7 +105,7 @@ while (true) {
 ## Todos triggered
 
 
-None
+- (todo) we can still proceed with the loop as long as there is no let-write anywhere in the loop, inc nested
 
 
 ## Globals

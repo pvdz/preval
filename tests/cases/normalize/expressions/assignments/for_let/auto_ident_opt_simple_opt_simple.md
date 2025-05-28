@@ -81,7 +81,8 @@ while (true) {
 ## Todos triggered
 
 
-- (todo) do we want to support ObjectExpression as expression statement in free loops?
+- (todo) do we want to support Literal as expression statement in free loops?
+- (todo) we can still proceed with the loop as long as there is no let-write anywhere in the loop, inc nested
 
 
 ## Globals

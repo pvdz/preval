@@ -29,11 +29,21 @@ $(f);
 
 
 `````js filename=intro
-const f /*:()=>unknown*/ = function () {
+const f /*:()=>undefined*/ = function () {
   debugger;
-  $(1);
-  $(2);
-  $(3);
+  const g /*:()=>undefined*/ = function () {
+    debugger;
+    const tmpPostUpdArgIdent /*:unknown*/ = x;
+    x = tmpPostUpdArgIdent + 1;
+    return undefined;
+  };
+  let x /*:primitive*/ = 0;
+  g();
+  $(x);
+  g();
+  $(x);
+  g();
+  $(x);
   return undefined;
 };
 f();
@@ -47,9 +57,16 @@ $(f);
 
 `````js filename=intro
 const f = function () {
-  $(1);
-  $(2);
-  $(3);
+  const g = function () {
+    x = x + 1;
+  };
+  let x = 0;
+  g();
+  $(x);
+  g();
+  $(x);
+  g();
+  $(x);
 };
 f();
 $(undefined);
@@ -63,9 +80,19 @@ With rename=true
 `````js filename=intro
 const a = function() {
   debugger;
-  $( 1 );
-  $( 2 );
-  $( 3 );
+  const b = function() {
+    debugger;
+    const c = d;
+    d = c + 1;
+    return undefined;
+  };
+  let d = 0;
+  b();
+  $( d );
+  b();
+  $( d );
+  b();
+  $( d );
   return undefined;
 };
 a();

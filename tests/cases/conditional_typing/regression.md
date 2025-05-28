@@ -41,11 +41,13 @@ f();
 let curtype /*:unknown*/ = 0;
 const f /*:()=>undefined*/ = function () {
   debugger;
-  const tmpIfTest /*:boolean*/ = curtype === 16472;
+  const tmpBinLhs /*:unknown*/ = curtype;
+  const tmpIfTest /*:boolean*/ = tmpBinLhs === 16472;
   if (tmpIfTest) {
     lexerFlags;
     curtype = $(`random`);
-    const tmpIfTest$1 /*:boolean*/ = curtype === 16473;
+    const tmpBinLhs$1 /*:unknown*/ = curtype;
+    const tmpIfTest$1 /*:boolean*/ = tmpBinLhs$1 === 16473;
     if (tmpIfTest$1) {
       $(`x`);
       return undefined;
@@ -93,12 +95,14 @@ With rename=true
 let a = 0;
 const b = function() {
   debugger;
-  const c = a === 16472;
-  if (c) {
+  const c = a;
+  const d = c === 16472;
+  if (d) {
     lexerFlags;
     a = $( "random" );
-    const d = a === 16473;
-    if (d) {
+    const e = a;
+    const f = e === 16473;
+    if (f) {
       $( "x" );
       return undefined;
     }

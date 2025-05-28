@@ -61,27 +61,25 @@ if (a) {
     a = $(tmpCalleeParam$5);
   }
 }
+const tmpCalleeParam /*:unknown*/ = a;
 if (a) {
   const tmpCalleeParam$7 /*:unknown*/ = $(0);
-  const tmp /*:unknown*/ = $(tmpCalleeParam$7);
+  let tmp /*:unknown*/ = $(tmpCalleeParam$7);
   if (tmp) {
-    $(tmp);
-    $(tmp);
   } else {
     const tmpCalleeParam$9 /*:unknown*/ = $(1);
-    const tmpClusterSSA_tmp /*:unknown*/ = $(tmpCalleeParam$9);
-    if (tmpClusterSSA_tmp) {
-      $(tmpClusterSSA_tmp);
-      $(tmpClusterSSA_tmp);
+    tmp = $(tmpCalleeParam$9);
+    if (tmp) {
     } else {
       const tmpCalleeParam$11 /*:unknown*/ = $(2);
-      const tmpClusterSSA_tmp$1 /*:unknown*/ = $(tmpCalleeParam$11);
-      $(tmpClusterSSA_tmp$1);
-      $(tmpClusterSSA_tmp$1);
+      tmp = $(tmpCalleeParam$11);
     }
   }
+  const alias /*:unknown*/ = tmp;
+  $(tmp);
+  $(alias);
 } else {
-  $(a);
+  $(tmpCalleeParam);
   $(a);
 }
 `````
@@ -98,24 +96,20 @@ if (!a) {
     a = $($(2));
   }
 }
+const tmpCalleeParam = a;
 if (a) {
-  const tmp = $($(0));
-  if (tmp) {
-    $(tmp);
-    $(tmp);
-  } else {
-    const tmpClusterSSA_tmp = $($(1));
-    if (tmpClusterSSA_tmp) {
-      $(tmpClusterSSA_tmp);
-      $(tmpClusterSSA_tmp);
-    } else {
-      const tmpClusterSSA_tmp$1 = $($(2));
-      $(tmpClusterSSA_tmp$1);
-      $(tmpClusterSSA_tmp$1);
+  let tmp = $($(0));
+  if (!tmp) {
+    tmp = $($(1));
+    if (!tmp) {
+      tmp = $($(2));
     }
   }
+  const alias = tmp;
+  $(tmp);
+  $(alias);
 } else {
-  $(a);
+  $(tmpCalleeParam);
   $(a);
 }
 `````
@@ -141,30 +135,30 @@ else {
     b = $( d );
   }
 }
+const e = b;
 if (b) {
-  const e = $( 0 );
-  const f = $( e );
-  if (f) {
-    $( f );
-    $( f );
+  const f = $( 0 );
+  let g = $( f );
+  if (g) {
+
   }
   else {
-    const g = $( 1 );
-    const h = $( g );
-    if (h) {
-      $( h );
-      $( h );
+    const h = $( 1 );
+    g = $( h );
+    if (g) {
+
     }
     else {
       const i = $( 2 );
-      const j = $( i );
-      $( j );
-      $( j );
+      g = $( i );
     }
   }
+  const j = g;
+  $( g );
+  $( j );
 }
 else {
-  $( b );
+  $( e );
   $( b );
 }
 `````

@@ -36,8 +36,8 @@ $(closure());
 
 
 `````js filename=intro
-const x /*:unknown*/ = $(100);
-$(x);
+const tmpCalleeParam /*:unknown*/ = $(100);
+$(tmpCalleeParam);
 $(`a`);
 $(`b`);
 $(`ab`);

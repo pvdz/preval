@@ -134,6 +134,12 @@ function _constAliasing(fdata) {
       return;
     }
 
+    // This code has some subtle bugs I'm trying to squash.
+    // There's also some reducer duplication between this part and letAliasRedundant (and probably others?)
+    // Since I have a chicken egg problem I'm going to start by disabling this while tacklign that...
+    // Note: tests/cases/return/closure.md is the main concern throughout this bug hunt, the rest is easy/fine.
+    return console.log('temporarily disabled const aliasing for let. should probably move this to letAliasRedundant, anyways');
+
     // This is alt-path. The rhs is not a constant, maybe even an implicit global, catch var, and potentially exported.
 
     // Assert: all usages of the const happen before the rhs has an opportunity to change

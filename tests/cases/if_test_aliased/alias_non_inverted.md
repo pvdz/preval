@@ -20,8 +20,9 @@ if (c) {
 
 
 `````js filename=intro
+const a /*:unknown*/ = c;
 if (c) {
-  $(c);
+  $(a);
 } else {
 }
 `````
@@ -31,8 +32,9 @@ if (c) {
 (This ought to be the final result)
 
 `````js filename=intro
+const a = c;
 if (c) {
-  $(c);
+  $(a);
 }
 `````
 
@@ -41,8 +43,9 @@ if (c) {
 With rename=true
 
 `````js filename=intro
+const a = c;
 if (c) {
-  $( c );
+  $( a );
 }
 `````
 

@@ -20,7 +20,7 @@ $(unknown??length);
 
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = unknown;
-const tmpIfTest /*:boolean*/ = unknown == null;
+const tmpIfTest /*:boolean*/ = tmpCalleeParam == null;
 if (tmpIfTest) {
   $(length);
 } else {
@@ -34,7 +34,7 @@ if (tmpIfTest) {
 
 `````js filename=intro
 const tmpCalleeParam = unknown;
-if (unknown == null) {
+if (tmpCalleeParam == null) {
   $(length);
 } else {
   $(tmpCalleeParam);
@@ -47,7 +47,7 @@ With rename=true
 
 `````js filename=intro
 const a = unknown;
-const b = unknown == null;
+const b = a == null;
 if (b) {
   $( length );
 }

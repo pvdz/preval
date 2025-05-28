@@ -28,7 +28,8 @@ $(x);
 const f /*:()=>undefined*/ = function () {
   debugger;
   $(x);
-  x = x + 1;
+  const tmpPostUpdArgIdent /*:unknown*/ = x;
+  x = tmpPostUpdArgIdent + 1;
   return undefined;
 };
 let x /*:primitive*/ = 5;
@@ -60,7 +61,8 @@ With rename=true
 const a = function() {
   debugger;
   $( b );
-  b = b + 1;
+  const c = b;
+  b = c + 1;
   return undefined;
 };
 let b = 5;

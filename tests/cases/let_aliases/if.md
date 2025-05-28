@@ -41,8 +41,9 @@ let f /*:()=>unknown*/ = function () {
   return tmpReturnArg;
 };
 let x /*:unknown*/ = $(1);
+const a /*:unknown*/ = x;
 if ($) {
-  $(x, x);
+  $(a, x);
   $(f);
 } else {
   $(f);
@@ -63,8 +64,9 @@ let f = function () {
   return tmpReturnArg;
 };
 let x = $(1);
+const a = x;
 if ($) {
-  $(x, x);
+  $(a, x);
   $(f);
 } else {
   $(f);
@@ -87,8 +89,9 @@ let a = function() {
   return c;
 };
 let b = $( 1 );
+const d = b;
 if ($) {
-  $( b, b );
+  $( d, b );
   $( a );
 }
 else {

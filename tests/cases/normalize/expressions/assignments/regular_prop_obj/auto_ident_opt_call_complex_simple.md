@@ -23,13 +23,11 @@ $(a);
 let a /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpChainElementCall /*:unknown*/ = $($);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
-let tmpCompObj /*:unknown*/ /*ternaryConst*/ = undefined;
 if (tmpIfTest) {
 } else {
   a = $dotCall(tmpChainElementCall, $, undefined, 1);
-  tmpCompObj = a;
 }
-tmpCompObj.a;
+a.a;
 $(a);
 `````
 
@@ -40,13 +38,10 @@ $(a);
 `````js filename=intro
 let a = undefined;
 const tmpChainElementCall = $($);
-const tmpIfTest = tmpChainElementCall == null;
-let tmpCompObj = undefined;
-if (!tmpIfTest) {
+if (!(tmpChainElementCall == null)) {
   a = $dotCall(tmpChainElementCall, $, undefined, 1);
-  tmpCompObj = a;
 }
-tmpCompObj.a;
+a.a;
 $(a);
 `````
 
@@ -58,15 +53,13 @@ With rename=true
 let a = undefined;
 const b = $( $ );
 const c = b == null;
-let d = undefined;
 if (c) {
 
 }
 else {
   a = $dotCall( b, $, undefined, 1 );
-  d = a;
 }
-d.a;
+a.a;
 $( a );
 `````
 

@@ -25,14 +25,12 @@ let a /*:unknown*/ /*ternaryConst*/ = undefined;
 const b /*:object*/ = { x: 1 };
 const tmpChainElementCall /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
-let tmpObjLitPropKey /*:unknown*/ /*ternaryConst*/ = undefined;
 if (tmpIfTest) {
 } else {
   const tmpChainRootComputed /*:unknown*/ = $(`x`);
   a = tmpChainElementCall[tmpChainRootComputed];
-  tmpObjLitPropKey = a;
 }
-const tmpCalleeParam /*:object*/ = { [tmpObjLitPropKey]: 10 };
+const tmpCalleeParam /*:object*/ = { [a]: 10 };
 $(tmpCalleeParam);
 $(a);
 `````
@@ -44,14 +42,11 @@ $(a);
 `````js filename=intro
 let a = undefined;
 const tmpChainElementCall = $({ x: 1 });
-const tmpIfTest = tmpChainElementCall == null;
-let tmpObjLitPropKey = undefined;
-if (!tmpIfTest) {
+if (!(tmpChainElementCall == null)) {
   const tmpChainRootComputed = $(`x`);
   a = tmpChainElementCall[tmpChainRootComputed];
-  tmpObjLitPropKey = a;
 }
-$({ [tmpObjLitPropKey]: 10 });
+$({ [a]: 10 });
 $(a);
 `````
 
@@ -64,17 +59,15 @@ let a = undefined;
 const b = { x: 1 };
 const c = $( b );
 const d = c == null;
-let e = undefined;
 if (d) {
 
 }
 else {
-  const f = $( "x" );
-  a = c[ f ];
-  e = a;
+  const e = $( "x" );
+  a = c[ e ];
 }
-const g = { [ e ]: 10 };
-$( g );
+const f = { [ a ]: 10 };
+$( f );
 $( a );
 `````
 

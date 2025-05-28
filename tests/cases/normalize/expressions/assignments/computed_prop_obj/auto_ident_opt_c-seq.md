@@ -26,13 +26,11 @@ let a /*:unknown*/ /*ternaryConst*/ = undefined;
 const b /*:object*/ = { x: 1 };
 const tmpChainRootProp /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainRootProp == null;
-let tmpCompObj /*:unknown*/ /*ternaryConst*/ = undefined;
 if (tmpIfTest) {
 } else {
   a = tmpChainRootProp.x;
-  tmpCompObj = a;
 }
-tmpCompObj.a;
+a.a;
 $(a);
 `````
 
@@ -43,13 +41,10 @@ $(a);
 `````js filename=intro
 let a = undefined;
 const tmpChainRootProp = $({ x: 1 });
-const tmpIfTest = tmpChainRootProp == null;
-let tmpCompObj = undefined;
-if (!tmpIfTest) {
+if (!(tmpChainRootProp == null)) {
   a = tmpChainRootProp.x;
-  tmpCompObj = a;
 }
-tmpCompObj.a;
+a.a;
 $(a);
 `````
 
@@ -62,15 +57,13 @@ let a = undefined;
 const b = { x: 1 };
 const c = $( b );
 const d = c == null;
-let e = undefined;
 if (d) {
 
 }
 else {
   a = c.x;
-  e = a;
 }
-e.a;
+a.a;
 $( a );
 `````
 

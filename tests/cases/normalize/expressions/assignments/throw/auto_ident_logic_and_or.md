@@ -26,14 +26,12 @@ if (a) {
   a = $(tmpCalleeParam$1);
 } else {
 }
-let tmpThrowArg /*:unknown*/ /*ternaryConst*/ = undefined;
 if (a) {
-  tmpThrowArg = a;
 } else {
   const tmpCalleeParam$3 /*:unknown*/ = $(2);
-  tmpThrowArg = $(tmpCalleeParam$3);
+  a = $(tmpCalleeParam$3);
 }
-throw tmpThrowArg;
+throw a;
 `````
 
 
@@ -45,13 +43,10 @@ let a = $($(1));
 if (a) {
   a = $($(1));
 }
-let tmpThrowArg = undefined;
-if (a) {
-  tmpThrowArg = a;
-} else {
-  tmpThrowArg = $($(2));
+if (!a) {
+  a = $($(2));
 }
-throw tmpThrowArg;
+throw a;
 `````
 
 
@@ -65,15 +60,14 @@ if (b) {
   const c = $( 1 );
   b = $( c );
 }
-let d = undefined;
 if (b) {
-  d = b;
+
 }
 else {
-  const e = $( 2 );
-  d = $( e );
+  const d = $( 2 );
+  b = $( d );
 }
-throw d;
+throw b;
 `````
 
 

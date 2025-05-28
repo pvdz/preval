@@ -24,9 +24,9 @@ $(a);
 const tmpObjLitVal /*:unknown*/ = $(1);
 $(undefined);
 const tmpAssignComMemLhsProp /*:unknown*/ = $(`b`);
-const tmpSSA_a /*:object*/ = { b: tmpObjLitVal };
-tmpSSA_a[tmpAssignComMemLhsProp] = 2;
-$(tmpSSA_a);
+const tmpClusterSSA_a /*:object*/ = { b: tmpObjLitVal };
+tmpClusterSSA_a[tmpAssignComMemLhsProp] = 2;
+$(tmpClusterSSA_a);
 `````
 
 
@@ -37,9 +37,9 @@ $(tmpSSA_a);
 const tmpObjLitVal = $(1);
 $(undefined);
 const tmpAssignComMemLhsProp = $(`b`);
-const tmpSSA_a = { b: tmpObjLitVal };
-tmpSSA_a[tmpAssignComMemLhsProp] = 2;
-$(tmpSSA_a);
+const tmpClusterSSA_a = { b: tmpObjLitVal };
+tmpClusterSSA_a[tmpAssignComMemLhsProp] = 2;
+$(tmpClusterSSA_a);
 `````
 
 

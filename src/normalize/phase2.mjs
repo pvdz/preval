@@ -98,7 +98,6 @@ import { freeFuncs } from '../reduce_static/free_funcs.mjs';
 import { arrMethodCall } from '../reduce_static/arr_method_call.mjs';
 import { freeing } from '../reduce_static/freeing.mjs';
 import { bufferBase64 } from "../reduce_static/buffer_base64.mjs"
-import { letAliasRedundant } from '../reduce_static/let_alias_redundant.mjs';
 import { freeLoops } from '../reduce_static/free_loops.mjs';
 import { freeNested } from '../reduce_static/free_nested.mjs';
 import { redundantInit } from '../reduce_static/redundant_init.mjs';
@@ -208,7 +207,6 @@ export const BASE_PHASE2_RULES_LIST = [
   ['selfAssignClosure', selfAssignClosure],
   ['selfAssignNoop', selfAssignNoop],
   ['letAliasing', letAliasing],
-  ['letAliasRedundant', letAliasRedundant],
   ['testingAlias', testingAlias],
   ['aliasIfIf', aliasIfIf],
   ['ifUpdateTest', ifUpdateTest],

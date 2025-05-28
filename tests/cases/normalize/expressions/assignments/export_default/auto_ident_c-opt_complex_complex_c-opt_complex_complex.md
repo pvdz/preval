@@ -37,7 +37,8 @@ if (tmpIfTest) {
     a = tmpChainElementObject[tmpChainRootComputed$1];
   }
 }
-export { a as default };
+const tmpAnonDefaultExport /*:unknown*/ = a;
+export { tmpAnonDefaultExport as default };
 $(a);
 `````
 
@@ -57,7 +58,8 @@ if (!(tmpChainElementCall == null)) {
     a = tmpChainElementObject[tmpChainRootComputed$1];
   }
 }
-export { a as default };
+const tmpAnonDefaultExport = a;
+export { tmpAnonDefaultExport as default };
 $(a);
 `````
 
@@ -86,7 +88,8 @@ else {
     a = g[ i ];
   }
 }
-export { a as default };
+const j = a;
+export { j as default };
 $( a );
 `````
 

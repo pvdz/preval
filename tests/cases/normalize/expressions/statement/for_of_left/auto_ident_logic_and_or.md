@@ -35,15 +35,13 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
       tmpAssignMemLhsObj = $(tmpCalleeParam$5);
     } else {
     }
-    let tmpAssignMemLhsObj$1 /*:unknown*/ /*ternaryConst*/ = undefined;
     if (tmpAssignMemLhsObj) {
-      tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
     } else {
       const tmpCalleeParam$7 /*:unknown*/ = $(2);
-      tmpAssignMemLhsObj$1 = $(tmpCalleeParam$7);
+      tmpAssignMemLhsObj = $(tmpCalleeParam$7);
     }
     const tmpAssignMemRhs /*:unknown*/ = tmpForOfNext.value;
-    tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
+    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
   }
 }
 const a /*:object*/ = { a: 999, b: 1000 };
@@ -65,13 +63,10 @@ while (true) {
     if (tmpAssignMemLhsObj) {
       tmpAssignMemLhsObj = $($(1));
     }
-    let tmpAssignMemLhsObj$1 = undefined;
-    if (tmpAssignMemLhsObj) {
-      tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
-    } else {
-      tmpAssignMemLhsObj$1 = $($(2));
+    if (!tmpAssignMemLhsObj) {
+      tmpAssignMemLhsObj = $($(2));
     }
-    tmpAssignMemLhsObj$1.x = tmpForOfNext.value;
+    tmpAssignMemLhsObj.x = tmpForOfNext.value;
   }
 }
 $({ a: 999, b: 1000 });
@@ -98,23 +93,22 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
       const h = $( 1 );
       g = $( h );
     }
-    let i = undefined;
     if (g) {
-      i = g;
+
     }
     else {
-      const j = $( 2 );
-      i = $( j );
+      const i = $( 2 );
+      g = $( i );
     }
-    const k = d.value;
-    i.x = k;
+    const j = d.value;
+    g.x = j;
   }
 }
-const l = {
+const k = {
   a: 999,
   b: 1000,
 };
-$( l );
+$( k );
 `````
 
 

@@ -21,16 +21,16 @@ $(a);
 
 
 `````js filename=intro
+let a /*:unknown*/ /*ternaryConst*/ = undefined;
 const b /*:object*/ = { x: 1 };
 const tmpChainElementCall /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
-let tmpThrowArg /*:unknown*/ /*ternaryConst*/ = undefined;
 if (tmpIfTest) {
 } else {
   const tmpChainRootComputed /*:unknown*/ = $(`x`);
-  tmpThrowArg = tmpChainElementCall[tmpChainRootComputed];
+  a = tmpChainElementCall[tmpChainRootComputed];
 }
-throw tmpThrowArg;
+throw a;
 `````
 
 
@@ -38,14 +38,13 @@ throw tmpThrowArg;
 (This ought to be the final result)
 
 `````js filename=intro
+let a = undefined;
 const tmpChainElementCall = $({ x: 1 });
-const tmpIfTest = tmpChainElementCall == null;
-let tmpThrowArg = undefined;
-if (!tmpIfTest) {
+if (!(tmpChainElementCall == null)) {
   const tmpChainRootComputed = $(`x`);
-  tmpThrowArg = tmpChainElementCall[tmpChainRootComputed];
+  a = tmpChainElementCall[tmpChainRootComputed];
 }
-throw tmpThrowArg;
+throw a;
 `````
 
 
@@ -53,18 +52,18 @@ throw tmpThrowArg;
 With rename=true
 
 `````js filename=intro
-const a = { x: 1 };
-const b = $( a );
-const c = b == null;
-let d = undefined;
-if (c) {
+let a = undefined;
+const b = { x: 1 };
+const c = $( b );
+const d = c == null;
+if (d) {
 
 }
 else {
   const e = $( "x" );
-  d = b[ e ];
+  a = c[ e ];
 }
-throw d;
+throw a;
 `````
 
 

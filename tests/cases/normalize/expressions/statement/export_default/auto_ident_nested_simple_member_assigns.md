@@ -22,8 +22,8 @@ $(a, b, c);
 
 
 `````js filename=intro
-const tmpInitAssignLhsComputedRhs$9 /*:number*/ = 3;
-export { tmpInitAssignLhsComputedRhs$9 as default };
+const tmpInitAssignLhsComputedRhs /*:number*/ = 3;
+export { tmpInitAssignLhsComputedRhs as default };
 const a /*:object*/ = { a: 999, b: 1000 };
 const b /*:object*/ = { x: 3 };
 $(a, b, 3);
@@ -34,8 +34,8 @@ $(a, b, 3);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpInitAssignLhsComputedRhs$9 = 3;
-export { tmpInitAssignLhsComputedRhs$9 as default };
+const tmpInitAssignLhsComputedRhs = 3;
+export { tmpInitAssignLhsComputedRhs as default };
 $({ a: 999, b: 1000 }, { x: 3 }, 3);
 `````
 

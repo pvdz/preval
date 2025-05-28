@@ -130,6 +130,7 @@ try {
 ## Todos triggered
 
 
+- (todo) Found a self-closing function shell but it did not match a known pattern...
 - (todo) can try-escaping support this expr node type? CallExpression
 
 

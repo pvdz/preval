@@ -25,13 +25,11 @@ let a /*:unknown*/ /*ternaryConst*/ = undefined;
 const b /*:object*/ = { x: 1 };
 const tmpChainElementCall /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
-let tmpObjSpread /*:unknown*/ /*ternaryConst*/ = undefined;
 if (tmpIfTest) {
 } else {
   a = tmpChainElementCall.x;
-  tmpObjSpread = a;
 }
-const tmpCalleeParam /*:object*/ = { ...tmpObjSpread };
+const tmpCalleeParam /*:object*/ = { ...a };
 $(tmpCalleeParam);
 $(a);
 `````
@@ -43,13 +41,10 @@ $(a);
 `````js filename=intro
 let a = undefined;
 const tmpChainElementCall = $({ x: 1 });
-const tmpIfTest = tmpChainElementCall == null;
-let tmpObjSpread = undefined;
-if (!tmpIfTest) {
+if (!(tmpChainElementCall == null)) {
   a = tmpChainElementCall.x;
-  tmpObjSpread = a;
 }
-$({ ...tmpObjSpread });
+$({ ...a });
 $(a);
 `````
 
@@ -62,16 +57,14 @@ let a = undefined;
 const b = { x: 1 };
 const c = $( b );
 const d = c == null;
-let e = undefined;
 if (d) {
 
 }
 else {
   a = c.x;
-  e = a;
 }
-const f = { ... e };
-$( f );
+const e = { ... a };
+$( e );
 $( a );
 `````
 

@@ -36,7 +36,8 @@ if (tmpIfTest) {
     a = $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, tmpCalleeParam);
   }
 }
-export { a as default };
+const tmpAnonDefaultExport /*:unknown*/ = a;
+export { tmpAnonDefaultExport as default };
 $(a);
 `````
 
@@ -54,7 +55,8 @@ if (!(tmpChainElementCall == null)) {
     a = $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, $(1));
   }
 }
-export { a as default };
+const tmpAnonDefaultExport = a;
+export { tmpAnonDefaultExport as default };
 $(a);
 `````
 
@@ -82,7 +84,8 @@ else {
     a = $dotCall( f, c, undefined, h );
   }
 }
-export { a as default };
+const i = a;
+export { i as default };
 $( a );
 `````
 

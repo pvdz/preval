@@ -21,24 +21,24 @@ $(a);
 
 
 `````js filename=intro
+let a /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpIfTest$1 /*:boolean*/ = $ == null;
-let tmpBinBothLhs /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpObjLitVal$1 /*:object*/ = { e: $ };
 if (tmpIfTest$1) {
 } else {
-  tmpBinBothLhs = $dotCall($, tmpObjLitVal$1, `e`, 1);
+  a = $dotCall($, tmpObjLitVal$1, `e`, 1);
 }
 const tmpChainElementObject$9 /*:unknown*/ = tmpObjLitVal$1.e;
 const tmpIfTest$5 /*:boolean*/ = tmpChainElementObject$9 == null;
 if (tmpIfTest$5) {
-  const tmpClusterSSA_tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + undefined;
+  const tmpClusterSSA_tmpCalleeParam /*:primitive*/ = a + undefined;
   $(tmpClusterSSA_tmpCalleeParam);
   $(undefined);
 } else {
-  const tmpClusterSSA_a$2 /*:unknown*/ = $dotCall(tmpChainElementObject$9, tmpObjLitVal$1, `e`, 1);
-  const tmpClusterSSA_tmpCalleeParam$1 /*:primitive*/ = tmpBinBothLhs + tmpClusterSSA_a$2;
+  const tmpClusterSSA_a$1 /*:unknown*/ = $dotCall(tmpChainElementObject$9, tmpObjLitVal$1, `e`, 1);
+  const tmpClusterSSA_tmpCalleeParam$1 /*:primitive*/ = a + tmpClusterSSA_a$1;
   $(tmpClusterSSA_tmpCalleeParam$1);
-  $(tmpClusterSSA_a$2);
+  $(tmpClusterSSA_a$1);
 }
 `````
 
@@ -47,20 +47,20 @@ if (tmpIfTest$5) {
 (This ought to be the final result)
 
 `````js filename=intro
+let a = undefined;
 const tmpIfTest$1 = $ == null;
-let tmpBinBothLhs = undefined;
 const tmpObjLitVal$1 = { e: $ };
 if (!tmpIfTest$1) {
-  tmpBinBothLhs = $dotCall($, tmpObjLitVal$1, `e`, 1);
+  a = $dotCall($, tmpObjLitVal$1, `e`, 1);
 }
 const tmpChainElementObject$9 = tmpObjLitVal$1.e;
 if (tmpChainElementObject$9 == null) {
-  $(tmpBinBothLhs + undefined);
+  $(a + undefined);
   $(undefined);
 } else {
-  const tmpClusterSSA_a$2 = $dotCall(tmpChainElementObject$9, tmpObjLitVal$1, `e`, 1);
-  $(tmpBinBothLhs + tmpClusterSSA_a$2);
-  $(tmpClusterSSA_a$2);
+  const tmpClusterSSA_a$1 = $dotCall(tmpChainElementObject$9, tmpObjLitVal$1, `e`, 1);
+  $(a + tmpClusterSSA_a$1);
+  $(tmpClusterSSA_a$1);
 }
 `````
 
@@ -69,25 +69,25 @@ if (tmpChainElementObject$9 == null) {
 With rename=true
 
 `````js filename=intro
-const a = $ == null;
-let b = undefined;
+let a = undefined;
+const b = $ == null;
 const c = { e: $ };
-if (a) {
+if (b) {
 
 }
 else {
-  b = $dotCall( $, c, "e", 1 );
+  a = $dotCall( $, c, "e", 1 );
 }
 const d = c.e;
 const e = d == null;
 if (e) {
-  const f = b + undefined;
+  const f = a + undefined;
   $( f );
   $( undefined );
 }
 else {
   const g = $dotCall( d, c, "e", 1 );
-  const h = b + g;
+  const h = a + g;
   $( h );
   $( g );
 }

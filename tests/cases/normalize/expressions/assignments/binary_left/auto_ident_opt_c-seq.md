@@ -25,14 +25,12 @@ let a /*:unknown*/ /*ternaryConst*/ = undefined;
 const b /*:object*/ = { x: 1 };
 const tmpChainRootProp /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainRootProp == null;
-let tmpBinBothLhs /*:unknown*/ /*ternaryConst*/ = undefined;
 if (tmpIfTest) {
 } else {
   a = tmpChainRootProp.x;
-  tmpBinBothLhs = a;
 }
 const tmpBinBothRhs /*:unknown*/ = $(100);
-const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + tmpBinBothRhs;
+const tmpCalleeParam /*:primitive*/ = a + tmpBinBothRhs;
 $(tmpCalleeParam);
 $(a);
 `````
@@ -44,13 +42,10 @@ $(a);
 `````js filename=intro
 let a = undefined;
 const tmpChainRootProp = $({ x: 1 });
-const tmpIfTest = tmpChainRootProp == null;
-let tmpBinBothLhs = undefined;
-if (!tmpIfTest) {
+if (!(tmpChainRootProp == null)) {
   a = tmpChainRootProp.x;
-  tmpBinBothLhs = a;
 }
-$(tmpBinBothLhs + $(100));
+$(a + $(100));
 $(a);
 `````
 
@@ -63,17 +58,15 @@ let a = undefined;
 const b = { x: 1 };
 const c = $( b );
 const d = c == null;
-let e = undefined;
 if (d) {
 
 }
 else {
   a = c.x;
-  e = a;
 }
-const f = $( 100 );
-const g = e + f;
-$( g );
+const e = $( 100 );
+const f = a + e;
+$( f );
 $( a );
 `````
 

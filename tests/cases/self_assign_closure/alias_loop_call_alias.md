@@ -270,6 +270,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 ## Todos triggered
 
 
+- (todo) Found a self-closing function shell but it did not match a known pattern...
 - (todo) support array reads statement type VarStatement
 - (todo) type trackeed tricks can possibly support static $Number_parseInt
 

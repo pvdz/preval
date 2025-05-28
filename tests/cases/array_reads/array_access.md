@@ -89,8 +89,9 @@ if (f) {
 ## Todos triggered
 
 
+- (todo) In some (many?) cases the array can access this value so we could move the rhs into the array...
 - (todo) support array reads statement type ExpressionStatement
-- (todo) support array reads statement type VarStatement
+- (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
 
 
 ## Globals

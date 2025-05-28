@@ -26,15 +26,12 @@ if (a) {
   a = $(tmpCalleeParam$3);
 } else {
 }
-let tmpObjLitPropKey /*:unknown*/ /*ternaryConst*/ = undefined;
 if (a) {
-  tmpObjLitPropKey = a;
 } else {
   const tmpCalleeParam$5 /*:unknown*/ = $(2);
   a = $(tmpCalleeParam$5);
-  tmpObjLitPropKey = a;
 }
-const tmpCalleeParam /*:object*/ = { [tmpObjLitPropKey]: 10 };
+const tmpCalleeParam /*:object*/ = { [a]: 10 };
 $(tmpCalleeParam);
 $(a);
 `````
@@ -48,14 +45,10 @@ let a = $($(1));
 if (a) {
   a = $($(1));
 }
-let tmpObjLitPropKey = undefined;
-if (a) {
-  tmpObjLitPropKey = a;
-} else {
+if (!a) {
   a = $($(2));
-  tmpObjLitPropKey = a;
 }
-$({ [tmpObjLitPropKey]: 10 });
+$({ [a]: 10 });
 $(a);
 `````
 
@@ -70,17 +63,15 @@ if (b) {
   const c = $( 1 );
   b = $( c );
 }
-let d = undefined;
 if (b) {
-  d = b;
+
 }
 else {
-  const e = $( 2 );
-  b = $( e );
-  d = b;
+  const d = $( 2 );
+  b = $( d );
 }
-const f = { [ d ]: 10 };
-$( f );
+const e = { [ b ]: 10 };
+$( e );
 $( b );
 `````
 

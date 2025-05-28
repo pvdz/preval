@@ -25,15 +25,13 @@ let a /*:unknown*/ /*ternaryConst*/ = undefined;
 const b /*:object*/ = { x: 1 };
 const tmpChainElementCall /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
-let tmpBinBothLhs /*:unknown*/ /*ternaryConst*/ = undefined;
 if (tmpIfTest) {
 } else {
   const tmpChainRootComputed /*:unknown*/ = $(`x`);
   a = tmpChainElementCall[tmpChainRootComputed];
-  tmpBinBothLhs = a;
 }
 const tmpBinBothRhs /*:unknown*/ = $(100);
-const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + tmpBinBothRhs;
+const tmpCalleeParam /*:primitive*/ = a + tmpBinBothRhs;
 $(tmpCalleeParam);
 $(a);
 `````
@@ -45,14 +43,11 @@ $(a);
 `````js filename=intro
 let a = undefined;
 const tmpChainElementCall = $({ x: 1 });
-const tmpIfTest = tmpChainElementCall == null;
-let tmpBinBothLhs = undefined;
-if (!tmpIfTest) {
+if (!(tmpChainElementCall == null)) {
   const tmpChainRootComputed = $(`x`);
   a = tmpChainElementCall[tmpChainRootComputed];
-  tmpBinBothLhs = a;
 }
-$(tmpBinBothLhs + $(100));
+$(a + $(100));
 $(a);
 `````
 
@@ -65,18 +60,16 @@ let a = undefined;
 const b = { x: 1 };
 const c = $( b );
 const d = c == null;
-let e = undefined;
 if (d) {
 
 }
 else {
-  const f = $( "x" );
-  a = c[ f ];
-  e = a;
+  const e = $( "x" );
+  a = c[ e ];
 }
-const g = $( 100 );
-const h = e + g;
-$( h );
+const f = $( 100 );
+const g = a + f;
+$( g );
 $( a );
 `````
 

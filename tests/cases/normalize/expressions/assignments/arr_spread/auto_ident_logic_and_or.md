@@ -26,15 +26,12 @@ if (a) {
   a = $(tmpCalleeParam$3);
 } else {
 }
-let tmpArrSpread /*:unknown*/ /*ternaryConst*/ = undefined;
 if (a) {
-  tmpArrSpread = a;
 } else {
   const tmpCalleeParam$5 /*:unknown*/ = $(2);
   a = $(tmpCalleeParam$5);
-  tmpArrSpread = a;
 }
-const tmpCalleeParam /*:array*/ = [...tmpArrSpread];
+const tmpCalleeParam /*:array*/ = [...a];
 $(tmpCalleeParam);
 $(a);
 `````
@@ -48,14 +45,10 @@ let a = $($(1));
 if (a) {
   a = $($(1));
 }
-let tmpArrSpread = undefined;
-if (a) {
-  tmpArrSpread = a;
-} else {
+if (!a) {
   a = $($(2));
-  tmpArrSpread = a;
 }
-$([...tmpArrSpread]);
+$([...a]);
 $(a);
 `````
 
@@ -70,17 +63,15 @@ if (b) {
   const c = $( 1 );
   b = $( c );
 }
-let d = undefined;
 if (b) {
-  d = b;
+
 }
 else {
-  const e = $( 2 );
-  b = $( e );
-  d = b;
+  const d = $( 2 );
+  b = $( d );
 }
-const f = [ ...d ];
-$( f );
+const e = [ ...b ];
+$( e );
 $( b );
 `````
 

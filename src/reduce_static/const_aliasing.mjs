@@ -1,4 +1,4 @@
-// Find constants whose assignment is redundant because the rhs is a constant or an ident that
+// Find constants whose assignment is redundant because the rhs is a constant or a let that
 // won't change between declaration and usage.
 // This is a common artifact left by normalization, which does not use scope tracking, and has to be safe.
 //
@@ -14,22 +14,26 @@
 //        const x = unknown; $(x);
 // ->     $(unknown);
 //
+//        let x = 0; const y = x; $(); $(y); x += 1; $(x);
+// ->     let x = 0; const y = x; $(); $(x); x += 1; $(x);
+//
 // Or even assignments
 //
 //        const x = unknown; y = x; z = x; $(x, y);
 // ->     const x = unknown; y = unknown; z = unknown; $(x, y)
-//
+//                                     ^//
 // Also handles some "ternary" cases, where a binding is conditionally initialized but still always to the same binding.
 //
 
-import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, fmat, tmat, rule, example, before, source, after, findBodyOffset, riskyRule, todo, } from '../utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, fmat, tmat, rule, example, before, source, after, findBodyOffset, riskyRule, todo, currentState } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { ASSUME_BUILTINS } from '../constants.mjs';
 import { SYMBOL_FRFR } from '../symbols_preval.mjs';
+import { hasSingleScopedWrites } from '../bindings.mjs';
 
 export function constAliasing(fdata) {
   group('\n\n\n[constAliasing] Searching for two const values that get assigned to each other\n');
-  //currentState(fdata, 'constAliasing', true, fdata);
+  // currentState(fdata, 'constAliasing', true, fdata);
   const r = _constAliasing(fdata);
   groupEnd();
   return r;
@@ -40,6 +44,7 @@ function _constAliasing(fdata) {
   let dropped = 0;
   const queue = [];
 
+  // First search for the `a`
   fdata.globallyUniqueNamingRegistry.forEach((meta, lhsName) => {
     if (!meta.isConstant) {
       if (meta.isBuiltin) return;
@@ -52,13 +57,22 @@ function _constAliasing(fdata) {
       }
       return;
     }
-    ASSERT(!meta.isBuiltin && !meta.isImplicitGlobal && !meta.isCatchVar, 'constant supersedes these', meta);
+    ASSERT(!meta.isBuiltin && !meta.isImplicitGlobal && !meta.isCatchVar && !meta.isLet, 'constant supersedes these', meta);
     if (meta.writes.length !== 1) return; // caught elsewhere
     if (meta.writes[0].kind !== 'var') return todo('what is a constant with one write but not a var as first write?'); // catch or smth
-    if (meta.varDeclRef.varDeclNode.init.type !== 'Identifier') return;
+    if (meta.varDeclRef.node.type !== 'Identifier') return;
+    const rhsName = meta.varDeclRef.node.name;
+
+    // Okay so meta is `a`, which is a `const`. meta2 will represent `b` and could be any kind of binding
+    // - If `a` and `b` are constants then the inlining is trivial. Just rename one for the other, arbitrarily.
+    // - If `b` is a builtin then replace `a` with `b` but ONLY if `a` is not exported (otherwise it leads to syntax errors)
+    //   - a sub rule could still do the aliasing while making sure the syntax error does not happen. Not sure if there's a concrete real-world use case.
+    // - If `b` is not written to between the var decl and a particular reference of `a` then for all intentions and purposes a===b, so we can replace that read
+    //   - We only care about the writes, so if we can confirm the writes are in this function, I think we can safely go down the single scoped path...?
+    //   - This one is tricky and breaks apart in several sub-parts
+    //
 
     // We have a `const lhs = rhs`
-    const rhsName = meta.varDeclRef.varDeclNode.init.name;
     vlog('- Testing:', [lhsName], 'with', [rhsName]);
     if (rhsName === lhsName) return vlog('- bail: this is tdz'); // TDZ but not my problem, should be caught elsewhere
     if (rhsName === 'arguments') return vlog('- bail: this is a special symbol');
@@ -130,9 +144,107 @@ function _constAliasing(fdata) {
       return;
     }
 
-    if (meta.isExport) {
-      return;
+    if (!meta2.isExplicitVar) return; // Not implicit global, not catch var, etc
+    if (meta.isExport) return; // ?
+    if (meta2.isExport) return; // ?
+
+    // Okay. Now we have const `a` and let `b`, for any read of `a` we have to determine whether `b` is still the same value as when `a` was declared.
+    // - single scoped b
+    //   - if `b` has no write between decl of `a` and a particular read of `a` then this read should be an alias. both must be in same loop scope.
+    //     - refinement; if the violating write(s) is/are only in the "other" branch than the one where the read happens, we're still good
+    //       - this gets hard fast, especially with multiple levels of nesting
+    //   - I'm not sure what other ways we need to investigate here. "if we can prove it was reassigned the same value as before the loop" etc is super niche.
+    // - multi-scoped b
+    //   - we have to be super conservative here. can't use reads/writes reliably for this. step through the statements and find the reference before
+    //     finding an observable side effect. with some edge cases in mind. and here too, must be same loop, but also same branch and try scope...
+
+    // Note: we have a reducer "letAliasRedundant" that aliases a let to a let, does kind of the same thing. This is aliasing a const to a let.
+
+    const declWrite1 = meta.writes[0];
+    ASSERT(declWrite1?.kind === 'var', 'there is a write and it is the decl, yes?', declWrite1);
+
+    const declWrite2 = meta2.writes[0];
+    if (declWrite2.kind !== 'var') return vlog('  - Bail: first write of rhs was not a var decl');
+
+    // Both vars must be declared in same function scope. Otherwise we don't know which value was assigned to the const.
+    if (declWrite1.funcChain !== declWrite2.funcChain) return vlog('  - Bail: vars are not declared inside same func');
+
+    if (hasSingleScopedWrites(meta2)) { // subsumes .singleScoped
+      vlog(`It seems const \`${lhsName}\` is a const that is the alias of let \`${rhsName}\``, );
+
+      // I think, if meta2/rhs is a single-scoped-writes-let, that we can assert that there is no further write to
+      // it before the end of the current block where the lhs is defined in (after which mutations are irrelevant).
+      // In that case, at least for the remaining duration of the block, the lhs is an alias to the rhs. Even loops
+      // and try/catch can't change that. A loop would destroy the var upon looping. A try/catch basically does too.
+      // And the single scoped nature means closures can't mess with us either; all refs are source visit order.
+      const body = declWrite1.blockBody;
+
+      const firstPid = +declWrite1.node.$p.pid;
+
+      vgroup('Checking whether there is a read for which all writes of meta2 are not between the const decl and the read');
+      let droppedSome = false;
+      meta.reads.forEach((read,i) => {
+        // We have to prove no read is between the write (const decl) and this read
+        // - do pid range check
+        // - confirm same innerloop
+
+        // Confirm that the read is in same loop as its decl. Loops can break the invariant that we test here.
+        if (read.innerLoop !== declWrite1.innerLoop) {
+          // nested part will be difficult. unless we set start/end pid instead of inner loop (same for others). helpful or noise?
+          // what if we stored the loopChain instead. Then we can do prefix checks for this sort of thing ...
+          todo('we can still proceed with the loop as long as there is no let-write anywhere in the loop, inc nested');
+          return vlog('  - Bail: read is not loop as decl');
+        }
+
+        const readPid = +read.node.$p.pid;
+        vlog('- read', i, ', write innerloop=', declWrite1.innerLoop, ', read=', read.innerLoop, ', pid @', readPid);
+        if (
+          meta2.writes.every(write => {
+            const pid = +write.node.$p.pid;
+            // One edge case: the pid of the write `rhs = lhs` will be higher than the read pid because it is visit order, not source order.
+            // This would be `let x = 1; const y = x; x = y;`, in which case it's indeed `x=x` so that's fine.
+            vlog('- write pid: @', pid, ', violation:', pid > firstPid && pid < readPid);
+
+            if (pid > firstPid && pid < readPid) {
+              // TODO: What if the write is in a different branch from the read? `let a = 1; const b = a; if (x) a = 2; else $(b)`, b is an alias
+              //       This also applies when the branch is in an ancestor if-node. we can't easily do this in preval.
+              vlog('At least one right of the rhs was between the decl and the end of the block with the decl so we must bail');
+              return false;
+            }
+            // TODO: Need to verify that this write is unconditional: no write in the same if, loop, or try, after the read
+            // - if there's a write between the decl and the read in the same loop then the value may change in a next iteration
+            // - if there's a write after the read but in the same loop as read and read and loop are not equal, value may change
+            // - how relevant is this for the try-block?
+            return true;
+          })
+        ) {
+          vlog('ok, meta2 (', rhsName, ') should be a proper alias to this read of', lhsName);
+          // TODO: Where this misses the spot is conditional writes on a dead-end branch.
+          //       `let a = 1; const b = a; if (x) { a = 2; return; } $(b);` -> here b is
+          //       still totally an alias for a in all cases. But we see the write and bail.
+          // TODO: This misses an if-else where the read is in the else branch but a write
+          //       in the then-branch. Fine to alias but since a write.pid < read.pid, it bails
+
+          rule('A let alias where the single scoped let rhs can not be changed between assign and end of containing block, is effectively a const alias');
+          example('let x = 1; if ($) x = 2; const y = x; const z = y + 5;', 'let x = 1; if ($) x = 2; const y = x; const z = x + 5;');
+          before(body[declWrite1.blockIndex]);
+          before(read.blockBody[read.blockIndex]);
+
+          if (read.parentIndex < 0) read.parentNode[read.parentProp] = AST.identifier(rhsName);
+          else read.parentNode[read.parentProp][read.parentIndex] = AST.identifier(rhsName);
+
+          after(body[declWrite1.blockIndex]);
+          after(read.blockBody[read.blockIndex]);
+
+          dropped += 1;
+          droppedSome = true;
+        }
+      });
+      vgroupEnd();
+      if (droppedSome) return;
     }
+vlog('early bail');
+return
 
     // This code has some subtle bugs I'm trying to squash.
     // There's also some reducer duplication between this part and letAliasRedundant (and probably others?)
@@ -150,10 +262,43 @@ function _constAliasing(fdata) {
     const FOUND = 1;
     const SPIES = 2;
     const INVIS = 3;
+    // Helper: recursively check if a statement or block mutates the let variable
+    function blockMutatesLetVar(stmts, letName) {
+      for (const stmt of stmts) {
+        if (stmt.type === 'VarStatement' && stmt.init.type === 'AssignmentExpression') {
+          if (stmt.init.left.type === 'Identifier' && stmt.init.left.name === letName) return true;
+        }
+        if (stmt.type === 'ExpressionStatement' && stmt.expression.type === 'AssignmentExpression') {
+          if (stmt.expression.left.type === 'Identifier' && stmt.expression.left.name === letName) return true;
+        }
+        if (stmt.type === 'IfStatement') {
+          if (blockMutatesLetVar(stmt.consequent.body, letName) || blockMutatesLetVar(stmt.alternate.body, letName)) return true;
+        }
+        if (stmt.type === 'LabeledStatement') {
+          if (blockMutatesLetVar(stmt.body.body, letName)) return true;
+        }
+        if (stmt.type === 'WhileStatement' || stmt.type === 'ForStatement') {
+          if (blockMutatesLetVar(stmt.body.body, letName)) return true;
+        }
+        // Add more as needed
+      }
+      return false;
+    }
     function exprUsesName(expr, targetName, origName, fdata) {
       // Check if the target name is used. If so, replace it with origName.
       // If not, check if the expression can spy. If it does, that's the end of the search.
       // Otherwise, this expression is spy free and we can continue searching.
+
+      // NEW: If this expression is an assignment to the original let variable, block aliasing
+      if (expr.type === 'AssignmentExpression') {
+        if (expr.left.type === 'Identifier' && expr.left.name === origName) {
+          return SPIES;
+        }
+      }
+      // NEW: If this is a block that mutates the let variable, block aliasing
+      if (expr.type === 'BlockStatement' && blockMutatesLetVar(expr.body, origName)) {
+        return SPIES;
+      }
 
       if (expr.type === 'BinaryExpression') {
 
@@ -352,6 +497,9 @@ function _constAliasing(fdata) {
           // Do we need to break if we haven't already?
           break;
         }
+
+        // NEW: If the block mutates the let variable, block aliasing
+        if (blockMutatesLetVar(body.slice(index), rhsName)) return SPIES;
 
         // Unsupported statement. Maybe we canshould support it? :)
         todo(`can we support this const aliasing blocking statement? ${stmt.type}`);

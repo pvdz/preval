@@ -26,16 +26,13 @@ if (a) {
   a = $(tmpCalleeParam$3);
 } else {
 }
-let tmpBinBothLhs /*:unknown*/ /*ternaryConst*/ = undefined;
 if (a) {
-  tmpBinBothLhs = a;
 } else {
   const tmpCalleeParam$5 /*:unknown*/ = $(2);
   a = $(tmpCalleeParam$5);
-  tmpBinBothLhs = a;
 }
 const tmpBinBothRhs /*:unknown*/ = $(100);
-const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + tmpBinBothRhs;
+const tmpCalleeParam /*:primitive*/ = a + tmpBinBothRhs;
 $(tmpCalleeParam);
 $(a);
 `````
@@ -49,14 +46,10 @@ let a = $($(1));
 if (a) {
   a = $($(1));
 }
-let tmpBinBothLhs = undefined;
-if (a) {
-  tmpBinBothLhs = a;
-} else {
+if (!a) {
   a = $($(2));
-  tmpBinBothLhs = a;
 }
-$(tmpBinBothLhs + $(100));
+$(a + $(100));
 $(a);
 `````
 
@@ -71,18 +64,16 @@ if (b) {
   const c = $( 1 );
   b = $( c );
 }
-let d = undefined;
 if (b) {
-  d = b;
+
 }
 else {
-  const e = $( 2 );
-  b = $( e );
-  d = b;
+  const d = $( 2 );
+  b = $( d );
 }
-const f = $( 100 );
-const g = d + f;
-$( g );
+const e = $( 100 );
+const f = b + e;
+$( f );
 $( b );
 `````
 

@@ -21,15 +21,13 @@ $(a);
 `````js filename=intro
 let a /*:unknown*/ /*ternaryConst*/ = 60;
 const tmpIfTest /*:unknown*/ = $(30);
-let tmpBinBothLhs /*:unknown*/ /*ternaryConst*/ = 60;
 if (tmpIfTest) {
 } else {
   const tmpCalleeParam$1 /*:unknown*/ = $(100);
   a = $(tmpCalleeParam$1);
-  tmpBinBothLhs = a;
 }
 const tmpBinBothRhs /*:unknown*/ = $(100);
-const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + tmpBinBothRhs;
+const tmpCalleeParam /*:primitive*/ = a + tmpBinBothRhs;
 $(tmpCalleeParam);
 $(a);
 `````
@@ -40,13 +38,10 @@ $(a);
 
 `````js filename=intro
 let a = 60;
-const tmpIfTest = $(30);
-let tmpBinBothLhs = 60;
-if (!tmpIfTest) {
+if (!$(30)) {
   a = $($(100));
-  tmpBinBothLhs = a;
 }
-$(tmpBinBothLhs + $(100));
+$(a + $(100));
 $(a);
 `````
 
@@ -57,18 +52,16 @@ With rename=true
 `````js filename=intro
 let a = 60;
 const b = $( 30 );
-let c = 60;
 if (b) {
 
 }
 else {
-  const d = $( 100 );
-  a = $( d );
-  c = a;
+  const c = $( 100 );
+  a = $( c );
 }
-const e = $( 100 );
-const f = c + e;
-$( f );
+const d = $( 100 );
+const e = a + d;
+$( e );
 $( a );
 `````
 

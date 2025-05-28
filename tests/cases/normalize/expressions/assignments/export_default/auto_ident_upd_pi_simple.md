@@ -21,8 +21,8 @@ $(a, b);
 
 
 `````js filename=intro
-const tmpAnonDefaultExport /*:number*/ = 2;
-export { tmpAnonDefaultExport as default };
+const a /*:number*/ = 2;
+export { a as default };
 $(2, 2);
 `````
 
@@ -31,8 +31,8 @@ $(2, 2);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpAnonDefaultExport = 2;
-export { tmpAnonDefaultExport as default };
+const a = 2;
+export { a as default };
 $(2, 2);
 `````
 

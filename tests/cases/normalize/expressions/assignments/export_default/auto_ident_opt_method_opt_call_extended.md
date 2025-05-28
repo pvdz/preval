@@ -23,12 +23,14 @@ $(a);
 `````js filename=intro
 let a /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpIfTest$1 /*:boolean*/ = $ == null;
+let tmpAnonDefaultExport /*:unknown*/ /*ternaryConst*/ = undefined;
 if (tmpIfTest$1) {
 } else {
   const tmpObjLitVal$1 /*:object*/ = { e: $ };
   a = $dotCall($, tmpObjLitVal$1, `e`, 1);
+  tmpAnonDefaultExport = a;
 }
-export { a as default };
+export { tmpAnonDefaultExport as default };
 $(a);
 `````
 
@@ -38,10 +40,13 @@ $(a);
 
 `````js filename=intro
 let a = undefined;
-if (!($ == null)) {
+const tmpIfTest$1 = $ == null;
+let tmpAnonDefaultExport = undefined;
+if (!tmpIfTest$1) {
   a = $dotCall($, { e: $ }, `e`, 1);
+  tmpAnonDefaultExport = a;
 }
-export { a as default };
+export { tmpAnonDefaultExport as default };
 $(a);
 `````
 
@@ -52,14 +57,16 @@ With rename=true
 `````js filename=intro
 let a = undefined;
 const b = $ == null;
+let c = undefined;
 if (b) {
 
 }
 else {
-  const c = { e: $ };
-  a = $dotCall( $, c, "e", 1 );
+  const d = { e: $ };
+  a = $dotCall( $, d, "e", 1 );
+  c = a;
 }
-export { a as default };
+export { c as default };
 $( a );
 `````
 

@@ -23,13 +23,13 @@ $(x + $('prevent inlining'));
 
 
 `````js filename=intro
-let tmpBinBothLhs /*:number*/ /*ternaryConst*/ = 1;
+let x /*:number*/ /*ternaryConst*/ = 1;
 if ($) {
 } else {
-  tmpBinBothLhs = 0;
+  x = 0;
 }
 const tmpBinBothRhs /*:unknown*/ = $(`prevent inlining`);
-const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + tmpBinBothRhs;
+const tmpCalleeParam /*:primitive*/ = x + tmpBinBothRhs;
 $(tmpCalleeParam);
 `````
 
@@ -38,11 +38,11 @@ $(tmpCalleeParam);
 (This ought to be the final result)
 
 `````js filename=intro
-let tmpBinBothLhs = 1;
+let x = 1;
 if (!$) {
-  tmpBinBothLhs = 0;
+  x = 0;
 }
-$(tmpBinBothLhs + $(`prevent inlining`));
+$(x + $(`prevent inlining`));
 `````
 
 

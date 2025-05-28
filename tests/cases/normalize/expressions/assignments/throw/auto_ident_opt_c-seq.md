@@ -21,15 +21,15 @@ $(a);
 
 
 `````js filename=intro
+let a /*:unknown*/ /*ternaryConst*/ = undefined;
 const b /*:object*/ = { x: 1 };
 const tmpChainRootProp /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainRootProp == null;
-let tmpThrowArg /*:unknown*/ /*ternaryConst*/ = undefined;
 if (tmpIfTest) {
 } else {
-  tmpThrowArg = tmpChainRootProp.x;
+  a = tmpChainRootProp.x;
 }
-throw tmpThrowArg;
+throw a;
 `````
 
 
@@ -37,13 +37,12 @@ throw tmpThrowArg;
 (This ought to be the final result)
 
 `````js filename=intro
+let a = undefined;
 const tmpChainRootProp = $({ x: 1 });
-const tmpIfTest = tmpChainRootProp == null;
-let tmpThrowArg = undefined;
-if (!tmpIfTest) {
-  tmpThrowArg = tmpChainRootProp.x;
+if (!(tmpChainRootProp == null)) {
+  a = tmpChainRootProp.x;
 }
-throw tmpThrowArg;
+throw a;
 `````
 
 
@@ -51,17 +50,17 @@ throw tmpThrowArg;
 With rename=true
 
 `````js filename=intro
-const a = { x: 1 };
-const b = $( a );
-const c = b == null;
-let d = undefined;
-if (c) {
+let a = undefined;
+const b = { x: 1 };
+const c = $( b );
+const d = c == null;
+if (d) {
 
 }
 else {
-  d = b.x;
+  a = c.x;
 }
-throw d;
+throw a;
 `````
 
 

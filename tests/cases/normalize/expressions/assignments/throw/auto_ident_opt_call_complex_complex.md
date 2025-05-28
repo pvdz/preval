@@ -19,15 +19,15 @@ $(a);
 
 
 `````js filename=intro
+let a /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpChainElementCall /*:unknown*/ = $($);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
-let tmpThrowArg /*:unknown*/ /*ternaryConst*/ = undefined;
 if (tmpIfTest) {
 } else {
   const tmpCalleeParam /*:unknown*/ = $(1);
-  tmpThrowArg = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam);
+  a = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam);
 }
-throw tmpThrowArg;
+throw a;
 `````
 
 
@@ -35,13 +35,12 @@ throw tmpThrowArg;
 (This ought to be the final result)
 
 `````js filename=intro
+let a = undefined;
 const tmpChainElementCall = $($);
-const tmpIfTest = tmpChainElementCall == null;
-let tmpThrowArg = undefined;
-if (!tmpIfTest) {
-  tmpThrowArg = $dotCall(tmpChainElementCall, $, undefined, $(1));
+if (!(tmpChainElementCall == null)) {
+  a = $dotCall(tmpChainElementCall, $, undefined, $(1));
 }
-throw tmpThrowArg;
+throw a;
 `````
 
 
@@ -49,17 +48,17 @@ throw tmpThrowArg;
 With rename=true
 
 `````js filename=intro
-const a = $( $ );
-const b = a == null;
-let c = undefined;
-if (b) {
+let a = undefined;
+const b = $( $ );
+const c = b == null;
+if (c) {
 
 }
 else {
   const d = $( 1 );
-  c = $dotCall( a, $, undefined, d );
+  a = $dotCall( b, $, undefined, d );
 }
-throw c;
+throw a;
 `````
 
 

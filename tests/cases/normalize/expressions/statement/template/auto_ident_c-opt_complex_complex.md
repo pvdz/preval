@@ -29,8 +29,8 @@ if (tmpIfTest) {
 } else {
   const tmpChainRootComputed /*:unknown*/ = $(`x`);
   const tmpClusterSSA_tmpCalleeParam$1 /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
-  const tmpClusterSSA_tmpStringConcatL /*:string*/ = $coerce(tmpClusterSSA_tmpCalleeParam$1, `string`);
-  const tmpClusterSSA_tmpCalleeParam /*:string*/ = `before  ${tmpClusterSSA_tmpStringConcatL}  after`;
+  const tmpClusterSSA_tmpBinBothRhs /*:string*/ = $coerce(tmpClusterSSA_tmpCalleeParam$1, `string`);
+  const tmpClusterSSA_tmpCalleeParam /*:string*/ = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
   $(tmpClusterSSA_tmpCalleeParam);
 }
 const a /*:object*/ = { a: 999, b: 1000 };

@@ -279,6 +279,7 @@ $(main_data_arr);
 ## Todos triggered
 
 
+- (todo) Found a self-closing function shell but it did not match a known pattern...
 - (todo) can try-escaping support this expr node type? CallExpression
 - (todo) support array reads statement type VarStatement
 - (todo) type trackeed tricks can possibly support static $Number_parseInt

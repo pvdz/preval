@@ -31,7 +31,8 @@ if (a) {
   } else {
   }
 }
-export { a as default };
+const tmpAnonDefaultExport /*:unknown*/ = a;
+export { tmpAnonDefaultExport as default };
 $(a);
 `````
 
@@ -47,7 +48,8 @@ if (!a) {
     a = $($(2));
   }
 }
-export { a as default };
+const tmpAnonDefaultExport = a;
+export { tmpAnonDefaultExport as default };
 $(a);
 `````
 
@@ -69,7 +71,8 @@ else {
     b = $( d );
   }
 }
-export { b as default };
+const e = b;
+export { e as default };
 $( b );
 `````
 

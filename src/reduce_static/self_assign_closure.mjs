@@ -381,7 +381,7 @@ function findSelfCloser(fdata, meta, targetName) {
   }
   vgroupEnd();
   vgroup('Trying verifyWrapperCase()');
-  if (verifyWrapperCase(fdata, meta, targetName, firstWrite, secondWrite)) {
+  if (verifyWrapperCase(fdata, meta, targetName, firstWrite, secondWrite, outerFuncBlock, tmpCall)) {
     vgroupEnd();
     return true;
   }
@@ -397,7 +397,10 @@ function findSelfCloser(fdata, meta, targetName) {
   return false;
 }
 
-function verifyWrapperCase(fdata, meta, targetName, firstWrite, secondWrite) {
+function verifyWrapperCase(fdata, meta, targetName, firstWrite, secondWrite, outerFuncBlock, outerFuncTmpVar) {
+  // Note: so far we have only verified this pattern:
+  //        `let f = function(??){ ??; f = function(??){ ?? }; const tmp = f(??); return tmp; }`
+  //
   // This case looks for an iife that only references local or global variables (no closures)
   // Something like this:
   //
@@ -410,7 +413,48 @@ function verifyWrapperCase(fdata, meta, targetName, firstWrite, secondWrite) {
   //        `const z = 10; function f(a,b){ g(); return a+b+z; }`
   //        `const z = 10; function f(a,b){ g(); const c=a; const d=b; return c+d+z; }`
   //
-  // Start by verifying that the inner function has no closures. This needs to be recursive but
+  // - verify that the params are only used to call the inner func
+  // - verify that the start of the outer func is calling a func
+  // - verify that the inner func does have closures or nested funcs
+
+  // Check if a param is only used for the recursive call, if used at all
+  if (firstWrite.parentNode.init.$p.paramNames.some(pname => {
+    const meta = fdata.globallyUniqueNamingRegistry.get(pname);
+    if (
+      // outer func params should only have one write
+      meta.writes.length === 1 &&
+      // there should be at most one read
+      (
+        meta.reads.length === 0 ||
+        (
+          meta.reads.length === 1 &&
+          // and the read should be the recursive call
+          outerFuncTmpVar.init === meta.reads[0].parentNode
+        )
+      )
+    ) {
+      return false; // this is ok.
+    }
+    return true; // yep, found problem
+  })) {
+    return vlog('- bail: at least one param was used in a way that did not match target pattern');
+  }
+
+  const outerOffset = firstWrite.parentNode.init.$p.bodyOffset;
+
+  // Check if start of func just calls a function (TODO: expand on this)
+  // Target pattern has 4 statements right now
+  if (outerFuncBlock.length !== outerOffset+4) return vlog('- bail: outer func does not have 4 statements(+header)');
+  // Pattern so far confirmed the last three statements (re-assign, recursive call, return)
+  if (outerFuncBlock[outerOffset].type !== 'ExpressionStatement') return vlog('- bail: first statement is not expression');
+  if (outerFuncBlock[outerOffset].expression.type !== 'CallExpression') return vlog('- bail: first statement is not expression');
+  // Bail on arguments/this usages for now
+  if (firstWrite.parentNode.init.$p.readsArgumentsAny) return vlog('inner uses `arguments`');
+  if (firstWrite.parentNode.init.$p.thisAccess) return vlog('inner uses `this`');
+  if (secondWrite.parentNode.right.$p.readsArgumentsAny) return vlog('inner uses `arguments`');
+  if (secondWrite.parentNode.right.$p.thisAccess) return vlog('inner uses `this`');
+
+  // Verify that the inner function has no closures. This needs to be recursive but
   // we can also decide to bail when the inner function has another nested function...
 
   const program = fdata.tenkoOutput.ast; // Need this to check for explicit globals
@@ -421,6 +465,7 @@ function verifyWrapperCase(fdata, meta, targetName, firstWrite, secondWrite) {
   function _walker(node, beforeWalk, nodeType, path) {
     if (fail) return true; // Do not enter more nodes
     if (beforeWalk) return;
+    if (node === secondWrite.parentNode.right) return; // ignore inner function itself
     if (node.type === 'FunctionExpression') {
       vlog('- bail: Inner function contained another function');
       fail = true;
@@ -465,35 +510,35 @@ function verifyWrapperCase(fdata, meta, targetName, firstWrite, secondWrite) {
   //
   // And we'll need to think of the best way to propagate the inner call args to the func. Aliasing like above is one way.
 
-  const innerBlock = firstWrite.parentNode.init.body.body;
-  const offset = firstWrite.parentNode.init.$p.bodyOffset;
-
-  // Verify a pattern of `let f = function(){ debugger; f = function(){ ... }; const tmp = f(); return tmp; }`
-  // The above already verified that the inside does not contain a closure.
-
-  const call = innerBlock[offset+1].init;
-
   rule('Simple self closing function with no side effects can be collapsed');
   example(
     'let f = function(a,b){ g(1); f = function(c,d){ return g(2); }; const tmp = f(a,b); return tmp; };',
-  'let f = function(){ g(1); const c=a; const d=b; return g(2); };'
+  'let f = function(a,b){ let c = a; let d = b; g(1); return g(2); };'
   );
   before(firstWrite.blockBody[firstWrite.blockIndex]);
 
-  innerBlock.splice(offset, 1,
-    ...secondWrite.parentNode.right.params.map((pnode,i) => {
-      return pnode.$p.paramVarDeclRef ?
-        AST.varStatement(
-          'let',
-          pnode.$p.paramVarDeclRef.blockBody[pnode.$p.paramVarDeclRef.blockIndex].id.name,
-          // Either use the call arg node or use undefined
-          call.arguments[i] || AST.identifier('undefined'),
-        ) : AST.emptyStatement();
-    }),
-    ...secondWrite.parentNode.right.body.body.slice(secondWrite.parentNode.right.$p.bodyOffset)
-  );
-  innerBlock.pop(); // Drop the (old) last return
-  innerBlock.pop(); // Drop the (old) now-last var tmp call
+  outerFuncBlock.pop(); // return
+  outerFuncBlock.pop(); // tmp=f()
+  outerFuncBlock.pop(); // f=function(){}
+
+  vlog('popped the tail:')
+  after(firstWrite.blockBody[firstWrite.blockIndex]);
+
+  // Append the inner, except for its own header
+  outerFuncBlock.push(...secondWrite.parentNode.right.body.body.slice(secondWrite.parentNode.right.$p.bodyOffset));
+  vlog('append the inner:')
+  after(firstWrite.blockBody[firstWrite.blockIndex]);
+
+  // Inject param aliases in reverse
+  const pnamestmp = firstWrite.parentNode.init.$p.paramNames.reverse(); // being lazy
+  secondWrite.parentNode.right.$p.paramNames.reverse().forEach((pname,i) => {
+    outerFuncBlock.splice(
+      outerOffset, 0,
+      AST.varStatement('let', pname, AST.identifier(pnamestmp[i]))
+    );
+  });
+  vlog('injected the aliases:')
+  after(firstWrite.blockBody[firstWrite.blockIndex]);
 
   after(firstWrite.blockBody[firstWrite.blockIndex]);
   assertNoDupeNodes(firstWrite.blockBody, 'body');

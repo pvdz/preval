@@ -6,6 +6,10 @@
 >
 > Testing simple pattern normalizations
 
+## Options
+
+- globals: x
+
 ## Input
 
 `````js filename=intro
@@ -63,9 +67,7 @@ if (tmpIfTest) {
 ## Globals
 
 
-BAD@! Found 1 implicit global bindings:
-
-x
+None (except for the 1 globals expected by the test)
 
 
 ## Runtime Outcome

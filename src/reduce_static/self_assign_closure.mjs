@@ -23,20 +23,18 @@
 // It's vital that we ensure the original semantics are retained.
 
 import walk from '../../lib/walk.mjs';
-import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, fmat, tmat, findBodyOffset, findBodyOffsetExpensiveMaybe, assertNoDupeNodes } from '../utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, fmat, tmat, findBodyOffset, findBodyOffsetExpensiveMaybe, assertNoDupeNodes, todo, currentState, } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 
 export function selfAssignClosure(fdata) {
   group('\n\n\n[selfAssignClosure] Checking for self-assigning funcs returning their own closures');
-  //currentState(fdata, 'selfAssignClosure', true, fdata);
+  // currentState(fdata, 'selfAssignClosure', true, fdata);
   const r = _selfAssignClosure(fdata);
   groupEnd();
   return r;
 }
 function _selfAssignClosure(fdata) {
-  const ast = fdata.tenkoOutput.ast;
-
-  let updated = processAttempt(fdata);
+  const updated = processAttempt(fdata);
 
   log('');
   if (updated) {
@@ -85,19 +83,20 @@ function processAttempt(fdata) {
   // This is a special case where we try to smoke out the above case at the start of some
   // code but where the soundness is harder to prove generically.
 
-  const found = findInitSealer(fdata);
+  const found = findTripleAliasArrayClosure(fdata);
   if (found) return 1;
+  vlog('findTripleAliasArrayClosure not found. searching for self sealers now...');
 
   fdata.globallyUniqueNamingRegistry.forEach(function (meta, targetName) {
-    if (meta.isBuiltin) return;
-    if (meta.isImplicitGlobal) return;
-    if (meta.isConstant) return;
-    if (meta.rwOrder.length <= 2) return; // For now only target a very specific case.
+    if (!meta.isLet) return;
+    // not builtin, implicit global, const, catch
+    // We need at least two writes and a read
     if (meta.writes.length !== 2) return; // require two writes
+    if (!meta.reads.length) return; // requires some reads
     if (meta.writes[0].kind !== 'var' || meta.writes[1].kind !== 'assign') return; // the assign is nested in the var so it must follow
 
-    vgroup('- `' + targetName + '`');
-    const changed = process(fdata, meta, targetName);
+    vgroup('-', [targetName], 'is a let with two writes and 1+ reads, first write is var and second is assign. Processing...');
+    const changed = findSelfCloser(fdata, meta, targetName);
     if (changed) updated += 1;
     vgroupEnd();
   });
@@ -105,19 +104,38 @@ function processAttempt(fdata) {
   return updated;
 }
 
-function findInitSealer(fdata) {
-  return findInit(fdata.tenkoOutput.ast.body, fdata);
-}
-function findInit(body, fdata) {
-  ASSERT(arguments.length === findInit.length);
-  ASSERT(!body.type, 'should receive an array, not a BlockStatement', body);
+function findTripleAliasArrayClosure(fdata) {
+  // This searches for a hyper specific pattern.
+  // From the start of the function, ignore all var decls with a declarative
+  // structure (functions, empty array, empty object) as long as they don't
+  // leak identifiers. Goal is to skip anything that might alias or call
+  // another ident.
+  // - Then search for this pattern:
+  //          const x = f; const y = b; conxt z = x;
+  //   Where `f` should refer to a function with this form:
+  //          let f = function(){ debugger; const x = [..]; f = function(){ .. }; const r = f(); return r; }
+  //   In this, `b` is irrelevant, even if it happens to be `f`
+  // - Then verify that `f` is guaranteed to be a function with that pattern
+  //
+  // -> tests/cases/self_assign_closure/triple_ident_call_case.md
 
-  vgroup('findInit');
-  const r = _findInit(body, fdata);
+  vgroup('findInitSealer');
+  const r = findTripleInit(fdata.tenkoOutput.ast.body, fdata);
   vgroupEnd();
   return r;
 }
-function _findInit(body, fdata) {
+function findTripleInit(body, fdata) {
+  ASSERT(arguments.length === findTripleInit.length);
+  ASSERT(!body.type, 'should receive an array, not a BlockStatement', body);
+
+  vgroup('findInit');
+  const r = _findTripleInit(body, fdata);
+  vgroupEnd();
+  return r;
+}
+function _findTripleInit(body, fdata) {
+  // Skip statements that are vars with function inits. enter labeled statements (bail upon return).
+  // stop on anything else. hope that's the start of our pattern.
   let i = 0;
   for (; i<body.length; ++i) {
     const stmt = body[i];
@@ -131,8 +149,9 @@ function _findInit(body, fdata) {
       break; // the end
     }
     else if (stmt.type === 'LabeledStatement') {
-      return findInit(stmt.body.body, fdata);
+      return findTripleInit(stmt.body.body, fdata);
     }
+    // TODO: while statement? shrug
     else {
       // unknown, not safe to assume
       break;
@@ -163,54 +182,58 @@ function _findInit(body, fdata) {
   //const zname = z.id.name;
   //const zinit = z.init;
 
-  // Verify that x is an alias for a function
+  // Verify that x is an alias for a function -> check that the rhs is always a function
   const meta = fdata.globallyUniqueNamingRegistry.get(xinit.name);
-  if (meta.isBuiltin) return;
-  if (meta.isImplicitGlobal) return;
-  if (meta.isConstant) return;
+  if (!meta.isLet) return;
   if (meta.writes.length !== 2) return;
-
   const decl = meta.writes[0].kind === 'var' ? meta.writes[0] : meta.writes[1];
   const assign = meta.writes[0].kind === 'assign' ? meta.writes[0] : meta.writes[1];
   if (!decl || !assign) return;
-
   if (decl.parentNode.init.type !== 'FunctionExpression') return;
-  if (decl.blockBody[decl.blockIndex].kind !== 'let') return; // I think this check is unnecessary.
+  if (assign.parentNode.right.type !== 'FunctionExpression') return;
 
-  const func = decl.parentNode.init;
-  const funcBody = func.body.body;
+  // Ok. Always a function.
+  const outerFunc = decl.parentNode.init;
+  const outerFuncBody = outerFunc.body.body;
 
-  // Now verify if this function matches the pattern
-  // Note: param count doesn't really matter, we assert that the first statament is Debugger so any param is unused.
-  if (funcBody.length !== 5) return; // Looking for: `debugger; const x = []; self = func; const x = self(); return x`
-  if (funcBody[0].type !== 'DebuggerStatement') return;
-  if (funcBody[1].type !== 'VarStatement') return; // arr
-  if (funcBody[1].init.type !== 'ArrayExpression') return;
-  if (!funcBody[1].init.elements.every(e => !e || AST.isPrimitive(e))) return; // we can support _some_ idents too, but...
-  if (funcBody[2].type !== 'ExpressionStatement') return;
-  if (funcBody[2].expression.type !== 'AssignmentExpression') return;
-  if (funcBody[2].expression.left.type !== 'Identifier') return;
-  if (funcBody[2].expression.left.name !== xinit.name) return;
-  if (funcBody[2].expression.right.type !== 'FunctionExpression') return;
-  if (funcBody[2].expression.right.body.body.length !== 2) return; // nested func has debugger and then returns the arr
-  if (funcBody[2].expression.right.body.body[0].type !== 'DebuggerStatement') return;
-  if (funcBody[2].expression.right.body.body[1].type !== 'ReturnStatement') return;
-  if (funcBody[2].expression.right.body.body[1].argument.name !== funcBody[1].id.name) return; // return arr
-  if (funcBody[3].type !== 'VarStatement') return;
-  if (funcBody[3].init.type !== 'CallExpression') return;
-  if (funcBody[3].init.callee.type !== 'Identifier') return;
-  if (funcBody[3].init.callee.name !== xinit.name) return;
-  if (funcBody[3].init.arguments.length > 0) return; // There shouldn't be any args. It shouldn't matter. So we're going to ignore it. Most likely another transform will eliminate them anyways and then this rule will pass...
-  if (funcBody[4].type !== 'ReturnStatement') return;
-  if (funcBody[4].argument.type !== 'Identifier') return;
-  if (funcBody[4].argument.name !== funcBody[3].id.name) return;
+  // Now verify if this function matches the pattern:
+  //      `f = function(){ debugger; const x = [..]; f = function(){ .. }; const r = f(); return r; }`
+  // Note: param count doesn't really matter, we assert that the first statement is Debugger so any param is unused.
+  if (outerFuncBody.length !== 5) return; // Looking for: `debugger; const x = []; self = func; const x = self(); return x`
+  if (outerFuncBody[0].type !== 'DebuggerStatement') return;
+  if (outerFuncBody[1].type !== 'VarStatement') return; // arr
+  if (outerFuncBody[1].init.type !== 'ArrayExpression') return;
+  if (!outerFuncBody[1].init.elements.every(e => !e || AST.isPrimitive(e))) return; // we can support _some_ idents too, but...
+  if (outerFuncBody[2].type !== 'ExpressionStatement') return;
+  if (outerFuncBody[2].expression.type !== 'AssignmentExpression') return;
+  if (outerFuncBody[2].expression.left.type !== 'Identifier') return;
+  if (outerFuncBody[2].expression.left.name !== xinit.name) return;
+  if (outerFuncBody[2].expression.right.type !== 'FunctionExpression') return;
+  if (outerFuncBody[2].expression.right.body.body.length !== 2) return; // nested func has debugger and then returns the arr
+  if (outerFuncBody[2].expression.right.body.body[0].type !== 'DebuggerStatement') return;
+  if (outerFuncBody[2].expression.right.body.body[1].type !== 'ReturnStatement') return;
+  if (outerFuncBody[2].expression.right.body.body[1].argument.name !== outerFuncBody[1].id.name) return; // return arr
+  if (outerFuncBody[3].type !== 'VarStatement') return;
+  if (outerFuncBody[3].init.type !== 'CallExpression') return;
+  if (outerFuncBody[3].init.callee.type !== 'Identifier') return;
+  if (outerFuncBody[3].init.callee.name !== xinit.name) return;
+  if (outerFuncBody[3].init.arguments.length > 0) return; // There shouldn't be any args. It shouldn't matter. So we're going to ignore it. Most likely another transform will eliminate them anyways and then this rule will pass...
+  if (outerFuncBody[4].type !== 'ReturnStatement') return;
+  if (outerFuncBody[4].argument.type !== 'Identifier') return;
+  if (outerFuncBody[4].argument.name !== outerFuncBody[3].id.name) return;
 
-  // xinit is the self-sealing pattern.
-  // In that case y is truly noop since the rhs can not have been referenced in this pattern
-  // In that case z is calling xinit as the first operation of the script and we are go for takeoff.
+  // Ok, this is
+  // `let f = function(){ debugger; const x = [..]; f = function(){ .. }; const r = f(); return r; }`
+  // So f matches the self-sealing pattern we are seeking.
+  // Consider the "startup" pattern we verified earlier:
+  // `const x = f; const y = g; const z = x()`
+  // In that case y is truly noop since the rhs can not have been referenced in this pattern.
+  // In that case z is calling f as the first operation of the script and we are go for takeoff.
+  // - TODO: What if `z` is called multiple times? We need make sure it's not read more than once (or that the reads are dead somehow)
+  // - TODO: What if `y` is `f` and gets called? Wouldn't that create a new closure as well? Maybe that does matter.
 
   // So:
-  // - We know the func is called immediately as the first action of this script
+  // - We know func `f` is called immediately as the first action of this script
   // - We know it will create a closure over the array and then self-seal
   // - We know it has further references, though none of them matter much
   // It should be safe to move the array to the owner scope of the function
@@ -251,12 +274,12 @@ function _findInit(body, fdata) {
   // Replace the func with one that just returns the arr
   decl.blockBody[decl.blockIndex].init = AST.functionExpression([], [
     AST.debuggerStatement(),
-    AST.returnStatement(funcBody[1].id.name) // return arr
+    AST.returnStatement(outerFuncBody[1].id.name) // return arr
   ]);
   // We should have eliminated the only other write so it's now a const. We also could omit this step and let other rules deal with it.
   decl.blockBody[decl.blockIndex].kind = 'const';
   // return arr
-  decl.blockBody.splice(decl.blockIndex, 0, funcBody[1]);
+  decl.blockBody.splice(decl.blockIndex, 0, outerFuncBody[1]);
 
   after(decl.blockBody[decl.blockIndex]);
   after(decl.blockBody[decl.blockIndex+1]);
@@ -265,7 +288,7 @@ function _findInit(body, fdata) {
   return true;
 }
 
-function process(fdata, meta, targetName) {
+function findSelfCloser(fdata, meta, targetName) {
   // Initially, only target the write-write-read+ case. We can try to expand that later but not sure if we have to.
   // We already verified that the references start with two rwites and are only reads after that
   // Now we must confirm that
@@ -277,27 +300,25 @@ function process(fdata, meta, targetName) {
   const firstWrite = meta.writes[0];
   const secondWrite = meta.writes[1];
 
-  if (firstWrite.parentNode.type !== 'VarStatement' && firstWrite.parentProp !== 'id') {
-    return;
+  if (firstWrite.parentNode.type !== 'VarStatement') {
+    return vlog('- bail: first write was not a var, after all');
   }
   if (firstWrite.parentNode.init.type !== 'FunctionExpression') {
-    return;
+    return vlog('- bail: first write did not init to function');
   }
-  if (secondWrite.parentNode.type !== 'AssignmentExpression' && firstWrite.parentProp !== 'left') {
+  if (secondWrite.parentNode.type !== 'AssignmentExpression') {
     // Not assigning TO the binding
-    return;
+    return vlog('- bail: second write was not an assignment');
   }
   if (secondWrite.parentNode.right.type !== 'FunctionExpression') {
-    return;
+    return vlog('- bail: second write was not a function');
   }
   const outerFuncBlock = firstWrite.parentNode.init.body.body;
   if (!outerFuncBlock.includes(secondWrite.grandNode)) {
-    // Second assign was not in root of function that was assigned in the first write
-    return;
+    return vlog('- bail: Second assign was not in root of function that was assigned in the first write');
   }
 
-  // Confirmed that this was the case of a var initialized to a func and
-  // inside that function the same binding was updated with a new function
+  vlog('- ok: confirmed that this was the case of a var initialized to a func and inside that function the same binding was updated with a new function')
   //
   //     `let f = function(){ ...; f = function(){ ... }; ... }`
   //
@@ -307,8 +328,7 @@ function process(fdata, meta, targetName) {
   //
 
   if (outerFuncBlock.length < 3) {
-    vlog('- bail; need at least 3 statements to match the pattern');
-    return;
+    return vlog('- bail; need at least 3 statements to match the pattern');
   }
   const closingNode = outerFuncBlock[outerFuncBlock.length - 3];
   const tmpCall = outerFuncBlock[outerFuncBlock.length - 2];
@@ -319,8 +339,7 @@ function process(fdata, meta, targetName) {
     closingNode.type !== 'ExpressionStatement' ||
     closingNode.expression !== secondWrite.parentNode
   ) {
-    vlog('- bail; third-last statement of outer function was not the assignment of the inner function');
-    return;
+    return vlog('- bail; third-last statement of outer function was not the assignment of the inner function');
   }
 
   // `var tmp = targetName()`
@@ -330,13 +349,11 @@ function process(fdata, meta, targetName) {
     tmpCall.init.callee.type !== 'Identifier' ||
     tmpCall.init.callee.name !== targetName
   ) {
-    vlog('- bail; second-last statement was not a call to the inner function');
-    return;
+    return vlog('- bail; second-last statement was not a call to the inner function');
   }
   // Check if `const tmp = targetName(...x)` has a spread
   if (tmpCall.init.arguments.some(a => a.type === 'SpreadElement')) {
-    vlog('- bail; at least one arg to the inner call is spreading'); // We can probably support some cases here tho
-    return;
+    return vlog('- bail; at least one arg to the inner call is spreading'); // We can probably support some cases here tho
   }
 
   // `return tmp`
@@ -345,9 +362,10 @@ function process(fdata, meta, targetName) {
     tmpRet.argument.type !== 'Identifier' ||
     tmpRet.argument.name !== tmpCall.id.name
   ) {
-    vlog('- bail; final return is not returning the tmp call');
-    return;
+    return vlog('- bail; final return is not returning the tmp call');
   }
+
+  vgroup('- ok: confirmed tentative self closing pattern. Now to drill in...');
 
   // Confirmed this pattern now:
   //
@@ -356,21 +374,30 @@ function process(fdata, meta, targetName) {
   // With some unknown parts before and inside the inner function and where the closing call
   // does not spread. It may still pass through params. There are now a few cases to cover;
 
+  vgroup('Trying verifyClosureCase()');
   if (verifyClosureCase(fdata, meta, targetName, firstWrite, secondWrite)) {
+    vgroupEnd();
     return true;
   }
+  vgroupEnd();
+  vgroup('Trying verifyWrapperCase()');
   if (verifyWrapperCase(fdata, meta, targetName, firstWrite, secondWrite)) {
+    vgroupEnd();
     return true;
   }
+  vgroupEnd();
+  vgroup('Trying verifyImmediatelyCalledCase()');
   if (verifyImmediatelyCalledCase(fdata, meta, targetName, firstWrite, secondWrite)) {
+    vgroupEnd();
     return true;
   }
+  vgroupEnd();
 
+  todo('Found a self-closing function shell but it did not match a known pattern...');
   return false;
 }
 
 function verifyWrapperCase(fdata, meta, targetName, firstWrite, secondWrite) {
-  vlog('verifyWrapperCase()');
   // This case looks for an iife that only references local or global variables (no closures)
   // Something like this:
   //
@@ -474,7 +501,6 @@ function verifyWrapperCase(fdata, meta, targetName, firstWrite, secondWrite) {
 }
 
 function verifyClosureCase(fdata, meta, targetName, first, second) {
-  vlog('verifyClosureCase()');
   // This case looks for a closure, something like this:
   //
   //        `let f = function(){ const arr = [1,2,3]; f = function(){ return arr; }; const tmp = f(); return tmp; }`
@@ -705,7 +731,7 @@ function closureCaseEscaping(first, second, meta, targetName) {
   }
 
   if (!immediatelyCalled) {
-    vlog('   - bail: the function escapes and we did not prove that it is called immediately');
+    vlog('   - bail: immediatelyCalled; the function escapes and we did not prove that it is called immediately');
     return false;
   }
 

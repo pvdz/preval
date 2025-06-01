@@ -80,7 +80,7 @@ function _ifTestFolding(fdata) {
       const flip = firstThen.expression.right.value === false;
 
       queue.push({
-        pid: +node.$p.pid,
+        npid: node.$p.npid,
         func: () => {
           rule('Matching bool assign on bool if-test should be explicit');
           example('const x = Boolean(y); if (x) a = true; else b = false;', 'const x = Boolean(y); a = x', () => testIsBool && !flip);
@@ -136,7 +136,7 @@ function _ifTestFolding(fdata) {
       const testIsBool = testMeta.typing.mustBeType === 'boolean';
       const flip = firstThen.argument.value === false;
       queue.push({
-        pid: +node.$p.pid,
+        npid: node.$p.npid,
         func: () => {
           rule('Matching bool return on bool if-test should be explicit');
           example('const x = Boolean(y); if (x) return true; else return false;', 'const x = Boolean(y); a = x', () => testIsBool && !flip);
@@ -182,7 +182,7 @@ function _ifTestFolding(fdata) {
 
   if (queue.length) {
     // Order in reverse order. Later changes won't affect index references of earlier nodes.
-    queue.sort(({ pid: a }, { pid: b }) => (a < b ? 1 : a > b ? -1 : 0));
+    queue.sort(({ npid: a }, { npid: b }) => b - a);
 
     vgroup('Processing ifs now');
     queue.forEach(({ func }) => func());

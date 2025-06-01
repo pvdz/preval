@@ -64,14 +64,14 @@ function _singleScopeSSA(fdata) {
     vlog('The binding `' + name + '` is a var decl. Analyzing usages (', meta.reads.length, 'reads and', meta.writes.length, 'writes).');
 
     const rwOrder = meta.rwOrder;
-    vlog('rwOrder:', [rwOrder.map((o) => o.action + ':' + o.kind + ':' + o.node.$p.pid).join(', ')]);
+    vlog('rwOrder:', [rwOrder.map((o) => o.action + ':' + o.kind + ':' + o.node.$p.npid).join(', ')]);
 
-    const declScope = meta.bfuncNode.$p.pid;
+    const declScope = meta.bfuncNode.$p.npid;
     vlog(
       'Decl scope:',
       declScope,
       ', ref scopes:',
-      rwOrder.map((ref) => +ref.pfuncNode.$p.pid),
+      rwOrder.map((ref) => ref.pfuncNode.$p.npid),
     );
 
     const varDeclWrite = meta.writes.find((write) => write.kind === 'var');
@@ -144,7 +144,7 @@ function _singleScopeSSA(fdata) {
         // Print the clusters (for now, will probably want to get rid of this)
         vgroup(c, ':');
         [...s]
-          .sort((a, b) => (+a.node.$p.pid < +b.node.$p.pid ? -1 : +a.node.$p.pid > +b.node.$p.pid ? 1 : 0))
+          .sort((a, b) => b.node.$p.npid - a.node.$p.npid)
           .forEach((r) => {
             source(r.blockBody[r.blockIndex]);
           });
@@ -199,7 +199,7 @@ function _singleScopeSSA(fdata) {
         // in this group, then it must mean that this group spans an if-else with a write in both
         // branches, which means it must be preceded by a placeholder var decl.
 
-        const refsArr = [...refs].sort((a, b) => (+a.node.$p.pid < +b.node.$p.pid ? -1 : +a.node.$p.pid > +b.node.$p.pid ? 1 : 0));
+        const refsArr = [...refs].sort((a, b) => a.node.$p.npid - b.node.$p.npid);
 
         vlog('Searching for var decl and making sure all reads can read the write');
         let firstWrite = undefined; // Like this one :p

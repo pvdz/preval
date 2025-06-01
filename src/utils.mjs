@@ -318,16 +318,15 @@ export function createOpenRefsState(globallyUniqueNamingRegistry) {
     if (meta.isImplicitGlobal || meta.isGlobal || meta.isBuiltin) return;
     arr.push(`${name}:`);
     // Note: meta.reOrder is created in phase2
-    (meta.reads || []).concat(meta.writes || []).sort(({ node: { $p: { pid: a } } }, { node: { $p: { pid: b } } }) =>
-      +a < +b ? -1 : +a > +b ? 1 : 0,
-    ).forEach(rw => {
+    (meta.reads || []).concat(meta.writes || []).sort((a, b) => a.node.$p.npid - b.node.$p.npid)
+    .forEach(rw => {
       maxlen = Math.max(maxlen, rw.node.name.length);
       arr.push([
-          '  - ' + rw.action[0] + (' @' + rw.node.$p.pid).padEnd(maxlen - 2, ' ') + ' ',
-          rw.action === 'read' ? (rw.reachesWrites.size ? ' | ' + Array.from(rw.reachesWrites).map(write => +write.node.$p.pid).sort((a,b)=>a-b) : ' | none (unreachable?)').padEnd(10, ' ') : ' | '.padEnd(13, '#'),
-          rw.action === 'write' ? (rw.reachedByReads.size ? ' | ' + Array.from(rw.reachedByReads).map(read => +read.node.$p.pid).sort((a,b)=>a-b) : ' | not read').padEnd(14, ' ') : '',
-          rw.action === 'write' ? (rw.reachesWrites.size ? ' | ' + Array.from(rw.reachesWrites).map(write => +write.node.$p.pid).sort((a,b)=>a-b) : ' | none').padEnd(17, ' ') : '',
-          rw.action === 'write' ? (rw.reachedByWrites.size ? ' | ' + Array.from(rw.reachedByWrites).map(write => +write.node.$p.pid).sort((a,b)=>a-b) : ' | none') : '',
+          '  - ' + rw.action[0] + (' @' + rw.node.$p.npid).padEnd(maxlen - 2, ' ') + ' ',
+          rw.action === 'read' ? (rw.reachesWrites.size ? ' | ' + Array.from(rw.reachesWrites).map(write => write.node.$p.npid).sort((a,b)=>a-b) : ' | none (unreachable?)').padEnd(10, ' ') : ' | '.padEnd(13, '#'),
+          rw.action === 'write' ? (rw.reachedByReads.size ? ' | ' + Array.from(rw.reachedByReads).map(read => read.node.$p.npid).sort((a,b)=>a-b) : ' | not read').padEnd(14, ' ') : '',
+          rw.action === 'write' ? (rw.reachesWrites.size ? ' | ' + Array.from(rw.reachesWrites).map(write => write.node.$p.npid).sort((a,b)=>a-b) : ' | none').padEnd(17, ' ') : '',
+          rw.action === 'write' ? (rw.reachedByWrites.size ? ' | ' + Array.from(rw.reachedByWrites).map(write => write.node.$p.npid).sort((a,b)=>a-b) : ' | none') : '',
         ].filter(Boolean).join('').trimEnd()
       );
     });
@@ -353,10 +352,10 @@ export function assertNoDupeNodes(rootNode, prop, force = false, ...desc) {
         if (type === 'ArrayExpression') {
           ASSERT(node.elements.length === Object.keys(node.elements).length, 'the ast array elements should not have elided arrays, even if the source codes', node.elements);
         }
-        if (map.has(node.$p.pid)) {
+        if (map.has(node.$p.npid)) {
 
           console.log('\n\n')
-          console.log('This is the AST printed with PIDs for easier debug. PID', +node.$p.pid, 'will appear at least twice here, which is bad');
+          console.log('This is the AST printed with PIDs for easier debug. PID', node.$p.npid, 'will appear at least twice here, which is bad');
           setPrintPids(true);
           console.log('`````Whole node\n' + fmat(tmat(rootNode, true)).trim() + '\n`````');
           console.log('\n\n')
@@ -367,10 +366,10 @@ export function assertNoDupeNodes(rootNode, prop, force = false, ...desc) {
           //if (!refset.has(node)) {
           //  console.log('map:', map)
           //}
-          ASSERT(refset.has(node), 'et tu? make sure node pids are not re-used and then trigger this, node used more than once:', node, desc, 'prev:', map.get(node.$p.pid), map.has(node.$p.pid), node.$p.pid, path.nodes[path.nodes.length - 2]);
+          ASSERT(refset.has(node), 'et tu? make sure node pids are not re-used and then trigger this, node used more than once:', node, desc, 'prev:', map.get(node.$p.npid), map.has(node.$p.npid), node.$p.npid, path.nodes[path.nodes.length - 2]);
           console.log('(assertion triggered; debug data commented out)');
           //console.dir(node, { depth: null });
-          //console.log('previous parent:', map.get(node.$p.pid));
+          //console.log('previous parent:', map.get(node.$p.npid));
           //console.log('current  parent:', path.nodes[path.nodes.length - 2]);
           //console.log('truncated node:', node);
           ASSERT(
@@ -381,7 +380,7 @@ export function assertNoDupeNodes(rootNode, prop, force = false, ...desc) {
           );
         }
         ASSERT(path.nodes.length < 2 || path.nodes[path.nodes.length - 2], 'should get the parent for a given node', path.nodes.slice(-2), node);
-        map.set(node.$p.pid, path.nodes[path.nodes.length - 2]);
+        map.set(node.$p.npid, path.nodes[path.nodes.length - 2]);
         refset.add(node);
       }
     },
@@ -581,6 +580,6 @@ export function debugStringMapOfSetOfReadOrWrites(map) {
 export function debugStringListOfReadOrWrites(set) {
   ASSERT(!set || set instanceof Array || set instanceof Set, 'set array or undefined');
   return (set && Array.from(set).map((write) => {
-    return `@${write.node.$p.pid}`;
+    return `@${write.node.$p.npid}`;
   }).join(',')) || '(none)';
 }

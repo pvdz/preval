@@ -76,7 +76,7 @@ function _ifTestBool(fdata) {
     ifTestMeta.reads.forEach((read, ri) => {
       vlog('- read', ri);
 
-      if (+read.node.$p.pid > +node.consequent.$p.pid && +read.node.$p.pid <= +node.consequent.$p.lastPid) {
+      if (read.node.$p.npid > node.consequent.$p.npid && read.node.$p.npid <= node.consequent.$p.lastPid) {
         vlog('ref in if branch, mustbe:', ifTestMeta.typing.mustBeType);
 
         if (ifTestMeta.typing.mustBeType === 'boolean') {
@@ -125,7 +125,7 @@ function _ifTestBool(fdata) {
           vlog('- bail: Not unary excl, not calling Boolean');
         }
       }
-      else if (+read.node.$p.pid > +node.alternate.$p.pid && +read.node.$p.pid <= +node.alternate.$p.lastPid) {
+      else if (read.node.$p.npid > node.alternate.$p.npid && read.node.$p.npid <= node.alternate.$p.lastPid) {
         vlog('ref in else branch, mustbe:', ifTestMeta.typing.mustBeType);
 
         if (ifTestMeta.typing.mustBeType === 'boolean') {
@@ -227,7 +227,7 @@ function _ifTestBool(fdata) {
         // Note: we know this is a const. We checked above when we collected this var.
         meta.reads.forEach(read => {
           // Basically do the same check as for the original var. Targeting the same `if`. Skip the alias check tho.
-          if (+read.node.$p.pid > +node.consequent.$p.pid && +read.node.$p.pid <= +node.consequent.$p.lastPid) {
+          if (read.node.$p.npid > node.consequent.$p.npid && read.node.$p.npid <= node.consequent.$p.lastPid) {
             vlog('alias ref in if branch, must be true because the if-test it is aliasing is truthy here');
 
             rule('Alias of an if-test that is bool and same truthy state of if-branch must be true');
@@ -240,7 +240,7 @@ function _ifTestBool(fdata) {
             after(read.blockBody[read.blockIndex]);
             ++changed;
           }
-          else if (+read.node.$p.pid > +node.alternate.$p.pid && +read.node.$p.pid <= +node.alternate.$p.lastPid) {
+          else if (read.node.$p.npid > node.alternate.$p.npid && read.node.$p.npid <= node.alternate.$p.lastPid) {
             vlog('alias ref in else branch, must be false because the if-test it is aliasing is falsy here');
 
             rule('Alias of an if-test that is bool and same truthy state of else-branch must be false');
@@ -266,7 +266,7 @@ function _ifTestBool(fdata) {
         // Note: we know this is a const. We checked above when we collected this var.
         meta.reads.forEach(read => {
           // Basically do the same check as for the original var. Targeting the same `if`. Skip the alias check tho.
-          if (+read.node.$p.pid > +node.consequent.$p.pid && +read.node.$p.pid <= +node.consequent.$p.lastPid) {
+          if (read.node.$p.npid > node.consequent.$p.npid && read.node.$p.npid <= node.consequent.$p.lastPid) {
             vlog('inv alias ref in if branch, must be false because the if-test it is aliasing is truthy here');
 
             rule('Alias of an if-test that is inv bool in if-branch must be false');
@@ -279,7 +279,7 @@ function _ifTestBool(fdata) {
             after(read.blockBody[read.blockIndex]);
             ++changed;
           }
-          else if (+read.node.$p.pid > +node.alternate.$p.pid && +read.node.$p.pid <= +node.alternate.$p.lastPid) {
+          else if (read.node.$p.npid > node.alternate.$p.npid && read.node.$p.npid <= node.alternate.$p.lastPid) {
             vlog('inv alias ref in else branch, must be true because the if-test it is aliasing is falsy here');
 
             rule('Alias of an if-test that is inv bool in else-branch must be true');

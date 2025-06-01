@@ -100,7 +100,7 @@ function processAttempt(fdata, unrollLimit) {
       return;
     }
 
-    vlog('- while @', whileNode.$p.pid);
+    vlog('- while @', whileNode.$p.npid);
 
     const parentNode = path.nodes[path.nodes.length - 2];
     const parentProp = path.props[path.props.length - 1];

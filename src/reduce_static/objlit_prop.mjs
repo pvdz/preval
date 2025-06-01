@@ -24,7 +24,7 @@ function _objlitPropAccess(fdata) {
 
   log('');
   if (updated + queue.length) {
-    queue.sort(({ pid: a }, { pid: b }) => (a < b ? 1 : a > b ? -1 : 0));
+    queue.sort(({ index: a }, { index: b }) => b - a);
 
     vgroup('Unwinding', queue.length, 'callbacks');
     queue.forEach(({ func }) => {
@@ -244,7 +244,7 @@ function _objlitPropAccess(fdata) {
         vlog('- verifyAfterObjectAssign(): Checking', rwOrder.length - wi - 1, 'refs, starting at', wi);
         for (let ri = wi; ri < rwOrder.length; ++ri) {
           const ref = rwOrder[ri];
-          vgroup('- ref', ri, ';', ref.action + ':' + ref.kind, ref.pfuncNode.$p.pid, ref.parentNode.type);
+          vgroup('- ref', ri, ';', ref.action + ':' + ref.kind, ref.pfuncNode.$p.npid, ref.parentNode.type);
           const r = processRef(meta, rwOrder, writeRef, objExprNode, ref, wi, ri, lastMap);
           vgroupEnd();
           if (r) break;
@@ -255,15 +255,15 @@ function _objlitPropAccess(fdata) {
     function processRef(meta, rwOrder, writeRef, objExprNode, ref, wi, ri, lastMap) {
       // ref should be the next ref in rwOrder, after the writeRef. It may be differently scoped.
 
-      let lastRefArr = lastMap.get(ref.pfuncNode.$p.pid);
+      let lastRefArr = lastMap.get(ref.pfuncNode.$p.npid);
       if (!lastRefArr) {
         lastRefArr = [];
-        lastMap.set(ref.pfuncNode.$p.pid, lastRefArr);
+        lastMap.set(ref.pfuncNode.$p.npid, lastRefArr);
       }
 
       if (ref.action === 'write') {
         lastRefArr.push(ref);
-        vlog('- Updated last write ref for scope', ref.pfuncNode.$p.pid, 'to a write');
+        vlog('- Updated last write ref for scope', ref.pfuncNode.$p.npid, 'to a write');
         return;
       }
 
@@ -579,7 +579,7 @@ function _objlitPropAccess(fdata) {
           // We'll convert it to a $dotCall to make sure the context value is preserved
 
           queue.push({
-            pid: +readRef.node.$p.pid,
+            index: readRef.blockIndex,
             func: () => {
               // The only potential problem with this rule is if the global `Object` is somehow replaced with a different
               // value. But I believe that value is read-only in global, anyways. Beyond that, objlits should read from proto.
@@ -632,7 +632,7 @@ function _objlitPropAccess(fdata) {
           });
         } else if (BUILTIN_SYMBOLS.has(symbo('object', readRef.parentNode.property.name))) {
           queue.push({
-            pid: +readRef.node.$p.pid,
+            index: readRef.blockIndex,
             func: () => {
               // The only potential problem with this rule is if the global `Object` is somehow replaced with a different
               // value. But I believe that value is read-only in global, anyways. Beyond that, objlits should read from proto.
@@ -681,7 +681,7 @@ function _objlitPropAccess(fdata) {
           return true;
         }
       } else {
-        vlog('- The object literal contained a node for `' + propName + '` (pid', pnode.$p.pid, ')');
+        vlog('- The object literal contained a node for `' + propName + '` (pid', pnode.$p.npid, ')');
 
         if (readRef.grandNode.type === 'CallExpression' && readRef.grandProp === 'callee') {
           // Tricky case. We may be able to find the reference but we may still not be able to improve anything

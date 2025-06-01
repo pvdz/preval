@@ -96,7 +96,7 @@ function _ifFoldTernaryConst(fdata) {
       const secondIfIndex = read.blockIndex;
       if (secondIfNode.type !== 'IfStatement' || read.parentProp !== 'test') return; // or true? can this recover?
 
-      if (!(+varDeclNode.$p.pid < +secondIfNode.$p.pid)) return true; // first read must be after var decl
+      if (!(varDeclNode.$p.npid < secondIfNode.$p.npid)) return true; // first read must be after var decl
 
       // Now find the first `if`, it will test on the control var
       // `let x = !CONTROL; if (CONTROL) x=true; if (x) ...`
@@ -108,7 +108,7 @@ function _ifFoldTernaryConst(fdata) {
         // `if (x)`
         if (prevNode.type === 'IfStatement' && prevNode.test.type === 'Identifier' && prevNode.test.name === controlVarName) {
           // Kinda think this is implied but either way, the var decl < first if < second if.
-          if (+varDeclNode.$p.pid < +prevNode.$p.pid && +prevNode.$p.pid < +secondIfNode.$p.pid) {
+          if (varDeclNode.$p.npid < prevNode.$p.npid && prevNode.$p.npid < secondIfNode.$p.npid) {
             firstIfNode = prevNode;
             break;
           }
@@ -135,15 +135,15 @@ function _ifFoldTernaryConst(fdata) {
       //   if (y) { /* secondIfNode */ ... }
       //
       let hasInterveningWrite = false;
-      const firstIfNodePID = firstIfNode.$p.pid;
-      const secondIfNodePID = secondIfNode.$p.pid;
+      const firstIfNodePID = firstIfNode.$p.npid;
+      const secondIfNodePID = secondIfNode.$p.npid;
       vlog(`- Intervening write check for var '${varName}'. ControlIf PID: ${firstIfNodePID}, TargetIf PID: ${secondIfNodePID}. Num writes: ${meta.writes.length}`);
       for (let j = 1; j < meta.writes.length; j++) { // Start from 1 to skip var declaration
         const writeRef = meta.writes[j];
-        vlog(`- Checking writeRef index ${j}, kind: ${writeRef.kind}, node type: ${writeRef.node.type}, PID of writeRef.node: ${writeRef.node.$p ? writeRef.node.$p.pid : 'N/A'}`);
+        vlog(`- Checking writeRef index ${j}, kind: ${writeRef.kind}, node type: ${writeRef.node.type}, PID of writeRef.node: ${writeRef.node.$p ? writeRef.node.$p.npid : 'N/A'}`);
         
         const interveningStmtNode = writeRef.blockBody[writeRef.blockIndex];
-        const interveningWritePID = +interveningStmtNode.$p.pid;
+        const interveningWritePID = interveningStmtNode.$p.npid;
 
         const conditionMetPID = interveningWritePID > firstIfNodePID && interveningWritePID < secondIfNodePID;
         vlog(`  - Write Stmt Node Type: ${interveningStmtNode.type}, PID: ${interveningWritePID} (original: '${interveningWritePID}'). PID Condition (${interveningWritePID} > ${firstIfNodePID} && ${interveningWritePID} < ${secondIfNodePID}) is ${conditionMetPID}`);
@@ -152,7 +152,7 @@ function _ifFoldTernaryConst(fdata) {
           // Now check if interveningStmtNode is a descendant of firstIfNode
           let isDescendant = false;
           const writeStmtBlock = writeRef.blockBody; // The array containing interveningStmtNode
-          vlog(`    - Starting descendant check. Intervening Stmt PID: ${interveningStmtNode.$p ? interveningStmtNode.$p.pid : 'N/A'}. ControlIf PID: ${firstIfNode.$p ? firstIfNode.$p.pid : 'N/A'}.`);
+          vlog(`    - Starting descendant check. Intervening Stmt PID: ${interveningStmtNode.$p ? interveningStmtNode.$p.npid : 'N/A'}. ControlIf PID: ${firstIfNode.$p ? firstIfNode.$p.npid : 'N/A'}.`);
           vlog(`    - writeRef.blockBody === firstIfNode.consequent?.body : ${writeStmtBlock === firstIfNode.consequent?.body}`);
           vlog(`    - writeRef.blockBody === firstIfNode.alternate?.body : ${writeStmtBlock === firstIfNode.alternate?.body}`);
 
@@ -268,7 +268,7 @@ function _ifFoldTernaryConst(fdata) {
            { yMadeTruthyInThen, yReassignedInThen, yMadeFalsyInElse, yReassignedInElse, 
              yMadeFalsyInThen, yMadeTruthyInElse, // Add to vlog
              yMadeControlVarEquivalentInThen, yMadeControlVarInverseInThen, yMadeControlVarEquivalentInElse, yMadeControlVarInverseInElse },
-           `(PIDs: D=${varDeclNode.$p.pid} C=${firstIfNode.$p.pid} T=${secondIfNode.$p.pid})`);
+           `(PIDs: D=${varDeclNode.$p.npid} C=${firstIfNode.$p.npid} T=${secondIfNode.$p.npid})`);
       
       // Determine final state of y and the AST node to represent it
       let yEffectivelyTrue = false;
@@ -463,7 +463,7 @@ function _ifFoldTernaryConst(fdata) {
   });
 
   if (changes > 0) {
-    queue.sort(({ index: a }, { index: b }) => (a < b ? 1 : a > b ? -1 : 0));
+    queue.sort(({ index: a }, { index: b }) => b - a);
     queue.forEach(({ index, func }) => func()); // Flatten the blocks to normalize
 
     log(`[ifFoldTernaryConst] Total changes made directly: ${changes}. Restarting from phase1.`);

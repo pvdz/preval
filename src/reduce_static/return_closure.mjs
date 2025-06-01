@@ -91,9 +91,9 @@ function _returnClosure(fdata) {
 
       vlog('  - Adding to queue for replacement');
       source(read.blockBody[read.blockIndex]);
-      queue.push([
-        callNode.$p.pid,
-        () => {
+      queue.push({
+        index: read.blockIndex,
+        func: () => {
           vlog('Should be able to replace the call with the closure and move the call before the original call now...');
 
           rule('If a function always returns a certain closure, the closure can be outlined');
@@ -110,7 +110,7 @@ function _returnClosure(fdata) {
           after(read.blockBody[read.blockIndex]);
           after(read.blockBody[read.blockIndex + 1]);
         },
-      ]);
+      });
     });
 
     vgroupEnd();
@@ -122,10 +122,10 @@ function _returnClosure(fdata) {
     vlog();
 
     // Now unwind the queue in reverse AST order. This way splices should not interfere with each other.
-    queue.sort(([a], [b]) => (a < b ? 1 : a > b ? -1 : 0));
-    queue.forEach(([pid, f]) => {
+    queue.sort(({index:a}, {index:b}) => b - a);
+    queue.forEach(({func}) => {
       vgroup('-');
-      f();
+      func();
       vgroupEnd();
     });
 

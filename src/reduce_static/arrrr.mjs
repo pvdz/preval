@@ -30,7 +30,7 @@ function _arrrrrr(fdata) {
 
   if (queue.length) {
     // By index, high to low. This way it should not be possible to cause reference problems by changing index
-    queue.sort(({ index: a }, { index: b }) => (a < b ? 1 : a > b ? -1 : 0));
+    queue.sort(({ index: a }, { index: b }) => b - a);
     queue.forEach(({ index, func }) => func());
   }
 
@@ -130,7 +130,7 @@ function processAttempt(fdata, queue) {
         // TODO: what about `for (x of y[Symbol.iterator])` sort of stuff? Not resolving to primitive I guess?
 
         meta.reads.forEach((read, ei) => {
-          vgroup('- read', ei, ', @', +read.node.$p.pid);
+          vgroup('- read', ei, ', @', read.node.$p.npid);
           if (read.parentNode.computed) {
             if (read.grandNode.type === 'AssignmentExpression') {
               vlog('This is a write to the property, bailing');
@@ -340,7 +340,7 @@ function processAttempt(fdata, queue) {
             // Skip if the read is not in the same loop as the write
             // Skip if the read is in a different function scope
             // If skipped, we can still do it if we can guarantee the array to be immutable
-            if (write.innerLoop === read.innerLoop && write.pfuncNode.$p.pid === read.pfuncNode.$p.pid) {
+            if (write.innerLoop === read.innerLoop && write.pfuncNode.$p.npid === read.pfuncNode.$p.npid) {
               vlog('Checking now...');
               if (mayBindingMutateBetweenRefs(meta, write, read, true)) {
                 vlog('May mutate the array. Bailing');
@@ -387,7 +387,7 @@ function processAttempt(fdata, queue) {
             // Skip if the read is not in the same loop as the write
             // Skip if the read is in a different function scope
             // If skipped, we can still do it if we can guarantee the array to be immutable
-            if (write.innerLoop === read.innerLoop && write.pfuncNode.$p.pid === read.pfuncNode.$p.pid) {
+            if (write.innerLoop === read.innerLoop && write.pfuncNode.$p.npid === read.pfuncNode.$p.npid) {
               vlog('Checking now...');
               if (mayBindingMutateBetweenRefs(meta, write, read, true)) {
                 vlog('May mutate the array. Bailing');

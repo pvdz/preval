@@ -78,7 +78,7 @@ function processAttempt1MoveVarDeclAboveClosure(fdata) {
     vgroup('- `' + meta.uniqueName + '`, writes:', meta.writes.length, ', reads:', meta.reads.length);
 
     const rwOrder = meta.rwOrder;
-    vlog('rwOrder:', [rwOrder.map((o) => o.action + ':' + o.kind + ':' + o.node.$p.pid + ':' + o.blockIndex).join(', ')]);
+    vlog('rwOrder:', [rwOrder.map((o) => o.action + ':' + o.kind + ':' + o.node.$p.npid + ':' + o.blockIndex).join(', ')]);
 
     let declWrite = undefined;
     let declIndex = -1;
@@ -115,7 +115,7 @@ function processAttempt1MoveVarDeclAboveClosure(fdata) {
   vlog('Queued', blockQueue.size, 'blocks for reordering, having', varNodeSet.size, 'var nodes to consider');
   vlog(
     'Var pids:',
-    [...varNodeSet].map((n) => n.$p.pid),
+    [...varNodeSet].map((n) => n.$p.npid),
   );
 
   // We now have a list of elements that want to move
@@ -237,7 +237,7 @@ function processAttempt1MoveVarDeclAboveClosure(fdata) {
   blockQueue.forEach((block) => {
     vlog('Reordering next block...');
     source(block);
-    const blockBefore = block.map((n) => n.$p.pid).join(',');
+    const blockBefore = block.map((n) => n.$p.npid).join(',');
 
     block.forEach((node, i) => {
       vlog('  - node', i);
@@ -256,7 +256,7 @@ function processAttempt1MoveVarDeclAboveClosure(fdata) {
       }
     });
 
-    const blockAfter = block.map((n) => n.$p.pid).join(',');
+    const blockAfter = block.map((n) => n.$p.npid).join(',');
     //vlog('Block before:', blockBefore);
     //vlog('Block after :', blockAfter);
     if (blockBefore !== blockAfter) {
@@ -291,7 +291,7 @@ function processAttempt2multiScopeWriteReadOnly(fdata) {
   function process2(meta, name) {
     const rwOrder = meta.rwOrder;
     vlog('rwOrder[func:pid:blockindex]:', [
-      rwOrder.map((o) => o.action + ':' + o.kind + ':' + o.pfuncNode.$p.pid + ':' + o.node.$p.pid + ':' + o.blockIndex).join(', '),
+      rwOrder.map((o) => o.action + ':' + o.kind + ':' + o.pfuncNode.$p.npid + ':' + o.node.$p.npid + ':' + o.blockIndex).join(', '),
     ]);
 
     // We must show that every read was preceded by a write and had no observable side effects between them.
@@ -303,7 +303,7 @@ function processAttempt2multiScopeWriteReadOnly(fdata) {
     const prevMap = new Map(); // Map<func, Array<write>>. The writes, if multiple, should match the rwOrder order.
     const funcs = new Set();
     rwOrder.some((ref, ri) => {
-      vgroup('-', ri, ':', ref.action, ref.kind, ', scope:', ref.pfuncNode.$p.pid, ', blockChain:', ref.blockChain);
+      vgroup('-', ri, ':', ref.action, ref.kind, ', scope:', ref.pfuncNode.$p.npid, ', blockChain:', ref.blockChain);
       const r = processRef(ref, ri);
       vgroupEnd();
       return r;
@@ -358,7 +358,7 @@ function processAttempt2multiScopeWriteReadOnly(fdata) {
         }
 
         funcs.add(ref.pfuncNode);
-        vlog('Found read preceded by a write in the same body. Adding', ref.pfuncNode.$p.pid, 'as funcs, now at', funcs.size);
+        vlog('Found read preceded by a write in the same body. Adding', ref.pfuncNode.$p.npid, 'as funcs, now at', funcs.size);
       } else if (ref.action === 'write') {
         if (!prevArr) prevMap.set(ref.pfuncNode, [ref]);
         else prevArr.push(ref);
@@ -400,7 +400,7 @@ function processAttempt2multiScopeWriteReadOnly(fdata) {
     funcs.forEach((n) => {
       if (n === meta.bfuncNode) return; // Dont add another binding to the scope that currently already had the binding...
       const tmpName = createFreshVar('tmpssa2_' + name, fdata);
-      vlog('- Prepared to inject a fresh var: `' + tmpName + '` into scope pid ' + n.$p.pid, '(will be queued)');
+      vlog('- Prepared to inject a fresh var: `' + tmpName + '` into scope pid ' + n.$p.npid, '(will be queued)');
       n.$p.ssaName = tmpName;
       // Need to inject it afterwards because otherwise indexes get shuffled around, breaking this file for sibling refs
       const arr = toInject.get(n);
@@ -462,11 +462,9 @@ function processAttempt3OnlyUsedInOtherScope(fdata) {
     vgroup('- `' + meta.uniqueName + '`, writes:', meta.writes.length, ', reads:', meta.reads.length);
 
     // Since we regenerate the pid during every phase1, we should be able to rely on it for DFS ordering.
-    const rwOrder = [...meta.reads, ...meta.writes].sort(({ node: { $p: { pid: a } } }, { node: { $p: { pid: b } } }) =>
-      +a < +b ? -1 : +a > +b ? 1 : 0,
-    );
+    const rwOrder = [...meta.reads, ...meta.writes].sort((a, b) => a.node.$p.npid - b.node.$p.npid);
     vlog('rwOrder[func:pid:blockindex]:', [
-      rwOrder.map((o) => o.action + ':' + o.kind + ':' + o.pfuncNode.$p.pid + ':' + o.node.$p.pid + ':' + o.blockIndex).join(', '),
+      rwOrder.map((o) => o.action + ':' + o.kind + ':' + o.pfuncNode.$p.npid + ':' + o.node.$p.npid + ':' + o.blockIndex).join(', '),
     ]);
 
     const funcs = new Set();
@@ -560,7 +558,7 @@ function processAttempt3OnlyUsedInOtherScope(fdata) {
           // This means we must verify that the reads all happen in the same or a sub
           // if/while/try as the first write in order to be eligible for SSA. Else the
           // closure state is observable when the code branch doesn't hit.
-          vlog('- found first non-decl write in different scope', ref.pfuncNode.$p.pid);
+          vlog('- found first non-decl write in different scope', ref.pfuncNode.$p.npid);
           vlog('- all reads in this scope must be ')
           otherFunc = ref.pfuncNode;
           otherWrite = ref;

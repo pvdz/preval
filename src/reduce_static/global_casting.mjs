@@ -46,7 +46,7 @@ function _globalCasting(fdata) {
   });
 
   if (queue.length) {
-    queue.sort(({ pid: a }, { pid: b }) => (a < b ? 1 : a > b ? -1 : 0));
+    queue.sort(({ index: a }, { index: b }) => b - a);
     queue.forEach(({ func }) => func());
 
     log('Global casters eliminated:', queue.length, '. Restarting from phase1');
@@ -75,7 +75,7 @@ function process(fdata, meta, name, queue) {
       ASSERT(name === symbo('boolean', 'constructor'), '(should not be coerce, and not be Boolean)');
       vlog('  - Queuing for argless call to Boolean()');
       queue.push({
-        pid: +read.parentNode.$p.pid,
+        index: read.blockIndex,
         func: () => {
           rule('Calling `Boolean()` without args results a `false`');
           example('Boolean()', 'false');
@@ -95,7 +95,7 @@ function process(fdata, meta, name, queue) {
       if (meta.typing.mustBeType === (kind === 'plustr' ? 'string' : kind)) {
         vlog('  - Queuing for arged call');
         queue.push({
-          pid: +read.parentNode.$p.pid,
+          index: read.blockIndex,
           func: () => {
             if (kind === 'boolean') rule('Calling `Boolean()` on a value that we know must be a boolean is a noop');
             if (kind === 'number') rule('Calling `$coerce(x, "number")` on a value that we know must be a number is a noop');

@@ -164,7 +164,7 @@ function _ifUpdateTest(fdata) {
 
   if (changed) {
 
-    queue.sort(({ index: a }, { index: b }) => b-a);
+    queue.sort(({ index: a }, { index: b }) => b - a);
     queue.forEach(({ func }) => func());
 
     log('Ifs folded after if-mutate-test-if-test:', changed, '. Restarting from normalize');

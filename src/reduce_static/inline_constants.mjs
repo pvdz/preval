@@ -54,7 +54,7 @@ function _inlineConstants(fdata) {
   // All read node meta data (parent etc) are invalidated if the next bit eliminates anything.
   vlog('toEliminate:', queue.length);
   if (queue.length) {
-    queue.sort(({pid: a}, {pid: b}) => b-a); // Process back to front, AST node order
+    queue.sort(({index: a}, {index: b}) => b - a); // Process back to front
     queue.forEach(({func}) => func());
 
     log('Constants folded:', changes, '. Lets promoted to const:', promoted, ', restarting from normalize to cleanup');
@@ -133,7 +133,7 @@ function _inlineConstants(fdata) {
           vlog('Not inlining ident that is expression statement because riskyRules = false');
         } else if (read.parentNode.type !== 'ExpressionStatement') {
           queue.push({
-            pid: +read.node.$p.pid,
+            index: read.blockIndex,
             func: () => {
               riskyRule('Read of constant with literal value should be replaced with that value');
               example('const x = 100; f(x);', 'const x = 100; f(100);');
@@ -202,7 +202,7 @@ function _inlineConstants(fdata) {
           vlog('Skipping ident that is expression statement');
         } else {
           queue.push({
-            pid: +read.node.$p.pid,
+            index: read.blockIndex,
             func: () => {
               rule('Declaring a constant with a constant value should replace its reads with a read of that other constant');
               example('const x = NaN; f(x);', 'f(NaN);', () => assigneeMeta.isBuiltin);

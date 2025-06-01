@@ -122,7 +122,7 @@ function _testingAlias(fdata) {
 
   if (queue.length) {
     // By index, high to low. This way it should not be possible to cause reference problems by changing index
-    queue.sort(({ index: a }, { index: b }) => (a < b ? 1 : a > b ? -1 : 0));
+    queue.sort(({ index: a }, { index: b }) => b - a);
     queue.forEach(({ index, func }) => func());
 
     log('Testing aliases inlnied:', queue.length, '. Restarting from phase1 to fix up read/write registry.');

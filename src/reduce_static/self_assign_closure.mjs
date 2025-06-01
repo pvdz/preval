@@ -1376,8 +1376,8 @@ function verifySelfAliasCalling(called, targetName, aliases, fdata, meta, firstC
       }
 
       const allok2 = ameta.rwOrder.every(ref => {
-        const r = +ref.node.$p.pid;
-        const c = +firstCallNode.$p.pid;
+        const r = ref.node.$p.npid;
+        const c = firstCallNode.$p.npid;
         // vlog('   - ref @', r, ' <= call @', c);
         if (r > c) {
           vlog('- bail: found a read for the alias after the call', r, c);
@@ -1509,8 +1509,8 @@ function verifyArgumentsAccessibleAtDecl(firstCallNode, fdata, first) {
       vlog('-', i, 'bail; not reachable')
       return false;
     }
-    vlog('-',i,'Verifying pid now;', [+declWrite.node.$p.pid], '<=', [+first.node.$p.pid]);
-    if (+declWrite.node.$p.pid > +first.node.$p.pid) {
+    vlog('-',i,'Verifying pid now;', [declWrite.node.$p.npid], '<=', [first.node.$p.npid]);
+    if (declWrite.node.$p.npid > first.node.$p.npid) {
       vlog('-', i, 'bail; arg is declared after func decl')
       return false;
     }

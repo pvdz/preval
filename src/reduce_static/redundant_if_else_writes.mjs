@@ -33,7 +33,7 @@ function _redundantWrites(fdata) {
 
   let changes = 0;
   /** @var {Array<{pid: number, block: Node, index: number}>} */
-  const schedule = [];
+  const queue = [];
 
   fdata.globallyUniqueNamingRegistry.forEach(function (meta, name) {
     if (meta.isImplicitGlobal) return;
@@ -85,8 +85,7 @@ function _redundantWrites(fdata) {
           shadowWrite.blockBody[shadowWrite.blockIndex] = AST.emptyStatement();
 
           // Schedule the newly injected block for flattening. We must do that in this trick before leaving but can't do that immediately.
-          schedule.push({
-            pid: +varWrite.parentNode.$p.pid,
+          queue.push({
             block: varWrite.blockBody,
             index: varWrite.blockIndex,
           });
@@ -261,8 +260,8 @@ function _redundantWrites(fdata) {
 
   if (changes) {
 
-    schedule.sort(({pid:a}, {pid: b}) => b-a); // Flatten in reverse order, back to front
-    schedule.forEach(({block, index}) => {
+    queue.sort(({index:a}, {index: b}) => b-a); // Flatten in reverse order, back to front
+    queue.forEach(({block, index}) => {
       block.splice(index, 1, ...block[index].body);
     });
 

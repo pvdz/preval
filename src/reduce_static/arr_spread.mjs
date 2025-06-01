@@ -150,7 +150,7 @@ function _arrSpreads(fdata) {
               // The parent array of  is either a statement, assignment, or var init
               // Inject the var decls before this node
               queueInjects.push({
-                pid: meta.varDeclRef.node.$p.pid,
+                pid: meta.varDeclRef.node.$p.npid,
                 func: (pid) => {
                   vlog('- Next pid:', pid);
                   write.blockBody.splice(write.blockIndex, 0, ...tmpVarNodes);
@@ -173,7 +173,7 @@ function _arrSpreads(fdata) {
     queueInlines.forEach(({ offset, func }) => func(offset));
     vlog('Injecting', queueInjects.length, 'new vars');
     // The above should not change block index order so ref.blockIndex should not be stale yet.
-    queueInjects.sort(({ pid: a }, { pid: b }) => +b - a);
+    queueInjects.sort(({ pid: a }, { pid: b }) => b - a);
     queueInjects.forEach(({ pid, func }) => func(pid));
 
     log('Arr-in-arr spreads inlined:', queueInlines.length, '. Restarting from phase1 to fix up read/write registry');

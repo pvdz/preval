@@ -218,11 +218,11 @@ function _andCases(fdata) {
           if (!initMeta.isImplicitGlobal && initMeta.isConstant) {
             vlog('Find all occurrences in the `then` branch and replace them with zero');
 
-            const thenFirstPid = +read.parentNode.consequent.$p.pid;
-            const elseFirstPid = +read.parentNode.alternate.$p.pid;
-            const elseLastPid = +read.parentNode.alternate.$p.lastPid;
+            const thenFirstPid = read.parentNode.consequent.$p.npid;
+            const elseFirstPid = read.parentNode.alternate.$p.npid;
+            const elseLastPid = read.parentNode.alternate.$p.lastPid;
             initMeta.reads.forEach((r) => {
-              const pid = +r.node.$p.pid;
+              const pid = r.node.$p.npid;
               if (pid >= thenFirstPid && pid <= elseFirstPid) {
                 vlog('The result of an AND in the `then` branch means the value has at least some of these bits set');
                 // We can resolve this read (r) if, for example, it is compared against a value that does not contain any bit

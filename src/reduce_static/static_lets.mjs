@@ -51,7 +51,7 @@ function _staticLets(fdata) {
     // ref then we also know what the second ref must be and inline it (if it's a read).
 
     const rwOrder = meta.rwOrder;
-    vlog('rwOrder:', [rwOrder.map((o) => o.action + ':' + o.kind + ':' + o.node.$p.pid + ':' + o.blockIndex).join(', ')]);
+    vlog('rwOrder:', [rwOrder.map((o) => o.action + ':' + o.kind + ':' + o.node.$p.npid + ':' + o.blockIndex).join(', ')]);
 
     let varDecl = undefined;
     let lastMap = new Map(); // Map<node, write|undefined>. Track per scope what the previous ref was

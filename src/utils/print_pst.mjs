@@ -158,7 +158,7 @@ function printRef(indent, config, node) {
   if (config.globals.has(node.name)) return node.name; // Keep globals
   if (/^\$\d+$/.test(node.name)) return node.name; // Keep param ids
 
-  const suffix = config.refPids && node.$p ? '/*@' + node.$p.pid + '*/' : '';
+  const suffix = config.refPids && node.$p ? '/*@' + node.$p.npid + '*/' : '';
 
   if (config.rename) {
     const newName = config.names.get(node.name);

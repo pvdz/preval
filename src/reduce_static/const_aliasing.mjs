@@ -179,7 +179,7 @@ function _constAliasing(fdata) {
       // And the single scoped nature means closures can't mess with us either; all refs are source visit order.
       const body = declWrite1.blockBody;
 
-      const firstPid = +declWrite1.node.$p.pid;
+      const firstPid = declWrite1.node.$p.npid;
 
       vgroup('Checking whether there is a read for which all writes of meta2 are not between the const decl and the read');
       let droppedSome = false;
@@ -196,11 +196,11 @@ function _constAliasing(fdata) {
           return vlog('  - Bail: read is not loop as decl');
         }
 
-        const readPid = +read.node.$p.pid;
+        const readPid = read.node.$p.npid;
         vlog('- read', i, ', write innerloop=', declWrite1.innerLoop, ', read=', read.innerLoop, ', pid @', readPid);
         if (
           meta2.writes.every(write => {
-            const pid = +write.node.$p.pid;
+            const pid = write.node.$p.npid;
             // One edge case: the pid of the write `rhs = lhs` will be higher than the read pid because it is visit order, not source order.
             // This would be `let x = 1; const y = x; x = y;`, in which case it's indeed `x=x` so that's fine.
             vlog('- write pid: @', pid, ', violation:', pid > firstPid && pid < readPid);
@@ -561,7 +561,7 @@ return
   }
 
   if (dropped) {
-    queue.sort(({ index: a }, { index: b }) => (a < b ? 1 : a > b ? -1 : 0));
+    queue.sort(({ index: a }, { index: b }) => b - a);
     queue.forEach(({ index, func }) => func());
 
     log('Dropped const aliases:', dropped, '. Restarting from phase1');

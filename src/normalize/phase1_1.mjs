@@ -209,7 +209,7 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
     }
     else {
       // fizzle
-      vlog('Bail: function with pid @', +funcNode.$p.pid, 'is not the init of a var decl nor the rhs of an assignment', parentNode.type);
+      vlog('Bail: function with pid @', funcNode.$p.npid, 'is not the init of a var decl nor the rhs of an assignment', parentNode.type);
     }
   }
 
@@ -1154,16 +1154,16 @@ function isTernaryPattern(varDeclNode, meta) {
   if (firstAssign.kind !== 'assign') return; // dont think this can happen but ok
 
   const firstNode = firstAssign.blockBody[firstAssign.blockIndex];
-  const firstPid = +firstNode.$p.pid;
+  const firstPid = firstNode.$p.npid;
 
   // Find the node that contains the write.
-  vlog('Searching for firstAssign pid @', firstPid, ', var decl @', +varNode.$p.pid, '(note: we are looking for PREV here!)');
+  vlog('Searching for firstAssign pid @', firstPid, ', var decl @', varNode.$p.npid, '(note: we are looking for PREV here!)');
   let ifNode;
-  let prevPid = +varNode.$p.pid;
+  let prevPid = varNode.$p.npid;
   // Note: +2 because we lookahead and then walk one back.
   for (let i=varWrite.blockIndex+2; i<varWrite.blockBody.length; ++i) {
     const stmt = varWrite.blockBody[i];
-    const stmtPid = +stmt.$p.pid;
+    const stmtPid = stmt.$p.npid;
     vlog('-', i, ';', stmt.type, '(', firstPid, '>=', prevPid, '&&', firstPid, '<', stmtPid, ')');
     if (firstPid >= prevPid && firstPid < stmtPid) {
       // write must exist in prev statement, which must exist (and shouldn't really be the var decl itself)
@@ -1186,12 +1186,12 @@ function isTernaryPattern(varDeclNode, meta) {
   // there is no read prior to the assign of that branch (if there is one). If there is a second assign, it must be
   // a child of this same if-node.
 
-  const ifBranchStart = +ifNode.consequent.$p.pid;
-  const ifBranchEnd = +ifNode.consequent.$p.lastPid;
-  const elseBranchStart = +ifNode.alternate.$p.pid;
-  const elseBranchEnd = +ifNode.alternate.$p.lastPid;
+  const ifBranchStart = ifNode.consequent.$p.npid;
+  const ifBranchEnd = ifNode.consequent.$p.lastPid;
+  const elseBranchStart = ifNode.alternate.$p.npid;
+  const elseBranchEnd = ifNode.alternate.$p.lastPid;
 
-  const read0pid = +meta.reads[0].blockBody[meta.reads[0].blockIndex].$p.pid;
+  const read0pid = meta.reads[0].blockBody[meta.reads[0].blockIndex].$p.npid;
 
   if (read0pid < ifBranchStart) {
     // First read occurred before the if-consequent and since we asserted the write to be inside the if
@@ -1206,7 +1206,7 @@ function isTernaryPattern(varDeclNode, meta) {
     // - For the 3-write case, we must verify that the writes appear in the proper branches first
     // - Technically, we can do this recursive for more writes (a ? b : c ? d : etc)
     if (meta.writes.length === 2) return true;
-    const secondPid = +meta.writes[2].blockBody[meta.writes[2].blockIndex].$p.pid;
+    const secondPid = meta.writes[2].blockBody[meta.writes[2].blockIndex].$p.npid;
     return firstPid > ifBranchStart && firstPid < ifBranchEnd && secondPid > elseBranchStart && secondPid < elseBranchEnd;
   }
 
@@ -1220,7 +1220,7 @@ function isTernaryPattern(varDeclNode, meta) {
       // Assert that no write appears between ifBranchStart and firstPid.
       // Stop search when we see a read after the firstPid (they are sequential)
       for (let i=0; i<meta.reads.length; ++i) {
-        const pid = +meta.reads[i].blockBody[meta.reads[i].blockIndex].$p.pid;
+        const pid = meta.reads[i].blockBody[meta.reads[i].blockIndex].$p.npid;
         ASSERT(pid > ifBranchStart, 'this was checked above and is a bad case');
         if (pid > firstPid) break;
         return false; // Bail: this read observes the binding before writing to it so different reads can have different results.
@@ -1233,7 +1233,7 @@ function isTernaryPattern(varDeclNode, meta) {
       // Assert that no write appears between elseBranchStart and firstPid.
       // Stop search when we see a read after the firstPid (they are sequential)
       for (let i=0; i<meta.reads.length; ++i) {
-        const pid = +meta.reads[i].blockBody[meta.reads[i].blockIndex].$p.pid;
+        const pid = meta.reads[i].blockBody[meta.reads[i].blockIndex].$p.npid;
         if (pid < elseBranchStart) continue;
         if (pid > firstPid) break;
         return false; // Bail: this read observes the binding before writing to it so different reads can have different results.
@@ -1252,7 +1252,7 @@ function isTernaryPattern(varDeclNode, meta) {
     if (secondAssign.kind !== 'assign') return; // dont think this can happen but ok
 
     const secondNode = secondAssign.blockBody[secondAssign.blockIndex];
-    const secondPid = +secondNode.$p.pid;
+    const secondPid = secondNode.$p.npid;
 
     // Due to sequential nature, the first assign must be in the if-branch and the second-assign must be in the else-branch.
     if (firstPid < ifBranchStart || firstPid > ifBranchEnd) return false;

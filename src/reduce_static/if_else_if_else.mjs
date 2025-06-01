@@ -103,9 +103,9 @@ function _ifelseifelse(fdata) {
     if ((read1.pfuncNode === varDeclWrite.pfuncNode) === (read2.pfuncNode === varDeclWrite.pfuncNode)) {
       vlog(
         'One read must be in the same scope as the var decl and the other must not be',
-        varDeclWrite.pfuncNode.$p.pid,
-        read1.pfuncNode.$p.pid,
-        read2.pfuncNode.$p.pid,
+        varDeclWrite.pfuncNode.$p.npid,
+        read1.pfuncNode.$p.npid,
+        read2.pfuncNode.$p.npid,
       );
       return;
     }
@@ -184,12 +184,12 @@ function _ifelseifelse(fdata) {
     const ifStatement = topRead.parentNode;
     const tmpName = createFreshVar('tmpIfelseifelse', fdata);
     topRead.blockBody.splice(topRead.blockIndex, 0, AST.varStatement('let', tmpName, AST.undef()));
-    if (write.blockIds[write.blockIds.length - 1] === +ifStatement.consequent.$p.pid) {
+    if (write.blockIds[write.blockIds.length - 1] === ifStatement.consequent.$p.npid) {
       // This means the condition was overwritten in the truthy branch. So inject `false` in the falsy
       // branch. Since we know the value is only used in an if-test, the actual old value is irrelevant.
       vlog('Inject the new write into the `else` branch as `false`');
       ifStatement.alternate.body.unshift(AST.expressionStatement(AST.assignmentExpression(tmpName, AST.fals())));
-    } else if (write.blockIds[write.blockIds.length - 1] === +ifStatement.alternate.$p.pid) {
+    } else if (write.blockIds[write.blockIds.length - 1] === ifStatement.alternate.$p.npid) {
       // This means the condition was overwritten in the falsy branch. So inject `true` in the truthy
       // branch. Since we know the value is only used in an if-test, the actual old value is irrelevant.
       vlog('Inject the new write into the `if` branch as `true`');

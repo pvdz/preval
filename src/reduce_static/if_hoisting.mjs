@@ -70,7 +70,7 @@ function _ifHoisting(fdata) {
     if (firstThen.type === 'VarStatement') {
       // Find the meta for one of them. Replace the name of all refs with the name of the other binding. Drop the var decl.
       queue.push({
-        pid: +node.$p.pid,
+        index: blockIndex,
         func: () => {
           rule('When each branch of an `if` starts with the same expression, hoist them up1');
           example('if (x) { let a = 1; f(a); } else { let b = 1; g(b); }', 'let a = 1; if (x) f(a); else g(a);');
@@ -115,7 +115,7 @@ function _ifHoisting(fdata) {
       }
 
       queue.push({
-        pid: +node.$p.pid,
+        index: blockIndex,
         func: () => {
           rule('When each branch of an `if` starts with the same expression, hoist them up2');
           example('if (x) { a = 1; f(a); } else { a = 1; g(a); }', 'a = 1; if (x) { f(a); } else { g(a); }');
@@ -135,7 +135,7 @@ function _ifHoisting(fdata) {
   }
 
   if (queue.length) {
-    queue.sort(({ pid: a }, { pid: b }) => (a < b ? 1 : a > b ? -1 : 0));
+    queue.sort(({ index: a }, { index: b }) => b - a);
     queue.forEach(({ func }) => func());
 
     log('Branch starts lifted:', queue.length, '. Restarting from phase1');

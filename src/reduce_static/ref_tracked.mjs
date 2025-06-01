@@ -417,7 +417,7 @@ function _refTracked(fdata) {
         const read0 = meta.reads[0];
         // blockChains are like `23,45,32,` so provided the read was longer than the write, there must be
         // something and not just a comma. we can split by comma and take the first part which yields a
-        // $p.pid as string. That's the block pid we'll confirm and search for.
+        // $p.npid as number. That's the block npid we'll confirm and search for.
         const pid = read0.blockChain.slice(write.blockChain.length).split(',')[0];
         if (!pid) {
           console.log([write.blockChain, read0.blockChain, pid])
@@ -440,10 +440,10 @@ function _refTracked(fdata) {
           for (let i=write.blockIndex+1; i<body.length; ++i) {
             const next = body[i];
             if (next.type === 'IfStatement') {
-              // vlog('next:', next.type, [next.consequent.$p.blockChain + next.consequent.$p.pid + ',', next.alternate.$p.blockChain + -next.alternate.$p.pid + ',', pref])
+              // vlog('next:', next.type, [next.consequent.$p.blockChain + next.consequent.$p.npid + ',', next.alternate.$p.blockChain + -next.alternate.$p.npid + ',', pref])
               // Ok this check is a bit ugly but blocks do not have their own blockChain ID cached so we must construct it... (maybe we can cache that)
-              const isCons = next.consequent.$p.blockChain + next.consequent.$p.pid + ',' === pref;
-              const isAlt = !isCons && (next.alternate.$p.blockChain + next.alternate.$p.pid + ',' === pref);
+              const isCons = next.consequent.$p.blockChain + next.consequent.$p.npid + ',' === pref;
+              const isAlt = !isCons && (next.alternate.$p.blockChain + next.alternate.$p.npid + ',' === pref);
               if (isCons || isAlt) {
                 vlog('It should be safe to move the var decl for', varName, 'inside the block... queued the transform');
 
@@ -484,7 +484,7 @@ function _refTracked(fdata) {
 
   if (queue.length) {
     // By index, high to low. This way it should not be possible to cause reference problems by changing index
-    queue.sort(({ index: a }, { index: b }) => (a < b ? 1 : a > b ? -1 : 0));
+    queue.sort(({ index: a }, { index: b }) => b - a);
     queue.forEach(({ func }) => func());
     // Now call all funcs in the second queue. They may destroy index caches but should not depend on them.
     queue2.forEach(func => func());

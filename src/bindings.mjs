@@ -2165,7 +2165,7 @@ export function mayBindingMutateBetweenRefs(meta, ref1, ref2, includeProperties 
     return false;
   }
   ASSERT(meta.isImplicitGlobal || meta.bfuncNode, 'either its implicitly global or an explicitly defined binding now', meta);
-  const bindingScope = meta.isImplicitGlobal ? 1 : +meta.bfuncNode.$p.pid;
+  const bindingScope = meta.isImplicitGlobal ? 1 : meta.bfuncNode.$p.npid;
   ASSERT(bindingScope >= 0, 'should have a scope', meta.isImplicitGlobal, meta.bfuncNode);
   const onlyLocalUse = meta.rwOrder.every((ref) => +ref.scope === bindingScope);
   vlog('Scopes: bindingScope:', bindingScope, ', ref scopes:', meta.rwOrder.map((ref) => ref.scope), '->', onlyLocalUse);
@@ -2184,7 +2184,7 @@ function _mayBindingMutateBetweenRefs(metaName, prev, curr, includeProperties, s
 
   ASSERT(prev?.action === 'read' || prev?.action === 'write', 'prev should be a ref', prev);
   ASSERT(curr?.action === 'read' || curr?.action === 'write', 'curr should be a ref', curr);
-  ASSERT(!singleScope || curr.blockChain.startsWith(prev.blockChain), 'in a single scope, the previous ref should be reachable from the current ref', metaName, prev.node.$p?.pid, prev.action, prev.blockChain, curr.node.$p?.pid, curr.action, curr.blockChain);
+  ASSERT(!singleScope || curr.blockChain.startsWith(prev.blockChain), 'in a single scope, the previous ref should be reachable from the current ref', metaName, prev.node.$p?.npid, prev.action, prev.blockChain, curr.node.$p?.npid, curr.action, curr.blockChain);
 
   // Start from the block and index of the prev ref.
   // If the prev is not an assignment, skip an index forward

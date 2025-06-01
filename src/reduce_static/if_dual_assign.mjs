@@ -194,14 +194,14 @@ function _ifDualAssign(fdata) {
       // Find all refs that fall within the body of either branch and replace them with the actual truthy or falsy value.
       // (Note: this is a constant)
 
-      const thenPid = +ifNode.consequent.$p.pid;
-      const elsePid = +ifNode.alternate.$p.pid;
-      const postPid = +ifNode.alternate.$p.lastPid;
+      const thenPid = ifNode.consequent.$p.npid;
+      const elsePid = ifNode.alternate.$p.npid;
+      const postPid = ifNode.alternate.$p.lastPid;
       //vlog('->', thenPid, elsePid, postPid)
 
       let replaced = 0;
       meta.reads.forEach((read, ri) => {
-        const pid = +read.node.$p.pid;
+        const pid = read.node.$p.npid;
         vlog('- ri:', ri, ', pid=', pid, ', inside `then`?', pid > thenPid && pid < elsePid, 'inside `else`?', pid >= elsePid && pid <= postPid);
         if (pid > thenPid && pid < elsePid) {
           if (ruling) ruling = ruling();
@@ -233,7 +233,7 @@ function _ifDualAssign(fdata) {
   }
 
   if (changed) {
-    queue.sort(({ index: a }, { index: b }) => (a < b ? 1 : a > b ? -1 : 0));
+    queue.sort(({ index: a }, { index: b }) => b - a);
     queue.forEach(({ index, func }) => func());
 
     log('Bit checking ifs replaced:', changed, '. Restarting from phase1 to fix up read/write registry');

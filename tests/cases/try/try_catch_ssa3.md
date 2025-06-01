@@ -152,29 +152,6 @@ throw "Preval: Array spread on non-string primitive must crash (caused by `const
 (This is what phase1 received the first time)
 
 `````js filename=intro
-let one = function ($$0) {
-  let $dlr_$$1 = $$0;
-  debugger;
-  $(x);
-  x = $(2);
-  ignore = true;
-  three(x);
-  return undefined;
-};
-let two = function ($$0, $$1) {
-  let x$1 = $$0;
-  let e = $$1;
-  debugger;
-  $(x$1);
-  x$1 = $(3);
-  return undefined;
-};
-let three = function ($$0) {
-  let x$3 = $$0;
-  debugger;
-  $throw(x$3);
-  return undefined;
-};
 let $tryCatch = function ($$0, $$1, $$2) {
   let a = $$0;
   let b = $$1;
@@ -192,6 +169,29 @@ let $tryCatch = function ($$0, $$1, $$2) {
     c(...args);
     return undefined;
   }
+};
+let one = function ($$0) {
+  let $dlr_$$1 = $$0;
+  debugger;
+  $(x);
+  x = $(2);
+  ignore = true;
+  three(x);
+  return undefined;
+};
+let three = function ($$0) {
+  let x$3 = $$0;
+  debugger;
+  $throw(x$3);
+  return undefined;
+};
+let two = function ($$0, $$1) {
+  let x$1 = $$0;
+  let e = $$1;
+  debugger;
+  $(x$1);
+  x$1 = $(3);
+  return undefined;
 };
 let ignore = false;
 let x = $(1);

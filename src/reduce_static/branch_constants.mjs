@@ -73,11 +73,11 @@ function _branchConstantInlining(fdata) {
     meta.reads.forEach((read) => {
       if (read.parentNode.type === 'IfStatement' && read.parentProp === 'test') {
         const ifNode = read.parentNode;
-        const ifThenStartPid = +ifNode.consequent.$p.pid;
-        const ifThenEndPid = +ifNode.alternate.$p.pid;
+        const ifThenStartPid = ifNode.consequent.$p.npid;
+        const ifThenEndPid = ifNode.alternate.$p.npid;
         // Find any ref to target that falls within the `then` branch and replace its node with the pv
         targetMeta.reads.forEach((tread) => {
-          if (+tread.node.$p.pid > ifThenStartPid && +tread.node.$p.pid < ifThenEndPid) {
+          if (tread.node.$p.npid > ifThenStartPid && tread.node.$p.npid < ifThenEndPid) {
             rule('An unknown constant asserted to be a certain primitive inside an `if` branch can be inlined');
             example('const x = f(); if (x === 10) g(x);', 'const x = f(); if (x === 10) g(10);');
             before(tread.blockBody[tread.blockIndex]);

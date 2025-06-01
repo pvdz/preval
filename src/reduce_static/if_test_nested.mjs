@@ -39,7 +39,7 @@ function _ifTestNested(fdata) {
         // Note: the reads are in source order and a later ref can never be the parent `if` of a previous ref.
         // Ancestor check is done by removing the initial blockChain (the owner block) and then checking whether
         // the consequent or alternate block pids are the start of the remaining blockChain of b.
-        if (readb.blockChain.slice(reada.blockChain.length).startsWith(reada.parentNode.consequent.$p.pid + ',')) {
+        if (readb.blockChain.slice(reada.blockChain.length).startsWith(reada.parentNode.consequent.$p.npid + ',')) {
           rule('When a const var is tested in nested `if` statements, the nested one knows the outcome; consequent');
           example('if (x) { if (y) $(); }', 'if (x) { if (true) $(); }');
           before(reada.parentNode);
@@ -50,7 +50,7 @@ function _ifTestNested(fdata) {
           after(reada.parentNode);
           changed += 1;
         }
-        else if (readb.blockChain.slice(reada.blockChain.length).startsWith(reada.parentNode.alternate.$p.pid + ',')) {
+        else if (readb.blockChain.slice(reada.blockChain.length).startsWith(reada.parentNode.alternate.$p.npid + ',')) {
           rule('When a const var is tested in nested `if` statements, the nested one knows the outcome; alternate');
           example('if (x) { } else { if (y) $(); }', 'if (x) { } else { if (false) $(); }');
           before(reada.parentNode);

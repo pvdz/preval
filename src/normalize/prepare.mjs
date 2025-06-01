@@ -133,7 +133,7 @@ export function prepareNormalization(fdata, resolve, req, oncePass, options) {
 
     vgroup(
       BLUE + nodeType + ':' + (beforeWalk ? 'before' : 'after'),
-      DIM + node.$p.pid + RESET,
+      DIM + node.$p.npid + RESET,
       // To debug lexical scopes:
       //' '.repeat(50), lexScopeStack.map(node => node.type+'<'+node.$uid+'>').join(',')
     );
@@ -294,14 +294,14 @@ export function prepareNormalization(fdata, resolve, req, oncePass, options) {
 
           // Note: special case for Switch body will be picked up explicitly by the switch transform
           if (parentNode.type === 'Program') {
-            vlog('- Hoisting toplevel global function @', +hoistRoot.$p.pid);
+            vlog('- Hoisting toplevel global function @', hoistRoot.$p.npid);
             vlog('- Scheduling func decl', [node.id.name], 'to be hoisted in global');
             ASSERT(parentIndex >= 0, 'node should be in a body');
             ASSERT(parentProp === 'body', 'children of Program are in body', parentProp);
             ASSERT(parentNode.body[parentIndex] === node, 'path should be correct');
             hoistRoot.$p.hoistedVars.push(['program', node, parentNode, parentProp, parentIndex]);
           } else if (parentNode.type === 'ExportNamedDeclaration' || (parentNode.type === 'ExportDefaultDeclaration' && node.id)) {
-            vlog('- Hoisting entire export @', +hoistRoot.$p.pid);
+            vlog('- Hoisting entire export @', hoistRoot.$p.npid);
             vlog('- Scheduling func decl', [node.id.name], 'to be hoisted in global');
             ASSERT(parentProp === 'declaration');
             ASSERT(parentIndex === -1, 'parent is not an array');
@@ -312,7 +312,7 @@ export function prepareNormalization(fdata, resolve, req, oncePass, options) {
             hoistRoot.$p.hoistedVars.push(['export', node, parentNode, parentProp, parentIndex, exportIndex]);
           } else if (['FunctionDeclaration', 'FunctionExpression', 'ArrowFunctionExpression'].includes(grandparent.type)) {
             // Func decl nested in the toplevel of another function
-            vlog('- Hoisting function nested directly in another function @', +hoistRoot.$p.pid);
+            vlog('- Hoisting function nested directly in another function @', hoistRoot.$p.npid);
             vlog('- Scheduling func decl', [node.id.name], 'to be hoisted in parent function');
             ASSERT(parentProp === 'body', 'Func param defaults would not yield func declarations', parentProp);
             ASSERT(parentIndex >= 0);
@@ -322,7 +322,7 @@ export function prepareNormalization(fdata, resolve, req, oncePass, options) {
           } else if (parentNode.type === 'BlockStatement') {
             // Treat this as a function declaration and explicitly hoist it to the top of the func/global
             // There's at least this test: tests/cases/_tofix/dropping_the_d.md
-            vlog('This is a function decl nested in a non-func-body block @', +hoistRoot.$p.pid);
+            vlog('This is a function decl nested in a non-func-body block @', hoistRoot.$p.npid);
             vlog('- Scheduling func decl', [node.id.name], 'to be hoisted in func');
             node.$p.isBlockFuncDecl = true;
             parentNode.$p.hasFuncDecl = true; // Prevents elimination of this block
@@ -454,7 +454,7 @@ export function prepareNormalization(fdata, resolve, req, oncePass, options) {
           const isDecl =
             (parentNode.type === 'ClassDeclaration' && parentProp === 'id') ||
             (parentNode.type === 'VariableDeclarator' && parentProp === 'id' && grandNode.type === 'VariableDeclaration' && (grandNode.kind === 'let' || grandNode.kind === 'const'));
-          const pfunc = funcScopeStack[funcScopeStack.length - 1].$p.pid;
+          const pfunc = funcScopeStack[funcScopeStack.length - 1].$p.npid;
           meta.preNormalizeTdzCheckList.push({node, parentNode, parentProp, parentIndex, grandNode, grandProp, grandIndex, pfunc, kind});
           if (isDecl) {
             meta.preNormalizeTdzCheckDecl = node;
@@ -476,7 +476,7 @@ export function prepareNormalization(fdata, resolve, req, oncePass, options) {
           vlog('parent =', parentNode.type, 'prop=', parentProp, 'index=', parentIndex);
 
           if (parentNode.type === 'ExportNamedDeclaration') {
-            vlog('- var decl is an export-child of @', +func.$p.pid);
+            vlog('- var decl is an export-child of @', func.$p.npid);
             // `export var x`, which we transform into `var x; export {x}`
             ASSERT(parentNode[parentProp] === node);
             ASSERT(func.type === 'Program', 'exports can only appear in one place');
@@ -487,7 +487,7 @@ export function prepareNormalization(fdata, resolve, req, oncePass, options) {
             ASSERT(node && exportIndex >= 0 && parentNode && parentProp);
             func.$p.hoistedVars.push(['export', node, parentNode, parentProp, parentIndex, exportIndex]);
           } else if (parentNode.type === 'ForStatement' || parentNode.type === 'ForInStatement' || parentNode.type === 'ForOfStatement') {
-            vlog('- var decl is a for-child @', +func.$p.pid);
+            vlog('- var decl is a for-child @', func.$p.npid);
             // for (var x;;);
             // for (var x in y);
             // for (var x of y);
@@ -498,14 +498,14 @@ export function prepareNormalization(fdata, resolve, req, oncePass, options) {
             //ASSERT(node && exportIndex >= 0 && parentNode && parentProp);
             func.$p.hoistedVars.push(['for', node, parentNode, parentProp, parentIndex]);
           } else if (parentNode.type === 'BlockStatement') {
-            vlog('- var decl is a block-var @', +func.$p.pid);
+            vlog('- var decl is a block-var @', func.$p.npid);
             // { var x; }
             ASSERT(parentNode[parentProp][parentIndex] === node);
             ASSERT(node && parentIndex >= 0);
             func.$p.hoistedVars.push(['block', node, parentNode, parentProp, parentIndex]);
           } else {
             // var x;
-            vlog('- var decl is a regular hoistable var @', +func.$p.pid);
+            vlog('- var decl is a regular hoistable var @', func.$p.npid);
             ASSERT(node);
             ASSERT((parentIndex >= 0 ? parentNode[parentProp][parentIndex] : parentNode[parentProp]) === node, 'should find parent', node);
             func.$p.hoistedVars.push(['other', node, parentNode, parentProp, parentIndex]);
@@ -564,7 +564,7 @@ export function prepareNormalization(fdata, resolve, req, oncePass, options) {
           const parentNode = path.nodes[path.nodes.length - 2];
           if (parentNode.type !== 'ExpressionStatement') {
             const thisFunc = thisStack[thisStack.length - 1];
-            vlog('Marking func ( pid =', thisFunc.$p.pid, ') as having `this` access');
+            vlog('Marking func ( pid =', thisFunc.$p.npid, ') as having `this` access');
             thisFunc.$p.thisAccess = true;
           }
         }
@@ -646,10 +646,10 @@ export function prepareNormalization(fdata, resolve, req, oncePass, options) {
           if (key === 'ContinueStatement:before') {
             if (breakableNode.type === 'SwitchStatement') continue;
             breakableNode.$p.doesContinue = true;
-            vlog('Setting doesContinue', breakableNode.$p.pid);
+            vlog('Setting doesContinue', breakableNode.$p.npid);
           } else {
             breakableNode.$p.doesBreak = true;
-            vlog('Setting doesBreak on', breakableNode.$p.pid);
+            vlog('Setting doesBreak on', breakableNode.$p.npid);
           }
           break;
         }
@@ -761,12 +761,12 @@ export function prepareNormalization(fdata, resolve, req, oncePass, options) {
       }
     }
 
-    const declPid = +meta.preNormalizeTdzCheckDecl.$p.pid;
+    const declPid = meta.preNormalizeTdzCheckDecl.$p.npid;
     if (shown <= 10) vlog(`Checking for tdz cases...`);
     for (let i=0; i<meta.preNormalizeTdzCheckList.length; ++i) {
       const ref = meta.preNormalizeTdzCheckList[i];
-      if (shown <= 10) vlog(`pid: ${ref.node.$p.pid}, decl pid: ${declPid}`);
-      if (+ref.node.$p.pid >= declPid) continue;
+      if (shown <= 10) vlog(`pid: ${ref.node.$p.npid}, decl pid: ${declPid}`);
+      if (ref.node.$p.npid >= declPid) continue;
 
       vlog(`It seems \`${name}\` is in the TDZ and not a closure. Eliminating it now. Parents: ${ref.grandNode.type}.${ref.grandProp} ${ref.grandIndex} ${ref.parentNode.type}.${ref.parentProp} ${ref.parentIndex}`);
 

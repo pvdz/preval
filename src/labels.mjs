@@ -66,7 +66,7 @@ export function addLabelReference(fdata, labelNode, blockArr, index, fromPrepare
     }
   }
   usages.push({node: labelNode, block: blockArr, index});
-  return +meta.node.$p.pid;
+  return meta.node.$p.npid;
 }
 
 export function removeLabelReference(fdata, labelNode) {

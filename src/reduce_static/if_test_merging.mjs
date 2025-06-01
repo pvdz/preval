@@ -67,7 +67,7 @@ function _ifTestMerging(fdata) {
     const collect = []; // Capture the occurrences of mismatching bools
     if (!isSameFlatStatementExceptBool(firstThen, firstElse, collect)) return;
 
-    vlog('The `if` statement @', +node.$p.pid, 'has a consequent and alternate branch that start with the same statement, ignoring bools. Deduping them to before the If now.');
+    vlog('The `if` statement @', node.$p.npid, 'has a consequent and alternate branch that start with the same statement, ignoring bools. Deduping them to before the If now.');
     vlog('Collected mismatches:', collect.map(({a,b,ap, bp, prop}) => `${ap.type || 'array'}[${prop}]=${a.raw}/${b.raw}`));
 
     const pathNodes = path.nodes;

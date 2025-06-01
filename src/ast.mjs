@@ -2715,7 +2715,7 @@ function hasObservableSideEffectsBetween(startBody, fromNode, toNode, mayMiss = 
     const blockBody = path.blockBodies[currentPathBodyIndex];
     const blockIndex = path.blockIndexes[currentPathIndexIndex];
 
-    vlog(' - Verifying that statements between', fromNode.$p.pid, 'and', toNode.$p.pid, 'have no observable side effects (assigning values etc)');
+    vlog(' - Verifying that statements between', fromNode.$p.npid, 'and', toNode.$p.npid, 'have no observable side effects (assigning values etc)');
 
     let currentBody = blockBody;
     let currentIndex = blockIndex; // This starts at the write

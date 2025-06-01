@@ -187,7 +187,7 @@ export function runFreeWithPcode(funcNode, argNodes, fdata, freeFuncName, $prng,
     vgroupEnd();
     // Temp
     fdata.pcodeOutput = new Map;
-    fdata.pcodeOutput.set(+funcNode.$p.pid, { pcode, funcNode, name: freeFuncName, bytecode: pcode });
+    fdata.pcodeOutput.set(funcNode.$p.npid, { pcode, funcNode, name: freeFuncName, bytecode: pcode });
     fdata.pcodeOutput.set(freeFuncName, { pcode, funcNode, name: freeFuncName, bytecode: pcode });
     vlog('Compiled pcode:', pcode);
     vlog('Getting primitives from args:', argNodes, argNodes);

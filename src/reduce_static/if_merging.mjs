@@ -42,7 +42,7 @@ function _ifMerging(fdata) {
     vgroup('- `' + name + '`');
 
     meta.rwOrder.forEach((ref) => {
-      vlog('loop start...', ref.action, ref.kind, ref.node.$p.pid);
+      vlog('loop start...', ref.action, ref.kind, ref.node.$p.npid);
 
       if (ref.action !== 'read') return;
       const read = ref;
@@ -54,9 +54,9 @@ function _ifMerging(fdata) {
         // Other writes are irrelevant since the ifs must be back to back (and we've asserted to be in a single scope)
         // So for each write, confirm that the write does not occur inside this first `if`
 
-        const thenFirstPid = +ifNode.consequent.$p.pid;
-        const elseFirstPid = +ifNode.alternate.$p.pid;
-        const elseLastPid = +ifNode.alternate.$p.lastPid;
+        const thenFirstPid = ifNode.consequent.$p.npid;
+        const elseFirstPid = ifNode.alternate.$p.npid;
+        const elseLastPid = ifNode.alternate.$p.lastPid;
 
         if (
           meta.writes.some((write) => {
@@ -73,7 +73,7 @@ function _ifMerging(fdata) {
             // then we can still accept this, since we can still safely predict the branch test regardless...
 
             const rhs = write.parentNode.right;
-            const pid = +write.node.$p.pid;
+            const pid = write.node.$p.npid;
             if (pid >= thenFirstPid && pid <= elseFirstPid) {
               // Write in the `then`
               if (AST.isPrimitive(rhs)) {
@@ -153,7 +153,7 @@ function _ifMerging(fdata) {
   });
 
   if (queue.length) {
-    queue.sort(({ index: a }, { index: b }) => (a < b ? 1 : a > b ? -1 : 0));
+    queue.sort(({ index: a }, { index: b }) => b - a);
     queue.forEach(({ index, func }) => func());
 
     log('Ifs merged:', queue.length, '. Restarting from phase1');

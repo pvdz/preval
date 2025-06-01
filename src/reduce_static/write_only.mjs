@@ -36,7 +36,7 @@ function _writeOnly(fdata) {
       // Other rules can deal with the const decl and we have to ignore other kinds of writes here (catch, params, etc)
       if (write.kind === 'assign') {
         queue.push({
-          pid: +write.node.pid,
+          index: write.blockIndex,
           func: () => {
             rule('Assignment ref of write-only binding should be eliminated');
             example('const x = 1; x = 2;', 'const x = 1; x; 2;');
@@ -61,7 +61,7 @@ function _writeOnly(fdata) {
   });
 
   if (queue.length) {
-    queue.sort(({pid: a}, {pid: b}) => b-a); // Process back to front, AST node order
+    queue.sort(({index: a}, {index: b}) => b - a); // Process back to front, AST node order
     queue.forEach(({func}) => func());
 
     log('Write only bindings eliminated:', changes, '. Restarting from phase1');

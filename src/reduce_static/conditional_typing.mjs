@@ -145,10 +145,10 @@ function _conditionalTyping(fdata) {
 
   function binaryEqNeqRead(read, ri, value, targetName, ifTestMeta, varDeclRef, beforeValueNode, opbefore, node) {
     let whichBranch = '';
-    if (+read.node.$p.pid > +node.consequent.$p.pid && +read.node.$p.pid <= +node.consequent.$p.lastPid) {
+    if (read.node.$p.npid > node.consequent.$p.npid && read.node.$p.npid <= node.consequent.$p.lastPid) {
       vlog('ref in if branch');
       whichBranch = 'if';
-    } else if (+read.node.$p.pid > +node.alternate.$p.pid && +read.node.$p.pid <= +node.alternate.$p.lastPid) {
+    } else if (read.node.$p.npid > node.alternate.$p.npid && read.node.$p.npid <= node.alternate.$p.lastPid) {
       vlog('ref in else branch');
       whichBranch = 'else';
     } else {

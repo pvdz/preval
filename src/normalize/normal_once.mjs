@@ -176,7 +176,7 @@ export function phaseNormalOnce(fdata) {
     const parentProp = path.props[path.props.length - 1];
     const parentIndex = path.indexes[path.indexes.length - 1];
 
-    vgroup(BLUE + nodeType + ':' + (beforeNode ? 'before' : 'after'), `;; ${DIM}@${node.$p.pid}${RESET}`);
+    vgroup(BLUE + nodeType + ':' + (beforeNode ? 'before' : 'after'), `;; ${DIM}@${node.$p.npid}${RESET}`);
 
     const key = nodeType + ':' + (beforeNode ? 'before' : 'after');
     switch (key) {
@@ -244,7 +244,7 @@ export function phaseNormalOnce(fdata) {
             example('{ f(); function f(){} }', '{ let f = function(){}; f(); }');
             before(node);
 
-            funcsToHoist.sort(({ id: a }, { id: b }) => (a < b ? -1 : a > b ? 1 : 0));
+            funcsToHoist.sort(({ id: {name: a} = {name: 'default'} }, { id: {name: b} = {name: 'default'} }) => (a < b ? -1 : a > b ? 1 : 0));
             const newNodes = funcsToHoist.map((enode) => {
               group();
               before(enode);
@@ -301,7 +301,7 @@ export function phaseNormalOnce(fdata) {
               scopeNode = path.nodes[where]
             }
 
-            funcStmtsToHoist.sort(({ id: a }, { id: b }) => (a < b ? -1 : a > b ? 1 : 0));
+            funcStmtsToHoist.sort(({ id: {name: a} }, { id: {name: b}}) => (a < b ? -1 : a > b ? 1 : 0));
             funcStmtsToHoist.forEach((enode) => {
               group();
 
@@ -381,7 +381,7 @@ export function phaseNormalOnce(fdata) {
 
           target = loopStack[loopStack.length - 1];
         }
-        vlog('Eliminating `continue` (label=', node.label?.name ?? '<no label>', '), targeting loop @', target.$p.pid);
+        vlog('Eliminating `continue` (label=', node.label?.name ?? '<no label>', '), targeting loop @', target.$p.npid);
         before(target);
 
         // Check loop already has labeled body (`while(x) { label: { <body> } }`)
@@ -1600,7 +1600,7 @@ function hoistingOnce(hoistingRoot, from) {
   );
 
   ASSERT(hoistingRoot.$p.hoistedVars, 'the hoistedVars should exist on anything that can hoist', hoistingRoot);
-  vlog('hoistingOnce; Hoisting', hoistingRoot.$p.hoistedVars.length, 'elements from hoistingroot @', +hoistingRoot.$p.pid);
+  vlog('hoistingOnce; Hoisting', hoistingRoot.$p.hoistedVars.length, 'elements from hoistingroot @', +hoistingRoot.$p.npid);
 
   // There are two things in three contexts that we hoist
   // - functions and variables

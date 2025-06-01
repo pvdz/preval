@@ -73,7 +73,7 @@ function _funcScopePromo(fdata) {
         example('if (x) { const f = function(){}; f() }', 'const f = function(){}; if (x) { f(); }');
         before(parentNode);
 
-        vlog('Moving', varDecl.$p.pid, 'to', toPid);
+        vlog('Moving', varDecl.$p.npid, 'to', toPid);
         const pos = from.indexOf(varDecl);
         ASSERT(pos >= 0, 'var decl must be part of this parent');
         from.splice(pos, 1);
@@ -104,7 +104,7 @@ function _oneFunc(meta, funcName, queue) {
     vlog('Not a function');
     return;
   }
-  vlog('Func pid is', funcNode.$p.pid, '(body pid is', funcNode.body.$p.pid, ', blockchain is', funcNode.$p.blockChain, ')');
+  vlog('Func pid is', funcNode.$p.npid, '(body pid is', funcNode.body.$p.npid, ', blockchain is', funcNode.$p.blockChain, ')');
 
   vgroup('Step 1: find all bindings that are local to this function and all referenced idents inside this function');
   const closures = findClosureRefs(funcNode);
@@ -131,7 +131,7 @@ function _oneFunc(meta, funcName, queue) {
     vgroup('Loop start');
 
     vgroup('Step 2.' + ++i + ': find all local bindings to the current parent node of the function binding');
-    vlog('Current parent node pid:', currentParentNode.$p.pid, ', current promo pid:', currentPromoParent.$p.pid);
+    vlog('Current parent node pid:', currentParentNode.$p.npid, ', current promo pid:', currentPromoParent.$p.npid);
     const parentBindings = findLocalBindings(currentParentNode, funcName);
     vlog('The current parent node has these bindings:', parentBindings);
     vgroupEnd();
@@ -160,13 +160,13 @@ function _oneFunc(meta, funcName, queue) {
     return;
   }
 
-  vlog('Queuing', varDecl.$p.pid, 'for promotion from', write.parentNode.$p.pid, 'to', currentParentNode.$p.pid);
+  vlog('Queuing', varDecl.$p.npid, 'for promotion from', write.parentNode.$p.npid, 'to', currentParentNode.$p.npid);
   queue.push({
     parentNode: currentParentNode,
     varDecl,
     from: write.blockBody,
     to: currentParentNode.body,
-    toPid: currentParentNode.$p.pid,
+    toPid: currentParentNode.$p.npid,
   });
 
   return true;

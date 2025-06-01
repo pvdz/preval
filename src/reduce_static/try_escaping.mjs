@@ -38,7 +38,7 @@ function _tryEscaping(fdata) {
     // Special case for array expressions, targeting a superficial pumping scheme used by obfuscators
     if (node.type === 'ArrayExpression') {
       const arrNode = node;
-      vlog('- found array @', +arrNode.$p.pid);
+      vlog('- found array @', arrNode.$p.npid);
 
       // Preprocess the array such that we may hoist more cases of it
       // In particular we want to target the "pump" obfuscation technique of arr.push(arr.pop()) and

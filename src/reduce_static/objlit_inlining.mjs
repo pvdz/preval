@@ -31,20 +31,17 @@ export function objlitInlining(fdata) {
   return r;
 }
 function _objlitInlining(fdata) {
-  let queue = [];
-  let updated = process(fdata, queue);
+  let updated = process(fdata);
 
   log('');
-  if (updated + queue.length) {
-    queue.sort(({ pid: a }, { pid: b }) => (a < b ? 1 : a > b ? -1 : 0));
-
+  if (updated) {
     log('Object literals inlined:', 1, '. Restarting from phase1 to fix up read/write registry');
     return {what: 'objlitInlining', changes: 1, next: 'phase1'};
   }
   log('Object literals inlined: 0.');
 }
 
-function process(fdata, queue) {
+function process(fdata) {
   let updated = 0;
 
   fdata.globallyUniqueNamingRegistry.forEach(function (meta, objName) {

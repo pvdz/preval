@@ -139,7 +139,7 @@ function processRead(fdata, queue, read, i, innerFuncNode, innerIfNode, innerIfT
     return;
   }
 
-  const outerIfNode = fdata.flatNodeMap.get('' + lastIfId);
+  const outerIfNode = fdata.flatNodeMap.get(lastIfId);
   ASSERT(outerIfNode);
 
   const outerBranchBody = read.blockBody;
@@ -320,11 +320,11 @@ function _tryToInline(queue, read, innerFirstStatement, innerSecondStatementMayb
         return;
       }
 
-      vlog('Queued up node', read.node.$p.pid, 'for inlining');
+      vlog('Queued up node', read.node.$p.npid, 'for inlining');
 
       queue.push({
         what: 'var',
-        pid: read.node.$p.pid,
+        index: read.blockIndex,
         read,
         innerFuncNode,
         innerFirstStatement: innerTopStatement,
@@ -334,11 +334,11 @@ function _tryToInline(queue, read, innerFirstStatement, innerSecondStatementMayb
       return;
 
     case 'ExpressionStatement':
-      vlog('Queued up node', read.node.$p.pid, 'for inlining');
+      vlog('Queued up node', read.node.$p.npid, 'for inlining');
 
       queue.push({
         what: 'expr',
-        pid: read.node.$p.pid,
+        index: read.blockIndex,
         read,
         innerFuncNode,
         innerFirstStatement: innerTopStatement,
@@ -361,15 +361,11 @@ function processQueue(fdata, queue) {
     // Elements in the queue may still be blocked if it can't create clones for the expressions
 
     // Sort in reverse DFS order. PID are incremental in DFS order.
-    queue.sort(({ pid: A }, { pid: B }) => {
-      let a = +A;
-      let b = +B;
-      return a < b ? 1 : a > b ? -1 : 0;
-    });
+    queue.sort(({ index: a }, { index: b }) => b - a);
 
     vgroup('Draining queue');
-    queue.forEach(({ what, pid, read, innerFuncNode, innerFirstStatement, innerReturnStatement }) => {
-      vlog('- Next node in queue:', read.node.$p.pid);
+    queue.forEach(({ what, read, innerFuncNode, innerFirstStatement, innerReturnStatement }) => {
+      vlog('- Next node in queue:', read.node.$p.npid);
 
       if (what === 'var') {
         const newInit = paramAwareClone(innerFirstStatement.init, read.parentNode, innerFuncNode);

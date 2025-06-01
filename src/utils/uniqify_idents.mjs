@@ -30,7 +30,7 @@ export function uniqify_idents(funcAst, fdata) {
       node.$p = $p();
     }
 
-    vgroup(BLUE + nodeType + ':' + (before ? 'before' : 'after'), `:; ${DIM}@${node.$p.pid}${RESET}`);
+    vgroup(BLUE + nodeType + ':' + (before ? 'before' : 'after'), `:; ${DIM}@${node.$p.npid}${RESET}`);
 
     const key = nodeType + ':' + (before ? 'before' : 'after');
 

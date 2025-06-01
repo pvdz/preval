@@ -23,7 +23,7 @@ function _multiScopeSSA(fdata) {
     vgroup('- `' + name + '`:', meta.varDeclRef.node.type, ', reads:', meta.reads.length, ', writes:', meta.writes.length);
 
     const rwOrder = meta.rwOrder;
-    vlog('rwOrder:', [rwOrder.map((o) => o.action + ':' + o.kind + ':' + o.node.$p.pid + ':' + o.blockIndex).join(', ')]);
+    vlog('rwOrder:', [rwOrder.map((o) => o.action + ':' + o.kind + ':' + o.node.$p.npid + ':' + o.blockIndex).join(', ')]);
 
     vlog('Multi-scope fallback. Attempting to apply SSA to back2back writes');
     vgroup('Walking through all refs of `' + name + '`');

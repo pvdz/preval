@@ -78,7 +78,7 @@ export function _freeFuncs(fdata, prng, usePrng, pcodeTestMode) {
     ASSERT(parentNode.type === 'VarStatement' || (parentNode.type === 'AssignmentExpression' && parentProp === 'right'), 'I dont think a function statement should reach here. It should be normalized away.', parentNode.type);
 
     const funcName = parentNode.type === 'VarStatement' ? parentNode.id.name : parentNode.left.name;
-    vgroup('- Can @', +node.$p.pid, '("', funcName, '") be compiled to pcode?');
+    vgroup('- Can @', node.$p.npid, '("', funcName, '") be compiled to pcode?');
     const conditionalNames = pcanCompile(node, fdata, funcName);
     if (conditionalNames) vlog('~~> Yes ', [funcName], 'can be pcode compiled, but only if the funcs it calls can too;', conditionalNames);
     else vlog('~~> nope', [funcName], 'can not be pcode compiled;', conditionalNames);
@@ -141,7 +141,7 @@ export function _freeFuncs(fdata, prng, usePrng, pcodeTestMode) {
       if (!pcodeSupportedBuiltinFuncs.has(funcName)) {
         vgroup('- pcodeSupportedBuiltinFuncs does not yet have:', [funcName], '; compiling that now');
         const pcode = pcompile(funcNode, fdata);
-        fdata.pcodeOutput.set(+funcNode.$p.pid, { pcode, funcNode, name: funcName });
+        fdata.pcodeOutput.set(funcNode.$p.npid, { pcode, funcNode, name: funcName });
         fdata.pcodeOutput.set(funcName, { pcode, funcNode, name: funcName });
 
         if (pcodeTestMode) {

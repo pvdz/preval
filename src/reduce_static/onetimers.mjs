@@ -106,7 +106,7 @@ function _inlineOneTimeFunctions(fdata) {
       return;
     }
 
-    if (read.blockChain.startsWith(funcMeta.writes[0].blockChain + funcNode.body.$p.pid)) {
+    if (read.blockChain.startsWith(funcMeta.writes[0].blockChain + funcNode.body.$p.npid)) {
       // This may also catch recursive calls within nested functions but for now that's the way it is.
       // Assumes a particular structure of the blockChain, not sure if there's a better way right now.
       vlog('The blockChain of the write is a prefix of the read, this implies recursion, bailing');
@@ -186,7 +186,7 @@ function _inlineOneTimeFunctions(fdata) {
       : ASSERT(false, 'what can this be in normalized code', read.blockBody[read.blockIndex].expression.type, read.blockBody[read.blockIndex].expression.name) // ???
     ;
 
-    vlog('Function [' + funcNode.$p.pid + '] (', funcName, ') is called (', kind, ') and referenced exactly once and meets all other conditions. Adding it to the queue.');
+    vlog('Function [' + funcNode.$p.npid + '] (', funcName, ') is called (', kind, ') and referenced exactly once and meets all other conditions. Adding it to the queue.');
 
     rule('A function that is called one time can be inlined; before');
     example('const f = function(a, b){ g(a); return b; }; const x = f(1, 2);', 'let x = undefined; A: { const a = 1; const b = 2; x = b; }', kind === 'decl');
@@ -211,12 +211,12 @@ function _inlineOneTimeFunctions(fdata) {
       if (!beforeWalk) return;
       switch (node.type) {
         case 'ReturnStatement': {
-          vlog('Scheduling return replacement for pid', +node.$p.pid);
+          vlog('Scheduling return replacement for pid', node.$p.npid);
           const parentNode = path.nodes[path.nodes.length - 2];
           //const parentProp = path.props[path.props.length - 1]; // body
           const parentIndex = path.indexes[path.indexes.length - 1];
           queue.push({
-            pid: +node.$p.pid,
+            index: parentIndex,
             func: () => {
               rule('Inlining function: return statements should become assigns of return value and break to label');
               example('function f(){ return x; }', 'A: { x; break A; }', () => kind === 'stmt');
@@ -252,7 +252,7 @@ function _inlineOneTimeFunctions(fdata) {
 
     vlog('Schedule elimination of the function decl');
     queue.push({
-      pid: +write.node.$p.pid,
+      index: write.blockIndex,
       func: () => {
         // Replace the function with empty statement
 
@@ -268,7 +268,7 @@ function _inlineOneTimeFunctions(fdata) {
 
     vlog('Schedule elimination of the call replacement');
     queue.push({
-      pid: +read.node.$p.pid,
+      index: read.blockIndex,
       func: () => {
         // - move func body to be the body of a fresh label
         //   - if the call was a var decl or assignment, replace all returns with `x = returnValue; break label`
@@ -340,7 +340,7 @@ function _inlineOneTimeFunctions(fdata) {
   if (queue.length) {
     vlog('Now running the queued changes...', queue.length);
 
-    queue.sort(({ pid: a }, { pid: b }) => (a < b ? 1 : a > b ? -1 : 0));
+    queue.sort(({ index: a }, { index: b }) => b - a);
     queue.forEach(({ func }) => func());
 
     // Note: because we remove the function separately from the call, the AST will have dupe nodes

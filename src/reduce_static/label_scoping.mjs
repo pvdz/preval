@@ -60,8 +60,8 @@ function _labelScoping(fdata) {
         const lastRefBlockChain = meta.rwOrder[meta.rwOrder.length - 1].node.$p.blockChain;
         vlog('varname:', varName, ', label block:', [labelBlockChain], ', lastref:', [lastRefBlockChain]);
         if (lastRefBlockChain === labelBlockChain) {
-          const a = +meta.rwOrder[meta.rwOrder.length - 1].node.$p.pid;
-          const b = +node.body.$p.lastPid;
+          const a = meta.rwOrder[meta.rwOrder.length - 1].node.$p.npid;
+          const b = node.body.$p.lastPid;
           vlog('Same block chain. Check if usage is (or was) before label:', a, '<=', b);
           if (a > b) {
             // Usage is _after_ the label, so nope
@@ -127,7 +127,7 @@ function _labelScoping(fdata) {
     }
   }
 
-  queue.sort(({ pid: a }, { pid: b }) => (a < b ? 1 : a > b ? -1 : 0));
+  queue.sort(({ index: a }, { index: b }) => b - a);
   queue.forEach(({index, func}) => func(index));
 
   if (changes) {

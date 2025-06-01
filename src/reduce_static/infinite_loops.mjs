@@ -134,7 +134,7 @@ function _infiniteLoops(fdata) {
           for (const labelNode of labelStack) {
             if (labelNode.label.name === label) {
               let index = loopStack.length - 1;
-              while (index >= 0 && loopStack[index].$p.pid > +labelNode.$p.pid) {
+              while (index >= 0 && loopStack[index].$p.npid > labelNode.$p.npid) {
                 loopStack[index].$p.fakeLoopStuff.push(breakNode);
                 --index;
               }
@@ -169,7 +169,7 @@ function _infiniteLoops(fdata) {
   if (changed) {
     vgroup('Unrolling call queue now:');
 
-    queue.sort(({ index: a }, { index: b }) => b-a);
+    queue.sort(({ index: a }, { index: b }) => b - a);
     queue.forEach(({ index, func }) => {
       ASSERT(typeof index === 'number', 'must queue a number...', index);
       func()

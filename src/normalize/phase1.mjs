@@ -154,9 +154,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
   fdata.globallyUniqueNamingRegistry.forEach((meta, name) => {
     // Since we regenerate the pid during every phase1, we should be able to rely on it for DFS ordering.
     // Note: this is not necessarily source order. `x = y` will visit `y` before `x`.
-    const rwOrder = meta.reads.concat(meta.writes).sort(({ node: { $p: { pid: a } } }, { node: { $p: { pid: b } } }) =>
-      +a < +b ? -1 : +a > +b ? 1 : 0,
-    );
+    const rwOrder = meta.reads.concat(meta.writes).sort((a,b) => a.node.$p.npid - b.node.$p.npid);
     meta.rwOrder = rwOrder;
 
     // We can also settle this in phase1...
@@ -222,18 +220,18 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
       node.$p.phase1count = fdata.phase1count;
       node.$p.funcDepth = funcStack.length;
       node.$p.blockChain = blockIds.join(',') + ','; // Trailing comma prevents ambiguity when doing a.blockChain.startsWith(b.blockChain)
-      fdata.flatNodeMap.set(node.$p.pid, node);
+      fdata.flatNodeMap.set(node.$p.npid, node);
     } else {
       // Set lastPid on all nodes. If the node had no child-nodes then pid==lastPid, that's fine.
       node.$p.lastPid = getUid();
     }
 
     if (before && parentNode?.type === 'IfStatement' && parentProp !== 'test') {
-      vlog(BLUE + (parentProp === 'consequent' ? 'If' : 'Else') + `:before:: ${DIM}@${parentNode.$p.pid}${RESET}`);
+      vlog(BLUE + (parentProp === 'consequent' ? 'If' : 'Else') + `:before:: ${DIM}@${parentNode.$p.npid}${RESET}`);
     }
-    vgroup(BLUE + nodeType + ':' + (before ? 'before' : 'after'), `:: ${DIM}@${node.$p.pid}${RESET}`);
+    vgroup(BLUE + nodeType + ':' + (before ? 'before' : 'after'), `:: ${DIM}@${node.$p.npid}${RESET}`);
     if (!before && parentNode?.type === 'IfStatement' && parentProp !== 'test') {
-      vlog(BLUE + (parentProp === 'consequent' ? 'If' : 'Else') + `:after:: ${DIM}@${parentNode.$p.pid}${RESET}`);
+      vlog(BLUE + (parentProp === 'consequent' ? 'If' : 'Else') + `:after:: ${DIM}@${parentNode.$p.npid}${RESET}`);
     }
 
     const key = nodeType + ':' + (before ? 'before' : 'after');
@@ -272,14 +270,14 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         funcStack.push(node);
         ifIds.push(0);
         blockBodies.push(node.body);
-        blockIds.push(+node.$p.pid);
+        blockIds.push(node.$p.npid);
         blockStack.push(node); // Do we assign node or node.body?
 
         if (ENABLE_REF_TRACKING) openRefsOnBeforeProgram(refTrackState, node, fdata);
 
         node.$p.promoParent = null;
         node.$p.blockChain = '0,';
-        node.$p.funcChain = funcStack.map((n) => n.$p.pid).join(',');
+        node.$p.funcChain = funcStack.map((n) => n.$p.npid).join(',');
         node.$p.ownBindings = new Set();
         node.$p.paramNames = []; // Ends up as a `meta.bfuncNode` in some cases, where this is expected to exist, so leave it.
         loopStack.push(null);
@@ -343,26 +341,26 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         if (ENABLE_REF_TRACKING) openRefsOnBeforeBlock(refTrackState, node, parentNode, parentProp, pathNodes[pathNodes.length - 3], blockStack[blockStack.length - 2], globallyUniqueNamingRegistry);
 
         if (tryNodeStack.length) {
-          if (tryNodeStack[tryNodeStack.length - 1].block === node) trapStack.push(+node.$p.pid);
-          else catchStack.push(+node.$p.pid);
-          //vlog('Checked for try:', tryNodeStack.map(n => n.$p.pid), trapStack, catchStack);
+          if (tryNodeStack[tryNodeStack.length - 1].block === node) trapStack.push(node.$p.npid);
+          else catchStack.push(node.$p.npid);
+          //vlog('Checked for try:', tryNodeStack.map(n => n.$p.npid), trapStack, catchStack);
         }
         blockBodies.push(node.body);
         if (parentNode.type === 'WhileStatement') {
-          blockIds.push(-node.$p.pid); // Mark a loop
+          blockIds.push(node.$p.npid); // Mark a loop
         } else {
-          blockIds.push(+node.$p.pid);
+          blockIds.push(node.$p.npid);
         }
 
         //node.$p.blockChain = blockIds.join(',');
 
         if (parentNode.type === 'IfStatement') {
           if (parentNode.consequent === node) {
-            ifIds.push(+parentNode.$p.pid);
-            ifStack.push(+parentNode.$p.pid);
+            ifIds.push(parentNode.$p.npid);
+            ifStack.push(parentNode.$p.npid);
           } else if (parentNode.alternate === node) {
-            ifIds.push(-parentNode.$p.pid);
-            elseStack.push(+parentNode.$p.pid);
+            ifIds.push(parentNode.$p.npid);
+            elseStack.push(parentNode.$p.npid);
           }
         }
 
@@ -392,7 +390,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         if (tryNodeStack.length) {
           if (tryNodeStack[tryNodeStack.length - 1].block === node) trapStack.pop();
           else catchStack.pop();
-          //vlog('Checked for try:', tryNodeStack.map(n => n.$p.pid), trapStack, catchStack);
+          //vlog('Checked for try:', tryNodeStack.map(n => n.$p.npid), trapStack, catchStack);
         }
 
         // A block has no early / explicit completion if it contains no statements that complete in itself or its descendants
@@ -458,7 +456,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
 
           node.$p.alwaysCompletes = new Set([targetLabelPid]); // parent block will consume this
         } else {
-          node.$p.alwaysCompletes = new Set([+loopStack[loopStack.length - 1].$p.pid]); // parent block will consume this
+          node.$p.alwaysCompletes = new Set([loopStack[loopStack.length - 1].$p.npid]); // parent block will consume this
         }
 
         break;
@@ -541,7 +539,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         funcStack.push(node);
         thisStack.push(node);
 
-        node.$p.funcChain = funcStack.map((n) => n.$p.pid).join(',');
+        node.$p.funcChain = funcStack.map((n) => n.$p.npid).join(',');
         break;
       }
       case 'FunctionExpression:after': {
@@ -653,7 +651,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         else if (kind !== 'none' && kind !== 'label') {
           ASSERT(kind === 'read' || kind === 'write', 'consider what to do if this check fails', kind, node);
           const meta = registerGlobalIdent(fdata, name, name, { isExport: false, isImplicitGlobal: 'unknown', isBuiltin: false });
-          vlog('- Binding referenced in $p.pid:', currentScope.$p.pid, ', reads so far:', meta.reads.length, ', writes so far:', meta.writes.length);
+          vlog('- Binding referenced in $p.npid:', currentScope.$p.npid, ', reads so far:', meta.reads.length, ', writes so far:', meta.writes.length);
           ASSERT(kind !== 'readwrite', 'compound assignments and update expressions should be eliminated by normalization', node);
 
           if (ENABLE_REF_TRACKING) openRefsOnBeforeRef(refTrackState, kind, node, parentNode, parentProp, parentIndex, meta);
@@ -667,7 +665,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
           let pathIndex = pathNodes.length - 1;
           do {
             blockNode = pathNodes[pathIndex];
-            vlog('  - block step;', blockNode.type, blockNode.$p.pid);
+            vlog('  - block step;', blockNode.type, blockNode.$p.npid);
             if (blockNode.type === 'BlockStatement' || blockNode.type === 'Program') {
               blockIndex = pathIndexes[pathIndex + 1];
               ASSERT(
@@ -681,12 +679,12 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
             --pathIndex;
           } while (true);
 
-          const innerLoop = +(loopStack[loopStack.length - 1]?.$p.pid ?? 0);
+          const innerLoop = (loopStack[loopStack.length - 1]?.$p.npid ?? 0);
           const innerIf = ifStack[ifStack.length - 1];
           ASSERT(typeof innerIf === 'number', 'ifstack should contain numbers', innerIf, ifStack);
           const innerElse = elseStack[elseStack.length - 1];
           ASSERT(typeof innerElse === 'number', 'ifstack should contain numbers', innerElse, elseStack);
-          const innerTry = tryNodeStack[tryNodeStack.length - 1]?.$p.pid || 0;
+          const innerTry = tryNodeStack[tryNodeStack.length - 1]?.$p.npid || 0;
           const innerTrap = trapStack[trapStack.length - 1];
           const innerCatch = catchStack[catchStack.length - 1];
           vlog('innerLoop:', innerLoop, ', innerIf:', innerIf, ', innerElse:', innerElse, ', innerTry:', innerTry, ', innerTrap:', innerTrap, ', innerCatch:', innerCatch);
@@ -699,7 +697,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
             const blockNode = blockStack[blockStack.length - 1];
             // Note: this could be a property write, but it's not a binding mutation.
             // Note: this includes the write to a property, which does not read the property first, but which does not mutate the binding
-            ASSERT(currentScope.$p.pid, 'the scope should be set to something here...', currentScope.$p.pid);
+            ASSERT(currentScope.$p.npid, 'the scope should be set to something here...', currentScope.$p.npid);
             const blockBody = blockNode.body;
             const read
               = createReadRef({
@@ -717,13 +715,13 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
               pfuncNode: currentScope,
               node,
               rwCounter: ++readWriteCounter,
-              scope: currentScope.$p.pid,
+              scope: currentScope.$p.npid,
               blockChain: blockIds.join(',') + ',',
               blockIds: blockIds.slice(0),
               blockBodies: blockBodies.slice(0),
               blockIndexes: blockIndexes.slice(0),
               ifChain: ifIds.slice(0),
-              funcChain: funcStack.map((n) => n.$p.pid).join(','),
+              funcChain: funcStack.map((n) => n.$p.npid).join(','),
               innerLoop,
               innerIf,
               innerElse,
@@ -738,8 +736,8 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
           if (kind === 'write') {
             const blockNode = blockStack[blockStack.length - 1];
             const blockBody = blockNode.body;
-            vlog('- Parent block:', blockNode.type, blockNode.$p.pid);
-            ASSERT(currentScope.$p.pid, 'the scope should be set to something here...', currentScope.$p.pid);
+            vlog('- Parent block:', blockNode.type, blockNode.$p.npid);
+            ASSERT(currentScope.$p.npid, 'the scope should be set to something here...', currentScope.$p.npid);
 
             const write = createWriteRef({
               name,
@@ -761,13 +759,13 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
               pfuncNode: currentScope,
               node,
               rwCounter: ++readWriteCounter,
-              scope: currentScope.$p.pid,
+              scope: currentScope.$p.npid,
               blockChain: blockIds.join(',') + ',',
               blockIds: blockIds.slice(0),
               blockBodies: blockBodies.slice(0),
               blockIndexes: blockIndexes.slice(0),
               ifChain: ifIds.slice(0),
-              funcChain: funcStack.map((n) => n.$p.pid).join(','),
+              funcChain: funcStack.map((n) => n.$p.npid).join(','),
               innerLoop,
               innerIf,
               innerElse,
@@ -944,7 +942,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         if (ENABLE_REF_TRACKING) openRefsOnAfterLabel(refTrackState, node, parentBlock, path, globallyUniqueNamingRegistry, globallyUniqueLabelRegistry, loopStack, catchStack);
 
         if (node.body.$p.alwaysCompletes?.size) {
-          const labelPid = +node.$p.pid;
+          const labelPid = node.$p.npid;
           if (node.body.$p.alwaysCompletes.has(labelPid)) {
             // No need to propagate. At least one completion was a break to this label so
             // code is able to continue with the next statement after the label.
@@ -1000,7 +998,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
 
         funcNode.$p.returnNodes.push(node);
 
-        node.$p.alwaysCompletes = new Set([+funcNode.$p.pid]); // parent block will consume this
+        node.$p.alwaysCompletes = new Set([funcNode.$p.npid]); // parent block will consume this
 
         if (ENABLE_REF_TRACKING) openRefsOnBeforeReturn(refTrackState, blockStack, node);
 
@@ -1110,9 +1108,9 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         const funcNode = funcStack[funcStack.length - 1];
         const tryNode = tryNodeStack[tryNodeStack.length - 1];
         // Note: Neither node has to exist in which case nearest is still undefined
-        const nearest = !tryNode ? funcNode : !funcNode ? tryNode : (+tryNode.$p.pid < +funcNode.$p.pid ? tryNode : funcNode);
+        const nearest = !tryNode ? funcNode : !funcNode ? tryNode : (tryNode.$p.npid < funcNode.$p.npid ? tryNode : funcNode);
 
-        node.$p.alwaysCompletes = new Set([+nearest.$p.pid]); // parent block will consume this
+        node.$p.alwaysCompletes = new Set([nearest.$p.npid]); // parent block will consume this
 
         if (ENABLE_REF_TRACKING) openRefsOnBeforeThrow(refTrackState, blockStack, node);
         break;
@@ -1148,7 +1146,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         // - The Try only alwaysCompletes when both the Try Block and Catch do it
         // - In that case the Try gets an union of those sets
 
-        const tryPid = +node.$p.pid;
+        const tryPid = node.$p.npid;
         if (node.block.$p.alwaysCompletes?.size && node.handler.body.$p.alwaysCompletes?.size) {
           // Note: an explicit throw does not prevent propagation because the Catch must
           // alwaysCompletes too, regardless. Otherwise the statement(s) that follows the
@@ -1241,7 +1239,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         if (ENABLE_REF_TRACKING) openRefsOnAfterLoop(refTrackState, 'while', node, parentBlock, path, globallyUniqueLabelRegistry, loopStack, tryNodeStack, catchStack);
 
         if (node.body.$p.alwaysCompletes?.size) {
-          const whilePid = +node.$p.pid;
+          const whilePid = node.$p.npid;
           if (node.body.$p.alwaysCompletes.has(whilePid)) {
             // No need to propagate. At least one completion was the break for this loop so
             // code is able to continue with the next statement after the loop.
@@ -1294,12 +1292,12 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
                 Array.from(meta.writes),
               ]
               .flat()
-              .sort((a, b) => a.node.$p.pid - b.node.$p.pid)
+              .sort((a, b) => a.node.$p.npid - b.node.$p.npid)
               .map(rw => {
                 return `  - ${
                   rw.action
                 } @ ${
-                  rw.node.$p.pid
+                  rw.node.$p.npid
                 }, might ${rw.action === 'write' ? 'overwrite' : 'observe'} ${
                   reachAtString(rw.reachesWrites, 'writes')
                 }${
@@ -1342,5 +1340,5 @@ function reachAtString(set, what) {
   if (!set.size) {
     return `0 ${what}`;
   }
-  return `${set.size} ${what} (@ ${Array.from(set).map(r => r.node.$p.pid).join(',')})`;
+  return `${set.size} ${what} (@ ${Array.from(set).map(r => r.node.$p.npid).join(',')})`;
 }

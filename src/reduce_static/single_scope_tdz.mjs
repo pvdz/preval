@@ -41,14 +41,14 @@ function _singleScopeTdz(fdata) {
     vlog('The binding `' + name + '` is a var decl. Analyzing usages (', meta.reads.length, 'reads and', meta.writes.length, 'writes).');
 
     const rwOrder = meta.rwOrder;
-    vlog('rwOrder:', [rwOrder.map((o) => o.action + ':' + o.kind + ':' + o.node.$p.pid).join(', ')]);
+    vlog('rwOrder:', [rwOrder.map((o) => o.action + ':' + o.kind + ':' + o.node.$p.npid).join(', ')]);
 
-    const declScope = meta.bfuncNode.$p.pid;
+    const declScope = meta.bfuncNode.$p.npid;
     vlog(
       'Decl scope:',
       declScope,
       ', ref scopes:',
-      rwOrder.map((ref) => +ref.pfuncNode.$p.pid),
+      rwOrder.map((ref) => ref.pfuncNode.$p.npid),
     );
 
     const varDeclWrite = meta.writes.find((write) => write.kind === 'var');

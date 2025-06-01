@@ -23,7 +23,7 @@ export function pruneTrampolineFunctions(fdata) {
 function _pruneTrampolineFunctions(fdata) {
   const toOutlineCall = []; // Array<[read, node, mapping]> // funcs with a call as body (but no return)
   const toReplaceWith = []; // Array<[read, node, mapping, calleeIdentIndex, calleeObjectIndex, calleePropIndex]> // funcs that return the call of another func. the last three values are for replacing the callee with an arg
-  const bufferTrick = [];
+  const queue = [];
   fdata.globallyUniqueNamingRegistry.forEach((meta, funcName) => {
     if (meta.isImplicitGlobal) return;
     if (meta.isBuiltin) return;
@@ -362,8 +362,8 @@ function _pruneTrampolineFunctions(fdata) {
           AST.isPrimitive(read.parentNode.arguments[3])
         ) {
           vlog('- queued call', n, 'to be transformed');
-          bufferTrick.push({
-            index: +read.node.$p.pid,
+          queue.push({
+            index: read.blockIndex,
             func: () => {
               // I think this check may be superseded by the concrete reduce_static/buffer_base64.mjs transform... which is fine.
               todo('cover this trampoline with a test case'); // Remove me when one is found :)
@@ -456,8 +456,8 @@ function _pruneTrampolineFunctions(fdata) {
           read.parentNode.arguments.length === 1 &&
           AST.isPrimitive(read.parentNode.arguments[0])
         ) {
-          bufferTrick.push({
-            index: +read.node.$p.pid,
+          queue.push({
+            index: read.blockIndex,
             func: () => {
               // This is a case we can inline
               const args = read.parentNode.arguments;
@@ -512,7 +512,7 @@ function _pruneTrampolineFunctions(fdata) {
 
 
   log('Queued', toReplaceWith.length, 'calls for remapping and', toOutlineCall.length, 'calls for outlining');
-  if (toReplaceWith.length || toOutlineCall.length || bufferTrick.length) {
+  if (toReplaceWith.length || toOutlineCall.length || queue.length) {
     vgroup('toReplaceWith');
     // This is for the var-call-return variant
     toReplaceWith.forEach(
@@ -665,12 +665,12 @@ function _pruneTrampolineFunctions(fdata) {
     vgroupEnd();
 
     vgroup('bufferTrick');
-    bufferTrick.sort(({ index: a }, { index: b }) => (a < b ? 1 : a > b ? -1 : 0));
-    bufferTrick.forEach(({func}) => func());
+    queue.sort(({ index: a }, { index: b }) => b - a);
+    queue.forEach(({func}) => func());
     vgroupEnd();
 
-    log('Trampolines inlined:', toReplaceWith.length + toOutlineCall.length + bufferTrick.length, ', restarting phase1');
-    return {what: 'pruneTrampolineFunctions', changes: toReplaceWith.length + toOutlineCall.length + bufferTrick.length, next: 'phase1'};
+    log('Trampolines inlined:', toReplaceWith.length + toOutlineCall.length + queue.length, ', restarting phase1');
+    return {what: 'pruneTrampolineFunctions', changes: toReplaceWith.length + toOutlineCall.length + queue.length, next: 'phase1'};
   }
 
   log('Trampolines inlined: 0.');

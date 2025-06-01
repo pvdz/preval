@@ -217,22 +217,22 @@ function _typeTrackedTricks(fdata) {
                       ri,
                       ':',
                       'consequent?',
-                      +node.consequent.$p.pid,
+                      node.consequent.$p.npid,
                       '<',
-                      +read.node.$p.pid,
+                      read.node.$p.npid,
                       '<=',
-                      +node.consequent.$p.lastPid,
+                      node.consequent.$p.lastPid,
                       '(',
-                      +read.node.$p.pid > +node.consequent.$p.pid && +read.node.$p.pid <= +node.consequent.$p.lastPid,
+                      read.node.$p.npid > node.consequent.$p.npid && read.node.$p.npid <= node.consequent.$p.lastPid,
                       ')',
                       ', or alternate?',
-                      +node.alternate.$p.pid,
+                      node.alternate.$p.npid,
                       '<',
-                      +read.node.$p.pid,
+                      read.node.$p.npid,
                       '<=',
-                      +node.alternate.$p.lastPid,
+                      node.alternate.$p.lastPid,
                       '(',
-                      +read.node.$p.pid > +node.alternate.$p.pid && +read.node.$p.pid <= +node.alternate.$p.lastPid,
+                      read.node.$p.npid > node.alternate.$p.npid && read.node.$p.npid <= node.alternate.$p.lastPid,
                       ')',
                     );
 
@@ -243,7 +243,7 @@ function _typeTrackedTricks(fdata) {
                       // Ignore. Do not replace while() tests. That risks infinite loops.
                       vlog('- skipped. Not replacing while() tests with `true` here');
                     }
-                    else if (+read.node.$p.pid > +node.consequent.$p.pid && +read.node.$p.pid <= +node.consequent.$p.lastPid) {
+                    else if (read.node.$p.npid > node.consequent.$p.npid && read.node.$p.npid <= node.consequent.$p.lastPid) {
                       // Covered by tests/cases/type_tracked/if/base_bool_unknown_false.md
                       rule('When an `if` test is a boolean it must be `true` in the if branch');
                       example('const a = !f(); if (a) g(a); else h(a);', 'const a = !f(); if (a) g(true); else h(false);');
@@ -257,7 +257,7 @@ function _typeTrackedTricks(fdata) {
 
                       before(read.blockBody[read.blockIndex]);
                       ++changes;
-                    } else if (+read.node.$p.pid > +node.alternate.$p.pid && +read.node.$p.pid <= +node.alternate.$p.lastPid) {
+                    } else if (read.node.$p.npid > node.alternate.$p.npid && read.node.$p.npid <= node.alternate.$p.lastPid) {
                       // Covered by tests/cases/type_tracked/if/base_bool_unknown_false.md
                       rule('When an `if` test is a boolean it must be `false` in the else branch');
                       example('const a = !f(); if (a) g(a); else h(a);', 'const a = !f(); if (a) g(true); else h(false);');
@@ -284,13 +284,13 @@ function _typeTrackedTricks(fdata) {
                     vlog(
                       ri,
                       ': read pid:',
-                      +read.node.$p.pid,
+                      read.node.$p.npid,
                       ', alternate pid:',
-                      +node.alternate.$p.pid,
+                      node.alternate.$p.npid,
                       ', alternate end pid:',
                       node.alternate.$p.lastPid,
                     );
-                    if (+read.node.$p.pid > +node.alternate.$p.pid && +read.node.$p.pid <= +node.alternate.$p.lastPid) {
+                    if (read.node.$p.npid > node.alternate.$p.npid && read.node.$p.npid <= node.alternate.$p.lastPid) {
                       // This read should be contained somewhere inside the `if`. Possibly even nested in a func.
                       // In any case, the string value was a constant so it should be en empty string here.
                       // Covered by tests/cases/type_tracked/if/base_string_empty.md
@@ -3314,7 +3314,7 @@ function _typeTrackedTricks(fdata) {
 
   if (changes || queue.length) {
     // By index, high to low. This way it should not be possible to cause reference problems by moving index
-    queue.sort(({ index: a }, { index: b }) => (a < b ? 1 : a > b ? -1 : 0));
+    queue.sort(({ index: a }, { index: b }) => b - a);
     queue.forEach(({ index, func }) => func());
 
     log('Type tracked tricks applied:', changes, '. Restarting from phase1');

@@ -22,7 +22,7 @@ function _arrMutation(fdata) {
   runArrMutation(fdata);
 
   if (queue.length) {
-    queue.sort(({ index: a }, { index: b }) => (a < b ? 1 : a > b ? -1 : 0));
+    queue.sort(({ index: a }, { index: b }) => b - a);
     queue.forEach(({ index, func }) => func());
   }
 
@@ -45,7 +45,7 @@ function _arrMutation(fdata) {
           write.kind === 'var' &&
           write.parentNode.init.type === 'ArrayExpression'
         ) {
-          vgroup('- Array init @', +write.parentNode.init.$p.pid);
+          vgroup('- Array init @', write.parentNode.init.$p.npid);
           processArrayWrite(arrMeta, write, write.parentNode.init);
           vgroupEnd();
         }
@@ -53,7 +53,7 @@ function _arrMutation(fdata) {
           write.kind === 'assign' &&
           write.parentNode.right.type === 'ArrayExpression'
         ) {
-          vgroup('- Array assignment @', +write.parentNode.right.$p.pid);
+          vgroup('- Array assignment @', write.parentNode.right.$p.npid);
           processArrayWrite(arrMeta, write, write.parentNode.right);
           vgroupEnd();
         }

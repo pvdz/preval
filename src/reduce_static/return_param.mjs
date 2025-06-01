@@ -250,14 +250,14 @@ function _returnsParam(fdata) {
       returnMeta.reads.forEach((read) => {
         ASSERT(read.parentNode.type === 'ReturnStatement', 'asserted before', read);
         queue.push({
-          pid: read.blockIndex,
+          index: read.blockIndex,
           func: () => {
             read.parentNode.argument = AST.identifier('undefined');
           },
         });
       });
       queue.push({
-        pid: varDeclWrite.blockIndex,
+        index: varDeclWrite.blockIndex,
         func: () => {
           varDeclWrite.blockBody[varDeclWrite.blockIndex] = AST.emptyStatement();
         },
@@ -353,7 +353,7 @@ function _returnsParam(fdata) {
       vlog('Should be able to outline the tail param usage and replace it with the arg');
 
       funcQueue.push({
-        pid: callRead.blockIndex,
+        index: callRead.blockIndex,
         func: () => {
           // Note: all we have to do is change the call. If this causes the return value of the function to
           // never be used, then another rule will eliminate it. If that causes the param not to be used,
@@ -381,7 +381,7 @@ function _returnsParam(fdata) {
   }
 
   if (queue.length) {
-    queue.sort(({ pid: a }, { pid: b }) => (a < b ? 1 : a > b ? -1 : 0));
+    queue.sort(({ index: a }, { index: b }) => b - a);
     vgroup('Unwinding', queue.length, 'callbacks');
     queue.forEach(({ func }) => {
       vlog('-- next');

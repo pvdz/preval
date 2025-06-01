@@ -65,7 +65,7 @@ function _findThrowers(fdata) {
       }
 
       queue.push({
-        pid: read.node.$p.pid,
+        index: read.blockIndex,
         func: () => {
           rule('A call to a function that always throws should be followed by a throw');
           example('function f(){ throw x; } g(f());', 'function f(){ throw x; } g(f()); throw "always";');
@@ -81,7 +81,7 @@ function _findThrowers(fdata) {
   });
 
   if (queue.length) {
-    queue.sort(({ pid: a }, { pid: b }) => (a < b ? 1 : a > b ? -1 : 0));
+    queue.sort(({ index: a }, { index: b }) => b - a);
     queue.forEach(({ func }) => func());
 
     log('Throws injected:', queue.length, '. Restarting from phase1');

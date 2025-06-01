@@ -62,7 +62,7 @@ function processAttempt(fdata) {
     ++nodes;
     if (arrayLiteralNode.type !== 'ArrayExpression') return;
     ++counter;
-    vgroup('- Array @', +arrayLiteralNode.$p.pid);
+    vgroup('- Array @', arrayLiteralNode.$p.npid);
     _walker(arrayLiteralNode, beforeWalk, nodeType, path);
     vgroupEnd();
   }
@@ -187,7 +187,7 @@ function processAttempt(fdata) {
     //let rwIndex = orderIndex;
     //let nextRead = arrayMeta.rwOrder[rwIndex + 1];
     //while (nextRead && nextRead.pfuncNode !== write.pfuncNode) {
-    //  //console.log('- read/write not in same function scope, trying next rw', nextRead.pfuncNode.$p.pid, write.pfuncNode.$p.pid)
+    //  //console.log('- read/write not in same function scope, trying next rw', nextRead.pfuncNode.$p.npid, write.pfuncNode.$p.npid)
     //  ++rwIndex;
     //  nextRead = arrayMeta.rwOrder[rwIndex + 1];
     //}

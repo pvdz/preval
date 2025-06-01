@@ -43,18 +43,18 @@ function _ifFalsySpread(fdata) {
 
     meta.rwOrder.forEach((ref, ri) => {
       if (ref.action !== 'read') return;
-      vlog('ref', ri, ':', ref.action, ref.kind, ref.node.$p.pid);
+      vlog('ref', ri, ':', ref.action, ref.kind, ref.node.$p.npid);
 
       const read = ref;
       const ifNode = read.parentNode;
       if (read.parentNode.type !== 'IfStatement') return vlog('- not an if-test');
 
-      const elseStartPid = +ifNode.alternate.$p.pid;
-      const elseEndPid = +ifNode.alternate.$p.lastPid;
+      const elseStartPid = ifNode.alternate.$p.npid;
+      const elseEndPid = ifNode.alternate.$p.lastPid;
 
       for (let i = ri; i < meta.rwOrder.length; ++i) {
         const r = meta.rwOrder[i];
-        const pid = +r.node.$p.pid;
+        const pid = r.node.$p.npid;
         //vlog('sub-ref', ri, ', pid', pid, 'between', elseStartPid, 'and', elseEndPid,'?')
         if (pid < elseStartPid) {
           vlog('- occurrence in the `then` ...');
@@ -69,7 +69,7 @@ function _ifFalsySpread(fdata) {
 
             vlog('  - Found! Queued for transformation');
             queue.push({
-              pid: +r.node.$p.pid, // Use pid because there may be multiple spreads in a call
+              npid: r.node.$p.npid, // Use npid because there may be multiple spreads in a call
               func: () => {
                 rule('Spreading a falsy value can only work for empty string');
                 example('const x = f(); if (x) {} else g(...x);', 'const x = f(); if (x) {} else { if (x !== "") throw err; g(); }');
@@ -104,8 +104,8 @@ function _ifFalsySpread(fdata) {
   });
 
   if (queue.length) {
-    queue.sort(({ pid: a }, { pid: b }) => (a < b ? 1 : a > b ? -1 : 0));
-    queue.forEach(({ index, func }) => func());
+    queue.sort(({ npid: a }, { npid: b }) => b - a);
+    queue.forEach(({ func }) => func());
 
     log('Falsy spreads fixed:', queue.length, '. Restarting from phase1');
     return {what: 'ifFalsySpread', changes: queue.length, next: 'phase1'};

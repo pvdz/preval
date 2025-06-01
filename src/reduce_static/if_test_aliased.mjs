@@ -30,10 +30,10 @@ function _ifTestAliased(fdata) {
       if (ifNode.type !== 'IfStatement') return vlog('- bail: not if statement');
       ASSERT(read.parentProp === 'test', 'only way parent node of ident in normalized code can be if-node is as the test', ifNode);
 
-      const ifThenPidFirst = +ifNode.consequent.$p.pid;
-      const ifThenPidLast = +ifNode.consequent.$p.lastPid;
-      const ifElsePidFirst = +ifNode.alternate.$p.pid;
-      const ifElsePidLast = +ifNode.alternate.$p.lastPid;
+      const ifThenPidFirst = ifNode.consequent.$p.npid;
+      const ifThenPidLast = ifNode.consequent.$p.lastPid;
+      const ifElsePidFirst = ifNode.alternate.$p.npid;
+      const ifElsePidLast = ifNode.alternate.$p.lastPid;
 
       vgroup('- brute force find an alias...');
 
@@ -72,7 +72,7 @@ function _ifTestAliased(fdata) {
         vgroup('- alias', aliasName, 'is compatible with ifTestName', ifTestName, '. Walking', aliasMeta.reads.length, 'alias reads...');
 
         aliasMeta.reads.forEach((aliasRead, r2) => {
-          const readStmtPid = +aliasRead.blockBody[aliasRead.blockIndex].$p.pid;
+          const readStmtPid = aliasRead.blockBody[aliasRead.blockIndex].$p.npid;
           vgroup('- alias read', r2, ', checking if @', readStmtPid, 'falls inside this if-node (' + ifTestName + ')');
 
           const success = verifyAliasAndReduce(readStmtPid, isUnaryNotAlias, isBooleanCallAlias, ifThenPidFirst, ifThenPidLast, ifElsePidFirst, ifElsePidLast, aliasMeta, aliasDeclWrite, aliasRead, ifTestName, aliasName);

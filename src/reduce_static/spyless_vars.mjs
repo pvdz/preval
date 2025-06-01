@@ -170,16 +170,16 @@ function process(fdata, meta, name, queue, attempted) {
   // - When the binding is used after the if, do nothing
   // - Else, when the binding is used in only one branch, move it inside of that branch
 
-  const firstReadPid = +firstRead.node.$p.pid;
-  const lastReadPid = +lastRead.node.$p.pid;
+  const firstReadPid = firstRead.node.$p.npid;
+  const lastReadPid = lastRead.node.$p.npid;
 
   let targetBody = write.blockBody;
   let currentIndex = write.blockIndex + 1;
 
   vgroup('Searching for new target from', currentIndex, ', body has', targetBody.length, 'statements. First ref pid:', firstReadPid, ', last ref pid:', lastReadPid);
   while (currentIndex < targetBody.length) {
-    const currPid = +targetBody[currentIndex]?.$p.pid;
-    const nextPid = +(targetBody[currentIndex + 1]?.$p.pid ?? Infinity);
+    const currPid = targetBody[currentIndex]?.$p.npid;
+    const nextPid = (targetBody[currentIndex + 1]?.$p.npid ?? Infinity);
     vlog('- loop, current index:', currentIndex, ', currPid: @', currPid, ' (', targetBody[currentIndex]?.type, '), next pid: @', nextPid, '(', targetBody[currentIndex + 1]?.type ?? 'none', ')');
 
     if (!targetBody[currentIndex + 1]) {
@@ -216,12 +216,12 @@ function process(fdata, meta, name, queue, attempted) {
     // Enter nodes with children.
     // It may not have any (like `return`), in which case that's the read and we break.
     if (currNode.type === 'IfStatement') {
-      if (firstReadPid > +currNode.consequent.$p.pid) {
+      if (firstReadPid > currNode.consequent.$p.npid) {
         vlog(
           '  - if statement pid bounds:',
-          +currNode.$p.pid,
+          currNode.$p.npid,
           currNode.consequent.$p.lastPid,
-          +currNode.alternate.$p.pid,
+          currNode.alternate.$p.npid,
           currNode.alternate.$p.lastPid,
           ', looking for range',
           firstReadPid,
@@ -238,10 +238,10 @@ function process(fdata, meta, name, queue, attempted) {
           // All refs are inside the consequent branch
           targetBody = currNode.consequent.body;
           currentIndex = 0;
-        } else if (+currNode.alternate.$p.pid < firstReadPid) {
+        } else if (currNode.alternate.$p.npid < firstReadPid) {
           vlog(
             '  - if statement... only ref in alternate because if alternate pid < first ref pid',
-            +currNode.consequent.$p.pid,
+            currNode.consequent.$p.npid,
             lastReadPid,
           );
           // All refs are inside the alternate branch
@@ -261,7 +261,7 @@ function process(fdata, meta, name, queue, attempted) {
       if (['FunctionExpression', 'ClassExpression', 'ObjectExpression', 'ArrayExpression'].includes(init.type)) {
         vlog('Can not move an object type into a loop. Move decl to before the loop');
         break;
-      } else if (firstReadPid > +currNode.body.$p.pid) {
+      } else if (firstReadPid > currNode.body.$p.npid) {
         vlog('  - inside loop (and not after)');
         targetBody = currNode.body.body;
         currentIndex = 0;

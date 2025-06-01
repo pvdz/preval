@@ -120,7 +120,7 @@ function _pruneExcessiveParams(fdata) {
         ++deletedParams;
         queue.push({
           pi,
-          index: +funcNode.$p.pid,
+          index: funcNode.$p.npid,
           func: () => {
             vgroup('Eliminating param', pi);
             rule('When a trailing parameter is not used or observed it can be removed from the function');

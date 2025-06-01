@@ -329,7 +329,7 @@ function processAttempt(fdata) {
 function findFirstCallToFunc(fdata, targetFuncName) {
   vgroup('Searching for first spying statement..');
   const firstSpyStatement = findFirstSpy(fdata.tenkoOutput.ast);
-  vlog('First spying statement: @', +firstSpyStatement?.$p.pid, firstSpyStatement?.type, firstSpyStatement?.expression?.type ?? firstSpyStatement?.init?.type);
+  vlog('First spying statement: @', firstSpyStatement?.$p.npid, firstSpyStatement?.type, firstSpyStatement?.expression?.type ?? firstSpyStatement?.init?.type);
   vgroupEnd();
 
   if (!firstSpyStatement) {

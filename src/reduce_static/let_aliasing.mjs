@@ -122,7 +122,7 @@ function _letAliasing(fdata) {
 
   vlog('Found the following aliases:', matches);
 
-  matches.sort(([,a], [,b]) => b.node.$p.pid - a.node.$p.pid).forEach(([ra, rb]) => {
+  matches.sort(([,a], [,b]) => b.node.$p.npid - a.node.$p.npid).forEach(([ra, rb]) => {
     const oldName = rb.parentNode.id.name;
     const newName = ra.parentNode.id.name;
     ASSERT(oldName && newName, 'should have two names now', oldName, newName);

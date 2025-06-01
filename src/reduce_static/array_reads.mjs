@@ -32,7 +32,7 @@ function _arrayReads(fdata) {
     //const grandProp = path.props[path.props.length - 2];
     //const grandIndex = path.indexes[path.indexes.length - 2];
 
-    vlog('Have array expression @', +node.$p.pid);
+    vlog('Have array expression @', node.$p.npid);
 
     // Okay silly heuristic:
     // - scan forward. skip any var decls and assignments as long as they are simple

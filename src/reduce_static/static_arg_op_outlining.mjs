@@ -1101,7 +1101,7 @@ function _staticArgOpOutlining(fdata) {
   if (changes) {
     vgroup('Unrolling call queue now:');
 
-    queue.sort(({ index: a }, { index: b }) => b-a);
+    queue.sort(({ index: a }, { index: b }) => b - a);
     queue.forEach(({ index, func }) => {
       ASSERT(typeof index === 'number', 'must queue a number...', index);
       func()

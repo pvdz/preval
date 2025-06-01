@@ -168,7 +168,7 @@ function _andIfAndIf(fdata) {
   });
 
   if (queue.length) {
-    queue.sort(({ index: a }, { index: b }) => (a < b ? 1 : a > b ? -1 : 0));
+    queue.sort(({ index: a }, { index: b }) => b - a);
     queue.forEach(({ index, func }) => func());
 
     log('And-Ifs melted:', queue.length, '. Restarting from phase1');

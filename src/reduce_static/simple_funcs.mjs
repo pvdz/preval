@@ -36,8 +36,8 @@ function _inlineSimpleFuncCalls(fdata) {
 
   if (queue.length) {
     // Now unwind the queue in reverse AST order. This way splices should not interfere with each other.
-    queue.sort(([a], [b]) => (a < b ? 1 : a > b ? -1 : 0));
-    queue.forEach(([pid, f]) => f());
+    queue.sort(({index: a}, {index: b}) => b - a);
+    queue.forEach(({func}) => func());
 
     log('Inlined function calls:', queue.length, '. Restarting from phase1 to fix up read/write registry');
     return {what: 'inlineSimpleFuncCalls', changes: queue.length, next: 'phase1'};
@@ -116,9 +116,9 @@ function process(meta, funcName, funcNode, fdata, queue) {
           return;
         }
 
-        queue.push([
-          +read.node.$p.pid,
-          () => {
+        queue.push({
+          index: read.blockIndex,
+          func: () => {
             rule('Simple function with only a return statement can be inlined');
             example('function f(x){ return x; } f(a); f(b);', 'a; b;');
             before(read.blockBody[read.blockIndex], funcNode);
@@ -159,7 +159,7 @@ function process(meta, funcName, funcNode, fdata, queue) {
 
             after(read.blockBody[read.blockIndex]);
           },
-        ]);
+        });
       } else {
         vlog('This read was not a call. Bailing');
       }
@@ -257,9 +257,9 @@ function processVar(stmt, ret, paramArgMapper, read, ri, funcNode, fdata, queue)
     return false;
   }
 
-  queue.push([
-    +read.node.$p.pid,
-    () => {
+  queue.push({
+    index: read.blockIndex,
+    func: () => {
       rule('Simple function with only a var decl can be inlined');
       example('function f(){ const x = g(); return x; } f(); f();', 'g(); g();');
       before(read.blockBody[read.blockIndex], funcNode);
@@ -319,7 +319,7 @@ function processVar(stmt, ret, paramArgMapper, read, ri, funcNode, fdata, queue)
 
       after(read.blockBody[read.blockIndex]);
     },
-  ]);
+  });
   return true;
 }
 function processNonVar(stmt, ret, paramArgMapper, read, ri, funcNode, queue) {
@@ -330,9 +330,9 @@ function processNonVar(stmt, ret, paramArgMapper, read, ri, funcNode, queue) {
     return false;
   }
 
-  queue.push([
-    +read.node.$p.pid,
-    () => {
+  queue.push({
+    index: read.blockIndex,
+    func: () => {
       rule('Simple function with only an expression can be inlined');
       example('function f(x){ g(); return x; } f(); f();', 'g(); g();');
       before(read.blockBody[read.blockIndex], funcNode);
@@ -386,6 +386,6 @@ function processNonVar(stmt, ret, paramArgMapper, read, ri, funcNode, queue) {
 
       after(read.blockBody[read.blockIndex]);
     },
-  ]);
+  });
   return true;
 }

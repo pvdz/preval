@@ -74,14 +74,14 @@ function _ifWeaving(fdata) {
     if (meta.rwOrder[1] !== writeAssign) return;
     if (meta.rwOrder[2].kind !== 'read') return;
     if (meta.rwOrder[2]?.parentNode !== ifNode) return;
-    if (+writeDecl.node.$p.pid > +ifNode.$p.pid) return;
-    if (+writeAssign.node.$p.pid > +ifNode.$p.pid) return;
-    if (+writeDecl.node.$p.pid > +writeAssign.node.$p.pid) return; // Kind of implied but ...
+    if (writeDecl.node.$p.npid > ifNode.$p.npid) return;
+    if (writeAssign.node.$p.npid > ifNode.$p.npid) return;
+    if (writeDecl.node.$p.npid > writeAssign.node.$p.npid) return; // Kind of implied but ...
 
     // Now verify that the assignment occurs in the block of the prevIfNode
     if (writeDecl.blockChain !== ifNode.$p.blockChain) return; // decl and read must appear in same same block scope
-    const inConsequent = writeAssign.blockChain === prevIfNode.consequent.$p.blockChain + prevIfNode.consequent.$p.pid + ',';
-    const inAlternate = writeAssign.blockChain === prevIfNode.alternate.$p.blockChain + prevIfNode.alternate.$p.pid + ',';
+    const inConsequent = writeAssign.blockChain === prevIfNode.consequent.$p.blockChain + prevIfNode.consequent.$p.npid + ',';
+    const inAlternate = writeAssign.blockChain === prevIfNode.alternate.$p.blockChain + prevIfNode.alternate.$p.npid + ',';
     if (!inConsequent && !inAlternate) return;
 
     // Confirm the init and assigned value have a known truthy state

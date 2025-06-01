@@ -11211,7 +11211,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
       }
 
       let n = 0;
-      vgroup(`Have a loop @${node.$p.pid} that pumps`, arrName, 'with', pumpKind, '..., a prev stmt:', prev?.type, 'declaring', prev?.id?.name, 'with init', prev?.init?.type);
+      vgroup(`Have a loop @${node.$p.npid} that pumps`, arrName, 'with', pumpKind, '..., a prev stmt:', prev?.type, 'declaring', prev?.id?.name, 'with init', prev?.init?.type);
 
       // Note: `null` means a gap, which returns `undefined`, so that's not blocking us here. Spreads do block us.
       if (prev?.type !== 'VarStatement') {
@@ -11229,7 +11229,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
       }
       else {
         const arrNode = prev.init;
-        vlog('Pump loop has primitive array @', +arrNode.$p.pid);
+        vlog('Pump loop has primitive array @', arrNode.$p.npid);
         // Okay, prev creates an array and it only contains primitives
         // Now we must verify the other statements in the loop. Each must be easy to reason about and stay "local".
         const localNames = new Map; // Remember names that were declared so we can easily verify that they were created inside the loop

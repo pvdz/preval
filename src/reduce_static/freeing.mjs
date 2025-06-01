@@ -208,7 +208,7 @@ function _freeing(fdata, $prng, usePrng) {
   log('Statements freed: 0.');
 
   function processBlock(blockNode, path) {
-    vlog('Block @', +blockNode.$p.pid, blockNode.$p.predictable, 'has', blockNode.body.length, 'statements, parent:', path.nodes[path.nodes.length - 2]?.type);
+    vlog('Block @', blockNode.$p.npid, blockNode.$p.predictable, 'has', blockNode.body.length, 'statements, parent:', path.nodes[path.nodes.length - 2]?.type);
     if (blockNode.$p.predictable === false) return; // May already have been visited entirely when walking recursively
     if (blockNode.body.length < 2) return; // Not worth it
 
@@ -357,7 +357,7 @@ function _freeing(fdata, $prng, usePrng) {
       const prevName = prev.id.name;
       // Prev was a const and it's being passed into the $frfr call. Check if it's used anywhere else.
       const meta = fdata.globallyUniqueNamingRegistry.get(prevName);
-      if (meta.reads.some(read => +read.node.$p.pid > +prev.$p.pid || +read.node.$p.pid < +(block[index+1]?.$p.pid ?? Infinity))) {
+      if (meta.reads.some(read => read.node.$p.npid > prev.$p.npid || read.node.$p.npid < (block[index+1]?.$p.npid ?? Infinity))) {
         // No ref outside of the const and frfr call. We can combine these.
 
         vlog('We can merge statement', index, 'with the $frfr call');
@@ -388,8 +388,8 @@ function withPredictableStatements(body, firstIndex, lastIndex, fdata, funcQueue
   // ensure that the variable exists after this step. This means we can only do it when
   // it's the last statement of statements we're packing up right now. Maybe we can
   // improve that heuristic somehow later.
-  const firstPid = +body[firstIndex].$p.pid;
-  const lastPid = lastIndex + 1 >= body.length ? Infinity : +body[lastIndex + 1].$p.pid;
+  const firstPid = body[firstIndex].$p.npid;
+  const lastPid = lastIndex + 1 >= body.length ? Infinity : body[lastIndex + 1].$p.npid;
 
   for (let stmtIndex=firstIndex; stmtIndex<=lastIndex; ++stmtIndex) {
     const stmt = body[stmtIndex];
@@ -399,9 +399,9 @@ function withPredictableStatements(body, firstIndex, lastIndex, fdata, funcQueue
       const meta = fdata.globallyUniqueNamingRegistry.get(name);
       for (let refIndex=0; refIndex<meta.rwOrder.length; ++refIndex) {
         const ref = meta.rwOrder[refIndex];
-        const pid = +ref.node.$p.pid;
+        const pid = ref.node.$p.npid;
         const inRange = pid >= firstPid && pid <= lastPid;
-        vlog('    - is', name, '@', +ref.node.$p.pid, 'in range?', firstPid, '<', pid, '<', lastPid, '--', inRange);
+        vlog('    - is', name, '@', ref.node.$p.npid, 'in range?', firstPid, '<', pid, '<', lastPid, '--', inRange);
         // If not then this must be the last statement. Can only proceed if there was at least one statement earlier.
         // We'd have to restart this function with the new bounds if they are different.
         if (!inRange && stmtIndex !== lastIndex) {
@@ -730,11 +730,11 @@ function isFreeStatement(stmtNode, fdata) {
     }
     case 'ExpressionStatement': {
       if (isFreeExpression(stmtNode.expression, fdata)) {
-        vlog('- @', +stmtNode.$p.pid, '= yes');
+        vlog('- @', stmtNode.$p.npid, '= yes');
         stmtNode.$p.predictable = true;
         return true;
       } else {
-        vlog('- @', +stmtNode.$p.pid, '= no');
+        vlog('- @', stmtNode.$p.npid, '= no');
         stmtNode.$p.predictable = false;
         return false;
       }

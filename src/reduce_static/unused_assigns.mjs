@@ -54,7 +54,7 @@ function _unusedAssigns(fdata) {
 
     if (meta.singleScoped) return; // vlog('- bail: var is single scope, other rules can deal with it better');
 
-    vlog('Have assignment expression to ident @', +lhs.$p.pid, ';', lhsName);
+    vlog('Have assignment expression to ident @', lhs.$p.npid, ';', lhsName);
 
     // Starting at this assignment, check if it's the last of the file
     const write = meta.writes.filter(read => read.node === assignNode.left)[0];
@@ -63,10 +63,10 @@ function _unusedAssigns(fdata) {
     // If the assignment is not in toplevel global, bail. For now.
     if (write.blockChain !== '1') return;
 
-    vlog('Have assignment expression in global to ident @', +lhs.$p.pid, ';', lhsName);
+    vlog('Have assignment expression in global to ident @', lhs.$p.npid, ';', lhsName);
 
     let currIndex = write.blockIndex + 1;
-    vlog('Checking whether the assignment to', lhsName, 'at node @', +write.node.$p.pid, 'at block index', currIndex-1, 'can be observed later');
+    vlog('Checking whether the assignment to', lhsName, 'at node @', write.node.$p.npid, 'at block index', currIndex-1, 'can be observed later');
     while (write.blockBody[currIndex]) {
       const currStmt = write.blockBody[currIndex];
       switch (currStmt.type) {

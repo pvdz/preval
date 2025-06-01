@@ -85,7 +85,7 @@ function processAttempt(fdata, queue) {
       // proof that the function is invoked anywhere from outside of the function itself.
       // Note: append comma to the funcChain to prevent `1,5 prefix of 1,53` -> `1,5, is not prefix of 1,53,`
       const chain = read.funcChain + ',';
-      vlog('Checking if read @', read.node.$p.pid, 'with funcChain', chain);
+      vlog('Checking if read @', read.node.$p.npid, 'with funcChain', chain);
       return funcs.some(funcNode => {
         vlog('- func funcChain:', funcNode.$p.funcChain);
         return read.funcChain.startsWith(funcNode.$p.funcChain + ',')

@@ -22,11 +22,11 @@ export function removeUnusedConstants(fdata) {
 
   if (changes) {
     vgroup('Running callbacks from first queue...');
-    queue.sort(({ index: a }, { index: b }) => (a < b ? -1 : a > b ? 1 : 0)); // ascending! most of the time we do back to front but this time i want first to last
+    queue.sort(({ index: a }, { index: b }) => a - b); // ascending! most of the time we do back to front but this time i want first to last
     queue.forEach(({ func }) => func());
     vgroupEnd();
     vgroup('Running callbacks from second queue...');
-    queue2.sort(({ index: a }, { index: b }) => (a < b ? 1 : a > b ? -1 : 0));
+    queue2.sort(({ index: a }, { index: b }) => b - a);
     queue2.forEach(({ func }) => func());
     vgroupEnd();
   }

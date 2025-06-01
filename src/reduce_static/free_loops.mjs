@@ -90,7 +90,7 @@ export function _freeLoops(fdata, prng, usePrng) {
     const callNodeToCalleeSymbol = new Map; // CallExpression node (obj instance) to qualified string name of func or method to be called
     const declaredNameTypes = new Map; // Binding name to mustBeType value
 
-    vgroup('Checking isFree on `while` loop @', blockBody[whileIndex].$p.pid, '...');
+    vgroup('Checking isFree on `while` loop @', blockBody[whileIndex].$p.npid, '...');
     vgroup('Scanning statements before the loop...');
     let fromIndex = whileIndex;
     while (fromIndex > 0) {
@@ -121,7 +121,7 @@ export function _freeLoops(fdata, prng, usePrng) {
     vgroupEnd();
 
     // While loop must be free. Let's try to resolve it.
-    vlog('\n\nOk! Resolving `while` loop @', blockBody[whileIndex].$p.pid, 'at block index', whileIndex,', starting from statement index', fromIndex,'\n\n');
+    vlog('\n\nOk! Resolving `while` loop @', blockBody[whileIndex].$p.npid, 'at block index', whileIndex,', starting from statement index', fromIndex,'\n\n');
 
     // The register contains the `init` for each declared variable. We use those as storage.
     // Then, by the end, any decls we want to keep will have the updated/correct node value.

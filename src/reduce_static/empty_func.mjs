@@ -50,6 +50,10 @@ function _pruneEmptyFunctions(fdata) {
       vlog('  - not a function');
       return;
     }
+    if (funcNode.async || funcNode.generator) {
+      vlog('  - async or generator, bail');
+      return;
+    }
 
     if (funcNode.$p.readsArgumentsAny || funcNode.$p.readsArgumentsLen) {
       // Note: Inlining the arg count should be trivial so we can do that easily

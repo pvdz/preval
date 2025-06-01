@@ -356,7 +356,7 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
   TIMING.three = mthree - mtwo;
 
   vlog('');
-  group('Trying to resolve a mustBeType for', untypedVarDecls.size, 'var decls, ', funcNodesForSomething.size, 'funcs, and the callerArgs for', calledMetas.size, 'funcs');
+  vgroup('Trying to resolve a mustBeType for', untypedVarDecls.size, 'var decls, ', funcNodesForSomething.size, 'funcs, and the callerArgs for', calledMetas.size, 'funcs');
   let typingUpdated = 0;
   let typingChanged = true;
   let loopi = 0;
@@ -989,7 +989,7 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
     vgroupEnd();
   }
   vlog('All typing settled now..., updated', typingUpdated, 'times. Still have', untypedVarDecls.size, 'decls without a mustBeType, sadge');
-  groupEnd();
+  vgroupEnd();
 
   const mfour = enableTiming && performance.now();
   TIMING.four = mfour - mthree;

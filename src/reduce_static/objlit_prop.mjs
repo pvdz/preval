@@ -547,7 +547,7 @@ function _objlitPropAccess(fdata) {
         }
 
         // x.y = z;
-        vlog('- bail: The member expression was being assigned to is not singleInner');
+        vlog('- bail: The member expression being assigned to is not same block, or has non-free statements between decl and assign');
         return true; // "prop mutation". Move to next write
       }
 

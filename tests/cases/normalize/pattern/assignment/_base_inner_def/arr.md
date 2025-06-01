@@ -74,7 +74,7 @@ None (except for the 1 globals expected by the test)
 
 
 Should call `$` with:
- - eval returned: ('<crash[ Cannot set property x of #<Object> which has only a getter ]>')
+ - eval returned: ('<crash[ <ref> is not defined ]>')
 
 Pre normalization calls: Same
 

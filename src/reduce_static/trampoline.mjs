@@ -30,9 +30,9 @@ function _pruneTrampolineFunctions(fdata) {
     if (!meta.isConstant) return;
 
     const funcNode = meta.varDeclRef.node;
-    if (funcNode.type !== 'FunctionExpression') {
-      return;
-    }
+    if (funcNode.type !== 'FunctionExpression') return;
+    if (funcNode.async) return vlog('- bail: function is async');
+    if (funcNode.generator) return vlog('- bail: function is generator');
 
     vgroup('- func ', [funcName], ': does it read `arguments` len/any?', meta.varDeclRef.node.$p.readsArgumentsLen, meta.varDeclRef.node.$p.readsArgumentsAny);
     processFunc(meta, funcNode, funcName)

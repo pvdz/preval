@@ -2473,7 +2473,7 @@ function nodeMightMutateNameUntrapped(nodes, metaName, includeProperties, single
       vlog('Return statement overrides any other state');
       return true;
     }
-    else if (['ContinueStatement', 'BreakStatement'].includes(node.type)) {
+    else if (node.type === 'BreakStatement') {
       vlog('A continue or break will LABELS if the previous nodes mutates');
       if (mutates) {
         vlog('- previous nodes mutated so adding', node.label?.name || '', 'to the label set');
@@ -2513,7 +2513,9 @@ function nodeMightMutateNameUntrapped(nodes, metaName, includeProperties, single
     }
     else {
       vlog('Ehhh. Considering NONE;', node.type);
-      todo(`nodeMightMutateNameUntrapped; Which statement are we missing here? ${node.type}`)
+      todo(`nodeMightMutateNameUntrapped; Which statement are we missing here? ${node.type}`);
+      mutates = true; // Be conservative; say it might mutate
+      return true;
     }
   });
   vgroupEnd();

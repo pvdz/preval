@@ -9,11 +9,11 @@
 ## Input
 
 `````js filename=intro
+// With primitive, we can drop this case.
 try {
   throw "one";
 }
 catch (a) {
-
 }
 `````
 

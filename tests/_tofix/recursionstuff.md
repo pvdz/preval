@@ -61,14 +61,14 @@ const tmpFree2 /*:(primitive)=>boolean*/ = function $free($$0) {
   return tmpRet$2;
 };
 const selfcaller /*:(primitive)=>undefined*/ = function ($$0) {
-  const $dlr_$$2 /*:primitive*/ = $$0;
+  const $dlr_$$3 /*:primitive*/ = $$0;
   debugger;
-  $($dlr_$$2);
-  const tmpIfTest /*:boolean*/ = $frfr(tmpFree2, $dlr_$$2);
+  $($dlr_$$3);
+  const tmpIfTest /*:boolean*/ = $frfr(tmpFree2, $dlr_$$3);
   if (tmpIfTest) {
     return undefined;
   } else {
-    const nextnum /*:primitive*/ = $dlr_$$2 + 1;
+    const nextnum /*:primitive*/ = $dlr_$$3 + 1;
     selfcaller(nextnum);
     return undefined;
   }
@@ -90,11 +90,11 @@ const tmpFree2 = function $free($dlr_$$1) {
   const tmpRet$2 = typeof $dlr_$$1 === `string`;
   return tmpRet$2;
 };
-const selfcaller = function ($dlr_$$2) {
-  $($dlr_$$2);
-  const tmpIfTest = $frfr(tmpFree2, $dlr_$$2);
+const selfcaller = function ($dlr_$$3) {
+  $($dlr_$$3);
+  const tmpIfTest = $frfr(tmpFree2, $dlr_$$3);
   if (!tmpIfTest) {
-    selfcaller($dlr_$$2 + 1);
+    selfcaller($dlr_$$3 + 1);
   }
 };
 try {

@@ -381,33 +381,39 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
 
     function untypedCheck(untypedObj, node, meta, name) {
       // Note: deal with lets properly. That's not just this init.
-      const init = node.init;
-      vlog('Resolving .typing with the details of the init, type=', init.type);
-      const newTyping = inferNodeTyping(fdata, init);
-      vlog('++ Results in', newTyping?.mustBeType, '(mustbeprimitive:', newTyping?.mustBePrimitive, ') which we will inject');
+      let newTyping = getCleanTypingObject();
+      let firstVisibleWrite;
+      let firstVisibleNode;
+      const skipInit = meta.isTernaryConst && meta.writes.length === 3;
+      if (skipInit) {
+        vlog('This is a ternaryConst with 3 writes, which means that the first write is not observable. We should ignore it for typing.');
+        firstVisibleWrite = meta.writes[1];
+        ASSERT(firstVisibleWrite.kind === 'assign', 'part of ternaryconst assert');
+        firstVisibleNode = firstVisibleWrite.parentNode.right;
+      } else {
+        firstVisibleNode = node.init;
+      }
+      vlog('++ Now processing all writes');
       meta.writes.forEach(write => {
-        if (write.kind === 'assign') {
-          const rhsTyping = inferNodeTyping(fdata, write.parentNode.right);
-          vlog('Merging rhs typing with binding;', rhsTyping);
-          mergeTyping(rhsTyping, newTyping);
-          vlog('newTyping now:', newTyping);
-        } else {
-          ASSERT(write.kind === 'var', 'not catch var or export or smth, right?', write);
-        }
+        if (skipInit && write.kind === 'var') return;
+        const rhsTyping = inferNodeTyping(fdata, write.kind === 'var' ? write.parentNode.init : write.parentNode.right);
+        vlog('Merging rhs typing with binding;', rhsTyping);
+        mergeTyping(rhsTyping, newTyping);
+        vlog('newTyping now:', newTyping);
       });
 
       if (
         !newTyping?.mustBeType &&
-        init.type === 'MemberExpression' &&
-        init.object.type === 'Identifier' &&
-        AST.isNumberLiteral(init.property)
+        firstVisibleNode.type === 'MemberExpression' &&
+        firstVisibleNode.object.type === 'Identifier' &&
+        AST.isNumberLiteral(firstVisibleNode.property)
       ) {
         // `const x = arr[100]`
         vlog('Special array access check for var that has unknown typing but is assigned a number computed prop of an ident');
         // valueNode is a computed member expression.
         // If the object is an array and we can assert the array only contains primitives
         // and we can assert the array cannot get other types then ... it must be a primitive?
-        const meta = fdata.globallyUniqueNamingRegistry.get(init.object.name);
+        const meta = fdata.globallyUniqueNamingRegistry.get(firstVisibleNode.object.name);
         vlog('- The object of the member expression mustBeType', meta.typing.mustBeType);
         if (meta.typing.mustBeType === 'array') {
           // Must verify that the array only contains primitives and doesn't escape
@@ -429,7 +435,7 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
 
                 if (AST.isPrimitive(read.grandNode.right)) ok = false;
                 else if (read.grandNode.right.type === 'Identifier') {
-                  const rhsMeta = fdata.globallyUniqueNamingRegistry.get(init.object.name);
+                  const rhsMeta = fdata.globallyUniqueNamingRegistry.get(firstVisibleNode.object.name);
                   if (PRIMITIVE_TYPE_NAMES_PREVAL.has(rhsMeta.typing.mustBeType)) ok = false;
                 }
                 if (!ok) return true;
@@ -473,13 +479,13 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
       if (
         meta.typing.mustBeType !== 'primitive' &&
         !newTyping?.mustBeType &&
-        init.type === 'CallExpression' &&
-        init.callee.type === 'Identifier' &&
-        init.callee.name === SYMBOL_DOTCALL &&
+        firstVisibleNode.type === 'CallExpression' &&
+        firstVisibleNode.callee.type === 'Identifier' &&
+        firstVisibleNode.callee.name === SYMBOL_DOTCALL &&
         [
           symbo('array', 'shift'),
           symbo('array', 'pop'),
-        ].includes(init.arguments[0].name)
+        ].includes(firstVisibleNode.arguments[0].name)
       ) {
         vlog('- Trying pump detection to recover...');
         // The pop/shift does not add types to the array (may remove one if it's the last)
@@ -500,7 +506,7 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
         // (Note that we only care about primitive because arrays may always produce undefined, so there's no real point
         // in tracking anything other than "primitive".)
 
-        const ctxNode = init.arguments[1];
+        const ctxNode = firstVisibleNode.arguments[1];
         if (ctxNode.type !== 'Identifier') return; // This is not an array, ignore and assume the call returns unknown.
         const arrMeta = fdata.globallyUniqueNamingRegistry.get(ctxNode.name);
         if (!arrMeta.isConstant || arrMeta.writes.length !== 1) return; // bail: can only deal with constant arrays. TODO: i mean, why not..?

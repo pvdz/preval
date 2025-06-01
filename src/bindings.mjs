@@ -1797,6 +1797,11 @@ function _inferNodeTyping(fdata, valueNode) {
       ASSERT(false, 'normalized code does not have this node:', valueNode.type, valueNode);
       return;
     }
+    case 'MetaProperty': {
+      // This is `new.target` (or is this import.url etc as well?);
+      // - new.target: target constructor when invoked with `new`, otherwise `undefined`. In some cases we can assert this value...
+      return createTypingObject({});
+    }
     default: {
       // Do I want to assert false here? At this point there can't be that many legit unchecked nodes left
       throw ASSERT(false, `what expression did I miss here? ${valueNode.type} ${JSON.stringify(valueNode)}`);

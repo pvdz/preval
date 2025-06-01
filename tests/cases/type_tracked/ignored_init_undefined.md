@@ -30,6 +30,7 @@ if (itooamanumberjack) {
 
 
 `````js filename=intro
+imanumberandilovethrees;
 let tmpClusterSSA_itooamanumberjack /*:unknown*/ /*ternaryConst*/ = undefined;
 if (imanumberandilovethrees) {
   const tmpChainElementCall /*:unknown*/ = $(1);
@@ -58,6 +59,7 @@ if (tmpClusterSSA_itooamanumberjack) {
 (This ought to be the final result)
 
 `````js filename=intro
+imanumberandilovethrees;
 let tmpClusterSSA_itooamanumberjack = undefined;
 if (imanumberandilovethrees) {
   const tmpChainElementCall = $(1);
@@ -82,6 +84,7 @@ if (tmpClusterSSA_itooamanumberjack) {
 With rename=true
 
 `````js filename=intro
+imanumberandilovethrees;
 let a = undefined;
 if (imanumberandilovethrees) {
   const b = $( 1 );

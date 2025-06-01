@@ -59,6 +59,7 @@ if (tmpIfTest$45) {
 `````js filename=intro
 if (tmpIfTest$45) {
   tmpCalleeParam$127;
+  tmpSSA__0x2d5594;
   tmpReturnArg$39(e, d);
   getParameterByName();
   unknown(297);
@@ -76,6 +77,7 @@ if (tmpIfTest$45) {
 `````js filename=intro
 if (tmpIfTest$45) {
   tmpCalleeParam$127;
+  tmpSSA__0x2d5594;
   tmpReturnArg$39(e, d);
   getParameterByName();
   unknown(297);
@@ -91,6 +93,7 @@ With rename=true
 `````js filename=intro
 if (tmpIfTest$45) {
   tmpCalleeParam$127;
+  tmpSSA__0x2d5594;
   tmpReturnArg$39( e, d );
   getParameterByName();
   unknown( 297 );
@@ -156,7 +159,7 @@ None
 ## Globals
 
 
-None (except for the 10 globals expected by the test)
+None (except for the 11 globals expected by the test)
 
 
 ## Runtime Outcome

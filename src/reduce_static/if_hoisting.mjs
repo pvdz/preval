@@ -72,9 +72,9 @@ function _ifHoisting(fdata) {
       queue.push({
         pid: +node.$p.pid,
         func: () => {
-          rule('When each branch of an `if` starts with the same expression, hoist them up');
+          rule('When each branch of an `if` starts with the same expression, hoist them up1');
           example('if (x) { let a = 1; f(a); } else { let b = 1; g(b); }', 'let a = 1; if (x) f(a); else g(a);');
-          before(node);
+          before(blockBody[blockIndex]);
 
           const name = firstThen.id.name;
           const meta = fdata.globallyUniqueNamingRegistry.get(firstElse.id.name);
@@ -87,10 +87,14 @@ function _ifHoisting(fdata) {
           });
 
           blockBody.splice(blockIndex, 0, firstThen);
+          // Preserve if-test expression (tdz semantics)
+          blockBody.splice(blockIndex, 0, AST.expressionStatement(AST.cloneSimple(node.test)));
           node.consequent.body.shift();
           node.alternate.body.shift();
 
-          after(node);
+          after(blockBody[blockIndex]);
+          after(blockBody[blockIndex+1]);
+          after(blockBody[blockIndex+2]);
         },
       });
     } else {
@@ -113,18 +117,13 @@ function _ifHoisting(fdata) {
       queue.push({
         pid: +node.$p.pid,
         func: () => {
-          rule('When each branch of an `if` starts with the same expression, hoist them up');
+          rule('When each branch of an `if` starts with the same expression, hoist them up2');
           example('if (x) { a = 1; f(a); } else { a = 1; g(a); }', 'a = 1; if (x) { f(a); } else { g(a); }');
-          before(node);
+          before(blockBody[blockIndex]);
 
-          if (firstThen.type === 'ReturnStatement' || firstThen.type === 'BreakStatement' || firstThen.type === 'ThrowStatement') {
-            // Preserve if-test expression
-            blockBody.splice(blockIndex, 0, firstThen);
-            blockBody.splice(blockIndex, 0, AST.expressionStatement(AST.cloneSimple(node.test)));
-          } else {
-            blockBody.splice(blockIndex, 0, firstThen);
-          }
-
+          blockBody.splice(blockIndex, 0, firstThen);
+          // Preserve if-test expression (tdz semantics)
+          blockBody.splice(blockIndex, 0, AST.expressionStatement(AST.cloneSimple(node.test)));
           node.consequent.body.shift();
           node.alternate.body.shift();
 

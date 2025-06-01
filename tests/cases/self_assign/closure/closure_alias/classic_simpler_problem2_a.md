@@ -1,0 +1,178 @@
+# Preval test case
+
+# classic_simpler_problem2_a.md
+
+> Self assign > Closure > Closure alias > Classic simpler problem2 a
+
+- [ ] `let f = function(){...}; f(1, 2); f(3, 4)`
+- [x] `let f = function(){...}; while (true) { f(1, 2); f(3, 4)`
+- [ ] `let f = function(){...}; const g = f; while(true) { g(1, 2); g(3, 4)`
+
+This one is hard because we need to transform the first call in
+the while to become the first call after sealing it. For that we
+need to transform the args of the recursive call to be the args
+of the first call. But in a loop, that's dicy because the next
+iteration that won't be the first recursive call anymore, just
+a call to the sealed function instead.
+So perhaps we need to add a boolean to check on this. The bool
+would be eliminated for non-loop cases but not for loops?
+`g(1,2)`
+->
+`let a = 1; b = 2; let bool = false; ... if (bool) { bool = true; g(1,2); } else g(a, b);
+So this is why we have that tmpSealed check.
+
+## Input
+
+`````js filename=intro
+// Should NOT yet inline self_closing_decoder, because closure
+let f /*:(unknown, unknown)=>unknown*/ = function(out_arg) {
+  let thisclosurebecomesargumentsobj /*:unknown*/ = out_arg;
+  f = function(in_arg, $$1) {
+    thisclosurebecomesargumentsobj = $('oh', in_arg);
+  };
+  const tmpReturnArg /*:unknown*/ = f(thisclosurebecomesargumentsobj, out_arg);
+  return tmpReturnArg;
+};
+while (true) {
+  const a = f(1, 2);
+  const b = f(3, 4);
+  $(a, b);
+}
+`````
+
+
+## Settled
+
+
+`````js filename=intro
+let tmpSealed /*:boolean*/ = false;
+let thisclosurebecomesargumentsobj /*:unknown*/ = 1;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  if (tmpSealed) {
+    $(`oh`, 1);
+  } else {
+    $(`oh`, thisclosurebecomesargumentsobj);
+    tmpSealed = true;
+  }
+  thisclosurebecomesargumentsobj = $(`oh`, 3);
+  $(undefined, undefined);
+}
+`````
+
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let tmpSealed = false;
+let thisclosurebecomesargumentsobj = 1;
+while (true) {
+  if (tmpSealed) {
+    $(`oh`, 1);
+  } else {
+    $(`oh`, thisclosurebecomesargumentsobj);
+    tmpSealed = true;
+  }
+  thisclosurebecomesargumentsobj = $(`oh`, 3);
+  $(undefined, undefined);
+}
+`````
+
+
+## PST Settled
+With rename=true
+
+`````js filename=intro
+let a = false;
+let b = 1;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  if (a) {
+    $( "oh", 1 );
+  }
+  else {
+    $( "oh", b );
+    a = true;
+  }
+  b = $( "oh", 3 );
+  $( undefined, undefined );
+}
+`````
+
+
+## Normalized
+(This is what phase1 received the first time)
+
+`````js filename=intro
+let f = function ($$0) {
+  let out_arg = $$0;
+  debugger;
+  let thisclosurebecomesargumentsobj = out_arg;
+  f = function ($$0, $$1) {
+    let in_arg = $$0;
+    let $dlr_$$1 = $$1;
+    debugger;
+    thisclosurebecomesargumentsobj = $(`oh`, in_arg);
+    return undefined;
+  };
+  const tmpReturnArg = f(thisclosurebecomesargumentsobj, out_arg);
+  return tmpReturnArg;
+};
+while (true) {
+  const a = f(1, 2);
+  const b = f(3, 4);
+  $(a, b);
+}
+`````
+
+
+## Todos triggered
+
+
+None
+
+
+## Globals
+
+
+None
+
+
+## Runtime Outcome
+
+
+Should call `$` with:
+ - 1: 'oh', 1
+ - 2: 'oh', 3
+ - 3: undefined, undefined
+ - 4: 'oh', 1
+ - 5: 'oh', 3
+ - 6: undefined, undefined
+ - 7: 'oh', 1
+ - 8: 'oh', 3
+ - 9: undefined, undefined
+ - 10: 'oh', 1
+ - 11: 'oh', 3
+ - 12: undefined, undefined
+ - 13: 'oh', 1
+ - 14: 'oh', 3
+ - 15: undefined, undefined
+ - 16: 'oh', 1
+ - 17: 'oh', 3
+ - 18: undefined, undefined
+ - 19: 'oh', 1
+ - 20: 'oh', 3
+ - 21: undefined, undefined
+ - 22: 'oh', 1
+ - 23: 'oh', 3
+ - 24: undefined, undefined
+ - 25: 'oh', 1
+ - 26: 'oh', 3
+ - eval returned: ('<crash[ Loop aborted by Preval test runner (this simply curbs infinite loops in tests) ]>')
+
+Pre normalization calls: Same
+
+Normalized calls: Same
+
+Post settled calls: Same
+
+Denormalized calls: Same

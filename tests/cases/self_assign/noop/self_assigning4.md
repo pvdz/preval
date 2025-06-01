@@ -98,9 +98,9 @@ const func /*:(unknown, unknown)=>unknown*/ = function ($$0, $$1) {
     return expando_result;
   }
 };
-const a /*:unknown*/ = func(3, 4);
+const tmpClusterSSA_a /*:unknown*/ = func(3, 4);
 const b /*:unknown*/ = func(1, 2);
-$(a, b);
+$(tmpClusterSSA_a, b);
 `````
 
 
@@ -247,7 +247,7 @@ $(a, b);
 ## Todos triggered
 
 
-- (todo) Found a self-closing function shell but it did not match a known pattern...
+None
 
 
 ## Globals

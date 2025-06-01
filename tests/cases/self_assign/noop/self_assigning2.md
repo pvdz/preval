@@ -54,11 +54,11 @@ const func /*:(unused, unused)=>undefined*/ = function ($$0, $$1) {
   }
 };
 func(3, 4);
-const b /*:unknown*/ = arg1;
+const tmpClusterSSA_b /*:unknown*/ = arg1;
 func(1, 2);
 const a /*:unknown*/ = arg1;
 func(5, 6);
-$(a, b, arg1);
+$(a, tmpClusterSSA_b, arg1);
 `````
 
 
@@ -77,11 +77,11 @@ const func = function ($$0, $$1) {
   }
 };
 func(3, 4);
-const b = arg1;
+const tmpClusterSSA_b = arg1;
 func(1, 2);
 const a = arg1;
 func(5, 6);
-$(a, b, arg1);
+$(a, tmpClusterSSA_b, arg1);
 `````
 
 
@@ -151,7 +151,7 @@ $(a, b, c);
 ## Todos triggered
 
 
-- (todo) Found a self-closing function shell but it did not match a known pattern...
+None
 
 
 ## Globals

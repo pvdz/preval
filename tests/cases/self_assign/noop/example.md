@@ -32,25 +32,18 @@ $(f); // escapes (important, otherwise different rules would tackle it)
 
 `````js filename=intro
 const arr /*:array*/ = [`2175510YjCZON`, `10TAFtVj`, `11526394DNqxUn`, `60YWJuYY`, `794766IkrVMo`, `348105xrUwtS`];
-let f /*:(unknown, unknown)=>unknown*/ = function ($$0, $$1) {
-  const a /*:unknown*/ = $$0;
-  const b /*:unknown*/ = $$1;
+const f /*:(unknown, unused)=>primitive*/ = function ($$0, $$1) {
+  const c /*:unknown*/ = $$0;
   debugger;
-  f = function ($$0, $$1) {
-    const c /*:unknown*/ = $$0;
-    debugger;
-    const tmp /*:number*/ = c - 427;
-    const Co$1 /*:primitive*/ = arr[tmp];
-    return Co$1;
-  };
-  const tmpReturnArg$23 /*:unknown*/ = f(a, b);
-  return tmpReturnArg$23;
+  const tmp /*:number*/ = c - 427;
+  const Co$1 /*:primitive*/ = arr[tmp];
+  return Co$1;
 };
-const tmpCalleeParam /*:unknown*/ = f(430);
-$(tmpCalleeParam);
-const tmpCalleeParam$1 /*:unknown*/ = f(431);
+const tmpClusterSSA_tmpCalleeParam /*:primitive*/ = f(430, undefined);
+$(tmpClusterSSA_tmpCalleeParam);
+const tmpCalleeParam$1 /*:primitive*/ = f(431);
 $(tmpCalleeParam$1);
-const tmpCalleeParam$3 /*:unknown*/ = f(432);
+const tmpCalleeParam$3 /*:primitive*/ = f(432);
 $(tmpCalleeParam$3);
 $(f);
 `````
@@ -61,16 +54,12 @@ $(f);
 
 `````js filename=intro
 const arr = [`2175510YjCZON`, `10TAFtVj`, `11526394DNqxUn`, `60YWJuYY`, `794766IkrVMo`, `348105xrUwtS`];
-let f = function (a, b) {
-  f = function (c, $$1) {
-    const tmp = c - 427;
-    const Co$1 = arr[tmp];
-    return Co$1;
-  };
-  const tmpReturnArg$23 = f(a, b);
-  return tmpReturnArg$23;
+const f = function (c, $$1) {
+  const tmp = c - 427;
+  const Co$1 = arr[tmp];
+  return Co$1;
 };
-$(f(430));
+$(f(430, undefined));
 $(f(431));
 $(f(432));
 $(f);
@@ -82,26 +71,19 @@ With rename=true
 
 `````js filename=intro
 const a = [ "2175510YjCZON", "10TAFtVj", "11526394DNqxUn", "60YWJuYY", "794766IkrVMo", "348105xrUwtS" ];
-let b = function($$0,$$1 ) {
+const b = function($$0,$$1 ) {
   const c = $$0;
-  const d = $$1;
   debugger;
-  b = function($$0,$$1 ) {
-    const e = $$0;
-    debugger;
-    const f = e - 427;
-    const g = a[ f ];
-    return g;
-  };
-  const h = b( c, d );
-  return h;
+  const d = c - 427;
+  const e = a[ d ];
+  return e;
 };
-const i = b( 430 );
-$( i );
-const j = b( 431 );
-$( j );
-const k = b( 432 );
-$( k );
+const f = b( 430, undefined );
+$( f );
+const g = b( 431 );
+$( g );
+const h = b( 432 );
+$( h );
 $( b );
 `````
 
@@ -139,7 +121,7 @@ $(f);
 ## Todos triggered
 
 
-- (todo) Found a self-closing function shell but it did not match a known pattern...
+None
 
 
 ## Globals

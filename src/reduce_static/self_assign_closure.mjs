@@ -25,11 +25,15 @@
 import walk from '../../lib/walk.mjs';
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, fmat, tmat, findBodyOffset, findBodyOffsetExpensiveMaybe, assertNoDupeNodes, todo, currentState, } from '../utils.mjs';
 import * as AST from '../ast.mjs';
+import { createFreshVar } from '../bindings.mjs';
+import { cloneSimple } from '../ast.mjs';
 
 export function selfAssignClosure(fdata) {
   group('\n\n\n[selfAssignClosure] Checking for self-assigning funcs returning their own closures');
+  currentState(fdata, 'selfAssignClosure', true, fdata);
   // currentState(fdata, 'selfAssignClosure', true, fdata);
   const r = _selfAssignClosure(fdata);
+  currentState(fdata, 'selfAssignClosure', true, fdata);
   groupEnd();
   return r;
 }
@@ -83,7 +87,7 @@ function processAttempt(fdata) {
   // This is a special case where we try to smoke out the above case at the start of some
   // code but where the soundness is harder to prove generically.
 
-  const found = findTripleAliasArrayClosure(fdata);
+  const found = handleTripleAliasArrayClosure(fdata);
   if (found) return 1;
   vlog('findTripleAliasArrayClosure not found. searching for self sealers now...');
 
@@ -104,7 +108,7 @@ function processAttempt(fdata) {
   return updated;
 }
 
-function findTripleAliasArrayClosure(fdata) {
+function handleTripleAliasArrayClosure(fdata) {
   // This searches for a hyper specific pattern.
   // From the start of the function, ignore all var decls with a declarative
   // structure (functions, empty array, empty object) as long as they don't
@@ -375,19 +379,19 @@ function findSelfCloser(fdata, meta, targetName) {
   // does not spread. It may still pass through params. There are now a few cases to cover;
 
   vgroup('Trying verifyClosureCase()');
-  if (verifyClosureCase(fdata, meta, targetName, firstWrite, secondWrite)) {
+  if (handleClosureCase(fdata, meta, targetName, firstWrite, secondWrite)) {
     vgroupEnd();
     return true;
   }
   vgroupEnd();
   vgroup('Trying verifyWrapperCase()');
-  if (verifyWrapperCase(fdata, meta, targetName, firstWrite, secondWrite, outerFuncBlock, tmpCall)) {
+  if (handleWrapperCase(fdata, meta, targetName, firstWrite, secondWrite, outerFuncBlock, tmpCall)) {
     vgroupEnd();
     return true;
   }
   vgroupEnd();
-  vgroup('Trying verifyImmediatelyCalledCase()');
-  if (verifyImmediatelyCalledCase(fdata, meta, targetName, firstWrite, secondWrite)) {
+  vgroup('Trying immediatelyCalledSelfClosing()');
+  if (handleImmediatelyCalledCases(fdata, meta, targetName, firstWrite, secondWrite, tmpCall)) {
     vgroupEnd();
     return true;
   }
@@ -397,7 +401,7 @@ function findSelfCloser(fdata, meta, targetName) {
   return false;
 }
 
-function verifyWrapperCase(fdata, meta, targetName, firstWrite, secondWrite, outerFuncBlock, outerFuncTmpVar) {
+function handleWrapperCase(fdata, meta, targetName, firstWrite, secondWrite, outerFuncBlock, outerFuncTmpVar) {
   // Note: so far we have only verified this pattern:
   //        `let f = function(??){ ??; f = function(??){ ?? }; const tmp = f(??); return tmp; }`
   //
@@ -545,7 +549,7 @@ function verifyWrapperCase(fdata, meta, targetName, firstWrite, secondWrite, out
   return true;
 }
 
-function verifyClosureCase(fdata, meta, targetName, first, second) {
+function handleClosureCase(fdata, meta, targetName, first, second) {
   // This case looks for a closure, something like this:
   //
   //        `let f = function(){ const arr = [1,2,3]; f = function(){ return arr; }; const tmp = f(); return tmp; }`
@@ -835,37 +839,362 @@ function closureCaseEscaping(first, second, meta, targetName) {
   return true;
 }
 
-function verifyImmediatelyCalledCase(fdata, meta, targetName, first, second) {
-  // In this case the self closing function is either called immediately, or aliased and the alias
+function handleImmediatelyCalledCases(fdata, meta, targetName, first, second, tmpCallVarNode) {
+  // So we have already confirmed that we have a self closing function with this shape:
+  //
+  //     `let f = function(pqr){ ...; f = function(){ ... }; const tmp = f(xyz); return tmp; }`
+  //
+  // With some unknown parts before and inside the inner function and where the closing call does not
+  // spread. It may still pass through params (not yet confirmed!). There are now a few cases to cover;
+  //
+  // This is hard path and we have to confirm whether `f` is called immediately as the first real
+  // call of the entire script. We can ignore a few declarative things that have no observable
+  // side effects. Basically we're worried that a closure triggers the self closing function too
+  // and we're left with two instances, which would break the transform.
+  // That feels brittle, it kind of is, but mostly means that this targets a fairly specific kind
+  // of self closing occurrence, popular with obfuscators. We'll deal with brittleness later. Maybe.
+
+  // Confirm the params. In particular, confirm that the params are only used in the outer function
+  // once (at most), which in particular must be in the recursive call. Fewer params may be used in
+  // that call but they should be in order without gaps. That's the pattern so far. Refine if necessary.
+
+  const outerFuncNode = first.parentNode.init;
+
+  if (outerFuncNode.$p.thisAccess) {
+    todo('self closing function pattern where outer func uses `this`');
+    vlog('- bail: outer func uses `this`');
+    return false;
+  }
+
+  if (outerFuncNode.$p.readsArgumentsAny) {
+    todo('self closing function pattern where outer func uses `arguments`'); // We can replace `arguments.length` in this particular case tho...
+    vlog('- bail: outer func uses `arguments`');
+    return false;
+  }
+
+  // We have to account for two patterns now:
+  // - the function that's sealed is the one that's called throughout
+  //   - aliases cannot be referenced after the sealing call
+  //   - apply the closure transform that converts the closure to an outer variable with fixed return
+  // - the aliases are the ones being called
+  //   - sealing function can only be called as the recursive call
+  //   - sealing function can only be referenced as part of the pattern, no further
+  //   - in this case the closure is moot and only a way to complicate variable definition, easy to transform
+
+  const found = verifyImmediatelyCalledCase(fdata, meta, targetName, first);
+  if (!found) return false;
+  const {call: firstCallNode, blockBody: callBlockBody, blockIndex: callBlockIndex, aliases} = found;
+  const called = firstCallNode.callee.name;
+  aliases.delete(targetName);
+
+  const {selfCalling, aliasCalling} = verifySelfAliasCalling(called, targetName, aliases, fdata, meta, firstCallNode, tmpCallVarNode);
+  vlog('- Self or alias calling pattern?', selfCalling, aliasCalling);
+  if (!selfCalling && !aliasCalling) {
+    vlog('- bail: not only self calling and not only alias calling, unsafe');
+    return false;
+  }
+
+  if (!verifyArgumentsAccessibleAtDecl(firstCallNode, fdata, first)) return false;
+
+  // Note: the self calling pattern (closures persist, created once, become globals) is different from the
+  // alias calling (closures do not persist so are really just a local variable).
+  if (selfCalling) {
+    return handleSelfCallingImmediatelyCalled(fdata, first, second, firstCallNode, callBlockBody, callBlockIndex, tmpCallVarNode, outerFuncNode)
+  } else {
+    return handleAliasCallingImmediatelyCalled(fdata, first, second, outerFuncNode, tmpCallVarNode);
+  }
+}
+function handleSelfCallingImmediatelyCalled(fdata, first, second, firstCallNode, callBlockBody, callBlockIndex, tmpCallVarNode, outerFuncNode) {
+  // Challenge (each should have a test):
+  //
+  // `let f = function(){}; const x = []; f(x); f(x);`
+  // `let f = function(){}; while (true) { const x = []; f(x); f(x);`
+  // `let f = function(){}; const g = f; while() { const x = []; f(x); f(x);`    <-- cant move the func init because of this, and it has no access to x
+  //
+  // First example is fine
+  // Second example passes in unknown value that is not accessible at func decl time because it's scoped
+  // Third example has same as second example but aliases the function before entering the loop.
+
+  rule('Self closing function with noop, called, aliases never called, closures become globals');
+  example(
+    'let f = function(arg) { ...; f = function(arg2) { arguments; arg; arg2; ... }; const r = f(arg); return r; }; f(a, b);',
+    'let arg = a; let ran = false; let f = function(arg2) { arguments; arg; arg2; ... }; const arg = a; ...; if (bool) { f(a, b); } else { bool = true; f(arg); }',
+    // This only works when the args to the first call to f() are reachable at the point of declaring the f variable
+    // See above for some problem cases where this fails. They are separate cases to handle.
+    // Also; first call needs to have args be that of the recursive call. In a loop we must make sure that only happens once.
+  );
+  before(first.blockBody[first.blockIndex]);
+
+  const tmpSealed = createFreshVar('tmpSealed', fdata);
+
+  // Replace the args of the first call with that of the tmp call.
+  // This would break loops since the second iteration would need the regular call args again.
+  // To this end we wrap the whole thing in a bool flag. We dont have innerLoop on $p and no ref
+  // for the first call here so let's just do it everywhere. Maybe we can save try/catch this way
+  // although then the bool would need to be after it. But that messes up recursive sealer calls.
+  // Which shouldn't exist. So we should put the bool assign after the first call. Ok good talk.
+  // `if (tmpSealed) f(1,2); else { f(outer_arg1, outer_arg1); tmpSealed = true; }`
+  // The call may have been assigned to something (ident or prop), or be the init of a var. sigh
+  // - stmt call, ident assign call, prop assign call, var init call. Deal with each case separately.
+  const oldStmt = callBlockBody[callBlockIndex];
+
+  if (oldStmt.type === 'VarStatement') {
+    // Here we have to create the var as a let undefined, then assign the call result to it in each branch
+    callBlockBody.splice(callBlockIndex, 1,
+      AST.varStatement('let', oldStmt.id.name, AST.undef()),
+      AST.ifStatement(
+        AST.identifier(tmpSealed),
+        AST.blockStatement(
+          AST.expressionStatement(AST.assignmentExpression(oldStmt.id.name, AST.cloneSortOfSimple(firstCallNode))),
+        ),
+        AST.blockStatement(
+          AST.expressionStatement(AST.assignmentExpression(oldStmt.id.name, AST.callExpression(AST.identifier(firstCallNode.callee.name), tmpCallVarNode.init.arguments.map(anode => AST.cloneSimple(anode))))),
+          AST.expressionStatement(AST.assignmentExpression(tmpSealed, AST.tru())),
+        ),
+      ),
+    );
+  } else if (oldStmt.type === 'ExpressionStatement') {
+    const oldExpr = oldStmt.expression;
+    if (oldExpr === firstCallNode) {
+      // Just call the func, ignore result
+      callBlockBody[callBlockIndex] = AST.ifStatement(
+        AST.identifier(tmpSealed),
+        AST.blockStatement(
+          AST.expressionStatement(AST.cloneSortOfSimple(firstCallNode)),
+        ),
+        AST.blockStatement(
+          AST.expressionStatement(AST.callExpression(AST.identifier(firstCallNode.callee.name), tmpCallVarNode.init.arguments.map(anode => AST.cloneSimple(anode)))),
+          AST.expressionStatement(AST.assignmentExpression(tmpSealed, AST.tru())),
+        ),
+      );
+    } else if (oldExpr.type === 'AssignmentExpression') {
+      // Assign to the same ident or prop, just clone it
+      callBlockBody[callBlockIndex] = AST.ifStatement(
+        AST.identifier(tmpSealed),
+        AST.blockStatement(
+          AST.expressionStatement(AST.assignmentExpression(AST.cloneSimple(oldExpr), AST.cloneSortOfSimple(firstCallNode))),
+        ),
+        AST.blockStatement(
+          AST.expressionStatement(AST.assignmentExpression(oldExpr.left.name, AST.callExpression(firstCallNode.callee.name, tmpCallVarNode.init.arguments.map(anode => AST.cloneSimple(anode))))),
+          AST.expressionStatement(AST.assignmentExpression(tmpSealed, AST.tru())),
+        ),
+      );
+    } else {
+      ASSERT(false, 'unreachable, hopefully');
+    }
+  }
+
+  const newNodes = [
+    // Transform the params of outer func to regularly declared variables. Init them to a clone of the arg nodes of first call.
+    ...outerFuncNode.$p.paramNames.map((aname, i) => {
+      const arg = firstCallNode.arguments[i];
+      if (arg) {
+        return AST.varStatement('let', aname, AST.cloneSimpleOrTemplate(arg));
+      } else {
+        return AST.varStatement('let', aname, AST.undef());
+      }
+    }),
+    // The bool to mark the seal call was executed (loop protection)
+    AST.varStatement('let', tmpSealed, AST.fals()),
+    // Put any code from between the header and the re-assignment here... Confirmed not to contain this/arguments.
+    // If it contains an arg reference that's fine because we create them as vars. We should be good?
+    ...outerFuncNode.body.body.slice(outerFuncNode.$p.bodyOffset, outerFuncNode.body.body.length - 3), // -3 because it ends with `f=func; t=f(); return t`
+  ];
+
+  // Inject before the first call
+  first.blockBody.splice(first.blockIndex, 0, ...newNodes);
+
+  // Replace the outer function with the inner function
+  first.parentNode.init = second.parentNode.right;
+
+  after(first.blockBody[first.blockIndex + newNodes.length]);
+  after(newNodes);
+  after(firstCallNode);
+  assertNoDupeNodes(first.blockBody, 'body', true); // var decl of sealer
+  assertNoDupeNodes(callBlockBody, 'body', true); // first call of sealer in some capacity
+  return true;
+}
+function handleAliasCallingImmediatelyCalled(fdata, first, second, outerFuncNode, tmpCallVarNode) {
+  // Different from self calling pattern
+
+  // We've asserted arguments/this are not used. This transform would break if we allow that ...
+  if (second.parentNode.right.$p.thisAccess) {
+    todo('self-closing pattern when inner access `this`, needs refinement');
+    vlog('  - bail: inner function access `this`, this transform is not suitable');
+    return false;
+  }
+
+  if (second.parentNode.right.$p.readsArgumentsLen) {
+    // We can fix this for the aliasCalling case!
+    // That's because the inner function is only ever called from the recursive call, so we can replace
+    // `arguments.length` with that arg count and be done with it.
+    ASSERT(second.parentNode.right.$p.readsArgumentsLenAs, 'we still define this?');
+    const lenName = second.parentNode.right.$p.readsArgumentsLenAs;
+    const meta = fdata.globallyUniqueNamingRegistry.get(lenName);
+    ASSERT(meta.writes[0].kind === 'var', 'we sort of control this?');
+
+    rule('Using `arguments.length` in a self closing function with the aliasCalling pattern means trivial inlining of that value');
+    example(
+      'let f = function(a, b, c){ f = function(){ $(arguments.length); const tmp = f(a, b, c); return tmp; }; const g = f; g(1, 2, 3); g(3, 4); g(5);',
+      'let f = function(a, b, c){ f = function(){ $(3); const tmp = f(a, b, c); return tmp; };  const g = f; g(1, 2, 3); g(3, 4); g(5);',
+    );
+    before(meta.writes[0].blockBody[meta.writes[0].blockIndex]);
+
+    meta.writes[0].parentNode.init = AST.primitive(tmpCallVarNode.init.arguments.length);
+
+    after(meta.writes[0].blockBody[meta.writes[0].blockIndex]);
+    return true; // feh
+  }
+  if (second.parentNode.right.$p.readsArgumentsAny) {
+    vlog('The inner is referencing `arguments`, which is tricky for us; between stmt count:', outerFuncNode.body.body.length - outerFuncNode.$p.bodyOffset);
+    // If there is still code between outer function body start and inner function assignment
+    // then we can move this into the inner body instead. But there's a minor complication when
+    // a binding from that code is also passed into the inner function as an argument.
+    if (outerFuncNode.body.body.length - outerFuncNode.$p.bodyOffset > 3) {
+      vlog('There are statements between outer func boundary and seal assignment... see if we can move them inside');
+      // See if we can't just move all the extra code from outer to inner. Should be safe unless recursive call uses a part of it.
+      if (tmpCallVarNode.init.arguments.every(anode => {
+        if (AST.isPrimitive(anode)) return true;
+        if (anode.type !== 'Identifier') return false;
+        return outerFuncNode.$p.paramNames.includes(anode.name);
+      })) {
+        vlog('All args to the recursive call are params or primitives. Least we can do now is move the extra code to the inner func');
+        rule('Self closing function with blocking complexity that is not using that complexity in the recursive call can move the complexity to the inner func');
+        example(
+          'let f = function(){ let x = 0; f = function(){ x = x + 1; $(x); }; const t = f(); return t; } const g = f; g(); g(); g();',
+          'let f = function(){ f = function(){ let x = 0; x = x + 1; $(x); }; const t = f(); return t; } const g = f; g(); g(); g();',
+        );
+        before(first.blockBody[first.blockIndex]);
+
+        const arr = outerFuncNode.body.body.splice(outerFuncNode.$p.bodyOffset, outerFuncNode.body.body.length - outerFuncNode.$p.bodyOffset - 3);
+
+        second.parentNode.right.body.body.splice(
+          second.parentNode.right.$p.bodyOffset,
+          0,
+          ...arr,
+        );
+
+        after(first.blockBody[first.blockIndex]);
+        return true;
+      }
+      vlog('Apparently the recursive call is using some of that code so we cant just get rid of it');
+      // Let's start with a targeted case; one statement and it's a closure
+      if (outerFuncNode.body.body.length - outerFuncNode.$p.bodyOffset === 4) {
+        // 4 means closure, f=function, t=f(); return t.
+        const stmt = outerFuncNode.body.body[outerFuncNode.$p.bodyOffset];
+        ASSERT(stmt !== second.parentNode, 'fickle test but we should not be fetching the sealing statement here');
+        ASSERT(stmt, 'should have something');
+
+        if (stmt.type === 'VarStatement' && tmpCallVarNode.init.arguments.every(anode => {
+          if (AST.isPrimitive(anode)) return true;
+          if (anode.type !== 'Identifier') return false;
+          if (outerFuncNode.$p.paramNames.includes(anode.name)) return true;
+          if (anode.name === stmt.id.name) return true;
+        })) {
+          vlog('Ok we should be able to inline this a bit!');
+
+          rule('Self closing function with alias calling pattern and using arguments in inner func and using closure data for recursive call, can move that code to inner func');
+          example(
+            'let f = function(){ let x = 0; f = function(y){ x = x + 1; $(x, y, arguments); }; const t = f(x); return t; } const g = f; g(); g(); g();',
+            'let f = function(){ f = function(y){ let x = 0; x = x + 1; $(x, y, arguments); }; const t = f(0); return t; } const g = f; g(); g(); g();',
+          );
+          before(first.blockBody[first.blockIndex]);
+
+          const arr = outerFuncNode.body.body.splice(outerFuncNode.$p.bodyOffset, outerFuncNode.body.body.length - outerFuncNode.$p.bodyOffset - 3);
+
+          second.parentNode.right.body.body.splice(
+            second.parentNode.right.$p.bodyOffset,
+            0,
+            ...arr,
+          );
+
+          tmpCallVarNode.init.arguments.forEach((anode, i) => {
+            if (anode.name === stmt.id.name) {
+              tmpCallVarNode.init.arguments[i] = AST.cloneSortOfSimple(stmt.init);
+            }
+          });
+
+          after(first.blockBody[first.blockIndex]);
+          return true;
+        }
+
+        todo('self closing pattern, alias calling, but recursive call is using stuff from the closure area beyond current heuristics');
+        vlog('  - bail: does not match heuristics');
+        return false;
+      }
+    }
+
+    todo('self-closing pattern when inner access arguments/this needs refinement');
+    vlog('  - bail: inner function access arguments, this transform is not suitable');
+    // How would we do this. In the self calling path we replace the first call with the recursive call args
+    // and that would work. In this case we don't so how do we make arguments work? We can ignore `this`.
+    // If they are primitives we can probably sus it out. But we have a real world case where the arg is
+    // a closure (of a param, unused, but still). We can't really fake it. The arguments object is too
+    // complex for that.
+
+    // We do know that the closure part is not actually a closure so we could move all that code to the inner
+    // function. That may lead to other rules eliminating the usage (or simplifying stuff anyways).
+    // We'd only need to make sure that we can resolve the recursive call if it passes on a local var
+    // created in that closure space (and we've observed cases that do this so we must cover it)
+
+    return false;
+  }
+
+  rule('Self closing function with noop, basically seals over and over again, closures are just local vars');
+  example(
+    'let f = function(arg) { ...; f = function(arg2) { arguments; arg; arg2; ... }; const r = f(arg); return r; }; f(a, b);',
+    'let f = function(arg) { let arg2 = a; arguments; arg; arg2; ... }; const g = f; g(1, 2);',
+    // This case will basically call the sealer over and over again. Alias the params locally, don't replace call args.
+  );
+  before(first.blockBody[first.blockIndex]);
+
+  outerFuncNode.body.body.splice(-3, 3,
+    ...second.parentNode.right.$p.paramNames.map((aname, i) => {
+      return AST.varStatement('let', aname, tmpCallVarNode.init.arguments[i] || AST.undef());
+    }),
+    ...second.parentNode.right.body.body.slice(second.parentNode.right.$p.bodyOffset),
+  );
+
+  after(first.blockBody[first.blockIndex]);
+  assertNoDupeNodes(first.blockBody, 'body', true); // var decl of sealer
+  return true;
+}
+
+function verifyImmediatelyCalledCase(fdata, meta, targetName, first) {
+  // In this case the self-closing function is either called immediately, or aliased and the alias
   // is called immediately. And neither the targetName nor its aliases escape before that point.
   // If we can prove that then we can resolve the self assignment immediately and don't have to
   // worry about local closures.
-
-
-
-  let immediatelyCalled = false;
 
   // We will search for the first call of any of these names or a statement that could potentially
   // let the function escape. We're cutting corners here so this could be solidified at the cost of perf.
   const aliases = new Set([targetName]);
 
-  let index = first.blockIndex;
-  while (++index < first.blockBody.length) {
-    const stmt = first.blockBody[index];
+  vgroup('Searching for first call of', [targetName], ', starting at', first.blockIndex, '/', first.blockBody.length);
+  const immediatelyCalled = verifyImmediatelyCalledBlock(targetName, first.blockBody, first.blockIndex+1, aliases);
+  vgroupEnd();
+
+  return immediatelyCalled;
+}
+function verifyImmediatelyCalledBlock(targetName, blockBody, blockIndex, aliases) {
+  for (; blockIndex < blockBody.length; blockIndex++) {
+    const stmt = blockBody[blockIndex];
+    vlog('Next statement:', stmt.type);
 
     if (stmt.type === 'ExpressionStatement') {
       const expr = stmt.expression;
+      vlog('Expr stmt, expr type is:', expr.type);
       if (
         expr.type === 'CallExpression' &&
         expr.callee.type === 'Identifier' &&
         aliases.has(expr.callee.name)
       ) {
-        // The function is called before anything else, yay
-        immediatelyCalled = true;
-        break;
+        vlog('This is calling the target directly or indirectly as "first" action, as statement');
+        return {call: expr, blockBody, blockIndex, aliases};
       }
 
       if (expr.type === 'CallExpression') {
+        vlog('This is calling another function, fail');
         // There was a function call but our function could not have escaped yet
         // so we should be able to safely ignore this call and continue.
         // TODO: what about expressions containing an alias letting it escape? like an array element or call arg
@@ -873,11 +1202,30 @@ function verifyImmediatelyCalledCase(fdata, meta, targetName, first, second) {
       }
 
       if (['Identifier', 'BinaryExpression'].includes(expr.type)) {
+        vlog('- ident/binexpr are ok? wait this cant be correct...');
         // Could not possibly mess with our function so fine to skip
         continue;
       }
 
       if (expr.type === 'AssignmentExpression') {
+        if (
+          expr.right.type === 'CallExpression' &&
+          expr.right.callee.type === 'Identifier' &&
+          aliases.has(expr.right.callee.name)
+        ) {
+          vlog('This is calling the target directly or indirectly as "first" action, as assign');
+          return {call: expr, blockBody, blockIndex, aliases};
+        }
+
+
+        if (
+          (expr.type === 'ArrayExpression' && expr.elements.every(e => !e || AST.isPrimitive(e)))
+        ) {
+          vlog('  - ok; array with primitives');
+          continue;
+        }
+
+        vlog('- bail: assignment is risky');
         // Aliasing to an existing var is too risky because the var may already
         // be closed and any function call could blow up our assumptions.
         break;
@@ -891,52 +1239,288 @@ function verifyImmediatelyCalledCase(fdata, meta, targetName, first, second) {
       }
 
       // Unknown expression; we skip.
+      vlog('- bail: this expr type is not allow listed');
       break;
     }
+
     if (stmt.type === 'VarStatement') {
       const init = stmt.init;
 
-      if (
-        init.type === 'CallExpression' &&
-        init.callee.type === 'Identifier' &&
-        init.callee.name === targetName
-      ) {
-        vlog('   - ok, the function is immediately called');
-        immediatelyCalled = true;
-        break;
+      vlog('- Init type is', init.type);
+
+      if (init.type === 'CallExpression') {
+        vlog('  - calling', [init.callee.name ?? init.callee.type], ', target is', [targetName]);
+        if (
+          init.callee.type === 'Identifier' &&
+          aliases.has(init.callee.name)
+        ) {
+          vlog('   - ok, the function is calling target directly or indirectly as "first" action, var stmt');
+          return {call: init, blockBody, blockIndex, aliases};
+        }
       }
 
-      if (init.type === 'Identifier' && aliases.has(init.name)) {
-        // Add alias to the list
-        aliases.add(stmt.id.name);
+      if (init.type === 'Identifier') {
+        vlog('  - name:', init.name);
+        if (aliases.has(init.name)) {
+          vlog('   - ok, adding to aliases', [stmt.id.name]);
+          // Add alias to the list
+          aliases.add(stmt.id.name);
+          continue;
+        }
+
+        // TODO: is this risky? can this lead to bad aliases?
+        vlog('  - ok; tentatively I think this might be ok. not observable, probably not risky');
         continue;
       }
 
       if (['FunctionExpression'].includes(init.type)) {
-        vlog('  - bail, too risky/expensive of leaking an alias', init.type);
-        break;
+        // TODO: check this claim and describe it better if true: vlog('  - bail, too risky/expensive of leaking an alias', init.type);
+        vlog('  - ok, noob');
+        continue;
       }
 
       if (
         // The identifier case could trip a TDZ error but I think we're gonna be okay
-        !['Identifier'].includes(init.type) && // etc...
-        !AST.isPrimitive(init)
+        ['Identifier'].includes(init.type) ||
+        AST.isPrimitive(init) ||
+        (init.type === 'ArrayExpression' && init.elements.every(e => !e || AST.isPrimitive(e)))
       ) {
-        vlog('  - bail, var init was not an ident, func, or primitive, before seeing call', init.type);
-        break;
+        vlog('  - ok, ignoring');
+        continue;
       }
+
+      vlog('- bail: this var init expr type is not allow listed', init.type);
+      break;
     }
+
+    if (stmt.type === 'EmptyStatement') {
+      continue;
+    }
+
+    if (stmt.type === 'LabeledStatement') {
+      vgroup('- Entering label. Will bail if not found in here.');
+      // This is a one-way trip; we enter unconditionally but we don't continue visiting after the label if not yet found
+      const r = verifyImmediatelyCalledBlock(targetName, stmt.body.body, 0, aliases);
+      vgroupEnd();
+      return r;
+    }
+
+    if (stmt.type === 'WhileStatement') {
+      vgroup('- Entering loop. Will bail if not found in here.');
+      // This is a one-way trip; we enter unconditionally but we don't continue visiting after the loop if not yet found
+      const r = verifyImmediatelyCalledBlock(targetName, stmt.body.body, 0, aliases);
+      vgroupEnd();
+      return r;
+    }
+
+    if (stmt.type === 'TryStatement') {
+      // This is tricky since there's no guarantee that anything runs inside a try without throwing
+      // For now we just scan the first statement and that's it...?
+      vlog('Check first statement for a call. Cannot support anything else safely at this time.');
+      const first = stmt.block.body[0];
+      let callNode;
+      if (first?.type === 'VarStatement') {
+        callNode = first.init;
+      } else if (first?.type === 'ExpressionStatement') {
+        if (first.expression.type === 'AssignmentExpression') {
+          callNode = first.expression.right;
+        } else {
+          callNode = first.expression;
+        }
+      }
+
+      if (
+        callNode.type === 'CallExpression' &&
+        callNode.callee.type === 'Identifier' &&
+        aliases.has(callNode.callee.name)
+      ) {
+        vlog('- ok: first expr of try is calling the target directly or indirectly');
+        return {call: callNode, blockBody, blockIndex, aliases};
+      }
+      vlog('- bail: could not verify the first expr in the try to call the func');
+      return false;
+    }
+
+    vlog('- bail: statement not allow listed');
+    return false;
 
     // Visit loops
     // Visit the first call of a try (super edge case but that's what we target). The rest is risky because an error may trigger.
     //this requires nested walking
   }
 
-  if (!immediatelyCalled) {
-    vlog('   - bail: the function escapes and we did not prove that it is called immediately');
-    return false;
+  vlog('   - bail: end of body; the function escapes and we did not prove that it is called immediately');
+  return false;
+}
+function verifySelfAliasCalling(called, targetName, aliases, fdata, meta, firstCallNode, tmpCallVarNode) {
+  let selfCalling = false; // The sealer is called once, closure is hoisted outward
+  let aliasCalling = false; // The sealer is called over and over again, the closure is not relevant
+
+  // Check if either func is called first and alias ignored, or func is not called at all
+  if (called === targetName) {
+    // Verify that the aliases are moot
+    vlog('- ok! Since the sealer itself was called we must now verify that all aliases are moot', aliases);
+    // Slightly trickier so we'll start conservatively;
+    // - aliases should be dead after the first call
+    // - aliases must be single scoped
+    // - also ok when sealer is called twice (recursive and first) and only aliases after that
+
+    let allok = true;
+    aliases.forEach(aname => {
+      if (!allok) return;
+      const ameta = fdata.globallyUniqueNamingRegistry.get(aname);
+      if (!ameta.singleScoped) {
+        vlog('  - bail; alias', aname, 'is multi scoped');
+        allok = false;
+        return;
+      }
+
+      const allok2 = ameta.rwOrder.every(ref => {
+        const r = +ref.node.$p.pid;
+        const c = +firstCallNode.$p.pid;
+        // vlog('   - ref @', r, ' <= call @', c);
+        if (r > c) {
+          vlog('- bail: found a read for the alias after the call', r, c);
+          allok = false;
+          return;
+        }
+        return false;
+      });
+
+      if (!allok2) {
+        vlog('  - bail: alias', aname, 'has a ref after the call node');
+        allok = false;
+        return;
+      }
+    });
+    if (!allok) {
+      vlog('  - turns out at least one alias was used after the first call. since the first call was the sealer itself, we can still save this if the sealer is not called any more after the first call (and the seal call)');
+      // We would love to do a .singleScoped check but we already know this will be multi-scoped due ot the recursive seal call. If only we could exclude that one...
+      // Suppose it doesn't matter. We already manually asserted "first call" is the first call. If there is any other call than that one and the seal call then we
+      // are bust here. Doesn't matter where that happens. But we have to go one step further; the sealer can't be referenced anywhere else.
+      if (!meta.reads.every((read,i) => {
+        vlog('  - read', i, '; parent type=', read.parentNode.type, ', grand type=', read.grandNode.type);
+        // So we must exclude the reads that are the recursive "sealing" call, and the "first call" and any aliasing before the first call.
+        if (read.parentNode.type === 'CallExpression' && read.parentProp === 'callee') {
+          vlog('  - parent is call');
+          if (
+            read.grandNode.type === 'AssignmentExpression' &&
+            read.grandNode.left.type === 'Identifier' &&
+            read.grandNode.left.name === targetName
+          ) {
+            vlog('    - found the "seal" call, ignoring');
+            return true; // This is the seal call
+          }
+          if (
+            read.grandNode.type === 'VarStatement' &&
+            read.grandNode === tmpCallVarNode
+          ) {
+            vlog('    - found the recursive call, ignoring');
+            return true; // This is the seal call
+          }
+          if (read.parentNode === firstCallNode) {
+            vlog('    - found the "first" call, ignoring');
+            return true;
+          }
+          vlog('  - bail: sealer is called more than twice, and it has aliases that are being used, we cant continue');
+          return false;
+        }
+        if (read.parentNode.type === 'VarStatement') {
+          // Aliasing reads
+          vlog('  - parent is var, id=', read.parentNode.id.name);
+          if (aliases.has(read.parentNode.id.name)) {
+            vlog('  - found an aliasing read, to', read.parentNode.id.name);
+            return true;
+          }
+        }
+        if (read.grandNode.type === 'VarStatement') {
+          vlog('  - parent is var, id=', read.parentNode.id.name);
+          if (aliases.has(read.parentNode.id.name)) {
+            vlog('  - found an aliasing read, to', read.parentNode.id.name);
+            return true;
+          }
+        }
+        vlog('  - bail: to refine, but the read was not a call so we bail right now', read.parentNode.type);
+        todo('self-closing function which was called immediately but may not have further refs, currently blocked on non-call usages');
+        return false;
+      })) {
+        vlog('  - bail: this self-closing function is called itself and as an alias and we cant safely assert whether the closure is observable or not');
+        return {selfCalling, aliasCalling};
+      }
+
+      vlog('- ok, looks like we recovered! The sealer is called once, so this is the aliasCaller pattern');
+      aliasCalling = true;
+    } else {
+      vlog('- ok, this is selfCalling');
+      selfCalling = true;
+    }
+  } else {
+    // Verify that the sealer is not used beyond the pattern
+    vlog('- ok! Since an alias was called we must now verify that the sealer itself is not used beyond the pattern', meta.reads.length);
+
+    let called = 0;
+    meta.reads.some((read,i) => {
+      // Assert that the ident is called exactly once (the recursive call)
+      // Because this means the closure effect can never actually be observed
+      vlog('- sealer read', i, ':', read.parentNode.type, read.parentProp)
+      if (read.parentNode.type === 'CallExpression' && read.parentProp === 'callee') {
+        called += 1;
+        if (called > 1) return true; // Bust.
+      }
+    });
+    if (called > 1) {
+      vlog('- bail: the sealer function was called more than once. This does not match the pattern.');
+      return {selfCalling, aliasCalling};
+    }
+    aliasCalling = true;
   }
 
+  return {selfCalling, aliasCalling};
+}
+function verifyArgumentsAccessibleAtDecl(firstCallNode, fdata, first) {
+  // For now, we must verify that all args in the first call are reachable at var decl time
+  vlog('Verify that all args can be accessed at var decl time');
+  if (!firstCallNode.arguments.every((anode,i) => {
+    if (AST.isPrimitive(anode)) {
+      vlog('-', i, 'ok primitive')
+      return true;
+    }
+    if (anode.type !== 'Identifier') {
+      vlog('-',i,'bail: a call arg was not an ident or primitive');
+      return false;
+    }
+    // Find the decl of the ident. Check if that's in same or higher block than the decl of the sealer
+    const meta = fdata.globallyUniqueNamingRegistry.get(anode.name);
+    if (meta.isBuiltin) return true; // always accessible so that's fine
+    if (meta.isImplicitGlobal) return true; // I mean, probably fine, but always accessible anyways
+    // Let's ignore catch vars for now
+    if (meta.isCatchVar) {
+      todo('Edge case in self-closing function that passes on catch vars');
+      vlog('-', i, 'bail')
+      return false;
+    }
+    ASSERT(meta.isExplicitVar, 'what other kinds are left? update logic here accordingly', meta);
+    // Find the decl
+    const declWrite = meta.writes.find(write => write.kind === 'var');
+    ASSERT(declWrite, 'must find a decl');
+    // Now check that this decl has an equal or lower block chain
+    vlog('-',i,'Verifying blockchains now;', [declWrite.blockChain], '<=', [first.blockChain]);
+    if (declWrite.blockChain > first.blockChain) {
+      vlog('-', i, 'bail; not reachable')
+      return false;
+    }
+    vlog('-',i,'Verifying pid now;', [+declWrite.node.$p.pid], '<=', [+first.node.$p.pid]);
+    if (+declWrite.node.$p.pid > +first.node.$p.pid) {
+      vlog('-', i, 'bail; arg is declared after func decl')
+      return false;
+    }
 
-
+    vlog('-', i, 'ok: reachable')
+    return true;
+  })) {
+    vlog('- bail: at least one argument was not reachable at func decl time');
+    todo('self-closing function pattern with unreachable first call arg');
+    return false;
+  }
+  return true;
 }

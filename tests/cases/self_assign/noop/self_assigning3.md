@@ -60,9 +60,9 @@ const func /*:(number, unused)=>undefined*/ = function ($$0, $$1) {
   }
 };
 func(1, 2);
-const a /*:unknown*/ = arg1;
+const tmpClusterSSA_a /*:unknown*/ = arg1;
 func(5, 6);
-$(a, b, arg1);
+$(tmpClusterSSA_a, b, arg1);
 `````
 
 
@@ -84,9 +84,9 @@ const func = function (newArg1, $$1) {
   }
 };
 func(1, 2);
-const a = arg1;
+const tmpClusterSSA_a = arg1;
 func(5, 6);
-$(a, b, arg1);
+$(tmpClusterSSA_a, b, arg1);
 `````
 
 
@@ -158,7 +158,6 @@ $(a, b, c);
 ## Todos triggered
 
 
-- (todo) Found a self-closing function shell but it did not match a known pattern...
 - (todo) support array reads statement type VarStatement
 
 

@@ -151,6 +151,7 @@ $(alias);
 
 
 - (todo) Found a self-closing function shell but it did not match a known pattern...
+- (todo) self-closing function which was called immediately but may not have further refs, currently blocked on non-call usages
 
 
 ## Globals

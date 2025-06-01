@@ -44,6 +44,7 @@ It's then left to free-loops on the while in order to resolve it quickly. In thi
 ## Input
 
 `````js filename=intro
+// SHOULD transform
 let a/*:()=>*/ = function() {
   // Main data array
   const arr/*:array*/ = [
@@ -144,45 +145,15 @@ const arr /*:array*/ = [
   `asyncItera`,
   `t provide `,
 ];
-let b /*:(unknown, unknown)=>unknown*/ = function ($$0, $$1) {
-  const _0x27b75f /*:unknown*/ = $$0;
-  const _0x20302b /*:unknown*/ = $$1;
-  debugger;
-  b = function ($$0, $$1) {
-    const _0x51d865 /*:unknown*/ = $$0;
-    debugger;
-    const tmpClusterSSA__0x51d865 /*:number*/ = _0x51d865 - 345;
-    const _0x5e349d /*:primitive*/ = arr[tmpClusterSSA__0x51d865];
-    return _0x5e349d;
-  };
-  const tmpReturnArg$14 /*:unknown*/ = b(_0x27b75f, _0x20302b);
-  return tmpReturnArg$14;
-};
-const alias2 /*:unknown*/ = b;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(`loop`);
-  try {
-    const tmpEA1 /*:unknown*/ = alias2(714);
-    $coerce(tmpEA1, `string`);
-    const tmpEA1$1 /*:unknown*/ = alias2(434);
-    $coerce(tmpEA1$1, `string`);
-    const tmpEA1$3 /*:unknown*/ = alias2(849);
-    $coerce(tmpEA1$3, `string`);
-    const tmpEA1$5 /*:unknown*/ = alias2(679);
-    $coerce(tmpEA1$5, `string`);
-    const tmpEA1$7 /*:unknown*/ = alias2(599);
-    $coerce(tmpEA1$7, `string`);
-    const tmpCalleeParam$9 /*:unknown*/ = alias2(457);
-    const tmpBinLhs$166 /*:number*/ = $Number_parseInt(tmpCalleeParam$9);
-    if (tmpBinLhs$166) {
-      break;
-    } else {
-      const tmpMCP /*:unknown*/ = $dotCall($array_shift, arr, `shift`);
-      $dotCall($array_push, arr, `push`, tmpMCP);
-    }
-  } catch (_0x4f54af$22) {
-    const tmpMCP$1 /*:unknown*/ = $dotCall($array_shift, arr, `shift`);
-    $dotCall($array_push, arr, `push`, tmpMCP$1);
+  const tmpCalleeParam$9 /*:primitive*/ = arr[112];
+  const tmpBinLhs$166 /*:number*/ = $Number_parseInt(tmpCalleeParam$9);
+  if (tmpBinLhs$166) {
+    break;
+  } else {
+    const tmpMCP /*:unknown*/ = $dotCall($array_shift, arr, `shift`);
+    $dotCall($array_push, arr, `push`, tmpMCP);
   }
 }
 $(arr);
@@ -233,30 +204,11 @@ const arr = [
   `asyncItera`,
   `t provide `,
 ];
-let b = function (_0x27b75f, _0x20302b) {
-  b = function (_0x51d865, $$1) {
-    const tmpClusterSSA__0x51d865 = _0x51d865 - 345;
-    const _0x5e349d = arr[tmpClusterSSA__0x51d865];
-    return _0x5e349d;
-  };
-  const tmpReturnArg$14 = b(_0x27b75f, _0x20302b);
-  return tmpReturnArg$14;
-};
-const alias2 = b;
 while (true) {
   $(`loop`);
-  try {
-    $coerce(alias2(714), `string`);
-    $coerce(alias2(434), `string`);
-    $coerce(alias2(849), `string`);
-    $coerce(alias2(679), `string`);
-    $coerce(alias2(599), `string`);
-    if ($Number_parseInt(alias2(457))) {
-      break;
-    } else {
-      $dotCall($array_push, arr, `push`, $dotCall($array_shift, arr, `shift`));
-    }
-  } catch (_0x4f54af$22) {
+  if ($Number_parseInt(arr[112])) {
+    break;
+  } else {
     $dotCall($array_push, arr, `push`, $dotCall($array_shift, arr, `shift`));
   }
 }
@@ -269,47 +221,16 @@ With rename=true
 
 `````js filename=intro
 const a = [ "o+qs5DkTS", "displayNam", "VQ5vY4Jbig", "previous", "nk\">", "TqTwnd5/c+", "FaGG+cRqIi", "getPrototy", "ch2p7teUW5", "binary", "1549114mYdRSK", "qfVUyPGyG", "nV7NqmuKE", "MVWzWKgjww", "mark", "//BaPJuXX", "loaded", "call", "he WebCryp", "RSASSA-PKC", "E31n2Gh9QE", "N8h3TKFzuv", "Stb3euiWtm", "return", "ILhA", "G9w0BAQEFA", "7340072VkQjzG", "c-link\" ta", "63rBGDGDE", "b6cIzo9YK", "RuH/AHrSL6", "replace", "encode", "Vk2ghqMihj", "setPrototy", "ker.", "asyncItera", "t provide " ];
-let b = function($$0,$$1 ) {
-  const c = $$0;
-  const d = $$1;
-  debugger;
-  b = function($$0,$$1 ) {
-    const e = $$0;
-    debugger;
-    const f = e - 345;
-    const g = a[ f ];
-    return g;
-  };
-  const h = b( c, d );
-  return h;
-};
-const i = b;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( "loop" );
-  try {
-    const j = i( 714 );
-    $coerce( j, "string" );
-    const k = i( 434 );
-    $coerce( k, "string" );
-    const l = i( 849 );
-    $coerce( l, "string" );
-    const m = i( 679 );
-    $coerce( m, "string" );
-    const n = i( 599 );
-    $coerce( n, "string" );
-    const o = i( 457 );
-    const p = $Number_parseInt( o );
-    if (p) {
-      break;
-    }
-    else {
-      const q = $dotCall( $array_shift, a, "shift" );
-      $dotCall( $array_push, a, "push", q );
-    }
+  const b = a[ 112 ];
+  const c = $Number_parseInt( b );
+  if (c) {
+    break;
   }
-  catch (r) {
-    const s = $dotCall( $array_shift, a, "shift" );
-    $dotCall( $array_push, a, "push", s );
+  else {
+    const d = $dotCall( $array_shift, a, "shift" );
+    $dotCall( $array_push, a, "push", d );
   }
 }
 $( a );
@@ -427,14 +348,15 @@ $(tmpCalleeParam$11);
 
 
 - (todo) ExpressionStatement; how else might an array be used that we may want to support in phase1_1?
-- (todo) Found a self-closing function shell but it did not match a known pattern...
 - (todo) VarStatement; how else might an array be used that we may want to support in phase1_1?
 - (todo) access object property that also exists on prototype? $array_push
 - (todo) access object property that also exists on prototype? $array_shift
 - (todo) can try-escaping support this expr node type? CallExpression
 - (todo) support array reads statement type ExpressionStatement
 - (todo) support array reads statement type VarStatement
+- (todo) support array reads statement type WhileStatement
 - (todo) type trackeed tricks can possibly support static $Number_parseInt
+- (todo) we can still proceed with the loop as long as there is no let-write anywhere in the loop, inc nested
 
 
 ## Globals

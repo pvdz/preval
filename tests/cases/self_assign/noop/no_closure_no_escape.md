@@ -2,7 +2,7 @@
 
 # no_closure_no_escape.md
 
-> Self assign > Closure > Closure alias > No closure no escape
+> Self assign > Noop > No closure no escape
 
 ## Input
 
@@ -92,7 +92,7 @@ $(tmpCalleeParam$7);
 ## Todos triggered
 
 
-- (todo) Found a self-closing function shell but it did not match a known pattern...
+None
 
 
 ## Globals

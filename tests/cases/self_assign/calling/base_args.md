@@ -27,6 +27,7 @@
 ## Input
 
 `````js filename=intro
+// SHOULD transform
 var f = function(a,b,c) {
   $('call me');
   f = function(d,e,f){

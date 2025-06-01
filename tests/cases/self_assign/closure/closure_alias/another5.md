@@ -9,6 +9,7 @@
 ## Input
 
 `````js filename=intro
+// SHOULD transform (this isnt self closing)
 let zzzz = function () {
   debugger;
   a = [1, 2, 3];

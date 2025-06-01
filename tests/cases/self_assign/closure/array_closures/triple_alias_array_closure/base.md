@@ -11,6 +11,7 @@ This should be the basic case. Point of the test is that the function get collap
 ## Input
 
 `````js filename=intro
+// SHOULD transform
 let f = function() {
   // Main data array
   const arr = ['trash', 'fire', 'is', 'hot'];
@@ -44,7 +45,7 @@ loopStop$3: {
   $('loop'); // This just prevents the test runner from going long
     try {
       const str = alias2(457);
-      const tmpBinLhs$166 = parseInt();
+      const tmpBinLhs$166 = parseInt(str);
       if (tmpBinLhs$166) {
         break;
       } else {
@@ -64,32 +65,18 @@ $(f()); // Won't be reached in the test
 
 `````js filename=intro
 const arr /*:array*/ = [`trash`, `fire`, `is`, `hot`];
-let g /*:(unknown, unknown)=>unknown*/ = function ($$0, $$1) {
-  const x /*:unknown*/ = $$0;
-  const y /*:unknown*/ = $$1;
-  debugger;
-  g = function ($$0, $$1) {
-    const x2 /*:unknown*/ = $$0;
-    debugger;
-    const tmp /*:number*/ = x2 - 345;
-    const str /*:primitive*/ = arr[tmp];
-    return str;
-  };
-  const tmpReturnArg$14 /*:unknown*/ = g(x, y);
-  return tmpReturnArg$14;
-};
-const alias2 /*:unknown*/ = g;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(`loop`);
-  try {
-    alias2(457);
-    const tmpMCP /*:primitive*/ = $dotCall($array_shift, arr, `shift`);
+  const str /*:primitive*/ = arr[112];
+  const tmpBinLhs$166 /*:number*/ = $Number_parseInt(str);
+  if (tmpBinLhs$166) {
+    break;
+  } else {
+    const tmpMCP /*:unknown*/ = $dotCall($array_shift, arr, `shift`);
     $dotCall($array_push, arr, `push`, tmpMCP);
-  } catch (e) {
-    const tmpMCP$1 /*:primitive*/ = $dotCall($array_shift, arr, `shift`);
-    $dotCall($array_push, arr, `push`, tmpMCP$1);
   }
 }
+$(arr);
 `````
 
 
@@ -98,25 +85,15 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 `````js filename=intro
 const arr = [`trash`, `fire`, `is`, `hot`];
-let g = function (x, y) {
-  g = function (x2, $$1) {
-    const tmp = x2 - 345;
-    const str = arr[tmp];
-    return str;
-  };
-  const tmpReturnArg$14 = g(x, y);
-  return tmpReturnArg$14;
-};
-const alias2 = g;
 while (true) {
   $(`loop`);
-  try {
-    alias2(457);
-    $dotCall($array_push, arr, `push`, $dotCall($array_shift, arr, `shift`));
-  } catch (e) {
+  if ($Number_parseInt(arr[112])) {
+    break;
+  } else {
     $dotCall($array_push, arr, `push`, $dotCall($array_shift, arr, `shift`));
   }
 }
+$(arr);
 `````
 
 
@@ -125,33 +102,19 @@ With rename=true
 
 `````js filename=intro
 const a = [ "trash", "fire", "is", "hot" ];
-let b = function($$0,$$1 ) {
-  const c = $$0;
-  const d = $$1;
-  debugger;
-  b = function($$0,$$1 ) {
-    const e = $$0;
-    debugger;
-    const f = e - 345;
-    const g = a[ f ];
-    return g;
-  };
-  const h = b( c, d );
-  return h;
-};
-const i = b;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( "loop" );
-  try {
-    i( 457 );
-    const j = $dotCall( $array_shift, a, "shift" );
-    $dotCall( $array_push, a, "push", j );
+  const b = a[ 112 ];
+  const c = $Number_parseInt( b );
+  if (c) {
+    break;
   }
-  catch (k) {
-    const l = $dotCall( $array_shift, a, "shift" );
-    $dotCall( $array_push, a, "push", l );
+  else {
+    const d = $dotCall( $array_shift, a, "shift" );
+    $dotCall( $array_push, a, "push", d );
   }
 }
+$( a );
 `````
 
 
@@ -192,7 +155,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(`loop`);
   try {
     const str$1 = alias2(457);
-    const tmpBinLhs$166 = NaN;
+    const tmpBinLhs$166 = $Number_parseInt(str$1);
     if (tmpBinLhs$166) {
       break;
     } else {
@@ -217,13 +180,15 @@ $(tmpCalleeParam);
 
 
 - (todo) ExpressionStatement; how else might an array be used that we may want to support in phase1_1?
-- (todo) Found a self-closing function shell but it did not match a known pattern...
 - (todo) VarStatement; how else might an array be used that we may want to support in phase1_1?
 - (todo) access object property that also exists on prototype? $array_push
 - (todo) access object property that also exists on prototype? $array_shift
 - (todo) can try-escaping support this expr node type? CallExpression
 - (todo) support array reads statement type ExpressionStatement
 - (todo) support array reads statement type VarStatement
+- (todo) support array reads statement type WhileStatement
+- (todo) type trackeed tricks can possibly support static $Number_parseInt
+- (todo) we can still proceed with the loop as long as there is no let-write anywhere in the loop, inc nested
 
 
 ## Globals

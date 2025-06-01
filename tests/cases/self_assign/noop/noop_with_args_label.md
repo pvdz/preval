@@ -2,7 +2,7 @@
 
 # noop_with_args_label.md
 
-> Self assign > Closure > Noop with args label
+> Self assign > Noop > Noop with args label
 >
 > Trying to move var decls that are functions down to move let decls closer to their real init.
 
@@ -49,25 +49,10 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 `````js filename=intro
 const main_data_arr /*:array*/ = [`this`, `contents`, `is`, `not`, `relevant`, `here`];
-let the_self_closing_func /*:(unknown, unknown)=>unknown*/ = function ($$0, $$1) {
-  const $dlr_$$0 /*:unknown*/ = $$0;
-  const $dlr_$$1 /*:unknown*/ = $$1;
-  debugger;
-  the_self_closing_func = function ($$0, $$1) {
-    const $dlr_$$2 /*:unknown*/ = $$0;
-    debugger;
-    const tmp1 /*:number*/ = $dlr_$$2 - 387;
-    const tmp2 /*:primitive*/ = main_data_arr[tmp1];
-    return tmp2;
-  };
-  const once /*:unknown*/ = the_self_closing_func($dlr_$$0, $dlr_$$1);
-  return once;
-};
-const the_scf_alias /*:unknown*/ = the_self_closing_func;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const a /*:unknown*/ = the_scf_alias(2);
-  const b /*:number*/ = $Number_parseInt(a);
-  $(`testing`, a, b);
+  const tmp2$1 /*:unknown*/ = main_data_arr[-385];
+  const b /*:number*/ = $Number_parseInt(tmp2$1);
+  $(`testing`, tmp2$1, b);
   if (b) {
     break;
   } else {
@@ -83,20 +68,10 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 `````js filename=intro
 const main_data_arr = [`this`, `contents`, `is`, `not`, `relevant`, `here`];
-let the_self_closing_func = function ($dlr_$$0, $dlr_$$1) {
-  the_self_closing_func = function ($dlr_$$2, $$1) {
-    const tmp1 = $dlr_$$2 - 387;
-    const tmp2 = main_data_arr[tmp1];
-    return tmp2;
-  };
-  const once = the_self_closing_func($dlr_$$0, $dlr_$$1);
-  return once;
-};
-const the_scf_alias = the_self_closing_func;
 while (true) {
-  const a = the_scf_alias(2);
-  const b = $Number_parseInt(a);
-  $(`testing`, a, b);
+  const tmp2$1 = main_data_arr[-385];
+  const b = $Number_parseInt(tmp2$1);
+  $(`testing`, tmp2$1, b);
   if (b) {
     break;
   } else {
@@ -111,31 +86,16 @@ With rename=true
 
 `````js filename=intro
 const a = [ "this", "contents", "is", "not", "relevant", "here" ];
-let b = function($$0,$$1 ) {
-  const c = $$0;
-  const d = $$1;
-  debugger;
-  b = function($$0,$$1 ) {
-    const e = $$0;
-    debugger;
-    const f = e - 387;
-    const g = a[ f ];
-    return g;
-  };
-  const h = b( c, d );
-  return h;
-};
-const i = b;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const j = i( 2 );
-  const k = $Number_parseInt( j );
-  $( "testing", j, k );
-  if (k) {
+  const b = a[ -385 ];
+  const c = $Number_parseInt( b );
+  $( "testing", b, c );
+  if (c) {
     break;
   }
   else {
-    const l = $dotCall( $array_shift, a, "shift" );
-    $dotCall( $array_push, a, "push", l );
+    const d = $dotCall( $array_shift, a, "shift" );
+    $dotCall( $array_push, a, "push", d );
   }
 }
 `````
@@ -185,10 +145,12 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 ## Todos triggered
 
 
-- (todo) Found a self-closing function shell but it did not match a known pattern...
 - (todo) Support this node type in isFree: LabeledStatement
+- (todo) computed property access of an array but not index prop
 - (todo) support array reads statement type VarStatement
+- (todo) support array reads statement type WhileStatement
 - (todo) type trackeed tricks can possibly support static $Number_parseInt
+- (todo) we can still proceed with the loop as long as there is no let-write anywhere in the loop, inc nested
 
 
 ## Globals

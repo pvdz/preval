@@ -62,55 +62,7 @@ $(main_data_arr);
 
 
 `````js filename=intro
-const main_data_arr /*:array*/ = [`ike there `, `wgcCwgZikg`, `LmNvbmNhdC`, `eBestCandi`, ` using the`];
-let the_self_closing_func /*:(unknown, unknown)=>unknown*/ = function ($$0, $$1) {
-  const $dlr_$$0 /*:unknown*/ = $$0;
-  const $dlr_$$1 /*:unknown*/ = $$1;
-  debugger;
-  the_self_closing_func = function ($$0, $$1) {
-    const $dlr_$$2 /*:unknown*/ = $$0;
-    debugger;
-    const tmp1 /*:number*/ = $dlr_$$2 - 387;
-    const tmp2 /*:primitive*/ = main_data_arr[tmp1];
-    return tmp2;
-  };
-  const once /*:unknown*/ = the_self_closing_func($dlr_$$0, $dlr_$$1);
-  return once;
-};
-loopStop$1: {
-  const the_scf_alias /*:unknown*/ = the_self_closing_func;
-  try {
-    const tmpCalleeParam /*:unknown*/ = the_scf_alias(4639);
-    const tmpUnaryArg$6 /*:number*/ = $Number_parseInt(tmpCalleeParam);
-    const tmpCalleeParam$1 /*:unknown*/ = the_scf_alias(710);
-    const tmpBinLhs$166 /*:number*/ = $Number_parseInt(tmpCalleeParam$1);
-    const tmpIfTest /*:number*/ = tmpUnaryArg$6 + tmpBinLhs$166;
-    if (tmpIfTest) {
-      break loopStop$1;
-    } else {
-      const e /*:unknown*/ = $dotCall($array_shift, main_data_arr, `shift`);
-      $dotCall($array_push, main_data_arr, `push`, e);
-    }
-  } catch (_0x17f097) {
-    const f /*:unknown*/ = $dotCall($array_shift, main_data_arr, `shift`);
-    $dotCall($array_push, main_data_arr, `push`, f);
-  }
-  try {
-    const tmpCalleeParam$3 /*:unknown*/ = the_scf_alias(4639);
-    const tmpUnaryArg$12 /*:number*/ = $Number_parseInt(tmpCalleeParam$3);
-    const tmpCalleeParam$5 /*:unknown*/ = the_scf_alias(710);
-    const tmpBinLhs$143 /*:number*/ = $Number_parseInt(tmpCalleeParam$5);
-    const tmpIfTest$1 /*:number*/ = tmpUnaryArg$12 + tmpBinLhs$143;
-    if (tmpIfTest$1) {
-    } else {
-      const g /*:unknown*/ = $dotCall($array_shift, main_data_arr, `shift`);
-      $dotCall($array_push, main_data_arr, `push`, g);
-    }
-  } catch (_0x17f097$1) {
-    const h /*:unknown*/ = $dotCall($array_shift, main_data_arr, `shift`);
-    $dotCall($array_push, main_data_arr, `push`, h);
-  }
-}
+const main_data_arr /*:array*/ = [`LmNvbmNhdC`, `eBestCandi`, ` using the`, `ike there `, `wgcCwgZikg`];
 $(main_data_arr);
 `````
 
@@ -119,37 +71,7 @@ $(main_data_arr);
 (This ought to be the final result)
 
 `````js filename=intro
-const main_data_arr = [`ike there `, `wgcCwgZikg`, `LmNvbmNhdC`, `eBestCandi`, ` using the`];
-let the_self_closing_func = function ($dlr_$$0, $dlr_$$1) {
-  the_self_closing_func = function ($dlr_$$2, $$1) {
-    const tmp1 = $dlr_$$2 - 387;
-    const tmp2 = main_data_arr[tmp1];
-    return tmp2;
-  };
-  const once = the_self_closing_func($dlr_$$0, $dlr_$$1);
-  return once;
-};
-loopStop$1: {
-  const the_scf_alias = the_self_closing_func;
-  try {
-    if ($Number_parseInt(the_scf_alias(4639)) + $Number_parseInt(the_scf_alias(710))) {
-      break loopStop$1;
-    } else {
-      $dotCall($array_push, main_data_arr, `push`, $dotCall($array_shift, main_data_arr, `shift`));
-    }
-  } catch (_0x17f097) {
-    $dotCall($array_push, main_data_arr, `push`, $dotCall($array_shift, main_data_arr, `shift`));
-  }
-  try {
-    const tmpUnaryArg$12 = $Number_parseInt(the_scf_alias(4639));
-    if (!(tmpUnaryArg$12 + $Number_parseInt(the_scf_alias(710)))) {
-      $dotCall($array_push, main_data_arr, `push`, $dotCall($array_shift, main_data_arr, `shift`));
-    }
-  } catch (_0x17f097$1) {
-    $dotCall($array_push, main_data_arr, `push`, $dotCall($array_shift, main_data_arr, `shift`));
-  }
-}
-$(main_data_arr);
+$([`LmNvbmNhdC`, `eBestCandi`, ` using the`, `ike there `, `wgcCwgZikg`]);
 `````
 
 
@@ -157,60 +79,7 @@ $(main_data_arr);
 With rename=true
 
 `````js filename=intro
-const a = [ "ike there ", "wgcCwgZikg", "LmNvbmNhdC", "eBestCandi", " using the" ];
-let b = function($$0,$$1 ) {
-  const c = $$0;
-  const d = $$1;
-  debugger;
-  b = function($$0,$$1 ) {
-    const e = $$0;
-    debugger;
-    const f = e - 387;
-    const g = a[ f ];
-    return g;
-  };
-  const h = b( c, d );
-  return h;
-};
-loopStop$1: {
-  const i = b;
-  try {
-    const j = i( 4639 );
-    const k = $Number_parseInt( j );
-    const l = i( 710 );
-    const m = $Number_parseInt( l );
-    const n = k + m;
-    if (n) {
-      break loopStop$1;
-    }
-    else {
-      const o = $dotCall( $array_shift, a, "shift" );
-      $dotCall( $array_push, a, "push", o );
-    }
-  }
-  catch (p) {
-    const q = $dotCall( $array_shift, a, "shift" );
-    $dotCall( $array_push, a, "push", q );
-  }
-  try {
-    const r = i( 4639 );
-    const s = $Number_parseInt( r );
-    const t = i( 710 );
-    const u = $Number_parseInt( t );
-    const v = s + u;
-    if (v) {
-
-    }
-    else {
-      const w = $dotCall( $array_shift, a, "shift" );
-      $dotCall( $array_push, a, "push", w );
-    }
-  }
-  catch (x) {
-    const y = $dotCall( $array_shift, a, "shift" );
-    $dotCall( $array_push, a, "push", y );
-  }
-}
+const a = [ "LmNvbmNhdC", "eBestCandi", " using the", "ike there ", "wgcCwgZikg" ];
 $( a );
 `````
 
@@ -280,8 +149,9 @@ $(main_data_arr);
 ## Todos triggered
 
 
-- (todo) Found a self-closing function shell but it did not match a known pattern...
 - (todo) can try-escaping support this expr node type? CallExpression
+- (todo) outline any args for tdz
+- (todo) support array reads statement type ExpressionStatement
 - (todo) support array reads statement type VarStatement
 - (todo) type trackeed tricks can possibly support static $Number_parseInt
 

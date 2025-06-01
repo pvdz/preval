@@ -1,15 +1,17 @@
 # Preval test case
 
-# noop_with_args.md
+# noop_with_args_orig_used.md
 
-> Self assign > Closure > Noop with args
+> Self assign > Noop > Noop with args orig used
 >
 > Trying to move var decls that are functions down to move let decls closer to their real init.
+
+This means the result between closure and non-closure is observable, edge cases aside, so we should bail.
 
 ## Input
 
 `````js filename=intro
-// SHOULD inline the_self_closing_func
+// Should NOT inline the_self_closing_func because it's calling alias and sealer
 const main_data_arr/*:array*/ = ['this', 'contents', 'is', 'not', 'relevant', 'here'];
 let the_self_closing_func/*:(unknown, unknown)=>unknown*/ = function($$0, $$1) {
   const dud_arg1/*:unknown*/ = $$0;
@@ -37,6 +39,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     $dotCall($array_push, main_data_arr, `push`, tmpMCPa);
   }
 }
+$(the_self_closing_func()); // This should NOT prevent the transform (!), only the alias
+
 `````
 
 
@@ -71,6 +75,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     $dotCall($array_push, main_data_arr, `push`, tmpMCPa);
   }
 }
+const tmpCalleeParam /*:unknown*/ = the_self_closing_func();
+$(tmpCalleeParam);
 `````
 
 
@@ -99,6 +105,7 @@ while (true) {
     $dotCall($array_push, main_data_arr, `push`, $dotCall($array_shift, main_data_arr, `shift`));
   }
 }
+$(the_self_closing_func());
 `````
 
 
@@ -134,6 +141,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     $dotCall( $array_push, a, "push", l );
   }
 }
+const m = b();
+$( m );
 `````
 
 
@@ -172,6 +181,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     $dotCall($array_push, main_data_arr, `push`, tmpMCPa);
   }
 }
+let tmpCalleeParam = the_self_closing_func();
+$(tmpCalleeParam);
 `````
 
 

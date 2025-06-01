@@ -50,6 +50,7 @@ export function _freeFuncs(fdata, prng, usePrng, pcodeTestMode) {
   function _funcWalker(node, before, nodeType, path) {
     if (before) return;
     if (nodeType !== 'FunctionExpression') return;
+    if (node.async || node.generator) return; // Skip these
 
     const pathNodes = path.nodes;
     const pathProps = path.props;

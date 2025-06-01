@@ -71,7 +71,7 @@ x
 
 
 Should call `$` with:
- - eval returned: ('<crash[ <ref> is not defined ]>')
+ - eval returned: ('<crash[ Cannot set property x of #<Object> which has only a getter ]>')
 
 Pre normalization calls: Same
 

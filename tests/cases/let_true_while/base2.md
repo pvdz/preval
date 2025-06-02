@@ -29,21 +29,19 @@ const y /*:unknown*/ = $(5);
 $(true);
 const z /*:number*/ = y - 1;
 let tmpClusterSSA_y /*:unknown*/ = z;
-let tmpClusterSSA_x /*:unknown*/ = z;
 if (z) {
   while ($LOOP_UNROLL_10) {
-    $(tmpClusterSSA_x);
+    $(tmpClusterSSA_y);
     const z$1 /*:number*/ = tmpClusterSSA_y - 1;
     tmpClusterSSA_y = z$1;
-    tmpClusterSSA_x = z$1;
     if (z$1) {
     } else {
       break;
     }
   }
-  $(tmpClusterSSA_x, tmpClusterSSA_y);
+  $(tmpClusterSSA_y, tmpClusterSSA_y);
 } else {
-  $(tmpClusterSSA_x, tmpClusterSSA_y);
+  $(tmpClusterSSA_y, tmpClusterSSA_y);
 }
 `````
 
@@ -56,20 +54,18 @@ const y = $(5);
 $(true);
 const z = y - 1;
 let tmpClusterSSA_y = z;
-let tmpClusterSSA_x = z;
 if (z) {
   while (true) {
-    $(tmpClusterSSA_x);
+    $(tmpClusterSSA_y);
     const z$1 = tmpClusterSSA_y - 1;
     tmpClusterSSA_y = z$1;
-    tmpClusterSSA_x = z$1;
     if (!z$1) {
       break;
     }
   }
-  $(tmpClusterSSA_x, tmpClusterSSA_y);
+  $(tmpClusterSSA_y, tmpClusterSSA_y);
 } else {
-  $(tmpClusterSSA_x, tmpClusterSSA_y);
+  $(tmpClusterSSA_y, tmpClusterSSA_y);
 }
 `````
 
@@ -82,24 +78,22 @@ const a = $( 5 );
 $( true );
 const b = a - 1;
 let c = b;
-let d = b;
 if (b) {
   while ($LOOP_UNROLL_10) {
-    $( d );
-    const e = c - 1;
-    c = e;
-    d = e;
-    if (e) {
+    $( c );
+    const d = c - 1;
+    c = d;
+    if (d) {
 
     }
     else {
       break;
     }
   }
-  $( d, c );
+  $( c, c );
 }
 else {
-  $( d, c );
+  $( c, c );
 }
 `````
 

@@ -31,14 +31,12 @@ $(a);
 
 `````js filename=intro
 let a /*:primitive*/ /*ternaryConst*/ = undefined;
-let spreadSource /*:primitive*/ /*ternaryConst*/ = undefined;
 const cond /*:unknown*/ = $(true);
 if (cond) {
 } else {
   a = 42;
-  spreadSource = 42;
 }
-const arr /*:array*/ = [...spreadSource];
+const arr /*:array*/ = [...a];
 $(arr);
 $(a);
 `````
@@ -49,12 +47,10 @@ $(a);
 
 `````js filename=intro
 let a = undefined;
-let spreadSource = undefined;
 if (!$(true)) {
   a = 42;
-  spreadSource = 42;
 }
-$([...spreadSource]);
+$([...a]);
 $(a);
 `````
 
@@ -64,17 +60,15 @@ With rename=true
 
 `````js filename=intro
 let a = undefined;
-let b = undefined;
-const c = $( true );
-if (c) {
+const b = $( true );
+if (b) {
 
 }
 else {
   a = 42;
-  b = 42;
 }
-const d = [ ...b ];
-$( d );
+const c = [ ...a ];
+$( c );
 $( a );
 `````
 

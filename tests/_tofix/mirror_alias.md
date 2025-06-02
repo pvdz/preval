@@ -44,15 +44,12 @@ if (alias_for_x_to_test) {
 
 `````js filename=intro
 let x /*:unknown*/ /*ternaryConst*/ = undefined;
-let alias_for_x_to_test /*:unknown*/ /*ternaryConst*/ = undefined;
 const test /*:boolean*/ = $ == null;
 if (test) {
 } else {
-  const next /*:unknown*/ = $(1);
-  x = next;
-  alias_for_x_to_test = next;
+  x = $(1);
 }
-if (alias_for_x_to_test) {
+if (x) {
   const t /*:unknown*/ = $(100);
   $(t);
   $(x);
@@ -69,13 +66,10 @@ if (alias_for_x_to_test) {
 
 `````js filename=intro
 let x = undefined;
-let alias_for_x_to_test = undefined;
 if (!($ == null)) {
-  const next = $(1);
-  x = next;
-  alias_for_x_to_test = next;
+  x = $(1);
 }
-if (alias_for_x_to_test) {
+if (x) {
   $($(100));
   $(x);
 } else {
@@ -90,24 +84,21 @@ With rename=true
 
 `````js filename=intro
 let a = undefined;
-let b = undefined;
-const c = $ == null;
-if (c) {
+const b = $ == null;
+if (b) {
 
 }
 else {
-  const d = $( 1 );
-  a = d;
-  b = d;
+  a = $( 1 );
 }
-if (b) {
-  const e = $( 100 );
-  $( e );
+if (a) {
+  const c = $( 100 );
+  $( c );
   $( a );
 }
 else {
-  const f = $( 200 );
-  $( f );
+  const d = $( 200 );
+  $( d );
   $( a );
 }
 `````

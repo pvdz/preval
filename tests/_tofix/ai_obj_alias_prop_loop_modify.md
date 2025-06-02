@@ -32,15 +32,15 @@ $('use', obj_orig.p);
 `````js filename=intro
 const tmpObjLitVal /*:unknown*/ = $(`v_init`);
 const L /*:unknown*/ = $(`L1`);
+const obj_orig /*:object*/ = { p: tmpObjLitVal };
 if (L) {
   $(`S_loop`);
   const tmpAssignMemRhs /*:unknown*/ = $(`v_loop_assign`);
+  obj_orig.p = tmpAssignMemRhs;
   const tmpIfTest /*:unknown*/ = $(`C_break`);
-  const obj_orig /*:object*/ = { p: tmpAssignMemRhs };
   if (tmpIfTest) {
     const tmpAssignMemRhs$1 /*:unknown*/ = $(`v_break_assign`);
     obj_orig.p = tmpAssignMemRhs$1;
-    $(`use`, tmpObjLitVal);
   } else {
     let tmpClusterSSA_L /*:unknown*/ = $(`L_next`);
     while ($LOOP_UNROLL_10) {
@@ -60,11 +60,11 @@ if (L) {
         break;
       }
     }
-    $(`use`, tmpObjLitVal);
   }
 } else {
-  $(`use`, tmpObjLitVal);
 }
+const tmpCalleeParam /*:unknown*/ = obj_orig.p;
+$(`use`, tmpCalleeParam);
 `````
 
 
@@ -73,14 +73,13 @@ if (L) {
 
 `````js filename=intro
 const tmpObjLitVal = $(`v_init`);
-if ($(`L1`)) {
+const L = $(`L1`);
+const obj_orig = { p: tmpObjLitVal };
+if (L) {
   $(`S_loop`);
-  const tmpAssignMemRhs = $(`v_loop_assign`);
-  const tmpIfTest = $(`C_break`);
-  const obj_orig = { p: tmpAssignMemRhs };
-  if (tmpIfTest) {
+  obj_orig.p = $(`v_loop_assign`);
+  if ($(`C_break`)) {
     obj_orig.p = $(`v_break_assign`);
-    $(`use`, tmpObjLitVal);
   } else {
     let tmpClusterSSA_L = $(`L_next`);
     while (true) {
@@ -97,11 +96,9 @@ if ($(`L1`)) {
         break;
       }
     }
-    $(`use`, tmpObjLitVal);
   }
-} else {
-  $(`use`, tmpObjLitVal);
 }
+$(`use`, obj_orig.p);
 `````
 
 
@@ -111,15 +108,15 @@ With rename=true
 `````js filename=intro
 const a = $( "v_init" );
 const b = $( "L1" );
+const c = { p: a };
 if (b) {
   $( "S_loop" );
-  const c = $( "v_loop_assign" );
-  const d = $( "C_break" );
-  const e = { p: c };
-  if (d) {
+  const d = $( "v_loop_assign" );
+  c.p = d;
+  const e = $( "C_break" );
+  if (e) {
     const f = $( "v_break_assign" );
-    e.p = f;
-    $( "use", a );
+    c.p = f;
   }
   else {
     let g = $( "L_next" );
@@ -127,11 +124,11 @@ if (b) {
       if (g) {
         $( "S_loop" );
         const h = $( "v_loop_assign" );
-        e.p = h;
+        c.p = h;
         const i = $( "C_break" );
         if (i) {
           const j = $( "v_break_assign" );
-          e.p = j;
+          c.p = j;
           break;
         }
         else {
@@ -142,12 +139,10 @@ if (b) {
         break;
       }
     }
-    $( "use", a );
   }
 }
-else {
-  $( "use", a );
-}
+const k = c.p;
+$( "use", k );
 `````
 
 
@@ -213,22 +208,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Post settled calls: BAD!!
- -  1: 'v_init'
- -  2: 'L1'
- -  3: 'S_loop'
- -  4: 'v_loop_assign'
- -  5: 'C_break'
- -  6: 'v_break_assign'
- - !7: 'use', 'v_init'
- -  eval returned: undefined
+Post settled calls: Same
 
-Denormalized calls: BAD!!
- -  1: 'v_init'
- -  2: 'L1'
- -  3: 'S_loop'
- -  4: 'v_loop_assign'
- -  5: 'C_break'
- -  6: 'v_break_assign'
- - !7: 'use', 'v_init'
- -  eval returned: undefined
+Denormalized calls: Same

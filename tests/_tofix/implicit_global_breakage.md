@@ -28,6 +28,7 @@ $(x);
 
 
 `````js filename=intro
+$1;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(2);
   $1;
@@ -39,6 +40,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 (This ought to be the final result)
 
 `````js filename=intro
+$1;
 while (true) {
   $(2);
   $1;
@@ -50,6 +52,7 @@ while (true) {
 With rename=true
 
 `````js filename=intro
+$1;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 2 );
   $1;
@@ -98,10 +101,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Post settled calls: BAD!!
- - !1: 2
- - !eval returned: ('<crash[ <ref> is not defined ]>')
+Post settled calls: Same
 
-Denormalized calls: BAD!!
- - !1: 2
- - !eval returned: ('<crash[ <ref> is not defined ]>')
+Denormalized calls: Same

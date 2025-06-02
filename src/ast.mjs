@@ -1444,6 +1444,30 @@ export function getPrimitiveValue(node) {
 
   ASSERT(false, 'probably need to support this node', node);
 }
+export function isSamePrimitive(node1, node2) {
+  ASSERT(isPrimitive(node1), 'should assert node1 is a primitive value before calling getPrimitiveValue on it', node1);
+  ASSERT(isPrimitive(node2), 'should assert node2 is a primitive value before calling getPrimitiveValue on it', node2);
+
+  if (node1.type !== node2.type) return false;
+
+  if (node1.type === 'Literal') {
+    return node1.raw === node2.raw;
+  }
+
+  if (node1.type === 'TemplateLiteral') {
+    ASSERT(node1.expressions.length === 0, 'caller should have checked isPrimitive 1', node1);
+    ASSERT(node2.expressions.length === 0, 'caller should have checked isPrimitive 2', node2);
+    return node1.quasis[0].value.cooked === node2.quasis[0].value.cooked;
+  }
+
+  if (node1.type === 'Identifier') return node1.name === node2.name;
+
+  if (node1.type === 'UnaryExpression') {
+    return isSamePrimitive(node1.argument, node2.argument);
+  }
+
+  ASSERT(false, 'isPrimitive should make this unreachable', node1, node2);
+}
 
 export function primitive(value) {
   if (typeof value === 'number') {

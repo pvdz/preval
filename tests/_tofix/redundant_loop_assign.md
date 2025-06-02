@@ -1,8 +1,8 @@
 # Preval test case
 
-# auto_computed_simple_simple_simple.md
+# redundant_loop_assign.md
 
-> Normalize > Expressions > Assignments > For c > Auto computed simple simple simple
+> Tofix > redundant loop assign
 >
 > Normalization of assignments should work the same everywhere they are
 
@@ -122,14 +122,20 @@ $( a );
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-while (true) {
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    const tmpObjLitVal = $(1);
-    a = { b: tmpObjLitVal };
-  } else {
-    break;
+const tmpIfTest = $(1);
+if (tmpIfTest) {
+  const tmpObjLitVal = $(1);
+  a = { b: tmpObjLitVal };
+  while ($LOOP_UNROLL_10) {
+    const tmpIfTest$1 = $(1);
+    if (tmpIfTest$1) {
+      const tmpObjLitVal$1 = $(1);
+      a = { b: tmpObjLitVal$1 };
+    } else {
+      break;
+    }
   }
+} else {
 }
 a.b = 2;
 $(a);
@@ -139,8 +145,7 @@ $(a);
 ## Todos triggered
 
 
-- (todo) nodeMightMutateNameUntrapped; Which statement are we missing here? BlockStatement
-- (todo) objects in isFree check
+None
 
 
 ## Globals

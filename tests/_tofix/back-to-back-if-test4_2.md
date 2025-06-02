@@ -2,7 +2,7 @@
 
 # back-to-back-if-test4_2.md
 
-> If weaving > Back-to-back-if-test4 2
+> Tofix > back-to-back-if-test4 2
 
 The const case had interesting output.
 One problem here is that the if-test becomes tmpUnaryArg which makes it harder

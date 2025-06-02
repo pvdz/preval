@@ -20,10 +20,10 @@ $(a);
 
 `````js filename=intro
 const a /*:unknown*/ = arguments;
-const tmpClusterSSA_a /*:unknown*/ = arguments;
-const tmpCalleeParam /*:primitive*/ = a + tmpClusterSSA_a;
+arguments;
+const tmpCalleeParam /*:primitive*/ = a + a;
 $(tmpCalleeParam);
-$(tmpClusterSSA_a);
+$(a);
 `````
 
 
@@ -32,9 +32,9 @@ $(tmpClusterSSA_a);
 
 `````js filename=intro
 const a = arguments;
-const tmpClusterSSA_a = arguments;
-$(a + tmpClusterSSA_a);
-$(tmpClusterSSA_a);
+arguments;
+$(a + a);
+$(a);
 `````
 
 
@@ -43,10 +43,10 @@ With rename=true
 
 `````js filename=intro
 const a = arguments;
-const b = arguments;
-const c = a + b;
-$( c );
+arguments;
+const b = a + a;
 $( b );
+$( a );
 `````
 
 

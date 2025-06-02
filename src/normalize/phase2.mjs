@@ -110,6 +110,7 @@ import { frfrTricks } from '../reduce_static/frfr_tricks.mjs';
 import { arrCoerce } from '../reduce_static/arr_coerce.mjs';
 import { ifTestAliased } from '../reduce_static/if_test_aliased.mjs';
 import { ifFoldTernaryConst } from '../reduce_static/if_fold_ternary_const.mjs';
+import { tandemAlias } from '../reduce_static/tandem_alias.mjs';
 
 //import { phasePrimitiveArgInlining } from '../reduce_static/phase_primitive_arg_inlining.mjs';
 
@@ -215,6 +216,7 @@ export const BASE_PHASE2_RULES_LIST = [
   ['objlitInlining', objlitInlining],
   ['bufferBase64', bufferBase64],
   ['ifTestAliased', ifTestAliased],
+  ['tandemAlias', tandemAlias],
 
   ['freeLoops', freeLoops], // Most other stuff should probably precede this?
 

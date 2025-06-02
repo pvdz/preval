@@ -23,20 +23,16 @@ $(a, b);
 `````js filename=intro
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
-  const tmpNestedComplexRhs /*:unknown*/ = $(2);
-  let tmpClusterSSA_b /*:unknown*/ = tmpNestedComplexRhs;
-  let tmpClusterSSA_a /*:unknown*/ = tmpNestedComplexRhs;
+  let tmpClusterSSA_b /*:unknown*/ = undefined;
   while ($LOOP_UNROLL_10) {
+    tmpClusterSSA_b = $(2);
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
-      const tmpNestedComplexRhs$1 /*:unknown*/ = $(2);
-      tmpClusterSSA_b = tmpNestedComplexRhs$1;
-      tmpClusterSSA_a = tmpNestedComplexRhs$1;
     } else {
       break;
     }
   }
-  $(tmpClusterSSA_a, tmpClusterSSA_b);
+  $(tmpClusterSSA_b, tmpClusterSSA_b);
 } else {
   const a /*:object*/ = { a: 999, b: 1000 };
   $(a, 1);
@@ -49,19 +45,14 @@ if (tmpIfTest) {
 
 `````js filename=intro
 if ($(1)) {
-  const tmpNestedComplexRhs = $(2);
-  let tmpClusterSSA_b = tmpNestedComplexRhs;
-  let tmpClusterSSA_a = tmpNestedComplexRhs;
+  let tmpClusterSSA_b = undefined;
   while (true) {
-    if ($(1)) {
-      const tmpNestedComplexRhs$1 = $(2);
-      tmpClusterSSA_b = tmpNestedComplexRhs$1;
-      tmpClusterSSA_a = tmpNestedComplexRhs$1;
-    } else {
+    tmpClusterSSA_b = $(2);
+    if (!$(1)) {
       break;
     }
   }
-  $(tmpClusterSSA_a, tmpClusterSSA_b);
+  $(tmpClusterSSA_b, tmpClusterSSA_b);
 } else {
   $({ a: 999, b: 1000 }, 1);
 }
@@ -74,28 +65,25 @@ With rename=true
 `````js filename=intro
 const a = $( 1 );
 if (a) {
-  const b = $( 2 );
-  let c = b;
-  let d = b;
+  let b = undefined;
   while ($LOOP_UNROLL_10) {
-    const e = $( 1 );
-    if (e) {
-      const f = $( 2 );
-      c = f;
-      d = f;
+    b = $( 2 );
+    const c = $( 1 );
+    if (c) {
+
     }
     else {
       break;
     }
   }
-  $( d, c );
+  $( b, b );
 }
 else {
-  const g = {
+  const d = {
     a: 999,
     b: 1000,
   };
-  $( g, 1 );
+  $( d, 1 );
 }
 `````
 

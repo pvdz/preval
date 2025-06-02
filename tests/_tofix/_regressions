@@ -5,14 +5,8 @@
 
 // TODO:
 
-// tests/cases/normalize/dce/return/decl_after_looped_infi.md -> when a branch exits the loop we could replace it with a break and move the branch to after the loop? but I guess only if there are no other breaks. maybe too edge casy
-// tests/cases/tofix/infinite_loops2.md -> while with nested while (nothing else in root body) could eliminate outer while by compiling breaks like you do for continue
 // tests/cases/while/unobservable_ops_global.md -> `s |= 10` when `s` is not observable inside the loop nor escapes, is going to do the same thing no matter how often you do it
 // is while-rotating sound when the body breaks more than once?
-// infinite loop tests are set to $LOOP_DONE_UNROLLING_ALWAYS_TRUE in reduce_static/infinite_loops.mjs but we should find a way in normalize instead
-// tests/cases/array/read_only/computed_prop.md -> we should be able to resolve array props until it escapes. especially when its not a closure.
-// tests/cases/normalize/expressions/statement/while/auto_ident_logic_or_or.md -> if a var declared above a label that doesnt escape is only used inside that label then it can be moved inside too, same rule as in the end of transformLabeledStatement but it needs to be phase2 due to scope tracking
-// tests/cases/normalize/expressions/assignments/for_b/auto_ident_nested_simple_member_assigns.md -> collapse object prop assignments when we know its a literal (we assume builtins are sound)
 // Support async and generator functions in inlineSimpleFuncCalls / reduce_static/simple_funcs.mjs
 // tests/cases/import/import_default_named_class.md -> why is x an implicit global?
 // Detect $forOf loops and unroll them when we know the values to be iterated over. Will need to replace calls to gen.next() with some kind of symbol to "remember" the index pointer of the generator. Much harder to do for-in keys unfortunately.
@@ -23,15 +17,7 @@
 // convert array.map etc to while loops using $forOf when we know the context is an array literal of sorts
 // Calling ! on a value known to be Boolean(x) should do !x directly because neither operation is observable at all. Normalization has a simple rule for this implemented that only looks at the previous statement (to eliminate a transform artifact).
 // What about type assertions for params in a function header? `function f($$1) { const a = String($$1);` (or smth like $isString()) to indicate that we know the value of a will be a string. And if this param becomes unused, we would not keep this usage around, for all intentions and purposes it's a noop.
-// Think some more about how to deal with optional chaining cases: tests/cases/normalize/optional/func_nested_var.md
-// PRNG math.random() round() trick -> tests/cases/math_random/floor_trick/rng3.md
-// tests/cases/normalize/expressions/assignments/computed_prop_prop/auto_pattern_arr_c-seq.md we know the obj has no side effects so the member-expression-statement can be dropped safely
-// tests/cases/normalize/expressions/assignments/compound/auto_ident_c-opt_complex_complex_c-opt_complex_complex.md doesnt tmpClusterSSA_a invariably get NaN assigned ? We can resolve that.
 // investigate return elimination... `return x` -> `let $r; $ret: { $r = x; break $ret; } return $r;`
-// add array type to meta.typing?
-// rename constValueRef to varDeclInitRef, and containerParent should be containerBlock to be more consistent with the rest
-// convert -Infinity to $Number_NEGATIVE_INFINITY and treat it as a built-in. Consider doing the same for NaN and Infinity.
-// We should make an effort not to inline floats and other dangerous numbers
 // tests/cases/array/static_props/method_call_call_unknown.md doing a .call on a builtin? surely we can catch a few of these cases
 // When assigning a const to another const and we already know the type, we can copy the type safely since the binding itself cannot mutate. const numbers cant suddenly become bools.
 // Math.exp(0) is 1
@@ -44,19 +30,222 @@
 // rename `AST.isPrimitive` to `AST.isPrimitiveValue` or something? objPatternRest -> $objRest, tmpClusterSSA -> ssa
 // I added an option for considering function statements as decls but i should make that a proper option
 // denorm could check if ssa_ prefixed vars have no unprefixed counterparts anymore and revert their name to it in that case (same for others)
-// PST printing 1.x wrong, needs parens or double dot
 
 tests/cases/function_statements/dropping_the_d_func.md
 tests/cases/free/free_loops/gambling.md
 
 
+// why do the aliases not become mustBeType function before they get eliminated, in tests/cases/self_assign_closure/triple_ident_call_case.md
+old ideas from normalization to plow through
 
-tests/cases/binary/neq_weak/diff_objs.md
--$(true);
-+const tmpBinBothLhs /*:object*/ = {};
-+const tmpBinBothRhs /*:object*/ = {};
-+const tmpCalleeParam /*:boolean*/ = tmpBinBothLhs != tmpBinBothRhs;
-+$(tmpCalleeParam);
+  /*
+
+  For normalization, it makes sense to turn `undefined`, `NaN`, and `Infinity` into literals...
+
+
+  The delete should not be deleted in this case of if-reduction
+
+  const tmpIfTest = delete arg.y;
+  if (tmpIfTest) {
+    $(100);
+  } else {
+    $(200);
+  }
+   */
+
+  /*
+  the point of the two cases in this comment are that if x === 33 then x&32 must be true, so the check is subsumed. apparently relevant for tenko at least.
+
+  if one check subsumes the other then fold them? In the next case, 32768 is one bit, set in 49265, so the bit check subsumes the === check
+                const tmpIfTest$3287 = $tp_next_type$3 === 49265;
+                if (tmpIfTest$3287) {
+                  return destructible$13;
+                } else {
+                  const tmpBinLhs$785 = $tp_next_type$3 & 32768;
+                  if (tmpBinLhs$785) {
+                    return destructible$13;
+                  } else {
+                    THROW_RANGE('Can not compound assign to a pattern', lastStart, lastStop);
+                    return destructible$13;
+                  }
+                }
+  same thing but different logic. the first check bails if the number is not x. the second check bails if a certain bit is not set. but if that bit is not set then it also can't be x. so the second check subsumes the first. I guess in essence it's the same one as above
+              const $tp_next_type$3 = lastType;
+              const tmpIfTest$3287 = $tp_next_type$3 === 49265;
+              if (tmpIfTest$3287) {
+                return destructible$13;
+              } else {
+                const tmpBinLhs$785 = $tp_next_type$3 & 32768;
+                if (tmpBinLhs$785) {
+                  THROW_RANGE('Can not compound assign to a pattern', lastStart, lastStop);
+                  return destructible$13;
+                } else {
+                  return destructible$13;
+                }
+              }
+
+
+   */
+
+  // http://compileroptimizations.com/category/if_optimization.htm
+  // https://en.wikipedia.org/wiki/Loop-invariant_code_motion
+
+
+  /*
+
+  need to make pids numbers
+
+    Ideas for normalization;
+    - treeshaking?
+      - Not sure if this should (or can?) happen here but ESM treeshaking should be done asap. Is this too soon for it?
+      - we know all the relevant bits so why not
+    - Return value of a `forEach` arg kinds of things. Return statements are ignored so it's about branching.
+    - Object spreads that are trivial to do should be done if we can figure them out statically
+    - dce; if a loop body has abrupt endings on all branches (consider a labeled break that does not stop the loop, though) then the loop can be removed
+    - we should be able to transform star imports to named imports. we know all the things here and the namespace is a constant.
+      - check how the context is set when calling a namespace
+    - default exports, do we eliminate them anyways, maybe opt-in or out to the defineProperty hack to fix the name?
+    - method names that are literals, probably classes and objects alike
+    - when the same value is assigned to two constants.... (a.b(); a.b(); will cache a.b twice)
+    - maybe reconsider var decls inside for headers. might be worthwhile to force them as const. perhaps we can hack it by assigning it to a const inside the body.
+    - can we do something with infinite loops? DCE code that follows it. maybe worth it when including some early return analysis?
+    - normalize labels in loops?
+      - make implicit breaks explicit even if it's for the current loop. not sure if that would help anything
+    - catch scope vars are not properly processed (or not at all?)
+    - catch scope to always have a binding even if its unused.
+    - Decide how to handle built-in cases like `String.fromCharCode(32)`
+    - if a function is guaranteed to throw, compile a `throw "unreachable"` after each call to it. We can always eliminate those later but maybe they allow us to improve DCE
+      - this is somewhat complicated by try/catch. but still doable.
+    - what if I made pseudo-symbols for certain builtins, like `Math.round` to `$MathRound` to help static computations? Many funcs do not need a context but are accessed as such anyways.
+    - if we know a function does not access `this`, can we detect member expressions that contain it, anyways, and prevent them?
+    - if a func has an object arg "like" destructuring that is only read, can we pass on the properties as args instead?
+      - function f(obj) { x = obj.foo; } f({foo: 10}); -> function f(foo) { x = foo } f(10);
+    - params that are builtins or implicit or explicit globals can be inlined as well
+    - When passing on a global const, drop the argument in favor of using the global directly
+    - Inlining simple functions with rest, like tests/cases/normalize/pattern/param/rest/base.md
+    - Could normalize AST, like var decl and assignment having a lhs and rhs instead of id/init and left/right (and drop the declarations bit since that'll never happen after the normalize_once step)).
+    - There are some cases of loops where we can determine that there's no way for the loop to ever break, making any code that follows it ready to DCE.
+    - If a function is called only once but cannot be inlined because it and its caller both contain branching, then move the code into the caller branch into the function to hopefully keep things closer together? see tests/cases/normalize/pattern/param/arr/arr/obj/base.md for an example
+    - Duplicate typeof on a const where one binding to hold the result can reach the other, means it can be eliminated as the results are immutable
+    - If a value is only used as a condition then whenever we know the truthy or falsy value of it, we should change it to an actual bool.
+    - can we detect mirror actions in both branches of an if? `if (x) a = f(); else a = f();` etc?
+    - bool function pattern: tests/cases/function_bool_ret/base_primitives.md
+    - edge case but we could fold up an `if` like: `if (b) { $(b); } else { $(''); }` when we know it's just a $(b) either way. exapmle: tests/cases/typing/base_string_truthy.md
+    - do we want to fix cases like in tests/cases/normalize/expressions/statement/template/auto_ident_unary_tilde_complex.md basically whether a number literal can be explicitly casted by String() or implicitly by a template and there's no observable difference. I think that's fine? so we could drop the String() trampoline in that case.
+    - when doing `0 + x` we can also convert to $coerce with a `plunum` or smth. but trickier since if the primitive is a string then that's also fine. plunum?
+    - copyPiggies at the end of parseGroupToplevels is useless?
+    - when a function updates a closure and the return value is not used, can it return updates to the closure instead? only if the function doesn't have observable side effects (only works if the closure cannot be observed) `const x = 1; function f(){ x = x + 1; } f(); f();` -> `const x = 1; function (){ const t = x + 1; return t; } x = f(); x = f();`
+      - first need to answer the question whether we prefer the single container reference as a closure versus not having closures at all...
+      - likewise, we can pass closure values into a function to eliminate a closure dependency. but can only work if the closure is accessed before a side effect.
+    - (if not already done:)
+      - tests/cases/function_trampoline/call_only/implicit_global_crash.md
+    - can we safely normalize methods as regular properties? Or are there secret bindings to take into account? Especially wrt `super` bindings.
+   >- pseudo while test aliases. tests/cases/normalize/dowhile/pseudo_alias.md
+    - variable that is only used as an if/while test, or other boolean, should have its assignments booleanfied...
+      - when a func param is only used as bool, calls that use this arg can bbe booleanified
+    - when functions are essentially an if and called with truthy and falsy values, we can split up the function... the if can be wrapped in a try/catch and we can perhaps clone that as well.
+    - if we can guarantee that the `try` block does not fail, we can drop it.
+    - if a binding can be one of two functions and is then called, we can still determine that both (all) functions are called without args/this and all that. even if we can't determine the actual value of the binding.
+    - if we know absolutely the possible values of a binding, and a regex is applied to it, test them in all possible cases to maybe see a uniform outcome anyways. `const x = a ? b : c; if (/foo/.test(x)) f();` when b and c are known values then applying the test may still give a guaranteed outcome.
+    - silly thing found in obfuscation
+
+      const tmpBinBothRhs$1 = n / n;
+      const tmpCompObj = `${tmpBinBothRhs$1}`; // if `n` is 0, then this is Infinity.
+      const tmpBinLhs = tmpCompObj.length;
+      let tmpIfTest$1 = tmpBinLhs !== 1;
+
+
+    - when a function is never called with args, the `arguments` object could become a plain empty object instead that only has a .length?
+    - call arg outlining, would fix accessing the _0xfc6c func in tests/cases/random/abuse/2021-08-09_orus_console_hijacker2.js (see output). all calls pass on a string, invariantly applying -0 to that.
+    - when a binding is assigned two values, a falsy and a truthy constant, then inside an if where this value is checked, we can assert one and the other.
+
+        let _0x4b781d = tmpCalleeParam$29;
+      if (tmpSSA__0x1badba) {
+      } else {
+        const _0x10c975 = function () {
+          const tmpArgumentsAny$1 = arguments;
+          debugger;
+          if (_0x4b781d) {
+            const tmpClusterSSA__0x563606 = _0x4b781d.apply(tmpthis, tmpArgumentsAny$1);
+            _0x4b781d = null;
+            return tmpClusterSSA__0x563606;
+          } else {
+            return undefined;
+          }
+        };
+        tmpSSA__0x1badba = true;
+        _0x10c975();
+      }
+
+
+    - plenty of room for improvement in tests/cases/random/abuse/2021-08-09_scarface.js
+    - can we detect bindings with one assignment in a closure and determine their value inside that closure until the assignment? probably too much of an edge case, only catching infinite loops.
+    - if an operation inside a loop is not observable then it can be moved out. ``let a = f(); while (x) { a = a | 10; x = f(); } $(a)` -> `let a = f(); while (x) { x = f(); } a = a | 10; $(a);` (and in this case it could be done immediately but only if the 10 value is a primitive etc.) -> tests/cases/while/unobservable_ops_func.md . This is non-trivial for crash cases and in general not sure how to deal with this, if at all.
+    - `const x = a & 1; if (x) { const y = a & 4; if (y) {` -> `const x = a & 5; const y = x === 5; if (y) {` -> tests/cases/bit_hacks/and/and_if_and_if.md
+    - x|0 is always x if you know it's the result of another bitwise op (|&^~)
+    - f(...1) should break same for undefined? -> tests/cases/normalize/expressions/assignments/call_spread/auto_ident_opt_extended.md tests/cases/normalize/expressions/assignments/call_spread/auto_ident_opt_method_opt_call_extended.md
+    - when we see an object literal, we can ignore side effects unless one was explicitly declared -> tests/cases/normalize/expressions/assignments/compound/auto_ident_opt_simple.md
+    - accessing properties on literals should result in builtin stuff? do we really care about expandos? tests/cases/normalize/expressions/assignments/computed_prop_obj/auto_ident_c-opt_simple_simple.md
+    - the `a` in this test should be hoisted into the if and then trigger an error etc. tests/cases/normalize/expressions/assignments/computed_prop_obj/auto_ident_opt_method_opt_call_extended.md
+    - numeric property on builtin object that does not have any is undefined? tests/cases/normalize/expressions/assignments/computed_prop_prop/auto_ident_opt_extended.md
+    - object without explicit getters/setters should not be treated as such even for computed access -> tests/cases/normalize/expressions/assignments/computed_prop_prop/auto_ident_opt_method_call_extended.md
+    - all (?) exports should be moved all the way to the back to allow other patterns to be recognized, prolly same for imports -> tests/cases/normalize/expressions/assignments/export_default/auto_ident_opt_method_call_simple.md
+    - for-x in a non-string primitive -> tests/cases/normalize/expressions/assignments/for_in_right/auto_ident_c-opt_simple_simple.md
+    - if a function does not access `this`, drop calls to it that try to set it ($dotCall, call, apply, bind)
+    - when a value is determined to be a primitive, a call should just trigger an error... -> tests/cases/normalize/expressions/assignments/label/auto_ident_opt_method_opt_call_extended.md
+    - a constant that is only assigned to another variable at the end of a branch should be collapsed -> tests/cases/normalize/expressions/assignments/logic_and_both/auto_ident_opt_method_opt_call_extended.md
+    - experiment, at least, with collapsing and duplicating every if-tail into each branch instead (if (x) y(); z(); to if (x) { y(); z(); } else { z(); })
+    - when a conditional let is set to a particular type in all cases, the init should be that type too. `let x = undefined; if (t) x = a === 1; else x = a === 2` -> tests/cases/normalize/expressions/assignments/switch_w_default_case_test/auto_ident_opt_method_opt_call_extended.md
+    - why is `a` initialized to undefined when we can see that's not observed? in tests/cases/normalize/expressions/bindings/export/auto_ident_opt_method_call_simple.md
+    - conditional continue at the end is the while condition `while (true) { const x = f(); if (x) continue; else break; }`  -> tests/cases/labels/for2.md
+    - from `parseAnyVarDeclaration` in tenko; when doing an a==1||a===3 (same value except one bit is flipped) we _can_ do `(a^(~2|1))===0`. this is coercion though so won't always work. but when it does it prevents a branch.     let tmpIfTest$2993 = bindingOrigin === 1; if (tmpIfTest$2993) { } else { tmpIfTest$2993 = bindingOrigin === 3; } if (tmpIfTest$2993) {parseSemiOrAsi(lexerFlags$245);} else {   }`
+    - from `parseBinding' in tenko: can't we do a xor instead of the `&!` ? `const tmpBinLhs$821 = lexerFlags$249 & 8192; let tmpIfTest$3107 = !tmpBinLhs$821; if (tmpBinLhs$821) {`
+    - when a value is the result of at least one `!` and furthermore only inverts and only used as an `if` test then the value and the `if` should be flippable. `let x = !a; if (y) x = y === 1; if (x) f(); else g();` -> `let x = a; if (y) x = y !== 1; if (x) g(); else f();`
+    - a binding that is the result of Boolean() at least once and that is only ever read as an `if` or `while` test, should drop the Boolean since that's not observable. `const x = Boolean(y); if (x)`. For lets too.
+    - if nothing else, I could treat the underscore as some kind of special variable and normalize all expression statements to be assignments to it. This way our transforms would only have to worry about two forms rather than three now. And in another future we can move that into a `var _ =` form as well, although that'll be trickier for actual assignments...
+    - preval/src/reduce_static/static_arg_op_outlining.mjs: Bonus points if the op regards two args rather than a literal. `function f(...a) {} f(1, 2, 3);` -> `function fa) {} f([1, 2, 3])`
+    - preval/src/reduce_static/static_arg_op_outlining.mjs: Bonus points for outlining assignments to closures in the same way `let x; function (a) { x = a; } f(1);` -> `let x; function (a) { } f(x = 1); }`
+    - a single scope object that escapes can still be "safe" until that point in the code is reached. so in the next test the b.c can be inferred, even if its inside a loop. it can be determined that the b can only escape after the loop. tests/cases/normalize/expressions/assignments/for_b/auto_ident_prop_simple.md
+    - fuction call with spread when function has no args should eliminate the spread (make it statement that spreads to test iterable)
+    - doing arguments spread when the function is called without args can eliminate the spread and arguments use (`function f(){ return [...arguments]; } f()` -> `function f() { return []; } f();`
+    - if we can guarantee a function is only called once (iife), can we special case certain things around its closures?
+    - TODO: func.name is already botched because I rename all idents to be unique. might help to add an option for it, or maybe support some kind of end-to-end tracking to restore the original name later. same for classes.
+
+    - if a function (etc) has an expando and it doesn't escape then we can probably change the object that holds the expando to a separate function. Or better yet, replace all occurrences of that property (provided we can track it) with some kind of (pseudo?) global binding instead. if it does escape things get a lot harder.
+
+    - assigning undefined to the old this alias but it's not replaced? tests/cases/normalize/expressions/assignments/return/auto_this.md
+
+
+    - There are a lot of wins for this snippet
+      - the `<= 0` can be `=== 0` with value tracking knowing that the binding can only be zero or one
+      - the first part mimicks the logic of the second, can they be merged through some algo?
+
+
+
+// Things to do
+// - If two let bindings are updated in tandem (with same value) then they could be combined (`let x; let y; x = z; y = z; $(x,y); x = zz; y = zz; $(x, y)`, etc)
+// - should Program always have a block just to eliminate the Program? That's not going to fix function boundaries though but maybe it is more consistent anyways?
+// - should loops always explicitly end with a continue statement? does that matter?
+
+
+
+doing multiple static operations on the same value can reuse those results if stored in a constant
+            const tmpIfTest$3265 = fromStmtOrExpr$1 === 1;
+            const tmpCalleeParam$1363 = !tmpIfTest$3265;
+            const tmpIfTest$3267 = fromStmtOrExpr$1 === 1;
+            let tmpIfTest$3269 = isExport$5 === true;
+            if (tmpIfTest$3269) {
+            } else {
+              tmpIfTest$3269 = fromStmtOrExpr$1 === 1;
+            }
+            const canonName = parseFunctionDeclaration( lexerFlags$139, scoop$33, tmpCalleeParam$1363, tmpIfTest$3267, 2074, $tp_async_start$7, $tp_async_line$7, $tp_async_column$7, $tp_async_start$7, $tp_function_stop, tmpIfTest$3269, isLabelled$11, fdState$17, astProp$43, );
+
+
+we can improve src/reduce_static/let_hoisting.mjs by doing spy analysis more thoroughly and not just for the same scope. it's just old code here
+
+we can try to enable processAttempt2multiScopeWriteReadOnly in src/reduce_static/let_hoisting.mjs as it does appear to do something, just have to be very careful why it broke
+
+
 
 ternaryConst annotated test cases might have something interesting to build out
 we should have an `innerLabel`, like innerLoop etc. we should update cases that refer to innerLoop because in most of those cases it's about getting certainty about something and label-break is another form of not executing a certain branch of code.

@@ -111,11 +111,11 @@ const arr /*:array*/ = [
 ];
 $(arr);
 const tmpBinBothLhs$39 /*:unknown*/ = x;
-const tmpBinBothLhs$41 /*:unknown*/ = x;
+x;
 const tmpBinBothRhs$39 /*:array*/ = [];
 const tmpBinBothRhs$41 /*:array*/ = [];
 const tmpArrElement$39 /*:boolean*/ = tmpBinBothLhs$39 in tmpBinBothRhs$39;
-const tmpArrElement$41 /*:boolean*/ = tmpBinBothLhs$41 instanceof tmpBinBothRhs$41;
+const tmpArrElement$41 /*:boolean*/ = tmpBinBothLhs$39 instanceof tmpBinBothRhs$41;
 const arr2 /*:array*/ = [tmpArrElement$39, tmpArrElement$41];
 $(arr2);
 `````
@@ -166,11 +166,11 @@ $([
   tmpArrElement$37,
 ]);
 const tmpBinBothLhs$39 = x;
-const tmpBinBothLhs$41 = x;
+x;
 const tmpBinBothRhs$39 = [];
 const tmpBinBothRhs$41 = [];
 const tmpArrElement$39 = tmpBinBothLhs$39 in tmpBinBothRhs$39;
-const tmpArrElement$41 = tmpBinBothLhs$41 instanceof tmpBinBothRhs$41;
+const tmpArrElement$41 = tmpBinBothLhs$39 instanceof tmpBinBothRhs$41;
 $([tmpArrElement$39, tmpArrElement$41]);
 `````
 
@@ -219,13 +219,13 @@ const bk = bj | 0;
 const bl = [ b, d, f, h, i, k, m, o, q, s, u, w, z, bc, bf, false, true, 0, bi, bk ];
 $( bl );
 const bm = x;
-const bn = x;
+x;
+const bn = [];
 const bo = [];
-const bp = [];
-const bq = bm in bo;
-const br = bn instanceof bp;
-const bs = [ bq, br ];
-$( bs );
+const bp = bm in bn;
+const bq = bm instanceof bo;
+const br = [ bp, bq ];
+$( br );
 `````
 
 

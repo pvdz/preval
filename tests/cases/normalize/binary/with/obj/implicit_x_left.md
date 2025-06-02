@@ -91,10 +91,9 @@ const tmpBinBothLhs$27 /*:unknown*/ = x;
 const tmpBinBothRhs$27 /*:object*/ = {};
 const tmpArrElement$27 /*:boolean*/ = tmpBinBothLhs$27 != tmpBinBothRhs$27;
 const tmpBinBothLhs$29 /*:unknown*/ = x;
-const tmpBinBothLhs$31 /*:unknown*/ = x;
-const tmpBinBothLhs$33 /*:unknown*/ = x;
+x;
 const tmpBinBothRhs$33 /*:object*/ = {};
-const tmpArrElement$33 /*:number*/ = tmpBinBothLhs$33 & tmpBinBothRhs$33;
+const tmpArrElement$33 /*:number*/ = tmpBinBothLhs$29 & tmpBinBothRhs$33;
 const tmpBinBothLhs$35 /*:unknown*/ = x;
 const tmpBinBothRhs$35 /*:object*/ = {};
 const tmpArrElement$35 /*:number*/ = tmpBinBothLhs$35 ^ tmpBinBothRhs$35;
@@ -104,7 +103,7 @@ const tmpArrElement$37 /*:number*/ = tmpBinBothLhs$37 | tmpBinBothRhs$37;
 const tmpBinBothRhs$29 /*:object*/ = {};
 const tmpBinBothRhs$31 /*:object*/ = {};
 const tmpArrElement$29 /*:boolean*/ = tmpBinBothLhs$29 === tmpBinBothRhs$29;
-const tmpArrElement$31 /*:boolean*/ = tmpBinBothLhs$31 !== tmpBinBothRhs$31;
+const tmpArrElement$31 /*:boolean*/ = tmpBinBothLhs$29 !== tmpBinBothRhs$31;
 const arr /*:array*/ = [
   tmpArrElement,
   tmpArrElement$1,
@@ -159,14 +158,14 @@ const tmpArrElement$23 = x >= {};
 const tmpArrElement$25 = x == {};
 const tmpArrElement$27 = x != {};
 const tmpBinBothLhs$29 = x;
-const tmpBinBothLhs$31 = x;
-const tmpArrElement$33 = x & {};
+x;
+const tmpArrElement$33 = tmpBinBothLhs$29 & {};
 const tmpArrElement$35 = x ^ {};
 const tmpArrElement$37 = x | {};
 const tmpBinBothRhs$29 = {};
 const tmpBinBothRhs$31 = {};
 const tmpArrElement$29 = tmpBinBothLhs$29 === tmpBinBothRhs$29;
-const tmpArrElement$31 = tmpBinBothLhs$31 !== tmpBinBothRhs$31;
+const tmpArrElement$31 = tmpBinBothLhs$29 !== tmpBinBothRhs$31;
 $([
   tmpArrElement,
   tmpArrElement$1,
@@ -246,30 +245,29 @@ const br = x;
 const bs = {};
 const bt = br != bs;
 const bu = x;
-const bv = x;
-const bw = x;
-const bx = {};
-const by = bw & bx;
-const bz = x;
-const ca = {};
-const cb = bz ^ ca;
-const cc = x;
+x;
+const bv = {};
+const bw = bu & bv;
+const bx = x;
+const by = {};
+const bz = bx ^ by;
+const ca = x;
+const cb = {};
+const cc = ca | cb;
 const cd = {};
-const ce = cc | cd;
-const cf = {};
-const cg = {};
-const ch = bu === cf;
-const ci = bv !== cg;
-const cj = [ c, f, i, l, o, r, u, y, bb, be, bh, bk, bn, bq, bt, ch, ci, by, cb, ce ];
-$( cj );
-const ck = x;
-const cl = {};
-const cm = ck in cl;
-$( cm );
-const cn = x;
-const co = {};
-const cp = cn instanceof co;
-$( cp );
+const ce = {};
+const cf = bu === cd;
+const cg = bu !== ce;
+const ch = [ c, f, i, l, o, r, u, y, bb, be, bh, bk, bn, bq, bt, cf, cg, bw, bz, cc ];
+$( ch );
+const ci = x;
+const cj = {};
+const ck = ci in cj;
+$( ck );
+const cl = x;
+const cm = {};
+const cn = cl instanceof cm;
+$( cn );
 `````
 
 

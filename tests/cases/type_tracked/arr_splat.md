@@ -2,7 +2,7 @@
 
 # arr_splat.md
 
-> Tofix > arr splat
+> Type tracked > Arr splat
 
 The array splat expand case can be simplified
 

@@ -146,6 +146,31 @@ function _typeTrackedTricks(fdata) {
             }
           }
         }
+
+        if (
+          node.expression.type === 'CallExpression' &&
+          node.expression.callee.type === 'Identifier' &&
+          node.expression.callee.name === symbo('Array', 'from') &&
+          // Calling it without arg is error
+          node.expression.arguments.length > 0
+        ){
+          const arg = node.expression.arguments[0];
+          if (arg.type === 'Identifier') {
+            const meta = arg.name === 'arguments' || fdata.globallyUniqueNamingRegistry.get(arg.name);
+            if (meta.typing.mustBeType === 'array') {
+              rule('Calling Array.from on an array as a statement is a noob');
+              example('Array.from([]);', ';');
+              before(node);
+
+              node.expression = AST.undef();
+              queue.push({index: blockIndex, func: () => blockBody.splice(blockIndex, 1)}); // Cleanup without requiring normal.
+
+              after(node);
+              changes += 1;
+            }
+          }
+          break;
+        }
         break;
       }
       case 'IfStatement': {

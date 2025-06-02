@@ -25,7 +25,6 @@ $(a, x, y);
 const tmpArrElement /*:unknown*/ = $(3);
 const tmpArrElement$1 /*:unknown*/ = $(4);
 const tmpNestedAssignArrPatternRhs /*:array*/ = [tmpArrElement, tmpArrElement$1];
-[...tmpNestedAssignArrPatternRhs];
 throw tmpNestedAssignArrPatternRhs;
 `````
 
@@ -37,7 +36,6 @@ throw tmpNestedAssignArrPatternRhs;
 const tmpArrElement = $(3);
 const tmpArrElement$1 = $(4);
 const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
-[...tmpNestedAssignArrPatternRhs];
 throw tmpNestedAssignArrPatternRhs;
 `````
 
@@ -49,7 +47,6 @@ With rename=true
 const a = $( 3 );
 const b = $( 4 );
 const c = [ a, b ];
-[ ...c ];
 throw c;
 `````
 
@@ -77,7 +74,7 @@ throw tmpThrowArg;
 
 
 - (todo) Deal with array spreads in arr mutation?
-- (todo) support array reads statement type ExpressionStatement
+- (todo) support array reads statement type ThrowStatement
 - (todo) support array reads statement type VarStatement
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
 

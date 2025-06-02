@@ -34,7 +34,6 @@ const z /*:array*/ = [10, 20, 30];
 if (tmpIfTest) {
   $(undefined);
   $(undefined);
-  [...z];
   $(1, 2, z);
 } else {
   $(1, 2, z);
@@ -51,7 +50,6 @@ const z = [10, 20, 30];
 if (tmpIfTest) {
   $(undefined);
   $(undefined);
-  [...z];
   $(1, 2, z);
 } else {
   $(1, 2, z);
@@ -70,7 +68,6 @@ const d = [ 10, 20, 30 ];
 if (c) {
   $( undefined );
   $( undefined );
-  [ ...d ];
   $( 1, 2, d );
 }
 else {

@@ -60,7 +60,7 @@ f();
 ## Todos triggered
 
 
-None
+- (todo) harden the check for being an arguments object, a prefix check seems brittle
 
 
 ## Globals

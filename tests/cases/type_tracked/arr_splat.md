@@ -39,7 +39,6 @@ const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 if (tmpIfTest) {
   $(2);
   const z /*:array*/ = [10, 20, 30];
-  [...z];
   $(1, 2, z);
 } else {
 }
@@ -55,9 +54,7 @@ const tmpBinBothRhs = $(`a`);
 $(1);
 if (tmpSwitchDisc === tmpBinBothRhs) {
   $(2);
-  const z = [10, 20, 30];
-  [...z];
-  $(1, 2, z);
+  $(1, 2, [10, 20, 30]);
 }
 `````
 
@@ -73,7 +70,6 @@ const c = a === b;
 if (c) {
   $( 2 );
   const d = [ 10, 20, 30 ];
-  [ ...d ];
   $( 1, 2, d );
 }
 `````

@@ -19,16 +19,10 @@ $(x, y, z);
 
 
 `````js filename=intro
-const tmpBinBothLhs /*:unknown*/ = $(`a`);
-const tmpBinBothRhs /*:unknown*/ = $(`a`);
-const tmpIfTest /*:boolean*/ = tmpBinBothLhs === tmpBinBothRhs;
+$(`a`);
+$(`a`);
 const z /*:array*/ = [10, 20, 30];
-if (tmpIfTest) {
-  [...z];
-  $(1, 2, z);
-} else {
-  $(1, 2, z);
-}
+$(1, 2, z);
 `````
 
 
@@ -36,14 +30,9 @@ if (tmpIfTest) {
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpIfTest = $(`a`) === $(`a`);
-const z = [10, 20, 30];
-if (tmpIfTest) {
-  [...z];
-  $(1, 2, z);
-} else {
-  $(1, 2, z);
-}
+$(`a`);
+$(`a`);
+$(1, 2, [10, 20, 30]);
 `````
 
 
@@ -51,17 +40,10 @@ if (tmpIfTest) {
 With rename=true
 
 `````js filename=intro
-const a = $( "a" );
-const b = $( "a" );
-const c = a === b;
-const d = [ 10, 20, 30 ];
-if (c) {
-  [ ...d ];
-  $( 1, 2, d );
-}
-else {
-  $( 1, 2, d );
-}
+$( "a" );
+$( "a" );
+const a = [ 10, 20, 30 ];
+$( 1, 2, a );
 `````
 
 

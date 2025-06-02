@@ -76,9 +76,30 @@ function _typeTrackedTricks(fdata) {
             const enode = arrNode.elements[i];
             if (enode && enode.type === 'SpreadElement') {
               // TODO: technically this could still eliminate a different var. We should either verify here or tag in general the `arguments` aliases
-              if (enode.argument.type === 'Identifier' && enode.argument.name.startsWith(ARGUMENTS_ALIAS_BASE_NAME)) {
-                vlog('This is spreading the `arguments` alias. We can drop this.');
-                arrNode.elements.splice(i, 1);
+              if (enode.argument.type === 'Identifier') {
+                if (enode.argument.name.startsWith(ARGUMENTS_ALIAS_BASE_NAME)) {
+                  todo('harden the check for being an arguments object, a prefix check seems brittle');
+                  rule('Spreading the `arguments` object as a statement is a noop');
+                  example('[...arguments];', '[];');
+                  before(node);
+
+                  arrNode.elements.splice(i, 1);
+
+                  after(node);
+                  changes += 1;
+                }
+
+                const meta = fdata.globallyUniqueNamingRegistry.get(enode.argument.name);
+                if (meta.typing.mustBeType === 'array') {
+                  rule('The act of spreading an array is a noop so as a statement we can drop the spread');
+                  example('const arr = [1, 2, 3]; [...arr];', 'const ar = [1, 2, 3]; []');
+                  before(node);
+
+                  arrNode.elements.splice(i, 1);
+
+                  after(node);
+                  changes += 1;
+                }
               }
             }
           }

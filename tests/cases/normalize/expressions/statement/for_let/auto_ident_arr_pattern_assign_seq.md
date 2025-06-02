@@ -27,7 +27,6 @@ $(2);
 const tmpArrElement /*:unknown*/ = $(3);
 const tmpArrElement$1 /*:unknown*/ = $(4);
 const tmpNestedAssignArrPatternRhs /*:array*/ = [tmpArrElement, tmpArrElement$1];
-[...tmpNestedAssignArrPatternRhs];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(tmpNestedAssignArrPatternRhs);
   $(1);
@@ -44,7 +43,6 @@ $(2);
 const tmpArrElement = $(3);
 const tmpArrElement$1 = $(4);
 const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
-[...tmpNestedAssignArrPatternRhs];
 while (true) {
   $(tmpNestedAssignArrPatternRhs);
   $(1);
@@ -61,7 +59,6 @@ $( 2 );
 const a = $( 3 );
 const b = $( 4 );
 const c = [ a, b ];
-[ ...c ];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( c );
   $( 1 );
@@ -97,9 +94,8 @@ while (true) {
 
 
 - (todo) Deal with array spreads in arr mutation?
-- (todo) do we want to support ArrayExpression as expression statement in free loops?
-- (todo) support array reads statement type ExpressionStatement
 - (todo) support array reads statement type VarStatement
+- (todo) support array reads statement type WhileStatement
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
 
 

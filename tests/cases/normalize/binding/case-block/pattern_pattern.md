@@ -27,7 +27,6 @@ if (tmpIfTest) {
   const tmpArrPatternSplat$1 /*:array*/ = [...z];
   const tmpClusterSSA_x /*:unknown*/ = tmpArrPatternSplat$1[1];
   const tmpClusterSSA_y /*:unknown*/ = tmpArrPatternSplat$1[2];
-  [...z];
   $(1, 2, tmpClusterSSA_x, tmpClusterSSA_y, z);
 } else {
   $(1, 2, 1, 2, z);
@@ -43,10 +42,7 @@ const tmpIfTest = $(`a`) === $(`a`);
 const z = [10, 20, 30];
 if (tmpIfTest) {
   const tmpArrPatternSplat$1 = [...z];
-  const tmpClusterSSA_x = tmpArrPatternSplat$1[1];
-  const tmpClusterSSA_y = tmpArrPatternSplat$1[2];
-  [...z];
-  $(1, 2, tmpClusterSSA_x, tmpClusterSSA_y, z);
+  $(1, 2, tmpArrPatternSplat$1[1], tmpArrPatternSplat$1[2], z);
 } else {
   $(1, 2, 1, 2, z);
 }
@@ -65,7 +61,6 @@ if (c) {
   const e = [ ...d ];
   const f = e[ 1 ];
   const g = e[ 2 ];
-  [ ...d ];
   $( 1, 2, f, g, d );
 }
 else {

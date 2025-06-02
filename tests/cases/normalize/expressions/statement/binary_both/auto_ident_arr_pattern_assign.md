@@ -24,14 +24,13 @@ $(a, x, y);
 `````js filename=intro
 const tmpArrElement /*:unknown*/ = $(3);
 const tmpArrElement$1 /*:unknown*/ = $(4);
-const tmpNestedAssignArrPatternRhs /*:array*/ = [tmpArrElement, tmpArrElement$1];
-[...tmpNestedAssignArrPatternRhs];
 const tmpArrElement$3 /*:unknown*/ = $(3);
 const tmpArrElement$5 /*:unknown*/ = $(4);
 const tmpNestedAssignArrPatternRhs$1 /*:array*/ = [tmpArrElement$3, tmpArrElement$5];
 const tmpArrPatternSplat$1 /*:array*/ = [...tmpNestedAssignArrPatternRhs$1];
 const tmpSSA_x /*:unknown*/ = tmpArrPatternSplat$1[0];
 const tmpSSA_y /*:unknown*/ = tmpArrPatternSplat$1[1];
+const tmpNestedAssignArrPatternRhs /*:array*/ = [tmpArrElement, tmpArrElement$1];
 tmpNestedAssignArrPatternRhs + tmpNestedAssignArrPatternRhs$1;
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a, tmpSSA_x, tmpSSA_y);
@@ -44,15 +43,13 @@ $(a, tmpSSA_x, tmpSSA_y);
 `````js filename=intro
 const tmpArrElement = $(3);
 const tmpArrElement$1 = $(4);
-const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
-[...tmpNestedAssignArrPatternRhs];
 const tmpArrElement$3 = $(3);
 const tmpArrElement$5 = $(4);
 const tmpNestedAssignArrPatternRhs$1 = [tmpArrElement$3, tmpArrElement$5];
 const tmpArrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs$1];
 const tmpSSA_x = tmpArrPatternSplat$1[0];
 const tmpSSA_y = tmpArrPatternSplat$1[1];
-tmpNestedAssignArrPatternRhs + tmpNestedAssignArrPatternRhs$1;
+[tmpArrElement, tmpArrElement$1] + tmpNestedAssignArrPatternRhs$1;
 $({ a: 999, b: 1000 }, tmpSSA_x, tmpSSA_y);
 `````
 
@@ -63,20 +60,19 @@ With rename=true
 `````js filename=intro
 const a = $( 3 );
 const b = $( 4 );
-const c = [ a, b ];
-[ ...c ];
-const d = $( 3 );
-const e = $( 4 );
-const f = [ d, e ];
-const g = [ ...f ];
-const h = g[ 0 ];
-const i = g[ 1 ];
-c + f;
+const c = $( 3 );
+const d = $( 4 );
+const e = [ c, d ];
+const f = [ ...e ];
+const g = f[ 0 ];
+const h = f[ 1 ];
+const i = [ a, b ];
+i + e;
 const j = {
   a: 999,
   b: 1000,
 };
-$( j, h, i );
+$( j, g, h );
 `````
 
 

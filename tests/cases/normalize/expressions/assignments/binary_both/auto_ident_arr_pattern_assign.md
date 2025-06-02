@@ -24,14 +24,13 @@ $(a, x, y);
 `````js filename=intro
 const tmpArrElement /*:unknown*/ = $(3);
 const tmpArrElement$1 /*:unknown*/ = $(4);
-const tmpNestedAssignArrPatternRhs /*:array*/ = [tmpArrElement, tmpArrElement$1];
-[...tmpNestedAssignArrPatternRhs];
 const tmpArrElement$3 /*:unknown*/ = $(3);
 const tmpArrElement$5 /*:unknown*/ = $(4);
 const tmpNestedAssignArrPatternRhs$1 /*:array*/ = [tmpArrElement$3, tmpArrElement$5];
 const tmpArrPatternSplat$1 /*:array*/ = [...tmpNestedAssignArrPatternRhs$1];
 const tmpSSA_x /*:unknown*/ = tmpArrPatternSplat$1[0];
 const tmpSSA_y /*:unknown*/ = tmpArrPatternSplat$1[1];
+const tmpNestedAssignArrPatternRhs /*:array*/ = [tmpArrElement, tmpArrElement$1];
 const tmpCalleeParam /*:primitive*/ = tmpNestedAssignArrPatternRhs + tmpNestedAssignArrPatternRhs$1;
 $(tmpCalleeParam);
 $(tmpNestedAssignArrPatternRhs$1, tmpSSA_x, tmpSSA_y);
@@ -44,15 +43,13 @@ $(tmpNestedAssignArrPatternRhs$1, tmpSSA_x, tmpSSA_y);
 `````js filename=intro
 const tmpArrElement = $(3);
 const tmpArrElement$1 = $(4);
-const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
-[...tmpNestedAssignArrPatternRhs];
 const tmpArrElement$3 = $(3);
 const tmpArrElement$5 = $(4);
 const tmpNestedAssignArrPatternRhs$1 = [tmpArrElement$3, tmpArrElement$5];
 const tmpArrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs$1];
 const tmpSSA_x = tmpArrPatternSplat$1[0];
 const tmpSSA_y = tmpArrPatternSplat$1[1];
-$(tmpNestedAssignArrPatternRhs + tmpNestedAssignArrPatternRhs$1);
+$([tmpArrElement, tmpArrElement$1] + tmpNestedAssignArrPatternRhs$1);
 $(tmpNestedAssignArrPatternRhs$1, tmpSSA_x, tmpSSA_y);
 `````
 
@@ -63,17 +60,16 @@ With rename=true
 `````js filename=intro
 const a = $( 3 );
 const b = $( 4 );
-const c = [ a, b ];
-[ ...c ];
-const d = $( 3 );
-const e = $( 4 );
-const f = [ d, e ];
-const g = [ ...f ];
-const h = g[ 0 ];
-const i = g[ 1 ];
-const j = c + f;
+const c = $( 3 );
+const d = $( 4 );
+const e = [ c, d ];
+const f = [ ...e ];
+const g = f[ 0 ];
+const h = f[ 1 ];
+const i = [ a, b ];
+const j = i + e;
 $( j );
-$( f, h, i );
+$( e, g, h );
 `````
 
 
@@ -110,7 +106,6 @@ $(a, x, y);
 
 
 - (todo) Deal with array spreads in arr mutation?
-- (todo) support array reads statement type ExpressionStatement
 - (todo) support array reads statement type VarStatement
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
 

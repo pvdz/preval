@@ -1,22 +1,6 @@
 // Functions that return closures may outline that return value in their callers
 
-import {
-  ASSERT,
-  log,
-  group,
-  groupEnd,
-  vlog,
-  vgroup,
-  vgroupEnd,
-  rule,
-  example,
-  before,
-  source,
-  after,
-  fmat,
-  tmat,
-  findBodyOffset,
-} from '../utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, fmat, tmat, findBodyOffset, } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 
 export function returnClosure(fdata) {

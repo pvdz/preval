@@ -9298,6 +9298,17 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
         assertNoDupeNodes(body, 'body');
         return true;
       }
+      if (expr?.type === 'Identifier' && firstThen.type === 'ExpressionStatement' && firstThen.expression === expr && expr.name === node.test.name) {
+        rule('Then-branch that starts with expr statement that is the if-test means we can safely remove it');
+        example('if (x) { x; } else { }', 'if (x) { } else { }');
+        before(body[i]);
+
+        node.consequent.body.shift(); // No need to worry about tdz here. The if-test retains it.
+
+        after(body[i]);
+        assertNoDupeNodes(body, 'body');
+        return true;
+      }
     }
     const firstElse = node.alternate.body[0];
     if (firstElse) {
@@ -9308,6 +9319,17 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
         before(body[i]);
 
         expr.argument = AST.fals();
+
+        after(body[i]);
+        assertNoDupeNodes(body, 'body');
+        return true;
+      }
+      if (expr?.type === 'Identifier' && firstElse.type === 'ExpressionStatement' && firstElse.expression === expr && expr.name === node.test.name) {
+        rule('Else-branch that starts with expr statement that is the if-test means we can safely remove it');
+        example('if (x) { } else { x; }', 'if (x) { } else { }');
+        before(body[i]);
+
+        node.alternate.body.shift(); // No need to worry about tdz here. The if-test retains it.
 
         after(body[i]);
         assertNoDupeNodes(body, 'body');

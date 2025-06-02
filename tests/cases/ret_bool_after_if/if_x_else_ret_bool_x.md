@@ -31,7 +31,6 @@ const f /*:()=>unknown*/ = function () {
   if (y) {
     return y;
   } else {
-    y;
     return false;
   }
 };
@@ -50,7 +49,6 @@ const f = function () {
   if (y) {
     return y;
   } else {
-    y;
     return false;
   }
 };
@@ -69,7 +67,6 @@ const a = function() {
     return y;
   }
   else {
-    y;
     return false;
   }
 };

@@ -53,12 +53,10 @@ const f /*:()=>unknown*/ = function () {
   debugger;
   arr[-344];
   if (unknown) {
-    unknown;
     arr[364];
   } else {
   }
   if (unknown2) {
-    unknown2;
     arr[364];
     return undefined;
   } else {
@@ -76,11 +74,9 @@ $(f);
 $(function () {
   arr[-344];
   if (unknown) {
-    unknown;
     arr[364];
   }
   if (unknown2) {
-    unknown2;
     arr[364];
   }
 });
@@ -95,11 +91,9 @@ const a = function() {
   debugger;
   arr[ -344 ];
   if (unknown) {
-    unknown;
     arr[ 364 ];
   }
   if (unknown2) {
-    unknown2;
     arr[ 364 ];
     return undefined;
   }

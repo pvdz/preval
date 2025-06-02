@@ -1,8 +1,8 @@
 # Preval test case
 
-# if-test-else-inv-test.md
+# if_test_else_inv_test.md
 
-> If test nested > If-test-else-inv-test
+> If test nested > If test else inv test
 
 This could be
 

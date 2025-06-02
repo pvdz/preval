@@ -99,12 +99,12 @@ let f = function () {
   debugger;
   const x = $(`truthy`);
   if (x) {
-    let tmpCalleeParam = !x;
+    let tmpCalleeParam = false;
     $(tmpCalleeParam, `fail`);
     $(x, `after`);
     return undefined;
   } else {
-    let tmpCalleeParam$1 = !x;
+    let tmpCalleeParam$1 = true;
     $(tmpCalleeParam$1, `pass`);
     $(x, `after`);
     return undefined;

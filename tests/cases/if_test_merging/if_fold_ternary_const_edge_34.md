@@ -87,7 +87,7 @@ else {
 let x = $(true);
 let y = !x;
 if (x) {
-  y = !x;
+  y = false;
 } else {
 }
 if (y) {

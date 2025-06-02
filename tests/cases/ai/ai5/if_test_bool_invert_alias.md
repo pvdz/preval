@@ -87,12 +87,10 @@ if (t) {
 
 `````js filename=intro
 if (c) {
-  c;
   $(false);
 } else {
 }
 if (d) {
-  d;
   $(false);
 } else {
 }
@@ -101,14 +99,12 @@ if (f) {
 } else {
 }
 if (h) {
-  h;
   $(false);
 } else {
 }
 if (i) {
   throw `Preval: TDZ triggered for this read: \$(j)`;
 } else {
-  i;
   if (l) {
     $(false);
   } else {
@@ -123,17 +119,14 @@ if (i) {
   } else {
   }
   if (p) {
-    p;
     $(false);
   } else {
   }
   if (r) {
-    r;
     $(false);
   } else {
   }
   if (t) {
-    t;
     $(false);
     $(false);
   } else {
@@ -147,24 +140,20 @@ if (i) {
 
 `````js filename=intro
 if (c) {
-  c;
   $(false);
 }
 if (d) {
-  d;
   $(false);
 }
 if (f) {
   $(true);
 }
 if (h) {
-  h;
   $(false);
 }
 if (i) {
   throw `Preval: TDZ triggered for this read: \$(j)`;
 } else {
-  i;
   if (l) {
     $(false);
   }
@@ -176,15 +165,12 @@ if (i) {
     $(o);
   }
   if (p) {
-    p;
     $(false);
   }
   if (r) {
-    r;
     $(false);
   }
   if (t) {
-    t;
     $(false);
     $(false);
   }
@@ -197,25 +183,21 @@ With rename=true
 
 `````js filename=intro
 if (c) {
-  c;
   $( false );
 }
 if (d) {
-  d;
   $( false );
 }
 if (f) {
   $( true );
 }
 if (h) {
-  h;
   $( false );
 }
 if (i) {
   throw "Preval: TDZ triggered for this read: $(j)";
 }
 else {
-  i;
   if (l) {
     $( false );
   }
@@ -227,15 +209,12 @@ else {
     $( a );
   }
   if (p) {
-    p;
     $( false );
   }
   if (r) {
-    r;
     $( false );
   }
   if (t) {
-    t;
     $( false );
     $( false );
   }
@@ -295,17 +274,17 @@ if (n) {
 } else {
 }
 if (p) {
-  let q = !p;
+  let q = false;
   $(q);
 } else {
 }
 if (r) {
-  const s = !r;
+  const s = false;
   $(s);
 } else {
 }
 if (t) {
-  let u = !t;
+  let u = false;
   $(u);
   $(u);
 } else {

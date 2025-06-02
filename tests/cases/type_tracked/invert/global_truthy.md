@@ -28,12 +28,11 @@ f();
 `````js filename=intro
 const f /*:()=>unknown*/ = function () {
   debugger;
-  const tmpCalleeParam /*:boolean*/ = !$;
   if ($) {
-    $(tmpCalleeParam, `fail`);
+    $(false, `fail`);
     return undefined;
   } else {
-    $(tmpCalleeParam, `pass`);
+    $(true, `pass`);
     return undefined;
   }
 };
@@ -48,11 +47,10 @@ f();
 
 `````js filename=intro
 const f = function () {
-  const tmpCalleeParam = !$;
   if ($) {
-    $(tmpCalleeParam, `fail`);
+    $(false, `fail`);
   } else {
-    $(tmpCalleeParam, `pass`);
+    $(true, `pass`);
   }
 };
 f();
@@ -67,13 +65,12 @@ With rename=true
 `````js filename=intro
 const a = function() {
   debugger;
-  const b = !$;
   if ($) {
-    $( b, "fail" );
+    $( false, "fail" );
     return undefined;
   }
   else {
-    $( b, "pass" );
+    $( true, "pass" );
     return undefined;
   }
 };
@@ -90,11 +87,11 @@ a();
 let f = function () {
   debugger;
   if ($) {
-    let tmpCalleeParam = !$;
+    let tmpCalleeParam = false;
     $(tmpCalleeParam, `fail`);
     return undefined;
   } else {
-    let tmpCalleeParam$1 = !$;
+    let tmpCalleeParam$1 = true;
     $(tmpCalleeParam$1, `pass`);
     return undefined;
   }

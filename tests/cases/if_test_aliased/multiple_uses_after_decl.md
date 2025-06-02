@@ -60,7 +60,7 @@ if (a) {
 `````js filename=intro
 const t = $(true);
 if (t) {
-  let u = !t;
+  let u = false;
   $(u);
   $(u);
 } else {

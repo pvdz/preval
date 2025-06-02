@@ -60,7 +60,7 @@ else {
 const x = $(1);
 if (x) {
 } else {
-  let tmpCalleeParam = !x;
+  let tmpCalleeParam = true;
   $(tmpCalleeParam);
 }
 `````

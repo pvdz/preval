@@ -8885,6 +8885,8 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
       return true;
     }
 
+    ASSERT(node.test.type === 'Identifier', 'Is there a normalized case where the if-test is not an identifier at this point?');
+
     if (
       node.consequent.body.length === 1 &&
       node.consequent.body[0].type === 'ReturnStatement' &&
@@ -9276,6 +9278,40 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
         if (dce(body, i, 'after if-else')) {
           return true;
         }
+      }
+    }
+
+    // Silly case but ok
+    // `if (x) {} else $(!x)` -> `$(true)` regardless of the value of x.
+    // TODO: excavate this. When the ident can not change between the if-tests and read, this would still be good.
+    const firstThen = node.consequent.body[0];
+    if (firstThen) {
+      const expr = AST.getExprFromStmt(firstThen);
+      if (expr?.type === 'UnaryExpression' && expr.operator === '!' && expr.argument.type === 'Identifier' && expr.argument.name === node.test.name) {
+        rule('Then-branch that immediately inverts the if-test can resolve that inverse');
+        example('if (x) { const t = !x; $(t); } else { }', 'if (x) { const t = false; $(t); } else { }');
+        before(body[i]);
+
+        expr.argument = AST.tru();
+
+        after(body[i]);
+        assertNoDupeNodes(body, 'body');
+        return true;
+      }
+    }
+    const firstElse = node.alternate.body[0];
+    if (firstElse) {
+      const expr = AST.getExprFromStmt(firstElse);
+      if (expr?.type === 'UnaryExpression' && expr.operator === '!' && expr.argument.type === 'Identifier' && expr.argument.name === node.test.name) {
+        rule('Else-branch that immediately inverts the if-test can resolve that inverse');
+        example('if (x) { } else { const t = !x; $(t); }', 'if (x) { } else { const t = true; $(t); }');
+        before(body[i]);
+
+        expr.argument = AST.fals();
+
+        after(body[i]);
+        assertNoDupeNodes(body, 'body');
+        return true;
       }
     }
 

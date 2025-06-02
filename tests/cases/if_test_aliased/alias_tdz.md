@@ -58,7 +58,7 @@ const c = $(true);
 if (c) {
   throw `Preval: TDZ triggered for this read: \$(a)`;
 } else {
-  let a = !c;
+  let a = true;
 }
 `````
 

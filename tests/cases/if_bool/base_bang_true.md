@@ -55,7 +55,7 @@ if (a) {
 `````js filename=intro
 const x = $(1);
 if (x) {
-  let tmpCalleeParam = !x;
+  let tmpCalleeParam = false;
   $(tmpCalleeParam);
 } else {
 }

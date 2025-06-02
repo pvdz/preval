@@ -59,10 +59,10 @@ const tmpBinBothLhs = 1;
 const tmpBinBothRhs = $(1);
 const x = tmpBinBothLhs * tmpBinBothRhs;
 if (x) {
-  let tmpCalleeParam = !x;
+  let tmpCalleeParam = false;
   $(tmpCalleeParam);
 } else {
-  let tmpCalleeParam$1 = !x;
+  let tmpCalleeParam$1 = true;
   $(tmpCalleeParam$1);
 }
 `````

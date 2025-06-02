@@ -72,7 +72,7 @@ else {
 let c = $(false);
 if (c) {
 } else {
-  let a = !c;
+  let a = true;
   $(a);
 }
 `````

@@ -56,7 +56,7 @@ if (a) {
 `````js filename=intro
 const r = $(true);
 if (r) {
-  const s = !r;
+  const s = false;
   $(s);
 } else {
 }

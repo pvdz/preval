@@ -31,10 +31,10 @@ f();
 const f /*:()=>undefined*/ = function () {
   debugger;
   const tmpBinBothRhs /*:unknown*/ = $(``);
-  const x /*:string*/ = $coerce(tmpBinBothRhs, `plustr`);
-  if (x) {
+  const x$1 /*:string*/ = $coerce(tmpBinBothRhs, `plustr`);
+  if (x$1) {
     $(false, `fail`);
-    $(x, `after`);
+    $(x$1, `after`);
     return undefined;
   } else {
     $(true, `pass`);
@@ -53,10 +53,10 @@ f();
 
 `````js filename=intro
 const f = function () {
-  const x = $coerce($(``), `plustr`);
-  if (x) {
+  const x$1 = $coerce($(``), `plustr`);
+  if (x$1) {
     $(false, `fail`);
-    $(x, `after`);
+    $(x$1, `after`);
   } else {
     $(true, `pass`);
     $(``, `after`);
@@ -103,12 +103,12 @@ let f = function () {
   const tmpBinBothRhs = $(``);
   const x = tmpBinBothLhs + tmpBinBothRhs;
   if (x) {
-    let tmpCalleeParam = !x;
+    let tmpCalleeParam = false;
     $(tmpCalleeParam, `fail`);
     $(x, `after`);
     return undefined;
   } else {
-    let tmpCalleeParam$1 = !x;
+    let tmpCalleeParam$1 = true;
     $(tmpCalleeParam$1, `pass`);
     $(x, `after`);
     return undefined;

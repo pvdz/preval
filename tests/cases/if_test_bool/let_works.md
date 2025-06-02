@@ -112,10 +112,10 @@ let f = function () {
   debugger;
   let x = $(1);
   if (x) {
-    let tmpCalleeParam = !x;
+    let tmpCalleeParam = false;
     $(`a`, tmpCalleeParam);
   } else {
-    let tmpCalleeParam$1 = !x;
+    let tmpCalleeParam$1 = true;
     $(`b`, tmpCalleeParam$1);
   }
   if ($) {

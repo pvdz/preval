@@ -3202,3 +3202,12 @@ export function isNoobExpression(node, allowIdents = false) {
 
   return false;
 }
+
+// This requires normalized code and non-nullable stmt.
+// In that state, an expression is either the init of a var, the rhs of an assign, the stmt itself, or not an expr value.
+export function getExprFromStmt(stmt) {
+  if (stmt.type === 'VarStatement') return stmt.init;
+  if (stmt.type !== 'ExpressionStatement') return null;
+  if (stmt.expression.type === 'AssignmentExpression') return stmt.expression.right;
+  return stmt.expression;
+}

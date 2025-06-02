@@ -120,9 +120,9 @@ else {
 let x = $(true);
 let y = undefined;
 if (x) {
-  y = !x;
+  y = false;
 } else {
-  y = !x;
+  y = true;
 }
 if (y) {
   $(`THEN`);

@@ -86,11 +86,11 @@ let f = function ($$0) {
   let x = $$0;
   debugger;
   if (x) {
-    let tmpCalleeParam = !x;
+    let tmpCalleeParam = false;
     $(`a`, tmpCalleeParam);
     return undefined;
   } else {
-    let tmpCalleeParam$1 = !x;
+    let tmpCalleeParam$1 = true;
     $(`b`, tmpCalleeParam$1);
     return undefined;
   }

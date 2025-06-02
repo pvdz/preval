@@ -105,7 +105,7 @@ if (x) {
 }
 let y_outer = !x;
 if (x) {
-  let y_inner = !x;
+  let y_inner = false;
   y_inner = true;
 } else {
 }

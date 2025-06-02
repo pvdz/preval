@@ -3211,3 +3211,50 @@ export function getExprFromStmt(stmt) {
   if (stmt.expression.type === 'AssignmentExpression') return stmt.expression.right;
   return stmt.expression;
 }
+
+export function findInvIdentWhileSkippingNoobs(body, varName) {
+  // Given a var name, skip statements in the body as long as these statements can not
+  // change the var name in any way and as long as we don't find `!varName`, or the end.
+
+  for (let i=0; i<body.length; ++i) {
+    const stmt = body[i];
+    const expr = getExprFromStmt(stmt);
+    if (!expr) {
+      if (!['EmptyStatement', 'LabeledStatement', 'TryStatement', 'ReturnStatement', 'WhileStatement', 'BreakStatement', 'ThrowStatement', 'IfStatement'].includes(stmt.type)) {
+        todo(`support statement in findInvIdentWhileSkippingNoobs: ${stmt.type}`);
+      }
+      return null;
+    }
+    if (expr.type === 'UnaryExpression') {
+      if (expr.operator === 'typeof') continue; // does not mutate
+      if (expr.operator === 'delete') return null; // delete very likely mutates
+      if (expr.operator === '~') return null; // this may coerce
+      if (expr.argument.type === 'Identifier' && expr.argument.name === varName) return expr;
+      if (expr.operator === '-') return null; // this may coerce
+      if (expr.operator === '+') return null; // this may coerce
+      ASSERT(expr.operator === '!', 'or what am i missing', expr.operator);
+      continue; // ! does not mutate, so whatever
+    }
+    if (expr.type === 'FunctionExpression') continue;
+    if (expr.type === 'ArrayExpression') {
+      if (expr.elements.some(anode => anode?.type === 'SpreadElement')) return null;
+      continue;
+    }
+    if (expr.type === 'ObjectExpression') {
+      if (expr.properties.some(pnode => pnode.type === 'SpreadElement' || pnode.computed)) return null;
+      continue;
+    }
+    if (isPrimitive(expr)) continue;
+    if (expr.type === 'Identifier') {
+      if (expr.name === 'VarName' && stmt.type === 'ExpressionStatement' && i !== 0) todo('can eliminate statement that is ident and if-test and not first statement of either branch');
+      continue; // Can't trigger a spy on its own, right. Just tdz.
+    }
+
+    if (!['CallExpression', 'BinaryExpression', 'MemberExpression', 'NewExpression', 'TemplateLiteral', 'ClassExpression'].includes(expr.type)) {
+      todo(`support expression in findInvIdentWhileSkippingNoobs: ${expr.type}`);
+    }
+    return null;
+  }
+
+  return null;
+}

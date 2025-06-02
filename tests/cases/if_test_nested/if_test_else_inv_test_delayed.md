@@ -65,7 +65,7 @@ if (x) {
   $(`then`);
 } else {
   const arr = [];
-  const y = !x;
+  const y = true;
   const tmpMCF = arr.push;
   $dotCall(tmpMCF, arr, `push`, y);
   $(arr);
@@ -77,7 +77,6 @@ if (x) {
 
 
 - (todo) support array reads statement type ExpressionStatement
-- (todo) support array reads statement type VarStatement
 
 
 ## Globals

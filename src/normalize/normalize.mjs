@@ -9282,22 +9282,37 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
     }
 
     // Silly case but ok
+    // `if (x) $(!x); else {}` -> `$(false)` regardless of the value of x.
+    const safeUnaryInvTestThen = AST.findInvIdentWhileSkippingNoobs(node.consequent.body, node.test.name);
+    if (safeUnaryInvTestThen?.type === 'UnaryExpression') {
+      rule('Then-branch that immediately inverts the if-test can resolve that inverse');
+      example('if (x) { const t = !x; $(t); } else { }', 'if (x) { const t = false; $(t); } else { }');
+      before(body[i]);
+
+      safeUnaryInvTestThen.argument = AST.tru(); // Note: this is now !true which will resolve to false
+
+      after(body[i]);
+      assertNoDupeNodes(body, 'body');
+      return true;
+    }
     // `if (x) {} else $(!x)` -> `$(true)` regardless of the value of x.
-    // TODO: excavate this. When the ident can not change between the if-tests and read, this would still be good.
+    const safeUnaryInvTestElse = AST.findInvIdentWhileSkippingNoobs(node.alternate.body, node.test.name);
+    if (safeUnaryInvTestElse) {
+      rule('Else-branch that immediately inverts the if-test can resolve that inverse');
+      example('if (x) { } else { const t = !x; $(t); }', 'if (x) { } else { const t = true; $(t); }');
+      before(body[i]);
+
+      safeUnaryInvTestElse.argument = AST.fals(); // Note: this is now !false which will resolve to true
+
+      after(body[i]);
+      assertNoDupeNodes(body, 'body');
+      return true;
+    }
+
+    // `if ($) { $; }`, eliminate unknown globals as statements when they are used after an if-test
     const firstThen = node.consequent.body[0];
     if (firstThen) {
       const expr = AST.getExprFromStmt(firstThen);
-      if (expr?.type === 'UnaryExpression' && expr.operator === '!' && expr.argument.type === 'Identifier' && expr.argument.name === node.test.name) {
-        rule('Then-branch that immediately inverts the if-test can resolve that inverse');
-        example('if (x) { const t = !x; $(t); } else { }', 'if (x) { const t = false; $(t); } else { }');
-        before(body[i]);
-
-        expr.argument = AST.tru();
-
-        after(body[i]);
-        assertNoDupeNodes(body, 'body');
-        return true;
-      }
       if (expr?.type === 'Identifier' && firstThen.type === 'ExpressionStatement' && firstThen.expression === expr && expr.name === node.test.name) {
         rule('Then-branch that starts with expr statement that is the if-test means we can safely remove it');
         example('if (x) { x; } else { }', 'if (x) { } else { }');
@@ -9310,20 +9325,10 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
         return true;
       }
     }
+    // `if ($) {} else { $; }`, eliminate unknown globals as statements when they are used after an if-test
     const firstElse = node.alternate.body[0];
     if (firstElse) {
       const expr = AST.getExprFromStmt(firstElse);
-      if (expr?.type === 'UnaryExpression' && expr.operator === '!' && expr.argument.type === 'Identifier' && expr.argument.name === node.test.name) {
-        rule('Else-branch that immediately inverts the if-test can resolve that inverse');
-        example('if (x) { } else { const t = !x; $(t); }', 'if (x) { } else { const t = true; $(t); }');
-        before(body[i]);
-
-        expr.argument = AST.fals();
-
-        after(body[i]);
-        assertNoDupeNodes(body, 'body');
-        return true;
-      }
       if (expr?.type === 'Identifier' && firstElse.type === 'ExpressionStatement' && firstElse.expression === expr && expr.name === node.test.name) {
         rule('Else-branch that starts with expr statement that is the if-test means we can safely remove it');
         example('if (x) { } else { x; }', 'if (x) { } else { }');

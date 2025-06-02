@@ -2164,9 +2164,10 @@ export function mayBindingMutateBetweenRefs(meta, ref1, ref2, includeProperties 
     vgroupEnd();
     return false;
   }
-  ASSERT(meta.isImplicitGlobal || meta.bfuncNode, 'either its implicitly global or an explicitly defined binding now', meta);
-  const bindingScope = meta.isImplicitGlobal ? 1 : meta.bfuncNode.$p.npid;
-  ASSERT(bindingScope >= 0, 'should have a scope', meta.isImplicitGlobal, meta.bfuncNode);
+  ASSERT(meta.isImplicitGlobal || meta.isCatchVar || meta.bfuncNode, 'either its implicitly global or an explicitly defined binding now', meta.uniqueName);
+  if (meta.isCatchVar) todo('mayBindingMutateBetweenRefs: set proper scope for catch vars');
+  const bindingScope = (meta.isImplicitGlobal || meta.isCatchVar) ? 1 : meta.bfuncNode.$p.npid;
+  ASSERT(bindingScope >= 0, 'should have a scope', meta.isImplicitGlobal, meta.isCatchVar, meta.bfuncNode);
   const onlyLocalUse = meta.rwOrder.every((ref) => +ref.scope === bindingScope);
   vlog('Scopes: bindingScope:', bindingScope, ', ref scopes:', meta.rwOrder.map((ref) => ref.scope), '->', onlyLocalUse);
   const metaName = meta.uniqueName;

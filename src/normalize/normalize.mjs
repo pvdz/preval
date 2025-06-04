@@ -3604,15 +3604,20 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             return true;
           }
 
-          // First eliminate excessive args, or first args that are spreads
+          // First eliminate excessive args, or first args that are spreads, or calls with one prim arg
           switch (funcName) {
             case 'isNaN':
             case 'isFinite':
-            case symbo('Number', 'isNaN'):
+            case symbo('boolean', 'constructor'):
+            case symbo('Math', 'abs'):
+            case symbo('Math', 'ceil'):
+            case symbo('Math', 'floor'):
+            case symbo('Math', 'round'):
+            case symbo('Math', 'trunc'):
             case symbo('Number', 'isFinite'):
+            case symbo('Number', 'isNaN'):
             case symbo('Number', 'isInteger'):
             case symbo('Number', 'isSafeInteger'):
-            case symbo('boolean', 'constructor'):
             case symbo('Number', 'parseFloat'):
             case symbo('number', 'constructor'):
             case symbo('string', 'constructor'):
@@ -3669,6 +3674,30 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                     v = args.length === 0 ? isFinite() : isFinite(pv);
                     break;
                   }
+                  case symbo('boolean', 'constructor'): {
+                    v = args.length === 0 ? Boolean() : Boolean(pv);
+                    break;
+                  }
+                  case symbo('Math', 'abs'): {
+                    v = args.length === 0 ? Math.abs() : Math.abs(pv);
+                    break;
+                  }
+                  case symbo('Math', 'ceil'): {
+                    v = args.length === 0 ? Math.ceil() : Math.ceil(pv);
+                    break;
+                  }
+                  case symbo('Math', 'floor'): {
+                    v = args.length === 0 ? Math.floor() : Math.floor(pv);
+                    break;
+                  }
+                  case symbo('Math', 'round'): {
+                    v = args.length === 0 ? Math.round() : Math.round(pv);
+                    break;
+                  }
+                  case symbo('Math', 'trunc'): {
+                    v = args.length === 0 ? Math.trunc() : Math.trunc(pv);
+                    break;
+                  }
                   case symbo('Number', 'isFinite'): {
                     v = args.length === 0 ? Number.isFinite() : Number.isFinite(pv);
                     break;
@@ -3679,10 +3708,6 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                   }
                   case symbo('Number', 'isSafeInteger'): {
                     v = args.length === 0 ? Number.isSafeInteger() : Number.isSafeInteger(pv);
-                    break;
-                  }
-                  case symbo('boolean', 'constructor'): {
-                    v = args.length === 0 ? Boolean() : Boolean(pv);
                     break;
                   }
                   case symbo('Number', 'parseFloat'): {
@@ -3722,10 +3747,17 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                 rule('isNaN(a, b, c);', 'a; b; c; isNaN(a, b, c);');
                 before(node, parentNodeOrWhatever);
 
+                const tmpName = createFreshVar('tmpArgOverflow', fdata);
+                replaceArgs([AST.identifier(tmpName)]);
+
                 body.splice(i, 0,
-                  ...args.map(anode => AST.expressionStatement(anode.type === 'SpreadElement' ? AST.arrayExpression(anode) : anode)),
+                  AST.varStatement(
+                    'const',
+                    tmpName,
+                    AST.memberExpression(AST.arrayExpression(args[0]), AST.literal(0), true),
+                  ),
+                  ...args.slice(1).map(anode => AST.expressionStatement(anode.type === 'SpreadElement' ? AST.arrayExpression(anode) : anode)),
                 );
-                node.arguments.length = isDotcall ? 4 : 1;
 
                 after(body.slice(i, i+args.length));
                 assertNoDupeNodes(body, 'body');
@@ -3797,7 +3829,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
               // Move excessive args out, after normalization
               if (args.length > 2 && args.every(anode => !AST.isComplexNode(anode))) {
-                rule('Eliminate excessive args when we know they are excessive');
+                rule('Eliminate excessive args when we know they are excessive2');
                 rule('parseInt(a, b, c);', 'a; b; c; parseInt(a, b, c);');
                 before(node, parentNodeOrWhatever);
 
@@ -4925,6 +4957,29 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                   );
 
                   after(finalNode, body.slice(i, args.length));
+                  return true;
+                }
+                break;
+              }
+              case symbo('Math', 'abs'): {
+                // coerces first arg to number and then drops the sign. it's as simple as that.
+                const arg = args[0];
+                if (arg.type === 'UnaryExpression' && arg.operator === '-') {
+                  // It's a bit of a gut feeling guess but I think we can replace `Math.abs(-x)` to `+x` for all cases generically?
+                  // In particular, I think the code is normalized at this point so the argument is a primitive? Should be fine either way.
+                  rule('Applying Math.abs on a value that is negated, means we can replace it with a plus');
+                  example('Math.abs(-x)', '+x');
+                  before(body[i]);
+
+                  const finalNode = AST.unaryExpression('+', args[0].argument);
+                  const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                  body.splice(i, 1,
+                    // Context might not be used but if it is referenced we keep for tdz reasons.
+                    ...(contextNode ? [AST.expressionStatement(AST.cloneSimple(contextNode))] : []),
+                    finalParent,
+                  );
+
+                  after(body[i]);
                   return true;
                 }
                 break;

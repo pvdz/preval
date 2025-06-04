@@ -56,7 +56,9 @@ $( b );
 let tmpCalleeParam = $spy(`a`);
 let tmpCalleeParam$1 = $spy(`b`);
 let tmpCalleeParam$3 = $spy(`c`);
-const x = isNaN(tmpCalleeParam);
+const tmpCompObj = [tmpCalleeParam];
+const tmpArgOverflow = tmpCompObj[0];
+const x = isNaN(tmpArgOverflow);
 $(x);
 `````
 
@@ -64,7 +66,8 @@ $(x);
 ## Todos triggered
 
 
-None
+- (todo) can we always safely clone ident refs in this case?
+- (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
 
 
 ## Globals

@@ -1,19 +1,15 @@
 # Preval test case
 
-# pure_call_between.md
+# true.md
 
-> Let aliases > Ai > Pure call between
+> Math > Abs > True
 >
-> Pure function call between aliases (should alias)
+> Various cases of Math.abbs
 
 ## Input
 
 `````js filename=intro
-let x = $("val");
-const a = x;
-Math.abs(-1);
-const b = x;
-$(a, b);
+$(Math.abs(true));
 `````
 
 
@@ -21,8 +17,7 @@ $(a, b);
 
 
 `````js filename=intro
-const x /*:unknown*/ = $(`val`);
-$(x, x);
+$(1);
 `````
 
 
@@ -30,8 +25,7 @@ $(x, x);
 (This ought to be the final result)
 
 `````js filename=intro
-const x = $(`val`);
-$(x, x);
+$(1);
 `````
 
 
@@ -39,8 +33,7 @@ $(x, x);
 With rename=true
 
 `````js filename=intro
-const a = $( "val" );
-$( a, a );
+$( 1 );
 `````
 
 
@@ -48,11 +41,9 @@ $( a, a );
 (This is what phase1 received the first time)
 
 `````js filename=intro
-let x = $(`val`);
-const a = x;
 const tmpMCF = $Math_abs;
-const b = x;
-$(a, x);
+let tmpCalleeParam = 1;
+$(tmpCalleeParam);
 `````
 
 
@@ -72,8 +63,7 @@ None
 
 
 Should call `$` with:
- - 1: 'val'
- - 2: 'val', 'val'
+ - 1: 1
  - eval returned: undefined
 
 Pre normalization calls: Same

@@ -292,7 +292,15 @@ export function openRefsOnAfterLoop(refTrackState, kind /* loop | in | of */, no
   const parentEntryWrites = parentTreblo.entryWrites;
 
   if (REF_TRACK_TRACING) {
-    console.log('[loop] Parent ExitWrites before propagate:');
+    console.log('[loop] EntryReads just before propagateEntryReadWrites:');
+    treblo.entryReads.forEach((set, name) => {
+      console.log(`  ${name}:`, Array.from(set).map(w => w.node.$p.npid));
+    });
+    console.log('[loop] EntryWrites just before propagateEntryReadWrites:');
+    treblo.entryWrites.forEach((set, name) => {
+      console.log(`  ${name}:`, Array.from(set).map(w => w.node.$p.npid));
+    });
+    console.log('[loop] Parent ExitWrites (not propagated in this step):');
     parentExitWrites.forEach((set, name) => {
       console.log(`  ${name}:`, Array.from(set).map(w => w.node.$p.npid));
     });
@@ -378,10 +386,21 @@ export function openRefsOnAfterLoop(refTrackState, kind /* loop | in | of */, no
   const pendingNext = parentTreblo.pendingNext;
 
   if (REF_TRACK_TRACING) {
-    console.log('[loop] Parent ExitWrites just before propagateExitWrites:');
+    console.group('[loop] ExitWrites just before propagateExitWrites:');
+    console.group('Parent ExitWrites:');
     parentExitWrites.forEach((set, name) => {
       console.log(`  ${name}:`, Array.from(set).map(w => w.node.$p.npid));
     });
+    console.groupEnd();
+    console.log('To be merged with these Pending ExitWrites:');
+    pendingNext.forEach((p,i) => {
+      console.group('Pending', i);
+      p.exitWrites.forEach((set, name) => {
+        console.log(`  ${name}:`, Array.from(set).map(w => w.node.$p.npid));
+      });
+      console.groupEnd();
+    });
+    console.groupEnd();
   }
 
   // TODO: figure out if this is what I want/need and why this patch is incomplete
@@ -1017,7 +1036,7 @@ function propagateEntryReadWrites(pid, treblo, parentEntryReads, parentEntryWrit
   // Always do the next steps with the block(s) just traversed. Not the pending queue.
   // In this case the pendingNext are just the two blocks so it works out
   // Must therefor do this before updating the overwritten state, below
-  if (REF_TRACK_TRACING) console.group(`RTT: propagate entryReads (${debugStringMapOfSetOfReadOrWrites(treblo.entryReads)}) and entryWrites (${debugStringMapOfSetOfReadOrWrites(treblo.entryWrites)}) from @${pid} to the parent @`, parentBlockPid, 'which has these overwritten already:', Array.from(parentOverwritten).join(',')||'<none>');
+  if (REF_TRACK_TRACING) console.group(`RTT: propagateEntryReadWrites(): propagate entryReads (${debugStringMapOfSetOfReadOrWrites(treblo.entryReads)}) and entryWrites (${debugStringMapOfSetOfReadOrWrites(treblo.entryWrites)}) from @${pid} to the parent @`, parentBlockPid, 'which has these overwritten already:', Array.from(parentOverwritten).join(',')||'<none>');
   parentDefined.forEach(name => {
     // Note: this is only visible in loops since entryReads/entryWrites are not used again in normal flow.
     if (parentOverwritten.has(name)) {

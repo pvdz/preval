@@ -80,8 +80,8 @@ let modifyArr = function ($$0) {
 };
 const tmpArrElement = $(`initial_val`);
 let mainArr = [tmpArrElement];
-let tmpCalleeParam$3 = mainArr[0];
-$(`before_call`, tmpCalleeParam$3);
+let tmpCalleeParam$3 = tmpArrElement;
+$(`before_call`, tmpArrElement);
 modifyArr(mainArr);
 let tmpCalleeParam$5 = mainArr[0];
 $(`after_call`, tmpCalleeParam$5);

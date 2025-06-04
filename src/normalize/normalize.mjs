@@ -10343,6 +10343,45 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
       }
     }
 
+    if (init.type === 'ArrayExpression') {
+      // Check if next statement picks an element immediately. It's a common transform artifact if nothing else.
+      if (body[i+1]?.type === 'VarStatement' && body[i+1].init.type === 'MemberExpression') {
+        const expr = body[i+1].init;
+        // Is this reading an index prop from the arr?
+        if (
+          expr.object.type === 'Identifier' &&
+          expr.object.name === id.name &&
+          expr.computed && AST.isNumberLiteral(expr.property)
+        ) {
+          const index = AST.getPrimitiveValue(expr.property);
+          ASSERT(typeof index === 'number');
+          // verify that there was no spread before the index or as the index. Or any other non-normalized code.
+          let spreaded = false;
+          for (let n=0; n<=index; ++n) {
+            if (init.elements[n] && AST.isComplexNode(init.elements[n])) {
+              // `const x = [a, ...b, c]; const y = x[2]` -> x[2] may be c, undefined, or an element in b.
+              spreaded = true;
+              break;
+            }
+          }
+          // I think this catches a few other edge cases but mainly spread.
+          if (!spreaded) {
+            // Careful; we're modifying a future, potentially unvisited, node. That should be fine in this case but still.
+            rule('When a var statement reads an index property from an array lit on the previous line, the index lookup can be safely inlined');
+            example('const x = [1, 2, 3]; const y = x[0];', 'const x = [1, 2, 3]; const y = 1;');
+            before(body[i]);
+
+            // Replace the member expression with a clone of this node
+            const e = init.elements[index]; // Can be elided -> undefined
+            body[i+1].init = e ? AST.cloneSimple(e) : AST.undef();
+
+            after(body[i]);
+            // Since we didn't change _this_ array, we don't need to return here...
+          }
+        }
+      }
+    }
+
     if (
       init.type === 'Identifier' &&
       (init.name === SYMBOL_MAX_LOOP_UNROLL || init.name.startsWith(SYMBOL_LOOP_UNROLL))

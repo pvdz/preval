@@ -55,9 +55,11 @@ $( b );
 `````js filename=intro
 const a = $(`a`);
 const x = +a;
+const tmpCompObj = [x];
+const tmpArgOverflow = x;
 fail_hard;
-const tmpNumberFirstArg = x;
-const y = $coerce(x, `number`);
+const tmpNumberFirstArg = tmpArgOverflow;
+const y = $coerce(tmpArgOverflow, `number`);
 $(y);
 `````
 

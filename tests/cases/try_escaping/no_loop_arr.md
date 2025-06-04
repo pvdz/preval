@@ -111,7 +111,7 @@ $( a );
 
 `````js filename=intro
 const arr = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`];
-let tmpCalleeParam = arr[0];
+let tmpCalleeParam = `a`;
 $(tmpCalleeParam);
 try {
   const a = arr[286];

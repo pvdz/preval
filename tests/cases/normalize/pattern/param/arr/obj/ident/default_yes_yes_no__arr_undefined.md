@@ -21,8 +21,8 @@ $(f([undefined, 20, 30], 200));
 
 `````js filename=intro
 const tmpCalleeParam /*:object*/ = { x: `pass2` };
-const tmpClusterSSA_tmpArrPatternStep /*:unknown*/ = $(tmpCalleeParam);
-const tmpOPBD /*:unknown*/ = tmpClusterSSA_tmpArrPatternStep.x;
+const tmpSSA_tmpArrPatternStep /*:unknown*/ = $(tmpCalleeParam);
+const tmpOPBD /*:unknown*/ = tmpSSA_tmpArrPatternStep.x;
 const tmpIfTest$1 /*:boolean*/ = tmpOPBD === undefined;
 if (tmpIfTest$1) {
   const tmpClusterSSA_tmpCalleeParam$1 /*:unknown*/ = $(`pass`);

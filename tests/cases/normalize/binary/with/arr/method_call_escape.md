@@ -71,8 +71,8 @@ const tmpArrElement = function () {
   return tmpPrevalAliasThis;
 };
 const arr = [tmpArrElement];
-const tmpMCF = arr[0];
-const tmpBinLhs = $dotCall(tmpMCF, arr, undefined);
+const tmpMCF = tmpArrElement;
+const tmpBinLhs = $dotCall(tmpArrElement, arr, undefined);
 let tmpCalleeParam = tmpBinLhs === arr;
 $(tmpCalleeParam);
 `````
@@ -82,10 +82,7 @@ $(tmpCalleeParam);
 
 
 - (todo) arr mutation may be able to inline this method: tmpArrElement
-- (todo) arr mutation may be able to inline this method: tmpMCF
-- (todo) can we always safely clone ident refs in this case?
 - (todo) support array reads statement type VarStatement
-- (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
 
 
 ## Globals

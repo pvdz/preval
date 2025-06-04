@@ -44,7 +44,7 @@ $( 1 );
 
 `````js filename=intro
 const arr = [1];
-const v = arr[0];
+const v = 1;
 $(v);
 `````
 

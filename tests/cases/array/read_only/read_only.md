@@ -51,7 +51,7 @@ $( "3xyz" );
 
 `````js filename=intro
 const arr = [1, 2, 3, 4];
-let tmpCalleeParam = arr[1];
+let tmpCalleeParam = 2;
 $(tmpCalleeParam);
 let tmpCalleeParam$1 = arr[3];
 $(tmpCalleeParam$1);

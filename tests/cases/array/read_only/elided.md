@@ -51,8 +51,8 @@ $( "3xyz" );
 
 `````js filename=intro
 const arr = [1, , 3, 4];
-let tmpCalleeParam = arr[1];
-$(tmpCalleeParam);
+let tmpCalleeParam = undefined;
+$(undefined);
 let tmpCalleeParam$1 = arr[3];
 $(tmpCalleeParam$1);
 const tmpBinBothLhs = ``;

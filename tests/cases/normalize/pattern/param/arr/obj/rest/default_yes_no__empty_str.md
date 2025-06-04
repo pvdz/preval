@@ -21,9 +21,9 @@ $(f('', 200));
 
 `````js filename=intro
 const tmpCalleeParam /*:object*/ = { a: `pass` };
-const tmpClusterSSA_tmpCalleeParam$1 /*:unknown*/ = $(tmpCalleeParam);
+const tmpSSA_tmpCalleeParam$1 /*:unknown*/ = $(tmpCalleeParam);
 const tmpCalleeParam$3 /*:array*/ = [];
-const x /*:unknown*/ = $objPatternRest(tmpClusterSSA_tmpCalleeParam$1, tmpCalleeParam$3, undefined);
+const x /*:unknown*/ = $objPatternRest(tmpSSA_tmpCalleeParam$1, tmpCalleeParam$3, undefined);
 $(x);
 `````
 
@@ -32,8 +32,8 @@ $(x);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpClusterSSA_tmpCalleeParam$1 = $({ a: `pass` });
-$($objPatternRest(tmpClusterSSA_tmpCalleeParam$1, [], undefined));
+const tmpSSA_tmpCalleeParam$1 = $({ a: `pass` });
+$($objPatternRest(tmpSSA_tmpCalleeParam$1, [], undefined));
 `````
 
 

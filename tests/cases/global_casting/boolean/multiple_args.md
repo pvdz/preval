@@ -23,8 +23,8 @@ $(y);
 `````js filename=intro
 const a /*:unknown*/ = $(`a`);
 const b /*:unknown*/ = $(`b`);
-const y /*:boolean*/ = a === b;
-$(y);
+const x /*:boolean*/ = a === b;
+$(x);
 `````
 
 
@@ -55,6 +55,8 @@ $( c );
 const a = $(`a`);
 const b = $(`b`);
 const x = a === b;
+const tmpCompObj = [x];
+const tmpArgOverflow = x;
 const y = $boolean_constructor(x);
 $(y);
 `````

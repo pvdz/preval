@@ -51,7 +51,7 @@ $( 3 );
 
 `````js filename=intro
 const arr = [1, 2, 3];
-const x = arr[0];
+const x = 1;
 const y = arr[1];
 let tmpCalleeParam = x + y;
 $(tmpCalleeParam);

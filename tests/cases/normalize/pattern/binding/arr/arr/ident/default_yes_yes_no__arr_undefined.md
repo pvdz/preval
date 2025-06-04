@@ -19,8 +19,8 @@ $(x);
 
 `````js filename=intro
 const tmpCalleeParam /*:array*/ = [`pass2`];
-const tmpClusterSSA_tmpArrPatternStep /*:unknown*/ = $(tmpCalleeParam);
-const tmpArrPatternSplat$1 /*:array*/ = [...tmpClusterSSA_tmpArrPatternStep];
+const tmpSSA_tmpArrPatternStep /*:unknown*/ = $(tmpCalleeParam);
+const tmpArrPatternSplat$1 /*:array*/ = [...tmpSSA_tmpArrPatternStep];
 const tmpAPBD$1 /*:unknown*/ = tmpArrPatternSplat$1[0];
 const tmpIfTest$1 /*:boolean*/ = tmpAPBD$1 === undefined;
 if (tmpIfTest$1) {
@@ -36,8 +36,8 @@ if (tmpIfTest$1) {
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpClusterSSA_tmpArrPatternStep = $([`pass2`]);
-const tmpAPBD$1 = [...tmpClusterSSA_tmpArrPatternStep][0];
+const tmpSSA_tmpArrPatternStep = $([`pass2`]);
+const tmpAPBD$1 = [...tmpSSA_tmpArrPatternStep][0];
 if (tmpAPBD$1 === undefined) {
   $($(`fail`));
 } else {

@@ -43,7 +43,7 @@ $( 1 );
 
 `````js filename=intro
 const arr = [1, 2, 3];
-let tmpCalleeParam = arr[0];
+let tmpCalleeParam = 1;
 $(tmpCalleeParam);
 `````
 

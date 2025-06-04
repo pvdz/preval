@@ -71,6 +71,8 @@ if (a) {
 `````js filename=intro
 let c = $(true);
 let d = $(false);
+const tmpCompObj = [c];
+const tmpArgOverflow = c;
 let a = $boolean_constructor(c);
 if (c) {
   $(a);

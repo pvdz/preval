@@ -1020,7 +1020,7 @@ export function getCleanTypingObject() {
     returns: undefined, // Set<'undefined' | 'null' | 'boolean' | 'number' | 'string' | 'primitive' | '?'>, // Set for constant functions in phase1.1
   };
 }
-export function getUnknownTypingObject(toInit) {
+export function getUnknownTypingObject() {
   // All values are set to the "cannot be determined" state. For example, this is used for implicit globals.
 
   return {
@@ -1037,7 +1037,7 @@ export function getUnknownTypingObject(toInit) {
     orredWith: false,
     xorredWith: false,
 
-    worstCaseValueSet: toInit ? new Set() : false,
+    worstCaseValueSet: false,
     mustBePrimitive: false,
     primitiveValue: undefined, // (irrelevant) TODO: merge with mustBeValue
 

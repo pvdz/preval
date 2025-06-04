@@ -560,6 +560,7 @@ function _typeTrackedTricks(fdata) {
               case 'set':
               case 'map':
               case 'promise':
+              case 'arguments': // tests/cases/self_assign/noop/self_assigning4.md
               {
                 // Covered by tests/cases/type_tracked/typeof/base_object.md
                 rule('A `typeof` on a value that must be an object type can be resolved');

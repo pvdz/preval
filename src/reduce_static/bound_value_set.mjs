@@ -33,7 +33,7 @@ function _resolveBoundValueSet(fdata) {
     vgroupEnd();
   });
 
-  function process(meta, name, queue) {
+  function process(meta, varName, queue) {
     meta.reads.forEach((read, ri) => {
       if (read.parentNode.type === 'BinaryExpression') {
         const op = read.parentNode.operator;
@@ -81,7 +81,7 @@ function _resolveBoundValueSet(fdata) {
           fixedValueNode === left ? 'left' : 'right',
           'value',
           [ov],
-          'against the known set of of values:',
+          'against the known set of of values of', varName,':',
           [...meta.typing.worstCaseValueSet],
           fixedValueNode === left ? 'to the right' : 'to the left',
         );

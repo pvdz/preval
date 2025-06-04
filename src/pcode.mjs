@@ -649,7 +649,7 @@ function compileStatement(stmt, regs, fdata, asm) {
       vgroupEnd();
 
       asm.push(['if', ...test, cons, alt]);
-      return
+      return;
     }
     case 'DebuggerStatement': {
       return;
@@ -741,8 +741,9 @@ function compileExpression(exprNode, regs, fdata, stmt, withAssign, asm) {
         return opcode;
       } else {
         ASSERT(exprNode.callee.name, 'and the ident has a name?', exprNode);
+        vlog('This is a regular ident call to', exprNode.callee.name, exprNode.arguments.length, ', we will compile an undefined as "first arg" for context');
         const opcode = ['call', exprNode.callee.name];
-        opcode.push(...compileExpression(AST.undef(), regs, fdata, stmt, false, asm));
+        opcode.push(...compileExpression(AST.undef(), regs, fdata, stmt, false, asm)); // This is the unused context position. only used for $dotcall.
         for (let i=0; i<exprNode.arguments.length; ++i) {
           opcode.push(...compileExpression(exprNode.arguments[i], regs, fdata, stmt, false, asm));
         }
@@ -910,6 +911,7 @@ function prunStmt(registers, bytecode, pcodeData, fdata, prng, usePrng, depth) {
       case 'return': {
         // ['return', 'reg', 'lit']
         // ['return', 'neg', 'reg', 'lit']
+        // ['return', 'pos', 'reg', 'lit']
         if (op[1] === 'neg') {
           registers.$return = op[2] ? -registers[op[2]] : -op[3];
           vlog('return', registers.$return);
@@ -921,7 +923,7 @@ function prunStmt(registers, bytecode, pcodeData, fdata, prng, usePrng, depth) {
           return RETURN;
         }
         registers.$return = op[1] ? registers[op[1]] : op[2];
-        vlog('return', registers.$return);
+        vlog('return', registers.$return, op[1], registers[op[1]]);
         return RETURN;
       }
 
@@ -970,8 +972,8 @@ function prunStmt(registers, bytecode, pcodeData, fdata, prng, usePrng, depth) {
           // ['r123', 'call', 'parseInt', 'r2']
           // ['r123', 'method', 'Math', 'abs', '', -2]
           registers[opcode] = prunExpr(registers, op, pcodeData, fdata, prng, usePrng, depth);
-          vlog(opcode, op[1], typeof registers[opcode] === 'string' ? JSON.stringify(registers[opcode]) : registers[opcode]);
-          if (registers[opcode] === SO_MESSAGE) return SO;
+          vlog('EXEC:', op[1].padEnd(5, ' '), opcode, 'now contains:', typeof registers[opcode] === 'string' ? JSON.stringify(registers[opcode]) : registers[opcode]);
+          if (registers[opcode] === SO_MESSAGE) return SO; // stack overflow
           break;
         }
 
@@ -1281,8 +1283,11 @@ function prunExpr(registers, op, pcodeData, fdata, prng, usePrng, depth) {
         case symbo('Math', 'abs'):  {
           const r = Math.abs(...arr);
           vlog('Math.abs(', ...arr, ') =', [r]);
-          if (!Object.is((parseFloat(String(r)), r))) {
-            return
+          // This is mostly about negative zero.
+          if (!Object.is(parseFloat(String(r)), r)) {
+            vlog('Bail BAIL the result is not safe to serialize!', [parseFloat(String(r))], [r]);
+            todo('pcode botched a math.abs case, the stack overflow error is a red herring caused by it');
+            return SO_MESSAGE; // we dont have other aborts and otherwise i fear it ends up in an infinite attempted-transform-loop
           }
           return r;
         }
@@ -1543,7 +1548,7 @@ function prunExpr(registers, op, pcodeData, fdata, prng, usePrng, depth) {
  */
 function prunVal(registers, r1, l1) {
   const v = r1 ? registers[r1] : l1;
-  vlog('  -', typeof v === 'string' ? JSON.stringify(v) : v);
+  vlog('  - prunVal(', r1, ',', l1, ') =>', typeof v === 'string' ? JSON.stringify(v) : v);
   return v;
 }
 

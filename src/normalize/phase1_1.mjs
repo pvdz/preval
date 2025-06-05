@@ -993,6 +993,8 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
     });
     vlog('Updated param types in', Date.now() - now2, 'ms');
     vgroupEnd();
+
+    vgroupEnd(); // typingloop
   }
   vlog('All typing settled now..., updated', typingUpdated, 'times. Still have', untypedVarDecls.size, 'decls without a mustBeType, sadge');
   vgroupEnd();

@@ -1262,6 +1262,7 @@ function _inferNodeTyping(fdata, valueNode) {
             return createTypingObject({
               mustBeType: 'number',
               mustBePrimitive: true,
+              ... v === 0 ? {mustBeFalsy: true} : {},
 
               oneBitAnded: isOneSetBit(v) ? v : undefined,
               anded: v,
@@ -1274,6 +1275,7 @@ function _inferNodeTyping(fdata, valueNode) {
             return createTypingObject({
               mustBeType: 'number',
               mustBePrimitive: true,
+              ... v === 0 ? {mustBeFalsy: true} : {},
 
               oneBitAnded: isOneSetBit(v) ? v : undefined,
               anded: v,
@@ -1307,19 +1309,25 @@ function _inferNodeTyping(fdata, valueNode) {
           });
         }
         case '|': {
+          // Special case: when either side is a non-zero number, the result is truthy
+          let truthy = false;
           if (AST.isPrimitive(valueNode.left)) {
             const pv = AST.getPrimitiveValue(valueNode.left) | 0;
+            truthy = !!pv;
             return createTypingObject({
               mustBeType: 'number',
               mustBePrimitive: true,
+              ...truthy ? {mustBeTruthy: true} : {},
               orredWith: pv,
             });
           }
           if (AST.isPrimitive(valueNode.right)) {
             const pv = AST.getPrimitiveValue(valueNode.right) | 0;
+            truthy = truthy || !!pv;
             return createTypingObject({
               mustBeType: 'number',
               mustBePrimitive: true,
+              ...truthy ? {mustBeTruthy: true} : {},
               orredWith: pv,
             });
           }

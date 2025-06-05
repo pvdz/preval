@@ -23,13 +23,9 @@ $(x);
 
 `````js filename=intro
 const x /*:unknown*/ = $(3);
-const y /*:number*/ = x | 32;
-if (y) {
-  const tmpClusterSSA_x /*:number*/ = x ^ 32;
-  $(tmpClusterSSA_x);
-} else {
-  $(x);
-}
+x ** 0;
+const tmpClusterSSA_x /*:number*/ = x ^ 32;
+$(tmpClusterSSA_x);
 `````
 
 
@@ -38,11 +34,8 @@ if (y) {
 
 `````js filename=intro
 const x = $(3);
-if (x | 32) {
-  $(x ^ 32);
-} else {
-  $(x);
-}
+x ** 0;
+$(x ^ 32);
 `````
 
 
@@ -51,14 +44,9 @@ With rename=true
 
 `````js filename=intro
 const a = $( 3 );
-const b = a | 32;
-if (b) {
-  const c = a ^ 32;
-  $( c );
-}
-else {
-  $( a );
-}
+a ** 0;
+const b = a ^ 32;
+$( b );
 `````
 
 

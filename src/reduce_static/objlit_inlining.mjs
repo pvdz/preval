@@ -196,6 +196,11 @@ function process(fdata) {
     vgroupEnd();
     if (escapes) return;
 
+    if (objNode.properties.some(node => node.type === 'SpreadElement')) {
+      todo('deal with spread case in objlit_inlining'); // I think we can...
+      return vlog('- bail: at least one property was a spread');
+    }
+
     /** @var {Map<string, Node>} */
     const map = new Map; // <propName, propNode>
     /** @var {Map<string, FunctionExpression>} */

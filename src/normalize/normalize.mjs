@@ -4764,6 +4764,46 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                 }
                 break;
               }
+              case symbo('Number', 'isInteger'): {
+                if (args.length === 1 && args[0] && AST.isPrimitive(args[0])) {
+                  rule('Calling `isInteger` on a primitive should resolve');
+                  example('Number.isInteger("hello")', 'false');
+                  before(node, parentNodeOrWhatever);
+
+                  const finalNode = Number.isInteger(AST.getPrimitiveValue(firstArgNode)) ? AST.tru() : AST.fals();
+                  const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                  body.splice(i, 1,
+                    ...args.slice(1).map((enode) => AST.expressionStatement(enode)),
+                    // Context might not be used but if it is referenced we keep for tdz reasons.
+                    ...(contextNode ? [AST.expressionStatement(AST.cloneSimple(contextNode))] : []),
+                    finalParent,
+                  );
+
+                  after(finalNode, body.slice(i, args.length));
+                  return true;
+                }
+                break;
+              }
+              case symbo('Number', 'isSafeInteger'): {
+                if (args.length === 1 && args[0] && AST.isPrimitive(args[0])) {
+                  rule('Calling `isSafeInteger` on a primitive should resolve');
+                  example('Number.isSafeInteger("hello")', 'false');
+                  before(node, parentNodeOrWhatever);
+
+                  const finalNode = Number.isSafeInteger(AST.getPrimitiveValue(firstArgNode)) ? AST.tru() : AST.fals();
+                  const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                  body.splice(i, 1,
+                    ...args.slice(1).map((enode) => AST.expressionStatement(enode)),
+                    // Context might not be used but if it is referenced we keep for tdz reasons.
+                    ...(contextNode ? [AST.expressionStatement(AST.cloneSimple(contextNode))] : []),
+                    finalParent,
+                  );
+
+                  after(finalNode, body.slice(i, args.length));
+                  return true;
+                }
+                break;
+              }
               case symbo('Number', 'parseFloat'): {
                 if (args.length === 0) {
                   rule('A call to `parseFloat()` without args is NaN');
@@ -4972,74 +5012,6 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
                   before(body[i]);
                   assertNoDupeNodes(body, 'body');
-                  return true;
-                }
-                break;
-              }
-              case symbo('regex', 'constructor'): {
-                // I'm pretty sure we can safely convert regular expressions to literals when the args are strings
-                // The exception would be for illegal regexes, where they would be safer in their constructor form...
-
-                if (args.length === 0) {
-                  // This will generate the regex `/(?:)/`
-
-                  rule('Calling `RegExp()` without args returns `/(?:)/`');
-                  example('RegExp()', '/(?:)/');
-                  example(`${SYMBOL_DOTCALL}(${symbo('regex', 'constructor')}, /x/, "constructor")`, '/(?:)/');
-                  before(node, body[i]);
-
-                  const finalNode = AST.newRegex('(?:)', '');
-                  const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-                  body.splice(i, 1,
-                    ...args.slice(1).map((enode) => AST.expressionStatement(enode)),
-                    // Context might not be used but if it is referenced we keep for tdz reasons.
-                    ...(contextNode ? [AST.expressionStatement(AST.cloneSimple(contextNode))] : []),
-                    finalParent,
-                  );
-
-                  after(finalNode, body.slice(i, args.length));
-                  assertNoDupeNodes(body, 'body');
-                  return true;
-                }
-
-                break;
-              }
-              case symbo('Number', 'isInteger'): {
-                if (args.length === 1 && args[0] && AST.isPrimitive(args[0])) {
-                  rule('Calling `isInteger` on a primitive should resolve');
-                  example('Number.isInteger("hello")', 'false');
-                  before(node, parentNodeOrWhatever);
-
-                  const finalNode = Number.isInteger(AST.getPrimitiveValue(firstArgNode)) ? AST.tru() : AST.fals();
-                  const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-                  body.splice(i, 1,
-                    ...args.slice(1).map((enode) => AST.expressionStatement(enode)),
-                    // Context might not be used but if it is referenced we keep for tdz reasons.
-                    ...(contextNode ? [AST.expressionStatement(AST.cloneSimple(contextNode))] : []),
-                    finalParent,
-                  );
-
-                  after(finalNode, body.slice(i, args.length));
-                  return true;
-                }
-                break;
-              }
-              case symbo('Number', 'isSafeInteger'): {
-                if (args.length === 1 && args[0] && AST.isPrimitive(args[0])) {
-                  rule('Calling `isSafeInteger` on a primitive should resolve');
-                  example('Number.isSafeInteger("hello")', 'false');
-                  before(node, parentNodeOrWhatever);
-
-                  const finalNode = Number.isSafeInteger(AST.getPrimitiveValue(firstArgNode)) ? AST.tru() : AST.fals();
-                  const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-                  body.splice(i, 1,
-                    ...args.slice(1).map((enode) => AST.expressionStatement(enode)),
-                    // Context might not be used but if it is referenced we keep for tdz reasons.
-                    ...(contextNode ? [AST.expressionStatement(AST.cloneSimple(contextNode))] : []),
-                    finalParent,
-                  );
-
-                  after(finalNode, body.slice(i, args.length));
                   return true;
                 }
                 break;
@@ -5313,6 +5285,34 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                     return true;
                   }
                 }
+                break;
+              }
+              case symbo('regex', 'constructor'): {
+                // I'm pretty sure we can safely convert regular expressions to literals when the args are strings
+                // The exception would be for illegal regexes, where they would be safer in their constructor form...
+
+                if (args.length === 0) {
+                  // This will generate the regex `/(?:)/`
+
+                  rule('Calling `RegExp()` without args returns `/(?:)/`');
+                  example('RegExp()', '/(?:)/');
+                  example(`${SYMBOL_DOTCALL}(${symbo('regex', 'constructor')}, /x/, "constructor")`, '/(?:)/');
+                  before(node, body[i]);
+
+                  const finalNode = AST.newRegex('(?:)', '');
+                  const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                  body.splice(i, 1,
+                    ...args.slice(1).map((enode) => AST.expressionStatement(enode)),
+                    // Context might not be used but if it is referenced we keep for tdz reasons.
+                    ...(contextNode ? [AST.expressionStatement(AST.cloneSimple(contextNode))] : []),
+                    finalParent,
+                  );
+
+                  after(finalNode, body.slice(i, args.length));
+                  assertNoDupeNodes(body, 'body');
+                  return true;
+                }
+
                 break;
               }
               case symbo('string', 'constructor'): {

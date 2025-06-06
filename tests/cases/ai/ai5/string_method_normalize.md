@@ -58,7 +58,7 @@ $(upper);
 ## Todos triggered
 
 
-- (todo) type trackeed tricks can possibly support static $string_toUpperCase
+None
 
 
 ## Globals

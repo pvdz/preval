@@ -46,7 +46,7 @@ $( a );
 
 `````js filename=intro
 const tmpMCF = $boolean_toString;
-const tmpArrSpread = $dotCall($boolean_toString, true, `toString`);
+const tmpArrSpread = `true`;
 const tmpCalleeParam = [...tmpArrSpread];
 $(tmpCalleeParam);
 `````

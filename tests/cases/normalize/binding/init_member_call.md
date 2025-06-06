@@ -18,8 +18,7 @@ $(x);
 
 
 `````js filename=intro
-const x /*:string*/ = $dotCall($string_toString, `foo`, `toString`);
-$(x);
+$(`foo`);
 `````
 
 
@@ -27,7 +26,7 @@ $(x);
 (This ought to be the final result)
 
 `````js filename=intro
-$($dotCall($string_toString, `foo`, `toString`));
+$(`foo`);
 `````
 
 
@@ -35,8 +34,7 @@ $($dotCall($string_toString, `foo`, `toString`));
 With rename=true
 
 `````js filename=intro
-const a = $dotCall( $string_toString, "foo", "toString" );
-$( a );
+$( "foo" );
 `````
 
 
@@ -45,7 +43,7 @@ $( a );
 
 `````js filename=intro
 const tmpMCF = $string_toString;
-let x = $dotCall($string_toString, `foo`, `toString`);
+let x = `foo`;
 $(x);
 `````
 
@@ -53,7 +51,7 @@ $(x);
 ## Todos triggered
 
 
-- (todo) type trackeed tricks can possibly support static $string_toString
+None
 
 
 ## Globals

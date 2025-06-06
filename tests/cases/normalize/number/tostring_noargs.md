@@ -43,7 +43,7 @@ $( "31" );
 
 `````js filename=intro
 const tmpMCF = $number_toString;
-const f = $dotCall($number_toString, 31, `toString`);
+const f = `31`;
 $(f);
 `````
 

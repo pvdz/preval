@@ -63,6 +63,7 @@ function _ifTestNested(fdata) {
         }
       }
     }
+    vgroupEnd();
 
   });
 

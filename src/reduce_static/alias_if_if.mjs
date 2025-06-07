@@ -1,7 +1,10 @@
 // Find bindings which are initialized to true, and conditionally updated to false, and only used as while-tests
-
-// `let x = y; if (y) y = $; if (x) while (true) { y = $; if (y) break; }`
-// -> `if (y) { y = $; while (true) if (y = $) break; } else { }
+//
+//
+//      `let x = y; if (y) y = $; if (x) while (true) { y = $; if (y) break; }`
+// ->
+//      `if (y) { y = $; while (true) if (y = $) break; } else { }
+//
 
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, findBodyOffset } from '../utils.mjs';
 import * as AST from '../ast.mjs';

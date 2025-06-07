@@ -53,7 +53,7 @@ function _ifTestFolding(fdata) {
     const firstThen = node.consequent.body[0];
     const firstElse = node.alternate.body[0];
 
-    vgroup('Checking if both branches assign an opposite boolean');
+    vgroup('Checking if both branches assign an opposite boolean to', firstThen?.expression?.left?.name, firstElse?.expression?.left?.name);
     if (
       node.consequent.body.length === 1 &&
       node.alternate.body.length === 1 &&
@@ -114,7 +114,9 @@ function _ifTestFolding(fdata) {
     }
     vgroupEnd();
 
-    vgroup('Checking if both branches return an opposite boolean');
+    // If one side is assigned while the var starts as a certain bool literal and it has no further writes then we effectively have the same
+
+    vgroup('Checking if both branches return an opposite boolean to', firstThen?.expression?.left?.name, firstElse?.expression?.left?.name);
     if (
       node.consequent.body.length === 1 &&
       node.alternate.body.length === 1 &&

@@ -1,6 +1,8 @@
 // Search for two constant assignments that are assigned the same let value
-// `let x = $; const a = x; const b = x; $(a, b)`
-// -> `let x = $; const a = x; $(a, a)`
+//
+//      `let x = $; const a = x; const b = x; $(a, b)`
+// ->
+//      `let x = $; const a = x; $(a, a)`
 //
 // We need to find back-to-back reads of a let, confirm they are assigning
 // to a constant decl, confirm they are in the same loop/catch scope,

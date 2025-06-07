@@ -49,9 +49,9 @@ export const BUILTIN_GLOBAL_FUNC_NAMES = new Set(BUILTIN_GLOBAL_FUNCS.map(arr =>
 const globalNames = new Map([
   ...BUILTIN_GLOBAL_FUNCS,
 
-  ['undefined', { mustBeType: 'undefined', mustBeFalsy: true, mustBeTruthy: false, mustBePrimitive: true, primitiveValue: undefined }],
-  ['NaN', { mustBeType: 'number', mustBeFalsy: true, mustBeTruthy: false, mustBePrimitive: true, primitiveValue: NaN }],
-  ['Infinity', { mustBeType: 'number', mustBeFalsy: true, mustBeTruthy: false, mustBePrimitive: true, primitiveValue: Infinity }],
+  ['undefined', { mustBeType: 'undefined', mustBeFalsy: true, mustBeTruthy: false, mustBePrimitive: true, mustBeValue: undefined }],
+  ['NaN', { mustBeType: 'number', mustBeFalsy: true, mustBeTruthy: false, mustBePrimitive: true, mustBeValue: NaN }],
+  ['Infinity', { mustBeType: 'number', mustBeFalsy: true, mustBeTruthy: false, mustBePrimitive: true, mustBeValue: Infinity }],
 
   // nodejs
   ['module', 'object'],

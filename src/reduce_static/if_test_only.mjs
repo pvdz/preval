@@ -23,12 +23,12 @@ function _ifTestOnly(fdata) {
     if (meta.isImplicitGlobal) return;
     if (meta.isBuiltin) return;
     if (!meta.varDeclRef) return; // catch
+    if (!meta.reads.length) return; // dead
 
     vgroup('- `' + name + '`:', meta.varDeclRef.node.type);
 
     const usedElsewhere = meta.reads.some((read) => {
       if (read.parentNode.type === 'IfStatement') return;
-      if (read.parentNode.type === 'WhileStatement') return;
       if (read.parentNode.type === 'UnaryExpression' && read.parentNode.operator === '!') return true;
       if (
         read.parentNode.type === 'CallExpression' &&

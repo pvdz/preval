@@ -69,14 +69,13 @@ if (tmpIfTest$1) {
 } else {
   let tmpIfTest$3 /*:unknown*/ /*ternaryConst*/ = tmpClusterSSA_tmpIfTest;
   if (tmpClusterSSA_tmpIfTest) {
-    $(`C`);
   } else {
     const tmpBinBothRhs$3 /*:unknown*/ = $(3);
     tmpIfTest$3 = undefined === tmpBinBothRhs$3;
-    if (tmpIfTest$3) {
-      $(`C`);
-    } else {
-    }
+  }
+  if (tmpIfTest$3) {
+    $(`C`);
+  } else {
   }
 }
 `````

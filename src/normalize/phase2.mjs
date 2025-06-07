@@ -112,6 +112,7 @@ import { ifTestAliased } from '../reduce_static/if_test_aliased.mjs';
 import { ifFoldTernaryConst } from '../reduce_static/if_fold_ternary_const.mjs';
 import { tandemAlias } from '../reduce_static/tandem_alias.mjs';
 import { ternaryConstBounded } from '../reduce_static/ternary_const_bounded.mjs';
+import { ifTestTransitive } from '../reduce_static/if_test_transitive.mjs';
 import { ifBooly } from '../reduce_static/if_booly.mjs';
 
 //import { phasePrimitiveArgInlining } from '../reduce_static/phase_primitive_arg_inlining.mjs';
@@ -220,6 +221,7 @@ export const BASE_PHASE2_RULES_LIST = [
   ['ifTestAliased', ifTestAliased],
   ['tandemAlias', tandemAlias],
   ['ternaryConstBounded', ternaryConstBounded],
+  ['ifTestTransitive', ifTestTransitive],
   ['ifBooly', ifBooly],
 
   ['freeLoops', freeLoops], // Most other stuff should probably precede this?

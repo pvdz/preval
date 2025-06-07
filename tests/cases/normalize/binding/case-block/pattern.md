@@ -78,7 +78,6 @@ $(x, y, z);
 
 
 - (todo) Deal with array spreads in arr mutation?
-- (todo) support array reads statement type EmptyStatement
 - (todo) support array reads statement type ExpressionStatement
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
 

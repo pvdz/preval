@@ -20,8 +20,8 @@ $(a, b);
 
 
 `````js filename=intro
-const a /*:number*/ = 2;
-export { a };
+const tmpSSA_b /*:number*/ = 2;
+export { tmpSSA_b as a };
 $(2, 2);
 `````
 
@@ -30,8 +30,8 @@ $(2, 2);
 (This ought to be the final result)
 
 `````js filename=intro
-const a = 2;
-export { a };
+const tmpSSA_b = 2;
+export { tmpSSA_b as a };
 $(2, 2);
 `````
 

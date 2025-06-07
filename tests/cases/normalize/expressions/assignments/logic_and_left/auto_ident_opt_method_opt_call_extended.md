@@ -23,19 +23,17 @@ $(a);
 `````js filename=intro
 let a /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpIfTest$1 /*:boolean*/ = $ == null;
-let tmpCalleeParam /*:unknown*/ /*ternaryConst*/ = undefined;
 if (tmpIfTest$1) {
 } else {
   const tmpObjLitVal$1 /*:object*/ = { e: $ };
   a = $dotCall($, tmpObjLitVal$1, `e`, 1);
-  tmpCalleeParam = a;
 }
 if (a) {
   const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
   $(tmpClusterSSA_tmpCalleeParam);
   $(a);
 } else {
-  $(tmpCalleeParam);
+  $(a);
   $(a);
 }
 `````
@@ -46,17 +44,14 @@ if (a) {
 
 `````js filename=intro
 let a = undefined;
-const tmpIfTest$1 = $ == null;
-let tmpCalleeParam = undefined;
-if (!tmpIfTest$1) {
+if (!($ == null)) {
   a = $dotCall($, { e: $ }, `e`, 1);
-  tmpCalleeParam = a;
 }
 if (a) {
   $($(100));
   $(a);
 } else {
-  $(tmpCalleeParam);
+  $(a);
   $(a);
 }
 `````
@@ -68,22 +63,20 @@ With rename=true
 `````js filename=intro
 let a = undefined;
 const b = $ == null;
-let c = undefined;
 if (b) {
 
 }
 else {
-  const d = { e: $ };
-  a = $dotCall( $, d, "e", 1 );
-  c = a;
+  const c = { e: $ };
+  a = $dotCall( $, c, "e", 1 );
 }
 if (a) {
-  const e = $( 100 );
-  $( e );
+  const d = $( 100 );
+  $( d );
   $( a );
 }
 else {
-  $( c );
+  $( a );
   $( a );
 }
 `````

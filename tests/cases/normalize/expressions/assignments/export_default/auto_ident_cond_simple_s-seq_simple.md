@@ -19,8 +19,8 @@ $(a);
 
 
 `````js filename=intro
-const tmpAnonDefaultExport /*:number*/ = 60;
-export { tmpAnonDefaultExport as default };
+const a /*:number*/ = 60;
+export { a as default };
 $(60);
 `````
 
@@ -29,8 +29,8 @@ $(60);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpAnonDefaultExport = 60;
-export { tmpAnonDefaultExport as default };
+const a = 60;
+export { a as default };
 $(60);
 `````
 

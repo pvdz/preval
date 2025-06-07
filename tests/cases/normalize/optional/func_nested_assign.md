@@ -23,8 +23,8 @@ $(f());
 
 `````js filename=intro
 $();
-const tmpClusterSSA_tmpReturnArg$1 /*:unknown*/ = $(15);
-$(tmpClusterSSA_tmpReturnArg$1);
+const tmpReturnArg /*:unknown*/ = $(15);
+$(tmpReturnArg);
 `````
 
 

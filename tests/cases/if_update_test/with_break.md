@@ -83,7 +83,8 @@ while (true) {
 ## Todos triggered
 
 
-None
+- (todo) Support this ident in isFree CallExpression: $boolean_constructor
+- (todo) type trackeed tricks can possibly support static $boolean_constructor
 
 
 ## Globals

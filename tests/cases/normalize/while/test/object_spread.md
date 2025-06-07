@@ -86,7 +86,7 @@ $(`after`);
 ## Todos triggered
 
 
-None
+- (todo) deal with spread case in objlit_inlining
 
 
 ## Globals

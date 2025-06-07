@@ -24,9 +24,9 @@ $(a);
 const tmpObjLitVal$1 /*:object*/ = { e: $ };
 const tmpClusterSSA_tmpBinBothRhs /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
 const a /*:object*/ = { a: 999, b: 1000 };
-const tmpClusterSSA_a /*:number*/ = a * tmpClusterSSA_tmpBinBothRhs;
-$(tmpClusterSSA_a);
-$(tmpClusterSSA_a);
+const tmpClusterSSA_a$1 /*:number*/ = a * tmpClusterSSA_tmpBinBothRhs;
+$(tmpClusterSSA_a$1);
+$(tmpClusterSSA_a$1);
 `````
 
 
@@ -35,9 +35,9 @@ $(tmpClusterSSA_a);
 
 `````js filename=intro
 const tmpClusterSSA_tmpBinBothRhs = $dotCall($, { e: $ }, `e`, 1);
-const tmpClusterSSA_a = { a: 999, b: 1000 } * tmpClusterSSA_tmpBinBothRhs;
-$(tmpClusterSSA_a);
-$(tmpClusterSSA_a);
+const tmpClusterSSA_a$1 = { a: 999, b: 1000 } * tmpClusterSSA_tmpBinBothRhs;
+$(tmpClusterSSA_a$1);
+$(tmpClusterSSA_a$1);
 `````
 
 

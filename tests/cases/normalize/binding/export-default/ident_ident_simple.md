@@ -19,8 +19,8 @@ $(a, b, c);
 
 
 `````js filename=intro
-const a /*:number*/ = 3;
-export { a };
+const b /*:number*/ = 3;
+export { b as a };
 $(3, 3, 3);
 `````
 
@@ -29,8 +29,8 @@ $(3, 3, 3);
 (This ought to be the final result)
 
 `````js filename=intro
-const a = 3;
-export { a };
+const b = 3;
+export { b as a };
 $(3, 3, 3);
 `````
 

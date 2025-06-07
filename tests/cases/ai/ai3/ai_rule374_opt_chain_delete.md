@@ -50,9 +50,10 @@
 const tmpObjLitVal$1 /*:unknown*/ = $(`val1`, 10);
 $(`val2`, 20);
 const tmpObjLitVal /*:object*/ = { key: tmpObjLitVal$1 };
-const tmpSSA_tmpCalleeParam /*:boolean*/ = delete tmpObjLitVal.key;
-const tmpCalleeParam$1 /*:boolean*/ = $dotCall($object_hasOwnProperty, tmpObjLitVal, `hasOwnProperty`, `key`);
-$(`res1`, tmpSSA_tmpCalleeParam, tmpCalleeParam$1);
+const tmpClusterSSA_tmpCalleeParam /*:boolean*/ = delete tmpObjLitVal.key;
+const tmpMCF /*:unknown*/ = tmpObjLitVal.hasOwnProperty;
+const tmpCalleeParam$1 /*:unknown*/ = $dotCall(tmpMCF, tmpObjLitVal, `hasOwnProperty`, `key`);
+$(`res1`, tmpClusterSSA_tmpCalleeParam, tmpCalleeParam$1);
 $(`res2`, true);
 const tmpClusterSSA_tmpDeleteOpt$3 /*:unknown*/ = $Object_prototype.c;
 const tmpIfTest$9 /*:boolean*/ = tmpClusterSSA_tmpDeleteOpt$3 == null;
@@ -63,9 +64,9 @@ if (tmpIfTest$9) {
   $(`res3`, tmpClusterSSA_res3);
 }
 const tmpObjLitVal$7 /*:object*/ = {};
-const tmpSSA_tmpCalleeParam$3 /*:boolean*/ = delete tmpObjLitVal$7.non_existent_key;
+const tmpClusterSSA_tmpCalleeParam$3 /*:boolean*/ = delete tmpObjLitVal$7.non_existent_key;
 const tmpCalleeParam$5 /*:boolean*/ = `non_existent_key` in tmpObjLitVal$7;
-$(`res4`, tmpSSA_tmpCalleeParam$3, tmpCalleeParam$5);
+$(`res4`, tmpClusterSSA_tmpCalleeParam$3, tmpCalleeParam$5);
 $(`syntax_note`, `delete (obj?.prop) is valid, (delete obj?.prop) = x is not.`);
 const tmpObjLitVal$9 /*:object*/ = { key: 30 };
 const tmpCalleeParam$7 /*:object*/ = { b: tmpObjLitVal$9 };
@@ -107,7 +108,7 @@ if (tmpIfTest$19) {
 const tmpObjLitVal$1 = $(`val1`, 10);
 $(`val2`, 20);
 const tmpObjLitVal = { key: tmpObjLitVal$1 };
-$(`res1`, delete tmpObjLitVal.key, $dotCall($object_hasOwnProperty, tmpObjLitVal, `hasOwnProperty`, `key`));
+$(`res1`, delete tmpObjLitVal.key, tmpObjLitVal.hasOwnProperty(`key`));
 $(`res2`, true);
 const tmpClusterSSA_tmpDeleteOpt$3 = $Object_prototype.c;
 if (tmpClusterSSA_tmpDeleteOpt$3 == null) {
@@ -154,57 +155,58 @@ const a = $( "val1", 10 );
 $( "val2", 20 );
 const b = { key: a };
 const c = delete b.key;
-const d = $dotCall( $object_hasOwnProperty, b, "hasOwnProperty", "key" );
-$( "res1", c, d );
+const d = b.hasOwnProperty;
+const e = $dotCall( d, b, "hasOwnProperty", "key" );
+$( "res1", c, e );
 $( "res2", true );
-const e = $Object_prototype.c;
-const f = e == null;
-if (f) {
+const f = $Object_prototype.c;
+const g = f == null;
+if (g) {
   $( "res3", true );
 }
 else {
-  const g = delete e.key;
-  $( "res3", g );
+  const h = delete f.key;
+  $( "res3", h );
 }
-const h = {};
-const i = delete h.non_existent_key;
-const j = "non_existent_key" in h;
-$( "res4", i, j );
+const i = {};
+const j = delete i.non_existent_key;
+const k = "non_existent_key" in i;
+$( "res4", j, k );
 $( "syntax_note", "delete (obj?.prop) is valid, (delete obj?.prop) = x is not." );
-const k = { key: 30 };
-const l = { b: k };
-const m = $( "get_obj", l );
-let n = undefined;
-const o = m == null;
-let p = true;
-if (o) {
-
-}
-else {
-  n = m.b;
-  p = n == null;
-}
+const l = { key: 30 };
+const m = { b: l };
+const n = $( "get_obj", m );
+let o = undefined;
+const p = n == null;
 let q = true;
 if (p) {
 
 }
 else {
-  q = delete n.key;
+  o = n.b;
+  q = o == null;
 }
-const r = m == null;
-const s = typeof m;
-if (r) {
-  $( "res6", q, s, undefined );
+let r = true;
+if (q) {
+
 }
 else {
-  const t = m.b;
-  const u = t == null;
-  if (u) {
-    $( "res6", q, s, undefined );
+  r = delete o.key;
+}
+const s = n == null;
+const t = typeof n;
+if (s) {
+  $( "res6", r, t, undefined );
+}
+else {
+  const u = n.b;
+  const v = u == null;
+  if (v) {
+    $( "res6", r, t, undefined );
   }
   else {
-    const v = t.key;
-    $( "res6", q, s, v );
+    const w = u.key;
+    $( "res6", r, t, w );
   }
 }
 `````
@@ -343,7 +345,6 @@ tmpCallComplexCallee();
 
 
 - (todo) access object property that also exists on prototype? $object_hasOwnProperty
-- (todo) type trackeed tricks can possibly support static $object_hasOwnProperty
 
 
 ## Globals

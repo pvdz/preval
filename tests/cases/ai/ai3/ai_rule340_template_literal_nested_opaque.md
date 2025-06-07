@@ -22,9 +22,9 @@ $('final_result', result);
 
 
 `````js filename=intro
-const tmpFree /*:(primitive, string, string)=>string*/ = function $free($$0, $$1, $$2) {
-  const count$1 /*:primitive*/ = $$0;
-  const tmpBinBothRhs$1 /*:string*/ = $$1;
+const tmpFree /*:(string, primitive, string)=>string*/ = function $free($$0, $$1, $$2) {
+  const tmpBinBothRhs$1 /*:string*/ = $$0;
+  const count$1 /*:primitive*/ = $$1;
   const tmpBinBothRhs$4 /*:string*/ = $$2;
   debugger;
   const tmpBinBothRhs$6 /*:string*/ = $coerce(count$1, `string`);
@@ -37,7 +37,7 @@ const tmpBinBothRhs /*:unknown*/ = $(`num`, 1);
 const count /*:primitive*/ = 1 + tmpBinBothRhs;
 const tmpBinBothRhs$5 /*:string*/ = $coerce(name, `string`);
 const tmpBinBothRhs$3 /*:string*/ = $coerce(place, `string`);
-const result /*:string*/ = $frfr(tmpFree, count, tmpBinBothRhs$5, tmpBinBothRhs$3);
+const result /*:string*/ = $frfr(tmpFree, tmpBinBothRhs$5, count, tmpBinBothRhs$3);
 $(`final_result`, result);
 `````
 
@@ -46,7 +46,7 @@ $(`final_result`, result);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpFree = function $free(count$1, tmpBinBothRhs$1, tmpBinBothRhs$4) {
+const tmpFree = function $free(tmpBinBothRhs$1, count$1, tmpBinBothRhs$4) {
   const tmpBinBothRhs$6 = $coerce(count$1, `string`);
   const tmpRet = `Hello ${tmpBinBothRhs$1}, welcome to ${tmpBinBothRhs$4}! Count: ${tmpBinBothRhs$6}.`;
   return tmpRet;
@@ -56,7 +56,7 @@ const place = $(`place`);
 const tmpBinBothRhs = $(`num`, 1);
 const count = 1 + tmpBinBothRhs;
 const tmpBinBothRhs$5 = $coerce(name, `string`);
-$(`final_result`, $frfr(tmpFree, count, tmpBinBothRhs$5, $coerce(place, `string`)));
+$(`final_result`, $frfr(tmpFree, tmpBinBothRhs$5, count, $coerce(place, `string`)));
 `````
 
 
@@ -69,8 +69,8 @@ const a = function b($$0,$$1,$$2 ) {
   const d = $$1;
   const e = $$2;
   debugger;
-  const f = $coerce( c, "string" );
-  const g = `Hello ${d}, welcome to ${e}! Count: ${f}.`;
+  const f = $coerce( d, "string" );
+  const g = `Hello ${c}, welcome to ${e}! Count: ${f}.`;
   return g;
 };
 const h = $( "name" );
@@ -79,7 +79,7 @@ const j = $( "num", 1 );
 const k = 1 + j;
 const l = $coerce( h, "string" );
 const m = $coerce( i, "string" );
-const n = o( a, k, l, m );
+const n = o( a, l, k, m );
 $( "final_result", n );
 `````
 

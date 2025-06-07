@@ -228,6 +228,8 @@ $(a, b, c, 3);
 ## Todos triggered
 
 
+- (todo) Support this ident in isFree CallExpression: $boolean_constructor
+- (todo) type trackeed tricks can possibly support static $boolean_constructor
 - (todo) while constant managed to escape
 
 

@@ -32,8 +32,8 @@ const tmpInitAssignLhsComputedObj$1 /*:unknown*/ = $(c);
 const tmpInitAssignLhsComputedProp$1 /*:unknown*/ = $(`y`);
 tmpInitAssignLhsComputedObj$1[tmpInitAssignLhsComputedProp$1] = 7;
 tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = 7;
-const tmpInitAssignLhsComputedRhs /*:number*/ = 7;
-export { tmpInitAssignLhsComputedRhs as default };
+const tmpAnonDefaultExport /*:number*/ = 7;
+export { tmpAnonDefaultExport as default };
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a, b, c, 3, 4);
 `````
@@ -51,8 +51,8 @@ const tmpInitAssignLhsComputedObj$1 = $(c);
 const tmpInitAssignLhsComputedProp$1 = $(`y`);
 tmpInitAssignLhsComputedObj$1[tmpInitAssignLhsComputedProp$1] = 7;
 tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = 7;
-const tmpInitAssignLhsComputedRhs = 7;
-export { tmpInitAssignLhsComputedRhs as default };
+const tmpAnonDefaultExport = 7;
+export { tmpAnonDefaultExport as default };
 $({ a: 999, b: 1000 }, b, c, 3, 4);
 `````
 

@@ -24,10 +24,10 @@ f({a: 3});
 
 `````js filename=intro
 const f /*:(number)=>undefined*/ = function ($$0) {
-  const a$1 /*:number*/ = $$0;
+  const a /*:number*/ = $$0;
   debugger;
-  $(a$1);
-  $(a$1);
+  $(a);
+  $(a);
   return undefined;
 };
 f(1);
@@ -39,9 +39,9 @@ f(3);
 (This ought to be the final result)
 
 `````js filename=intro
-const f = function (a$1) {
-  $(a$1);
-  $(a$1);
+const f = function (a) {
+  $(a);
+  $(a);
 };
 f(1);
 f(3);

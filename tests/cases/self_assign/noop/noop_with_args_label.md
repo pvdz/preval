@@ -147,6 +147,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 - (todo) Support this node type in isFree: LabeledStatement
 - (todo) computed property access of an array but not index prop
+- (todo) free with zero args, we can eliminate this?
 - (todo) support array reads statement type VarStatement
 - (todo) support array reads statement type WhileStatement
 - (todo) type trackeed tricks can possibly support static $Number_parseInt

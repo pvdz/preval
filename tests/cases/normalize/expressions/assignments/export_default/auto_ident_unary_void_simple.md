@@ -21,8 +21,8 @@ $(a, arg);
 
 
 `````js filename=intro
-const tmpAnonDefaultExport /*:undefined*/ = undefined;
-export { tmpAnonDefaultExport as default };
+const a /*:undefined*/ = undefined;
+export { a as default };
 $(undefined, 1);
 `````
 
@@ -31,8 +31,8 @@ $(undefined, 1);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpAnonDefaultExport = undefined;
-export { tmpAnonDefaultExport as default };
+const a = undefined;
+export { a as default };
 $(undefined, 1);
 `````
 

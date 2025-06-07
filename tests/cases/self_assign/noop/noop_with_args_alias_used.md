@@ -47,9 +47,9 @@ $(the_scf_alias()); // This should prevent the transform (!)
 `````js filename=intro
 const main_data_arr /*:array*/ = [`this`, `contents`, `is`, `not`, `relevant`, `here`];
 const the_self_closing_func /*:(primitive)=>primitive*/ = function ($$0) {
-  const $dlr_$$0 /*:primitive*/ = $$0;
+  const $dlr_$$1 /*:primitive*/ = $$0;
   debugger;
-  const tmp1 /*:number*/ = $dlr_$$0 - 387;
+  const tmp1 /*:number*/ = $dlr_$$1 - 387;
   const tmp2 /*:primitive*/ = main_data_arr[tmp1];
   return tmp2;
 };
@@ -74,8 +74,8 @@ $(tmpCalleeParam);
 
 `````js filename=intro
 const main_data_arr = [`this`, `contents`, `is`, `not`, `relevant`, `here`];
-const the_self_closing_func = function ($dlr_$$0) {
-  const tmp1 = $dlr_$$0 - 387;
+const the_self_closing_func = function ($dlr_$$1) {
+  const tmp1 = $dlr_$$1 - 387;
   const tmp2 = main_data_arr[tmp1];
   return tmp2;
 };

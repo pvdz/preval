@@ -55,13 +55,11 @@ exit: {
 
 
 `````js filename=intro
-let fallthrough /*:boolean*/ /*ternaryConst*/ = false;
 const tmpBinBothRhs /*:unknown*/ = $(1);
 let tmpIfTest$1 /*:boolean*/ /*ternaryConst*/ = true;
 const tmpClusterSSA_tmpIfTest /*:boolean*/ = undefined === tmpBinBothRhs;
 if (tmpClusterSSA_tmpIfTest) {
   $(`A`);
-  fallthrough = true;
 } else {
   const tmpBinBothRhs$1 /*:unknown*/ = $(2);
   tmpIfTest$1 = undefined === tmpBinBothRhs$1;
@@ -69,15 +67,16 @@ if (tmpClusterSSA_tmpIfTest) {
 if (tmpIfTest$1) {
   $(`B`);
 } else {
-  let tmpIfTest$3 /*:unknown*/ /*ternaryConst*/ = fallthrough;
-  if (fallthrough) {
+  let tmpIfTest$3 /*:unknown*/ /*ternaryConst*/ = tmpClusterSSA_tmpIfTest;
+  if (tmpClusterSSA_tmpIfTest) {
+    $(`C`);
   } else {
     const tmpBinBothRhs$3 /*:unknown*/ = $(3);
     tmpIfTest$3 = undefined === tmpBinBothRhs$3;
-  }
-  if (tmpIfTest$3) {
-    $(`C`);
-  } else {
+    if (tmpIfTest$3) {
+      $(`C`);
+    } else {
+    }
   }
 }
 `````
@@ -87,20 +86,19 @@ if (tmpIfTest$1) {
 (This ought to be the final result)
 
 `````js filename=intro
-let fallthrough = false;
 const tmpBinBothRhs = $(1);
 let tmpIfTest$1 = true;
-if (undefined === tmpBinBothRhs) {
+const tmpClusterSSA_tmpIfTest = undefined === tmpBinBothRhs;
+if (tmpClusterSSA_tmpIfTest) {
   $(`A`);
-  fallthrough = true;
 } else {
   tmpIfTest$1 = undefined === $(2);
 }
 if (tmpIfTest$1) {
   $(`B`);
 } else {
-  let tmpIfTest$3 = fallthrough;
-  if (!fallthrough) {
+  let tmpIfTest$3 = tmpClusterSSA_tmpIfTest;
+  if (!tmpClusterSSA_tmpIfTest) {
     tmpIfTest$3 = undefined === $(3);
   }
   if (tmpIfTest$3) {
@@ -114,31 +112,29 @@ if (tmpIfTest$1) {
 With rename=true
 
 `````js filename=intro
-let a = false;
-const b = $( 1 );
-let c = true;
-const d = undefined === b;
-if (d) {
+const a = $( 1 );
+let b = true;
+const c = undefined === a;
+if (c) {
   $( "A" );
-  a = true;
 }
 else {
-  const e = $( 2 );
-  c = undefined === e;
+  const d = $( 2 );
+  b = undefined === d;
 }
-if (c) {
+if (b) {
   $( "B" );
 }
 else {
-  let f = a;
-  if (a) {
+  let e = c;
+  if (c) {
 
   }
   else {
-    const g = $( 3 );
-    f = undefined === g;
+    const f = $( 3 );
+    e = undefined === f;
   }
-  if (f) {
+  if (e) {
     $( "C" );
   }
 }
@@ -195,7 +191,7 @@ exit: {
 ## Todos triggered
 
 
-None
+- (todo) type trackeed tricks can possibly support static $boolean_constructor
 
 
 ## Globals

@@ -19,8 +19,8 @@ $(a);
 
 
 `````js filename=intro
-const tmpAnonDefaultExport /*:undefined*/ = undefined;
-export { tmpAnonDefaultExport as default };
+const a /*:undefined*/ = undefined;
+export { a as default };
 $(undefined);
 `````
 
@@ -29,8 +29,8 @@ $(undefined);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpAnonDefaultExport = undefined;
-export { tmpAnonDefaultExport as default };
+const a = undefined;
+export { a as default };
 $(undefined);
 `````
 

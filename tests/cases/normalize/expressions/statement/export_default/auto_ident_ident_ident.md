@@ -22,8 +22,8 @@ $(a, b, c);
 
 
 `````js filename=intro
-const tmpAnonDefaultExport /*:number*/ = 2;
-export { tmpAnonDefaultExport as default };
+const b /*:number*/ = 2;
+export { b as default };
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a, 2, 2);
 `````
@@ -33,8 +33,8 @@ $(a, 2, 2);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpAnonDefaultExport = 2;
-export { tmpAnonDefaultExport as default };
+const b = 2;
+export { b as default };
 $({ a: 999, b: 1000 }, 2, 2);
 `````
 

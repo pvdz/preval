@@ -69,7 +69,7 @@ while (true) {
 ## Todos triggered
 
 
-None
+- (todo) do we want to support ObjectExpression as expression statement in free loops?
 
 
 ## Globals

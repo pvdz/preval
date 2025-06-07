@@ -27,9 +27,9 @@ $(2);
 const tmpObjLitVal /*:unknown*/ = $(3);
 const tmpObjLitVal$1 /*:unknown*/ = $(4);
 const tmpCalleeParam /*:array*/ = [`before `, ` after`];
-const a /*:object*/ = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-$(tmpCalleeParam, a);
-$(a, tmpObjLitVal, tmpObjLitVal$1);
+const tmpNestedAssignObjPatternRhs /*:object*/ = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
+$(tmpCalleeParam, tmpNestedAssignObjPatternRhs);
+$(tmpNestedAssignObjPatternRhs, tmpObjLitVal, tmpObjLitVal$1);
 `````
 
 
@@ -42,9 +42,9 @@ $(2);
 const tmpObjLitVal = $(3);
 const tmpObjLitVal$1 = $(4);
 const tmpCalleeParam = [`before `, ` after`];
-const a = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-$(tmpCalleeParam, a);
-$(a, tmpObjLitVal, tmpObjLitVal$1);
+const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
+$(tmpCalleeParam, tmpNestedAssignObjPatternRhs);
+$(tmpNestedAssignObjPatternRhs, tmpObjLitVal, tmpObjLitVal$1);
 `````
 
 

@@ -70,6 +70,7 @@ $(a);
 
 
 - (todo) support array reads statement type ExportNamedDeclaration
+- (todo) support array reads statement type ExpressionStatement
 
 
 ## Globals

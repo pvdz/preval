@@ -20,8 +20,8 @@ $(a, arg);
 
 
 `````js filename=intro
-const a /*:number*/ = 1;
-export { a };
+const arg /*:number*/ = 1;
+export { arg as a };
 $(1, 1);
 `````
 
@@ -30,8 +30,8 @@ $(1, 1);
 (This ought to be the final result)
 
 `````js filename=intro
-const a = 1;
-export { a };
+const arg = 1;
+export { arg as a };
 $(1, 1);
 `````
 

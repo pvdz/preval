@@ -29,9 +29,9 @@ const f /*:(number, number, primitive, unknown)=>undefined*/ = function ($$0, $$
   const d /*:unknown*/ = $$3;
   const c /*:primitive*/ = $$2;
   const b /*:number*/ = $$1;
-  const a$1 /*:number*/ = $$0;
+  const a /*:number*/ = $$0;
   debugger;
-  $(a$1);
+  $(a);
   $(b);
   $(c);
   $(d);
@@ -46,8 +46,8 @@ f(3, 4, true, null);
 (This ought to be the final result)
 
 `````js filename=intro
-const f = function (a$1, b, c, d) {
-  $(a$1);
+const f = function (a, b, c, d) {
+  $(a);
   $(b);
   $(c);
   $(d);

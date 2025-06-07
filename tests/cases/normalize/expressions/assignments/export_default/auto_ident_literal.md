@@ -19,8 +19,8 @@ $(a);
 
 
 `````js filename=intro
-const tmpAnonDefaultExport /*:string*/ = `foo`;
-export { tmpAnonDefaultExport as default };
+const a /*:string*/ = `foo`;
+export { a as default };
 $(`foo`);
 `````
 
@@ -29,8 +29,8 @@ $(`foo`);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpAnonDefaultExport = `foo`;
-export { tmpAnonDefaultExport as default };
+const a = `foo`;
+export { a as default };
 $(`foo`);
 `````
 

@@ -91,7 +91,6 @@ $(tmpCalleeParam$3);
 
 
 - (todo) Deal with array spreads in arr mutation?
-- (todo) can we always safely clone ident refs in this case?
 - (todo) support array reads statement type EmptyStatement
 - (todo) support array reads statement type ExpressionStatement
 - (todo) support array reads statement type VarStatement

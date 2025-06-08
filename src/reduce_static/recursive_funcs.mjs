@@ -88,7 +88,7 @@ function processAttempt(fdata, queue) {
       vlog('Checking if read @', read.node.$p.npid, 'with funcChain', chain);
       return funcs.some(funcNode => {
         vlog('- func funcChain:', funcNode.$p.funcChain);
-        return read.funcChain.startsWith(funcNode.$p.funcChain + ',')
+        return read.funcChain.startsWith(funcNode.$p.funcChain)
       });
     })) {
       // There was at least one read that was not inside the function assigned to this binding

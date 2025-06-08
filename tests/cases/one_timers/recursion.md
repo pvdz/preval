@@ -24,12 +24,6 @@ $(p);
 
 
 `````js filename=intro
-const tmpSSA_e /*:()=>unknown*/ = function () {
-  debugger;
-  $(2);
-  tmpBinBothLhs = tmpSSA_e();
-  return tmpBinBothLhs;
-};
 $(``);
 `````
 
@@ -38,11 +32,6 @@ $(``);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpSSA_e = function () {
-  $(2);
-  tmpBinBothLhs = tmpSSA_e();
-  return tmpBinBothLhs;
-};
 $(``);
 `````
 
@@ -51,12 +40,6 @@ $(``);
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
-  $( 2 );
-  tmpBinBothLhs = a();
-  return tmpBinBothLhs;
-};
 $( "" );
 `````
 
@@ -88,9 +71,7 @@ None
 ## Globals
 
 
-BAD@! Found 1 implicit global bindings:
-
-tmpBinBothLhs
+None
 
 
 ## Runtime Outcome

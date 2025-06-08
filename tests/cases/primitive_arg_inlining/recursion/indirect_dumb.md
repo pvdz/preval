@@ -25,13 +25,6 @@ $(f(0));
 
 
 `````js filename=intro
-const f /*:(primitive)=>unknown*/ = function ($$0) {
-  const n$2 /*:primitive*/ = $$0;
-  debugger;
-  const tmpCalleeParam /*:primitive*/ = n$2 + 1;
-  const tmpClusterSSA_tmpReturnArg /*:unknown*/ = f(tmpCalleeParam);
-  return tmpClusterSSA_tmpReturnArg;
-};
 throw `<max pcode call depth exceeded>; calling \`const tmpCalleeParam\$1 = f(0);\``;
 `````
 
@@ -40,10 +33,6 @@ throw `<max pcode call depth exceeded>; calling \`const tmpCalleeParam\$1 = f(0)
 (This ought to be the final result)
 
 `````js filename=intro
-const f = function (n$2) {
-  const tmpClusterSSA_tmpReturnArg = f(n$2 + 1);
-  return tmpClusterSSA_tmpReturnArg;
-};
 throw `<max pcode call depth exceeded>; calling \`const tmpCalleeParam\$1 = f(0);\``;
 `````
 
@@ -52,13 +41,6 @@ throw `<max pcode call depth exceeded>; calling \`const tmpCalleeParam\$1 = f(0)
 With rename=true
 
 `````js filename=intro
-const a = function($$0 ) {
-  const b = $$0;
-  debugger;
-  const c = b + 1;
-  const d = a( c );
-  return d;
-};
 throw "<max pcode call depth exceeded>; calling `const tmpCalleeParam$1 = f(0);`";
 `````
 

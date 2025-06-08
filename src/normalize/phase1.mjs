@@ -277,7 +277,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
 
         node.$p.promoParent = null;
         node.$p.blockChain = '0,';
-        node.$p.funcChain = funcNodeStack.map((n) => n.$p.npid).join(',');
+        node.$p.funcChain = funcNodeStack.map((n) => n.$p.npid).join(',') + ',';
         node.$p.ownBindings = new Set();
         node.$p.paramNames = []; // Ends up as a `meta.bfuncNode` in some cases, where this is expected to exist, so leave it.
         loopNodeStack.push(null);
@@ -538,7 +538,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         funcNodeStack.push(node);
         thisStack.push(node);
 
-        node.$p.funcChain = funcNodeStack.map((n) => n.$p.npid).join(',');
+        node.$p.funcChain = funcNodeStack.map((n) => n.$p.npid).join(',') + ',';
         break;
       }
       case 'FunctionExpression:after': {
@@ -720,7 +720,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
               blockBodies: blockBodyStack.slice(0),
               blockIndexes: blockIndexes.slice(0),
               ifChain: ifPidStack.join(',') + ',',
-              funcChain: funcNodeStack.map((n) => n.$p.npid).join(','),
+              funcChain: funcNodeStack.map((n) => n.$p.npid).join(',') + ',',
               innerLoop,
               innerIf,
               innerThen,
@@ -765,7 +765,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
               blockBodies: blockBodyStack.slice(0),
               blockIndexes: blockIndexes.slice(0),
               ifChain: ifPidStack.join(',') + ',',
-              funcChain: funcNodeStack.map((n) => n.$p.npid).join(','),
+              funcChain: funcNodeStack.map((n) => n.$p.npid).join(',') + ',',
               innerLoop,
               innerIf,
               innerThen,

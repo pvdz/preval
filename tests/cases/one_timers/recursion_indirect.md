@@ -30,17 +30,7 @@ function f() {
 
 
 `````js filename=intro
-const f /*:()=>unknown*/ = function () {
-  debugger;
-  if ($) {
-    f();
-    $(1);
-    return undefined;
-  } else {
-    $(1);
-    return undefined;
-  }
-};
+
 `````
 
 
@@ -48,14 +38,7 @@ const f /*:()=>unknown*/ = function () {
 (This ought to be the final result)
 
 `````js filename=intro
-const f = function () {
-  if ($) {
-    f();
-    $(1);
-  } else {
-    $(1);
-  }
-};
+
 `````
 
 
@@ -63,18 +46,7 @@ const f = function () {
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
-  if ($) {
-    a();
-    $( 1 );
-    return undefined;
-  }
-  else {
-    $( 1 );
-    return undefined;
-  }
-};
+
 `````
 
 

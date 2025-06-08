@@ -41,18 +41,6 @@ $(tmpCalleeParam$1);
 `````js filename=intro
 const x /*:unknown*/ = $(100);
 $(x);
-const g /*:()=>undefined*/ = function () {
-  debugger;
-  const tmpIfTest /*:unknown*/ = $(1);
-  if (tmpIfTest) {
-    $(`a`);
-    g();
-    return undefined;
-  } else {
-    $(`b`);
-    return undefined;
-  }
-};
 const tmpIfTest$1 /*:unknown*/ = $(1);
 if (tmpIfTest$1) {
   $(`c`);
@@ -69,14 +57,6 @@ $(tmpClusterSSA_x);
 
 `````js filename=intro
 $($(100));
-const g = function () {
-  if ($(1)) {
-    $(`a`);
-    g();
-  } else {
-    $(`b`);
-  }
-};
 if ($(1)) {
   $(`c`);
 }
@@ -92,26 +72,13 @@ With rename=true
 `````js filename=intro
 const a = $( 100 );
 $( a );
-const b = function() {
-  debugger;
-  const c = $( 1 );
-  if (c) {
-    $( "a" );
-    b();
-    return undefined;
-  }
-  else {
-    $( "b" );
-    return undefined;
-  }
-};
-const d = $( 1 );
-if (d) {
+const b = $( 1 );
+if (b) {
   $( "c" );
 }
-const e = f();
-$( e );
-$( e );
+const c = f();
+$( c );
+$( c );
 `````
 
 

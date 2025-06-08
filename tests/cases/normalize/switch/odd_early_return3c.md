@@ -33,12 +33,6 @@ $(a);
 
 
 `````js filename=intro
-const f /*:()=>undefined*/ = function () {
-  debugger;
-  f();
-  $(1);
-  return undefined;
-};
 const a /*:()=>unknown*/ = function () {
   debugger;
   $(`x`);
@@ -55,10 +49,6 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const f = function () {
-  f();
-  $(1);
-};
 $(function () {
   $(`x`);
   $(`y`);
@@ -75,19 +65,13 @@ With rename=true
 `````js filename=intro
 const a = function() {
   debugger;
-  a();
-  $( 1 );
-  return undefined;
-};
-const b = function() {
-  debugger;
   $( "x" );
   $( "y" );
   $( "z" );
-  const c = $( 2 );
-  return c;
+  const b = $( 2 );
+  return b;
 };
-$( b );
+$( a );
 `````
 
 

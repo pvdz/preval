@@ -24,13 +24,6 @@ $(f(0));
 
 
 `````js filename=intro
-const f /*:(primitive)=>unknown*/ = function ($$0) {
-  const n /*:primitive*/ = $$0;
-  debugger;
-  const tmpCalleeParam /*:primitive*/ = n + 1;
-  const tmpReturnArg /*:unknown*/ = f(tmpCalleeParam);
-  return tmpReturnArg;
-};
 throw `<max pcode call depth exceeded>; calling \`const tmpCalleeParam\$1 = f(0);\``;
 `````
 
@@ -39,10 +32,6 @@ throw `<max pcode call depth exceeded>; calling \`const tmpCalleeParam\$1 = f(0)
 (This ought to be the final result)
 
 `````js filename=intro
-const f = function (n) {
-  const tmpReturnArg = f(n + 1);
-  return tmpReturnArg;
-};
 throw `<max pcode call depth exceeded>; calling \`const tmpCalleeParam\$1 = f(0);\``;
 `````
 
@@ -51,13 +40,6 @@ throw `<max pcode call depth exceeded>; calling \`const tmpCalleeParam\$1 = f(0)
 With rename=true
 
 `````js filename=intro
-const a = function($$0 ) {
-  const b = $$0;
-  debugger;
-  const c = b + 1;
-  const d = a( c );
-  return d;
-};
 throw "<max pcode call depth exceeded>; calling `const tmpCalleeParam$1 = f(0);`";
 `````
 

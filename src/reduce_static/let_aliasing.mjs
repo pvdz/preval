@@ -83,13 +83,13 @@ function _letAliasing(fdata) {
         return;
       }
 
-      if (rw.innerIf !== prevRead.innerIf) {
-        vlog(`      - Reads were not in same if-branch, bailing`);
+      if (rw.innerThenParent !== prevRead.innerThenParent) {
+        vlog(`      - Reads were not in same then-branch, bailing`);
         prevRead = rw;
         return;
       }
 
-      if (rw.innerElse !== prevRead.innerElse) {
+      if (rw.innerElseParent !== prevRead.innerElseParent) {
         vlog(`      - Reads were not in same else-branch, bailing`);
         prevRead = rw;
         return;

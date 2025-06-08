@@ -535,8 +535,8 @@ export function createReadRef(obj) {
     ifChain,
     funcChain,
     innerLoop, // number, pid of the top of the loop stack, or 0 if thats program/function
-    innerIf,
-    innerElse,
+    innerThenParent, // number, point to owner if-node of this if-branch (not pid of branch itself!).
+    innerElseParent, // number, point to owner if-node of this if-branch
     innerTry,
     innerTrap,
     innerCatch,
@@ -547,8 +547,8 @@ export function createReadRef(obj) {
   ASSERT(JSON.stringify(rest) === '{}', 'add new props to createReadRef in the func too!', rest);
   ASSERT(blockIndex >= 0);
   ASSERT(typeof innerLoop === 'number', 'inner loop?', innerLoop);
-  ASSERT(typeof innerIf === 'number', 'inner if?', innerIf);
-  ASSERT(typeof innerElse === 'number', 'inner else?', innerElse);
+  ASSERT(typeof innerThenParent === 'number', 'inner if?', innerThenParent);
+  ASSERT(typeof innerElseParent === 'number', 'inner else?', innerElseParent);
   ASSERT(blockChain);
   ASSERT(parentBlockNode?.body === blockBody);
   ASSERT(blockIds instanceof Array);
@@ -582,8 +582,8 @@ export function createReadRef(obj) {
     ifChain,
     funcChain,
     innerLoop,
-    innerIf,
-    innerElse,
+    innerThenParent,
+    innerElseParent,
     innerTry,
     innerTrap,
     innerCatch,
@@ -615,8 +615,8 @@ export function createWriteRef(obj) {
     ifChain,
     funcChain,
     innerLoop,
-    innerIf,
-    innerElse,
+    innerThenParent,
+    innerElseParent,
     innerTry,
     innerTrap,
     innerCatch,
@@ -627,8 +627,8 @@ export function createWriteRef(obj) {
   ASSERT(JSON.stringify(rest) === '{}', 'add new props to createWriteRef in the func too!', rest);
   ASSERT(blockIndex >= 0);
   ASSERT(typeof innerLoop === 'number');
-  ASSERT(typeof innerIf === 'number');
-  ASSERT(typeof innerElse === 'number');
+  ASSERT(typeof innerThenParent === 'number');
+  ASSERT(typeof innerElseParent === 'number');
   ASSERT(blockChain);
   ASSERT(parentBlockNode?.body === blockBody);
   ASSERT(blockIds instanceof Array);
@@ -662,8 +662,8 @@ export function createWriteRef(obj) {
     ifChain,
     funcChain,
     innerLoop,
-    innerIf,
-    innerElse,
+    innerThenParent,
+    innerElseParent,
     innerTry,
     innerTrap,
     innerCatch,

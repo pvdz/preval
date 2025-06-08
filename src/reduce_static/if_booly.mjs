@@ -43,8 +43,8 @@ function _ifBooly(fdata) {
 
     vlog('- candidate: single scoped let that is bool, with two writes, writing opposite bools:', [varName]);
 
-    if (declWrite.innerIf === assignWrite.innerIf && declWrite.innerElse === assignWrite.innerElse) {
-      return vlog('- bail: decl and assign were in same if-node', declWrite.innerIf, assignWrite.innerIf, declWrite.innerElse, assignWrite.innerElse);
+    if (declWrite.innerThenParent === assignWrite.innerThenParent && declWrite.innerElseParent === assignWrite.innerElseParent) {
+      return vlog('- bail: decl and assign were in same if-node', declWrite.innerThenParent, assignWrite.innerThenParent, declWrite.innerElseParent, assignWrite.innerElseParent);
     }
 
     // Confirm that no reads precede it
@@ -53,15 +53,15 @@ function _ifBooly(fdata) {
     // Ok, find the (root) if-statement that contains this write.
 
     const writePid = assignWrite.node.$p.npid;
-    // We take the max pid of each inner branch because `if (x) if (x) y` will have a non-zero innerIf and a zero innerElse. I think highest pid is deepest node...
-    const targetPid = Math.max(assignWrite.innerIf, assignWrite.innerElse);
+    // We take the max pid of each inner branch because `if (x) if (x) y` will have a non-zero innerThenParent and a zero innerElseParent. I think highest pid is deepest node...
+    const targetPid = Math.max(assignWrite.innerThenParent, assignWrite.innerElseParent);
     let block = declWrite.blockBody;
     let index = declWrite.blockIndex + 1;
     while (index < block.length) {
       const stmt = block[index];
       if (writePid <= stmt.$p.lastPid) {
         if (stmt.type === 'IfStatement') {
-          vlog('- found an if-node @', stmt.$p.npid, stmt.consequent.$p.npid, stmt.alternate.$p.npid, ', assign inner then/else:', assignWrite.innerIf, assignWrite.innerElse, ', target:', targetPid);
+          vlog('- found an if-node @', stmt.$p.npid, stmt.consequent.$p.npid, stmt.alternate.$p.npid, ', assign inner then/else:', assignWrite.innerThenParent, assignWrite.innerElseParent, ', target:', targetPid);
           if (stmt.$p.npid !== targetPid) {
             if (writePid < stmt.alternate.$p.npid) {
               vlog('- not yet the target if-node, entering then-branch');

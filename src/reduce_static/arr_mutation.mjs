@@ -90,8 +90,8 @@ function _arrMutation(fdata) {
     // We now have a consecutive write (of array expr) and read (of that binding) in the same scope.
     // We have to confirm whether the array may have mutated in any way between these two refs.
 
-    if (write.innerIf !== read.innerIf) return vlog('- bail: Not in same if-branch', write.innerIf, read.innerIf);
-    if (write.innerElse !== read.innerElse) return vlog('- bail: Not in same else-branch', write.innerElse, read.innerElse);
+    if (write.innerThenParent !== read.innerThenParent) return vlog('- bail: Not in same then-branch', write.innerThenParent, read.innerThenParent);
+    if (write.innerElseParent !== read.innerElseParent) return vlog('- bail: Not in same else-branch', write.innerElseParent, read.innerElseParent);
     if (write.innerLoop !== read.innerLoop) return vlog('- bail: Not in same loop', write.innerLoop, read.innerLoop);
     if (write.innerTry !== read.innerTry) return vlog('- bail: Not in same try', write.innerTry, read.innerTry);
 

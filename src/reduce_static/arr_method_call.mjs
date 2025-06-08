@@ -202,16 +202,16 @@ function processAttempt(fdata) {
     //  // Refs in the header of a loop are considered to be inside that loop so must check this separately
     //  return vlog('- read/write not in same loop', nextRead.innerLoop, write.innerLoop);
     //}
-    //if (nextRead.innerIf !== write.innerIf) {
+    //if (nextRead.innerThenParent !== write.innerThenParent) {
     //  // Can't guarantee the write if one ref is inside an if-block while the other is not in the same if-block
     //  // Consider `const arr = [1,2]; A: { if ($) break A; else arr.push('fail'); } $(arr);`
     //  // -> This would end as `const arr = [1,2,'fail']; A: { ...} $arr)` which is invalid for the `if`-case.
-    //  return vlog('- read/write not in same if', nextRead.innerIf, write.innerIf);
+    //  return vlog('- read/write not in same if', nextRead.innerThenParent, write.innerThenParent);
     //}
-    //if (nextRead.innerElse !== write.innerElse) {
+    //if (nextRead.innerElseParent !== write.innerElseParent) {
     //  // Can't guarantee the write if one ref is inside an else-block while the other is not in the same else-block
     //  // (See if-case for example)
-    //  return vlog('- read/write not in same else', nextRead.innerElse, write.innerElse);
+    //  return vlog('- read/write not in same else', nextRead.innerElseParent, write.innerElseParent);
     //}
     //if (nextRead.innerCatch !== write.innerCatch) {
     //  // Can't guarantee the write if one ref is inside a catch while the other is not

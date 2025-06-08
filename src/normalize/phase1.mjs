@@ -62,9 +62,9 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
   const blockIds = []; // Stack of block pids. Negative if the parent was a loop of sorts. Functions insert a zero.
   const blockBodies = []; // Stack of blocks. Arrays of statements that is block.body or program.body
   const blockIndexes = []; // Stack of block indexes to match blockIds
-  const ifIds = []; // Stack of `if` pids, negative for the `else` branch, zeroes for function boundaries. Used by SSA.
+  const ifStack = []; // Stack of `if` pids, negative for the `else` branch, zeroes for function boundaries. Used by SSA.
   const loopStack = []; // Stack of loop nodes. `null` means function (or program).
-  const ifStack = [0];
+  const thenStack = [0];
   const elseStack = [0];
   const tryNodeStack = []; // Stack of try nodes (not pid) (try/catch)
   const trapStack = [0]; // Stack of try-block node $pids (try/catch), to detect being inside a try {} block (opposed to the catch)
@@ -268,7 +268,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
 
       case 'Program:before': {
         funcStack.push(node);
-        ifIds.push(0);
+        ifStack.push(0);
         blockBodies.push(node.body);
         blockIds.push(node.$p.npid);
         blockStack.push(node); // Do we assign node or node.body?
@@ -305,8 +305,8 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         ASSERT(blockBodies.length === 0, 'stack should be empty now');
         blockIds.pop();
         ASSERT(blockIds.length === 0, 'stack should be empty now');
-        ifIds.pop();
-        ASSERT(ifIds.length === 0, 'stack should be empty now');
+        ifStack.pop();
+        ASSERT(ifStack.length === 0, 'stack should be empty now');
         blockStack.pop();
         ASSERT(blockStack.length === 0, 'stack should be empty now');
         loopStack.pop();
@@ -355,11 +355,10 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         //node.$p.blockChain = blockIds.join(',');
 
         if (parentNode.type === 'IfStatement') {
+          ifStack.push(parentNode.$p.npid);
           if (parentNode.consequent === node) {
-            ifIds.push(parentNode.$p.npid);
-            ifStack.push(parentNode.$p.npid);
+            thenStack.push(parentNode.$p.npid);
           } else if (parentNode.alternate === node) {
-            ifIds.push(parentNode.$p.npid);
             elseStack.push(parentNode.$p.npid);
           }
         }
@@ -426,9 +425,9 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         }
 
         if (parentNode.type === 'IfStatement') {
-          ifIds.pop();
+          ifStack.pop();
           if (node === parentNode.consequent) {
-            ifStack.pop();
+            thenStack.pop();
           } else {
             elseStack.pop();
           }
@@ -509,7 +508,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         node.$p.readsArgumentsLenAt = -1;
 
         blockIds.push(0); // Inject a zero to mark function boundaries
-        ifIds.push(0);
+        ifStack.push(0);
         loopStack.push(null);
 
         if (firstAfterParse) {
@@ -545,7 +544,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
       case 'FunctionExpression:after': {
         funcStack.pop();
         blockIds.pop(); // the zero
-        ifIds.pop(); // the zero
+        ifStack.pop(); // the zero
         loopStack.pop();
         ASSERT(blockIds.length, 'meh3?');
         thisStack.pop();
@@ -680,14 +679,14 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
           } while (true);
 
           const innerLoop = (loopStack[loopStack.length - 1]?.$p.npid ?? 0);
-          const innerIf = ifStack[ifStack.length - 1];
-          ASSERT(typeof innerIf === 'number', 'ifstack should contain numbers', innerIf, ifStack);
-          const innerElse = elseStack[elseStack.length - 1];
-          ASSERT(typeof innerElse === 'number', 'ifstack should contain numbers', innerElse, elseStack);
+          const innerThenParent = thenStack[thenStack.length - 1];
+          ASSERT(typeof innerThenParent === 'number', 'ifstack should contain numbers', innerThenParent, thenStack);
+          const innerElseParent = elseStack[elseStack.length - 1];
+          ASSERT(typeof innerElseParent === 'number', 'ifstack should contain numbers', innerElseParent, elseStack);
           const innerTry = tryNodeStack[tryNodeStack.length - 1]?.$p.npid || 0;
           const innerTrap = trapStack[trapStack.length - 1];
           const innerCatch = catchStack[catchStack.length - 1];
-          vlog('innerLoop:', innerLoop, ', innerIf:', innerIf, ', innerElse:', innerElse, ', innerTry:', innerTry, ', innerTrap:', innerTrap, ', innerCatch:', innerCatch);
+          vlog('innerLoop:', innerLoop, ', innerThenParent:', innerThenParent, ', innerElseParent:', innerElseParent, ', innerTry:', innerTry, ', innerTrap:', innerTrap, ', innerCatch:', innerCatch);
 
           const grandNode = pathNodes[pathNodes.length - 3];
           const grandProp = pathProps[pathProps.length - 2];
@@ -699,8 +698,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
             // Note: this includes the write to a property, which does not read the property first, but which does not mutate the binding
             ASSERT(currentScope.$p.npid, 'the scope should be set to something here...', currentScope.$p.npid);
             const blockBody = blockNode.body;
-            const read
-              = createReadRef({
+            const read = createReadRef({
               name,
               kind: grandNode.type === 'ExportNamedDeclaration' ? 'export' : 'read',
               parentNode,
@@ -720,11 +718,11 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
               blockIds: blockIds.slice(0),
               blockBodies: blockBodies.slice(0),
               blockIndexes: blockIndexes.slice(0),
-              ifChain: ifIds.slice(0),
+              ifChain: ifStack.slice(0),
               funcChain: funcStack.map((n) => n.$p.npid).join(','),
               innerLoop,
-              innerIf,
-              innerElse,
+              innerThenParent,
+              innerElseParent,
               innerTry,
               innerTrap,
               innerCatch,
@@ -764,11 +762,11 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
               blockIds: blockIds.slice(0),
               blockBodies: blockBodies.slice(0),
               blockIndexes: blockIndexes.slice(0),
-              ifChain: ifIds.slice(0),
+              ifChain: ifStack.slice(0),
               funcChain: funcStack.map((n) => n.$p.npid).join(','),
               innerLoop,
-              innerIf,
-              innerElse,
+              innerThenParent,
+              innerElseParent,
               innerTry,
               innerTrap,
               innerCatch,

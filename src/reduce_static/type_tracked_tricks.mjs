@@ -437,11 +437,6 @@ function _typeTrackedTricks(fdata) {
               ++changes;
             }
             else if (argMeta.typing.mustBeType === 'boolean') {
-              ASSERT(
-                typeof argMeta.typing.mustBeValue !== 'boolean',
-                'if it wasnt falsy or truthy then we must not know the actual bool value...',
-                arg,
-              );
               if (argMeta.typing.bang) {
                 // Find the var decl in the reads. We need the argument of the original bang.
                 const varDeclWrite = argMeta.writes.find((write) => write.kind === 'var');

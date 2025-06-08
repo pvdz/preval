@@ -985,7 +985,6 @@ export function findBoundNamesInVarDeclaratorOrVarStatement(node, names = []) {
 
 export function getCleanTypingObject() {
   // All values start as undefined to mean "undetermined". Most values use `null` or `false` as meaning "indeterminable".
-  // (The `mustBeValue` can therefore not represent the `undefined` or `null` values, there's no way around it)
 
   return {
     sname: undefined, // -> symbol, like $string_replace
@@ -993,7 +992,6 @@ export function getCleanTypingObject() {
     mustBeType: undefined, // undefined|false|enum: core pillar of preval. Undefined means undetermined. When false, the type could not be determined safely (into a single type or at all).
     mustBeFalsy: undefined, // undefined|bool: only true if value is known to be one of: false, null, undefined, 0, -0, '', NaN. When false, known not to (always) be falsy.
     mustBeTruthy: undefined, // undefined|bool: only true if known to be a value that is not one of the falsy ones :) When false, known not to (always) be truthy.
-    mustBeValue: undefined, // undefined|null|<primitive>: must be exactly this value.
     mustBePrimitive: undefined, // When we don't know the actual type but we know it must be a primitive. Used to determine if something might spy curing coercion
 
     bang: undefined, // undefined|bool. Was this explicitly the result of applying `!x`? When false, known not to always be the case.
@@ -1014,7 +1012,6 @@ export function getUnknownTypingObject() {
     mustBeType: false,
     mustBeFalsy: false,
     mustBeTruthy: false,
-    mustBeValue: null,
     mustBePrimitive: false,
 
     bang: false,
@@ -1032,7 +1029,6 @@ export function createTypingObject({
   mustBeType = false,
   mustBeFalsy = false,
   mustBeTruthy = false,
-  mustBeValue = null,
   mustBePrimitive = false,
 
 
@@ -1052,7 +1048,6 @@ export function createTypingObject({
     mustBeType,
     mustBeFalsy,
     mustBeTruthy,
-    mustBeValue,
     mustBePrimitive,
 
     bang,
@@ -1086,7 +1081,6 @@ function _inferNodeTyping(fdata, valueNode) {
       mustBeTruthy: !!value,
       mustBeFalsy: !value,
       mustBePrimitive: true,
-      mustBeValue: value,
     });
   }
 
@@ -1321,7 +1315,6 @@ function _inferNodeTyping(fdata, valueNode) {
               mustBePrimitive: true,
               mustBeFalsy: !prl,
               mustBeTruthy: !!prl,
-              mustBeValue: prl,
             });
           }
 
@@ -1612,7 +1605,6 @@ function _inferNodeTyping(fdata, valueNode) {
               mustBeType: 'number',
               mustBePrimitive: true,
               mustBeTruthy: str.length > 0,
-              mustBeValue: str,
             });
           }
         }
@@ -1773,7 +1765,6 @@ export function mergeTyping(from, into) {
       mustBeType,
       mustBeFalsy,
       mustBeTruthy,
-      mustBeValue,
       bang,
       sname,
       oneBitAnded,
@@ -1791,7 +1782,6 @@ export function mergeTyping(from, into) {
       mustBeType,
       mustBeFalsy,
       mustBeTruthy,
-      mustBeValue,
       bang,
       sname,
       oneBitAnded,
@@ -1848,21 +1838,6 @@ export function mergeTyping(from, into) {
     into.mustBePrimitive = from.mustBePrimitive;
   }
   ASSERT([undefined, true, false].includes(into.mustBeFalsy), 'typing.mustBeFalsy is an enum of undefined or bool', into.mustBeFalsy);
-
-  if (from.mustBeValue === undefined || into.mustBeValue === null) {
-    // Noop. Either the input was undetermined or the result was already known not to be certainly some value.
-  } else if (into.mustBeValue === undefined) {
-    // The output was not set yet so set it to the input
-    into.mustBeValue = from.mustBeValue;
-  } else {
-    // The input and output were set. If they are the same nothing happens. If they differ then the output is now null ("cannot be determined")
-    into.mustBeValue = null;
-  }
-  ASSERT(
-    !into.mustBeValue || PRIMITIVE_TYPE_NAMES_PREVAL.has(typeof into.mustBeValue),
-    'typing.mustBeValue must be a primitive',
-    into.mustBeValue,
-  );
 
   if (from.bang === undefined || into.bang === false) {
     // Noop. Either the input was undetermined or the result was already known not to be certainly falsy.

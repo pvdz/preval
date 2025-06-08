@@ -45,17 +45,16 @@ export const BOOLEAN = new Map([
 
 
 export const NUMBER = new Map([
-  [symbo('Number', 'prototype'), {prop: 'prototype', isProto: false, typings: { sname: symbo('Number', 'prototype'), mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }}],
+  [symbo('Number', 'prototype'),          {prop: 'prototype', isProto: false, typings: { sname: symbo('Number', 'prototype'), mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }}],
 
-  // TODO: not sure we should set the mustBeValue for these. We should not inline floats and dangerous numbers.
-  [symbo('Number', 'EPSILON'),            {prop: 'EPSILON',           isProto: false, typings: { sname: symbo('Number', 'EPSILON'),            mustBeType: 'number', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: true, mustBeValue: Number.EPSILON }}],
-  [symbo('Number', 'MAX_SAFE_INTEGER'),   {prop: 'MAX_SAFE_INTEGER',  isProto: false, typings: { sname: symbo('Number', 'MAX_SAFE_INTEGER'),   mustBeType: 'number', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: true, mustBeValue: Number.MAX_SAFE_INTEGER }}],
-  [symbo('Number', 'MAX_VALUE'),          {prop: 'MAX_VALUE',         isProto: false, typings: { sname: symbo('Number', 'MAX_VALUE'),          mustBeType: 'number', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: true, mustBeValue: Number.MAX_VALUE }}],
-  [symbo('Number', 'MIN_SAFE_INTEGER'),   {prop: 'MIN_SAFE_INTEGER',  isProto: false, typings: { sname: symbo('Number', 'MIN_SAFE_INTEGER'),   mustBeType: 'number', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: true, mustBeValue: Number.MIN_SAFE_INTEGER }}],
-  [symbo('Number', 'MIN_VALUE'),          {prop: 'MIN_VALUE',         isProto: false, typings: { sname: symbo('Number', 'MIN_VALUE'),          mustBeType: 'number', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: true, mustBeValue: Number.MIN_VALUE }}],
-  [symbo('Number', 'NaN'),                {prop: 'NaN',               isProto: false, typings: { sname: symbo('Number', 'NaN'),                mustBeType: 'number', mustBeFalsy: true, mustBeTruthy: false, mustBePrimitive: true, mustBeValue: Number.NaN }}],
-  [symbo('Number', 'NEGATIVE_INFINITY'),  {prop: 'NEGATIVE_INFINITY', isProto: false, typings: { sname: symbo('Number', 'NEGATIVE_INFINITY'),  mustBeType: 'number', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: true, mustBeValue: Number.NEGATIVE_INFINITY }}],
-  [symbo('Number', 'POSITIVE_INFINITY'),  {prop: 'POSITIVE_INFINITY', isProto: false, typings: { sname: symbo('Number', 'POSITIVE_INFINITY'),  mustBeType: 'number', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: true, mustBeValue: Number.POSITIVE_INFINITY }}],
+  [symbo('Number', 'EPSILON'),            {prop: 'EPSILON',           isProto: false, typings: { sname: symbo('Number', 'EPSILON'),            mustBeType: 'number', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: true }}],
+  [symbo('Number', 'MAX_SAFE_INTEGER'),   {prop: 'MAX_SAFE_INTEGER',  isProto: false, typings: { sname: symbo('Number', 'MAX_SAFE_INTEGER'),   mustBeType: 'number', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: true }}],
+  [symbo('Number', 'MAX_VALUE'),          {prop: 'MAX_VALUE',         isProto: false, typings: { sname: symbo('Number', 'MAX_VALUE'),          mustBeType: 'number', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: true }}],
+  [symbo('Number', 'MIN_SAFE_INTEGER'),   {prop: 'MIN_SAFE_INTEGER',  isProto: false, typings: { sname: symbo('Number', 'MIN_SAFE_INTEGER'),   mustBeType: 'number', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: true }}],
+  [symbo('Number', 'MIN_VALUE'),          {prop: 'MIN_VALUE',         isProto: false, typings: { sname: symbo('Number', 'MIN_VALUE'),          mustBeType: 'number', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: true }}],
+  [symbo('Number', 'NaN'),                {prop: 'NaN',               isProto: false, typings: { sname: symbo('Number', 'NaN'),                mustBeType: 'number', mustBeFalsy: true, mustBeTruthy: false, mustBePrimitive: true }}],
+  [symbo('Number', 'NEGATIVE_INFINITY'),  {prop: 'NEGATIVE_INFINITY', isProto: false, typings: { sname: symbo('Number', 'NEGATIVE_INFINITY'),  mustBeType: 'number', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: true }}],
+  [symbo('Number', 'POSITIVE_INFINITY'),  {prop: 'POSITIVE_INFINITY', isProto: false, typings: { sname: symbo('Number', 'POSITIVE_INFINITY'),  mustBeType: 'number', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: true }}],
 
   [symbo('Number', 'isFinite'),           {prop: 'isFinite',          isProto: false, typings: { sname: symbo('Number', 'isFinite'),           mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'boolean' }}],
   [symbo('Number', 'isInteger'),          {prop: 'isInteger',         isProto: false, typings: { sname: symbo('Number', 'isInteger'),          mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'boolean' }}],
@@ -80,11 +79,11 @@ export const NUMBER = new Map([
 
 
 export const STRING = new Map([
-  [symbo('String', 'prototype'), {prop: 'prototype', isProto: false, typings: { sname: symbo('String', 'prototype'), mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }}],
+  [symbo('String', 'prototype'),     {prop: 'prototype', isProto: false, typings: { sname: symbo('String', 'prototype'), mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }}],
 
-  [symbo('String', 'fromCharCode'),   {prop: 'fromCharCode',  isProto: false, typings: { sname: symbo('String', 'fromCharCode'),  mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string' }}],
-  [symbo('String', 'fromCodePoint'),  {prop: 'fromCodePoint', isProto: false, typings: { sname: symbo('String', 'fromCodePoint'), mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string' }}],
-  [symbo('String', 'raw'),            {prop: 'raw',           isProto: false, typings: { sname: symbo('String', 'raw'),           mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string' }}],
+  [symbo('String', 'fromCharCode'),  {prop: 'fromCharCode',  isProto: false, typings: { sname: symbo('String', 'fromCharCode'),  mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string' }}],
+  [symbo('String', 'fromCodePoint'), {prop: 'fromCodePoint', isProto: false, typings: { sname: symbo('String', 'fromCodePoint'), mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string' }}],
+  [symbo('String', 'raw'),           {prop: 'raw',           isProto: false, typings: { sname: symbo('String', 'raw'),           mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string' }}],
 
   [symbo('string', 'at'),            {prop: 'at',            isProto: true,  typings: { sname: symbo('string', 'at'),            mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string' }}],
   [symbo('string', 'charAt'),        {prop: 'charAt',        isProto: true,  typings: { sname: symbo('string', 'charAt'),        mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string' }}],
@@ -336,14 +335,14 @@ export const $JSON = new Map([
 
 
 export const MATH = new Map([
-  [symbo('Math', 'E'),       {prop: 'E',       isProto: false, typings: { sname: symbo('Math', 'E'),       mustBeType: 'number', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: true, mustBeValue: false }}], // don't inline, it will lead to rounding errors
-  [symbo('Math', 'LN10'),    {prop: 'LN10',    isProto: false, typings: { sname: symbo('Math', 'LN10'),    mustBeType: 'number', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: true, mustBeValue: false }}], // don't inline, it will lead to rounding errors
-  [symbo('Math', 'LN2'),     {prop: 'LN2',     isProto: false, typings: { sname: symbo('Math', 'LN2'),     mustBeType: 'number', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: true, mustBeValue: false }}], // don't inline, it will lead to rounding errors
-  [symbo('Math', 'LOG10E'),  {prop: 'LOG10E',  isProto: false, typings: { sname: symbo('Math', 'LOG10E'),  mustBeType: 'number', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: true, mustBeValue: false }}], // don't inline, it will lead to rounding errors
-  [symbo('Math', 'LOG2E'),   {prop: 'LOG2E',   isProto: false, typings: { sname: symbo('Math', 'LOG2E'),   mustBeType: 'number', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: true, mustBeValue: false }}], // don't inline, it will lead to rounding errors
-  [symbo('Math', 'PI'),      {prop: 'PI',      isProto: false, typings: { sname: symbo('Math', 'PI'),      mustBeType: 'number', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: true, mustBeValue: false }}], // don't inline, it will lead to rounding errors
-  [symbo('Math', 'SQRT1_2'), {prop: 'SQRT1_2', isProto: false, typings: { sname: symbo('Math', 'SQRT1_2'), mustBeType: 'number', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: true, mustBeValue: false }}], // don't inline, it will lead to rounding errors
-  [symbo('Math', 'SQRT2'),   {prop: 'SQRT2',   isProto: false, typings: { sname: symbo('Math', 'SQRT2'),   mustBeType: 'number', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: true, mustBeValue: false }}], // don't inline, it will lead to rounding errors
+  [symbo('Math', 'E'),       {prop: 'E',       isProto: false, typings: { sname: symbo('Math', 'E'),       mustBeType: 'number', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: true }}], // don't inline, it will lead to rounding errors
+  [symbo('Math', 'LN10'),    {prop: 'LN10',    isProto: false, typings: { sname: symbo('Math', 'LN10'),    mustBeType: 'number', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: true }}], // don't inline, it will lead to rounding errors
+  [symbo('Math', 'LN2'),     {prop: 'LN2',     isProto: false, typings: { sname: symbo('Math', 'LN2'),     mustBeType: 'number', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: true }}], // don't inline, it will lead to rounding errors
+  [symbo('Math', 'LOG10E'),  {prop: 'LOG10E',  isProto: false, typings: { sname: symbo('Math', 'LOG10E'),  mustBeType: 'number', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: true }}], // don't inline, it will lead to rounding errors
+  [symbo('Math', 'LOG2E'),   {prop: 'LOG2E',   isProto: false, typings: { sname: symbo('Math', 'LOG2E'),   mustBeType: 'number', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: true }}], // don't inline, it will lead to rounding errors
+  [symbo('Math', 'PI'),      {prop: 'PI',      isProto: false, typings: { sname: symbo('Math', 'PI'),      mustBeType: 'number', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: true }}], // don't inline, it will lead to rounding errors
+  [symbo('Math', 'SQRT1_2'), {prop: 'SQRT1_2', isProto: false, typings: { sname: symbo('Math', 'SQRT1_2'), mustBeType: 'number', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: true }}], // don't inline, it will lead to rounding errors
+  [symbo('Math', 'SQRT2'),   {prop: 'SQRT2',   isProto: false, typings: { sname: symbo('Math', 'SQRT2'),   mustBeType: 'number', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: true }}], // don't inline, it will lead to rounding errors
 
   [symbo('Math', 'abs'),      {prop: 'abs',      isProto: false, typings: { sname: symbo('Math', 'abs'),      mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'number' }}],
   [symbo('Math', 'acos'),     {prop: 'acos',     isProto: false, typings: { sname: symbo('Math', 'acos'),     mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'number' }}],
@@ -509,7 +508,7 @@ export const BUFFER = new Map([
 
 export const UINT8ARRAY = new Map([
   [symbo('Uint8Array', 'prototype'),         {prop: 'prototype',         isProto: false, typings: { sname: symbo('Uint8Array', 'prototype'),         mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }}],
-  [symbo('Uint8Array', 'BYTES_PER_ELEMENT'), {prop: 'BYTES_PER_ELEMENT', isProto: false, typings: { sname: symbo('Uint8Array', 'BYTES_PER_ELEMENT'), mustBeType: 'number', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: true, mustBeValue: 1 }}],
+  [symbo('Uint8Array', 'BYTES_PER_ELEMENT'), {prop: 'BYTES_PER_ELEMENT', isProto: false, typings: { sname: symbo('Uint8Array', 'BYTES_PER_ELEMENT'), mustBeType: 'number', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: true }}],
   [symbo('Uint8Array', 'fromBase64'),        {prop: 'fromBase64',        isProto: false, typings: { sname: symbo('Uint8Array', 'fromBase64'),        mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'uint8Array'  }}],
   [symbo('Uint8Array', 'fromHex'),           {prop: 'fromHex',           isProto: false, typings: { sname: symbo('Uint8Array', 'fromHex'),           mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'uint8Array'  }}],
 

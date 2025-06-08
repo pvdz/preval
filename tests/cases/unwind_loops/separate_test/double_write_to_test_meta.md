@@ -63,7 +63,7 @@ while (true) {
 ## Todos triggered
 
 
-- (todo) do we want to support BinaryExpression as expression statement in free loops?
+None
 
 
 ## Globals

@@ -123,7 +123,7 @@ while (true) {
 ## Todos triggered
 
 
-- (todo) regular property access of an ident feels tricky;
+None
 
 
 ## Globals

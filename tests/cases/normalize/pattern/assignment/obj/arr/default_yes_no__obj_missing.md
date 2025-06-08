@@ -18,8 +18,8 @@ $('ok');
 
 
 `````js filename=intro
-let tmpOPAD /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpOPBD /*:unknown*/ = $Object_prototype.x;
+let tmpOPAD /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpIfTest /*:boolean*/ = tmpOPBD === undefined;
 if (tmpIfTest) {
   const tmpCalleeParam /*:array*/ = [`fail`];
@@ -36,8 +36,8 @@ $(`ok`);
 (This ought to be the final result)
 
 `````js filename=intro
-let tmpOPAD = undefined;
 const tmpOPBD = $Object_prototype.x;
+let tmpOPAD = undefined;
 if (tmpOPBD === undefined) {
   tmpOPAD = $([`fail`]);
 } else {
@@ -52,17 +52,17 @@ $(`ok`);
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = $Object_prototype.x;
-const c = b === undefined;
+const a = $Object_prototype.x;
+let b = undefined;
+const c = a === undefined;
 if (c) {
   const d = [ "fail" ];
-  a = $( d );
+  b = $( d );
 }
 else {
-  a = b;
+  b = a;
 }
-[ ...a ];
+[ ...b ];
 $( "ok" );
 `````
 

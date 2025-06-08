@@ -25,14 +25,26 @@ $(f($(9)));
 
 `````js filename=intro
 const tmpCalleeParam$1 /*:unknown*/ = $(7);
-const tmpCalleeParam /*:number*/ = tmpCalleeParam$1 & 8;
-$(tmpCalleeParam);
+const tmpSaooB$3 /*:number*/ = tmpCalleeParam$1 & 8;
+if (tmpSaooB$3) {
+  $(8);
+} else {
+  $(0);
+}
 const tmpCalleeParam$5 /*:unknown*/ = $(8);
-const tmpCalleeParam$3 /*:number*/ = tmpCalleeParam$5 & 8;
-$(tmpCalleeParam$3);
+const tmpSaooB$1 /*:number*/ = tmpCalleeParam$5 & 8;
+if (tmpSaooB$1) {
+  $(8);
+} else {
+  $(0);
+}
 const tmpCalleeParam$9 /*:unknown*/ = $(9);
-const tmpCalleeParam$7 /*:number*/ = tmpCalleeParam$9 & 8;
-$(tmpCalleeParam$7);
+const tmpSaooB /*:number*/ = tmpCalleeParam$9 & 8;
+if (tmpSaooB) {
+  $(8);
+} else {
+  $(0);
+}
 `````
 
 
@@ -40,9 +52,21 @@ $(tmpCalleeParam$7);
 (This ought to be the final result)
 
 `````js filename=intro
-$($(7) & 8);
-$($(8) & 8);
-$($(9) & 8);
+if ($(7) & 8) {
+  $(8);
+} else {
+  $(0);
+}
+if ($(8) & 8) {
+  $(8);
+} else {
+  $(0);
+}
+if ($(9) & 8) {
+  $(8);
+} else {
+  $(0);
+}
 `````
 
 
@@ -52,13 +76,28 @@ With rename=true
 `````js filename=intro
 const a = $( 7 );
 const b = a & 8;
-$( b );
+if (b) {
+  $( 8 );
+}
+else {
+  $( 0 );
+}
 const c = $( 8 );
 const d = c & 8;
-$( d );
+if (d) {
+  $( 8 );
+}
+else {
+  $( 0 );
+}
 const e = $( 9 );
 const f = e & 8;
-$( f );
+if (f) {
+  $( 8 );
+}
+else {
+  $( 0 );
+}
 `````
 
 

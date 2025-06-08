@@ -18,9 +18,9 @@ $('ok');
 
 
 `````js filename=intro
+const tmpOPBD /*:unknown*/ = $Object_prototype.x;
 let tmpOPAD /*:unknown*/ /*ternaryConst*/ = undefined;
 let tmpObjPatternCrashTest /*:boolean*/ = false;
-const tmpOPBD /*:unknown*/ = $Object_prototype.x;
 const tmpIfTest /*:boolean*/ = tmpOPBD === undefined;
 if (tmpIfTest) {
   const tmpCalleeParam /*:object*/ = { x: `pass` };
@@ -46,9 +46,9 @@ if (tmpObjPatternCrashTest) {
 (This ought to be the final result)
 
 `````js filename=intro
+const tmpOPBD = $Object_prototype.x;
 let tmpOPAD = undefined;
 let tmpObjPatternCrashTest = false;
-const tmpOPBD = $Object_prototype.x;
 if (tmpOPBD === undefined) {
   tmpOPAD = $({ x: `pass` });
   tmpObjPatternCrashTest = tmpOPAD === undefined;
@@ -71,26 +71,26 @@ if (tmpObjPatternCrashTest) {
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-let b = false;
-const c = $Object_prototype.x;
-const d = c === undefined;
+const a = $Object_prototype.x;
+let b = undefined;
+let c = false;
+const d = a === undefined;
 if (d) {
   const e = { x: "pass" };
-  a = $( e );
-  b = a === undefined;
+  b = $( e );
+  c = b === undefined;
 }
 else {
-  a = c;
+  b = a;
 }
-if (b) {
+if (c) {
 
 }
 else {
-  b = a === null;
+  c = b === null;
 }
-if (b) {
-  a.cannotDestructureThis;
+if (c) {
+  b.cannotDestructureThis;
   $( "ok" );
 }
 else {

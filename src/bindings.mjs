@@ -988,34 +988,19 @@ export function getCleanTypingObject() {
   // (The `mustBeValue` can therefore not represent the `undefined` or `null` values, there's no way around it)
 
   return {
-    // string. If anything, this should then be the primitive type that this binding must be.
-    // TODO: what if there are multiple options? Or even like bool/undefined/null? "falsy/truthy"
-    // TODO: add `date` as a first class type
-    // undefined|false|enum.
-    // 'undefined', 'null', 'boolean', 'number', 'string', 'primitive',
-    // 'unknown',
-    // 'object', 'array', 'function', 'class', 'set', 'map', 'regex', 'promise',
-    // Undefined means undetermined.
-    // When false, the type could not be determined safely.
-    mustBeType: undefined,
+    sname: undefined, // -> symbol, like $string_replace
+
+    mustBeType: undefined, // undefined|false|enum: core pillar of preval. Undefined means undetermined. When false, the type could not be determined safely (into a single type or at all).
     mustBeFalsy: undefined, // undefined|bool: only true if value is known to be one of: false, null, undefined, 0, -0, '', NaN. When false, known not to (always) be falsy.
     mustBeTruthy: undefined, // undefined|bool: only true if known to be a value that is not one of the falsy ones :) When false, known not to (always) be truthy.
     mustBeValue: undefined, // undefined|null|<primitive>: must be exactly this value.
+    mustBePrimitive: undefined, // When we don't know the actual type but we know it must be a primitive. Used to determine if something might spy curing coercion
+
     bang: undefined, // undefined|bool. Was this explicitly the result of applying `!x`? When false, known not to always be the case.
-
-    sname: undefined, // -> symbol, like $string_replace
-
     oneBitAnded: undefined, // number. If set, this value is the result of applying the bitwise AND operator and this single bit value to an arbitrary value. In other words, either this bit is set or unset on this value.
     anded: undefined, // number. If set, this value is the result of bitwise AND an arbitrary value with this value
     orredWith: undefined, // number. If set, this meta is the result of a bitwise OR expression with this literal and an unknown value
     xorredWith: undefined, // number. If set, this meta is the result of a bitwise XOR expression with this literal and an unknown value
-
-    worstCaseTypes: undefined, // Set<mustBeType>. Sometimes we can narrow the type to a handful of things but not further, common case is `+` result; string or number, but nothing else
-    worstCaseValueSet: undefined, // undefined | Set<primitives>. If set, this is the bound set of possible (primitive) values for this binding. If undefined, the set can not be bound explicitly or contains non-primitives.
-    mustBePrimitive: undefined, // When we don't know the actual type but we know it must be a primitive. Used to determine if something might spy curing coercion
-    primitiveValue: undefined, // TODO: merge with mustBeValue
-
-    isSimpleObject: undefined, // Is this an object literal that does not escape and without method calls? In that case a property read should not be able to spy. Checked during phase1.1
 
     returns: undefined, // Set<'undefined' | 'null' | 'boolean' | 'number' | 'string' | 'primitive' | '?'>, // Set for constant functions in phase1.1
   };
@@ -1024,73 +1009,57 @@ export function getUnknownTypingObject() {
   // All values are set to the "cannot be determined" state. For example, this is used for implicit globals.
 
   return {
+    sname: false,
+
     mustBeType: false,
     mustBeFalsy: false,
     mustBeTruthy: false,
     mustBeValue: null,
+    mustBePrimitive: false,
+
     bang: false,
-
-    sname: false,
-
     oneBitAnded: false,
     anded: false,
     orredWith: false,
     xorredWith: false,
 
-    worstCaseValueSet: false,
-    mustBePrimitive: false,
-    primitiveValue: undefined, // (irrelevant) TODO: merge with mustBeValue
-
-    isSimpleObject: undefined,
-
     returns: undefined,
   };
 }
 export function createTypingObject({
+  sname = false,
+
   mustBeType = false,
   mustBeFalsy = false,
   mustBeTruthy = false,
   mustBeValue = null,
+  mustBePrimitive = false,
+
+
   bang = false,
-
-  sname = false,
-
   oneBitAnded = false,
   anded = false,
   orredWith = false,
   xorredWith = false,
-
-  worstCaseTypes = false,
-  worstCaseValueSet = false,
-  mustBePrimitive = false,
-  primitiveValue = false,
-
-  isSimpleObject = false,
 
   returns = false,
   ...rest
 }) {
   ASSERT(Object.keys(rest).length === 0, 'add new keys', rest);
   return {
+    sname,
+
     mustBeType,
     mustBeFalsy,
     mustBeTruthy,
     mustBeValue,
+    mustBePrimitive,
+
     bang,
-
-    sname,
-
     oneBitAnded,
     anded,
     orredWith,
     xorredWith,
-
-    worstCaseTypes,
-    worstCaseValueSet,
-    mustBePrimitive,
-    primitiveValue,
-
-    isSimpleObject,
 
     returns,
   };
@@ -1105,7 +1074,6 @@ export function inferNodeTyping(fdata, valueNode) {
 function _inferNodeTyping(fdata, valueNode) {
   // Assumes >= phase1 (so normalized code)
   // Given a node `init`, determine the initial typing for this meta.
-  // .worstCaseValueSet is overridden if already set and the value is a primitive. If let, future assignments will amend or clear the set.
 
   ASSERT(valueNode, 'should receive value node', valueNode);
   ASSERT(valueNode.$p, 'nodes should be processed at this point so .$p should exist', valueNode);
@@ -1118,9 +1086,7 @@ function _inferNodeTyping(fdata, valueNode) {
       mustBeTruthy: !!value,
       mustBeFalsy: !value,
       mustBePrimitive: true,
-      worstCaseValueSet: new Set([value]),
       mustBeValue: value,
-      primitiveValue: value,
     });
   }
 
@@ -1179,7 +1145,6 @@ function _inferNodeTyping(fdata, valueNode) {
           return createTypingObject({
             mustBeType: 'boolean',
             mustBePrimitive: true,
-            worstCaseValueSet: new Set([true, false]),
           });
         case 'void':
           ASSERT(false, 'normalized code should not contain `void`');
@@ -1196,8 +1161,6 @@ function _inferNodeTyping(fdata, valueNode) {
             mustBeType: 'boolean',
             mustBePrimitive: true,
             bang: true,
-
-            worstCaseValueSet: new Set([true, false]),
           });
         }
         case 'typeof': {
@@ -1205,7 +1168,6 @@ function _inferNodeTyping(fdata, valueNode) {
             mustBeType: 'string',
             mustBePrimitive: true,
             mustBeTruthy: true,
-            worstCaseValueSet: new Set(['undefined', 'boolean', 'number', 'string', 'object', 'function', 'bigint', 'symbol', 'unknown']),
           });
         }
         default:
@@ -1239,7 +1201,6 @@ function _inferNodeTyping(fdata, valueNode) {
           return createTypingObject({
             mustBeType: 'boolean',
             mustBePrimitive: true,
-            worstCaseValueSet: new Set([true, false]),
           });
         }
         case '-':
@@ -1266,8 +1227,6 @@ function _inferNodeTyping(fdata, valueNode) {
 
               oneBitAnded: isOneSetBit(v) ? v : undefined,
               anded: v,
-
-              worstCaseValueSet: isOneSetBit(v) ? new Set([0, v]) : undefined,
             });
           }
           if (AST.isPrimitive(valueNode.right)) {
@@ -1279,8 +1238,6 @@ function _inferNodeTyping(fdata, valueNode) {
 
               oneBitAnded: isOneSetBit(v) ? v : undefined,
               anded: v,
-
-              worstCaseValueSet: isOneSetBit(v) ? new Set([0, v]) : undefined,
             });
           }
           return createTypingObject({
@@ -1365,9 +1322,6 @@ function _inferNodeTyping(fdata, valueNode) {
               mustBeFalsy: !prl,
               mustBeTruthy: !!prl,
               mustBeValue: prl,
-
-              worstCaseValueSet: new Set([prl]),
-              primitiveValue: prl,
             });
           }
 
@@ -1554,7 +1508,6 @@ function _inferNodeTyping(fdata, valueNode) {
               mustBePrimitive: PRIMITIVE_TYPE_NAMES_PREVAL.has(symb.typings.returns),
               mustBeTruthy: !PRIMITIVE_TYPE_NAMES_PREVAL.has(symb.typings.returns),
               mustBeFalsy: symb.typings.returns === 'undefined' || symb.typings.returns === 'null',
-              ...symb.typings.returns === 'boolean' ? {worstCaseValueSet: new Set([true, false])} : {},
             });
           }
 
@@ -1566,7 +1519,6 @@ function _inferNodeTyping(fdata, valueNode) {
               mustBePrimitive: PRIMITIVE_TYPE_NAMES_PREVAL.has(meta.typing.returns),
               mustBeTruthy: meta.typing.returns === 'undefined' || meta.typing.returns === 'null' ? false : undefined,
               mustBeFalsy: meta.typing.returns === 'undefined' || meta.typing.returns === 'null' || undefined,
-              ...meta.typing.returns === 'boolean' ? {worstCaseValueSet: new Set([true, false])} : {},
             });
           }
 
@@ -1599,7 +1551,6 @@ function _inferNodeTyping(fdata, valueNode) {
           mustBePrimitive: PRIMITIVE_TYPE_NAMES_PREVAL.has(calleeMeta.typing.returns),
           mustBeTruthy: !PRIMITIVE_TYPE_NAMES_PREVAL.has(calleeMeta.typing.returns),
           mustBeFalsy: calleeMeta.typing.returns === 'undefined' || calleeMeta.typing.returns === 'null',
-          ...calleeMeta.typing.returns === 'boolean' ? {worstCaseValueSet: new Set([true, false])} : {},
         });
       }
 
@@ -1661,10 +1612,7 @@ function _inferNodeTyping(fdata, valueNode) {
               mustBeType: 'number',
               mustBePrimitive: true,
               mustBeTruthy: str.length > 0,
-              mustBeValue: str.length,
-
-              worstCaseValueSet: new Set([str]),
-              primitiveValue: str,
+              mustBeValue: str,
             });
           }
         }
@@ -1832,11 +1780,7 @@ export function mergeTyping(from, into) {
       anded,
       orredWith,
       xorredWith,
-      worstCaseTypes,
-      worstCaseValueSet,
       mustBePrimitive,
-      primitiveValue, // TODO: remove
-      isSimpleObject,
       returns,
       ...unknown
     } = from;
@@ -1854,11 +1798,7 @@ export function mergeTyping(from, into) {
       anded,
       orredWith,
       xorredWith,
-      worstCaseTypes,
-      worstCaseValueSet,
       mustBePrimitive,
-      primitiveValue, // TODO: remove
-      isSimpleObject,
       returns,
       ...unknown
     } = into;
@@ -1990,37 +1930,6 @@ export function mergeTyping(from, into) {
     into.xorredWith === undefined || into.xorredWith === false || typeof into.xorredWith === 'number',
     'typing.xorredWith must be undefined, false, or a number',
     into.xorredWith,
-  );
-
-  if (!from.worstCaseTypes || !into.worstCaseTypes) {
-    // Noop. Worst case it's any type.
-  } else {
-    // Merge. Worst case the type is the intersection of the two
-    from.worstCaseTypes.forEach(typeName => into.worstCaseTypes.add(typeName));
-  }
-
-  if (from.worstCaseValueSet === undefined || into.worstCaseValueSet === false) {
-    // Noop. Either the input was undetermined or the result was already known not to be certainly anded.
-  } else if (into.worstCaseValueSet === undefined) {
-    // The output was not set yet so set it to the input
-    into.worstCaseValueSet = from.worstCaseValueSet;
-  } else if (from.worstCaseValueSet === false) {
-    // The input could not determine a set of values so neither can the output.
-    into.worstCaseValueSet = false;
-  } else {
-    ASSERT(
-      from.worstCaseValueSet instanceof Set && into.worstCaseValueSet instanceof Set,
-      'the from and into should both have a value set now...',
-      from,
-      into,
-    );
-    // The input and output have a set of values. Merge them
-    from.worstCaseValueSet.forEach((v) => into.worstCaseValueSet.add(v));
-  }
-  ASSERT(
-    into.worstCaseValueSet === undefined || into.worstCaseValueSet === false || into.worstCaseValueSet instanceof Set,
-    'undefined or false or typing.worstCaseValueSet is a Set of primitives',
-    into.worstCaseValueSet,
   );
 
   // If from is not a primitive (or unknown) then into can not be either. Otherwise it's whatever into was.

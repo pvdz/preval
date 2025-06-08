@@ -2644,15 +2644,6 @@ export function _complexExpressionNodeMightSpy(node, fdata) {
     }
     case 'MemberExpression': {
       if (node.object.type !== 'Identifier') return true;
-      const objName = node.object.name;
-      const objMeta = fdata.globallyUniqueNamingRegistry.get(objName);
-      if (objMeta.typing.isSimpleObject) {
-        // This means that the object is a literal, it does not escape, and it doesn't have getters/setters.
-        // As such, reading (and even writing) properties should not be able to trigger a spy.
-        // Note that a call could mutate the object and add this property. But in that world it
-        // wouldn't get here (it would bail in the call handler above)
-        return false;
-      }
       return true;
     }
   }

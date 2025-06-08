@@ -23,8 +23,8 @@ $(a, b);
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(`c`);
 const b /*:object*/ = { c: 1 };
+const xyz /*:unknown*/ = b[tmpCalleeParam];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const xyz /*:unknown*/ = b[tmpCalleeParam];
   $(xyz);
   $(1);
 }
@@ -36,9 +36,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 `````js filename=intro
 const tmpCalleeParam = $(`c`);
-const b = { c: 1 };
+const xyz = { c: 1 }[tmpCalleeParam];
 while (true) {
-  $(b[tmpCalleeParam]);
+  $(xyz);
   $(1);
 }
 `````
@@ -50,8 +50,8 @@ With rename=true
 `````js filename=intro
 const a = $( "c" );
 const b = { c: 1 };
+const c = b[ a ];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const c = b[ a ];
   $( c );
   $( 1 );
 }
@@ -77,7 +77,6 @@ while (true) {
 ## Todos triggered
 
 
-- (todo) objects in isFree check
 - (todo) regular property access of an ident feels tricky;
 
 

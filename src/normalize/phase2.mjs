@@ -36,7 +36,6 @@ import { typeTrackedTricks } from '../reduce_static/type_tracked_tricks.mjs';
 import { arrSpreads } from '../reduce_static/arr_spread.mjs';
 import { conditionalTyping } from '../reduce_static/conditional_typing.mjs';
 import { findThrowers } from '../reduce_static/throwers.mjs';
-import { ifDualAssign } from '../reduce_static/if_dual_assign.mjs';
 import { returnsParam } from '../reduce_static/return_param.mjs';
 import { ifTestBool } from '../reduce_static/if_test_bool.mjs';
 import { spylessVars } from '../reduce_static/spyless_vars.mjs';
@@ -51,7 +50,6 @@ import { coercials } from '../reduce_static/coerced.mjs';
 import { redundantWrites } from '../reduce_static/redundant_if_else_writes.mjs';
 import { ifHoisting } from '../reduce_static/if_hoisting.mjs';
 import { orXor } from '../reduce_static/or_xor.mjs';
-import { resolveBoundValueSet } from '../reduce_static/bound_value_set.mjs';
 import { typedComparison } from '../reduce_static/typed_comparison.mjs';
 import { eqBang } from '../reduce_static/eq_bang.mjs';
 import { orOr } from '../reduce_static/or_or.mjs';
@@ -123,7 +121,6 @@ export const BASE_PHASE2_RULES_LIST = [
   ['freeFuncs', freeFuncs], // Do this first...?
   ['frfrTricks', frfrTricks],
   ['coercials', coercials],
-  ['resolveBoundValueSet', resolveBoundValueSet],
   ['removeUnusedConstants', removeUnusedConstants],
   ['builtinCases', builtinCases], // fast
   // Do early because it can be expensive with many writes
@@ -173,7 +170,6 @@ export const BASE_PHASE2_RULES_LIST = [
   ['conditionalTyping', conditionalTyping],
   ['ifTestBool', ifTestBool],
   ['ifTestFolding', ifTestFolding],
-  ['ifDualAssign', ifDualAssign],
   ['returnsParam', returnsParam],
   ['spylessVars', spylessVars],
   ['stringFusing', stringFusing],

@@ -18,8 +18,8 @@ $(y);
 
 
 `````js filename=intro
-let tmpOPAD /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpOPBD /*:unknown*/ = $Object_prototype.x;
+let tmpOPAD /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpIfTest /*:boolean*/ = tmpOPBD === undefined;
 if (tmpIfTest) {
   const tmpCalleeParam /*:object*/ = { y: `pass2` };
@@ -42,8 +42,8 @@ if (tmpIfTest$1) {
 (This ought to be the final result)
 
 `````js filename=intro
-let tmpOPAD = undefined;
 const tmpOPBD = $Object_prototype.x;
+let tmpOPAD = undefined;
 if (tmpOPBD === undefined) {
   tmpOPAD = $({ y: `pass2` });
 } else {
@@ -62,17 +62,17 @@ if (tmpOPBD$1 === undefined) {
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = $Object_prototype.x;
-const c = b === undefined;
+const a = $Object_prototype.x;
+let b = undefined;
+const c = a === undefined;
 if (c) {
   const d = { y: "pass2" };
-  a = $( d );
+  b = $( d );
 }
 else {
-  a = b;
+  b = a;
 }
-const e = a.y;
+const e = b.y;
 const f = e === undefined;
 if (f) {
   const g = $( "fail" );

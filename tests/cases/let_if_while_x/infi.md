@@ -32,8 +32,8 @@ $('after');
 `````js filename=intro
 $(`before`);
 const tmpBinBothRhs /*:unknown*/ = $(5);
-const tmpClusterSSA_flag /*:boolean*/ = 0 < tmpBinBothRhs;
-if (tmpClusterSSA_flag) {
+const x /*:boolean*/ = 0 < tmpBinBothRhs;
+if (x) {
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     $(`again`);
   }
@@ -105,7 +105,7 @@ $(`after`);
 ## Todos triggered
 
 
-None
+- (todo) type trackeed tricks can possibly support static $boolean_constructor
 
 
 ## Globals

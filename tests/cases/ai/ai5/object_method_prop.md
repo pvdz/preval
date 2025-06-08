@@ -29,11 +29,11 @@ $(x + y);
 const tmpMCP /*:object*/ = { a: 1 };
 const tmpCompObj$1 /*:array*/ = $Object_keys(tmpMCP);
 const tmpCalleeParam /*:unknown*/ = tmpCompObj$1[0];
+const obj /*:object*/ = { a: 1, b: 2 };
+const x /*:unknown*/ = obj[tmpCalleeParam];
 const tmpMCP$1 /*:object*/ = { b: 1 };
 const tmpCompObj$5 /*:array*/ = $Object_keys(tmpMCP$1);
 const tmpCalleeParam$1 /*:unknown*/ = tmpCompObj$5[0];
-const obj /*:object*/ = { a: 1, b: 2 };
-const x /*:unknown*/ = obj[tmpCalleeParam];
 const y /*:unknown*/ = obj[tmpCalleeParam$1];
 const tmpCalleeParam$3 /*:primitive*/ = x + y;
 $(tmpCalleeParam$3);
@@ -45,9 +45,9 @@ $(tmpCalleeParam$3);
 
 `````js filename=intro
 const tmpCalleeParam = $Object_keys({ a: 1 })[0];
-const tmpCalleeParam$1 = $Object_keys({ b: 1 })[0];
 const obj = { a: 1, b: 2 };
 const x = obj[tmpCalleeParam];
+const tmpCalleeParam$1 = $Object_keys({ b: 1 })[0];
 $(x + obj[tmpCalleeParam$1]);
 `````
 
@@ -59,16 +59,16 @@ With rename=true
 const a = { a: 1 };
 const b = $Object_keys( a );
 const c = b[ 0 ];
-const d = { b: 1 };
-const e = $Object_keys( d );
-const f = e[ 0 ];
-const g = {
+const d = {
   a: 1,
   b: 2,
 };
-const h = g[ c ];
-const i = g[ f ];
-const j = h + i;
+const e = d[ c ];
+const f = { b: 1 };
+const g = $Object_keys( f );
+const h = g[ 0 ];
+const i = d[ h ];
+const j = e + i;
 $( j );
 `````
 

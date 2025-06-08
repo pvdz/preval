@@ -21,9 +21,9 @@ $(f());
 
 
 `````js filename=intro
-const tmpSSA_y /*:unknown*/ = $Number_prototype.foo;
-const tmpReturnArg /*:unknown*/ = $(tmpSSA_y);
-$(tmpReturnArg);
+const tmpClusterSSA_y /*:unknown*/ = $Number_prototype.foo;
+const tmpClusterSSA_tmpReturnArg /*:unknown*/ = $(tmpClusterSSA_y);
+$(tmpClusterSSA_tmpReturnArg);
 `````
 
 

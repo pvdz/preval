@@ -38,17 +38,18 @@ $('after');
 `````js filename=intro
 $(`before`);
 const tmpBinBothRhs /*:unknown*/ = $(5);
-let tmpClusterSSA_flag /*:boolean*/ = 0 < tmpBinBothRhs;
-if (tmpClusterSSA_flag) {
+const x /*:boolean*/ = 0 < tmpBinBothRhs;
+if (x) {
+  let flag /*:boolean*/ = true;
   $(`inner`, 0);
   let tmpClusterSSA_n /*:number*/ = 1;
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_flag) {
+    if (flag) {
       $(`inner`, tmpClusterSSA_n);
       tmpClusterSSA_n = tmpClusterSSA_n + 1;
       const tmpIfTest$1 /*:boolean*/ = tmpClusterSSA_n >= 5;
       if (tmpIfTest$1) {
-        tmpClusterSSA_flag = false;
+        flag = false;
       } else {
       }
     } else {
@@ -68,16 +69,16 @@ if (tmpClusterSSA_flag) {
 `````js filename=intro
 $(`before`);
 const tmpBinBothRhs = $(5);
-let tmpClusterSSA_flag = 0 < tmpBinBothRhs;
-if (tmpClusterSSA_flag) {
+if (0 < tmpBinBothRhs) {
+  let flag = true;
   $(`inner`, 0);
   let tmpClusterSSA_n = 1;
   while (true) {
-    if (tmpClusterSSA_flag) {
+    if (flag) {
       $(`inner`, tmpClusterSSA_n);
       tmpClusterSSA_n = tmpClusterSSA_n + 1;
       if (tmpClusterSSA_n >= 5) {
-        tmpClusterSSA_flag = false;
+        flag = false;
       }
     } else {
       break;
@@ -96,17 +97,18 @@ With rename=true
 `````js filename=intro
 $( "before" );
 const a = $( 5 );
-let b = 0 < a;
+const b = 0 < a;
 if (b) {
+  let c = true;
   $( "inner", 0 );
-  let c = 1;
+  let d = 1;
   while ($LOOP_UNROLL_10) {
-    if (b) {
-      $( "inner", c );
-      c = c + 1;
-      const d = c >= 5;
-      if (d) {
-        b = false;
+    if (c) {
+      $( "inner", d );
+      d = d + 1;
+      const e = d >= 5;
+      if (e) {
+        c = false;
       }
     }
     else {

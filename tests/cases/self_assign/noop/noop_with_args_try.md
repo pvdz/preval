@@ -52,9 +52,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````js filename=intro
 const main_data_arr /*:array*/ = [`this`, `contents`, `is`, `not`, `relevant`, `here`];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmp2 /*:unknown*/ = main_data_arr[-385];
+  const b /*:number*/ = $Number_parseInt(tmp2);
   try {
-    const tmp2 /*:unknown*/ = main_data_arr[-385];
-    const b /*:number*/ = $Number_parseInt(tmp2);
     $(`testing`, tmp2, b);
     if (b) {
       break;
@@ -77,9 +77,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````js filename=intro
 const main_data_arr = [`this`, `contents`, `is`, `not`, `relevant`, `here`];
 while (true) {
+  const tmp2 = main_data_arr[-385];
+  const b = $Number_parseInt(tmp2);
   try {
-    const tmp2 = main_data_arr[-385];
-    const b = $Number_parseInt(tmp2);
     $(`testing`, tmp2, b);
     if (b) {
       break;
@@ -100,9 +100,9 @@ With rename=true
 `````js filename=intro
 const a = [ "this", "contents", "is", "not", "relevant", "here" ];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const b = a[ -385 ];
+  const c = $Number_parseInt( b );
   try {
-    const b = a[ -385 ];
-    const c = $Number_parseInt( b );
     $( "testing", b, c );
     if (c) {
       break;
@@ -169,7 +169,6 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 
 - (todo) can try-escaping support this expr node type? CallExpression
-- (todo) can try-escaping support this expr node type? MemberExpression
 - (todo) computed property access of an array but not index prop
 - (todo) support array reads statement type VarStatement
 - (todo) support array reads statement type WhileStatement

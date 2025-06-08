@@ -18,8 +18,8 @@ $(y);
 
 
 `````js filename=intro
-let tmpOPAD /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpOPBD /*:unknown*/ = $Object_prototype.x;
+let tmpOPAD /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpIfTest /*:boolean*/ = tmpOPBD === undefined;
 if (tmpIfTest) {
   const tmpCalleeParam /*:array*/ = [`pass`];
@@ -37,8 +37,8 @@ $(y);
 (This ought to be the final result)
 
 `````js filename=intro
-let tmpOPAD = undefined;
 const tmpOPBD = $Object_prototype.x;
+let tmpOPAD = undefined;
 if (tmpOPBD === undefined) {
   tmpOPAD = $([`pass`]);
 } else {
@@ -53,17 +53,17 @@ $(y);
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = $Object_prototype.x;
-const c = b === undefined;
+const a = $Object_prototype.x;
+let b = undefined;
+const c = a === undefined;
 if (c) {
   const d = [ "pass" ];
-  a = $( d );
+  b = $( d );
 }
 else {
-  a = b;
+  b = a;
 }
-const e = [ ...a ];
+const e = [ ...b ];
 y = $dotCall( $array_slice, e, "slice", 0 );
 $( y );
 `````

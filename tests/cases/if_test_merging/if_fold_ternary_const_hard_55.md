@@ -52,12 +52,12 @@ if (y) {
 
 `````js filename=intro
 const x /*:unknown*/ = $(true);
-let y /*:unknown*/ /*ternaryConst*/ = !x;
+let y /*:boolean*/ /*ternaryConst*/ = !x;
 const N /*:unknown*/ = $(0);
 if (x) {
   const tmpIfTest /*:boolean*/ = 0 < N;
-  y = tmpIfTest;
   if (tmpIfTest) {
+    y = true;
     let tmpClusterSSA_i /*:number*/ = 1;
     while ($LOOP_UNROLL_10) {
       const tmpIfTest$1 /*:boolean*/ = tmpClusterSSA_i < N;
@@ -87,9 +87,8 @@ const x = $(true);
 let y = !x;
 const N = $(0);
 if (x) {
-  const tmpIfTest = 0 < N;
-  y = tmpIfTest;
-  if (tmpIfTest) {
+  if (0 < N) {
+    y = true;
     let tmpClusterSSA_i = 1;
     while (true) {
       if (tmpClusterSSA_i < N) {
@@ -117,8 +116,8 @@ let b = !a;
 const c = $( 0 );
 if (a) {
   const d = 0 < c;
-  b = d;
   if (d) {
+    b = true;
     let e = 1;
     while ($LOOP_UNROLL_10) {
       const f = e < c;

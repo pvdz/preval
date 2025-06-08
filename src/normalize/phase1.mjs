@@ -56,19 +56,19 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
     end: 0,
   };
 
-  const funcStack = []; // (also includes global/Program)
+  const funcNodeStack = []; // (also includes global/Program)
   const thisStack = []; // Only contains func exprs. Func decls are eliminated. Arrows do not have this/arguments. Not used for global.
-  const blockStack = []; // Stack of nested blocks (functions, try/catch, or statements)
-  const blockIds = [0]; // Stack of block pids. Negative if the parent was a loop of sorts. Functions insert a zero. Start zero padder even though Program injects a `1,` anyways.
-  const blockBodies = []; // Stack of blocks. Arrays of statements that is block.body or program.body
+  const blockNodeStack = []; // Stack of nested blocks (functions, try/catch, or statements)
+  const blockPidStack = [0]; // Stack of block pids. Negative if the parent was a loop of sorts. Functions insert a zero. Start zero padder even though Program injects a `1,` anyways.
+  const blockBodyStack = []; // Stack of blocks. Arrays of statements that is block.body or program.body
   const blockIndexes = []; // Stack of block indexes to match blockIds
-  const ifStack = []; // Stack of `if` pids, negative for the `else` branch, zeroes for function boundaries. Used by SSA.
-  const loopStack = []; // Stack of loop nodes. `null` means function (or program).
-  const thenStack = [0];
-  const elseStack = [0];
+  const ifPidStack = []; // Stack of `if` pids, negative for the `else` branch, zeroes for function boundaries. Program will push a zero.
+  const loopNodeStack = []; // Stack of loop nodes. `null` means function (or program).
+  const thenPidStack = [0];
+  const elsePidStack = [0];
   const tryNodeStack = []; // Stack of try nodes (not pid) (try/catch)
-  const trapStack = [0]; // Stack of try-block node $pids (try/catch), to detect being inside a try {} block (opposed to the catch)
-  const catchStack = [0]; // Stack of catch _block_ node $pids (try/catch)
+  const trapPidStack = [0]; // Stack of try-block node $pids (try/catch), to detect being inside a try {} block (opposed to the catch)
+  const catchPidStack = [0]; // Stack of catch _block_ node $pids (try/catch)
   let readWriteCounter = 0;
 
   /**
@@ -218,8 +218,8 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
       );
       node.$p = $p();
       node.$p.phase1count = fdata.phase1count;
-      node.$p.funcDepth = funcStack.length;
-      node.$p.blockChain = blockIds.join(',') + ','; // Trailing comma prevents ambiguity when doing a.blockChain.startsWith(b.blockChain)
+      node.$p.funcDepth = funcNodeStack.length;
+      node.$p.blockChain = blockPidStack.join(',') + ','; // Trailing comma prevents ambiguity when doing a.blockChain.startsWith(b.blockChain)
       fdata.flatNodeMap.set(node.$p.npid, node);
     } else {
       // Set lastPid on all nodes. If the node had no child-nodes then pid==lastPid, that's fine.
@@ -240,9 +240,9 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
       ASSERT(parentIndex >= 0);
       blockIndexes.push(parentIndex);
       ASSERT(
-        blockBodies.length === blockIndexes.length,
+        blockBodyStack.length === blockIndexes.length,
         'for every block id there should be an index',
-        blockBodies,
+        blockBodyStack,
         blockIndexes,
         pathNodes,
         pathProps,
@@ -267,20 +267,20 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
       }
 
       case 'Program:before': {
-        funcStack.push(node);
-        ifStack.push(0);
-        blockBodies.push(node.body);
-        blockIds.push(node.$p.npid);
-        blockStack.push(node); // Do we assign node or node.body?
+        funcNodeStack.push(node);
+        ifPidStack.push(0);
+        blockBodyStack.push(node.body);
+        blockPidStack.push(node.$p.npid);
+        blockNodeStack.push(node); // Do we assign node or node.body?
 
         if (ENABLE_REF_TRACKING) openRefsOnBeforeProgram(refTrackState, node, fdata);
 
         node.$p.promoParent = null;
         node.$p.blockChain = '0,';
-        node.$p.funcChain = funcStack.map((n) => n.$p.npid).join(',');
+        node.$p.funcChain = funcNodeStack.map((n) => n.$p.npid).join(',');
         node.$p.ownBindings = new Set();
         node.$p.paramNames = []; // Ends up as a `meta.bfuncNode` in some cases, where this is expected to exist, so leave it.
-        loopStack.push(null);
+        loopNodeStack.push(null);
 
 
         // Must do this before visiting or the walker gets confused
@@ -299,18 +299,18 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         break;
       }
       case 'Program:after': {
-        funcStack.pop();
-        ASSERT(funcStack.length === 0, 'stack should be empty now');
-        blockBodies.pop();
-        ASSERT(blockBodies.length === 0, 'stack should be empty now');
-        blockIds.pop();
-        ASSERT(blockIds.length === 1 && blockIds[0] === 0, 'stack should contain just a zero now');
-        ifStack.pop();
-        ASSERT(ifStack.length === 0, 'stack should be empty now');
-        blockStack.pop();
-        ASSERT(blockStack.length === 0, 'stack should be empty now');
-        loopStack.pop();
-        ASSERT(loopStack.length === 0, 'stack should be empty now');
+        funcNodeStack.pop();
+        ASSERT(funcNodeStack.length === 0, 'stack should be empty now');
+        blockBodyStack.pop();
+        ASSERT(blockBodyStack.length === 0, 'stack should be empty now');
+        blockPidStack.pop();
+        ASSERT(blockPidStack.length === 1 && blockPidStack[0] === 0, 'stack should contain just a zero now');
+        ifPidStack.pop();
+        ASSERT(ifPidStack.length === 0, 'stack should be empty now');
+        blockNodeStack.pop();
+        ASSERT(blockNodeStack.length === 0, 'stack should be empty now');
+        loopNodeStack.pop();
+        ASSERT(loopNodeStack.length === 0, 'stack should be empty now');
 
         if (ENABLE_REF_TRACKING) openRefsOnAfterProgram(refTrackState, node, fdata);
 
@@ -335,31 +335,31 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
       }
 
       case 'BlockStatement:before': {
-        node.$p.promoParent = blockStack[blockStack.length - 1];
+        node.$p.promoParent = blockNodeStack[blockNodeStack.length - 1];
 
-        blockStack.push(node);
-        if (ENABLE_REF_TRACKING) openRefsOnBeforeBlock(refTrackState, node, parentNode, parentProp, pathNodes[pathNodes.length - 3], blockStack[blockStack.length - 2], globallyUniqueNamingRegistry);
+        blockNodeStack.push(node);
+        if (ENABLE_REF_TRACKING) openRefsOnBeforeBlock(refTrackState, node, parentNode, parentProp, pathNodes[pathNodes.length - 3], blockNodeStack[blockNodeStack.length - 2], globallyUniqueNamingRegistry);
 
         if (tryNodeStack.length) {
-          if (tryNodeStack[tryNodeStack.length - 1].block === node) trapStack.push(node.$p.npid);
-          else catchStack.push(node.$p.npid);
+          if (tryNodeStack[tryNodeStack.length - 1].block === node) trapPidStack.push(node.$p.npid);
+          else catchPidStack.push(node.$p.npid);
           //vlog('Checked for try:', tryNodeStack.map(n => n.$p.npid), trapStack, catchStack);
         }
-        blockBodies.push(node.body);
+        blockBodyStack.push(node.body);
         if (parentNode.type === 'WhileStatement') {
-          blockIds.push(node.$p.npid); // Mark a loop
+          blockPidStack.push(node.$p.npid); // Mark a loop
         } else {
-          blockIds.push(node.$p.npid);
+          blockPidStack.push(node.$p.npid);
         }
 
         //node.$p.blockChain = blockIds.join(',');
 
         if (parentNode.type === 'IfStatement') {
-          ifStack.push(parentNode.$p.npid);
+          ifPidStack.push(parentNode.$p.npid);
           if (parentNode.consequent === node) {
-            thenStack.push(parentNode.$p.npid);
+            thenPidStack.push(parentNode.$p.npid);
           } else if (parentNode.alternate === node) {
-            elseStack.push(parentNode.$p.npid);
+            elsePidStack.push(parentNode.$p.npid);
           }
         }
 
@@ -379,16 +379,16 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         break;
       }
       case 'BlockStatement:after': {
-        blockStack.pop();
-        blockBodies.pop();
-        blockIds.pop();
+        blockNodeStack.pop();
+        blockBodyStack.pop();
+        blockPidStack.pop();
 
-        const parentBlock = blockStack[blockStack.length - 1];
-        if (ENABLE_REF_TRACKING) openRefsOnAfterBlock(refTrackState, node, path, parentNode, parentProp, pathNodes[pathNodes.length - 3], loopStack, parentBlock, globallyUniqueLabelRegistry, tryNodeStack, catchStack, globallyUniqueNamingRegistry);
+        const parentBlock = blockNodeStack[blockNodeStack.length - 1];
+        if (ENABLE_REF_TRACKING) openRefsOnAfterBlock(refTrackState, node, path, parentNode, parentProp, pathNodes[pathNodes.length - 3], loopNodeStack, parentBlock, globallyUniqueLabelRegistry, tryNodeStack, catchPidStack, globallyUniqueNamingRegistry);
 
         if (tryNodeStack.length) {
-          if (tryNodeStack[tryNodeStack.length - 1].block === node) trapStack.pop();
-          else catchStack.pop();
+          if (tryNodeStack[tryNodeStack.length - 1].block === node) trapPidStack.pop();
+          else catchPidStack.pop();
           //vlog('Checked for try:', tryNodeStack.map(n => n.$p.npid), trapStack, catchStack);
         }
 
@@ -425,20 +425,20 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         }
 
         if (parentNode.type === 'IfStatement') {
-          ifStack.pop();
+          ifPidStack.pop();
           if (node === parentNode.consequent) {
-            thenStack.pop();
+            thenPidStack.pop();
           } else {
-            elseStack.pop();
+            elsePidStack.pop();
           }
         }
 
-        ASSERT(blockIds.length, 'meh?');
+        ASSERT(blockPidStack.length, 'meh?');
         break;
       }
 
       case 'BreakStatement:before': {
-        if (ENABLE_REF_TRACKING) openRefsOnBeforeBreak(refTrackState, node, blockStack);
+        if (ENABLE_REF_TRACKING) openRefsOnBeforeBreak(refTrackState, node, blockNodeStack);
 
         // Note: break state is verified by the parser so we should be able to assume this break has a valid target
         if (node.label) {
@@ -455,13 +455,13 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
 
           node.$p.alwaysCompletes = new Set([targetLabelPid]); // parent block will consume this
         } else {
-          node.$p.alwaysCompletes = new Set([loopStack[loopStack.length - 1].$p.npid]); // parent block will consume this
+          node.$p.alwaysCompletes = new Set([loopNodeStack[loopNodeStack.length - 1].$p.npid]); // parent block will consume this
         }
 
         break;
       }
       case 'BreakStatement:after': {
-        if (ENABLE_REF_TRACKING) openRefsOnAfterBreak(refTrackState, node, blockStack);
+        if (ENABLE_REF_TRACKING) openRefsOnAfterBreak(refTrackState, node, blockNodeStack);
         break;
       }
 
@@ -479,21 +479,21 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
       case 'CatchClause:before': {
         // Note: the catch scope is set on node.handler of the try (parent node of the catch clause)
 
-        const parentBlock = blockStack[blockStack.length - 1];
+        const parentBlock = blockNodeStack[blockNodeStack.length - 1];
         if (ENABLE_REF_TRACKING) openRefsOnBeforeCatchNode(refTrackState, node, parentNode, parentBlock);
 
         break;
       }
       case 'CatchClause:after': {
-        const parentBlock = blockStack[blockStack.length - 1];
-        if (ENABLE_REF_TRACKING) openRefsOnAfterCatchNode(refTrackState, node, parentBlock, globallyUniqueLabelRegistry, loopStack, tryNodeStack);
+        const parentBlock = blockNodeStack[blockNodeStack.length - 1];
+        if (ENABLE_REF_TRACKING) openRefsOnAfterCatchNode(refTrackState, node, parentBlock, globallyUniqueLabelRegistry, loopNodeStack, tryNodeStack);
         break;
       }
 
       case 'DebuggerStatement:before': {
         // Must be the only one and must be our header/body divider
         ASSERT(parentIndex >= 0);
-        funcStack[funcStack.length - 1].$p.bodyOffset = parentIndex + 1;
+        funcNodeStack[funcNodeStack.length - 1].$p.bodyOffset = parentIndex + 1;
         break;
       }
 
@@ -507,9 +507,9 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         node.$p.readsArgumentsLen = false;
         node.$p.readsArgumentsLenAt = -1;
 
-        blockIds.push(0); // Inject a zero to mark function boundaries
-        ifStack.push(0);
-        loopStack.push(null);
+        blockPidStack.push(0); // Inject a zero to mark function boundaries
+        ifPidStack.push(0);
+        loopNodeStack.push(null);
 
         if (firstAfterParse) {
           vlog('Converting parameter nodes to special Param nodes');
@@ -535,25 +535,25 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
 
         node.$p.returnNodes = [];
 
-        funcStack.push(node);
+        funcNodeStack.push(node);
         thisStack.push(node);
 
-        node.$p.funcChain = funcStack.map((n) => n.$p.npid).join(',');
+        node.$p.funcChain = funcNodeStack.map((n) => n.$p.npid).join(',');
         break;
       }
       case 'FunctionExpression:after': {
-        funcStack.pop();
-        blockIds.pop(); // the zero
-        ifStack.pop(); // the zero
-        loopStack.pop();
-        ASSERT(blockIds.length, 'meh3?');
+        funcNodeStack.pop();
+        blockPidStack.pop(); // the zero
+        ifPidStack.pop(); // the zero
+        loopNodeStack.pop();
+        ASSERT(blockPidStack.length, 'meh3?');
         thisStack.pop();
 
-        if (funcStack.length > 1) {
+        if (funcNodeStack.length > 1) {
           // This is relevant for determining whether this function can be cloned when it is called with a primitive
           // This prevents the cloning. This way we don't accidentally clone cloned functions and in general it serves
           // as an artificial way to reduce the cloning surface a little bit.
-          funcStack[funcStack.length - 1].$p.containsFunctions = true;
+          funcNodeStack[funcNodeStack.length - 1].$p.containsFunctions = true;
         }
 
         vlog('Final func commonReturn:', node.$p.commonReturn);
@@ -572,7 +572,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
       case 'Identifier:before': {
         if (parentNode.type === 'CatchClause') if (ENABLE_REF_TRACKING) openRefsOnBeforeCatchVar(refTrackState);
 
-        const currentScope = funcStack[funcStack.length - 1];
+        const currentScope = funcNodeStack[funcNodeStack.length - 1];
         const name = node.name;
         vlog('Ident:', [name]);
         ASSERT(name, 'idents must have valid non-empty names...', node);
@@ -678,15 +678,15 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
             --pathIndex;
           } while (true);
 
-          const innerLoop = (loopStack[loopStack.length - 1]?.$p.npid ?? 0);
-          const innerIf = ifStack[ifStack.length - 1];
-          const innerThen = thenStack[thenStack.length - 1];
-          ASSERT(typeof innerThen === 'number', 'ifstack should contain numbers', innerThen, thenStack);
-          const innerElse = elseStack[elseStack.length - 1];
-          ASSERT(typeof innerElse === 'number', 'ifstack should contain numbers', innerElse, elseStack);
+          const innerLoop = (loopNodeStack[loopNodeStack.length - 1]?.$p.npid ?? 0);
+          const innerIf = ifPidStack[ifPidStack.length - 1];
+          const innerThen = thenPidStack[thenPidStack.length - 1];
+          ASSERT(typeof innerThen === 'number', 'ifstack should contain numbers', innerThen, thenPidStack);
+          const innerElse = elsePidStack[elsePidStack.length - 1];
+          ASSERT(typeof innerElse === 'number', 'ifstack should contain numbers', innerElse, elsePidStack);
           const innerTry = tryNodeStack[tryNodeStack.length - 1]?.$p.npid || 0;
-          const innerTrap = trapStack[trapStack.length - 1];
-          const innerCatch = catchStack[catchStack.length - 1];
+          const innerTrap = trapPidStack[trapPidStack.length - 1];
+          const innerCatch = catchPidStack[catchPidStack.length - 1];
           vlog('innerLoop:', innerLoop, ', innerThen:', innerThen, ', innerElse:', innerElse, ', innerTry:', innerTry, ', innerTrap:', innerTrap, ', innerCatch:', innerCatch);
 
           const grandNode = pathNodes[pathNodes.length - 3];
@@ -694,7 +694,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
           const grandIndex = pathIndexes[pathIndexes.length - 2];
 
           if (kind === 'read') {
-            const blockNode = blockStack[blockStack.length - 1];
+            const blockNode = blockNodeStack[blockNodeStack.length - 1];
             // Note: this could be a property write, but it's not a binding mutation.
             // Note: this includes the write to a property, which does not read the property first, but which does not mutate the binding
             ASSERT(currentScope.$p.npid, 'the scope should be set to something here...', currentScope.$p.npid);
@@ -715,12 +715,12 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
               node,
               rwCounter: ++readWriteCounter,
               scope: currentScope.$p.npid,
-              blockChain: blockIds.join(',') + ',',
-              blockIds: blockIds.slice(0),
-              blockBodies: blockBodies.slice(0),
+              blockChain: blockPidStack.join(',') + ',',
+              blockIds: blockPidStack.slice(0),
+              blockBodies: blockBodyStack.slice(0),
               blockIndexes: blockIndexes.slice(0),
-              ifChain: ifStack.join(',') + ',',
-              funcChain: funcStack.map((n) => n.$p.npid).join(','),
+              ifChain: ifPidStack.join(',') + ',',
+              funcChain: funcNodeStack.map((n) => n.$p.npid).join(','),
               innerLoop,
               innerIf,
               innerThen,
@@ -734,7 +734,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
             if (ENABLE_REF_TRACKING) openRefsOnBeforeRead(refTrackState, read, blockNode, meta);
           }
           if (kind === 'write') {
-            const blockNode = blockStack[blockStack.length - 1];
+            const blockNode = blockNodeStack[blockNodeStack.length - 1];
             const blockBody = blockNode.body;
             vlog('- Parent block:', blockNode.type, blockNode.$p.npid);
             ASSERT(currentScope.$p.npid, 'the scope should be set to something here...', currentScope.$p.npid);
@@ -760,12 +760,12 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
               node,
               rwCounter: ++readWriteCounter,
               scope: currentScope.$p.npid,
-              blockChain: blockIds.join(',') + ',',
-              blockIds: blockIds.slice(0),
-              blockBodies: blockBodies.slice(0),
+              blockChain: blockPidStack.join(',') + ',',
+              blockIds: blockPidStack.slice(0),
+              blockBodies: blockBodyStack.slice(0),
               blockIndexes: blockIndexes.slice(0),
-              ifChain: ifStack.join(',') + ',',
-              funcChain: funcStack.map((n) => n.$p.npid).join(','),
+              ifChain: ifPidStack.join(',') + ',',
+              funcChain: funcNodeStack.map((n) => n.$p.npid).join(','),
               innerLoop,
               innerIf,
               innerThen,
@@ -853,15 +853,15 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
       }
 
       case 'IfStatement:before': {
-        const parentBlock = blockStack[blockStack.length - 1];
+        const parentBlock = blockNodeStack[blockNodeStack.length - 1];
         if (ENABLE_REF_TRACKING) openRefsOnBeforeIf(refTrackState, node, parentBlock);
 
-        funcStack[funcStack.length - 1].$p.hasBranch = true;
+        funcNodeStack[funcNodeStack.length - 1].$p.hasBranch = true;
         break;
       }
       case 'IfStatement:after': {
-        const parentBlock = blockStack[blockStack.length - 1];
-        if (ENABLE_REF_TRACKING) openRefsOnAfterIf(refTrackState, node, parentBlock, path, globallyUniqueNamingRegistry, globallyUniqueLabelRegistry, loopStack, blockStack, catchStack);
+        const parentBlock = blockNodeStack[blockNodeStack.length - 1];
+        if (ENABLE_REF_TRACKING) openRefsOnAfterIf(refTrackState, node, parentBlock, path, globallyUniqueNamingRegistry, globallyUniqueLabelRegistry, loopNodeStack, blockNodeStack, catchPidStack);
 
         if (node.consequent.$p.alwaysCompletes?.size && node.alternate.$p.alwaysCompletes?.size) {
           if (!node.$p.alwaysCompletes) node.$p.alwaysCompletes = new Set;
@@ -934,13 +934,13 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         vlog(`Label: \`${node.label.name}\``);
         registerGlobalLabel(fdata, node.label.name, node.label.name, node);
 
-        const parentBlock = blockStack[blockStack.length - 1];
+        const parentBlock = blockNodeStack[blockNodeStack.length - 1];
         if (ENABLE_REF_TRACKING) openRefsOnBeforeLabel(refTrackState, node, parentBlock);
         break;
       }
       case 'LabeledStatement:after': {
-        const parentBlock = blockStack[blockStack.length - 1];
-        if (ENABLE_REF_TRACKING) openRefsOnAfterLabel(refTrackState, node, parentBlock, path, globallyUniqueNamingRegistry, globallyUniqueLabelRegistry, loopStack, catchStack);
+        const parentBlock = blockNodeStack[blockNodeStack.length - 1];
+        if (ENABLE_REF_TRACKING) openRefsOnAfterLabel(refTrackState, node, parentBlock, path, globallyUniqueNamingRegistry, globallyUniqueLabelRegistry, loopNodeStack, catchPidStack);
 
         if (node.body.$p.alwaysCompletes?.size) {
           const labelPid = node.$p.npid;
@@ -972,7 +972,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
           const blockIndex = pathIndexes[pathIndexes.length - 2];
           vlog('The var decl of this param is at body[' + blockIndex + ']');
 
-          const funcNode = funcStack[funcStack.length - 1];
+          const funcNode = funcNodeStack[funcNodeStack.length - 1];
           const funcHeaderParamNode = funcNode.params[node.index];
           ASSERT(funcHeaderParamNode, 'funcHeaderParamNode should be at', node.index, funcNode.params.length);
           ASSERT(funcHeaderParamNode.name === node.name, 'the usage of a Param should map back to the decl', node, funcHeaderParamNode);
@@ -995,13 +995,13 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
       }
 
       case 'ReturnStatement:before': {
-        const funcNode = funcStack[funcStack.length - 1];
+        const funcNode = funcNodeStack[funcNodeStack.length - 1];
 
         funcNode.$p.returnNodes.push(node);
 
         node.$p.alwaysCompletes = new Set([funcNode.$p.npid]); // parent block will consume this
 
-        if (ENABLE_REF_TRACKING) openRefsOnBeforeReturn(refTrackState, blockStack, node);
+        if (ENABLE_REF_TRACKING) openRefsOnBeforeReturn(refTrackState, blockNodeStack, node);
 
         vgroup('[commonReturn]');
         const a = funcNode.$p.commonReturn;
@@ -1081,7 +1081,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         break;
       }
       case 'ReturnStatement:after': {
-        if (ENABLE_REF_TRACKING) openRefsOnAfterReturn(refTrackState, blockStack, node);
+        if (ENABLE_REF_TRACKING) openRefsOnAfterReturn(refTrackState, blockNodeStack, node);
         break;
       }
 
@@ -1106,31 +1106,31 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
 
       case 'ThrowStatement:before': {
         // Note: throws can be caught. We have to find the nearest Try or Function boundary, whichever is closer (lowest pid delta)
-        const funcNode = funcStack[funcStack.length - 1];
+        const funcNode = funcNodeStack[funcNodeStack.length - 1];
         const tryNode = tryNodeStack[tryNodeStack.length - 1];
         // Note: Neither node has to exist in which case nearest is still undefined
         const nearest = !tryNode ? funcNode : !funcNode ? tryNode : (tryNode.$p.npid < funcNode.$p.npid ? tryNode : funcNode);
 
         node.$p.alwaysCompletes = new Set([nearest.$p.npid]); // parent block will consume this
 
-        if (ENABLE_REF_TRACKING) openRefsOnBeforeThrow(refTrackState, blockStack, node);
+        if (ENABLE_REF_TRACKING) openRefsOnBeforeThrow(refTrackState, blockNodeStack, node);
         break;
       }
       case 'ThrowStatement:after': {
-        if (ENABLE_REF_TRACKING) openRefsOnAfterThrow(refTrackState, blockStack, node);
+        if (ENABLE_REF_TRACKING) openRefsOnAfterThrow(refTrackState, blockNodeStack, node);
         break;
       }
 
       case 'TryStatement:before': {
-        const parentBlock = blockStack[blockStack.length - 1];
+        const parentBlock = blockNodeStack[blockNodeStack.length - 1];
         if (ENABLE_REF_TRACKING) openRefsOnBeforeTryNode(refTrackState, node, parentBlock);
 
         tryNodeStack.push(node);
         break;
       }
       case 'TryStatement:after': {
-        const parentBlock = blockStack[blockStack.length - 1];
-        if (ENABLE_REF_TRACKING) openRefsOnAfterTryNode(refTrackState, node, parentBlock, globallyUniqueLabelRegistry, loopStack);
+        const parentBlock = blockNodeStack[blockNodeStack.length - 1];
+        if (ENABLE_REF_TRACKING) openRefsOnAfterTryNode(refTrackState, node, parentBlock, globallyUniqueLabelRegistry, loopNodeStack);
 
         if (node.handler.param) {
           const meta = globallyUniqueNamingRegistry.get(node.handler.param.name);
@@ -1177,7 +1177,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         vlog('- Id: `' + node.id.name + '`');
         ASSERT(node.id.type === 'Identifier', 'all patterns should be normalized away');
         ASSERT(node.init, 'normalized var decls must have an init', node);
-        node.$p.promoParent = blockStack[blockStack.length - 1];
+        node.$p.promoParent = blockNodeStack[blockNodeStack.length - 1];
         const name = node.id.name;
         const init = node.init;
         const meta = globallyUniqueNamingRegistry.get(name);
@@ -1223,21 +1223,21 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         }
 
         // Binding "owner" func node. In which scope was this binding bound?
-        meta.bfuncNode = funcStack[funcStack.length - 1];
+        meta.bfuncNode = funcNodeStack[funcNodeStack.length - 1];
         break;
       }
 
       case 'WhileStatement:before': {
-        const parentBlock = blockStack[blockStack.length - 1];
+        const parentBlock = blockNodeStack[blockNodeStack.length - 1];
         if (ENABLE_REF_TRACKING) openRefsOnBeforeLoop(refTrackState, 'while', node, parentBlock);
 
-        funcStack[funcStack.length - 1].$p.hasBranch = true;
-        loopStack.push(node);
+        funcNodeStack[funcNodeStack.length - 1].$p.hasBranch = true;
+        loopNodeStack.push(node);
         break;
       }
       case 'WhileStatement:after': {
-        const parentBlock = blockStack[blockStack.length - 1];
-        if (ENABLE_REF_TRACKING) openRefsOnAfterLoop(refTrackState, 'while', node, parentBlock, path, globallyUniqueLabelRegistry, loopStack, tryNodeStack, catchStack);
+        const parentBlock = blockNodeStack[blockNodeStack.length - 1];
+        if (ENABLE_REF_TRACKING) openRefsOnAfterLoop(refTrackState, 'while', node, parentBlock, path, globallyUniqueLabelRegistry, loopNodeStack, tryNodeStack, catchPidStack);
 
         if (node.body.$p.alwaysCompletes?.size) {
           const whilePid = node.$p.npid;
@@ -1253,7 +1253,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         }
 
         // Pop after the callback because it needs to find the current loop
-        loopStack.pop();
+        loopNodeStack.pop();
         break;
       }
     }

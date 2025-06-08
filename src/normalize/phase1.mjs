@@ -59,7 +59,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
   const funcStack = []; // (also includes global/Program)
   const thisStack = []; // Only contains func exprs. Func decls are eliminated. Arrows do not have this/arguments. Not used for global.
   const blockStack = []; // Stack of nested blocks (functions, try/catch, or statements)
-  const blockIds = []; // Stack of block pids. Negative if the parent was a loop of sorts. Functions insert a zero.
+  const blockIds = [0]; // Stack of block pids. Negative if the parent was a loop of sorts. Functions insert a zero. Start zero padder even though Program injects a `1,` anyways.
   const blockBodies = []; // Stack of blocks. Arrays of statements that is block.body or program.body
   const blockIndexes = []; // Stack of block indexes to match blockIds
   const ifStack = []; // Stack of `if` pids, negative for the `else` branch, zeroes for function boundaries. Used by SSA.
@@ -304,7 +304,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         blockBodies.pop();
         ASSERT(blockBodies.length === 0, 'stack should be empty now');
         blockIds.pop();
-        ASSERT(blockIds.length === 0, 'stack should be empty now');
+        ASSERT(blockIds.length === 1 && blockIds[0] === 0, 'stack should contain just a zero now');
         ifStack.pop();
         ASSERT(ifStack.length === 0, 'stack should be empty now');
         blockStack.pop();

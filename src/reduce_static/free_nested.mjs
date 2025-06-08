@@ -477,7 +477,7 @@ function _freeNested(fdata, $prng, usePrng) {
           targetName === SYMBOL_COERCE || // I think this should be eliminated in free funcs? but eh
           BUILTIN_GLOBAL_FUNC_NAMES.has(targetName) ||
           BUILTIN_SYMBOLS.has(targetName) ||
-          fdata.globallyUniqueNamingRegistry.get(targetName)?.varDeclRef?.node?.$p.blockChain === '1,',
+          fdata.globallyUniqueNamingRegistry.get(targetName)?.varDeclRef?.node?.$p.blockChain === '0,1,',
           'if there is no arg then the var must refer to a global of sorts', targetName, BUILTIN_GLOBAL_FUNC_NAMES.has(targetName)
         );
         return AST.identifier(targetName);

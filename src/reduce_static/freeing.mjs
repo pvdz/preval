@@ -305,7 +305,7 @@ function _freeing(fdata, $prng, usePrng) {
         //  vlog('-', [name], 'is `arguments` and added to the arg list');
         } else {
           const meta = fdata.globallyUniqueNamingRegistry.get(name);
-          if (meta.isConstant && meta.varDeclRef.node.$p.blockChain === '1,') {
+          if (meta.isConstant && meta.varDeclRef.node.$p.blockChain === '0,1,') {
             // This is a global var. No need to pass this in. We can reach it from anywhere.
             vlog('-', [name], 'is an explicit user global');
             return true;

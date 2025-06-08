@@ -25,9 +25,9 @@ if (x) {
 const tmpBinLhs /*:unknown*/ = $(0);
 const x /*:number*/ = tmpBinLhs & 32;
 if (x) {
-  $(`fail`, x);
+  $(`fail`, 32);
 } else {
-  $(`pass`, x);
+  $(`pass`, 0);
 }
 `````
 
@@ -36,11 +36,10 @@ if (x) {
 (This ought to be the final result)
 
 `````js filename=intro
-const x = $(0) & 32;
-if (x) {
-  $(`fail`, x);
+if ($(0) & 32) {
+  $(`fail`, 32);
 } else {
-  $(`pass`, x);
+  $(`pass`, 0);
 }
 `````
 
@@ -52,10 +51,10 @@ With rename=true
 const a = $( 0 );
 const b = a & 32;
 if (b) {
-  $( "fail", b );
+  $( "fail", 32 );
 }
 else {
-  $( "pass", b );
+  $( "pass", 0 );
 }
 `````
 

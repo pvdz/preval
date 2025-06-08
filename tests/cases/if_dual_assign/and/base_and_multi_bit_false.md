@@ -27,7 +27,7 @@ const x /*:number*/ = tmpBinLhs & 33;
 if (x) {
   $(`fail`, x);
 } else {
-  $(`pass`, x);
+  $(`pass`, 0);
 }
 `````
 
@@ -40,7 +40,7 @@ const x = $(0) & 33;
 if (x) {
   $(`fail`, x);
 } else {
-  $(`pass`, x);
+  $(`pass`, 0);
 }
 `````
 
@@ -55,7 +55,7 @@ if (b) {
   $( "fail", b );
 }
 else {
-  $( "pass", b );
+  $( "pass", 0 );
 }
 `````
 

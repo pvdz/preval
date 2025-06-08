@@ -26,7 +26,7 @@ function _ternaryConstBounded(fdata) {
   vlog('Searching for ternary const where all assigns are primitives...');
 
   fdata.globallyUniqueNamingRegistry.forEach((meta, varName) => {
-    if (!meta.isTernaryConst) return;
+    if (!meta.isLet) return;
     if (meta.reads.length < 1) return; // Not observable
 
     vlog('Checking ternary const:', varName);
@@ -196,6 +196,9 @@ function _ternaryConstBounded(fdata) {
           changed += 1;
           return;
         }
+      }
+      else {
+        vlog('  - is ignored:', read.parentNode.type);
       }
     });
   });

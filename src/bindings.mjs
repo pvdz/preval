@@ -1778,6 +1778,7 @@ export function mergeTyping(from, into) {
       orredWith,
       xorredWith,
       mustBePrimitive,
+      maxlen,
       returns,
       ...unknown
     } = from;
@@ -1795,6 +1796,7 @@ export function mergeTyping(from, into) {
       orredWith,
       xorredWith,
       mustBePrimitive,
+      maxlen,
       returns,
       ...unknown
     } = into;

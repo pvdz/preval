@@ -317,10 +317,12 @@ $(tmpCalleeParam$11);
 
 
 - (todo) ExpressionStatement; how else might an array be used that we may want to support in phase1_1?
+- (todo) ReturnStatement; how else might an array be used that we may want to support in phase1_1?
 - (todo) VarStatement; how else might an array be used that we may want to support in phase1_1?
 - (todo) access object property that also exists on prototype? $array_push
 - (todo) access object property that also exists on prototype? $array_shift
 - (todo) can try-escaping support this expr node type? CallExpression
+- (todo) support array reads statement type EmptyStatement
 - (todo) support array reads statement type ExpressionStatement
 - (todo) support array reads statement type VarStatement
 - (todo) support array reads statement type WhileStatement

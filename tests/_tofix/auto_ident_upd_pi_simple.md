@@ -9,7 +9,7 @@ Why does preval not know a is a number here (at the time of writing)?
 ## Input
 
 `````js filename=intro
-let a /*:unknown*/ = undefined;
+let a = undefined;
 let tmpClusterSSA_b$2 /*:number*/ = 12;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);

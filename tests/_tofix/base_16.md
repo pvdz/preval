@@ -13,6 +13,8 @@ we used to be able to optimize this to
 
 but maybe i like this better?
 
+in general, after removing the worstCaseValueSet stuff we need to restore this functionality in the "current standard" of preval
+
 ## Input
 
 `````js filename=intro
@@ -31,7 +33,11 @@ $((f($(16))));
 `````js filename=intro
 const tmpCalleeParam$1 /*:unknown*/ = $(16);
 const x /*:number*/ = tmpCalleeParam$1 & 16;
-$(x);
+if (x) {
+  $(16);
+} else {
+  $(0);
+}
 `````
 
 
@@ -39,7 +45,11 @@ $(x);
 (This ought to be the final result)
 
 `````js filename=intro
-$($(16) & 16);
+if ($(16) & 16) {
+  $(16);
+} else {
+  $(0);
+}
 `````
 
 
@@ -49,7 +59,12 @@ With rename=true
 `````js filename=intro
 const a = $( 16 );
 const b = a & 16;
-$( b );
+if (b) {
+  $( 16 );
+}
+else {
+  $( 0 );
+}
 `````
 
 

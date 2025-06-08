@@ -21,11 +21,7 @@ $(xyz);
 
 
 `````js filename=intro
-const arr /*:array*/ = [`toString`];
-$Array_from(arr);
-const tmpMCF$1 /*:unknown*/ = String[arr];
-const xyz /*:unknown*/ = $dotCall(tmpMCF$1, $string_constructor, undefined);
-$(xyz);
+$(`function String() { [native code] }`);
 `````
 
 
@@ -33,9 +29,7 @@ $(xyz);
 (This ought to be the final result)
 
 `````js filename=intro
-const arr = [`toString`];
-$Array_from(arr);
-$($dotCall(String[arr], $string_constructor, undefined));
+$(`function String() { [native code] }`);
 `````
 
 
@@ -43,11 +37,7 @@ $($dotCall(String[arr], $string_constructor, undefined));
 With rename=true
 
 `````js filename=intro
-const a = [ "toString" ];
-$Array_from( a );
-const b = String[ a ];
-const c = $dotCall( b, $string_constructor, undefined );
-$( c );
+$( "function String() { [native code] }" );
 `````
 
 
@@ -67,7 +57,6 @@ $(xyz);
 ## Todos triggered
 
 
-- (todo) support array reads statement type ExpressionStatement
 - (todo) type trackeed tricks can possibly support static $Array_from
 
 

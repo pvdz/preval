@@ -527,10 +527,10 @@ function processAttempt3OnlyUsedInOtherScope(fdata) {
           return true;
         } else if (otherFunc === ref.pfuncNode) {
           vlog('- found ref in same scope as previous assign, ok. checking if/loop/try scoping...');
-          vlog('  - if:', ref.ifChain, '.startsWith', otherWrite.ifChain);
+          vlog('  - if:', ref.innerIf, ref.innerThen, ref.innerElse);
           vlog('  - loop:', ref.innerLoop, otherWrite.innerLoop);
           vlog('  - trap:', ref.innerTrap, otherWrite.innerTrap);
-          if (!(ref.ifChain + ',').startsWith(otherWrite.ifChain + ',')) {
+          if (!(ref.ifChain).startsWith(otherWrite.ifChain)) {
             vlog('- bail: Read is in at least one different if-branch of the write, and there it can observe the closure value if not written.');
             failed = true;
             return true;

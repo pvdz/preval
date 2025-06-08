@@ -117,7 +117,7 @@ function process(meta, name, fdata, queue) {
 
   vlog('Function ok. The `if` tests on `' + innerIfTest.name + '`. Walking through all refs for this function');
   meta.reads.forEach((read, i) => {
-    vgroup('- Read', i, ', ifChain:', read.ifChain.join(', '));
+    vgroup('- Read', i, ', ifChain:', read.ifChain);
     processRead(fdata, queue, read, i, innerFuncNode, innerIfNode, innerIfTest);
     vgroupEnd();
   });
@@ -131,15 +131,14 @@ function processRead(fdata, queue, read, i, innerFuncNode, innerIfNode, innerIfT
     return;
   }
 
-  const lastIfId = Math.abs(read.ifChain[read.ifChain.length - 1]); // Negative for `else` branch
-  vlog('Searching for parent `if`', read.ifChain, 'with pid =', lastIfId, 'in parent owner func', read.ifChain[read.ifChain.length - 1]);
+  vlog('Searching for parent `if` in parent owner func', read.innerIf);
 
-  if (lastIfId === 0) {
+  if (read.innerIf === 0) {
     vlog('Parent is global. This is not the pattern. Bailing.');
     return;
   }
 
-  const outerIfNode = fdata.flatNodeMap.get(lastIfId);
+  const outerIfNode = fdata.flatNodeMap.get(read.innerIf);
   ASSERT(outerIfNode);
 
   const outerBranchBody = read.blockBody;

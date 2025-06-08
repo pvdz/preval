@@ -532,7 +532,7 @@ export function createReadRef(obj) {
     blockIds, // Array of blockChain
     blockBodies, // arrays of statements that is block.body or program.body. 1:1 with blockIndexes
     blockIndexes, // Indexes per each element of blockChain and blockBodies
-    ifChain,
+    ifChain, // string of if-node pids separated by trailing comma. always is or starts with `0,`
     funcChain,
     innerLoop, // number, pid of the top of the loop stack, or 0 if thats program/function
     innerIf, // number. pid of nearest if-node that branches this var. Note: the if-test is not branched by the if-node it is testing for, but its parent.

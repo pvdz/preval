@@ -138,9 +138,6 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
     // All reads are an object of a member expression and not a method call
     // This means the object literal should not be able to spy when reading
     // properties from it. That's good to know!
-
-    objNode.$p.isSimpleObject = true;
-    meta.typing.isSimpleObject = true;
   }
 
   function handleFunctionExpression(funcNode, path) {

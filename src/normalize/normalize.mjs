@@ -781,12 +781,19 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
   function normalizeCallArgs(args, newArgs, newNodes) {
     // This is used for `new` and regular function calls
-    args.forEach((anode) => {
+    // Note: spreads happen in argument order, before evaluating the next argument. We must spread them in an array and then use the arg as new spread-arg.
+    // Special case: when the spread case is the last case, the double spread is unnecessary as it only serves to preserve evaluation order of subsequent args.
+    args.forEach((anode, i) => {
       if (anode.type === 'SpreadElement') {
-        const tmpName = createFreshVar('tmpCalleeParamSpread', fdata);
-        newNodes.push(AST.varStatement('let', tmpName, anode.argument));
-        anode.argument = AST.identifier(tmpName);
-        newArgs.push(anode);
+        if (i === args.length - 1) { // this spread is last arg? use simpler transform
+          const tmpName = createFreshVar('tmpCalleeParamSpread', fdata);
+          newNodes.push(AST.varStatement('let', tmpName, anode.argument));
+          newArgs.push(AST.spreadElement(AST.identifier(tmpName)));
+        } else {
+          const tmpName = createFreshVar('tmpCalleeParamSpread', fdata);
+          newNodes.push(AST.varStatement('let', tmpName, AST.arrayExpression(anode)));
+          newArgs.push(AST.spreadElement(AST.identifier(tmpName)));
+        }
       }
       else if (AST.isPrimitive(anode) && !AST.isComplexNode(anode)) {
         // Don't create a separate var for this. There's no side effect to trigger on them regardless.
@@ -3576,6 +3583,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
         }
 
         if (ASSUME_BUILTINS) {
+          // Important: isNaN and isFinite are NOT equal to their Number counterparts
           if (BUILTIN_GLOBAL_FUNCS_TO_SYMBOL.has(funcName)) {
             // Note: seems these almost never reach this place... caught elsewhere
             rule('Builtin JS classes should change into the symbol for their constructor for consistency');
@@ -5754,8 +5762,10 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
         if (hasComplexArg) {
           if (fdata.globallyUniqueNamingRegistry.get(funcName)?.isBuiltin) {
             // At least one param node is complex. The callee is a known builtin. Cache the args.
+            // Main difference: no need to outline the callee
             rule('The arguments of a builtin call must all be simple');
             example('parseInt(f())', 'tmp = f(), parseInt(tmp)');
+            example('parseInt(...f(), ...g())', 'const tmp = [...f()]; const tmp2 = [...g()];, parseInt(...tmp, ...tmp2)');
             before(node, parentNodeOrWhatever);
 
             const newArgs = [];
@@ -5776,8 +5786,10 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           }
           else {
             // At least one param node is complex. Cache them all. And the callee too.
+            // Note: spreads happen in argument order, before evaluating the next argument.
             rule('The arguments of a call must all be simple');
             example('a(f())', 'tmp = a(), tmp2 = f(), tmp(tmp2)');
+            example('func(...f(), ...g())', 'const tmp = [...f()]; const tmp2 = [...g()];, func(...tmp, ...tmp2)');
             before(node, parentNodeOrWhatever);
 
             const newArgs = [];

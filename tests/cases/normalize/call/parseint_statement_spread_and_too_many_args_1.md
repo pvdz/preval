@@ -18,7 +18,8 @@ parseInt(...$([1]), $spy('b'), $spy('c'));
 
 `````js filename=intro
 const tmpCalleeParam$3 /*:array*/ /*truthy*/ = [1];
-const tmpCalleeParamSpread /*:unknown*/ = $(tmpCalleeParam$3);
+const tmpArrSpread /*:unknown*/ = $(tmpCalleeParam$3);
+const tmpCalleeParamSpread /*:array*/ /*truthy*/ = [...tmpArrSpread];
 const tmpCalleeParam /*:unknown*/ = $spy(`b`);
 const tmpCalleeParam$1 /*:unknown*/ = $spy(`c`);
 $Number_parseInt(...tmpCalleeParamSpread, tmpCalleeParam, tmpCalleeParam$1);
@@ -29,7 +30,8 @@ $Number_parseInt(...tmpCalleeParamSpread, tmpCalleeParam, tmpCalleeParam$1);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCalleeParamSpread = $([1]);
+const tmpArrSpread = $([1]);
+const tmpCalleeParamSpread = [...tmpArrSpread];
 const tmpCalleeParam = $spy(`b`);
 const tmpCalleeParam$1 = $spy(`c`);
 $Number_parseInt(...tmpCalleeParamSpread, tmpCalleeParam, tmpCalleeParam$1);
@@ -42,9 +44,10 @@ With rename=true
 `````js filename=intro
 const a = [ 1 ];
 const b = $( a );
-const c = $spy( "b" );
-const d = $spy( "c" );
-$Number_parseInt( ...b, c, d );
+const c = [ ...b ];
+const d = $spy( "b" );
+const e = $spy( "c" );
+$Number_parseInt( ...c, d, e );
 `````
 
 
@@ -53,7 +56,8 @@ $Number_parseInt( ...b, c, d );
 
 `````js filename=intro
 let tmpCalleeParam$3 = [1];
-let tmpCalleeParamSpread = $(tmpCalleeParam$3);
+const tmpArrSpread = $(tmpCalleeParam$3);
+let tmpCalleeParamSpread = [...tmpArrSpread];
 let tmpCalleeParam = $spy(`b`);
 let tmpCalleeParam$1 = $spy(`c`);
 $Number_parseInt(...tmpCalleeParamSpread, tmpCalleeParam, tmpCalleeParam$1);
@@ -63,6 +67,7 @@ $Number_parseInt(...tmpCalleeParamSpread, tmpCalleeParam, tmpCalleeParam$1);
 ## Todos triggered
 
 
+- (todo) Deal with array spreads in arr mutation?
 - (todo) support array reads statement type VarStatement
 - (todo) type trackeed tricks can possibly support static $Number_parseInt
 

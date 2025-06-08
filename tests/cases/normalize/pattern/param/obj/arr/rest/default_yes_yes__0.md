@@ -24,13 +24,13 @@ const tmpOPBD /*:unknown*/ = $Number_prototype.x;
 let tmpOPAD /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpIfTest$1 /*:boolean*/ = tmpOPBD === undefined;
 if (tmpIfTest$1) {
-  const tmpCalleeParam$1 /*:array*/ = [`pass`];
+  const tmpCalleeParam$1 /*:array*/ /*truthy*/ = [`pass`];
   tmpOPAD = $(tmpCalleeParam$1);
 } else {
   tmpOPAD = tmpOPBD;
 }
-const tmpArrPatternSplat /*:array*/ = [...tmpOPAD];
-const y /*:array*/ = $dotCall($array_slice, tmpArrPatternSplat, `slice`, 0);
+const tmpArrPatternSplat /*:array*/ /*truthy*/ = [...tmpOPAD];
+const y /*:array*/ /*truthy*/ = $dotCall($array_slice, tmpArrPatternSplat, `slice`, 0);
 $(y);
 `````
 

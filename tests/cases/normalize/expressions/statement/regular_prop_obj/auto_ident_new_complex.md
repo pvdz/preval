@@ -21,9 +21,9 @@ $(a);
 
 `````js filename=intro
 const tmpNewCallee /*:unknown*/ = $($);
-const tmpCompObj /*:object*/ = new tmpNewCallee(1);
+const tmpCompObj /*:object*/ /*truthy*/ = new tmpNewCallee(1);
 tmpCompObj.a;
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

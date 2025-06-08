@@ -20,7 +20,7 @@ $(f());
 
 
 `````js filename=intro
-const tmpReturnArg /*:object*/ = new $(10);
+const tmpReturnArg /*:object*/ /*truthy*/ = new $(10);
 $(tmpReturnArg);
 `````
 

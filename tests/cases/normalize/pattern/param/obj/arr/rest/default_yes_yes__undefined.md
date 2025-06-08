@@ -20,20 +20,20 @@ $(f(undefined, 10));
 
 
 `````js filename=intro
-const tmpObjLitVal /*:array*/ = [`pass2`];
-const tmpCalleeParam /*:object*/ = { x: tmpObjLitVal };
+const tmpObjLitVal /*:array*/ /*truthy*/ = [`pass2`];
+const tmpCalleeParam /*:object*/ /*truthy*/ = { x: tmpObjLitVal };
 const tmpSSA_tmpBindingPatternObjRoot /*:unknown*/ = $(tmpCalleeParam);
 const tmpOPBD /*:unknown*/ = tmpSSA_tmpBindingPatternObjRoot.x;
 let tmpOPAD /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpIfTest$1 /*:boolean*/ = tmpOPBD === undefined;
 if (tmpIfTest$1) {
-  const tmpCalleeParam$1 /*:array*/ = [`fail`];
+  const tmpCalleeParam$1 /*:array*/ /*truthy*/ = [`fail`];
   tmpOPAD = $(tmpCalleeParam$1);
 } else {
   tmpOPAD = tmpOPBD;
 }
-const tmpArrPatternSplat /*:array*/ = [...tmpOPAD];
-const y /*:array*/ = $dotCall($array_slice, tmpArrPatternSplat, `slice`, 0);
+const tmpArrPatternSplat /*:array*/ /*truthy*/ = [...tmpOPAD];
+const y /*:array*/ /*truthy*/ = $dotCall($array_slice, tmpArrPatternSplat, `slice`, 0);
 $(y);
 `````
 

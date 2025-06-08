@@ -39,9 +39,9 @@ const factory /*:(unknown)=>function*/ = function ($$0) {
   return inner;
 };
 const tmpCalleeParam /*:unknown*/ = $(`A`);
-const f1 /*:function*/ = factory(tmpCalleeParam);
+const f1 /*:function*/ /*truthy*/ = factory(tmpCalleeParam);
 const tmpCalleeParam$1 /*:unknown*/ = $(`B`);
-const f2 /*:function*/ = factory(tmpCalleeParam$1);
+const f2 /*:function*/ /*truthy*/ = factory(tmpCalleeParam$1);
 f1();
 f2();
 `````

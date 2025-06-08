@@ -21,8 +21,8 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal /*:unknown*/ = $(1);
-const a /*:object*/ = { b: tmpObjLitVal };
-const tmpCalleeParam /*:array*/ = [...a];
+const a /*:object*/ /*truthy*/ = { b: tmpObjLitVal };
+const tmpCalleeParam /*:array*/ /*truthy*/ = [...a];
 $(tmpCalleeParam);
 const tmpAssignComMemLhsProp /*:unknown*/ = $(`b`);
 a[tmpAssignComMemLhsProp] = 2;

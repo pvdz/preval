@@ -23,10 +23,10 @@ $(y);
 
 `````js filename=intro
 if ($) {
-  const tmpClusterSSA_y /*:array*/ = [`a`, 1, 2, 3, `b`];
+  const tmpClusterSSA_y /*:array*/ /*truthy*/ = [`a`, 1, 2, 3, `b`];
   $(tmpClusterSSA_y);
 } else {
-  const y /*:array*/ = [];
+  const y /*:array*/ /*truthy*/ = [];
   $(y);
 }
 `````

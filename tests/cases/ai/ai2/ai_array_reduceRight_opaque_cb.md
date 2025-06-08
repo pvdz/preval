@@ -25,8 +25,8 @@ const tmpArrElement /*:unknown*/ = $(`a`);
 const tmpArrElement$1 /*:unknown*/ = $(`b`);
 const cb /*:unknown*/ = $(`opaque_reducer_right`);
 const tmpMCP /*:unknown*/ = $(`initial`);
-const arr /*:array*/ = [tmpArrElement, tmpArrElement$1];
-const result /*:array*/ = $dotCall($array_reduceRight, arr, `reduceRight`, cb, tmpMCP);
+const arr /*:array*/ /*truthy*/ = [tmpArrElement, tmpArrElement$1];
+const result /*:array*/ /*truthy*/ = $dotCall($array_reduceRight, arr, `reduceRight`, cb, tmpMCP);
 $(`reduceRight_result`, result);
 `````
 

@@ -21,7 +21,7 @@ $(a);
 
 
 `````js filename=intro
-const tmpObjLitVal /*:object*/ = { y: 10 };
+const tmpObjLitVal /*:object*/ /*truthy*/ = { y: 10 };
 const tmpCompObj /*:unknown*/ = $(tmpObjLitVal);
 const tmpBinBothRhs /*:unknown*/ = tmpCompObj.y;
 const a /*:boolean*/ = `Identifier` === tmpBinBothRhs;

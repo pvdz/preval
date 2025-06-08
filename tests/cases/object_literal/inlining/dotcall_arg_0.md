@@ -24,7 +24,7 @@ const g /*:()=>unknown*/ = function () {
   $();
   return undefined;
 };
-const obj /*:object*/ = { f: g };
+const obj /*:object*/ /*truthy*/ = { f: g };
 $dotCall(obj, window, undefined);
 `````
 

@@ -22,7 +22,7 @@ $(a, b);
 
 `````js filename=intro
 const tmpAssignRhsCompProp /*:unknown*/ = $(`c`);
-const b /*:object*/ = { c: 1 };
+const b /*:object*/ /*truthy*/ = { c: 1 };
 const a /*:unknown*/ = b[tmpAssignRhsCompProp];
 const tmpAssignRhsCompProp$1 /*:unknown*/ = $(`c`);
 const tmpClusterSSA_a /*:unknown*/ = b[tmpAssignRhsCompProp$1];

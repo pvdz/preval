@@ -63,9 +63,9 @@ const tmpArrElement$27 /*:boolean*/ = x != undefined;
 const tmpArrElement$29 /*:boolean*/ = x === undefined;
 const tmpArrElement$31 /*:boolean*/ = x !== undefined;
 x ** 0;
-const tmpArrElement$35 /*:number*/ = x ^ 0;
-const tmpArrElement$37 /*:number*/ = x | 0;
-const arr /*:array*/ = [
+const tmpArrElement$35 /*:number*/ /*^0*/ = x ^ 0;
+const tmpArrElement$37 /*:number*/ /*|0*/ = x | 0;
+const arr /*:array*/ /*truthy*/ = [
   NaN,
   NaN,
   NaN,

@@ -24,7 +24,7 @@ $(a);
 
 `````js filename=intro
 $(100);
-const b /*:object*/ = { $: $ };
+const b /*:object*/ /*truthy*/ = { $: $ };
 const tmpMCCO /*:unknown*/ = $(b);
 const tmpMCCP /*:unknown*/ = $(`\$`);
 const tmpMCF /*:unknown*/ = tmpMCCO[tmpMCCP];
@@ -43,7 +43,7 @@ if (tmpIfTest) {
   }
 } else {
 }
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

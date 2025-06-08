@@ -35,7 +35,7 @@ $(a, s); // 5, 'read;write[5]'
 let s /*:string*/ = ``;
 let a /*:primitive*/ = 0;
 const tmpAssignMemRhs /*:unknown*/ = $spy();
-const tmpAssignMemLhsObj /*:object*/ = {
+const tmpAssignMemLhsObj /*:object*/ /*truthy*/ = {
   get x() {
     debugger;
     const tmpStringConcatR /*:unknown*/ = s;
@@ -47,7 +47,7 @@ const tmpAssignMemLhsObj /*:object*/ = {
     debugger;
     const tmpBinBothLhs /*:unknown*/ = s;
     const tmpStringConcatL$1 /*:string*/ = $coerce(v, `plustr`);
-    const tmpBinBothRhs /*:string*/ = `write[${tmpStringConcatL$1}];`;
+    const tmpBinBothRhs /*:string*/ /*truthy*/ = `write[${tmpStringConcatL$1}];`;
     s = tmpBinBothLhs + tmpBinBothRhs;
     a = a + v;
     return a;

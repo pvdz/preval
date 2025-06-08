@@ -31,7 +31,7 @@ if (a) {
     a = $(tmpCalleeParam$5);
   }
 }
-const tmpCalleeParam /*:object*/ = { ...a };
+const tmpCalleeParam /*:object*/ /*truthy*/ = { ...a };
 $(tmpCalleeParam);
 $(a);
 `````

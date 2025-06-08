@@ -21,7 +21,7 @@ switch (1) {
 
 
 `````js filename=intro
-const a /*:object*/ = { x: 1, y: 2, z: 3 };
+const a /*:object*/ /*truthy*/ = { x: 1, y: 2, z: 3 };
 $(a);
 `````
 

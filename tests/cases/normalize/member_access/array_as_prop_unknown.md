@@ -20,7 +20,7 @@ $(xyz);
 
 
 `````js filename=intro
-const tmpCalleeParam /*:array*/ = [`toString`];
+const tmpCalleeParam /*:array*/ /*truthy*/ = [`toString`];
 const arr /*:unknown*/ = $(tmpCalleeParam);
 $Array_from(arr);
 const tmpMCF$1 /*:unknown*/ = String[arr];

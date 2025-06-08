@@ -23,17 +23,17 @@ $(a, b, c, d);
 
 
 `````js filename=intro
-const b /*:object*/ = { x: 1 };
+const b /*:object*/ /*truthy*/ = { x: 1 };
 const tmpNestedAssignComMemberObj /*:unknown*/ = $(b);
 const tmpNestedAssignComMemberProp /*:unknown*/ = $(`x`);
-const c /*:object*/ = { y: 2 };
+const c /*:object*/ /*truthy*/ = { y: 2 };
 const tmpInitAssignLhsComputedObj /*:unknown*/ = $(c);
 const tmpInitAssignLhsComputedProp /*:unknown*/ = $(`y`);
 const tmpInitAssignLhsComputedRhs /*:unknown*/ = $(3);
 tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = tmpInitAssignLhsComputedRhs;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpInitAssignLhsComputedRhs;
 const tmpStringConcatL /*:string*/ = $coerce(tmpInitAssignLhsComputedRhs, `string`);
-const tmpCalleeParam /*:string*/ = `before  ${tmpStringConcatL}  after`;
+const tmpCalleeParam /*:string*/ /*truthy*/ = `before  ${tmpStringConcatL}  after`;
 $(tmpCalleeParam);
 $(tmpInitAssignLhsComputedRhs, b, c, 3);
 `````

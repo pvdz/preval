@@ -27,15 +27,15 @@ $(obj.str); // changed!
 
 `````js filename=intro
 const tmpObjLitVal /*:()=>undefined*/ = function () {
-  const tmpPrevalAliasThis /*:object*/ = this;
+  const tmpPrevalAliasThis /*:object*/ /*truthy*/ = this;
   debugger;
   tmpPrevalAliasThis.str = `changed`;
   const tmpCalleeParam /*:unknown*/ = tmpPrevalAliasThis.str;
   $(tmpCalleeParam);
   return undefined;
 };
-const obj /*:object*/ = { encode: tmpObjLitVal, str: `abc` };
-const tmpCalleeParam$1 /*:unknown*/ = $dotCall($function_call, tmpObjLitVal, `call`, obj);
+const obj /*:object*/ /*truthy*/ = { encode: tmpObjLitVal, str: `abc` };
+const tmpCalleeParam$1 /*:unknown*/ /*truthy*/ = $dotCall($function_call, tmpObjLitVal, `call`, obj);
 $(tmpCalleeParam$1);
 const tmpCalleeParam$3 /*:unknown*/ = obj.str;
 $(tmpCalleeParam$3);

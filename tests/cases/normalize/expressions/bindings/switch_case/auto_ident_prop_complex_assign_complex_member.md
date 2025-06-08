@@ -23,7 +23,7 @@ switch (1) {
 
 
 `````js filename=intro
-const b /*:object*/ = { c: 10, d: 20 };
+const b /*:object*/ /*truthy*/ = { c: 10, d: 20 };
 const tmpNestedAssignObj /*:unknown*/ = $(b);
 const tmpCompObj /*:unknown*/ = $(b);
 const tmpCalleeParam /*:unknown*/ = $(`d`);

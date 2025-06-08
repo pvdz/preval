@@ -21,8 +21,8 @@ $(tmpCalleeParam);
 
 `````js filename=intro
 const arg /*:unknown*/ = $(`give food`);
-const tmpCallObj /*:regex*/ = new $regex_constructor(`foo`, ``);
-const tmpCalleeParam /*:unknown*/ = $dotCall($regex_test, tmpCallObj, `test`, arg);
+const tmpCallObj /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, ``);
+const tmpCalleeParam /*:unknown*/ /*truthy*/ = $dotCall($regex_test, tmpCallObj, `test`, arg);
 $(tmpCalleeParam);
 `````
 

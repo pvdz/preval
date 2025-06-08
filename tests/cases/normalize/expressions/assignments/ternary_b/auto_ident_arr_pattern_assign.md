@@ -26,8 +26,8 @@ const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   const tmpArrElement /*:unknown*/ = $(3);
   const tmpArrElement$1 /*:unknown*/ = $(4);
-  const tmpNestedAssignArrPatternRhs /*:array*/ = [tmpArrElement, tmpArrElement$1];
-  const tmpArrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
+  const tmpNestedAssignArrPatternRhs /*:array*/ /*truthy*/ = [tmpArrElement, tmpArrElement$1];
+  const tmpArrPatternSplat /*:array*/ /*truthy*/ = [...tmpNestedAssignArrPatternRhs];
   const tmpClusterSSA_x /*:unknown*/ = tmpArrPatternSplat[0];
   const tmpClusterSSA_y /*:unknown*/ = tmpArrPatternSplat[1];
   $(tmpNestedAssignArrPatternRhs);
@@ -35,7 +35,7 @@ if (tmpIfTest) {
 } else {
   const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(200);
   $(tmpClusterSSA_tmpCalleeParam);
-  const a /*:object*/ = { a: 999, b: 1000 };
+  const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
   $(a, 1, 2);
 }
 `````

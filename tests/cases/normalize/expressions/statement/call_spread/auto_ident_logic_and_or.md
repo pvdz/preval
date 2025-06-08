@@ -38,7 +38,7 @@ if (tmpCalleeParamSpread) {
     throw `Preval: Attempting to spread a falsy primitive that is not an empty string`;
   }
 }
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

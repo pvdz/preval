@@ -22,9 +22,9 @@ $(a, arg);
 
 `````js filename=intro
 const tmpUnaryArg /*:unknown*/ = $(1);
-const tmpCalleeParamSpread /*:string*/ = typeof tmpUnaryArg;
+const tmpCalleeParamSpread /*:string*/ /*truthy*/ = typeof tmpUnaryArg;
 $(...tmpCalleeParamSpread);
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a, 1);
 `````
 

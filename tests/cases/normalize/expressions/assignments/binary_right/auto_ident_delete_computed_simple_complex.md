@@ -23,7 +23,7 @@ $(a, arg);
 `````js filename=intro
 const tmpBinBothLhs /*:unknown*/ = $(100);
 const tmpDeleteCompProp /*:unknown*/ = $(`y`);
-const arg /*:object*/ = { y: 1 };
+const arg /*:object*/ /*truthy*/ = { y: 1 };
 const a /*:boolean*/ = delete arg[tmpDeleteCompProp];
 const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + a;
 $(tmpCalleeParam);

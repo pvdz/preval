@@ -25,7 +25,7 @@ $(a);
 
 `````js filename=intro
 $();
-const a /*:array*/ = [1, 2, 3, 4, 5];
+const a /*:array*/ /*truthy*/ = [1, 2, 3, 4, 5];
 a.length = $Number_NaN;
 $(a);
 `````

@@ -24,7 +24,7 @@ $(a);
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   const tmpCalleeParam /*:unknown*/ = $(`\$`);
-  const b /*:object*/ = { $: $ };
+  const b /*:object*/ /*truthy*/ = { $: $ };
   const tmpNewCallee /*:unknown*/ = b[tmpCalleeParam];
   new tmpNewCallee(1);
   while ($LOOP_UNROLL_10) {
@@ -39,7 +39,7 @@ if (tmpIfTest) {
   }
 } else {
 }
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

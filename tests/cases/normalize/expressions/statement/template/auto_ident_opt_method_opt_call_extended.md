@@ -25,13 +25,13 @@ const tmpIfTest$1 /*:boolean*/ = $ == null;
 if (tmpIfTest$1) {
   $(`before  undefined  after`);
 } else {
-  const tmpObjLitVal$1 /*:object*/ = { e: $ };
+  const tmpObjLitVal$1 /*:object*/ /*truthy*/ = { e: $ };
   const tmpClusterSSA_tmpCalleeParam$1 /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
   const tmpClusterSSA_tmpStringConcatL /*:string*/ = $coerce(tmpClusterSSA_tmpCalleeParam$1, `string`);
-  const tmpClusterSSA_tmpCalleeParam /*:string*/ = `before  ${tmpClusterSSA_tmpStringConcatL}  after`;
+  const tmpClusterSSA_tmpCalleeParam /*:string*/ /*truthy*/ = `before  ${tmpClusterSSA_tmpStringConcatL}  after`;
   $(tmpClusterSSA_tmpCalleeParam);
 }
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

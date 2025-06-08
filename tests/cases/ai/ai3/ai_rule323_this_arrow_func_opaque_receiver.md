@@ -25,12 +25,12 @@ $('global_call_this_check', globalCallResult);
 
 `````js filename=intro
 const tmpObjLitVal$1 /*:()=>unknown*/ = function () {
-  const tmpPrevalAliasThis /*:object*/ = this;
+  const tmpPrevalAliasThis /*:object*/ /*truthy*/ = this;
   debugger;
   const tmpClusterSSA_tmpReturnArg$1 /*:unknown*/ = $(`arrow_this`, tmpPrevalAliasThis);
   return tmpClusterSSA_tmpReturnArg$1;
 };
-const tmpCalleeParam /*:object*/ = { val: 1, method: tmpObjLitVal$1 };
+const tmpCalleeParam /*:object*/ /*truthy*/ = { val: 1, method: tmpObjLitVal$1 };
 const obj /*:unknown*/ = $(`myObj`, tmpCalleeParam);
 const tmpMCF /*:unknown*/ = obj.method;
 $dotCall(tmpMCF, obj, `method`);

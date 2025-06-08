@@ -18,7 +18,7 @@ $(a).b($(1), $(2));
 
 
 `````js filename=intro
-const a /*:object*/ = { b: $ };
+const a /*:object*/ /*truthy*/ = { b: $ };
 const tmpMCOO /*:unknown*/ = $(a);
 const tmpMCF /*:unknown*/ = tmpMCOO.b;
 const tmpMCP /*:unknown*/ = $(1);

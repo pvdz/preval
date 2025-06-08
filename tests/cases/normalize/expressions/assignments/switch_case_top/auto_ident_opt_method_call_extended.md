@@ -28,11 +28,11 @@ const tmpBinBothLhs /*:unknown*/ = $(1);
 const tmpBinBothRhs /*:unknown*/ = $(1);
 const tmpIfTest /*:boolean*/ = tmpBinBothLhs === tmpBinBothRhs;
 if (tmpIfTest) {
-  const tmpObjLitVal$1 /*:object*/ = { e: $ };
+  const tmpObjLitVal$1 /*:object*/ /*truthy*/ = { e: $ };
   const tmpChainElementCall /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
   $(tmpChainElementCall);
 } else {
-  const a /*:object*/ = { a: 999, b: 1000 };
+  const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
   $(a);
 }
 `````

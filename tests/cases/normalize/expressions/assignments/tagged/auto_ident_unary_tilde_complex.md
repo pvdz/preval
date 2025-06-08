@@ -21,7 +21,7 @@ $(a);
 `````js filename=intro
 const tmpUnaryArg /*:unknown*/ = $(100);
 const a /*:number*/ = ~tmpUnaryArg;
-const tmpCalleeParam /*:array*/ = [`before `, ` after`];
+const tmpCalleeParam /*:array*/ /*truthy*/ = [`before `, ` after`];
 $(tmpCalleeParam, a);
 $(a);
 `````

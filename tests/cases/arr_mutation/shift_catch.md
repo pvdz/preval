@@ -22,7 +22,7 @@ $('after', blob)
 
 
 `````js filename=intro
-const blob /*:array*/ = [1, 2, 3];
+const blob /*:array*/ /*truthy*/ = [1, 2, 3];
 $(`after`, blob);
 `````
 

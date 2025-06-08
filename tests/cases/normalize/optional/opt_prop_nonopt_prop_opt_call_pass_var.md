@@ -23,7 +23,7 @@ const tmpIfTest$1 /*:boolean*/ = $ == null;
 if (tmpIfTest$1) {
   $(undefined);
 } else {
-  const tmpObjLitVal /*:object*/ = { c: $ };
+  const tmpObjLitVal /*:object*/ /*truthy*/ = { c: $ };
   const tmpChainElementCall /*:unknown*/ = $dotCall($, tmpObjLitVal, `c`, 1);
   $(tmpChainElementCall);
 }

@@ -37,7 +37,7 @@ while (true) {
   if (y) {
     $(y, `before`);
     let x /*:unknown*/ = undefined;
-    const obj /*:object*/ = { a: 1, b: 2 };
+    const obj /*:object*/ /*truthy*/ = { a: 1, b: 2 };
     const tmpForInGenNext /*:unknown*/ = $forIn(obj);
     while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
       const tmpForInNext /*:unknown*/ = tmpForInGenNext();

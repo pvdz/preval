@@ -21,12 +21,12 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(100);
 if (tmpCalleeParam) {
-  const tmpNestedComplexRhs /*:regex*/ = new $regex_constructor(`foo`, ``);
+  const tmpNestedComplexRhs /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, ``);
   $(tmpNestedComplexRhs);
   $(tmpNestedComplexRhs);
 } else {
   $(tmpCalleeParam);
-  const a /*:object*/ = { a: 999, b: 1000 };
+  const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
   $(a);
 }
 `````

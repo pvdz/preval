@@ -18,7 +18,7 @@ for (a of $({x: 1, y: 2})) $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam$1 /*:object*/ = { x: 1, y: 2 };
+const tmpCalleeParam$1 /*:object*/ /*truthy*/ = { x: 1, y: 2 };
 const tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$1);
 const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {

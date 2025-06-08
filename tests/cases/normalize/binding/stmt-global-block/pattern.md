@@ -23,8 +23,8 @@ if ($(true)) {
 `````js filename=intro
 const tmpIfTest /*:unknown*/ = $(true);
 if (tmpIfTest) {
-  const z /*:array*/ = [10, 20, 30];
-  const tmpArrPatternSplat /*:array*/ = [...z];
+  const z /*:array*/ /*truthy*/ = [10, 20, 30];
+  const tmpArrPatternSplat /*:array*/ /*truthy*/ = [...z];
   const a /*:unknown*/ = tmpArrPatternSplat[0];
   const b /*:unknown*/ = tmpArrPatternSplat[1];
   $(a, b, 1, 2, z);

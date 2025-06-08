@@ -58,66 +58,66 @@ $(arr2);
 
 `````js filename=intro
 const tmpArrElement$39 /*:unknown*/ = $(`** operator`);
-const tmpBinLhs /*:array*/ = [tmpArrElement$39];
+const tmpBinLhs /*:array*/ /*truthy*/ = [tmpArrElement$39];
 const tmpArrElement /*:number*/ = tmpBinLhs ** x;
 const tmpArrElement$41 /*:unknown*/ = $(`* operator`);
-const tmpBinLhs$1 /*:array*/ = [tmpArrElement$41];
+const tmpBinLhs$1 /*:array*/ /*truthy*/ = [tmpArrElement$41];
 const tmpArrElement$1 /*:number*/ = tmpBinLhs$1 * x;
 const tmpArrElement$43 /*:unknown*/ = $(`/ operator`);
-const tmpBinLhs$3 /*:array*/ = [tmpArrElement$43];
+const tmpBinLhs$3 /*:array*/ /*truthy*/ = [tmpArrElement$43];
 const tmpArrElement$3 /*:number*/ = tmpBinLhs$3 / x;
 const tmpArrElement$45 /*:unknown*/ = $(`% operator`);
-const tmpBinLhs$5 /*:array*/ = [tmpArrElement$45];
+const tmpBinLhs$5 /*:array*/ /*truthy*/ = [tmpArrElement$45];
 const tmpArrElement$5 /*:number*/ = tmpBinLhs$5 % x;
 const tmpArrElement$47 /*:unknown*/ = $(`+ operator`);
-const tmpBinLhs$7 /*:array*/ = [tmpArrElement$47];
+const tmpBinLhs$7 /*:array*/ /*truthy*/ = [tmpArrElement$47];
 const tmpArrElement$7 /*:primitive*/ = tmpBinLhs$7 + x;
 const tmpArrElement$49 /*:unknown*/ = $(`- operator`);
-const tmpBinLhs$9 /*:array*/ = [tmpArrElement$49];
+const tmpBinLhs$9 /*:array*/ /*truthy*/ = [tmpArrElement$49];
 const tmpArrElement$9 /*:number*/ = tmpBinLhs$9 - x;
 const tmpArrElement$51 /*:unknown*/ = $(`<< operator`);
-const tmpBinLhs$11 /*:array*/ = [tmpArrElement$51];
+const tmpBinLhs$11 /*:array*/ /*truthy*/ = [tmpArrElement$51];
 const tmpArrElement$11 /*:number*/ = tmpBinLhs$11 << x;
 const tmpArrElement$53 /*:unknown*/ = $(`>> operator`);
-const tmpBinLhs$13 /*:array*/ = [tmpArrElement$53];
+const tmpBinLhs$13 /*:array*/ /*truthy*/ = [tmpArrElement$53];
 const tmpArrElement$13 /*:number*/ = tmpBinLhs$13 >> x;
 const tmpArrElement$55 /*:unknown*/ = $(`>>> operator`);
-const tmpBinLhs$15 /*:array*/ = [tmpArrElement$55];
+const tmpBinLhs$15 /*:array*/ /*truthy*/ = [tmpArrElement$55];
 const tmpArrElement$15 /*:number*/ = tmpBinLhs$15 >>> x;
 const tmpArrElement$57 /*:unknown*/ = $(`< operator`);
-const tmpBinLhs$17 /*:array*/ = [tmpArrElement$57];
+const tmpBinLhs$17 /*:array*/ /*truthy*/ = [tmpArrElement$57];
 const tmpArrElement$17 /*:boolean*/ = tmpBinLhs$17 < x;
 const tmpArrElement$59 /*:unknown*/ = $(`> operator`);
-const tmpBinLhs$19 /*:array*/ = [tmpArrElement$59];
+const tmpBinLhs$19 /*:array*/ /*truthy*/ = [tmpArrElement$59];
 const tmpArrElement$19 /*:boolean*/ = tmpBinLhs$19 > x;
 const tmpArrElement$61 /*:unknown*/ = $(`<= operator`);
-const tmpBinLhs$21 /*:array*/ = [tmpArrElement$61];
+const tmpBinLhs$21 /*:array*/ /*truthy*/ = [tmpArrElement$61];
 const tmpArrElement$21 /*:boolean*/ = tmpBinLhs$21 <= x;
 const tmpArrElement$63 /*:unknown*/ = $(`>= operator`);
-const tmpBinLhs$23 /*:array*/ = [tmpArrElement$63];
+const tmpBinLhs$23 /*:array*/ /*truthy*/ = [tmpArrElement$63];
 const tmpArrElement$23 /*:boolean*/ = tmpBinLhs$23 >= x;
 const tmpArrElement$65 /*:unknown*/ = $(`== operator`);
-const tmpBinLhs$25 /*:array*/ = [tmpArrElement$65];
+const tmpBinLhs$25 /*:array*/ /*truthy*/ = [tmpArrElement$65];
 const tmpArrElement$25 /*:boolean*/ = tmpBinLhs$25 == x;
 const tmpArrElement$67 /*:unknown*/ = $(`!= operator`);
-const tmpBinLhs$27 /*:array*/ = [tmpArrElement$67];
+const tmpBinLhs$27 /*:array*/ /*truthy*/ = [tmpArrElement$67];
 const tmpArrElement$27 /*:boolean*/ = tmpBinLhs$27 != x;
 const tmpArrElement$69 /*:unknown*/ = $(`=== operator`);
-const tmpBinLhs$29 /*:array*/ = [tmpArrElement$69];
+const tmpBinLhs$29 /*:array*/ /*truthy*/ = [tmpArrElement$69];
 const tmpArrElement$29 /*:boolean*/ = tmpBinLhs$29 === x;
 const tmpArrElement$71 /*:unknown*/ = $(`!== operator`);
-const tmpBinLhs$31 /*:array*/ = [tmpArrElement$71];
+const tmpBinLhs$31 /*:array*/ /*truthy*/ = [tmpArrElement$71];
 const tmpArrElement$31 /*:boolean*/ = tmpBinLhs$31 !== x;
 const tmpArrElement$73 /*:unknown*/ = $(`& operator`);
-const tmpBinLhs$33 /*:array*/ = [tmpArrElement$73];
+const tmpBinLhs$33 /*:array*/ /*truthy*/ = [tmpArrElement$73];
 const tmpArrElement$33 /*:number*/ = tmpBinLhs$33 & x;
 const tmpArrElement$75 /*:unknown*/ = $(`^ operator`);
-const tmpBinLhs$35 /*:array*/ = [tmpArrElement$75];
+const tmpBinLhs$35 /*:array*/ /*truthy*/ = [tmpArrElement$75];
 const tmpArrElement$35 /*:number*/ = tmpBinLhs$35 ^ x;
 const tmpArrElement$77 /*:unknown*/ = $(`| operator`);
-const tmpBinLhs$37 /*:array*/ = [tmpArrElement$77];
+const tmpBinLhs$37 /*:array*/ /*truthy*/ = [tmpArrElement$77];
 const tmpArrElement$37 /*:number*/ = tmpBinLhs$37 | x;
-const arr /*:array*/ = [
+const arr /*:array*/ /*truthy*/ = [
   tmpArrElement,
   tmpArrElement$1,
   tmpArrElement$3,
@@ -141,12 +141,12 @@ const arr /*:array*/ = [
 ];
 $(arr);
 const tmpArrElement$83 /*:unknown*/ = $spy(`in operator`);
-const tmpBinLhs$39 /*:array*/ = [tmpArrElement$83];
+const tmpBinLhs$39 /*:array*/ /*truthy*/ = [tmpArrElement$83];
 const tmpArrElement$79 /*:boolean*/ = tmpBinLhs$39 in x;
 const tmpArrElement$85 /*:unknown*/ = $spy(`instanceof operator`);
-const tmpBinLhs$41 /*:array*/ = [tmpArrElement$85];
+const tmpBinLhs$41 /*:array*/ /*truthy*/ = [tmpArrElement$85];
 const tmpArrElement$81 /*:boolean*/ = tmpBinLhs$41 instanceof x;
-const arr2 /*:array*/ = [tmpArrElement$79, tmpArrElement$81];
+const arr2 /*:array*/ /*truthy*/ = [tmpArrElement$79, tmpArrElement$81];
 $(arr2);
 `````
 

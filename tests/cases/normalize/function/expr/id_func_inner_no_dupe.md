@@ -27,7 +27,7 @@ out();
 const out /*:()=>unknown*/ = function () {
   debugger;
   $(`function`);
-  const tmpCalleeParam$1 /*:string*/ = typeof g;
+  const tmpCalleeParam$1 /*:string*/ /*truthy*/ = typeof g;
   $(tmpCalleeParam$1, undefined);
   return undefined;
 };

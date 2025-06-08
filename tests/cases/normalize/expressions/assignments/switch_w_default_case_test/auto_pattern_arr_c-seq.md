@@ -25,15 +25,15 @@ $(a);
 
 
 `````js filename=intro
-const tmpBindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
+const tmpBindingPatternArrRoot /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 [...tmpBindingPatternArrRoot];
 const tmpSwitchValue /*:unknown*/ = $(1);
 let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
 $(10);
 $(20);
-const tmpCalleeParam /*:array*/ = [1, 2];
+const tmpCalleeParam /*:array*/ /*truthy*/ = [1, 2];
 const tmpNestedAssignArrPatternRhs /*:unknown*/ = $(tmpCalleeParam);
-const tmpArrPatternSplat$1 /*:array*/ = [...tmpNestedAssignArrPatternRhs];
+const tmpArrPatternSplat$1 /*:array*/ /*truthy*/ = [...tmpNestedAssignArrPatternRhs];
 const a /*:unknown*/ = tmpArrPatternSplat$1[0];
 const tmpIfTest /*:boolean*/ = tmpNestedAssignArrPatternRhs === tmpSwitchValue;
 if (tmpIfTest) {

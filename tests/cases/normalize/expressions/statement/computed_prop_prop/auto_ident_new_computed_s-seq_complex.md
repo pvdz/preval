@@ -23,11 +23,11 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam$1 /*:unknown*/ = $(`\$`);
-const b /*:object*/ = { $: $ };
+const b /*:object*/ /*truthy*/ = { $: $ };
 const tmpNewCallee /*:unknown*/ = b[tmpCalleeParam$1];
-const tmpCalleeParam /*:object*/ = new tmpNewCallee(1);
+const tmpCalleeParam /*:object*/ /*truthy*/ = new tmpNewCallee(1);
 $coerce(tmpCalleeParam, `string`);
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

@@ -21,10 +21,10 @@ $(a, arg);
 
 
 `````js filename=intro
-const tmpCalleeParam$1 /*:object*/ = { x: 1 };
+const tmpCalleeParam$1 /*:object*/ /*truthy*/ = { x: 1 };
 const tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$1);
 const tmpForInGenNext /*:unknown*/ = $forIn(tmpCalleeParam);
-const arg /*:object*/ = { y: 1 };
+const arg /*:object*/ /*truthy*/ = { y: 1 };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForInNext /*:unknown*/ = tmpForInGenNext();
   const tmpIfTest /*:unknown*/ = tmpForInNext.done;
@@ -40,7 +40,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
   }
 }
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a, arg);
 `````
 

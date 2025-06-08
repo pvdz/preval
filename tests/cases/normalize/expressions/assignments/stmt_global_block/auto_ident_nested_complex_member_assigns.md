@@ -26,7 +26,7 @@
 
 
 `````js filename=intro
-const b /*:object*/ = { x: 1 };
+const b /*:object*/ /*truthy*/ = { x: 1 };
 const tmpNestedAssignComMemberObj /*:unknown*/ = $(b);
 const tmpNestedAssignComMemberProp /*:unknown*/ = $(`x`);
 const tmpInitAssignLhsComputedObj /*:unknown*/ = $(b);

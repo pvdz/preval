@@ -21,11 +21,11 @@ $(a, b);
 
 
 `````js filename=intro
-const b /*:object*/ = { c: 1 };
+const b /*:object*/ /*truthy*/ = { c: 1 };
 const tmpCompObj /*:unknown*/ = $(b);
 const tmpCalleeParam$1 /*:unknown*/ = $(`c`);
 const tmpBinBothRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam$1];
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 const tmpClusterSSA_a /*:number*/ = a * tmpBinBothRhs;
 $(tmpClusterSSA_a);
 $(tmpClusterSSA_a, b);

@@ -26,7 +26,7 @@ if (tmpIfTest$1) {
   $(...undefined);
   $(undefined);
 } else {
-  const tmpObjLitVal$1 /*:object*/ = { e: $ };
+  const tmpObjLitVal$1 /*:object*/ /*truthy*/ = { e: $ };
   const tmpClusterSSA_a /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
   $(...tmpClusterSSA_a);
   $(tmpClusterSSA_a);

@@ -50,7 +50,7 @@ $(x instanceof -Infinity);
 
 
 `````js filename=intro
-const x /*:object*/ = {
+const x /*:object*/ /*truthy*/ = {
   toString() {
     debugger;
     const tmpReturnArg /*:unknown*/ = $(`toString`);
@@ -78,9 +78,9 @@ const tmpArrElement$23 /*:boolean*/ = x >= $Number_NEGATIVE_INFINITY;
 const tmpArrElement$25 /*:boolean*/ = x == $Number_NEGATIVE_INFINITY;
 const tmpArrElement$27 /*:boolean*/ = x != $Number_NEGATIVE_INFINITY;
 x ** 0;
-const tmpArrElement$35 /*:number*/ = x ^ 0;
-const tmpArrElement$37 /*:number*/ = x | 0;
-const arr /*:array*/ = [
+const tmpArrElement$35 /*:number*/ /*^0*/ = x ^ 0;
+const tmpArrElement$37 /*:number*/ /*|0*/ = x | 0;
+const arr /*:array*/ /*truthy*/ = [
   tmpArrElement,
   tmpArrElement$1,
   tmpArrElement$3,

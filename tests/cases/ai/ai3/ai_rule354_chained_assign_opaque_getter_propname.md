@@ -34,7 +34,7 @@ $('final_store_state', side_effect_store);
 
 `````js filename=intro
 let side_effect_store /*:unknown*/ = $(`initial_store`);
-const objWithGetter /*:object*/ = {
+const objWithGetter /*:object*/ /*truthy*/ = {
   get data() {
     debugger;
     side_effect_store = $(`getter_invoked`);

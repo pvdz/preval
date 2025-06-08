@@ -22,9 +22,9 @@ $(rra);
 
 
 `````js filename=intro
-const arr /*:array*/ = [1, 2, 3, 4];
+const arr /*:array*/ /*truthy*/ = [1, 2, 3, 4];
 if ($) {
-  const tmpCalleeParam /*:unknown*/ = $dotCall($array_pop, arr, `pop`);
+  const tmpCalleeParam /*:unknown*/ /*truthy*/ = $dotCall($array_pop, arr, `pop`);
   $(tmpCalleeParam);
   $dotCall($array_reverse, arr, `reverse`);
   $(arr);

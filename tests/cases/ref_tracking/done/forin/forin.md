@@ -22,7 +22,7 @@ $('keep, do not eval');
 
 
 `````js filename=intro
-const tmpCalleeParam /*:object*/ = { a: 10, b: 20 };
+const tmpCalleeParam /*:object*/ /*truthy*/ = { a: 10, b: 20 };
 const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForInNext /*:unknown*/ = tmpForInGen();

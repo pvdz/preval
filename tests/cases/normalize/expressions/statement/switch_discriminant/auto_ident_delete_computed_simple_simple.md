@@ -24,10 +24,10 @@ $(a, arg);
 
 
 `````js filename=intro
-const arg /*:object*/ = { y: 1 };
+const arg /*:object*/ /*truthy*/ = { y: 1 };
 delete arg.y;
 $(100);
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a, arg);
 `````
 

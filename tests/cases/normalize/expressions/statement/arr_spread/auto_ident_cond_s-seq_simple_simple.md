@@ -21,7 +21,7 @@ $(a);
 `````js filename=intro
 const tmpClusterSSA_tmpArrElToSpread /*:unknown*/ = $(2);
 [...tmpClusterSSA_tmpArrElToSpread];
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

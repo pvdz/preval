@@ -19,9 +19,9 @@ $(a);
 
 
 `````js filename=intro
-const tmpObjSpreadArg /*:array*/ = [1, 2, 3];
+const tmpObjSpreadArg /*:array*/ /*truthy*/ = [1, 2, 3];
 ({ ...tmpObjSpreadArg });
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

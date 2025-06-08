@@ -28,8 +28,8 @@ $(y + z);
 
 `````js filename=intro
 const x /*:unknown*/ = $(`test`);
-const y /*:object*/ = { ...x, a: 1 };
-const z /*:object*/ = { ...x, b: 2 };
+const y /*:object*/ /*truthy*/ = { ...x, a: 1 };
+const z /*:object*/ /*truthy*/ = { ...x, b: 2 };
 const tmpCalleeParam /*:primitive*/ = y + z;
 $(tmpCalleeParam);
 `````

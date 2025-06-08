@@ -28,7 +28,7 @@ $(i({x: {y: {z: {a: 10}}}}));
 
 
 `````js filename=intro
-const tmpObjLitVal$3 /*:object*/ = { a: 10 };
+const tmpObjLitVal$3 /*:object*/ /*truthy*/ = { a: 10 };
 $(tmpObjLitVal$3);
 `````
 

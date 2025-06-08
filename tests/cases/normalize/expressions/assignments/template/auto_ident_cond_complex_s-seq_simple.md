@@ -27,7 +27,7 @@ if (tmpIfTest) {
   const tmpCalleeParam$3 /*:unknown*/ = $(100);
   const tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam$3);
   const tmpClusterSSA_tmpBinBothRhs /*:string*/ = $coerce(tmpClusterSSA_a, `string`);
-  const tmpClusterSSA_tmpCalleeParam /*:string*/ = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
+  const tmpClusterSSA_tmpCalleeParam /*:string*/ /*truthy*/ = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
   $(tmpClusterSSA_tmpCalleeParam);
   $(tmpClusterSSA_a);
 }

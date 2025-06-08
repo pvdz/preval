@@ -36,14 +36,14 @@ const g /*:()=>array*/ = function () {
   $(false);
   $(true);
   $(false);
-  const tmpClusterSSA_tmpSSA_a$9 /*:array*/ = [1, 2, 3];
+  const tmpClusterSSA_tmpSSA_a$9 /*:array*/ /*truthy*/ = [1, 2, 3];
   return tmpClusterSSA_tmpSSA_a$9;
 };
-const tmpBinBothLhs$5 /*:array*/ = g();
-const tmpBinBothRhs$5 /*:array*/ = g();
+const tmpBinBothLhs$5 /*:array*/ /*truthy*/ = g();
+const tmpBinBothRhs$5 /*:array*/ /*truthy*/ = g();
 const tmpCalleeParam$5 /*:boolean*/ = tmpBinBothLhs$5 === tmpBinBothRhs$5;
 $(tmpCalleeParam$5);
-const tmpCalleeParam$7 /*:array*/ = g();
+const tmpCalleeParam$7 /*:array*/ /*truthy*/ = g();
 $(tmpCalleeParam$7);
 `````
 

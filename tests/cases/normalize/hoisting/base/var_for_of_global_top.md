@@ -21,7 +21,7 @@ $(x);
 `````js filename=intro
 let x /*:unknown*/ = undefined;
 $(undefined);
-const tmpCalleeParam /*:array*/ = [100];
+const tmpCalleeParam /*:array*/ /*truthy*/ = [100];
 const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForOfNext /*:unknown*/ = tmpForOfGen();

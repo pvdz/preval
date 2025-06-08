@@ -26,7 +26,7 @@ $(f());
 `````js filename=intro
 const tmpIfTest /*:unknown*/ = $(true);
 if (tmpIfTest) {
-  const b /*:object*/ = { x: 2 };
+  const b /*:object*/ /*truthy*/ = { x: 2 };
   const tmpInitAssignLhsComputedObj /*:unknown*/ = $(b);
   tmpInitAssignLhsComputedObj.x = 3;
   $(3, b, 3);

@@ -35,7 +35,7 @@ $(`do`);
 $(`not`);
 $(`inline`);
 $(`please`);
-const tmpThrowArg /*:object*/ = new Error(`always throws`);
+const tmpThrowArg /*:object*/ /*truthy*/ = new Error(`always throws`);
 throw tmpThrowArg;
 `````
 

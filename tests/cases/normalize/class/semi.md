@@ -22,7 +22,7 @@ $(new x().b());
 
 
 `````js filename=intro
-const x /*:class*/ = class {
+const x /*:class*/ /*truthy*/ = class {
   a() {
     debugger;
     return undefined;
@@ -32,7 +32,7 @@ const x /*:class*/ = class {
     return undefined;
   }
 };
-const tmpMCOO /*:object*/ = new x();
+const tmpMCOO /*:object*/ /*truthy*/ = new x();
 const tmpMCF /*:unknown*/ = tmpMCOO.b;
 const tmpCalleeParam /*:unknown*/ = $dotCall(tmpMCF, tmpMCOO, `b`);
 $(tmpCalleeParam);

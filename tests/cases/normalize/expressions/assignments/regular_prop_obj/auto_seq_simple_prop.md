@@ -24,7 +24,7 @@ $(a);
 $(1);
 $(1);
 const tmpAssignMemRhs /*:unknown*/ = $(2);
-const a /*:object*/ = { b: tmpAssignMemRhs };
+const a /*:object*/ /*truthy*/ = { b: tmpAssignMemRhs };
 $(a);
 `````
 

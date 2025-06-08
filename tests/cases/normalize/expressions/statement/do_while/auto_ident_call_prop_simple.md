@@ -24,7 +24,7 @@ $(a);
 
 `````js filename=intro
 $(100);
-const b /*:object*/ = { $: $ };
+const b /*:object*/ /*truthy*/ = { $: $ };
 const tmpIfTest /*:unknown*/ = $dotCall($, b, `\$`, 1);
 if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
@@ -38,7 +38,7 @@ if (tmpIfTest) {
   }
 } else {
 }
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

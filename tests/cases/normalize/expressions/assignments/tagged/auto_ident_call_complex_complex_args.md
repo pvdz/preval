@@ -25,7 +25,7 @@ const tmpCallComplexCallee /*:unknown*/ = $($);
 const tmpCalleeParam$3 /*:unknown*/ = $(1);
 const tmpCalleeParam$5 /*:unknown*/ = $(2);
 const a /*:unknown*/ = tmpCallComplexCallee(tmpCalleeParam$3, tmpCalleeParam$5);
-const tmpCalleeParam /*:array*/ = [`before `, ` after`];
+const tmpCalleeParam /*:array*/ /*truthy*/ = [`before `, ` after`];
 $(tmpCalleeParam, a);
 $(a);
 `````

@@ -23,10 +23,10 @@ $(arr);
 
 
 `````js filename=intro
-const x /*:object*/ = {};
+const x /*:object*/ /*truthy*/ = {};
 const a /*:boolean*/ = x in NaN;
 const b /*:boolean*/ = x instanceof NaN;
-const arr /*:array*/ = [a, b];
+const arr /*:array*/ /*truthy*/ = [a, b];
 $(arr);
 `````
 

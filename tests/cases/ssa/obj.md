@@ -33,7 +33,7 @@ if ($) {
     obj.bla = c;
     return undefined;
   };
-  const obj /*:object*/ = { selfRef: f };
+  const obj /*:object*/ /*truthy*/ = { selfRef: f };
   $(undefined);
 } else {
 }

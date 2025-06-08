@@ -24,11 +24,11 @@
 
 `````js filename=intro
 const tmpIfTest$1 /*:boolean*/ = $ == null;
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 if (tmpIfTest$1) {
   $(a);
 } else {
-  const tmpObjLitVal$1 /*:object*/ = { e: $ };
+  const tmpObjLitVal$1 /*:object*/ /*truthy*/ = { e: $ };
   $dotCall($, tmpObjLitVal$1, `e`, 1);
   $(a);
 }

@@ -26,9 +26,9 @@ $(1);
 $(2);
 const tmpObjLitVal /*:unknown*/ = $(3);
 const tmpObjLitVal$1 /*:unknown*/ = $(4);
-const tmpAnonDefaultExport /*:object*/ = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
+const tmpAnonDefaultExport /*:object*/ /*truthy*/ = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
 export { tmpAnonDefaultExport as default };
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a, tmpObjLitVal, tmpObjLitVal$1);
 `````
 

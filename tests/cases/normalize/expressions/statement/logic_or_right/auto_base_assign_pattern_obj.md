@@ -22,13 +22,13 @@ $(a, b);
 
 `````js filename=intro
 const tmpIfTest /*:unknown*/ = $(100);
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
-  const b /*:object*/ = {};
+  const b /*:object*/ /*truthy*/ = {};
   $(a, b);
 } else {
   const tmpObjLitVal /*:unknown*/ = $(2);
-  const tmpCalleeParam /*:object*/ = { b: tmpObjLitVal };
+  const tmpCalleeParam /*:object*/ /*truthy*/ = { b: tmpObjLitVal };
   const tmpAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam);
   const tmpClusterSSA_b /*:unknown*/ = tmpAssignObjPatternRhs.b;
   $(a, tmpClusterSSA_b);

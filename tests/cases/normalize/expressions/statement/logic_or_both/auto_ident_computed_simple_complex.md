@@ -22,9 +22,9 @@ $(a, b);
 
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(`c`);
-const b /*:object*/ = { c: 1 };
+const b /*:object*/ /*truthy*/ = { c: 1 };
 const tmpIfTest /*:unknown*/ = b[tmpCalleeParam];
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   $(a, b);
 } else {

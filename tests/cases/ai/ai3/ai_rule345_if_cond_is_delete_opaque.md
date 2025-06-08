@@ -25,7 +25,7 @@ $('obj_after', obj);
 
 
 `````js filename=intro
-const tmpCalleeParam /*:object*/ = { p1: 1, p2: 2 };
+const tmpCalleeParam /*:object*/ /*truthy*/ = { p1: 1, p2: 2 };
 const obj /*:unknown*/ = $(`get_obj`, tmpCalleeParam);
 const propName /*:unknown*/ = $(`prop_name`);
 const tmpIfTest /*:boolean*/ = delete obj[propName];

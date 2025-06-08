@@ -19,7 +19,7 @@ $(o);
 
 `````js filename=intro
 const tmpObjLitVal /*:unknown*/ = $(1);
-const o /*:object*/ = { x: tmpObjLitVal };
+const o /*:object*/ /*truthy*/ = { x: tmpObjLitVal };
 $(o);
 `````
 

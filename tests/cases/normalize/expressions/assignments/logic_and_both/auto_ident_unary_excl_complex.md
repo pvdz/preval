@@ -25,7 +25,7 @@ if (tmpUnaryArg) {
   $(false);
 } else {
   const tmpUnaryArg$1 /*:unknown*/ = $(100);
-  const tmpNestedComplexRhs /*:boolean*/ = !tmpUnaryArg$1;
+  const tmpNestedComplexRhs /*:boolean*/ /*banged*/ = !tmpUnaryArg$1;
   $(tmpNestedComplexRhs);
   $(tmpNestedComplexRhs);
 }

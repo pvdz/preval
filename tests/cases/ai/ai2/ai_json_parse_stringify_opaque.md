@@ -35,7 +35,7 @@ $('json_stringified_opaque_input', JSON.stringify(opaque_input_for_stringify));
 
 `````js filename=intro
 const json_str /*:unknown*/ = $(`json_str_to_parse`, `{"a":1,"b":"text"}`);
-const tmpCalleeParam /*:object*/ = { c: 2, d: true };
+const tmpCalleeParam /*:object*/ /*truthy*/ = { c: 2, d: true };
 const obj_to_stringify /*:unknown*/ = $(`json_obj_to_stringify`, tmpCalleeParam);
 const opaque_reviver /*:unknown*/ = $(`json_opaque_reviver`);
 const opaque_replacer /*:unknown*/ = $(`json_opaque_replacer`);

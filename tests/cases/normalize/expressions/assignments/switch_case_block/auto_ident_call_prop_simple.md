@@ -29,11 +29,11 @@ const tmpBinBothLhs /*:unknown*/ = $(1);
 const tmpBinBothRhs /*:unknown*/ = $(1);
 const tmpIfTest /*:boolean*/ = tmpBinBothLhs === tmpBinBothRhs;
 if (tmpIfTest) {
-  const b /*:object*/ = { $: $ };
+  const b /*:object*/ /*truthy*/ = { $: $ };
   const tmpClusterSSA_a /*:unknown*/ = $dotCall($, b, `\$`, 1);
   $(tmpClusterSSA_a);
 } else {
-  const a /*:object*/ = { a: 999, b: 1000 };
+  const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
   $(a);
 }
 `````

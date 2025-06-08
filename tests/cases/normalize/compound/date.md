@@ -34,8 +34,8 @@ $(a, s); // 5, 'read;write[5]'
 `````js filename=intro
 let s /*:string*/ = ``;
 let a /*:primitive*/ = 0;
-const tmpAssignMemRhs /*:date*/ = new $date_constructor(12345);
-const tmpAssignMemLhsObj /*:object*/ = {
+const tmpAssignMemRhs /*:date*/ /*truthy*/ = new $date_constructor(12345);
+const tmpAssignMemLhsObj /*:object*/ /*truthy*/ = {
   get x() {
     debugger;
     const tmpStringConcatR /*:unknown*/ = s;
@@ -47,7 +47,7 @@ const tmpAssignMemLhsObj /*:object*/ = {
     debugger;
     const tmpBinBothLhs /*:unknown*/ = s;
     const tmpStringConcatL$1 /*:string*/ = $coerce(v, `plustr`);
-    const tmpBinBothRhs /*:string*/ = `write[${tmpStringConcatL$1}];`;
+    const tmpBinBothRhs /*:string*/ /*truthy*/ = `write[${tmpStringConcatL$1}];`;
     s = tmpBinBothLhs + tmpBinBothRhs;
     a = a + v;
     return a;

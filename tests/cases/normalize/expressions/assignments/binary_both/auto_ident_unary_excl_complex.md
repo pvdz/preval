@@ -21,8 +21,8 @@ $(a);
 `````js filename=intro
 const tmpUnaryArg /*:unknown*/ = $(100);
 const tmpUnaryArg$1 /*:unknown*/ = $(100);
-const a /*:boolean*/ = !tmpUnaryArg;
-const tmpClusterSSA_a /*:boolean*/ = !tmpUnaryArg$1;
+const a /*:boolean*/ /*banged*/ = !tmpUnaryArg;
+const tmpClusterSSA_a /*:boolean*/ /*banged*/ = !tmpUnaryArg$1;
 const tmpCalleeParam /*:number*/ = a + tmpClusterSSA_a;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a);

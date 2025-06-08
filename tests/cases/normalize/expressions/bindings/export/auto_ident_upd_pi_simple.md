@@ -20,7 +20,7 @@ $(a, b);
 
 
 `````js filename=intro
-const tmpSSA_b /*:number*/ = 2;
+const tmpSSA_b /*:number*/ /*truthy*/ = 2;
 export { tmpSSA_b as a };
 $(2, 2);
 `````

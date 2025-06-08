@@ -19,8 +19,8 @@ $('a is not b'.replace(rex, (c) => ($(c, obj[c]), obj[c])));
 
 
 `````js filename=intro
-const obj /*:object*/ = { a: 1, b: 2 };
-const rex /*:regex*/ = new $regex_constructor(`\\w.*\\w`, `g`);
+const obj /*:object*/ /*truthy*/ = { a: 1, b: 2 };
+const rex /*:regex*/ /*truthy*/ = new $regex_constructor(`\\w.*\\w`, `g`);
 const tmpMCP /*:(unknown)=>unknown*/ = function ($$0) {
   const c /*:unknown*/ = $$0;
   debugger;

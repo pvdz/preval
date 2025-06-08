@@ -27,7 +27,7 @@ try {
 $(`init_p`);
 $(`val_A`);
 const tmpObjLitVal$1 /*:unknown*/ = $(`val_B`);
-const tmpClusterSSA_obj /*:object*/ = { q: tmpObjLitVal$1 };
+const tmpClusterSSA_obj /*:object*/ /*truthy*/ = { q: tmpObjLitVal$1 };
 $(`use_q`, tmpObjLitVal$1);
 try {
   const tmpCalleeParam$1 /*:unknown*/ = tmpClusterSSA_obj.p;

@@ -24,7 +24,7 @@ const tmpReturnArg /*:()=>undefined*/ = function () {
   $(`call`);
   return undefined;
 };
-const spy /*:object*/ = {
+const spy /*:object*/ /*truthy*/ = {
   get x() {
     debugger;
     $(`x1`);
@@ -32,7 +32,7 @@ const spy /*:object*/ = {
   },
 };
 const tmpMCF /*:unknown*/ = spy.x;
-const spy2 /*:object*/ = {
+const spy2 /*:object*/ /*truthy*/ = {
   get x() {
     debugger;
     $(`x2`);

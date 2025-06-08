@@ -25,7 +25,7 @@ if (x) {
 if (x) {
   $(`then`);
 } else {
-  const arr /*:array*/ = [true];
+  const arr /*:array*/ /*truthy*/ = [true];
   $(arr);
 }
 `````

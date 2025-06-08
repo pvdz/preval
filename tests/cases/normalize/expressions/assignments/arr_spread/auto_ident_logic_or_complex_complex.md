@@ -26,7 +26,7 @@ if (a) {
   const tmpCalleeParam$3 /*:unknown*/ = $(2);
   a = $(tmpCalleeParam$3);
 }
-const tmpCalleeParam /*:array*/ = [...a];
+const tmpCalleeParam /*:array*/ /*truthy*/ = [...a];
 $(tmpCalleeParam);
 $(a);
 `````

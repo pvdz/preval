@@ -26,10 +26,10 @@ const tmpBinBothLhs /*:unknown*/ = $(1);
 const tmpBinBothRhs /*:unknown*/ = $(1);
 const tmpIfTest /*:boolean*/ = tmpBinBothLhs === tmpBinBothRhs;
 if (tmpIfTest) {
-  const tmpClusterSSA_a /*:regex*/ = new $regex_constructor(`foo`, ``);
+  const tmpClusterSSA_a /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, ``);
   $(tmpClusterSSA_a);
 } else {
-  const a /*:object*/ = { a: 999, b: 1000 };
+  const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
   $(a);
 }
 `````

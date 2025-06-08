@@ -26,7 +26,7 @@ $(s);
 `````js filename=intro
 const s /*:unknown*/ = $(10);
 $(1);
-let tmpClusterSSA_s /*:number*/ = s | 10;
+let tmpClusterSSA_s /*:number*/ /*truthy*/ = s | 10;
 const tmpClusterSSA_x /*:unknown*/ = $(true);
 if (tmpClusterSSA_x) {
   while ($LOOP_UNROLL_10) {

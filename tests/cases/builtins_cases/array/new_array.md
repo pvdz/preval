@@ -28,7 +28,7 @@ $(error());
 
 
 `````js filename=intro
-const tmpCalleeParam$1 /*:array*/ = $array_constructor(0);
+const tmpCalleeParam$1 /*:array*/ /*truthy*/ = $array_constructor(0);
 $(tmpCalleeParam$1);
 `````
 

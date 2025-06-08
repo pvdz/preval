@@ -28,14 +28,14 @@ $('outer', new B());
 
 
 `````js filename=intro
-const A /*:class*/ = class {
+const A /*:class*/ /*truthy*/ = class {
   constructor() {
     debugger;
     $(`cA`);
     return undefined;
   }
 };
-const B /*:class*/ = class extends A {
+const B /*:class*/ /*truthy*/ = class extends A {
   constructor() {
     debugger;
     const tmpCalleeParam /*:unknown*/ = super();
@@ -44,7 +44,7 @@ const B /*:class*/ = class extends A {
     return undefined;
   }
 };
-const tmpCalleeParam$1 /*:object*/ = new B();
+const tmpCalleeParam$1 /*:object*/ /*truthy*/ = new B();
 $(`outer`, tmpCalleeParam$1);
 `````
 

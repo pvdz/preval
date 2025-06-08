@@ -21,11 +21,11 @@ $(a);
 
 
 `````js filename=intro
-const b /*:object*/ = { $: $ };
+const b /*:object*/ /*truthy*/ = { $: $ };
 const tmpCompObj /*:unknown*/ = $(b);
 const tmpCalleeParam /*:unknown*/ = $(`\$`);
 const tmpNewCallee /*:unknown*/ = tmpCompObj[tmpCalleeParam];
-const xyz /*:object*/ = new tmpNewCallee(1);
+const xyz /*:object*/ /*truthy*/ = new tmpNewCallee(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(xyz);
   $(1);

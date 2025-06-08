@@ -22,7 +22,7 @@ $(a);
 
 
 `````js filename=intro
-const b /*:object*/ = { $: $ };
+const b /*:object*/ /*truthy*/ = { $: $ };
 const tmpSSA_a /*:unknown*/ = $dotCall($, b, `\$`, 1);
 $(undefined);
 $(tmpSSA_a);

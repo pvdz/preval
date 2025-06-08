@@ -33,7 +33,7 @@ let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
 const tmpNewCallee /*:unknown*/ = $($);
 const tmpCalleeParam /*:unknown*/ = $(1);
 const tmpCalleeParam$1 /*:unknown*/ = $(2);
-const tmpBinLhs /*:object*/ = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
+const tmpBinLhs /*:object*/ /*truthy*/ = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
 const tmpIfTest /*:boolean*/ = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
@@ -55,7 +55,7 @@ if (tmpIfTest$3) {
     $(`fail2`);
   }
 }
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

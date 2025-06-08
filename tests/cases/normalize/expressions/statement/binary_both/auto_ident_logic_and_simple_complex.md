@@ -24,7 +24,7 @@ const tmpClusterSSA_tmpBinBothLhs /*:unknown*/ = $(tmpCalleeParam);
 const tmpCalleeParam$1 /*:unknown*/ = $(1);
 const tmpClusterSSA_tmpBinBothRhs /*:unknown*/ = $(tmpCalleeParam$1);
 tmpClusterSSA_tmpBinBothLhs + tmpClusterSSA_tmpBinBothRhs;
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

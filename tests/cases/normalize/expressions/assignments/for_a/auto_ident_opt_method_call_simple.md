@@ -21,7 +21,7 @@ $(a);
 
 
 `````js filename=intro
-const b /*:object*/ = { c: $ };
+const b /*:object*/ /*truthy*/ = { c: $ };
 $dotCall($, b, `c`, 1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);

@@ -18,9 +18,9 @@ $($(a)?.[$('x')]?.[$('y')][$('z')]);
 
 
 `````js filename=intro
-const tmpObjLitVal$1 /*:object*/ = { z: 10 };
-const tmpObjLitVal /*:object*/ = { y: tmpObjLitVal$1 };
-const a /*:object*/ = { x: tmpObjLitVal };
+const tmpObjLitVal$1 /*:object*/ /*truthy*/ = { z: 10 };
+const tmpObjLitVal /*:object*/ /*truthy*/ = { y: tmpObjLitVal$1 };
+const a /*:object*/ /*truthy*/ = { x: tmpObjLitVal };
 const tmpChainElementCall /*:unknown*/ = $(a);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest) {

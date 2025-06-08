@@ -26,10 +26,10 @@ $(a);
 `````js filename=intro
 $(1);
 const tmpCalleeParam /*:unknown*/ = $(`\$`);
-const b /*:object*/ = { $: $ };
+const b /*:object*/ /*truthy*/ = { $: $ };
 const tmpNewCallee /*:unknown*/ = b[tmpCalleeParam];
 new tmpNewCallee(1);
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

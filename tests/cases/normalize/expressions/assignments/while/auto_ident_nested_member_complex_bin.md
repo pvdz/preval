@@ -24,8 +24,8 @@ $(a, b, c, d, e);
 
 
 `````js filename=intro
-const b /*:object*/ = { x: 1 };
-const c /*:object*/ = { y: 2 };
+const b /*:object*/ /*truthy*/ = { x: 1 };
+const c /*:object*/ /*truthy*/ = { y: 2 };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpNestedAssignComMemberObj /*:unknown*/ = $(b);
   const tmpNestedAssignComMemberProp /*:unknown*/ = $(`x`);

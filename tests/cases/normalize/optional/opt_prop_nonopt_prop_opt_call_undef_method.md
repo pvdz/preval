@@ -22,7 +22,7 @@ const tmpChainElementObject$1 /*:unknown*/ = $Object_prototype.c;
 const tmpIfTest$1 /*:boolean*/ = tmpChainElementObject$1 == null;
 if (tmpIfTest$1) {
 } else {
-  const tmpObjLitVal /*:object*/ = {};
+  const tmpObjLitVal /*:object*/ /*truthy*/ = {};
   $dotCall(tmpChainElementObject$1, tmpObjLitVal, `c`, 1);
 }
 `````

@@ -24,7 +24,7 @@ f();
 
 
 `````js filename=intro
-const obj /*:object*/ = { $: $ };
+const obj /*:object*/ /*truthy*/ = { $: $ };
 $dotCall($, obj, `\$`, 1);
 `````
 

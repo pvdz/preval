@@ -21,7 +21,7 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal /*:unknown*/ = $(1);
-const a /*:object*/ = { b: tmpObjLitVal };
+const a /*:object*/ /*truthy*/ = { b: tmpObjLitVal };
 export { a as default };
 $(1);
 const tmpAssignMemLhsObj$1 /*:unknown*/ = $(a);

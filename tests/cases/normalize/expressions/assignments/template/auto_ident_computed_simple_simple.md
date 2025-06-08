@@ -22,7 +22,7 @@ $(a, b);
 
 `````js filename=intro
 $(`before  1  after`);
-const b /*:object*/ = { c: 1 };
+const b /*:object*/ /*truthy*/ = { c: 1 };
 $(1, b);
 `````
 

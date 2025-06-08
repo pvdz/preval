@@ -47,32 +47,32 @@
 
 
 `````js filename=intro
-const tmpCalleeParam /*:array*/ = [3, 4];
+const tmpCalleeParam /*:array*/ /*truthy*/ = [3, 4];
 const opaqueArr /*:unknown*/ = $(`get_opaque_arr`, tmpCalleeParam);
 const opaqueVal /*:unknown*/ = $(`get_opaque_val`, 5);
-const arr1 /*:array*/ = [1, 2];
-const arr2 /*:array*/ = [6, 7];
-const tmpMCP /*:array*/ = [8, 9];
-const res1 /*:array*/ = $dotCall($array_concat, arr1, `concat`, arr2, tmpMCP);
+const arr1 /*:array*/ /*truthy*/ = [1, 2];
+const arr2 /*:array*/ /*truthy*/ = [6, 7];
+const tmpMCP /*:array*/ /*truthy*/ = [8, 9];
+const res1 /*:array*/ /*truthy*/ = $dotCall($array_concat, arr1, `concat`, arr2, tmpMCP);
 const tmpCalleeParam$1 /*:primitive*/ = $JSON_stringify(res1);
 $(`res1`, tmpCalleeParam$1);
-const res2 /*:array*/ = $dotCall($array_concat, arr1, `concat`, opaqueArr, arr2);
+const res2 /*:array*/ /*truthy*/ = $dotCall($array_concat, arr1, `concat`, opaqueArr, arr2);
 const tmpCalleeParam$3 /*:primitive*/ = $JSON_stringify(res2);
 $(`res2`, tmpCalleeParam$3);
-const res3 /*:array*/ = $dotCall($array_concat, arr1, `concat`, opaqueVal, arr2);
+const res3 /*:array*/ /*truthy*/ = $dotCall($array_concat, arr1, `concat`, opaqueVal, arr2);
 const tmpCalleeParam$5 /*:primitive*/ = $JSON_stringify(res3);
 $(`res3`, tmpCalleeParam$5);
 try {
-  const res4 /*:array*/ = $dotCall($array_concat, opaqueArr, undefined, arr1, opaqueVal);
+  const res4 /*:array*/ /*truthy*/ = $dotCall($array_concat, opaqueArr, undefined, arr1, opaqueVal);
   const tmpCalleeParam$7 /*:primitive*/ = $JSON_stringify(res4);
   $(`res4`, tmpCalleeParam$7);
 } catch (e) {
   const tmpCalleeParam$9 /*:unknown*/ = e.name;
   $(`res4_error`, tmpCalleeParam$9);
 }
-const tmpCalleeParam$11 /*:array*/ = [10, 11];
+const tmpCalleeParam$11 /*:array*/ /*truthy*/ = [10, 11];
 const tmpMCP$1 /*:unknown*/ = $(`another_opaque`, tmpCalleeParam$11);
-const res5 /*:array*/ = $dotCall($array_concat, arr1, `concat`, opaqueArr, opaqueVal, arr2, tmpMCP$1);
+const res5 /*:array*/ /*truthy*/ = $dotCall($array_concat, arr1, `concat`, opaqueArr, opaqueVal, arr2, tmpMCP$1);
 const tmpCalleeParam$13 /*:primitive*/ = $JSON_stringify(res5);
 $(`res5`, tmpCalleeParam$13);
 `````

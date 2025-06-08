@@ -21,14 +21,14 @@ $(a, b);
 
 
 `````js filename=intro
-const b /*:object*/ = { c: 1 };
+const b /*:object*/ /*truthy*/ = { c: 1 };
 const tmpCompObj /*:unknown*/ = $(b);
 const tmpCalleeParam$3 /*:unknown*/ = $(`c`);
 const tmpCalleeParam$1 /*:unknown*/ = tmpCompObj[tmpCalleeParam$3];
 const tmpBinBothRhs /*:string*/ = $coerce(tmpCalleeParam$1, `string`);
-const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
+const tmpCalleeParam /*:string*/ /*truthy*/ = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a, b);
 `````
 

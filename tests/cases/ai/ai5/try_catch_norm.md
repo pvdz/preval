@@ -36,7 +36,7 @@ try {
 `````js filename=intro
 try {
   $(1);
-  const tmpThrowArg /*:object*/ = new Error(`test`);
+  const tmpThrowArg /*:object*/ /*truthy*/ = new Error(`test`);
   throw tmpThrowArg;
 } catch (e) {
   $(2);

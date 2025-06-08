@@ -19,7 +19,7 @@ $(obj[$('foo')]);
 
 `````js filename=intro
 const tmpCalleeParam$1 /*:unknown*/ = $(`foo`);
-const tmpCompObj /*:object*/ = { foo: 10 };
+const tmpCompObj /*:object*/ /*truthy*/ = { foo: 10 };
 const tmpCalleeParam /*:unknown*/ = tmpCompObj[tmpCalleeParam$1];
 $(tmpCalleeParam);
 `````

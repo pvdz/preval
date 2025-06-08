@@ -22,7 +22,7 @@ $(arr.length);
 
 `````js filename=intro
 const tmpMCP /*:unknown*/ = $(1);
-const arr /*:array*/ = [1, 2, 3];
+const arr /*:array*/ /*truthy*/ = [1, 2, 3];
 $dotCall($array_splice, arr, undefined, tmpMCP, 2, 10, 20);
 const tmpCalleeParam /*:number*/ = arr.length;
 $(tmpCalleeParam);

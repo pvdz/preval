@@ -21,7 +21,7 @@ $('out:', y);
 `````js filename=intro
 const tmpStringFirstArg /*:unknown*/ = $(`full`);
 const x /*:string*/ = $coerce(tmpStringFirstArg, `string`);
-const y /*:boolean*/ = !x;
+const y /*:boolean*/ /*banged*/ = !x;
 $(`out:`, y);
 `````
 

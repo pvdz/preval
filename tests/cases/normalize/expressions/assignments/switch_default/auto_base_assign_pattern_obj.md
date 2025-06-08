@@ -26,7 +26,7 @@ $(a, b);
 `````js filename=intro
 $(1);
 const tmpObjLitVal /*:unknown*/ = $(2);
-const tmpCalleeParam /*:object*/ = { b: tmpObjLitVal };
+const tmpCalleeParam /*:object*/ /*truthy*/ = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam);
 const b /*:unknown*/ = tmpNestedAssignObjPatternRhs.b;
 $(tmpNestedAssignObjPatternRhs, b);

@@ -62,7 +62,7 @@ $(f());
 
 
 `````js filename=intro
-const index2char /*:array*/ = [];
+const index2char /*:array*/ /*truthy*/ = [];
 index2char[65] = 0;
 index2char[66] = 1;
 index2char[67] = 2;
@@ -86,7 +86,30 @@ index2char[84] = 19;
 index2char[85] = 20;
 index2char[86] = 21;
 let tmpClusterSSA_s$1 /*:number*/ = 22;
-const chars /*:array*/ = [`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`, `J`, `K`, `L`, `M`, `N`, `O`, `P`, `Q`, `R`, `S`, `T`, `U`, `V`];
+const chars /*:array*/ /*truthy*/ = [
+  `A`,
+  `B`,
+  `C`,
+  `D`,
+  `E`,
+  `F`,
+  `G`,
+  `H`,
+  `I`,
+  `J`,
+  `K`,
+  `L`,
+  `M`,
+  `N`,
+  `O`,
+  `P`,
+  `Q`,
+  `R`,
+  `S`,
+  `T`,
+  `U`,
+  `V`,
+];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpIfTest$1 /*:boolean*/ = tmpClusterSSA_s$1 < 64;
   if (tmpIfTest$1) {

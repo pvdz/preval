@@ -18,7 +18,7 @@ $($spy(0xffffffffffffffffffffffffffffffff) ^ 0);
 
 `````js filename=intro
 const tmpBinLhs /*:unknown*/ = $spy(3.402823669209385e38);
-const tmpCalleeParam /*:number*/ = tmpBinLhs ^ 0;
+const tmpCalleeParam /*:number*/ /*^0*/ = tmpBinLhs ^ 0;
 $(tmpCalleeParam);
 `````
 

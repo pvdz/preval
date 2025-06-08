@@ -27,7 +27,7 @@ const wat /*:unknown*/ = $(`xyz`);
 const str /*:string*/ = $coerce(wat, `plustr`);
 const wat2 /*:unknown*/ = $(`y`);
 const s /*:string*/ = $coerce(wat2, `plustr`);
-const res /*:array*/ = $dotCall($string_split, str, `split`, s);
+const res /*:array*/ /*truthy*/ = $dotCall($string_split, str, `split`, s);
 $(res);
 `````
 

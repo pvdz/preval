@@ -44,7 +44,7 @@ if (tmpIfTest) {
 }
 const tmpIfTest$3 /*:boolean*/ = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$3) {
-  const b /*:object*/ = { x: 1 };
+  const b /*:object*/ /*truthy*/ = { x: 1 };
   const tmpChainElementCall /*:unknown*/ = $(b);
   const tmpIfTest$5 /*:boolean*/ = tmpChainElementCall == null;
   if (tmpIfTest$5) {
@@ -60,7 +60,7 @@ if (tmpIfTest$3) {
     $(`fail2`);
   }
 }
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

@@ -34,7 +34,7 @@ $('nested_labels_log', log.join(','));
 
 `````js filename=intro
 let i /*:number*/ = 0;
-const log /*:array*/ = [];
+const log /*:array*/ /*truthy*/ = [];
 while (true) {
   const tmpCalleeParam /*:boolean*/ = i < 1;
   const tmpIfTest /*:unknown*/ = $(`L1_cond`, tmpCalleeParam);

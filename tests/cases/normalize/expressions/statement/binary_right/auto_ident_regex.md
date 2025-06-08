@@ -20,9 +20,9 @@ $(a);
 
 `````js filename=intro
 const tmpBinBothLhs /*:unknown*/ = $(100);
-const tmpBinBothRhs /*:regex*/ = new $regex_constructor(`foo`, ``);
+const tmpBinBothRhs /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, ``);
 tmpBinBothLhs + tmpBinBothRhs;
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

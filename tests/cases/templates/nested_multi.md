@@ -26,13 +26,13 @@ const a /*:unknown*/ = $(`x`);
 const b /*:unknown*/ = $(`y`);
 const tmpBinBothRhs$1 /*:string*/ = $coerce(a, `string`);
 const tmpBinBothRhs /*:string*/ = $coerce(b, `string`);
-const tmpCalleeParam /*:string*/ = `A${tmpBinBothRhs$1}B${tmpBinBothRhs}C`;
+const tmpCalleeParam /*:string*/ /*truthy*/ = `A${tmpBinBothRhs$1}B${tmpBinBothRhs}C`;
 $(tmpCalleeParam);
 const tmpStringConcatL$1 /*:string*/ = $coerce(a, `string`);
 const tmpBinBothRhs$7 /*:string*/ = $coerce(b, `string`);
 const tmpStringConcatL$5 /*:string*/ = $coerce(a, `string`);
 const tmpBinBothRhs$11 /*:string*/ = $coerce(b, `string`);
-const tmpCalleeParam$1 /*:string*/ = `AA${tmpStringConcatL$1}B${tmpBinBothRhs$7}CBA${tmpStringConcatL$5}B${tmpBinBothRhs$11}CC`;
+const tmpCalleeParam$1 /*:string*/ /*truthy*/ = `AA${tmpStringConcatL$1}B${tmpBinBothRhs$7}CBA${tmpStringConcatL$5}B${tmpBinBothRhs$11}CC`;
 $(tmpCalleeParam$1);
 `````
 

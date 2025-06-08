@@ -25,13 +25,13 @@ $(arr);
 
 
 `````js filename=intro
-const tmpUnaryArg /*:regex*/ = new $regex_constructor(`foo`, `g`);
+const tmpUnaryArg /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, `g`);
 const tmpArrElement /*:number*/ = ~tmpUnaryArg;
-const tmpUnaryArg$3 /*:regex*/ = new $regex_constructor(`foo`, `g`);
+const tmpUnaryArg$3 /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, `g`);
 const tmpArrElement$3 /*:number*/ = -tmpUnaryArg$3;
-const tmpUnaryArg$5 /*:regex*/ = new $regex_constructor(`foo`, `g`);
+const tmpUnaryArg$5 /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, `g`);
 const tmpArrElement$5 /*:number*/ = +tmpUnaryArg$5;
-const arr /*:array*/ = [tmpArrElement, false, tmpArrElement$3, tmpArrElement$5, `object`, undefined];
+const arr /*:array*/ /*truthy*/ = [tmpArrElement, false, tmpArrElement$3, tmpArrElement$5, `object`, undefined];
 $(arr);
 `````
 

@@ -30,7 +30,7 @@ $(a, b, c);
 const f /*:(string)=>undefined*/ = function ($$0) {
   const thisisastring$1 /*:string*/ = $$0;
   debugger;
-  const regex /*:regex*/ = new $regex_constructor(`[^A-Za-z0-9\\+\\/\\=]`, `g`);
+  const regex /*:regex*/ /*truthy*/ = new $regex_constructor(`[^A-Za-z0-9\\+\\/\\=]`, `g`);
   const str /*:string*/ = $dotCall($string_replace, thisisastring$1, `replace`, regex, ``);
   $(str);
   return undefined;

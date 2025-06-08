@@ -28,9 +28,9 @@ f($(1));
 
 `````js filename=intro
 const a /*:unknown*/ = $(1);
-const x /*:number*/ = a & 1;
+const x /*:number*/ /*&1*/ /*oneBitAnded*/ = a & 1;
 if (x) {
-  const y /*:number*/ = a & 4;
+  const y /*:number*/ /*&4*/ /*oneBitAnded*/ = a & 4;
   if (y) {
     $(`pass`);
   } else {

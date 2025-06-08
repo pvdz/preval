@@ -22,7 +22,7 @@ $("object", typeof o); // Track type
 
 
 `````js filename=intro
-const a /*:array*/ = $array_constructor();
+const a /*:array*/ /*truthy*/ = $array_constructor();
 const tmpCalleeParam$1 /*:number*/ = a.length;
 $(`array`, `object`, tmpCalleeParam$1);
 $(`object`, `object`);

@@ -32,10 +32,10 @@ $('final_prop_val', obj._val);
 let store /*:unknown*/ = $(`initial_store`);
 const tmpObjLitVal /*:unknown*/ = $(`initial_prop_val`);
 const tmpAssignMemRhs /*:unknown*/ = $(`new_value`);
-const obj /*:object*/ = {
+const obj /*:object*/ /*truthy*/ = {
   _val: tmpObjLitVal,
   set prop($$0) {
-    const tmpPrevalAliasThis /*:object*/ = this;
+    const tmpPrevalAliasThis /*:object*/ /*truthy*/ = this;
     const value /*:unknown*/ = $$0;
     debugger;
     $(`setter_invoked`, value);

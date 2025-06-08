@@ -24,7 +24,7 @@ $(a);
 const tmpCalleeParam /*:unknown*/ = $(1);
 const tmpCalleeParam$1 /*:unknown*/ = $(2);
 const tmpIfTest /*:unknown*/ = $(tmpCalleeParam, tmpCalleeParam$1);
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   const tmpCalleeParam$3 /*:unknown*/ = $(1);
   const tmpCalleeParam$5 /*:unknown*/ = $(2);

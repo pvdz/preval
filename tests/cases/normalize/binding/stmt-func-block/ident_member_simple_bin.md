@@ -26,7 +26,7 @@ $(f());
 `````js filename=intro
 const tmpIfTest /*:unknown*/ = $(true);
 if (tmpIfTest) {
-  const b /*:object*/ = { x: 7 };
+  const b /*:object*/ /*truthy*/ = { x: 7 };
   $(7, b, 3);
   $(undefined);
 } else {

@@ -18,7 +18,7 @@ spy in 150; // This'll crash
 
 
 `````js filename=intro
-const spy /*:object*/ = {
+const spy /*:object*/ /*truthy*/ = {
   toString() {
     debugger;
     $(`pass`);

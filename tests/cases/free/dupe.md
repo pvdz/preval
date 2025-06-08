@@ -28,7 +28,7 @@ if (x) {
 const tmpFree /*:(number)=>boolean*/ = function $free($$0) {
   const x$1 /*:number*/ = $$0;
   debugger;
-  const tmpIfTest$3 /*:number*/ = x$1 & 48;
+  const tmpIfTest$3 /*:number*/ /*&48*/ = x$1 & 48;
   const tmpRet /*:boolean*/ = tmpIfTest$3 === 48;
   return tmpRet;
 };

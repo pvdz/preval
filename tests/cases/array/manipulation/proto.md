@@ -20,7 +20,7 @@ $(arr);
 
 
 `````js filename=intro
-const arr /*:array*/ = [];
+const arr /*:array*/ /*truthy*/ = [];
 const tmpMCF /*:unknown*/ = arr.call;
 $dotCall(tmpMCF, arr, `call`, arr, 1);
 $(arr);

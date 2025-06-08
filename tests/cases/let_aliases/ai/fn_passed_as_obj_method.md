@@ -26,7 +26,7 @@ $(a, b);
 `````js filename=intro
 let x /*:unknown*/ = $(`val`);
 const a /*:unknown*/ = x;
-const obj /*:object*/ = {
+const obj /*:object*/ /*truthy*/ = {
   mutate() {
     debugger;
     x = `changed`;

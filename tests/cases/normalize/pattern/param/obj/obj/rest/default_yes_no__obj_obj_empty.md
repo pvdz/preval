@@ -20,8 +20,8 @@ $(f({ x: {}, b: 11, c: 12 }, 10));
 
 
 `````js filename=intro
-const tmpObjLitVal /*:object*/ = {};
-const tmpCalleeParam$3 /*:array*/ = [];
+const tmpObjLitVal /*:object*/ /*truthy*/ = {};
+const tmpCalleeParam$3 /*:array*/ /*truthy*/ = [];
 const y /*:unknown*/ = $objPatternRest(tmpObjLitVal, tmpCalleeParam$3, undefined);
 $(y);
 `````

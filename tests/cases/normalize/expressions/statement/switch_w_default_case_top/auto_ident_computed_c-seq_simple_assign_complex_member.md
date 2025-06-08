@@ -43,7 +43,7 @@ if (tmpIfTest) {
   }
 }
 const tmpIfTest$3 /*:boolean*/ = tmpSwitchCaseToStart <= 0;
-const b /*:object*/ = { c: 10, d: 20 };
+const b /*:object*/ /*truthy*/ = { c: 10, d: 20 };
 if (tmpIfTest$3) {
   const tmpAssignComMemLhsObj /*:unknown*/ = $(b);
   const tmpAssignComMemLhsProp /*:unknown*/ = $(`c`);
@@ -60,7 +60,7 @@ if (tmpIfTest$3) {
     $(`fail2`);
   }
 }
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a, b);
 `````
 

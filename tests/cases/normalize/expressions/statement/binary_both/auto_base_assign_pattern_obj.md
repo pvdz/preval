@@ -22,15 +22,15 @@ $(a, b);
 
 `````js filename=intro
 const tmpObjLitVal /*:unknown*/ = $(2);
-const tmpCalleeParam /*:object*/ = { b: tmpObjLitVal };
+const tmpCalleeParam /*:object*/ /*truthy*/ = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam);
 tmpNestedAssignObjPatternRhs.b;
 const tmpObjLitVal$1 /*:unknown*/ = $(2);
-const tmpCalleeParam$1 /*:object*/ = { b: tmpObjLitVal$1 };
+const tmpCalleeParam$1 /*:object*/ /*truthy*/ = { b: tmpObjLitVal$1 };
 const tmpNestedAssignObjPatternRhs$1 /*:unknown*/ = $(tmpCalleeParam$1);
 const tmpSSA_b /*:unknown*/ = tmpNestedAssignObjPatternRhs$1.b;
 tmpNestedAssignObjPatternRhs + tmpNestedAssignObjPatternRhs$1;
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a, tmpSSA_b);
 `````
 

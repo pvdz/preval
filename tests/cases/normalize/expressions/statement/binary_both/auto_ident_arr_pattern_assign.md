@@ -26,13 +26,13 @@ const tmpArrElement /*:unknown*/ = $(3);
 const tmpArrElement$1 /*:unknown*/ = $(4);
 const tmpArrElement$3 /*:unknown*/ = $(3);
 const tmpArrElement$5 /*:unknown*/ = $(4);
-const tmpNestedAssignArrPatternRhs$1 /*:array*/ = [tmpArrElement$3, tmpArrElement$5];
-const tmpArrPatternSplat$1 /*:array*/ = [...tmpNestedAssignArrPatternRhs$1];
+const tmpNestedAssignArrPatternRhs$1 /*:array*/ /*truthy*/ = [tmpArrElement$3, tmpArrElement$5];
+const tmpArrPatternSplat$1 /*:array*/ /*truthy*/ = [...tmpNestedAssignArrPatternRhs$1];
 const tmpSSA_x /*:unknown*/ = tmpArrPatternSplat$1[0];
 const tmpSSA_y /*:unknown*/ = tmpArrPatternSplat$1[1];
-const tmpNestedAssignArrPatternRhs /*:array*/ = [tmpArrElement, tmpArrElement$1];
+const tmpNestedAssignArrPatternRhs /*:array*/ /*truthy*/ = [tmpArrElement, tmpArrElement$1];
 tmpNestedAssignArrPatternRhs + tmpNestedAssignArrPatternRhs$1;
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a, tmpSSA_x, tmpSSA_y);
 `````
 

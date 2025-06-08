@@ -21,12 +21,12 @@ $(a);
 
 
 `````js filename=intro
-const b /*:object*/ = { $: $ };
+const b /*:object*/ /*truthy*/ = { $: $ };
 const tmpMCOO /*:unknown*/ = $(b);
 const tmpMCF /*:unknown*/ = tmpMCOO.$;
 const tmpArrElToSpread /*:unknown*/ = $dotCall(tmpMCF, tmpMCOO, `\$`, 1);
 [...tmpArrElToSpread];
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

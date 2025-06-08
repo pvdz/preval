@@ -21,7 +21,7 @@ $(x);
 $(`1`);
 $(`2`);
 $(`3`);
-const x /*:object*/ = {
+const x /*:object*/ /*truthy*/ = {
   a() {
     debugger;
     return undefined;

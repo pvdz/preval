@@ -20,9 +20,9 @@ $(f('', 200));
 
 
 `````js filename=intro
-const tmpCalleeParam /*:object*/ = { a: `pass` };
+const tmpCalleeParam /*:object*/ /*truthy*/ = { a: `pass` };
 const tmpSSA_tmpCalleeParam$1 /*:unknown*/ = $(tmpCalleeParam);
-const tmpCalleeParam$3 /*:array*/ = [];
+const tmpCalleeParam$3 /*:array*/ /*truthy*/ = [];
 const x /*:unknown*/ = $objPatternRest(tmpSSA_tmpCalleeParam$1, tmpCalleeParam$3, undefined);
 $(x);
 `````

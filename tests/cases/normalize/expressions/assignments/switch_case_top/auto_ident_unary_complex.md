@@ -29,10 +29,10 @@ const tmpBinBothRhs /*:unknown*/ = $(1);
 const tmpIfTest /*:boolean*/ = tmpBinBothLhs === tmpBinBothRhs;
 if (tmpIfTest) {
   const tmpUnaryArg /*:unknown*/ = $(1);
-  const tmpClusterSSA_a /*:string*/ = typeof tmpUnaryArg;
+  const tmpClusterSSA_a /*:string*/ /*truthy*/ = typeof tmpUnaryArg;
   $(tmpClusterSSA_a, 1);
 } else {
-  const a /*:object*/ = { a: 999, b: 1000 };
+  const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
   $(a, 1);
 }
 `````

@@ -29,11 +29,11 @@ $(a, b, c);
 
 `````js filename=intro
 const tmpIfTest /*:unknown*/ = $(0);
-const b /*:object*/ = { x: 1 };
+const b /*:object*/ /*truthy*/ = { x: 1 };
 if (tmpIfTest) {
   const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
   $(tmpClusterSSA_tmpCalleeParam);
-  const a /*:object*/ = { a: 999, b: 1000 };
+  const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
   $(a, b, 3);
 } else {
   const tmpInitAssignLhsComputedObj /*:unknown*/ = $(b);

@@ -20,7 +20,7 @@ $(f({ x: undefined, a: 11, b: 12 }, 10));
 
 
 `````js filename=intro
-const tmpCalleeParam /*:array*/ = [`fail`];
+const tmpCalleeParam /*:array*/ /*truthy*/ = [`fail`];
 const tmpSSA_tmpOPAD /*:unknown*/ = $(tmpCalleeParam);
 [...tmpSSA_tmpOPAD];
 $(`ok`);

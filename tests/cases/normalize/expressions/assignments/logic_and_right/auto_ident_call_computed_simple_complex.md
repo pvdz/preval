@@ -24,14 +24,14 @@ $(a);
 const tmpCalleeParam /*:unknown*/ = $(100);
 if (tmpCalleeParam) {
   const tmpMCCP /*:unknown*/ = $(`\$`);
-  const b /*:object*/ = { $: $ };
+  const b /*:object*/ /*truthy*/ = { $: $ };
   const tmpMCF /*:unknown*/ = b[tmpMCCP];
   const tmpNestedComplexRhs /*:unknown*/ = $dotCall(tmpMCF, b, undefined, 1);
   $(tmpNestedComplexRhs);
   $(tmpNestedComplexRhs);
 } else {
   $(tmpCalleeParam);
-  const a /*:object*/ = { a: 999, b: 1000 };
+  const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
   $(a);
 }
 `````

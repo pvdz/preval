@@ -22,9 +22,9 @@ $(a, arg);
 
 `````js filename=intro
 const tmpDeleteCompProp /*:unknown*/ = $(`y`);
-const arg /*:object*/ = { y: 1 };
+const arg /*:object*/ /*truthy*/ = { y: 1 };
 const a /*:boolean*/ = delete arg[tmpDeleteCompProp];
-const tmpCalleeParam /*:array*/ = [`before `, ` after`];
+const tmpCalleeParam /*:array*/ /*truthy*/ = [`before `, ` after`];
 $(tmpCalleeParam, a);
 $(a, arg);
 `````

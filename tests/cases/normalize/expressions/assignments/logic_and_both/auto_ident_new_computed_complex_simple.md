@@ -21,13 +21,13 @@ $(a);
 
 
 `````js filename=intro
-const b /*:object*/ = { $: $ };
+const b /*:object*/ /*truthy*/ = { $: $ };
 const tmpCompObj /*:unknown*/ = $(b);
 const tmpNewCallee /*:unknown*/ = tmpCompObj.$;
 new tmpNewCallee(1);
 const tmpCompObj$1 /*:unknown*/ = $(b);
 const tmpNewCallee$1 /*:unknown*/ = tmpCompObj$1.$;
-const tmpNestedComplexRhs /*:object*/ = new tmpNewCallee$1(1);
+const tmpNestedComplexRhs /*:object*/ /*truthy*/ = new tmpNewCallee$1(1);
 $(tmpNestedComplexRhs);
 $(tmpNestedComplexRhs);
 `````

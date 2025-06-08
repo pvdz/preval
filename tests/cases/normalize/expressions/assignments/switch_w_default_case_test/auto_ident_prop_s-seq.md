@@ -46,7 +46,7 @@ if (tmpIfTest$5) {
 } else {
   $(`fail2`);
 }
-const b /*:object*/ = { c: 1 };
+const b /*:object*/ /*truthy*/ = { c: 1 };
 $(1, b);
 `````
 

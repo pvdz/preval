@@ -19,9 +19,9 @@ for ($(a).x of b) $(a.x);
 
 
 `````js filename=intro
-const b /*:object*/ = { x: 1, y: 2 };
+const b /*:object*/ /*truthy*/ = { x: 1, y: 2 };
 const tmpForOfGen /*:unknown*/ = $forOf(b);
-const a /*:object*/ = {};
+const a /*:object*/ /*truthy*/ = {};
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForOfNext /*:unknown*/ = tmpForOfGen();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;

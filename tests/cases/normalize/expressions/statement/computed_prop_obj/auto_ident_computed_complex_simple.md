@@ -22,11 +22,11 @@ $(a, b);
 
 
 `````js filename=intro
-const b /*:object*/ = { c: 1 };
+const b /*:object*/ /*truthy*/ = { c: 1 };
 const tmpCompObj$1 /*:unknown*/ = $(b);
 const tmpCompObj /*:unknown*/ = tmpCompObj$1.c;
 tmpCompObj.a;
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a, b);
 `````
 

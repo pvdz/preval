@@ -25,8 +25,8 @@ const g /*:()=>unknown*/ = function () {
   $();
   return undefined;
 };
-const method /*:regex*/ = new $regex_constructor(`foo`, ``);
-const obj /*:object*/ = { f: g };
+const method /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, ``);
+const obj /*:object*/ /*truthy*/ = { f: g };
 $dotCall(method, obj, undefined);
 `````
 

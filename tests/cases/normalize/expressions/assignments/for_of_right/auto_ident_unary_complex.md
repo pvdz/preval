@@ -29,7 +29,7 @@ $(a, x);
 
 `````js filename=intro
 const tmpUnaryArg /*:unknown*/ = $(x$1);
-const a /*:string*/ = typeof tmpUnaryArg;
+const a /*:string*/ /*truthy*/ = typeof tmpUnaryArg;
 const tmpForOfGenNext /*:unknown*/ = $forOf(a);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();

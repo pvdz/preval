@@ -17,8 +17,8 @@ $({} !== {});
 
 
 `````js filename=intro
-const tmpBinBothLhs /*:object*/ = {};
-const tmpBinBothRhs /*:object*/ = {};
+const tmpBinBothLhs /*:object*/ /*truthy*/ = {};
+const tmpBinBothRhs /*:object*/ /*truthy*/ = {};
 const tmpCalleeParam /*:boolean*/ = tmpBinBothLhs !== tmpBinBothRhs;
 $(tmpCalleeParam);
 `````

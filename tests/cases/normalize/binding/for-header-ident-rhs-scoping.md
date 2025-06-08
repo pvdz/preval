@@ -31,7 +31,7 @@ for (let x in [x]) {
 
 
 `````js filename=intro
-const tmpCalleeParam /*:array*/ = [x$1];
+const tmpCalleeParam /*:array*/ /*truthy*/ = [x$1];
 const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForInNext /*:unknown*/ = tmpForInGen();

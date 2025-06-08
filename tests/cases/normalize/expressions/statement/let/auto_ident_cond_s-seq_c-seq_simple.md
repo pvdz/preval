@@ -22,7 +22,7 @@ $(a);
 `````js filename=intro
 const tmpClusterSSA_xyz /*:unknown*/ = $(60);
 $(tmpClusterSSA_xyz);
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

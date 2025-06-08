@@ -23,7 +23,7 @@ $(a, b);
 `````js filename=intro
 const tmpNestedComplexRhs /*:unknown*/ = $(2);
 const tmpBinBothRhs /*:string*/ = $coerce(tmpNestedComplexRhs, `string`);
-const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
+const tmpCalleeParam /*:string*/ /*truthy*/ = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
 $(tmpNestedComplexRhs, tmpNestedComplexRhs);
 `````

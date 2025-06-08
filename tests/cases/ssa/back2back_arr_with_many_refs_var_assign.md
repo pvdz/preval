@@ -32,7 +32,7 @@ if ($) f();
 if ($) {
   $(undefined);
   const x /*:unknown*/ = $(2);
-  const tmpSSA_x /*:array*/ = [1, x, 2, x, 3, x, 4, x];
+  const tmpSSA_x /*:array*/ /*truthy*/ = [1, x, 2, x, 3, x, 4, x];
   $(tmpSSA_x);
   if ($) {
     $(tmpSSA_x);

@@ -49,7 +49,7 @@ let f /*:(unknown)=>unknown*/ = function ($$0) {
   return tmpReturnArg;
 };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const arr /*:array*/ = [];
+  const arr /*:array*/ /*truthy*/ = [];
   const a /*:unknown*/ = f(arr);
   const b /*:unknown*/ = f(arr);
   $(a, b);

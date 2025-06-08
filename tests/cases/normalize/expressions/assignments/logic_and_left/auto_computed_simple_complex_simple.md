@@ -24,7 +24,7 @@ const tmpObjLitVal /*:unknown*/ = $(1);
 const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
 $(tmpClusterSSA_tmpCalleeParam);
 const tmpAssignComMemLhsProp /*:unknown*/ = $(`b`);
-const a /*:object*/ = { b: tmpObjLitVal };
+const a /*:object*/ /*truthy*/ = { b: tmpObjLitVal };
 a[tmpAssignComMemLhsProp] = 2;
 $(a);
 `````

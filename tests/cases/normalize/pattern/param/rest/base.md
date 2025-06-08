@@ -22,11 +22,11 @@ $(r);
 
 `````js filename=intro
 const f /*:(array)=>array*/ = function (...$$0 /*:array*/) {
-  const x /*:array*/ = $$0;
+  const x /*:array*/ /*truthy*/ = $$0;
   debugger;
   return x;
 };
-const r /*:array*/ = f(1, 2, 3);
+const r /*:array*/ /*truthy*/ = f(1, 2, 3);
 $(r);
 `````
 

@@ -25,7 +25,7 @@ $(a);
 
 `````js filename=intro
 const d /*:unknown*/ = $();
-const a /*:array*/ = [0];
+const a /*:array*/ /*truthy*/ = [0];
 a[NaN] = d;
 $(a);
 `````

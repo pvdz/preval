@@ -24,10 +24,10 @@ $('pr_resolved_options_type', rules.resolvedOptions().type);
 
 `````js filename=intro
 const locale /*:unknown*/ = $(`pr_locale`, `ar-EG`);
-const tmpCalleeParam /*:object*/ = { type: `ordinal` };
+const tmpCalleeParam /*:object*/ /*truthy*/ = { type: `ordinal` };
 const options /*:unknown*/ = $(`pr_options`, tmpCalleeParam);
 const tmpNewCallee /*:unknown*/ = Intl.PluralRules;
-const rules /*:object*/ = new tmpNewCallee(locale, options);
+const rules /*:object*/ /*truthy*/ = new tmpNewCallee(locale, options);
 const number /*:unknown*/ = $(`pr_number_val`, 3);
 const tmpMCF /*:unknown*/ = rules.select;
 const tmpCalleeParam$1 /*:unknown*/ = $dotCall(tmpMCF, rules, `select`, number);

@@ -23,7 +23,7 @@ $(a);
 `````js filename=intro
 const tmpCompObj /*:unknown*/ = $(30);
 const tmpBinBothLhs /*:unknown*/ = tmpCompObj.y;
-const tmpObjLitVal /*:object*/ = { y: 10 };
+const tmpObjLitVal /*:object*/ /*truthy*/ = { y: 10 };
 const tmpCompObj$1 /*:unknown*/ = $(tmpObjLitVal);
 const tmpBinBothRhs /*:unknown*/ = tmpCompObj$1.y;
 const a /*:boolean*/ = tmpBinBothLhs === tmpBinBothRhs;

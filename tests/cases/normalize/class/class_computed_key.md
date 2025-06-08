@@ -23,14 +23,14 @@ $(new x().f());
 
 `````js filename=intro
 const tmpClassComputedKey /*:unknown*/ = $(`f`);
-const x /*:class*/ = class {
+const x /*:class*/ /*truthy*/ = class {
   [tmpClassComputedKey]() {
     debugger;
     const tmpReturnArg /*:unknown*/ = $(100);
     return tmpReturnArg;
   }
 };
-const tmpMCOO /*:object*/ = new x();
+const tmpMCOO /*:object*/ /*truthy*/ = new x();
 const tmpMCF /*:unknown*/ = tmpMCOO.f;
 const tmpCalleeParam /*:unknown*/ = $dotCall(tmpMCF, tmpMCOO, `f`);
 $(tmpCalleeParam);

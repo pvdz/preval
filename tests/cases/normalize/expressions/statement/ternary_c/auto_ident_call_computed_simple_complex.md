@@ -22,13 +22,13 @@ $(a);
 
 `````js filename=intro
 const tmpIfTest /*:unknown*/ = $(0);
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   $(100);
   $(a);
 } else {
   const tmpMCCP /*:unknown*/ = $(`\$`);
-  const b /*:object*/ = { $: $ };
+  const b /*:object*/ /*truthy*/ = { $: $ };
   const tmpMCF /*:unknown*/ = b[tmpMCCP];
   $dotCall(tmpMCF, b, undefined, 1);
   $(a);

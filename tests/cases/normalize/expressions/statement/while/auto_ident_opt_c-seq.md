@@ -22,7 +22,7 @@ $(a);
 
 `````js filename=intro
 let tmpIfTest /*:unknown*/ /*ternaryConst*/ = undefined;
-const b /*:object*/ = { x: 1 };
+const b /*:object*/ /*truthy*/ = { x: 1 };
 const tmpChainRootProp /*:unknown*/ = $(b);
 const tmpIfTest$1 /*:boolean*/ = tmpChainRootProp == null;
 if (tmpIfTest$1) {
@@ -46,7 +46,7 @@ if (tmpIfTest) {
   }
 } else {
 }
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

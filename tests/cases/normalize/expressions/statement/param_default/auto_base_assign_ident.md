@@ -24,7 +24,7 @@ $(a, b);
 `````js filename=intro
 const tmpSSA_b /*:unknown*/ = $(2);
 $(undefined);
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a, tmpSSA_b);
 `````
 

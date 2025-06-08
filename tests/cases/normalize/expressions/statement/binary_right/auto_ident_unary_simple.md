@@ -23,7 +23,7 @@ $(a, x);
 `````js filename=intro
 const tmpBinBothLhs /*:unknown*/ = $(100);
 $coerce(tmpBinBothLhs, `plustr`);
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a, 1);
 `````
 

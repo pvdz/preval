@@ -61,7 +61,7 @@ if ($) {
 if ($) {
   let THISVAR /*:unknown*/ = $(5);
   $(THISVAR);
-  const tmpCalleeParam /*:object*/ = {
+  const tmpCalleeParam /*:object*/ /*truthy*/ = {
     toString() {
       debugger;
       $(`tostring`);

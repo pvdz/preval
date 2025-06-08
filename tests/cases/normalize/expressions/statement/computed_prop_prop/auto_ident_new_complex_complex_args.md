@@ -25,9 +25,9 @@ $(a);
 const tmpNewCallee /*:unknown*/ = $($);
 const tmpCalleeParam$1 /*:unknown*/ = $(1);
 const tmpCalleeParam$3 /*:unknown*/ = $(2);
-const tmpCalleeParam /*:object*/ = new tmpNewCallee(tmpCalleeParam$1, tmpCalleeParam$3);
+const tmpCalleeParam /*:object*/ /*truthy*/ = new tmpNewCallee(tmpCalleeParam$1, tmpCalleeParam$3);
 $coerce(tmpCalleeParam, `string`);
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

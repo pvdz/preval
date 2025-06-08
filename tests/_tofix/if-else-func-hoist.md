@@ -62,7 +62,7 @@ let closure_cond /*:unknown*/ = false;
 const repeat /*:(unknown)=>undefined*/ = function ($$0) {
   const arg /*:unknown*/ = $$0;
   debugger;
-  let inline_me /*:function*/ /*ternaryConst*/ = undefined;
+  let inline_me /*:function*/ /*ternaryConst*/ /*truthy*/ = undefined;
   if (closure_cond) {
     inline_me = function () {
       debugger;

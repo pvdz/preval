@@ -47,7 +47,7 @@ if (tmpIfTest) {
   $(`func_assigned_to_ref`);
 } else {
 }
-const tmpBinLhs /*:string*/ = typeof f_ref_outer;
+const tmpBinLhs /*:string*/ /*truthy*/ = typeof f_ref_outer;
 const tmpIfTest$1 /*:boolean*/ = tmpBinLhs === `function`;
 if (tmpIfTest$1) {
   $(`calling_f_ref_outer`);

@@ -25,7 +25,7 @@ $(a);
 
 `````js filename=intro
 $(1);
-const tmpObjLitVal$1 /*:object*/ = { e: $ };
+const tmpObjLitVal$1 /*:object*/ /*truthy*/ = { e: $ };
 const tmpChainElementCall /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
 $(tmpChainElementCall);
 `````

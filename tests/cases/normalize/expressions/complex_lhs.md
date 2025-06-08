@@ -17,7 +17,7 @@ $({}).foo = 10;
 
 
 `````js filename=intro
-const tmpCalleeParam /*:object*/ = {};
+const tmpCalleeParam /*:object*/ /*truthy*/ = {};
 const tmpAssignMemLhsObj /*:unknown*/ = $(tmpCalleeParam);
 tmpAssignMemLhsObj.foo = 10;
 `````

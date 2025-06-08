@@ -19,14 +19,14 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
+const tmpCalleeParam /*:object*/ /*truthy*/ = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam);
 const tmpClusterSSA_a /*:unknown*/ = tmpNestedAssignObjPatternRhs.a;
 if (tmpNestedAssignObjPatternRhs) {
   let a /*:unknown*/ = 999;
   while ($LOOP_UNROLL_10) {
     $(100);
-    const tmpCalleeParam$1 /*:object*/ = { a: 1, b: 2 };
+    const tmpCalleeParam$1 /*:object*/ /*truthy*/ = { a: 1, b: 2 };
     const tmpNestedAssignObjPatternRhs$1 /*:unknown*/ = $(tmpCalleeParam$1);
     a = tmpNestedAssignObjPatternRhs$1.a;
     if (tmpNestedAssignObjPatternRhs$1) {

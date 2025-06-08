@@ -39,11 +39,11 @@ const s /*:unknown*/ = $(`s`);
 const t /*:unknown*/ = $(`t`);
 if (t) {
   const tmpStringConcatL$2 /*:string*/ = $coerce(t, `plustr`);
-  const tmpClusterSSA_z /*:string*/ = `abcdef${tmpStringConcatL$2}`;
+  const tmpClusterSSA_z /*:string*/ /*truthy*/ = `abcdef${tmpStringConcatL$2}`;
   $(tmpClusterSSA_z);
 } else {
   const tmpStringConcatL$4 /*:string*/ = $coerce(s, `plustr`);
-  const tmpClusterSSA_z$1 /*:string*/ = `abcghi${tmpStringConcatL$4}`;
+  const tmpClusterSSA_z$1 /*:string*/ /*truthy*/ = `abcghi${tmpStringConcatL$4}`;
   $(tmpClusterSSA_z$1);
 }
 `````

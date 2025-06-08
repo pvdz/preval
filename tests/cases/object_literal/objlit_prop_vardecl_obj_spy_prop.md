@@ -31,7 +31,7 @@ f();
 
 `````js filename=intro
 const tmpObjLitVal /*:unknown*/ = $(1);
-const oops /*:object*/ = {
+const oops /*:object*/ /*truthy*/ = {
   toString() {
     debugger;
     $(`toString`);
@@ -43,7 +43,7 @@ const oops /*:object*/ = {
     return undefined;
   },
 };
-const f /*:object*/ = { [oops]: 123 };
+const f /*:object*/ /*truthy*/ = { [oops]: 123 };
 $(tmpObjLitVal);
 f();
 f();

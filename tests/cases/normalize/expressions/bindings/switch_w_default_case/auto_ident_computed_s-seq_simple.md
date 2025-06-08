@@ -28,7 +28,7 @@ switch (1) {
 
 `````js filename=intro
 const tmpAssignRhsCompProp /*:unknown*/ = $(`c`);
-const b /*:object*/ = { c: 1 };
+const b /*:object*/ /*truthy*/ = { c: 1 };
 const a /*:unknown*/ = b[tmpAssignRhsCompProp];
 $(a, b);
 $(`fail1`);

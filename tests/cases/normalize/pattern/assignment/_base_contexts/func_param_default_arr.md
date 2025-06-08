@@ -20,8 +20,8 @@ f();
 
 
 `````js filename=intro
-const tmpNestedAssignArrPatternRhs /*:array*/ = [100];
-const tmpArrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
+const tmpNestedAssignArrPatternRhs /*:array*/ /*truthy*/ = [100];
+const tmpArrPatternSplat /*:array*/ /*truthy*/ = [...tmpNestedAssignArrPatternRhs];
 x = tmpArrPatternSplat[0];
 $(tmpNestedAssignArrPatternRhs);
 `````

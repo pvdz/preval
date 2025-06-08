@@ -23,8 +23,8 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(100);
 if (tmpCalleeParam) {
-  const tmpObjLitVal /*:object*/ = { y: 1 };
-  const b /*:object*/ = { x: tmpObjLitVal };
+  const tmpObjLitVal /*:object*/ /*truthy*/ = { y: 1 };
+  const b /*:object*/ /*truthy*/ = { x: tmpObjLitVal };
   const tmpChainElementCall /*:unknown*/ = $(b);
   const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
   if (tmpIfTest) {
@@ -46,7 +46,7 @@ if (tmpCalleeParam) {
   }
 } else {
   $(tmpCalleeParam);
-  const a /*:object*/ = { a: 999, b: 1000 };
+  const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
   $(a);
 }
 `````

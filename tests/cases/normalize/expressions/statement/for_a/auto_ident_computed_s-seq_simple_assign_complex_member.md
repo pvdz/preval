@@ -22,7 +22,7 @@ $(a, b);
 
 `````js filename=intro
 const tmpAssignComMemLhsProp /*:unknown*/ = $(`c`);
-const b /*:object*/ = { c: 10, d: 20 };
+const b /*:object*/ /*truthy*/ = { c: 10, d: 20 };
 const tmpCompObj /*:unknown*/ = $(b);
 const tmpCalleeParam /*:unknown*/ = $(`d`);
 const tmpAssignComputedRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam];
@@ -38,7 +38,7 @@ if (tmpIfTest) {
   }
 } else {
 }
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a, b);
 `````
 

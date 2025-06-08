@@ -21,9 +21,9 @@ $(a, arg);
 
 
 `````js filename=intro
-const arg /*:number*/ = 1;
+const arg /*:number*/ /*truthy*/ = 1;
 export { arg as default };
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a, 1);
 `````
 

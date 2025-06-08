@@ -26,18 +26,18 @@ $(arr);
 
 `````js filename=intro
 const tmpArrElement$11 /*:unknown*/ = $(`~ operator`);
-const tmpUnaryArg /*:array*/ = [tmpArrElement$11];
+const tmpUnaryArg /*:array*/ /*truthy*/ = [tmpArrElement$11];
 const tmpArrElement /*:number*/ = ~tmpUnaryArg;
 $(`! operator`);
 const tmpArrElement$15 /*:unknown*/ = $(`- operator`);
-const tmpUnaryArg$3 /*:array*/ = [tmpArrElement$15];
+const tmpUnaryArg$3 /*:array*/ /*truthy*/ = [tmpArrElement$15];
 const tmpArrElement$3 /*:number*/ = -tmpUnaryArg$3;
 const tmpArrElement$17 /*:unknown*/ = $(`+ operator`);
-const tmpUnaryArg$5 /*:array*/ = [tmpArrElement$17];
+const tmpUnaryArg$5 /*:array*/ /*truthy*/ = [tmpArrElement$17];
 const tmpArrElement$5 /*:number*/ = +tmpUnaryArg$5;
 $(`typeof operator`);
 $(`void operator`);
-const arr /*:array*/ = [tmpArrElement, false, tmpArrElement$3, tmpArrElement$5, `object`, undefined];
+const arr /*:array*/ /*truthy*/ = [tmpArrElement, false, tmpArrElement$3, tmpArrElement$5, `object`, undefined];
 $(arr);
 `````
 

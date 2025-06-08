@@ -25,7 +25,7 @@ const g /*:()=>string*/ = function () {
   return `win`;
 };
 const alias /*:unknown*/ = $Object_prototype.g;
-const obj /*:object*/ = { f: g };
+const obj /*:object*/ /*truthy*/ = { f: g };
 $dotCall(alias, obj, `g`);
 `````
 

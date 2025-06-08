@@ -76,18 +76,18 @@ const tmpArrElement$21 /*:boolean*/ = tmpBinBothLhs$21 <= ``;
 const tmpBinBothLhs$23 /*:unknown*/ = x;
 const tmpArrElement$23 /*:boolean*/ = tmpBinBothLhs$23 >= ``;
 const tmpBinBothLhs$25 /*:unknown*/ = x;
-const tmpBinBothRhs$25 /*:array*/ = [];
+const tmpBinBothRhs$25 /*:array*/ /*truthy*/ = [];
 const tmpArrElement$25 /*:boolean*/ = tmpBinBothLhs$25 == tmpBinBothRhs$25;
 const tmpBinBothLhs$27 /*:unknown*/ = x;
-const tmpBinBothRhs$27 /*:array*/ = [];
+const tmpBinBothRhs$27 /*:array*/ /*truthy*/ = [];
 const tmpArrElement$27 /*:boolean*/ = tmpBinBothLhs$27 != tmpBinBothRhs$27;
 const tmpBinBothLhs$33 /*:unknown*/ = x;
 tmpBinBothLhs$33 ** 0;
 const tmpBinBothLhs$35 /*:unknown*/ = x;
-const tmpArrElement$35 /*:number*/ = tmpBinBothLhs$35 ^ 0;
+const tmpArrElement$35 /*:number*/ /*^0*/ = tmpBinBothLhs$35 ^ 0;
 const tmpBinBothLhs$37 /*:unknown*/ = x;
-const tmpArrElement$37 /*:number*/ = tmpBinBothLhs$37 | 0;
-const arr /*:array*/ = [
+const tmpArrElement$37 /*:number*/ /*|0*/ = tmpBinBothLhs$37 | 0;
+const arr /*:array*/ /*truthy*/ = [
   tmpArrElement,
   tmpArrElement$1,
   tmpArrElement$3,
@@ -112,11 +112,11 @@ const arr /*:array*/ = [
 $(arr);
 const tmpBinBothLhs$39 /*:unknown*/ = x;
 x;
-const tmpBinBothRhs$39 /*:array*/ = [];
-const tmpBinBothRhs$41 /*:array*/ = [];
+const tmpBinBothRhs$39 /*:array*/ /*truthy*/ = [];
+const tmpBinBothRhs$41 /*:array*/ /*truthy*/ = [];
 const tmpArrElement$39 /*:boolean*/ = tmpBinBothLhs$39 in tmpBinBothRhs$39;
 const tmpArrElement$41 /*:boolean*/ = tmpBinBothLhs$39 instanceof tmpBinBothRhs$41;
-const arr2 /*:array*/ = [tmpArrElement$39, tmpArrElement$41];
+const arr2 /*:array*/ /*truthy*/ = [tmpArrElement$39, tmpArrElement$41];
 $(arr2);
 `````
 

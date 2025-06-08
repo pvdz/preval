@@ -20,8 +20,8 @@ $(f({ x: 1, b: 2, c: 3 }, 10));
 
 
 `````js filename=intro
-const tmpSSA_tmpCalleeParam$1 /*:object*/ = { x: 1, b: 2, c: 3 };
-const tmpCalleeParam$3 /*:array*/ = [];
+const tmpSSA_tmpCalleeParam$1 /*:object*/ /*truthy*/ = { x: 1, b: 2, c: 3 };
+const tmpCalleeParam$3 /*:array*/ /*truthy*/ = [];
 const x /*:unknown*/ = $objPatternRest(tmpSSA_tmpCalleeParam$1, tmpCalleeParam$3, `x`);
 $(x);
 `````

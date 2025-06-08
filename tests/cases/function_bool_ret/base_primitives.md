@@ -28,13 +28,13 @@ $(!f(), 'three');
 
 `````js filename=intro
 const tmpUnaryArg /*:boolean*/ = $boolean_constructor($);
-const tmpCalleeParam /*:boolean*/ = !tmpUnaryArg;
+const tmpCalleeParam /*:boolean*/ /*banged*/ = !tmpUnaryArg;
 $(tmpCalleeParam, `one`);
 const tmpUnaryArg$1 /*:boolean*/ = $boolean_constructor($);
-const tmpCalleeParam$1 /*:boolean*/ = !tmpUnaryArg$1;
+const tmpCalleeParam$1 /*:boolean*/ /*banged*/ = !tmpUnaryArg$1;
 $(tmpCalleeParam$1, `two`);
 const tmpUnaryArg$3 /*:boolean*/ = $boolean_constructor($);
-const tmpCalleeParam$3 /*:boolean*/ = !tmpUnaryArg$3;
+const tmpCalleeParam$3 /*:boolean*/ /*banged*/ = !tmpUnaryArg$3;
 $(tmpCalleeParam$3, `three`);
 `````
 

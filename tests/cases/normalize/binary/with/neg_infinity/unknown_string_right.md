@@ -60,9 +60,9 @@ const tmpArrElement$21 /*:boolean*/ = $Number_NEGATIVE_INFINITY <= x;
 const tmpArrElement$23 /*:boolean*/ = $Number_NEGATIVE_INFINITY >= x;
 const tmpArrElement$25 /*:boolean*/ = $Number_NEGATIVE_INFINITY == x;
 const tmpArrElement$27 /*:boolean*/ = $Number_NEGATIVE_INFINITY != x;
-const tmpArrElement$35 /*:number*/ = 0 ^ x;
-const tmpArrElement$37 /*:number*/ = 0 | x;
-const arr /*:array*/ = [
+const tmpArrElement$35 /*:number*/ /*^0*/ = 0 ^ x;
+const tmpArrElement$37 /*:number*/ /*|0*/ = 0 | x;
+const arr /*:array*/ /*truthy*/ = [
   tmpArrElement,
   tmpArrElement$1,
   tmpArrElement$3,

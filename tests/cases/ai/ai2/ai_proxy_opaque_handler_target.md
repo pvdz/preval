@@ -34,7 +34,7 @@ $('proxy_target_prop_after_set', opaque_target[$('proxy_access_key_set')]); // C
 
 
 `````js filename=intro
-const tmpCalleeParam /*:object*/ = { id: `target` };
+const tmpCalleeParam /*:object*/ /*truthy*/ = { id: `target` };
 const opaque_target /*:unknown*/ = $(`proxy_target`, tmpCalleeParam);
 const tmpObjLitVal /*:(unused, unknown, unused)=>unknown*/ = function ($$0, $$1, $$2) {
   const prop /*:unknown*/ = $$1;
@@ -51,9 +51,9 @@ const tmpObjLitVal$1 /*:(unused, unknown, unknown, unused)=>unknown*/ = function
   const tmpReturnArg$1 /*:unknown*/ = $(`proxy_set_return`, true);
   return tmpReturnArg$1;
 };
-const tmpCalleeParam$1 /*:object*/ = { get: tmpObjLitVal, set: tmpObjLitVal$1 };
+const tmpCalleeParam$1 /*:object*/ /*truthy*/ = { get: tmpObjLitVal, set: tmpObjLitVal$1 };
 const opaque_handler /*:unknown*/ = $(`proxy_handler`, tmpCalleeParam$1);
-const proxy /*:object*/ = new Proxy(opaque_target, opaque_handler);
+const proxy /*:object*/ /*truthy*/ = new Proxy(opaque_target, opaque_handler);
 const tmpCalleeParam$5 /*:unknown*/ = $(`proxy_access_key_get`, `someProp`);
 const tmpCalleeParam$3 /*:unknown*/ = proxy[tmpCalleeParam$5];
 $(`proxy_access_get`, tmpCalleeParam$3);

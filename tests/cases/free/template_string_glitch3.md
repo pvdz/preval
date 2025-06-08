@@ -34,7 +34,7 @@ const x /*:unknown*/ = $();
 const xs /*:string*/ = $coerce(x, `string`);
 const y /*:unknown*/ = $();
 const ys /*:string*/ = $coerce(y, `string`);
-const fxy /*:string*/ = `/${xs}/${ys}`;
+const fxy /*:string*/ /*truthy*/ = `/${xs}/${ys}`;
 $(fxy);
 `````
 

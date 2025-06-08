@@ -19,7 +19,7 @@ $(a)[b()](1);
 
 
 `````js filename=intro
-const a /*:object*/ = { b: $ };
+const a /*:object*/ /*truthy*/ = { b: $ };
 const tmpMCCO /*:unknown*/ = $(a);
 const tmpClusterSSA_tmpMCCP /*:unknown*/ = $(`b`);
 const tmpMCF /*:unknown*/ = tmpMCCO[tmpClusterSSA_tmpMCCP];

@@ -22,13 +22,13 @@ $(a);
 
 `````js filename=intro
 const tmpMCCP /*:unknown*/ = $(`\$`);
-const b /*:object*/ = { $: $ };
+const b /*:object*/ /*truthy*/ = { $: $ };
 const tmpMCF /*:unknown*/ = b[tmpMCCP];
 const tmpCalleeParam$1 /*:unknown*/ = $dotCall(tmpMCF, b, undefined, 1);
 const tmpBinBothRhs /*:string*/ = $coerce(tmpCalleeParam$1, `string`);
-const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
+const tmpCalleeParam /*:string*/ /*truthy*/ = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

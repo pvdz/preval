@@ -35,7 +35,7 @@ $(x);
 const f /*:()=>boolean*/ = function () {
   debugger;
   x = $(0);
-  const y /*:boolean*/ = !x;
+  const y /*:boolean*/ /*banged*/ = !x;
   return y;
 };
 let x /*:unknown*/ = 1;

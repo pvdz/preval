@@ -19,8 +19,8 @@ $(a);
 
 
 `````js filename=intro
-const a /*:object*/ = {};
-const tmpCalleeParam /*:object*/ = { x: a };
+const a /*:object*/ /*truthy*/ = {};
+const tmpCalleeParam /*:object*/ /*truthy*/ = { x: a };
 $(tmpCalleeParam);
 $(a);
 `````

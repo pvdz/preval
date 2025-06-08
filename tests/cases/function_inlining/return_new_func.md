@@ -29,7 +29,7 @@ const g /*:(unknown)=>unknown*/ = function ($$0) {
   const tmpReturnArg$1 /*:unknown*/ = $(a, `g`);
   return tmpReturnArg$1;
 };
-const tmpReturnArg /*:object*/ = new g(10);
+const tmpReturnArg /*:object*/ /*truthy*/ = new g(10);
 $(tmpReturnArg, `outer`);
 `````
 

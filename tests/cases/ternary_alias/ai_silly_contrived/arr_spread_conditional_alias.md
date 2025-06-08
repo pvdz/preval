@@ -36,7 +36,7 @@ if (cond) {
 } else {
   a = 42;
 }
-const arr /*:array*/ = [...a];
+const arr /*:array*/ /*truthy*/ = [...a];
 $(arr);
 $(a);
 `````

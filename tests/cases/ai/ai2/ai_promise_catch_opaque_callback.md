@@ -27,7 +27,7 @@ $('catch_attached');
 
 `````js filename=intro
 const tmpMCP /*:unknown*/ = $(`initial_rejection`);
-const p /*:promise*/ = $dotCall($Promise_reject, Promise, `reject`, tmpMCP);
+const p /*:promise*/ /*truthy*/ = $dotCall($Promise_reject, Promise, `reject`, tmpMCP);
 const onRejected /*:unknown*/ = $(`opaque_catch_callback`);
 $dotCall($promise_catch, p, `catch`, onRejected);
 $(`catch_attached`);

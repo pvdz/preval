@@ -54,7 +54,7 @@ const tmpFree$1 /*:(string)=>string*/ = function $free($$0) {
 const f /*:(string)=>string*/ = function ($$0) {
   const inputstr$1 /*:string*/ = $$0;
   debugger;
-  const regex /*:regex*/ = new $regex_constructor(`[^A-Za-z0-9\\+\\/\\=]`, `g`);
+  const regex /*:regex*/ /*truthy*/ = new $regex_constructor(`[^A-Za-z0-9\\+\\/\\=]`, `g`);
   const repl$2 /*:string*/ = $dotCall($string_replace, inputstr$1, `replace`, regex, ``);
   const len /*:number*/ = repl$2.length;
   const test /*:boolean*/ = 0 < len;

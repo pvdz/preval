@@ -63,9 +63,9 @@ const tmpArrElement$27 /*:boolean*/ = x != null;
 const tmpArrElement$29 /*:boolean*/ = x === null;
 const tmpArrElement$31 /*:boolean*/ = x !== null;
 x ** 0;
-const tmpArrElement$35 /*:number*/ = x ^ 0;
-const tmpArrElement$37 /*:number*/ = x | 0;
-const arr /*:array*/ = [
+const tmpArrElement$35 /*:number*/ /*^0*/ = x ^ 0;
+const tmpArrElement$37 /*:number*/ /*|0*/ = x | 0;
+const arr /*:array*/ /*truthy*/ = [
   tmpArrElement,
   tmpArrElement$1,
   tmpArrElement$3,

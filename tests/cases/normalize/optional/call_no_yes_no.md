@@ -27,7 +27,7 @@ $(a().b?.().c().d);
 
 
 `````js filename=intro
-const a$1 /*:object*/ = {
+const a$1 /*:object*/ /*truthy*/ = {
   a() {
     debugger;
     return a$1;

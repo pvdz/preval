@@ -23,9 +23,9 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(1);
 const tmpCalleeParam$1 /*:unknown*/ = $(2);
-const tmpArrElToSpread /*:object*/ = new $(tmpCalleeParam, tmpCalleeParam$1);
+const tmpArrElToSpread /*:object*/ /*truthy*/ = new $(tmpCalleeParam, tmpCalleeParam$1);
 [...tmpArrElToSpread];
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

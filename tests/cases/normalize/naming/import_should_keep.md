@@ -37,7 +37,7 @@ const g /*:(unknown)=>unknown*/ = function ($$0) {
   debugger;
   return x$3;
 };
-const c /*:class*/ = class {};
+const c /*:class*/ /*truthy*/ = class {};
 export { c };
 const tmpCalleeParam /*:unknown*/ = $(1);
 const x /*:unknown*/ = $(tmpCalleeParam);

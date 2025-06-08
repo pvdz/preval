@@ -23,8 +23,8 @@ const tmpFree /*:(string, string)=>boolean*/ = function $free($$0, $$1) {
   const tmpBinBothRhs$2 /*:string*/ = $$0;
   const tmpStringConcatL$1 /*:string*/ = $$1;
   debugger;
-  const tmpBinBothLhs /*:string*/ = `a${tmpStringConcatL$1}`;
-  const tmpBinBothRhs /*:string*/ = `a${tmpBinBothRhs$2}`;
+  const tmpBinBothLhs /*:string*/ /*truthy*/ = `a${tmpStringConcatL$1}`;
+  const tmpBinBothRhs /*:string*/ /*truthy*/ = `a${tmpBinBothRhs$2}`;
   const tmpRet /*:boolean*/ = tmpBinBothLhs === tmpBinBothRhs;
   return tmpRet;
 };

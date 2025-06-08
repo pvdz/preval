@@ -58,7 +58,7 @@ const f /*:(unknown)=>undefined*/ = function ($$0) {
 };
 f(500);
 const tmpCalleeParam /*:unknown*/ = $spy();
-const tmpSaooB /*:string*/ = typeof tmpCalleeParam;
+const tmpSaooB /*:string*/ /*truthy*/ = typeof tmpCalleeParam;
 const tmpSaooB$1 /*:boolean*/ = tmpSaooB === `string`;
 if (tmpSaooB$1) {
 } else {

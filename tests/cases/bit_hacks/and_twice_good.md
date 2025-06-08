@@ -21,7 +21,7 @@ $(y);
 
 `````js filename=intro
 const tmpBinLhs /*:unknown*/ = $(100);
-const x /*:number*/ = tmpBinLhs & 32;
+const x /*:number*/ /*&32*/ /*oneBitAnded*/ = tmpBinLhs & 32;
 $(x);
 $(x);
 `````

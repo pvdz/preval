@@ -22,7 +22,7 @@ $(a, b);
 
 `````js filename=intro
 $(`val`);
-const tmpThrowArg /*:object*/ = new Error(`stop`);
+const tmpThrowArg /*:object*/ /*truthy*/ = new Error(`stop`);
 throw tmpThrowArg;
 `````
 

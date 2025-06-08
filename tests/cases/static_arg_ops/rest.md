@@ -30,7 +30,7 @@ $(x);
 
 
 `````js filename=intro
-const tmpCalleeParam /*:array*/ = [1, 2];
+const tmpCalleeParam /*:array*/ /*truthy*/ = [1, 2];
 $(tmpCalleeParam);
 $(`object`);
 `````

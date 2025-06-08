@@ -25,7 +25,7 @@ let tmpOPAD /*:unknown*/ /*ternaryConst*/ = undefined;
 let tmpObjPatternCrashTest /*:boolean*/ = false;
 const tmpIfTest$1 /*:boolean*/ = tmpOPBD === undefined;
 if (tmpIfTest$1) {
-  const tmpCalleeParam$1 /*:object*/ = { x: `pass` };
+  const tmpCalleeParam$1 /*:object*/ /*truthy*/ = { x: `pass` };
   tmpOPAD = $(tmpCalleeParam$1);
   tmpObjPatternCrashTest = tmpOPAD === undefined;
 } else {

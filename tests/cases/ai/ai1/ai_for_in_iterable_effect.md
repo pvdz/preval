@@ -25,7 +25,7 @@ $('final_log', log);
 `````js filename=intro
 let log /*:string*/ = ``;
 $(`iterable_effect`);
-const obj /*:object*/ = { a: 1, b: 2 };
+const obj /*:object*/ /*truthy*/ = { a: 1, b: 2 };
 const tmpForInGen /*:unknown*/ = $forIn(obj);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForInNext /*:unknown*/ = tmpForInGen();

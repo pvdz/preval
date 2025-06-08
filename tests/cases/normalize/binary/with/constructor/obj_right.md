@@ -53,7 +53,7 @@ $(String instanceof x);
 
 
 `````js filename=intro
-const x /*:object*/ = {
+const x /*:object*/ /*truthy*/ = {
   toString() {
     debugger;
     const tmpReturnArg /*:unknown*/ = $(`toString`);
@@ -81,10 +81,10 @@ const tmpArrElement$23 /*:boolean*/ = `function String() { [native code] }` >= x
 const tmpArrElement$25 /*:boolean*/ = String == x;
 const tmpArrElement$27 /*:boolean*/ = String != x;
 x ** 0;
-const tmpArrElement$35 /*:number*/ = 0 ^ x;
-const tmpArrElement$37 /*:number*/ = 0 | x;
-const tmpArrElement$7 /*:string*/ = `function String() { [native code] }${tmpStringConcatL}`;
-const arr /*:array*/ = [
+const tmpArrElement$35 /*:number*/ /*^0*/ = 0 ^ x;
+const tmpArrElement$37 /*:number*/ /*|0*/ = 0 | x;
+const tmpArrElement$7 /*:string*/ /*truthy*/ = `function String() { [native code] }${tmpStringConcatL}`;
+const arr /*:array*/ /*truthy*/ = [
   tmpArrElement,
   NaN,
   NaN,

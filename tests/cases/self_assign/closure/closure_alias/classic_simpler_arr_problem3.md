@@ -51,7 +51,7 @@ let f /*:(unknown)=>unknown*/ = function ($$0) {
 };
 const g /*:unknown*/ = f;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const arr /*:array*/ = [];
+  const arr /*:array*/ /*truthy*/ = [];
   const a /*:unknown*/ = g(arr);
   const b /*:unknown*/ = g(arr);
   $(a, b);

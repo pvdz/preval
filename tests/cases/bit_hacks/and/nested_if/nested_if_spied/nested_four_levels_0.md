@@ -31,13 +31,13 @@ if (x & 8) {
 
 `````js filename=intro
 const x /*:unknown*/ = $spy(0);
-const tmpIfTest /*:number*/ = x & 8;
+const tmpIfTest /*:number*/ /*&8*/ /*oneBitAnded*/ = x & 8;
 if (tmpIfTest) {
-  const tmpIfTest$1 /*:number*/ = x & 2;
+  const tmpIfTest$1 /*:number*/ /*&2*/ /*oneBitAnded*/ = x & 2;
   if (tmpIfTest$1) {
-    const tmpIfTest$3 /*:number*/ = x & 32;
+    const tmpIfTest$3 /*:number*/ /*&32*/ /*oneBitAnded*/ = x & 32;
     if (tmpIfTest$3) {
-      const tmpIfTest$5 /*:number*/ = x & 16;
+      const tmpIfTest$5 /*:number*/ /*&16*/ /*oneBitAnded*/ = x & 16;
       if (tmpIfTest$5) {
         $(`it is 58`);
       } else {

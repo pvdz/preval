@@ -26,7 +26,7 @@ if ($) {
   $(20);
 } else {
 }
-const y /*:array*/ = [`a`, 1, parseInt, 3, `b`];
+const y /*:array*/ /*truthy*/ = [`a`, 1, parseInt, 3, `b`];
 $(y);
 `````
 

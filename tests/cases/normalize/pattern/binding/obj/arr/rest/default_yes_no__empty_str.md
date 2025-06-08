@@ -22,13 +22,13 @@ const tmpOPBD /*:unknown*/ = $String_prototype.x;
 let tmpOPAD /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpIfTest /*:boolean*/ = tmpOPBD === undefined;
 if (tmpIfTest) {
-  const tmpCalleeParam /*:array*/ = [`pass`];
+  const tmpCalleeParam /*:array*/ /*truthy*/ = [`pass`];
   tmpOPAD = $(tmpCalleeParam);
 } else {
   tmpOPAD = tmpOPBD;
 }
-const tmpArrPatternSplat /*:array*/ = [...tmpOPAD];
-const y /*:array*/ = $dotCall($array_slice, tmpArrPatternSplat, `slice`, 0);
+const tmpArrPatternSplat /*:array*/ /*truthy*/ = [...tmpOPAD];
+const y /*:array*/ /*truthy*/ = $dotCall($array_slice, tmpArrPatternSplat, `slice`, 0);
 $(y);
 `````
 

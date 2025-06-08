@@ -53,7 +53,7 @@ try {
   const tmpUnaryArg /*:unknown*/ = document.all;
   const tmpBinLhs /*:unknown*/ = document.all;
   const tmpCalleeParam$3 /*:boolean*/ = tmpBinLhs == null;
-  const tmpCalleeParam$1 /*:string*/ = typeof tmpUnaryArg;
+  const tmpCalleeParam$1 /*:string*/ /*truthy*/ = typeof tmpUnaryArg;
   $(`res_doc_all`, tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
 } catch (e) {
   const tmpCalleeParam$5 /*:unknown*/ = e.name;

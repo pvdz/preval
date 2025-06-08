@@ -24,7 +24,7 @@ if ($(0)) {
 
 `````js filename=intro
 const x /*:boolean*/ = $boolean_constructor($);
-const tmpCalleeParam /*:boolean*/ = !x;
+const tmpCalleeParam /*:boolean*/ /*banged*/ = !x;
 $(tmpCalleeParam);
 const tmpIfTest /*:unknown*/ = $(0);
 if (tmpIfTest) {

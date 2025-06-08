@@ -26,10 +26,10 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 
 `````js filename=intro
-const arr /*:array*/ = [1, 2, 3];
+const arr /*:array*/ /*truthy*/ = [1, 2, 3];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   try {
-    const tmpCalleeParam /*:object*/ = new arr();
+    const tmpCalleeParam /*:object*/ /*truthy*/ = new arr();
     $(tmpCalleeParam);
     $dotCall($array_reverse, arr, `reverse`);
   } catch (e) {

@@ -44,7 +44,7 @@ const matchVal /*:unknown*/ = $(`switch_match_val`, 2);
 $(`case_expr1_effect`);
 const tmpBinBothRhs /*:unknown*/ = $(`case_expr1_val`, 1);
 const tmpIfTest /*:boolean*/ = matchVal === tmpBinBothRhs;
-const effect_log /*:array*/ = [1];
+const effect_log /*:array*/ /*truthy*/ = [1];
 if (tmpIfTest) {
   $dotCall($array_push, effect_log, `push`, `branch1`);
   $(`switch_complex_case_result`, `one`);

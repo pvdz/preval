@@ -31,7 +31,7 @@ const tmpSwitchValue /*:unknown*/ = $(1);
 let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
 $(1);
 $(2);
-const arg /*:object*/ = { y: 1 };
+const arg /*:object*/ /*truthy*/ = { y: 1 };
 const tmpDeleteObj /*:unknown*/ = $(arg);
 const a /*:boolean*/ = delete tmpDeleteObj.y;
 const tmpIfTest /*:boolean*/ = a === tmpSwitchValue;

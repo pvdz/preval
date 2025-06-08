@@ -43,7 +43,7 @@ const tmpFree /*:(primitive)=>number*/ = function $free($$0) {
   const tmpRet /*:number*/ = b / 1;
   return tmpRet;
 };
-const arr /*:array*/ = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`];
+const arr /*:array*/ /*truthy*/ = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const a$1 /*:primitive*/ = arr[2];
   $(a$1);
@@ -51,7 +51,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   if (c) {
     break;
   } else {
-    const M /*:primitive*/ = $dotCall($array_shift, arr, `shift`);
+    const M /*:primitive*/ /*truthy*/ = $dotCall($array_shift, arr, `shift`);
     $dotCall($array_push, arr, `push`, M);
   }
 }

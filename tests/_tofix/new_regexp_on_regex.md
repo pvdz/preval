@@ -19,8 +19,8 @@ $(newLineRegex);
 
 
 `````js filename=intro
-const x /*:regex*/ = new $regex_constructor(`abc`, `g`);
-const newLineRegex /*:regex*/ = new $regex_constructor(x);
+const x /*:regex*/ /*truthy*/ = new $regex_constructor(`abc`, `g`);
+const newLineRegex /*:regex*/ /*truthy*/ = new $regex_constructor(x);
 $(newLineRegex);
 `````
 

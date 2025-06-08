@@ -30,13 +30,13 @@ const tmpBinBothRhs /*:unknown*/ = $(1);
 const tmpIfTest /*:boolean*/ = tmpBinBothLhs === tmpBinBothRhs;
 if (tmpIfTest) {
   const tmpObjLitVal /*:unknown*/ = $(2);
-  const tmpCalleeParam /*:object*/ = { b: tmpObjLitVal };
+  const tmpCalleeParam /*:object*/ /*truthy*/ = { b: tmpObjLitVal };
   const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam);
   const tmpClusterSSA_b /*:unknown*/ = tmpNestedAssignObjPatternRhs.b;
   $(tmpNestedAssignObjPatternRhs, tmpClusterSSA_b);
 } else {
-  const a /*:object*/ = { a: 999, b: 1000 };
-  const b /*:object*/ = {};
+  const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
+  const b /*:object*/ /*truthy*/ = {};
   $(a, b);
 }
 `````

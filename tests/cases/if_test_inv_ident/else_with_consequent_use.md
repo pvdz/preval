@@ -43,7 +43,7 @@ if (c) {
 
 `````js filename=intro
 const c /*:unknown*/ = $(true);
-const tmpBool /*:boolean*/ = !c;
+const tmpBool /*:boolean*/ /*banged*/ = !c;
 $(tmpBool);
 `````
 

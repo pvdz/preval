@@ -23,8 +23,8 @@ $('flatMap_result', result);
 `````js filename=intro
 const tmpArrElement /*:unknown*/ = $(`itemA`);
 const cb /*:unknown*/ = $(`opaque_flatMap_callback`);
-const arr /*:array*/ = [tmpArrElement];
-const result /*:array*/ = $dotCall($array_flatMap, arr, `flatMap`, cb);
+const arr /*:array*/ /*truthy*/ = [tmpArrElement];
+const result /*:array*/ /*truthy*/ = $dotCall($array_flatMap, arr, `flatMap`, cb);
 $(`flatMap_result`, result);
 `````
 

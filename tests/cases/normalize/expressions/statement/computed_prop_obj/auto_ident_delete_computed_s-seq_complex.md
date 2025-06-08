@@ -25,10 +25,10 @@ $(a, arg);
 $(1);
 $(2);
 const tmpDeleteCompProp /*:unknown*/ = $(`y`);
-const arg /*:object*/ = { y: 1 };
+const arg /*:object*/ /*truthy*/ = { y: 1 };
 const tmpCompObj /*:boolean*/ = delete arg[tmpDeleteCompProp];
 tmpCompObj.a;
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a, arg);
 `````
 

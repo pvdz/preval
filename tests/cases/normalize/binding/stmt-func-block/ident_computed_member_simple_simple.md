@@ -27,7 +27,7 @@ $(f());
 const tmpIfTest /*:unknown*/ = $(true);
 if (tmpIfTest) {
   const tmpInitAssignLhsComputedProp /*:unknown*/ = $(`x`);
-  const b /*:object*/ = { x: 2 };
+  const b /*:object*/ /*truthy*/ = { x: 2 };
   b[tmpInitAssignLhsComputedProp] = 3;
   $(3, b, 3);
   $(undefined);

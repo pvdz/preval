@@ -18,7 +18,7 @@ $([...$("foo")]);
 
 `````js filename=intro
 const tmpArrSpread /*:unknown*/ = $(`foo`);
-const tmpCalleeParam /*:array*/ = [...tmpArrSpread];
+const tmpCalleeParam /*:array*/ /*truthy*/ = [...tmpArrSpread];
 $(tmpCalleeParam);
 `````
 

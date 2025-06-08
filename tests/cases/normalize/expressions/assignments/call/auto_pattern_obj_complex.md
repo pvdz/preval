@@ -19,7 +19,7 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam$1 /*:object*/ = { a: 1, b: 2 };
+const tmpCalleeParam$1 /*:object*/ /*truthy*/ = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam$1);
 const a /*:unknown*/ = tmpNestedAssignObjPatternRhs.a;
 $(tmpNestedAssignObjPatternRhs);

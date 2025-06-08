@@ -28,7 +28,7 @@ $(_0x5576());
 
 
 `````js filename=intro
-const _0x5576 /*:array*/ = [`W4BcO8kAW5RdGa`, `AH7cVXhdHa`];
+const _0x5576 /*:array*/ /*truthy*/ = [`W4BcO8kAW5RdGa`, `AH7cVXhdHa`];
 $(_0x5576);
 $(_0x5576);
 `````

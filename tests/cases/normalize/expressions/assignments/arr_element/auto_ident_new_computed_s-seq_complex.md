@@ -22,12 +22,12 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam$1 /*:unknown*/ = $(`\$`);
-const b /*:object*/ = { $: $ };
+const b /*:object*/ /*truthy*/ = { $: $ };
 const tmpNewCallee /*:unknown*/ = b[tmpCalleeParam$1];
-const a /*:object*/ = new tmpNewCallee(1);
+const a /*:object*/ /*truthy*/ = new tmpNewCallee(1);
 const tmpCalleeParam$3 /*:unknown*/ = $(`\$`);
 const tmpNewCallee$1 /*:unknown*/ = b[tmpCalleeParam$3];
-const tmpClusterSSA_a /*:object*/ = new tmpNewCallee$1(1);
+const tmpClusterSSA_a /*:object*/ /*truthy*/ = new tmpNewCallee$1(1);
 const tmpCalleeParam /*:primitive*/ = a + tmpClusterSSA_a;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a);

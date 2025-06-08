@@ -22,11 +22,11 @@ $(a);
 
 `````js filename=intro
 const tmpMCCP /*:unknown*/ = $(`\$`);
-const b /*:object*/ = { $: $ };
+const b /*:object*/ /*truthy*/ = { $: $ };
 const tmpMCF /*:unknown*/ = b[tmpMCCP];
 const tmpObjSpreadArg /*:unknown*/ = $dotCall(tmpMCF, b, undefined, 1);
 ({ ...tmpObjSpreadArg });
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

@@ -60,10 +60,10 @@ const tmpArrElement$21 /*:boolean*/ = x <= true;
 const tmpArrElement$23 /*:boolean*/ = x >= true;
 const tmpArrElement$25 /*:boolean*/ = x == true;
 const tmpArrElement$27 /*:boolean*/ = x != true;
-const tmpArrElement$33 /*:number*/ = x & 1;
-const tmpArrElement$35 /*:number*/ = x ^ 1;
-const tmpArrElement$37 /*:number*/ = x | 1;
-const arr /*:array*/ = [
+const tmpArrElement$33 /*:number*/ /*&1*/ /*oneBitAnded*/ = x & 1;
+const tmpArrElement$35 /*:number*/ /*^1*/ = x ^ 1;
+const tmpArrElement$37 /*:number*/ /*truthy*/ /*|1*/ = x | 1;
+const arr /*:array*/ /*truthy*/ = [
   tmpArrElement,
   tmpArrElement$1,
   tmpArrElement$3,

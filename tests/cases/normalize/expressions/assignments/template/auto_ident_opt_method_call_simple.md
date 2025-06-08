@@ -21,10 +21,10 @@ $(a);
 
 
 `````js filename=intro
-const b /*:object*/ = { c: $ };
+const b /*:object*/ /*truthy*/ = { c: $ };
 const tmpClusterSSA_a /*:unknown*/ = $dotCall($, b, `c`, 1);
 const tmpStringConcatL /*:string*/ = $coerce(tmpClusterSSA_a, `string`);
-const tmpCalleeParam /*:string*/ = `before  ${tmpStringConcatL}  after`;
+const tmpCalleeParam /*:string*/ /*truthy*/ = `before  ${tmpStringConcatL}  after`;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a);
 `````

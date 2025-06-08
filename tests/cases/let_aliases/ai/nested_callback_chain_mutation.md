@@ -34,11 +34,11 @@ let x /*:unknown*/ = $(`val`);
 const a /*:unknown*/ = x;
 const tmpMCP /*:()=>undefined*/ = function () {
   debugger;
-  const tmpMCOO$1 /*:array*/ = [2];
+  const tmpMCOO$1 /*:array*/ /*truthy*/ = [2];
   $dotCall($array_forEach, tmpMCOO$1, `forEach`, tmpMCP$1);
   return undefined;
 };
-const tmpMCOO /*:array*/ = [1];
+const tmpMCOO /*:array*/ /*truthy*/ = [1];
 $dotCall($array_map, tmpMCOO, `map`, tmpMCP);
 $(a, x);
 `````

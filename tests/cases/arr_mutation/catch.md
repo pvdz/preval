@@ -23,11 +23,11 @@ $('after', blob)
 
 
 `````js filename=intro
-const blob /*:array*/ = [1, 2, 3];
+const blob /*:array*/ /*truthy*/ = [1, 2, 3];
 try {
   $(`try`);
 } catch (e) {
-  const tmpCalleeParam /*:unknown*/ = $dotCall($array_shift, blob, `shift`);
+  const tmpCalleeParam /*:unknown*/ /*truthy*/ = $dotCall($array_shift, blob, `shift`);
   $(`catch`, tmpCalleeParam);
 }
 $(`after`, blob);

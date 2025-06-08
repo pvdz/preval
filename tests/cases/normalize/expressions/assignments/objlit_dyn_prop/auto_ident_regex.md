@@ -19,8 +19,8 @@ $(a);
 
 
 `````js filename=intro
-const a /*:regex*/ = new $regex_constructor(`foo`, ``);
-const tmpCalleeParam /*:object*/ = { [a]: 10 };
+const a /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, ``);
+const tmpCalleeParam /*:object*/ /*truthy*/ = { [a]: 10 };
 $(tmpCalleeParam);
 $(a);
 `````

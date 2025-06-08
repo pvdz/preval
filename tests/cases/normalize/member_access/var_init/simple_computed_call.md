@@ -20,7 +20,7 @@ $(x);
 
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(`foo`);
-const tmpCompObj /*:object*/ = { foo: 10 };
+const tmpCompObj /*:object*/ /*truthy*/ = { foo: 10 };
 const x /*:unknown*/ = tmpCompObj[tmpCalleeParam];
 $(x);
 `````

@@ -23,8 +23,8 @@ $(a, x);
 `````js filename=intro
 const tmpUnaryArg /*:unknown*/ = $(1);
 const tmpUnaryArg$1 /*:unknown*/ = $(1);
-const a /*:string*/ = typeof tmpUnaryArg;
-const tmpClusterSSA_a /*:string*/ = typeof tmpUnaryArg$1;
+const a /*:string*/ /*truthy*/ = typeof tmpUnaryArg;
+const tmpClusterSSA_a /*:string*/ /*truthy*/ = typeof tmpUnaryArg$1;
 const tmpCalleeParam /*:string*/ = a + tmpClusterSSA_a;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a, 1);

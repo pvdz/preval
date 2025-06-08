@@ -25,7 +25,7 @@ $(a);
 const tmpCallComplexCallee /*:unknown*/ = $($);
 const tmpReturnArg /*:unknown*/ = tmpCallComplexCallee(1);
 $(tmpReturnArg);
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

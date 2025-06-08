@@ -21,13 +21,13 @@ $(a);
 
 
 `````js filename=intro
-const b /*:object*/ = { $: $ };
+const b /*:object*/ /*truthy*/ = { $: $ };
 const tmpCompObj /*:unknown*/ = $(b);
 const tmpNewCallee /*:unknown*/ = tmpCompObj.$;
-const tmpBinBothLhs /*:object*/ = new tmpNewCallee(1);
+const tmpBinBothLhs /*:object*/ /*truthy*/ = new tmpNewCallee(1);
 const tmpBinBothRhs /*:unknown*/ = $(100);
 tmpBinBothLhs + tmpBinBothRhs;
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

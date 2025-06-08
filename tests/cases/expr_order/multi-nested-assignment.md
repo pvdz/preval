@@ -27,7 +27,7 @@ $(a, b, c, d, e);
 
 
 `````js filename=intro
-const obj /*:object*/ = {
+const obj /*:object*/ /*truthy*/ = {
   get c() {
     debugger;
     $(`get`);

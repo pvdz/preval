@@ -60,7 +60,7 @@ const f_f /*:(unknown)=>undefined*/ = function ($$0) {
 };
 f_f(500);
 const tmpCalleeParam /*:unknown*/ = $spy();
-const tmpSaooB /*:string*/ = typeof tmpCalleeParam;
+const tmpSaooB /*:string*/ /*truthy*/ = typeof tmpCalleeParam;
 const tmpSaooB$2 /*:boolean*/ = tmpSaooB === `string`;
 if (tmpSaooB$2) {
 } else {

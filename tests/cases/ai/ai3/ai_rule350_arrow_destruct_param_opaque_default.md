@@ -31,7 +31,7 @@ const func /*:(unknown)=>undefined*/ = function ($$0) {
   let tmpBindingPatternObjRoot /*:unknown*/ /*ternaryConst*/ = undefined;
   const tmpIfTest /*:boolean*/ = tmpParamBare === undefined;
   if (tmpIfTest) {
-    const tmpCalleeParam /*:object*/ = {};
+    const tmpCalleeParam /*:object*/ /*truthy*/ = {};
     tmpBindingPatternObjRoot = $(`defaultSource`, tmpCalleeParam);
   } else {
     tmpBindingPatternObjRoot = tmpParamBare;
@@ -55,14 +55,14 @@ const func /*:(unknown)=>undefined*/ = function ($$0) {
     return undefined;
   }
 };
-const tmpCalleeParam$3 /*:object*/ = { a: `valA` };
+const tmpCalleeParam$3 /*:object*/ /*truthy*/ = { a: `valA` };
 const tmpCalleeParam$1 /*:unknown*/ = $(`sourceObj`, tmpCalleeParam$3);
 func(tmpCalleeParam$1);
 func();
 func(undefined);
-const tmpCalleeParam$5 /*:object*/ = {};
+const tmpCalleeParam$5 /*:object*/ /*truthy*/ = {};
 func(tmpCalleeParam$5);
-const tmpCalleeParam$7 /*:object*/ = { b: `valBOnly` };
+const tmpCalleeParam$7 /*:object*/ /*truthy*/ = { b: `valBOnly` };
 func(tmpCalleeParam$7);
 `````
 

@@ -26,7 +26,7 @@ $('result', t);
 const tmpIfTest /*:unknown*/ = $(`cond`);
 if (tmpIfTest) {
   const tmpClusterSSA_x /*:unknown*/ = $(`v`);
-  const tmpClusterSSA_t /*:string*/ = typeof tmpClusterSSA_x;
+  const tmpClusterSSA_t /*:string*/ /*truthy*/ = typeof tmpClusterSSA_x;
   $(`result`, tmpClusterSSA_t);
 } else {
   $(`result`, `string`);

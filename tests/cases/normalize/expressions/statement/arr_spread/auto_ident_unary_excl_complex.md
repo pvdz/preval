@@ -20,9 +20,9 @@ $(a);
 
 `````js filename=intro
 const tmpUnaryArg /*:unknown*/ = $(100);
-const tmpArrElToSpread /*:boolean*/ = !tmpUnaryArg;
+const tmpArrElToSpread /*:boolean*/ /*banged*/ = !tmpUnaryArg;
 [...tmpArrElToSpread];
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

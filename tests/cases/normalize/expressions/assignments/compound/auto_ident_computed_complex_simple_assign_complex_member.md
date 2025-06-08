@@ -21,13 +21,13 @@ $(a, b);
 
 
 `````js filename=intro
-const b /*:object*/ = { c: 10, d: 20 };
+const b /*:object*/ /*truthy*/ = { c: 10, d: 20 };
 const tmpInitAssignLhsComputedObj /*:unknown*/ = $(b);
 const tmpCompObj /*:unknown*/ = $(b);
 const tmpCalleeParam$1 /*:unknown*/ = $(`d`);
 const tmpInitAssignLhsComputedRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam$1];
 tmpInitAssignLhsComputedObj.c = tmpInitAssignLhsComputedRhs;
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 const tmpClusterSSA_a /*:number*/ = a * tmpInitAssignLhsComputedRhs;
 $(tmpClusterSSA_a);
 $(tmpClusterSSA_a, b);

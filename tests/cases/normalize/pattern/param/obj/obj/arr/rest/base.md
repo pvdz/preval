@@ -24,7 +24,7 @@ $(f({ x: { x: 13, y: [1, 2, 3], z: 14 }, b: 11, c: 12 }, 10));
 
 
 `````js filename=intro
-const z /*:array*/ = [1, 2, 3];
+const z /*:array*/ /*truthy*/ = [1, 2, 3];
 $(z);
 `````
 

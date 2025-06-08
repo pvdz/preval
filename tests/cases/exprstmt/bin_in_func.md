@@ -18,7 +18,7 @@ spy in Number;
 
 
 `````js filename=intro
-const spy /*:object*/ = {
+const spy /*:object*/ /*truthy*/ = {
   toString() {
     debugger;
     $(`pass`);

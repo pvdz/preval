@@ -26,7 +26,7 @@ const tmpBinBothLhs /*:unknown*/ = $(1);
 const tmpBinBothRhs /*:unknown*/ = $(1);
 const tmpIfTest /*:boolean*/ = tmpBinBothLhs === tmpBinBothRhs;
 if (tmpIfTest) {
-  const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
+  const tmpCalleeParam /*:object*/ /*truthy*/ = { a: 1, b: 2 };
   const tmpAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam);
   const tmpClusterSSA_a /*:unknown*/ = tmpAssignObjPatternRhs.a;
   $(tmpClusterSSA_a);

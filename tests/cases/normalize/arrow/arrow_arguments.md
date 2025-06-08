@@ -36,7 +36,7 @@ $(f(100));
 
 `````js filename=intro
 const f /*:()=>unknown*/ = function () {
-  const tmpPrevalAliasArgumentsAny /*:arguments*/ = arguments;
+  const tmpPrevalAliasArgumentsAny /*:arguments*/ /*truthy*/ = arguments;
   debugger;
   const tmpClusterSSA_tmpReturnArg$1 /*:unknown*/ = tmpPrevalAliasArgumentsAny[0];
   return tmpClusterSSA_tmpReturnArg$1;

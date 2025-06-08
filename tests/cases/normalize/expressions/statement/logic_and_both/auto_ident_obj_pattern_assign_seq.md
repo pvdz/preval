@@ -31,7 +31,7 @@ $(tmpObjLitVal);
 $(tmpObjLitVal$1);
 const tmpObjLitVal$3 /*:unknown*/ = $(3);
 const tmpObjLitVal$5 /*:unknown*/ = $(4);
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a, tmpObjLitVal$3, tmpObjLitVal$5);
 `````
 

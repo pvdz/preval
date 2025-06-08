@@ -25,7 +25,7 @@ Promise.reject(reason).catch(r => $('rejected', r));
 
 `````js filename=intro
 const reason /*:unknown*/ = $(`opaque_rejection_reason`);
-const tmpMCOO /*:promise*/ = $dotCall($Promise_reject, Promise, `reject`, reason);
+const tmpMCOO /*:promise*/ /*truthy*/ = $dotCall($Promise_reject, Promise, `reject`, reason);
 const tmpMCP /*:(unknown)=>unknown*/ = function ($$0) {
   const r /*:unknown*/ = $$0;
   debugger;

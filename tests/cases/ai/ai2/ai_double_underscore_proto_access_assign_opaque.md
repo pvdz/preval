@@ -35,32 +35,32 @@ $('obj3_tostring_is_undefined', typeof obj3.toString === 'undefined');
 
 `````js filename=intro
 const tmpObjLitVal /*:unknown*/ = $(`val_a_dunder`, 1);
-const tmpCalleeParam /*:object*/ = { a: tmpObjLitVal };
+const tmpCalleeParam /*:object*/ /*truthy*/ = { a: tmpObjLitVal };
 const obj1 /*:unknown*/ = $(`obj1_dunder`, tmpCalleeParam);
 const tmpObjLitVal$1 /*:unknown*/ = $(`val_b_dunder`, 2);
-const tmpCalleeParam$1 /*:object*/ = { b: tmpObjLitVal$1 };
+const tmpCalleeParam$1 /*:object*/ /*truthy*/ = { b: tmpObjLitVal$1 };
 const newProtoObj /*:unknown*/ = $(`opaque_new_proto_for_dunder`, tmpCalleeParam$1);
 obj1.__proto__ = newProtoObj;
 const tmpCalleeParam$3 /*:unknown*/ = obj1.b;
 $(`obj1_b_via_dunder_proto`, tmpCalleeParam$3);
 const tmpCalleeParam$5 /*:unknown*/ = obj1.a;
 $(`obj1_a_still_present`, tmpCalleeParam$5);
-const tmpBinLhs /*:object*/ = $Object_getPrototypeOf(obj1);
+const tmpBinLhs /*:object*/ /*truthy*/ = $Object_getPrototypeOf(obj1);
 const tmpCalleeParam$7 /*:boolean*/ = tmpBinLhs === newProtoObj;
 $(`obj1_proto_is_newProto`, tmpCalleeParam$7);
-const tmpCalleeParam$9 /*:object*/ = {};
+const tmpCalleeParam$9 /*:object*/ /*truthy*/ = {};
 const obj2 /*:unknown*/ = $(`obj2_dunder`, tmpCalleeParam$9);
 const protoOfObj2 /*:unknown*/ = obj2.__proto__;
 const tmpCalleeParam$11 /*:boolean*/ = protoOfObj2 === $Object_prototype;
 $(`obj2_dunder_proto_is_object_prototype`, tmpCalleeParam$11);
-const tmpCalleeParam$13 /*:object*/ = {};
+const tmpCalleeParam$13 /*:object*/ /*truthy*/ = {};
 const obj3 /*:unknown*/ = $(`obj3_dunder`, tmpCalleeParam$13);
 const tmpAssignMemRhs /*:unknown*/ = $(`null_for_proto`, null);
 obj3.__proto__ = tmpAssignMemRhs;
 $Object_getPrototypeOf(obj3);
 $(`obj3_proto_is_null`, false);
 const tmpUnaryArg /*:unknown*/ = obj3.toString;
-const tmpBinLhs$3 /*:string*/ = typeof tmpUnaryArg;
+const tmpBinLhs$3 /*:string*/ /*truthy*/ = typeof tmpUnaryArg;
 const tmpCalleeParam$17 /*:boolean*/ = tmpBinLhs$3 === `undefined`;
 $(`obj3_tostring_is_undefined`, tmpCalleeParam$17);
 `````

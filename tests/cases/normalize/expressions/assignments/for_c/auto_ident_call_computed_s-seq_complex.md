@@ -24,7 +24,7 @@ $(a);
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   const tmpMCCP /*:unknown*/ = $(`\$`);
-  const b /*:object*/ = { $: $ };
+  const b /*:object*/ /*truthy*/ = { $: $ };
   const tmpMCF /*:unknown*/ = b[tmpMCCP];
   let tmpClusterSSA_a /*:unknown*/ = $dotCall(tmpMCF, b, undefined, 1);
   while ($LOOP_UNROLL_10) {
@@ -39,7 +39,7 @@ if (tmpIfTest) {
   }
   $(tmpClusterSSA_a);
 } else {
-  const a /*:object*/ = { a: 999, b: 1000 };
+  const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
   $(a);
 }
 `````

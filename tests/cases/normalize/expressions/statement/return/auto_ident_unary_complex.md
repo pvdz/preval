@@ -25,9 +25,9 @@ $(a, x);
 
 `````js filename=intro
 const tmpUnaryArg /*:unknown*/ = $(1);
-const tmpReturnArg /*:string*/ = typeof tmpUnaryArg;
+const tmpReturnArg /*:string*/ /*truthy*/ = typeof tmpUnaryArg;
 $(tmpReturnArg);
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a, 1);
 `````
 

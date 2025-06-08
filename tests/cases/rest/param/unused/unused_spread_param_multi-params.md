@@ -26,7 +26,7 @@ const f /*:(unknown, unknown)=>undefined*/ = function ($$0, $$1) {
   const a /*:unknown*/ = $$0;
   const b /*:unknown*/ = $$1;
   debugger;
-  const rest /*:array*/ = [];
+  const rest /*:array*/ /*truthy*/ = [];
   $(a, b, rest);
   return undefined;
 };

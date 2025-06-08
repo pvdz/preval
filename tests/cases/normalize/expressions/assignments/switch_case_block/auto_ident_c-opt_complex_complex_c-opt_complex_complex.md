@@ -29,8 +29,8 @@ const tmpBinBothLhs /*:unknown*/ = $(1);
 const tmpBinBothRhs /*:unknown*/ = $(1);
 const tmpIfTest /*:boolean*/ = tmpBinBothLhs === tmpBinBothRhs;
 if (tmpIfTest) {
-  const tmpObjLitVal /*:object*/ = { y: 1 };
-  const b /*:object*/ = { x: tmpObjLitVal };
+  const tmpObjLitVal /*:object*/ /*truthy*/ = { y: 1 };
+  const b /*:object*/ /*truthy*/ = { x: tmpObjLitVal };
   const tmpChainElementCall /*:unknown*/ = $(b);
   const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
   if (tmpIfTest$1) {
@@ -48,7 +48,7 @@ if (tmpIfTest) {
     }
   }
 } else {
-  const a /*:object*/ = { a: 999, b: 1000 };
+  const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
   $(a);
 }
 `````

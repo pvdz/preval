@@ -24,14 +24,14 @@ $(a, b);
 `````js filename=intro
 let x /*:unknown*/ = $(`val`);
 const a /*:unknown*/ = x;
-const C /*:class*/ = class {
+const C /*:class*/ /*truthy*/ = class {
   mutate() {
     debugger;
     x = `changed`;
     return undefined;
   }
 };
-const tmpMCOO /*:object*/ = new C();
+const tmpMCOO /*:object*/ /*truthy*/ = new C();
 const tmpMCF /*:unknown*/ = tmpMCOO.mutate;
 $dotCall(tmpMCF, tmpMCOO, `mutate`);
 $(a, x);

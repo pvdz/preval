@@ -23,9 +23,9 @@ $(arr);
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(``);
 const tmpBinBothRhs /*:string*/ = $coerce(tmpCalleeParam, `string`);
-const tmpBinBothRhs$1 /*:array*/ = [];
+const tmpBinBothRhs$1 /*:array*/ /*truthy*/ = [];
 const tmpArrElement /*:boolean*/ = tmpBinBothRhs == tmpBinBothRhs$1;
-const arr /*:array*/ = [tmpArrElement];
+const arr /*:array*/ /*truthy*/ = [tmpArrElement];
 $(arr);
 `````
 

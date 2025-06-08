@@ -20,7 +20,7 @@ $(`out:`, y);
 
 `````js filename=intro
 $coerce($, `string`);
-const y /*:boolean*/ = !tmpBinBothRhs$1;
+const y /*:boolean*/ /*banged*/ = !tmpBinBothRhs$1;
 $(`out:`, y);
 `````
 

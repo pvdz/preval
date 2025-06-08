@@ -22,15 +22,15 @@ $(a, b, c, d);
 
 
 `````js filename=intro
-const b /*:object*/ = { x: 1 };
+const b /*:object*/ /*truthy*/ = { x: 1 };
 const tmpInitAssignLhsComputedObj /*:unknown*/ = $(b);
 const tmpInitAssignLhsComputedProp /*:unknown*/ = $(`x`);
-const c /*:object*/ = { y: 2 };
+const c /*:object*/ /*truthy*/ = { y: 2 };
 const tmpInitAssignLhsComputedObj$1 /*:unknown*/ = $(c);
 const tmpInitAssignLhsComputedProp$1 /*:unknown*/ = $(`y`);
 tmpInitAssignLhsComputedObj$1[tmpInitAssignLhsComputedProp$1] = 3;
 tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = 3;
-const a /*:number*/ = 3;
+const a /*:number*/ /*truthy*/ = 3;
 export { a };
 $(3, b, c, 3);
 `````

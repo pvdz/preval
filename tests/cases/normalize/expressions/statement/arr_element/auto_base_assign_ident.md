@@ -24,7 +24,7 @@ $(a, b);
 const b /*:unknown*/ = $(2);
 const tmpClusterSSA_b /*:unknown*/ = $(2);
 b + tmpClusterSSA_b;
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a, tmpClusterSSA_b);
 `````
 

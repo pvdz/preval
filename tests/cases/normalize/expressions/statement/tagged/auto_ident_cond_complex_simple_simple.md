@@ -20,8 +20,8 @@ $(a);
 
 `````js filename=intro
 const tmpIfTest /*:unknown*/ = $(1);
-const tmpCalleeParam /*:array*/ = [`before `, ` after`];
-const a /*:object*/ = { a: 999, b: 1000 };
+const tmpCalleeParam /*:array*/ /*truthy*/ = [`before `, ` after`];
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   $(tmpCalleeParam, 2);
   $(a);

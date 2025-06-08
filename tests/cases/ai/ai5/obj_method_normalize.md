@@ -24,8 +24,8 @@ $(keys);
 
 
 `````js filename=intro
-const obj /*:object*/ = { a: 1, b: 2 };
-const keys /*:array*/ = $Object_keys(obj);
+const obj /*:object*/ /*truthy*/ = { a: 1, b: 2 };
+const keys /*:array*/ /*truthy*/ = $Object_keys(obj);
 $(keys);
 `````
 

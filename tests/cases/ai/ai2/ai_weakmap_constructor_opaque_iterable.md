@@ -24,17 +24,17 @@ $('weakmap_constructed', wmap.has(k1_obj));
 
 
 `````js filename=intro
-const tmpCalleeParam /*:object*/ = {};
+const tmpCalleeParam /*:object*/ /*truthy*/ = {};
 const k1_obj /*:unknown*/ = $(`wm_k1_obj`, tmpCalleeParam);
-const tmpCalleeParam$1 /*:object*/ = { name: `k2` };
+const tmpCalleeParam$1 /*:object*/ /*truthy*/ = { name: `k2` };
 const k2_obj /*:unknown*/ = $(`wm_k2_obj`, tmpCalleeParam$1);
 const tmpArrElement$5 /*:unknown*/ = $(`wm_v1`);
 const tmpArrElement$9 /*:unknown*/ = $(`wm_v2`);
-const tmpArrElement /*:array*/ = [k1_obj, tmpArrElement$5];
-const tmpArrElement$1 /*:array*/ = [k2_obj, tmpArrElement$9];
-const tmpCalleeParam$3 /*:array*/ = [tmpArrElement, tmpArrElement$1];
+const tmpArrElement /*:array*/ /*truthy*/ = [k1_obj, tmpArrElement$5];
+const tmpArrElement$1 /*:array*/ /*truthy*/ = [k2_obj, tmpArrElement$9];
+const tmpCalleeParam$3 /*:array*/ /*truthy*/ = [tmpArrElement, tmpArrElement$1];
 const iterable /*:unknown*/ = $(`opaque_wm_iterable`, tmpCalleeParam$3);
-const wmap /*:object*/ = new WeakMap(iterable);
+const wmap /*:object*/ /*truthy*/ = new WeakMap(iterable);
 const tmpMCF /*:unknown*/ = wmap.has;
 const tmpCalleeParam$5 /*:unknown*/ = $dotCall(tmpMCF, wmap, `has`, k1_obj);
 $(`weakmap_constructed`, tmpCalleeParam$5);

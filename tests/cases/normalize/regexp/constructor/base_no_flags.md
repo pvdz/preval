@@ -17,7 +17,7 @@ $(new RegExp("foo\\(x\\)"));
 
 
 `````js filename=intro
-const tmpCalleeParam /*:regex*/ = new $regex_constructor(`foo\\(x\\)`);
+const tmpCalleeParam /*:regex*/ /*truthy*/ = new $regex_constructor(`foo\\(x\\)`);
 $(tmpCalleeParam);
 `````
 

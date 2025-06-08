@@ -18,7 +18,7 @@ $(y);
 
 
 `````js filename=intro
-const y /*:regex*/ = new $regex_constructor(`(?:)`, ``);
+const y /*:regex*/ /*truthy*/ = new $regex_constructor(`(?:)`, ``);
 $(y);
 `````
 

@@ -33,7 +33,7 @@ x.y(a.b);
 
 
 `````js filename=intro
-const x /*:object*/ = {
+const x /*:object*/ /*truthy*/ = {
   get y() {
     debugger;
     $(`y.get`);
@@ -41,7 +41,7 @@ const x /*:object*/ = {
   },
 };
 const tmpMCF /*:unknown*/ = x.y;
-const a /*:object*/ = {
+const a /*:object*/ /*truthy*/ = {
   get b() {
     debugger;
     $(`b.get`);

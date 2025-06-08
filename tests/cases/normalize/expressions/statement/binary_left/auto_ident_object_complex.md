@@ -22,9 +22,9 @@ $(a);
 const tmpObjLitVal /*:unknown*/ = $(1);
 const tmpObjLitVal$3 /*:unknown*/ = $(3);
 const tmpBinBothRhs /*:unknown*/ = $(100);
-const tmpBinBothLhs /*:object*/ = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
+const tmpBinBothLhs /*:object*/ /*truthy*/ = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
 tmpBinBothLhs + tmpBinBothRhs;
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

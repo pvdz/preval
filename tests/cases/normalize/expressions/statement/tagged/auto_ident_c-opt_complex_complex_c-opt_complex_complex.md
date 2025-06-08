@@ -21,12 +21,12 @@ $(a);
 
 
 `````js filename=intro
-const tmpObjLitVal /*:object*/ = { y: 1 };
-const b /*:object*/ = { x: tmpObjLitVal };
+const tmpObjLitVal /*:object*/ /*truthy*/ = { y: 1 };
+const b /*:object*/ /*truthy*/ = { x: tmpObjLitVal };
 const tmpChainElementCall /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
-const tmpCalleeParam /*:array*/ = [`before `, ` after`];
-const a /*:object*/ = { a: 999, b: 1000 };
+const tmpCalleeParam /*:array*/ /*truthy*/ = [`before `, ` after`];
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   $(tmpCalleeParam, undefined);
   $(a);

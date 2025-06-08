@@ -19,7 +19,7 @@ $([-100]);
 
 
 `````js filename=intro
-const tmpCalleeParam /*:array*/ = [-100];
+const tmpCalleeParam /*:array*/ /*truthy*/ = [-100];
 $(tmpCalleeParam);
 `````
 

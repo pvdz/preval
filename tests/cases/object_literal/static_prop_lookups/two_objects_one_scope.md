@@ -39,7 +39,7 @@ if (x) {
 }
 problem1.now;
 y;
-const problem2 /*:object*/ = {};
+const problem2 /*:object*/ /*truthy*/ = {};
 $(problem2);
 $(undefined);
 `````

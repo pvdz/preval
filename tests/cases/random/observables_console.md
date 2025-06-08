@@ -35,7 +35,7 @@ const f /*:()=>boolean*/ = function () {
   $dotCall($console_log, console, `log`, `hi`);
   $(`block`);
   $(`block`);
-  const y /*:boolean*/ = !x;
+  const y /*:boolean*/ /*banged*/ = !x;
   return y;
 };
 f();

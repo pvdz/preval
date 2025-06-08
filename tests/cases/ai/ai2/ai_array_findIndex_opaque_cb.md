@@ -24,7 +24,7 @@ $('findIndex_result', index);
 const tmpArrElement /*:unknown*/ = $(`x`);
 const tmpArrElement$1 /*:unknown*/ = $(`y`);
 const cb /*:unknown*/ = $(`opaque_findIndex_predicate`);
-const arr /*:array*/ = [tmpArrElement, tmpArrElement$1];
+const arr /*:array*/ /*truthy*/ = [tmpArrElement, tmpArrElement$1];
 const index /*:number*/ = $dotCall($array_findIndex, arr, `findIndex`, cb);
 $(`findIndex_result`, index);
 `````

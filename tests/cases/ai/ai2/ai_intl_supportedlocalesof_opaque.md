@@ -24,10 +24,10 @@ $('slo_coll', Intl.Collator.supportedLocalesOf(locales, options).length > 0);
 
 `````js filename=intro
 const tmpArrElement$3 /*:unknown*/ = $(`slo_opaque_locale`, `de-DE-u-co-phonebk`);
-const tmpCalleeParam /*:array*/ = [`en-GB`, `fr-CA`, tmpArrElement$3];
+const tmpCalleeParam /*:array*/ /*truthy*/ = [`en-GB`, `fr-CA`, tmpArrElement$3];
 const locales /*:unknown*/ = $(`slo_locales`, tmpCalleeParam);
 const tmpObjLitVal /*:unknown*/ = $(`slo_matcher`, `lookup`);
-const tmpCalleeParam$1 /*:object*/ = { localeMatcher: tmpObjLitVal };
+const tmpCalleeParam$1 /*:object*/ /*truthy*/ = { localeMatcher: tmpObjLitVal };
 const options /*:unknown*/ = $(`slo_options`, tmpCalleeParam$1);
 const tmpMCOO /*:unknown*/ = Intl.DateTimeFormat;
 const tmpMCF /*:unknown*/ = tmpMCOO.supportedLocalesOf;

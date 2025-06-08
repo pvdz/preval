@@ -17,7 +17,7 @@ $(encodeURIComponent({wat: true}));
 
 
 `````js filename=intro
-const tmpCalleeParam$1 /*:object*/ = { wat: true };
+const tmpCalleeParam$1 /*:object*/ /*truthy*/ = { wat: true };
 const tmpCalleeParam /*:string*/ = encodeURIComponent(tmpCalleeParam$1);
 $(tmpCalleeParam);
 `````

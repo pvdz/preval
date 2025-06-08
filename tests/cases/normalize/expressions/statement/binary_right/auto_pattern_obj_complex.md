@@ -20,7 +20,7 @@ $(a);
 
 `````js filename=intro
 const tmpBinBothLhs /*:unknown*/ = $(100);
-const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
+const tmpCalleeParam /*:object*/ /*truthy*/ = { a: 1, b: 2 };
 const tmpBinBothRhs /*:unknown*/ = $(tmpCalleeParam);
 tmpBinBothLhs + tmpBinBothRhs;
 $(999);

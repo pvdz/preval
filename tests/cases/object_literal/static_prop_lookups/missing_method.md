@@ -20,7 +20,7 @@ $(o.toString());
 
 
 `````js filename=intro
-const o /*:object*/ = {};
+const o /*:object*/ /*truthy*/ = {};
 const tmpCalleeParam /*:string*/ = $dotCall($object_toString, o, `toString`);
 $(tmpCalleeParam);
 `````

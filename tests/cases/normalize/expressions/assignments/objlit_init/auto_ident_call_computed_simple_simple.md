@@ -21,9 +21,9 @@ $(a);
 
 
 `````js filename=intro
-const b /*:object*/ = { $: $ };
+const b /*:object*/ /*truthy*/ = { $: $ };
 const a /*:unknown*/ = $dotCall($, b, `\$`, 1);
-const tmpCalleeParam /*:object*/ = { x: a };
+const tmpCalleeParam /*:object*/ /*truthy*/ = { x: a };
 $(tmpCalleeParam);
 $(a);
 `````

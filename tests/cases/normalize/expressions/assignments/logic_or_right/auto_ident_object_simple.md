@@ -22,10 +22,10 @@ $(a);
 const tmpCalleeParam /*:unknown*/ = $(100);
 if (tmpCalleeParam) {
   $(tmpCalleeParam);
-  const a /*:object*/ = { a: 999, b: 1000 };
+  const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
   $(a);
 } else {
-  const tmpNestedComplexRhs /*:object*/ = { x: 1, y: 2, z: 3 };
+  const tmpNestedComplexRhs /*:object*/ /*truthy*/ = { x: 1, y: 2, z: 3 };
   $(tmpNestedComplexRhs);
   $(tmpNestedComplexRhs);
 }

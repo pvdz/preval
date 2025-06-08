@@ -22,7 +22,7 @@ $(a);
 const tmpBinBothLhs /*:unknown*/ = $(1);
 const tmpBinBothRhs /*:unknown*/ = $(2);
 const a /*:primitive*/ = tmpBinBothLhs + tmpBinBothRhs;
-const tmpCalleeParam /*:object*/ = { ...a };
+const tmpCalleeParam /*:object*/ /*truthy*/ = { ...a };
 $(tmpCalleeParam);
 $(a);
 `````

@@ -22,9 +22,9 @@ $(a, x);
 
 `````js filename=intro
 const tmpUnaryArg /*:unknown*/ = $(1);
-const tmpAnonDefaultExport /*:string*/ = typeof tmpUnaryArg;
+const tmpAnonDefaultExport /*:string*/ /*truthy*/ = typeof tmpUnaryArg;
 export { tmpAnonDefaultExport as default };
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a, 1);
 `````
 

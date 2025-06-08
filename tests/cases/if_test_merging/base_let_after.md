@@ -52,7 +52,7 @@ const tmpIfTest$1 /*:unknown*/ = $(true);
 const tmpBool$1 /*:boolean*/ = $boolean_constructor(tmpIfTest$1);
 const tmpUnaryArg$3 /*:unknown*/ = $(tmpBool$1);
 const tmpIfTest$3 /*:unknown*/ = $(true);
-const tmpClusterSSA_x /*:boolean*/ = !tmpUnaryArg$3;
+const tmpClusterSSA_x /*:boolean*/ /*banged*/ = !tmpUnaryArg$3;
 if (tmpIfTest$3) {
   $(`true`, tmpClusterSSA_x);
 } else {

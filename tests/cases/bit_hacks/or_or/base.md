@@ -21,7 +21,7 @@ $(c);
 
 `````js filename=intro
 const a /*:unknown*/ = $(0);
-const c /*:number*/ = a | 48;
+const c /*:number*/ /*truthy*/ /*|48*/ = a | 48;
 $(c);
 `````
 

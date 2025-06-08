@@ -33,25 +33,32 @@ $(
 
 
 `````js filename=intro
-const tmpArrElement /*:array*/ = [`clearInterval`, `global.clearInterval`];
-const tmpArrElement$1 /*:array*/ = [`clearTimeout`, `global.clearTimeout`];
-const tmpArrElement$3 /*:array*/ = [`console`, `global.console`];
-const tmpArrElement$5 /*:array*/ = [`false`, `boolean`];
-const tmpArrElement$7 /*:array*/ = [`null`, `null`];
-const tmpArrElement$9 /*:array*/ = [`\$`, `\$`];
-const tmpCalleeParam$3 /*:array*/ = [tmpArrElement, tmpArrElement$1, tmpArrElement$3, tmpArrElement$5, tmpArrElement$7, tmpArrElement$9];
-const tmpMCOO$3 /*:map*/ = new $map_constructor(tmpCalleeParam$3);
-const tmpArrSpread /*:iterator*/ = $dotCall($map_keys, tmpMCOO$3, `keys`);
-const tmpMCOO$1 /*:array*/ = [...tmpArrSpread, `module`];
+const tmpArrElement /*:array*/ /*truthy*/ = [`clearInterval`, `global.clearInterval`];
+const tmpArrElement$1 /*:array*/ /*truthy*/ = [`clearTimeout`, `global.clearTimeout`];
+const tmpArrElement$3 /*:array*/ /*truthy*/ = [`console`, `global.console`];
+const tmpArrElement$5 /*:array*/ /*truthy*/ = [`false`, `boolean`];
+const tmpArrElement$7 /*:array*/ /*truthy*/ = [`null`, `null`];
+const tmpArrElement$9 /*:array*/ /*truthy*/ = [`\$`, `\$`];
+const tmpCalleeParam$3 /*:array*/ /*truthy*/ = [
+  tmpArrElement,
+  tmpArrElement$1,
+  tmpArrElement$3,
+  tmpArrElement$5,
+  tmpArrElement$7,
+  tmpArrElement$9,
+];
+const tmpMCOO$3 /*:map*/ /*truthy*/ = new $map_constructor(tmpCalleeParam$3);
+const tmpArrSpread /*:iterator*/ /*truthy*/ = $dotCall($map_keys, tmpMCOO$3, `keys`);
+const tmpMCOO$1 /*:array*/ /*truthy*/ = [...tmpArrSpread, `module`];
 const tmpMCP /*:(unknown)=>array*/ = function ($$0) {
   const k /*:unknown*/ = $$0;
   debugger;
-  const tmpReturnArg /*:array*/ = [k, k];
+  const tmpReturnArg /*:array*/ /*truthy*/ = [k, k];
   return tmpReturnArg;
 };
-const tmpCalleeParam$1 /*:array*/ = $dotCall($array_map, tmpMCOO$1, `map`, tmpMCP);
-const tmpMCOO /*:map*/ = new $map_constructor(tmpCalleeParam$1);
-const tmpCalleeParam /*:unknown*/ = $dotCall($map_get, tmpMCOO, `get`, `\$`);
+const tmpCalleeParam$1 /*:array*/ /*truthy*/ = $dotCall($array_map, tmpMCOO$1, `map`, tmpMCP);
+const tmpMCOO /*:map*/ /*truthy*/ = new $map_constructor(tmpCalleeParam$1);
+const tmpCalleeParam /*:unknown*/ /*truthy*/ = $dotCall($map_get, tmpMCOO, `get`, `\$`);
 $(tmpCalleeParam);
 `````
 

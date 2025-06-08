@@ -45,43 +45,43 @@ $(x instanceof {});
 `````js filename=intro
 const tmpBinBothRhs /*:unknown*/ = $(`ok`);
 const x /*:string*/ = $coerce(tmpBinBothRhs, `plustr`);
-const tmpBinBothRhs$1 /*:object*/ = {};
+const tmpBinBothRhs$1 /*:object*/ /*truthy*/ = {};
 const tmpArrElement /*:number*/ = x ** tmpBinBothRhs$1;
-const tmpBinBothRhs$3 /*:object*/ = {};
+const tmpBinBothRhs$3 /*:object*/ /*truthy*/ = {};
 const tmpArrElement$1 /*:number*/ = x * tmpBinBothRhs$3;
-const tmpBinBothRhs$5 /*:object*/ = {};
+const tmpBinBothRhs$5 /*:object*/ /*truthy*/ = {};
 const tmpArrElement$3 /*:number*/ = x / tmpBinBothRhs$5;
-const tmpBinBothRhs$7 /*:object*/ = {};
+const tmpBinBothRhs$7 /*:object*/ /*truthy*/ = {};
 const tmpArrElement$5 /*:number*/ = x % tmpBinBothRhs$7;
-const tmpBinBothRhs$9 /*:object*/ = {};
+const tmpBinBothRhs$9 /*:object*/ /*truthy*/ = {};
 const tmpArrElement$7 /*:string*/ = x + tmpBinBothRhs$9;
-const tmpBinBothRhs$11 /*:object*/ = {};
+const tmpBinBothRhs$11 /*:object*/ /*truthy*/ = {};
 const tmpArrElement$9 /*:number*/ = x - tmpBinBothRhs$11;
-const tmpBinBothRhs$13 /*:object*/ = {};
+const tmpBinBothRhs$13 /*:object*/ /*truthy*/ = {};
 const tmpArrElement$11 /*:number*/ = x << tmpBinBothRhs$13;
-const tmpBinBothRhs$15 /*:object*/ = {};
+const tmpBinBothRhs$15 /*:object*/ /*truthy*/ = {};
 const tmpArrElement$13 /*:number*/ = x >> tmpBinBothRhs$15;
-const tmpBinBothRhs$17 /*:object*/ = {};
+const tmpBinBothRhs$17 /*:object*/ /*truthy*/ = {};
 const tmpArrElement$15 /*:number*/ = x >>> tmpBinBothRhs$17;
-const tmpBinBothRhs$19 /*:object*/ = {};
+const tmpBinBothRhs$19 /*:object*/ /*truthy*/ = {};
 const tmpArrElement$17 /*:boolean*/ = x < tmpBinBothRhs$19;
-const tmpBinBothRhs$21 /*:object*/ = {};
+const tmpBinBothRhs$21 /*:object*/ /*truthy*/ = {};
 const tmpArrElement$19 /*:boolean*/ = x > tmpBinBothRhs$21;
-const tmpBinBothRhs$23 /*:object*/ = {};
+const tmpBinBothRhs$23 /*:object*/ /*truthy*/ = {};
 const tmpArrElement$21 /*:boolean*/ = x <= tmpBinBothRhs$23;
-const tmpBinBothRhs$25 /*:object*/ = {};
+const tmpBinBothRhs$25 /*:object*/ /*truthy*/ = {};
 const tmpArrElement$23 /*:boolean*/ = x >= tmpBinBothRhs$25;
-const tmpBinBothRhs$27 /*:object*/ = {};
+const tmpBinBothRhs$27 /*:object*/ /*truthy*/ = {};
 const tmpArrElement$25 /*:boolean*/ = x == tmpBinBothRhs$27;
-const tmpBinBothRhs$29 /*:object*/ = {};
+const tmpBinBothRhs$29 /*:object*/ /*truthy*/ = {};
 const tmpArrElement$27 /*:boolean*/ = x != tmpBinBothRhs$29;
-const tmpBinBothRhs$35 /*:object*/ = {};
+const tmpBinBothRhs$35 /*:object*/ /*truthy*/ = {};
 const tmpArrElement$33 /*:number*/ = x & tmpBinBothRhs$35;
-const tmpBinBothRhs$37 /*:object*/ = {};
+const tmpBinBothRhs$37 /*:object*/ /*truthy*/ = {};
 const tmpArrElement$35 /*:number*/ = x ^ tmpBinBothRhs$37;
-const tmpBinBothRhs$39 /*:object*/ = {};
+const tmpBinBothRhs$39 /*:object*/ /*truthy*/ = {};
 const tmpArrElement$37 /*:number*/ = x | tmpBinBothRhs$39;
-const arr /*:array*/ = [
+const arr /*:array*/ /*truthy*/ = [
   tmpArrElement,
   tmpArrElement$1,
   tmpArrElement$3,
@@ -104,10 +104,10 @@ const arr /*:array*/ = [
   tmpArrElement$37,
 ];
 $(arr);
-const tmpBinBothRhs$41 /*:object*/ = {};
+const tmpBinBothRhs$41 /*:object*/ /*truthy*/ = {};
 const tmpCalleeParam /*:boolean*/ = x in tmpBinBothRhs$41;
 $(tmpCalleeParam);
-const tmpBinBothRhs$43 /*:object*/ = {};
+const tmpBinBothRhs$43 /*:object*/ /*truthy*/ = {};
 const tmpCalleeParam$1 /*:boolean*/ = x instanceof tmpBinBothRhs$43;
 $(tmpCalleeParam$1);
 `````

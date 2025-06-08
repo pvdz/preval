@@ -23,7 +23,7 @@ $(a);
 `````js filename=intro
 $(1);
 const tmpUnaryArg /*:unknown*/ = $(100);
-const a /*:boolean*/ = !tmpUnaryArg;
+const a /*:boolean*/ /*banged*/ = !tmpUnaryArg;
 $(a);
 `````
 

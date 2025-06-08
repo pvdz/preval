@@ -20,7 +20,7 @@ $(f());
 
 
 `````js filename=intro
-const tmpReturnArg /*:object*/ = { a: 10, b: 20, c: 30 };
+const tmpReturnArg /*:object*/ /*truthy*/ = { a: 10, b: 20, c: 30 };
 $(tmpReturnArg);
 `````
 

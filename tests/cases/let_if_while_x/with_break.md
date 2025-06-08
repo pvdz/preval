@@ -39,12 +39,12 @@ $(wat);
 `````js filename=intro
 const s /*:unknown*/ = $(10);
 $(`before`);
-const wat /*:number*/ = s | 10;
+const wat /*:number*/ /*truthy*/ /*|10*/ = s | 10;
 const chk /*:unknown*/ = $(true);
 if (chk) {
   let count /*:boolean*/ = true;
   $(`inside`);
-  let tmpClusterSSA_wat /*:number*/ = wat | 10;
+  let tmpClusterSSA_wat /*:number*/ /*truthy*/ = wat | 10;
   const chk$1 /*:unknown*/ = $(true);
   if (chk$1) {
   } else {

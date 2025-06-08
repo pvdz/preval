@@ -19,7 +19,7 @@ $(obj);
 
 
 `````js filename=intro
-const obj /*:object*/ = { x: 10 };
+const obj /*:object*/ /*truthy*/ = { x: 10 };
 $(obj);
 `````
 

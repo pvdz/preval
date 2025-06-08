@@ -27,7 +27,7 @@ $(x);
 
 `````js filename=intro
 const sym /*:unknown*/ = Symbol(`key`);
-const obj /*:object*/ = { [sym]: 1 };
+const obj /*:object*/ /*truthy*/ = { [sym]: 1 };
 const x /*:unknown*/ = obj[sym];
 $(x);
 `````

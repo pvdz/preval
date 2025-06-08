@@ -33,7 +33,7 @@ const f /*:(unknown)=>boolean*/ = function ($$0) {
   const arg /*:unknown*/ = $$0;
   debugger;
   const x /*:unknown*/ = $(arg);
-  const y /*:boolean*/ = !x;
+  const y /*:boolean*/ /*banged*/ = !x;
   return y;
 };
 $(f);

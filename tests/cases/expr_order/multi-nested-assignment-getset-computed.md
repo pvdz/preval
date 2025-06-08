@@ -35,14 +35,14 @@ $$(obja, objb, objc, objd, obje);
 
 `````js filename=intro
 const tmp /*:(array)=>unknown*/ = function (...$$0 /*:array*/) {
-  const a$1 /*:array*/ = $$0;
+  const a$1 /*:array*/ /*truthy*/ = $$0;
   debugger;
-  const tmpCalleeParam /*:array*/ = [`\$:`, a$1, b, c, d, e, obja, objb, objc, objd, obje, `::`, ...a$1];
+  const tmpCalleeParam /*:array*/ /*truthy*/ = [`\$:`, a$1, b, c, d, e, obja, objb, objc, objd, obje, `::`, ...a$1];
   $(tmpCalleeParam);
   const tmpReturnArg /*:unknown*/ = a$1[0];
   return tmpReturnArg;
 };
-const obja /*:object*/ = {
+const obja /*:object*/ /*truthy*/ = {
   get a() {
     debugger;
     tmp(`a.get`);
@@ -55,7 +55,7 @@ const obja /*:object*/ = {
     return 1000;
   },
 };
-const objb /*:object*/ = {
+const objb /*:object*/ /*truthy*/ = {
   get b() {
     debugger;
     tmp(`b.get`);
@@ -70,7 +70,7 @@ const objb /*:object*/ = {
     return 2000;
   },
 };
-const objc /*:object*/ = {
+const objc /*:object*/ /*truthy*/ = {
   get c() {
     debugger;
     tmp(`c.get`);
@@ -87,7 +87,7 @@ const objc /*:object*/ = {
     return 3000;
   },
 };
-const objd /*:object*/ = {
+const objd /*:object*/ /*truthy*/ = {
   get d() {
     debugger;
     tmp(`d.get`);
@@ -106,7 +106,7 @@ const objd /*:object*/ = {
     return 4000;
   },
 };
-const obje /*:object*/ = {
+const obje /*:object*/ /*truthy*/ = {
   get e() {
     debugger;
     tmp(`e.get`);

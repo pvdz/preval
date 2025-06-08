@@ -26,10 +26,10 @@ $(a, b, c, d);
 
 `````js filename=intro
 $(100);
-const b /*:object*/ = { x: 1 };
+const b /*:object*/ /*truthy*/ = { x: 1 };
 const tmpInitAssignLhsComputedObj /*:unknown*/ = $(b);
 const tmpInitAssignLhsComputedProp /*:unknown*/ = $(`x`);
-const c /*:object*/ = { y: 2 };
+const c /*:object*/ /*truthy*/ = { y: 2 };
 const tmpInitAssignLhsComputedObj$1 /*:unknown*/ = $(c);
 const tmpInitAssignLhsComputedProp$1 /*:unknown*/ = $(`y`);
 const tmpInitAssignLhsComputedRhs$1 /*:unknown*/ = $(3);
@@ -52,7 +52,7 @@ if (tmpInitAssignLhsComputedRhs$1) {
   }
 } else {
 }
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a, b, c, 3);
 `````
 

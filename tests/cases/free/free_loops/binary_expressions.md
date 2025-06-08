@@ -33,7 +33,7 @@ $(arr);
 
 
 `````js filename=intro
-const arr /*:array*/ = [0, 1, 2, 3, 4, 15, 16, 17, 18, 19, 20];
+const arr /*:array*/ /*truthy*/ = [0, 1, 2, 3, 4, 15, 16, 17, 18, 19, 20];
 $(arr);
 `````
 

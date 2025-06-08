@@ -35,7 +35,7 @@ $(d);
 
 
 `````js filename=intro
-const objd /*:object*/ = {
+const objd /*:object*/ /*truthy*/ = {
   get foo() {
     debugger;
     return 100;

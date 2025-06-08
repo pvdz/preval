@@ -21,8 +21,8 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal /*:unknown*/ = $(1);
-const a /*:object*/ = { a: 999, b: 1000 };
-const tmpBinBothRhs /*:object*/ = { b: tmpObjLitVal };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
+const tmpBinBothRhs /*:object*/ /*truthy*/ = { b: tmpObjLitVal };
 const tmpClusterSSA_a /*:number*/ = a * tmpBinBothRhs;
 $(tmpClusterSSA_a);
 const tmpAssignComMemLhsProp /*:unknown*/ = $(`b`);

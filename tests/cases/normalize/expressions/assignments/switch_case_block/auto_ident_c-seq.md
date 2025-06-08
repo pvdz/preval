@@ -34,7 +34,7 @@ if (tmpIfTest) {
   const tmpClusterSSA_a /*:unknown*/ = $(1);
   $(tmpClusterSSA_a, 1);
 } else {
-  const a /*:object*/ = { a: 999, b: 1000 };
+  const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
   $(a, 1);
 }
 `````

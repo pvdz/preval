@@ -28,7 +28,7 @@ if (tmpCalleeParam) {
   $(tmpClusterSSA_b, tmpClusterSSA_b);
 } else {
   $(tmpCalleeParam);
-  const a /*:object*/ = { a: 999, b: 1000 };
+  const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
   $(a, 1);
 }
 `````

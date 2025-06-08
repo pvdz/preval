@@ -26,7 +26,7 @@ f();
 `````js filename=intro
 let x /*:unknown*/ = undefined;
 $(undefined);
-const tmpCalleeParam /*:object*/ = { y: 100 };
+const tmpCalleeParam /*:object*/ /*truthy*/ = { y: 100 };
 const tmpForInGenNext /*:unknown*/ = $forIn(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForInNext /*:unknown*/ = tmpForInGenNext();
@@ -35,7 +35,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     break;
   } else {
     const tmpArrAssignPatternRhs /*:unknown*/ = tmpForInNext.value;
-    const tmpArrPatternSplat /*:array*/ = [...tmpArrAssignPatternRhs];
+    const tmpArrPatternSplat /*:array*/ /*truthy*/ = [...tmpArrAssignPatternRhs];
     x = tmpArrPatternSplat[0];
     $(x, `for`);
   }

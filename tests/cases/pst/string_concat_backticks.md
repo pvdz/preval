@@ -18,7 +18,7 @@ $("this `thing`" + here + "is `quoted`");
 `````js filename=intro
 const here /*:unknown*/ = $(`here`);
 const tmpStringConcatL /*:string*/ = $coerce(here, `plustr`);
-const tmpCalleeParam /*:string*/ = `this \`thing\`${tmpStringConcatL}is \`quoted\``;
+const tmpCalleeParam /*:string*/ /*truthy*/ = `this \`thing\`${tmpStringConcatL}is \`quoted\``;
 $(tmpCalleeParam);
 `````
 

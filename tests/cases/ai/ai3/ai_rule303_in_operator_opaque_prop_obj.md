@@ -20,7 +20,7 @@ let result = $('result', P in obj);
 
 
 `````js filename=intro
-const tmpCalleeParam /*:object*/ = { a: 1 };
+const tmpCalleeParam /*:object*/ /*truthy*/ = { a: 1 };
 const obj /*:unknown*/ = $(`obj`, tmpCalleeParam);
 const P /*:unknown*/ = $(`P`, `a`);
 const tmpCalleeParam$1 /*:boolean*/ = P in obj;

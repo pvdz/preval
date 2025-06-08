@@ -18,7 +18,7 @@ $(y);
 
 
 `````js filename=intro
-const y /*:array*/ = [1, 2, 3];
+const y /*:array*/ /*truthy*/ = [1, 2, 3];
 $(y);
 `````
 

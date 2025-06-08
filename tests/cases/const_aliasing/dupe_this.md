@@ -24,7 +24,7 @@ $(f);
 
 `````js filename=intro
 const f /*:(unused)=>unknown*/ = function ($$0) {
-  const tmpPrevalAliasThis$1 /*:object*/ = this;
+  const tmpPrevalAliasThis$1 /*:object*/ /*truthy*/ = this;
   debugger;
   tmpPrevalAliasThis$1.e$;
   tmpPrevalAliasThis$1.e$;

@@ -21,7 +21,7 @@ $(a, arg);
 
 
 `````js filename=intro
-const arg /*:object*/ = { y: 1 };
+const arg /*:object*/ /*truthy*/ = { y: 1 };
 const tmpDeleteObj /*:unknown*/ = $(arg);
 const xyz /*:boolean*/ = delete tmpDeleteObj.y;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {

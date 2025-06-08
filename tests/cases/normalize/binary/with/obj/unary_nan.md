@@ -25,13 +25,13 @@ $(arr);
 
 
 `````js filename=intro
-const tmpUnaryArg /*:object*/ = {};
+const tmpUnaryArg /*:object*/ /*truthy*/ = {};
 const tmpArrElement /*:number*/ = ~tmpUnaryArg;
-const tmpUnaryArg$3 /*:object*/ = {};
+const tmpUnaryArg$3 /*:object*/ /*truthy*/ = {};
 const tmpArrElement$3 /*:number*/ = -tmpUnaryArg$3;
-const tmpUnaryArg$5 /*:object*/ = {};
+const tmpUnaryArg$5 /*:object*/ /*truthy*/ = {};
 const tmpArrElement$5 /*:number*/ = +tmpUnaryArg$5;
-const arr /*:array*/ = [tmpArrElement, false, tmpArrElement$3, tmpArrElement$5, `object`, undefined];
+const arr /*:array*/ /*truthy*/ = [tmpArrElement, false, tmpArrElement$3, tmpArrElement$5, `object`, undefined];
 $(arr);
 `````
 

@@ -21,10 +21,10 @@ $(a, b);
 
 
 `````js filename=intro
-const tmpAnonDefaultExport /*:number*/ = 2;
+const tmpAnonDefaultExport /*:number*/ /*truthy*/ = 2;
 export { tmpAnonDefaultExport as default };
-const a /*:object*/ = { a: 999, b: 1000 };
-const b /*:object*/ = { c: 2 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
+const b /*:object*/ /*truthy*/ = { c: 2 };
 $(a, b);
 `````
 

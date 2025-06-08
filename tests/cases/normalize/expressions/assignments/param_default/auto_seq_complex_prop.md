@@ -24,7 +24,7 @@ $(a);
 const tmpObjLitVal /*:unknown*/ = $(1);
 $(undefined);
 $(1);
-const tmpSSA_a /*:object*/ = { b: tmpObjLitVal };
+const tmpSSA_a /*:object*/ /*truthy*/ = { b: tmpObjLitVal };
 const tmpAssignMemLhsObj$1 /*:unknown*/ = $(tmpSSA_a);
 const tmpAssignMemRhs /*:unknown*/ = $(2);
 tmpAssignMemLhsObj$1.b = tmpAssignMemRhs;

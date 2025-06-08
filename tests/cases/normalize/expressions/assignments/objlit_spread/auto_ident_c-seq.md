@@ -24,7 +24,7 @@ $(a, x);
 $(1);
 $(2);
 const a /*:unknown*/ = $(1);
-const tmpCalleeParam /*:object*/ = { ...a };
+const tmpCalleeParam /*:object*/ /*truthy*/ = { ...a };
 $(tmpCalleeParam);
 $(a, 1);
 `````

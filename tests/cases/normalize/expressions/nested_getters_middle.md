@@ -66,7 +66,7 @@ f();
 $(`-------- start`);
 $(`-------- bound`);
 $(`-------- let 1`);
-const b /*:object*/ = {
+const b /*:object*/ /*truthy*/ = {
   get foo() {
     debugger;
     const tmpReturnArg /*:unknown*/ = $(2);

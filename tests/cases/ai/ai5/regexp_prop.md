@@ -24,8 +24,8 @@ $(x);
 
 
 `````js filename=intro
-const tmpCalleeParam /*:regex*/ = new $regex_constructor(`a`, ``);
-const tmpCompObj /*:object*/ = { [`/a/`]: 1 };
+const tmpCalleeParam /*:regex*/ /*truthy*/ = new $regex_constructor(`a`, ``);
+const tmpCompObj /*:object*/ /*truthy*/ = { [`/a/`]: 1 };
 const x /*:unknown*/ = tmpCompObj[tmpCalleeParam];
 $(x);
 `````

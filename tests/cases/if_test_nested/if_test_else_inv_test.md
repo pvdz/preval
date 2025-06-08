@@ -39,7 +39,7 @@ $(x, y);
 
 
 `````js filename=intro
-const tmpBool /*:boolean*/ = !$;
+const tmpBool /*:boolean*/ /*banged*/ = !$;
 $(tmpBool, tmpBool);
 `````
 

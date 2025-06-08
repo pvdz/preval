@@ -17,7 +17,7 @@ console.log(['console tet case']);
 
 
 `````js filename=intro
-const tmpMCP /*:array*/ = [`console tet case`];
+const tmpMCP /*:array*/ /*truthy*/ = [`console tet case`];
 $dotCall($console_log, console, `log`, tmpMCP);
 `````
 

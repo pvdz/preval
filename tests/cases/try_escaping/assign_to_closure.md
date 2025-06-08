@@ -37,9 +37,9 @@ const f /*:()=>undefined*/ = function () {
   $(x);
   return undefined;
 };
-let x /*:number*/ = 1;
+let x /*:number*/ /*truthy*/ = 1;
 $(f);
-const arr /*:array*/ = [1, 2, 3];
+const arr /*:array*/ /*truthy*/ = [1, 2, 3];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   x = 2;
   const tmpCalleeParam /*:primitive*/ = arr[0];

@@ -20,7 +20,7 @@ $(f());
 
 
 `````js filename=intro
-const tmpReturnArg /*:array*/ = [10, 20, 30];
+const tmpReturnArg /*:array*/ /*truthy*/ = [10, 20, 30];
 $(tmpReturnArg);
 `````
 

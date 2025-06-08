@@ -26,7 +26,7 @@ const tmpIfTest$1 /*:boolean*/ = $ == null;
 let tmpAnonDefaultExport /*:unknown*/ /*ternaryConst*/ = undefined;
 if (tmpIfTest$1) {
 } else {
-  const tmpObjLitVal$1 /*:object*/ = { e: $ };
+  const tmpObjLitVal$1 /*:object*/ /*truthy*/ = { e: $ };
   a = $dotCall($, tmpObjLitVal$1, `e`, 1);
   tmpAnonDefaultExport = a;
 }

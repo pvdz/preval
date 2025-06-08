@@ -35,7 +35,7 @@ $(a() === a());
 
 
 `````js filename=intro
-const arr /*:array*/ = [1, 2, 3];
+const arr /*:array*/ /*truthy*/ = [1, 2, 3];
 $(arr);
 $(arr);
 $(true);

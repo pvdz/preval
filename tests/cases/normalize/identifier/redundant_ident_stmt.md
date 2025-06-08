@@ -39,7 +39,7 @@ f(e, drop3);
 
 `````js filename=intro
 const f /*:(array)=>undefined*/ = function (...$$0 /*:array*/) {
-  const args /*:array*/ = $$0;
+  const args /*:array*/ /*truthy*/ = $$0;
   debugger;
   $(...args);
   return undefined;

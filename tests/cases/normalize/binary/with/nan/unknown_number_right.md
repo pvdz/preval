@@ -50,9 +50,9 @@ const tmpArrElement$7 /*:number*/ = NaN + x;
 const tmpArrElement$11 /*:number*/ = 0 << x;
 const tmpArrElement$13 /*:number*/ = 0 >> x;
 const tmpArrElement$15 /*:number*/ = 0 >>> x;
-const tmpArrElement$35 /*:number*/ = 0 ^ x;
-const tmpArrElement$37 /*:number*/ = 0 | x;
-const arr /*:array*/ = [
+const tmpArrElement$35 /*:number*/ /*^0*/ = 0 ^ x;
+const tmpArrElement$37 /*:number*/ /*|0*/ = 0 | x;
+const arr /*:array*/ /*truthy*/ = [
   tmpArrElement,
   NaN,
   NaN,

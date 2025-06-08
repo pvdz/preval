@@ -22,7 +22,7 @@ if (x) {
 
 
 `````js filename=intro
-const tmpCalleeParam /*:regex*/ = new $regex_constructor(`foo`, `g`);
+const tmpCalleeParam /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, `g`);
 const x /*:unknown*/ = $(tmpCalleeParam);
 if (x) {
   $(`truthy`, ...x);

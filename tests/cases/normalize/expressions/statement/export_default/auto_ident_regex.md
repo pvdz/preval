@@ -19,9 +19,9 @@ $(a);
 
 
 `````js filename=intro
-const tmpAnonDefaultExport /*:regex*/ = new $regex_constructor(`foo`, ``);
+const tmpAnonDefaultExport /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, ``);
 export { tmpAnonDefaultExport as default };
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

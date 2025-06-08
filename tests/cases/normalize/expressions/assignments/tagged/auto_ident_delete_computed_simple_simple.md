@@ -21,9 +21,9 @@ $(a, arg);
 
 
 `````js filename=intro
-const arg /*:object*/ = { y: 1 };
+const arg /*:object*/ /*truthy*/ = { y: 1 };
 const a /*:boolean*/ = delete arg.y;
-const tmpCalleeParam /*:array*/ = [`before `, ` after`];
+const tmpCalleeParam /*:array*/ /*truthy*/ = [`before `, ` after`];
 $(tmpCalleeParam, a);
 $(a, arg);
 `````

@@ -36,13 +36,13 @@ $(f.call({x: 100}));
 
 `````js filename=intro
 const f /*:()=>unknown*/ = function () {
-  const tmpPrevalAliasThis /*:object*/ = this;
+  const tmpPrevalAliasThis /*:object*/ /*truthy*/ = this;
   debugger;
   const tmpClusterSSA_tmpReturnArg$1 /*:unknown*/ = tmpPrevalAliasThis.x;
   return tmpClusterSSA_tmpReturnArg$1;
 };
-const tmpMCP /*:object*/ = { x: 100 };
-const tmpCalleeParam /*:unknown*/ = $dotCall($function_call, f, `call`, tmpMCP);
+const tmpMCP /*:object*/ /*truthy*/ = { x: 100 };
+const tmpCalleeParam /*:unknown*/ /*truthy*/ = $dotCall($function_call, f, `call`, tmpMCP);
 $(tmpCalleeParam);
 `````
 

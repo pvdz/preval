@@ -25,14 +25,14 @@ const tmpIfTest /*:unknown*/ = $(0);
 if (tmpIfTest) {
   const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
   $(tmpClusterSSA_tmpCalleeParam);
-  const a /*:object*/ = { a: 999, b: 1000 };
-  const b /*:array*/ = [];
+  const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
+  const b /*:array*/ /*truthy*/ = [];
   $(a, b);
 } else {
   const tmpArrElement /*:unknown*/ = $(2);
-  const tmpCalleeParam$1 /*:array*/ = [tmpArrElement];
+  const tmpCalleeParam$1 /*:array*/ /*truthy*/ = [tmpArrElement];
   const tmpNestedAssignArrPatternRhs /*:unknown*/ = $(tmpCalleeParam$1);
-  const tmpArrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
+  const tmpArrPatternSplat /*:array*/ /*truthy*/ = [...tmpNestedAssignArrPatternRhs];
   const tmpClusterSSA_b /*:unknown*/ = tmpArrPatternSplat[0];
   $(tmpNestedAssignArrPatternRhs);
   $(tmpNestedAssignArrPatternRhs, tmpClusterSSA_b);

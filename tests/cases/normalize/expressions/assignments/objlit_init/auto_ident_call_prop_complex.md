@@ -21,11 +21,11 @@ $(a);
 
 
 `````js filename=intro
-const b /*:object*/ = { $: $ };
+const b /*:object*/ /*truthy*/ = { $: $ };
 const tmpMCOO /*:unknown*/ = $(b);
 const tmpMCF /*:unknown*/ = tmpMCOO.$;
 const a /*:unknown*/ = $dotCall(tmpMCF, tmpMCOO, `\$`, 1);
-const tmpCalleeParam /*:object*/ = { x: a };
+const tmpCalleeParam /*:object*/ /*truthy*/ = { x: a };
 $(tmpCalleeParam);
 $(a);
 `````

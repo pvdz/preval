@@ -24,7 +24,7 @@ $('after', blob)
 
 
 `````js filename=intro
-const blob /*:object*/ = { thing: `woop` };
+const blob /*:object*/ /*truthy*/ = { thing: `woop` };
 try {
   $(`try`);
 } catch (e) {

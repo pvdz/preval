@@ -25,7 +25,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 
 `````js filename=intro
-const arr /*:array*/ = [1, 2, 3];
+const arr /*:array*/ /*truthy*/ = [1, 2, 3];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const I_AM_A_PRIM /*:primitive*/ = arr[0];
   const result /*:primitive*/ = I_AM_A_PRIM + 1;

@@ -20,7 +20,7 @@ new y(x, 8, ...((a = b.c), (d = e[f]), g).h);
 `````js filename=intro
 $Number_prototype.c;
 $Number_prototype[6];
-const tmpObjLitVal /*:array*/ = [7];
+const tmpObjLitVal /*:array*/ /*truthy*/ = [7];
 new $string_constructor(8.5, 8, ...tmpObjLitVal);
 `````
 

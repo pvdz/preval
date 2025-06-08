@@ -48,7 +48,7 @@ $(the_self_closing_func()); // This should NOT prevent the transform (!), only t
 
 
 `````js filename=intro
-const main_data_arr /*:array*/ = [`this`, `contents`, `is`, `not`, `relevant`, `here`];
+const main_data_arr /*:array*/ /*truthy*/ = [`this`, `contents`, `is`, `not`, `relevant`, `here`];
 let the_self_closing_func /*:(unknown, unknown)=>unknown*/ = function ($$0, $$1) {
   const $dlr_$$0 /*:unknown*/ = $$0;
   const $dlr_$$1 /*:unknown*/ = $$1;
@@ -71,7 +71,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   if (b) {
     break;
   } else {
-    const tmpMCPa /*:primitive*/ = $dotCall($array_shift, main_data_arr, `shift`);
+    const tmpMCPa /*:primitive*/ /*truthy*/ = $dotCall($array_shift, main_data_arr, `shift`);
     $dotCall($array_push, main_data_arr, `push`, tmpMCPa);
   }
 }

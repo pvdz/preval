@@ -24,7 +24,7 @@ f();
 `````js filename=intro
 let x /*:unknown*/ = undefined;
 $(undefined);
-const tmpCalleeParam /*:object*/ = { y: 100 };
+const tmpCalleeParam /*:object*/ /*truthy*/ = { y: 100 };
 const tmpForInGenNext /*:unknown*/ = $forIn(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForInNext /*:unknown*/ = tmpForInGenNext();

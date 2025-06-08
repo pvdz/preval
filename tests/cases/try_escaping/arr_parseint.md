@@ -61,7 +61,7 @@ while (true) {
 
 
 `````js filename=intro
-const arr /*:array*/ = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`];
+const arr /*:array*/ /*truthy*/ = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpCalleeParam /*:primitive*/ = arr[0];
   $(tmpCalleeParam);
@@ -70,7 +70,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   if (b) {
     break;
   } else {
-    const M /*:unknown*/ = $dotCall($array_shift, arr, `shift`);
+    const M /*:unknown*/ /*truthy*/ = $dotCall($array_shift, arr, `shift`);
     $dotCall($array_push, arr, `push`, M);
   }
 }

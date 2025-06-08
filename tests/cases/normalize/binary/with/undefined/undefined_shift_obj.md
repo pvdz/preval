@@ -25,7 +25,7 @@ $(arr);
 
 
 `````js filename=intro
-const x /*:object*/ = {
+const x /*:object*/ /*truthy*/ = {
   toString() {
     debugger;
     const tmpReturnArg /*:unknown*/ = $(`toString`);
@@ -39,7 +39,7 @@ const x /*:object*/ = {
 };
 const tmpArrElement /*:number*/ = 0 << x;
 const tmpArrElement$1 /*:number*/ = 0 >> x;
-const arr /*:array*/ = [tmpArrElement, tmpArrElement$1];
+const arr /*:array*/ /*truthy*/ = [tmpArrElement, tmpArrElement$1];
 $(arr);
 `````
 

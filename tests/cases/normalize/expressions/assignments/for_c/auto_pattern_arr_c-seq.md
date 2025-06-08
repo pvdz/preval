@@ -19,25 +19,25 @@ $(a);
 
 
 `````js filename=intro
-const tmpBindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
-const tmpArrPatternSplat /*:array*/ = [...tmpBindingPatternArrRoot];
+const tmpBindingPatternArrRoot /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
+const tmpArrPatternSplat /*:array*/ /*truthy*/ = [...tmpBindingPatternArrRoot];
 const a /*:unknown*/ = tmpArrPatternSplat[0];
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   $(10);
   $(20);
-  const tmpCalleeParam /*:array*/ = [1, 2];
+  const tmpCalleeParam /*:array*/ /*truthy*/ = [1, 2];
   const tmpArrAssignPatternRhs /*:unknown*/ = $(tmpCalleeParam);
-  const tmpArrPatternSplat$1 /*:array*/ = [...tmpArrAssignPatternRhs];
+  const tmpArrPatternSplat$1 /*:array*/ /*truthy*/ = [...tmpArrAssignPatternRhs];
   let tmpClusterSSA_a /*:unknown*/ = tmpArrPatternSplat$1[0];
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       $(10);
       $(20);
-      const tmpCalleeParam$1 /*:array*/ = [1, 2];
+      const tmpCalleeParam$1 /*:array*/ /*truthy*/ = [1, 2];
       const tmpArrAssignPatternRhs$1 /*:unknown*/ = $(tmpCalleeParam$1);
-      const tmpArrPatternSplat$2 /*:array*/ = [...tmpArrAssignPatternRhs$1];
+      const tmpArrPatternSplat$2 /*:array*/ /*truthy*/ = [...tmpArrAssignPatternRhs$1];
       tmpClusterSSA_a = tmpArrPatternSplat$2[0];
     } else {
       break;

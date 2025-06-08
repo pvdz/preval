@@ -31,7 +31,7 @@ $('use', obj.p);
 `````js filename=intro
 const tmpObjLitVal /*:unknown*/ = $(`v_init`);
 const L /*:unknown*/ = $(`L1`);
-const obj /*:object*/ = { p: tmpObjLitVal };
+const obj /*:object*/ /*truthy*/ = { p: tmpObjLitVal };
 if (L) {
   $(`S_loop_body`);
   const tmpAssignMemRhs /*:unknown*/ = $(`v_loop_assign`);

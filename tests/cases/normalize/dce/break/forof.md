@@ -27,7 +27,7 @@ $('after');
 `````js filename=intro
 const tmpIfTest /*:unknown*/ = $(true);
 if (tmpIfTest) {
-  const tmpCalleeParam /*:array*/ = [10, 20];
+  const tmpCalleeParam /*:array*/ /*truthy*/ = [10, 20];
   const tmpForOfGenNext /*:unknown*/ = $forOf(tmpCalleeParam);
   const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
   const tmpIfTest$1 /*:unknown*/ = tmpForOfNext.done;
@@ -38,7 +38,7 @@ if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$2 /*:unknown*/ = $(true);
     if (tmpIfTest$2) {
-      const tmpCalleeParam$1 /*:array*/ = [10, 20];
+      const tmpCalleeParam$1 /*:array*/ /*truthy*/ = [10, 20];
       const tmpForOfGenNext$1 /*:unknown*/ = $forOf(tmpCalleeParam$1);
       const tmpForOfNext$1 /*:unknown*/ = tmpForOfGenNext$1();
       const tmpIfTest$4 /*:unknown*/ = tmpForOfNext$1.done;

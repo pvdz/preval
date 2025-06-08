@@ -22,8 +22,8 @@ $(a);
 
 `````js filename=intro
 let a /*:unknown*/ /*ternaryConst*/ = undefined;
-const tmpObjLitVal /*:object*/ = { y: 1 };
-const b /*:object*/ = { x: tmpObjLitVal };
+const tmpObjLitVal /*:object*/ /*truthy*/ = { y: 1 };
+const b /*:object*/ /*truthy*/ = { x: tmpObjLitVal };
 const tmpChainElementCall /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest) {
@@ -37,7 +37,7 @@ if (tmpIfTest) {
     a = tmpChainElementObject[tmpChainRootComputed$1];
   }
 }
-const tmpCalleeParam /*:object*/ = { x: a };
+const tmpCalleeParam /*:object*/ /*truthy*/ = { x: a };
 $(tmpCalleeParam);
 $(a);
 `````

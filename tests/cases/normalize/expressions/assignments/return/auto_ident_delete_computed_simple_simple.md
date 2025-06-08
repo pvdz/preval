@@ -24,7 +24,7 @@ $(a, arg);
 
 
 `````js filename=intro
-const arg /*:object*/ = { y: 1 };
+const arg /*:object*/ /*truthy*/ = { y: 1 };
 const tmpClusterSSA_a /*:boolean*/ = delete arg.y;
 $(tmpClusterSSA_a);
 $(tmpClusterSSA_a, arg);

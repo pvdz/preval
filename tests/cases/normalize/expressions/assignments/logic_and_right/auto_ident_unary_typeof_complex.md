@@ -24,12 +24,12 @@ $(a, arg);
 const tmpCalleeParam /*:unknown*/ = $(100);
 if (tmpCalleeParam) {
   const tmpUnaryArg /*:unknown*/ = $(1);
-  const tmpNestedComplexRhs /*:string*/ = typeof tmpUnaryArg;
+  const tmpNestedComplexRhs /*:string*/ /*truthy*/ = typeof tmpUnaryArg;
   $(tmpNestedComplexRhs);
   $(tmpNestedComplexRhs, 1);
 } else {
   $(tmpCalleeParam);
-  const a /*:object*/ = { a: 999, b: 1000 };
+  const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
   $(a, 1);
 }
 `````

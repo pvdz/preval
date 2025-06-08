@@ -22,7 +22,7 @@ $(a, b);
 
 `````js filename=intro
 const tmpArrElement /*:unknown*/ = $(2);
-const tmpCalleeParam /*:array*/ = [tmpArrElement];
+const tmpCalleeParam /*:array*/ /*truthy*/ = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs /*:unknown*/ = $(tmpCalleeParam);
 [...tmpNestedAssignArrPatternRhs];
 throw tmpNestedAssignArrPatternRhs;

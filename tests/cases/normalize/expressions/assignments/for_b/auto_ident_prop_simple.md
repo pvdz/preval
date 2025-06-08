@@ -32,7 +32,7 @@ $(1);
 $(1);
 $(1);
 let a /*:unknown*/ = 1;
-const b /*:object*/ = { c: 1 };
+const b /*:object*/ /*truthy*/ = { c: 1 };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
   a = b.c;

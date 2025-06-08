@@ -23,14 +23,14 @@ $(a);
 `````js filename=intro
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
-  const b /*:object*/ = { c: $ };
+  const b /*:object*/ /*truthy*/ = { c: $ };
   const tmpClusterSSA_tmpNestedComplexRhs /*:unknown*/ = $dotCall($, b, `c`, 1);
   $(tmpClusterSSA_tmpNestedComplexRhs);
   $(tmpClusterSSA_tmpNestedComplexRhs);
 } else {
   const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(200);
   $(tmpClusterSSA_tmpCalleeParam);
-  const a /*:object*/ = { a: 999, b: 1000 };
+  const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
   $(a);
 }
 `````

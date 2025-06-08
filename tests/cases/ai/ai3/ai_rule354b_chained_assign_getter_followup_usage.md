@@ -65,7 +65,7 @@ $('check_varC_from_varA', varC);
 
 `````js filename=intro
 let side_effect_store /*:unknown*/ = $(`initial_store`);
-const objWithGetter /*:object*/ = {
+const objWithGetter /*:object*/ /*truthy*/ = {
   get data() {
     debugger;
     side_effect_store = $(`getter_invoked`);

@@ -45,7 +45,7 @@ const tmpObjLitVal /*:(unknown, unknown)=>unknown*/ = function ($$0, $$1) {
   const tmpReturnArg /*:unknown*/ = $(`method_m_return`, tmpCalleeParam$1);
   return tmpReturnArg;
 };
-const tmpCalleeParam /*:object*/ = { m: tmpObjLitVal };
+const tmpCalleeParam /*:object*/ /*truthy*/ = { m: tmpObjLitVal };
 const objWithValue /*:unknown*/ = $(`get_obj_with_method`, tmpCalleeParam);
 const objNull /*:unknown*/ = $(`get_null_obj`, null);
 const tmpIfTest /*:boolean*/ = objWithValue == null;

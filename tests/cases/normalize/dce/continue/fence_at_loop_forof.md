@@ -32,7 +32,7 @@ while (true) {
   const tmpIfTest /*:unknown*/ = $(true);
   if (tmpIfTest) {
     $(`loop`);
-    const tmpCalleeParam /*:array*/ = [1, 2];
+    const tmpCalleeParam /*:array*/ /*truthy*/ = [1, 2];
     const tmpForOfGenNext /*:unknown*/ = $forOf(tmpCalleeParam);
     while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
       const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();

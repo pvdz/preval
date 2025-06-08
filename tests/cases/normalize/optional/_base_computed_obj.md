@@ -19,7 +19,7 @@ $(f?.[x]);
 
 
 `````js filename=intro
-const f /*:object*/ = { [10]: 20 };
+const f /*:object*/ /*truthy*/ = { [10]: 20 };
 const tmpChainElementObject /*:unknown*/ = f[10];
 $(tmpChainElementObject);
 `````

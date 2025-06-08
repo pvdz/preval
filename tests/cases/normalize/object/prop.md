@@ -23,9 +23,9 @@ const program = {
 
 
 `````js filename=intro
-const fdata /*:object*/ = { name: 1 };
-const tmpElement /*:array*/ = [1, fdata];
-const tmpArg_1 /*:array*/ = [tmpElement];
+const fdata /*:object*/ /*truthy*/ = { name: 1 };
+const tmpElement /*:array*/ /*truthy*/ = [1, fdata];
+const tmpArg_1 /*:array*/ /*truthy*/ = [tmpElement];
 new $map_constructor(tmpArg_1);
 fdata.name;
 `````

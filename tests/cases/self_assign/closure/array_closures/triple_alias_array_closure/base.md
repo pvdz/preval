@@ -64,7 +64,7 @@ $(f()); // Won't be reached in the test
 
 
 `````js filename=intro
-const arr /*:array*/ = [`trash`, `fire`, `is`, `hot`];
+const arr /*:array*/ /*truthy*/ = [`trash`, `fire`, `is`, `hot`];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(`loop`);
   const str /*:primitive*/ = arr[112];
@@ -72,7 +72,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   if (tmpBinLhs$166) {
     break;
   } else {
-    const tmpMCP /*:unknown*/ = $dotCall($array_shift, arr, `shift`);
+    const tmpMCP /*:unknown*/ /*truthy*/ = $dotCall($array_shift, arr, `shift`);
     $dotCall($array_push, arr, `push`, tmpMCP);
   }
 }

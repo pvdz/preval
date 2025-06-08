@@ -31,12 +31,12 @@ $(arr1);
 `````js filename=intro
 const max /*:unknown*/ = $(10);
 const test /*:boolean*/ = 2 < max;
-const arr1 /*:array*/ = [];
+const arr1 /*:array*/ /*truthy*/ = [];
 if (test) {
   arr1[-2] = 101;
   let tmpClusterSSA_counter /*:number*/ = 1;
   let tmpClusterSSA_test /*:boolean*/ = 1 < max;
-  const arr2 /*:array*/ = [101, 102, 103, 104, 105, 106, 107, 108, 109, 1010];
+  const arr2 /*:array*/ /*truthy*/ = [101, 102, 103, 104, 105, 106, 107, 108, 109, 1010];
   while ($LOOP_UNROLL_10) {
     if (tmpClusterSSA_test) {
       const x$1 /*:number*/ = tmpClusterSSA_counter - 2;

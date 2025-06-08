@@ -22,7 +22,7 @@ $(a, b);
 
 `````js filename=intro
 const a /*:unknown*/ = $(1);
-const tmpCalleeParam /*:array*/ = [`before `, ` after`];
+const tmpCalleeParam /*:array*/ /*truthy*/ = [`before `, ` after`];
 $(tmpCalleeParam, a);
 $(a, 1);
 `````

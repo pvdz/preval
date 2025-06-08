@@ -30,7 +30,7 @@ $(x);
 
 
 `````js filename=intro
-const tmpCalleeParam /*:object*/ = { $: $ };
+const tmpCalleeParam /*:object*/ /*truthy*/ = { $: $ };
 const g /*:unknown*/ = $(tmpCalleeParam);
 const tmpCallComplexCallee /*:unknown*/ = g();
 const f /*:unknown*/ = tmpCallComplexCallee(`ok`);

@@ -38,7 +38,7 @@ const g /*:(unknown, unused, unused, unknown, unused)=>undefined*/ = function ($
   x = a + d;
   return undefined;
 };
-const tmpCalleeParam /*:array*/ = [1, 2];
+const tmpCalleeParam /*:array*/ /*truthy*/ = [1, 2];
 const arr /*:unknown*/ = $(tmpCalleeParam);
 g(10, 20, ...arr, 30, 40, 50);
 $(x);

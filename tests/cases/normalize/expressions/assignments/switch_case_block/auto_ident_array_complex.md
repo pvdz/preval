@@ -29,10 +29,10 @@ const tmpIfTest /*:boolean*/ = tmpBinBothLhs === tmpBinBothRhs;
 if (tmpIfTest) {
   const tmpArrElement /*:unknown*/ = $(1);
   const tmpArrElement$3 /*:unknown*/ = $(3);
-  const tmpClusterSSA_a /*:array*/ = [tmpArrElement, 2, tmpArrElement$3];
+  const tmpClusterSSA_a /*:array*/ /*truthy*/ = [tmpArrElement, 2, tmpArrElement$3];
   $(tmpClusterSSA_a);
 } else {
-  const a /*:object*/ = { a: 999, b: 1000 };
+  const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
   $(a);
 }
 `````

@@ -36,8 +36,8 @@ f();
 
 `````js filename=intro
 const tmpObjLitVal /*:unknown*/ = $(1);
-const o /*:object*/ = { x: tmpObjLitVal };
-const oops /*:object*/ = {
+const o /*:object*/ /*truthy*/ = { x: tmpObjLitVal };
+const oops /*:object*/ /*truthy*/ = {
   get x() {
     debugger;
     const sigh /*:unknown*/ = $(`x`);
@@ -46,7 +46,7 @@ const oops /*:object*/ = {
     return 100;
   },
 };
-const f /*:object*/ = { ...oops };
+const f /*:object*/ /*truthy*/ = { ...oops };
 $(tmpObjLitVal);
 o.x = 10;
 f();

@@ -23,7 +23,7 @@ $(a, x, y);
 
 `````js filename=intro
 const tmpIfTest /*:unknown*/ = $(1);
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   const tmpObjLitVal /*:unknown*/ = $(3);
   const tmpObjLitVal$1 /*:unknown*/ = $(4);

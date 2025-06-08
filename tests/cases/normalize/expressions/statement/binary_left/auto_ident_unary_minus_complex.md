@@ -23,7 +23,7 @@ const tmpUnaryArg /*:unknown*/ = $(100);
 -tmpUnaryArg;
 const tmpBinBothRhs /*:unknown*/ = $(100);
 tmpBinBothRhs + 0;
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

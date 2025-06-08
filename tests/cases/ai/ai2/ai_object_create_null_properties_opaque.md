@@ -31,14 +31,14 @@ $('obj_null_proto_call_fake_hasOwnProperty', obj.hasOwnProperty('prop_a'));
 
 
 `````js filename=intro
-const obj /*:object*/ = $Object_create(null);
+const obj /*:object*/ /*truthy*/ = $Object_create(null);
 const key1_name /*:unknown*/ = $(`key1_null_proto_name`, `prop_a`);
 const val1_val /*:unknown*/ = $(`val1_null_proto_val`, `value_a`);
 obj[key1_name] = val1_val;
 const tmpCalleeParam /*:unknown*/ = obj[key1_name];
 $(`obj_null_proto_get_val1`, tmpCalleeParam);
 const tmpUnaryArg /*:unknown*/ = obj.toString;
-const tmpBinLhs /*:string*/ = typeof tmpUnaryArg;
+const tmpBinLhs /*:string*/ /*truthy*/ = typeof tmpUnaryArg;
 const tmpCalleeParam$1 /*:boolean*/ = tmpBinLhs === `undefined`;
 $(`obj_null_proto_has_toString`, tmpCalleeParam$1);
 const tmpCalleeParam$3 /*:(unknown)=>unknown*/ = function ($$0) {
@@ -50,7 +50,7 @@ const tmpCalleeParam$3 /*:(unknown)=>unknown*/ = function ($$0) {
 const tmpAssignMemRhs /*:unknown*/ = $(`redefined_hasownproperty_func`, tmpCalleeParam$3);
 obj.hasOwnProperty = tmpAssignMemRhs;
 const tmpUnaryArg$1 /*:unknown*/ = obj.hasOwnProperty;
-const tmpBinLhs$1 /*:string*/ = typeof tmpUnaryArg$1;
+const tmpBinLhs$1 /*:string*/ /*truthy*/ = typeof tmpUnaryArg$1;
 const tmpCalleeParam$5 /*:boolean*/ = tmpBinLhs$1 === `function`;
 $(`obj_null_proto_hasOwnProperty_is_func`, tmpCalleeParam$5);
 const tmpMCF$1 /*:unknown*/ = obj.hasOwnProperty;

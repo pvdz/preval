@@ -20,9 +20,9 @@ $(arr.length);
 
 
 `````js filename=intro
-const tmpCalleeParam /*:array*/ = [10, 20];
+const tmpCalleeParam /*:array*/ /*truthy*/ = [10, 20];
 const tmpArrSpread /*:unknown*/ = $(tmpCalleeParam);
-const arr /*:array*/ = [1, 2, ...tmpArrSpread, 3];
+const arr /*:array*/ /*truthy*/ = [1, 2, ...tmpArrSpread, 3];
 const tmpCalleeParam$1 /*:number*/ = arr.length;
 $(tmpCalleeParam$1);
 `````

@@ -39,29 +39,29 @@ $('string_search_re_from_opaque', str_to_test.search(re_from_opaque));
 
 
 `````js filename=intro
-const re_literal /*:regex*/ = new $regex_constructor(`\\w+`, `g`);
+const re_literal /*:regex*/ /*truthy*/ = new $regex_constructor(`\\w+`, `g`);
 const re_opaque_source /*:unknown*/ = $(`re_source`, `a.b`);
 const re_opaque_flags /*:unknown*/ = $(`re_flags`, `gi`);
-const re_from_opaque /*:regex*/ = new $regex_constructor(re_opaque_source, re_opaque_flags);
+const re_from_opaque /*:regex*/ /*truthy*/ = new $regex_constructor(re_opaque_source, re_opaque_flags);
 const str_to_test /*:unknown*/ = $(`re_str`, `hello world`);
-const tmpCalleeParam /*:unknown*/ = $dotCall($regex_test, re_literal, `test`, str_to_test);
+const tmpCalleeParam /*:unknown*/ /*truthy*/ = $dotCall($regex_test, re_literal, `test`, str_to_test);
 $(`re_literal_test`, tmpCalleeParam);
-const tmpCompObj /*:unknown*/ = $dotCall($regex_exec, re_literal, `exec`, str_to_test);
+const tmpCompObj /*:unknown*/ /*truthy*/ = $dotCall($regex_exec, re_literal, `exec`, str_to_test);
 const tmpCalleeParam$1 /*:unknown*/ = tmpCompObj[0];
 $(`re_literal_exec_1`, tmpCalleeParam$1);
 const tmpCalleeParam$3 /*:unknown*/ = re_literal.lastIndex;
 $(`re_literal_lastIndex_1`, tmpCalleeParam$3);
-const tmpCompObj$1 /*:unknown*/ = $dotCall($regex_exec, re_literal, `exec`, str_to_test);
+const tmpCompObj$1 /*:unknown*/ /*truthy*/ = $dotCall($regex_exec, re_literal, `exec`, str_to_test);
 const tmpCalleeParam$5 /*:unknown*/ = tmpCompObj$1[0];
 $(`re_literal_exec_2`, tmpCalleeParam$5);
 const tmpCalleeParam$7 /*:unknown*/ = re_literal.lastIndex;
 $(`re_literal_lastIndex_2`, tmpCalleeParam$7);
 const tmpAssignMemRhs /*:unknown*/ = $(`re_set_lastIndex`, 0);
 re_literal.lastIndex = tmpAssignMemRhs;
-const tmpCalleeParam$9 /*:unknown*/ = $dotCall($regex_test, re_from_opaque, `test`, str_to_test);
+const tmpCalleeParam$9 /*:unknown*/ /*truthy*/ = $dotCall($regex_test, re_from_opaque, `test`, str_to_test);
 $(`re_from_opaque_test`, tmpCalleeParam$9);
 const tmpMCP /*:unknown*/ = $(`re_exec_str_opaque`, `a_b c_d`);
-const exec_res_opaque /*:unknown*/ = $dotCall($regex_exec, re_from_opaque, `exec`, tmpMCP);
+const exec_res_opaque /*:unknown*/ /*truthy*/ = $dotCall($regex_exec, re_from_opaque, `exec`, tmpMCP);
 const tmpClusterSSA_tmpCalleeParam$11 /*:unknown*/ = exec_res_opaque[0];
 $(`re_from_opaque_exec_0`, tmpClusterSSA_tmpCalleeParam$11);
 const tmpCalleeParam$13 /*:unknown*/ = re_from_opaque.lastIndex;

@@ -38,7 +38,7 @@ const f /*:()=>boolean*/ = function () {
   x;
   $(`block`);
   $(`block`);
-  const tmpBool /*:boolean*/ = !x;
+  const tmpBool /*:boolean*/ /*banged*/ = !x;
   return tmpBool;
 };
 f();

@@ -30,7 +30,7 @@ $(obj.f());
 
 `````js filename=intro
 const tmpObjLitVal$1 /*:()=>unknown*/ = function () {
-  const tmpPrevalAliasThis /*:object*/ = this;
+  const tmpPrevalAliasThis /*:object*/ /*truthy*/ = this;
   debugger;
   const tmpBinLhs /*:unknown*/ = tmpPrevalAliasThis.x;
   const tmpIfTest /*:boolean*/ = tmpBinLhs === `burn`;
@@ -41,14 +41,14 @@ const tmpObjLitVal$1 /*:()=>unknown*/ = function () {
     const func /*:unknown*/ = tmpPrevalAliasThis.f;
     $(`once`);
     const tmpMCF /*:unknown*/ = func.call;
-    const tmpMCP /*:object*/ = { f: 1, x: `burn` };
+    const tmpMCP /*:object*/ /*truthy*/ = { f: 1, x: `burn` };
     $dotCall(tmpMCF, func, `call`, tmpMCP);
     const tmpCalleeParam$1 /*:unknown*/ = tmpPrevalAliasThis.x;
     $(tmpCalleeParam$1);
     return `win`;
   }
 };
-const obj /*:object*/ = { x: `pass`, f: tmpObjLitVal$1 };
+const obj /*:object*/ /*truthy*/ = { x: `pass`, f: tmpObjLitVal$1 };
 const tmpCalleeParam$3 /*:unknown*/ = $dotCall(tmpObjLitVal$1, obj, `f`);
 $(tmpCalleeParam$3);
 `````

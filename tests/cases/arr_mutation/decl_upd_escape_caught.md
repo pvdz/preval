@@ -23,7 +23,7 @@ $(arr);
 
 
 `````js filename=intro
-const arr /*:array*/ = [2];
+const arr /*:array*/ /*truthy*/ = [2];
 $(arr);
 `````
 

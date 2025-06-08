@@ -21,7 +21,7 @@ $(f('abc', 10));
 
 `````js filename=intro
 const tmpOPND /*:unknown*/ = $String_prototype.x;
-const tmpCalleeParam$1 /*:array*/ = [];
+const tmpCalleeParam$1 /*:array*/ /*truthy*/ = [];
 $objPatternRest(tmpOPND, tmpCalleeParam$1, undefined);
 $(`bad`);
 `````

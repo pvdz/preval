@@ -24,7 +24,7 @@ $(out);
 `````js filename=intro
 const str /*:unknown*/ = $(`hello`);
 const method /*:unknown*/ = str.replace;
-const regex /*:regex*/ = new $regex_constructor(`e`, `g`);
+const regex /*:regex*/ /*truthy*/ = new $regex_constructor(`e`, `g`);
 const out /*:unknown*/ = $dotCall(method, str, `replace`, regex, `u`);
 $(out);
 `````

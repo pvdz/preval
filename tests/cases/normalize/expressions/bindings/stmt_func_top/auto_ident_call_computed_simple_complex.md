@@ -24,7 +24,7 @@ $(f());
 
 `````js filename=intro
 const tmpMCCP /*:unknown*/ = $(`\$`);
-const b /*:object*/ = { $: $ };
+const b /*:object*/ /*truthy*/ = { $: $ };
 const tmpMCF /*:unknown*/ = b[tmpMCCP];
 const a /*:unknown*/ = $dotCall(tmpMCF, b, undefined, 1);
 $(a);

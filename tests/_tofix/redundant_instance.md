@@ -35,7 +35,7 @@ const anything /*:unknown*/ = $(1);
 const test /*:unknown*/ = $(1);
 if (test) {
   const newvalue /*:unknown*/ = $(1);
-  let tmpClusterSSA_obj /*:object*/ = { b: newvalue };
+  let tmpClusterSSA_obj /*:object*/ /*truthy*/ = { b: newvalue };
   while ($LOOP_UNROLL_9) {
     const test$1 /*:unknown*/ = $(1);
     if (test$1) {
@@ -47,7 +47,7 @@ if (test) {
   }
   $(tmpClusterSSA_obj);
 } else {
-  const obj /*:object*/ = { b: anything };
+  const obj /*:object*/ /*truthy*/ = { b: anything };
   $(obj);
 }
 `````

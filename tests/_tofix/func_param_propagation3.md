@@ -37,16 +37,16 @@ const f /*:(primitive)=>array*/ = function ($$0) {
   debugger;
   const tmpIfTest$1 /*:boolean*/ = $dlr_$$2 === undefined;
   if (tmpIfTest$1) {
-    const c /*:array*/ = [`x`, `bar`];
+    const c /*:array*/ /*truthy*/ = [`x`, `bar`];
     return c;
   } else {
-    const d /*:array*/ = [`x`, $dlr_$$2];
+    const d /*:array*/ /*truthy*/ = [`x`, $dlr_$$2];
     return d;
   }
 };
-const tmpCalleeParam /*:array*/ = f();
+const tmpCalleeParam /*:array*/ /*truthy*/ = f();
 $(tmpCalleeParam);
-const tmpCalleeParam$1 /*:array*/ = f(`y`);
+const tmpCalleeParam$1 /*:array*/ /*truthy*/ = f(`y`);
 $(tmpCalleeParam$1);
 `````
 

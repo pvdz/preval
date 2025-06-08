@@ -19,7 +19,7 @@ $(a, b, c, d);
 
 
 `````js filename=intro
-const b /*:object*/ = { x: 2 };
+const b /*:object*/ /*truthy*/ = { x: 2 };
 const tmpInitAssignLhsComputedObj /*:unknown*/ = $(b);
 const tmpInitAssignLhsComputedObj$1 /*:unknown*/ = $(3);
 const tmpInitAssignLhsComputedRhs$1 /*:unknown*/ = $(4);

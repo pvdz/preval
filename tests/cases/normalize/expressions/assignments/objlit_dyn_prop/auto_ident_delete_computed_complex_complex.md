@@ -21,11 +21,11 @@ $(a, arg);
 
 
 `````js filename=intro
-const arg /*:object*/ = { y: 1 };
+const arg /*:object*/ /*truthy*/ = { y: 1 };
 const tmpDeleteCompObj /*:unknown*/ = $(arg);
 const tmpDeleteCompProp /*:unknown*/ = $(`y`);
 const a /*:boolean*/ = delete tmpDeleteCompObj[tmpDeleteCompProp];
-const tmpCalleeParam /*:object*/ = { [a]: 10 };
+const tmpCalleeParam /*:object*/ /*truthy*/ = { [a]: 10 };
 $(tmpCalleeParam);
 $(a, arg);
 `````

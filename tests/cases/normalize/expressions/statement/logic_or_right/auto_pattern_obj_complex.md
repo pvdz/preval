@@ -23,7 +23,7 @@ const tmpIfTest /*:unknown*/ = $(100);
 if (tmpIfTest) {
   $(999);
 } else {
-  const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
+  const tmpCalleeParam /*:object*/ /*truthy*/ = { a: 1, b: 2 };
   $(tmpCalleeParam);
   $(999);
 }

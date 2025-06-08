@@ -19,7 +19,7 @@ $(a);
 
 
 `````js filename=intro
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 const tmpClusterSSA_a$1 /*:number*/ = a * 2;
 $(tmpClusterSSA_a$1);
 $(tmpClusterSSA_a$1);

@@ -21,7 +21,7 @@ $(a);
 `````js filename=intro
 const tmpUnaryArg /*:unknown*/ = $(100);
 const tmpBinBothRhs /*:unknown*/ = $(100);
-const a /*:boolean*/ = !tmpUnaryArg;
+const a /*:boolean*/ /*banged*/ = !tmpUnaryArg;
 const tmpCalleeParam /*:primitive*/ = a + tmpBinBothRhs;
 $(tmpCalleeParam);
 $(a);

@@ -21,7 +21,7 @@ a?.b.c?.(1);
 const tmpIfTest$1 /*:boolean*/ = $ == null;
 if (tmpIfTest$1) {
 } else {
-  const tmpObjLitVal /*:object*/ = { c: $ };
+  const tmpObjLitVal /*:object*/ /*truthy*/ = { c: $ };
   $dotCall($, tmpObjLitVal, `c`, 1);
 }
 `````

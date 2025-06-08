@@ -19,7 +19,7 @@ $(a);
 
 
 `````js filename=intro
-const a /*:object*/ = {};
+const a /*:object*/ /*truthy*/ = {};
 const tmpForOfGenNext /*:unknown*/ = $forOf(a);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();

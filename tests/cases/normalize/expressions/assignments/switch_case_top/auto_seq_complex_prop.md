@@ -23,7 +23,7 @@ $(a);
 
 
 `````js filename=intro
-let a /*:object*/ /*ternaryConst*/ = { a: 999, b: 1000 };
+let a /*:object*/ /*ternaryConst*/ /*truthy*/ = { a: 999, b: 1000 };
 const tmpBinBothLhs /*:unknown*/ = $(1);
 const tmpBinBothRhs /*:unknown*/ = $(1);
 const tmpIfTest /*:boolean*/ = tmpBinBothLhs === tmpBinBothRhs;

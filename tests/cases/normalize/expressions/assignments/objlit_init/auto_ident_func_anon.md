@@ -23,7 +23,7 @@ const a /*:()=>unknown*/ = function () {
   debugger;
   return undefined;
 };
-const tmpCalleeParam /*:object*/ = { x: a };
+const tmpCalleeParam /*:object*/ /*truthy*/ = { x: a };
 $(tmpCalleeParam);
 $(a);
 `````

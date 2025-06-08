@@ -23,9 +23,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 
 `````js filename=intro
-const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
+const tmpCalleeParam /*:object*/ /*truthy*/ = { a: 1, b: 2 };
 const x /*:unknown*/ = $(tmpCalleeParam);
-const b /*:object*/ = { x: 1, ...x };
+const b /*:object*/ /*truthy*/ = { x: 1, ...x };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   b.x = 3;
   b.x = 3;

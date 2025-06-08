@@ -23,7 +23,7 @@ const tmpBinBothLhs /*:unknown*/ = $(100);
 const tmpCallComplexCallee /*:unknown*/ = $($);
 const tmpBinBothRhs /*:unknown*/ = tmpCallComplexCallee(1);
 tmpBinBothLhs + tmpBinBothRhs;
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

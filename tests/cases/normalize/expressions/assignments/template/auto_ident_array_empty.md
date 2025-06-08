@@ -20,7 +20,7 @@ $(a);
 
 `````js filename=intro
 $(`before    after`);
-const a /*:array*/ = [];
+const a /*:array*/ /*truthy*/ = [];
 $(a);
 `````
 

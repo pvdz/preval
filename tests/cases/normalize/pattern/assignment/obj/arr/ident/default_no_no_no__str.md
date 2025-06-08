@@ -19,7 +19,7 @@ $('bad');
 
 `````js filename=intro
 const tmpOPND /*:unknown*/ = $String_prototype.x;
-const tmpArrPatternSplat /*:array*/ = [...tmpOPND];
+const tmpArrPatternSplat /*:array*/ /*truthy*/ = [...tmpOPND];
 y = tmpArrPatternSplat[0];
 $(`bad`);
 `````

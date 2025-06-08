@@ -20,7 +20,7 @@ $(a);
 
 `````js filename=intro
 const tmpClusterSSA_tmpIfTest /*:unknown*/ = $(2);
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 if (tmpClusterSSA_tmpIfTest) {
   $(100);
   $(a);

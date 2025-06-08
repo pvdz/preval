@@ -22,15 +22,15 @@ $(a, b);
 
 `````js filename=intro
 const tmpIfTest /*:unknown*/ = $(100);
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
-  const b /*:array*/ = [];
+  const b /*:array*/ /*truthy*/ = [];
   $(a, b);
 } else {
   const tmpArrElement /*:unknown*/ = $(2);
-  const tmpCalleeParam /*:array*/ = [tmpArrElement];
+  const tmpCalleeParam /*:array*/ /*truthy*/ = [tmpArrElement];
   const tmpArrAssignPatternRhs /*:unknown*/ = $(tmpCalleeParam);
-  const tmpArrPatternSplat /*:array*/ = [...tmpArrAssignPatternRhs];
+  const tmpArrPatternSplat /*:array*/ /*truthy*/ = [...tmpArrAssignPatternRhs];
   const tmpClusterSSA_b /*:unknown*/ = tmpArrPatternSplat[0];
   $(a, tmpClusterSSA_b);
 }

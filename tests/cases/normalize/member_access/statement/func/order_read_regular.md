@@ -25,7 +25,7 @@ $(f());
 
 
 `````js filename=intro
-const obj /*:object*/ = {
+const obj /*:object*/ /*truthy*/ = {
   get x() {
     debugger;
     const tmpReturnArg /*:unknown*/ = $(10);

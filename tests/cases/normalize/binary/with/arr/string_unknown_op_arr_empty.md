@@ -52,9 +52,9 @@ $(arr2);
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(``);
 const tmpBinBothRhs /*:string*/ = $coerce(tmpCalleeParam, `string`);
-const tmpBinBothRhs$27 /*:array*/ = [];
+const tmpBinBothRhs$27 /*:array*/ /*truthy*/ = [];
 const tmpArrElement$25 /*:boolean*/ = tmpBinBothRhs == tmpBinBothRhs$27;
-const tmpBinBothRhs$29 /*:array*/ = [];
+const tmpBinBothRhs$29 /*:array*/ /*truthy*/ = [];
 const tmpArrElement$27 /*:boolean*/ = tmpBinBothRhs != tmpBinBothRhs$29;
 const tmpArrElement /*:number*/ = tmpBinBothRhs ** 0;
 const tmpArrElement$1 /*:number*/ = tmpBinBothRhs * 0;
@@ -68,9 +68,9 @@ const tmpArrElement$17 /*:boolean*/ = tmpBinBothRhs < ``;
 const tmpArrElement$19 /*:boolean*/ = tmpBinBothRhs > ``;
 const tmpArrElement$21 /*:boolean*/ = tmpBinBothRhs <= ``;
 const tmpArrElement$23 /*:boolean*/ = tmpBinBothRhs >= ``;
-const tmpArrElement$35 /*:number*/ = tmpBinBothRhs ^ 0;
-const tmpArrElement$37 /*:number*/ = tmpBinBothRhs | 0;
-const arr /*:array*/ = [
+const tmpArrElement$35 /*:number*/ /*^0*/ = tmpBinBothRhs ^ 0;
+const tmpArrElement$37 /*:number*/ /*|0*/ = tmpBinBothRhs | 0;
+const arr /*:array*/ /*truthy*/ = [
   tmpArrElement,
   tmpArrElement$1,
   tmpArrElement$3,
@@ -93,11 +93,11 @@ const arr /*:array*/ = [
   tmpArrElement$37,
 ];
 $(arr);
-const tmpBinBothRhs$41 /*:array*/ = [];
-const tmpBinBothRhs$43 /*:array*/ = [];
+const tmpBinBothRhs$41 /*:array*/ /*truthy*/ = [];
+const tmpBinBothRhs$43 /*:array*/ /*truthy*/ = [];
 const tmpArrElement$39 /*:boolean*/ = tmpBinBothRhs in tmpBinBothRhs$41;
 const tmpArrElement$41 /*:boolean*/ = tmpBinBothRhs instanceof tmpBinBothRhs$43;
-const arr2 /*:array*/ = [tmpArrElement$39, tmpArrElement$41];
+const arr2 /*:array*/ /*truthy*/ = [tmpArrElement$39, tmpArrElement$41];
 $(arr2);
 `````
 

@@ -20,8 +20,8 @@ $(a);
 
 `````js filename=intro
 const tmpUnaryArg /*:unknown*/ = $(100);
-const tmpCalleeParam /*:array*/ = [`before `, ` after`];
-const a /*:boolean*/ = !tmpUnaryArg;
+const tmpCalleeParam /*:array*/ /*truthy*/ = [`before `, ` after`];
+const a /*:boolean*/ /*banged*/ = !tmpUnaryArg;
 $(tmpCalleeParam, a);
 $(a);
 `````

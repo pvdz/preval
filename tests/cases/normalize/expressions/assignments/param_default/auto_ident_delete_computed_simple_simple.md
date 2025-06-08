@@ -22,7 +22,7 @@ $(a, arg);
 
 
 `````js filename=intro
-const arg /*:object*/ = { y: 1 };
+const arg /*:object*/ /*truthy*/ = { y: 1 };
 const tmpClusterSSA_a /*:boolean*/ = delete arg.y;
 $(undefined);
 $(tmpClusterSSA_a, arg);

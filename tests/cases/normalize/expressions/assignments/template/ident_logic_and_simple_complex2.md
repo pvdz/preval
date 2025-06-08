@@ -20,7 +20,7 @@ $(a);
 
 
 `````js filename=intro
-const obj /*:object*/ = {
+const obj /*:object*/ /*truthy*/ = {
   toString() {
     debugger;
     $(`toString`);
@@ -35,7 +35,7 @@ const obj /*:object*/ = {
 const tmpCalleeParam$3 /*:unknown*/ = $(obj);
 const tmpSSA_a /*:unknown*/ = $(tmpCalleeParam$3);
 const tmpStringConcatL /*:string*/ = $coerce(tmpSSA_a, `string`);
-const tmpCalleeParam /*:string*/ = `before  ${tmpStringConcatL}  after`;
+const tmpCalleeParam /*:string*/ /*truthy*/ = `before  ${tmpStringConcatL}  after`;
 $(tmpCalleeParam);
 $(tmpSSA_a);
 `````

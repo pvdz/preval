@@ -19,7 +19,7 @@
 `````js filename=intro
 $(1);
 $(3);
-const tmpCalleeParam /*:array*/ = [4, 5];
+const tmpCalleeParam /*:array*/ /*truthy*/ = [4, 5];
 const tmpArrElToSpread /*:unknown*/ = $(tmpCalleeParam);
 [...tmpArrElToSpread];
 `````

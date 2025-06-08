@@ -23,7 +23,7 @@ $(a, arg);
 `````js filename=intro
 $(1);
 const tmpUnaryArg$1 /*:unknown*/ = $(1);
-const tmpNestedComplexRhs /*:string*/ = typeof tmpUnaryArg$1;
+const tmpNestedComplexRhs /*:string*/ /*truthy*/ = typeof tmpUnaryArg$1;
 $(tmpNestedComplexRhs);
 $(tmpNestedComplexRhs, 1);
 `````

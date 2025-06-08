@@ -21,7 +21,7 @@ $(a);
 `````js filename=intro
 const tmpSSA_a /*:unknown*/ = $(2);
 const tmpStringConcatL /*:string*/ = $coerce(tmpSSA_a, `string`);
-const tmpCalleeParam /*:string*/ = `before  ${tmpStringConcatL}  after`;
+const tmpCalleeParam /*:string*/ /*truthy*/ = `before  ${tmpStringConcatL}  after`;
 $(tmpCalleeParam);
 $(tmpSSA_a);
 `````

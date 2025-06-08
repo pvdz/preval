@@ -36,7 +36,7 @@ f();
 
 
 `````js filename=intro
-let x /*:string*/ = `fail`;
+let x /*:string*/ /*truthy*/ = `fail`;
 try {
   if ($) {
     x = `pass`;

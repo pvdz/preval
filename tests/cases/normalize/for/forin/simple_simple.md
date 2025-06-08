@@ -19,7 +19,7 @@ for (a in b) $(a);
 
 
 `````js filename=intro
-const b /*:object*/ = { x: 1, y: 2 };
+const b /*:object*/ /*truthy*/ = { x: 1, y: 2 };
 const tmpForInGenNext /*:unknown*/ = $forIn(b);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForInNext /*:unknown*/ = tmpForInGenNext();

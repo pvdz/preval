@@ -24,7 +24,7 @@ $(a);
 
 `````js filename=intro
 $(100);
-const b /*:object*/ = { c: $ };
+const b /*:object*/ /*truthy*/ = { c: $ };
 const tmpClusterSSA_a /*:unknown*/ = $dotCall($, b, `c`, 1);
 if (tmpClusterSSA_a) {
   let a /*:unknown*/ = undefined;

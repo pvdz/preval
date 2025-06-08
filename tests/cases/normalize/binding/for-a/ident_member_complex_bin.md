@@ -18,7 +18,7 @@ for (let a = $(b).x = c + d;false;) $(a, b, c);
 
 
 `````js filename=intro
-const b /*:object*/ = { x: 2 };
+const b /*:object*/ /*truthy*/ = { x: 2 };
 const tmpInitAssignLhsComputedObj /*:unknown*/ = $(b);
 tmpInitAssignLhsComputedObj.x = 7;
 `````

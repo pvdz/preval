@@ -24,14 +24,14 @@ $(f());
 
 
 `````js filename=intro
-const b /*:object*/ = { c: 10, d: 20 };
+const b /*:object*/ /*truthy*/ = { c: 10, d: 20 };
 const tmpAssignComMemLhsObj /*:unknown*/ = $(b);
 const tmpAssignComMemLhsProp /*:unknown*/ = $(`c`);
 const tmpCompObj /*:unknown*/ = $(b);
 const tmpCalleeParam /*:unknown*/ = $(`d`);
 const tmpAssignComputedRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam];
 tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a, b);
 $(undefined);
 `````

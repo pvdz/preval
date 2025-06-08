@@ -20,7 +20,7 @@ $(a);
 
 `````js filename=intro
 new $(1);
-const tmpNestedComplexRhs /*:object*/ = new $(1);
+const tmpNestedComplexRhs /*:object*/ /*truthy*/ = new $(1);
 $(tmpNestedComplexRhs);
 $(tmpNestedComplexRhs);
 `````

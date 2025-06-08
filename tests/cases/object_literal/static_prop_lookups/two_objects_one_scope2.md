@@ -31,7 +31,7 @@ $(problem2);
 
 
 `````js filename=intro
-const problem2 /*:object*/ = {};
+const problem2 /*:object*/ /*truthy*/ = {};
 $(problem2);
 `````
 

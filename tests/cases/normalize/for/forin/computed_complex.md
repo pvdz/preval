@@ -19,10 +19,10 @@ for ($(a)[$('foo')] in $(b)) $(a);
 
 
 `````js filename=intro
-const b /*:object*/ = { x: 1, y: 2 };
+const b /*:object*/ /*truthy*/ = { x: 1, y: 2 };
 const tmpCalleeParam /*:unknown*/ = $(b);
 const tmpForInGenNext /*:unknown*/ = $forIn(tmpCalleeParam);
-const a /*:object*/ = {};
+const a /*:object*/ /*truthy*/ = {};
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForInNext /*:unknown*/ = tmpForInGenNext();
   const tmpIfTest /*:unknown*/ = tmpForInNext.done;

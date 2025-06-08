@@ -18,7 +18,7 @@ $(!Date.length);
 
 `````js filename=intro
 const tmpUnaryArg /*:number*/ = Date.length;
-const tmpCalleeParam /*:boolean*/ = !tmpUnaryArg;
+const tmpCalleeParam /*:boolean*/ /*banged*/ = !tmpUnaryArg;
 $(tmpCalleeParam);
 `````
 

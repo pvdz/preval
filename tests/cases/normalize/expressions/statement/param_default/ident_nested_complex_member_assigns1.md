@@ -23,7 +23,7 @@ $(100);
 
 
 `````js filename=intro
-const b /*:object*/ = { x: 1 };
+const b /*:object*/ /*truthy*/ = { x: 1 };
 const tmpAssignMemLhsObj$1 /*:unknown*/ = $(b);
 const tmpInitAssignLhsComputedObj /*:unknown*/ = $(b);
 tmpInitAssignLhsComputedObj.x = 3;

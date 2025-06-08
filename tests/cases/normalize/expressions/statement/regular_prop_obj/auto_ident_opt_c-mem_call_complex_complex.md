@@ -23,7 +23,7 @@ $(a);
 
 `````js filename=intro
 let tmpCompObj /*:unknown*/ /*ternaryConst*/ = undefined;
-const b /*:object*/ = { $: $ };
+const b /*:object*/ /*truthy*/ = { $: $ };
 const tmpChainElementCall /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest) {
@@ -38,7 +38,7 @@ if (tmpIfTest) {
   }
 }
 tmpCompObj.a;
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

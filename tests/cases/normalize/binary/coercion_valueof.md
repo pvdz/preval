@@ -19,7 +19,7 @@ a < b; // This shouldn't be eliminated because it triggers the valueOf above
 
 
 `````js filename=intro
-const tmpCalleeParam /*:object*/ = { valueOf: $ };
+const tmpCalleeParam /*:object*/ /*truthy*/ = { valueOf: $ };
 const a /*:unknown*/ = $(tmpCalleeParam);
 a ** 0;
 `````

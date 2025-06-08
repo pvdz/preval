@@ -28,14 +28,14 @@ $(a, b);
 const tmpBinBothLhs /*:unknown*/ = $(1);
 const tmpBinBothRhs /*:unknown*/ = $(1);
 const tmpIfTest /*:boolean*/ = tmpBinBothLhs === tmpBinBothRhs;
-const b /*:object*/ = { c: 1 };
+const b /*:object*/ /*truthy*/ = { c: 1 };
 if (tmpIfTest) {
   const tmpAssignRhsCompObj /*:unknown*/ = $(b);
   const tmpAssignRhsCompProp /*:unknown*/ = $(`c`);
   const tmpClusterSSA_a /*:unknown*/ = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
   $(tmpClusterSSA_a, b);
 } else {
-  const a /*:object*/ = { a: 999, b: 1000 };
+  const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
   $(a, b);
 }
 `````

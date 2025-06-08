@@ -54,7 +54,7 @@ $(arr2);
 
 
 `````js filename=intro
-const x /*:object*/ = {
+const x /*:object*/ /*truthy*/ = {
   toString() {
     debugger;
     const tmpReturnArg /*:unknown*/ = $(`toString`);
@@ -80,9 +80,9 @@ const tmpArrElement$19 /*:boolean*/ = x > ``;
 const tmpArrElement$21 /*:boolean*/ = x <= ``;
 const tmpArrElement$23 /*:boolean*/ = x >= ``;
 x ** 0;
-const tmpArrElement$35 /*:number*/ = x ^ 0;
-const tmpArrElement$37 /*:number*/ = x | 0;
-const arr /*:array*/ = [
+const tmpArrElement$35 /*:number*/ /*^0*/ = x ^ 0;
+const tmpArrElement$37 /*:number*/ /*|0*/ = x | 0;
+const arr /*:array*/ /*truthy*/ = [
   tmpArrElement,
   tmpArrElement$1,
   tmpArrElement$3,
@@ -105,11 +105,11 @@ const arr /*:array*/ = [
   tmpArrElement$37,
 ];
 $(arr);
-const tmpBinBothRhs$39 /*:array*/ = [];
-const tmpBinBothRhs$41 /*:array*/ = [];
+const tmpBinBothRhs$39 /*:array*/ /*truthy*/ = [];
+const tmpBinBothRhs$41 /*:array*/ /*truthy*/ = [];
 const tmpArrElement$39 /*:boolean*/ = x in tmpBinBothRhs$39;
 const tmpArrElement$41 /*:boolean*/ = x instanceof tmpBinBothRhs$41;
-const arr2 /*:array*/ = [tmpArrElement$39, tmpArrElement$41];
+const arr2 /*:array*/ /*truthy*/ = [tmpArrElement$39, tmpArrElement$41];
 $(arr2);
 `````
 

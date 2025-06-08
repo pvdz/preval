@@ -31,7 +31,7 @@ $(f());
 
 `````js filename=intro
 const tmpUnaryArg /*:unknown*/ = $(`x`);
-const x$1 /*:string*/ = typeof tmpUnaryArg;
+const x$1 /*:string*/ /*truthy*/ = typeof tmpUnaryArg;
 const tmpIfTest /*:boolean*/ = x$1 === `string`;
 if (tmpIfTest) {
   $(0);

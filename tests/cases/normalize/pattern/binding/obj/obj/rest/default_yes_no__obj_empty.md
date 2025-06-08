@@ -22,12 +22,12 @@ const tmpOPBD /*:unknown*/ = $Object_prototype.x;
 let tmpCalleeParam$1 /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpIfTest /*:boolean*/ = tmpOPBD === undefined;
 if (tmpIfTest) {
-  const tmpCalleeParam /*:object*/ = { a: `pass` };
+  const tmpCalleeParam /*:object*/ /*truthy*/ = { a: `pass` };
   tmpCalleeParam$1 = $(tmpCalleeParam);
 } else {
   tmpCalleeParam$1 = tmpOPBD;
 }
-const tmpCalleeParam$3 /*:array*/ = [];
+const tmpCalleeParam$3 /*:array*/ /*truthy*/ = [];
 const y /*:unknown*/ = $objPatternRest(tmpCalleeParam$1, tmpCalleeParam$3, undefined);
 $(y);
 `````

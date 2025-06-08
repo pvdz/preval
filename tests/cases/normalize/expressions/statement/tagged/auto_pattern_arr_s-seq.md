@@ -19,13 +19,13 @@ $(a);
 
 
 `````js filename=intro
-const tmpBindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
-const tmpArrPatternSplat /*:array*/ = [...tmpBindingPatternArrRoot];
+const tmpBindingPatternArrRoot /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
+const tmpArrPatternSplat /*:array*/ /*truthy*/ = [...tmpBindingPatternArrRoot];
 const a /*:unknown*/ = tmpArrPatternSplat[0];
 $(10);
 $(20);
-const tmpCalleeParam /*:array*/ = [`before `, ` after`];
-const tmpCalleeParam$1 /*:array*/ = [1, 2];
+const tmpCalleeParam /*:array*/ /*truthy*/ = [`before `, ` after`];
+const tmpCalleeParam$1 /*:array*/ /*truthy*/ = [1, 2];
 $(tmpCalleeParam, tmpCalleeParam$1);
 $(a);
 `````

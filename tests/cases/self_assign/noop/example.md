@@ -31,7 +31,7 @@ $(f); // escapes (important, otherwise different rules would tackle it)
 
 
 `````js filename=intro
-const arr /*:array*/ = [`2175510YjCZON`, `10TAFtVj`, `11526394DNqxUn`, `60YWJuYY`, `794766IkrVMo`, `348105xrUwtS`];
+const arr /*:array*/ /*truthy*/ = [`2175510YjCZON`, `10TAFtVj`, `11526394DNqxUn`, `60YWJuYY`, `794766IkrVMo`, `348105xrUwtS`];
 const f /*:(unknown, unused)=>primitive*/ = function ($$0, $$1) {
   const c /*:unknown*/ = $$0;
   debugger;

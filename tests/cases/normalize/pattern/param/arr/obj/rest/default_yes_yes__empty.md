@@ -20,20 +20,20 @@ $(f());
 
 
 `````js filename=intro
-const tmpArrElement /*:object*/ = { a: `pass2` };
-const tmpCalleeParam /*:array*/ = [tmpArrElement];
+const tmpArrElement /*:object*/ /*truthy*/ = { a: `pass2` };
+const tmpCalleeParam /*:array*/ /*truthy*/ = [tmpArrElement];
 const tmpClusterSSA_tmpBindingPatternArrRoot /*:unknown*/ = $(tmpCalleeParam);
-const tmpArrPatternSplat /*:array*/ = [...tmpClusterSSA_tmpBindingPatternArrRoot];
+const tmpArrPatternSplat /*:array*/ /*truthy*/ = [...tmpClusterSSA_tmpBindingPatternArrRoot];
 const tmpAPBD /*:unknown*/ = tmpArrPatternSplat[0];
 let tmpCalleeParam$3 /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpIfTest$1 /*:boolean*/ = tmpAPBD === undefined;
 if (tmpIfTest$1) {
-  const tmpCalleeParam$1 /*:object*/ = { a: `fail` };
+  const tmpCalleeParam$1 /*:object*/ /*truthy*/ = { a: `fail` };
   tmpCalleeParam$3 = $(tmpCalleeParam$1);
 } else {
   tmpCalleeParam$3 = tmpAPBD;
 }
-const tmpCalleeParam$5 /*:array*/ = [];
+const tmpCalleeParam$5 /*:array*/ /*truthy*/ = [];
 const x /*:unknown*/ = $objPatternRest(tmpCalleeParam$3, tmpCalleeParam$5, undefined);
 $(x);
 `````

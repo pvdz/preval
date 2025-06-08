@@ -26,13 +26,13 @@ $(x + y);
 
 
 `````js filename=intro
-const tmpMCP /*:object*/ = { a: 1 };
-const tmpCompObj$1 /*:array*/ = $Object_keys(tmpMCP);
+const tmpMCP /*:object*/ /*truthy*/ = { a: 1 };
+const tmpCompObj$1 /*:array*/ /*truthy*/ = $Object_keys(tmpMCP);
 const tmpCalleeParam /*:unknown*/ = tmpCompObj$1[0];
-const obj /*:object*/ = { a: 1, b: 2 };
+const obj /*:object*/ /*truthy*/ = { a: 1, b: 2 };
 const x /*:unknown*/ = obj[tmpCalleeParam];
-const tmpMCP$1 /*:object*/ = { b: 1 };
-const tmpCompObj$5 /*:array*/ = $Object_keys(tmpMCP$1);
+const tmpMCP$1 /*:object*/ /*truthy*/ = { b: 1 };
+const tmpCompObj$5 /*:array*/ /*truthy*/ = $Object_keys(tmpMCP$1);
 const tmpCalleeParam$1 /*:unknown*/ = tmpCompObj$5[0];
 const y /*:unknown*/ = obj[tmpCalleeParam$1];
 const tmpCalleeParam$3 /*:primitive*/ = x + y;

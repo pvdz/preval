@@ -24,7 +24,7 @@ $('sum', sum);
 
 
 `````js filename=intro
-const tmpCalleeParam /*:array*/ = [10, 20];
+const tmpCalleeParam /*:array*/ /*truthy*/ = [10, 20];
 const iterable /*:unknown*/ = $(`iterable`, tmpCalleeParam);
 let sum /*:primitive*/ = 0;
 const tmpForOfGenNext /*:unknown*/ = $forOf(iterable);

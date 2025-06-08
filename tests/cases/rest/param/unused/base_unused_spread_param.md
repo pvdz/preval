@@ -20,7 +20,7 @@ f();
 
 
 `````js filename=intro
-const rest /*:array*/ = [];
+const rest /*:array*/ /*truthy*/ = [];
 $(rest);
 `````
 

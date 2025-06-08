@@ -27,11 +27,11 @@ $(a, arg);
 $(1);
 $(1);
 $(2);
-const arg /*:object*/ = { y: 1 };
+const arg /*:object*/ /*truthy*/ = { y: 1 };
 const tmpDeleteCompObj /*:unknown*/ = $(arg);
 const tmpDeleteCompProp /*:unknown*/ = $(`y`);
 delete tmpDeleteCompObj[tmpDeleteCompProp];
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a, arg);
 `````
 

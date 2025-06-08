@@ -29,7 +29,7 @@ $(f('three'));
 
 `````js filename=intro
 const f /*:(array)=>primitive*/ = function (...$$0 /*:array*/) {
-  const x /*:array*/ = $$0;
+  const x /*:array*/ /*truthy*/ = $$0;
   debugger;
   $(`no`);
   $(`inlining`);

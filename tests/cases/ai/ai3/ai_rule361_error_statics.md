@@ -34,9 +34,9 @@
 
 
 `````js filename=intro
-const e /*:object*/ = new Error(`my error`);
+const e /*:object*/ /*truthy*/ = new Error(`my error`);
 const tmpUnaryArg /*:unknown*/ = Error.captureStackTrace;
-const tmpBinLhs /*:string*/ = typeof tmpUnaryArg;
+const tmpBinLhs /*:string*/ /*truthy*/ = typeof tmpUnaryArg;
 const tmpIfTest /*:boolean*/ = tmpBinLhs === `function`;
 if (tmpIfTest) {
   $(`captureStackTrace_exists`);
@@ -48,7 +48,7 @@ if (tmpIfTest) {
 }
 const oldStackLimit /*:unknown*/ = Error.stackTraceLimit;
 const tmpCalleeParam$1 /*:boolean*/ = oldStackLimit > 0;
-const tmpCalleeParam /*:string*/ = typeof oldStackLimit;
+const tmpCalleeParam /*:string*/ /*truthy*/ = typeof oldStackLimit;
 $(`old_stack_limit`, tmpCalleeParam, tmpCalleeParam$1);
 const tmpAssignMemRhs /*:unknown*/ = $(`new_limit`, 5);
 Error.stackTraceLimit = tmpAssignMemRhs;

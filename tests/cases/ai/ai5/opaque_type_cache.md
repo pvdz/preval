@@ -38,14 +38,14 @@ if (typeof x === "string") {
 
 `````js filename=intro
 const x /*:unknown*/ = $(`test`);
-const tmpBinLhs /*:string*/ = typeof x;
+const tmpBinLhs /*:string*/ /*truthy*/ = typeof x;
 const tmpIfTest /*:boolean*/ = tmpBinLhs === `string`;
 if (tmpIfTest) {
   const y /*:unknown*/ = x.length;
   $(y);
 } else {
 }
-const tmpBinLhs$1 /*:string*/ = typeof x;
+const tmpBinLhs$1 /*:string*/ /*truthy*/ = typeof x;
 const tmpIfTest$1 /*:boolean*/ = tmpBinLhs$1 === `string`;
 if (tmpIfTest$1) {
   const tmpMCF /*:unknown*/ = x.toUpperCase;

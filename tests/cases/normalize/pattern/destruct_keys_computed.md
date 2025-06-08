@@ -26,7 +26,7 @@ $(c);
 const a /*:unknown*/ = $(`a`);
 const b /*:unknown*/ = $(`b`);
 const tmpCK /*:primitive*/ = a + b;
-const tmpBindingPatternObjRoot /*:object*/ = { ab: 3 };
+const tmpBindingPatternObjRoot /*:object*/ /*truthy*/ = { ab: 3 };
 const c /*:unknown*/ = tmpBindingPatternObjRoot[tmpCK];
 $(c);
 `````

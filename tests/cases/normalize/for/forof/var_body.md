@@ -17,7 +17,7 @@ for(const n of [1,2,3]) var x = n;
 
 
 `````js filename=intro
-const tmpCalleeParam /*:array*/ = [1, 2, 3];
+const tmpCalleeParam /*:array*/ /*truthy*/ = [1, 2, 3];
 const tmpForOfGenNext /*:unknown*/ = $forOf(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();

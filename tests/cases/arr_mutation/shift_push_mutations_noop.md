@@ -30,17 +30,17 @@ $(arr.slice(0));              // Don't let arr escape
 
 
 `````js filename=intro
-const arr /*:array*/ = [1, 2, 3, 4, 5];
+const arr /*:array*/ /*truthy*/ = [1, 2, 3, 4, 5];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const test /*:unknown*/ = $(`never`);
   if (test) {
     break;
   } else {
-    const tmp /*:unknown*/ = $dotCall($array_shift, arr, `shift`);
+    const tmp /*:unknown*/ /*truthy*/ = $dotCall($array_shift, arr, `shift`);
     $dotCall($array_push, arr, `push`, tmp);
   }
 }
-const tmpCalleeParam /*:array*/ = $dotCall($array_slice, arr, `slice`, 0);
+const tmpCalleeParam /*:array*/ /*truthy*/ = $dotCall($array_slice, arr, `slice`, 0);
 $(tmpCalleeParam);
 `````
 

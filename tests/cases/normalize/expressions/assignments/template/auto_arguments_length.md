@@ -21,7 +21,7 @@ $(a);
 `````js filename=intro
 const a /*:unknown*/ = arguments;
 const tmpBinBothRhs /*:string*/ = $coerce(arguments, `string`);
-const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
+const tmpCalleeParam /*:string*/ /*truthy*/ = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
 $(a);
 `````

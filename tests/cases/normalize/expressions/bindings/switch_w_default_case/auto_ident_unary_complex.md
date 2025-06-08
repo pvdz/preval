@@ -28,7 +28,7 @@ switch (1) {
 
 `````js filename=intro
 const tmpUnaryArg /*:unknown*/ = $(1);
-const a /*:string*/ = typeof tmpUnaryArg;
+const a /*:string*/ /*truthy*/ = typeof tmpUnaryArg;
 $(a, 1);
 $(`fail1`);
 $(`fail2`);

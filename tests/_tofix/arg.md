@@ -24,13 +24,7 @@ function f() {
 
 
 `````js filename=intro
-const f /*:()=>unknown*/ = function () {
-  const tmpPrevalAliasThis /*:object*/ = this;
-  const tmpPrevalAliasArgumentsAny /*:arguments*/ = arguments;
-  debugger;
-  $dotCall($function_apply, f, `apply`, tmpPrevalAliasThis, tmpPrevalAliasArgumentsAny);
-  return undefined;
-};
+
 `````
 
 
@@ -38,9 +32,7 @@ const f /*:()=>unknown*/ = function () {
 (This ought to be the final result)
 
 `````js filename=intro
-const f = function () {
-  $dotCall($function_apply, f, `apply`, this, arguments);
-};
+
 `````
 
 
@@ -48,13 +40,7 @@ const f = function () {
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  const b = this;
-  const c = d;
-  debugger;
-  $dotCall( $function_apply, a, "apply", b, c );
-  return undefined;
-};
+
 `````
 
 
@@ -76,7 +62,7 @@ let f = function () {
 ## Todos triggered
 
 
-- (todo) access object property that also exists on prototype? $function_apply
+None
 
 
 ## Globals

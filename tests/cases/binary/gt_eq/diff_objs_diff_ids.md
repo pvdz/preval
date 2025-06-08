@@ -19,7 +19,7 @@ $(x >= y);
 
 
 `````js filename=intro
-const x /*:object*/ = {};
+const x /*:object*/ /*truthy*/ = {};
 x ** 0;
 x ** 0;
 $(true);

@@ -17,7 +17,7 @@ $({[1e4]: 10}); // This will create a key 1000, not '1e4'. Luckily this shouldn'
 
 
 `````js filename=intro
-const tmpCalleeParam /*:object*/ = { [10000]: 10 };
+const tmpCalleeParam /*:object*/ /*truthy*/ = { [10000]: 10 };
 $(tmpCalleeParam);
 `````
 

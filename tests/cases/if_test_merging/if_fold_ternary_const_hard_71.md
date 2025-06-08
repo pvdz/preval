@@ -50,7 +50,7 @@ if (y) {
 const x /*:unknown*/ = $(true);
 let y /*:unknown*/ /*ternaryConst*/ = !x;
 if (x) {
-  const MyClass /*:class*/ = class {};
+  const MyClass /*:class*/ /*truthy*/ = class {};
   y = new MyClass();
 } else {
 }

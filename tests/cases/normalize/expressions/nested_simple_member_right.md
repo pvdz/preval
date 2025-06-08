@@ -18,7 +18,7 @@ $(a = b = $(c).x);
 
 
 `````js filename=intro
-const c /*:object*/ = {};
+const c /*:object*/ /*truthy*/ = {};
 const tmpCompObj /*:unknown*/ = $(c);
 const tmpNestedComplexRhs /*:unknown*/ = tmpCompObj.x;
 $(tmpNestedComplexRhs);

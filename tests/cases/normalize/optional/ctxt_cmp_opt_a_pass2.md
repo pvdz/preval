@@ -26,14 +26,14 @@ tmpObjLitVal.c();
 
 `````js filename=intro
 const tmpObjLitVal$1 /*:(array)=>undefined*/ = function (...$$0 /*:array*/) {
-  const tmpPrevalAliasThis$1 /*:object*/ = this;
-  const $dlr_$$0 /*:array*/ = $$0;
+  const tmpPrevalAliasThis$1 /*:object*/ /*truthy*/ = this;
+  const $dlr_$$0 /*:array*/ /*truthy*/ = $$0;
   debugger;
   const tmpCalleeParam /*:unknown*/ = $($dlr_$$0);
   $(tmpCalleeParam, tmpPrevalAliasThis$1);
   return undefined;
 };
-const tmpObjLitVal /*:object*/ = { c: tmpObjLitVal$1 };
+const tmpObjLitVal /*:object*/ /*truthy*/ = { c: tmpObjLitVal$1 };
 $dotCall(tmpObjLitVal$1, tmpObjLitVal, `c`);
 `````
 

@@ -21,7 +21,7 @@ f(1, 2, 3, 4, 5); // The use of `arguments` should prevent inlining this call, f
 
 `````js filename=intro
 const f /*:(unused, unused, unused, unused, unused)=>unknown*/ = function ($$0, $$1, $$2, $$3, $$4) {
-  const tmpPrevalAliasArgumentsAny /*:arguments*/ = arguments;
+  const tmpPrevalAliasArgumentsAny /*:arguments*/ /*truthy*/ = arguments;
   debugger;
   $(tmpPrevalAliasArgumentsAny);
   return undefined;

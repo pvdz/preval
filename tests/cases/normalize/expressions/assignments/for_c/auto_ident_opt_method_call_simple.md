@@ -23,7 +23,7 @@ $(a);
 `````js filename=intro
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
-  const b /*:object*/ = { c: $ };
+  const b /*:object*/ /*truthy*/ = { c: $ };
   let tmpClusterSSA_a /*:unknown*/ = $dotCall($, b, `c`, 1);
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
@@ -36,7 +36,7 @@ if (tmpIfTest) {
   }
   $(tmpClusterSSA_a);
 } else {
-  const a /*:object*/ = { a: 999, b: 1000 };
+  const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
   $(a);
 }
 `````

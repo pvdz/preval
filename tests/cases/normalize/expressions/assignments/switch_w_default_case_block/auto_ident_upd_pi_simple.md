@@ -29,8 +29,8 @@ $(a, b);
 
 
 `````js filename=intro
-let b /*:number*/ /*ternaryConst*/ = 1;
-let a /*:unknown*/ /*ternaryConst*/ = { a: 999, b: 1000 };
+let b /*:number*/ /*ternaryConst*/ /*truthy*/ = 1;
+let a /*:unknown*/ /*ternaryConst*/ /*truthy*/ = { a: 999, b: 1000 };
 const tmpSwitchValue /*:unknown*/ = $(1);
 let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
 const tmpBinLhs /*:unknown*/ = $(1);

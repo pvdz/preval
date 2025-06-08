@@ -28,7 +28,7 @@ $('then_attached');
 
 `````js filename=intro
 const tmpMCP /*:unknown*/ = $(`initial_promise_value`);
-const p /*:promise*/ = $dotCall($Promise_resolve, Promise, `resolve`, tmpMCP);
+const p /*:promise*/ /*truthy*/ = $dotCall($Promise_resolve, Promise, `resolve`, tmpMCP);
 const onFulfilled /*:unknown*/ = $(`opaque_onFulfilled`);
 const onRejected /*:unknown*/ = $(`opaque_onRejected`);
 $dotCall($promise_then, p, `then`, onFulfilled, onRejected);

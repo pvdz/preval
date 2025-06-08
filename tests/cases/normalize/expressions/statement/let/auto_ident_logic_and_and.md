@@ -22,7 +22,7 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(1);
 const xyz /*:unknown*/ = $(tmpCalleeParam);
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 if (xyz) {
   const tmpCalleeParam$1 /*:unknown*/ = $(1);
   const tmpClusterSSA_xyz /*:unknown*/ = $(tmpCalleeParam$1);

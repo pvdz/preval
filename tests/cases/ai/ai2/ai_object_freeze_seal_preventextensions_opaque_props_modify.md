@@ -57,7 +57,7 @@ testIntegrity('o3_freeze', o3, 'o3_key_p', 'p', 'o3_new_val_p', 'o3_new_prop', '
 `````js filename=intro
 const testIntegrity /*:(string, object, string, string, string, string)=>undefined*/ = function ($$0, $$1, $$2, $$3, $$4, $$5) {
   const objName$1 /*:string*/ = $$0;
-  const obj /*:object*/ = $$1;
+  const obj /*:object*/ /*truthy*/ = $$1;
   const opaqKeyName /*:string*/ = $$2;
   const opaqNewVal /*:string*/ = $$3;
   const opaqNewPropName /*:string*/ = $$4;
@@ -72,56 +72,56 @@ const testIntegrity /*:(string, object, string, string, string, string)=>undefin
     obj[key] = newVal;
   } catch (e) {
     const tmpCalleeParam$1 /*:unknown*/ = e.name;
-    const tmpCalleeParam /*:string*/ = `${objName$1}_mod_err`;
+    const tmpCalleeParam /*:string*/ /*truthy*/ = `${objName$1}_mod_err`;
     $(tmpCalleeParam, tmpCalleeParam$1);
   }
   const tmpCalleeParam$5 /*:unknown*/ = obj[key];
   const tmpBinBothRhs /*:unknown*/ = obj[key];
-  const tmpCalleeParam$3 /*:string*/ = `${objName$1}_after_mod`;
+  const tmpCalleeParam$3 /*:string*/ /*truthy*/ = `${objName$1}_after_mod`;
   const tmpCalleeParam$7 /*:boolean*/ = initialVal === tmpBinBothRhs;
   $(tmpCalleeParam$3, tmpCalleeParam$5, tmpCalleeParam$7);
   try {
     obj[newPropName] = newPropVal;
   } catch (e$1) {
     const tmpCalleeParam$11 /*:unknown*/ = e$1.name;
-    const tmpCalleeParam$9 /*:string*/ = `${objName$1}_add_err`;
+    const tmpCalleeParam$9 /*:string*/ /*truthy*/ = `${objName$1}_add_err`;
     $(tmpCalleeParam$9, tmpCalleeParam$11);
   }
   const tmpMCF /*:unknown*/ = obj.hasOwnProperty;
   const tmpCalleeParam$15 /*:unknown*/ = $dotCall(tmpMCF, obj, `hasOwnProperty`, newPropName);
-  const tmpCalleeParam$13 /*:string*/ = `${objName$1}_after_add`;
+  const tmpCalleeParam$13 /*:string*/ /*truthy*/ = `${objName$1}_after_add`;
   $(tmpCalleeParam$13, tmpCalleeParam$15);
   let canDelete$1 /*:boolean*/ = false;
   try {
     canDelete$1 = delete obj[key];
   } catch (e$3) {
     const tmpCalleeParam$19 /*:unknown*/ = e$3.name;
-    const tmpCalleeParam$17 /*:string*/ = `${objName$1}_del_err`;
+    const tmpCalleeParam$17 /*:string*/ /*truthy*/ = `${objName$1}_del_err`;
     $(tmpCalleeParam$17, tmpCalleeParam$19);
   }
   const tmpMCF$1 /*:unknown*/ = obj.hasOwnProperty;
   const tmpUnaryArg /*:unknown*/ = $dotCall(tmpMCF$1, obj, `hasOwnProperty`, key);
-  const tmpCalleeParam$21 /*:string*/ = `${objName$1}_after_del`;
-  const tmpCalleeParam$23 /*:boolean*/ = !tmpUnaryArg;
+  const tmpCalleeParam$21 /*:string*/ /*truthy*/ = `${objName$1}_after_del`;
+  const tmpCalleeParam$23 /*:boolean*/ /*banged*/ = !tmpUnaryArg;
   $(tmpCalleeParam$21, tmpCalleeParam$23, canDelete$1);
   return undefined;
 };
 const o1_val /*:unknown*/ = $(`o1_val`, `val1`);
-const o1 /*:object*/ = { p: o1_val };
+const o1 /*:object*/ /*truthy*/ = { p: o1_val };
 $Object_preventExtensions(o1);
 const tmpBinLhs /*:unknown*/ = o1.p;
 const tmpCalleeParam$27 /*:boolean*/ = tmpBinLhs === o1_val;
 $(tmpCalleeParam$27);
 testIntegrity(`o1_preventExt`, o1, `o1_key_p`, `o1_new_val_p`, `o1_new_prop`, `o1_new_prop_val`);
 const o2_val /*:unknown*/ = $(`o2_val`, `val2`);
-const o2 /*:object*/ = { p: o2_val };
+const o2 /*:object*/ /*truthy*/ = { p: o2_val };
 $Object_seal(o2);
 const tmpBinLhs$1 /*:unknown*/ = o2.p;
 const tmpCalleeParam$29 /*:boolean*/ = tmpBinLhs$1 === o2_val;
 $(tmpCalleeParam$29);
 testIntegrity(`o2_seal`, o2, `o2_key_p`, `o2_new_val_p`, `o2_new_prop`, `o2_new_prop_val`);
 const o3_val /*:unknown*/ = $(`o3_val`, `val3`);
-const o3 /*:object*/ = { p: o3_val };
+const o3 /*:object*/ /*truthy*/ = { p: o3_val };
 $Object_freeze(o3);
 const tmpBinLhs$3 /*:unknown*/ = o3.p;
 const tmpCalleeParam$31 /*:boolean*/ = tmpBinLhs$3 === o3_val;

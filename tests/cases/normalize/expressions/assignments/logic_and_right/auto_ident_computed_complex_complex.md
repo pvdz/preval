@@ -22,7 +22,7 @@ $(a, b);
 
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(100);
-const b /*:object*/ = { c: 1 };
+const b /*:object*/ /*truthy*/ = { c: 1 };
 if (tmpCalleeParam) {
   const tmpCompObj /*:unknown*/ = $(b);
   const tmpCalleeParam$1 /*:unknown*/ = $(`c`);
@@ -31,7 +31,7 @@ if (tmpCalleeParam) {
   $(tmpNestedComplexRhs, b);
 } else {
   $(tmpCalleeParam);
-  const a /*:object*/ = { a: 999, b: 1000 };
+  const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
   $(a, b);
 }
 `````

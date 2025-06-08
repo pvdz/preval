@@ -21,9 +21,9 @@ $(a, b);
 
 
 `````js filename=intro
-const tmpSSA_b /*:number*/ = 2;
+const tmpSSA_b /*:number*/ /*truthy*/ = 2;
 export { tmpSSA_b as default };
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a, 2);
 `````
 

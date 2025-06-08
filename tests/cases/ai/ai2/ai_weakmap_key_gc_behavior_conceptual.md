@@ -32,8 +32,8 @@ $('wm_other_key_present', wmap.has($('other_key')));
 
 
 `````js filename=intro
-const wmap /*:object*/ = new WeakMap();
-const tmpCalleeParam /*:object*/ = { name: `potentially_gc_able` };
+const wmap /*:object*/ /*truthy*/ = new WeakMap();
+const tmpCalleeParam /*:object*/ /*truthy*/ = { name: `potentially_gc_able` };
 const key /*:unknown*/ = $(`wm_gc_key`, tmpCalleeParam);
 const tmpMCF /*:unknown*/ = wmap.set;
 const tmpMCP /*:unknown*/ = $(`wm_gc_val`);
@@ -43,7 +43,7 @@ const tmpCalleeParam$1 /*:unknown*/ = $dotCall(tmpMCF$1, wmap, `has`, key);
 $(`wm_gc_has_key_before_gc_concept`, tmpCalleeParam$1);
 $(`wm_gc_key_nulled`);
 const tmpMCF$3 /*:unknown*/ = wmap.set;
-const tmpCalleeParam$3 /*:object*/ = {};
+const tmpCalleeParam$3 /*:object*/ /*truthy*/ = {};
 const tmpMCP$1 /*:unknown*/ = $(`other_key`, tmpCalleeParam$3);
 const tmpMCP$3 /*:unknown*/ = $(`other_val`);
 $dotCall(tmpMCF$3, wmap, `set`, tmpMCP$1, tmpMCP$3);

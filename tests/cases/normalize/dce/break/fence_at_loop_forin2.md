@@ -36,7 +36,7 @@ $(`after (not invoked)`);
 const tmpIfTest /*:unknown*/ = $(true);
 if (tmpIfTest) {
   $(`loop`);
-  const tmpForInDeclRhs /*:object*/ = { a: 1, b: 2 };
+  const tmpForInDeclRhs /*:object*/ /*truthy*/ = { a: 1, b: 2 };
   const tmpForInGenNext /*:unknown*/ = $forIn(tmpForInDeclRhs);
   const tmpForInNext /*:unknown*/ = tmpForInGenNext();
   const tmpIfTest$1 /*:unknown*/ = tmpForInNext.done;
@@ -51,7 +51,7 @@ if (tmpIfTest) {
     const tmpIfTest$2 /*:unknown*/ = $(true);
     if (tmpIfTest$2) {
       $(`loop`);
-      const tmpForInDeclRhs$1 /*:object*/ = { a: 1, b: 2 };
+      const tmpForInDeclRhs$1 /*:object*/ /*truthy*/ = { a: 1, b: 2 };
       const tmpForInGenNext$1 /*:unknown*/ = $forIn(tmpForInDeclRhs$1);
       const tmpForInNext$1 /*:unknown*/ = tmpForInGenNext$1();
       const tmpIfTest$4 /*:unknown*/ = tmpForInNext$1.done;

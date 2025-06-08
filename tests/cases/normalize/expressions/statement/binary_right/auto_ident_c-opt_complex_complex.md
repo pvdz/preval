@@ -23,7 +23,7 @@ $(a);
 `````js filename=intro
 const tmpBinBothLhs /*:unknown*/ = $(100);
 let tmpBinBothRhs /*:unknown*/ /*ternaryConst*/ = undefined;
-const b /*:object*/ = { x: 1 };
+const b /*:object*/ /*truthy*/ = { x: 1 };
 const tmpChainElementCall /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest) {
@@ -32,7 +32,7 @@ if (tmpIfTest) {
   tmpBinBothRhs = tmpChainElementCall[tmpChainRootComputed];
 }
 tmpBinBothLhs + tmpBinBothRhs;
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

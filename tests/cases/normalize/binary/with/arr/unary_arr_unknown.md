@@ -31,28 +31,28 @@ $(arr);
 
 
 `````js filename=intro
-const tmpCalleeParam /*:array*/ = [];
+const tmpCalleeParam /*:array*/ /*truthy*/ = [];
 const tmpMCP /*:unknown*/ = $(tmpCalleeParam);
-const tmpUnaryArg /*:array*/ = $Array_from(tmpMCP);
+const tmpUnaryArg /*:array*/ /*truthy*/ = $Array_from(tmpMCP);
 const tmpArrElement /*:number*/ = ~tmpUnaryArg;
-const tmpCalleeParam$1 /*:array*/ = [];
+const tmpCalleeParam$1 /*:array*/ /*truthy*/ = [];
 const tmpMCP$1 /*:unknown*/ = $(tmpCalleeParam$1);
 $Array_from(tmpMCP$1);
-const tmpCalleeParam$3 /*:array*/ = [];
+const tmpCalleeParam$3 /*:array*/ /*truthy*/ = [];
 const tmpMCP$3 /*:unknown*/ = $(tmpCalleeParam$3);
-const tmpUnaryArg$3 /*:array*/ = $Array_from(tmpMCP$3);
+const tmpUnaryArg$3 /*:array*/ /*truthy*/ = $Array_from(tmpMCP$3);
 const tmpArrElement$3 /*:number*/ = -tmpUnaryArg$3;
-const tmpCalleeParam$5 /*:array*/ = [];
+const tmpCalleeParam$5 /*:array*/ /*truthy*/ = [];
 const tmpMCP$5 /*:unknown*/ = $(tmpCalleeParam$5);
-const tmpUnaryArg$5 /*:array*/ = $Array_from(tmpMCP$5);
+const tmpUnaryArg$5 /*:array*/ /*truthy*/ = $Array_from(tmpMCP$5);
 const tmpArrElement$5 /*:number*/ = +tmpUnaryArg$5;
-const tmpCalleeParam$7 /*:array*/ = [];
+const tmpCalleeParam$7 /*:array*/ /*truthy*/ = [];
 const tmpMCP$7 /*:unknown*/ = $(tmpCalleeParam$7);
 $Array_from(tmpMCP$7);
-const tmpCalleeParam$9 /*:array*/ = [];
+const tmpCalleeParam$9 /*:array*/ /*truthy*/ = [];
 const tmpMCP$9 /*:unknown*/ = $(tmpCalleeParam$9);
 $Array_from(tmpMCP$9);
-const arr /*:array*/ = [tmpArrElement, false, tmpArrElement$3, tmpArrElement$5, `object`, undefined];
+const arr /*:array*/ /*truthy*/ = [tmpArrElement, false, tmpArrElement$3, tmpArrElement$5, `object`, undefined];
 $(arr);
 `````
 

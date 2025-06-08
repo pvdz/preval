@@ -25,8 +25,8 @@ $(a, b);
 const tmpAssignRhsCompProp /*:unknown*/ = $(`c`);
 $coerce(tmpAssignRhsCompProp, `string`);
 $(undefined);
-const a /*:object*/ = { a: 999, b: 1000 };
-const b /*:object*/ = { c: 1 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
+const b /*:object*/ /*truthy*/ = { c: 1 };
 $(a, b);
 `````
 

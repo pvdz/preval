@@ -27,7 +27,7 @@ $('finally_attached');
 
 `````js filename=intro
 const tmpMCP /*:unknown*/ = $(`val`);
-const p /*:promise*/ = $dotCall($Promise_resolve, Promise, `resolve`, tmpMCP);
+const p /*:promise*/ /*truthy*/ = $dotCall($Promise_resolve, Promise, `resolve`, tmpMCP);
 const onFinally /*:unknown*/ = $(`opaque_finally_callback`);
 $dotCall($promise_finally, p, `finally`, onFinally);
 $(`finally_attached`);

@@ -23,7 +23,7 @@ $(a, x);
 `````js filename=intro
 const tmpBinBothRhs /*:unknown*/ = $(100);
 const tmpStringConcatL /*:string*/ = $coerce(tmpBinBothRhs, `plustr`);
-const tmpCalleeParam /*:string*/ = `number${tmpStringConcatL}`;
+const tmpCalleeParam /*:string*/ /*truthy*/ = `number${tmpStringConcatL}`;
 $(tmpCalleeParam);
 $(`number`, 1);
 `````

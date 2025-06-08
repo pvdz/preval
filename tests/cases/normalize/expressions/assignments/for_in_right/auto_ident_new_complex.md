@@ -20,7 +20,7 @@ $(a);
 
 `````js filename=intro
 const tmpNewCallee /*:unknown*/ = $($);
-const a /*:object*/ = new tmpNewCallee(1);
+const a /*:object*/ /*truthy*/ = new tmpNewCallee(1);
 const tmpForInGen /*:unknown*/ = $forIn(a);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForInNext /*:unknown*/ = tmpForInGen();

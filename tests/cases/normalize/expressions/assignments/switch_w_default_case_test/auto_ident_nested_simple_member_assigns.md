@@ -41,7 +41,7 @@ if (tmpIfTest) {
   }
 }
 const tmpIfTest$5 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
-const b /*:object*/ = { x: 3 };
+const b /*:object*/ /*truthy*/ = { x: 3 };
 if (tmpIfTest$5) {
   $(`fail1`);
   $(`fail2`);

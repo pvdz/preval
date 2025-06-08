@@ -23,7 +23,7 @@ $(a);
 `````js filename=intro
 let a /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpIfTest$1 /*:boolean*/ = $ == null;
-const tmpObjLitVal$1 /*:object*/ = { e: $ };
+const tmpObjLitVal$1 /*:object*/ /*truthy*/ = { e: $ };
 if (tmpIfTest$1) {
 } else {
   a = $dotCall($, tmpObjLitVal$1, `e`, 1);

@@ -27,7 +27,7 @@ const gen /*:()=>object*/ = function* () {
   return undefined;
 };
 const x /*:unknown*/ = $(`val`);
-const tmpCalleeParam /*:object*/ = gen();
+const tmpCalleeParam /*:object*/ /*truthy*/ = gen();
 const tmpForOfGenNext /*:unknown*/ = $forOf(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();

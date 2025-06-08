@@ -19,9 +19,9 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
+const tmpCalleeParam /*:object*/ /*truthy*/ = { a: 1, b: 2 };
 const tmpBinBothLhs /*:unknown*/ = $(tmpCalleeParam);
-const tmpCalleeParam$1 /*:object*/ = { a: 1, b: 2 };
+const tmpCalleeParam$1 /*:object*/ /*truthy*/ = { a: 1, b: 2 };
 const tmpBinBothRhs /*:unknown*/ = $(tmpCalleeParam$1);
 tmpBinBothLhs + tmpBinBothRhs;
 $(999);

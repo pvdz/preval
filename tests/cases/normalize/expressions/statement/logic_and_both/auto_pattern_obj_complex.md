@@ -19,10 +19,10 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
+const tmpCalleeParam /*:object*/ /*truthy*/ = { a: 1, b: 2 };
 const tmpIfTest /*:unknown*/ = $(tmpCalleeParam);
 if (tmpIfTest) {
-  const tmpCalleeParam$1 /*:object*/ = { a: 1, b: 2 };
+  const tmpCalleeParam$1 /*:object*/ /*truthy*/ = { a: 1, b: 2 };
   $(tmpCalleeParam$1);
   $(999);
 } else {

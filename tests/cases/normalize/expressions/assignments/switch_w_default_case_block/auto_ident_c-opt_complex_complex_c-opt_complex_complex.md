@@ -46,8 +46,8 @@ if (tmpIfTest) {
 const tmpIfTest$3 /*:boolean*/ = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$3) {
   a = undefined;
-  const tmpObjLitVal /*:object*/ = { y: 1 };
-  const b /*:object*/ = { x: tmpObjLitVal };
+  const tmpObjLitVal /*:object*/ /*truthy*/ = { y: 1 };
+  const b /*:object*/ /*truthy*/ = { x: tmpObjLitVal };
   const tmpChainElementCall /*:unknown*/ = $(b);
   const tmpIfTest$5 /*:boolean*/ = tmpChainElementCall == null;
   if (tmpIfTest$5) {

@@ -46,18 +46,18 @@
 
 `````js filename=intro
 const tmpAssignMemRhs /*:unknown*/ = $(`new_len1`, 2);
-const arr1 /*:array*/ = [1, 2, 3, 4, 5];
+const arr1 /*:array*/ /*truthy*/ = [1, 2, 3, 4, 5];
 arr1.length = tmpAssignMemRhs;
 const tmpCalleeParam /*:primitive*/ = $JSON_stringify(arr1);
 const tmpCalleeParam$1 /*:number*/ = arr1.length;
 $(`arr1_after_len_change`, tmpCalleeParam, tmpCalleeParam$1);
 const tmpAssignMemRhs$1 /*:unknown*/ = $(`new_len2_numeric`, 1);
-const arr2 /*:array*/ = [`a`, `b`, `c`];
+const arr2 /*:array*/ /*truthy*/ = [`a`, `b`, `c`];
 arr2.length = tmpAssignMemRhs$1;
 const tmpCalleeParam$3 /*:primitive*/ = $JSON_stringify(arr2);
 const tmpCalleeParam$5 /*:number*/ = arr2.length;
 $(`arr2_after_len_change`, tmpCalleeParam$3, tmpCalleeParam$5);
-const arr3 /*:array*/ = [`x`, `y`];
+const arr3 /*:array*/ /*truthy*/ = [`x`, `y`];
 try {
   const tmpAssignMemRhs$3 /*:unknown*/ = $(`new_len3_problematic`, `invalid`);
   arr3.length = tmpAssignMemRhs$3;
@@ -72,13 +72,13 @@ try {
   $(`arr3_after_error`, tmpCalleeParam$13, tmpCalleeParam$15);
 }
 const tmpAssignMemRhs$5 /*:unknown*/ = $(`fixed_len`, 1.5);
-const arr4 /*:array*/ = [7, 8, 9];
+const arr4 /*:array*/ /*truthy*/ = [7, 8, 9];
 arr4.length = tmpAssignMemRhs$5;
 const tmpCalleeParam$17 /*:primitive*/ = $JSON_stringify(arr4);
 const tmpCalleeParam$19 /*:number*/ = arr4.length;
 $(`arr4_after_float_len`, tmpCalleeParam$17, tmpCalleeParam$19);
 const tmpAssignMemRhs$7 /*:unknown*/ = $(`zero_len`, 0);
-const arr5 /*:array*/ = [10, 11];
+const arr5 /*:array*/ /*truthy*/ = [10, 11];
 arr5.length = tmpAssignMemRhs$7;
 const tmpCalleeParam$21 /*:primitive*/ = $JSON_stringify(arr5);
 const tmpCalleeParam$23 /*:number*/ = arr5.length;

@@ -29,7 +29,7 @@ $(a, b);
 
 
 `````js filename=intro
-let b /*:number*/ /*ternaryConst*/ = 1;
+let b /*:number*/ /*ternaryConst*/ /*truthy*/ = 1;
 const tmpSwitchValue /*:unknown*/ = $(1);
 let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
 const tmpBinLhs /*:unknown*/ = $(1);
@@ -55,7 +55,7 @@ if (tmpIfTest$3) {
     $(`fail2`);
   }
 }
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a, b);
 `````
 

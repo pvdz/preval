@@ -33,8 +33,8 @@ $(x, y);
 
 `````js filename=intro
 let x /*:unknown*/ = undefined;
-let y /*:unknown*/ = 1;
-const arr /*:array*/ = [1, 2, 3];
+let y /*:unknown*/ /*truthy*/ = 1;
+const arr /*:array*/ /*truthy*/ = [1, 2, 3];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpCalleeParam /*:primitive*/ = arr[0];
   try {

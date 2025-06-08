@@ -17,7 +17,7 @@ $(+/1/);
 
 
 `````js filename=intro
-const tmpUnaryArg /*:regex*/ = new $regex_constructor(`1`, ``);
+const tmpUnaryArg /*:regex*/ /*truthy*/ = new $regex_constructor(`1`, ``);
 const tmpCalleeParam /*:number*/ = +tmpUnaryArg;
 $(tmpCalleeParam);
 `````

@@ -25,9 +25,9 @@ $(a, b);
 `````js filename=intro
 $(1);
 const tmpArrElement /*:unknown*/ = $(2);
-const tmpCalleeParam /*:array*/ = [tmpArrElement];
+const tmpCalleeParam /*:array*/ /*truthy*/ = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs /*:unknown*/ = $(tmpCalleeParam);
-const tmpArrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
+const tmpArrPatternSplat /*:array*/ /*truthy*/ = [...tmpNestedAssignArrPatternRhs];
 const b /*:unknown*/ = tmpArrPatternSplat[0];
 $(tmpNestedAssignArrPatternRhs, b);
 `````

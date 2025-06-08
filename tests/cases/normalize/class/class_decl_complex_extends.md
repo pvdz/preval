@@ -19,7 +19,7 @@ $(x);
 
 `````js filename=intro
 const tmpClassSuper /*:unknown*/ = $($string_constructor);
-const x /*:class*/ = class extends tmpClassSuper {};
+const x /*:class*/ /*truthy*/ = class extends tmpClassSuper {};
 $(x);
 `````
 

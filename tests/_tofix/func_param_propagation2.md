@@ -41,12 +41,12 @@ const f /*:(primitive)=>array*/ = function ($$0) {
   } else {
     b = $dlr_$$1;
   }
-  const tmpReturnArg /*:array*/ = [`x`, b];
+  const tmpReturnArg /*:array*/ /*truthy*/ = [`x`, b];
   return tmpReturnArg;
 };
-const tmpCalleeParam /*:array*/ = f();
+const tmpCalleeParam /*:array*/ /*truthy*/ = f();
 $(tmpCalleeParam);
-const tmpCalleeParam$1 /*:array*/ = f(`y`);
+const tmpCalleeParam$1 /*:array*/ /*truthy*/ = f(`y`);
 $(tmpCalleeParam$1);
 `````
 

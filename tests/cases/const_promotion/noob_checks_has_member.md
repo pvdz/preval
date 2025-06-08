@@ -24,7 +24,7 @@ $(x, a, b, 'final');
 
 `````js filename=intro
 let x /*:unknown*/ = $(10);
-const b /*:object*/ = {
+const b /*:object*/ /*truthy*/ = {
   set x($$0) {
     debugger;
     x = $(30, `from set`);

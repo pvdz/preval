@@ -30,8 +30,8 @@ if ($) {
   $(20);
 } else {
 }
-const tmpArrElement$1 /*:string*/ = `${tmpStringConcatR} ${tmpBinBothRhs}`;
-const y /*:array*/ = [`a`, 1, tmpArrElement$1, 3, `b`];
+const tmpArrElement$1 /*:string*/ /*truthy*/ = `${tmpStringConcatR} ${tmpBinBothRhs}`;
+const y /*:array*/ /*truthy*/ = [`a`, 1, tmpArrElement$1, 3, `b`];
 $(y);
 `````
 

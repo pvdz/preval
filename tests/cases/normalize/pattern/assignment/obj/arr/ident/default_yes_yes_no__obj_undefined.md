@@ -18,9 +18,9 @@ $('bad');
 
 
 `````js filename=intro
-const tmpCalleeParam /*:array*/ = [`pass2`];
+const tmpCalleeParam /*:array*/ /*truthy*/ = [`pass2`];
 const tmpSSA_tmpOPAD /*:unknown*/ = $(tmpCalleeParam);
-const tmpArrPatternSplat /*:array*/ = [...tmpSSA_tmpOPAD];
+const tmpArrPatternSplat /*:array*/ /*truthy*/ = [...tmpSSA_tmpOPAD];
 const tmpAPBD /*:unknown*/ = tmpArrPatternSplat[0];
 const tmpIfTest$1 /*:boolean*/ = tmpAPBD === undefined;
 if (tmpIfTest$1) {

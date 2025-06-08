@@ -21,10 +21,10 @@ $(a, b);
 
 
 `````js filename=intro
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 const tmpClusterSSA_a /*:number*/ = a * 2;
 $(tmpClusterSSA_a);
-const b /*:object*/ = { c: 2 };
+const b /*:object*/ /*truthy*/ = { c: 2 };
 $(tmpClusterSSA_a, b);
 `````
 

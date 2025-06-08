@@ -30,7 +30,7 @@ $(f('three'));
 `````js filename=intro
 const f /*:()=>unknown*/ = function () {
   debugger;
-  const rest /*:array*/ = [];
+  const rest /*:array*/ /*truthy*/ = [];
   $(`no`, rest);
   $(`inlining`);
   $(`please`);

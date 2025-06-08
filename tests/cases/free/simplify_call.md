@@ -43,18 +43,18 @@ const tmpFree$21 /*:(number)=>number*/ = function $free($$0) {
   const tmpBinLhs$141 /*:number*/ = -tmpBinLhs$139;
   return tmpBinLhs$141;
 };
-const _0xb34c4b /*:array*/ = [`a`, `b`];
+const _0xb34c4b /*:array*/ /*truthy*/ = [`a`, `b`];
 try {
   const tmpCalleeParam$3 /*:unknown*/ = $(824);
   const tmpCalleeParam$1 /*:number*/ = $Number_parseInt(tmpCalleeParam$3);
   const tmpIfTest /*:number*/ = $frfr(tmpFree$21, tmpCalleeParam$1);
   if (tmpIfTest) {
   } else {
-    const tmpMCP /*:primitive*/ = $dotCall($array_shift, _0xb34c4b, `shift`);
+    const tmpMCP /*:primitive*/ /*truthy*/ = $dotCall($array_shift, _0xb34c4b, `shift`);
     $dotCall($array_push, _0xb34c4b, `push`, tmpMCP);
   }
 } catch (_0xa7aced$11) {
-  const tmpMCP$1 /*:primitive*/ = $dotCall($array_shift, _0xb34c4b, `shift`);
+  const tmpMCP$1 /*:primitive*/ /*truthy*/ = $dotCall($array_shift, _0xb34c4b, `shift`);
   $dotCall($array_push, _0xb34c4b, `push`, tmpMCP$1);
 }
 $(`thend`);

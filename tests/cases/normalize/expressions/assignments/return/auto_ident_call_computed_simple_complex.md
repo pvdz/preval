@@ -25,7 +25,7 @@ $(a);
 
 `````js filename=intro
 const tmpMCCP /*:unknown*/ = $(`\$`);
-const tmpMCCO /*:object*/ = { $: $ };
+const tmpMCCO /*:object*/ /*truthy*/ = { $: $ };
 const tmpMCF /*:unknown*/ = tmpMCCO[tmpMCCP];
 const tmpClusterSSA_a /*:unknown*/ = $dotCall(tmpMCF, tmpMCCO, undefined, 1);
 $(tmpClusterSSA_a);

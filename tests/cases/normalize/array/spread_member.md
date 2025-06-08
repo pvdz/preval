@@ -17,7 +17,7 @@ $([...true.toString.name]);
 
 
 `````js filename=intro
-const tmpCalleeParam /*:array*/ = [`t`, `o`, `S`, `t`, `r`, `i`, `n`, `g`];
+const tmpCalleeParam /*:array*/ /*truthy*/ = [`t`, `o`, `S`, `t`, `r`, `i`, `n`, `g`];
 $(tmpCalleeParam);
 `````
 

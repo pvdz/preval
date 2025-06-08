@@ -108,7 +108,7 @@ let self_closing_decoder /*:(unknown, unknown)=>unknown*/ = function ($$0, $$1) 
   const $dlr_$$1 /*:unknown*/ = $$1;
   debugger;
   self_closing_decoder = function ($$0, $$1) {
-    const tmpPrevalAliasArgumentsAny$1 /*:arguments*/ = arguments;
+    const tmpPrevalAliasArgumentsAny$1 /*:arguments*/ /*truthy*/ = arguments;
     const $dlr_$$6 /*:unknown*/ = $$0;
     debugger;
     let thisclosurebecomesargumentsobj /*:unknown*/ /*ternaryConst*/ = $dlr_$$0;
@@ -143,7 +143,7 @@ let self_closing_decoder /*:(unknown, unknown)=>unknown*/ = function ($$0, $$1) 
   const tmpReturnArg /*:unknown*/ = self_closing_decoder($dlr_$$0, $dlr_$$1);
   return tmpReturnArg;
 };
-const data_arr /*:array*/ = [`randomdata1`, `randomdata2`, `randomdata3`, `randomdata4`, `randomdata5`, `randomdata6`];
+const data_arr /*:array*/ /*truthy*/ = [`randomdata1`, `randomdata2`, `randomdata3`, `randomdata4`, `randomdata5`, `randomdata6`];
 const data_decoder /*:unknown*/ = self_closing_decoder;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   try {
@@ -152,11 +152,11 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     if (tmpUnaryArg$71) {
       break;
     } else {
-      const tmpMCP$29 /*:unknown*/ = $dotCall($array_shift, data_arr, `shift`);
+      const tmpMCP$29 /*:unknown*/ /*truthy*/ = $dotCall($array_shift, data_arr, `shift`);
       $dotCall($array_push, data_arr, `push`, tmpMCP$29);
     }
   } catch (QEAWyhaEewZMjiEhuv_uVRbg$11) {
-    const tmpMCP$31 /*:unknown*/ = $dotCall($array_shift, data_arr, `shift`);
+    const tmpMCP$31 /*:unknown*/ /*truthy*/ = $dotCall($array_shift, data_arr, `shift`);
     $dotCall($array_push, data_arr, `push`, tmpMCP$31);
   }
 }

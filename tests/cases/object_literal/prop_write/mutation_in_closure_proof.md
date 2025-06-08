@@ -41,7 +41,7 @@ const f /*:()=>undefined*/ = function () {
     delete x.y;
   } else {
   }
-  const tmpMCP /*:object*/ = {
+  const tmpMCP /*:object*/ /*truthy*/ = {
     set($$0) {
       debugger;
       return undefined;
@@ -55,7 +55,7 @@ const f /*:()=>undefined*/ = function () {
   $(`b`);
   return undefined;
 };
-const x /*:object*/ = { y: 0 };
+const x /*:object*/ /*truthy*/ = { y: 0 };
 f();
 x.y = 10;
 f();

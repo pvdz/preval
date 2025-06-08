@@ -47,14 +47,14 @@ $(str);
 `````js filename=intro
 let str /*:string*/ = `var 44=["\\13\\17\\31\\8\\12\\29\\21\\22\\7\\16\\8\\7\\9`;
 let tmpClusterSSA_count$2 /*:number*/ = 66;
-const arr /*:array*/ = [``, ``, ``, ``, ``, ``, ``, `x5C`, `x35`, `x36`, ``, `x31`];
+const arr /*:array*/ /*truthy*/ = [``, ``, ``, ``, ``, ``, ``, `x5C`, `x35`, `x36`, ``, `x31`];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpPostUpdArgIdent$2 /*:unknown*/ = tmpClusterSSA_count$2;
   tmpClusterSSA_count$2 = tmpClusterSSA_count$2 - 1;
   if (tmpPostUpdArgIdent$2) {
     const chr$1 /*:primitive*/ = arr[tmpClusterSSA_count$2];
     if (chr$1) {
-      const regex$1 /*:regex*/ = new $regex_constructor(`xyz`, `g`);
+      const regex$1 /*:regex*/ /*truthy*/ = new $regex_constructor(`xyz`, `g`);
       const chr2$1 /*:primitive*/ = arr[tmpClusterSSA_count$2];
       str = $dotCall($string_replace, str, `replace`, regex$1, chr2$1);
     } else {

@@ -22,12 +22,12 @@ $(a, b);
 
 `````js filename=intro
 const tmpInitAssignLhsComputedProp /*:unknown*/ = $(`c`);
-const b /*:object*/ = { c: 10, d: 20 };
+const b /*:object*/ /*truthy*/ = { c: 10, d: 20 };
 const tmpCompObj /*:unknown*/ = $(b);
 const tmpCalleeParam$1 /*:unknown*/ = $(`d`);
 const tmpInitAssignLhsComputedRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam$1];
 b[tmpInitAssignLhsComputedProp] = tmpInitAssignLhsComputedRhs;
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 const tmpClusterSSA_a /*:number*/ = a * tmpInitAssignLhsComputedRhs;
 $(tmpClusterSSA_a);
 $(tmpClusterSSA_a, b);

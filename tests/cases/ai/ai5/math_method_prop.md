@@ -26,7 +26,7 @@ $(x + y);
 
 
 `````js filename=intro
-const obj /*:object*/ = { [`1`]: 1, [`2`]: 2 };
+const obj /*:object*/ /*truthy*/ = { [`1`]: 1, [`2`]: 2 };
 const x /*:unknown*/ = obj[1];
 const y /*:unknown*/ = obj[2];
 const tmpCalleeParam$3 /*:primitive*/ = x + y;

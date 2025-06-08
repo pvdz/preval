@@ -26,7 +26,7 @@ $(setAssignable($(100)));
 `````js filename=intro
 const tmpCalleeParam$1 /*:unknown*/ = $(100);
 tmpCalleeParam$1 ** 0;
-const c /*:number*/ = tmpCalleeParam$1 & -17;
+const c /*:number*/ /*&-17*/ = tmpCalleeParam$1 & -17;
 $(c);
 `````
 

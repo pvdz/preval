@@ -19,7 +19,7 @@ $(a);
 
 
 `````js filename=intro
-const a /*:object*/ = new $(1);
+const a /*:object*/ /*truthy*/ = new $(1);
 export { a as default };
 $(a);
 `````

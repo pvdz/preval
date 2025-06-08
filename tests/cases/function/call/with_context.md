@@ -20,15 +20,15 @@ $(function(){ $(this.x); }.call({x: 15}, ['x']));
 
 `````js filename=intro
 const tmpMCOO /*:()=>undefined*/ = function () {
-  const tmpPrevalAliasThis /*:object*/ = this;
+  const tmpPrevalAliasThis /*:object*/ /*truthy*/ = this;
   debugger;
   const tmpCalleeParam$1 /*:unknown*/ = tmpPrevalAliasThis.x;
   $(tmpCalleeParam$1);
   return undefined;
 };
-const tmpMCP /*:object*/ = { x: 15 };
-const tmpMCP$1 /*:array*/ = [`x`];
-const tmpCalleeParam /*:unknown*/ = $dotCall($function_call, tmpMCOO, `call`, tmpMCP, tmpMCP$1);
+const tmpMCP /*:object*/ /*truthy*/ = { x: 15 };
+const tmpMCP$1 /*:array*/ /*truthy*/ = [`x`];
+const tmpCalleeParam /*:unknown*/ /*truthy*/ = $dotCall($function_call, tmpMCOO, `call`, tmpMCP, tmpMCP$1);
 $(tmpCalleeParam);
 `````
 

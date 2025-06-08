@@ -43,10 +43,10 @@ $(a, b);
 
 
 `````js filename=intro
-const arr /*:array*/ = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000];
+const arr /*:array*/ /*truthy*/ = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000];
 let arg1 /*:unknown*/ = 3;
 const func /*:(unknown, unused)=>unknown*/ = function ($$0, $$1) {
-  const tmpPrevalAliasArgumentsAny$1 /*:arguments*/ = arguments;
+  const tmpPrevalAliasArgumentsAny$1 /*:arguments*/ /*truthy*/ = arguments;
   const $dlr_$$0 /*:unknown*/ = $$0;
   debugger;
   const index /*:number*/ = $dlr_$$0 - 1;

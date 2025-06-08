@@ -22,7 +22,7 @@ $(a, b);
 
 
 `````js filename=intro
-const b /*:object*/ = { c: 1 };
+const b /*:object*/ /*truthy*/ = { c: 1 };
 const tmpCompObj /*:unknown*/ = $(b);
 const tmpCalleeParam /*:unknown*/ = $(`c`);
 const tmpClusterSSA_a /*:unknown*/ = tmpCompObj[tmpCalleeParam];

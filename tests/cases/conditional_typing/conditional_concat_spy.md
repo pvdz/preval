@@ -37,11 +37,11 @@ const tmpBinBothRhs /*:unknown*/ = $spy();
 const tmpStringConcatL /*:string*/ = $coerce(tmpBinBothRhs, `plustr`);
 const tmpIfTest$1787 /*:boolean*/ = lastType === 2097173;
 if (tmpIfTest$1787) {
-  const tmpClusterSSA_fullErrmsg /*:string*/ = `Parser error! ${tmpStringConcatL} (at EOF)`;
+  const tmpClusterSSA_fullErrmsg /*:string*/ /*truthy*/ = `Parser error! ${tmpStringConcatL} (at EOF)`;
   $(`-->`, tmpClusterSSA_fullErrmsg);
   $(undefined);
 } else {
-  const tmpBinBothLhs$253 /*:string*/ = `Parser error! ${tmpStringConcatL}`;
+  const tmpBinBothLhs$253 /*:string*/ /*truthy*/ = `Parser error! ${tmpStringConcatL}`;
   $(`-->`, tmpBinBothLhs$253);
   $(undefined);
 }

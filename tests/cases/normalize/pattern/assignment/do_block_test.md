@@ -19,7 +19,7 @@ $(p, q);
 
 
 `````js filename=intro
-const b /*:array*/ = [10, 20];
+const b /*:array*/ /*truthy*/ = [10, 20];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpArrAssignPatternRhs /*:unknown*/ = $(b);
   [...tmpArrAssignPatternRhs];

@@ -31,7 +31,7 @@ if (tmpIfTest) {
   const tmpClusterSSA_a /*:primitive*/ = tmpBinBothLhs$1 + tmpBinBothRhs$1;
   $(tmpClusterSSA_a);
 } else {
-  const a /*:object*/ = { a: 999, b: 1000 };
+  const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
   $(a);
 }
 `````

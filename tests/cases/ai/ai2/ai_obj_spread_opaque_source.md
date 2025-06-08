@@ -25,7 +25,7 @@ $('result', newObj);
 
 `````js filename=intro
 const objSource /*:unknown*/ = $(`opaque_object_source`);
-const newObj /*:object*/ = { a: 1, ...objSource, b: 2 };
+const newObj /*:object*/ /*truthy*/ = { a: 1, ...objSource, b: 2 };
 $(`result`, newObj);
 `````
 

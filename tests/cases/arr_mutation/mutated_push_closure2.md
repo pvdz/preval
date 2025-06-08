@@ -35,7 +35,7 @@ const f /*:(unknown)=>undefined*/ = function ($$0) {
     return undefined;
   }
 };
-const arr /*:array*/ = [1, 2, 3, 4];
+const arr /*:array*/ /*truthy*/ = [1, 2, 3, 4];
 f();
 $dotCall($array_push, arr, `push`, `a`, `b`);
 $(arr);

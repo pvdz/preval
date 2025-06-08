@@ -32,11 +32,11 @@ $(f());
 const f /*:()=>number*/ = function () {
   debugger;
   const x /*:unknown*/ = $spy();
-  const t /*:number*/ = x & 8192;
+  const t /*:number*/ /*&8192*/ /*oneBitAnded*/ = x & 8192;
   if (t) {
     return 128;
   } else {
-    const r /*:number*/ = x & 128;
+    const r /*:number*/ /*&128*/ /*oneBitAnded*/ = x & 128;
     return r;
   }
 };

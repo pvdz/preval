@@ -25,21 +25,21 @@ $(f($(9)));
 
 `````js filename=intro
 const tmpCalleeParam$1 /*:unknown*/ = $(7);
-const tmpSaooB$3 /*:number*/ = tmpCalleeParam$1 & 8;
+const tmpSaooB$3 /*:number*/ /*&8*/ /*oneBitAnded*/ = tmpCalleeParam$1 & 8;
 if (tmpSaooB$3) {
   $(8);
 } else {
   $(0);
 }
 const tmpCalleeParam$5 /*:unknown*/ = $(8);
-const tmpSaooB$1 /*:number*/ = tmpCalleeParam$5 & 8;
+const tmpSaooB$1 /*:number*/ /*&8*/ /*oneBitAnded*/ = tmpCalleeParam$5 & 8;
 if (tmpSaooB$1) {
   $(8);
 } else {
   $(0);
 }
 const tmpCalleeParam$9 /*:unknown*/ = $(9);
-const tmpSaooB /*:number*/ = tmpCalleeParam$9 & 8;
+const tmpSaooB /*:number*/ /*&8*/ /*oneBitAnded*/ = tmpCalleeParam$9 & 8;
 if (tmpSaooB) {
   $(8);
 } else {

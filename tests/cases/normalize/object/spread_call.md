@@ -20,9 +20,9 @@ $({...f()});
 
 
 `````js filename=intro
-const tmpCalleeParam /*:object*/ = { x: 1 };
+const tmpCalleeParam /*:object*/ /*truthy*/ = { x: 1 };
 const tmpClusterSSA_tmpObjSpread /*:unknown*/ = $(tmpCalleeParam);
-const tmpCalleeParam$1 /*:object*/ = { ...tmpClusterSSA_tmpObjSpread };
+const tmpCalleeParam$1 /*:object*/ /*truthy*/ = { ...tmpClusterSSA_tmpObjSpread };
 $(tmpCalleeParam$1);
 `````
 

@@ -24,7 +24,7 @@ $(a);
 `````js filename=intro
 $(1);
 const tmpIfTest /*:boolean*/ = $ == null;
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   $(a);
 } else {

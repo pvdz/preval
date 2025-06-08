@@ -22,7 +22,7 @@ $(a, b);
 
 `````js filename=intro
 const tmpNestedComplexRhs /*:unknown*/ = $(2);
-const tmpCalleeParam /*:object*/ = { [tmpNestedComplexRhs]: 10 };
+const tmpCalleeParam /*:object*/ /*truthy*/ = { [tmpNestedComplexRhs]: 10 };
 $(tmpCalleeParam);
 $(tmpNestedComplexRhs, tmpNestedComplexRhs);
 `````

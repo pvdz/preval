@@ -27,10 +27,10 @@ if (funcs.length > 1) funcs[1]();
 `````js filename=intro
 const tmpArrElement /*:unknown*/ = $(`item1`);
 const tmpArrElement$1 /*:unknown*/ = $(`item2`);
-const tmpCalleeParam /*:array*/ = [tmpArrElement, tmpArrElement$1];
+const tmpCalleeParam /*:array*/ /*truthy*/ = [tmpArrElement, tmpArrElement$1];
 const iterable /*:unknown*/ = $(`iterable`, tmpCalleeParam);
 const tmpForOfGenNext /*:unknown*/ = $forOf(iterable);
-const funcs /*:array*/ = [];
+const funcs /*:array*/ /*truthy*/ = [];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;

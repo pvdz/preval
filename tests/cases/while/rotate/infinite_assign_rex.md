@@ -33,7 +33,7 @@ $(x);             // unreachable
 
 `````js filename=intro
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const x /*:regex*/ = new $regex_constructor(`tmp`, ``);
+  const x /*:regex*/ /*truthy*/ = new $regex_constructor(`tmp`, ``);
   $(x);
 }
 `````

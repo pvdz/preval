@@ -29,7 +29,7 @@ $(a);
 
 
 `````js filename=intro
-let a /*:object*/ /*ternaryConst*/ = { a: 999, b: 1000 };
+let a /*:object*/ /*ternaryConst*/ /*truthy*/ = { a: 999, b: 1000 };
 const tmpSwitchValue /*:unknown*/ = $(1);
 let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
 const tmpBinLhs /*:unknown*/ = $(1);
@@ -46,7 +46,7 @@ if (tmpIfTest) {
 const tmpIfTest$3 /*:boolean*/ = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$3) {
   const tmpCalleeParam /*:unknown*/ = $(`\$`);
-  const b /*:object*/ = { $: $ };
+  const b /*:object*/ /*truthy*/ = { $: $ };
   const tmpNewCallee /*:unknown*/ = b[tmpCalleeParam];
   a = new tmpNewCallee(1);
 } else {

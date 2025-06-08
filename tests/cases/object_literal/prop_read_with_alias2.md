@@ -35,7 +35,7 @@ $(`after`, tmpCalleeParam);
 
 `````js filename=intro
 const L /*:unknown*/ = $(`before`);
-const obj_orig /*:object*/ = { p: 12345 };
+const obj_orig /*:object*/ /*truthy*/ = { p: 12345 };
 if (L) {
   const tmpAssignMemRhs$4 /*:unknown*/ = $(`updated_value`);
   obj_orig.p = tmpAssignMemRhs$4;

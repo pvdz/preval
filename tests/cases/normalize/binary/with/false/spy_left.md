@@ -60,11 +60,11 @@ const tmpArrElement$23 /*:boolean*/ = x >= 0;
 const tmpArrElement$25 /*:boolean*/ = x == false;
 const tmpArrElement$27 /*:boolean*/ = x != false;
 x ** 0;
-const tmpArrElement$35 /*:number*/ = x ^ 0;
-const tmpArrElement$37 /*:number*/ = x | 0;
+const tmpArrElement$35 /*:number*/ /*^0*/ = x ^ 0;
+const tmpArrElement$37 /*:number*/ /*|0*/ = x | 0;
 const tmpArrElement$29 /*:boolean*/ = x === false;
 const tmpArrElement$31 /*:boolean*/ = x !== false;
-const arr /*:array*/ = [
+const arr /*:array*/ /*truthy*/ = [
   tmpArrElement,
   tmpArrElement$1,
   tmpArrElement$3,

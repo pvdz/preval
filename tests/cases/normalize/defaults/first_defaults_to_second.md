@@ -48,17 +48,17 @@ const f /*:(primitive, primitive)=>array*/ = function ($$0, $$1) {
     } else {
       b = tmpParamBare$3;
     }
-    const tmpReturnArg /*:array*/ = [tmpParamBare$1, b];
+    const tmpReturnArg /*:array*/ /*truthy*/ = [tmpParamBare$1, b];
     return tmpReturnArg;
   }
 };
-const tmpCalleeParam /*:array*/ = f();
+const tmpCalleeParam /*:array*/ /*truthy*/ = f();
 $(tmpCalleeParam);
-const tmpCalleeParam$1 /*:array*/ = f(`x`);
+const tmpCalleeParam$1 /*:array*/ /*truthy*/ = f(`x`);
 $(tmpCalleeParam$1);
-const tmpCalleeParam$3 /*:array*/ = f(undefined, `y`);
+const tmpCalleeParam$3 /*:array*/ /*truthy*/ = f(undefined, `y`);
 $(tmpCalleeParam$3);
-const tmpCalleeParam$5 /*:array*/ = f(`x`, `y`);
+const tmpCalleeParam$5 /*:array*/ /*truthy*/ = f(`x`, `y`);
 $(tmpCalleeParam$5);
 `````
 

@@ -30,8 +30,8 @@ exit: for (const key of $(new Set(['a', 'b']))) {
 
 `````js filename=intro
 let x /*:unknown*/ = $(2);
-const tmpCalleeParam$3 /*:array*/ = [`a`, `b`];
-const tmpCalleeParam$1 /*:set*/ = new $set_constructor(tmpCalleeParam$3);
+const tmpCalleeParam$3 /*:array*/ /*truthy*/ = [`a`, `b`];
+const tmpCalleeParam$1 /*:set*/ /*truthy*/ = new $set_constructor(tmpCalleeParam$3);
 const tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$1);
 const tmpForOfGenNext /*:unknown*/ = $forOf(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {

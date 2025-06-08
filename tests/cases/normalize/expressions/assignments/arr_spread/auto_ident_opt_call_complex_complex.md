@@ -27,7 +27,7 @@ if (tmpIfTest) {
   const tmpCalleeParam$1 /*:unknown*/ = $(1);
   a = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam$1);
 }
-const tmpCalleeParam /*:array*/ = [...a];
+const tmpCalleeParam /*:array*/ /*truthy*/ = [...a];
 $(tmpCalleeParam);
 $(a);
 `````

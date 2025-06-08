@@ -26,7 +26,7 @@ $(f());
 
 
 `````js filename=intro
-const b /*:object*/ = { c: 1 };
+const b /*:object*/ /*truthy*/ = { c: 1 };
 const tmpAssignRhsProp /*:unknown*/ = $(b);
 const a /*:unknown*/ = tmpAssignRhsProp.c;
 $(a, b);

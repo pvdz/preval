@@ -133,7 +133,7 @@ $coerce(tmpMCP$9, `string`);
 $(`number`);
 const tmpMCP$11 /*:unknown*/ = $spy(`JSON.stringify`);
 const tmpUnaryArg$25 /*:primitive*/ = $JSON_stringify(tmpMCP$11);
-const tmpCalleeParam$35 /*:string*/ = typeof tmpUnaryArg$25;
+const tmpCalleeParam$35 /*:string*/ /*truthy*/ = typeof tmpUnaryArg$25;
 $(tmpCalleeParam$35);
 const tmpMCP$13 /*:unknown*/ = $spy(`Math.abs`);
 $coerce(tmpMCP$13, `number`);

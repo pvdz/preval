@@ -23,7 +23,7 @@ $(res);
 `````js filename=intro
 const wat /*:unknown*/ = $(`x`);
 const str /*:string*/ = $coerce(wat, `plustr`);
-const res /*:array*/ = $dotCall($string_split, str, `split`, ` `);
+const res /*:array*/ /*truthy*/ = $dotCall($string_split, str, `split`, ` `);
 $(res);
 `````
 

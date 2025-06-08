@@ -21,7 +21,7 @@ $(f(0, 10));
 
 `````js filename=intro
 const tmpOPND /*:unknown*/ = $Number_prototype.x;
-const tmpArrPatternSplat /*:array*/ = [...tmpOPND];
+const tmpArrPatternSplat /*:array*/ /*truthy*/ = [...tmpOPND];
 $dotCall($array_slice, tmpArrPatternSplat, `slice`, 0);
 $(`bad`);
 `````

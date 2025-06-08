@@ -21,9 +21,9 @@ $(x, y);
 `````js filename=intro
 $(undefined, undefined);
 $(10, 20);
-const x /*:number*/ = 10;
+const x /*:number*/ /*truthy*/ = 10;
 export { x };
-const y /*:number*/ = 20;
+const y /*:number*/ /*truthy*/ = 20;
 export { y };
 `````
 

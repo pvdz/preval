@@ -24,7 +24,7 @@ if (c) {
 const c /*:unknown*/ = $(true);
 const tmpUnaryArg /*:unknown*/ = $();
 if (c) {
-  const a /*:boolean*/ = !tmpUnaryArg;
+  const a /*:boolean*/ /*banged*/ = !tmpUnaryArg;
   $(a);
 } else {
 }

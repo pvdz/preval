@@ -22,7 +22,7 @@ $(c)
 `````js filename=intro
 const c /*:()=>unknown*/ = function () {
   debugger;
-  const tmpReturnArg /*:class*/ = class {};
+  const tmpReturnArg /*:class*/ /*truthy*/ = class {};
   return tmpReturnArg;
 };
 $(c);

@@ -23,7 +23,7 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal /*:unknown*/ = $(1);
 $(undefined);
-const tmpSSA_a /*:object*/ = { b: tmpObjLitVal };
+const tmpSSA_a /*:object*/ /*truthy*/ = { b: tmpObjLitVal };
 const tmpAssignComMemLhsObj /*:unknown*/ = $(tmpSSA_a);
 const tmpAssignComMemLhsProp /*:unknown*/ = $(`b`);
 const tmpAssignComputedRhs /*:unknown*/ = $(2);

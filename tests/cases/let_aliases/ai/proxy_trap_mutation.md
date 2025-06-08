@@ -25,15 +25,15 @@ $(a, b);
 let x /*:unknown*/ = $(`val`);
 const a /*:unknown*/ = x;
 const tmpNewCallee /*:unknown*/ = Proxy;
-const tmpCalleeParam /*:object*/ = {};
-const tmpCalleeParam$1 /*:object*/ = {
+const tmpCalleeParam /*:object*/ /*truthy*/ = {};
+const tmpCalleeParam$1 /*:object*/ /*truthy*/ = {
   get() {
     debugger;
     x = `changed`;
     return 1;
   },
 };
-const p /*:object*/ = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
+const p /*:object*/ /*truthy*/ = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
 p.foo;
 $(a, x);
 `````

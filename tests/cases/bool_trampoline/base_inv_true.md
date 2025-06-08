@@ -33,7 +33,7 @@ else $('pass');
 const f /*:()=>boolean*/ = function () {
   debugger;
   const x /*:unknown*/ = $(100);
-  const y /*:boolean*/ = !x;
+  const y /*:boolean*/ /*banged*/ = !x;
   return y;
 };
 $(f);

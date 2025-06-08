@@ -27,7 +27,7 @@ const test /*:()=>promise*/ = async function () {
   const tmpReturnArg /*:unknown*/ = $(`opaque_return`);
   return tmpReturnArg;
 };
-const tmpMCOO /*:promise*/ = test();
+const tmpMCOO /*:promise*/ /*truthy*/ = test();
 const tmpMCP /*:(unknown)=>unknown*/ = function ($$0) {
   const v /*:unknown*/ = $$0;
   debugger;

@@ -19,7 +19,7 @@ $([-$()]);
 `````js filename=intro
 const tmpUnaryArg /*:unknown*/ = $();
 const tmpArrElement /*:number*/ = -tmpUnaryArg;
-const tmpCalleeParam /*:array*/ = [tmpArrElement];
+const tmpCalleeParam /*:array*/ /*truthy*/ = [tmpArrElement];
 $(tmpCalleeParam);
 `````
 

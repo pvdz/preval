@@ -22,9 +22,9 @@ $(a, b);
 
 `````js filename=intro
 const tmpArrElement /*:unknown*/ = $(2);
-const tmpCalleeParam /*:array*/ = [tmpArrElement];
+const tmpCalleeParam /*:array*/ /*truthy*/ = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs /*:unknown*/ = $(tmpCalleeParam);
-const tmpArrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
+const tmpArrPatternSplat /*:array*/ /*truthy*/ = [...tmpNestedAssignArrPatternRhs];
 const tmpClusterSSA_b /*:unknown*/ = tmpArrPatternSplat[0];
 if (tmpNestedAssignArrPatternRhs) {
   let b /*:unknown*/ = undefined;
@@ -32,9 +32,9 @@ if (tmpNestedAssignArrPatternRhs) {
   while ($LOOP_UNROLL_10) {
     $(100);
     const tmpArrElement$1 /*:unknown*/ = $(2);
-    const tmpCalleeParam$1 /*:array*/ = [tmpArrElement$1];
+    const tmpCalleeParam$1 /*:array*/ /*truthy*/ = [tmpArrElement$1];
     const tmpNestedAssignArrPatternRhs$1 /*:unknown*/ = $(tmpCalleeParam$1);
-    const tmpArrPatternSplat$1 /*:array*/ = [...tmpNestedAssignArrPatternRhs$1];
+    const tmpArrPatternSplat$1 /*:array*/ /*truthy*/ = [...tmpNestedAssignArrPatternRhs$1];
     b = tmpArrPatternSplat$1[0];
     a = tmpNestedAssignArrPatternRhs$1;
     if (tmpNestedAssignArrPatternRhs$1) {

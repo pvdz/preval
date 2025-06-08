@@ -20,7 +20,7 @@ $(f());
 
 
 `````js filename=intro
-const f /*:function*/ = $function_constructor(a, b, c, d);
+const f /*:function*/ /*truthy*/ = $function_constructor(a, b, c, d);
 const tmpCalleeParam /*:unknown*/ = f();
 $(tmpCalleeParam);
 `````

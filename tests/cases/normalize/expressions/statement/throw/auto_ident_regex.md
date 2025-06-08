@@ -19,7 +19,7 @@ $(a);
 
 
 `````js filename=intro
-const tmpThrowArg /*:regex*/ = new $regex_constructor(`foo`, ``);
+const tmpThrowArg /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, ``);
 throw tmpThrowArg;
 `````
 

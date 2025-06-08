@@ -19,7 +19,7 @@ $(a);
 
 
 `````js filename=intro
-const tmpNestedComplexRhs /*:regex*/ = new $regex_constructor(`foo`, ``);
+const tmpNestedComplexRhs /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, ``);
 $(tmpNestedComplexRhs);
 $(tmpNestedComplexRhs);
 `````

@@ -55,7 +55,7 @@ f();
 `````js filename=intro
 const tmpIfTest$3 /*:unknown*/ = $(false);
 if (tmpIfTest$3) {
-  const $dlr_$$1 /*:array*/ = [];
+  const $dlr_$$1 /*:array*/ /*truthy*/ = [];
   $($dlr_$$1);
 } else {
   $(`pass`);

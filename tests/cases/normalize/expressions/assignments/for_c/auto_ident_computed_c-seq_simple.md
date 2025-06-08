@@ -22,7 +22,7 @@ $(a, b);
 
 `````js filename=intro
 const tmpIfTest /*:unknown*/ = $(1);
-const b /*:object*/ = { c: 1 };
+const b /*:object*/ /*truthy*/ = { c: 1 };
 if (tmpIfTest) {
   const tmpAssignRhsCompObj /*:unknown*/ = $(b);
   const tmpAssignRhsCompProp /*:unknown*/ = $(`c`);
@@ -39,7 +39,7 @@ if (tmpIfTest) {
   }
   $(tmpClusterSSA_a, b);
 } else {
-  const a /*:object*/ = { a: 999, b: 1000 };
+  const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
   $(a, b);
 }
 `````

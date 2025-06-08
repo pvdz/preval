@@ -21,7 +21,7 @@ $(o.f("200", 15));
 
 
 `````js filename=intro
-const o /*:object*/ = { f: $ };
+const o /*:object*/ /*truthy*/ = { f: $ };
 const tmpCalleeParam /*:unknown*/ = $dotCall($, o, `f`, `200`, 15);
 $(tmpCalleeParam);
 `````

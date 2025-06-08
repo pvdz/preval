@@ -18,7 +18,7 @@ $(x);
 
 
 `````js filename=intro
-const x /*:object*/ = new $string_constructor(true);
+const x /*:object*/ /*truthy*/ = new $string_constructor(true);
 $(x);
 `````
 

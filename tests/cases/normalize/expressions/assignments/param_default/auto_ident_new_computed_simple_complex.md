@@ -23,9 +23,9 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(`\$`);
-const b /*:object*/ = { $: $ };
+const b /*:object*/ /*truthy*/ = { $: $ };
 const tmpNewCallee /*:unknown*/ = b[tmpCalleeParam];
-const tmpClusterSSA_a /*:object*/ = new tmpNewCallee(1);
+const tmpClusterSSA_a /*:object*/ /*truthy*/ = new tmpNewCallee(1);
 $(undefined);
 $(tmpClusterSSA_a);
 `````

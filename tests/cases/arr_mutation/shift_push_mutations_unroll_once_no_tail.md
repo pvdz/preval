@@ -32,13 +32,13 @@ while ($LOOP_UNROLL_2) {      // The unrolled body is not in a loop so it can in
 const test /*:unknown*/ = $(`never`);
 if (test) {
 } else {
-  const arr /*:array*/ = [2, 3, 4, 5, 1];
+  const arr /*:array*/ /*truthy*/ = [2, 3, 4, 5, 1];
   while ($LOOP_UNROLL_1) {
     const test$1 /*:unknown*/ = $(`never`);
     if (test$1) {
       break;
     } else {
-      const tmp$1 /*:primitive*/ = $dotCall($array_shift, arr, `shift`);
+      const tmp$1 /*:primitive*/ /*truthy*/ = $dotCall($array_shift, arr, `shift`);
       $dotCall($array_push, arr, `push`, tmp$1);
     }
   }

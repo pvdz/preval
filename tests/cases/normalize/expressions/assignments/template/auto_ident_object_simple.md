@@ -19,9 +19,9 @@ $(a);
 
 
 `````js filename=intro
-const a /*:object*/ = { x: 1, y: 2, z: 3 };
+const a /*:object*/ /*truthy*/ = { x: 1, y: 2, z: 3 };
 const tmpBinBothRhs /*:string*/ = $coerce(a, `string`);
-const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
+const tmpCalleeParam /*:string*/ /*truthy*/ = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
 $(a);
 `````

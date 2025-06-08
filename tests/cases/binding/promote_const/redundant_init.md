@@ -41,7 +41,7 @@ $(f());
 
 
 `````js filename=intro
-const tmpCalleeParam /*:array*/ = [10, 20, 30, 40];
+const tmpCalleeParam /*:array*/ /*truthy*/ = [10, 20, 30, 40];
 const SSA_SNe$596 /*:unknown*/ = $(tmpCalleeParam);
 if (tmpIfTest$32854) {
   const tmpCalleeParam$36039 /*:unknown*/ = $(1);

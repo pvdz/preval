@@ -32,12 +32,12 @@ $(x);
 `````js filename=intro
 let x /*:unknown*/ = 0;
 const g /*:(array)=>undefined*/ = function (...$$0 /*:array*/) {
-  const b /*:array*/ = $$0;
+  const b /*:array*/ /*truthy*/ = $$0;
   debugger;
   x = b;
   return undefined;
 };
-const tmpCalleeParam /*:array*/ = [1, 2];
+const tmpCalleeParam /*:array*/ /*truthy*/ = [1, 2];
 $(tmpCalleeParam);
 g(20, 30, 40, 50, 60);
 $(x);

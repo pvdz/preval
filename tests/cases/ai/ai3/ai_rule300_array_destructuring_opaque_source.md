@@ -21,9 +21,9 @@ $('b_val', b);
 
 
 `````js filename=intro
-const tmpCalleeParam /*:array*/ = [1, 2, 3];
+const tmpCalleeParam /*:array*/ /*truthy*/ = [1, 2, 3];
 const source /*:unknown*/ = $(`source`, tmpCalleeParam);
-const tmpArrPatternSplat /*:array*/ = [...source];
+const tmpArrPatternSplat /*:array*/ /*truthy*/ = [...source];
 const a /*:unknown*/ = tmpArrPatternSplat[0];
 const b /*:unknown*/ = tmpArrPatternSplat[1];
 $(`a_val`, a);

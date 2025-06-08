@@ -27,7 +27,7 @@ if (tmpIfTest$1) {
   const tmpCalleeParam /*:unknown*/ = $(1);
   tmpIfTest = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam);
 }
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   const tmpChainElementCall$3 /*:unknown*/ = $($);
   const tmpIfTest$3 /*:boolean*/ = tmpChainElementCall$3 == null;

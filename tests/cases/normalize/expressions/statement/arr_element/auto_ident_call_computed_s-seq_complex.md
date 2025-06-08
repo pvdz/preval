@@ -22,14 +22,14 @@ $(a);
 
 `````js filename=intro
 const tmpMCCP /*:unknown*/ = $(`\$`);
-const b /*:object*/ = { $: $ };
+const b /*:object*/ /*truthy*/ = { $: $ };
 const tmpMCF /*:unknown*/ = b[tmpMCCP];
 const tmpBinBothLhs /*:unknown*/ = $dotCall(tmpMCF, b, undefined, 1);
 const tmpMCCP$1 /*:unknown*/ = $(`\$`);
 const tmpMCF$1 /*:unknown*/ = b[tmpMCCP$1];
 const tmpBinBothRhs /*:unknown*/ = $dotCall(tmpMCF$1, b, undefined, 1);
 tmpBinBothLhs + tmpBinBothRhs;
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

@@ -32,7 +32,7 @@ const y /*:unknown*/ = x();
 const tmpMCF /*:unknown*/ = x.call;
 const z /*:unknown*/ = $dotCall(tmpMCF, x, `call`, null);
 const tmpMCF$1 /*:unknown*/ = x.apply;
-const tmpMCP /*:array*/ = [];
+const tmpMCP /*:array*/ /*truthy*/ = [];
 const w /*:unknown*/ = $dotCall(tmpMCF$1, x, `apply`, null, tmpMCP);
 $(y);
 $(z);

@@ -25,7 +25,7 @@ if (x) {
 `````js filename=intro
 const tmpBinBothRhs /*:unknown*/ = $(1);
 const x /*:number*/ = 1 * tmpBinBothRhs;
-const tmpBool /*:boolean*/ = !x;
+const tmpBool /*:boolean*/ /*banged*/ = !x;
 $(tmpBool);
 `````
 

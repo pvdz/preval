@@ -96,7 +96,7 @@ const tmpObjLitVal$159 /*:()=>undefined*/ = function () {
   }
   const tmpMCF$3 /*:unknown*/ = tmpCallObj$3807.toString;
   $dotCall(tmpMCF$3, tmpCallObj$3807, `toString`, 36);
-  const tmpCalleeParam$11085 /*:regex*/ = new $regex_constructor(`^0.`, ``);
+  const tmpCalleeParam$11085 /*:regex*/ /*truthy*/ = new $regex_constructor(`^0.`, ``);
   const tmpMCF$5 /*:unknown*/ = tmpCallObj$3811.replace;
   const tmpClusterSSA_r$2027 /*:unknown*/ = $dotCall(tmpMCF$5, tmpCallObj$3811, `replace`, tmpCalleeParam$11085, ``);
   $coerce(tmpBinBothRhs$32, `string`);

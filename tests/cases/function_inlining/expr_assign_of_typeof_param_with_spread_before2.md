@@ -37,7 +37,7 @@ const g /*:(unused, unknown)=>undefined*/ = function ($$0, $$1) {
   x = typeof b;
   return undefined;
 };
-const tmpCalleeParam /*:array*/ = [`uh`, `oh`, `no`];
+const tmpCalleeParam /*:array*/ /*truthy*/ = [`uh`, `oh`, `no`];
 const arr /*:unknown*/ = $(tmpCalleeParam);
 g(...arr, 10, 20);
 $(x);

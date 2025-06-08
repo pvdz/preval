@@ -41,7 +41,7 @@ if ($) {
 }
 const tmpIfTest /*:unknown*/ = $(true);
 if (tmpIfTest) {
-  const tmpClusterSSA_x /*:number*/ = x & -257;
+  const tmpClusterSSA_x /*:number*/ /*&-257*/ = x & -257;
   $(tmpClusterSSA_x);
 } else {
 }

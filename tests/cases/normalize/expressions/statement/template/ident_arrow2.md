@@ -27,8 +27,19 @@ $(a);
 
 
 `````js filename=intro
-$(`before  function(){}  after`);
-const a /*:object*/ = { a: 999, b: 1000 };
+const tmpCalleeParam$1 /*:()=>unknown*/ = function () {
+  debugger;
+  if (x) {
+    y;
+    return undefined;
+  } else {
+    return undefined;
+  }
+};
+const tmpBinBothRhs /*:string*/ = $coerce(tmpCalleeParam$1, `string`);
+const tmpCalleeParam /*:string*/ /*truthy*/ = `before  ${tmpBinBothRhs}  after`;
+$(tmpCalleeParam);
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);
 `````
 
@@ -37,7 +48,13 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-$(`before  function(){}  after`);
+$(
+  `before  ${function () {
+    if (x) {
+      y;
+    }
+  }}  after`,
+);
 $({ a: 999, b: 1000 });
 `````
 
@@ -46,12 +63,24 @@ $({ a: 999, b: 1000 });
 With rename=true
 
 `````js filename=intro
-$( "before  function(){}  after" );
-const a = {
+const a = function() {
+  debugger;
+  if (x) {
+    y;
+    return undefined;
+  }
+  else {
+    return undefined;
+  }
+};
+const b = $coerce( a, "string" );
+const c = `before  ${b}  after`;
+$( c );
+const d = {
   a: 999,
   b: 1000,
 };
-$( a );
+$( d );
 `````
 
 
@@ -82,13 +111,15 @@ $(a);
 ## Todos triggered
 
 
-None
+- (todo) serialization of function, fallback if we know the function is not going to be a builtin...
 
 
 ## Globals
 
 
-None
+BAD@! Found 2 implicit global bindings:
+
+x, y
 
 
 ## Runtime Outcome

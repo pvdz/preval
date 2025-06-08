@@ -22,7 +22,7 @@ $(a, b);
 
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(`c`);
-const b /*:object*/ = { c: 1 };
+const b /*:object*/ /*truthy*/ = { c: 1 };
 const xyz /*:unknown*/ = b[tmpCalleeParam];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(xyz);

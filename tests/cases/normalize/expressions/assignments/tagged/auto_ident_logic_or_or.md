@@ -31,7 +31,7 @@ if (a) {
     a = $(tmpCalleeParam$7);
   }
 }
-const tmpCalleeParam /*:array*/ = [`before `, ` after`];
+const tmpCalleeParam /*:array*/ /*truthy*/ = [`before `, ` after`];
 $(tmpCalleeParam, a);
 $(a);
 `````

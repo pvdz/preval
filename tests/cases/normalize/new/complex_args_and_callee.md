@@ -19,7 +19,7 @@ $(new ($())(5 + 5, $(), Array.prototype.length));
 `````js filename=intro
 const tmpNewCallee /*:unknown*/ = $();
 const tmpCalleeParam$3 /*:unknown*/ = $();
-const tmpCalleeParam /*:object*/ = new tmpNewCallee(10, tmpCalleeParam$3, 0);
+const tmpCalleeParam /*:object*/ /*truthy*/ = new tmpNewCallee(10, tmpCalleeParam$3, 0);
 $(tmpCalleeParam);
 `````
 

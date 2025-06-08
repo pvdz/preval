@@ -18,7 +18,7 @@ $($(a).b?.c(100));
 
 
 `````js filename=intro
-const a /*:object*/ = {};
+const a /*:object*/ /*truthy*/ = {};
 const tmpChainElementCall /*:unknown*/ = $(a);
 const tmpChainElementObject /*:unknown*/ = tmpChainElementCall.b;
 const tmpIfTest /*:boolean*/ = tmpChainElementObject == null;

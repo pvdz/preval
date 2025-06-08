@@ -21,7 +21,7 @@ $(a, b, c);
 
 
 `````js filename=intro
-const b /*:number*/ = 2;
+const b /*:number*/ /*truthy*/ = 2;
 export { b as a };
 $(2, 2, 2);
 `````

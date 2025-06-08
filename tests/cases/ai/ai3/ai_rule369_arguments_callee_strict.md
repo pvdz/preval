@@ -47,11 +47,11 @@
 
 `````js filename=intro
 const strictFunc /*:(unused)=>undefined*/ = function ($$0) {
-  const tmpPrevalAliasArgumentsAny$1 /*:arguments*/ = arguments;
+  const tmpPrevalAliasArgumentsAny$1 /*:arguments*/ /*truthy*/ = arguments;
   debugger;
   try {
     const callee /*:unknown*/ = tmpPrevalAliasArgumentsAny$1.callee;
-    const tmpCalleeParam$7 /*:string*/ = typeof callee;
+    const tmpCalleeParam$7 /*:string*/ /*truthy*/ = typeof callee;
     $(`callee_accessed`, tmpCalleeParam$7);
   } catch (e) {
     const tmpCalleeParam$9 /*:unknown*/ = e.name;
@@ -65,11 +65,11 @@ const strictFunc /*:(unused)=>undefined*/ = function ($$0) {
 const tmpCalleeParam$13 /*:unknown*/ = $(`arg1`, 1);
 strictFunc(tmpCalleeParam$13);
 const innerNonStrict /*:()=>undefined*/ = function () {
-  const tmpPrevalAliasArgumentsAny /*:arguments*/ = arguments;
+  const tmpPrevalAliasArgumentsAny /*:arguments*/ /*truthy*/ = arguments;
   debugger;
   try {
     const callee$1 /*:unknown*/ = tmpPrevalAliasArgumentsAny.callee;
-    const tmpCalleeParam /*:string*/ = typeof callee$1;
+    const tmpCalleeParam /*:string*/ /*truthy*/ = typeof callee$1;
     $(`inner_callee_accessed`, tmpCalleeParam);
   } catch (e$1) {
     const tmpCalleeParam$1 /*:unknown*/ = e$1.name;

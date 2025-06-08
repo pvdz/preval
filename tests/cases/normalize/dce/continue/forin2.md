@@ -29,7 +29,7 @@ $('after, wont eval due to infinite loop');
 while (true) {
   const tmpIfTest /*:unknown*/ = $(true);
   if (tmpIfTest) {
-    const tmpCalleeParam /*:array*/ = [10, 20];
+    const tmpCalleeParam /*:array*/ /*truthy*/ = [10, 20];
     const tmpForOfGenNext /*:unknown*/ = $forOf(tmpCalleeParam);
     while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
       const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();

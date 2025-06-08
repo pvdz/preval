@@ -49,8 +49,8 @@ const tmpIfTest$3 /*:boolean*/ = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$3) {
   const tmpArrElement /*:unknown*/ = $(3);
   const tmpArrElement$1 /*:unknown*/ = $(4);
-  const tmpNestedAssignArrPatternRhs /*:array*/ = [tmpArrElement, tmpArrElement$1];
-  const tmpArrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
+  const tmpNestedAssignArrPatternRhs /*:array*/ /*truthy*/ = [tmpArrElement, tmpArrElement$1];
+  const tmpArrPatternSplat /*:array*/ /*truthy*/ = [...tmpNestedAssignArrPatternRhs];
   x = tmpArrPatternSplat[0];
   y = tmpArrPatternSplat[1];
   a = tmpNestedAssignArrPatternRhs;

@@ -23,7 +23,7 @@ $(1);
 $(3);
 const tmpObjLitVal$5 /*:unknown*/ = $(1);
 const tmpObjLitVal$9 /*:unknown*/ = $(3);
-const tmpNestedComplexRhs /*:object*/ = { x: tmpObjLitVal$5, y: 2, z: tmpObjLitVal$9 };
+const tmpNestedComplexRhs /*:object*/ /*truthy*/ = { x: tmpObjLitVal$5, y: 2, z: tmpObjLitVal$9 };
 $(tmpNestedComplexRhs);
 $(tmpNestedComplexRhs);
 `````

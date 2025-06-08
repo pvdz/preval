@@ -19,7 +19,7 @@ $(!!!!!$(1));
 `````js filename=intro
 const tmpUnaryArg$7 /*:unknown*/ = $(1);
 const tmpUnaryArg$3 /*:boolean*/ = $boolean_constructor(tmpUnaryArg$7);
-const tmpCalleeParam /*:boolean*/ = !tmpUnaryArg$3;
+const tmpCalleeParam /*:boolean*/ /*banged*/ = !tmpUnaryArg$3;
 $(tmpCalleeParam);
 `````
 

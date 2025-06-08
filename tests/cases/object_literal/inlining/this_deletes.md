@@ -19,7 +19,7 @@ $(obj.f());
 
 `````js filename=intro
 const tmpObjLitVal$1 /*:()=>undefined*/ = function () {
-  const tmpPrevalAliasThis /*:object*/ = this;
+  const tmpPrevalAliasThis /*:object*/ /*truthy*/ = this;
   debugger;
   const tmpCalleeParam /*:boolean*/ = delete tmpPrevalAliasThis.g;
   $(tmpCalleeParam);
@@ -27,7 +27,7 @@ const tmpObjLitVal$1 /*:()=>undefined*/ = function () {
   $(tmpCalleeParam$1);
   return undefined;
 };
-const obj /*:object*/ = { g: 1, f: tmpObjLitVal$1 };
+const obj /*:object*/ /*truthy*/ = { g: 1, f: tmpObjLitVal$1 };
 const tmpCalleeParam$3 /*:unknown*/ = $dotCall(tmpObjLitVal$1, obj, `f`);
 $(tmpCalleeParam$3);
 `````

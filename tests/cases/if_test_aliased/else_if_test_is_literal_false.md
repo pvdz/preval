@@ -35,7 +35,7 @@ if (false) {
 
 `````js filename=intro
 const c /*:unknown*/ = $(true);
-const a /*:boolean*/ = !c;
+const a /*:boolean*/ /*banged*/ = !c;
 $(a);
 `````
 

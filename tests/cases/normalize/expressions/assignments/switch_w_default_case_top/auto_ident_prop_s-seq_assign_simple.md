@@ -28,7 +28,7 @@ $(a, b);
 
 
 `````js filename=intro
-let a /*:unknown*/ /*ternaryConst*/ = { a: 999, b: 1000 };
+let a /*:unknown*/ /*ternaryConst*/ /*truthy*/ = { a: 999, b: 1000 };
 const tmpSwitchValue /*:unknown*/ = $(1);
 let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
 const tmpBinLhs /*:unknown*/ = $(1);
@@ -43,7 +43,7 @@ if (tmpIfTest) {
   }
 }
 const tmpIfTest$3 /*:boolean*/ = tmpSwitchCaseToStart <= 0;
-const b /*:object*/ = { c: 1 };
+const b /*:object*/ /*truthy*/ = { c: 1 };
 if (tmpIfTest$3) {
   b.c = 2;
   a = 2;

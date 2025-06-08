@@ -17,9 +17,9 @@ isNaN(...$([1, 2, 3, 4]), $spy('b'), $spy('c'));
 
 
 `````js filename=intro
-const tmpCalleeParam /*:array*/ = [1, 2, 3, 4];
+const tmpCalleeParam /*:array*/ /*truthy*/ = [1, 2, 3, 4];
 const tmpArrSpread /*:unknown*/ = $(tmpCalleeParam);
-const tmpCompObj /*:array*/ = [...tmpArrSpread];
+const tmpCompObj /*:array*/ /*truthy*/ = [...tmpArrSpread];
 const tmpArgOverflow /*:unknown*/ = tmpCompObj[0];
 $spy(`b`);
 $spy(`c`);

@@ -24,7 +24,7 @@ $(arr);
 
 
 `````js filename=intro
-const tmpClusterSSA_arr /*:array*/ = [1];
+const tmpClusterSSA_arr /*:array*/ /*truthy*/ = [1];
 $(tmpClusterSSA_arr);
 const tmpBinLhs$1 /*:primitive*/ = tmpClusterSSA_arr[0];
 const tmpIfTest /*:boolean*/ = tmpBinLhs$1 < 10;

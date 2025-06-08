@@ -68,7 +68,7 @@ if ($) {
       return undefined;
     }
   };
-  const tmpCalleeParam /*:object*/ = {
+  const tmpCalleeParam /*:object*/ /*truthy*/ = {
     toString() {
       debugger;
       x = 200;

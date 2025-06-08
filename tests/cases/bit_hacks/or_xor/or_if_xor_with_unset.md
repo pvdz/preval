@@ -24,7 +24,7 @@ $(x);
 `````js filename=intro
 const x /*:unknown*/ = $(3);
 x ** 0;
-const tmpClusterSSA_x /*:number*/ = x ^ 32;
+const tmpClusterSSA_x /*:number*/ /*^32*/ = x ^ 32;
 $(tmpClusterSSA_x);
 `````
 

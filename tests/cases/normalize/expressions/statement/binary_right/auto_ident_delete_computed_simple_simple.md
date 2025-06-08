@@ -22,10 +22,10 @@ $(a, arg);
 
 `````js filename=intro
 const tmpBinBothLhs /*:unknown*/ = $(100);
-const arg /*:object*/ = { y: 1 };
+const arg /*:object*/ /*truthy*/ = { y: 1 };
 const tmpBinBothRhs /*:boolean*/ = delete arg.y;
 tmpBinBothLhs + tmpBinBothRhs;
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a, arg);
 `````
 

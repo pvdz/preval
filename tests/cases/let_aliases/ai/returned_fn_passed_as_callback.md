@@ -31,7 +31,7 @@ const tmpReturnArg /*:()=>undefined*/ = function () {
   x = `changed`;
   return undefined;
 };
-const tmpMCOO /*:array*/ = [1];
+const tmpMCOO /*:array*/ /*truthy*/ = [1];
 $dotCall($array_forEach, tmpMCOO, `forEach`, tmpReturnArg);
 $(a, x);
 `````

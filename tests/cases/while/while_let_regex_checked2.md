@@ -32,13 +32,13 @@ while (x) {
 
 
 `````js filename=intro
-const x /*:regex*/ = new $regex_constructor(`foo`, ``);
+const x /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, ``);
 const tmpCalleeParam /*:unknown*/ = x.foo;
 $(tmpCalleeParam);
 const tmpIfTest /*:unknown*/ = $(x);
 if (tmpIfTest) {
 } else {
-  let tmpClusterSSA_x /*:regex*/ = new $regex_constructor(`foo`, ``);
+  let tmpClusterSSA_x /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, ``);
   tmpClusterSSA_x.foo = `object`;
   while ($LOOP_UNROLL_10) {
     const tmpCalleeParam$1 /*:unknown*/ = tmpClusterSSA_x.foo;

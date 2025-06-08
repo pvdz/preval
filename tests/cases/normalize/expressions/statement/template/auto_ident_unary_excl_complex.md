@@ -23,14 +23,14 @@ const tmpFree /*:(boolean)=>string*/ = function $free($$0) {
   const tmpCalleeParam$2 /*:boolean*/ = $$0;
   debugger;
   const tmpStringConcatL /*:string*/ = $coerce(tmpCalleeParam$2, `string`);
-  const tmpRet /*:string*/ = `before  ${tmpStringConcatL}  after`;
+  const tmpRet /*:string*/ /*truthy*/ = `before  ${tmpStringConcatL}  after`;
   return tmpRet;
 };
 const tmpUnaryArg /*:unknown*/ = $(100);
-const tmpCalleeParam$1 /*:boolean*/ = !tmpUnaryArg;
+const tmpCalleeParam$1 /*:boolean*/ /*banged*/ = !tmpUnaryArg;
 const tmpCalleeParam /*:string*/ = $frfr(tmpFree, tmpCalleeParam$1);
 $(tmpCalleeParam);
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

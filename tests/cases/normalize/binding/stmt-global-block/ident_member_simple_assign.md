@@ -26,7 +26,7 @@ if (tmpIfTest) {
   const tmpInitAssignLhsComputedObj /*:unknown*/ = $(3);
   const tmpInitAssignLhsComputedRhs$1 /*:unknown*/ = $(4);
   tmpInitAssignLhsComputedObj.y = tmpInitAssignLhsComputedRhs$1;
-  const b /*:object*/ = { x: tmpInitAssignLhsComputedRhs$1 };
+  const b /*:object*/ /*truthy*/ = { x: tmpInitAssignLhsComputedRhs$1 };
   $(tmpInitAssignLhsComputedRhs$1, b, 3);
 } else {
 }

@@ -19,7 +19,7 @@ $(a);
 
 
 `````js filename=intro
-const tmpClusterSSA_a /*:regex*/ = new $regex_constructor(`foo`, ``);
+const tmpClusterSSA_a /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, ``);
 $(`/foo//foo/`);
 $(tmpClusterSSA_a);
 `````

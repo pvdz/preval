@@ -22,7 +22,7 @@ $(a, b, c);
 
 
 `````js filename=intro
-const b /*:object*/ = { x: 3 };
+const b /*:object*/ /*truthy*/ = { x: 3 };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   b.x = 3;
   $(100);

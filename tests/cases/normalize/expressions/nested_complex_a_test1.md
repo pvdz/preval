@@ -33,7 +33,7 @@ $(a).length = b;
 
 
 `````js filename=intro
-const tmpCalleeParam /*:array*/ = [];
+const tmpCalleeParam /*:array*/ /*truthy*/ = [];
 const a /*:unknown*/ = $(tmpCalleeParam);
 const tmpAssignMemLhsObj /*:unknown*/ = $(a);
 tmpAssignMemLhsObj.length = undefined;

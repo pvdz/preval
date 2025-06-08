@@ -21,7 +21,7 @@ $(a, arg);
 
 
 `````js filename=intro
-const arg /*:object*/ = { y: 1 };
+const arg /*:object*/ /*truthy*/ = { y: 1 };
 const tmpDeleteObj /*:unknown*/ = $(arg);
 const tmpThrowArg /*:boolean*/ = delete tmpDeleteObj.y;
 throw tmpThrowArg;

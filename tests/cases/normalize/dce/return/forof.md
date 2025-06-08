@@ -25,7 +25,7 @@ $(f());
 
 
 `````js filename=intro
-const tmpCalleeParam /*:array*/ = [10, 20];
+const tmpCalleeParam /*:array*/ /*truthy*/ = [10, 20];
 const tmpForOfGenNext /*:unknown*/ = $forOf(tmpCalleeParam);
 const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
 const tmpIfTest /*:unknown*/ = tmpForOfNext.done;

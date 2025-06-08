@@ -127,7 +127,7 @@ $('end', x);
 
 `````js filename=intro
 if ($) {
-  let x /*:number*/ = 1;
+  let x /*:number*/ /*truthy*/ = 1;
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     $(x);
     if ($) {

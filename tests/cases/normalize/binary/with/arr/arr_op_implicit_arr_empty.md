@@ -70,14 +70,14 @@ const tmpArrElement$17 /*:boolean*/ = `` < x;
 const tmpArrElement$19 /*:boolean*/ = `` > x;
 const tmpArrElement$21 /*:boolean*/ = `` <= x;
 const tmpArrElement$23 /*:boolean*/ = `` >= x;
-const tmpBinLhs$25 /*:array*/ = [];
+const tmpBinLhs$25 /*:array*/ /*truthy*/ = [];
 const tmpArrElement$25 /*:boolean*/ = tmpBinLhs$25 == x;
-const tmpBinLhs$27 /*:array*/ = [];
+const tmpBinLhs$27 /*:array*/ /*truthy*/ = [];
 const tmpArrElement$27 /*:boolean*/ = tmpBinLhs$27 != x;
 x ** 0;
-const tmpArrElement$35 /*:number*/ = 0 ^ x;
-const tmpArrElement$37 /*:number*/ = 0 | x;
-const arr /*:array*/ = [
+const tmpArrElement$35 /*:number*/ /*^0*/ = 0 ^ x;
+const tmpArrElement$37 /*:number*/ /*|0*/ = 0 | x;
+const arr /*:array*/ /*truthy*/ = [
   tmpArrElement,
   tmpArrElement$1,
   tmpArrElement$3,
@@ -100,11 +100,11 @@ const arr /*:array*/ = [
   tmpArrElement$37,
 ];
 $(arr);
-const tmpBinLhs$39 /*:array*/ = [];
+const tmpBinLhs$39 /*:array*/ /*truthy*/ = [];
 const tmpArrElement$39 /*:boolean*/ = tmpBinLhs$39 in x;
-const tmpBinLhs$41 /*:array*/ = [];
+const tmpBinLhs$41 /*:array*/ /*truthy*/ = [];
 const tmpArrElement$41 /*:boolean*/ = tmpBinLhs$41 instanceof x;
-const arr2 /*:array*/ = [tmpArrElement$39, tmpArrElement$41];
+const arr2 /*:array*/ /*truthy*/ = [tmpArrElement$39, tmpArrElement$41];
 $(arr2);
 `````
 

@@ -30,7 +30,7 @@ $(a, b, c, d);
 
 
 `````js filename=intro
-let a /*:unknown*/ /*ternaryConst*/ = { a: 999, b: 1000 };
+let a /*:unknown*/ /*ternaryConst*/ /*truthy*/ = { a: 999, b: 1000 };
 const tmpSwitchValue /*:unknown*/ = $(1);
 let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
 const tmpBinLhs /*:unknown*/ = $(1);
@@ -45,8 +45,8 @@ if (tmpIfTest) {
   }
 }
 const tmpIfTest$3 /*:boolean*/ = tmpSwitchCaseToStart <= 0;
-const b /*:object*/ = { x: 1 };
-const c /*:object*/ = { y: 2 };
+const b /*:object*/ /*truthy*/ = { x: 1 };
+const c /*:object*/ /*truthy*/ = { y: 2 };
 if (tmpIfTest$3) {
   const tmpNestedAssignComMemberObj /*:unknown*/ = $(b);
   const tmpNestedAssignComMemberProp /*:unknown*/ = $(`x`);

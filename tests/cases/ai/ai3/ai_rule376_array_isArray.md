@@ -42,13 +42,13 @@
 
 `````js filename=intro
 const testArguments /*:()=>undefined*/ = function () {
-  const tmpPrevalAliasArgumentsAny /*:arguments*/ = arguments;
+  const tmpPrevalAliasArgumentsAny /*:arguments*/ /*truthy*/ = arguments;
   debugger;
   const tmpCalleeParam /*:boolean*/ = $Array_isArray(tmpPrevalAliasArgumentsAny);
   $(`res_arguments`, tmpCalleeParam);
   return undefined;
 };
-const tmpCalleeParam$1 /*:array*/ = [`a`, `b`];
+const tmpCalleeParam$1 /*:array*/ /*truthy*/ = [`a`, `b`];
 const opaqueIsArray /*:unknown*/ = $(`get_arr`, tmpCalleeParam$1);
 const opaqueNotArray /*:unknown*/ = $(`get_non_arr`, `hello`);
 $(`res_actualArray`, true);
@@ -60,7 +60,7 @@ const tmpCalleeParam$9 /*:boolean*/ = $Array_isArray(`not_an_array`);
 $(`res_stringLiteral`, tmpCalleeParam$9);
 const tmpCalleeParam$11 /*:boolean*/ = $Array_isArray(123);
 $(`res_numLiteral`, tmpCalleeParam$11);
-const objLiteral /*:object*/ = { a: 1 };
+const objLiteral /*:object*/ /*truthy*/ = { a: 1 };
 const tmpCalleeParam$13 /*:boolean*/ = $Array_isArray(objLiteral);
 $(`res_objLiteral`, tmpCalleeParam$13);
 const tmpCalleeParam$15 /*:boolean*/ = $Array_isArray(null);

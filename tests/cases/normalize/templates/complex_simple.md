@@ -19,7 +19,7 @@ $(`abc ${ $(10) } ${ 20 } def`);
 `````js filename=intro
 const tmpCalleeParam$1 /*:unknown*/ = $(10);
 const tmpBinBothRhs$1 /*:string*/ = $coerce(tmpCalleeParam$1, `string`);
-const tmpCalleeParam /*:string*/ = `abc ${tmpBinBothRhs$1} 20 def`;
+const tmpCalleeParam /*:string*/ /*truthy*/ = `abc ${tmpBinBothRhs$1} 20 def`;
 $(tmpCalleeParam);
 `````
 

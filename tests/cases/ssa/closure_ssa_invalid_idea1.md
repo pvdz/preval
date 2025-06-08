@@ -34,7 +34,7 @@ Counter case. I think it's an invalid report.
 `````js filename=intro
 let x /*:unknown*/ = $();
 $(x);
-const tmpCalleeParam /*:object*/ = {
+const tmpCalleeParam /*:object*/ /*truthy*/ = {
   toString() {
     debugger;
     $(x);

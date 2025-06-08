@@ -22,7 +22,7 @@ $(x, x['Hey, me too!']());
 
 `````js filename=intro
 const tmpObjLitPropVal /*:unknown*/ = $(1);
-const x /*:object*/ = {
+const x /*:object*/ /*truthy*/ = {
   [`hello, world!`]: tmpObjLitPropVal,
   [`hey, me too!`]() {
     debugger;

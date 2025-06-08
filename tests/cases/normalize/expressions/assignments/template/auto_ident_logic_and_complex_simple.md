@@ -26,7 +26,7 @@ if (a) {
   $(2);
 } else {
   const tmpClusterSSA_tmpBinBothRhs /*:string*/ = $coerce(a, `string`);
-  const tmpClusterSSA_tmpCalleeParam /*:string*/ = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
+  const tmpClusterSSA_tmpCalleeParam /*:string*/ /*truthy*/ = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
   $(tmpClusterSSA_tmpCalleeParam);
   $(a);
 }

@@ -22,10 +22,10 @@ $(a);
 
 
 `````js filename=intro
-const b /*:object*/ = { c: $ };
+const b /*:object*/ /*truthy*/ = { c: $ };
 const tmpClusterSSA_tmpCompObj /*:unknown*/ = $dotCall($, b, `c`, 1);
 tmpClusterSSA_tmpCompObj.a;
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

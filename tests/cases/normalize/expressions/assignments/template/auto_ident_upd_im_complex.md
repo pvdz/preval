@@ -25,10 +25,10 @@ const tmpFree /*:(number)=>string*/ = function $free($$0) {
   const tmpUpdNum$1 /*:number*/ = $$0;
   debugger;
   const tmpStringConcatL /*:string*/ = $coerce(tmpUpdNum$1, `string`);
-  const tmpRet /*:string*/ = `before  ${tmpStringConcatL}  after`;
+  const tmpRet /*:string*/ /*truthy*/ = `before  ${tmpStringConcatL}  after`;
   return tmpRet;
 };
-const b /*:object*/ = { x: 1 };
+const b /*:object*/ /*truthy*/ = { x: 1 };
 const tmpCalleeParam$3 /*:unknown*/ = $(b);
 const tmpUpdObj /*:unknown*/ = $(tmpCalleeParam$3);
 const tmpUpdProp /*:unknown*/ = tmpUpdObj.x;

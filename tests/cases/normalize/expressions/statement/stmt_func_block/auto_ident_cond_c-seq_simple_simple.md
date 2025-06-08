@@ -25,7 +25,7 @@ $(f());
 
 `````js filename=intro
 const tmpIfTest /*:unknown*/ = $(30);
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   $(2);
   $(a);

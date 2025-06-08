@@ -24,7 +24,7 @@ $('forEach_done');
 const tmpArrElement /*:unknown*/ = $(`a`);
 const tmpArrElement$1 /*:unknown*/ = $(`b`);
 const cb /*:unknown*/ = $(`opaque_forEach_callback`);
-const arr /*:array*/ = [tmpArrElement, tmpArrElement$1];
+const arr /*:array*/ /*truthy*/ = [tmpArrElement, tmpArrElement$1];
 $dotCall($array_forEach, arr, `forEach`, cb);
 $(`forEach_done`);
 `````

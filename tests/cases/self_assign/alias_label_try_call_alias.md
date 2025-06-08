@@ -61,7 +61,7 @@ $(main_data_arr);
 
 
 `````js filename=intro
-const main_data_arr /*:array*/ = [`LmNvbmNhdC`, `eBestCandi`, ` using the`, `ike there `, `wgcCwgZikg`];
+const main_data_arr /*:array*/ /*truthy*/ = [`LmNvbmNhdC`, `eBestCandi`, ` using the`, `ike there `, `wgcCwgZikg`];
 $(main_data_arr);
 `````
 

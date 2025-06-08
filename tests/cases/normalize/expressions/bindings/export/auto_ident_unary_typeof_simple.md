@@ -20,7 +20,7 @@ $(a, arg);
 
 
 `````js filename=intro
-const a /*:string*/ = `number`;
+const a /*:string*/ /*truthy*/ = `number`;
 export { a };
 $(`number`, 1);
 `````

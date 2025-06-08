@@ -24,7 +24,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 `````js filename=intro
 const x /*:unknown*/ = $(true);
-const b /*:object*/ = { [x]: 1 };
+const b /*:object*/ /*truthy*/ = { [x]: 1 };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   b.x = 3;
   b.x = 3;

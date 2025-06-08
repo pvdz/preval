@@ -23,7 +23,7 @@ $(a);
 `````js filename=intro
 let tmpBinBothLhs /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpIfTest$1 /*:boolean*/ = $ == null;
-const tmpObjLitVal$1 /*:object*/ = { e: $ };
+const tmpObjLitVal$1 /*:object*/ /*truthy*/ = { e: $ };
 if (tmpIfTest$1) {
 } else {
   tmpBinBothLhs = $dotCall($, tmpObjLitVal$1, `e`, 1);
@@ -36,7 +36,7 @@ if (tmpIfTest$5) {
   tmpBinBothRhs = $dotCall(tmpChainElementObject$9, tmpObjLitVal$1, `e`, 1);
 }
 tmpBinBothLhs + tmpBinBothRhs;
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

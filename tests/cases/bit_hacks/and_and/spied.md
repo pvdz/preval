@@ -21,7 +21,7 @@ $(c);
 
 `````js filename=intro
 const a /*:unknown*/ = $spy();
-const c /*:number*/ = a & 32;
+const c /*:number*/ /*&32*/ /*oneBitAnded*/ = a & 32;
 $(c);
 `````
 

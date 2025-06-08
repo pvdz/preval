@@ -24,7 +24,7 @@ $(a);
 const tmpIfTest$1 /*:boolean*/ = $ == null;
 if (tmpIfTest$1) {
 } else {
-  const tmpObjLitVal$1 /*:object*/ = { e: $ };
+  const tmpObjLitVal$1 /*:object*/ /*truthy*/ = { e: $ };
   $dotCall($, tmpObjLitVal$1, `e`, 1);
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {

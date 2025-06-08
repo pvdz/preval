@@ -30,7 +30,7 @@ $(x); // 20, 30, 40
 
 
 `````js filename=intro
-let x /*:number*/ /*ternaryConst*/ = 20;
+let x /*:number*/ /*ternaryConst*/ /*truthy*/ = 20;
 $(20);
 const tmpIfTest /*:unknown*/ = $(1);
 $(20);

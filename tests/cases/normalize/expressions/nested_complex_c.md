@@ -18,7 +18,7 @@ $(a = b = $(c).length);
 
 
 `````js filename=intro
-const c /*:array*/ = [];
+const c /*:array*/ /*truthy*/ = [];
 const tmpCompObj /*:unknown*/ = $(c);
 const tmpNestedComplexRhs /*:unknown*/ = tmpCompObj.length;
 $(tmpNestedComplexRhs);

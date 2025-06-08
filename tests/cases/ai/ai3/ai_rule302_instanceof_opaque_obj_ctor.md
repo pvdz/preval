@@ -25,7 +25,7 @@ const MyClass /*:()=>undefined*/ = function () {
   debugger;
   return undefined;
 };
-const tmpCalleeParam /*:object*/ = new MyClass();
+const tmpCalleeParam /*:object*/ /*truthy*/ = new MyClass();
 const obj /*:unknown*/ = $(`obj`, tmpCalleeParam);
 const Ctor /*:unknown*/ = $(`Ctor`, MyClass);
 const tmpCalleeParam$1 /*:boolean*/ = obj instanceof Ctor;

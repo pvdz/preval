@@ -18,7 +18,7 @@ $(x);
 
 
 `````js filename=intro
-const x /*:string*/ = `foo${a}${b}`;
+const x /*:string*/ /*truthy*/ = `foo${a}${b}`;
 $(x);
 `````
 

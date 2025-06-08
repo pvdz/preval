@@ -28,7 +28,7 @@ $(3);
 $(4);
 const tmpObjLitVal$3 /*:unknown*/ = $(3);
 const tmpObjLitVal$5 /*:unknown*/ = $(4);
-const tmpNestedAssignObjPatternRhs$1 /*:object*/ = { x: tmpObjLitVal$3, y: tmpObjLitVal$5 };
+const tmpNestedAssignObjPatternRhs$1 /*:object*/ /*truthy*/ = { x: tmpObjLitVal$3, y: tmpObjLitVal$5 };
 $(tmpNestedAssignObjPatternRhs$1);
 $(tmpNestedAssignObjPatternRhs$1, tmpObjLitVal$3, tmpObjLitVal$5);
 `````

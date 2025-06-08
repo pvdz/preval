@@ -22,7 +22,7 @@ $(a, b);
 
 `````js filename=intro
 const tmpObjLitVal /*:unknown*/ = $(2);
-const tmpCalleeParam /*:object*/ = { b: tmpObjLitVal };
+const tmpCalleeParam /*:object*/ /*truthy*/ = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam);
 const tmpClusterSSA_b /*:unknown*/ = tmpNestedAssignObjPatternRhs.b;
 if (tmpNestedAssignObjPatternRhs) {
@@ -31,7 +31,7 @@ if (tmpNestedAssignObjPatternRhs) {
   while ($LOOP_UNROLL_10) {
     $(100);
     const tmpObjLitVal$1 /*:unknown*/ = $(2);
-    const tmpCalleeParam$1 /*:object*/ = { b: tmpObjLitVal$1 };
+    const tmpCalleeParam$1 /*:object*/ /*truthy*/ = { b: tmpObjLitVal$1 };
     const tmpNestedAssignObjPatternRhs$1 /*:unknown*/ = $(tmpCalleeParam$1);
     b = tmpNestedAssignObjPatternRhs$1.b;
     a = tmpNestedAssignObjPatternRhs$1;

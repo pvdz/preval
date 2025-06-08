@@ -22,10 +22,10 @@ $(NOT_AN_ARRAY);
 
 
 `````js filename=intro
-const arr1 /*:array*/ = [`a`, `b`, `c`];
+const arr1 /*:array*/ /*truthy*/ = [`a`, `b`, `c`];
 const secretArr /*:unknown*/ = $(arr1);
-const ARR /*:array*/ = [...secretArr];
-const NOT_AN_ARRAY /*:unknown*/ = $dotCall($array_shift, ARR, `shift`);
+const ARR /*:array*/ /*truthy*/ = [...secretArr];
+const NOT_AN_ARRAY /*:unknown*/ /*truthy*/ = $dotCall($array_shift, ARR, `shift`);
 $(NOT_AN_ARRAY);
 `````
 

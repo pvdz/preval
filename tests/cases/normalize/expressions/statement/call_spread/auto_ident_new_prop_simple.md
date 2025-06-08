@@ -21,9 +21,9 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParamSpread /*:object*/ = new $(1);
+const tmpCalleeParamSpread /*:object*/ /*truthy*/ = new $(1);
 $(...tmpCalleeParamSpread);
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

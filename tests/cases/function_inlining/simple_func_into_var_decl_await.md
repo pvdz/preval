@@ -30,8 +30,8 @@ const f /*:()=>promise*/ = async function () {
   await 20;
   return undefined;
 };
-const p /*:promise*/ = f();
-const q /*:promise*/ = f();
+const p /*:promise*/ /*truthy*/ = f();
+const q /*:promise*/ /*truthy*/ = f();
 $(p, q);
 `````
 

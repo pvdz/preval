@@ -26,7 +26,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 
 `````js filename=intro
-const arr /*:array*/ = [1, 2, $, 3];
+const arr /*:array*/ /*truthy*/ = [1, 2, $, 3];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpCalleeParam /*:unknown*/ = arr[0];
   try {

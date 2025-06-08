@@ -19,10 +19,10 @@ $(N);
 
 
 `````js filename=intro
-const tmpCalleeParam /*:array*/ = [`a`, `b`, `c`];
+const tmpCalleeParam /*:array*/ /*truthy*/ = [`a`, `b`, `c`];
 const tmpArrSpread /*:unknown*/ = $(tmpCalleeParam);
-const ARR /*:array*/ = [...tmpArrSpread];
-const N /*:unknown*/ = $dotCall($array_shift, ARR, `shift`);
+const ARR /*:array*/ /*truthy*/ = [...tmpArrSpread];
+const N /*:unknown*/ /*truthy*/ = $dotCall($array_shift, ARR, `shift`);
 $(N);
 `````
 

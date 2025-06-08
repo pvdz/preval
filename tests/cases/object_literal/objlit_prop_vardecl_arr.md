@@ -27,7 +27,7 @@ f();
 `````js filename=intro
 const tmpObjLitVal /*:unknown*/ = $(1);
 $(tmpObjLitVal);
-const f /*:array*/ = [];
+const f /*:array*/ /*truthy*/ = [];
 f();
 f();
 f();

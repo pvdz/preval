@@ -23,7 +23,7 @@ $(a, x);
 `````js filename=intro
 $(1);
 $(2);
-const tmpCalleeParam /*:object*/ = { x: 1 };
+const tmpCalleeParam /*:object*/ /*truthy*/ = { x: 1 };
 $(tmpCalleeParam);
 $(1, 1);
 `````

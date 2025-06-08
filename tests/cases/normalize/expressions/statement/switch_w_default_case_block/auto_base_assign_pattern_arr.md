@@ -48,9 +48,9 @@ if (tmpIfTest) {
 const tmpIfTest$3 /*:boolean*/ = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$3) {
   const tmpArrElement /*:unknown*/ = $(2);
-  const tmpCalleeParam /*:array*/ = [tmpArrElement];
+  const tmpCalleeParam /*:array*/ /*truthy*/ = [tmpArrElement];
   const tmpArrAssignPatternRhs /*:unknown*/ = $(tmpCalleeParam);
-  const tmpArrPatternSplat /*:array*/ = [...tmpArrAssignPatternRhs];
+  const tmpArrPatternSplat /*:array*/ /*truthy*/ = [...tmpArrAssignPatternRhs];
   b = tmpArrPatternSplat[0];
 } else {
   const tmpIfTest$5 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
@@ -61,7 +61,7 @@ if (tmpIfTest$3) {
     $(`fail2`);
   }
 }
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a, b);
 `````
 

@@ -29,7 +29,7 @@ $(f());
 `````js filename=intro
 $(0);
 const tmpBoolTrampoline /*:unknown*/ = $(0);
-const tmpCalleeParam /*:boolean*/ = !tmpBoolTrampoline;
+const tmpCalleeParam /*:boolean*/ /*banged*/ = !tmpBoolTrampoline;
 $(tmpCalleeParam);
 `````
 

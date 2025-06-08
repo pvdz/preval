@@ -31,7 +31,7 @@ $('use', arr[0]);
 `````js filename=intro
 const tmpArrElement /*:unknown*/ = $(`val_init`);
 const L /*:unknown*/ = $(`L1`);
-const arr /*:array*/ = [tmpArrElement];
+const arr /*:array*/ /*truthy*/ = [tmpArrElement];
 if (L) {
   $(`S_loop`);
   const tmpAssignComputedRhs /*:unknown*/ = $(`val_loop`);

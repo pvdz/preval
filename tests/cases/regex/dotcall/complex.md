@@ -21,8 +21,8 @@ $dotCall(f, regex, 'test', arg, {some: 'stuff'});
 
 `````js filename=intro
 const arg /*:unknown*/ = $(`give food`);
-const regex /*:regex*/ = new $regex_constructor(`foo`, ``);
-const tmpCalleeParam$1 /*:object*/ = { some: `stuff` };
+const regex /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, ``);
+const tmpCalleeParam$1 /*:object*/ /*truthy*/ = { some: `stuff` };
 $dotCall($regex_test, regex, `test`, arg, tmpCalleeParam$1);
 `````
 

@@ -23,7 +23,7 @@ $('after');
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpObjLitVal /*:unknown*/ = $(1);
   const tmpObjLitVal$1 /*:unknown*/ = $(2);
-  const tmpCalleeParam /*:object*/ = { a: tmpObjLitVal, b: tmpObjLitVal$1 };
+  const tmpCalleeParam /*:object*/ /*truthy*/ = { a: tmpObjLitVal, b: tmpObjLitVal$1 };
   const tmpObjSpread /*:unknown*/ = $(tmpCalleeParam);
   ({ ...tmpObjSpread });
   $(`loop`);

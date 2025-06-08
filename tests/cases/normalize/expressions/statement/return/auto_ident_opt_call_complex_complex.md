@@ -31,7 +31,7 @@ if (tmpIfTest) {
   const tmpClusterSSA_tmpReturnArg /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam);
   $(tmpClusterSSA_tmpReturnArg);
 }
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

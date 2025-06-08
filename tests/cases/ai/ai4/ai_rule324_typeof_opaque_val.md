@@ -21,7 +21,7 @@ $('result', y);
 
 `````js filename=intro
 const x /*:unknown*/ = $(`val`);
-const y /*:string*/ = typeof x;
+const y /*:string*/ /*truthy*/ = typeof x;
 $(`result`, y);
 `````
 

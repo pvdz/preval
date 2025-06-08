@@ -21,7 +21,7 @@ $(a);
 
 
 `````js filename=intro
-const tmpClusterSSA_a /*:number*/ = 100;
+const tmpClusterSSA_a /*:number*/ /*truthy*/ = 100;
 export { tmpClusterSSA_a as default };
 $(100);
 `````

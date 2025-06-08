@@ -34,7 +34,7 @@ $(x);
 `````
 
 `````js filename=x
-const f /*:number*/ = 10;
+const f /*:number*/ /*truthy*/ = 10;
 export { f as default };
 `````
 

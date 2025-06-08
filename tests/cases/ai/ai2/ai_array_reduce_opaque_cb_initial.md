@@ -25,8 +25,8 @@ $('reduce_result', result);
 const tmpArrElement /*:unknown*/ = $(`item1`);
 const cb /*:unknown*/ = $(`opaque_reducer`);
 const initial /*:unknown*/ = $(`opaque_initial`);
-const arr /*:array*/ = [tmpArrElement];
-const result /*:array*/ = $dotCall($array_reduce, arr, `reduce`, cb, initial);
+const arr /*:array*/ /*truthy*/ = [tmpArrElement];
+const result /*:array*/ /*truthy*/ = $dotCall($array_reduce, arr, `reduce`, cb, initial);
 $(`reduce_result`, result);
 `````
 

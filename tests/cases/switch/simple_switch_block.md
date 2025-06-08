@@ -30,7 +30,7 @@ $(f());
 
 `````js filename=intro
 const tmpUnaryArg /*:unknown*/ = $(`x`);
-const tmpSwitchDisc /*:string*/ = typeof tmpUnaryArg;
+const tmpSwitchDisc /*:string*/ /*truthy*/ = typeof tmpUnaryArg;
 const tmpIfTest /*:boolean*/ = tmpSwitchDisc === `string`;
 if (tmpIfTest) {
   $(1);

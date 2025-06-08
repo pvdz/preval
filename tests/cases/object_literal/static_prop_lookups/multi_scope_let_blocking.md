@@ -26,7 +26,7 @@ f();
 
 `````js filename=intro
 const tmpObjLitVal /*:unknown*/ = $(1);
-let o /*:object*/ = { x: tmpObjLitVal };
+let o /*:object*/ /*truthy*/ = { x: tmpObjLitVal };
 const f /*:()=>undefined*/ = function () {
   debugger;
   const tmpCalleeParam /*:unknown*/ = o.x;

@@ -25,7 +25,7 @@ if (tmpIfTest) {
 } else {
   a = $(1);
 }
-const tmpCalleeParam /*:object*/ = { x: a };
+const tmpCalleeParam /*:object*/ /*truthy*/ = { x: a };
 $(tmpCalleeParam);
 $(a);
 `````

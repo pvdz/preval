@@ -21,7 +21,7 @@ $(a);
 
 
 `````js filename=intro
-const tmpObjLitVal$1 /*:object*/ = { e: $ };
+const tmpObjLitVal$1 /*:object*/ /*truthy*/ = { e: $ };
 const tmpClusterSSA_xyz /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(tmpClusterSSA_xyz);

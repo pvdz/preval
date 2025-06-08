@@ -19,7 +19,7 @@ $(a);
 
 
 `````js filename=intro
-const xyz /*:object*/ = { x: 1, y: 2, z: 3 };
+const xyz /*:object*/ /*truthy*/ = { x: 1, y: 2, z: 3 };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(xyz);
   $(1);

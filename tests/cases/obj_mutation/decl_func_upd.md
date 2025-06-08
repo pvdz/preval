@@ -28,7 +28,7 @@ const f /*:()=>unknown*/ = function () {
   blob.thing = `boing`;
   return undefined;
 };
-const blob /*:object*/ = { thing: `woop` };
+const blob /*:object*/ /*truthy*/ = { thing: `woop` };
 $(f);
 blob.thing = `boing`;
 $(blob);

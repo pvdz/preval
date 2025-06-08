@@ -31,7 +31,7 @@ const test /*:()=>promise*/ = async function () {
   const tmpThrowArg /*:unknown*/ = $(`opaque_throw_reason`);
   throw tmpThrowArg;
 };
-const tmpMCOO /*:promise*/ = test();
+const tmpMCOO /*:promise*/ /*truthy*/ = test();
 const tmpMCP /*:(unknown)=>unknown*/ = function ($$0) {
   const e /*:unknown*/ = $$0;
   debugger;

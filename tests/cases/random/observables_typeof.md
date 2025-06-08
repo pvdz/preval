@@ -33,7 +33,7 @@ const f /*:()=>string*/ = function () {
   const x /*:unknown*/ = $(1);
   $(`block`);
   $(`block`);
-  const y /*:string*/ = typeof x;
+  const y /*:string*/ /*truthy*/ = typeof x;
   return y;
 };
 f();

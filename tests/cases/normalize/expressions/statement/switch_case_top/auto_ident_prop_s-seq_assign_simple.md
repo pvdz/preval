@@ -27,8 +27,8 @@ $(a, b);
 const tmpBinBothLhs /*:unknown*/ = $(1);
 const tmpBinBothRhs /*:unknown*/ = $(1);
 const tmpIfTest /*:boolean*/ = tmpBinBothLhs === tmpBinBothRhs;
-const b /*:object*/ = { c: 1 };
-const a /*:object*/ = { a: 999, b: 1000 };
+const b /*:object*/ /*truthy*/ = { c: 1 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   b.c = 2;
   $(a, b);

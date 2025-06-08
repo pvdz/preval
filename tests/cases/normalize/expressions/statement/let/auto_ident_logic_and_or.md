@@ -27,7 +27,7 @@ if (xyz) {
   xyz = $(tmpCalleeParam$1);
 } else {
 }
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 if (xyz) {
   $(xyz);
   $(a);

@@ -24,7 +24,7 @@ $(x, y, z);
 const tmpBinBothLhs /*:unknown*/ = $(`a`);
 const tmpBinBothRhs /*:unknown*/ = $(`a`);
 const tmpIfTest /*:boolean*/ = tmpBinBothLhs === tmpBinBothRhs;
-const z /*:array*/ = [10, 20, 30];
+const z /*:array*/ /*truthy*/ = [10, 20, 30];
 if (tmpIfTest) {
   $(1);
   $(2);

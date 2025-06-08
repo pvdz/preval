@@ -22,7 +22,7 @@ $(blob);
 
 
 `````js filename=intro
-const blob /*:object*/ = { thing: `woop`, xyz: 1 };
+const blob /*:object*/ /*truthy*/ = { thing: `woop`, xyz: 1 };
 $(blob);
 const tmpBinLhs$1 /*:unknown*/ = blob.xyz;
 const tmpIfTest /*:boolean*/ = tmpBinLhs$1 < 10;

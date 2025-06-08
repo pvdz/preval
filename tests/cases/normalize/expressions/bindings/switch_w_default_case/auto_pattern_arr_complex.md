@@ -25,9 +25,9 @@ switch (1) {
 
 
 `````js filename=intro
-const tmpCalleeParam /*:array*/ = [1, 2];
+const tmpCalleeParam /*:array*/ /*truthy*/ = [1, 2];
 const tmpArrAssignPatternRhs /*:unknown*/ = $(tmpCalleeParam);
-const tmpArrPatternSplat /*:array*/ = [...tmpArrAssignPatternRhs];
+const tmpArrPatternSplat /*:array*/ /*truthy*/ = [...tmpArrAssignPatternRhs];
 const a /*:unknown*/ = tmpArrPatternSplat[0];
 $(a);
 $(`fail1`);

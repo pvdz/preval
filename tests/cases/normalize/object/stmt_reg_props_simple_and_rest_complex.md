@@ -18,7 +18,7 @@
 
 `````js filename=intro
 const tmpObjLitVal /*:unknown*/ = $(10);
-const tmpObjSpreadArg /*:object*/ = { a: tmpObjLitVal };
+const tmpObjSpreadArg /*:object*/ /*truthy*/ = { a: tmpObjLitVal };
 ({ ...tmpObjSpreadArg });
 `````
 

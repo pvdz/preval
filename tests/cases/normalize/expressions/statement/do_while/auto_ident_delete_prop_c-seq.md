@@ -26,7 +26,7 @@ $(a, arg);
 $(100);
 $(1);
 $(2);
-const arg /*:object*/ = { y: 1 };
+const arg /*:object*/ /*truthy*/ = { y: 1 };
 const tmpDeleteObj /*:unknown*/ = $(arg);
 const tmpIfTest /*:boolean*/ = delete tmpDeleteObj.y;
 if (tmpIfTest) {
@@ -43,7 +43,7 @@ if (tmpIfTest) {
   }
 } else {
 }
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a, arg);
 `````
 

@@ -20,7 +20,7 @@ $(a);
 
 `````js filename=intro
 const a /*:unknown*/ = $(2);
-const tmpCalleeParam /*:object*/ = { [a]: 10 };
+const tmpCalleeParam /*:object*/ /*truthy*/ = { [a]: 10 };
 $(tmpCalleeParam);
 $(a);
 `````

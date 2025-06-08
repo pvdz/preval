@@ -22,9 +22,9 @@ $(a, b, c);
 
 
 `````js filename=intro
-const tmpAnonDefaultExport /*:number*/ = 3;
+const tmpAnonDefaultExport /*:number*/ /*truthy*/ = 3;
 export { tmpAnonDefaultExport as default };
-const b /*:object*/ = { x: 3 };
+const b /*:object*/ /*truthy*/ = { x: 3 };
 $(3, b, 3);
 `````
 

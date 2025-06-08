@@ -26,7 +26,7 @@ $(a);
 const tmpObjLitVal /*:unknown*/ = $(1);
 $(100);
 const tmpAssignComMemLhsProp /*:unknown*/ = $(`b`);
-const a /*:object*/ = { b: tmpObjLitVal };
+const a /*:object*/ /*truthy*/ = { b: tmpObjLitVal };
 a[tmpAssignComMemLhsProp] = 2;
 $(a);
 `````

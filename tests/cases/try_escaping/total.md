@@ -141,7 +141,7 @@ const tmpFree /*:(primitive)=>number*/ = function $free($$0) {
   const tmpRet /*:number*/ = -e;
   return tmpRet;
 };
-const arr /*:array*/ = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`];
+const arr /*:array*/ /*truthy*/ = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`];
 loopStop: {
   $(`a`);
   const a$1 /*:primitive*/ = arr[286];
@@ -159,11 +159,11 @@ loopStop: {
     if (L) {
       break loopStop;
     } else {
-      const M /*:primitive*/ = $dotCall($array_shift, arr, `shift`);
+      const M /*:primitive*/ /*truthy*/ = $dotCall($array_shift, arr, `shift`);
       $dotCall($array_push, arr, `push`, M);
     }
   } catch (P) {
-    const N /*:primitive*/ = $dotCall($array_shift, arr, `shift`);
+    const N /*:primitive*/ /*truthy*/ = $dotCall($array_shift, arr, `shift`);
     $dotCall($array_push, arr, `push`, N);
   }
   const tmpCalleeParam$2 /*:primitive*/ = arr[0];
@@ -183,11 +183,11 @@ loopStop: {
     if (L$1) {
       break loopStop;
     } else {
-      const M$1 /*:primitive*/ = $dotCall($array_shift, arr, `shift`);
+      const M$1 /*:primitive*/ /*truthy*/ = $dotCall($array_shift, arr, `shift`);
       $dotCall($array_push, arr, `push`, M$1);
     }
   } catch (P$1) {
-    const N$1 /*:primitive*/ = $dotCall($array_shift, arr, `shift`);
+    const N$1 /*:primitive*/ /*truthy*/ = $dotCall($array_shift, arr, `shift`);
     $dotCall($array_push, arr, `push`, N$1);
   }
   const tmpCalleeParam$3 /*:primitive*/ = arr[0];
@@ -207,11 +207,11 @@ loopStop: {
     if (L$2) {
       break loopStop;
     } else {
-      const M$2 /*:primitive*/ = $dotCall($array_shift, arr, `shift`);
+      const M$2 /*:primitive*/ /*truthy*/ = $dotCall($array_shift, arr, `shift`);
       $dotCall($array_push, arr, `push`, M$2);
     }
   } catch (P$2) {
-    const N$2 /*:primitive*/ = $dotCall($array_shift, arr, `shift`);
+    const N$2 /*:primitive*/ /*truthy*/ = $dotCall($array_shift, arr, `shift`);
     $dotCall($array_push, arr, `push`, N$2);
   }
   const tmpCalleeParam$4 /*:primitive*/ = arr[0];
@@ -231,11 +231,11 @@ loopStop: {
     if (L$3) {
       break loopStop;
     } else {
-      const M$3 /*:primitive*/ = $dotCall($array_shift, arr, `shift`);
+      const M$3 /*:primitive*/ /*truthy*/ = $dotCall($array_shift, arr, `shift`);
       $dotCall($array_push, arr, `push`, M$3);
     }
   } catch (P$3) {
-    const N$3 /*:primitive*/ = $dotCall($array_shift, arr, `shift`);
+    const N$3 /*:primitive*/ /*truthy*/ = $dotCall($array_shift, arr, `shift`);
     $dotCall($array_push, arr, `push`, N$3);
   }
   const tmpCalleeParam$5 /*:primitive*/ = arr[0];
@@ -255,11 +255,11 @@ loopStop: {
     if (L$4) {
       break loopStop;
     } else {
-      const M$4 /*:primitive*/ = $dotCall($array_shift, arr, `shift`);
+      const M$4 /*:primitive*/ /*truthy*/ = $dotCall($array_shift, arr, `shift`);
       $dotCall($array_push, arr, `push`, M$4);
     }
   } catch (P$4) {
-    const N$4 /*:primitive*/ = $dotCall($array_shift, arr, `shift`);
+    const N$4 /*:primitive*/ /*truthy*/ = $dotCall($array_shift, arr, `shift`);
     $dotCall($array_push, arr, `push`, N$4);
   }
   const tmpCalleeParam$6 /*:primitive*/ = arr[0];
@@ -279,11 +279,11 @@ loopStop: {
     if (L$5) {
       break loopStop;
     } else {
-      const M$5 /*:primitive*/ = $dotCall($array_shift, arr, `shift`);
+      const M$5 /*:primitive*/ /*truthy*/ = $dotCall($array_shift, arr, `shift`);
       $dotCall($array_push, arr, `push`, M$5);
     }
   } catch (P$5) {
-    const N$5 /*:primitive*/ = $dotCall($array_shift, arr, `shift`);
+    const N$5 /*:primitive*/ /*truthy*/ = $dotCall($array_shift, arr, `shift`);
     $dotCall($array_push, arr, `push`, N$5);
   }
   const tmpCalleeParam$7 /*:primitive*/ = arr[0];
@@ -303,11 +303,11 @@ loopStop: {
     if (L$6) {
       break loopStop;
     } else {
-      const M$6 /*:primitive*/ = $dotCall($array_shift, arr, `shift`);
+      const M$6 /*:primitive*/ /*truthy*/ = $dotCall($array_shift, arr, `shift`);
       $dotCall($array_push, arr, `push`, M$6);
     }
   } catch (P$6) {
-    const N$6 /*:primitive*/ = $dotCall($array_shift, arr, `shift`);
+    const N$6 /*:primitive*/ /*truthy*/ = $dotCall($array_shift, arr, `shift`);
     $dotCall($array_push, arr, `push`, N$6);
   }
   const tmpCalleeParam$8 /*:primitive*/ = arr[0];
@@ -327,11 +327,11 @@ loopStop: {
     if (L$7) {
       break loopStop;
     } else {
-      const M$7 /*:primitive*/ = $dotCall($array_shift, arr, `shift`);
+      const M$7 /*:primitive*/ /*truthy*/ = $dotCall($array_shift, arr, `shift`);
       $dotCall($array_push, arr, `push`, M$7);
     }
   } catch (P$7) {
-    const N$7 /*:primitive*/ = $dotCall($array_shift, arr, `shift`);
+    const N$7 /*:primitive*/ /*truthy*/ = $dotCall($array_shift, arr, `shift`);
     $dotCall($array_push, arr, `push`, N$7);
   }
   const tmpCalleeParam$9 /*:primitive*/ = arr[0];
@@ -351,11 +351,11 @@ loopStop: {
     if (L$8) {
       break loopStop;
     } else {
-      const M$8 /*:primitive*/ = $dotCall($array_shift, arr, `shift`);
+      const M$8 /*:primitive*/ /*truthy*/ = $dotCall($array_shift, arr, `shift`);
       $dotCall($array_push, arr, `push`, M$8);
     }
   } catch (P$8) {
-    const N$8 /*:primitive*/ = $dotCall($array_shift, arr, `shift`);
+    const N$8 /*:primitive*/ /*truthy*/ = $dotCall($array_shift, arr, `shift`);
     $dotCall($array_push, arr, `push`, N$8);
   }
   const tmpCalleeParam$10 /*:primitive*/ = arr[0];
@@ -375,11 +375,11 @@ loopStop: {
     if (L$9) {
       break loopStop;
     } else {
-      const M$9 /*:primitive*/ = $dotCall($array_shift, arr, `shift`);
+      const M$9 /*:primitive*/ /*truthy*/ = $dotCall($array_shift, arr, `shift`);
       $dotCall($array_push, arr, `push`, M$9);
     }
   } catch (P$9) {
-    const N$9 /*:primitive*/ = $dotCall($array_shift, arr, `shift`);
+    const N$9 /*:primitive*/ /*truthy*/ = $dotCall($array_shift, arr, `shift`);
     $dotCall($array_push, arr, `push`, N$9);
   }
   const tmpCalleeParam$11 /*:primitive*/ = arr[0];
@@ -399,11 +399,11 @@ loopStop: {
     if (L$10) {
       break loopStop;
     } else {
-      const M$10 /*:primitive*/ = $dotCall($array_shift, arr, `shift`);
+      const M$10 /*:primitive*/ /*truthy*/ = $dotCall($array_shift, arr, `shift`);
       $dotCall($array_push, arr, `push`, M$10);
     }
   } catch (P$10) {
-    const N$10 /*:primitive*/ = $dotCall($array_shift, arr, `shift`);
+    const N$10 /*:primitive*/ /*truthy*/ = $dotCall($array_shift, arr, `shift`);
     $dotCall($array_push, arr, `push`, N$10);
   }
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
@@ -424,11 +424,11 @@ loopStop: {
       if (L$11) {
         break;
       } else {
-        const M$11 /*:primitive*/ = $dotCall($array_shift, arr, `shift`);
+        const M$11 /*:primitive*/ /*truthy*/ = $dotCall($array_shift, arr, `shift`);
         $dotCall($array_push, arr, `push`, M$11);
       }
     } catch (P$11) {
-      const N$11 /*:primitive*/ = $dotCall($array_shift, arr, `shift`);
+      const N$11 /*:primitive*/ /*truthy*/ = $dotCall($array_shift, arr, `shift`);
       $dotCall($array_push, arr, `push`, N$11);
     }
   }

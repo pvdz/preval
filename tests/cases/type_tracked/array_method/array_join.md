@@ -26,7 +26,7 @@ $(tmpReturnArg);
 
 
 `````js filename=intro
-const tmpReturnArg /*:array*/ = [`use strict`, `__extends`];
+const tmpReturnArg /*:array*/ /*truthy*/ = [`use strict`, `__extends`];
 $(tmpReturnArg);
 `````
 

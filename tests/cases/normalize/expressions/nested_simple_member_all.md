@@ -18,11 +18,11 @@ $($(a).x = $(b).x = $(c).x);
 
 
 `````js filename=intro
-const a /*:object*/ = { x: 1 };
+const a /*:object*/ /*truthy*/ = { x: 1 };
 const tmpInitAssignLhsComputedObj /*:unknown*/ = $(a);
-const b /*:object*/ = { x: 2 };
+const b /*:object*/ /*truthy*/ = { x: 2 };
 const tmpInitAssignLhsComputedObj$1 /*:unknown*/ = $(b);
-const c /*:object*/ = { x: 3 };
+const c /*:object*/ /*truthy*/ = { x: 3 };
 const tmpCompObj /*:unknown*/ = $(c);
 const tmpInitAssignLhsComputedRhs$1 /*:unknown*/ = tmpCompObj.x;
 tmpInitAssignLhsComputedObj$1.x = tmpInitAssignLhsComputedRhs$1;

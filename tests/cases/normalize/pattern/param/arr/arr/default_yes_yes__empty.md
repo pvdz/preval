@@ -20,14 +20,14 @@ $(f());
 
 
 `````js filename=intro
-const tmpCalleeParam /*:array*/ = [`pass3`];
+const tmpCalleeParam /*:array*/ /*truthy*/ = [`pass3`];
 const tmpSSA_tmpBindingPatternArrRoot /*:unknown*/ = $(tmpCalleeParam);
-const tmpArrPatternSplat /*:array*/ = [...tmpSSA_tmpBindingPatternArrRoot];
+const tmpArrPatternSplat /*:array*/ /*truthy*/ = [...tmpSSA_tmpBindingPatternArrRoot];
 const tmpAPBD /*:unknown*/ = tmpArrPatternSplat[0];
 let tmpArrPatternStep /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpIfTest$1 /*:boolean*/ = tmpAPBD === undefined;
 if (tmpIfTest$1) {
-  const tmpCalleeParam$1 /*:array*/ = [`fail2`];
+  const tmpCalleeParam$1 /*:array*/ /*truthy*/ = [`fail2`];
   tmpArrPatternStep = $(tmpCalleeParam$1);
 } else {
   tmpArrPatternStep = tmpAPBD;

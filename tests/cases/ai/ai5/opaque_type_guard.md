@@ -30,7 +30,7 @@ if (typeof x === "string") {
 
 `````js filename=intro
 const x /*:unknown*/ = $(`test`);
-const tmpBinLhs /*:string*/ = typeof x;
+const tmpBinLhs /*:string*/ /*truthy*/ = typeof x;
 const tmpIfTest /*:boolean*/ = tmpBinLhs === `string`;
 if (tmpIfTest) {
   const y /*:unknown*/ = x.length;

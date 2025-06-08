@@ -22,9 +22,9 @@ $(a, x, y, z);
 const tmpBinBothLhs /*:unknown*/ = $(`a`);
 const tmpBinBothRhs /*:unknown*/ = $(`a`);
 const tmpIfTest /*:boolean*/ = tmpBinBothLhs === tmpBinBothRhs;
-const z /*:array*/ = [10, 20, 30];
+const z /*:array*/ /*truthy*/ = [10, 20, 30];
 if (tmpIfTest) {
-  const tmpArrPatternSplat /*:array*/ = [...z];
+  const tmpArrPatternSplat /*:array*/ /*truthy*/ = [...z];
   const tmpClusterSSA_x /*:unknown*/ = tmpArrPatternSplat[0];
   const tmpClusterSSA_y /*:unknown*/ = tmpArrPatternSplat[1];
   $(1, tmpClusterSSA_x, tmpClusterSSA_y, z);

@@ -30,8 +30,8 @@ $('ws_has_val1_after_delete', wset.has(val1));
 
 
 `````js filename=intro
-const wset /*:object*/ = new WeakSet();
-const tmpCalleeParam /*:object*/ = {};
+const wset /*:object*/ /*truthy*/ = new WeakSet();
+const tmpCalleeParam /*:object*/ /*truthy*/ = {};
 const val1 /*:unknown*/ = $(`ws_val1_methods`, tmpCalleeParam);
 const foo /*:()=>undefined*/ = function () {
   debugger;
@@ -47,7 +47,7 @@ const tmpMCF$3 /*:unknown*/ = wset.has;
 const tmpCalleeParam$5 /*:unknown*/ = $dotCall(tmpMCF$3, wset, `has`, val2);
 $(`ws_has_val2_unseen`, tmpCalleeParam$5);
 const tmpMCF$5 /*:unknown*/ = wset.add;
-const tmpCalleeParam$7 /*:array*/ = [];
+const tmpCalleeParam$7 /*:array*/ /*truthy*/ = [];
 const tmpMCP /*:unknown*/ = $(`ws_val_temp`, tmpCalleeParam$7);
 $dotCall(tmpMCF$5, wset, `add`, tmpMCP);
 const tmpMCF$7 /*:unknown*/ = wset.delete;

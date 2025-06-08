@@ -18,7 +18,7 @@ let a = 1; const arr = [a]; a = 2; if ($) $(arr);
 
 `````js filename=intro
 if ($) {
-  const arr /*:array*/ = [1];
+  const arr /*:array*/ /*truthy*/ = [1];
   $(arr);
 } else {
 }

@@ -24,7 +24,7 @@ if (stuff) {
 `````js filename=intro
 const cook /*:unknown*/ = document.cookie;
 const tmpMCF /*:unknown*/ = cook.match;
-const tmpMCP /*:regex*/ = new $regex_constructor(`x`, ``);
+const tmpMCP /*:regex*/ /*truthy*/ = new $regex_constructor(`x`, ``);
 const stuff /*:unknown*/ = $dotCall(tmpMCF, cook, `match`, tmpMCP);
 if (stuff) {
   const tmpCalleeParam /*:unknown*/ = stuff[1];

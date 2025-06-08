@@ -30,10 +30,10 @@
 
 
 `````js filename=intro
-const tmpCalleeParam /*:object*/ = { a: 1, b: 2, c: 3 };
+const tmpCalleeParam /*:object*/ /*truthy*/ = { a: 1, b: 2, c: 3 };
 const source1 /*:unknown*/ = $(`get_obj1`, tmpCalleeParam);
 const a /*:unknown*/ = source1.a;
-const tmpCalleeParam$3 /*:array*/ = [`a`];
+const tmpCalleeParam$3 /*:array*/ /*truthy*/ = [`a`];
 const rest1 /*:unknown*/ = $objPatternRest(source1, tmpCalleeParam$3, `rest1`);
 $(`a1`, a);
 const tmpCalleeParam$5 /*:unknown*/ = rest1.b;
@@ -42,7 +42,7 @@ const tmpCalleeParam$7 /*:unknown*/ = rest1.c;
 $(`rest1_c`, tmpCalleeParam$7);
 const tmpCalleeParam$9 /*:boolean*/ = `a` in rest1;
 $(`rest1_a_exists`, tmpCalleeParam$9);
-const tmpCalleeParam$11 /*:object*/ = { x: 10 };
+const tmpCalleeParam$11 /*:object*/ /*truthy*/ = { x: 10 };
 const source2 /*:unknown*/ = $(`get_obj2`, tmpCalleeParam$11);
 const x /*:unknown*/ = source2.x;
 const tmpOPBD /*:unknown*/ = source2.y;
@@ -53,11 +53,11 @@ if (tmpIfTest) {
 } else {
   y = tmpOPBD;
 }
-const tmpCalleeParam$15 /*:array*/ = [`x`, `y`];
+const tmpCalleeParam$15 /*:array*/ /*truthy*/ = [`x`, `y`];
 const rest2 /*:unknown*/ = $objPatternRest(source2, tmpCalleeParam$15, `rest2`);
 $(`x2`, x);
 $(`y2`, y);
-const tmpMCOO /*:array*/ = $Object_keys(rest2);
+const tmpMCOO /*:array*/ /*truthy*/ = $Object_keys(rest2);
 const tmpCalleeParam$17 /*:string*/ = $dotCall($array_join, tmpMCOO, `join`, `,`);
 $(`rest2_keys`, tmpCalleeParam$17);
 `````

@@ -31,7 +31,7 @@ const tmpCalleeParam /*:()=>unknown*/ = function () {
   debugger;
   const incorrectlyhoisted$3 /*:()=>undefined*/ = function () {
     debugger;
-    const tmpCalleeParam$1 /*:object*/ = {};
+    const tmpCalleeParam$1 /*:object*/ /*truthy*/ = {};
     const C /*:unknown*/ = $(tmpCalleeParam$1);
     C.innerHTML = wheredoyougoto;
     return undefined;

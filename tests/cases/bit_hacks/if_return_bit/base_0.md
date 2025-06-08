@@ -23,7 +23,7 @@ $((f($(0))));
 
 `````js filename=intro
 const tmpCalleeParam$1 /*:unknown*/ = $(0);
-const x /*:number*/ = tmpCalleeParam$1 & 16;
+const x /*:number*/ /*&16*/ /*oneBitAnded*/ = tmpCalleeParam$1 & 16;
 if (x) {
   $(16);
 } else {

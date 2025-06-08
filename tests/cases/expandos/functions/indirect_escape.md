@@ -54,16 +54,16 @@ const g /*:(number)=>function*/ = function ($$0) {
   };
   return tmpReturnArg;
 };
-const tmpCallComplexCallee /*:function*/ = g(1);
+const tmpCallComplexCallee /*:function*/ /*truthy*/ = g(1);
 const tmpCalleeParam$1 /*:unknown*/ = tmpCallComplexCallee();
 $(tmpCalleeParam$1, `outer`);
-const tmpCallComplexCallee$1 /*:function*/ = g(2);
+const tmpCallComplexCallee$1 /*:function*/ /*truthy*/ = g(2);
 const tmpCalleeParam$3 /*:unknown*/ = tmpCallComplexCallee$1();
 $(tmpCalleeParam$3, `outer`);
-const tmpCallComplexCallee$3 /*:function*/ = g(3);
+const tmpCallComplexCallee$3 /*:function*/ /*truthy*/ = g(3);
 const tmpCalleeParam$5 /*:unknown*/ = tmpCallComplexCallee$3();
 $(tmpCalleeParam$5, `outer`);
-const tmpCallComplexCallee$5 /*:function*/ = g(4);
+const tmpCallComplexCallee$5 /*:function*/ /*truthy*/ = g(4);
 const tmpCalleeParam$7 /*:unknown*/ = tmpCallComplexCallee$5();
 $(tmpCalleeParam$7, `outer`);
 `````

@@ -21,7 +21,7 @@ $(a);
 
 
 `````js filename=intro
-const b /*:object*/ = { $: $ };
+const b /*:object*/ /*truthy*/ = { $: $ };
 const tmpMCOO /*:unknown*/ = $(b);
 const tmpMCF /*:unknown*/ = tmpMCOO.$;
 const tmpBinBothLhs /*:unknown*/ = $dotCall(tmpMCF, tmpMCOO, `\$`, 1);
@@ -29,7 +29,7 @@ const tmpMCOO$1 /*:unknown*/ = $(b);
 const tmpMCF$1 /*:unknown*/ = tmpMCOO$1.$;
 const tmpBinBothRhs /*:unknown*/ = $dotCall(tmpMCF$1, tmpMCOO$1, `\$`, 1);
 tmpBinBothLhs + tmpBinBothRhs;
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

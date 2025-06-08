@@ -23,8 +23,8 @@ $('original_array', arr); // Check if original is mutated
 
 `````js filename=intro
 const cb /*:unknown*/ = $(`opaque_callback`);
-const arr /*:array*/ = [1, 2, 3];
-const result /*:array*/ = $dotCall($array_map, arr, `map`, cb);
+const arr /*:array*/ /*truthy*/ = [1, 2, 3];
+const result /*:array*/ /*truthy*/ = $dotCall($array_map, arr, `map`, cb);
 $(`result_array`, result);
 $(`original_array`, arr);
 `````

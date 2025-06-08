@@ -26,7 +26,7 @@ $(f());
 
 
 `````js filename=intro
-const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
+const tmpCalleeParam /*:object*/ /*truthy*/ = { a: 1, b: 2 };
 const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
 const tmpForInNext /*:unknown*/ = tmpForInGen();
 const tmpIfTest /*:unknown*/ = tmpForInNext.done;

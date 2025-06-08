@@ -22,7 +22,7 @@ switch (1) {
 
 `````js filename=intro
 const tmpUnaryArg /*:unknown*/ = $(100);
-const a /*:boolean*/ = !tmpUnaryArg;
+const a /*:boolean*/ /*banged*/ = !tmpUnaryArg;
 $(a);
 `````
 

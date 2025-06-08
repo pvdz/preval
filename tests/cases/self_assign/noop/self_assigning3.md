@@ -41,11 +41,11 @@ $(a, b, c);
 
 
 `````js filename=intro
-const arr /*:array*/ = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000];
+const arr /*:array*/ /*truthy*/ = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000];
 const unknownarr /*:unknown*/ = $(arr);
 let arg1 /*:unknown*/ = 1;
 const func /*:(number, unused)=>undefined*/ = function ($$0, $$1) {
-  const tmpPrevalAliasArgumentsAny /*:arguments*/ = arguments;
+  const tmpPrevalAliasArgumentsAny /*:arguments*/ /*truthy*/ = arguments;
   const newArg1 /*:number*/ = $$0;
   debugger;
   const index /*:number*/ = newArg1 - 1;

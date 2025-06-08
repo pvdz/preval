@@ -34,7 +34,7 @@ $(a() === a());
 `````js filename=intro
 let a /*:()=>unknown*/ = function () {
   debugger;
-  const arr /*:array*/ = [1, 2, 3];
+  const arr /*:array*/ /*truthy*/ = [1, 2, 3];
   a = function () {
     debugger;
     return arr;

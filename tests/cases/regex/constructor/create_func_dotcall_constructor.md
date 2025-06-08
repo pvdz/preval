@@ -20,7 +20,7 @@ $(f);
 
 
 `````js filename=intro
-const f /*:regex*/ = new $regex_constructor(`bar`, `g`);
+const f /*:regex*/ /*truthy*/ = new $regex_constructor(`bar`, `g`);
 $(f);
 `````
 

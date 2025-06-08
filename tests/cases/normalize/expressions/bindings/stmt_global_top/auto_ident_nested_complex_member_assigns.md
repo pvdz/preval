@@ -23,7 +23,7 @@ $(a, b, c);
 
 
 `````js filename=intro
-const b /*:object*/ = { x: 1 };
+const b /*:object*/ /*truthy*/ = { x: 1 };
 const tmpInitAssignLhsComputedObj /*:unknown*/ = $(b);
 const tmpInitAssignLhsComputedProp /*:unknown*/ = $(`x`);
 const tmpInitAssignLhsComputedObj$1 /*:unknown*/ = $(b);

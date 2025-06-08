@@ -23,10 +23,10 @@ $(y);
 
 
 `````js filename=intro
-const tmpCalleeParam /*:array*/ = [1, 2, 3];
+const tmpCalleeParam /*:array*/ /*truthy*/ = [1, 2, 3];
 const tmpArrSpread /*:unknown*/ = $(tmpCalleeParam);
-const arrPatternSplat /*:array*/ = [...tmpArrSpread];
-const y /*:array*/ = $dotCall($array_slice, arrPatternSplat, `slice`, 0);
+const arrPatternSplat /*:array*/ /*truthy*/ = [...tmpArrSpread];
+const y /*:array*/ /*truthy*/ = $dotCall($array_slice, arrPatternSplat, `slice`, 0);
 $(y);
 `````
 

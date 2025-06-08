@@ -46,7 +46,7 @@ const tmpMCP$3 /*:unknown*/ = $(`date_utc_d`, 15);
 const tmpCalleeParam$1 /*:number*/ = $Date_UTC(tmpMCP, tmpMCP$1, tmpMCP$3);
 $(`date_utc_val`, tmpCalleeParam$1);
 const tmpCalleeParam$3 /*:unknown*/ = $(`date_inst_source`, 1689415200000);
-const date_inst /*:date*/ = new $date_constructor(tmpCalleeParam$3);
+const date_inst /*:date*/ /*truthy*/ = new $date_constructor(tmpCalleeParam$3);
 const tmpCalleeParam$5 /*:number*/ = $dotCall($date_getFullYear, date_inst, `getFullYear`);
 $(`date_inst_getFullYear`, tmpCalleeParam$5);
 const tmpCalleeParam$7 /*:number*/ = $dotCall($date_getMonth, date_inst, `getMonth`);

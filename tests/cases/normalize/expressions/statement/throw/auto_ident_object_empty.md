@@ -19,7 +19,7 @@ $(a);
 
 
 `````js filename=intro
-const tmpThrowArg /*:object*/ = {};
+const tmpThrowArg /*:object*/ /*truthy*/ = {};
 throw tmpThrowArg;
 `````
 

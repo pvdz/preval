@@ -19,12 +19,12 @@ $(function(){ $(...arguments); }.call(({}), ['x'], 1, 2, 3));
 
 `````js filename=intro
 const tmpMCOO /*:()=>unknown*/ = function () {
-  const tmpPrevalAliasArgumentsAny /*:arguments*/ = arguments;
+  const tmpPrevalAliasArgumentsAny /*:arguments*/ /*truthy*/ = arguments;
   debugger;
   $(...tmpPrevalAliasArgumentsAny);
   return undefined;
 };
-const tmpMCP$1 /*:array*/ = [`x`];
+const tmpMCP$1 /*:array*/ /*truthy*/ = [`x`];
 tmpMCOO(tmpMCP$1, 1, 2, 3);
 $(undefined);
 `````

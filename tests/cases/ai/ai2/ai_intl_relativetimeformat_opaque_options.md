@@ -25,10 +25,10 @@ $('rtf_resolved_options_numeric', formatter.resolvedOptions().numeric);
 
 `````js filename=intro
 const locale /*:unknown*/ = $(`rtf_locale`, `fr-FR`);
-const tmpCalleeParam /*:object*/ = { numeric: `auto` };
+const tmpCalleeParam /*:object*/ /*truthy*/ = { numeric: `auto` };
 const options /*:unknown*/ = $(`rtf_options`, tmpCalleeParam);
 const tmpNewCallee /*:unknown*/ = Intl.RelativeTimeFormat;
-const formatter /*:object*/ = new tmpNewCallee(locale, options);
+const formatter /*:object*/ /*truthy*/ = new tmpNewCallee(locale, options);
 const value /*:unknown*/ = $(`rtf_value`, -1);
 const unit /*:unknown*/ = $(`rtf_unit`, `day`);
 const tmpMCF /*:unknown*/ = formatter.format;

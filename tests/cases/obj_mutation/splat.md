@@ -22,7 +22,7 @@ $(blob);
 
 
 `````js filename=intro
-const blob /*:object*/ = { thing: `woop` };
+const blob /*:object*/ /*truthy*/ = { thing: `woop` };
 const tmpForInGen /*:unknown*/ = $forIn(blob);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForInNext /*:unknown*/ = tmpForInGen();

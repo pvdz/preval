@@ -40,14 +40,14 @@ const myAsyncArrow /*:(unknown)=>promise*/ = async function ($$0) {
   return tmpReturnArg;
 };
 const p /*:unknown*/ = $(`promise_like`);
-const tmpMCOO$1 /*:promise*/ = myAsyncArrow(p);
+const tmpMCOO$1 /*:promise*/ /*truthy*/ = myAsyncArrow(p);
 const tmpMCP /*:(unknown)=>undefined*/ = function ($$0) {
   const final_val /*:unknown*/ = $$0;
   debugger;
   $(`then_called`, final_val);
   return undefined;
 };
-const tmpMCOO /*:promise*/ = $dotCall($promise_then, tmpMCOO$1, `then`, tmpMCP);
+const tmpMCOO /*:promise*/ /*truthy*/ = $dotCall($promise_then, tmpMCOO$1, `then`, tmpMCP);
 const tmpMCP$1 /*:(unknown)=>undefined*/ = function ($$0) {
   const e /*:unknown*/ = $$0;
   debugger;

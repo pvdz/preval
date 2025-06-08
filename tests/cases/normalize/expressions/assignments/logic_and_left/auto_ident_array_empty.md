@@ -21,7 +21,7 @@ $(a);
 `````js filename=intro
 const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
 $(tmpClusterSSA_tmpCalleeParam);
-const a /*:array*/ = [];
+const a /*:array*/ /*truthy*/ = [];
 $(a);
 `````
 

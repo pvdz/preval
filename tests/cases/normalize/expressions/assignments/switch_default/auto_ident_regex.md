@@ -23,7 +23,7 @@ $(a);
 
 `````js filename=intro
 $(1);
-const a /*:regex*/ = new $regex_constructor(`foo`, ``);
+const a /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, ``);
 $(a);
 `````
 

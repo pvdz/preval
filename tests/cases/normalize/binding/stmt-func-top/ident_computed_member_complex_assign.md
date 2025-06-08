@@ -22,7 +22,7 @@ $(f());
 
 
 `````js filename=intro
-const b /*:object*/ = { x: 2 };
+const b /*:object*/ /*truthy*/ = { x: 2 };
 const tmpInitAssignLhsComputedObj /*:unknown*/ = $(b);
 const tmpInitAssignLhsComputedProp /*:unknown*/ = $(`x`);
 const tmpInitAssignLhsComputedObj$1 /*:unknown*/ = $(3);

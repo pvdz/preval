@@ -29,20 +29,20 @@ $(/x/ !== x);
 
 
 `````js filename=intro
-const tmpBinLhs /*:object*/ = {};
+const tmpBinLhs /*:object*/ /*truthy*/ = {};
 const tmpCalleeParam /*:boolean*/ = tmpBinLhs === x;
 $(tmpCalleeParam);
-const tmpBinLhs$1 /*:object*/ = {};
+const tmpBinLhs$1 /*:object*/ /*truthy*/ = {};
 const tmpCalleeParam$1 /*:boolean*/ = tmpBinLhs$1 !== x;
 $(tmpCalleeParam$1);
 x;
 $(false);
 x;
 $(true);
-const tmpBinLhs$7 /*:regex*/ = new $regex_constructor(`x`, ``);
+const tmpBinLhs$7 /*:regex*/ /*truthy*/ = new $regex_constructor(`x`, ``);
 const tmpCalleeParam$7 /*:boolean*/ = tmpBinLhs$7 === x;
 $(tmpCalleeParam$7);
-const tmpBinLhs$9 /*:regex*/ = new $regex_constructor(`x`, ``);
+const tmpBinLhs$9 /*:regex*/ /*truthy*/ = new $regex_constructor(`x`, ``);
 const tmpCalleeParam$9 /*:boolean*/ = tmpBinLhs$9 !== x;
 $(tmpCalleeParam$9);
 `````

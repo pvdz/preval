@@ -30,7 +30,7 @@ const f /*:(number, number, string)=>undefined*/ = function ($$0, $$1, $$2) {
   const a$1 /*:number*/ = $$1;
   const y /*:string*/ = $$2;
   debugger;
-  const a /*:object*/ = { a: a$1 };
+  const a /*:object*/ /*truthy*/ = { a: a$1 };
   $(x, y, a);
   return undefined;
 };

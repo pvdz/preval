@@ -20,7 +20,7 @@ $(blob);
 
 
 `````js filename=intro
-const blob /*:object*/ = { thing: `woop` };
+const blob /*:object*/ /*truthy*/ = { thing: `woop` };
 $(blob);
 blob.thing = `boing`;
 $(blob);

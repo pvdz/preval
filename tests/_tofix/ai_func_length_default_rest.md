@@ -27,7 +27,7 @@ f($('A_val'));
 const f /*:(unknown, unknown, array)=>undefined*/ = function ($$0, $$1, ...$$2 /*:array*/) {
   const a /*:unknown*/ = $$0;
   const tmpParamBare /*:unknown*/ = $$1;
-  const c /*:array*/ = $$2;
+  const c /*:array*/ /*truthy*/ = $$2;
   debugger;
   let b /*:unknown*/ /*ternaryConst*/ = undefined;
   const tmpIfTest /*:boolean*/ = tmpParamBare === undefined;

@@ -23,7 +23,7 @@ $(f);
 `````js filename=intro
 const f /*:()=>promise*/ = async function () {
   debugger;
-  const x /*:boolean*/ = await true;
+  const x /*:boolean*/ /*truthy*/ = await true;
   $(x);
   return undefined;
 };

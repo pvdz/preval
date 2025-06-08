@@ -31,7 +31,7 @@ $(f(function(a,b,c,d,e){ $('pass3', a,b,c,d,e); }));
 
 `````js filename=intro
 const f /*:(function)=>unknown*/ = function ($$0) {
-  const x /*:function*/ = $$0;
+  const x /*:function*/ /*truthy*/ = $$0;
   debugger;
   $(`no`);
   $(`inlining`);

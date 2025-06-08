@@ -24,11 +24,11 @@ $('dtf_resolved_options', formatter.resolvedOptions().month);
 
 `````js filename=intro
 const locale /*:unknown*/ = $(`dtf_locale`, `en-US`);
-const tmpCalleeParam /*:object*/ = { year: `numeric`, month: `long` };
+const tmpCalleeParam /*:object*/ /*truthy*/ = { year: `numeric`, month: `long` };
 const options /*:unknown*/ = $(`dtf_options`, tmpCalleeParam);
 const tmpNewCallee /*:unknown*/ = Intl.DateTimeFormat;
-const formatter /*:object*/ = new tmpNewCallee(locale, options);
-const tmpCalleeParam$1 /*:date*/ = new $date_constructor(2024, 0, 15);
+const formatter /*:object*/ /*truthy*/ = new tmpNewCallee(locale, options);
+const tmpCalleeParam$1 /*:date*/ /*truthy*/ = new $date_constructor(2024, 0, 15);
 const date /*:unknown*/ = $(`dtf_date_val`, tmpCalleeParam$1);
 const tmpMCF /*:unknown*/ = formatter.format;
 const tmpCalleeParam$3 /*:unknown*/ = $dotCall(tmpMCF, formatter, `format`, date);

@@ -29,7 +29,7 @@ const tmpMCOO /*:()=>undefined*/ = function () {
   x = `changed`;
   return undefined;
 };
-const mutate /*:function*/ = $dotCall($function_bind, tmpMCOO, `bind`, null);
+const mutate /*:function*/ /*truthy*/ = $dotCall($function_bind, tmpMCOO, `bind`, null);
 mutate();
 $(a, x);
 `````

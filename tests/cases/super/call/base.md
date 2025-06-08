@@ -27,7 +27,7 @@ new B();
 
 
 `````js filename=intro
-const A /*:class*/ = class {
+const A /*:class*/ /*truthy*/ = class {
   constructor($$0) {
     const x /*:unknown*/ = $$0;
     debugger;
@@ -35,7 +35,7 @@ const A /*:class*/ = class {
     return undefined;
   }
 };
-const B /*:class*/ = class extends A {
+const B /*:class*/ /*truthy*/ = class extends A {
   constructor() {
     debugger;
     super(1);

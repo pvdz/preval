@@ -26,7 +26,7 @@ $(1);
 $(2);
 const tmpCalleeParam /*:unknown*/ = $(1);
 $coerce(tmpCalleeParam, `string`);
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a, 1);
 `````
 

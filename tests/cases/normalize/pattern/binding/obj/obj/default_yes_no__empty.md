@@ -23,7 +23,7 @@ let tmpOPAD /*:unknown*/ /*ternaryConst*/ = undefined;
 let tmpObjPatternCrashTest /*:boolean*/ = false;
 const tmpIfTest /*:boolean*/ = tmpOPBD === undefined;
 if (tmpIfTest) {
-  const tmpCalleeParam /*:object*/ = { x: `fail` };
+  const tmpCalleeParam /*:object*/ /*truthy*/ = { x: `fail` };
   tmpOPAD = $(tmpCalleeParam);
   tmpObjPatternCrashTest = tmpOPAD === undefined;
 } else {

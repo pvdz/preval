@@ -25,11 +25,11 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(`\$`);
-const tmpCompObj /*:object*/ = { $: $ };
+const tmpCompObj /*:object*/ /*truthy*/ = { $: $ };
 const tmpNewCallee /*:unknown*/ = tmpCompObj[tmpCalleeParam];
-const tmpReturnArg /*:object*/ = new tmpNewCallee(1);
+const tmpReturnArg /*:object*/ /*truthy*/ = new tmpNewCallee(1);
 $(tmpReturnArg);
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

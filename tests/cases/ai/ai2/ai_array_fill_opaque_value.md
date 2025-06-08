@@ -26,7 +26,7 @@ $('fill_result', arr);
 const val /*:unknown*/ = $(`opaque_fill_value`);
 const start /*:unknown*/ = $(`opaque_start_index`);
 const end /*:unknown*/ = $(`opaque_end_index`);
-const arr /*:array*/ = [1, 2, 3, 4];
+const arr /*:array*/ /*truthy*/ = [1, 2, 3, 4];
 $dotCall($array_fill, arr, `fill`, val, start, end);
 $(`fill_result`, arr);
 `````

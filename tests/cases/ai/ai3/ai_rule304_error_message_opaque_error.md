@@ -25,7 +25,7 @@ $('final_message', message);
 
 
 `````js filename=intro
-const tmpCalleeParam /*:object*/ = new Error(`test error`);
+const tmpCalleeParam /*:object*/ /*truthy*/ = new Error(`test error`);
 const e /*:unknown*/ = $(`e`, tmpCalleeParam);
 let message /*:unknown*/ = undefined;
 try {

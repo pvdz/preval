@@ -43,7 +43,7 @@ $(tmpCalleeParam);
 `````js filename=intro
 const outer /*:()=>unknown*/ = function () {
   debugger;
-  const r /*:array*/ = [undefined];
+  const r /*:array*/ /*truthy*/ = [undefined];
   $(r);
   return undefined;
 };

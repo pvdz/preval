@@ -31,21 +31,21 @@ while ($LOOP_UNROLL_1) {      // The unrolled body is not in a loop so it can in
 
 `````js filename=intro
 const test /*:unknown*/ = $(`never`);
-const arr /*:array*/ = [1, 2, 3, 4, 5];
+const arr /*:array*/ /*truthy*/ = [1, 2, 3, 4, 5];
 if (test) {
-  const tmpCalleeParam /*:array*/ = $dotCall($array_slice, arr, `slice`, 0);
+  const tmpCalleeParam /*:array*/ /*truthy*/ = $dotCall($array_slice, arr, `slice`, 0);
   $(tmpCalleeParam);
 } else {
-  const tmp /*:unknown*/ = $dotCall($array_shift, arr, `shift`);
+  const tmp /*:unknown*/ /*truthy*/ = $dotCall($array_shift, arr, `shift`);
   $dotCall($array_push, arr, `push`, tmp);
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     const test$1 /*:unknown*/ = $(`never`);
     if (test$1) {
-      const tmpCalleeParam$1 /*:array*/ = $dotCall($array_slice, arr, `slice`, 0);
+      const tmpCalleeParam$1 /*:array*/ /*truthy*/ = $dotCall($array_slice, arr, `slice`, 0);
       $(tmpCalleeParam$1);
       break;
     } else {
-      const tmp$1 /*:unknown*/ = $dotCall($array_shift, arr, `shift`);
+      const tmp$1 /*:unknown*/ /*truthy*/ = $dotCall($array_shift, arr, `shift`);
       $dotCall($array_push, arr, `push`, tmp$1);
     }
   }

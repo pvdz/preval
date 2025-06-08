@@ -22,8 +22,8 @@ $(z);
 
 
 `````js filename=intro
-const tmpObjLitVal$3 /*:object*/ = { z: 1, a: 2, b: 3 };
-const tmpCalleeParam$1 /*:array*/ = [];
+const tmpObjLitVal$3 /*:object*/ /*truthy*/ = { z: 1, a: 2, b: 3 };
+const tmpCalleeParam$1 /*:array*/ /*truthy*/ = [];
 const z /*:unknown*/ = $objPatternRest(tmpObjLitVal$3, tmpCalleeParam$1, undefined);
 $(z);
 `````

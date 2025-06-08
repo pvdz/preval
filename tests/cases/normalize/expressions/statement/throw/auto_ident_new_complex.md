@@ -20,7 +20,7 @@ $(a);
 
 `````js filename=intro
 const tmpNewCallee /*:unknown*/ = $($);
-const tmpThrowArg /*:object*/ = new tmpNewCallee(1);
+const tmpThrowArg /*:object*/ /*truthy*/ = new tmpNewCallee(1);
 throw tmpThrowArg;
 `````
 

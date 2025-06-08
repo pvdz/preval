@@ -23,7 +23,7 @@ $(a, b);
 
 `````js filename=intro
 $Number_prototype.a;
-const b /*:object*/ = { c: 2 };
+const b /*:object*/ /*truthy*/ = { c: 2 };
 $(2, b);
 `````
 

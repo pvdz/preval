@@ -22,7 +22,7 @@ $(a);
 const tmpCallComplexCallee /*:unknown*/ = $($);
 const a /*:unknown*/ = tmpCallComplexCallee(1);
 const tmpBinBothRhs /*:string*/ = $coerce(a, `string`);
-const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
+const tmpCalleeParam /*:string*/ /*truthy*/ = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
 $(a);
 `````

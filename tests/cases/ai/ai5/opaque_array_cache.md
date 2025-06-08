@@ -35,8 +35,8 @@ const tmpMCP /*:(unknown)=>unknown*/ = function ($$0) {
   const tmpReturnArg /*:unknown*/ = $dotCall(tmpMCF$1, v, `toString`);
   return tmpReturnArg;
 };
-const tmpMCOO /*:array*/ = [x, x];
-const y /*:array*/ = $dotCall($array_map, tmpMCOO, `map`, tmpMCP);
+const tmpMCOO /*:array*/ /*truthy*/ = [x, x];
+const y /*:array*/ /*truthy*/ = $dotCall($array_map, tmpMCOO, `map`, tmpMCP);
 const tmpMCP$1 /*:(unknown)=>boolean*/ = function ($$0) {
   const v$1 /*:unknown*/ = $$0;
   debugger;
@@ -44,8 +44,8 @@ const tmpMCP$1 /*:(unknown)=>boolean*/ = function ($$0) {
   const tmpReturnArg$1 /*:boolean*/ = tmpBinLhs > 0;
   return tmpReturnArg$1;
 };
-const tmpMCOO$1 /*:array*/ = [x, x];
-const z /*:array*/ = $dotCall($array_filter, tmpMCOO$1, `filter`, tmpMCP$1);
+const tmpMCOO$1 /*:array*/ /*truthy*/ = [x, x];
+const z /*:array*/ /*truthy*/ = $dotCall($array_filter, tmpMCOO$1, `filter`, tmpMCP$1);
 const tmpCalleeParam /*:primitive*/ = y + z;
 $(tmpCalleeParam);
 `````

@@ -25,7 +25,7 @@ if (x & 8) {
 const tmpFree /*:(number)=>boolean*/ = function $free($$0) {
   const x$1 /*:number*/ = $$0;
   debugger;
-  const tmpIfTest /*:number*/ = x$1 & 10;
+  const tmpIfTest /*:number*/ /*&10*/ = x$1 & 10;
   const tmpRet /*:boolean*/ = tmpIfTest === 10;
   return tmpRet;
 };

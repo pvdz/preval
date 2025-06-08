@@ -20,9 +20,9 @@ $(a);
 
 `````js filename=intro
 $(100);
-const tmpAnonDefaultExport /*:undefined*/ = undefined;
+const tmpAnonDefaultExport /*:undefined*/ /*falsy*/ = undefined;
 export { tmpAnonDefaultExport as default };
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

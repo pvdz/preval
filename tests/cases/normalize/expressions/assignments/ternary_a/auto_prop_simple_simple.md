@@ -23,7 +23,7 @@ $(a);
 $(1);
 const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
 $(tmpClusterSSA_tmpCalleeParam);
-const a /*:object*/ = { b: 2 };
+const a /*:object*/ /*truthy*/ = { b: 2 };
 $(a);
 `````
 

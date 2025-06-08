@@ -44,14 +44,14 @@ const g /*:()=>array*/ = function () {
   $(false);
   $(true);
   $(false);
-  const g$1 /*:array*/ = [1, 2, 3];
+  const g$1 /*:array*/ /*truthy*/ = [1, 2, 3];
   return g$1;
 };
-const x /*:array*/ = g();
-const y /*:array*/ = g();
+const x /*:array*/ /*truthy*/ = g();
+const y /*:array*/ /*truthy*/ = g();
 const xy /*:boolean*/ = x === y;
 $(xy);
-const z /*:array*/ = g();
+const z /*:array*/ /*truthy*/ = g();
 $(z);
 `````
 

@@ -26,7 +26,7 @@ $(f());
 
 
 `````js filename=intro
-const tmpCalleeParam /*:boolean*/ = !x;
+const tmpCalleeParam /*:boolean*/ /*banged*/ = !x;
 $(tmpCalleeParam);
 `````
 

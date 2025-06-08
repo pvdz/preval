@@ -24,11 +24,11 @@ $(c);
 
 
 `````js filename=intro
-const a1 /*:array*/ = [];
-const b1 /*:array*/ = [];
-const a2 /*:array*/ = [a1];
-const b2 /*:array*/ = [b1];
-const c /*:array*/ = [a2, b2];
+const a1 /*:array*/ /*truthy*/ = [];
+const b1 /*:array*/ /*truthy*/ = [];
+const a2 /*:array*/ /*truthy*/ = [a1];
+const b2 /*:array*/ /*truthy*/ = [b1];
+const c /*:array*/ /*truthy*/ = [a2, b2];
 $(c);
 `````
 

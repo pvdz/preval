@@ -22,12 +22,12 @@ $(a);
 const tmpCalleeParam /*:unknown*/ = $(100);
 if (tmpCalleeParam) {
   const tmpNewCallee /*:unknown*/ = $($);
-  const tmpNestedComplexRhs /*:object*/ = new tmpNewCallee(1);
+  const tmpNestedComplexRhs /*:object*/ /*truthy*/ = new tmpNewCallee(1);
   $(tmpNestedComplexRhs);
   $(tmpNestedComplexRhs);
 } else {
   $(tmpCalleeParam);
-  const a /*:object*/ = { a: 999, b: 1000 };
+  const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
   $(a);
 }
 `````

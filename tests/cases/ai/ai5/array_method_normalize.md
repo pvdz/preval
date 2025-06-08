@@ -36,8 +36,8 @@ const tmpMCP /*:(unknown, unknown)=>primitive*/ = function ($$0, $$1) {
   const tmpReturnArg /*:primitive*/ = a + b;
   return tmpReturnArg;
 };
-const arr /*:array*/ = [1, 2, 3];
-const sum /*:array*/ = $dotCall($array_reduce, arr, `reduce`, tmpMCP, 0);
+const arr /*:array*/ /*truthy*/ = [1, 2, 3];
+const sum /*:array*/ /*truthy*/ = $dotCall($array_reduce, arr, `reduce`, tmpMCP, 0);
 $(sum);
 `````
 

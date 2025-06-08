@@ -46,7 +46,7 @@ const d /*:()=>unknown*/ = function () {
 };
 d();
 d();
-const objd /*:object*/ = {
+const objd /*:object*/ /*truthy*/ = {
   get foo() {
     debugger;
     return 100;

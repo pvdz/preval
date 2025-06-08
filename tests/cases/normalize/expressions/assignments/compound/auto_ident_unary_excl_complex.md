@@ -20,8 +20,8 @@ $(a);
 
 `````js filename=intro
 const tmpUnaryArg /*:unknown*/ = $(100);
-const a /*:object*/ = { a: 999, b: 1000 };
-const tmpBinBothRhs /*:boolean*/ = !tmpUnaryArg;
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
+const tmpBinBothRhs /*:boolean*/ /*banged*/ = !tmpUnaryArg;
 const tmpClusterSSA_a /*:number*/ = a * tmpBinBothRhs;
 $(tmpClusterSSA_a);
 $(tmpClusterSSA_a);

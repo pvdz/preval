@@ -29,14 +29,14 @@ const tmpBinBothRhs /*:unknown*/ = $(1);
 const tmpIfTest /*:boolean*/ = tmpBinBothLhs === tmpBinBothRhs;
 if (tmpIfTest) {
   const tmpArrElement /*:unknown*/ = $(2);
-  const tmpCalleeParam /*:array*/ = [tmpArrElement];
+  const tmpCalleeParam /*:array*/ /*truthy*/ = [tmpArrElement];
   const tmpNestedAssignArrPatternRhs /*:unknown*/ = $(tmpCalleeParam);
-  const tmpArrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
+  const tmpArrPatternSplat /*:array*/ /*truthy*/ = [...tmpNestedAssignArrPatternRhs];
   const tmpClusterSSA_b /*:unknown*/ = tmpArrPatternSplat[0];
   $(tmpNestedAssignArrPatternRhs, tmpClusterSSA_b);
 } else {
-  const a /*:object*/ = { a: 999, b: 1000 };
-  const b /*:array*/ = [];
+  const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
+  const b /*:array*/ /*truthy*/ = [];
   $(a, b);
 }
 `````

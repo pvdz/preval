@@ -24,10 +24,10 @@ $('dn_resolved_options_type', displayNames.resolvedOptions().type);
 
 `````js filename=intro
 const locale /*:unknown*/ = $(`dn_locale`, `zh-CN`);
-const tmpCalleeParam /*:object*/ = { type: `region` };
+const tmpCalleeParam /*:object*/ /*truthy*/ = { type: `region` };
 const options /*:unknown*/ = $(`dn_options`, tmpCalleeParam);
 const tmpNewCallee /*:unknown*/ = Intl.DisplayNames;
-const displayNames /*:object*/ = new tmpNewCallee(locale, options);
+const displayNames /*:object*/ /*truthy*/ = new tmpNewCallee(locale, options);
 const code /*:unknown*/ = $(`dn_code_to_display`, `US`);
 const tmpMCF /*:unknown*/ = displayNames.of;
 const tmpCalleeParam$1 /*:unknown*/ = $dotCall(tmpMCF, displayNames, `of`, code);

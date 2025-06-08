@@ -22,7 +22,7 @@ $(a, b);
 
 `````js filename=intro
 const tmpBinBothLhs /*:unknown*/ = $(100);
-const b /*:object*/ = { c: 1 };
+const b /*:object*/ /*truthy*/ = { c: 1 };
 const tmpAssignRhsProp /*:unknown*/ = $(b);
 const a /*:unknown*/ = tmpAssignRhsProp.c;
 const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + a;

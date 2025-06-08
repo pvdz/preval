@@ -21,9 +21,9 @@ $(a);
 `````js filename=intro
 const tmpBinBothLhs /*:unknown*/ = $(100);
 const tmpStringConcatR /*:string*/ = $coerce(tmpBinBothLhs, `plustr`);
-const tmpCalleeParam /*:string*/ = `${tmpStringConcatR}1,2,3`;
+const tmpCalleeParam /*:string*/ /*truthy*/ = `${tmpStringConcatR}1,2,3`;
 $(tmpCalleeParam);
-const a /*:array*/ = [1, 2, 3];
+const a /*:array*/ /*truthy*/ = [1, 2, 3];
 $(a);
 `````
 

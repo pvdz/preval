@@ -27,7 +27,7 @@ $(tmpCalleeParam);
 `````js filename=intro
 $(undefined);
 if ($) {
-  const tmpClusterSSA_tmpCalleeParam /*:array*/ = [$];
+  const tmpClusterSSA_tmpCalleeParam /*:array*/ /*truthy*/ = [$];
   $(tmpClusterSSA_tmpCalleeParam);
 } else {
 }

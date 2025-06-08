@@ -40,9 +40,9 @@ const tmpFree /*:(string, number)=>string*/ = function $free($$0, $$1) {
   const tmpStringConcatR /*:string*/ = $$0;
   const x$1 /*:number*/ = $$1;
   debugger;
-  const extra$2 /*:string*/ = `${tmpStringConcatR}x`;
+  const extra$2 /*:string*/ /*truthy*/ = `${tmpStringConcatR}x`;
   const chr /*:string*/ = $dotCall($string_charAt, extra$2, `charAt`, 1);
-  const tmpIfTest$3 /*:number*/ = x$1 & 48;
+  const tmpIfTest$3 /*:number*/ /*&48*/ = x$1 & 48;
   const tmpRet /*:boolean*/ = tmpIfTest$3 === 48;
   const ret2 /*:string*/ = tmpRet + chr;
   return ret2;

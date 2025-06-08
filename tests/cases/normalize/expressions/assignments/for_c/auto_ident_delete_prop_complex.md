@@ -22,7 +22,7 @@ $(a, arg);
 
 `````js filename=intro
 const tmpIfTest /*:unknown*/ = $(1);
-const arg /*:object*/ = { y: 1 };
+const arg /*:object*/ /*truthy*/ = { y: 1 };
 if (tmpIfTest) {
   const tmpDeleteObj /*:unknown*/ = $(arg);
   let tmpClusterSSA_a /*:boolean*/ = delete tmpDeleteObj.y;
@@ -37,7 +37,7 @@ if (tmpIfTest) {
   }
   $(tmpClusterSSA_a, arg);
 } else {
-  const a /*:object*/ = { a: 999, b: 1000 };
+  const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
   $(a, arg);
 }
 `````

@@ -21,7 +21,7 @@ $('done');
 
 
 `````js filename=intro
-const obj /*:object*/ = { x: 1, y: `two` };
+const obj /*:object*/ /*truthy*/ = { x: 1, y: `two` };
 const tmpForInGen /*:unknown*/ = $forIn(obj);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForInNext /*:unknown*/ = tmpForInGen();

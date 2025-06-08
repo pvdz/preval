@@ -20,9 +20,9 @@ $(f({ x: undefined, a: 11, b: 12 }, 10));
 
 
 `````js filename=intro
-const tmpCalleeParam$1 /*:array*/ = [`pass2`];
+const tmpCalleeParam$1 /*:array*/ /*truthy*/ = [`pass2`];
 const tmpSSA_tmpOPAD /*:unknown*/ = $(tmpCalleeParam$1);
-const tmpArrPatternSplat /*:array*/ = [...tmpSSA_tmpOPAD];
+const tmpArrPatternSplat /*:array*/ /*truthy*/ = [...tmpSSA_tmpOPAD];
 const tmpAPBD /*:unknown*/ = tmpArrPatternSplat[0];
 const tmpIfTest$3 /*:boolean*/ = tmpAPBD === undefined;
 if (tmpIfTest$3) {

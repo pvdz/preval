@@ -20,7 +20,7 @@ $('after');
 
 `````js filename=intro
 $(`before`);
-const tmpCallComplexCallee /*:regex*/ = new $regex_constructor(`nope`, ``);
+const tmpCallComplexCallee /*:regex*/ /*truthy*/ = new $regex_constructor(`nope`, ``);
 tmpCallComplexCallee();
 $(`after`);
 `````

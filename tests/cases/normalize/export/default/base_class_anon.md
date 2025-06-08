@@ -17,7 +17,7 @@ export default class {}
 
 
 `````js filename=intro
-const tmpAnonDefaultExport /*:class*/ = class {};
+const tmpAnonDefaultExport /*:class*/ /*truthy*/ = class {};
 export { tmpAnonDefaultExport as default };
 `````
 

@@ -33,7 +33,7 @@ const f /*:()=>boolean*/ = function () {
   const x /*:unknown*/ = $(1);
   $(`block`);
   $(`block`);
-  const y /*:boolean*/ = !x;
+  const y /*:boolean*/ /*banged*/ = !x;
   return y;
 };
 f();

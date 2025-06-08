@@ -23,12 +23,12 @@ $(a);
 `````js filename=intro
 let tmpIfTest /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpIfTest$3 /*:boolean*/ = $ == null;
-const tmpObjLitVal$1 /*:object*/ = { e: $ };
+const tmpObjLitVal$1 /*:object*/ /*truthy*/ = { e: $ };
 if (tmpIfTest$3) {
 } else {
   tmpIfTest = $dotCall($, tmpObjLitVal$1, `e`, 1);
 }
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   $(a);
 } else {

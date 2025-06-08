@@ -22,7 +22,7 @@ $(a);
 
 
 `````js filename=intro
-const tmpClusterSSA_a /*:array*/ = [];
+const tmpClusterSSA_a /*:array*/ /*truthy*/ = [];
 $(tmpClusterSSA_a);
 $(tmpClusterSSA_a);
 `````

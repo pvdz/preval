@@ -32,7 +32,7 @@ const tmpObjLitVal /*:()=>undefined*/ = function () {
   $(`PASS`);
   return undefined;
 };
-const tmpCalleeParam /*:object*/ = { valueOf: tmpObjLitVal };
+const tmpCalleeParam /*:object*/ /*truthy*/ = { valueOf: tmpObjLitVal };
 let x /*:unknown*/ = $(tmpCalleeParam);
 $coerce(x, `number`);
 const f /*:(unknown)=>undefined*/ = function ($$0) {

@@ -19,8 +19,14 @@ $(a);
 
 
 `````js filename=intro
-$(`before  function(){}  after`);
-const a /*:object*/ = { a: 999, b: 1000 };
+const f /*:()=>unknown*/ = function () {
+  debugger;
+  return undefined;
+};
+const tmpBinBothRhs /*:string*/ = $coerce(f, `string`);
+const tmpCalleeParam /*:string*/ /*truthy*/ = `before  ${tmpBinBothRhs}  after`;
+$(tmpCalleeParam);
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);
 `````
 
@@ -29,7 +35,7 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-$(`before  function(){}  after`);
+$(`before  ${function () {}}  after`);
 $({ a: 999, b: 1000 });
 `````
 
@@ -38,12 +44,18 @@ $({ a: 999, b: 1000 });
 With rename=true
 
 `````js filename=intro
-$( "before  function(){}  after" );
-const a = {
+const a = function() {
+  debugger;
+  return undefined;
+};
+const b = $coerce( a, "string" );
+const c = `before  ${b}  after`;
+$( c );
+const d = {
   a: 999,
   b: 1000,
 };
-$( a );
+$( d );
 `````
 
 
@@ -70,7 +82,7 @@ $(a);
 ## Todos triggered
 
 
-None
+- (todo) serialization of function, fallback if we know the function is not going to be a builtin...
 
 
 ## Globals

@@ -22,7 +22,7 @@ $(a, b);
 
 `````js filename=intro
 let b /*:unknown*/ = {};
-const tmpCalleeParam$1 /*:object*/ = { x: 1 };
+const tmpCalleeParam$1 /*:object*/ /*truthy*/ = { x: 1 };
 const tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$1);
 const tmpForInGenNext /*:unknown*/ = $forIn(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
@@ -32,14 +32,14 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     break;
   } else {
     const tmpObjLitVal /*:unknown*/ = $(2);
-    const tmpCalleeParam$3 /*:object*/ = { b: tmpObjLitVal };
+    const tmpCalleeParam$3 /*:object*/ /*truthy*/ = { b: tmpObjLitVal };
     const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam$3);
     b = tmpNestedAssignObjPatternRhs.b;
     const tmpAssignMemRhs /*:unknown*/ = tmpForInNext.value;
     tmpNestedAssignObjPatternRhs.x = tmpAssignMemRhs;
   }
 }
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a, b);
 `````
 

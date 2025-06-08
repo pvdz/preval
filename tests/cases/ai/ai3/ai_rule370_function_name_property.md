@@ -106,7 +106,7 @@ const tmpObjLitVal$1 /*:()=>undefined*/ = function () {
   $(`arrow_prop_called`);
   return undefined;
 };
-const obj /*:object*/ = {
+const obj /*:object*/ /*truthy*/ = {
   method_prop: tmpObjLitVal,
   shorthand_method() {
     debugger;
@@ -115,14 +115,14 @@ const obj /*:object*/ = {
   },
   arrow_prop: tmpObjLitVal$1,
   get getter_prop() {
-    const tmpPrevalAliasThis /*:object*/ = this;
+    const tmpPrevalAliasThis /*:object*/ /*truthy*/ = this;
     debugger;
     $(`getter_name_check`);
     const tmpReturnArg$1 /*:unknown*/ = tmpPrevalAliasThis._val;
     return tmpReturnArg$1;
   },
   set setter_prop($$0) {
-    const tmpPrevalAliasThis$1 /*:object*/ = this;
+    const tmpPrevalAliasThis$1 /*:object*/ /*truthy*/ = this;
     const v /*:unknown*/ = $$0;
     debugger;
     $(`setter_name_check`);
@@ -149,9 +149,9 @@ const temp /*:unknown*/ = obj.getter_prop;
 $(`getter_val_check`, temp);
 const tmpMCF$3 /*:unknown*/ = obj.arrow_prop;
 $dotCall(tmpMCF$3, obj, `arrow_prop`);
-const tmpCalleeParam$13 /*:object*/ = {};
+const tmpCalleeParam$13 /*:object*/ /*truthy*/ = {};
 const tmpMCP /*:unknown*/ = $(`this_arg`, tmpCalleeParam$13);
-const boundFunc /*:function*/ = $dotCall($function_bind, a_named_func, `bind`, tmpMCP);
+const boundFunc /*:function*/ /*truthy*/ = $dotCall($function_bind, a_named_func, `bind`, tmpMCP);
 const tmpCalleeParam$15 /*:unknown*/ = boundFunc.name;
 $(`bound_func_name`, tmpCalleeParam$15);
 boundFunc();

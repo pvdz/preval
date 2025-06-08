@@ -37,8 +37,8 @@ const tmpClusterSSA_a /*:unknown*/ = $(`u`);
 const b /*:unknown*/ = $(`w`);
 const tmpClusterSSA_a$1 /*:unknown*/ = $(`o`);
 const tmpClusterSSA_b /*:unknown*/ = $(`p`);
-const aa /*:array*/ = [`a`, a, a, a, a, 2, 3, 1, b, tmpClusterSSA_a, tmpClusterSSA_a, b, 3, `a`];
-const zz /*:array*/ = [`z`, 1, b, tmpClusterSSA_a, tmpClusterSSA_a, b, 3, a, a, a, a, 2, 3, `z`];
+const aa /*:array*/ /*truthy*/ = [`a`, a, a, a, a, 2, 3, 1, b, tmpClusterSSA_a, tmpClusterSSA_a, b, 3, `a`];
+const zz /*:array*/ /*truthy*/ = [`z`, 1, b, tmpClusterSSA_a, tmpClusterSSA_a, b, 3, a, a, a, a, 2, 3, `z`];
 $(aa, zz, tmpClusterSSA_a$1, tmpClusterSSA_b);
 `````
 

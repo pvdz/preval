@@ -45,7 +45,7 @@ if (tmpIfTest) {
 const tmpIfTest$3 /*:boolean*/ = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$3) {
   const tmpMCCP /*:unknown*/ = $(`\$`);
-  const b /*:object*/ = { $: $ };
+  const b /*:object*/ /*truthy*/ = { $: $ };
   const tmpMCF /*:unknown*/ = b[tmpMCCP];
   a = $dotCall(tmpMCF, b, undefined, 1);
 } else {

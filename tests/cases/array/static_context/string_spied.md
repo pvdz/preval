@@ -21,7 +21,7 @@ String([spy, spy]);
 
 
 `````js filename=intro
-const spy /*:object*/ = {
+const spy /*:object*/ /*truthy*/ = {
   valueOf() {
     debugger;
     $(`x`);
@@ -33,7 +33,7 @@ const spy /*:object*/ = {
     return undefined;
   },
 };
-const tmpEA1 /*:array*/ = [spy, spy];
+const tmpEA1 /*:array*/ /*truthy*/ = [spy, spy];
 $coerce(tmpEA1, `string`);
 `````
 

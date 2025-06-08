@@ -25,14 +25,14 @@ let b /*:unknown*/ = {};
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   const tmpObjLitVal /*:unknown*/ = $(2);
-  const tmpCalleeParam /*:object*/ = { b: tmpObjLitVal };
+  const tmpCalleeParam /*:object*/ /*truthy*/ = { b: tmpObjLitVal };
   const tmpAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam);
   b = tmpAssignObjPatternRhs.b;
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       const tmpObjLitVal$1 /*:unknown*/ = $(2);
-      const tmpCalleeParam$1 /*:object*/ = { b: tmpObjLitVal$1 };
+      const tmpCalleeParam$1 /*:object*/ /*truthy*/ = { b: tmpObjLitVal$1 };
       const tmpAssignObjPatternRhs$1 /*:unknown*/ = $(tmpCalleeParam$1);
       b = tmpAssignObjPatternRhs$1.b;
     } else {
@@ -41,7 +41,7 @@ if (tmpIfTest) {
   }
 } else {
 }
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a, b);
 `````
 

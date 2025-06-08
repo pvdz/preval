@@ -43,19 +43,19 @@ try {
 
 `````js filename=intro
 const tmpCalleeParam /*:()=>undefined*/ = function () {
-  const tmpPrevalAliasThis /*:object*/ = this;
+  const tmpPrevalAliasThis /*:object*/ /*truthy*/ = this;
   debugger;
   tmpPrevalAliasThis.isCtor = true;
   return undefined;
 };
 const CtorLike /*:unknown*/ = $(`CtorLike_obj`, tmpCalleeParam);
-const has_instance_called_log /*:array*/ = [];
+const has_instance_called_log /*:array*/ /*truthy*/ = [];
 const tmpAssignComMemLhsProp /*:unknown*/ = Symbol.hasInstance;
 const tmpAssignComputedRhs /*:(unknown)=>unknown*/ = function ($$0) {
   const inst_param /*:unknown*/ = $$0;
   debugger;
-  const tmpBinBothRhs$1 /*:string*/ = typeof inst_param;
-  const tmpMCP /*:string*/ = `called_with_${tmpBinBothRhs$1}`;
+  const tmpBinBothRhs$1 /*:string*/ /*truthy*/ = typeof inst_param;
+  const tmpMCP /*:string*/ /*truthy*/ = `called_with_${tmpBinBothRhs$1}`;
   $dotCall($array_push, has_instance_called_log, `push`, tmpMCP);
   $(`hasInstance_method_called`, inst_param);
   const tmpCalleeParam$1 /*:boolean*/ = inst_param instanceof Object;
@@ -69,7 +69,7 @@ const tmpAssignComputedRhs /*:(unknown)=>unknown*/ = function ($$0) {
   }
 };
 CtorLike[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
-const tmpCalleeParam$3 /*:object*/ = {};
+const tmpCalleeParam$3 /*:object*/ /*truthy*/ = {};
 const obj_to_check1 /*:unknown*/ = $(`obj_for_hasInst_check1`, tmpCalleeParam$3);
 const obj_to_check2 /*:unknown*/ = $(`obj_for_hasInst_check2`, `not_an_object`);
 const tmpCalleeParam$5 /*:boolean*/ = obj_to_check1 instanceof CtorLike;
@@ -83,7 +83,7 @@ const tmpAssignComMemLhsProp$1 /*:unknown*/ = Symbol.hasInstance;
 const tmpAssignComputedRhs$1 /*:unknown*/ = $(`opaque_hasInstance_prop_val`);
 CtorLike2[tmpAssignComMemLhsProp$1] = tmpAssignComputedRhs$1;
 try {
-  const tmpBinLhs /*:object*/ = {};
+  const tmpBinLhs /*:object*/ /*truthy*/ = {};
   const tmpCalleeParam$11 /*:boolean*/ = tmpBinLhs instanceof CtorLike2;
   $(`instanceof_opaque_non_func_hasInst`, tmpCalleeParam$11);
 } catch (e) {

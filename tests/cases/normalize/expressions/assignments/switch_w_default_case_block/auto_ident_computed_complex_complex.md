@@ -44,7 +44,7 @@ if (tmpIfTest) {
   }
 }
 const tmpIfTest$3 /*:boolean*/ = tmpSwitchCaseToStart <= 0;
-const b /*:object*/ = { c: 1 };
+const b /*:object*/ /*truthy*/ = { c: 1 };
 if (tmpIfTest$3) {
   const tmpAssignRhsCompObj /*:unknown*/ = $(b);
   const tmpAssignRhsCompProp /*:unknown*/ = $(`c`);

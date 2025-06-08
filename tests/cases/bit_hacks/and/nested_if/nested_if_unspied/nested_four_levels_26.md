@@ -33,14 +33,14 @@ if (x & 8) {
 const tmpFree$1 /*:(number)=>boolean*/ = function $free($$0) {
   const x$1 /*:number*/ = $$0;
   debugger;
-  const tmpIfTest /*:number*/ = x$1 & 10;
+  const tmpIfTest /*:number*/ /*&10*/ = x$1 & 10;
   const tmpRet$1 /*:boolean*/ = tmpIfTest === 10;
   return tmpRet$1;
 };
 const tmpFree /*:(number)=>boolean*/ = function $free($$0) {
   const x$3 /*:number*/ = $$0;
   debugger;
-  const tmpIfTest$3 /*:number*/ = x$3 & 48;
+  const tmpIfTest$3 /*:number*/ /*&48*/ = x$3 & 48;
   const tmpRet /*:boolean*/ = tmpIfTest$3 === 48;
   return tmpRet;
 };

@@ -24,18 +24,18 @@ $('weakset_constructed_has2', wset.has(val2_obj));
 
 
 `````js filename=intro
-const tmpCalleeParam /*:object*/ = {};
+const tmpCalleeParam /*:object*/ /*truthy*/ = {};
 const val1_obj /*:unknown*/ = $(`ws_val1_obj`, tmpCalleeParam);
 const tmpCalleeParam$1 /*:()=>undefined*/ = function () {
   debugger;
   return undefined;
 };
 const val2_obj /*:unknown*/ = $(`ws_val2_obj`, tmpCalleeParam$1);
-const tmpCalleeParam$5 /*:array*/ = [];
+const tmpCalleeParam$5 /*:array*/ /*truthy*/ = [];
 const tmpArrElement$3 /*:unknown*/ = $(`ws_val3_obj`, tmpCalleeParam$5);
-const tmpCalleeParam$3 /*:array*/ = [val1_obj, val2_obj, tmpArrElement$3];
+const tmpCalleeParam$3 /*:array*/ /*truthy*/ = [val1_obj, val2_obj, tmpArrElement$3];
 const iterable /*:unknown*/ = $(`opaque_ws_iterable`, tmpCalleeParam$3);
-const wset /*:object*/ = new WeakSet(iterable);
+const wset /*:object*/ /*truthy*/ = new WeakSet(iterable);
 const tmpMCF /*:unknown*/ = wset.has;
 const tmpCalleeParam$7 /*:unknown*/ = $dotCall(tmpMCF, wset, `has`, val1_obj);
 $(`weakset_constructed_has1`, tmpCalleeParam$7);

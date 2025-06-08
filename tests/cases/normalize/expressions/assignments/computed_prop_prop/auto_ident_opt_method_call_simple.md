@@ -22,7 +22,7 @@ $(a);
 
 
 `````js filename=intro
-const b /*:object*/ = { c: $ };
+const b /*:object*/ /*truthy*/ = { c: $ };
 const tmpClusterSSA_a /*:unknown*/ = $dotCall($, b, `c`, 1);
 $coerce(tmpClusterSSA_a, `string`);
 $(tmpClusterSSA_a);

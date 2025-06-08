@@ -26,8 +26,8 @@ $('assign_target_mutated', target);
 const target /*:unknown*/ = $(`opaque_target_obj`);
 const source1 /*:unknown*/ = $(`opaque_source1_obj`);
 const tmpObjLitVal /*:unknown*/ = $(`val_b`);
-const source2 /*:object*/ = { b: tmpObjLitVal };
-const result /*:object*/ = $Object_assign(target, source1, source2);
+const source2 /*:object*/ /*truthy*/ = { b: tmpObjLitVal };
+const result /*:object*/ /*truthy*/ = $Object_assign(target, source1, source2);
 $(`assign_result`, result);
 $(`assign_target_mutated`, target);
 `````

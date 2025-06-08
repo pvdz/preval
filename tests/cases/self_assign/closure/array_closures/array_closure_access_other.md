@@ -36,7 +36,7 @@ $(a()[1]);
 
 
 `````js filename=intro
-const a /*:array*/ = [1, 2, 3];
+const a /*:array*/ /*truthy*/ = [1, 2, 3];
 $(a);
 const tmpCalleeParam$1 /*:primitive*/ = a[1];
 $(tmpCalleeParam$1);

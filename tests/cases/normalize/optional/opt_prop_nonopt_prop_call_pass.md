@@ -18,7 +18,7 @@ a?.b.c(1);
 
 
 `````js filename=intro
-const tmpObjLitVal /*:object*/ = { c: $ };
+const tmpObjLitVal /*:object*/ /*truthy*/ = { c: $ };
 $dotCall($, tmpObjLitVal, `c`, 1);
 `````
 

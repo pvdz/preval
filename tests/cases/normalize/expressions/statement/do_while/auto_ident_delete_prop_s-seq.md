@@ -26,7 +26,7 @@ $(a, arg);
 $(100);
 $(1);
 $(2);
-const arg /*:object*/ = { y: 1 };
+const arg /*:object*/ /*truthy*/ = { y: 1 };
 const tmpIfTest /*:boolean*/ = delete arg.y;
 if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
@@ -41,7 +41,7 @@ if (tmpIfTest) {
   }
 } else {
 }
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a, arg);
 `````
 

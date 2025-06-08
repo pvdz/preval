@@ -23,7 +23,7 @@ const tmpCalleeParam /*:unknown*/ = $(0);
 const tmpCalleeParamSpread /*:unknown*/ = $(tmpCalleeParam);
 if (tmpCalleeParamSpread) {
   $(...tmpCalleeParamSpread);
-  const a /*:object*/ = { a: 999, b: 1000 };
+  const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
   $(a);
 } else {
   throw `Preval: Attempting to spread a falsy primitive that is not an empty string`;

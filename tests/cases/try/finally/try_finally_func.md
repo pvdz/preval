@@ -34,7 +34,7 @@ try {
 `````js filename=intro
 const f /*:()=>primitive*/ = function () {
   debugger;
-  let x /*:number*/ = 1;
+  let x /*:number*/ /*truthy*/ = 1;
   let $finalStep /*:boolean*/ = false;
   let $finalArg /*:primitive*/ = undefined;
   try {

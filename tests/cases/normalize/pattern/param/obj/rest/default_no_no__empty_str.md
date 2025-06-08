@@ -20,7 +20,7 @@ $(f('', 10));
 
 
 `````js filename=intro
-const tmpCalleeParam$3 /*:array*/ = [];
+const tmpCalleeParam$3 /*:array*/ /*truthy*/ = [];
 const x /*:unknown*/ = $objPatternRest(``, tmpCalleeParam$3, `x`);
 $(x);
 `````

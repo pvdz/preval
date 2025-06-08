@@ -76,7 +76,7 @@ $(`arr_fx1`, 1);
 const tmpArrElement /*:unknown*/ = $(`arr_val1`, 10);
 $(`arr_fx2`, 4);
 const tmpArrElement$1 /*:unknown*/ = $(`arr_val2`, 40);
-const arr /*:array*/ = [tmpArrElement, tmpArrElement$1];
+const arr /*:array*/ /*truthy*/ = [tmpArrElement, tmpArrElement$1];
 const tmpCalleeParam$7 /*:primitive*/ = $JSON_stringify(arr);
 $(`arr_final`, tmpCalleeParam$7);
 $(`x_after_arr`, 2);

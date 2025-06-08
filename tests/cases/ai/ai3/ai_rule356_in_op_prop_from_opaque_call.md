@@ -25,7 +25,7 @@ $('final_result2', result2);
 
 
 `````js filename=intro
-const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
+const tmpCalleeParam /*:object*/ /*truthy*/ = { a: 1, b: 2 };
 const obj /*:unknown*/ = $(`getObject`, tmpCalleeParam);
 const tmpCalleeParam$1 /*:()=>string*/ = function () {
   debugger;

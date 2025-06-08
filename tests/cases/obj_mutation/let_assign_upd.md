@@ -23,7 +23,7 @@ $(blob);
 
 
 `````js filename=intro
-const tmpClusterSSA_blob /*:object*/ = { thing: `woop`, xyz: 1 };
+const tmpClusterSSA_blob /*:object*/ /*truthy*/ = { thing: `woop`, xyz: 1 };
 $(tmpClusterSSA_blob);
 const tmpBinLhs$1 /*:unknown*/ = tmpClusterSSA_blob.xyz;
 const tmpIfTest /*:boolean*/ = tmpBinLhs$1 < 10;

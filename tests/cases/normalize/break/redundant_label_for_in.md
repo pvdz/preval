@@ -30,7 +30,7 @@ exit: for (const key in $({a: 1, b: 2})) {
 
 `````js filename=intro
 let x /*:unknown*/ = $(2);
-const tmpCalleeParam$1 /*:object*/ = { a: 1, b: 2 };
+const tmpCalleeParam$1 /*:object*/ /*truthy*/ = { a: 1, b: 2 };
 const tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$1);
 const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {

@@ -18,7 +18,7 @@ $($(a).x = b = c);
 
 
 `````js filename=intro
-const a /*:object*/ = {};
+const a /*:object*/ /*truthy*/ = {};
 const tmpInitAssignLhsComputedObj /*:unknown*/ = $(a);
 tmpInitAssignLhsComputedObj.x = 30;
 $(30);

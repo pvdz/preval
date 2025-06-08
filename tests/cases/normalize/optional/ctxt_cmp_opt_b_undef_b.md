@@ -18,7 +18,7 @@ $($(a)[$('b')]?.[$('c')](100));
 
 
 `````js filename=intro
-const a /*:object*/ = {};
+const a /*:object*/ /*truthy*/ = {};
 const tmpChainElementCall /*:unknown*/ = $(a);
 const tmpChainRootComputed /*:unknown*/ = $(`b`);
 const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];

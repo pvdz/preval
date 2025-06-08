@@ -26,7 +26,7 @@ $(3);
 
 
 `````js filename=intro
-let x /*:number*/ = 1;
+let x /*:number*/ /*truthy*/ = 1;
 $(1);
 try {
   $(1);

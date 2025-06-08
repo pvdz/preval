@@ -22,7 +22,7 @@ $(a);
 const tmpBinBothLhs /*:unknown*/ = $(100);
 const tmpClusterSSA_tmpBinBothRhs /*:unknown*/ = $(60);
 tmpBinBothLhs + tmpClusterSSA_tmpBinBothRhs;
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

@@ -20,7 +20,7 @@ $(f({ x: undefined, b: 11, c: 12 }, 10));
 
 
 `````js filename=intro
-const tmpCalleeParam /*:object*/ = { x: `pass` };
+const tmpCalleeParam /*:object*/ /*truthy*/ = { x: `pass` };
 const tmpSSA_tmpOPAD /*:unknown*/ = $(tmpCalleeParam);
 let tmpSSA_tmpObjPatternCrashTest /*:boolean*/ = tmpSSA_tmpOPAD === undefined;
 if (tmpSSA_tmpObjPatternCrashTest) {

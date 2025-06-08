@@ -20,8 +20,8 @@ $(x);
 `````js filename=intro
 a = 2;
 b = 3;
-const tmpAssignObjPatternRhs /*:object*/ = { x: 1, a: 2, b: 3, c: 4 };
-const tmpCalleeParam$1 /*:array*/ = [`a`, `b`];
+const tmpAssignObjPatternRhs /*:object*/ /*truthy*/ = { x: 1, a: 2, b: 3, c: 4 };
+const tmpCalleeParam$1 /*:array*/ /*truthy*/ = [`a`, `b`];
 x = $objPatternRest(tmpAssignObjPatternRhs, tmpCalleeParam$1, `x`);
 $(x);
 `````

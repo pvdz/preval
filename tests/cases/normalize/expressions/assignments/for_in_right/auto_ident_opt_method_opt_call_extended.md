@@ -27,7 +27,7 @@ let tmpForInGen /*:unknown*/ /*ternaryConst*/ = undefined;
 if (tmpIfTest$1) {
   tmpForInGen = $forIn(undefined);
 } else {
-  const tmpObjLitVal$1 /*:object*/ = { e: $ };
+  const tmpObjLitVal$1 /*:object*/ /*truthy*/ = { e: $ };
   a = $dotCall($, tmpObjLitVal$1, `e`, 1);
   tmpForInGen = $forIn(a);
 }

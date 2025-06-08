@@ -25,7 +25,7 @@ $(a);
 `````js filename=intro
 let a /*:unknown*/ = { a: 999, b: 1000 };
 const f /*:(unused)=>undefined*/ = function ($$0) {
-  const tmpPrevalAliasArgumentsAny /*:arguments*/ = arguments;
+  const tmpPrevalAliasArgumentsAny /*:arguments*/ /*truthy*/ = arguments;
   debugger;
   a = tmpPrevalAliasArgumentsAny;
   return undefined;

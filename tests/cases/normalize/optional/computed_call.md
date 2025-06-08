@@ -22,14 +22,14 @@ $(a)[$('x')]?.(1, 2, 3);
 
 `````js filename=intro
 const tmpObjLitVal /*:(array)=>undefined*/ = function (...$$0 /*:array*/) {
-  const tmpPrevalAliasThis /*:object*/ = this;
-  const args /*:array*/ = $$0;
+  const tmpPrevalAliasThis /*:object*/ /*truthy*/ = this;
+  const args /*:array*/ /*truthy*/ = $$0;
   debugger;
   const tmpCalleeParam$1 /*:unknown*/ = tmpPrevalAliasThis.y;
   $(args, tmpCalleeParam$1);
   return undefined;
 };
-const a /*:object*/ = { x: tmpObjLitVal, y: 100 };
+const a /*:object*/ /*truthy*/ = { x: tmpObjLitVal, y: 100 };
 const tmpChainElementCall /*:unknown*/ = $(a);
 const tmpChainRootComputed /*:unknown*/ = $(`x`);
 const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];

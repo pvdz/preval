@@ -22,7 +22,7 @@ $(a);
 const tmpNewCallee /*:unknown*/ = $($);
 new tmpNewCallee(1);
 const tmpNewCallee$1 /*:unknown*/ = $($);
-const tmpNestedComplexRhs /*:object*/ = new tmpNewCallee$1(1);
+const tmpNestedComplexRhs /*:object*/ /*truthy*/ = new tmpNewCallee$1(1);
 $(tmpNestedComplexRhs);
 $(tmpNestedComplexRhs);
 `````

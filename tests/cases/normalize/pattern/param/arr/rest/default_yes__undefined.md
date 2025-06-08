@@ -20,10 +20,10 @@ $(f(undefined, 200));
 
 
 `````js filename=intro
-const tmpCalleeParam /*:array*/ = [`pass`];
+const tmpCalleeParam /*:array*/ /*truthy*/ = [`pass`];
 const tmpSSA_tmpBindingPatternArrRoot /*:unknown*/ = $(tmpCalleeParam);
-const tmpArrPatternSplat /*:array*/ = [...tmpSSA_tmpBindingPatternArrRoot];
-const x /*:array*/ = $dotCall($array_slice, tmpArrPatternSplat, `slice`, 0);
+const tmpArrPatternSplat /*:array*/ /*truthy*/ = [...tmpSSA_tmpBindingPatternArrRoot];
+const x /*:array*/ /*truthy*/ = $dotCall($array_slice, tmpArrPatternSplat, `slice`, 0);
 $(x);
 `````
 

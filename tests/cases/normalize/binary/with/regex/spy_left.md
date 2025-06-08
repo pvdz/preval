@@ -43,47 +43,47 @@ $(x instanceof /foo/g);
 
 `````js filename=intro
 const x /*:unknown*/ = $spy();
-const tmpBinBothRhs /*:regex*/ = new $regex_constructor(`foo`, `g`);
+const tmpBinBothRhs /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, `g`);
 const tmpArrElement /*:number*/ = x ** tmpBinBothRhs;
-const tmpBinBothRhs$1 /*:regex*/ = new $regex_constructor(`foo`, `g`);
+const tmpBinBothRhs$1 /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, `g`);
 const tmpArrElement$1 /*:number*/ = x * tmpBinBothRhs$1;
-const tmpBinBothRhs$3 /*:regex*/ = new $regex_constructor(`foo`, `g`);
+const tmpBinBothRhs$3 /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, `g`);
 const tmpArrElement$3 /*:number*/ = x / tmpBinBothRhs$3;
-const tmpBinBothRhs$5 /*:regex*/ = new $regex_constructor(`foo`, `g`);
+const tmpBinBothRhs$5 /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, `g`);
 const tmpArrElement$5 /*:number*/ = x % tmpBinBothRhs$5;
-const tmpBinBothRhs$7 /*:regex*/ = new $regex_constructor(`foo`, `g`);
+const tmpBinBothRhs$7 /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, `g`);
 const tmpArrElement$7 /*:primitive*/ = x + tmpBinBothRhs$7;
-const tmpBinBothRhs$9 /*:regex*/ = new $regex_constructor(`foo`, `g`);
+const tmpBinBothRhs$9 /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, `g`);
 const tmpArrElement$9 /*:number*/ = x - tmpBinBothRhs$9;
-const tmpBinBothRhs$11 /*:regex*/ = new $regex_constructor(`foo`, `g`);
+const tmpBinBothRhs$11 /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, `g`);
 const tmpArrElement$11 /*:number*/ = x << tmpBinBothRhs$11;
-const tmpBinBothRhs$13 /*:regex*/ = new $regex_constructor(`foo`, `g`);
+const tmpBinBothRhs$13 /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, `g`);
 const tmpArrElement$13 /*:number*/ = x >> tmpBinBothRhs$13;
-const tmpBinBothRhs$15 /*:regex*/ = new $regex_constructor(`foo`, `g`);
+const tmpBinBothRhs$15 /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, `g`);
 const tmpArrElement$15 /*:number*/ = x >>> tmpBinBothRhs$15;
-const tmpBinBothRhs$17 /*:regex*/ = new $regex_constructor(`foo`, `g`);
+const tmpBinBothRhs$17 /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, `g`);
 const tmpArrElement$17 /*:boolean*/ = x < tmpBinBothRhs$17;
-const tmpBinBothRhs$19 /*:regex*/ = new $regex_constructor(`foo`, `g`);
+const tmpBinBothRhs$19 /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, `g`);
 const tmpArrElement$19 /*:boolean*/ = x > tmpBinBothRhs$19;
-const tmpBinBothRhs$21 /*:regex*/ = new $regex_constructor(`foo`, `g`);
+const tmpBinBothRhs$21 /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, `g`);
 const tmpArrElement$21 /*:boolean*/ = x <= tmpBinBothRhs$21;
-const tmpBinBothRhs$23 /*:regex*/ = new $regex_constructor(`foo`, `g`);
+const tmpBinBothRhs$23 /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, `g`);
 const tmpArrElement$23 /*:boolean*/ = x >= tmpBinBothRhs$23;
-const tmpBinBothRhs$25 /*:regex*/ = new $regex_constructor(`foo`, `g`);
+const tmpBinBothRhs$25 /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, `g`);
 const tmpArrElement$25 /*:boolean*/ = x == tmpBinBothRhs$25;
-const tmpBinBothRhs$27 /*:regex*/ = new $regex_constructor(`foo`, `g`);
+const tmpBinBothRhs$27 /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, `g`);
 const tmpArrElement$27 /*:boolean*/ = x != tmpBinBothRhs$27;
-const tmpBinBothRhs$29 /*:regex*/ = new $regex_constructor(`foo`, `g`);
-const tmpBinBothRhs$31 /*:regex*/ = new $regex_constructor(`foo`, `g`);
-const tmpBinBothRhs$33 /*:regex*/ = new $regex_constructor(`foo`, `g`);
+const tmpBinBothRhs$29 /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, `g`);
+const tmpBinBothRhs$31 /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, `g`);
+const tmpBinBothRhs$33 /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, `g`);
 const tmpArrElement$33 /*:number*/ = x & tmpBinBothRhs$33;
-const tmpBinBothRhs$35 /*:regex*/ = new $regex_constructor(`foo`, `g`);
+const tmpBinBothRhs$35 /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, `g`);
 const tmpArrElement$35 /*:number*/ = x ^ tmpBinBothRhs$35;
-const tmpBinBothRhs$37 /*:regex*/ = new $regex_constructor(`foo`, `g`);
+const tmpBinBothRhs$37 /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, `g`);
 const tmpArrElement$37 /*:number*/ = x | tmpBinBothRhs$37;
 const tmpArrElement$29 /*:boolean*/ = x === tmpBinBothRhs$29;
 const tmpArrElement$31 /*:boolean*/ = x !== tmpBinBothRhs$31;
-const arr /*:array*/ = [
+const arr /*:array*/ /*truthy*/ = [
   tmpArrElement,
   tmpArrElement$1,
   tmpArrElement$3,
@@ -106,10 +106,10 @@ const arr /*:array*/ = [
   tmpArrElement$37,
 ];
 $(arr);
-const tmpBinBothRhs$39 /*:regex*/ = new $regex_constructor(`foo`, `g`);
+const tmpBinBothRhs$39 /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, `g`);
 const tmpCalleeParam /*:boolean*/ = x in tmpBinBothRhs$39;
 $(tmpCalleeParam);
-const tmpBinBothRhs$41 /*:regex*/ = new $regex_constructor(`foo`, `g`);
+const tmpBinBothRhs$41 /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, `g`);
 const tmpCalleeParam$1 /*:boolean*/ = x instanceof tmpBinBothRhs$41;
 $(tmpCalleeParam$1);
 `````

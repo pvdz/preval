@@ -34,8 +34,8 @@ const tmpMCP /*:(unknown)=>unknown*/ = function ($$0) {
   const tmpReturnArg /*:unknown*/ = $dotCall(tmpMCF$1, v, `toString`);
   return tmpReturnArg;
 };
-const arr /*:array*/ = [x, x, x];
-const y /*:array*/ = $dotCall($array_map, arr, `map`, tmpMCP);
+const arr /*:array*/ /*truthy*/ = [x, x, x];
+const y /*:array*/ /*truthy*/ = $dotCall($array_map, arr, `map`, tmpMCP);
 $(y);
 `````
 

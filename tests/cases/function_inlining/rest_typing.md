@@ -21,7 +21,7 @@ f(1,2,3);
 
 `````js filename=intro
 const f /*:(array)=>undefined*/ = function (...$$0 /*:array*/) {
-  const arr /*:array*/ = $$0;
+  const arr /*:array*/ /*truthy*/ = $$0;
   debugger;
   $(arr);
   return undefined;

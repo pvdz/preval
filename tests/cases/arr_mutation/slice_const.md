@@ -26,7 +26,7 @@ $(x);
 
 `````js filename=intro
 if ($) {
-  const tmpClusterSSA_x /*:array*/ = [];
+  const tmpClusterSSA_x /*:array*/ /*truthy*/ = [];
   $(tmpClusterSSA_x);
 } else {
   $(undefined);

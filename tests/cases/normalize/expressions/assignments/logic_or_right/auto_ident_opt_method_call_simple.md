@@ -24,10 +24,10 @@ $(a);
 const tmpCalleeParam /*:unknown*/ = $(100);
 if (tmpCalleeParam) {
   $(tmpCalleeParam);
-  const a /*:object*/ = { a: 999, b: 1000 };
+  const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
   $(a);
 } else {
-  const b /*:object*/ = { c: $ };
+  const b /*:object*/ /*truthy*/ = { c: $ };
   const tmpClusterSSA_tmpNestedComplexRhs /*:unknown*/ = $dotCall($, b, `c`, 1);
   $(tmpClusterSSA_tmpNestedComplexRhs);
   $(tmpClusterSSA_tmpNestedComplexRhs);

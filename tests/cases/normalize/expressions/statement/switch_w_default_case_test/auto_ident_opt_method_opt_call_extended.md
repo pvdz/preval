@@ -35,7 +35,7 @@ let tmpIfTest /*:boolean*/ /*ternaryConst*/ = false;
 if (tmpIfTest$3) {
   tmpIfTest = undefined === tmpSwitchValue;
 } else {
-  const tmpObjLitVal$1 /*:object*/ = { e: $ };
+  const tmpObjLitVal$1 /*:object*/ /*truthy*/ = { e: $ };
   const tmpClusterSSA_tmpBinLhs /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
   tmpIfTest = tmpClusterSSA_tmpBinLhs === tmpSwitchValue;
 }
@@ -59,7 +59,7 @@ if (tmpIfTest$7) {
     $(`fail2`);
   }
 }
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

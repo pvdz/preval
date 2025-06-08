@@ -17,9 +17,9 @@ $(/x/g.test($('x')));
 
 
 `````js filename=intro
-const tmpMCOO /*:regex*/ = new $regex_constructor(`x`, `g`);
+const tmpMCOO /*:regex*/ /*truthy*/ = new $regex_constructor(`x`, `g`);
 const tmpMCP /*:unknown*/ = $(`x`);
-const tmpCalleeParam /*:unknown*/ = $dotCall($regex_test, tmpMCOO, `test`, tmpMCP);
+const tmpCalleeParam /*:unknown*/ /*truthy*/ = $dotCall($regex_test, tmpMCOO, `test`, tmpMCP);
 $(tmpCalleeParam);
 `````
 

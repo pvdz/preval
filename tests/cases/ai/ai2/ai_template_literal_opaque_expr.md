@@ -22,7 +22,7 @@ $('result', greeting);
 `````js filename=intro
 const userName /*:unknown*/ = $(`user_name_source`);
 const tmpBinBothRhs /*:string*/ = $coerce(userName, `string`);
-const greeting /*:string*/ = `Hello ${tmpBinBothRhs}!`;
+const greeting /*:string*/ /*truthy*/ = `Hello ${tmpBinBothRhs}!`;
 $(`result`, greeting);
 `````
 

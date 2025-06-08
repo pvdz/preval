@@ -19,7 +19,7 @@ $(a);
 
 
 `````js filename=intro
-const xyz /*:object*/ = new $(1);
+const xyz /*:object*/ /*truthy*/ = new $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(xyz);
   $(1);

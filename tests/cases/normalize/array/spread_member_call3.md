@@ -19,7 +19,7 @@ $(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpCalleeParam /*:array*/ = [`t`, `r`, `u`, `e`];
+const tmpCalleeParam /*:array*/ /*truthy*/ = [`t`, `r`, `u`, `e`];
 $(tmpCalleeParam);
 `````
 

@@ -23,14 +23,14 @@ const tmpIfTest /*:unknown*/ = $(30);
 if (tmpIfTest) {
   const tmpClusterSSA_a /*:unknown*/ = $(60);
   const tmpClusterSSA_tmpBinBothRhs /*:string*/ = $coerce(tmpClusterSSA_a, `string`);
-  const tmpClusterSSA_tmpCalleeParam /*:string*/ = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
+  const tmpClusterSSA_tmpCalleeParam /*:string*/ /*truthy*/ = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
   $(tmpClusterSSA_tmpCalleeParam);
   $(tmpClusterSSA_a);
 } else {
   const tmpCalleeParam$3 /*:unknown*/ = $(100);
   const tmpClusterSSA_a$1 /*:unknown*/ = $(tmpCalleeParam$3);
   const tmpClusterSSA_tmpBinBothRhs$1 /*:string*/ = $coerce(tmpClusterSSA_a$1, `string`);
-  const tmpClusterSSA_tmpCalleeParam$1 /*:string*/ = `before  ${tmpClusterSSA_tmpBinBothRhs$1}  after`;
+  const tmpClusterSSA_tmpCalleeParam$1 /*:string*/ /*truthy*/ = `before  ${tmpClusterSSA_tmpBinBothRhs$1}  after`;
   $(tmpClusterSSA_tmpCalleeParam$1);
   $(tmpClusterSSA_a$1);
 }

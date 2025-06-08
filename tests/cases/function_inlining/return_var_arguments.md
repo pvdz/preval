@@ -28,11 +28,11 @@ $(f());
 
 `````js filename=intro
 const f /*:(unused)=>arguments*/ = function ($$0) {
-  const tmpPrevalAliasArgumentsAny /*:arguments*/ = arguments;
+  const tmpPrevalAliasArgumentsAny /*:arguments*/ /*truthy*/ = arguments;
   debugger;
   return tmpPrevalAliasArgumentsAny;
 };
-const tmpCalleeParam /*:arguments*/ = f();
+const tmpCalleeParam /*:arguments*/ /*truthy*/ = f();
 $(tmpCalleeParam);
 `````
 

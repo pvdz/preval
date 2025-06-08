@@ -24,7 +24,7 @@ $('every_result', allMatch);
 const tmpArrElement /*:unknown*/ = $(`e1`);
 const tmpArrElement$1 /*:unknown*/ = $(`e2`);
 const cb /*:unknown*/ = $(`opaque_every_predicate`);
-const arr /*:array*/ = [tmpArrElement, tmpArrElement$1];
+const arr /*:array*/ /*truthy*/ = [tmpArrElement, tmpArrElement$1];
 const allMatch /*:boolean*/ = $dotCall($array_every, arr, `every`, cb);
 $(`every_result`, allMatch);
 `````

@@ -21,9 +21,9 @@ $(a);
 
 
 `````js filename=intro
-const tmpObjLitVal$1 /*:object*/ = { e: $ };
+const tmpObjLitVal$1 /*:object*/ /*truthy*/ = { e: $ };
 const tmpClusterSSA_tmpBinBothRhs /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 const tmpClusterSSA_a$1 /*:number*/ = a * tmpClusterSSA_tmpBinBothRhs;
 $(tmpClusterSSA_a$1);
 $(tmpClusterSSA_a$1);

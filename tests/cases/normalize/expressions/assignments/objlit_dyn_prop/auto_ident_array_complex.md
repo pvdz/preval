@@ -21,8 +21,8 @@ $(a);
 `````js filename=intro
 const tmpArrElement /*:unknown*/ = $(1);
 const tmpArrElement$3 /*:unknown*/ = $(3);
-const a /*:array*/ = [tmpArrElement, 2, tmpArrElement$3];
-const tmpCalleeParam /*:object*/ = { [a]: 10 };
+const a /*:array*/ /*truthy*/ = [tmpArrElement, 2, tmpArrElement$3];
+const tmpCalleeParam /*:object*/ /*truthy*/ = { [a]: 10 };
 $(tmpCalleeParam);
 $(a);
 `````

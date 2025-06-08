@@ -37,7 +37,7 @@ const tmpFree /*:(number)=>number*/ = function $free($$0) {
   const tmpRet /*:number*/ = $Number_parseInt(tmpCalleeParam$3);
   return tmpRet;
 };
-const r /*:object*/ = {};
+const r /*:object*/ /*truthy*/ = {};
 let tmpSSA_e /*:(number)=>unknown*/ = function ($$0) {
   const c$2 /*:number*/ = $$0;
   debugger;
@@ -83,7 +83,7 @@ r[tmpAssignComMemLhsProp$9] = `String`;
 let tmpClusterSSA_c$2 /*:number*/ = 34;
 const tmpAssignComMemLhsProp$10 /*:unknown*/ = tmpSSA_e(34);
 r[tmpAssignComMemLhsProp$10] = `eval`;
-const k /*:array*/ = [
+const k /*:array*/ /*truthy*/ = [
   ``,
   ``,
   ``,
@@ -155,7 +155,7 @@ tmpSSA_e = function () {
   debugger;
   return `\\w+`;
 };
-const tmpMCP$3 /*:regex*/ = new $regex_constructor(`\\b\\w+\\b`, `g`);
+const tmpMCP$3 /*:regex*/ /*truthy*/ = new $regex_constructor(`\\b\\w+\\b`, `g`);
 const tmpSSA_p /*:string*/ = $dotCall(
   $string_replace,
   `y(s(p,a,c,k,e,r){e=s(c){t c.E(a)};u(!''.v(/^/,z)){x(c--)r[e(c)]=k[c]||e(c);k=[s(e){t r[e]}];e=s(){t'\\\\w+'};c=1};x(c--)u(k[c])p=p.v(A B('\\\\b'+e(c)+'\\\\b','g'),k[c]);t p}('f(5(p,a,c,k,e,r){e=7;8(!\\'\\'.9(/^/,7)){d(c--)r[c]=k[c]||c;k=[5(e){6 r[e]}];e=5(){6\\'\\\\\\\\h+\\'};c=1};d(c--)8(k[c])p=p.9(i j(\\'\\\\\\\\b\\'+e(c)+\\'\\\\\\\\b\\',\\'g\\'),k[c]);6 p}(\\'0.1(\\\\\\'2\\\\\\\\\`\\\\\\\\\\\\\\'\\\\\\\\"\\\\\\\\3\\\\\\')\\',4,4,\\'l|m|n|o\\'.q(\\'|\\'),0,{}))',C,C,'|||||s|t|z|u|v||||x||y||w|A|B||F|G|H|I||D|'.D('|'),0,{}))`,

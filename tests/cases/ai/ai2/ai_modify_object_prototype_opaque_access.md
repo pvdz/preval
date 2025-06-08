@@ -46,11 +46,11 @@ let $implicitThrow /*:boolean*/ = false;
 let $finalCatchArg /*:unknown*/ = undefined;
 try {
   $Object_prototype[protoKey] = protoVal;
-  const o1 /*:object*/ = {};
+  const o1 /*:object*/ /*truthy*/ = {};
   const tmpCalleeParam /*:unknown*/ = o1[protoKey];
   $(`obj_inherited_op_proto_prop`, tmpCalleeParam);
   const tmpObjLitPropVal /*:unknown*/ = $(`o2_own_prop_val`, `o2_has_own`);
-  const o2 /*:object*/ = { [protoKey]: tmpObjLitPropVal };
+  const o2 /*:object*/ /*truthy*/ = { [protoKey]: tmpObjLitPropVal };
   const tmpCalleeParam$1 /*:unknown*/ = o2[protoKey];
   $(`obj_with_own_shadowing_prop`, tmpCalleeParam$1);
 } catch ($finalImplicit) {

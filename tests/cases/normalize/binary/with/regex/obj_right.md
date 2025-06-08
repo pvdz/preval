@@ -46,8 +46,8 @@ $(/foo/g instanceof x);
 
 
 `````js filename=intro
-const tmpBinLhs /*:regex*/ = new $regex_constructor(`foo`, `g`);
-const x /*:object*/ = {
+const tmpBinLhs /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, `g`);
+const x /*:object*/ /*truthy*/ = {
   toString() {
     debugger;
     const tmpReturnArg /*:unknown*/ = $(`toString`);
@@ -60,37 +60,37 @@ const x /*:object*/ = {
   },
 };
 const tmpArrElement /*:number*/ = tmpBinLhs ** x;
-const tmpBinLhs$1 /*:regex*/ = new $regex_constructor(`foo`, `g`);
+const tmpBinLhs$1 /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, `g`);
 const tmpArrElement$1 /*:number*/ = tmpBinLhs$1 * x;
-const tmpBinLhs$3 /*:regex*/ = new $regex_constructor(`foo`, `g`);
+const tmpBinLhs$3 /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, `g`);
 const tmpArrElement$3 /*:number*/ = tmpBinLhs$3 / x;
-const tmpBinLhs$5 /*:regex*/ = new $regex_constructor(`foo`, `g`);
+const tmpBinLhs$5 /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, `g`);
 const tmpArrElement$5 /*:number*/ = tmpBinLhs$5 % x;
 const tmpStringConcatL /*:string*/ = $coerce(x, `plustr`);
-const tmpBinLhs$9 /*:regex*/ = new $regex_constructor(`foo`, `g`);
+const tmpBinLhs$9 /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, `g`);
 const tmpArrElement$9 /*:number*/ = tmpBinLhs$9 - x;
-const tmpBinLhs$11 /*:regex*/ = new $regex_constructor(`foo`, `g`);
+const tmpBinLhs$11 /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, `g`);
 const tmpArrElement$11 /*:number*/ = tmpBinLhs$11 << x;
-const tmpBinLhs$13 /*:regex*/ = new $regex_constructor(`foo`, `g`);
+const tmpBinLhs$13 /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, `g`);
 const tmpArrElement$13 /*:number*/ = tmpBinLhs$13 >> x;
-const tmpBinLhs$15 /*:regex*/ = new $regex_constructor(`foo`, `g`);
+const tmpBinLhs$15 /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, `g`);
 const tmpArrElement$15 /*:number*/ = tmpBinLhs$15 >>> x;
-const tmpBinLhs$17 /*:regex*/ = new $regex_constructor(`foo`, `g`);
+const tmpBinLhs$17 /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, `g`);
 const tmpArrElement$17 /*:boolean*/ = tmpBinLhs$17 < x;
-const tmpBinLhs$19 /*:regex*/ = new $regex_constructor(`foo`, `g`);
+const tmpBinLhs$19 /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, `g`);
 const tmpArrElement$19 /*:boolean*/ = tmpBinLhs$19 > x;
-const tmpBinLhs$21 /*:regex*/ = new $regex_constructor(`foo`, `g`);
+const tmpBinLhs$21 /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, `g`);
 const tmpArrElement$21 /*:boolean*/ = tmpBinLhs$21 <= x;
-const tmpBinLhs$23 /*:regex*/ = new $regex_constructor(`foo`, `g`);
+const tmpBinLhs$23 /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, `g`);
 const tmpArrElement$23 /*:boolean*/ = tmpBinLhs$23 >= x;
-const tmpBinLhs$33 /*:regex*/ = new $regex_constructor(`foo`, `g`);
+const tmpBinLhs$33 /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, `g`);
 const tmpArrElement$33 /*:number*/ = tmpBinLhs$33 & x;
-const tmpBinLhs$35 /*:regex*/ = new $regex_constructor(`foo`, `g`);
+const tmpBinLhs$35 /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, `g`);
 const tmpArrElement$35 /*:number*/ = tmpBinLhs$35 ^ x;
-const tmpBinLhs$37 /*:regex*/ = new $regex_constructor(`foo`, `g`);
+const tmpBinLhs$37 /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, `g`);
 const tmpArrElement$37 /*:number*/ = tmpBinLhs$37 | x;
-const tmpArrElement$7 /*:string*/ = `/foo/g${tmpStringConcatL}`;
-const arr /*:array*/ = [
+const tmpArrElement$7 /*:string*/ /*truthy*/ = `/foo/g${tmpStringConcatL}`;
+const arr /*:array*/ /*truthy*/ = [
   tmpArrElement,
   tmpArrElement$1,
   tmpArrElement$3,
@@ -113,10 +113,10 @@ const arr /*:array*/ = [
   tmpArrElement$37,
 ];
 $(arr);
-const tmpBinLhs$39 /*:regex*/ = new $regex_constructor(`foo`, `g`);
+const tmpBinLhs$39 /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, `g`);
 const tmpCalleeParam /*:boolean*/ = tmpBinLhs$39 in x;
 $(tmpCalleeParam);
-const tmpBinLhs$41 /*:regex*/ = new $regex_constructor(`foo`, `g`);
+const tmpBinLhs$41 /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, `g`);
 const tmpCalleeParam$1 /*:boolean*/ = tmpBinLhs$41 instanceof x;
 $(tmpCalleeParam$1);
 `````

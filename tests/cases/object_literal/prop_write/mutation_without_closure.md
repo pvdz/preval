@@ -36,7 +36,7 @@ const f /*:()=>unknown*/ = function () {
 };
 f();
 f();
-const x /*:object*/ = { y: 10 };
+const x /*:object*/ /*truthy*/ = { y: 10 };
 $(x);
 $(f);
 `````

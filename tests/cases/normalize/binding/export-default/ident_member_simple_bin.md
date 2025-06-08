@@ -19,9 +19,9 @@ $(a, b, c);
 
 
 `````js filename=intro
-const a /*:number*/ = 7;
+const a /*:number*/ /*truthy*/ = 7;
 export { a };
-const b /*:object*/ = { x: 7 };
+const b /*:object*/ /*truthy*/ = { x: 7 };
 $(7, b, 3);
 `````
 

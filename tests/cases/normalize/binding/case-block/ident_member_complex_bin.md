@@ -22,7 +22,7 @@ $(a, b, c);
 const tmpBinBothLhs /*:unknown*/ = $(`a`);
 const tmpBinBothRhs /*:unknown*/ = $(`a`);
 const tmpIfTest /*:boolean*/ = tmpBinBothLhs === tmpBinBothRhs;
-const b /*:object*/ = { x: 2 };
+const b /*:object*/ /*truthy*/ = { x: 2 };
 if (tmpIfTest) {
   const tmpNestedAssignObj /*:unknown*/ = $(b);
   tmpNestedAssignObj.x = 7;

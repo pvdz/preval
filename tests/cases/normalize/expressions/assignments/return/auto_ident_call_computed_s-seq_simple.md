@@ -24,7 +24,7 @@ $(a);
 
 
 `````js filename=intro
-const tmpMCOO /*:object*/ = { $: $ };
+const tmpMCOO /*:object*/ /*truthy*/ = { $: $ };
 const tmpClusterSSA_a /*:unknown*/ = $dotCall($, tmpMCOO, `\$`, 1);
 $(tmpClusterSSA_a);
 $(tmpClusterSSA_a);

@@ -21,7 +21,7 @@ f(); // In this test, this is the call we expect to be replaced by trampoline in
 
 
 `````js filename=intro
-const obj /*:object*/ = { $: $ };
+const obj /*:object*/ /*truthy*/ = { $: $ };
 $dotCall($, obj, `\$`, 1);
 `````
 

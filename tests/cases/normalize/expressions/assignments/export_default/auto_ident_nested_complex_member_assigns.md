@@ -24,7 +24,7 @@ $(a, b, c);
 
 
 `````js filename=intro
-const b /*:object*/ = { x: 1 };
+const b /*:object*/ /*truthy*/ = { x: 1 };
 const tmpNestedAssignComMemberObj /*:unknown*/ = $(b);
 const tmpNestedAssignComMemberProp /*:unknown*/ = $(`x`);
 const tmpInitAssignLhsComputedObj /*:unknown*/ = $(b);
@@ -43,7 +43,7 @@ tmpInitAssignLhsComputedObj$3[tmpInitAssignLhsComputedProp$3] = 3;
 tmpInitAssignLhsComputedObj$1[tmpInitAssignLhsComputedProp$1] = 3;
 tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = 3;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
-const tmpAnonDefaultExport /*:number*/ = 3;
+const tmpAnonDefaultExport /*:number*/ /*truthy*/ = 3;
 export { tmpAnonDefaultExport as default };
 $(3, b, 3);
 `````

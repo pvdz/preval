@@ -46,7 +46,7 @@ let f /*:(unknown)=>unknown*/ = function ($$0) {
   const tmpReturnArg /*:unknown*/ = f(thisclosurebecomesargumentsobj, out_arg);
   return tmpReturnArg;
 };
-const arr /*:array*/ = [];
+const arr /*:array*/ /*truthy*/ = [];
 const a /*:unknown*/ = f(arr);
 const b /*:unknown*/ = f(arr);
 $(a, b);

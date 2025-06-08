@@ -18,7 +18,7 @@
 
 `````js filename=intro
 const tmpOPND /*:unknown*/ = $Number_prototype.x;
-const tmpArrPatternSplat /*:array*/ = [...tmpOPND];
+const tmpArrPatternSplat /*:array*/ /*truthy*/ = [...tmpOPND];
 const tmpAPBD /*:unknown*/ = tmpArrPatternSplat[0];
 const tmpIfTest /*:boolean*/ = tmpAPBD === undefined;
 if (tmpIfTest) {

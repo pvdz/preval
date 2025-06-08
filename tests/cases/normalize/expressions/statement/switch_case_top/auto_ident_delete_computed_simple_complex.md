@@ -27,8 +27,8 @@ $(a, arg);
 const tmpBinBothLhs /*:unknown*/ = $(1);
 const tmpBinBothRhs /*:unknown*/ = $(1);
 const tmpIfTest /*:boolean*/ = tmpBinBothLhs === tmpBinBothRhs;
-const arg /*:object*/ = { y: 1 };
-const a /*:object*/ = { a: 999, b: 1000 };
+const arg /*:object*/ /*truthy*/ = { y: 1 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   const tmpDeleteCompProp /*:unknown*/ = $(`y`);
   delete arg[tmpDeleteCompProp];

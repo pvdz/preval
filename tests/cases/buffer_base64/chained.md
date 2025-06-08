@@ -24,7 +24,7 @@ $(f("cGF0aA")); // path
 const f /*:(unknown)=>string*/ = function ($$0) {
   const x /*:unknown*/ = $$0;
   debugger;
-  const tmpMCOO /*:buffer*/ = $Buffer_from(x, `base64`);
+  const tmpMCOO /*:buffer*/ /*truthy*/ = $Buffer_from(x, `base64`);
   const tmpReturnArg /*:string*/ = $dotCall($buffer_toString, tmpMCOO, `toString`, `utf8`);
   return tmpReturnArg;
 };

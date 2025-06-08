@@ -19,7 +19,7 @@ $(a);
 
 
 `````js filename=intro
-const xyz /*:array*/ = [1, 2, 3];
+const xyz /*:array*/ /*truthy*/ = [1, 2, 3];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(xyz);
   $(1);

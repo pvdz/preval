@@ -23,7 +23,7 @@ const tmpFree /*:(number)=>string*/ = function $free($$0) {
   const a$1 /*:number*/ = $$0;
   debugger;
   const tmpStringConcatL /*:string*/ = $coerce(a$1, `string`);
-  const tmpRet /*:string*/ = `before  ${tmpStringConcatL}  after`;
+  const tmpRet /*:string*/ /*truthy*/ = `before  ${tmpStringConcatL}  after`;
   return tmpRet;
 };
 const tmpUnaryArg /*:unknown*/ = $(100);

@@ -18,7 +18,7 @@ $(a = $(b).length = c);
 
 
 `````js filename=intro
-const b /*:array*/ = [];
+const b /*:array*/ /*truthy*/ = [];
 const tmpNestedAssignObj /*:unknown*/ = $(b);
 tmpNestedAssignObj.length = 30;
 $(30);

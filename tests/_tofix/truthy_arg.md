@@ -31,7 +31,7 @@ f(2);
 const f_t /*:(number)=>undefined*/ = function ($$0) {
   const x /*:number*/ = $$0;
   debugger;
-  const obj /*:object*/ = { xyz: x };
+  const obj /*:object*/ /*truthy*/ = { xyz: x };
   $(x, obj);
   $(`end`);
   return undefined;

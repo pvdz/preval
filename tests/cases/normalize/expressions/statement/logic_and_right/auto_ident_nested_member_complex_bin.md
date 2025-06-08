@@ -25,9 +25,9 @@ $(a, b, c, d, e);
 
 `````js filename=intro
 const tmpIfTest /*:unknown*/ = $(100);
-const b /*:object*/ = { x: 1 };
-const c /*:object*/ = { y: 2 };
-const a /*:object*/ = { a: 999, b: 1000 };
+const b /*:object*/ /*truthy*/ = { x: 1 };
+const c /*:object*/ /*truthy*/ = { y: 2 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   const tmpAssignComMemLhsObj /*:unknown*/ = $(b);
   const tmpAssignComMemLhsProp /*:unknown*/ = $(`x`);

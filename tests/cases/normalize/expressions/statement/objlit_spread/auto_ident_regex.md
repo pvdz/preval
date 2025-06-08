@@ -19,9 +19,9 @@ $(a);
 
 
 `````js filename=intro
-const tmpObjSpreadArg /*:regex*/ = new $regex_constructor(`foo`, ``);
+const tmpObjSpreadArg /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, ``);
 ({ ...tmpObjSpreadArg });
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

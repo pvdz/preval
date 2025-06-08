@@ -23,7 +23,7 @@ $(q);
 
 
 `````js filename=intro
-const obj /*:object*/ = { $: $ };
+const obj /*:object*/ /*truthy*/ = { $: $ };
 const r /*:unknown*/ = $dotCall($, obj, `\$`, 1);
 $(r);
 `````

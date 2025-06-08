@@ -24,12 +24,12 @@ $('lf_resolved_options_style', formatter.resolvedOptions().style);
 
 `````js filename=intro
 const locale /*:unknown*/ = $(`lf_locale`, `en-GB`);
-const tmpCalleeParam /*:object*/ = { style: `long`, type: `conjunction` };
+const tmpCalleeParam /*:object*/ /*truthy*/ = { style: `long`, type: `conjunction` };
 const options /*:unknown*/ = $(`lf_options`, tmpCalleeParam);
 const tmpNewCallee /*:unknown*/ = Intl.ListFormat;
-const formatter /*:object*/ = new tmpNewCallee(locale, options);
+const formatter /*:object*/ /*truthy*/ = new tmpNewCallee(locale, options);
 const tmpArrElement$3 /*:unknown*/ = $(`lf_opaque_item`, `oranges`);
-const tmpCalleeParam$1 /*:array*/ = [`apples`, `bananas`, tmpArrElement$3];
+const tmpCalleeParam$1 /*:array*/ /*truthy*/ = [`apples`, `bananas`, tmpArrElement$3];
 const list /*:unknown*/ = $(`lf_list`, tmpCalleeParam$1);
 const tmpMCF /*:unknown*/ = formatter.format;
 const tmpCalleeParam$3 /*:unknown*/ = $dotCall(tmpMCF, formatter, `format`, list);

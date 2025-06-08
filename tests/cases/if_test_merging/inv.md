@@ -24,7 +24,7 @@ if (bool) {
 
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(true);
-const tmpBool /*:boolean*/ = !tmpCalleeParam;
+const tmpBool /*:boolean*/ /*banged*/ = !tmpCalleeParam;
 $(tmpBool);
 `````
 

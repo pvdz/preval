@@ -19,9 +19,9 @@ $($(a)?.[$('x')]?.[$('y')][$('z')])?.(100);
 
 `````js filename=intro
 let tmpCalleeParam /*:unknown*/ /*ternaryConst*/ = undefined;
-const tmpObjLitVal$1 /*:object*/ = { z: $ };
-const tmpObjLitVal /*:object*/ = { y: tmpObjLitVal$1 };
-const a /*:object*/ = { x: tmpObjLitVal };
+const tmpObjLitVal$1 /*:object*/ /*truthy*/ = { z: $ };
+const tmpObjLitVal /*:object*/ /*truthy*/ = { y: tmpObjLitVal$1 };
+const a /*:object*/ /*truthy*/ = { x: tmpObjLitVal };
 const tmpChainElementCall$3 /*:unknown*/ = $(a);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall$3 == null;
 if (tmpIfTest) {

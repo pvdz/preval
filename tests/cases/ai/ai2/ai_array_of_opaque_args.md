@@ -23,7 +23,7 @@ $('array_of_result', newArr);
 `````js filename=intro
 const item1 /*:unknown*/ = $(`val1`);
 const item2 /*:unknown*/ = $(`val2`);
-const newArr /*:array*/ = $Array_of(item1, item2, `concrete`);
+const newArr /*:array*/ /*truthy*/ = $Array_of(item1, item2, `concrete`);
 $(`array_of_result`, newArr);
 `````
 

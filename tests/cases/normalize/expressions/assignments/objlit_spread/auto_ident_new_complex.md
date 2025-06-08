@@ -20,8 +20,8 @@ $(a);
 
 `````js filename=intro
 const tmpNewCallee /*:unknown*/ = $($);
-const a /*:object*/ = new tmpNewCallee(1);
-const tmpCalleeParam /*:object*/ = { ...a };
+const a /*:object*/ /*truthy*/ = new tmpNewCallee(1);
+const tmpCalleeParam /*:object*/ /*truthy*/ = { ...a };
 $(tmpCalleeParam);
 $(a);
 `````

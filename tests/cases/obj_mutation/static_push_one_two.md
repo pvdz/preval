@@ -22,7 +22,7 @@ $(blob);
 
 
 `````js filename=intro
-const blob /*:object*/ = { thing: `boom` };
+const blob /*:object*/ /*truthy*/ = { thing: `boom` };
 $(blob);
 `````
 

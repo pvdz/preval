@@ -20,9 +20,9 @@ let isExt = $('isExt', Object.isExtensible(obj));
 
 
 `````js filename=intro
-const tmpCalleeParam /*:object*/ = { a: 1 };
+const tmpCalleeParam /*:object*/ /*truthy*/ = { a: 1 };
 const obj /*:unknown*/ = $(`obj`, tmpCalleeParam);
-const tmpCalleeParam$1 /*:object*/ = $Object_preventExtensions(obj);
+const tmpCalleeParam$1 /*:object*/ /*truthy*/ = $Object_preventExtensions(obj);
 $(`result`, tmpCalleeParam$1);
 const tmpCalleeParam$3 /*:boolean*/ = $Object_isExtensible(obj);
 $(`isExt`, tmpCalleeParam$3);

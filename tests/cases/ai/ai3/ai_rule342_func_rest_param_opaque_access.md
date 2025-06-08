@@ -29,7 +29,7 @@ foo($('arg1'), $('arg2'), $('argRest1'), $('argRest2'));
 const foo /*:(unknown, unknown, array)=>undefined*/ = function ($$0, $$1, ...$$2 /*:array*/) {
   const p1 /*:unknown*/ = $$0;
   const p2 /*:unknown*/ = $$1;
-  const rest /*:array*/ = $$2;
+  const rest /*:array*/ /*truthy*/ = $$2;
   debugger;
   $(`param1`, p1);
   $(`param2`, p2);

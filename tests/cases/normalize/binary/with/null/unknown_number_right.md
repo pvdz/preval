@@ -58,9 +58,9 @@ const tmpArrElement$17 /*:boolean*/ = 0 < x;
 const tmpArrElement$19 /*:boolean*/ = 0 > x;
 const tmpArrElement$21 /*:boolean*/ = 0 <= x;
 const tmpArrElement$23 /*:boolean*/ = 0 >= x;
-const tmpArrElement$35 /*:number*/ = 0 ^ x;
-const tmpArrElement$37 /*:number*/ = 0 | x;
-const arr /*:array*/ = [
+const tmpArrElement$35 /*:number*/ /*^0*/ = 0 ^ x;
+const tmpArrElement$37 /*:number*/ /*|0*/ = 0 | x;
+const arr /*:array*/ /*truthy*/ = [
   tmpArrElement,
   tmpArrElement$1,
   tmpArrElement$3,

@@ -18,8 +18,8 @@ $(y);
 
 
 `````js filename=intro
-const tmpObjLitVal /*:object*/ = {};
-const tmpCalleeParam$3 /*:array*/ = [];
+const tmpObjLitVal /*:object*/ /*truthy*/ = {};
+const tmpCalleeParam$3 /*:array*/ /*truthy*/ = [];
 y = $objPatternRest(tmpObjLitVal, tmpCalleeParam$3, undefined);
 $(y);
 `````

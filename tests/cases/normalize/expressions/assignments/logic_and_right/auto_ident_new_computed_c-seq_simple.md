@@ -23,15 +23,15 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(100);
 if (tmpCalleeParam) {
-  const b /*:object*/ = { $: $ };
+  const b /*:object*/ /*truthy*/ = { $: $ };
   const tmpCompObj /*:unknown*/ = $(b);
   const tmpNewCallee /*:unknown*/ = tmpCompObj.$;
-  const tmpNestedComplexRhs /*:object*/ = new tmpNewCallee(1);
+  const tmpNestedComplexRhs /*:object*/ /*truthy*/ = new tmpNewCallee(1);
   $(tmpNestedComplexRhs);
   $(tmpNestedComplexRhs);
 } else {
   $(tmpCalleeParam);
-  const a /*:object*/ = { a: 999, b: 1000 };
+  const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
   $(a);
 }
 `````

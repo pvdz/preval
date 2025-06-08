@@ -18,7 +18,7 @@ $(x);
 
 
 `````js filename=intro
-const tmpCalleeParam /*:object*/ = { x: `pass2` };
+const tmpCalleeParam /*:object*/ /*truthy*/ = { x: `pass2` };
 const tmpClusterSSA_tmpArrPatternStep /*:unknown*/ = $(tmpCalleeParam);
 const tmpOPBD /*:unknown*/ = tmpClusterSSA_tmpArrPatternStep.x;
 const tmpIfTest$1 /*:boolean*/ = tmpOPBD === undefined;

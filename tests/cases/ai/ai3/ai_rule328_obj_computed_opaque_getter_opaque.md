@@ -32,7 +32,7 @@ $('result2', val2);
 
 `````js filename=intro
 const propName /*:unknown*/ = $(`prop_name`);
-const tmpObjLitPropVal /*:object*/ = {
+const tmpObjLitPropVal /*:object*/ /*truthy*/ = {
   get() {
     debugger;
     $(`getter_called`);
@@ -40,7 +40,7 @@ const tmpObjLitPropVal /*:object*/ = {
     return tmpReturnArg;
   },
 };
-const obj /*:object*/ = { [propName]: tmpObjLitPropVal };
+const obj /*:object*/ /*truthy*/ = { [propName]: tmpObjLitPropVal };
 const val /*:unknown*/ = obj[propName];
 $(`result`, val);
 const val2 /*:unknown*/ = obj[propName];

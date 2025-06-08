@@ -23,7 +23,7 @@ $(a, x);
 `````js filename=intro
 const tmpUnaryArg /*:unknown*/ = $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const xyz /*:string*/ = typeof tmpUnaryArg;
+  const xyz /*:string*/ /*truthy*/ = typeof tmpUnaryArg;
   $(xyz);
   $(1);
 }

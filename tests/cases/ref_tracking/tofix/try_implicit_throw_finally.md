@@ -24,7 +24,7 @@ $(x);
 
 
 `````js filename=intro
-let x /*:number*/ = 1;
+let x /*:number*/ /*truthy*/ = 1;
 try {
   fail;
 } catch (e) {

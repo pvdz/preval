@@ -23,7 +23,7 @@ $(a);
 `````js filename=intro
 $(1);
 $(undefined);
-const tmpSSA_a /*:object*/ = { b: 2 };
+const tmpSSA_a /*:object*/ /*truthy*/ = { b: 2 };
 $(tmpSSA_a);
 `````
 

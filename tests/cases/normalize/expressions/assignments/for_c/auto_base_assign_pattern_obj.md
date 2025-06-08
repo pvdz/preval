@@ -24,7 +24,7 @@ $(a, b);
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   const tmpObjLitVal /*:unknown*/ = $(2);
-  const tmpCalleeParam /*:object*/ = { b: tmpObjLitVal };
+  const tmpCalleeParam /*:object*/ /*truthy*/ = { b: tmpObjLitVal };
   const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam);
   let tmpClusterSSA_b /*:unknown*/ = tmpNestedAssignObjPatternRhs.b;
   let tmpClusterSSA_a /*:unknown*/ = tmpNestedAssignObjPatternRhs;
@@ -32,7 +32,7 @@ if (tmpIfTest) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       const tmpObjLitVal$1 /*:unknown*/ = $(2);
-      const tmpCalleeParam$1 /*:object*/ = { b: tmpObjLitVal$1 };
+      const tmpCalleeParam$1 /*:object*/ /*truthy*/ = { b: tmpObjLitVal$1 };
       const tmpNestedAssignObjPatternRhs$1 /*:unknown*/ = $(tmpCalleeParam$1);
       tmpClusterSSA_b = tmpNestedAssignObjPatternRhs$1.b;
       tmpClusterSSA_a = tmpNestedAssignObjPatternRhs$1;
@@ -42,8 +42,8 @@ if (tmpIfTest) {
   }
   $(tmpClusterSSA_a, tmpClusterSSA_b);
 } else {
-  const a /*:object*/ = { a: 999, b: 1000 };
-  const b /*:object*/ = {};
+  const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
+  const b /*:object*/ /*truthy*/ = {};
   $(a, b);
 }
 `````

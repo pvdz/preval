@@ -23,7 +23,7 @@ $(y, o);
 
 `````js filename=intro
 $(true);
-const o /*:object*/ = { x: 1 };
+const o /*:object*/ /*truthy*/ = { x: 1 };
 $(1, o);
 `````
 

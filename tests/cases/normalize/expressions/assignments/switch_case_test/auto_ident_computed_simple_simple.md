@@ -24,7 +24,7 @@ $(a, b);
 
 `````js filename=intro
 $(1);
-const b /*:object*/ = { c: 1 };
+const b /*:object*/ /*truthy*/ = { c: 1 };
 $(1, b);
 `````
 

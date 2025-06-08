@@ -31,7 +31,7 @@ $(x);
 `````
 
 `````js filename=x
-const tmpAnonDefaultExport /*:number*/ = 100;
+const tmpAnonDefaultExport /*:number*/ /*truthy*/ = 100;
 export { tmpAnonDefaultExport as default };
 `````
 

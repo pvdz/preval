@@ -19,7 +19,7 @@ $(a);
 
 
 `````js filename=intro
-const tmpAnonDefaultExport /*:number*/ = 60;
+const tmpAnonDefaultExport /*:number*/ /*truthy*/ = 60;
 export { tmpAnonDefaultExport as default };
 $(60);
 `````

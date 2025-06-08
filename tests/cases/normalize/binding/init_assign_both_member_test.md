@@ -22,7 +22,7 @@ $(5, a);
 
 
 `````js filename=intro
-const c /*:object*/ = {
+const c /*:object*/ /*truthy*/ = {
   get x() {
     debugger;
     $(3);
@@ -36,7 +36,7 @@ const c /*:object*/ = {
   },
 };
 const tmpNestedPropAssignRhs /*:unknown*/ = c.x;
-const b /*:object*/ = {
+const b /*:object*/ /*truthy*/ = {
   get x() {
     debugger;
     $(1);

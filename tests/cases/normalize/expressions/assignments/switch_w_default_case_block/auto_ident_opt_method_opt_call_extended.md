@@ -49,7 +49,7 @@ if (tmpIfTest$3) {
   const tmpIfTest$7 /*:boolean*/ = $ == null;
   if (tmpIfTest$7) {
   } else {
-    const tmpObjLitVal$1 /*:object*/ = { e: $ };
+    const tmpObjLitVal$1 /*:object*/ /*truthy*/ = { e: $ };
     a = $dotCall($, tmpObjLitVal$1, `e`, 1);
   }
 } else {

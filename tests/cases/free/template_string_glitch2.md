@@ -34,7 +34,7 @@ const x /*:unknown*/ = $(`a`);
 const xs /*:string*/ = $coerce(x, `string`);
 const y /*:unknown*/ = $(`b`);
 const ys /*:string*/ = $coerce(y, `string`);
-const slashAslashB /*:string*/ = `/${xs}/${ys}`;
+const slashAslashB /*:string*/ /*truthy*/ = `/${xs}/${ys}`;
 $(slashAslashB);
 `````
 

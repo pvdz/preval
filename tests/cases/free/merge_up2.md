@@ -41,7 +41,7 @@ const tmpFree$1 /*:(string, number)=>string*/ = function $free($$0, $$1) {
   const x$1 /*:number*/ = $$1;
   debugger;
   const chr /*:string*/ = $dotCall($string_charAt, somestr$1, `charAt`, 1);
-  const tmpIfTest$3 /*:number*/ = x$1 & 48;
+  const tmpIfTest$3 /*:number*/ /*&48*/ = x$1 & 48;
   const tmpRet /*:boolean*/ = tmpIfTest$3 === 48;
   const tmpBinLhs /*:string*/ = tmpRet + chr;
   const ret2 /*:string*/ = tmpBinLhs + chr;

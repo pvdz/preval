@@ -22,11 +22,11 @@ $(`b${sp2}`);
 `````js filename=intro
 const sp /*:unknown*/ = $spy();
 const tmpStringConcatL /*:string*/ = $coerce(sp, `plustr`);
-const tmpCalleeParam /*:string*/ = `b${tmpStringConcatL}`;
+const tmpCalleeParam /*:string*/ /*truthy*/ = `b${tmpStringConcatL}`;
 $(tmpCalleeParam);
 const sp2 /*:unknown*/ = $spy();
 const tmpBinBothRhs /*:string*/ = $coerce(sp2, `string`);
-const tmpCalleeParam$1 /*:string*/ = `b${tmpBinBothRhs}`;
+const tmpCalleeParam$1 /*:string*/ /*truthy*/ = `b${tmpBinBothRhs}`;
 $(tmpCalleeParam$1);
 `````
 

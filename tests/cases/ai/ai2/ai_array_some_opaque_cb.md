@@ -24,7 +24,7 @@ $('some_result', hasSome);
 const tmpArrElement /*:unknown*/ = $(`v1`);
 const tmpArrElement$1 /*:unknown*/ = $(`v2`);
 const cb /*:unknown*/ = $(`opaque_some_predicate`);
-const arr /*:array*/ = [tmpArrElement, tmpArrElement$1];
+const arr /*:array*/ /*truthy*/ = [tmpArrElement, tmpArrElement$1];
 const hasSome /*:boolean*/ = $dotCall($array_some, arr, `some`, cb);
 $(`some_result`, hasSome);
 `````

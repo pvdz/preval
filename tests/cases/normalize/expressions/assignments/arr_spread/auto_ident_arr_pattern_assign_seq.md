@@ -26,11 +26,11 @@ $(1);
 $(2);
 const tmpArrElement /*:unknown*/ = $(3);
 const tmpArrElement$1 /*:unknown*/ = $(4);
-const tmpNestedAssignArrPatternRhs /*:array*/ = [tmpArrElement, tmpArrElement$1];
-const tmpArrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
+const tmpNestedAssignArrPatternRhs /*:array*/ /*truthy*/ = [tmpArrElement, tmpArrElement$1];
+const tmpArrPatternSplat /*:array*/ /*truthy*/ = [...tmpNestedAssignArrPatternRhs];
 const tmpSSA_x /*:unknown*/ = tmpArrPatternSplat[0];
 const tmpSSA_y /*:unknown*/ = tmpArrPatternSplat[1];
-const tmpCalleeParam /*:array*/ = [...tmpNestedAssignArrPatternRhs];
+const tmpCalleeParam /*:array*/ /*truthy*/ = [...tmpNestedAssignArrPatternRhs];
 $(tmpCalleeParam);
 $(tmpNestedAssignArrPatternRhs, tmpSSA_x, tmpSSA_y);
 `````

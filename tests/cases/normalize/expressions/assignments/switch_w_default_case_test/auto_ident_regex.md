@@ -27,7 +27,7 @@ $(a);
 `````js filename=intro
 const tmpSwitchValue /*:unknown*/ = $(1);
 let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
-const a /*:regex*/ = new $regex_constructor(`foo`, ``);
+const a /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, ``);
 const tmpIfTest /*:boolean*/ = a === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;

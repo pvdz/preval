@@ -25,10 +25,10 @@ $('coll_resolved_options_sens', collator.resolvedOptions().sensitivity);
 
 `````js filename=intro
 const locale /*:unknown*/ = $(`coll_locale`, `es-ES`);
-const tmpCalleeParam /*:object*/ = { sensitivity: `base` };
+const tmpCalleeParam /*:object*/ /*truthy*/ = { sensitivity: `base` };
 const options /*:unknown*/ = $(`coll_options`, tmpCalleeParam);
 const tmpNewCallee /*:unknown*/ = Intl.Collator;
-const collator /*:object*/ = new tmpNewCallee(locale, options);
+const collator /*:object*/ /*truthy*/ = new tmpNewCallee(locale, options);
 const str1 /*:unknown*/ = $(`coll_str1`, `casa`);
 const str2 /*:unknown*/ = $(`coll_str2`, `CASA`);
 const tmpMCF /*:unknown*/ = collator.compare;

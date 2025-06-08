@@ -34,9 +34,9 @@ $(y);
 
 
 `````js filename=intro
-const tmpCalleeParam /*:array*/ = [1, 2, 3];
+const tmpCalleeParam /*:array*/ /*truthy*/ = [1, 2, 3];
 const a /*:unknown*/ = $(tmpCalleeParam);
-const tmpCalleeParam$1 /*:array*/ = [4, 5, 6];
+const tmpCalleeParam$1 /*:array*/ /*truthy*/ = [4, 5, 6];
 const b /*:unknown*/ = $(tmpCalleeParam$1);
 const tmpBinLhs /*:unknown*/ = a.length;
 const tmpIfTest /*:boolean*/ = tmpBinLhs < 10;

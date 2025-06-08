@@ -17,7 +17,7 @@ export default undefined;
 
 
 `````js filename=intro
-const tmpAnonDefaultExport /*:undefined*/ = undefined;
+const tmpAnonDefaultExport /*:undefined*/ /*falsy*/ = undefined;
 export { tmpAnonDefaultExport as default };
 `````
 

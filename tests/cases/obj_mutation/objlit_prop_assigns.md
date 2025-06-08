@@ -25,7 +25,7 @@ $(obj);
 
 
 `````js filename=intro
-const obj /*:object*/ = { [`7H`]: `a`, [`7G`]: `b`, [`7F`]: `c`, [`7E`]: `d`, [`7D`]: `e`, [`7C`]: `f` };
+const obj /*:object*/ /*truthy*/ = { [`7H`]: `a`, [`7G`]: `b`, [`7F`]: `c`, [`7E`]: `d`, [`7D`]: `e`, [`7C`]: `f` };
 $(obj);
 `````
 

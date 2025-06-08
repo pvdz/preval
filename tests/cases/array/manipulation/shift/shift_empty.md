@@ -25,7 +25,7 @@ $(ARR);
 
 
 `````js filename=intro
-const ARR /*:array*/ = [];
+const ARR /*:array*/ /*truthy*/ = [];
 const NOOP /*:()=>unknown*/ = function () {
   debugger;
   $(ARR);

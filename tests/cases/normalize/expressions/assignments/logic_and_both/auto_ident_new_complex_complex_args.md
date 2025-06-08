@@ -28,7 +28,7 @@ new tmpNewCallee(tmpCalleeParam$1, tmpCalleeParam$3);
 const tmpNewCallee$1 /*:unknown*/ = $($);
 const tmpCalleeParam$5 /*:unknown*/ = $(1);
 const tmpCalleeParam$7 /*:unknown*/ = $(2);
-const tmpNestedComplexRhs /*:object*/ = new tmpNewCallee$1(tmpCalleeParam$5, tmpCalleeParam$7);
+const tmpNestedComplexRhs /*:object*/ /*truthy*/ = new tmpNewCallee$1(tmpCalleeParam$5, tmpCalleeParam$7);
 $(tmpNestedComplexRhs);
 $(tmpNestedComplexRhs);
 `````

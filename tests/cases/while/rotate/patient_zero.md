@@ -24,7 +24,7 @@ while ($LOOP_UNROLL_10) {
 
 
 `````js filename=intro
-let x /*:regex*/ = new $regex_constructor(`foo`, ``);
+let x /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, ``);
 x.foo = `object`;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmp /*:unknown*/ = x.foo;

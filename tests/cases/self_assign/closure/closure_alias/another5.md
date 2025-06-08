@@ -31,7 +31,7 @@ $(a);
 
 
 `````js filename=intro
-const tmpClusterSSA_tmpSSA_a$1 /*:array*/ = [1, 2, 3];
+const tmpClusterSSA_tmpSSA_a$1 /*:array*/ /*truthy*/ = [1, 2, 3];
 $(tmpClusterSSA_tmpSSA_a$1);
 `````
 

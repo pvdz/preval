@@ -26,7 +26,7 @@ Promise.allSettled(iterable)
 
 `````js filename=intro
 const iterable /*:unknown*/ = $(`opaque_promise_iterable_settled`);
-const tmpMCOO /*:promise*/ = $dotCall($Promise_allSettled, Promise, `allSettled`, iterable);
+const tmpMCOO /*:promise*/ /*truthy*/ = $dotCall($Promise_allSettled, Promise, `allSettled`, iterable);
 const tmpMCP /*:(unknown)=>unknown*/ = function ($$0) {
   const res /*:unknown*/ = $$0;
   debugger;

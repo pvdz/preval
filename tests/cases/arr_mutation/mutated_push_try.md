@@ -25,7 +25,7 @@ $(arr);
 
 
 `````js filename=intro
-const arr /*:array*/ = [1, 2, 3, 4];
+const arr /*:array*/ /*truthy*/ = [1, 2, 3, 4];
 try {
   $(1);
   $dotCall($array_splice, arr, `splice`, 1, 2);

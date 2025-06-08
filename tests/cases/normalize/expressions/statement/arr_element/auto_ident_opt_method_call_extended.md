@@ -21,12 +21,12 @@ $(a);
 
 
 `````js filename=intro
-const tmpObjLitVal$1 /*:object*/ = { e: $ };
+const tmpObjLitVal$1 /*:object*/ /*truthy*/ = { e: $ };
 const tmpClusterSSA_tmpBinBothLhs /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
 const tmpChainElementObject$9 /*:unknown*/ = tmpObjLitVal$1.e;
 const tmpClusterSSA_tmpBinBothRhs /*:unknown*/ = $dotCall(tmpChainElementObject$9, tmpObjLitVal$1, `e`, 1);
 tmpClusterSSA_tmpBinBothLhs + tmpClusterSSA_tmpBinBothRhs;
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

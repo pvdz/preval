@@ -22,7 +22,7 @@ $(f());
 
 
 `````js filename=intro
-const y /*:object*/ = { x: 1 };
+const y /*:object*/ /*truthy*/ = { x: 1 };
 const tmpClusterSSA_tmpReturnArg /*:unknown*/ = $(y);
 $(tmpClusterSSA_tmpReturnArg);
 `````

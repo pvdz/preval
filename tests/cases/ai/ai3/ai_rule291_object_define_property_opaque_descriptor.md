@@ -21,10 +21,10 @@ let val = $('val', obj.prop);
 
 
 `````js filename=intro
-const tmpCalleeParam /*:object*/ = { value: 42, writable: true };
+const tmpCalleeParam /*:object*/ /*truthy*/ = { value: 42, writable: true };
 const desc /*:unknown*/ = $(`desc`, tmpCalleeParam);
-const obj /*:object*/ = {};
-const tmpCalleeParam$1 /*:object*/ = $Object_defineProperty(obj, `prop`, desc);
+const obj /*:object*/ /*truthy*/ = {};
+const tmpCalleeParam$1 /*:object*/ /*truthy*/ = $Object_defineProperty(obj, `prop`, desc);
 $(`result`, tmpCalleeParam$1);
 const tmpCalleeParam$3 /*:unknown*/ = obj.prop;
 $(`val`, tmpCalleeParam$3);

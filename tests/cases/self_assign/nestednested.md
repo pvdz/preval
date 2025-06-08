@@ -46,7 +46,7 @@ const outer /*:()=>array*/ = function () {
   debugger;
   let f /*:()=>unknown*/ = function () {
     debugger;
-    const a /*:array*/ = [];
+    const a /*:array*/ /*truthy*/ = [];
     f = function ($$0, $$1) {
       debugger;
       return a;
@@ -61,11 +61,11 @@ const outer /*:()=>array*/ = function () {
   g();
   g();
   f();
-  const tmpReturnArg /*:array*/ = [f, g];
+  const tmpReturnArg /*:array*/ /*truthy*/ = [f, g];
   return tmpReturnArg;
 };
-const tmpBindingPatternArrRoot /*:array*/ = outer();
-const tmpArrPatternSplat /*:array*/ = [...tmpBindingPatternArrRoot];
+const tmpBindingPatternArrRoot /*:array*/ /*truthy*/ = outer();
+const tmpArrPatternSplat /*:array*/ /*truthy*/ = [...tmpBindingPatternArrRoot];
 const ff /*:unknown*/ = tmpArrPatternSplat[0];
 const gg /*:unknown*/ = tmpArrPatternSplat[1];
 const tmpCalleeParam /*:unknown*/ = ff();

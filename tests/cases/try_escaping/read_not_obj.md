@@ -27,8 +27,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 
 `````js filename=intro
-const arr /*:array*/ = [1, 2, 3];
-const obj /*:object*/ = { [`1,2,3`]: `pass` };
+const arr /*:array*/ /*truthy*/ = [1, 2, 3];
+const obj /*:object*/ /*truthy*/ = { [`1,2,3`]: `pass` };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   try {
     $dotCall($array_reverse, arr, `reverse`);

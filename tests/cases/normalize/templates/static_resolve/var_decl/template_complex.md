@@ -20,7 +20,7 @@ $(x);
 `````js filename=intro
 const tmpCalleeParam$1 /*:unknown*/ = $(1);
 const tmpStringConcatL /*:string*/ = $coerce(tmpCalleeParam$1, `string`);
-const tmpCalleeParam /*:string*/ = `a ${tmpStringConcatL} b`;
+const tmpCalleeParam /*:string*/ /*truthy*/ = `a ${tmpStringConcatL} b`;
 $(tmpCalleeParam);
 `````
 

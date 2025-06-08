@@ -22,7 +22,7 @@ $(a);
 
 `````js filename=intro
 const tmpMCCP /*:unknown*/ = $(`\$`);
-const b /*:object*/ = { $: $ };
+const b /*:object*/ /*truthy*/ = { $: $ };
 const tmpMCF /*:unknown*/ = b[tmpMCCP];
 const xyz /*:unknown*/ = $dotCall(tmpMCF, b, undefined, 1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {

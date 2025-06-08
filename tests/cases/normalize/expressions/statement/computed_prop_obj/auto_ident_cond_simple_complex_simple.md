@@ -22,7 +22,7 @@ $(a);
 `````js filename=intro
 const tmpCompObj /*:unknown*/ = $(2);
 tmpCompObj.a;
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

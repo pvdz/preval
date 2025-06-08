@@ -26,7 +26,7 @@ $(a, b, c, d, obj);
 const tmpBinBothLhs /*:unknown*/ = $(`a`);
 const tmpBinBothRhs /*:unknown*/ = $(`a`);
 const tmpIfTest /*:boolean*/ = tmpBinBothLhs === tmpBinBothRhs;
-const obj /*:object*/ = {
+const obj /*:object*/ /*truthy*/ = {
   get c() {
     debugger;
     $(`get`);
@@ -48,7 +48,7 @@ if (tmpIfTest) {
   tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpInitAssignLhsComputedRhs;
 } else {
 }
-const b /*:object*/ = { x: 2 };
+const b /*:object*/ /*truthy*/ = { x: 2 };
 $(1, b, 3, 4, obj);
 `````
 

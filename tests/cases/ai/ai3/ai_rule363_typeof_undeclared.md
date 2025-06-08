@@ -39,18 +39,18 @@
 
 
 `````js filename=intro
-const typeX /*:string*/ = typeof x;
+const typeX /*:string*/ /*truthy*/ = typeof x;
 $(`typeX`, typeX);
-const tmpBinLhs /*:string*/ = typeof x;
+const tmpBinLhs /*:string*/ /*truthy*/ = typeof x;
 const tmpIfTest /*:boolean*/ = tmpBinLhs === `undefined`;
 if (tmpIfTest) {
   $(`x_is_undefined_string`);
 } else {
-  const tmpCalleeParam /*:string*/ = typeof x;
+  const tmpCalleeParam /*:string*/ /*truthy*/ = typeof x;
   $(`x_is_not_undefined_string`, tmpCalleeParam);
 }
 try {
-  const tmpCalleeParam$1 /*:string*/ = typeof x;
+  const tmpCalleeParam$1 /*:string*/ /*truthy*/ = typeof x;
   $(`some_op_with_type_x`, tmpCalleeParam$1, 10);
   $(`some_op_with_x_value`, x);
 } catch (e) {

@@ -17,7 +17,7 @@ $('hello world'.split());
 
 
 `````js filename=intro
-const tmpCalleeParam /*:array*/ = [`hello world`];
+const tmpCalleeParam /*:array*/ /*truthy*/ = [`hello world`];
 $(tmpCalleeParam);
 `````
 

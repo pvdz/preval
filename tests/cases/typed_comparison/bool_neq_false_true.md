@@ -21,7 +21,7 @@ $('out:', y);
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(false);
 const x /*:boolean*/ = $boolean_constructor(tmpCalleeParam);
-const y /*:boolean*/ = !x;
+const y /*:boolean*/ /*banged*/ = !x;
 $(`out:`, y);
 `````
 

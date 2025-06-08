@@ -36,7 +36,7 @@ if (softConst) {
 `````js filename=intro
 let softConst /*:number*/ /*ternaryConst*/ = 0;
 const b /*:unknown*/ = $(1);
-let alias /*:array*/ /*ternaryConst*/ = undefined;
+let alias /*:array*/ /*ternaryConst*/ /*truthy*/ = undefined;
 if (b) {
   const tmpBinLhs /*:unknown*/ = $(2);
   softConst = tmpBinLhs * 1;
@@ -51,7 +51,7 @@ if (softConst) {
   $(e);
   $(softConst);
 } else {
-  const tmpCompObj /*:array*/ = $dotCall($array_slice, alias, `slice`, 0);
+  const tmpCompObj /*:array*/ /*truthy*/ = $dotCall($array_slice, alias, `slice`, 0);
   const tmpCalleeParam /*:unknown*/ = tmpCompObj[0];
   $(tmpCalleeParam);
   $(softConst);

@@ -25,11 +25,11 @@ const tmpFree /*:(boolean)=>string*/ = function $free($$0) {
   const a$1 /*:boolean*/ = $$0;
   debugger;
   const tmpStringConcatL /*:string*/ = $coerce(a$1, `string`);
-  const tmpRet /*:string*/ = `before  ${tmpStringConcatL}  after`;
+  const tmpRet /*:string*/ /*truthy*/ = `before  ${tmpStringConcatL}  after`;
   return tmpRet;
 };
 const tmpDeleteCompProp /*:unknown*/ = $(`y`);
-const arg /*:object*/ = { y: 1 };
+const arg /*:object*/ /*truthy*/ = { y: 1 };
 const a /*:boolean*/ = delete arg[tmpDeleteCompProp];
 const tmpCalleeParam /*:string*/ = $frfr(tmpFree, a);
 $(tmpCalleeParam);

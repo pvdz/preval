@@ -25,8 +25,8 @@ $(a);
 
 `````js filename=intro
 $(1);
-const tmpObjLitVal /*:object*/ = { y: 1 };
-const b /*:object*/ = { x: tmpObjLitVal };
+const tmpObjLitVal /*:object*/ /*truthy*/ = { y: 1 };
+const b /*:object*/ /*truthy*/ = { x: tmpObjLitVal };
 const tmpChainElementCall /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest) {

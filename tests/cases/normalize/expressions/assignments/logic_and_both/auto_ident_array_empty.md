@@ -19,7 +19,7 @@ $(a);
 
 
 `````js filename=intro
-const tmpNestedComplexRhs /*:array*/ = [];
+const tmpNestedComplexRhs /*:array*/ /*truthy*/ = [];
 $(tmpNestedComplexRhs);
 $(tmpNestedComplexRhs);
 `````

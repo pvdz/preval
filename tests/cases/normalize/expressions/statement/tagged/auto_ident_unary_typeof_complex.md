@@ -22,10 +22,10 @@ $(a, arg);
 
 `````js filename=intro
 const tmpUnaryArg /*:unknown*/ = $(1);
-const tmpCalleeParam /*:array*/ = [`before `, ` after`];
-const tmpCalleeParam$1 /*:string*/ = typeof tmpUnaryArg;
+const tmpCalleeParam /*:array*/ /*truthy*/ = [`before `, ` after`];
+const tmpCalleeParam$1 /*:string*/ /*truthy*/ = typeof tmpUnaryArg;
 $(tmpCalleeParam, tmpCalleeParam$1);
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a, 1);
 `````
 

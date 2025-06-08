@@ -41,7 +41,7 @@ const _THROW /*:()=>unknown*/ = function () {
   if ($) {
     return undefined;
   } else {
-    const tmpThrowArg /*:object*/ = new Error(`always throws`);
+    const tmpThrowArg /*:object*/ /*truthy*/ = new Error(`always throws`);
     throw tmpThrowArg;
   }
 };

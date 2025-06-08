@@ -24,7 +24,7 @@ $(a, b, c);
 
 
 `````js filename=intro
-const b /*:object*/ = { x: 1 };
+const b /*:object*/ /*truthy*/ = { x: 1 };
 const tmpInitAssignLhsComputedObj /*:unknown*/ = $(b);
 const tmpInitAssignLhsComputedProp /*:unknown*/ = $(`x`);
 const tmpInitAssignLhsComputedObj$1 /*:unknown*/ = $(b);
@@ -43,9 +43,9 @@ tmpInitAssignLhsComputedObj$5[tmpInitAssignLhsComputedProp$5] = 3;
 tmpInitAssignLhsComputedObj$3[tmpInitAssignLhsComputedProp$3] = 3;
 tmpInitAssignLhsComputedObj$1[tmpInitAssignLhsComputedProp$1] = 3;
 tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = 3;
-const tmpInitAssignLhsComputedRhs /*:number*/ = 3;
+const tmpInitAssignLhsComputedRhs /*:number*/ /*truthy*/ = 3;
 export { tmpInitAssignLhsComputedRhs as default };
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a, b, 3);
 `````
 

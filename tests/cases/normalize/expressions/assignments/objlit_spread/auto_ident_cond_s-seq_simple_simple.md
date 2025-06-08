@@ -20,7 +20,7 @@ $(a);
 
 `````js filename=intro
 const tmpClusterSSA_a /*:unknown*/ = $(2);
-const tmpCalleeParam /*:object*/ = { ...tmpClusterSSA_a };
+const tmpCalleeParam /*:object*/ /*truthy*/ = { ...tmpClusterSSA_a };
 $(tmpCalleeParam);
 $(tmpClusterSSA_a);
 `````

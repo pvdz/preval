@@ -22,7 +22,7 @@ $(a, arg);
 
 `````js filename=intro
 const tmpBinBothLhs /*:unknown*/ = $(100);
-const arg /*:object*/ = { y: 1 };
+const arg /*:object*/ /*truthy*/ = { y: 1 };
 const tmpDeleteObj /*:unknown*/ = $(arg);
 const a /*:boolean*/ = delete tmpDeleteObj.y;
 const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + a;

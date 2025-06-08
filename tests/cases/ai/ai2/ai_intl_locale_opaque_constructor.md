@@ -26,10 +26,10 @@ $('loc_toString', locale.toString());
 `````js filename=intro
 const tag /*:unknown*/ = $(`loc_tag`, `ja-JP-u-ca-japanese-co-eor`);
 const tmpObjLitVal /*:unknown*/ = $(`loc_calendar_opt`, `gregory`);
-const tmpCalleeParam /*:object*/ = { calendar: tmpObjLitVal };
+const tmpCalleeParam /*:object*/ /*truthy*/ = { calendar: tmpObjLitVal };
 const options /*:unknown*/ = $(`loc_options`, tmpCalleeParam);
 const tmpNewCallee /*:unknown*/ = Intl.Locale;
-const locale /*:object*/ = new tmpNewCallee(tag, options);
+const locale /*:object*/ /*truthy*/ = new tmpNewCallee(tag, options);
 const tmpCalleeParam$1 /*:unknown*/ = locale.baseName;
 $(`loc_baseName`, tmpCalleeParam$1);
 const tmpCalleeParam$3 /*:unknown*/ = locale.calendar;

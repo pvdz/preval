@@ -26,7 +26,7 @@ if (x) {
 
 `````js filename=intro
 const spy /*:unknown*/ = $spy(16);
-const x /*:number*/ = spy & 32;
+const x /*:number*/ /*&32*/ /*oneBitAnded*/ = spy & 32;
 if (x) {
   $(`fail`, false);
 } else {

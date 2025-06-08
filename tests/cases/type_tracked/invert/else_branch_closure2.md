@@ -39,15 +39,15 @@ const f /*:(string)=>undefined*/ = function ($$0) {
     const z /*:number*/ = $$0;
     debugger;
     $(`keepme`);
-    const tmpReturnArg /*:array*/ = [y, z];
+    const tmpReturnArg /*:array*/ /*truthy*/ = [y, z];
     return tmpReturnArg;
   };
   if (y) {
     return undefined;
   } else {
-    const tmpCalleeParam /*:array*/ = g(10);
+    const tmpCalleeParam /*:array*/ /*truthy*/ = g(10);
     $(tmpCalleeParam, `pass`);
-    const tmpCalleeParam$1 /*:array*/ = g(20);
+    const tmpCalleeParam$1 /*:array*/ /*truthy*/ = g(20);
     $(tmpCalleeParam$1, `pass`);
     return undefined;
   }

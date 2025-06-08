@@ -49,7 +49,7 @@
 `````js filename=intro
 const tmpObjLitVal$1 /*:unknown*/ = $(`val1`, 10);
 $(`val2`, 20);
-const tmpObjLitVal /*:object*/ = { key: tmpObjLitVal$1 };
+const tmpObjLitVal /*:object*/ /*truthy*/ = { key: tmpObjLitVal$1 };
 const tmpClusterSSA_tmpCalleeParam /*:boolean*/ = delete tmpObjLitVal.key;
 const tmpMCF /*:unknown*/ = tmpObjLitVal.hasOwnProperty;
 const tmpCalleeParam$1 /*:unknown*/ = $dotCall(tmpMCF, tmpObjLitVal, `hasOwnProperty`, `key`);
@@ -63,13 +63,13 @@ if (tmpIfTest$9) {
   const tmpClusterSSA_res3 /*:boolean*/ = delete tmpClusterSSA_tmpDeleteOpt$3.key;
   $(`res3`, tmpClusterSSA_res3);
 }
-const tmpObjLitVal$7 /*:object*/ = {};
+const tmpObjLitVal$7 /*:object*/ /*truthy*/ = {};
 const tmpClusterSSA_tmpCalleeParam$3 /*:boolean*/ = delete tmpObjLitVal$7.non_existent_key;
 const tmpCalleeParam$5 /*:boolean*/ = `non_existent_key` in tmpObjLitVal$7;
 $(`res4`, tmpClusterSSA_tmpCalleeParam$3, tmpCalleeParam$5);
 $(`syntax_note`, `delete (obj?.prop) is valid, (delete obj?.prop) = x is not.`);
-const tmpObjLitVal$9 /*:object*/ = { key: 30 };
-const tmpCalleeParam$7 /*:object*/ = { b: tmpObjLitVal$9 };
+const tmpObjLitVal$9 /*:object*/ /*truthy*/ = { key: 30 };
+const tmpCalleeParam$7 /*:object*/ /*truthy*/ = { b: tmpObjLitVal$9 };
 const opaqueObj /*:unknown*/ = $(`get_obj`, tmpCalleeParam$7);
 let tmpDeleteOpt$7 /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpIfTest$15 /*:boolean*/ = opaqueObj == null;
@@ -85,7 +85,7 @@ if (tmpIfTest$17) {
   tmpCalleeParam$9 = delete tmpDeleteOpt$7.key;
 }
 const tmpIfTest$19 /*:boolean*/ = opaqueObj == null;
-const tmpCalleeParam$11 /*:string*/ = typeof opaqueObj;
+const tmpCalleeParam$11 /*:string*/ /*truthy*/ = typeof opaqueObj;
 if (tmpIfTest$19) {
   $(`res6`, tmpCalleeParam$9, tmpCalleeParam$11, undefined);
 } else {

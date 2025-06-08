@@ -26,7 +26,7 @@ $( ...x);
 
 
 `````js filename=intro
-const tmpCalleeParam /*:array*/ = [100, 200];
+const tmpCalleeParam /*:array*/ /*truthy*/ = [100, 200];
 $(tmpCalleeParam);
 const tmpIfTest /*:unknown*/ = $(true);
 if (tmpIfTest) {

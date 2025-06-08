@@ -25,8 +25,8 @@ $(aa, zz, a, b);
 
 
 `````js filename=intro
-const aa /*:array*/ = [];
-const zz /*:array*/ = [];
+const aa /*:array*/ /*truthy*/ = [];
+const zz /*:array*/ /*truthy*/ = [];
 $(aa, zz, a, b);
 `````
 

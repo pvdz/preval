@@ -19,9 +19,9 @@ $(x);
 
 `````js filename=intro
 const tmpObjLitVal /*:unknown*/ = $(`prop`);
-const tmpCalleeParam /*:object*/ = {};
+const tmpCalleeParam /*:object*/ /*truthy*/ = {};
 const tmpObjSpread /*:unknown*/ = $(tmpCalleeParam);
-const x /*:object*/ = { a: tmpObjLitVal, ...tmpObjSpread };
+const x /*:object*/ /*truthy*/ = { a: tmpObjLitVal, ...tmpObjSpread };
 $(x);
 `````
 

@@ -23,10 +23,10 @@ $(a);
 `````js filename=intro
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
-  const b /*:object*/ = { $: $ };
+  const b /*:object*/ /*truthy*/ = { $: $ };
   const tmpCompObj /*:unknown*/ = $(b);
   const tmpNewCallee /*:unknown*/ = tmpCompObj.$;
-  let tmpClusterSSA_a /*:object*/ = new tmpNewCallee(1);
+  let tmpClusterSSA_a /*:object*/ /*truthy*/ = new tmpNewCallee(1);
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
@@ -39,7 +39,7 @@ if (tmpIfTest) {
   }
   $(tmpClusterSSA_a);
 } else {
-  const a /*:object*/ = { a: 999, b: 1000 };
+  const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
   $(a);
 }
 `````

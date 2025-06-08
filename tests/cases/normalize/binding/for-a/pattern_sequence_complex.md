@@ -20,7 +20,7 @@ for (let [x, y] = ($(a), $(b), $(z));false;) $(a, b, x, y, z);
 `````js filename=intro
 $(1);
 $(2);
-const z /*:array*/ = [10, 20, 30];
+const z /*:array*/ /*truthy*/ = [10, 20, 30];
 const tmpBindingPatternArrRoot /*:unknown*/ = $(z);
 [...tmpBindingPatternArrRoot];
 `````

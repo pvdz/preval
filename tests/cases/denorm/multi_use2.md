@@ -25,7 +25,7 @@ if (expires) {
 
 `````js filename=intro
 if (expires) {
-  const date /*:date*/ = new $date_constructor();
+  const date /*:date*/ /*truthy*/ = new $date_constructor();
   const time /*:number*/ = $dotCall($date_getTime, date, `getTime`);
   $(time);
   unknown = date;

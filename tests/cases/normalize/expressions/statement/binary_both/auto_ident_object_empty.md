@@ -19,10 +19,10 @@ $(a);
 
 
 `````js filename=intro
-const tmpBinBothLhs /*:object*/ = {};
-const tmpBinBothRhs /*:object*/ = {};
+const tmpBinBothLhs /*:object*/ /*truthy*/ = {};
+const tmpBinBothRhs /*:object*/ /*truthy*/ = {};
 tmpBinBothLhs + tmpBinBothRhs;
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

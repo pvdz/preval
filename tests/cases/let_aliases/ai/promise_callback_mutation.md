@@ -23,7 +23,7 @@ $(a, b);
 `````js filename=intro
 let x /*:unknown*/ = $(`val`);
 const a /*:unknown*/ = x;
-const tmpMCOO /*:promise*/ = $dotCall($Promise_resolve, Promise, `resolve`);
+const tmpMCOO /*:promise*/ /*truthy*/ = $dotCall($Promise_resolve, Promise, `resolve`);
 const tmpMCP /*:()=>undefined*/ = function () {
   debugger;
   x = `changed`;

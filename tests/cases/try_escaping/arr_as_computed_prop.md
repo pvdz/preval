@@ -28,8 +28,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 
 `````js filename=intro
-const obj /*:object*/ = {};
-const arr /*:array*/ = [1, 2, 3];
+const obj /*:object*/ /*truthy*/ = {};
+const arr /*:array*/ /*truthy*/ = [1, 2, 3];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   try {
     const tmpCalleeParam /*:unknown*/ = obj[arr];

@@ -20,8 +20,8 @@ $(obj??a??b);
 
 `````js filename=intro
 $();
-const tmpObjLitVal /*:object*/ = { b: 15 };
-const tmpCalleeParam /*:object*/ = { a: tmpObjLitVal };
+const tmpObjLitVal /*:object*/ /*truthy*/ = { b: 15 };
+const tmpCalleeParam /*:object*/ /*truthy*/ = { a: tmpObjLitVal };
 $(tmpCalleeParam);
 `````
 

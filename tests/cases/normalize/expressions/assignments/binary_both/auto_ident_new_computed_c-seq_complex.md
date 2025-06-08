@@ -21,15 +21,15 @@ $(a);
 
 
 `````js filename=intro
-const b /*:object*/ = { $: $ };
+const b /*:object*/ /*truthy*/ = { $: $ };
 const tmpCompObj /*:unknown*/ = $(b);
 const tmpCalleeParam$1 /*:unknown*/ = $(`\$`);
 const tmpNewCallee /*:unknown*/ = tmpCompObj[tmpCalleeParam$1];
-const a /*:object*/ = new tmpNewCallee(1);
+const a /*:object*/ /*truthy*/ = new tmpNewCallee(1);
 const tmpCompObj$1 /*:unknown*/ = $(b);
 const tmpCalleeParam$3 /*:unknown*/ = $(`\$`);
 const tmpNewCallee$1 /*:unknown*/ = tmpCompObj$1[tmpCalleeParam$3];
-const tmpClusterSSA_a /*:object*/ = new tmpNewCallee$1(1);
+const tmpClusterSSA_a /*:object*/ /*truthy*/ = new tmpNewCallee$1(1);
 const tmpCalleeParam /*:primitive*/ = a + tmpClusterSSA_a;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a);

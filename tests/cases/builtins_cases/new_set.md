@@ -17,8 +17,8 @@ $(new Set(['a', 'b']));
 
 
 `````js filename=intro
-const tmpCalleeParam$1 /*:array*/ = [`a`, `b`];
-const tmpCalleeParam /*:set*/ = new $set_constructor(tmpCalleeParam$1);
+const tmpCalleeParam$1 /*:array*/ /*truthy*/ = [`a`, `b`];
+const tmpCalleeParam /*:set*/ /*truthy*/ = new $set_constructor(tmpCalleeParam$1);
 $(tmpCalleeParam);
 `````
 

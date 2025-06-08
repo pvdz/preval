@@ -27,7 +27,7 @@ $(arr);
 
 
 `````js filename=intro
-const arr /*:array*/ = [false, true, false, true];
+const arr /*:array*/ /*truthy*/ = [false, true, false, true];
 $(arr);
 `````
 

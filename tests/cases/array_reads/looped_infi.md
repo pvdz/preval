@@ -28,7 +28,7 @@ const tmpFree /*:(primitive)=>number*/ = function $free($$0) {
   const tmpRet /*:number*/ = tmpUpdNum + 1;
   return tmpRet;
 };
-const arr /*:array*/ = [1, 2, 3];
+const arr /*:array*/ /*truthy*/ = [1, 2, 3];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpUpdVal$1 /*:primitive*/ = arr[0];
   const tmpUpdInc /*:number*/ = $frfr(tmpFree, tmpUpdVal$1);

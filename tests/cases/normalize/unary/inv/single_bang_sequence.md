@@ -19,7 +19,7 @@ $(!((x = 'foo'), $(x)));
 
 `````js filename=intro
 const tmpUnaryArg /*:unknown*/ = $(`foo`);
-const tmpCalleeParam /*:boolean*/ = !tmpUnaryArg;
+const tmpCalleeParam /*:boolean*/ /*banged*/ = !tmpUnaryArg;
 $(tmpCalleeParam);
 `````
 

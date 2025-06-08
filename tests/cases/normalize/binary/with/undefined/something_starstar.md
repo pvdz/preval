@@ -25,7 +25,7 @@ $(arr);
 const tmpBinBothRhs /*:unknown*/ = $(0);
 const x /*:number*/ = 1 * tmpBinBothRhs;
 const tmpArrElement /*:number*/ = undefined ** x;
-const arr /*:array*/ = [tmpArrElement];
+const arr /*:array*/ /*truthy*/ = [tmpArrElement];
 $(arr);
 `````
 

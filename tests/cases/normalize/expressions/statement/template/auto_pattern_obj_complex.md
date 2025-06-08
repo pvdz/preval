@@ -19,10 +19,10 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam$3 /*:object*/ = { a: 1, b: 2 };
+const tmpCalleeParam$3 /*:object*/ /*truthy*/ = { a: 1, b: 2 };
 const tmpCalleeParam$1 /*:unknown*/ = $(tmpCalleeParam$3);
 const tmpBinBothRhs /*:string*/ = $coerce(tmpCalleeParam$1, `string`);
-const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
+const tmpCalleeParam /*:string*/ /*truthy*/ = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
 $(999);
 `````

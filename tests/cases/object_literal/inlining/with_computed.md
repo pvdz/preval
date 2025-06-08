@@ -20,7 +20,7 @@ $(obj.dakey);
 
 `````js filename=intro
 const key /*:unknown*/ = $(`dakey`);
-const obj /*:object*/ = { [key]: 1 };
+const obj /*:object*/ /*truthy*/ = { [key]: 1 };
 const tmpCalleeParam /*:unknown*/ = obj.dakey;
 $(tmpCalleeParam);
 `````

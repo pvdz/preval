@@ -43,10 +43,10 @@ $('for_in_values_accessed', values_during_iteration.join('|'));
 
 
 `````js filename=intro
-const p1_effects /*:array*/ = [];
+const p1_effects /*:array*/ /*truthy*/ = [];
 $(`p1_prop_get_effect`);
 $dotCall($array_push, p1_effects, `push`, `p1_get`);
-const tmpCalleeParam /*:object*/ = {
+const tmpCalleeParam /*:object*/ /*truthy*/ = {
   p1_prop: `p1_val`,
   get p1_getter() {
     debugger;
@@ -56,17 +56,17 @@ const tmpCalleeParam /*:object*/ = {
   },
 };
 const p1 /*:unknown*/ = $(`opaque_proto1`, tmpCalleeParam);
-const p2 /*:object*/ = $Object_create(p1);
+const p2 /*:object*/ /*truthy*/ = $Object_create(p1);
 const tmpAssignComMemLhsProp /*:unknown*/ = $(`p2_key_name`, `p2_own_prop`);
 const tmpAssignComputedRhs /*:unknown*/ = $(`p2_val_content`, `p2_own_val`);
 p2[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
-const obj /*:object*/ = $Object_create(p2);
+const obj /*:object*/ /*truthy*/ = $Object_create(p2);
 const tmpAssignComMemLhsProp$1 /*:unknown*/ = $(`obj_key_name`, `obj_own_prop`);
 const tmpAssignComputedRhs$1 /*:unknown*/ = $(`obj_val_content`, `obj_own_val`);
 obj[tmpAssignComMemLhsProp$1] = tmpAssignComputedRhs$1;
 const tmpForInGen /*:unknown*/ = $forIn(obj);
-const keys_iterated /*:array*/ = [];
-const values_during_iteration /*:array*/ = [];
+const keys_iterated /*:array*/ /*truthy*/ = [];
+const values_during_iteration /*:array*/ /*truthy*/ = [];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForInNext /*:unknown*/ = tmpForInGen();
   const tmpIfTest /*:unknown*/ = tmpForInNext.done;
@@ -82,7 +82,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     $dotCall($array_push, values_during_iteration, `push`, tmpMCP);
   }
 }
-const tmpMCOO$1 /*:array*/ = $dotCall($array_sort, keys_iterated, `sort`);
+const tmpMCOO$1 /*:array*/ /*truthy*/ = $dotCall($array_sort, keys_iterated, `sort`);
 const tmpCalleeParam$9 /*:string*/ = $dotCall($array_join, tmpMCOO$1, `join`, `,`);
 $(`for_in_opaque_chain_keys`, tmpCalleeParam$9);
 const tmpCalleeParam$11 /*:string*/ = $dotCall($array_join, p1_effects, `join`, `,`);

@@ -20,7 +20,7 @@ $(y, o);
 
 
 `````js filename=intro
-const o /*:object*/ = { x: 1 };
+const o /*:object*/ /*truthy*/ = { x: 1 };
 $(1, o);
 `````
 

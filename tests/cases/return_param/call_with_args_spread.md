@@ -36,7 +36,7 @@ const f /*:()=>undefined*/ = function () {
   return undefined;
 };
 const tmpCalleeParam$1 /*:(array)=>undefined*/ = function (...$$0 /*:array*/) {
-  const args /*:array*/ = $$0;
+  const args /*:array*/ /*truthy*/ = $$0;
   debugger;
   $(`pass1`, args);
   return undefined;
@@ -45,7 +45,7 @@ f();
 tmpCalleeParam$1(1, `two`, null, $Number_NaN);
 $(undefined);
 const tmpCalleeParam$5 /*:(array)=>undefined*/ = function (...$$0 /*:array*/) {
-  const args$1 /*:array*/ = $$0;
+  const args$1 /*:array*/ /*truthy*/ = $$0;
   debugger;
   $(`pass2`, args$1);
   return undefined;
@@ -54,7 +54,7 @@ f();
 tmpCalleeParam$5(1, `two`, null, $Number_NaN);
 $(undefined);
 const tmpCalleeParam$9 /*:(array)=>undefined*/ = function (...$$0 /*:array*/) {
-  const args$3 /*:array*/ = $$0;
+  const args$3 /*:array*/ /*truthy*/ = $$0;
   debugger;
   $(`pass3`, args$3);
   return undefined;

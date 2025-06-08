@@ -18,7 +18,7 @@ $(new Array(5 + 5, $(), Array.prototype.length));
 
 `````js filename=intro
 const tmpCalleeParam$3 /*:unknown*/ = $();
-const tmpCalleeParam /*:array*/ = [10, tmpCalleeParam$3, 0];
+const tmpCalleeParam /*:array*/ /*truthy*/ = [10, tmpCalleeParam$3, 0];
 $(tmpCalleeParam);
 `````
 

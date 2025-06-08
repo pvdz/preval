@@ -22,7 +22,7 @@ $('unreachable');
 
 
 `````js filename=intro
-let x /*:primitive*/ = true;
+let x /*:primitive*/ /*truthy*/ = true;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(x);
   x = 2;

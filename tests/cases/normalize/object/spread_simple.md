@@ -18,9 +18,9 @@ $({...obj});
 
 
 `````js filename=intro
-const tmpObjLitVal /*:object*/ = { bar: 10 };
-const obj /*:object*/ = { foo: tmpObjLitVal };
-const tmpCalleeParam /*:object*/ = { ...obj };
+const tmpObjLitVal /*:object*/ /*truthy*/ = { bar: 10 };
+const obj /*:object*/ /*truthy*/ = { foo: tmpObjLitVal };
+const tmpCalleeParam /*:object*/ /*truthy*/ = { ...obj };
 $(tmpCalleeParam);
 `````
 

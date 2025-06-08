@@ -105,7 +105,7 @@ $(a());
 
 
 `````js filename=intro
-const arr /*:array*/ = [
+const arr /*:array*/ /*truthy*/ = [
   `o+qs5DkTS`,
   `displayNam`,
   `VQ5vY4Jbig`,
@@ -152,7 +152,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   if (tmpBinLhs$166) {
     break;
   } else {
-    const tmpMCP /*:unknown*/ = $dotCall($array_shift, arr, `shift`);
+    const tmpMCP /*:unknown*/ /*truthy*/ = $dotCall($array_shift, arr, `shift`);
     $dotCall($array_push, arr, `push`, tmpMCP);
   }
 }

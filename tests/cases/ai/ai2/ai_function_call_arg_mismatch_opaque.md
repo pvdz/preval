@@ -31,7 +31,7 @@ foo($('arg_mismatch_3_val_a', 'three_a'), $('arg_mismatch_3_val_b', 'three_b'), 
 
 `````js filename=intro
 const foo /*:(unknown, unknown)=>undefined*/ = function ($$0, $$1) {
-  const tmpPrevalAliasArgumentsAny /*:arguments*/ = arguments;
+  const tmpPrevalAliasArgumentsAny /*:arguments*/ /*truthy*/ = arguments;
   const tmpPrevalAliasArgumentsLen /*:number*/ = arguments.length;
   const a /*:unknown*/ = $$0;
   const b /*:unknown*/ = $$1;
@@ -47,7 +47,7 @@ const foo /*:(unknown, unknown)=>undefined*/ = function ($$0, $$1) {
   }
   const tmpStringConcatR$1 /*:string*/ = $coerce(a, `string`);
   const tmpBinBothRhs$1 /*:string*/ = $coerce(b, `string`);
-  const tmpCalleeParam$1 /*:string*/ = `${tmpStringConcatR$1}_${tmpBinBothRhs$1}`;
+  const tmpCalleeParam$1 /*:string*/ /*truthy*/ = `${tmpStringConcatR$1}_${tmpBinBothRhs$1}`;
   $(`foo_return`, tmpCalleeParam$1);
   return undefined;
 };

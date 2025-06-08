@@ -24,7 +24,7 @@ $(a, b, c);
 
 `````js filename=intro
 $Number_prototype.a;
-const b /*:object*/ = { x: 3 };
+const b /*:object*/ /*truthy*/ = { x: 3 };
 $(3, b, 3);
 `````
 

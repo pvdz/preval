@@ -57,7 +57,7 @@ $(`use`, tmpCalleeParam);
 `````js filename=intro
 const tmpObjLitVal /*:unknown*/ = $(`v_init`);
 const L /*:unknown*/ = $(`L1`);
-const obj_orig /*:object*/ = { p: tmpObjLitVal };
+const obj_orig /*:object*/ /*truthy*/ = { p: tmpObjLitVal };
 if (L) {
   $(`S_loop`);
   const tmpAssignMemRhs /*:unknown*/ = $(`v_loop_assign`);

@@ -837,7 +837,7 @@ const TP$cloneX2$cloneX1 /*:(unused, unknown, unused, unknown, unknown)=>unknown
     const fooCalleeParamX11300 /*:unknown*/ = jNeX68;
     const fooCalleeParamX11301 /*:unknown*/ = SP(kNeX164, rCeX217, sCeX129);
     const fooArrElementX3249 /*:unknown*/ = UA(fooCalleeParamX11300, nCeX409, fooCalleeParamX11301);
-    const fooCalleeParamX11302 /*:array*/ = [4, fooArrElementX3247, fooArrElementX3249];
+    const fooCalleeParamX11302 /*:array*/ /*truthy*/ = [4, fooArrElementX3247, fooArrElementX3249];
     const fooReturnArgX5611 /*:unknown*/ = RP$cloneX5(fooCalleeParamX11299, $, fooCalleeParamX11302, PNeX191);
     return fooReturnArgX5611;
   };
@@ -850,7 +850,7 @@ const TP$cloneX2$cloneX1 /*:(unused, unknown, unused, unknown, unknown)=>unknown
     const fooCalleeParamX11295 /*:unknown*/ = jNeX68;
     const fooCalleeParamX11296 /*:unknown*/ = SP(kNeX164, zAe, rCeX216);
     const fooArrElementX3244 /*:unknown*/ = UA(fooCalleeParamX11295, nCeX408, fooCalleeParamX11296);
-    const fooCalleeParamX11297 /*:array*/ = [4, fooArrElementX3242, fooArrElementX3244];
+    const fooCalleeParamX11297 /*:array*/ /*truthy*/ = [4, fooArrElementX3242, fooArrElementX3244];
     const fooReturnArgX5610 /*:unknown*/ = RP$cloneX5(fooCalleeParamX11294, $, fooCalleeParamX11297, PNeX191);
     return fooReturnArgX5610;
   };
@@ -864,7 +864,7 @@ const TP$cloneX2$cloneX1 /*:(unused, unknown, unused, unknown, unknown)=>unknown
     const fooCalleeParamX11284 /*:unknown*/ = wNeX70;
     const fooCalleeParamX11285 /*:unknown*/ = SP(kNeX164, nCeX406, rCeX215);
     const fooArrElementX3234 /*:unknown*/ = UA(fooCalleeParamX11283, fooCalleeParamX11284, fooCalleeParamX11285);
-    const fooCalleeParamX11286 /*:array*/ = [4, fooArrElementX3232, fooArrElementX3234];
+    const fooCalleeParamX11286 /*:array*/ /*truthy*/ = [4, fooArrElementX3232, fooArrElementX3234];
     const fooReturnArgX5607 /*:unknown*/ = RP$cloneX5(fooCalleeParamX11282, $, fooCalleeParamX11286, PNeX191);
     return fooReturnArgX5607;
   };
@@ -877,7 +877,7 @@ const TP$cloneX2$cloneX1 /*:(unused, unknown, unused, unknown, unknown)=>unknown
     const fooCalleeParamX11278 /*:unknown*/ = wNeX70;
     const fooCalleeParamX11279 /*:unknown*/ = SP(kNeX164, zAe, nCeX405);
     const fooArrElementX3229 /*:unknown*/ = UA(fooCalleeParamX11277, fooCalleeParamX11278, fooCalleeParamX11279);
-    const fooCalleeParamX11280 /*:array*/ = [4, fooArrElementX3227, fooArrElementX3229];
+    const fooCalleeParamX11280 /*:array*/ /*truthy*/ = [4, fooArrElementX3227, fooArrElementX3229];
     const fooReturnArgX5606 /*:unknown*/ = RP$cloneX5(fooCalleeParamX11276, $, fooCalleeParamX11280, PNeX191);
     return fooReturnArgX5606;
   };
@@ -888,7 +888,7 @@ const TP$cloneX2$cloneX1 /*:(unused, unknown, unused, unknown, unknown)=>unknown
     const fooCalleeParamX11270 /*:unknown*/ = SSA_bNeX94;
     const fooArrElementX3219 /*:unknown*/ = SSA_xNeX108;
     const fooArrElementX3221 /*:unknown*/ = SP(kNeX164, nCeX403, rCeX214);
-    const fooCalleeParamX11271 /*:array*/ = [4, fooArrElementX3219, fooArrElementX3221];
+    const fooCalleeParamX11271 /*:array*/ /*truthy*/ = [4, fooArrElementX3219, fooArrElementX3221];
     const fooReturnArgX5602 /*:unknown*/ = RP$cloneX5(fooCalleeParamX11270, $, fooCalleeParamX11271, PNeX191);
     return fooReturnArgX5602;
   };
@@ -898,7 +898,7 @@ const TP$cloneX2$cloneX1 /*:(unused, unknown, unused, unknown, unknown)=>unknown
     const fooCalleeParamX11267 /*:unknown*/ = SSA_bNeX94;
     const fooArrElementX3215 /*:unknown*/ = SSA_xNeX108;
     const fooArrElementX3217 /*:unknown*/ = SP(kNeX164, zAe, nCeX402);
-    const fooCalleeParamX11268 /*:array*/ = [4, fooArrElementX3215, fooArrElementX3217];
+    const fooCalleeParamX11268 /*:array*/ /*truthy*/ = [4, fooArrElementX3215, fooArrElementX3217];
     const fooReturnArgX5601 /*:unknown*/ = RP$cloneX5(fooCalleeParamX11267, $, fooCalleeParamX11268, PNeX191);
     return fooReturnArgX5601;
   };
@@ -906,7 +906,7 @@ const TP$cloneX2$cloneX1 /*:(unused, unknown, unused, unknown, unknown)=>unknown
     const nCeX418 /*:unknown*/ = $$0;
     debugger;
     const fooCalleeParamX11333 /*:unknown*/ = SSA_bNeX94;
-    const fooCalleeParamX11334 /*:array*/ = [5, SSA_xNeX108, nCeX418];
+    const fooCalleeParamX11334 /*:array*/ /*truthy*/ = [5, SSA_xNeX108, nCeX418];
     const fooReturnArgX5633 /*:unknown*/ = RP$cloneX5(fooCalleeParamX11333, $, fooCalleeParamX11334, QNeX102);
     return fooReturnArgX5633;
   };
@@ -916,7 +916,7 @@ const TP$cloneX2$cloneX1 /*:(unused, unknown, unused, unknown, unknown)=>unknown
     const fooCalleeParamX11330 /*:unknown*/ = SSA_bNeX94;
     const fooArrElementX3282 /*:unknown*/ = SSA_xNeX108;
     const fooArrElementX3284 /*:unknown*/ = $yX2(Iq, nCeX417);
-    const fooCalleeParamX11331 /*:array*/ = [4, fooArrElementX3282, fooArrElementX3284];
+    const fooCalleeParamX11331 /*:array*/ /*truthy*/ = [4, fooArrElementX3282, fooArrElementX3284];
     const fooReturnArgX5631 /*:unknown*/ = RP$cloneX5(fooCalleeParamX11330, $, fooCalleeParamX11331, KNeX38);
     return fooReturnArgX5631;
   };
@@ -929,7 +929,7 @@ const TP$cloneX2$cloneX1 /*:(unused, unknown, unused, unknown, unknown)=>unknown
     const nCeX414 /*:unknown*/ = $$0;
     debugger;
     const fooCalleeParamX11325 /*:unknown*/ = SSA_bNeX94;
-    const fooCalleeParamX11326 /*:array*/ = [6, SSA_xNeX108, nCeX414];
+    const fooCalleeParamX11326 /*:array*/ /*truthy*/ = [6, SSA_xNeX108, nCeX414];
     const fooReturnArgX5623 /*:unknown*/ = RP$cloneX5(fooCalleeParamX11325, $, fooCalleeParamX11326, XNeX77);
     return fooReturnArgX5623;
   };
@@ -945,7 +945,7 @@ const TP$cloneX2$cloneX1 /*:(unused, unknown, unused, unknown, unknown)=>unknown
       const fooReturnArgX5621 /*:unknown*/ = YE(nCeX413, sCeX131, rCeX221);
       return fooReturnArgX5621;
     };
-    const fooCalleeParamX11323 /*:array*/ = [6, fooArrElementX3267, fooArrElementX3269];
+    const fooCalleeParamX11323 /*:array*/ /*truthy*/ = [6, fooArrElementX3267, fooArrElementX3269];
     const fooReturnArgX5620 /*:unknown*/ = RP$cloneX5(fooCalleeParamX11322, $, fooCalleeParamX11323, UNeX80);
     return fooReturnArgX5620;
   };
@@ -958,7 +958,7 @@ const TP$cloneX2$cloneX1 /*:(unused, unknown, unused, unknown, unknown)=>unknown
     const fooCalleeParamX11316 /*:unknown*/ = WE(fooCalleeParamX11315);
     const sCeX130 /*:unknown*/ = YA(rCeX220, fooCalleeParamX11316);
     const fooUnaryArgX395 /*:unknown*/ = sCeX130[2];
-    const fooBinBothRhsX4246 /*:string*/ = typeof fooUnaryArgX395;
+    const fooBinBothRhsX4246 /*:string*/ /*truthy*/ = typeof fooUnaryArgX395;
     const fooIfTestX13192 /*:boolean*/ = `number` == fooBinBothRhsX4246;
     if (fooIfTestX13192) {
       const fooCalleeParamX11317 /*:unknown*/ = SSA_bNeX94;
@@ -974,7 +974,7 @@ const TP$cloneX2$cloneX1 /*:(unused, unknown, unused, unknown, unknown)=>unknown
   const fooReturnArgX5615 /*:()=>unknown*/ = function () {
     debugger;
     const fooCalleeParamX11312 /*:unknown*/ = SSA_bNeX94;
-    const fooCalleeParamX11313 /*:array*/ = [4, SSA_xNeX108, FNeX55];
+    const fooCalleeParamX11313 /*:array*/ /*truthy*/ = [4, SSA_xNeX108, FNeX55];
     const fooReturnArgX5616 /*:unknown*/ = RP$cloneX5(fooCalleeParamX11312, $, fooCalleeParamX11313, MNeX63);
     return fooReturnArgX5616;
   };
@@ -989,7 +989,7 @@ const TP$cloneX2$cloneX1 /*:(unused, unknown, unused, unknown, unknown)=>unknown
       rCeX219 = _U;
     }
     const fooCalleeParamX11309 /*:unknown*/ = SSA_bNeX94;
-    const fooCalleeParamX11310 /*:array*/ = [4, SSA_xNeX108, rCeX219];
+    const fooCalleeParamX11310 /*:array*/ /*truthy*/ = [4, SSA_xNeX108, rCeX219];
     const fooReturnArgX5614 /*:unknown*/ = RP$cloneX5(fooCalleeParamX11309, $, fooCalleeParamX11310, DNeX65);
     return fooReturnArgX5614;
   };
@@ -1002,7 +1002,7 @@ const TP$cloneX2$cloneX1 /*:(unused, unknown, unused, unknown, unknown)=>unknown
     const fooCalleeParamX11305 /*:unknown*/ = jNeX68;
     const fooCalleeParamX11306 /*:unknown*/ = SP(kNeX164, RNeX72, rCeX218);
     const fooArrElementX3254 /*:unknown*/ = UA(fooCalleeParamX11305, nCeX410, fooCalleeParamX11306);
-    const fooCalleeParamX11307 /*:array*/ = [4, fooArrElementX3252, fooArrElementX3254];
+    const fooCalleeParamX11307 /*:array*/ /*truthy*/ = [4, fooArrElementX3252, fooArrElementX3254];
     const fooReturnArgX5612 /*:unknown*/ = RP$cloneX5(fooCalleeParamX11304, $, fooCalleeParamX11307, PNeX191);
     return fooReturnArgX5612;
   };
@@ -1015,7 +1015,7 @@ const TP$cloneX2$cloneX1 /*:(unused, unknown, unused, unknown, unknown)=>unknown
     const fooCalleeParamX11290 /*:unknown*/ = wNeX70;
     const fooCalleeParamX11291 /*:unknown*/ = SP(kNeX164, INeX72, nCeX407);
     const fooArrElementX3239 /*:unknown*/ = UA(fooCalleeParamX11289, fooCalleeParamX11290, fooCalleeParamX11291);
-    const fooCalleeParamX11292 /*:array*/ = [4, fooArrElementX3237, fooArrElementX3239];
+    const fooCalleeParamX11292 /*:array*/ /*truthy*/ = [4, fooArrElementX3237, fooArrElementX3239];
     const fooReturnArgX5608 /*:unknown*/ = RP$cloneX5(fooCalleeParamX11288, $, fooCalleeParamX11292, PNeX191);
     return fooReturnArgX5608;
   };
@@ -1025,7 +1025,7 @@ const TP$cloneX2$cloneX1 /*:(unused, unknown, unused, unknown, unknown)=>unknown
     const fooCalleeParamX11273 /*:unknown*/ = SSA_bNeX94;
     const fooArrElementX3223 /*:unknown*/ = SSA_xNeX108;
     const fooArrElementX3225 /*:unknown*/ = SP(kNeX164, vNeX134, nCeX404);
-    const fooCalleeParamX11274 /*:array*/ = [4, fooArrElementX3223, fooArrElementX3225];
+    const fooCalleeParamX11274 /*:array*/ /*truthy*/ = [4, fooArrElementX3223, fooArrElementX3225];
     const fooReturnArgX5603 /*:unknown*/ = RP$cloneX5(fooCalleeParamX11273, $, fooCalleeParamX11274, PNeX191);
     return fooReturnArgX5603;
   };
@@ -1036,7 +1036,7 @@ const TP$cloneX2$cloneX1 /*:(unused, unknown, unused, unknown, unknown)=>unknown
     const fooArrElementX3211 /*:unknown*/ = SSA_xNeX108;
     const fooCalleeParamX11232 /*:unknown*/ = XT(nCeX400);
     const fooArrElementX3213 /*:unknown*/ = __(fooCalleeParamX11232, Jq);
-    const fooCalleeParamX11234 /*:array*/ = [4, fooArrElementX3211, fooArrElementX3213];
+    const fooCalleeParamX11234 /*:array*/ /*truthy*/ = [4, fooArrElementX3211, fooArrElementX3213];
     const fooReturnArgX5597 /*:unknown*/ = RP$cloneX5(fooCalleeParamX11231, $, fooCalleeParamX11234, TNeX211);
     return fooReturnArgX5597;
   };
@@ -1061,7 +1061,7 @@ const TP$cloneX2$cloneX1 /*:(unused, unknown, unused, unknown, unknown)=>unknown
     const nCeX399 /*:unknown*/ = $$0;
     debugger;
     const fooCalleeParamX11228 /*:unknown*/ = SSA_bNeX94;
-    const fooCalleeParamX11229 /*:array*/ = [5, SSA_xNeX108, nCeX399];
+    const fooCalleeParamX11229 /*:array*/ /*truthy*/ = [5, SSA_xNeX108, nCeX399];
     const fooReturnArgX5595 /*:unknown*/ = RP$cloneX5(fooCalleeParamX11228, $, fooCalleeParamX11229, ENeX311);
     return fooReturnArgX5595;
   };
@@ -1071,7 +1071,7 @@ const TP$cloneX2$cloneX1 /*:(unused, unknown, unused, unknown, unknown)=>unknown
   let wNeX70 /*:unknown*/ = undefined;
   let SSA_SNeX76 /*:unknown*/ = yNeX272;
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    const fooBinBothRhsX4240 /*:string*/ = typeof SSA_SNeX76;
+    const fooBinBothRhsX4240 /*:string*/ /*truthy*/ = typeof SSA_SNeX76;
     const fooIfTestX13134 /*:boolean*/ = `number` == fooBinBothRhsX4240;
     if (fooIfTestX13134) {
       const fooReturnArgX5593 /*:unknown*/ = YE$cloneX5(SSA_bNeX94, $, SSA_xNeX108);
@@ -1321,10 +1321,10 @@ const TP$cloneX2$cloneX1 /*:(unused, unknown, unused, unknown, unknown)=>unknown
                         const NNeX135 /*:unknown*/ = SSA_SNeX76[3];
                         const CNeX70 /*:unknown*/ = SSA_SNeX76[2];
                         kNeX164 = SSA_SNeX76[1];
-                        const fooBinBothRhsX4241 /*:string*/ = typeof CNeX70;
+                        const fooBinBothRhsX4241 /*:string*/ /*truthy*/ = typeof CNeX70;
                         const fooIfTestX13184 /*:boolean*/ = `number` == fooBinBothRhsX4241;
                         if (fooIfTestX13184) {
-                          const fooBinBothRhsX4244 /*:string*/ = typeof NNeX135;
+                          const fooBinBothRhsX4244 /*:string*/ /*truthy*/ = typeof NNeX135;
                           const fooIfTestX13187 /*:boolean*/ = `number` == fooBinBothRhsX4244;
                           if (fooIfTestX13187) {
                             const fooIfTestX13188 /*:boolean*/ = 0 === NNeX135;
@@ -1343,7 +1343,7 @@ const TP$cloneX2$cloneX1 /*:(unused, unknown, unused, unknown, unknown)=>unknown
                           if (fooIfTestX13185) {
                             wNeX70 = CNeX70[2];
                             LNeX86 = CNeX70[1];
-                            const fooBinBothRhsX4245 /*:string*/ = typeof NNeX135;
+                            const fooBinBothRhsX4245 /*:string*/ /*truthy*/ = typeof NNeX135;
                             const fooIfTestX13189 /*:boolean*/ = `number` == fooBinBothRhsX4245;
                             if (fooIfTestX13189) {
                               const fooIfTestX13190 /*:boolean*/ = 0 === NNeX135;
@@ -1358,7 +1358,7 @@ const TP$cloneX2$cloneX1 /*:(unused, unknown, unused, unknown, unknown)=>unknown
                             }
                           } else {
                             jNeX68 = CNeX70[1];
-                            const fooBinBothRhsX4243 /*:string*/ = typeof NNeX135;
+                            const fooBinBothRhsX4243 /*:string*/ /*truthy*/ = typeof NNeX135;
                             const fooIfTestX13186 /*:boolean*/ = `number` == fooBinBothRhsX4243;
                             if (fooIfTestX13186) {
                               const fooIfTestX13191 /*:boolean*/ = 0 === NNeX135;
@@ -1442,8 +1442,8 @@ const TP$cloneX2$cloneX1 /*:(unused, unknown, unused, unknown, unknown)=>unknown
                                                 const iCeX154 /*:unknown*/ = $$0;
                                                 const oCeX143 /*:unknown*/ = $$1;
                                                 debugger;
-                                                const fooArrElementX3277 /*:array*/ = [0, oCeX143];
-                                                const fooCalleeParamX11328 /*:array*/ = [1, nCeX415, fooArrElementX3277];
+                                                const fooArrElementX3277 /*:array*/ /*truthy*/ = [0, oCeX143];
+                                                const fooCalleeParamX11328 /*:array*/ /*truthy*/ = [1, nCeX415, fooArrElementX3277];
                                                 const fooReturnArgX5625 /*:unknown*/ = RP(rCeX222, iCeX154, fooCalleeParamX11328, qNeX60);
                                                 return fooReturnArgX5625;
                                               };
@@ -1454,8 +1454,8 @@ const TP$cloneX2$cloneX1 /*:(unused, unknown, unused, unknown, unknown)=>unknown
                                                 const iCeX155 /*:unknown*/ = $$0;
                                                 const oCeX144 /*:unknown*/ = $$1;
                                                 debugger;
-                                                const fooArrElementX3279 /*:array*/ = [1, oCeX144];
-                                                const fooCalleeParamX11329 /*:array*/ = [1, nCeX415, fooArrElementX3279];
+                                                const fooArrElementX3279 /*:array*/ /*truthy*/ = [1, oCeX144];
+                                                const fooCalleeParamX11329 /*:array*/ /*truthy*/ = [1, nCeX415, fooArrElementX3279];
                                                 const fooReturnArgX5627 /*:unknown*/ = RP(rCeX222, iCeX155, fooCalleeParamX11329, qNeX60);
                                                 return fooReturnArgX5627;
                                               };
@@ -1465,7 +1465,7 @@ const TP$cloneX2$cloneX1 /*:(unused, unknown, unused, unknown, unknown)=>unknown
                                           } else {
                                             const fooIfTestX13155 /*:boolean*/ = fooSwitchCaseToStartX352 <= 19;
                                             if (fooIfTestX13155) {
-                                              const fooThrowArgX300 /*:array*/ = [0, WB, Rq];
+                                              const fooThrowArgX300 /*:array*/ /*truthy*/ = [0, WB, Rq];
                                               throw fooThrowArgX300;
                                             } else {
                                               const fooIfTestX13156 /*:boolean*/ = fooSwitchCaseToStartX352 <= 20;
@@ -1488,7 +1488,7 @@ const TP$cloneX2$cloneX1 /*:(unused, unknown, unused, unknown, unknown)=>unknown
                                                     if (fooIfTestX13159) {
                                                       const $NeX101 /*:unknown*/ = SSA_SNeX76[2];
                                                       const eCeX71 /*:unknown*/ = SSA_SNeX76[1];
-                                                      const fooBinBothRhsX4248 /*:string*/ = typeof eCeX71;
+                                                      const fooBinBothRhsX4248 /*:string*/ /*truthy*/ = typeof eCeX71;
                                                       const fooIfTestX13194 /*:boolean*/ = `number` == fooBinBothRhsX4248;
                                                       if (fooIfTestX13194) {
                                                         let fooSwitchCaseToStartX353 /*:number*/ = 4;
@@ -1547,7 +1547,7 @@ const TP$cloneX2$cloneX1 /*:(unused, unknown, unused, unknown, unknown)=>unknown
                                                             } else {
                                                               const fooIfTestX13199 /*:boolean*/ = fooSwitchCaseToStartX353 <= 3;
                                                               if (fooIfTestX13199) {
-                                                                const fooThrowArgX301 /*:array*/ = [0, WB, Oq];
+                                                                const fooThrowArgX301 /*:array*/ /*truthy*/ = [0, WB, Oq];
                                                                 throw fooThrowArgX301;
                                                               } else {
                                                                 const SSA_fooReturnArgX147 /*:unknown*/ = PP$cloneX3$clone(

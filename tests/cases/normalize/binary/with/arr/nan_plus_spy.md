@@ -23,7 +23,7 @@ $(arr);
 `````js filename=intro
 const x /*:unknown*/ = $spy();
 const tmpArrElement /*:string*/ = $coerce(x, `plustr`);
-const arr /*:array*/ = [tmpArrElement];
+const arr /*:array*/ /*truthy*/ = [tmpArrElement];
 $(arr);
 `````
 

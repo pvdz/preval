@@ -34,7 +34,7 @@ $(tmpCalleeParam);
 `````
 
 `````js filename=x
-const X /*:class*/ = class {};
+const X /*:class*/ /*truthy*/ = class {};
 export { X };
 `````
 

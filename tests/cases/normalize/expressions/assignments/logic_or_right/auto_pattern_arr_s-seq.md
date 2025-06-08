@@ -19,8 +19,8 @@ $(a);
 
 
 `````js filename=intro
-const tmpBindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
-const tmpArrPatternSplat /*:array*/ = [...tmpBindingPatternArrRoot];
+const tmpBindingPatternArrRoot /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
+const tmpArrPatternSplat /*:array*/ /*truthy*/ = [...tmpBindingPatternArrRoot];
 const a /*:unknown*/ = tmpArrPatternSplat[0];
 const tmpCalleeParam /*:unknown*/ = $(100);
 if (tmpCalleeParam) {
@@ -29,8 +29,8 @@ if (tmpCalleeParam) {
 } else {
   $(10);
   $(20);
-  const tmpNestedAssignArrPatternRhs /*:array*/ = [1, 2];
-  const tmpArrPatternSplat$1 /*:array*/ = [...tmpNestedAssignArrPatternRhs];
+  const tmpNestedAssignArrPatternRhs /*:array*/ /*truthy*/ = [1, 2];
+  const tmpArrPatternSplat$1 /*:array*/ /*truthy*/ = [...tmpNestedAssignArrPatternRhs];
   const tmpClusterSSA_a /*:unknown*/ = tmpArrPatternSplat$1[0];
   $(tmpNestedAssignArrPatternRhs);
   $(tmpClusterSSA_a);

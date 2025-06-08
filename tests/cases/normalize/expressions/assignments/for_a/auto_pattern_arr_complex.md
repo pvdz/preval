@@ -19,9 +19,9 @@ $(a);
 
 
 `````js filename=intro
-const tmpBindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
+const tmpBindingPatternArrRoot /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 [...tmpBindingPatternArrRoot];
-const tmpCalleeParam /*:array*/ = [1, 2];
+const tmpCalleeParam /*:array*/ /*truthy*/ = [1, 2];
 const tmpArrAssignPatternRhs /*:unknown*/ = $(tmpCalleeParam);
 [...tmpArrAssignPatternRhs];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {

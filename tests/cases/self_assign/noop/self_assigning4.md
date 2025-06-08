@@ -61,10 +61,10 @@ $(a, b);
 
 
 `````js filename=intro
-const arr /*:array*/ = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000];
+const arr /*:array*/ /*truthy*/ = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000];
 let arg1 /*:unknown*/ = 3;
 const func /*:(unknown, unknown)=>unknown*/ = function ($$0, $$1) {
-  const tmpPrevalAliasArgumentsAny /*:arguments*/ = arguments;
+  const tmpPrevalAliasArgumentsAny /*:arguments*/ /*truthy*/ = arguments;
   const newArg1 /*:unknown*/ = $$0;
   const unusedNewArg2 /*:unknown*/ = $$1;
   debugger;
@@ -91,7 +91,7 @@ const func /*:(unknown, unknown)=>unknown*/ = function ($$0, $$1) {
     $(`f`);
     const tmpMCF /*:unknown*/ = func.THIS_IS_AN_EXPANDO;
     const expando_result /*:unknown*/ = $dotCall(tmpMCF, func, `THIS_IS_AN_EXPANDO`, arrval);
-    const tmpCalleeParam /*:string*/ = typeof arg1;
+    const tmpCalleeParam /*:string*/ /*truthy*/ = typeof arg1;
     $(`arg is`, tmpCalleeParam);
     arg1[newIndex] = expando_result;
     $(`returning`, expando_result);

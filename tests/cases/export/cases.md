@@ -33,22 +33,22 @@ const f /*:()=>unknown*/ = function () {
   debugger;
   return undefined;
 };
-const a /*:number*/ = 1;
+const a /*:number*/ /*truthy*/ = 1;
 export { a };
-const b /*:number*/ = 2;
+const b /*:number*/ /*truthy*/ = 2;
 export { b };
-const X /*:class*/ = class {};
+const X /*:class*/ /*truthy*/ = class {};
 export { X };
-const g /*:number*/ = 1;
+const g /*:number*/ /*truthy*/ = 1;
 export { g };
-const h /*:number*/ = 2;
+const h /*:number*/ /*truthy*/ = 2;
 export { h as i };
 const tmpAnonDefaultExport /*:()=>unknown*/ = function () {
   debugger;
   return undefined;
 };
 export { tmpAnonDefaultExport as default };
-const c /*:number*/ = 3;
+const c /*:number*/ /*truthy*/ = 3;
 export { c };
 export { f };
 `````

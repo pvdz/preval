@@ -26,7 +26,7 @@ $(x + y);
 
 
 `````js filename=intro
-const obj /*:object*/ = { Infinity: 1, [`-Infinity`]: 2 };
+const obj /*:object*/ /*truthy*/ = { Infinity: 1, [`-Infinity`]: 2 };
 const x /*:unknown*/ = obj[$Number_POSITIVE_INFINITY];
 const y /*:unknown*/ = obj[$Number_NEGATIVE_INFINITY];
 const tmpCalleeParam /*:primitive*/ = x + y;

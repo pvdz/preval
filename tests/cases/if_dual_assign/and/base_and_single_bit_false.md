@@ -23,7 +23,7 @@ if (x) {
 
 `````js filename=intro
 const tmpBinLhs /*:unknown*/ = $(0);
-const x /*:number*/ = tmpBinLhs & 32;
+const x /*:number*/ /*&32*/ /*oneBitAnded*/ = tmpBinLhs & 32;
 if (x) {
   $(`fail`, 32);
 } else {

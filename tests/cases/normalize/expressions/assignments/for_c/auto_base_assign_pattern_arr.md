@@ -24,18 +24,18 @@ $(a, b);
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   const tmpArrElement /*:unknown*/ = $(2);
-  const tmpCalleeParam /*:array*/ = [tmpArrElement];
+  const tmpCalleeParam /*:array*/ /*truthy*/ = [tmpArrElement];
   const tmpNestedAssignArrPatternRhs /*:unknown*/ = $(tmpCalleeParam);
-  const tmpArrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
+  const tmpArrPatternSplat /*:array*/ /*truthy*/ = [...tmpNestedAssignArrPatternRhs];
   let tmpClusterSSA_b /*:unknown*/ = tmpArrPatternSplat[0];
   let tmpClusterSSA_a /*:unknown*/ = tmpNestedAssignArrPatternRhs;
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       const tmpArrElement$1 /*:unknown*/ = $(2);
-      const tmpCalleeParam$1 /*:array*/ = [tmpArrElement$1];
+      const tmpCalleeParam$1 /*:array*/ /*truthy*/ = [tmpArrElement$1];
       const tmpNestedAssignArrPatternRhs$1 /*:unknown*/ = $(tmpCalleeParam$1);
-      const tmpArrPatternSplat$1 /*:array*/ = [...tmpNestedAssignArrPatternRhs$1];
+      const tmpArrPatternSplat$1 /*:array*/ /*truthy*/ = [...tmpNestedAssignArrPatternRhs$1];
       tmpClusterSSA_b = tmpArrPatternSplat$1[0];
       tmpClusterSSA_a = tmpNestedAssignArrPatternRhs$1;
     } else {
@@ -44,8 +44,8 @@ if (tmpIfTest) {
   }
   $(tmpClusterSSA_a, tmpClusterSSA_b);
 } else {
-  const a /*:object*/ = { a: 999, b: 1000 };
-  const b /*:array*/ = [];
+  const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
+  const b /*:array*/ /*truthy*/ = [];
   $(a, b);
 }
 `````

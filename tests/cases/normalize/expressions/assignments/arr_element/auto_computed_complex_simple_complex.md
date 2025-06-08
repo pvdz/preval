@@ -22,8 +22,8 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal /*:unknown*/ = $(1);
 const tmpObjLitVal$1 /*:unknown*/ = $(1);
-const a /*:object*/ = { b: tmpObjLitVal };
-const tmpClusterSSA_a /*:object*/ = { b: tmpObjLitVal$1 };
+const a /*:object*/ /*truthy*/ = { b: tmpObjLitVal };
+const tmpClusterSSA_a /*:object*/ /*truthy*/ = { b: tmpObjLitVal$1 };
 const tmpCalleeParam /*:primitive*/ = a + tmpClusterSSA_a;
 $(tmpCalleeParam);
 const tmpAssignMemLhsObj$1 /*:unknown*/ = $(tmpClusterSSA_a);

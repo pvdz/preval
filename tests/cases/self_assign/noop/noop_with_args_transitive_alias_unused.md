@@ -47,7 +47,7 @@ $(the_self_closing_func()); // This should prevent the transform (!)
 
 `````js filename=intro
 const the_scf_alias2 /*:unknown*/ = the_scf_alias1;
-const main_data_arr /*:array*/ = [`this`, `contents`, `is`, `not`, `relevant`, `here`];
+const main_data_arr /*:array*/ /*truthy*/ = [`this`, `contents`, `is`, `not`, `relevant`, `here`];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const a /*:unknown*/ = the_scf_alias2(2);
   const b /*:number*/ = $Number_parseInt(a);
@@ -55,7 +55,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   if (b) {
     break;
   } else {
-    const tmpMCPa /*:primitive*/ = $dotCall($array_shift, main_data_arr, `shift`);
+    const tmpMCPa /*:primitive*/ /*truthy*/ = $dotCall($array_shift, main_data_arr, `shift`);
     $dotCall($array_push, main_data_arr, `push`, tmpMCPa);
   }
 }

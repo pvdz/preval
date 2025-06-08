@@ -23,7 +23,7 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(100);
 if (tmpCalleeParam) {
-  const b /*:object*/ = { $: $ };
+  const b /*:object*/ /*truthy*/ = { $: $ };
   const tmpMCCO /*:unknown*/ = $(b);
   const tmpMCCP /*:unknown*/ = $(`\$`);
   const tmpMCF /*:unknown*/ = tmpMCCO[tmpMCCP];
@@ -32,7 +32,7 @@ if (tmpCalleeParam) {
   $(tmpNestedComplexRhs);
 } else {
   $(tmpCalleeParam);
-  const a /*:object*/ = { a: 999, b: 1000 };
+  const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
   $(a);
 }
 `````

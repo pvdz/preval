@@ -21,7 +21,7 @@ $(Number([spy, spy]));
 
 
 `````js filename=intro
-const spy /*:object*/ = {
+const spy /*:object*/ /*truthy*/ = {
   valueOf() {
     debugger;
     $(`x`);
@@ -33,7 +33,7 @@ const spy /*:object*/ = {
     return undefined;
   },
 };
-const tmpNumberFirstArg /*:array*/ = [spy, spy];
+const tmpNumberFirstArg /*:array*/ /*truthy*/ = [spy, spy];
 const tmpCalleeParam /*:number*/ = $coerce(tmpNumberFirstArg, `number`);
 $(tmpCalleeParam);
 `````

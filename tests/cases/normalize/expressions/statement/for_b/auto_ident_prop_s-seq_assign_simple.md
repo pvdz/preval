@@ -21,7 +21,7 @@ $(a, b);
 
 
 `````js filename=intro
-const b /*:object*/ = { c: 2 };
+const b /*:object*/ /*truthy*/ = { c: 2 };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   b.c = 2;
   $(1);

@@ -23,9 +23,9 @@ $('b_length', b.length);
 
 `````js filename=intro
 const source /*:unknown*/ = $(`get_arr`);
-const tmpArrPatternSplat /*:array*/ = [...source];
+const tmpArrPatternSplat /*:array*/ /*truthy*/ = [...source];
 const a /*:unknown*/ = tmpArrPatternSplat[0];
-const b /*:array*/ = $dotCall($array_slice, tmpArrPatternSplat, `slice`, 1);
+const b /*:array*/ /*truthy*/ = $dotCall($array_slice, tmpArrPatternSplat, `slice`, 1);
 $(`a_val`, a);
 $(`b_val`, b);
 const tmpCalleeParam /*:number*/ = b.length;

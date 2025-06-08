@@ -18,7 +18,7 @@ $('ok');
 
 
 `````js filename=intro
-const tmpCalleeParam /*:array*/ = [`fail`];
+const tmpCalleeParam /*:array*/ /*truthy*/ = [`fail`];
 const tmpSSA_tmpOPAD /*:unknown*/ = $(tmpCalleeParam);
 [...tmpSSA_tmpOPAD];
 $(`ok`);

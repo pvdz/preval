@@ -22,8 +22,8 @@ $(o.arr());
 
 
 `````js filename=intro
-const arr /*:array*/ = [1, 2, 3];
-const o /*:object*/ = { arr: arr };
+const arr /*:array*/ /*truthy*/ = [1, 2, 3];
+const o /*:object*/ /*truthy*/ = { arr: arr };
 const tmpCalleeParam /*:unknown*/ = $dotCall(arr, o, `arr`);
 $(tmpCalleeParam);
 `````

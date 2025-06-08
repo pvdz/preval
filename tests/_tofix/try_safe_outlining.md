@@ -37,7 +37,7 @@ $(x);           // x=1 2 3 4
 
 
 `````js filename=intro
-let x /*:number*/ = 1;
+let x /*:number*/ /*truthy*/ = 1;
 let $implicitThrow /*:boolean*/ = false;
 let $finalCatchArg /*:unknown*/ = undefined;
 try {

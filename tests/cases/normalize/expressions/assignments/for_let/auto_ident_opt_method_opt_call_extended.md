@@ -25,7 +25,7 @@ const tmpIfTest$1 /*:boolean*/ = $ == null;
 let xyz /*:unknown*/ /*ternaryConst*/ = undefined;
 if (tmpIfTest$1) {
 } else {
-  const tmpObjLitVal$1 /*:object*/ = { e: $ };
+  const tmpObjLitVal$1 /*:object*/ /*truthy*/ = { e: $ };
   xyz = $dotCall($, tmpObjLitVal$1, `e`, 1);
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {

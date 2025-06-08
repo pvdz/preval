@@ -22,14 +22,14 @@ $(obj.f());
 
 `````js filename=intro
 const tmpObjLitVal$1 /*:()=>undefined*/ = function () {
-  const tmpPrevalAliasThis /*:object*/ = this;
+  const tmpPrevalAliasThis /*:object*/ /*truthy*/ = this;
   debugger;
   tmpPrevalAliasThis.g = 2;
   const tmpCalleeParam /*:unknown*/ = tmpPrevalAliasThis.g;
   $(tmpCalleeParam);
   return undefined;
 };
-const obj /*:object*/ = { g: 1, f: tmpObjLitVal$1 };
+const obj /*:object*/ /*truthy*/ = { g: 1, f: tmpObjLitVal$1 };
 const tmpCalleeParam$1 /*:unknown*/ = $dotCall(tmpObjLitVal$1, obj, `f`);
 $(tmpCalleeParam$1);
 `````

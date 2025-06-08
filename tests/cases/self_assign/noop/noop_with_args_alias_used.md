@@ -45,7 +45,7 @@ $(the_scf_alias()); // This should prevent the transform (!)
 
 
 `````js filename=intro
-const main_data_arr /*:array*/ = [`this`, `contents`, `is`, `not`, `relevant`, `here`];
+const main_data_arr /*:array*/ /*truthy*/ = [`this`, `contents`, `is`, `not`, `relevant`, `here`];
 const the_self_closing_func /*:(primitive)=>primitive*/ = function ($$0) {
   const $dlr_$$1 /*:primitive*/ = $$0;
   debugger;
@@ -60,7 +60,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   if (b) {
     break;
   } else {
-    const tmpMCPa /*:primitive*/ = $dotCall($array_shift, main_data_arr, `shift`);
+    const tmpMCPa /*:primitive*/ /*truthy*/ = $dotCall($array_shift, main_data_arr, `shift`);
     $dotCall($array_push, main_data_arr, `push`, tmpMCPa);
   }
 }

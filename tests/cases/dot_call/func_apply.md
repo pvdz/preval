@@ -22,13 +22,13 @@ f.call({pass: 1}, [1,2,3], 'nope' ,$);
 
 `````js filename=intro
 const f /*:()=>unknown*/ = function () {
-  const tmpPrevalAliasThis /*:object*/ = this;
+  const tmpPrevalAliasThis /*:object*/ /*truthy*/ = this;
   debugger;
   $(tmpPrevalAliasThis);
   return undefined;
 };
-const tmpMCP /*:object*/ = { pass: 1 };
-const tmpMCP$1 /*:array*/ = [1, 2, 3];
+const tmpMCP /*:object*/ /*truthy*/ = { pass: 1 };
+const tmpMCP$1 /*:array*/ /*truthy*/ = [1, 2, 3];
 $dotCall($function_call, f, `call`, tmpMCP, tmpMCP$1, `nope`, $);
 `````
 

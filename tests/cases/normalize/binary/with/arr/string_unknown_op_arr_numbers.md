@@ -52,11 +52,11 @@ $(arr2);
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(``);
 const tmpBinBothRhs /*:string*/ = $coerce(tmpCalleeParam, `string`);
-const tmpBinBothRhs$27 /*:array*/ = [10, 20, 30];
+const tmpBinBothRhs$27 /*:array*/ /*truthy*/ = [10, 20, 30];
 const tmpArrElement$25 /*:boolean*/ = tmpBinBothRhs == tmpBinBothRhs$27;
-const tmpBinBothRhs$29 /*:array*/ = [10, 20, 30];
+const tmpBinBothRhs$29 /*:array*/ /*truthy*/ = [10, 20, 30];
 const tmpArrElement$27 /*:boolean*/ = tmpBinBothRhs != tmpBinBothRhs$29;
-const tmpArrElement$7 /*:string*/ = `${tmpBinBothRhs}10,20,30`;
+const tmpArrElement$7 /*:string*/ /*truthy*/ = `${tmpBinBothRhs}10,20,30`;
 const tmpArrElement$11 /*:number*/ = tmpBinBothRhs << 0;
 const tmpArrElement$13 /*:number*/ = tmpBinBothRhs >> 0;
 const tmpArrElement$15 /*:number*/ = tmpBinBothRhs >>> 0;
@@ -64,9 +64,9 @@ const tmpArrElement$17 /*:boolean*/ = tmpBinBothRhs < `10,20,30`;
 const tmpArrElement$19 /*:boolean*/ = tmpBinBothRhs > `10,20,30`;
 const tmpArrElement$21 /*:boolean*/ = tmpBinBothRhs <= `10,20,30`;
 const tmpArrElement$23 /*:boolean*/ = tmpBinBothRhs >= `10,20,30`;
-const tmpArrElement$35 /*:number*/ = tmpBinBothRhs ^ 0;
-const tmpArrElement$37 /*:number*/ = tmpBinBothRhs | 0;
-const arr /*:array*/ = [
+const tmpArrElement$35 /*:number*/ /*^0*/ = tmpBinBothRhs ^ 0;
+const tmpArrElement$37 /*:number*/ /*|0*/ = tmpBinBothRhs | 0;
+const arr /*:array*/ /*truthy*/ = [
   NaN,
   NaN,
   NaN,
@@ -89,11 +89,11 @@ const arr /*:array*/ = [
   tmpArrElement$37,
 ];
 $(arr);
-const tmpBinBothRhs$41 /*:array*/ = [];
-const tmpBinBothRhs$43 /*:array*/ = [];
+const tmpBinBothRhs$41 /*:array*/ /*truthy*/ = [];
+const tmpBinBothRhs$43 /*:array*/ /*truthy*/ = [];
 const tmpArrElement$39 /*:boolean*/ = tmpBinBothRhs in tmpBinBothRhs$41;
 const tmpArrElement$41 /*:boolean*/ = tmpBinBothRhs instanceof tmpBinBothRhs$43;
-const arr2 /*:array*/ = [tmpArrElement$39, tmpArrElement$41];
+const arr2 /*:array*/ /*truthy*/ = [tmpArrElement$39, tmpArrElement$41];
 $(arr2);
 `````
 

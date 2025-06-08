@@ -28,7 +28,7 @@ let test /*:unknown*/ = true;
 while (true) {
   $(`yolo`);
   counter = counter + 1;
-  const tmpCalleeParam$1 /*:object*/ = { a: 1 };
+  const tmpCalleeParam$1 /*:object*/ /*truthy*/ = { a: 1 };
   const tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$1);
   const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {

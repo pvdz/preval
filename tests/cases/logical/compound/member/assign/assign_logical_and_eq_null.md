@@ -21,7 +21,7 @@ $(x, b);
 
 `````js filename=intro
 const x /*:unknown*/ = $(`old`);
-const tmpCalleeParam /*:object*/ = { c: null };
+const tmpCalleeParam /*:object*/ /*truthy*/ = { c: null };
 const b /*:unknown*/ = $(tmpCalleeParam);
 const tmpIfTest /*:unknown*/ = $(true);
 if (tmpIfTest) {

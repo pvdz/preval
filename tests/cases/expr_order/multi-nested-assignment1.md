@@ -78,7 +78,7 @@ $(a, b, c, d, e);
 
 
 `````js filename=intro
-let obj /*:unknown*/ = {
+let obj /*:unknown*/ /*truthy*/ = {
   get c() {
     debugger;
     $(`get`);

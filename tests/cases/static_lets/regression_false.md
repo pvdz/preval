@@ -33,13 +33,13 @@ $(x);
 
 `````js filename=intro
 const oops /*:(array)=>undefined*/ = function (...$$0 /*:array*/) {
-  const args /*:array*/ = $$0;
+  const args /*:array*/ /*truthy*/ = $$0;
   debugger;
   $(...args);
   x = `fail`;
   return undefined;
 };
-let x /*:primitive*/ = 5;
+let x /*:primitive*/ /*truthy*/ = 5;
 $(5);
 const tmpIfTest /*:unknown*/ = $(false);
 if (tmpIfTest) {

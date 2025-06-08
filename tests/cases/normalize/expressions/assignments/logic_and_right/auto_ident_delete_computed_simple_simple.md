@@ -22,14 +22,14 @@ $(a, arg);
 
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(100);
-const arg /*:object*/ = { y: 1 };
+const arg /*:object*/ /*truthy*/ = { y: 1 };
 if (tmpCalleeParam) {
   const tmpNestedComplexRhs /*:boolean*/ = delete arg.y;
   $(tmpNestedComplexRhs);
   $(tmpNestedComplexRhs, arg);
 } else {
   $(tmpCalleeParam);
-  const a /*:object*/ = { a: 999, b: 1000 };
+  const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
   $(a, arg);
 }
 `````

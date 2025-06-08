@@ -22,8 +22,8 @@ $(a, arg);
 
 `````js filename=intro
 const tmpIfTest /*:unknown*/ = $(100);
-const a /*:object*/ = { a: 999, b: 1000 };
-const arg /*:object*/ = { y: 1 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
+const arg /*:object*/ /*truthy*/ = { y: 1 };
 if (tmpIfTest) {
   $(a, arg);
 } else {

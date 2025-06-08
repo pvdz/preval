@@ -25,7 +25,7 @@ $(a);
 `````js filename=intro
 let a /*:unknown*/ = undefined;
 $(100);
-const b /*:object*/ = { x: 1 };
+const b /*:object*/ /*truthy*/ = { x: 1 };
 const tmpChainRootProp /*:unknown*/ = $(b);
 const tmpIfTest$1 /*:boolean*/ = tmpChainRootProp == null;
 if (tmpIfTest$1) {

@@ -19,7 +19,7 @@ $(a);
 
 
 `````js filename=intro
-const a /*:undefined*/ = undefined;
+const a /*:undefined*/ /*falsy*/ = undefined;
 export { a as default };
 $(undefined);
 `````

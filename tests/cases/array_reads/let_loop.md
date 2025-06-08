@@ -25,7 +25,7 @@ $(arr);
 `````js filename=intro
 $(2);
 if ($) {
-  const tmpClusterSSA_arr /*:array*/ = [2, 3, 4];
+  const tmpClusterSSA_arr /*:array*/ /*truthy*/ = [2, 3, 4];
   $(tmpClusterSSA_arr);
 } else {
   let arr /*:unknown*/ = undefined;

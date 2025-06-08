@@ -24,7 +24,7 @@ const tmpOPBD /*:unknown*/ = $Object_prototype.x;
 let tmpOPAD /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpIfTest$1 /*:boolean*/ = tmpOPBD === undefined;
 if (tmpIfTest$1) {
-  const tmpCalleeParam$1 /*:object*/ = { y: `pass2` };
+  const tmpCalleeParam$1 /*:object*/ /*truthy*/ = { y: `pass2` };
   tmpOPAD = $(tmpCalleeParam$1);
 } else {
   tmpOPAD = tmpOPBD;

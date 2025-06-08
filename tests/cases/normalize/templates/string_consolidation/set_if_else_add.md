@@ -53,10 +53,10 @@ const t /*:unknown*/ = $(`t`);
 const tmpStringConcatR /*:string*/ = $coerce(s, `plustr`);
 if (t) {
   const tmpStringConcatL$1 /*:string*/ = $coerce(t, `plustr`);
-  const tmpClusterSSA_z /*:string*/ = `${tmpStringConcatR}abcdef${tmpStringConcatL$1}`;
+  const tmpClusterSSA_z /*:string*/ /*truthy*/ = `${tmpStringConcatR}abcdef${tmpStringConcatL$1}`;
   $(tmpClusterSSA_z);
 } else {
-  const tmpClusterSSA_z$1 /*:string*/ = `${tmpStringConcatR}abcghi`;
+  const tmpClusterSSA_z$1 /*:string*/ /*truthy*/ = `${tmpStringConcatR}abcghi`;
   $(tmpClusterSSA_z$1);
 }
 `````

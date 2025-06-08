@@ -21,7 +21,7 @@ for (const x of arr) $(x);
 
 
 `````js filename=intro
-const arr /*:array*/ = [1, 2, 3];
+const arr /*:array*/ /*truthy*/ = [1, 2, 3];
 const tmpForOfGenNext /*:unknown*/ = $forOf(arr);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();

@@ -21,7 +21,7 @@ const tmpCalleeParam$1 /*:unknown*/ = $(10);
 const tmpBinBothRhs$1 /*:string*/ = $coerce(tmpCalleeParam$1, `string`);
 const tmpCalleeParam$3 /*:unknown*/ = $(20);
 const tmpBinBothRhs /*:string*/ = $coerce(tmpCalleeParam$3, `string`);
-const tmpCalleeParam /*:string*/ = `abc ${tmpBinBothRhs$1} ${tmpBinBothRhs} def`;
+const tmpCalleeParam /*:string*/ /*truthy*/ = `abc ${tmpBinBothRhs$1} ${tmpBinBothRhs} def`;
 $(tmpCalleeParam);
 `````
 

@@ -24,7 +24,7 @@ $(a);
 const tmpBinBothLhs /*:unknown*/ = $(100);
 const tmpCalleeParam$1 /*:unknown*/ = $(1);
 const tmpCalleeParam$3 /*:unknown*/ = $(2);
-const a /*:object*/ = new $(tmpCalleeParam$1, tmpCalleeParam$3);
+const a /*:object*/ /*truthy*/ = new $(tmpCalleeParam$1, tmpCalleeParam$3);
 const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + a;
 $(tmpCalleeParam);
 $(a);

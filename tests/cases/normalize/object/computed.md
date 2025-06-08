@@ -22,7 +22,7 @@ $(obj);
 `````js filename=intro
 const tmpObjLitPropKey /*:unknown*/ = $(1);
 const tmpObjLitPropVal /*:unknown*/ = $(2);
-const obj /*:object*/ = { [tmpObjLitPropKey]: tmpObjLitPropVal };
+const obj /*:object*/ /*truthy*/ = { [tmpObjLitPropKey]: tmpObjLitPropVal };
 $(obj);
 `````
 

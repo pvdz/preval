@@ -29,7 +29,7 @@ const tmpIfTest /*:unknown*/ = $(0);
 if (tmpIfTest) {
   $(`fail`);
 } else {
-  const tmpCalleeParam$1 /*:boolean*/ = !$;
+  const tmpCalleeParam$1 /*:boolean*/ /*banged*/ = !$;
   $(tmpCalleeParam$1);
 }
 `````

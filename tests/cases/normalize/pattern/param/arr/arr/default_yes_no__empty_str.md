@@ -20,7 +20,7 @@ $(f('', 200));
 
 
 `````js filename=intro
-const tmpCalleeParam /*:array*/ = [`pass2`];
+const tmpCalleeParam /*:array*/ /*truthy*/ = [`pass2`];
 const tmpClusterSSA_tmpArrPatternStep /*:unknown*/ = $(tmpCalleeParam);
 [...tmpClusterSSA_tmpArrPatternStep];
 $(`ok`);

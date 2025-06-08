@@ -33,7 +33,7 @@ const g /*:()=>string*/ = function () {
   debugger;
   return `win`;
 };
-const obj /*:object*/ = { f: g };
+const obj /*:object*/ /*truthy*/ = { f: g };
 const alias /*:unknown*/ = $Number_prototype[`f f`];
 $(order);
 `````

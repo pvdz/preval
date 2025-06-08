@@ -24,7 +24,7 @@ if (y !== 200) {
 
 `````js filename=intro
 const x /*:unknown*/ = $(200);
-const y /*:number*/ = x & 200;
+const y /*:number*/ /*&200*/ = x & 200;
 const tmpIfTest /*:boolean*/ = y === 200;
 if (tmpIfTest) {
   $(`pass`);

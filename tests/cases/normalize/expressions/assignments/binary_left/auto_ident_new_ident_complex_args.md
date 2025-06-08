@@ -23,7 +23,7 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam$1 /*:unknown*/ = $(1);
 const tmpCalleeParam$3 /*:unknown*/ = $(2);
-const a /*:object*/ = new $(tmpCalleeParam$1, tmpCalleeParam$3);
+const a /*:object*/ /*truthy*/ = new $(tmpCalleeParam$1, tmpCalleeParam$3);
 const tmpBinBothRhs /*:unknown*/ = $(100);
 const tmpCalleeParam /*:primitive*/ = a + tmpBinBothRhs;
 $(tmpCalleeParam);

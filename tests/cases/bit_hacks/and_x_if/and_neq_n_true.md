@@ -23,8 +23,8 @@ $(z);
 const tmpFree /*:(number)=>boolean*/ = function $free($$0) {
   const x$1 /*:number*/ = $$0;
   debugger;
-  const y /*:number*/ = x$1 & 32768;
-  const tmpRet /*:boolean*/ = !y;
+  const y /*:number*/ /*&32768*/ /*oneBitAnded*/ = x$1 & 32768;
+  const tmpRet /*:boolean*/ /*banged*/ = !y;
   return tmpRet;
 };
 const tmpUnaryArg /*:unknown*/ = $(1);

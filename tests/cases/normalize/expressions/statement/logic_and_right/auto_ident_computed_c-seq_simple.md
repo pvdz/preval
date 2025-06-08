@@ -22,8 +22,8 @@ $(a, b);
 
 `````js filename=intro
 const tmpIfTest /*:unknown*/ = $(100);
-const b /*:object*/ = { c: 1 };
-const a /*:object*/ = { a: 999, b: 1000 };
+const b /*:object*/ /*truthy*/ = { c: 1 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   const tmpCompObj /*:unknown*/ = $(b);
   const tmpCalleeParam /*:unknown*/ = $(`c`);

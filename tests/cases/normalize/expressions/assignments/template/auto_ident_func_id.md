@@ -23,7 +23,9 @@ const a /*:()=>unknown*/ = function () {
   debugger;
   return undefined;
 };
-$(`before  function(){}  after`);
+const tmpBinBothRhs /*:string*/ = $coerce(a, `string`);
+const tmpCalleeParam /*:string*/ /*truthy*/ = `before  ${tmpBinBothRhs}  after`;
+$(tmpCalleeParam);
 $(a);
 `````
 
@@ -33,7 +35,7 @@ $(a);
 
 `````js filename=intro
 const a = function () {};
-$(`before  function(){}  after`);
+$(`before  ${a}  after`);
 $(a);
 `````
 
@@ -46,7 +48,9 @@ const a = function() {
   debugger;
   return undefined;
 };
-$( "before  function(){}  after" );
+const b = $coerce( a, "string" );
+const c = `before  ${b}  after`;
+$( c );
 $( a );
 `````
 
@@ -75,7 +79,7 @@ $(a);
 ## Todos triggered
 
 
-- (todo) free with zero args, we can eliminate this?
+- (todo) serialization of function, fallback if we know the function is not going to be a builtin...
 
 
 ## Globals

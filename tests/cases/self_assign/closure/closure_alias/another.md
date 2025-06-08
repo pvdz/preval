@@ -32,7 +32,7 @@ x() === zzzz();     // a4 === a4
 `````js filename=intro
 let zzzz /*:()=>unknown*/ = function () {
   debugger;
-  const a /*:array*/ = [];
+  const a /*:array*/ /*truthy*/ = [];
   zzzz = function ($$0, $$1) {
     debugger;
     return a;

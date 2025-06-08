@@ -25,7 +25,7 @@ $('after', blob)
 try {
   $(`try`, 1);
 } catch (e) {}
-const blob /*:array*/ = [2, 3];
+const blob /*:array*/ /*truthy*/ = [2, 3];
 $(`after`, blob);
 `````
 

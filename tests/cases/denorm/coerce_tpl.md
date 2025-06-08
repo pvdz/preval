@@ -20,7 +20,7 @@ $(y);
 
 `````js filename=intro
 const x /*:string*/ = $coerce(val, `plustr`);
-const y /*:string*/ = `(${x})`;
+const y /*:string*/ /*truthy*/ = `(${x})`;
 $(y);
 `````
 

@@ -25,7 +25,7 @@ if (set) {
 
 `````js filename=intro
 const v /*:unknown*/ = $(65);
-const and /*:number*/ = v & 64;
+const and /*:number*/ /*&64*/ /*oneBitAnded*/ = v & 64;
 if (and) {
   $(`pass`);
 } else {

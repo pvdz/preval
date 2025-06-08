@@ -24,8 +24,8 @@ $(a, x, y);
 `````js filename=intro
 const tmpObjLitVal /*:unknown*/ = $(3);
 const tmpObjLitVal$1 /*:unknown*/ = $(4);
-const a /*:object*/ = { a: 999, b: 1000 };
-const tmpNestedAssignObjPatternRhs /*:object*/ = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
+const tmpNestedAssignObjPatternRhs /*:object*/ /*truthy*/ = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
 const tmpClusterSSA_a /*:number*/ = a * tmpNestedAssignObjPatternRhs;
 $(tmpClusterSSA_a);
 $(tmpClusterSSA_a, tmpObjLitVal, tmpObjLitVal$1);

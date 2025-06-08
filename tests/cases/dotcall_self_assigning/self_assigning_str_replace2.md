@@ -41,7 +41,7 @@ $(str);
 `````js filename=intro
 let count /*:number*/ = 77;
 let str /*:string*/ = `var 44=["\\13\\17\\31\\8\\12\\29\\21\\22\\7\\16\\8\\7\\9`;
-const arr /*:array*/ = [``, ``, ``, ``, ``, ``, ``, `x5C`, `x35`, `x36`, ``, `x31`];
+const arr /*:array*/ /*truthy*/ = [``, ``, ``, ``, ``, ``, ``, `x5C`, `x35`, `x36`, ``, `x31`];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpPostUpdArgIdent$1 /*:unknown*/ = count;
   count = count - 1;
@@ -49,7 +49,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     const chr /*:primitive*/ = arr[count];
     if (chr) {
       const chr2 /*:primitive*/ = arr[count];
-      const regex /*:regex*/ = new $regex_constructor(`xyz`, `g`);
+      const regex /*:regex*/ /*truthy*/ = new $regex_constructor(`xyz`, `g`);
       str = $dotCall($string_replace, str, `replace`, regex, chr2);
     } else {
     }

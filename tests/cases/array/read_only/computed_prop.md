@@ -21,7 +21,7 @@ $(`${arr[2]}xyz`);
 
 `````js filename=intro
 $(undefined);
-const arr /*:array*/ = [1, , 3, 4];
+const arr /*:array*/ /*truthy*/ = [1, , 3, 4];
 const tmpCalleeParam$1 /*:unknown*/ = arr[`1,[object Object],3,4`];
 $(tmpCalleeParam$1);
 $(`3xyz`);

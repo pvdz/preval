@@ -25,10 +25,10 @@ $('nf_resolved_options_style', formatter.resolvedOptions().style);
 `````js filename=intro
 const locale /*:unknown*/ = $(`nf_locale`, `de-DE`);
 const tmpObjLitVal$1 /*:unknown*/ = $(`nf_currency`, `EUR`);
-const tmpCalleeParam /*:object*/ = { style: `currency`, currency: tmpObjLitVal$1 };
+const tmpCalleeParam /*:object*/ /*truthy*/ = { style: `currency`, currency: tmpObjLitVal$1 };
 const options /*:unknown*/ = $(`nf_options`, tmpCalleeParam);
 const tmpNewCallee /*:unknown*/ = Intl.NumberFormat;
-const formatter /*:object*/ = new tmpNewCallee(locale, options);
+const formatter /*:object*/ /*truthy*/ = new tmpNewCallee(locale, options);
 const number /*:unknown*/ = $(`nf_number_val`, 123456.789);
 const tmpMCF /*:unknown*/ = formatter.format;
 const tmpCalleeParam$1 /*:unknown*/ = $dotCall(tmpMCF, formatter, `format`, number);

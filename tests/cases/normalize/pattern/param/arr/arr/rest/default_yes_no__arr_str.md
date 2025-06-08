@@ -20,7 +20,7 @@ $(f(['abc', 4, 5], 200));
 
 
 `````js filename=intro
-const x /*:array*/ = [`a`, `b`, `c`];
+const x /*:array*/ /*truthy*/ = [`a`, `b`, `c`];
 $(x);
 `````
 

@@ -22,16 +22,16 @@ $(a, b);
 
 `````js filename=intro
 const tmpArrElement /*:unknown*/ = $(2);
-const tmpCalleeParam /*:array*/ = [tmpArrElement];
+const tmpCalleeParam /*:array*/ /*truthy*/ = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs /*:unknown*/ = $(tmpCalleeParam);
 [...tmpNestedAssignArrPatternRhs];
 const tmpArrElement$1 /*:unknown*/ = $(2);
-const tmpCalleeParam$1 /*:array*/ = [tmpArrElement$1];
+const tmpCalleeParam$1 /*:array*/ /*truthy*/ = [tmpArrElement$1];
 const tmpNestedAssignArrPatternRhs$1 /*:unknown*/ = $(tmpCalleeParam$1);
-const tmpArrPatternSplat$1 /*:array*/ = [...tmpNestedAssignArrPatternRhs$1];
+const tmpArrPatternSplat$1 /*:array*/ /*truthy*/ = [...tmpNestedAssignArrPatternRhs$1];
 const tmpSSA_b /*:unknown*/ = tmpArrPatternSplat$1[0];
 tmpNestedAssignArrPatternRhs + tmpNestedAssignArrPatternRhs$1;
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a, tmpSSA_b);
 `````
 

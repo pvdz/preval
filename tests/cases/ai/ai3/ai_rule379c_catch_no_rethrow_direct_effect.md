@@ -33,7 +33,7 @@ $('log', 'done: finished');
 
 `````js filename=intro
 try {
-  const tmpThrowArg /*:object*/ = new Error(`TestError379c`);
+  const tmpThrowArg /*:object*/ /*truthy*/ = new Error(`TestError379c`);
   throw tmpThrowArg;
 } catch (e) {
   const decision /*:unknown*/ = $(`log_and_return`, `rethrow_c_decision: false`, false);

@@ -45,7 +45,7 @@ if (tmpIfTest) {
 }
 const tmpIfTest$3 /*:boolean*/ = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$3) {
-  const b /*:object*/ = { $: $ };
+  const b /*:object*/ /*truthy*/ = { $: $ };
   const tmpMCCO /*:unknown*/ = $(b);
   const tmpMCCP /*:unknown*/ = $(`\$`);
   const tmpMCF /*:unknown*/ = tmpMCCO[tmpMCCP];

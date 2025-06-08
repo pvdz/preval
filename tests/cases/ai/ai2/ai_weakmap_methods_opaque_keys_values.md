@@ -32,10 +32,10 @@ $('wm_has_key1_after_delete', wmap.has(key1));
 
 
 `````js filename=intro
-const wmap /*:object*/ = new WeakMap();
-const tmpCalleeParam /*:object*/ = {};
+const wmap /*:object*/ /*truthy*/ = new WeakMap();
+const tmpCalleeParam /*:object*/ /*truthy*/ = {};
 const key1 /*:unknown*/ = $(`wm_key1_methods`, tmpCalleeParam);
-const tmpCalleeParam$1 /*:object*/ = { id: `b` };
+const tmpCalleeParam$1 /*:object*/ /*truthy*/ = { id: `b` };
 const key2 /*:unknown*/ = $(`wm_key2_methods`, tmpCalleeParam$1);
 const val1 /*:unknown*/ = $(`wm_val1_methods`);
 const tmpMCF /*:unknown*/ = wmap.set;
@@ -50,7 +50,7 @@ const tmpMCF$5 /*:unknown*/ = wmap.has;
 const tmpCalleeParam$7 /*:unknown*/ = $dotCall(tmpMCF$5, wmap, `has`, key2);
 $(`wm_has_key2_unseen`, tmpCalleeParam$7);
 const tmpMCF$7 /*:unknown*/ = wmap.set;
-const tmpCalleeParam$9 /*:object*/ = {};
+const tmpCalleeParam$9 /*:object*/ /*truthy*/ = {};
 const tmpMCP /*:unknown*/ = $(`wm_key_temp`, tmpCalleeParam$9);
 const tmpMCP$1 /*:unknown*/ = $(`wm_val_temp`);
 $dotCall(tmpMCF$7, wmap, `set`, tmpMCP, tmpMCP$1);

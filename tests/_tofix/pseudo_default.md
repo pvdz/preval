@@ -30,7 +30,7 @@ $(val);
 `````js filename=intro
 const tmpIfTest /*:boolean*/ = arg === undefined;
 if (tmpIfTest) {
-  const tmpClusterSSA_val /*:object*/ = {};
+  const tmpClusterSSA_val /*:object*/ /*truthy*/ = {};
   $(tmpClusterSSA_val);
 } else {
   $(arg);

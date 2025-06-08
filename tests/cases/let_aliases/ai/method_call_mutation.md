@@ -23,13 +23,13 @@ $(a, b);
 
 `````js filename=intro
 const mutate /*:()=>undefined*/ = function () {
-  const tmpPrevalAliasThis /*:object*/ = this;
+  const tmpPrevalAliasThis /*:object*/ /*truthy*/ = this;
   debugger;
   tmpPrevalAliasThis.x = `changed`;
   return undefined;
 };
 const x /*:unknown*/ = $(`val`);
-const tmpMCP /*:object*/ = { x: x };
+const tmpMCP /*:object*/ /*truthy*/ = { x: x };
 $dotCall($function_call, mutate, `call`, tmpMCP);
 $(x, x);
 `````

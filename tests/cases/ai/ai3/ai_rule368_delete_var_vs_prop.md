@@ -46,10 +46,10 @@
 `````js filename=intro
 const tmpObjLitVal /*:unknown*/ = $(`p_val`, 20);
 const opaquePropName /*:unknown*/ = $(`prop_name`, `p`);
-const obj /*:object*/ = { p: tmpObjLitVal };
+const obj /*:object*/ /*truthy*/ = { p: tmpObjLitVal };
 const res1 /*:boolean*/ = delete obj[opaquePropName];
 const tmpUnaryArg /*:unknown*/ = obj.p;
-const tmpCalleeParam$1 /*:string*/ = typeof tmpUnaryArg;
+const tmpCalleeParam$1 /*:string*/ /*truthy*/ = typeof tmpUnaryArg;
 const tmpCalleeParam$3 /*:boolean*/ = opaquePropName in obj;
 $(`res1_delete_obj_prop`, res1, tmpCalleeParam$1, tmpCalleeParam$3);
 const tmpAssignMemRhs /*:unknown*/ = $(`p_val_restored`, 20);

@@ -20,8 +20,8 @@ $(f([{ x: 1, y: 2, z: 3 }, 20, 30], 200));
 
 
 `````js filename=intro
-const tmpArrElement$1 /*:object*/ = { x: 1, y: 2, z: 3 };
-const tmpCalleeParam$5 /*:array*/ = [];
+const tmpArrElement$1 /*:object*/ /*truthy*/ = { x: 1, y: 2, z: 3 };
+const tmpCalleeParam$5 /*:array*/ /*truthy*/ = [];
 const x /*:unknown*/ = $objPatternRest(tmpArrElement$1, tmpCalleeParam$5, undefined);
 $(x);
 `````

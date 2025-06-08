@@ -24,7 +24,7 @@ $(x);
 
 
 `````js filename=intro
-const obj /*:object*/ = { [``]: 1 };
+const obj /*:object*/ /*truthy*/ = { [``]: 1 };
 const x /*:unknown*/ = obj[``];
 $(x);
 `````

@@ -22,7 +22,7 @@ $(arr.length);
 
 `````js filename=intro
 const tmpMCP /*:unknown*/ = $spy();
-const arr /*:array*/ = $Array_from(tmpMCP);
+const arr /*:array*/ /*truthy*/ = $Array_from(tmpMCP);
 a;
 $coerce(b, `number`);
 c;

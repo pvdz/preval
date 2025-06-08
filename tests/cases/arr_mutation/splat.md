@@ -21,7 +21,7 @@ for (const a in arr) {
 
 
 `````js filename=intro
-const arr /*:array*/ = [1, 2, 3];
+const arr /*:array*/ /*truthy*/ = [1, 2, 3];
 const tmpForInGen /*:unknown*/ = $forIn(arr);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForInNext /*:unknown*/ = tmpForInGen();

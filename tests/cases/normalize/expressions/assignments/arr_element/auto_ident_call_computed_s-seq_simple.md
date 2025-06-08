@@ -21,7 +21,7 @@ $(a);
 
 
 `````js filename=intro
-const b /*:object*/ = { $: $ };
+const b /*:object*/ /*truthy*/ = { $: $ };
 const a /*:unknown*/ = $dotCall($, b, `\$`, 1);
 const tmpMCF$1 /*:unknown*/ = b.$;
 const tmpClusterSSA_a /*:unknown*/ = $dotCall(tmpMCF$1, b, `\$`, 1);

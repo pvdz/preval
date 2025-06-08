@@ -25,7 +25,7 @@ $(a, b);
 
 `````js filename=intro
 $(1);
-const b /*:object*/ = { x: 1 };
+const b /*:object*/ /*truthy*/ = { x: 1 };
 const tmpCalleeParam /*:unknown*/ = $(b);
 const tmpUpdObj /*:unknown*/ = $(tmpCalleeParam);
 const tmpUpdProp /*:unknown*/ = tmpUpdObj.x;

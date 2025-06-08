@@ -23,10 +23,10 @@ const tmpArrElement /*:unknown*/ = $(1);
 const tmpArrElement$3 /*:unknown*/ = $(3);
 const tmpArrElement$5 /*:unknown*/ = $(1);
 const tmpArrElement$9 /*:unknown*/ = $(3);
-const tmpBinBothLhs /*:array*/ = [tmpArrElement, 2, tmpArrElement$3];
-const tmpBinBothRhs /*:array*/ = [tmpArrElement$5, 2, tmpArrElement$9];
+const tmpBinBothLhs /*:array*/ /*truthy*/ = [tmpArrElement, 2, tmpArrElement$3];
+const tmpBinBothRhs /*:array*/ /*truthy*/ = [tmpArrElement$5, 2, tmpArrElement$9];
 tmpBinBothLhs + tmpBinBothRhs;
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

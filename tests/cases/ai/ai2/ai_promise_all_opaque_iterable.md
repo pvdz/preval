@@ -27,14 +27,14 @@ Promise.all(iterable)
 
 `````js filename=intro
 const iterable /*:unknown*/ = $(`opaque_promise_iterable`);
-const tmpMCOO$1 /*:promise*/ = $dotCall($Promise_all, Promise, `all`, iterable);
+const tmpMCOO$1 /*:promise*/ /*truthy*/ = $dotCall($Promise_all, Promise, `all`, iterable);
 const tmpMCP /*:(unknown)=>unknown*/ = function ($$0) {
   const res /*:unknown*/ = $$0;
   debugger;
   const tmpReturnArg /*:unknown*/ = $(`all_resolved`, res);
   return tmpReturnArg;
 };
-const tmpMCOO /*:promise*/ = $dotCall($promise_then, tmpMCOO$1, `then`, tmpMCP);
+const tmpMCOO /*:promise*/ /*truthy*/ = $dotCall($promise_then, tmpMCOO$1, `then`, tmpMCP);
 const tmpMCP$1 /*:(unknown)=>unknown*/ = function ($$0) {
   const err /*:unknown*/ = $$0;
   debugger;

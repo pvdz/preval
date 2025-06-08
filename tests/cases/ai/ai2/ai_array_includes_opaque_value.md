@@ -26,7 +26,7 @@ const tmpArrElement /*:unknown*/ = $(`a`);
 const tmpArrElement$3 /*:unknown*/ = $(`c`);
 const searchVal /*:unknown*/ = $(`opaque_search_value`);
 const fromIdx /*:unknown*/ = $(`opaque_from_index`);
-const arr /*:array*/ = [tmpArrElement, `b`, tmpArrElement$3];
+const arr /*:array*/ /*truthy*/ = [tmpArrElement, `b`, tmpArrElement$3];
 const hasIt /*:boolean*/ = $dotCall($array_includes, arr, `includes`, searchVal, fromIdx);
 $(`includes_result`, hasIt);
 `````

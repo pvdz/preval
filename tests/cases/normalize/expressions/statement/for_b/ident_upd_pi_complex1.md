@@ -18,7 +18,7 @@ $($(b).x += 1);
 
 
 `````js filename=intro
-const b /*:object*/ = { x: 1 };
+const b /*:object*/ /*truthy*/ = { x: 1 };
 const tmpInitAssignLhsComputedObj /*:unknown*/ = $(b);
 const tmpBinLhs /*:unknown*/ = tmpInitAssignLhsComputedObj.x;
 const tmpInitAssignLhsComputedRhs /*:primitive*/ = tmpBinLhs + 1;

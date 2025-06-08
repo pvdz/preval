@@ -21,7 +21,7 @@ $(a);
 
 
 `````js filename=intro
-const b /*:object*/ = { x: 1 };
+const b /*:object*/ /*truthy*/ = { x: 1 };
 const tmpChainElementCall /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest) {
@@ -31,7 +31,7 @@ if (tmpIfTest) {
   const tmpChainRootComputed /*:unknown*/ = $(`x`);
   const tmpClusterSSA_a /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
   const tmpClusterSSA_tmpStringConcatL /*:string*/ = $coerce(tmpClusterSSA_a, `string`);
-  const tmpClusterSSA_tmpCalleeParam /*:string*/ = `before  ${tmpClusterSSA_tmpStringConcatL}  after`;
+  const tmpClusterSSA_tmpCalleeParam /*:string*/ /*truthy*/ = `before  ${tmpClusterSSA_tmpStringConcatL}  after`;
   $(tmpClusterSSA_tmpCalleeParam);
   $(tmpClusterSSA_a);
 }

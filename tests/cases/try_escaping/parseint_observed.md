@@ -25,7 +25,7 @@ while (true) {
 
 `````js filename=intro
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpCalleeParam /*:object*/ = {
+  const tmpCalleeParam /*:object*/ /*truthy*/ = {
     toString() {
       debugger;
       $(`PASS`);

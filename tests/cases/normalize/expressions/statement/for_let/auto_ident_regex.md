@@ -19,7 +19,7 @@ $(a);
 
 
 `````js filename=intro
-const xyz /*:regex*/ = new $regex_constructor(`foo`, ``);
+const xyz /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, ``);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(xyz);
   $(1);

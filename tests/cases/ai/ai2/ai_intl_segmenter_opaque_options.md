@@ -25,21 +25,21 @@ $('seg_resolved_options_gran', segmenter.resolvedOptions().granularity);
 
 `````js filename=intro
 const locale /*:unknown*/ = $(`seg_locale`, `ja-JP`);
-const tmpCalleeParam /*:object*/ = { granularity: `word` };
+const tmpCalleeParam /*:object*/ /*truthy*/ = { granularity: `word` };
 const options /*:unknown*/ = $(`seg_options`, tmpCalleeParam);
 const tmpNewCallee /*:unknown*/ = Intl.Segmenter;
-const segmenter /*:object*/ = new tmpNewCallee(locale, options);
+const segmenter /*:object*/ /*truthy*/ = new tmpNewCallee(locale, options);
 const text /*:unknown*/ = $(`seg_text`, `\u3053\u308c\u306f\u30c6\u30b9\u30c8\u3067\u3059`);
 const tmpMCF$1 /*:unknown*/ = segmenter.segment;
 const tmpMCP /*:unknown*/ = $dotCall(tmpMCF$1, segmenter, `segment`, text);
-const tmpMCOO /*:array*/ = $Array_from(tmpMCP);
+const tmpMCOO /*:array*/ /*truthy*/ = $Array_from(tmpMCP);
 const tmpMCP$1 /*:(unknown)=>unknown*/ = function ($$0) {
   const s /*:unknown*/ = $$0;
   debugger;
   const tmpReturnArg /*:unknown*/ = s.segment;
   return tmpReturnArg;
 };
-const segments /*:array*/ = $dotCall($array_map, tmpMCOO, `map`, tmpMCP$1);
+const segments /*:array*/ /*truthy*/ = $dotCall($array_map, tmpMCOO, `map`, tmpMCP$1);
 $(`seg_segments_array`, segments);
 const tmpMCF$5 /*:unknown*/ = segmenter.resolvedOptions;
 const tmpCompObj /*:unknown*/ = $dotCall(tmpMCF$5, segmenter, `resolvedOptions`);

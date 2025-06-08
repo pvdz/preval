@@ -20,7 +20,7 @@
 
 `````js filename=intro
 const tmpOPND /*:unknown*/ = $Number_prototype.x;
-const tmpArrPatternSplat /*:array*/ = [...tmpOPND];
+const tmpArrPatternSplat /*:array*/ /*truthy*/ = [...tmpOPND];
 y = tmpArrPatternSplat[0];
 `````
 

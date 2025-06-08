@@ -19,10 +19,10 @@ $(a);
 
 
 `````js filename=intro
-const a /*:regex*/ = new $regex_constructor(`foo`, ``);
+const a /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, ``);
 const tmpBinBothRhs /*:unknown*/ = $(100);
 const tmpStringConcatL /*:string*/ = $coerce(tmpBinBothRhs, `plustr`);
-const tmpCalleeParam /*:string*/ = `/foo/${tmpStringConcatL}`;
+const tmpCalleeParam /*:string*/ /*truthy*/ = `/foo/${tmpStringConcatL}`;
 $(tmpCalleeParam);
 $(a);
 `````

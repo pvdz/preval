@@ -48,7 +48,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 
 `````js filename=intro
-const main_data_arr /*:array*/ = [`this`, `contents`, `is`, `not`, `relevant`, `here`];
+const main_data_arr /*:array*/ /*truthy*/ = [`this`, `contents`, `is`, `not`, `relevant`, `here`];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmp2$1 /*:unknown*/ = main_data_arr[-385];
   const b /*:number*/ = $Number_parseInt(tmp2$1);
@@ -56,7 +56,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   if (b) {
     break;
   } else {
-    const tmpMCPa /*:primitive*/ = $dotCall($array_shift, main_data_arr, `shift`);
+    const tmpMCPa /*:primitive*/ /*truthy*/ = $dotCall($array_shift, main_data_arr, `shift`);
     $dotCall($array_push, main_data_arr, `push`, tmpMCPa);
   }
 }

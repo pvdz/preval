@@ -35,8 +35,8 @@ if (tmpIfTest) {
   $(`fail1`);
   $(`fail2`);
 }
-const a /*:object*/ = { a: 999, b: 1000 };
-const b /*:object*/ = { c: 2 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
+const b /*:object*/ /*truthy*/ = { c: 2 };
 $(a, b);
 `````
 

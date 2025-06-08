@@ -20,15 +20,15 @@ $(f());
 
 
 `````js filename=intro
-const tmpArrElement /*:object*/ = { x: `pass3` };
-const tmpCalleeParam /*:array*/ = [tmpArrElement];
+const tmpArrElement /*:object*/ /*truthy*/ = { x: `pass3` };
+const tmpCalleeParam /*:array*/ /*truthy*/ = [tmpArrElement];
 const tmpClusterSSA_tmpBindingPatternArrRoot /*:unknown*/ = $(tmpCalleeParam);
-const tmpArrPatternSplat /*:array*/ = [...tmpClusterSSA_tmpBindingPatternArrRoot];
+const tmpArrPatternSplat /*:array*/ /*truthy*/ = [...tmpClusterSSA_tmpBindingPatternArrRoot];
 const tmpAPBD /*:unknown*/ = tmpArrPatternSplat[0];
 let tmpArrPatternStep /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpIfTest$1 /*:boolean*/ = tmpAPBD === undefined;
 if (tmpIfTest$1) {
-  const tmpCalleeParam$1 /*:object*/ = { x: `fail2` };
+  const tmpCalleeParam$1 /*:object*/ /*truthy*/ = { x: `fail2` };
   tmpArrPatternStep = $(tmpCalleeParam$1);
 } else {
   tmpArrPatternStep = tmpAPBD;

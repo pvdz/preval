@@ -37,10 +37,10 @@ const f /*:()=>unknown*/ = function () {
   const tmpStringConcatL$2 /*:string*/ = $coerce(desc$1, `plustr`);
   const tmpIfTest$1787 /*:boolean*/ = lastType === 2097173;
   if (tmpIfTest$1787) {
-    const tmpClusterSSA_fullErrmsg /*:string*/ = `Parser error! ${tmpStringConcatL$2} (at EOF)`;
+    const tmpClusterSSA_fullErrmsg /*:string*/ /*truthy*/ = `Parser error! ${tmpStringConcatL$2} (at EOF)`;
     _THROW(tmpClusterSSA_fullErrmsg, tokenStart$5, tokenStop$5, ``);
   } else {
-    const tmpBinBothLhs$253 /*:string*/ = `Parser error! ${tmpStringConcatL$2}`;
+    const tmpBinBothLhs$253 /*:string*/ /*truthy*/ = `Parser error! ${tmpStringConcatL$2}`;
     _THROW(tmpBinBothLhs$253, tokenStart$5, tokenStop$5, ``);
   }
   throw `Preval: the previous call always throws`;

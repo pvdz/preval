@@ -29,7 +29,7 @@ const f /*:(unknown)=>string*/ = function ($$0) {
   const x /*:unknown*/ = $$0;
   debugger;
   unknown = x;
-  const tmp /*:buffer*/ = $Buffer_from(x, `base64`);
+  const tmp /*:buffer*/ /*truthy*/ = $Buffer_from(x, `base64`);
   const tmp2 /*:string*/ = $dotCall($buffer_toString, tmp, `toString`, `utf8`);
   return tmp2;
 };

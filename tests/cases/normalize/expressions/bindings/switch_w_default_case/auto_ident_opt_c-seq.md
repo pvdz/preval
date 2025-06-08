@@ -27,7 +27,7 @@ switch (1) {
 
 
 `````js filename=intro
-const b /*:object*/ = { x: 1 };
+const b /*:object*/ /*truthy*/ = { x: 1 };
 const tmpChainRootProp /*:unknown*/ = $(b);
 const tmpIfTest$5 /*:boolean*/ = tmpChainRootProp == null;
 if (tmpIfTest$5) {

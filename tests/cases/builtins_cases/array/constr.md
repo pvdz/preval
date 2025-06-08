@@ -31,23 +31,23 @@ $([x,y,z]);
 
 
 `````js filename=intro
-const tmpCalleeParam /*:array*/ = $array_constructor();
+const tmpCalleeParam /*:array*/ /*truthy*/ = $array_constructor();
 $(tmpCalleeParam);
-const tmpCalleeParam$1 /*:array*/ = $array_constructor(x);
+const tmpCalleeParam$1 /*:array*/ /*truthy*/ = $array_constructor(x);
 $(tmpCalleeParam$1);
-const tmpCalleeParam$3 /*:array*/ = $array_constructor(x, y, z);
+const tmpCalleeParam$3 /*:array*/ /*truthy*/ = $array_constructor(x, y, z);
 $(tmpCalleeParam$3);
-const tmpCalleeParam$5 /*:array*/ = $array_constructor();
+const tmpCalleeParam$5 /*:array*/ /*truthy*/ = $array_constructor();
 $(tmpCalleeParam$5);
-const tmpCalleeParam$7 /*:array*/ = $array_constructor(x);
+const tmpCalleeParam$7 /*:array*/ /*truthy*/ = $array_constructor(x);
 $(tmpCalleeParam$7);
-const tmpCalleeParam$9 /*:array*/ = $array_constructor(x, y, z);
+const tmpCalleeParam$9 /*:array*/ /*truthy*/ = $array_constructor(x, y, z);
 $(tmpCalleeParam$9);
-const tmpCalleeParam$11 /*:array*/ = [];
+const tmpCalleeParam$11 /*:array*/ /*truthy*/ = [];
 $(tmpCalleeParam$11);
-const tmpCalleeParam$13 /*:array*/ = [x];
+const tmpCalleeParam$13 /*:array*/ /*truthy*/ = [x];
 $(tmpCalleeParam$13);
-const tmpCalleeParam$15 /*:array*/ = [x, y, z];
+const tmpCalleeParam$15 /*:array*/ /*truthy*/ = [x, y, z];
 $(tmpCalleeParam$15);
 `````
 

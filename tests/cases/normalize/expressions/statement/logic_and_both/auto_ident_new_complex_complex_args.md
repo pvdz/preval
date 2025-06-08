@@ -29,7 +29,7 @@ const tmpNewCallee$1 /*:unknown*/ = $($);
 const tmpCalleeParam$3 /*:unknown*/ = $(1);
 const tmpCalleeParam$5 /*:unknown*/ = $(2);
 new tmpNewCallee$1(tmpCalleeParam$3, tmpCalleeParam$5);
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

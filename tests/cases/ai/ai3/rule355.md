@@ -51,10 +51,10 @@
 
 `````js filename=intro
 const tmpNestedPropAssignRhs /*:unknown*/ = $(`input_val`, 10);
-const obj /*:object*/ = {
+const obj /*:object*/ /*truthy*/ = {
   _val: undefined,
   set y($$0) {
-    const tmpPrevalAliasThis /*:object*/ = this;
+    const tmpPrevalAliasThis /*:object*/ /*truthy*/ = this;
     const v /*:unknown*/ = $$0;
     debugger;
     $(`setter_called`, v);

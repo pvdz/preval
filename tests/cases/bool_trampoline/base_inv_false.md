@@ -33,7 +33,7 @@ else $('fail');
 const f /*:()=>boolean*/ = function () {
   debugger;
   const x /*:unknown*/ = $(0);
-  const y /*:boolean*/ = !x;
+  const y /*:boolean*/ /*banged*/ = !x;
   return y;
 };
 $(f);

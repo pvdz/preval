@@ -18,17 +18,17 @@ $({...obj.foo()});
 
 
 `````js filename=intro
-const obj /*:object*/ = {
+const obj /*:object*/ /*truthy*/ = {
   foo() {
     debugger;
-    const tmpCalleeParam /*:object*/ = { x: 1 };
+    const tmpCalleeParam /*:object*/ /*truthy*/ = { x: 1 };
     const tmpReturnArg /*:unknown*/ = $(tmpCalleeParam);
     return tmpReturnArg;
   },
 };
 const tmpMCF /*:unknown*/ = obj.foo;
 const tmpObjSpread /*:unknown*/ = $dotCall(tmpMCF, obj, `foo`);
-const tmpCalleeParam$1 /*:object*/ = { ...tmpObjSpread };
+const tmpCalleeParam$1 /*:object*/ /*truthy*/ = { ...tmpObjSpread };
 $(tmpCalleeParam$1);
 `````
 

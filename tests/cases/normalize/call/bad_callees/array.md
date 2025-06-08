@@ -20,7 +20,7 @@ $('after');
 
 `````js filename=intro
 $(`before`);
-const tmpCallComplexCallee /*:array*/ = [1, 2, 3];
+const tmpCallComplexCallee /*:array*/ /*truthy*/ = [1, 2, 3];
 tmpCallComplexCallee();
 $(`after`);
 `````

@@ -24,7 +24,7 @@ if (y === 1) {
 
 `````js filename=intro
 const tmpBinLhs /*:unknown*/ = $(1);
-const y /*:number*/ = tmpBinLhs & 1;
+const y /*:number*/ /*&1*/ /*oneBitAnded*/ = tmpBinLhs & 1;
 if (y) {
   $(`pass`);
 } else {

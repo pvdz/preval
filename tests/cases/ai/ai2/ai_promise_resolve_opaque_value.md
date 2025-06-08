@@ -30,7 +30,7 @@ Promise.resolve(val).then(v => $('resolved', v));
 
 `````js filename=intro
 const val /*:unknown*/ = $(`opaque_val_for_promise`);
-const tmpMCOO /*:promise*/ = $dotCall($Promise_resolve, Promise, `resolve`, val);
+const tmpMCOO /*:promise*/ /*truthy*/ = $dotCall($Promise_resolve, Promise, `resolve`, val);
 const tmpMCP /*:(unknown)=>unknown*/ = function ($$0) {
   const v /*:unknown*/ = $$0;
   debugger;

@@ -36,7 +36,7 @@ f();
 
 `````js filename=intro
 const tmpObjLitPropKey /*:unknown*/ = Symbol.iterator;
-const oops /*:object*/ = {
+const oops /*:object*/ /*truthy*/ = {
   toString() {
     debugger;
     $(`toString`);
@@ -51,14 +51,14 @@ const oops /*:object*/ = {
     debugger;
     const tmpCalleeParam /*:unknown*/ = o.x;
     $(`iterator called, o.x=`, tmpCalleeParam);
-    const tmpCallComplexCallee /*:array*/ = [1, 2, 3, 4, 5];
+    const tmpCallComplexCallee /*:array*/ /*truthy*/ = [1, 2, 3, 4, 5];
     const tmpReturnArg /*:unknown*/ = tmpCallComplexCallee();
     return tmpReturnArg;
   },
 };
 const tmpObjLitVal /*:unknown*/ = $(1);
-const o /*:object*/ = { x: tmpObjLitVal };
-const f /*:array*/ = [...oops];
+const o /*:object*/ /*truthy*/ = { x: tmpObjLitVal };
+const f /*:array*/ /*truthy*/ = [...oops];
 const tmpCalleeParam$1 /*:unknown*/ = o.x;
 $(tmpCalleeParam$1);
 o.x = 10;

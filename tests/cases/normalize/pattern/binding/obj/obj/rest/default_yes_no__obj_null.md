@@ -18,7 +18,7 @@ $('bad');
 
 
 `````js filename=intro
-const tmpCalleeParam$3 /*:array*/ = [];
+const tmpCalleeParam$3 /*:array*/ /*truthy*/ = [];
 $objPatternRest(null, tmpCalleeParam$3, undefined);
 $(`bad`);
 `````

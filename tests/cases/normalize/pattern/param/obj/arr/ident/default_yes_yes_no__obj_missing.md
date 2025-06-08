@@ -24,12 +24,12 @@ const tmpOPBD /*:unknown*/ = $Object_prototype.x;
 let tmpOPAD /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpIfTest /*:boolean*/ = tmpOPBD === undefined;
 if (tmpIfTest) {
-  const tmpCalleeParam /*:array*/ = [`pass2`];
+  const tmpCalleeParam /*:array*/ /*truthy*/ = [`pass2`];
   tmpOPAD = $(tmpCalleeParam);
 } else {
   tmpOPAD = tmpOPBD;
 }
-const tmpArrPatternSplat /*:array*/ = [...tmpOPAD];
+const tmpArrPatternSplat /*:array*/ /*truthy*/ = [...tmpOPAD];
 const tmpAPBD /*:unknown*/ = tmpArrPatternSplat[0];
 const tmpIfTest$1 /*:boolean*/ = tmpAPBD === undefined;
 if (tmpIfTest$1) {

@@ -44,7 +44,7 @@ const f /*:(unknown)=>undefined*/ = function ($$0) {
     debugger;
     $(`keepme`);
     $(`keepme`);
-    const tmpReturnArg /*:array*/ = [x, z];
+    const tmpReturnArg /*:array*/ /*truthy*/ = [x, z];
     return tmpReturnArg;
   };
   const x /*:string*/ = $coerce(y, `plustr`);
@@ -52,9 +52,9 @@ const f /*:(unknown)=>undefined*/ = function ($$0) {
     $(x, `if`);
     return undefined;
   } else {
-    const tmpCalleeParam /*:array*/ = f$1(10);
+    const tmpCalleeParam /*:array*/ /*truthy*/ = f$1(10);
     $(tmpCalleeParam, `pass`);
-    const tmpCalleeParam$1 /*:array*/ = f$1(20);
+    const tmpCalleeParam$1 /*:array*/ /*truthy*/ = f$1(20);
     $(tmpCalleeParam$1, `pass`);
     return undefined;
   }

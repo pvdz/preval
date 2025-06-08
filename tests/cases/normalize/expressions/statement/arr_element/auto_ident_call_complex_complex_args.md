@@ -30,7 +30,7 @@ const tmpCalleeParam$3 /*:unknown*/ = $(1);
 const tmpCalleeParam$5 /*:unknown*/ = $(2);
 const tmpBinBothRhs /*:unknown*/ = tmpCallComplexCallee$1(tmpCalleeParam$3, tmpCalleeParam$5);
 tmpBinBothLhs + tmpBinBothRhs;
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

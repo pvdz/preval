@@ -31,8 +31,8 @@ $('ws_other_val_present', wset.has($('other_val_ws')));
 
 
 `````js filename=intro
-const wset /*:object*/ = new WeakSet();
-const tmpCalleeParam /*:object*/ = { type: `ephemeral` };
+const wset /*:object*/ /*truthy*/ = new WeakSet();
+const tmpCalleeParam /*:object*/ /*truthy*/ = { type: `ephemeral` };
 const val /*:unknown*/ = $(`ws_gc_val`, tmpCalleeParam);
 const tmpMCF /*:unknown*/ = wset.add;
 $dotCall(tmpMCF, wset, `add`, val);
@@ -41,7 +41,7 @@ const tmpCalleeParam$1 /*:unknown*/ = $dotCall(tmpMCF$1, wset, `has`, val);
 $(`ws_gc_has_val_before_gc_concept`, tmpCalleeParam$1);
 $(`ws_gc_val_nulled`);
 const tmpMCF$3 /*:unknown*/ = wset.add;
-const tmpCalleeParam$3 /*:array*/ = [];
+const tmpCalleeParam$3 /*:array*/ /*truthy*/ = [];
 const tmpMCP /*:unknown*/ = $(`other_val_ws`, tmpCalleeParam$3);
 $dotCall(tmpMCF$3, wset, `add`, tmpMCP);
 const tmpMCF$5 /*:unknown*/ = wset.has;

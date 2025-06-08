@@ -19,7 +19,7 @@ $(c);
 
 
 `````js filename=intro
-const tmpCalleeParam /*:object*/ = { x: null };
+const tmpCalleeParam /*:object*/ /*truthy*/ = { x: null };
 const a /*:unknown*/ = $(tmpCalleeParam);
 let tmpInitAssignLhsComputedRhs /*:unknown*/ = a.x;
 if (tmpInitAssignLhsComputedRhs) {

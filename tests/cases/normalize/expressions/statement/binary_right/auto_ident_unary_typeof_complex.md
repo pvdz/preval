@@ -24,7 +24,7 @@ $(a, arg);
 const tmpBinBothLhs /*:unknown*/ = $(100);
 $(1);
 $coerce(tmpBinBothLhs, `plustr`);
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a, 1);
 `````
 

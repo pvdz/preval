@@ -21,9 +21,9 @@ $(a);
 `````js filename=intro
 const tmpBinBothLhs /*:unknown*/ = $(100);
 const tmpNewCallee /*:unknown*/ = $($);
-const tmpBinBothRhs /*:object*/ = new tmpNewCallee(1);
+const tmpBinBothRhs /*:object*/ /*truthy*/ = new tmpNewCallee(1);
 tmpBinBothLhs + tmpBinBothRhs;
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

@@ -18,7 +18,7 @@ $(x);
 
 
 `````js filename=intro
-const x /*:object*/ = { [true]: `haha` };
+const x /*:object*/ /*truthy*/ = { [true]: `haha` };
 $(x);
 `````
 

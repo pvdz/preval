@@ -52,9 +52,9 @@ $(arr2);
 `````js filename=intro
 const tmpBinBothRhs /*:unknown*/ = $(1);
 const x /*:number*/ = 1 * tmpBinBothRhs;
-const tmpBinBothRhs$27 /*:array*/ = [];
+const tmpBinBothRhs$27 /*:array*/ /*truthy*/ = [];
 const tmpArrElement$25 /*:boolean*/ = x == tmpBinBothRhs$27;
-const tmpBinBothRhs$29 /*:array*/ = [];
+const tmpBinBothRhs$29 /*:array*/ /*truthy*/ = [];
 const tmpArrElement$27 /*:boolean*/ = x != tmpBinBothRhs$29;
 const tmpArrElement /*:number*/ = x ** 0;
 const tmpArrElement$1 /*:number*/ = x * 0;
@@ -69,9 +69,9 @@ const tmpArrElement$17 /*:boolean*/ = x < ``;
 const tmpArrElement$19 /*:boolean*/ = x > ``;
 const tmpArrElement$21 /*:boolean*/ = x <= ``;
 const tmpArrElement$23 /*:boolean*/ = x >= ``;
-const tmpArrElement$35 /*:number*/ = x ^ 0;
-const tmpArrElement$37 /*:number*/ = x | 0;
-const arr /*:array*/ = [
+const tmpArrElement$35 /*:number*/ /*^0*/ = x ^ 0;
+const tmpArrElement$37 /*:number*/ /*|0*/ = x | 0;
+const arr /*:array*/ /*truthy*/ = [
   tmpArrElement,
   tmpArrElement$1,
   tmpArrElement$3,
@@ -94,11 +94,11 @@ const arr /*:array*/ = [
   tmpArrElement$37,
 ];
 $(arr);
-const tmpBinBothRhs$41 /*:array*/ = [];
-const tmpBinBothRhs$43 /*:array*/ = [];
+const tmpBinBothRhs$41 /*:array*/ /*truthy*/ = [];
+const tmpBinBothRhs$43 /*:array*/ /*truthy*/ = [];
 const tmpArrElement$39 /*:boolean*/ = x in tmpBinBothRhs$41;
 const tmpArrElement$41 /*:boolean*/ = x instanceof tmpBinBothRhs$43;
-const arr2 /*:array*/ = [tmpArrElement$39, tmpArrElement$41];
+const arr2 /*:array*/ /*truthy*/ = [tmpArrElement$39, tmpArrElement$41];
 $(arr2);
 `````
 

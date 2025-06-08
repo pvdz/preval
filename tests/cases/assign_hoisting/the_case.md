@@ -56,7 +56,7 @@ if ($) {
       }
     } else {
     }
-    const tmpClusterSSA_tmpCalleeParam /*:array*/ = [a, tmpClusterSSA_b, tmpClusterSSA_c];
+    const tmpClusterSSA_tmpCalleeParam /*:array*/ /*truthy*/ = [a, tmpClusterSSA_b, tmpClusterSSA_c];
     $(tmpClusterSSA_tmpCalleeParam);
   } else {
     $(undefined);

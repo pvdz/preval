@@ -42,7 +42,7 @@ $('log', `final_x_value: ${x}`);
 $(`log`, `x_before_try_catch: initial`);
 let x /*:unknown*/ = undefined;
 try {
-  const tmpThrowArg /*:object*/ = new Error(`TestError379b`);
+  const tmpThrowArg /*:object*/ /*truthy*/ = new Error(`TestError379b`);
   throw tmpThrowArg;
 } catch (e) {
   const decision /*:unknown*/ = $(`log_and_return`, `rethrow_decision: false`, false);
@@ -53,7 +53,7 @@ try {
   }
 }
 const tmpBinBothRhs /*:string*/ = $coerce(x, `string`);
-const tmpCalleeParam /*:string*/ = `final_x_value: ${tmpBinBothRhs}`;
+const tmpCalleeParam /*:string*/ /*truthy*/ = `final_x_value: ${tmpBinBothRhs}`;
 $(`log`, tmpCalleeParam);
 `````
 

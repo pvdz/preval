@@ -24,7 +24,7 @@ $(a);
 
 
 `````js filename=intro
-const b /*:object*/ = { x: 1 };
+const b /*:object*/ /*truthy*/ = { x: 1 };
 const tmpChainElementCall /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest) {
@@ -34,7 +34,7 @@ if (tmpIfTest) {
   const tmpClusterSSA_tmpReturnArg /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
   $(tmpClusterSSA_tmpReturnArg);
 }
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

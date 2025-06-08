@@ -45,7 +45,7 @@ $inlinedFunction: {
     const tmpIfTest /*:unknown*/ = $(true);
     if (tmpIfTest) {
       $(`loop`);
-      const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
+      const tmpCalleeParam /*:object*/ /*truthy*/ = { a: 1, b: 2 };
       const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
       const tmpForInNext /*:unknown*/ = tmpForInGen();
       const tmpIfTest$1 /*:unknown*/ = tmpForInNext.done;

@@ -24,12 +24,12 @@ $(a);
 `````js filename=intro
 let a /*:unknown*/ = { a: 999, b: 1000 };
 const f /*:()=>arguments*/ = function () {
-  const tmpPrevalAliasArgumentsAny /*:arguments*/ = arguments;
+  const tmpPrevalAliasArgumentsAny /*:arguments*/ /*truthy*/ = arguments;
   debugger;
   a = tmpPrevalAliasArgumentsAny;
   return tmpPrevalAliasArgumentsAny;
 };
-const tmpCalleeParam /*:arguments*/ = f();
+const tmpCalleeParam /*:arguments*/ /*truthy*/ = f();
 $(tmpCalleeParam);
 $(a);
 `````

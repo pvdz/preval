@@ -22,10 +22,10 @@ $(a, b, c);
 
 
 `````js filename=intro
-const tmpInitAssignLhsComputedRhs /*:number*/ = 3;
+const tmpInitAssignLhsComputedRhs /*:number*/ /*truthy*/ = 3;
 export { tmpInitAssignLhsComputedRhs as default };
-const a /*:object*/ = { a: 999, b: 1000 };
-const b /*:object*/ = { x: 3 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
+const b /*:object*/ /*truthy*/ = { x: 3 };
 $(a, b, 3);
 `````
 

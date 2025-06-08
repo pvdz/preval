@@ -18,7 +18,7 @@ $('ok');
 
 
 `````js filename=intro
-const tmpCalleeParam /*:object*/ = { x: `pass` };
+const tmpCalleeParam /*:object*/ /*truthy*/ = { x: `pass` };
 const tmpClusterSSA_tmpOPAD /*:unknown*/ = $(tmpCalleeParam);
 let tmpClusterSSA_tmpObjPatternCrashTest /*:boolean*/ = tmpClusterSSA_tmpOPAD === undefined;
 if (tmpClusterSSA_tmpObjPatternCrashTest) {

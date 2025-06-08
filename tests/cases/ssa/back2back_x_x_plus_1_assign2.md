@@ -60,7 +60,7 @@ if ($) {
 if ($) {
   let x /*:unknown*/ = $(5);
   $(x);
-  const tmpCalleeParam /*:object*/ = {
+  const tmpCalleeParam /*:object*/ /*truthy*/ = {
     toString() {
       debugger;
       $(`tostring`);

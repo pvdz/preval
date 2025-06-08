@@ -21,9 +21,9 @@ $(a);
 
 `````js filename=intro
 const tmpUnaryArg /*:unknown*/ = $(100);
-const xyz /*:boolean*/ = !tmpUnaryArg;
+const xyz /*:boolean*/ /*banged*/ = !tmpUnaryArg;
 $(xyz);
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

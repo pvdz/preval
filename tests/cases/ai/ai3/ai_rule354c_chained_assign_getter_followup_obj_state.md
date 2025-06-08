@@ -41,7 +41,7 @@ $('objB_has_field', objB.hasOwnProperty('field')); // Expected: true
 
 `````js filename=intro
 let side_effect_store /*:unknown*/ = $(`initial_store`);
-const objWithGetter /*:object*/ = {
+const objWithGetter /*:object*/ /*truthy*/ = {
   get data() {
     debugger;
     side_effect_store = $(`getter_invoked`);
@@ -53,8 +53,8 @@ const tmpNestedPropAssignRhs /*:unknown*/ = objWithGetter.data;
 $(`log_varA`, tmpNestedPropAssignRhs);
 $(`log_objB_field`, tmpNestedPropAssignRhs);
 $(`log_store_state`, side_effect_store);
-const objB /*:object*/ = { field: tmpNestedPropAssignRhs };
-const keys /*:array*/ = $Object_keys(objB);
+const objB /*:object*/ /*truthy*/ = { field: tmpNestedPropAssignRhs };
+const keys /*:array*/ /*truthy*/ = $Object_keys(objB);
 const tmpCalleeParam$1 /*:string*/ = $dotCall($array_join, keys, `join`, `,`);
 $(`objB_keys`, tmpCalleeParam$1);
 const tmpMCF$3 /*:unknown*/ = objB.hasOwnProperty;

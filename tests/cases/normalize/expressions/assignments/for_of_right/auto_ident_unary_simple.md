@@ -28,7 +28,7 @@ $(a, x);
 
 
 `````js filename=intro
-const a /*:string*/ = typeof x$1;
+const a /*:string*/ /*truthy*/ = typeof x$1;
 const tmpForOfGenNext /*:unknown*/ = $forOf(a);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();

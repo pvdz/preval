@@ -21,7 +21,7 @@ a.foo = a += $();
 
 `````js filename=intro
 const tmpBinBothRhs /*:unknown*/ = $();
-const a /*:object*/ = {};
+const a /*:object*/ /*truthy*/ = {};
 const tmpClusterSSA_a /*:primitive*/ = a + tmpBinBothRhs;
 a.foo = tmpClusterSSA_a;
 `````

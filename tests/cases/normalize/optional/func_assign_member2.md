@@ -24,7 +24,7 @@ $(f());
 
 
 `````js filename=intro
-const tmpCalleeParam /*:object*/ = { foo: 10 };
+const tmpCalleeParam /*:object*/ /*truthy*/ = { foo: 10 };
 const tmpChainRootProp /*:unknown*/ = $(tmpCalleeParam);
 const tmpIfTest /*:boolean*/ = tmpChainRootProp == null;
 if (tmpIfTest) {

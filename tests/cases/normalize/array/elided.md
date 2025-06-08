@@ -19,7 +19,7 @@ $([1, $(),, 2,, $(),,]);
 `````js filename=intro
 const tmpArrElement$1 /*:unknown*/ = $();
 const tmpArrElement$5 /*:unknown*/ = $();
-const tmpCalleeParam /*:array*/ = [1, tmpArrElement$1, , 2, , tmpArrElement$5, ,];
+const tmpCalleeParam /*:array*/ /*truthy*/ = [1, tmpArrElement$1, , 2, , tmpArrElement$5, ,];
 $(tmpCalleeParam);
 `````
 

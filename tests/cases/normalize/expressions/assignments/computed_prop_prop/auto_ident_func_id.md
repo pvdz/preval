@@ -24,6 +24,7 @@ const a /*:()=>unknown*/ = function () {
   debugger;
   return undefined;
 };
+$coerce(a, `string`);
 $(a);
 `````
 
@@ -32,7 +33,9 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-$(function () {});
+const a = function () {};
+$coerce(a, `string`);
+$(a);
 `````
 
 
@@ -44,6 +47,7 @@ const a = function() {
   debugger;
   return undefined;
 };
+$coerce( a, "string" );
 $( a );
 `````
 
@@ -69,7 +73,7 @@ $(a);
 ## Todos triggered
 
 
-None
+- (todo) serialization of function, fallback if we know the function is not going to be a builtin...
 
 
 ## Globals

@@ -21,12 +21,12 @@ $(a);
 `````js filename=intro
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
-  const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
+  const tmpCalleeParam /*:object*/ /*truthy*/ = { a: 1, b: 2 };
   $(tmpCalleeParam);
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
-      const tmpCalleeParam$1 /*:object*/ = { a: 1, b: 2 };
+      const tmpCalleeParam$1 /*:object*/ /*truthy*/ = { a: 1, b: 2 };
       $(tmpCalleeParam$1);
     } else {
       break;

@@ -20,9 +20,9 @@ $(a, b);
 
 
 `````js filename=intro
-const a /*:number*/ = 2;
+const a /*:number*/ /*truthy*/ = 2;
 export { a };
-const b /*:object*/ = { c: 2 };
+const b /*:object*/ /*truthy*/ = { c: 2 };
 $(2, b);
 `````
 

@@ -28,7 +28,7 @@ $(arr);
 
 
 `````js filename=intro
-const x /*:object*/ = {
+const x /*:object*/ /*truthy*/ = {
   toString() {
     debugger;
     const tmpReturnArg /*:unknown*/ = $(`toString`);
@@ -44,7 +44,7 @@ const tmpArrElement /*:boolean*/ = x < 0;
 const tmpArrElement$1 /*:boolean*/ = x > 0;
 const tmpArrElement$3 /*:boolean*/ = 0 < x;
 const tmpArrElement$5 /*:boolean*/ = 0 > x;
-const arr /*:array*/ = [tmpArrElement, tmpArrElement$1, tmpArrElement$3, tmpArrElement$5];
+const arr /*:array*/ /*truthy*/ = [tmpArrElement, tmpArrElement$1, tmpArrElement$3, tmpArrElement$5];
 $(arr);
 `````
 

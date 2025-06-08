@@ -25,9 +25,9 @@ const tmpIfTest /*:unknown*/ = $(true);
 if (tmpIfTest) {
   $(1);
   $(2);
-  const z /*:array*/ = [10, 20, 30];
+  const z /*:array*/ /*truthy*/ = [10, 20, 30];
   const tmpBindingPatternArrRoot /*:unknown*/ = $(z);
-  const tmpArrPatternSplat /*:array*/ = [...tmpBindingPatternArrRoot];
+  const tmpArrPatternSplat /*:array*/ /*truthy*/ = [...tmpBindingPatternArrRoot];
   const a /*:unknown*/ = tmpArrPatternSplat[0];
   const b /*:unknown*/ = tmpArrPatternSplat[1];
   $(a, b, 1, 2, z);

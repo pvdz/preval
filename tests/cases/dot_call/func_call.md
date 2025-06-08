@@ -22,12 +22,12 @@ f.call({pass: 1}, 1, 2, 3, 'yep', $);
 
 `````js filename=intro
 const f /*:()=>unknown*/ = function () {
-  const tmpPrevalAliasThis /*:object*/ = this;
+  const tmpPrevalAliasThis /*:object*/ /*truthy*/ = this;
   debugger;
   $(tmpPrevalAliasThis);
   return undefined;
 };
-const tmpMCP /*:object*/ = { pass: 1 };
+const tmpMCP /*:object*/ /*truthy*/ = { pass: 1 };
 $dotCall($function_call, f, `call`, tmpMCP, 1, 2, 3, `yep`, $);
 `````
 

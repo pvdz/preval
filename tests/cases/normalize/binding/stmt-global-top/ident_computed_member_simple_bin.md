@@ -20,7 +20,7 @@ $(a, b, c);
 
 `````js filename=intro
 const tmpInitAssignLhsComputedProp /*:unknown*/ = $(`x`);
-const b /*:object*/ = { x: 2 };
+const b /*:object*/ /*truthy*/ = { x: 2 };
 b[tmpInitAssignLhsComputedProp] = 7;
 $(7, b, 3);
 `````

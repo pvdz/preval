@@ -20,7 +20,7 @@ $(a);
 
 `````js filename=intro
 const tmpUnaryArg /*:unknown*/ = $(100);
-const tmpThrowArg /*:boolean*/ = !tmpUnaryArg;
+const tmpThrowArg /*:boolean*/ /*banged*/ = !tmpUnaryArg;
 throw tmpThrowArg;
 `````
 

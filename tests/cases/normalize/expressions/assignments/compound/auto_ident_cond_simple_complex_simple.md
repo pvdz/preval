@@ -20,7 +20,7 @@ $(a);
 
 `````js filename=intro
 const tmpBinBothRhs /*:unknown*/ = $(2);
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 const tmpClusterSSA_a /*:number*/ = a * tmpBinBothRhs;
 $(tmpClusterSSA_a);
 $(tmpClusterSSA_a);

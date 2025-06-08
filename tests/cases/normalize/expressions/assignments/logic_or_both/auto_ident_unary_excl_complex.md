@@ -22,7 +22,7 @@ $(a);
 const tmpUnaryArg /*:unknown*/ = $(100);
 if (tmpUnaryArg) {
   const tmpUnaryArg$1 /*:unknown*/ = $(100);
-  const tmpNestedComplexRhs /*:boolean*/ = !tmpUnaryArg$1;
+  const tmpNestedComplexRhs /*:boolean*/ /*banged*/ = !tmpUnaryArg$1;
   $(tmpNestedComplexRhs);
   $(tmpNestedComplexRhs);
 } else {

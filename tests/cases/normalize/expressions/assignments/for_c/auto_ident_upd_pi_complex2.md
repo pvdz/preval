@@ -49,7 +49,7 @@ $(a, b);
 
 `````js filename=intro
 const tmpIfTest /*:unknown*/ = $(1);
-const b /*:object*/ = { x: 1 };
+const b /*:object*/ /*truthy*/ = { x: 1 };
 if (tmpIfTest) {
   const tmpCalleeParam /*:unknown*/ = $(b);
   const tmpNestedAssignObj /*:unknown*/ = $(tmpCalleeParam);
@@ -72,7 +72,7 @@ if (tmpIfTest) {
   }
   $(tmpClusterSSA_a, b);
 } else {
-  const a /*:object*/ = { a: 999, b: 1000 };
+  const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
   $(a, b);
 }
 `````

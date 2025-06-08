@@ -52,26 +52,26 @@
 
 
 `````js filename=intro
-const tmpCalleeParam /*:object*/ = { a: 1 };
+const tmpCalleeParam /*:object*/ /*truthy*/ = { a: 1 };
 const obj1 /*:unknown*/ = $(`get_obj1`, tmpCalleeParam);
-const tmpCalleeParam$1 /*:object*/ = { b: 2 };
+const tmpCalleeParam$1 /*:object*/ /*truthy*/ = { b: 2 };
 $(`get_obj2`, tmpCalleeParam$1);
-const tmpCalleeParam$3 /*:object*/ = { c: 3 };
+const tmpCalleeParam$3 /*:object*/ /*truthy*/ = { c: 3 };
 $(`get_obj3`, tmpCalleeParam$3);
 const tmpCalleeParam$5 /*:boolean*/ = $Object_isFrozen(obj1);
-const tmpCalleeParam$7 /*:string*/ = typeof obj1;
+const tmpCalleeParam$7 /*:string*/ /*truthy*/ = typeof obj1;
 $(`isFrozen1`, tmpCalleeParam$5, tmpCalleeParam$7);
 const tmpCalleeParam$9 /*:boolean*/ = $Object_isSealed(obj1);
-const tmpCalleeParam$11 /*:string*/ = typeof obj1;
+const tmpCalleeParam$11 /*:string*/ /*truthy*/ = typeof obj1;
 $(`isSealed1`, tmpCalleeParam$9, tmpCalleeParam$11);
-const tmpCalleeParam$13 /*:object*/ = {};
+const tmpCalleeParam$13 /*:object*/ /*truthy*/ = {};
 const tmpMCP /*:unknown*/ = $(`get_non_extensible_obj`, tmpCalleeParam$13);
-const madeNonExtensible /*:object*/ = $Object_preventExtensions(tmpMCP);
+const madeNonExtensible /*:object*/ /*truthy*/ = $Object_preventExtensions(tmpMCP);
 const isFrozen2 /*:boolean*/ = $Object_isFrozen(madeNonExtensible);
 $(`isFrozen2_non_ext`, isFrozen2);
 const isSealed2 /*:boolean*/ = $Object_isSealed(madeNonExtensible);
 $(`isSealed2_non_ext`, isSealed2);
-const plainObj /*:object*/ = {};
+const plainObj /*:object*/ /*truthy*/ = {};
 const isFrozenPlain /*:boolean*/ = $Object_isFrozen(plainObj);
 $(`isFrozenPlain`, isFrozenPlain);
 const isSealedPlain /*:boolean*/ = $Object_isSealed(plainObj);

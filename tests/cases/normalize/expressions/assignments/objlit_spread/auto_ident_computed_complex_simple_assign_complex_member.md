@@ -21,13 +21,13 @@ $(a, b);
 
 
 `````js filename=intro
-const b /*:object*/ = { c: 10, d: 20 };
+const b /*:object*/ /*truthy*/ = { c: 10, d: 20 };
 const tmpNestedAssignObj /*:unknown*/ = $(b);
 const tmpCompObj /*:unknown*/ = $(b);
 const tmpCalleeParam$1 /*:unknown*/ = $(`d`);
 const tmpNestedPropAssignRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam$1];
 tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
-const tmpCalleeParam /*:object*/ = { ...tmpNestedPropAssignRhs };
+const tmpCalleeParam /*:object*/ /*truthy*/ = { ...tmpNestedPropAssignRhs };
 $(tmpCalleeParam);
 $(tmpNestedPropAssignRhs, b);
 `````

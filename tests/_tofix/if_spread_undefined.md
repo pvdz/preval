@@ -37,7 +37,7 @@ $(a);
 
 `````js filename=intro
 let a /*:unknown*/ /*ternaryConst*/ = undefined;
-const b /*:object*/ = { x: 1 };
+const b /*:object*/ /*truthy*/ = { x: 1 };
 const tmpChainElementCall /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 let tmpArrSpread /*:unknown*/ /*ternaryConst*/ = undefined;
@@ -47,7 +47,7 @@ if (tmpIfTest) {
   a = tmpChainElementObject;
   tmpArrSpread = tmpChainElementObject;
 }
-const tmpCalleeParam /*:array*/ = [...tmpArrSpread];
+const tmpCalleeParam /*:array*/ /*truthy*/ = [...tmpArrSpread];
 $(tmpCalleeParam);
 $(a);
 `````

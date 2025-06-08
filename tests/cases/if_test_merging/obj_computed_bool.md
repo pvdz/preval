@@ -29,10 +29,10 @@ $(x);
 const tmpCalleeParam /*:unknown*/ = $(true);
 $();
 if (tmpCalleeParam) {
-  const tmpClusterSSA_x /*:object*/ = { [true]: 1, b: true };
+  const tmpClusterSSA_x /*:object*/ /*truthy*/ = { [true]: 1, b: true };
   $(tmpClusterSSA_x);
 } else {
-  const tmpClusterSSA_x$1 /*:object*/ = { [false]: 1, b: false };
+  const tmpClusterSSA_x$1 /*:object*/ /*truthy*/ = { [false]: 1, b: false };
   $(tmpClusterSSA_x$1);
 }
 `````

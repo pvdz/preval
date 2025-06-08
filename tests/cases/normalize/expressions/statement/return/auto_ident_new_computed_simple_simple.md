@@ -24,9 +24,9 @@ $(a);
 
 
 `````js filename=intro
-const tmpReturnArg /*:object*/ = new $(1);
+const tmpReturnArg /*:object*/ /*truthy*/ = new $(1);
 $(tmpReturnArg);
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

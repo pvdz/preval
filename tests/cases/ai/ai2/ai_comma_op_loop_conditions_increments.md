@@ -32,7 +32,7 @@ const tmpFree /*:(number, number)=>string*/ = function $free($$0, $$1) {
   const tmpClusterSSA_j /*:number*/ = $$1;
   debugger;
   const tmpStringConcatL$2 /*:string*/ = $coerce(tmpClusterSSA_i, `string`);
-  const tmpRet /*:string*/ = `loop_body_i=${tmpStringConcatL$2}_j=${tmpClusterSSA_j}`;
+  const tmpRet /*:string*/ /*truthy*/ = `loop_body_i=${tmpStringConcatL$2}_j=${tmpClusterSSA_j}`;
   return tmpRet;
 };
 let iter_count /*:number*/ = 0;
@@ -50,10 +50,10 @@ if (tmpCalleeParam) {
 } else {
   tmpIfTest = $(`cond_eff2`, false);
 }
-const log /*:array*/ = [];
+const log /*:array*/ /*truthy*/ = [];
 if (tmpIfTest) {
   const tmpStringConcatL$1 /*:string*/ = $coerce(i, `plustr`);
-  const tmpBinLhs /*:string*/ = `loop_body_i=${tmpStringConcatL$1}_j=`;
+  const tmpBinLhs /*:string*/ /*truthy*/ = `loop_body_i=${tmpStringConcatL$1}_j=`;
   const tmpMCP /*:string*/ = tmpBinLhs + j;
   $dotCall($array_push, log, `push`, tmpMCP);
   $(`loop_body_effect`, i, j);

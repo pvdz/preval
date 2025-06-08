@@ -28,7 +28,7 @@ if (tmpIfTest) {
   $(1);
 } else {
   const tmpObjLitVal /*:unknown*/ = $(1);
-  const tmpNestedComplexRhs /*:object*/ = { b: tmpObjLitVal };
+  const tmpNestedComplexRhs /*:object*/ /*truthy*/ = { b: tmpObjLitVal };
   a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
   $(1);

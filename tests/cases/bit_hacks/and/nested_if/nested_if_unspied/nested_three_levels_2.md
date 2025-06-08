@@ -31,7 +31,7 @@ if (x & 8) {
 const tmpFree /*:(number)=>boolean*/ = function $free($$0) {
   const x$1 /*:number*/ = $$0;
   debugger;
-  const tmpIfTest /*:number*/ = x$1 & 10;
+  const tmpIfTest /*:number*/ /*&10*/ = x$1 & 10;
   const tmpRet /*:boolean*/ = tmpIfTest === 10;
   return tmpRet;
 };
@@ -39,7 +39,7 @@ const tmpUnaryArg /*:unknown*/ = $spy(2);
 const x /*:number*/ = +tmpUnaryArg;
 const tmpIfTest$1 /*:boolean*/ = $frfr(tmpFree, x);
 if (tmpIfTest$1) {
-  const tmpIfTest$3 /*:number*/ = x & 32;
+  const tmpIfTest$3 /*:number*/ /*&32*/ /*oneBitAnded*/ = x & 32;
   if (tmpIfTest$3) {
     $(`it is 42`);
   } else {

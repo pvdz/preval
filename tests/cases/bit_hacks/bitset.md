@@ -21,7 +21,7 @@ $(x, y, z);
 
 `````js filename=intro
 const x /*:unknown*/ = $(1234);
-const y /*:number*/ = x & 2;
+const y /*:number*/ /*&2*/ /*oneBitAnded*/ = x & 2;
 const z /*:boolean*/ = $boolean_constructor(y);
 $(x, y, z);
 `````

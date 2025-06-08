@@ -50,10 +50,10 @@ const tmpObjLitVal /*:()=>function*/ = function () {
   return f$1;
 };
 $(undefined);
-const obj /*:object*/ = {
+const obj /*:object*/ /*truthy*/ = {
   f: tmpObjLitVal,
   g() {
-    const tmpPrevalAliasThis /*:object*/ = this;
+    const tmpPrevalAliasThis /*:object*/ /*truthy*/ = this;
     debugger;
     const tmpMCF /*:unknown*/ = tmpPrevalAliasThis.f;
     const tmpIfTest /*:unknown*/ = $dotCall(tmpMCF, tmpPrevalAliasThis, `f`);

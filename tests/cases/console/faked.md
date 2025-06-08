@@ -26,7 +26,7 @@ $dotCall($console_groupEnd, console, 'groupEnd', 'a', 'b', ...c);
 
 
 `````js filename=intro
-const tmpCalleeParam /*:array*/ = [1, 2, 3, `consle test case`];
+const tmpCalleeParam /*:array*/ /*truthy*/ = [1, 2, 3, `consle test case`];
 $(tmpCalleeParam);
 $dotCall($console_log, console, `log`, `a`, `b`, ...c);
 $dotCall($console_warn, console, `warn`, `a`, `b`, ...c);

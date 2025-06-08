@@ -27,8 +27,8 @@ const tmpMCP /*:()=>boolean*/ = function () {
   debugger;
   return true;
 };
-const tmpMCOO$1 /*:array*/ = [1, 2];
-const tmpMCOO /*:array*/ = $dotCall($array_filter, tmpMCOO$1, `filter`, tmpMCP);
+const tmpMCOO$1 /*:array*/ /*truthy*/ = [1, 2];
+const tmpMCOO /*:array*/ /*truthy*/ = $dotCall($array_filter, tmpMCOO$1, `filter`, tmpMCP);
 const tmpMCP$1 /*:()=>undefined*/ = function () {
   debugger;
   x = `changed`;

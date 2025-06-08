@@ -35,7 +35,7 @@ const f /*:()=>boolean*/ = function () {
   const x /*:unknown*/ = $(1);
   $(`block`);
   $(`block`);
-  const tmpIfTestFold /*:boolean*/ = !x;
+  const tmpIfTestFold /*:boolean*/ /*banged*/ = !x;
   return tmpIfTestFold;
 };
 f();

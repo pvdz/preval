@@ -29,7 +29,7 @@ $(a, b);
 `````js filename=intro
 const tmpSwitchValue /*:unknown*/ = $(1);
 let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
-const b /*:object*/ = { c: 1 };
+const b /*:object*/ /*truthy*/ = { c: 1 };
 const tmpAssignRhsProp /*:unknown*/ = $(b);
 const a /*:unknown*/ = tmpAssignRhsProp.c;
 const tmpIfTest /*:boolean*/ = a === tmpSwitchValue;

@@ -28,7 +28,7 @@ $('after, wont eval due to infinite loop');
 while (true) {
   const tmpIfTest /*:unknown*/ = $(true);
   if (tmpIfTest) {
-    const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
+    const tmpCalleeParam /*:object*/ /*truthy*/ = { a: 1, b: 2 };
     const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
     while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
       const tmpForInNext /*:unknown*/ = tmpForInGen();

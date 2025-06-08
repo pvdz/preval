@@ -20,7 +20,7 @@ $(a);
 
 `````js filename=intro
 const tmpBinBothLhs /*:unknown*/ = $(100);
-const a /*:regex*/ = new $regex_constructor(`foo`, ``);
+const a /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, ``);
 const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + a;
 $(tmpCalleeParam);
 $(a);

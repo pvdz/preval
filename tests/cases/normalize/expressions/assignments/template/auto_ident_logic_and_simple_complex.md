@@ -22,7 +22,7 @@ $(a);
 const tmpCalleeParam$3 /*:unknown*/ = $(1);
 const tmpSSA_a /*:unknown*/ = $(tmpCalleeParam$3);
 const tmpStringConcatL /*:string*/ = $coerce(tmpSSA_a, `string`);
-const tmpCalleeParam /*:string*/ = `before  ${tmpStringConcatL}  after`;
+const tmpCalleeParam /*:string*/ /*truthy*/ = `before  ${tmpStringConcatL}  after`;
 $(tmpCalleeParam);
 $(tmpSSA_a);
 `````

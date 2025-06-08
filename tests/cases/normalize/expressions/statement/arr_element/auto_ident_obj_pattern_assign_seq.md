@@ -31,10 +31,10 @@ $(tmpObjLitVal);
 $(tmpObjLitVal$1);
 const tmpObjLitVal$3 /*:unknown*/ = $(3);
 const tmpObjLitVal$5 /*:unknown*/ = $(4);
-const tmpNestedAssignObjPatternRhs /*:object*/ = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-const tmpNestedAssignObjPatternRhs$1 /*:object*/ = { x: tmpObjLitVal$3, y: tmpObjLitVal$5 };
+const tmpNestedAssignObjPatternRhs /*:object*/ /*truthy*/ = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
+const tmpNestedAssignObjPatternRhs$1 /*:object*/ /*truthy*/ = { x: tmpObjLitVal$3, y: tmpObjLitVal$5 };
 tmpNestedAssignObjPatternRhs + tmpNestedAssignObjPatternRhs$1;
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a, tmpObjLitVal$3, tmpObjLitVal$5);
 `````
 

@@ -19,11 +19,11 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam$1 /*:object*/ = { a: 1, b: 2 };
+const tmpCalleeParam$1 /*:object*/ /*truthy*/ = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam$1);
 const a /*:unknown*/ = tmpNestedAssignObjPatternRhs.a;
 if (tmpNestedAssignObjPatternRhs) {
-  const tmpCalleeParam$3 /*:object*/ = { a: 1, b: 2 };
+  const tmpCalleeParam$3 /*:object*/ /*truthy*/ = { a: 1, b: 2 };
   const tmpNestedAssignObjPatternRhs$1 /*:unknown*/ = $(tmpCalleeParam$3);
   const tmpClusterSSA_a /*:unknown*/ = tmpNestedAssignObjPatternRhs$1.a;
   $(tmpNestedAssignObjPatternRhs$1);

@@ -24,7 +24,7 @@ $('after_try_catch');
 
 
 `````js filename=intro
-const tmpCalleeParam /*:object*/ = new Error(`test_error`);
+const tmpCalleeParam /*:object*/ /*truthy*/ = new Error(`test_error`);
 const x /*:unknown*/ = $(`x`, tmpCalleeParam);
 try {
   throw x;

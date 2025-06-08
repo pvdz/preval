@@ -28,13 +28,13 @@ $(tmpClusterSSA_a);
 
 
 `````js filename=intro
-const bindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
+const bindingPatternArrRoot /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 [...bindingPatternArrRoot];
 $(10);
 $(20);
-const tmpCalleeParam /*:array*/ = [1, 2];
+const tmpCalleeParam /*:array*/ /*truthy*/ = [1, 2];
 const tmpNestedAssignArrPatternRhs /*:unknown*/ = $(tmpCalleeParam);
-const arrPatternSplat$1 /*:array*/ = [...tmpNestedAssignArrPatternRhs];
+const arrPatternSplat$1 /*:array*/ /*truthy*/ = [...tmpNestedAssignArrPatternRhs];
 const tmpClusterSSA_a /*:unknown*/ = arrPatternSplat$1[0];
 $coerce(tmpNestedAssignArrPatternRhs, `string`);
 $(tmpClusterSSA_a);

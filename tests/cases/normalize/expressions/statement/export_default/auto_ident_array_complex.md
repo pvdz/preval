@@ -21,9 +21,9 @@ $(a);
 `````js filename=intro
 const tmpArrElement /*:unknown*/ = $(1);
 const tmpArrElement$3 /*:unknown*/ = $(3);
-const tmpAnonDefaultExport /*:array*/ = [tmpArrElement, 2, tmpArrElement$3];
+const tmpAnonDefaultExport /*:array*/ /*truthy*/ = [tmpArrElement, 2, tmpArrElement$3];
 export { tmpAnonDefaultExport as default };
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

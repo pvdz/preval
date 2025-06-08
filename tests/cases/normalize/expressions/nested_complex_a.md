@@ -18,7 +18,7 @@ $($(a).length = b = c);
 
 
 `````js filename=intro
-const a /*:array*/ = [];
+const a /*:array*/ /*truthy*/ = [];
 const tmpInitAssignLhsComputedObj /*:unknown*/ = $(a);
 tmpInitAssignLhsComputedObj.length = 30;
 $(30);

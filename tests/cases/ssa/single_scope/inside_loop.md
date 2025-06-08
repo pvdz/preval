@@ -25,7 +25,7 @@ for (let styleName$5 in {x:100}) {
 
 
 `````js filename=intro
-const tmpCalleeParam /*:object*/ = { x: 100 };
+const tmpCalleeParam /*:object*/ /*truthy*/ = { x: 100 };
 const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForInNext /*:unknown*/ = tmpForInGen();

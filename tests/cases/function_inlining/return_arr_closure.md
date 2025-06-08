@@ -27,7 +27,7 @@ $(g());
 `````js filename=intro
 const y /*:unknown*/ = $(20);
 const z /*:unknown*/ = $(30);
-const tmpReturnArg /*:array*/ = [10, y, z];
+const tmpReturnArg /*:array*/ /*truthy*/ = [10, y, z];
 $(tmpReturnArg);
 $(undefined);
 `````

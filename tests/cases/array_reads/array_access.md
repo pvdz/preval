@@ -29,7 +29,7 @@ if (f) {
 
 
 `````js filename=intro
-const a /*:array*/ = [1];
+const a /*:array*/ /*truthy*/ = [1];
 $(a);
 const e /*:primitive*/ = a[0];
 const f /*:boolean*/ = e < 10;

@@ -26,8 +26,8 @@ $(a);
 
 
 `````js filename=intro
-const tmpBindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
-const tmpArrPatternSplat /*:array*/ = [...tmpBindingPatternArrRoot];
+const tmpBindingPatternArrRoot /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
+const tmpArrPatternSplat /*:array*/ /*truthy*/ = [...tmpBindingPatternArrRoot];
 let a /*:unknown*/ /*ternaryConst*/ = tmpArrPatternSplat[0];
 const tmpSwitchValue /*:unknown*/ = $(1);
 let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
@@ -46,9 +46,9 @@ const tmpIfTest$3 /*:boolean*/ = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$3) {
   $(10);
   $(20);
-  const tmpCalleeParam /*:array*/ = [1, 2];
+  const tmpCalleeParam /*:array*/ /*truthy*/ = [1, 2];
   const tmpArrAssignPatternRhs /*:unknown*/ = $(tmpCalleeParam);
-  const tmpArrPatternSplat$1 /*:array*/ = [...tmpArrAssignPatternRhs];
+  const tmpArrPatternSplat$1 /*:array*/ /*truthy*/ = [...tmpArrAssignPatternRhs];
   a = tmpArrPatternSplat$1[0];
 } else {
 }

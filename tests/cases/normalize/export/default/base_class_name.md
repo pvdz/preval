@@ -18,7 +18,7 @@ new X();
 
 
 `````js filename=intro
-const X /*:class*/ = class {};
+const X /*:class*/ /*truthy*/ = class {};
 export { X };
 new X();
 `````

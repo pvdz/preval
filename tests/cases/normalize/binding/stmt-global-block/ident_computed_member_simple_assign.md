@@ -28,7 +28,7 @@ if (tmpIfTest) {
   const tmpInitAssignLhsComputedProp$1 /*:unknown*/ = $(`y`);
   const tmpInitAssignLhsComputedRhs$1 /*:unknown*/ = $(4);
   tmpInitAssignLhsComputedObj$1[tmpInitAssignLhsComputedProp$1] = tmpInitAssignLhsComputedRhs$1;
-  const b /*:object*/ = { x: 2 };
+  const b /*:object*/ /*truthy*/ = { x: 2 };
   b[tmpInitAssignLhsComputedProp] = tmpInitAssignLhsComputedRhs$1;
   $(tmpInitAssignLhsComputedRhs$1, b, 3);
 } else {

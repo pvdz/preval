@@ -21,7 +21,7 @@ $(a, b);
 
 
 `````js filename=intro
-const b /*:object*/ = { c: 1 };
+const b /*:object*/ /*truthy*/ = { c: 1 };
 const tmpCompObj /*:unknown*/ = $(b);
 const xyz /*:unknown*/ = tmpCompObj.c;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {

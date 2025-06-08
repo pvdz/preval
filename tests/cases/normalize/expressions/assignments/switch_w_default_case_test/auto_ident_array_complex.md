@@ -29,7 +29,7 @@ const tmpSwitchValue /*:unknown*/ = $(1);
 let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
 const tmpArrElement /*:unknown*/ = $(1);
 const tmpArrElement$3 /*:unknown*/ = $(3);
-const a /*:array*/ = [tmpArrElement, 2, tmpArrElement$3];
+const a /*:array*/ /*truthy*/ = [tmpArrElement, 2, tmpArrElement$3];
 const tmpIfTest /*:boolean*/ = a === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;

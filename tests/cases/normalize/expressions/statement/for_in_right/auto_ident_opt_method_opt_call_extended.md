@@ -26,7 +26,7 @@ let tmpForInGen /*:unknown*/ /*ternaryConst*/ = undefined;
 if (tmpIfTest$1) {
   tmpForInGen = $forIn(undefined);
 } else {
-  const tmpObjLitVal$1 /*:object*/ = { e: $ };
+  const tmpObjLitVal$1 /*:object*/ /*truthy*/ = { e: $ };
   const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
   tmpForInGen = $forIn(tmpClusterSSA_tmpCalleeParam);
 }
@@ -39,7 +39,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     tmpForInNext.value;
   }
 }
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

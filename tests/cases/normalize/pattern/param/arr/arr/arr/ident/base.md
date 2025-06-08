@@ -20,7 +20,7 @@ $(f([[[[1, 2, 3], 4, 5], 20, 30], 40, 50], 200));
 
 
 `````js filename=intro
-const tmpArrElement$3 /*:array*/ = [1, 2, 3];
+const tmpArrElement$3 /*:array*/ /*truthy*/ = [1, 2, 3];
 $(tmpArrElement$3);
 `````
 

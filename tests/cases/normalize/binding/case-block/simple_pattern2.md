@@ -45,9 +45,9 @@ $(a, x, y, z);
 const tmpSwitchValue /*:unknown*/ = $(`a`);
 const tmpBinLhs /*:unknown*/ = $(`a`);
 const tmpIfTest /*:boolean*/ = tmpBinLhs === tmpSwitchValue;
-const z /*:array*/ = [10, 20, 30];
+const z /*:array*/ /*truthy*/ = [10, 20, 30];
 if (tmpIfTest) {
-  const arrPatternSplat /*:array*/ = [...z];
+  const arrPatternSplat /*:array*/ /*truthy*/ = [...z];
   const tmpClusterSSA_x /*:unknown*/ = arrPatternSplat[0];
   const tmpClusterSSA_y /*:unknown*/ = arrPatternSplat[1];
   $(1, tmpClusterSSA_x, tmpClusterSSA_y, z);

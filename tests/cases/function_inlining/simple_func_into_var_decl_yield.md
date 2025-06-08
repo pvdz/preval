@@ -30,8 +30,8 @@ const f /*:()=>object*/ = function* () {
   yield 20;
   return undefined;
 };
-const p /*:object*/ = f();
-const q /*:object*/ = f();
+const p /*:object*/ /*truthy*/ = f();
+const q /*:object*/ /*truthy*/ = f();
 $(p, q);
 `````
 

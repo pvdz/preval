@@ -20,7 +20,7 @@ $(o);
 
 
 `````js filename=intro
-const o /*:object*/ = {};
+const o /*:object*/ /*truthy*/ = {};
 $(o);
 delete o.x;
 $(o);

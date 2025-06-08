@@ -65,7 +65,7 @@ const err_cond /*:unknown*/ = $(false);
 if (x) {
   try {
     if (err_cond) {
-      const tmpThrowArg /*:object*/ = new Error(`problem`);
+      const tmpThrowArg /*:object*/ /*truthy*/ = new Error(`problem`);
       throw tmpThrowArg;
     } else {
       y = true;

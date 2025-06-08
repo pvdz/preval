@@ -22,7 +22,7 @@ $(a, arg);
 
 `````js filename=intro
 const tmpUnaryArg /*:unknown*/ = $(1);
-const tmpThrowArg /*:string*/ = typeof tmpUnaryArg;
+const tmpThrowArg /*:string*/ /*truthy*/ = typeof tmpUnaryArg;
 throw tmpThrowArg;
 `````
 

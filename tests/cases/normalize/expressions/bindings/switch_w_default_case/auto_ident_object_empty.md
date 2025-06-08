@@ -25,7 +25,7 @@ switch (1) {
 
 
 `````js filename=intro
-const a /*:object*/ = {};
+const a /*:object*/ /*truthy*/ = {};
 $(a);
 $(`fail1`);
 $(`fail2`);

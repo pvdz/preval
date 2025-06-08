@@ -32,7 +32,7 @@
 
 
 `````js filename=intro
-let x /*:number*/ = 10;
+let x /*:number*/ /*truthy*/ = 10;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpIfTest /*:unknown*/ = $(x);
   if (tmpIfTest) {

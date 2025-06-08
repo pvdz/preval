@@ -23,7 +23,7 @@ $(a, b);
 `````js filename=intro
 let b /*:unknown*/ = [];
 let a /*:unknown*/ = { a: 999, b: 1000 };
-const tmpCalleeParam$1 /*:object*/ = { x: 1 };
+const tmpCalleeParam$1 /*:object*/ /*truthy*/ = { x: 1 };
 const tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$1);
 const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
@@ -33,9 +33,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     break;
   } else {
     const tmpArrElement /*:unknown*/ = $(2);
-    const tmpCalleeParam$3 /*:array*/ = [tmpArrElement];
+    const tmpCalleeParam$3 /*:array*/ /*truthy*/ = [tmpArrElement];
     const tmpNestedAssignArrPatternRhs /*:unknown*/ = $(tmpCalleeParam$3);
-    const tmpArrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
+    const tmpArrPatternSplat /*:array*/ /*truthy*/ = [...tmpNestedAssignArrPatternRhs];
     b = tmpArrPatternSplat[0];
     a = tmpNestedAssignArrPatternRhs;
     const tmpAssignMemRhs /*:unknown*/ = tmpForOfNext.value;

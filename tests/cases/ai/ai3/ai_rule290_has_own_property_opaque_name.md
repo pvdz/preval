@@ -21,7 +21,7 @@ let result = $('result', obj.hasOwnProperty(P));
 
 `````js filename=intro
 const P /*:unknown*/ = $(`P`, `foo`);
-const obj /*:object*/ = { foo: 1, bar: 2 };
+const obj /*:object*/ /*truthy*/ = { foo: 1, bar: 2 };
 const tmpCalleeParam /*:boolean*/ = $dotCall($object_hasOwnProperty, obj, `hasOwnProperty`, P);
 $(`result`, tmpCalleeParam);
 `````

@@ -23,7 +23,7 @@ $('array_from_result', newArr);
 `````js filename=intro
 const iterable /*:unknown*/ = $(`opaque_iterable`);
 const mapFn /*:unknown*/ = $(`opaque_map_function`);
-const newArr /*:array*/ = $Array_from(iterable, mapFn);
+const newArr /*:array*/ /*truthy*/ = $Array_from(iterable, mapFn);
 $(`array_from_result`, newArr);
 `````
 

@@ -19,7 +19,7 @@ $('bad');
 
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $Number_prototype.x;
-const tmpCalleeParam$1 /*:array*/ = [];
+const tmpCalleeParam$1 /*:array*/ /*truthy*/ = [];
 y = $objPatternRest(tmpCalleeParam, tmpCalleeParam$1, undefined);
 $(`bad`);
 `````

@@ -24,7 +24,7 @@ if (tmpCalleeParam) {
   $(tmpCalleeParam);
   $(999);
 } else {
-  const tmpCalleeParam$1 /*:object*/ = { a: 1, b: 2 };
+  const tmpCalleeParam$1 /*:object*/ /*truthy*/ = { a: 1, b: 2 };
   const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam$1);
   const tmpClusterSSA_a /*:unknown*/ = tmpNestedAssignObjPatternRhs.a;
   $(tmpNestedAssignObjPatternRhs);

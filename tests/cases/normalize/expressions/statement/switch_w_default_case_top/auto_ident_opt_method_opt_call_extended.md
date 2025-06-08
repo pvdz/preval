@@ -47,7 +47,7 @@ if (tmpIfTest$3) {
   const tmpIfTest$7 /*:boolean*/ = $ == null;
   if (tmpIfTest$7) {
   } else {
-    const tmpObjLitVal$1 /*:object*/ = { e: $ };
+    const tmpObjLitVal$1 /*:object*/ /*truthy*/ = { e: $ };
     $dotCall($, tmpObjLitVal$1, `e`, 1);
   }
 } else {
@@ -59,7 +59,7 @@ if (tmpIfTest$3) {
     $(`fail2`);
   }
 }
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

@@ -22,7 +22,7 @@ $($(a).length);
 
 
 `````js filename=intro
-const tmpCalleeParam /*:array*/ = [];
+const tmpCalleeParam /*:array*/ /*truthy*/ = [];
 const a /*:unknown*/ = $(tmpCalleeParam);
 const tmpCompObj /*:unknown*/ = $(a);
 const tmpCalleeParam$1 /*:unknown*/ = tmpCompObj.length;

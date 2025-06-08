@@ -36,7 +36,7 @@ $('sym_keyfor_local_symbol', Symbol.keyFor(non_global_sym)); // Should be undefi
 const key_for_symbol /*:unknown*/ = $(`sym_for_key`, `mySymbolKey`);
 const tmpMCF /*:unknown*/ = Symbol.for;
 const sym1 /*:unknown*/ = $dotCall(tmpMCF, Symbol, `for`, key_for_symbol);
-const tmpBinLhs /*:string*/ = typeof sym1;
+const tmpBinLhs /*:string*/ /*truthy*/ = typeof sym1;
 const tmpCalleeParam /*:boolean*/ = tmpBinLhs === `symbol`;
 $(`sym_is_sym1`, tmpCalleeParam);
 const tmpMCF$1 /*:unknown*/ = Symbol.keyFor;

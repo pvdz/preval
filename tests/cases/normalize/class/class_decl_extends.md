@@ -18,7 +18,7 @@ $(x);
 
 
 `````js filename=intro
-const x /*:class*/ = class extends y {};
+const x /*:class*/ /*truthy*/ = class extends y {};
 $(x);
 `````
 

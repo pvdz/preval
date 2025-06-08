@@ -28,11 +28,11 @@ $(same);
 const a /*:unknown*/ = $(1);
 const b /*:unknown*/ = $(2);
 const same /*:boolean*/ = a === b;
-const tmpCalleeParam /*:boolean*/ = !same;
+const tmpCalleeParam /*:boolean*/ /*banged*/ = !same;
 $(tmpCalleeParam);
-const tmpCalleeParam$1 /*:boolean*/ = !same;
+const tmpCalleeParam$1 /*:boolean*/ /*banged*/ = !same;
 $(tmpCalleeParam$1);
-const tmpCalleeParam$3 /*:boolean*/ = !same;
+const tmpCalleeParam$3 /*:boolean*/ /*banged*/ = !same;
 $(tmpCalleeParam$3);
 $(same);
 `````

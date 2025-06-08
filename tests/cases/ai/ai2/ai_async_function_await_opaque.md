@@ -29,7 +29,7 @@ const test /*:()=>promise*/ = async function () {
   $(`awaited_value`, x);
   return undefined;
 };
-const tmpMCOO /*:promise*/ = test();
+const tmpMCOO /*:promise*/ /*truthy*/ = test();
 const tmpMCP /*:(unknown)=>unknown*/ = function ($$0) {
   const e /*:unknown*/ = $$0;
   debugger;

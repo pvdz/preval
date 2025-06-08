@@ -19,7 +19,7 @@ $(x);
 
 `````js filename=intro
 const tmpSSA_tmpArrPatternStep /*:unknown*/ = $(`pass`);
-const tmpArrPatternSplat$1 /*:array*/ = [...tmpSSA_tmpArrPatternStep];
+const tmpArrPatternSplat$1 /*:array*/ /*truthy*/ = [...tmpSSA_tmpArrPatternStep];
 x = $dotCall($array_slice, tmpArrPatternSplat$1, `slice`, 0);
 $(x);
 `````

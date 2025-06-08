@@ -24,7 +24,7 @@ const tmpOPBD /*:unknown*/ = $Object_prototype.x;
 let tmpOPAD /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpIfTest /*:boolean*/ = tmpOPBD === undefined;
 if (tmpIfTest) {
-  const tmpCalleeParam /*:array*/ = [`fail`];
+  const tmpCalleeParam /*:array*/ /*truthy*/ = [`fail`];
   tmpOPAD = $(tmpCalleeParam);
 } else {
   tmpOPAD = tmpOPBD;

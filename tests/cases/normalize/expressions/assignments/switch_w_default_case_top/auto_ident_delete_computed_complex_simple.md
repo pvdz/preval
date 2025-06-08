@@ -43,7 +43,7 @@ if (tmpIfTest) {
   }
 }
 const tmpIfTest$3 /*:boolean*/ = tmpSwitchCaseToStart <= 0;
-const arg /*:object*/ = { y: 1 };
+const arg /*:object*/ /*truthy*/ = { y: 1 };
 if (tmpIfTest$3) {
   const tmpDeleteObj /*:unknown*/ = $(arg);
   a = delete tmpDeleteObj.y;

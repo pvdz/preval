@@ -26,7 +26,7 @@ if (a) {
   a = $(tmpCalleeParam$5);
 } else {
 }
-const tmpCalleeParam /*:array*/ = [`before `, ` after`];
+const tmpCalleeParam /*:array*/ /*truthy*/ = [`before `, ` after`];
 $(tmpCalleeParam, a);
 $(a);
 `````

@@ -28,7 +28,7 @@ $(a, x);
 
 
 `````js filename=intro
-const tmpCalleeParam /*:string*/ = typeof x$1;
+const tmpCalleeParam /*:string*/ /*truthy*/ = typeof x$1;
 const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForInNext /*:unknown*/ = tmpForInGen();
@@ -39,7 +39,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     tmpForInNext.value;
   }
 }
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a, 1);
 `````
 

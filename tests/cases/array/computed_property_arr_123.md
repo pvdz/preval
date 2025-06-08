@@ -18,7 +18,7 @@ $(x[[1, 2, 3]]);
 
 
 `````js filename=intro
-const tmpCompObj /*:array*/ = [];
+const tmpCompObj /*:array*/ /*truthy*/ = [];
 const tmpCalleeParam /*:unknown*/ = tmpCompObj[`1,2,3`];
 $(tmpCalleeParam);
 `````

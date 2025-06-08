@@ -56,7 +56,7 @@ try {
 const tmpFree2 /*:(primitive)=>boolean*/ = function $free($$0) {
   const $dlr_$$1 /*:primitive*/ = $$0;
   debugger;
-  const tmpBinBothLhs /*:string*/ = typeof $dlr_$$1;
+  const tmpBinBothLhs /*:string*/ /*truthy*/ = typeof $dlr_$$1;
   const tmpRet$2 /*:boolean*/ = tmpBinBothLhs === `string`;
   return tmpRet$2;
 };

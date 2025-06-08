@@ -22,7 +22,7 @@ $();
 
 
 `````js filename=intro
-const wat /*:object*/ = { a: 1, b: 2 };
+const wat /*:object*/ /*truthy*/ = { a: 1, b: 2 };
 const tmpForInGen /*:unknown*/ = $forIn(wat);
 const tmpForInNext /*:unknown*/ = tmpForInGen();
 const tmpIfTest /*:unknown*/ = tmpForInNext.done;

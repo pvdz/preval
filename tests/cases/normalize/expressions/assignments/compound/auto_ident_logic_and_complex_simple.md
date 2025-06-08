@@ -21,7 +21,7 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam$1 /*:unknown*/ = $(1);
 const tmpBinBothRhs /*:unknown*/ = $(tmpCalleeParam$1);
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 if (tmpBinBothRhs) {
   const tmpClusterSSA_a$1 /*:number*/ = a * 2;
   $(tmpClusterSSA_a$1);

@@ -46,7 +46,7 @@ if (tmpIfTest) {
 }
 const tmpIfTest$3 /*:boolean*/ = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$3) {
-  const b /*:object*/ = { c: $ };
+  const b /*:object*/ /*truthy*/ = { c: $ };
   $dotCall($, b, `c`, 1);
 } else {
   const tmpIfTest$7 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
@@ -57,7 +57,7 @@ if (tmpIfTest$3) {
     $(`fail2`);
   }
 }
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

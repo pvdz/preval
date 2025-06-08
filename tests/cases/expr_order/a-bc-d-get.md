@@ -25,7 +25,7 @@ $(a, b, d);
 
 
 `````js filename=intro
-const b /*:object*/ = {
+const b /*:object*/ /*truthy*/ = {
   get c() {
     debugger;
     $(`should not be called`);

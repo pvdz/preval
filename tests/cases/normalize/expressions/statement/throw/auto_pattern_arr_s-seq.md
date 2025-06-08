@@ -19,11 +19,11 @@ $(a);
 
 
 `````js filename=intro
-const tmpBindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
+const tmpBindingPatternArrRoot /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 [...tmpBindingPatternArrRoot];
 $(10);
 $(20);
-const tmpThrowArg /*:array*/ = [1, 2];
+const tmpThrowArg /*:array*/ /*truthy*/ = [1, 2];
 throw tmpThrowArg;
 `````
 

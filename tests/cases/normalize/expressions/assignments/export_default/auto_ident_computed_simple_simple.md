@@ -21,9 +21,9 @@ $(a, b);
 
 
 `````js filename=intro
-const tmpAnonDefaultExport /*:number*/ = 1;
+const tmpAnonDefaultExport /*:number*/ /*truthy*/ = 1;
 export { tmpAnonDefaultExport as default };
-const b /*:object*/ = { c: 1 };
+const b /*:object*/ /*truthy*/ = { c: 1 };
 $(1, b);
 `````
 

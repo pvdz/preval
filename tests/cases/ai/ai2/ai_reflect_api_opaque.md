@@ -50,21 +50,21 @@ $('reflect_target_after_defProp', target_obj[def_prop_key]);
 
 `````js filename=intro
 const tmpObjLitVal$1 /*:(unknown)=>unknown*/ = function ($$0) {
-  const tmpPrevalAliasThis /*:object*/ = this;
+  const tmpPrevalAliasThis /*:object*/ /*truthy*/ = this;
   const x /*:unknown*/ = $$0;
   debugger;
   const tmpCalleeParam$3 /*:unknown*/ = tmpPrevalAliasThis.prop;
   const tmpReturnArg /*:unknown*/ = $(`method_called`, x, tmpCalleeParam$3);
   return tmpReturnArg;
 };
-const tmpCalleeParam /*:object*/ = { prop: `value`, method: tmpObjLitVal$1 };
+const tmpCalleeParam /*:object*/ /*truthy*/ = { prop: `value`, method: tmpObjLitVal$1 };
 const target_obj /*:unknown*/ = $(`reflect_target`, tmpCalleeParam);
 const key /*:unknown*/ = $(`reflect_key`, `prop`);
 const value_to_set /*:unknown*/ = $(`reflect_set_val`, `new_value`);
-const tmpCalleeParam$5 /*:object*/ = { prop: `receiver_value` };
+const tmpCalleeParam$5 /*:object*/ /*truthy*/ = { prop: `receiver_value` };
 const receiver /*:unknown*/ = $(`reflect_receiver`, tmpCalleeParam$5);
 const tmpArrElement /*:unknown*/ = $(`arg1`);
-const tmpCalleeParam$7 /*:array*/ = [tmpArrElement];
+const tmpCalleeParam$7 /*:array*/ /*truthy*/ = [tmpArrElement];
 const args_list /*:unknown*/ = $(`reflect_args`, tmpCalleeParam$7);
 const tmpMCF /*:unknown*/ = Reflect.get;
 const tmpCalleeParam$9 /*:unknown*/ = $dotCall(tmpMCF, Reflect, `get`, target_obj, key, receiver);
@@ -81,13 +81,13 @@ const tmpCalleeParam$17 /*:unknown*/ = $dotCall(tmpMCF$3, Reflect, `has`, target
 $(`reflect_has_result`, tmpCalleeParam$17);
 const tmpCalleeParam$19 /*:unknown*/ = target_obj.method;
 const func_to_apply /*:unknown*/ = $(`reflect_func`, tmpCalleeParam$19);
-const tmpCalleeParam$21 /*:object*/ = { prop: `this_arg_prop` };
+const tmpCalleeParam$21 /*:object*/ /*truthy*/ = { prop: `this_arg_prop` };
 const this_arg /*:unknown*/ = $(`reflect_this_arg`, tmpCalleeParam$21);
 const tmpMCF$5 /*:unknown*/ = Reflect.apply;
 const tmpCalleeParam$23 /*:unknown*/ = $dotCall(tmpMCF$5, Reflect, `apply`, func_to_apply, this_arg, args_list);
 $(`reflect_apply_result`, tmpCalleeParam$23);
 const tmpCalleeParam$25 /*:(unknown)=>undefined*/ = function ($$0) {
-  const tmpPrevalAliasThis$1 /*:object*/ = this;
+  const tmpPrevalAliasThis$1 /*:object*/ /*truthy*/ = this;
   const a /*:unknown*/ = $$0;
   debugger;
   const tmpAssignMemRhs /*:unknown*/ = $(`ctor_val`, a);
@@ -98,11 +98,11 @@ const ctor_func /*:unknown*/ = $(`reflect_constructor`, tmpCalleeParam$25);
 const new_target_ctor /*:unknown*/ = $(`reflect_new_target`);
 const tmpMCF$7 /*:unknown*/ = Reflect.construct;
 const tmpNewCallee /*:unknown*/ = $dotCall(tmpMCF$7, Reflect, `construct`, ctor_func, args_list, new_target_ctor);
-const tmpCompObj /*:object*/ = new tmpNewCallee();
+const tmpCompObj /*:object*/ /*truthy*/ = new tmpNewCallee();
 const tmpCalleeParam$27 /*:unknown*/ = tmpCompObj.val;
 $(`reflect_construct_result_val`, tmpCalleeParam$27);
 const def_prop_key /*:unknown*/ = $(`reflect_def_prop_key`, `newProp`);
-const tmpCalleeParam$29 /*:object*/ = { value: `defined`, writable: true };
+const tmpCalleeParam$29 /*:object*/ /*truthy*/ = { value: `defined`, writable: true };
 const def_prop_desc /*:unknown*/ = $(`reflect_def_prop_desc`, tmpCalleeParam$29);
 const tmpMCF$9 /*:unknown*/ = Reflect.defineProperty;
 const tmpCalleeParam$31 /*:unknown*/ = $dotCall(tmpMCF$9, Reflect, `defineProperty`, target_obj, def_prop_key, def_prop_desc);

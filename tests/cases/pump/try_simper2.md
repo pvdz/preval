@@ -28,7 +28,7 @@ $(arrB[0]);
 
 
 `````js filename=intro
-const arrB /*:array*/ = [
+const arrB /*:array*/ /*truthy*/ = [
   `body`,
   `abOPIoHFut:bwlFaSsnkTXHOCpGGeeFsJMHCLEPCWr`,
   `return (function() `,
@@ -46,7 +46,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   if (abeq) {
     break;
   } else {
-    const arrval /*:primitive*/ = $dotCall($array_shift, arrB, `shift`);
+    const arrval /*:primitive*/ /*truthy*/ = $dotCall($array_shift, arrB, `shift`);
     $dotCall($array_push, arrB, `push`, arrval);
   }
 }

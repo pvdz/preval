@@ -29,7 +29,7 @@
 
 
 `````js filename=intro
-const getterObj /*:object*/ = {
+const getterObj /*:object*/ /*truthy*/ = {
   get val() {
     debugger;
     $(`getter_called`);
@@ -41,8 +41,8 @@ const tmpInitAssignLhsComputedRhs /*:unknown*/ = getterObj.val;
 $(`final_a_prop`, tmpInitAssignLhsComputedRhs);
 $(`final_b`, tmpInitAssignLhsComputedRhs);
 $(`final_c`, tmpInitAssignLhsComputedRhs);
-const a /*:object*/ = { prop: tmpInitAssignLhsComputedRhs };
-const tmpMCOO /*:array*/ = $Object_keys(a);
+const a /*:object*/ /*truthy*/ = { prop: tmpInitAssignLhsComputedRhs };
+const tmpMCOO /*:array*/ /*truthy*/ = $Object_keys(a);
 const tmpCalleeParam$1 /*:string*/ = $dotCall($array_join, tmpMCOO, `join`, `,`);
 $(`a_keys`, tmpCalleeParam$1);
 `````

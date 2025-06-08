@@ -77,7 +77,7 @@ const tmpFree /*:(primitive)=>boolean*/ = function $free($$0) {
   const tmpRet$1 /*:boolean*/ = v === 330166;
   return tmpRet$1;
 };
-const main_data_arr /*:array*/ = [`ike there `, `wgcCwgZikg`, `LmNvbmNhdC`, `eBestCandi`, ` using the`];
+const main_data_arr /*:array*/ /*truthy*/ = [`ike there `, `wgcCwgZikg`, `LmNvbmNhdC`, `eBestCandi`, ` using the`];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmp2$2 /*:primitive*/ = main_data_arr[4336];
   try {
@@ -86,12 +86,12 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     if (w) {
       break;
     } else {
-      const tmpMCPa /*:primitive*/ = $dotCall($array_shift, main_data_arr, `shift`);
+      const tmpMCPa /*:primitive*/ /*truthy*/ = $dotCall($array_shift, main_data_arr, `shift`);
       $dotCall($array_push, main_data_arr, `push`, tmpMCPa);
     }
   } catch (_0x17f097) {
     $(`crashing`);
-    const tmpMCPb /*:primitive*/ = $dotCall($array_shift, main_data_arr, `shift`);
+    const tmpMCPb /*:primitive*/ /*truthy*/ = $dotCall($array_shift, main_data_arr, `shift`);
     $dotCall($array_push, main_data_arr, `push`, tmpMCPb);
   }
 }

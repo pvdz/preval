@@ -17,7 +17,7 @@
 
 
 `````js filename=intro
-const tmpObjSpreadArg /*:object*/ = { a: 10 };
+const tmpObjSpreadArg /*:object*/ /*truthy*/ = { a: 10 };
 ({ ...tmpObjSpreadArg });
 `````
 

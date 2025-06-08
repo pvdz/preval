@@ -31,7 +31,7 @@ while (x) {
 
 
 `````js filename=intro
-let x /*:regex*/ = new $regex_constructor(`foo`, ``);
+let x /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, ``);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpCalleeParam /*:unknown*/ = x.foo;
   $(tmpCalleeParam);

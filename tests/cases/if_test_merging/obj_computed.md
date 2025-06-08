@@ -29,7 +29,7 @@ $(x);
 const tmpCalleeParam /*:unknown*/ = $(true);
 const a /*:unknown*/ = $();
 const tmpBool /*:boolean*/ = $boolean_constructor(tmpCalleeParam);
-const tmpClusterSSA_x /*:object*/ = { [a]: 1, b: tmpBool };
+const tmpClusterSSA_x /*:object*/ /*truthy*/ = { [a]: 1, b: tmpBool };
 $(tmpClusterSSA_x);
 `````
 

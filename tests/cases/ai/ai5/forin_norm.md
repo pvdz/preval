@@ -37,9 +37,9 @@ $(keys);
 
 
 `````js filename=intro
-const obj /*:object*/ = { a: 1, b: 2 };
+const obj /*:object*/ /*truthy*/ = { a: 1, b: 2 };
 const tmpForInGen /*:unknown*/ = $forIn(obj);
-const keys /*:array*/ = [];
+const keys /*:array*/ /*truthy*/ = [];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForInNext /*:unknown*/ = tmpForInGen();
   const tmpIfTest /*:unknown*/ = tmpForInNext.done;

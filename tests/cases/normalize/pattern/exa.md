@@ -30,14 +30,14 @@ var {
 const tmpAssignObjPatternRhs /*:unknown*/ = foo();
 const tmpOPND /*:unknown*/ = tmpAssignObjPatternRhs.val_1_1;
 tmpOPND.val_2_1;
-const tmpCalleeParam$1 /*:array*/ = [`val_2_1`];
+const tmpCalleeParam$1 /*:array*/ /*truthy*/ = [`val_2_1`];
 val_2_rest = $objPatternRest(tmpOPND, tmpCalleeParam$1, undefined);
 tmpAssignObjPatternRhs.val_1_2;
 const tmpOPND$1 /*:unknown*/ = tmpAssignObjPatternRhs.val_1_3;
-const tmpArrPatternSplat /*:array*/ = [...tmpOPND$1];
+const tmpArrPatternSplat /*:array*/ /*truthy*/ = [...tmpOPND$1];
 const tmpArrPatternStep /*:unknown*/ = tmpArrPatternSplat[2];
 tmpArrPatternStep.val_3_1;
-const tmpCalleeParam$5 /*:array*/ = [`val_3_1`];
+const tmpCalleeParam$5 /*:array*/ /*truthy*/ = [`val_3_1`];
 val_3_rest = $objPatternRest(tmpArrPatternStep, tmpCalleeParam$5, undefined);
 tmpAssignObjPatternRhs.val_1_4;
 `````

@@ -29,11 +29,11 @@ if (atest) {
 
 
 `````js filename=intro
-const a /*:number*/ = x & 1;
+const a /*:number*/ /*&1*/ /*oneBitAnded*/ = x & 1;
 if (a) {
   $(`no 1`);
 } else {
-  const b /*:number*/ = x & 4;
+  const b /*:number*/ /*&4*/ /*oneBitAnded*/ = x & 4;
   if (b) {
     $(`no 2`);
   } else {

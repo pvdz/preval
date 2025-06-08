@@ -21,8 +21,8 @@ $(x, y, z);
 
 `````js filename=intro
 const x /*:unknown*/ = $(1234);
-const y /*:number*/ = x & 200;
-const z /*:number*/ = y & 8;
+const y /*:number*/ /*&200*/ = x & 200;
+const z /*:number*/ /*&8*/ /*oneBitAnded*/ = y & 8;
 $(x, y, z);
 `````
 

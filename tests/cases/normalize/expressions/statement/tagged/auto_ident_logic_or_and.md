@@ -21,8 +21,8 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam$3 /*:unknown*/ = $(0);
 const tmpCalleeParam$1 /*:unknown*/ = $(tmpCalleeParam$3);
-const tmpCalleeParam /*:array*/ = [`before `, ` after`];
-const a /*:object*/ = { a: 999, b: 1000 };
+const tmpCalleeParam /*:array*/ /*truthy*/ = [`before `, ` after`];
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 if (tmpCalleeParam$1) {
   $(tmpCalleeParam, tmpCalleeParam$1);
   $(a);

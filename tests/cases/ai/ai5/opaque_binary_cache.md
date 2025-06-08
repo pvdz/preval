@@ -30,7 +30,7 @@ $(y + z);
 const x /*:unknown*/ = $(`test`);
 const tmpStringConcatR /*:string*/ = $coerce(x, `plustr`);
 const tmpStringConcatR$3 /*:string*/ = $coerce(x, `plustr`);
-const tmpCalleeParam /*:string*/ = `${tmpStringConcatR}ab${tmpStringConcatR$3}ac`;
+const tmpCalleeParam /*:string*/ /*truthy*/ = `${tmpStringConcatR}ab${tmpStringConcatR$3}ac`;
 $(tmpCalleeParam);
 `````
 

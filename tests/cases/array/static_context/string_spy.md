@@ -30,7 +30,7 @@ const f /*:()=>unknown*/ = function () {
   arr[0] = `pass`;
   return undefined;
 };
-const arr /*:array*/ = [`fail`, 2, 3];
+const arr /*:array*/ /*truthy*/ = [`fail`, 2, 3];
 f();
 f();
 const tmpCalleeParam /*:string*/ = $coerce(arr, `string`);

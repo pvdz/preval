@@ -18,7 +18,7 @@ spy instanceof {};
 
 
 `````js filename=intro
-const tmpBinBothRhs /*:object*/ = {};
+const tmpBinBothRhs /*:object*/ /*truthy*/ = {};
 undefined instanceof tmpBinBothRhs;
 `````
 

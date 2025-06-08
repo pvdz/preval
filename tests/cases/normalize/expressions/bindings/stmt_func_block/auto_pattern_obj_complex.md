@@ -23,7 +23,7 @@ $(f());
 
 
 `````js filename=intro
-const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
+const tmpCalleeParam /*:object*/ /*truthy*/ = { a: 1, b: 2 };
 const tmpBindingPatternObjRoot /*:unknown*/ = $(tmpCalleeParam);
 const a /*:unknown*/ = tmpBindingPatternObjRoot.a;
 $(a);

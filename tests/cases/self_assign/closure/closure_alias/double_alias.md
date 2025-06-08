@@ -35,7 +35,7 @@ $('yx diff', y() === x()); // Should return two _diff_ array refs (x cannot infl
 `````js filename=intro
 let zzzz /*:()=>unknown*/ = function () {
   debugger;
-  const a /*:array*/ = [];
+  const a /*:array*/ /*truthy*/ = [];
   zzzz = function ($$0, $$1) {
     debugger;
     return a;

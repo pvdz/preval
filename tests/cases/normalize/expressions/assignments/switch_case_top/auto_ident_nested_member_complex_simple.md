@@ -29,8 +29,8 @@ $(a, b, c, d);
 const tmpBinBothLhs /*:unknown*/ = $(1);
 const tmpBinBothRhs /*:unknown*/ = $(1);
 const tmpIfTest /*:boolean*/ = tmpBinBothLhs === tmpBinBothRhs;
-const b /*:object*/ = { x: 1 };
-const c /*:object*/ = { y: 2 };
+const b /*:object*/ /*truthy*/ = { x: 1 };
+const c /*:object*/ /*truthy*/ = { y: 2 };
 if (tmpIfTest) {
   const tmpNestedAssignComMemberObj /*:unknown*/ = $(b);
   const tmpNestedAssignComMemberProp /*:unknown*/ = $(`x`);
@@ -40,7 +40,7 @@ if (tmpIfTest) {
   tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
   $(3, b, c, 3);
 } else {
-  const a /*:object*/ = { a: 999, b: 1000 };
+  const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
   $(a, b, c, 3);
 }
 `````

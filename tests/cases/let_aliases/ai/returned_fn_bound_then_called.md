@@ -32,7 +32,7 @@ const tmpClusterSSA_tmpMCOO /*:()=>undefined*/ = function () {
   x = `changed`;
   return undefined;
 };
-const mutator /*:function*/ = $dotCall($function_bind, tmpClusterSSA_tmpMCOO, `bind`, null);
+const mutator /*:function*/ /*truthy*/ = $dotCall($function_bind, tmpClusterSSA_tmpMCOO, `bind`, null);
 mutator();
 $(a, x);
 `````

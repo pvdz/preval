@@ -32,7 +32,7 @@ if (tmpAnonDefaultExport) {
   tmpAnonDefaultExport = $(tmpCalleeParam$3);
 }
 export { tmpAnonDefaultExport as default };
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

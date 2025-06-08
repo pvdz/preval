@@ -20,7 +20,7 @@ $(f({ x: undefined, b: 11, c: 12 }, 10));
 
 
 `````js filename=intro
-const tmpCalleeParam$1 /*:object*/ = { y: `pass2` };
+const tmpCalleeParam$1 /*:object*/ /*truthy*/ = { y: `pass2` };
 const tmpSSA_tmpOPAD /*:unknown*/ = $(tmpCalleeParam$1);
 const tmpOPBD$1 /*:unknown*/ = tmpSSA_tmpOPAD.y;
 const tmpIfTest$3 /*:boolean*/ = tmpOPBD$1 === undefined;

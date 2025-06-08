@@ -25,11 +25,11 @@ $(a);
 
 `````js filename=intro
 const tmpMCCP /*:unknown*/ = $(`\$`);
-const tmpMCCO /*:object*/ = { $: $ };
+const tmpMCCO /*:object*/ /*truthy*/ = { $: $ };
 const tmpMCF /*:unknown*/ = tmpMCCO[tmpMCCP];
 const tmpReturnArg /*:unknown*/ = $dotCall(tmpMCF, tmpMCCO, undefined, 1);
 $(tmpReturnArg);
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

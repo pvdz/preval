@@ -24,7 +24,7 @@ f();
 `````js filename=intro
 const f /*:()=>unknown*/ = function () {
   debugger;
-  const rest /*:array*/ = [];
+  const rest /*:array*/ /*truthy*/ = [];
   $(rest);
   return undefined;
 };

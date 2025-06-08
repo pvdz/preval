@@ -22,7 +22,7 @@ $(a);
 const tmpBinBothLhs /*:unknown*/ = $(100);
 const tmpCalleeParam /*:string*/ = $coerce(tmpBinBothLhs, `plustr`);
 $(tmpCalleeParam);
-const a /*:array*/ = [];
+const a /*:array*/ /*truthy*/ = [];
 $(a);
 `````
 

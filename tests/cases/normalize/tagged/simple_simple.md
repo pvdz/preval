@@ -17,7 +17,7 @@ $`abc ${ 10 } ${ 20 } def`;
 
 
 `````js filename=intro
-const tmpCalleeParam /*:array*/ = [`abc `, ` `, ` def`];
+const tmpCalleeParam /*:array*/ /*truthy*/ = [`abc `, ` `, ` def`];
 $(tmpCalleeParam, 10, 20);
 `````
 

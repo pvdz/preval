@@ -36,7 +36,7 @@ const getObj /*:(unknown)=>unknown*/ = function ($$0) {
     return null;
   } else {
     const tmpObjLitVal /*:unknown*/ = $(`prop_val`, 123);
-    const tmpClusterSSA_tmpReturnArg /*:object*/ = { prop: tmpObjLitVal };
+    const tmpClusterSSA_tmpReturnArg /*:object*/ /*truthy*/ = { prop: tmpObjLitVal };
     return tmpClusterSSA_tmpReturnArg;
   }
 };

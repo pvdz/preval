@@ -23,12 +23,12 @@ const tmpIfTest /*:unknown*/ = $(0);
 if (tmpIfTest) {
   const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
   $(tmpClusterSSA_tmpCalleeParam);
-  const a /*:object*/ = { a: 999, b: 1000 };
+  const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
   $(a);
 } else {
   const tmpArrElement /*:unknown*/ = $(1);
   const tmpArrElement$3 /*:unknown*/ = $(3);
-  const tmpNestedComplexRhs /*:array*/ = [tmpArrElement, 2, tmpArrElement$3];
+  const tmpNestedComplexRhs /*:array*/ /*truthy*/ = [tmpArrElement, 2, tmpArrElement$3];
   $(tmpNestedComplexRhs);
   $(tmpNestedComplexRhs);
 }

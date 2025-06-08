@@ -28,7 +28,7 @@
 
 
 `````js filename=intro
-const getterObj /*:object*/ = {
+const getterObj /*:object*/ /*truthy*/ = {
   get val() {
     debugger;
     $(`getter_called`);

@@ -20,7 +20,7 @@ $(o.toString());
 
 
 `````js filename=intro
-const o /*:object*/ = {
+const o /*:object*/ /*truthy*/ = {
   valueOf() {
     debugger;
     return `xyz`;

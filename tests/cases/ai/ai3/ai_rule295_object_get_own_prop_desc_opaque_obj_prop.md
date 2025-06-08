@@ -20,10 +20,10 @@ let descriptor = $('descriptor', Object.getOwnPropertyDescriptor(obj, P));
 
 
 `````js filename=intro
-const tmpCalleeParam /*:object*/ = { a: 1 };
+const tmpCalleeParam /*:object*/ /*truthy*/ = { a: 1 };
 const obj /*:unknown*/ = $(`obj`, tmpCalleeParam);
 const P /*:unknown*/ = $(`P`, `a`);
-const tmpCalleeParam$1 /*:object*/ = $Object_getOwnPropertyDescriptor(obj, P);
+const tmpCalleeParam$1 /*:object*/ /*truthy*/ = $Object_getOwnPropertyDescriptor(obj, P);
 $(`descriptor`, tmpCalleeParam$1);
 `````
 

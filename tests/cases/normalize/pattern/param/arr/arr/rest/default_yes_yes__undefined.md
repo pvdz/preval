@@ -21,7 +21,7 @@ $(f(undefined, 200));
 
 `````js filename=intro
 const tmpSSA_tmpBindingPatternArrRoot /*:unknown*/ = $(`pass2`);
-const tmpArrPatternSplat /*:array*/ = [...tmpSSA_tmpBindingPatternArrRoot];
+const tmpArrPatternSplat /*:array*/ /*truthy*/ = [...tmpSSA_tmpBindingPatternArrRoot];
 const tmpAPBD /*:unknown*/ = tmpArrPatternSplat[0];
 let tmpArrPatternStep /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpIfTest$1 /*:boolean*/ = tmpAPBD === undefined;
@@ -30,8 +30,8 @@ if (tmpIfTest$1) {
 } else {
   tmpArrPatternStep = tmpAPBD;
 }
-const tmpArrPatternSplat$1 /*:array*/ = [...tmpArrPatternStep];
-const x /*:array*/ = $dotCall($array_slice, tmpArrPatternSplat$1, `slice`, 0);
+const tmpArrPatternSplat$1 /*:array*/ /*truthy*/ = [...tmpArrPatternStep];
+const x /*:array*/ /*truthy*/ = $dotCall($array_slice, tmpArrPatternSplat$1, `slice`, 0);
 $(x);
 `````
 

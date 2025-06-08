@@ -20,9 +20,9 @@ $(a);
 
 
 `````js filename=intro
-const tmpCompObj /*:regex*/ = new $regex_constructor(`foo`, ``);
+const tmpCompObj /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, ``);
 tmpCompObj.a;
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

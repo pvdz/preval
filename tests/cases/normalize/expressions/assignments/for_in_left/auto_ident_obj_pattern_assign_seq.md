@@ -25,7 +25,7 @@ $(a, x, y);
 let x /*:unknown*/ = 1;
 let y /*:unknown*/ = 2;
 let a /*:unknown*/ = { a: 999, b: 1000 };
-const tmpCalleeParam$1 /*:object*/ = { x: 1 };
+const tmpCalleeParam$1 /*:object*/ /*truthy*/ = { x: 1 };
 const tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$1);
 const tmpForInGenNext /*:unknown*/ = $forIn(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
@@ -40,7 +40,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     const tmpObjLitVal$1 /*:unknown*/ = $(4);
     x = tmpObjLitVal;
     y = tmpObjLitVal$1;
-    const tmpNestedAssignObjPatternRhs /*:object*/ = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
+    const tmpNestedAssignObjPatternRhs /*:object*/ /*truthy*/ = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
     a = tmpNestedAssignObjPatternRhs;
     const tmpAssignMemRhs /*:unknown*/ = tmpForInNext.value;
     tmpNestedAssignObjPatternRhs.x = tmpAssignMemRhs;

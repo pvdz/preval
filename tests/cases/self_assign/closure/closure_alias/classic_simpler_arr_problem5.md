@@ -50,7 +50,7 @@ let f /*:(unknown)=>unknown*/ = function ($$0) {
   return tmpReturnArg;
 };
 const g /*:unknown*/ = f;
-const arr /*:array*/ = [];
+const arr /*:array*/ /*truthy*/ = [];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const a /*:unknown*/ = g(arr);
   const b /*:unknown*/ = g(arr);

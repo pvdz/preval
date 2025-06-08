@@ -28,7 +28,7 @@ const f /*:()=>unknown*/ = function () {
   arr[0] = 1;
   return undefined;
 };
-const arr /*:array*/ = [];
+const arr /*:array*/ /*truthy*/ = [];
 $(f);
 arr[0] = 1;
 $(arr);

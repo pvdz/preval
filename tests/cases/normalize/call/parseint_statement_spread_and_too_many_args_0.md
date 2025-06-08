@@ -17,7 +17,7 @@ parseInt(...$([]), $spy('b'), $spy('c'));
 
 
 `````js filename=intro
-const tmpCalleeParam$3 /*:array*/ = [];
+const tmpCalleeParam$3 /*:array*/ /*truthy*/ = [];
 const tmpCalleeParamSpread /*:unknown*/ = $(tmpCalleeParam$3);
 const tmpCalleeParam /*:unknown*/ = $spy(`b`);
 const tmpCalleeParam$1 /*:unknown*/ = $spy(`c`);

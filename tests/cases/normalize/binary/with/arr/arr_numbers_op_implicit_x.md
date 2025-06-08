@@ -70,15 +70,15 @@ const tmpArrElement$17 /*:boolean*/ = `10,20,30` < x;
 const tmpArrElement$19 /*:boolean*/ = `10,20,30` > x;
 const tmpArrElement$21 /*:boolean*/ = `10,20,30` <= x;
 const tmpArrElement$23 /*:boolean*/ = `10,20,30` >= x;
-const tmpBinLhs$25 /*:array*/ = [10, 20, 30];
+const tmpBinLhs$25 /*:array*/ /*truthy*/ = [10, 20, 30];
 const tmpArrElement$25 /*:boolean*/ = tmpBinLhs$25 == x;
-const tmpBinLhs$27 /*:array*/ = [10, 20, 30];
+const tmpBinLhs$27 /*:array*/ /*truthy*/ = [10, 20, 30];
 const tmpArrElement$27 /*:boolean*/ = tmpBinLhs$27 != x;
 x ** 0;
-const tmpArrElement$35 /*:number*/ = 0 ^ x;
-const tmpArrElement$37 /*:number*/ = 0 | x;
-const tmpArrElement$7 /*:string*/ = `10,20,30${tmpStringConcatL}`;
-const arr /*:array*/ = [
+const tmpArrElement$35 /*:number*/ /*^0*/ = 0 ^ x;
+const tmpArrElement$37 /*:number*/ /*|0*/ = 0 | x;
+const tmpArrElement$7 /*:string*/ /*truthy*/ = `10,20,30${tmpStringConcatL}`;
+const arr /*:array*/ /*truthy*/ = [
   tmpArrElement,
   NaN,
   NaN,
@@ -101,11 +101,11 @@ const arr /*:array*/ = [
   tmpArrElement$37,
 ];
 $(arr);
-const tmpBinLhs$39 /*:array*/ = [10, 20, 30];
+const tmpBinLhs$39 /*:array*/ /*truthy*/ = [10, 20, 30];
 const tmpArrElement$39 /*:boolean*/ = tmpBinLhs$39 in x;
-const tmpBinLhs$41 /*:array*/ = [10, 20, 30];
+const tmpBinLhs$41 /*:array*/ /*truthy*/ = [10, 20, 30];
 const tmpArrElement$41 /*:boolean*/ = tmpBinLhs$41 instanceof x;
-const arr2 /*:array*/ = [tmpArrElement$39, tmpArrElement$41];
+const arr2 /*:array*/ /*truthy*/ = [tmpArrElement$39, tmpArrElement$41];
 $(arr2);
 `````
 

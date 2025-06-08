@@ -29,14 +29,14 @@ while ($LOOP_UNROLL_10) {
 
 
 `````js filename=intro
-const x /*:regex*/ = new $regex_constructor(`foo`, ``);
+const x /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, ``);
 x.foo = `object`;
 const tmp /*:unknown*/ = x.foo;
 $(tmp);
 const end /*:unknown*/ = $(x);
 if (end) {
 } else {
-  let tmpClusterSSA_x /*:regex*/ = new $regex_constructor(`foo`, ``);
+  let tmpClusterSSA_x /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, ``);
   tmpClusterSSA_x.foo = `object`;
   while ($LOOP_UNROLL_9) {
     const tmp$1 /*:unknown*/ = tmpClusterSSA_x.foo;

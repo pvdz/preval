@@ -28,7 +28,7 @@ const tmpMCP /*:()=>undefined*/ = function () {
   x = `changed`;
   return undefined;
 };
-const tmpMCOO /*:array*/ = [1];
+const tmpMCOO /*:array*/ /*truthy*/ = [1];
 $dotCall($array_forEach, tmpMCOO, `forEach`, tmpMCP);
 $(a, x);
 `````

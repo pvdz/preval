@@ -18,8 +18,8 @@ $($(a)?.[$('b')][$('c')]?.(100));
 
 
 `````js filename=intro
-const tmpObjLitVal /*:object*/ = {};
-const a /*:object*/ = { b: tmpObjLitVal };
+const tmpObjLitVal /*:object*/ /*truthy*/ = {};
+const a /*:object*/ /*truthy*/ = { b: tmpObjLitVal };
 const tmpChainElementCall /*:unknown*/ = $(a);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest) {

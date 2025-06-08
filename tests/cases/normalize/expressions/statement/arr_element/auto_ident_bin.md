@@ -25,7 +25,7 @@ tmpBinBothLhs$1 + tmpBinBothRhs$1;
 const tmpBinBothLhs$3 /*:unknown*/ = $(1);
 const tmpBinBothRhs$3 /*:unknown*/ = $(2);
 tmpBinBothLhs$3 + tmpBinBothRhs$3;
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

@@ -82,12 +82,12 @@ $('log', `final_val after err3: ${final_val2}`);
 try {
   $(`log`, `throwing error 1`);
   try {
-    const tmpThrowArg /*:object*/ = new Error(`Original Error 1`);
+    const tmpThrowArg /*:object*/ /*truthy*/ = new Error(`Original Error 1`);
     throw tmpThrowArg;
   } catch (e) {
     const shouldRethrow /*:unknown*/ = $(`should_rethrow1`, true);
     const tmpBinBothRhs$2 /*:string*/ = $coerce(shouldRethrow, `string`);
-    const tmpCalleeParam /*:string*/ = `caught error 1, rethrowing: ${tmpBinBothRhs$2}`;
+    const tmpCalleeParam /*:string*/ /*truthy*/ = `caught error 1, rethrowing: ${tmpBinBothRhs$2}`;
     $(`log`, tmpCalleeParam);
     if (shouldRethrow) {
       throw e;
@@ -96,17 +96,17 @@ try {
   }
 } catch (outer_e) {
   const tmpBinBothRhs$4 /*:string*/ = $coerce(outer_e, `string`);
-  const tmpCalleeParam$1 /*:string*/ = `caught outer: ${tmpBinBothRhs$4}`;
+  const tmpCalleeParam$1 /*:string*/ /*truthy*/ = `caught outer: ${tmpBinBothRhs$4}`;
   $(`log`, tmpCalleeParam$1);
 }
 try {
   $(`log`, `throwing error 2`);
-  const tmpThrowArg$1 /*:object*/ = new Error(`Original Error 2`);
+  const tmpThrowArg$1 /*:object*/ /*truthy*/ = new Error(`Original Error 2`);
   throw tmpThrowArg$1;
 } catch (e$1) {
   const shouldRethrow$1 /*:unknown*/ = $(`should_rethrow2`, false);
   const tmpBinBothRhs$6 /*:string*/ = $coerce(shouldRethrow$1, `string`);
-  const tmpCalleeParam$3 /*:string*/ = `caught error 2, rethrowing: ${tmpBinBothRhs$6}`;
+  const tmpCalleeParam$3 /*:string*/ /*truthy*/ = `caught error 2, rethrowing: ${tmpBinBothRhs$6}`;
   $(`log`, tmpCalleeParam$3);
   if (shouldRethrow$1) {
     throw e$1;
@@ -114,16 +114,16 @@ try {
   }
 }
 $(`log`, `final_val after err2: initial_val_modified_in_catch2`);
-let final_val2 /*:string*/ = `modified_by_inner_catch3_outer_try_continued`;
+let final_val2 /*:string*/ /*truthy*/ = `modified_by_inner_catch3_outer_try_continued`;
 try {
   $(`log`, `throwing error 3`);
   try {
-    const tmpThrowArg$3 /*:object*/ = new Error(`Original Error 3`);
+    const tmpThrowArg$3 /*:object*/ /*truthy*/ = new Error(`Original Error 3`);
     throw tmpThrowArg$3;
   } catch (e_inner) {
     const rethrowDecision /*:unknown*/ = $(`rethrow_inner_3`, false);
     const tmpBinBothRhs$8 /*:string*/ = $coerce(rethrowDecision, `string`);
-    const tmpCalleeParam$7 /*:string*/ = `caught error 3, rethrowing: ${tmpBinBothRhs$8}`;
+    const tmpCalleeParam$7 /*:string*/ /*truthy*/ = `caught error 3, rethrowing: ${tmpBinBothRhs$8}`;
     $(`log`, tmpCalleeParam$7);
     if (rethrowDecision) {
       throw e_inner;
@@ -133,11 +133,11 @@ try {
 } catch (e_outer_for_3) {
   const tmpCalleeParam$11 /*:unknown*/ = e_outer_for_3.message;
   const tmpBinBothRhs$10 /*:string*/ = $coerce(tmpCalleeParam$11, `string`);
-  const tmpCalleeParam$9 /*:string*/ = `outer catch for err3: ${tmpBinBothRhs$10}`;
+  const tmpCalleeParam$9 /*:string*/ /*truthy*/ = `outer catch for err3: ${tmpBinBothRhs$10}`;
   $(`log`, tmpCalleeParam$9);
   final_val2 = `modified_by_outer_catch3`;
 }
-const tmpCalleeParam$13 /*:string*/ = `final_val after err3: ${final_val2}`;
+const tmpCalleeParam$13 /*:string*/ /*truthy*/ = `final_val after err3: ${final_val2}`;
 $(`log`, tmpCalleeParam$13);
 `````
 

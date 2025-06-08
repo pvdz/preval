@@ -38,7 +38,7 @@ const g /*:()=>undefined*/ = function () {
   $(xyz, `g`);
   return undefined;
 };
-const tmpCalleeParam /*:array*/ = [g];
+const tmpCalleeParam /*:array*/ /*truthy*/ = [g];
 const t /*:unknown*/ = $(tmpCalleeParam);
 if ($) {
   $(1);

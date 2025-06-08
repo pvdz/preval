@@ -51,7 +51,7 @@ $coerce(tmpMCP$9, `string`);
 $(`number`);
 const tmpMCP$11 /*:unknown*/ = $spy(`JSON.stringify`);
 const tmpUnaryArg$11 /*:primitive*/ = $JSON_stringify(tmpMCP$11);
-const tmpCalleeParam$11 /*:string*/ = typeof tmpUnaryArg$11;
+const tmpCalleeParam$11 /*:string*/ /*truthy*/ = typeof tmpUnaryArg$11;
 $(tmpCalleeParam$11);
 const tmpMCP$13 /*:unknown*/ = $spy(`Math.abs`);
 $coerce(tmpMCP$13, `number`);

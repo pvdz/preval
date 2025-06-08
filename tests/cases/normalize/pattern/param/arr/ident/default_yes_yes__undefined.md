@@ -21,7 +21,7 @@ $(f(undefined, 200));
 
 `````js filename=intro
 const tmpClusterSSA_tmpBindingPatternArrRoot /*:unknown*/ = $(`pass2`);
-const tmpArrPatternSplat /*:array*/ = [...tmpClusterSSA_tmpBindingPatternArrRoot];
+const tmpArrPatternSplat /*:array*/ /*truthy*/ = [...tmpClusterSSA_tmpBindingPatternArrRoot];
 const tmpAPBD /*:unknown*/ = tmpArrPatternSplat[0];
 const tmpIfTest$1 /*:boolean*/ = tmpAPBD === undefined;
 if (tmpIfTest$1) {

@@ -25,8 +25,8 @@ const tmpArrElement /*:unknown*/ = $(`a`);
 const tmpArrElement$1 /*:unknown*/ = $(`b`);
 const tmpArrElement$3 /*:unknown*/ = $(`c`);
 const cb /*:unknown*/ = $(`opaque_find_predicate`);
-const arr /*:array*/ = [tmpArrElement, tmpArrElement$1, tmpArrElement$3];
-const found /*:unknown*/ = $dotCall($array_find, arr, `find`, cb);
+const arr /*:array*/ /*truthy*/ = [tmpArrElement, tmpArrElement$1, tmpArrElement$3];
+const found /*:unknown*/ /*truthy*/ = $dotCall($array_find, arr, `find`, cb);
 $(`find_result`, found);
 `````
 

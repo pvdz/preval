@@ -31,7 +31,7 @@ $(g());
 `````js filename=intro
 let tmpFuncLock /*:boolean*/ = true;
 const f /*:(unknown, unknown, unknown)=>undefined*/ = function ($$0, $$1, $$2) {
-  const tmpPrevalAliasThis /*:object*/ = this;
+  const tmpPrevalAliasThis /*:object*/ /*truthy*/ = this;
   const a /*:unknown*/ = $$0;
   const b /*:unknown*/ = $$1;
   const c /*:unknown*/ = $$2;
@@ -42,7 +42,7 @@ const f /*:(unknown, unknown, unknown)=>undefined*/ = function ($$0, $$1, $$2) {
 const g /*:()=>undefined*/ = function () {
   debugger;
   if (tmpFuncLock) {
-    const obj /*:object*/ = {};
+    const obj /*:object*/ /*truthy*/ = {};
     $dotCall($function_call, f, `call`, obj, 1, 2, 3);
     tmpFuncLock = false;
     return undefined;

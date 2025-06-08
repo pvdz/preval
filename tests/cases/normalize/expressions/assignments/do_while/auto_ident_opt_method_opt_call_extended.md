@@ -26,7 +26,7 @@ $(a);
 let a /*:unknown*/ = undefined;
 $(100);
 const tmpIfTest$3 /*:boolean*/ = $ == null;
-const tmpObjLitVal$1 /*:object*/ = { e: $ };
+const tmpObjLitVal$1 /*:object*/ /*truthy*/ = { e: $ };
 if (tmpIfTest$3) {
 } else {
   a = $dotCall($, tmpObjLitVal$1, `e`, 1);

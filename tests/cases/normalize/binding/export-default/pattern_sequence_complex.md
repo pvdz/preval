@@ -21,9 +21,9 @@ $(x, y, z);
 `````js filename=intro
 $(1);
 $(2);
-const z /*:array*/ = [10, 20, 30];
+const z /*:array*/ /*truthy*/ = [10, 20, 30];
 const tmpBindingPatternArrRoot /*:unknown*/ = $(z);
-const tmpArrPatternSplat /*:array*/ = [...tmpBindingPatternArrRoot];
+const tmpArrPatternSplat /*:array*/ /*truthy*/ = [...tmpBindingPatternArrRoot];
 const x /*:unknown*/ = tmpArrPatternSplat[0];
 const y /*:unknown*/ = tmpArrPatternSplat[1];
 export { x, y };

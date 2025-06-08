@@ -22,8 +22,8 @@ for (let [x] in [y]) {
 
 
 `````js filename=intro
-const y /*:object*/ = {};
-const tmpCalleeParam /*:array*/ = [y];
+const y /*:object*/ /*truthy*/ = {};
+const tmpCalleeParam /*:array*/ /*truthy*/ = [y];
 const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForInNext /*:unknown*/ = tmpForInGen();
@@ -32,7 +32,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     break;
   } else {
     const tmpBindingPatternArrRoot /*:unknown*/ = tmpForInNext.value;
-    const tmpArrPatternSplat /*:array*/ = [...tmpBindingPatternArrRoot];
+    const tmpArrPatternSplat /*:array*/ /*truthy*/ = [...tmpBindingPatternArrRoot];
     const x$1 /*:unknown*/ = tmpArrPatternSplat[0];
     $(x$1);
   }

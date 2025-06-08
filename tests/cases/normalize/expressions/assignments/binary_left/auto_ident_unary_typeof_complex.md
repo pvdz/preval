@@ -23,7 +23,7 @@ $(a, arg);
 `````js filename=intro
 const tmpUnaryArg /*:unknown*/ = $(1);
 const tmpBinBothRhs /*:unknown*/ = $(100);
-const a /*:string*/ = typeof tmpUnaryArg;
+const a /*:string*/ /*truthy*/ = typeof tmpUnaryArg;
 const tmpCalleeParam /*:string*/ = a + tmpBinBothRhs;
 $(tmpCalleeParam);
 $(a, 1);

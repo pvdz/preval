@@ -25,17 +25,17 @@ let b /*:unknown*/ = [];
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   const tmpArrElement /*:unknown*/ = $(2);
-  const tmpCalleeParam /*:array*/ = [tmpArrElement];
+  const tmpCalleeParam /*:array*/ /*truthy*/ = [tmpArrElement];
   const tmpArrAssignPatternRhs /*:unknown*/ = $(tmpCalleeParam);
-  const tmpArrPatternSplat /*:array*/ = [...tmpArrAssignPatternRhs];
+  const tmpArrPatternSplat /*:array*/ /*truthy*/ = [...tmpArrAssignPatternRhs];
   b = tmpArrPatternSplat[0];
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       const tmpArrElement$1 /*:unknown*/ = $(2);
-      const tmpCalleeParam$1 /*:array*/ = [tmpArrElement$1];
+      const tmpCalleeParam$1 /*:array*/ /*truthy*/ = [tmpArrElement$1];
       const tmpArrAssignPatternRhs$1 /*:unknown*/ = $(tmpCalleeParam$1);
-      const tmpArrPatternSplat$1 /*:array*/ = [...tmpArrAssignPatternRhs$1];
+      const tmpArrPatternSplat$1 /*:array*/ /*truthy*/ = [...tmpArrAssignPatternRhs$1];
       b = tmpArrPatternSplat$1[0];
     } else {
       break;
@@ -43,7 +43,7 @@ if (tmpIfTest) {
   }
 } else {
 }
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a, b);
 `````
 

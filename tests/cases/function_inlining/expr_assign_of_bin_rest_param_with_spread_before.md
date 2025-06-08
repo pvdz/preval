@@ -33,12 +33,12 @@ $(x);
 let x /*:primitive*/ = 0;
 const g /*:(unknown, array)=>undefined*/ = function ($$0, ...$$1 /*:array*/) {
   const a /*:unknown*/ = $$0;
-  const b /*:array*/ = $$1;
+  const b /*:array*/ /*truthy*/ = $$1;
   debugger;
   x = a + b;
   return undefined;
 };
-const tmpCalleeParam /*:array*/ = [1, 2];
+const tmpCalleeParam /*:array*/ /*truthy*/ = [1, 2];
 const arr /*:unknown*/ = $(tmpCalleeParam);
 g(...arr, 10, 20, 30, 40, 50, 60);
 $(x);

@@ -33,15 +33,15 @@ $(g);
 const g /*:(unused, unused, unused)=>undefined*/ = function ($$0, $$1, $$2) {
   debugger;
   const f /*:(unknown, unknown)=>undefined*/ = function ($$0, $$1) {
-    const tmpPrevalAliasThis /*:object*/ = this;
+    const tmpPrevalAliasThis /*:object*/ /*truthy*/ = this;
     const t$987 /*:unknown*/ = $$0;
     const e$767 /*:unknown*/ = $$1;
     debugger;
-    const tmpAssignMemRhs /*:array*/ = [];
+    const tmpAssignMemRhs /*:array*/ /*truthy*/ = [];
     tmpPrevalAliasThis._pairs = tmpAssignMemRhs;
     if (t$987) {
       const tmpCalleeParam /*:unknown*/ = i$441.a;
-      const tmpCallComplexCallee$25 /*:object*/ = $object_constructor(tmpCalleeParam);
+      const tmpCallComplexCallee$25 /*:object*/ /*truthy*/ = $object_constructor(tmpCalleeParam);
       tmpCallComplexCallee$25(t$987, tmpPrevalAliasThis, e$767);
       return undefined;
     } else {

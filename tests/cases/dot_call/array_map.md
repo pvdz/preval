@@ -32,8 +32,8 @@ const f /*:(unknown)=>primitive*/ = function ($$0) {
   const tmpReturnArg /*:primitive*/ = item + 1;
   return tmpReturnArg;
 };
-const pre /*:array*/ = [1, 2, 3];
-const arr /*:array*/ = $dotCall($array_map, pre, `map`, f);
+const pre /*:array*/ /*truthy*/ = [1, 2, 3];
+const arr /*:array*/ /*truthy*/ = $dotCall($array_map, pre, `map`, f);
 $(arr);
 `````
 

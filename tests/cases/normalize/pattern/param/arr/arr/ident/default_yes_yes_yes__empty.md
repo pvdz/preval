@@ -20,19 +20,19 @@ $(f());
 
 
 `````js filename=intro
-const tmpCalleeParam /*:array*/ = [`pass3`];
+const tmpCalleeParam /*:array*/ /*truthy*/ = [`pass3`];
 const tmpClusterSSA_tmpBindingPatternArrRoot /*:unknown*/ = $(tmpCalleeParam);
-const tmpArrPatternSplat /*:array*/ = [...tmpClusterSSA_tmpBindingPatternArrRoot];
+const tmpArrPatternSplat /*:array*/ /*truthy*/ = [...tmpClusterSSA_tmpBindingPatternArrRoot];
 const tmpAPBD /*:unknown*/ = tmpArrPatternSplat[0];
 let tmpArrPatternStep /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpIfTest$1 /*:boolean*/ = tmpAPBD === undefined;
 if (tmpIfTest$1) {
-  const tmpCalleeParam$1 /*:array*/ = [`fail2`];
+  const tmpCalleeParam$1 /*:array*/ /*truthy*/ = [`fail2`];
   tmpArrPatternStep = $(tmpCalleeParam$1);
 } else {
   tmpArrPatternStep = tmpAPBD;
 }
-const tmpArrPatternSplat$1 /*:array*/ = [...tmpArrPatternStep];
+const tmpArrPatternSplat$1 /*:array*/ /*truthy*/ = [...tmpArrPatternStep];
 const tmpAPBD$1 /*:unknown*/ = tmpArrPatternSplat$1[0];
 const tmpIfTest$3 /*:boolean*/ = tmpAPBD$1 === undefined;
 if (tmpIfTest$3) {

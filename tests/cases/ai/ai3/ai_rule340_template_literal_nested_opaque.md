@@ -28,7 +28,7 @@ const tmpFree /*:(string, primitive, string)=>string*/ = function $free($$0, $$1
   const tmpBinBothRhs$4 /*:string*/ = $$2;
   debugger;
   const tmpBinBothRhs$6 /*:string*/ = $coerce(count$1, `string`);
-  const tmpRet /*:string*/ = `Hello ${tmpBinBothRhs$1}, welcome to ${tmpBinBothRhs$4}! Count: ${tmpBinBothRhs$6}.`;
+  const tmpRet /*:string*/ /*truthy*/ = `Hello ${tmpBinBothRhs$1}, welcome to ${tmpBinBothRhs$4}! Count: ${tmpBinBothRhs$6}.`;
   return tmpRet;
 };
 const name /*:unknown*/ = $(`name`);

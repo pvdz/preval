@@ -20,7 +20,7 @@ let type = $('type', typeof val);
 
 `````js filename=intro
 const val /*:unknown*/ = $(`val`, 123);
-const tmpCalleeParam /*:string*/ = typeof val;
+const tmpCalleeParam /*:string*/ /*truthy*/ = typeof val;
 $(`type`, tmpCalleeParam);
 `````
 

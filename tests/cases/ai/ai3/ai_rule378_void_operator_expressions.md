@@ -57,7 +57,7 @@
 
 `````js filename=intro
 const tmpObjLitVal$1 /*:()=>number*/ = function () {
-  const tmpPrevalAliasThis /*:object*/ = this;
+  const tmpPrevalAliasThis /*:object*/ /*truthy*/ = this;
   debugger;
   $(`obj_m_called`);
   tmpPrevalAliasThis.p = 30;
@@ -69,12 +69,12 @@ $(`effect1`, 100);
 $(`res2`, undefined, 100);
 const y /*:unknown*/ = $(`assigned_val_y`, 101);
 $(`res3`, undefined, y);
-const obj /*:object*/ = {
+const obj /*:object*/ /*truthy*/ = {
   p: 20,
   m: tmpObjLitVal$1,
   _getter_val: 50,
   get getterProp() {
-    const tmpPrevalAliasThis$1 /*:object*/ = this;
+    const tmpPrevalAliasThis$1 /*:object*/ /*truthy*/ = this;
     debugger;
     $(`getter_called`);
     const tmpUpdProp /*:unknown*/ = tmpPrevalAliasThis$1._getter_val;
@@ -95,7 +95,7 @@ const tmpCalleeParam$13 /*:unknown*/ = obj.p;
 $(`res5`, undefined, tmpCalleeParam$13);
 try {
   $(`throwing_op`);
-  const tmpThrowArg /*:object*/ = new Error(`test_error`);
+  const tmpThrowArg /*:object*/ /*truthy*/ = new Error(`test_error`);
   throw tmpThrowArg;
 } catch (e) {
   const tmpCalleeParam$15 /*:unknown*/ = e.name;

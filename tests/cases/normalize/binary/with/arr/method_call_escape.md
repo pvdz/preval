@@ -21,11 +21,11 @@ $(arr[0]() === arr);
 
 `````js filename=intro
 const tmpArrElement /*:()=>object*/ = function () {
-  const tmpPrevalAliasThis /*:object*/ = this;
+  const tmpPrevalAliasThis /*:object*/ /*truthy*/ = this;
   debugger;
   return tmpPrevalAliasThis;
 };
-const arr /*:array*/ = [tmpArrElement];
+const arr /*:array*/ /*truthy*/ = [tmpArrElement];
 const tmpBinLhs /*:unknown*/ = $dotCall(tmpArrElement, arr, undefined);
 const tmpCalleeParam /*:boolean*/ = tmpBinLhs === arr;
 $(tmpCalleeParam);

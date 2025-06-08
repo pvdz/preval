@@ -64,10 +64,10 @@ const tmpArrElement$27 /*:boolean*/ = x != String;
 const tmpArrElement$29 /*:boolean*/ = x === String;
 const tmpArrElement$31 /*:boolean*/ = x !== String;
 x ** 0;
-const tmpArrElement$35 /*:number*/ = x ^ 0;
-const tmpArrElement$37 /*:number*/ = x | 0;
-const tmpArrElement$7 /*:string*/ = `${tmpStringConcatR}function String() { [native code] }`;
-const arr /*:array*/ = [
+const tmpArrElement$35 /*:number*/ /*^0*/ = x ^ 0;
+const tmpArrElement$37 /*:number*/ /*|0*/ = x | 0;
+const tmpArrElement$7 /*:string*/ /*truthy*/ = `${tmpStringConcatR}function String() { [native code] }`;
+const arr /*:array*/ /*truthy*/ = [
   NaN,
   NaN,
   NaN,

@@ -27,7 +27,7 @@ if (set) {
 
 `````js filename=intro
 const v /*:unknown*/ = $(32);
-const and /*:number*/ = v & 65;
+const and /*:number*/ /*&65*/ = v & 65;
 const set /*:boolean*/ = and === 64;
 if (set) {
   $(`pass`);

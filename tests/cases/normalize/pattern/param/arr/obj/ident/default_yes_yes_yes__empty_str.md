@@ -20,7 +20,7 @@ $(f(''));
 
 
 `````js filename=intro
-const tmpCalleeParam$1 /*:object*/ = { x: `pass2` };
+const tmpCalleeParam$1 /*:object*/ /*truthy*/ = { x: `pass2` };
 const tmpClusterSSA_tmpArrPatternStep /*:unknown*/ = $(tmpCalleeParam$1);
 const tmpOPBD /*:unknown*/ = tmpClusterSSA_tmpArrPatternStep.x;
 const tmpIfTest$3 /*:boolean*/ = tmpOPBD === undefined;

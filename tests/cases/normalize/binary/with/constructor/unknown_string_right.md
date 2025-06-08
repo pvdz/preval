@@ -52,7 +52,7 @@ const x /*:string*/ = $coerce(tmpBinBothRhs, `plustr`);
 const tmpArrElement$25 /*:boolean*/ = String == x;
 const tmpArrElement$27 /*:boolean*/ = String != x;
 const tmpArrElement /*:number*/ = `function String() { [native code] }` ** x;
-const tmpArrElement$7 /*:string*/ = `function String() { [native code] }${x}`;
+const tmpArrElement$7 /*:string*/ /*truthy*/ = `function String() { [native code] }${x}`;
 const tmpArrElement$11 /*:number*/ = 0 << x;
 const tmpArrElement$13 /*:number*/ = 0 >> x;
 const tmpArrElement$15 /*:number*/ = 0 >>> x;
@@ -60,9 +60,9 @@ const tmpArrElement$17 /*:boolean*/ = `function String() { [native code] }` < x;
 const tmpArrElement$19 /*:boolean*/ = `function String() { [native code] }` > x;
 const tmpArrElement$21 /*:boolean*/ = `function String() { [native code] }` <= x;
 const tmpArrElement$23 /*:boolean*/ = `function String() { [native code] }` >= x;
-const tmpArrElement$35 /*:number*/ = 0 ^ x;
-const tmpArrElement$37 /*:number*/ = 0 | x;
-const arr /*:array*/ = [
+const tmpArrElement$35 /*:number*/ /*^0*/ = 0 ^ x;
+const tmpArrElement$37 /*:number*/ /*|0*/ = 0 | x;
+const arr /*:array*/ /*truthy*/ = [
   tmpArrElement,
   NaN,
   NaN,

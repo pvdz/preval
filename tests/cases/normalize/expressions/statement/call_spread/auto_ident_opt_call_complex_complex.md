@@ -28,7 +28,7 @@ if (tmpIfTest) {
   const tmpClusterSSA_tmpCalleeParamSpread /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam);
   $(...tmpClusterSSA_tmpCalleeParamSpread);
 }
-const a /*:object*/ = { a: 999, b: 1000 };
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

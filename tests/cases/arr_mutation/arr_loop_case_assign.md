@@ -44,12 +44,12 @@ $(arr.slice(0, 3));
 
 `````js filename=intro
 $(1);
-const tmpCalleeParam /*:array*/ = [`two`, `three`, `four`, `five`, `one`];
-const arr /*:array*/ = [`two`, `three`, `four`, `five`, `one`];
+const tmpCalleeParam /*:array*/ /*truthy*/ = [`two`, `three`, `four`, `five`, `one`];
+const arr /*:array*/ /*truthy*/ = [`two`, `three`, `four`, `five`, `one`];
 try {
   $(tmpCalleeParam);
 } catch (e) {
-  const v /*:unknown*/ = $dotCall($array_shift, arr, `shift`);
+  const v /*:unknown*/ /*truthy*/ = $dotCall($array_shift, arr, `shift`);
   $dotCall($array_push, arr, `push`, v);
 }
 $(false);
@@ -58,13 +58,13 @@ const tmpBinLhs$1 /*:primitive*/ = arr[2];
 const tmpClusterSSA_test$1 /*:boolean*/ = tmpBinLhs$1 === 820304;
 if (tmpClusterSSA_test$1) {
 } else {
-  const next$1 /*:unknown*/ = $dotCall($array_shift, arr, `shift`);
+  const next$1 /*:unknown*/ /*truthy*/ = $dotCall($array_shift, arr, `shift`);
   $dotCall($array_push, arr, `push`, next$1);
-  const tmpCalleeParam$2 /*:array*/ = $dotCall($array_slice, arr, `slice`, 0);
+  const tmpCalleeParam$2 /*:array*/ /*truthy*/ = $dotCall($array_slice, arr, `slice`, 0);
   try {
     $(tmpCalleeParam$2);
   } catch (e$1) {
-    const v$1 /*:unknown*/ = $dotCall($array_shift, arr, `shift`);
+    const v$1 /*:unknown*/ /*truthy*/ = $dotCall($array_shift, arr, `shift`);
     $dotCall($array_push, arr, `push`, v$1);
   }
   while ($LOOP_UNROLL_9) {
@@ -75,19 +75,19 @@ if (tmpClusterSSA_test$1) {
     if (tmpClusterSSA_test$2) {
       break;
     } else {
-      const next$2 /*:unknown*/ = $dotCall($array_shift, arr, `shift`);
+      const next$2 /*:unknown*/ /*truthy*/ = $dotCall($array_shift, arr, `shift`);
       $dotCall($array_push, arr, `push`, next$2);
-      const tmpCalleeParam$3 /*:array*/ = $dotCall($array_slice, arr, `slice`, 0);
+      const tmpCalleeParam$3 /*:array*/ /*truthy*/ = $dotCall($array_slice, arr, `slice`, 0);
       try {
         $(tmpCalleeParam$3);
       } catch (e$2) {
-        const v$2 /*:unknown*/ = $dotCall($array_shift, arr, `shift`);
+        const v$2 /*:unknown*/ /*truthy*/ = $dotCall($array_shift, arr, `shift`);
         $dotCall($array_push, arr, `push`, v$2);
       }
     }
   }
 }
-const tmpCalleeParam$1 /*:array*/ = $dotCall($array_slice, arr, `slice`, 0, 3);
+const tmpCalleeParam$1 /*:array*/ /*truthy*/ = $dotCall($array_slice, arr, `slice`, 0, 3);
 $(tmpCalleeParam$1);
 `````
 

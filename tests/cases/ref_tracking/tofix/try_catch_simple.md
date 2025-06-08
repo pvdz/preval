@@ -19,7 +19,7 @@ $(x);
 
 
 `````js filename=intro
-let x /*:number*/ = 2;
+let x /*:number*/ /*truthy*/ = 2;
 try {
   fail();
 } catch (e) {

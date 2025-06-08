@@ -19,8 +19,8 @@ $(a);
 
 
 `````js filename=intro
-const tmpBinBothRhs /*:regex*/ = new $regex_constructor(`foo`, ``);
-const a /*:object*/ = { a: 999, b: 1000 };
+const tmpBinBothRhs /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, ``);
+const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 const tmpClusterSSA_a /*:number*/ = a * tmpBinBothRhs;
 $(tmpClusterSSA_a);
 $(tmpClusterSSA_a);

@@ -21,14 +21,14 @@ $(new x()['very stringy']());
 
 
 `````js filename=intro
-const x /*:class*/ = class {
+const x /*:class*/ /*truthy*/ = class {
   [`very stringy`]() {
     debugger;
     const tmpReturnArg /*:unknown*/ = $(1);
     return tmpReturnArg;
   }
 };
-const tmpMCOO /*:object*/ = new x();
+const tmpMCOO /*:object*/ /*truthy*/ = new x();
 const tmpMCF /*:unknown*/ = tmpMCOO[`very stringy`];
 const tmpCalleeParam /*:unknown*/ = $dotCall(tmpMCF, tmpMCOO, undefined);
 $(tmpCalleeParam);

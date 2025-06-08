@@ -23,7 +23,7 @@ $(1);
 $(3);
 const tmpArrElement$5 /*:unknown*/ = $(1);
 const tmpArrElement$9 /*:unknown*/ = $(3);
-const tmpNestedComplexRhs /*:array*/ = [tmpArrElement$5, 2, tmpArrElement$9];
+const tmpNestedComplexRhs /*:array*/ /*truthy*/ = [tmpArrElement$5, 2, tmpArrElement$9];
 $(tmpNestedComplexRhs);
 $(tmpNestedComplexRhs);
 `````

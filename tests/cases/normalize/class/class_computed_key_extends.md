@@ -39,7 +39,7 @@ $(new x().y());
 `````js filename=intro
 const tmpClassSuper$1 /*:unknown*/ = $($string_constructor);
 const tmpClassComputedKey /*:unknown*/ = $(`f`);
-const x /*:class*/ = class extends tmpClassSuper$1 {
+const x /*:class*/ /*truthy*/ = class extends tmpClassSuper$1 {
   [tmpClassComputedKey]() {
     debugger;
     const tmpReturnArg /*:unknown*/ = $(100, `method`);
@@ -61,19 +61,19 @@ const x /*:class*/ = class extends tmpClassSuper$1 {
     return tmpReturnArg$5;
   }
 };
-const tmpMCOO /*:object*/ = new x();
+const tmpMCOO /*:object*/ /*truthy*/ = new x();
 const tmpMCF /*:unknown*/ = tmpMCOO.f;
 const tmpCalleeParam /*:unknown*/ = $dotCall(tmpMCF, tmpMCOO, `f`);
 $(tmpCalleeParam);
-const tmpMCOO$1 /*:object*/ = new x();
+const tmpMCOO$1 /*:object*/ /*truthy*/ = new x();
 const tmpMCF$1 /*:unknown*/ = tmpMCOO$1.g;
 const tmpCalleeParam$1 /*:unknown*/ = $dotCall(tmpMCF$1, tmpMCOO$1, `g`);
 $(tmpCalleeParam$1);
-const tmpMCOO$3 /*:object*/ = new x();
+const tmpMCOO$3 /*:object*/ /*truthy*/ = new x();
 const tmpMCF$3 /*:unknown*/ = tmpMCOO$3.x;
 const tmpCalleeParam$3 /*:unknown*/ = $dotCall(tmpMCF$3, tmpMCOO$3, `x`);
 $(tmpCalleeParam$3);
-const tmpMCOO$5 /*:object*/ = new x();
+const tmpMCOO$5 /*:object*/ /*truthy*/ = new x();
 const tmpMCF$5 /*:unknown*/ = tmpMCOO$5.y;
 const tmpCalleeParam$5 /*:unknown*/ = $dotCall(tmpMCF$5, tmpMCOO$5, `y`);
 $(tmpCalleeParam$5);

@@ -29,7 +29,7 @@ $('after_all', x);
 
 
 `````js filename=intro
-let tmpClusterSSA_x /*:number*/ = 1;
+let tmpClusterSSA_x /*:number*/ /*truthy*/ = 1;
 try {
   $(`in_try_should_run_if_no_throw`);
 } catch (e) {

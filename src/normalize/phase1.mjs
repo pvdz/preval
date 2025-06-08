@@ -679,14 +679,15 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
           } while (true);
 
           const innerLoop = (loopStack[loopStack.length - 1]?.$p.npid ?? 0);
-          const innerThenParent = thenStack[thenStack.length - 1];
-          ASSERT(typeof innerThenParent === 'number', 'ifstack should contain numbers', innerThenParent, thenStack);
-          const innerElseParent = elseStack[elseStack.length - 1];
-          ASSERT(typeof innerElseParent === 'number', 'ifstack should contain numbers', innerElseParent, elseStack);
+          const innerIf = ifStack[ifStack.length - 1];
+          const innerThen = thenStack[thenStack.length - 1];
+          ASSERT(typeof innerThen === 'number', 'ifstack should contain numbers', innerThen, thenStack);
+          const innerElse = elseStack[elseStack.length - 1];
+          ASSERT(typeof innerElse === 'number', 'ifstack should contain numbers', innerElse, elseStack);
           const innerTry = tryNodeStack[tryNodeStack.length - 1]?.$p.npid || 0;
           const innerTrap = trapStack[trapStack.length - 1];
           const innerCatch = catchStack[catchStack.length - 1];
-          vlog('innerLoop:', innerLoop, ', innerThenParent:', innerThenParent, ', innerElseParent:', innerElseParent, ', innerTry:', innerTry, ', innerTrap:', innerTrap, ', innerCatch:', innerCatch);
+          vlog('innerLoop:', innerLoop, ', innerThen:', innerThen, ', innerElse:', innerElse, ', innerTry:', innerTry, ', innerTrap:', innerTrap, ', innerCatch:', innerCatch);
 
           const grandNode = pathNodes[pathNodes.length - 3];
           const grandProp = pathProps[pathProps.length - 2];
@@ -721,8 +722,9 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
               ifChain: ifStack.slice(0),
               funcChain: funcStack.map((n) => n.$p.npid).join(','),
               innerLoop,
-              innerThenParent,
-              innerElseParent,
+              innerIf,
+              innerThen,
+              innerElse,
               innerTry,
               innerTrap,
               innerCatch,
@@ -765,8 +767,9 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
               ifChain: ifStack.slice(0),
               funcChain: funcStack.map((n) => n.$p.npid).join(','),
               innerLoop,
-              innerThenParent,
-              innerElseParent,
+              innerIf,
+              innerThen,
+              innerElse,
               innerTry,
               innerTrap,
               innerCatch,

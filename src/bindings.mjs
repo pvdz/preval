@@ -535,8 +535,9 @@ export function createReadRef(obj) {
     ifChain,
     funcChain,
     innerLoop, // number, pid of the top of the loop stack, or 0 if thats program/function
-    innerThenParent, // number, point to owner if-node of this if-branch (not pid of branch itself!).
-    innerElseParent, // number, point to owner if-node of this if-branch
+    innerIf, // number. pid of nearest if-node that branches this var. Note: the if-test is not branched by the if-node it is testing for, but its parent.
+    innerThen, // number, pid of nearest consequent block that scopes this ref
+    innerElse, // number, pid of nearest alternate block that scopes this ref
     innerTry,
     innerTrap,
     innerCatch,
@@ -547,8 +548,9 @@ export function createReadRef(obj) {
   ASSERT(JSON.stringify(rest) === '{}', 'add new props to createReadRef in the func too!', rest);
   ASSERT(blockIndex >= 0);
   ASSERT(typeof innerLoop === 'number', 'inner loop?', innerLoop);
-  ASSERT(typeof innerThenParent === 'number', 'inner if?', innerThenParent);
-  ASSERT(typeof innerElseParent === 'number', 'inner else?', innerElseParent);
+  ASSERT(typeof innerIf === 'number', 'inner if?', innerIf);
+  ASSERT(typeof innerThen === 'number', 'inner then?', innerThen);
+  ASSERT(typeof innerElse === 'number', 'inner else?', innerElse);
   ASSERT(blockChain);
   ASSERT(parentBlockNode?.body === blockBody);
   ASSERT(blockIds instanceof Array);
@@ -582,8 +584,9 @@ export function createReadRef(obj) {
     ifChain,
     funcChain,
     innerLoop,
-    innerThenParent,
-    innerElseParent,
+    innerIf,
+    innerThen,
+    innerElse,
     innerTry,
     innerTrap,
     innerCatch,
@@ -615,8 +618,9 @@ export function createWriteRef(obj) {
     ifChain,
     funcChain,
     innerLoop,
-    innerThenParent,
-    innerElseParent,
+    innerIf,
+    innerThen,
+    innerElse,
     innerTry,
     innerTrap,
     innerCatch,
@@ -627,8 +631,9 @@ export function createWriteRef(obj) {
   ASSERT(JSON.stringify(rest) === '{}', 'add new props to createWriteRef in the func too!', rest);
   ASSERT(blockIndex >= 0);
   ASSERT(typeof innerLoop === 'number');
-  ASSERT(typeof innerThenParent === 'number');
-  ASSERT(typeof innerElseParent === 'number');
+  ASSERT(typeof innerIf === 'number');
+  ASSERT(typeof innerThen === 'number');
+  ASSERT(typeof innerElse === 'number');
   ASSERT(blockChain);
   ASSERT(parentBlockNode?.body === blockBody);
   ASSERT(blockIds instanceof Array);
@@ -662,8 +667,9 @@ export function createWriteRef(obj) {
     ifChain,
     funcChain,
     innerLoop,
-    innerThenParent,
-    innerElseParent,
+    innerIf,
+    innerThen,
+    innerElse,
     innerTry,
     innerTrap,
     innerCatch,

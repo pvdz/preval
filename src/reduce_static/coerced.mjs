@@ -243,21 +243,8 @@ function core(fdata) {
         ++changes;
         return;
       } else {
-        // Note: if this is a builtin the name would appear in the function... and the body etc too.
-        vlog('Serializing a function. This will probably only work in fringe cases.');
-        fdata.reports.push('Serialized a function to a string, this string was unlikely to be the accurate and may lead to bad results');
-
-        rule('A function as arg to $coerce with string or plustr can be yolod');
-        example('$coerce(function(){}, "string")', 'function () {}');
-        example('$coerce(function(a,b){}, "plustr")', '"function (a, b) {}"');
-        before(read.blockBody[read.blockIndex]);
-
-        const finalNode = AST.primitive('function(){}');
-        read.parentNode['arguments'][0] = finalNode;
-
-        after(read.blockBody[read.blockIndex]);
-        ++changes;
-        return;
+        // If we do this before inlining builtin constants then it would serialize a function without the builtin tag as name. So we can't.
+        todo('serialization of function, fallback if we know the function is not going to be a builtin...');
       }
     }
 

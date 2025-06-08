@@ -1224,10 +1224,10 @@ export function isNumberValueNode(node, includeNegativeValues = false) {
       'Infinity',
       // I think we can include our preval symbols for Number properties as well...
       symbo('Number', 'NaN'),
-      symbo('Number', 'NEGATIVE_INFINITY'),
+      includeNegativeValues?symbo('Number', 'NEGATIVE_INFINITY'):undefined,
       symbo('Number', 'POSITIVE_INFINITY'),
       symbo('Number', 'MAX_SAFE_INTEGER'),
-      symbo('Number', 'MIN_SAFE_INTEGER'),
+      includeNegativeValues?symbo('Number', 'MIN_SAFE_INTEGER'):undefined,
       // I don't want to include epsilon and unsafe numbers... risk of precision loss is too great. Same for the Math constants.
     ].includes(node.name)
   );

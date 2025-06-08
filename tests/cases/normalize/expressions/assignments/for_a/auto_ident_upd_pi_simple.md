@@ -65,7 +65,7 @@ while (true) {
 ## Todos triggered
 
 
-- (todo) Support $frfr that has multiple/no/generic returns type;
+None
 
 
 ## Globals

@@ -70,7 +70,7 @@ while (true) {
 ## Todos triggered
 
 
-- (todo) we can still proceed with the loop as long as there is no let-write anywhere in the loop, inc nested
+None
 
 
 ## Globals

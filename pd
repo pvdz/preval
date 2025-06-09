@@ -158,6 +158,8 @@ process_diff() {
                 in_relevant_hunk=0
             elif [[ "$line" == *"## Options"* ]]; then
                 in_relevant_hunk=0
+            elif [[ "$line" == *"## Normalized"* ]]; then
+                in_relevant_hunk=0
             else
                 in_relevant_hunk=0
                 #has_non_todo=1

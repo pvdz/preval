@@ -18,8 +18,7 @@ $(x);
 
 
 `````js filename=intro
-const x /*:number*/ = $Math_max($Number_NaN, 3.300031, 5);
-$(x);
+$($Number_NaN);
 `````
 
 
@@ -27,7 +26,7 @@ $(x);
 (This ought to be the final result)
 
 `````js filename=intro
-$($Math_max($Number_NaN, 3.300031, 5));
+$($Number_NaN);
 `````
 
 
@@ -35,8 +34,7 @@ $($Math_max($Number_NaN, 3.300031, 5));
 With rename=true
 
 `````js filename=intro
-const a = $Math_max( $Number_NaN, 3.300031, 5 );
-$( a );
+$( $Number_NaN );
 `````
 
 
@@ -45,15 +43,15 @@ $( a );
 
 `````js filename=intro
 const tmpMCF = $Math_max;
-const x = $Math_max($Number_NaN, 3.300031, 5);
-$(x);
+const x = NaN;
+$($Number_NaN);
 `````
 
 
 ## Todos triggered
 
 
-- (todo) type trackeed tricks can possibly support static $Math_max
+None
 
 
 ## Globals

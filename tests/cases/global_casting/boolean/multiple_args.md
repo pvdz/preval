@@ -55,7 +55,6 @@ $( c );
 const a = $(`a`);
 const b = $(`b`);
 const x = a === b;
-const tmpCompObj = [x];
 const tmpArgOverflow = x;
 const y = $boolean_constructor(x);
 $(y);

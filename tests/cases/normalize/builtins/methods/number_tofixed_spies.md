@@ -52,7 +52,7 @@ $dotCall( $number_toFixed, 200, "toFixed", a );
 const x = $spy(`a`);
 const y = $spy(`b`);
 const tmpMCF = $number_toFixed;
-const tmpStringFirstArg = x;
+const tmpArgOverflow = x;
 $dotCall($number_toFixed, 200, `toFixed`, x);
 `````
 

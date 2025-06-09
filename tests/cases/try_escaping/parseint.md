@@ -26,8 +26,8 @@ while (true) {
 
 `````js filename=intro
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpStringFirstArg /*:unknown*/ = $(`1`);
-  const x /*:string*/ = $coerce(tmpStringFirstArg, `string`);
+  const tmpCalleeParam /*:unknown*/ = $(`1`);
+  const x /*:string*/ = $coerce(tmpCalleeParam, `string`);
   const y /*:number*/ = $Number_parseInt(x);
   try {
     $(y);
@@ -76,8 +76,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 `````js filename=intro
 while (true) {
-  const tmpStringFirstArg = $(`1`);
-  const x = $coerce(tmpStringFirstArg, `string`);
+  let tmpCalleeParam = $(`1`);
+  const x = $coerce(tmpCalleeParam, `string`);
   try {
     const y = $Number_parseInt(x);
     $(y);

@@ -65,9 +65,7 @@ $( c );
 
 `````js filename=intro
 const input = $(`test`);
-const tmpStringFirstArg = input;
 const x = $coerce(input, `string`);
-const tmpStringFirstArg$1 = input;
 const y = $coerce(input, `string`);
 $(x);
 $(y);

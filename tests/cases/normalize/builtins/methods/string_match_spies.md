@@ -20,8 +20,8 @@ const y = $spy('b');
 
 `````js filename=intro
 const x /*:unknown*/ = $spy(`a`);
-const y /*:unknown*/ = $spy(`b`);
-$dotCall($string_match, ``, `match`, x, y);
+$spy(`b`);
+$dotCall($string_match, ``, `match`, x);
 `````
 
 
@@ -29,7 +29,9 @@ $dotCall($string_match, ``, `match`, x, y);
 (This ought to be the final result)
 
 `````js filename=intro
-$dotCall($string_match, ``, `match`, $spy(`a`), $spy(`b`));
+const x = $spy(`a`);
+$spy(`b`);
+$dotCall($string_match, ``, `match`, x);
 `````
 
 
@@ -38,8 +40,8 @@ With rename=true
 
 `````js filename=intro
 const a = $spy( "a" );
-const b = $spy( "b" );
-$dotCall( $string_match, "", "match", a, b );
+$spy( "b" );
+$dotCall( $string_match, "", "match", a );
 `````
 
 
@@ -50,7 +52,8 @@ $dotCall( $string_match, "", "match", a, b );
 const x = $spy(`a`);
 const y = $spy(`b`);
 const tmpMCF = $string_match;
-$dotCall($string_match, ``, `match`, x, y);
+const tmpArgOverflow = x;
+$dotCall($string_match, ``, `match`, x);
 `````
 
 

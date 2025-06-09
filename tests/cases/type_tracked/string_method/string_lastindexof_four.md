@@ -45,7 +45,10 @@ $( 1 );
 
 `````js filename=intro
 const tmpMCF = $string_lastIndexOf;
-let tmpCalleeParam = $dotCall($string_lastIndexOf, `hello`, `lastIndexOf`, `e`, 4, $, unknown);
+const tmpArgOverflow = `e`;
+const tmpArgOverflow$1 = 4;
+unknown;
+let tmpCalleeParam = $dotCall($string_lastIndexOf, `hello`, `lastIndexOf`, tmpArgOverflow, tmpArgOverflow$1);
 $(tmpCalleeParam);
 `````
 

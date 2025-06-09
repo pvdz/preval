@@ -21,8 +21,8 @@ $(200..foo)
 
 `````js filename=intro
 const x /*:unknown*/ = $spy(`a`);
-const y /*:unknown*/ = $spy(`b`);
-$dotCall($number_toPrecision, 200, `toPrecision`, x, y);
+$spy(`b`);
+$dotCall($number_toPrecision, 200, `toPrecision`, x);
 const tmpCalleeParam /*:unknown*/ = $Number_prototype.foo;
 $(tmpCalleeParam);
 `````
@@ -32,7 +32,9 @@ $(tmpCalleeParam);
 (This ought to be the final result)
 
 `````js filename=intro
-$dotCall($number_toPrecision, 200, `toPrecision`, $spy(`a`), $spy(`b`));
+const x = $spy(`a`);
+$spy(`b`);
+$dotCall($number_toPrecision, 200, `toPrecision`, x);
 $($Number_prototype.foo);
 `````
 
@@ -42,10 +44,10 @@ With rename=true
 
 `````js filename=intro
 const a = $spy( "a" );
-const b = $spy( "b" );
-$dotCall( $number_toPrecision, 200, "toPrecision", a, b );
-const c = $Number_prototype.foo;
-$( c );
+$spy( "b" );
+$dotCall( $number_toPrecision, 200, "toPrecision", a );
+const b = $Number_prototype.foo;
+$( b );
 `````
 
 
@@ -56,7 +58,8 @@ $( c );
 const x = $spy(`a`);
 const y = $spy(`b`);
 const tmpMCF = $number_toPrecision;
-$dotCall($number_toPrecision, 200, `toPrecision`, x, y);
+const tmpArgOverflow = x;
+$dotCall($number_toPrecision, 200, `toPrecision`, x);
 let tmpCalleeParam = $Number_prototype.foo;
 $(tmpCalleeParam);
 `````

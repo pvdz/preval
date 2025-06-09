@@ -21,15 +21,15 @@ $(Number($spy('x', 'y')));
 
 
 `````js filename=intro
-const tmpNumberFirstArg /*:unknown*/ = $spy();
-const tmpCalleeParam /*:number*/ = $coerce(tmpNumberFirstArg, `number`);
+const tmpCalleeParam$1 /*:unknown*/ = $spy();
+const tmpCalleeParam /*:number*/ = $coerce(tmpCalleeParam$1, `number`);
 $(tmpCalleeParam);
-const tmpNumberFirstArg$1 /*:unknown*/ = $spy(1, 2);
-const tmpCalleeParam$1 /*:number*/ = $coerce(tmpNumberFirstArg$1, `number`);
-$(tmpCalleeParam$1);
-const tmpNumberFirstArg$3 /*:unknown*/ = $spy(`x`, `y`);
-const tmpCalleeParam$3 /*:number*/ = $coerce(tmpNumberFirstArg$3, `number`);
+const tmpCalleeParam$5 /*:unknown*/ = $spy(1, 2);
+const tmpCalleeParam$3 /*:number*/ = $coerce(tmpCalleeParam$5, `number`);
 $(tmpCalleeParam$3);
+const tmpCalleeParam$9 /*:unknown*/ = $spy(`x`, `y`);
+const tmpCalleeParam$7 /*:number*/ = $coerce(tmpCalleeParam$9, `number`);
+$(tmpCalleeParam$7);
 `````
 
 
@@ -63,15 +63,15 @@ $( f );
 (This is what phase1 received the first time)
 
 `````js filename=intro
-const tmpNumberFirstArg = $spy();
-let tmpCalleeParam = $coerce(tmpNumberFirstArg, `number`);
+let tmpCalleeParam$1 = $spy();
+let tmpCalleeParam = $coerce(tmpCalleeParam$1, `number`);
 $(tmpCalleeParam);
-const tmpNumberFirstArg$1 = $spy(1, 2);
-let tmpCalleeParam$1 = $coerce(tmpNumberFirstArg$1, `number`);
-$(tmpCalleeParam$1);
-const tmpNumberFirstArg$3 = $spy(`x`, `y`);
-let tmpCalleeParam$3 = $coerce(tmpNumberFirstArg$3, `number`);
+let tmpCalleeParam$5 = $spy(1, 2);
+let tmpCalleeParam$3 = $coerce(tmpCalleeParam$5, `number`);
 $(tmpCalleeParam$3);
+let tmpCalleeParam$9 = $spy(`x`, `y`);
+let tmpCalleeParam$7 = $coerce(tmpCalleeParam$9, `number`);
+$(tmpCalleeParam$7);
 `````
 
 

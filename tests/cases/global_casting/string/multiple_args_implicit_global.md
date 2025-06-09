@@ -21,9 +21,9 @@ $(y);
 
 `````js filename=intro
 const a /*:unknown*/ = $(`a`);
-const x /*:string*/ = $coerce(a, `plustr`);
+const tmpArgOverflow /*:string*/ = $coerce(a, `plustr`);
 fail_hard;
-$(x);
+$(tmpArgOverflow);
 `````
 
 
@@ -31,9 +31,9 @@ $(x);
 (This ought to be the final result)
 
 `````js filename=intro
-const x = $coerce($(`a`), `plustr`);
+const tmpArgOverflow = $coerce($(`a`), `plustr`);
 fail_hard;
-$(x);
+$(tmpArgOverflow);
 `````
 
 
@@ -54,10 +54,8 @@ $( b );
 `````js filename=intro
 const a = $(`a`);
 const x = $coerce(a, `plustr`);
-const tmpCompObj = [x];
 const tmpArgOverflow = x;
 fail_hard;
-const tmpStringFirstArg = tmpArgOverflow;
 const y = $coerce(tmpArgOverflow, `string`);
 $(y);
 `````

@@ -62,9 +62,7 @@ $( d );
 
 `````js filename=intro
 const x = $(`test`);
-const tmpStringFirstArg = x;
 const y = $coerce(x, `string`);
-const tmpStringFirstArg$1 = x;
 const z = $coerce(x, `string`);
 let tmpCalleeParam = y + z;
 $(tmpCalleeParam);

@@ -128,7 +128,6 @@ const tmpUnaryArg = $spy(1);
 const x = +tmpUnaryArg;
 if (x) {
   const unknown = $(`abc`);
-  const tmpStringFirstArg = unknown;
   const somestr = $coerce(unknown, `string`);
   const tmpMCF = somestr.charAt;
   const chr = $dotCall(tmpMCF, somestr, `charAt`, 1);

@@ -22,8 +22,8 @@ let descriptor = $('descriptor', Object.getOwnPropertyDescriptor(obj, P));
 `````js filename=intro
 const tmpCalleeParam /*:object*/ /*truthy*/ = { a: 1 };
 const obj /*:unknown*/ = $(`obj`, tmpCalleeParam);
-const P /*:unknown*/ = $(`P`, `a`);
-const tmpCalleeParam$1 /*:object*/ /*truthy*/ = $Object_getOwnPropertyDescriptor(obj, P);
+$(`P`, `a`);
+const tmpCalleeParam$1 /*:object*/ /*truthy*/ = $Object_getOwnPropertyDescriptor(obj);
 $(`descriptor`, tmpCalleeParam$1);
 `````
 
@@ -33,7 +33,8 @@ $(`descriptor`, tmpCalleeParam$1);
 
 `````js filename=intro
 const obj = $(`obj`, { a: 1 });
-$(`descriptor`, $Object_getOwnPropertyDescriptor(obj, $(`P`, `a`)));
+$(`P`, `a`);
+$(`descriptor`, $Object_getOwnPropertyDescriptor(obj));
 `````
 
 
@@ -43,9 +44,9 @@ With rename=true
 `````js filename=intro
 const a = { a: 1 };
 const b = $( "obj", a );
-const c = $( "P", "a" );
-const d = $Object_getOwnPropertyDescriptor( b, c );
-$( "descriptor", d );
+$( "P", "a" );
+const c = $Object_getOwnPropertyDescriptor( b );
+$( "descriptor", c );
 `````
 
 
@@ -57,7 +58,8 @@ let tmpCalleeParam = { a: 1 };
 const obj = $(`obj`, tmpCalleeParam);
 let P = $(`P`, `a`);
 const tmpMCF = $Object_getOwnPropertyDescriptor;
-let tmpCalleeParam$1 = $Object_getOwnPropertyDescriptor(obj, P);
+const tmpArgOverflow = obj;
+let tmpCalleeParam$1 = $Object_getOwnPropertyDescriptor(obj);
 let descriptor = $(`descriptor`, tmpCalleeParam$1);
 `````
 

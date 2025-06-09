@@ -22,8 +22,8 @@ $(z);
 
 
 `````js filename=intro
-const tmpStringFirstArg /*:unknown*/ = $(`hello`);
-const z /*:string*/ = $coerce(tmpStringFirstArg, `string`);
+const tmpCalleeParam /*:unknown*/ = $(`hello`);
+const z /*:string*/ = $coerce(tmpCalleeParam, `string`);
 $(z);
 `````
 
@@ -50,8 +50,8 @@ $( b );
 (This is what phase1 received the first time)
 
 `````js filename=intro
-const tmpStringFirstArg = $(`hello`);
-const x = $coerce(tmpStringFirstArg, `string`);
+let tmpCalleeParam = $(`hello`);
+const x = $coerce(tmpCalleeParam, `string`);
 const y = $coerce(x, `plustr`);
 const z = $coerce(y, `plustr`);
 $(z);

@@ -20,8 +20,8 @@ $(Number(x)); // Is the same as `x` and dropping the `Number` call should not be
 `````js filename=intro
 const tmpBinBothLhs /*:unknown*/ = $(5);
 const tmpBinBothRhs /*:unknown*/ = $(`10`);
-const x /*:number*/ = tmpBinBothLhs * tmpBinBothRhs;
-$(x);
+const tmpCalleeParam /*:number*/ = tmpBinBothLhs * tmpBinBothRhs;
+$(tmpCalleeParam);
 `````
 
 
@@ -52,7 +52,6 @@ $( c );
 const tmpBinBothLhs = $(5);
 const tmpBinBothRhs = $(`10`);
 const x = tmpBinBothLhs * tmpBinBothRhs;
-const tmpNumberFirstArg = x;
 let tmpCalleeParam = $coerce(x, `number`);
 $(tmpCalleeParam);
 `````

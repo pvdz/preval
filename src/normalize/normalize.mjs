@@ -3532,6 +3532,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             return true;
           } else {
             // Calling something that is not an identifier or primitive; just abstract it.
+            // TODO: `super`
 
             rule('The callee of a call must be an ident');
             example('a()(x, y)', 'tmp = a(), tmp(x, y)');
@@ -3624,14 +3625,20 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             // Important: isNaN and isFinite are special cased because they don't get symbo'd
 
             // Ignore builtins for which we don't define arg count (because we're unsure or just didn't do it)
-            const maxlen = tmp.has(funcName) ? 1 : symbol.maxlen;
+            const maxlen = tmp.has(funcName) ? 1 : symbol.typings.maxlen;
             if (maxlen >= 0 && maxlen < Infinity && args.length > maxlen) {
               let spreadBefore = false;
-              let spreadLast = true; // only after spreadBefore gets set to true
+              let spreadLast = false; // only relevant when spreadBefore=true
               for (let i=0; i<maxlen; ++i) {
                 if (args[i]?.type === 'SpreadElement') {
-                  if (spreadBefore) {
+                  if (spreadLast) {
+                    // This is the failure case. Consider `f(...a, b)`
+                    // When `f` receives one arg we statically don't know whether to transform this
+                    // into `b; f(a[0])` or `f(b)` unless we know the contents of `a`.
                     spreadLast = false;
+                    break;
+                  } else if (spreadBefore) {
+                    spreadLast = true;
                     break;
                   } else {
                     spreadBefore = true;
@@ -3705,9 +3712,10 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                 assertNoDupeNodes(body, 'body');
                 return true;
               }
+              else {
+                // There's a spread within the index range of accepted args but it wasn't the last arg. We must bail.
+              }
             }
-
-
 
             // Eliminate excessive args    (or first args that are spreads, or calls with one prim arg)
             switch (funcName) {
@@ -3727,35 +3735,6 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
               case symbo('number', 'constructor'):
               case symbo('string', 'constructor'):
               {
-                if (firstSpread) {
-                  rule('Builtins that accept one arg but receive a spread can be improved');
-                  example('isNaN(...a(), b(), c());', 'const tmp = [...a()][0]; b(); c(); isNaN(tmp);');
-                  before(node, body);
-
-                  // It's not pretty but if we want to maintain proper order, the first arg has to be cached.
-                  const tmpName = createFreshVar('tmpArgOverflow', fdata);
-                  replaceArgs([AST.identifier(tmpName)]);
-
-                  body.splice(
-                    i,
-                    0,
-                    // const x = [...firstargnode][0]'
-                    AST.varStatement(
-                      'const',
-                      tmpName,
-                      AST.memberExpression(AST.arrayExpression(args[0]), AST.literal(0), true),
-                    ),
-                    // If any excessive args was a spread, we can create an array expression for it... `f(a, ...b)` -> `[...b];`
-                    ...args.slice(1).map((e) => (AST.expressionStatement(e.type === 'SpreadElement' ? AST.arrayExpression(e) : e))),
-                    // Context after args but before result (it's evaluated last)
-                    ...(contextNode ? [AST.expressionStatement(AST.cloneSimple(contextNode))] : []),
-                  );
-
-                  after(body.slice(i, i+Math.max(1, 1 + Math.max(args.length - 1, 0) + (contextNode?1:0) + 1)));
-                  assertNoDupeNodes(body, 'body');
-                  return true;
-                }
-
                 if (args.length === 0 || AST.isPrimitive(args[0])) {
                   rule('If certain builtin global funcs received a primitive value or none at all it can be resolved');
                   rule('isNaN("50foo");', ';');
@@ -3846,29 +3825,6 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                   return true;
                 }
 
-                // Move excessive args out, after normalization
-                if (args.length > 1 && args.every(anode => !AST.isComplexNode(anode))) {
-                  rule('Eliminate excessive args when we know they are excessive');
-                  rule('isNaN(a, b, c);', 'a; b; c; isNaN(a, b, c);');
-                  before(node, parentNodeOrWhatever);
-
-                  const tmpName = createFreshVar('tmpArgOverflow', fdata);
-                  replaceArgs([AST.identifier(tmpName)]);
-
-                  body.splice(i, 0,
-                    AST.varStatement(
-                      'const',
-                      tmpName,
-                      AST.memberExpression(AST.arrayExpression(args[0]), AST.literal(0), true),
-                    ),
-                    ...args.slice(1).map(anode => AST.expressionStatement(anode.type === 'SpreadElement' ? AST.arrayExpression(anode) : anode)),
-                  );
-
-                  after(body.slice(i, i+args.length));
-                  assertNoDupeNodes(body, 'body');
-                  return true;
-                }
-
                 break;
               }
               case symbo('Number', 'parseInt'): {
@@ -3905,101 +3861,6 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                   return true;
                 }
 
-                if (args.length > 2 && !firstSpread && args[1].type !== 'SpreadElement' && args[2].type !== 'SpreadElement') {
-                  rule('parseInt accepts two args should not receive more');
-                  example('parseInt(a(), b(), c());', 'const tmp = a(); const tmp2 = b(); c(); parseInt(tmp, tmp2);');
-                  before(node, body);
-
-                  // It's not pretty but if we want to maintain proper order, the first args have to be cached.
-                  const tmpName1 = createFreshVar('tmpArgOverflowOne', fdata);
-                  const tmpName2 = createFreshVar('tmpArgOverflowTwo', fdata);
-                  replaceArgs([AST.identifier(tmpName1), AST.identifier(tmpName2)]);
-
-                  body.splice(
-                    i,
-                    0,
-                    // Note: the first args should not be a spread at this point
-                    AST.varStatement('const', tmpName1, args[0]),
-                    AST.varStatement('const', tmpName2, args[1]),
-                    // If any excessive args was a spread, we can create an array expression for it... `f(a, ...b)` -> `[...b];`
-                    ...args.slice(2).map((e) => (e.type === 'SpreadElement' ? AST.arrayExpression(e) : AST.expressionStatement(e))),
-                    // Context after args but before result (it's evaluated last)
-                    ...(contextNode ? [AST.expressionStatement(AST.cloneSimple(contextNode))] : []),
-                  );
-
-                  after(body.slice(i, i+Math.max(1, 1 + Math.max(args.length - 2, 0) + (contextNode?1:0) + 2)));
-                  assertNoDupeNodes(body, 'body');
-                  return true;
-                }
-
-                // Move excessive args out, after normalization
-                if (args.length > 2 && args.every(anode => !AST.isComplexNode(anode))) {
-                  rule('Eliminate excessive args when we know they are excessive2');
-                  rule('parseInt(a, b, c);', 'a; b; c; parseInt(a, b, c);');
-                  before(node, parentNodeOrWhatever);
-
-                  body.splice(i, 0,
-                    ...args.map(anode => AST.expressionStatement(anode.type === 'SpreadElement' ? AST.arrayExpression(anode) : anode)),
-                  );
-                  node.arguments.length = isDotcall ? 4 : 1;
-
-                  after(body.slice(i, i+args.length));
-                  assertNoDupeNodes(body, 'body');
-                  return true;
-                }
-
-                break;
-              }
-              case 'atob': {
-                if (args.length === 1 && AST.isPrimitive(args[0])) {
-                  const value = AST.getPrimitiveValue(args[0]);
-                  try {
-                    const result = atob(value);
-
-                    rule('A call to `atob` with a primitive can be inlined');
-                    example('atob("eHl6");', 'xyz');
-                    before(body[i]);
-
-                    const finalNode = AST.primitive(result);
-                    const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-                    body.splice(i, 1,
-                      finalParent,
-                      // Context might not be used but if it is referenced we keep for tdz reasons.
-                      ...(contextNode ? [AST.expressionStatement(AST.cloneSimple(contextNode))] : []),
-                    );
-
-                    after(body[i]);
-                    return true;
-                  } catch {
-                    vlog('- bailing on atob; it crashes');
-                  }
-                }
-                break;
-              }
-              case 'btoa': {
-                if (args.length === 1 && AST.isPrimitive(args[0])) {
-                  const value = AST.getPrimitiveValue(args[0]);
-                  try {
-                    const result = btoa(value);
-
-                    rule('A call to `btoa` with a primitive can be inlined');
-                    example('btoa("xyz");', 'eHl6');
-                    before(body[i]);
-
-                    const finalNode = AST.primitive(result);
-                    const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-                    body.splice(i, 1,
-                      finalParent,
-                      // Context might not be used but if it is referenced we keep for tdz reasons.
-                      ...(contextNode ? [AST.expressionStatement(AST.cloneSimple(contextNode))] : []),
-                    );
-
-                    after(body[i]);
-                    return true;
-                  } catch {
-                    vlog('- bailing on btoa; it crashes');
-                  }
-                }
                 break;
               }
 
@@ -4057,7 +3918,6 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                 example('Number.isFinite(a, b, c);', 'a; b; c;');
 
                 eliminateStatementCallWithCoerce(fdata, body, i, args, contextNode, 0);
-
                 assertNoDupeNodes(body, 'body');
                 return true;
               }
@@ -4683,22 +4543,104 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
               const firstArgNode = args[0];
               switch (funcName) {
+                case 'atob': {
+                  if (args.length === 1 && AST.isPrimitive(args[0])) {
+                    const value = AST.getPrimitiveValue(args[0]);
+                    try {
+                      let v;
+                      try {
+                        v = atob(value);
+                      } catch {}
+
+                      rule('A call to `atob` with a primitive can be inlined');
+                      example('atob("eHl6");', 'xyz');
+                      before(body[i]);
+
+                      if (v === undefined) {
+                        body[i] = AST.throwStatement(AST.primitive(`[Preval] Attempted call to atob with invalid args: \`${tmat(body[i], true).replace(/\n/g, '\\n')}\``));
+                      } else {
+                        const finalNode = AST.primitive(v);
+                        const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                        body.splice(i, 1,
+                          finalParent,
+                          // Context might not be used but if it is referenced we keep for tdz reasons.
+                          ...(contextNode ? [AST.expressionStatement(AST.cloneSimple(contextNode))] : []),
+                        );
+                      }
+
+                      after(body[i]);
+                      return true;
+                    } catch {
+                      vlog('- bailing on atob; it crashes');
+                    }
+                  }
+                  break;
+                }
+                case 'btoa': {
+                  if (args.length === 1 && AST.isPrimitive(args[0])) {
+                    const value = AST.getPrimitiveValue(args[0]);
+                    try {
+                      let v;
+                      try {
+                        v = btoa(value);
+                      } catch {}
+
+                      rule('A call to `btoa` with a primitive can be inlined');
+                      example('btoa("xyz");', 'eHl6');
+                      before(body[i]);
+
+                      if (v === undefined) {
+                        body[i] = AST.throwStatement(AST.primitive(`[Preval] Attempted call to atob with invalid args: \`${tmat(body[i], true).replace(/\n/g, '\\n')}\``));
+                      } else {
+                        const finalNode = AST.primitive(v);
+                        const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                        body.splice(i, 1,
+                          finalParent,
+                          // Context might not be used but if it is referenced we keep for tdz reasons.
+                          ...(contextNode ? [AST.expressionStatement(AST.cloneSimple(contextNode))] : []),
+                        );
+                      }
+
+                      after(body[i]);
+                      return true;
+                    } catch {
+                      vlog('- bailing on btoa; it crashes');
+                    }
+                  }
+                  break;
+                }
+
                 case symbo('boolean', 'constructor'): {
-                  if (args.length === 1 && args[0] && AST.isPrimitive(args[0])) {
+                  if (contextNode) {
+                    // skip.
+                  }
+
+                  else if (args.length === 0) {
+                    rule('Boolean() no args can be resolved');
+                    rule('Boolean()', 'false');
+                    before(body[i]);
+
+                    const v = Boolean();
+
+                    const finalNode = AST.primitive(v);
+                    const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                    body[i] = finalParent;
+
+                    after(body[i]);
+                    assertNoDupeNodes(body, 'body');
+                    return true;
+                  }
+
+                  else if (args.length === 1 && AST.isPrimitive(args[0])) {
                     rule('Calling `Boolean` on a primitive should resolve');
                     example('Boolean("hello")', 'true');
                     before(node, parentNodeOrWhatever);
 
                     const finalNode = Boolean(AST.getPrimitiveValue(firstArgNode)) ? AST.tru() : AST.fals();
                     const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-                    body.splice(i, 1,
-                      ...args.slice(1).map((enode) => AST.expressionStatement(enode)),
-                      // Context might not be used but if it is referenced we keep for tdz reasons.
-                      ...(contextNode ? [AST.expressionStatement(AST.cloneSimple(contextNode))] : []),
-                      finalParent,
-                    );
+                    body[i] = finalParent;
 
-                    after(finalNode, body.slice(i, args.length));
+                    after(body[i]);
                     return true;
                   }
                   break;
@@ -4714,7 +4656,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                     const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
                     body[i] = finalParent;
 
-                    before(body[i]);
+                    after(body[i]);
                     assertNoDupeNodes(body, 'body');
                     return true;
                   }
@@ -4731,13 +4673,17 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                     const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
                     body[i] = finalParent;
 
-                    before(body[i]);
+                    after(body[i]);
                     assertNoDupeNodes(body, 'body');
                     return true;
                   }
                   break;
                 }
                 case symbo('function', 'constructor'): {
+                  if (contextNode) {
+                    // skip.
+                  }
+
                   // The "easier" eval
                   // If we can determine all the args then I think we can construct a new global function and that's just it
                   // However, doing so may introduce new implicit globals and naming collisions that need to be resolved.
@@ -4747,7 +4693,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                   // try this, but there's a very good chance it will just fail hard.
                   // Luckily for us, the obfuscation family of things just do superficial stuffs here.
                   // If there is a context node, let another transform simplify it first
-                  if (allowEval && !contextNode) {
+                  else if (allowEval) {
                     if (args.every((anode) => AST.isPrimitive(anode))) {
                       // TODO: we could try to find the original point of this call and replace the arg but I'm sure there are plenty of cases where this is not feasible (like conditionals etc)
                       vlog('This call to `Function` has primitive args so we should be able to resolve it...');
@@ -4790,188 +4736,287 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                   break;
                 }
                 case 'isNaN': {
-                  if (args.length === 1 && args[0] && AST.isPrimitive(args[0])) {
+                  if (contextNode) {
+                    // skip.
+                  }
+
+                  else if (args.length === 0) {
+                    rule('isNaN() no args can be resolved');
+                    rule('isNaN()', 'true');
+                    before(body[i]);
+
+                    const v = isNaN();
+
+                    const finalNode = AST.primitive(v);
+                    const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                    body[i] = finalParent;
+
+                    after(body[i]);
+                    assertNoDupeNodes(body, 'body');
+                    return true;
+                  }
+
+                  else if (args.length === 1 && args[0] && AST.isPrimitive(args[0])) {
                     rule('Calling `isNaN` on a primitive should resolve');
                     example('isNaN("hello")', 'true'); // tests/cases/normalize/builtins/globals_with_primitives/isnan_500.md
-                    before(node, parentNodeOrWhatever);
+                    before(body[i]);
 
                     const finalNode = isNaN(AST.getPrimitiveValue(firstArgNode)) ? AST.tru() : AST.fals();
                     const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-                    body.splice(i, 1,
-                      ...args.slice(1).map((enode) => AST.expressionStatement(enode)),
-                      // Context might not be used but if it is referenced we keep for tdz reasons.
-                      ...(contextNode ? [AST.expressionStatement(AST.cloneSimple(contextNode))] : []),
-                      finalParent
-                    );
+                    body[i] = finalParent;
 
-                    after(finalNode, body.slice(i, args.length));
+                    after(body[i]);
+                    assertNoDupeNodes(body, 'body');
                     return true;
                   }
                   break;
                 }
                 case symbo('Number', 'isNaN'): {
-                  if (args.length === 1 && args[0] && AST.isPrimitive(args[0])) {
+                  if (contextNode) {
+                    // skip.
+                  }
+
+                  else if (args.length === 0) {
+                    rule('Number.isNaN() no args can be resolved');
+                    rule('Number.isNaN()', 'false');
+                    before(body[i]);
+
+                    const v = Number.isNaN();
+
+                    const finalNode = AST.primitive(v);
+                    const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                    body[i] = finalParent;
+
+                    after(body[i]);
+                    assertNoDupeNodes(body, 'body');
+                    return true;
+                  }
+
+                  else if (args.length === 1 && AST.isPrimitive(args[0])) {
                     rule('Calling `Number.isNaN` on a primitive should resolve');
                     example('Number.isNaN("hello")', 'true'); // tests/cases/normalize/builtins/globals_with_primitives/isnan_500.md
-                    before(node, parentNodeOrWhatever);
+                    before(body[i]);
 
                     const finalNode = Number.isNaN(AST.getPrimitiveValue(firstArgNode)) ? AST.tru() : AST.fals();
                     const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-                    body.splice(i, 1,
-                      ...args.slice(1).map((enode) => AST.expressionStatement(enode)),
-                      // Context might not be used but if it is referenced we keep for tdz reasons.
-                      ...(contextNode ? [AST.expressionStatement(AST.cloneSimple(contextNode))] : []),
-                      finalParent
-                    );
+                    body[i] = finalParent;
 
-                    after(finalNode, body.slice(i, args.length));
+                    after(body[i]);
                     return true;
                   }
                   break;
                 }
                 case 'isFinite': {
-                  if (args.length === 1 && args[0] && AST.isPrimitive(args[0])) {
+                  if (contextNode) {
+                    // skip.
+                  }
+
+                  else if (args.length === 0) {
+                    rule('isFinite() no args can be resolved');
+                    rule('isFinite()', 'false');
+                    before(body[i]);
+
+                    const v = isFinite();
+
+                    const finalNode = AST.primitive(v);
+                    const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                    body[i] = finalParent;
+
+                    after(body[i]);
+                    assertNoDupeNodes(body, 'body');
+                    return true;
+                  }
+
+                  else if (args.length === 1 && AST.isPrimitive(args[0])) {
                     rule('Calling `isFinite` on a primitive should resolve');
                     example('isFinite("hello")', 'false'); // tests/cases/normalize/builtins/globals_with_primitives/isfinite_500.md
-                    before(node, parentNodeOrWhatever);
+                    before(body[i]);
 
                     const finalNode = isFinite(AST.getPrimitiveValue(firstArgNode)) ? AST.tru() : AST.fals();
                     const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-                    body.splice(i, 1,
-                      ...args.slice(1).map((enode) => AST.expressionStatement(enode)),
-                      // Context might not be used but if it is referenced we keep for tdz reasons.
-                      ...(contextNode ? [AST.expressionStatement(AST.cloneSimple(contextNode))] : []),
-                      finalParent,
-                    );
+                    body[i] = finalParent;
 
-                    after(finalNode, body.slice(i, args.length));
+                    after(body[i]);
                     return true;
                   }
                   break;
                 }
                 case symbo('Number', 'isFinite'): {
-                  if (args.length === 1 && args[0] && AST.isPrimitive(args[0])) {
+                  if (contextNode) {
+                    // skip.
+                  }
+
+                  else if (args.length === 0) {
+                    rule('Number.isFinite() no args can be resolved');
+                    rule('Number.isFinite()', 'false');
+                    before(body[i]);
+
+                    const v = Number.isFinite();
+
+                    const finalNode = AST.primitive(v);
+                    const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                    body[i] = finalParent;
+
+                    after(body[i]);
+                    assertNoDupeNodes(body, 'body');
+                    return true;
+                  }
+
+                  else if (args.length === 1 && AST.isPrimitive(args[0])) {
                     rule('Calling `Number.isFinite` on a primitive should resolve');
                     example('Number.isFinite("hello")', 'false'); // tests/cases/normalize/builtins/globals_with_primitives/isfinite_500.md
-                    before(node, parentNodeOrWhatever);
+                    before(body[i]);
 
                     const finalNode = Number.isFinite(AST.getPrimitiveValue(firstArgNode)) ? AST.tru() : AST.fals();
                     const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-                    body.splice(i, 1,
-                      ...args.slice(1).map((enode) => AST.expressionStatement(enode)),
-                      // Context might not be used but if it is referenced we keep for tdz reasons.
-                      ...(contextNode ? [AST.expressionStatement(AST.cloneSimple(contextNode))] : []),
-                      finalParent,
-                    );
+                    body[i] = finalParent;
 
-                    after(finalNode, body.slice(i, args.length));
+                    after(body[i]);
+                    assertNoDupeNodes(body, 'body');
                     return true;
                   }
                   break;
                 }
                 case symbo('Number', 'isInteger'): {
-                  if (args.length === 1 && args[0] && AST.isPrimitive(args[0])) {
+                  if (contextNode) {
+                    // skip.
+                  }
+
+                  else if (args.length === 0) {
+                    rule('Number.isInteger() no args can be resolved');
+                    rule('Number.isInteger()', 'false');
+                    before(body[i]);
+
+                    const v = Number.isInteger();
+
+                    const finalNode = AST.primitive(v);
+                    const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                    body[i] = finalParent;
+
+                    after(body[i]);
+                    assertNoDupeNodes(body, 'body');
+                    return true;
+                  }
+
+                  else if (args.length === 1 && AST.isPrimitive(args[0])) {
                     rule('Calling `isInteger` on a primitive should resolve');
                     example('Number.isInteger("hello")', 'false');
-                    before(node, parentNodeOrWhatever);
+                    before(body[i]);
 
                     const finalNode = Number.isInteger(AST.getPrimitiveValue(firstArgNode)) ? AST.tru() : AST.fals();
                     const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-                    body.splice(i, 1,
-                      ...args.slice(1).map((enode) => AST.expressionStatement(enode)),
-                      // Context might not be used but if it is referenced we keep for tdz reasons.
-                      ...(contextNode ? [AST.expressionStatement(AST.cloneSimple(contextNode))] : []),
-                      finalParent,
-                    );
+                    body[i] = finalParent;
 
-                    after(finalNode, body.slice(i, args.length));
+                    after(body[i]);
                     return true;
                   }
                   break;
                 }
                 case symbo('Number', 'isSafeInteger'): {
-                  if (args.length === 1 && args[0] && AST.isPrimitive(args[0])) {
+                  if (contextNode) {
+                    // skip.
+                  }
+
+                  else if (args.length === 0) {
+                    rule('Number.isSafeInteger() no args can be resolved');
+                    rule('Number.isSafeInteger()', 'false');
+                    before(body[i]);
+
+                    const v = Number.isSafeInteger();
+
+                    const finalNode = AST.primitive(v);
+                    const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                    body[i] = finalParent;
+
+                    after(body[i]);
+                    assertNoDupeNodes(body, 'body');
+                    return true;
+                  }
+
+                  else if (args.length === 1 && AST.isPrimitive(args[0])) {
                     rule('Calling `isSafeInteger` on a primitive should resolve');
                     example('Number.isSafeInteger("hello")', 'false');
-                    before(node, parentNodeOrWhatever);
+                    before(body[i]);
 
                     const finalNode = Number.isSafeInteger(AST.getPrimitiveValue(firstArgNode)) ? AST.tru() : AST.fals();
                     const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-                    body.splice(i, 1,
-                      ...args.slice(1).map((enode) => AST.expressionStatement(enode)),
-                      // Context might not be used but if it is referenced we keep for tdz reasons.
-                      ...(contextNode ? [AST.expressionStatement(AST.cloneSimple(contextNode))] : []),
-                      finalParent,
-                    );
+                    body[i] = finalParent;
 
-                    after(finalNode, body.slice(i, args.length));
+                    after(body[i]);
+                    assertNoDupeNodes(body, 'body');
                     return true;
                   }
                   break;
                 }
                 case symbo('Number', 'parseFloat'): {
-                  if (args.length === 0) {
-                    rule('A call to `parseFloat()` without args is NaN');
-                    example('f(parseFloat());', 'f(NaN);');
-                    before(node, body[i]);
+                  if (contextNode) {
+                    // skip.
+                  }
 
-                    const finalNode = AST.identifier('NaN');
+                  else if (args.length === 0) {
+                    rule('Number.parseFloat() no args can be resolved');
+                    rule('Number.parseFloat()', 'false');
+                    before(body[i]);
+
+                    const v = Number.parseFloat();
+
+                    const finalNode = AST.primitive(v);
                     const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-                    body.splice(i, 1, finalParent);
+                    body[i] = finalParent;
 
-                    after(finalParent, body[i]);
+                    after(body[i]);
                     assertNoDupeNodes(body, 'body');
                     return true;
                   }
 
-                  // Note: consider `Number(...x, y)` when x is an empty array. We can't support spread as first arg unless we know the arg.
-                  if (args.length > 1 && args[0].type !== 'SpreadElement') {
-                    rule('A call to `parseFloat` with some args should call `$coerce` with one');
-                    example('f(parseFloat(a, b, c));', 'const tmp = a; b; c; f(parseFloat(tmp));');
-                    before(node, parentNodeOrWhatever);
+                  // // Note: consider `Number(...x, y)` when x is an empty array. We can't support spread as first arg unless we know the arg.
+                  // if (args.length === 1 && args[0].type !== 'SpreadElement') {
+                  //   rule('A call to `parseFloat` with some args should call `$coerce` with one');
+                  //   example('f(parseFloat(a, b, c));', 'const tmp = a; b; c; f(parseFloat(tmp));');
+                  //   before(node, parentNodeOrWhatever);
+                  //
+                  //   const newNodes = [];
+                  //
+                  //   const tmpArgName = createFreshVar('tmpStringFirstArg', fdata);
+                  //   args.forEach((anode, ai) => {
+                  //     if (ai === 0) {
+                  //       newNodes.push(AST.varStatement('const', tmpArgName, anode));
+                  //     } else {
+                  //       newNodes.push(AST.expressionStatement(anode.type === 'SpreadElement' ? AST.arrayExpression(anode) : anode));
+                  //     }
+                  //   });
+                  //
+                  //   replaceArgs([
+                  //     args[0].type === 'SpreadElement'
+                  //       ? AST.memberExpression(tmpArgName, AST.literal(0), true) // `tmpName[0]`
+                  //       : AST.identifier(tmpArgName),
+                  //   ]);
+                  //
+                  //   body.splice(i, 0,
+                  //     ...newNodes,
+                  //     // Context might not be used but if it is referenced we keep for tdz reasons.
+                  //     ...(contextNode ? [AST.expressionStatement(AST.cloneSimple(contextNode))] : []),
+                  //   );
+                  //
+                  //   after(body.slice(i, newNodes.length + (contextNode ? 1 : 0) + 1));
+                  //   assertNoDupeNodes(body, 'body');
+                  //   return true;
+                  // }
 
-                    const newNodes = [];
-
-                    const tmpArgName = createFreshVar('tmpStringFirstArg', fdata);
-                    args.forEach((anode, ai) => {
-                      if (ai === 0) {
-                        newNodes.push(AST.varStatement('const', tmpArgName, anode));
-                      } else {
-                        newNodes.push(AST.expressionStatement(anode.type === 'SpreadElement' ? AST.arrayExpression(anode) : anode));
-                      }
-                    });
-
-                    replaceArgs([
-                      args[0].type === 'SpreadElement'
-                        ? AST.memberExpression(tmpArgName, AST.literal(0), true) // `tmpName[0]`
-                        : AST.identifier(tmpArgName),
-                    ]);
-
-                    body.splice(i, 0,
-                      ...newNodes,
-                      // Context might not be used but if it is referenced we keep for tdz reasons.
-                      ...(contextNode ? [AST.expressionStatement(AST.cloneSimple(contextNode))] : []),
-                    );
-
-                    after(body.slice(i, newNodes.length + (contextNode ? 1 : 0) + 1));
-                    assertNoDupeNodes(body, 'body');
-                    return true;
-                  }
-
-                  if (args.length === 1 && AST.isPrimitive(args[0])) {
+                  else if (args.length === 1 && AST.isPrimitive(args[0])) {
                     rule('A primitive value to `parseFloat` should be resolved');
                     example('f(parseFloat("50foo"))', 'f(50)');
-                    before(node, body[i]);
+                    before(body[i]);
 
-                    const finalNode = AST.primitive(parseFloat(AST.getPrimitiveValue(args[0])));
+                    const pv = AST.getPrimitiveValue(args[0]);
+                    const v = parseFloat(pv);
+                    if (!Object.is(String(v), pv)) todo('precision loss detected 3');
+
+                    const finalNode = AST.primitive(v);
                     const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-                    body.splice(i, 1,
-                      // Context might not be used but if it is referenced we keep for tdz reasons.
-                      ...(contextNode ? [AST.expressionStatement(AST.cloneSimple(contextNode))] : []),
-                      finalParent,
-                    );
+                    body[i] = finalParent;
 
-                    after(finalParent, body[i]);
+                    after(body[i]);
                     assertNoDupeNodes(body, 'body');
                     return true;
                   }
@@ -4979,50 +5024,174 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                   break;
                 }
                 case symbo('Number', 'parseInt'): {
-                  if (firstArgNode && AST.isPrimitive(firstArgNode) && args.length <= 2) {
-                    if (args.length === 1 || AST.isPrimitive(args[1])) {
-                      const pv1 = AST.getPrimitiveValue(firstArgNode);
-                      const pv2 = args[1] && AST.getPrimitiveValue(args[1]);
+                  if (contextNode) {
+                    // skip.
+                  }
 
-                      const pvn = args[1] ? parseInt(pv1, pv2) : parseInt(pv1);
-                      // Confirm that we can serialize it without loss of precision
-                      if (pvn === +String(pvn)) {
-                        // Ok... Seems this is safe to convert
+                  else if (args.length === 0) {
+                    rule('Number.parseInt() no args can be resolved');
+                    rule('Number.parseInt()', 'false');
+                    before(body[i]);
 
-                        rule('Calling `parseFloat` on a primitive should resolve');
-                        example('parseInt("50hello")', '50'); // tests/cases/normalize/builtins/globals_with_primitives/parseint_500.md
-                        before(node, parentNodeOrWhatever);
+                    const v = Number.parseInt();
 
-                        const finalNode = AST.primitive(pvn);
-                        const finalParent = wrapExpressionAs(
-                          wrapKind,
-                          varInitAssignKind,
-                          varInitAssignId,
-                          wrapLhs,
-                          varOrAssignKind,
-                          finalNode,
-                        );
-                        // If there was a second arg it must have been a primitive to get here. In that case we can ignore it here.
-                        body.splice(i, 1,
-                          ...args.slice(2).map((enode) => AST.expressionStatement(enode)),
-                          // Context might not be used but if it is referenced we keep for tdz reasons.
-                          ...(contextNode ? [AST.expressionStatement(AST.cloneSimple(contextNode))] : []),
-                          finalParent,
-                        );
+                    const finalNode = AST.primitive(v);
+                    const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                    body[i] = finalParent;
 
-                        after(finalNode, body.slice(i, args.length));
-                        return true;
+                    after(body[i]);
+                    assertNoDupeNodes(body, 'body');
+                    return true;
+                  }
+
+                  else if (args.length === 1 && AST.isPrimitive(firstArgNode)) {
+                    const pv = AST.getPrimitiveValue(firstArgNode);
+                    const v = Number.parseInt(pv);
+
+                    rule('Number.parseInt(x) with one primitive arg x can be resolved');
+                    rule('Number.parseInt("500")', '500');
+                    before(body[i]);
+
+                    if (!Object.is(String(v), pv)) todo('precision loss detected 1');
+
+                    const finalNode = AST.primitive(v);
+                    const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                    body[i] = finalParent;
+
+                    after(body[i]);
+                    assertNoDupeNodes(body, 'body');
+                    return true;
+                  }
+
+                  else if (args.length === 2 && AST.isPrimitive(firstArgNode) && AST.isPrimitive(args[1])) {
+                    rule('Number.parseInt(x) with one primitive arg x can be resolved');
+                    rule('Number.parseInt("500")', '500');
+                    before(body[i]);
+
+                    const pv = AST.getPrimitiveValue(firstArgNode);
+                    const v = Number.parseInt(pv);
+
+                    if (!Object.is(String(v), pv)) todo('precision loss detected 2');
+
+                    const finalNode = AST.primitive(v);
+                    const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                    body[i] = finalParent;
+
+                    after(body[i]);
+                    assertNoDupeNodes(body, 'body');
+                    return true;
+                  }
+
+                  break;
+                }
+                case symbo('number', 'constructor'): {
+                  if (contextNode) {
+                    // skip.
+                  }
+
+                  else if (args.length === 0) {
+                    rule('A call to `Number` or `number.constructor()` without args is number 0');
+                    example('f(Number());', 'f("");');
+                    example(`${SYMBOL_DOTCALL}(${symbo('number', 'constructor')}, 1, "constructor");`, '"";');
+                    before(body[i]);
+
+                    const finalNode = AST.primitive(0);
+                    const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                    body[i] = finalParent;
+
+                    after(body[i]);
+                    assertNoDupeNodes(body, 'body');
+                    return true;
+                  }
+
+                  // We eliminate Number in favor of $coerce
+                  else if (args.length === 1 && args[0].type !== 'SpreadElement') {
+                    rule('A call to `Number` or `number.constructor` one arg should call `$coerce`');
+                    example('f(Number(a));', `f(${SYMBOL_COERCE}(a, "number"));`);
+                    example(`${SYMBOL_DOTCALL}(${symbo('number', 'constructor')}, 1, "constructor", a, b, c);`, `const tmp = a; b; c; ${SYMBOL_COERCE}(tmp, "number");`);
+                    before(body[i]);
+
+                    const finalNode = AST.callExpression(SYMBOL_COERCE, [args[0], AST.primitive('number')])
+                    const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                    body[i] = finalParent;
+
+                    after(body[i]);
+                    assertNoDupeNodes(body, 'body');
+                    return true;
+                  }
+
+                  break;
+                }
+                case symbo('number', 'toString'): {
+                  if (!contextNode) {
+                    rule('Calling number.toString without context results in "0"');
+                    example('f(Number.prototype.toString());', 'f("0");');
+                    before(body[i]);
+
+                    const finalNode = AST.primitive("0");
+                    const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                    body[i] = finalParent;
+
+                    after(body[i]);
+                    assertNoDupeNodes(body, 'body');
+                    return true;
+                  }
+
+                  else if (AST.isNumberValueNode(contextNode, true)) {
+                    if (args.length === 0) {
+                      const pv = AST.getPrimitiveValue(contextNode);
+                      const v = pv.toString();
+                      if (!Object.is(String(v), pv)) todo('precision loss detected 4');
+
+                      rule('Calling number.toString without arg on a number literal can be resolved');
+                      example('f(500..toString());', 'f("500");');
+                      example(`${SYMBOL_DOTCALL}(${symbo('number', 'constructor')}, 1, "constructor");`, '"";');
+                      before(body[i]);
+
+                      const finalNode = AST.primitive(v);
+                      const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                      body[i] = finalParent;
+
+                      after(body[i]);
+                      assertNoDupeNodes(body, 'body');
+                      return true;
+                    }
+
+                    if (args.length === 1 && AST.isPrimitive(args[0])) {
+                      const pv = AST.getPrimitiveValue(contextNode);
+                      const parg = AST.getPrimitiveValue(args[0]);
+
+                      // The arg must be 2..36 or an error is thrown
+                      // Since we got just primitives, I see no harm to just try/catch run it.
+                      let v;
+                      try {
+                        v = pv.toString(parg);
+                      } catch {}
+
+                      rule('Calling number.tostring with primitive arg on a number literal can be resolved');
+                      example('500..toString(2)', '"111110100');
+                      before(body[i]);
+
+                      if (v === undefined) {
+                        // I think this means the arg must not be valid...
+                        body[i] = AST.throwStatement(AST.primitive(`[Preval] Attempted call to number.toString with invalid args: \`${tmat(body[i], true).replace(/\n/g, '\\n')}\``));
+                      } else {
+                        const finalNode = AST.primitive(v);
+                        const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                        body[i] = finalParent;
                       }
+
+                      after(body[i]);
+                      assertNoDupeNodes(body, 'body');
+                      return true;
                     }
                   }
                   break;
                 }
-                case symbo('number', 'constructor'): {
-                  // We eliminate Number in favor of $coerce
-                  if (args.length === 0) {
-                    rule('A call to `Number` or `number.constructor()` without args is number 0');
-                    example('f(Number());', 'f("");');
-                    example(`${SYMBOL_DOTCALL}(${symbo('number', 'constructor')}, 1, "constructor");`, '"";');
+                case symbo('number', 'valueOf'): {
+                  if (!contextNode) {
+                    rule('Calling number.valueOf without context results in "0"');
+                    example('f(Number.prototype.valueOf());', 'f(0);');
                     before(body[i]);
 
                     const finalNode = AST.primitive(0);
@@ -5038,93 +5207,78 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                     return true;
                   }
 
-                  // We cannot safely transform `Number(...x, y)` because if x is empty then `y` is the one being coerced, else y is ignored.
-                  if (args[0].type !== 'SpreadElement') {
-                    rule('A call to `Number` or `number.constructor` with some args should call `$coerce` with one');
-                    example('f(Number(a, b, c));', `const tmp = a; b; c; f(${SYMBOL_COERCE}(tmp, "number"));`);
-                    example(`${SYMBOL_DOTCALL}(${symbo('number', 'constructor')}, 1, "constructor", a, b, c);`, `const tmp = a; b; c; ${SYMBOL_COERCE}(tmp, "number");`);
-                    before(body[i]);
-
-                    let tmpArgName = createFreshVar('tmpNumberFirstArg', fdata);
-                    const newArgs = args.map((anode, ai) => {
-                      if (ai === 0) {
-                        return AST.varStatement('const', tmpArgName, anode);
-                      }
-                      return AST.expressionStatement(AST.cloneSimple(anode.type === 'SpreadElement' ? AST.arrayExpression(anode) : anode));
-                    });
-                    node.callee = AST.identifier(SYMBOL_COERCE);
-                    node.arguments = [AST.identifier(tmpArgName), AST.primitive('number')];
-                    body.splice(i, 0,
-                      ...newArgs,
-                      // Context might not be used but if it is referenced we keep for tdz reasons.
-                      ...(contextNode ? [AST.expressionStatement(AST.cloneSimple(contextNode))] : []),
-                    );
-
-                    after(newArgs);
-                    after(body[i+newArgs.length]);
-                    if (contextNode) after(body[i+newArgs.length+1]);
-                    assertNoDupeNodes(body, 'body');
-                    return true;
-                  }
-
-                  break;
-                }
-                case symbo('number', 'toString'): {
-                  if (contextNode && AST.isNumberValueNode(contextNode, true)) {
+                  else if (AST.isNumberValueNode(contextNode, true)) {
                     if (args.length === 0) {
                       const pv = AST.getPrimitiveValue(contextNode);
+                      const v = pv.valueOf();
+                      if (!Object.is(String(v), pv)) todo('precision loss detected 4');
 
-                      rule('Calling number.tostring without arg on a number literal can be resolved');
-                      example('500..toString()', '"500');
+                      rule('Calling number.valueOf without arg on a number literal can be resolved');
+                      example('f(500..valueOf());', 'f("500");');
+                      example(`${SYMBOL_DOTCALL}(${symbo('number', 'constructor')}, 1, "constructor");`, '"";');
                       before(body[i]);
 
-                      const finalNode = AST.primitive(pv.toString());
+                      const finalNode = AST.primitive(v);
                       const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-                      body.splice(i, 1, finalParent);
+                      body.splice(i, 1,
+                        // Context might not be used but if it is referenced we keep for tdz reasons.
+                        ...(contextNode ? [AST.expressionStatement(AST.cloneSimple(contextNode))] : []),
+                        finalParent,
+                      );
 
-                      after(body[i]);
-                      assertNoDupeNodes(body, 'body');
-                      return true;
-                    }
-                    if (args.length === 1 && AST.isPrimitive(args[0])) {
-                      const pv = AST.getPrimitiveValue(contextNode);
-                      const parg = AST.getPrimitiveValue(args[0]);
-
-                      rule('Calling number.tostring with primitive arg on a number literal can be resolved');
-                      example('500..toString(2)', '"111110100');
-                      before(body[i]);
-
-                      const finalNode = AST.primitive(pv.toString(parg));
-                      const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-                      body.splice(i, 1, finalParent);
-
-                      after(body[i]);
+                      before(body.slice(i, i+(contextNode?1:0)+1));
                       assertNoDupeNodes(body, 'body');
                       return true;
                     }
                   }
-                  break;
-                }
-                case symbo('number', 'valueOf'): {
-                  if (args.length === 0 && contextNode && AST.isBoolean(contextNode)) {
-                    rule('A call to `valueOf` on a number can be resolved');
-                    example('500..valueOf()', '500');
-                    before(body[i]);
 
-                    const finalNode = AST.primitive(AST.getPrimitiveValue(contextNode).valueOf());
-                    const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-                    body[i] = finalParent;
-
-                    before(body[i]);
-                    assertNoDupeNodes(body, 'body');
-                    return true;
-                  }
                   break;
                 }
                 case symbo('Math', 'abs'): {
-                  // coerces first arg to number and then drops the sign. it's as simple as that.
-                  const arg = args[0];
-                  if (arg.type === 'UnaryExpression' && arg.operator === '-') {
+                  if (contextNode) {
+                    // skip.
+                  }
+
+                  else if (args.length === 0) {
+                    rule('Math.abs() no args can be resolved');
+                    rule('Math.abs()', 'NaN');
+                    before(node, parentNodeOrWhatever);
+
+                    const v = Math.abs();
+
+                    const finalNode = AST.primitive(v);
+                    const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                    body.splice(i, 1,
+                      // Context after args but before result (it's evaluated last)
+                      ...(contextNode ? [AST.expressionStatement(AST.cloneSimple(contextNode))] : []),
+                      finalParent
+                    );
+
+                    after(body.slice(i, i+1+(contextNode?1:0)));
+                    assertNoDupeNodes(body, 'body');
+                    return true;
+                  }
+
+                  else if (args.length === 1 && AST.isPrimitive(args[0])) {
+                    const pv = AST.getPrimitiveValue(contextNode);
+                    const v = pv.toString();
+                    if (!Object.is(String(v), pv)) todo('precision loss detected 4');
+
+                    rule('Applying Math.abs on a value that is negated, means we can replace it with a plus');
+                    example('Math.abs(-x)', '+x');
+                    before(body[i]);
+
+                    const finalNode = AST.primitive(v);
+                    const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                    body[i] = finalParent;
+
+                    after(body[i]);
+                    assertNoDupeNodes(body, 'body');
+                    return true;
+                  }
+
+                  else if (args.length === 1 && args[0].type === 'UnaryExpression' && args[0].operator === '-') {
+                    // coerces first arg to number and then drops the sign. it's as simple as that.
                     // It's a bit of a gut feeling guess but I think we can replace `Math.abs(-x)` to `+x` for all cases generically?
                     // In particular, I think the code is normalized at this point so the argument is a primitive? Should be fine either way.
                     rule('Applying Math.abs on a value that is negated, means we can replace it with a plus');
@@ -5133,78 +5287,90 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
                     const finalNode = AST.unaryExpression('+', args[0].argument);
                     const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-                    body.splice(i, 1,
-                      // Context might not be used but if it is referenced we keep for tdz reasons.
-                      ...(contextNode ? [AST.expressionStatement(AST.cloneSimple(contextNode))] : []),
-                      finalParent,
-                    );
+                    body[i] = finalParent;
 
                     after(body[i]);
+                    assertNoDupeNodes(body, 'body');
                     return true;
                   }
                   break;
                 }
                 case symbo('Math', 'pow'): {
-                  if (AST.isPrimitive(args[0]) && AST.isPrimitive(args[1])) {
-                    // TODO: there are many combinations of arguments we can "safely" inline here.
-                    // For now, I think if the result is a finite number or a non-number then we should be fine to inline
-                    const arg1 = AST.getPrimitiveValue(args[0]);
-                    const arg2 = AST.getPrimitiveValue(args[1]);
-                    const result = Math.pow(arg1, arg2);
-                    vlog('Arg1:', [arg1], ', arg2:', [arg2], ', result:', [result]);
+                  if (contextNode) {
+                    // skip.
+                  }
 
-                    // Note: `Number.MAX_SAFE_INTEGER + 1 === Number.MAX_SAFE_INTEGER + 2`
-                    //       > Number.MAX_SAFE_INTEGER+1
-                    //         9007199254740992
-                    //       > Number.MAX_SAFE_INTEGER+2
-                    //         9007199254740992
-                    //       > Number.MAX_SAFE_INTEGER+3
-                    //         9007199254740994
-                    //       > Math.pow(2,53) < (Math.pow(2,53) - 1)
-                    //         false
-                    // The relevant edge case here is `Math.pow(2,53)-1`
-                    // I'm pretty sure you can't get to 9007199254740993 (not representable) with Math.pow so we should be good
-                    // on relying on checking the +1 instead for this particular case...
-                    // Ultimately I think source code that contains a number that can be represented in source without
-                    // any precision loss (meaning, no 1.2342e10 kind of representation) is equal to the Math.pow() version.
-                    // Since we can't do `===` (and not even `Object.is` saves us here) we need to serialize the string and
-                    // confirm that the value serializes to digits. No dots or e/E.
-                    if (
-                      Object.is(NaN, result) ||
-                      typeof result !== 'number' ||
-                      (Number.isInteger(result) /* && result <= (Number.MAX_SAFE_INTEGER+1)*/ && /^\d+$/.test(String(result)))
-                    ) {
-                      rule('Inline Math.pow with primitive args');
-                      example('Math.pow(2, 4)', '16');
-                      before(node, parentNodeOrWhatever);
+                  else if (args.length === 0) {
+                    rule('Math.pow() no args can be resolved');
+                    rule('Math.pow()', 'NaN');
+                    before(node, parentNodeOrWhatever);
 
-                      const finalNode = AST.primitive(result);
-                      const finalParent = wrapExpressionAs(
-                        wrapKind,
-                        varInitAssignKind,
-                        varInitAssignId,
-                        wrapLhs,
-                        varOrAssignKind,
-                        finalNode,
-                      );
-                      body.splice(i, 1,
-                        // Context might not be used but if it is referenced we keep for tdz reasons.
-                        ...(contextNode ? [AST.expressionStatement(AST.cloneSimple(contextNode))] : []),
-                        finalParent,
-                      );
+                    const v = Math.pow();
 
-                      after(finalNode, finalParent);
-                      assertNoDupeNodes(body, 'body');
-                      return true;
+                    const finalNode = AST.primitive(v);
+                    const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                    body.splice(i, 1,
+                      // Context after args but before result (it's evaluated last)
+                      ...(contextNode ? [AST.expressionStatement(AST.cloneSimple(contextNode))] : []),
+                      finalParent
+                    );
+
+                    after(body.slice(i, i+1+(contextNode?1:0)));
+                    assertNoDupeNodes(body, 'body');
+                    return true;
+                  }
+
+                  else if (args.length === 1) {
+                    rule('Calling Math.pow with one arg always returns NaN');
+                    example('const y = Math.pow(x);', 'const y = ($coerce(x, "number"), NaN);');
+                    before(body[i]);
+
+                    const finalNode = AST.sequenceExpression(AST.callExpression(callee, [args[0], AST.primitive('number')]), AST.nan());
+                    const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                    body[i] = finalParent;
+
+                    after(body[i]);
+                    assertNoDupeNodes(body, 'body');
+                    return true;
+                  }
+
+                  else if (args.length === 2 && AST.isPrimitive(args[0]) && AST.isPrimitive(args[1])) {
+                    rule('Calling Math.pow to two primitives can be resolved');
+                    example('Math.pow(2, 5)', '32');
+                    before(body[i]);
+
+                    const a = AST.getPrimitiveValue(args[0]);
+                    const b = AST.getPrimitiveValue(args[1]);
+
+                    let v;
+                    try {
+                      v = Math.pow(a, b);
+                    } catch {}
+
+                    if (!Object.is(+String(v), v)) todo('precision loss detected 2');
+
+                    if (v === undefined) {
+                      body[i] = AST.throwStatement(AST.primitive(`[Preval] Attempted call to Math.abs with invalid args: \`${tmat(body[i], true).replace(/\n/g, '\\n')}\``));
+                    } else {
+                      const finalNode = AST.primitive(v);
+                      const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                      body[i] = finalParent;
                     }
-                    break;
+
+                    after(body[i]);
+                    assertNoDupeNodes(body, 'body');
+                    return true;
                   }
                   break;
                 }
                 case symbo('Math', 'random'): {
+                  if (contextNode) {
+                    // skip.
+                  }
+
                   // We can special case Math.random with args to be excluded as a
                   // way for users to control math.randoms that should be left alone.
-                  if (prngSeed && args.length === 0) {
+                  else if (prngSeed && args.length === 0) {
                     // If in global but not in a loop:
                     if (funcStack.length === 1 && loopStack[loopStack.length-1] === null) {
                       if (!prng) {
@@ -5242,153 +5408,208 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                   break;
                 }
                 case symbo('Math', 'floor'): {
-                  if (args.length > 0 && AST.isPrimitive(args[0])) {
+                  if (contextNode) {
+                    // skip.
+                  }
+
+                  else if (args.length === 0) {
+                    rule('Math.floor() no args can be resolved');
+                    rule('Math.floor()', 'NaN');
+                    before(node, parentNodeOrWhatever);
+
+                    const v = Math.floor();
+
+                    const finalNode = AST.primitive(v);
+                    const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                    body[i] = finalParent;
+
+                    after(body[i]);
+                    assertNoDupeNodes(body, 'body');
+                    return true;
+                  }
+
+                  else if (args.length === 1 && AST.isPrimitive(args[0])) {
+                    const pv = AST.getPrimitiveValue(contextNode);
+
                     rule('Calling `Math.floor` with a primitive can be resolved');
                     example('Math.floor(5.3842)', '5');
-                    before(node, body[i]);
+                    before(body[i]);
 
-                    const finalParent = wrapExpressionAs(
-                      wrapKind,
-                      varInitAssignKind,
-                      varInitAssignId,
-                      wrapLhs,
-                      varOrAssignKind,
-                      AST.primitive(Math.floor(AST.getPrimitiveValue(args[0]))),
-                    );
-                    body.splice(
-                      i,
-                      1,
-                      // Do not ignore the args. If there are any, make sure to preserve their side effects. If any.
-                      // If it was called with a spread, make sure the spread still happens.
-                      ...args.map((anode) => AST.expressionStatement(anode.type === 'SpreadElement' ? AST.arrayExpression(anode) : anode)),
-                      // Context might not be used but if it is referenced we keep for tdz reasons.
-                      ...(contextNode ? [AST.expressionStatement(AST.cloneSimple(contextNode))] : []),
-                      finalParent,
-                    );
+                    const v = Math.floor(pv);
 
-                    after(node, body[i]);
+                    const finalNode = AST.primitive(v);
+                    const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                    body[i] = finalParent;
+
+                    after(body[i]);
                     assertNoDupeNodes(body, 'body');
                     return true;
                   }
                   break;
                 }
                 case symbo('Math', 'ceil'): {
-                  if (args.length > 0 && AST.isPrimitive(args[0])) {
+                  if (contextNode) {
+                    // skip.
+                  }
+
+                  else if (args.length === 0) {
+                    rule('Math.ceil() no args can be resolved');
+                    rule('Math.ceil()', 'NaN');
+                    before(node, parentNodeOrWhatever);
+
+                    const v = Math.ceil();
+
+                    const finalNode = AST.primitive(v);
+                    const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                    body[i] = finalParent;
+
+                    after(body[i]);
+                    assertNoDupeNodes(body, 'body');
+                    return true;
+                  }
+
+                  else if (args.length === 1 && AST.isPrimitive(args[0])) {
+                    const pv = AST.getPrimitiveValue(contextNode);
+
                     rule('Calling `Math.ceil` with a primitive can be resolved');
                     example('Math.ceil(5.3842)', '6');
-                    before(node, body[i]);
+                    before(body[i]);
 
-                    const finalParent = wrapExpressionAs(
-                      wrapKind,
-                      varInitAssignKind,
-                      varInitAssignId,
-                      wrapLhs,
-                      varOrAssignKind,
-                      AST.primitive(Math.ceil(AST.getPrimitiveValue(args[0]))),
-                    );
-                    body.splice(
-                      i,
-                      1,
-                      // Do not ignore the args. If there are any, make sure to preserve their side effects. If any.
-                      // If it was called with a spread, make sure the spread still happens.
-                      ...args.map((anode) => AST.expressionStatement(anode.type === 'SpreadElement' ? AST.arrayExpression(anode) : anode)),
-                      // Context might not be used but if it is referenced we keep for tdz reasons.
-                      ...(contextNode ? [AST.expressionStatement(AST.cloneSimple(contextNode))] : []),
-                      finalParent,
-                    );
+                    const v = Math.ceil(pv);
 
-                    after(node, body[i]);
+                    const finalNode = AST.primitive(v);
+                    const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                    body[i] = finalParent;
+
+                    after(body[i]);
                     assertNoDupeNodes(body, 'body');
                     return true;
                   }
                   break;
                 }
                 case symbo('Math', 'round'): {
-                  if (args.length > 0 && AST.isPrimitive(args[0])) {
+                  if (contextNode) {
+                    // skip.
+                  }
+
+                  else if (args.length === 0) {
+                    rule('Math.round() no args can be resolved');
+                    rule('Math.round()', 'NaN');
+                    before(node, parentNodeOrWhatever);
+
+                    const v = Math.round();
+
+                    const finalNode = AST.primitive(v);
+                    const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                    body[i] = finalParent;
+
+                    after(body[i]);
+                    assertNoDupeNodes(body, 'body');
+                    return true;
+                  }
+
+                  else if (args.length === 1 && AST.isPrimitive(args[0])) {
+                    const pv = AST.getPrimitiveValue(contextNode);
+
                     rule('Calling `Math.round` with a primitive can be resolved');
                     example('Math.round(5.3842)', '5');
-                    before(node, body[i]);
+                    before(body[i]);
 
-                    const finalParent = wrapExpressionAs(
-                      wrapKind,
-                      varInitAssignKind,
-                      varInitAssignId,
-                      wrapLhs,
-                      varOrAssignKind,
-                      AST.primitive(Math.round(AST.getPrimitiveValue(args[0]))),
-                    );
-                    body.splice(
-                      i,
-                      1,
-                      // Do not ignore the args. If there are any, make sure to preserve their side effects. If any.
-                      // If it was called with a spread, make sure the spread still happens.
-                      ...args.map((anode) => AST.expressionStatement(anode.type === 'SpreadElement' ? AST.arrayExpression(anode) : anode)),
-                      // Context might not be used but if it is referenced we keep for tdz reasons.
-                      ...(contextNode ? [AST.expressionStatement(AST.cloneSimple(contextNode))] : []),
-                      finalParent,
-                    );
+                    const v = Math.round(pv);
 
-                    after(node, body[i]);
+                    const finalNode = AST.primitive(v);
+                    const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                    body[i] = finalParent;
+
+                    after(body[i]);
                     assertNoDupeNodes(body, 'body');
                     return true;
                   }
                   break;
                 }
                 case symbo('Math', 'trunc'): {
-                  // TODO: improve handling
-                  if (args.length === 1 && args.every((anode, ai) => anode.type !== 'SpreadElement')) {
-                    const v = (args[0] && AST.isNumberLiteral(args[0])) ? AST.getPrimitiveValue(args[0]) : undefined;
-                    if (v !== undefined && Number.isSafeInteger(Math.trunc(v))) {
-                      rule('A call to Math.trunc can be replaced by the arg, trunced');
-                      example('Math.trunc(100);', `100;`);
-                      before(body[i]);
+                  if (contextNode) {
+                    // skip.
+                  }
 
-                      const finalNode = AST.primitive(Math.trunc(v));
-                      const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-                      body.splice(i, 1,
-                        // Context might not be used but if it is referenced we keep for tdz reasons.
-                        ...(contextNode ? [AST.expressionStatement(AST.cloneSimple(contextNode))] : []),
-                        finalParent,
-                      );
+                  else if (args.length === 0) {
+                    rule('Math.trunc() no args can be resolved');
+                    rule('Math.trunc()', 'NaN');
+                    before(node, parentNodeOrWhatever);
 
-                      after(finalParent);
-                      assertNoDupeNodes(body, 'body');
-                      return true;
-                    }
+                    const v = Math.trunc();
+
+                    const finalNode = AST.primitive(v);
+                    const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                    body[i] = finalParent;
+
+                    after(body[i]);
+                    assertNoDupeNodes(body, 'body');
+                    return true;
+                  }
+
+                  else if (args.length === 1 && AST.isPrimitive(args[0])) {
+                    const pv = AST.getPrimitiveValue(contextNode);
+
+                    rule('Calling `Math.trunc` with a primitive can be resolved');
+                    example('Math.trunc(5.3842)', '5');
+                    before(body[i]);
+
+                    const v = Math.trunc(pv);
+
+                    const finalNode = AST.primitive(v);
+                    const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                    body[i] = finalParent;
+
+                    after(body[i]);
+                    assertNoDupeNodes(body, 'body');
+                    return true;
                   }
                   break;
                 }
                 case symbo('Math', 'max'): {
-                  // TODO: improve handling
-                  if (args.every((anode, ai) => anode.type !== 'SpreadElement')) {
-                    if (args.length && args.every((anode, ai) => AST.isNumberLiteral(anode) || (anode.type === 'UnaryExpression' && AST.isNumberLiteral(anode.argument)))) {
-                      rule('A call to Math.max can be replaced by the max arg');
-                      example('Math.trunc(100);', `100;`);
-                      before(body[i]);
+                  if (contextNode) {
+                    // skip.
+                  }
 
-                      // Slightly careful; retain the numeric node to prevent rounding errors or whatever
-                      let maxNode = args[0];
-                      let maxVal = AST.getPrimitiveValue(args[0]);
-                      for (let i=1; i<args.length; ++i) {
-                        const v = AST.getPrimitiveValue(args[i]);
-                        if (v > maxVal || isNaN(v)) {
-                          maxNode = args[i];
-                          maxVal = v;
-                        }
-                      }
+                  else if (args.every((anode, ai) => AST.isPrimitive(anode))) {
+                    rule('A call to Math.max with primitives can be resolved');
+                    example('Math.max(1, 3, 2);', `3;`);
+                    before(body[i]);
 
-                      const finalNode = maxNode;
-                      const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-                      body.splice(i, 1,
-                        // Context might not be used but if it is referenced we keep for tdz reasons.
-                        ...(contextNode ? [AST.expressionStatement(AST.cloneSimple(contextNode))] : []),
-                        finalParent,
-                      );
+                    const vees = args.map(anode => AST.getPrimitiveValue(anode));
+                    const max = Math.max(...vees);
 
-                      after(finalParent);
-                      assertNoDupeNodes(body, 'body');
-                      return true;
-                    }
+                    const finalNode = AST.primitive(max);
+                    const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                    body[i] = finalParent; // Note: all args are primitives so we can just drop them
+
+                    after(body[i]);
+                    assertNoDupeNodes(body, 'body');
+                    return true;
+                  }
+                  break;
+                }
+                case symbo('Math', 'min'): {
+                  if (contextNode) {
+                    // skip.
+                  }
+
+                  else if (args.every((anode, ai) => AST.isPrimitive(anode))) {
+                    rule('A call to Math.min with primitives can be resolved');
+                    example('Math.min(1, 3, 2);', `1;`);
+                    before(body[i]);
+
+                    const vees = args.map(anode => AST.getPrimitiveValue(anode));
+                    const max = Math.min(...vees);
+
+                    const finalNode = AST.primitive(max);
+                    const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                    body[i] = finalParent; // Note: all args are primitives so we can just drop them
+
+                    after(body[i]);
+                    assertNoDupeNodes(body, 'body');
+                    return true;
                   }
                   break;
                 }
@@ -5396,34 +5617,38 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                   // I'm pretty sure we can safely convert regular expressions to literals when the args are strings
                   // The exception would be for illegal regexes, where they would be safer in their constructor form...
 
-                  if (args.length === 0) {
+                  if (contextNode) {
+                    // skip.
+                  }
+
+                  else if (args.length === 0) {
                     // This will generate the regex `/(?:)/`
+                    // We stay normalized so add args rather than replace by regex
 
                     rule('Calling `RegExp()` without args returns `/(?:)/`');
                     example('RegExp()', '/(?:)/');
                     example(`${SYMBOL_DOTCALL}(${symbo('regex', 'constructor')}, /x/, "constructor")`, '/(?:)/');
                     before(node, body[i]);
 
-                    const finalNode = AST.newRegex('(?:)', '');
-                    const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-                    body.splice(i, 1,
-                      ...args.slice(1).map((enode) => AST.expressionStatement(enode)),
-                      // Context might not be used but if it is referenced we keep for tdz reasons.
-                      ...(contextNode ? [AST.expressionStatement(AST.cloneSimple(contextNode))] : []),
-                      finalParent,
-                    );
+                    replaceArgs([AST.primitive('(?:)'), AST.primitive('')]);
 
-                    after(finalNode, body.slice(i, args.length));
+                    after(body[i]);
                     assertNoDupeNodes(body, 'body');
                     return true;
                   }
+
+                  // Note: we can't really say the same for one arg because if it is a regex then the regex would be mutated, where it wouldn't be without args
 
                   break;
                 }
                 case symbo('string', 'constructor'): {
                   // We eliminate String in favor of $coerce
 
-                  if (args.length === 0) {
+                  if (contextNode) {
+                    // skip.
+                  }
+
+                  else if (args.length === 0) {
                     rule('A call to `String` or `String.constructor()` without args is empty string');
                     example('f(String());', 'f("");');
                     example(`${SYMBOL_DOTCALL}(${symbo('string', 'constructor')}, 1, "constructor");`, '"";');
@@ -5431,38 +5656,26 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
                     const finalNode = AST.primitive('');
                     const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-                    body.splice(i, 1,
-                      // Context might not be used but if it is referenced we keep for tdz reasons.
-                      ...(contextNode ? [AST.expressionStatement(AST.cloneSimple(contextNode))] : []),
-                      finalParent,
-                    );
+                    body[i] = finalParent;
 
-                    before(body.slice(i, i+(contextNode?1:0)+1));
+                    after(body[i]);
                     assertNoDupeNodes(body, 'body');
                     return true;
                   }
 
                   // We cannot safely transform `String(...x, y)` because if x is empty then `y` is the one being coerced, else y is ignored.
-                  if (args[0].type !== 'SpreadElement') {
+                  else if (args.length === 1) {
+                    ASSERT(args[0].type !== 'SpreadElement');
+
                     rule('A call to `String` or `string.constructor` with some args should call `$coerce` with one');
-                    example('f(String(a, b, c));', `const tmp = a; b; c; f(${SYMBOL_COERCE}(tmp, "string"));`);
-                    example(`${SYMBOL_DOTCALL}(${symbo('string', 'constructor')}, 1, "constructor", a, b, c);`, `const tmp = a; b; c; ${SYMBOL_COERCE}(tmp, "string");`);
+                    example('f(String(a));', `f(${SYMBOL_COERCE}(a, "string"));`);
                     before(body[i]);
 
-                    let tmpArgName = createFreshVar('tmpStringFirstArg', fdata);
-                    const newArgs = args.map((anode, ai) => {
-                      if (ai === 0) return AST.varStatement('const', tmpArgName, anode);
-                      return AST.expressionStatement(AST.cloneSimple(anode.type === 'SpreadElement' ? AST.arrayExpression(anode) : anode));
-                    });
-                    node.callee = AST.identifier(SYMBOL_COERCE);
-                    node.arguments = [AST.identifier(tmpArgName), AST.primitive('string')];
-                    body.splice(i, 0,
-                      ...newArgs,
-                      // Context might not be used but if it is referenced we keep for tdz reasons.
-                      ...(contextNode ? [AST.expressionStatement(AST.cloneSimple(contextNode))] : []),
-                    );
+                    const finalNode = AST.callExpression(SYMBOL_COERCE, [args[0], AST.primitive('string')]);
+                    const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                    body[i] = finalParent;
 
-                    after(body.slice(i, i + newArgs.length + (contextNode ? 1 : 0) + 1));
+                    after(body[i]);
                     assertNoDupeNodes(body, 'body');
                     return true;
                   }
@@ -5470,385 +5683,1149 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                   break;
                 }
                 case symbo('string', 'toLowerCase'): {
-                  if (args.length === 0 && contextNode && AST.isStringLiteral(contextNode)) {
-                    rule('A call to `toLowerCase` on a string can be resolved');
-                    example('"Hello, world!".toLowerCase()', '"hello, world!"');
+                  if (!contextNode) {
+                    rule('Calling string.toLowerCase without context results in ""');
+                    example('f(String.prototype.toLowerCase());', 'f("");');
                     before(body[i]);
 
-                    const finalNode = AST.primitive(AST.getPrimitiveValue(contextNode).toLowerCase());
+                    const finalNode = AST.primitive("");
                     const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
                     body[i] = finalParent;
 
-                    before(body[i]);
+                    after(body[i]);
                     assertNoDupeNodes(body, 'body');
                     return true;
                   }
 
+                  else if (AST.isStringLiteral(contextNode, true)) {
+                    if (args.length === 0) {
+                      const pv = AST.getPrimitiveValue(contextNode);
+
+                      rule('Calling string.toLowerCase without arg on a string literal can be resolved');
+                      example('f("XyZ".toLowerCase());', 'f("xyz");');
+                      before(body[i]);
+
+                      let v;
+                      try {
+                        v = pv.toLowerCase();
+                      } catch {
+                      }
+
+                      if (v === undefined) {
+                        body[i] = AST.throwStatement(AST.primitive(`[Preval] Attempted call to string.toLowerCase with invalid args: \`${tmat(body[i], true).replace(/\n/g, '\\n')}\``));
+                      } else {
+                        const finalNode = AST.primitive(v);
+                        const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                        body[i] = finalParent;
+                      }
+
+                      after(body[i]);
+                      assertNoDupeNodes(body, 'body');
+                      return true;
+                    }
+                  }
                   break;
                 }
                 case symbo('string', 'isWellFormed'): {
-                  if (args.length === 0 && contextNode && AST.isStringLiteral(contextNode)) {
-                    rule('A call to `isWellFormed` on a string can be resolved');
-                    example('"Hello, world!".isWellFormed()', 'true');
+                  if (!contextNode) {
+                    rule('Calling string.isWellFormed without context results in true');
+                    example('f(String.prototype.isWellFormed());', 'f(true);');
                     before(body[i]);
 
-                    const finalNode = AST.primitive(AST.getPrimitiveValue(contextNode).isWellFormed());
+                    const finalNode = AST.tru();
                     const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
                     body[i] = finalParent;
 
-                    before(body[i]);
+                    after(body[i]);
                     assertNoDupeNodes(body, 'body');
                     return true;
+                  }
+
+                  else if (AST.isStringLiteral(contextNode, true)) {
+                    if (args.length === 0) {
+                      const pv = AST.getPrimitiveValue(contextNode);
+
+                      rule('Calling string.isWellFormed without arg on a string literal can be resolved');
+                      example('f("XyZ".isWellFormed());', 'f(true);');
+                      before(body[i]);
+
+                      let v;
+                      try {
+                        v = pv.isWellFormed();
+                      } catch {
+                      }
+
+                      if (v === undefined) {
+                        body[i] = AST.throwStatement(AST.primitive(`[Preval] Attempted call to string.isWellFormed with invalid args: \`${tmat(body[i], true).replace(/\n/g, '\\n')}\``));
+                      } else {
+                        const finalNode = AST.primitive(v);
+                        const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                        body[i] = finalParent;
+                      }
+
+                      after(body[i]);
+                      assertNoDupeNodes(body, 'body');
+                      return true;
+                    }
                   }
 
                   break;
                 }
                 case symbo('string', 'normalize'): {
-                  if (args.length === 0 && contextNode && AST.isStringLiteral(contextNode)) {
-                    rule('A call to `normalize` on a string can be resolved');
-                    example('"\u0041\u006d\u0065\u0301\u006c\u0069\u0065 , \u0041\u006d\u0065\u0301\u006c\u0069\u0065".normalize()', '"Amélie , Amélie"'); // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/normalize
+                  if (!contextNode) {
+                    rule('Calling string.normalize without context results in true');
+                    example('f(String.prototype.normalize());', 'f("");');
                     before(body[i]);
 
-                    const finalNode = AST.primitive(AST.getPrimitiveValue(contextNode).normalize());
+                    const v = String.prototype.normalize();
+
+                    const finalNode = AST.primitive(v);
                     const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
                     body[i] = finalParent;
 
-                    before(body[i]);
+                    after(body[i]);
                     assertNoDupeNodes(body, 'body');
                     return true;
                   }
-                  todo('normalization: string.normalize with args');
+
+                  else if (AST.isStringLiteral(contextNode, true)) {
+                    if (args.length === 0) {
+                      const pv = AST.getPrimitiveValue(contextNode);
+
+                      rule('Calling string.normalize without arg on a string literal can be resolved');
+                      example('f("XyZ".normalize());', 'f("XyZ");');
+                      example('"\u0041\u006d\u0065\u0301\u006c\u0069\u0065 , \u0041\u006d\u0065\u0301\u006c\u0069\u0065".normalize()', '"Amélie , Amélie"'); // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/normalize
+                      before(body[i]);
+
+                      let v;
+                      try {
+                        v = pv.normalize();
+                      } catch {
+                      }
+
+                      if (v === undefined) {
+                        body[i] = AST.throwStatement(AST.primitive(`[Preval] Attempted call to string.normalize with invalid args: \`${tmat(body[i], true).replace(/\n/g, '\\n')}\``));
+                      } else {
+                        const finalNode = AST.primitive(v);
+                        const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                        body[i] = finalParent;
+                      }
+
+                      after(body[i]);
+                      assertNoDupeNodes(body, 'body');
+                      return true;
+                    }
+
+                    else if (args.length === 1 && AST.isStringLiteral(args[0], true)) {
+                      const pv = AST.getPrimitiveValue(contextNode);
+                      const parg = AST.getPrimitiveValue(args[0]);
+
+                      rule('Calling string.normalize with one primitive arg on a string literal can be resolved');
+                      example('f("XyZ".normalize());', 'f("XyZ");');
+                      before(body[i]);
+
+                      let v;
+                      try {
+                        v = pv.normalize(parg);
+                      } catch {
+                      }
+
+                      if (v === undefined) {
+                        body[i] = AST.throwStatement(AST.primitive(`[Preval] Attempted call to string.normalize with invalid args: \`${tmat(body[i], true).replace(/\n/g, '\\n')}\``));
+                      } else {
+                        const finalNode = AST.primitive(v);
+                        const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                        body[i] = finalParent;
+                      }
+
+                      after(body[i]);
+                      assertNoDupeNodes(body, 'body');
+                      return true;
+                    }
+                  }
 
                   break;
                 }
                 case symbo('string', 'toString'): {
-                  if (args.length === 0 && contextNode && AST.isStringLiteral(contextNode)) {
-                    rule('A call to `toString` on a string can be resolved');
-                    example('"Hello, world!".toString()', '"HELLO, WORLD!"');
+                  if (!contextNode) {
+                    rule('Calling string.toString without context results in ""');
+                    example('f(String.prototype.toString());', 'f("");');
                     before(body[i]);
 
-                    const finalNode = AST.primitive(AST.getPrimitiveValue(contextNode).toString());
+                    const finalNode = AST.primitive("");
                     const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
                     body[i] = finalParent;
 
-                    before(body[i]);
+                    after(body[i]);
                     assertNoDupeNodes(body, 'body');
                     return true;
+                  }
+
+                  else if (AST.isStringLiteral(contextNode, true)) {
+                    if (args.length === 0) {
+                      rule('Calling string.toString without arg on a string literal can be resolved');
+                      example('f("XyZ".toString());', 'f("XyZ");');
+                      before(body[i]);
+
+                      const finalNode = contextNode;
+                      const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                      body[i] = finalParent;
+
+                      after(body[i]);
+                      assertNoDupeNodes(body, 'body');
+                      return true;
+                    }
                   }
 
                   break;
                 }
                 case symbo('string', 'toUpperCase'): {
-                  if (args.length === 0 && contextNode && AST.isStringLiteral(contextNode)) {
-                    rule('A call to `toUpperCase` on a string can be resolved');
-                    example('"Hello, world!".toUpperCase()', '"HELLO, WORLD!"');
+                  if (!contextNode) {
+                    rule('Calling string.toUpperCase without context results in ""');
+                    example('f(String.prototype.toUpperCase());', 'f("");');
                     before(body[i]);
 
-                    const finalNode = AST.primitive(AST.getPrimitiveValue(contextNode).toUpperCase());
+                    const finalNode = AST.primitive("");
                     const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
                     body[i] = finalParent;
 
-                    before(body[i]);
+                    after(body[i]);
                     assertNoDupeNodes(body, 'body');
                     return true;
+                  }
+
+                  else if (AST.isStringLiteral(contextNode, true)) {
+                    if (args.length === 0) {
+                      const pv = AST.getPrimitiveValue(contextNode);
+
+                      rule('Calling string.toUpperCase without arg on a string literal can be resolved');
+                      example('f("XyZ".toUpperCase());', 'f("XYZ");');
+                      before(body[i]);
+
+                      let v;
+                      try {
+                        v = pv.toUpperCase();
+                      } catch {
+                      }
+
+                      if (v === undefined) {
+                        body[i] = AST.throwStatement(AST.primitive(`[Preval] Attempted call to string.toUpperCase with invalid args: \`${tmat(body[i], true).replace(/\n/g, '\\n')}\``));
+                      } else {
+                        const finalNode = AST.primitive(v);
+                        const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                        body[i] = finalParent;
+                      }
+
+                      after(body[i]);
+                      assertNoDupeNodes(body, 'body');
+                      return true;
+                    }
                   }
 
                   break;
                 }
                 case symbo('string', 'toWellFormed'): {
-                  if (args.length === 0 && contextNode && AST.isStringLiteral(contextNode)) {
-                    rule('A call to `toWellFormed` on a string can be resolved');
-                    example('"Hello, world!".toWellFormed()', '"Hello, world!"');
+                  if (!contextNode) {
+                    rule('Calling string.toWellFormed without context results in ""');
+                    example('f(String.prototype.toWellFormed());', 'f("");');
                     before(body[i]);
 
-                    const finalNode = AST.primitive(AST.getPrimitiveValue(contextNode).toWellFormed());
+                    const finalNode = AST.primitive("");
                     const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
                     body[i] = finalParent;
 
-                    before(body[i]);
+                    after(body[i]);
                     assertNoDupeNodes(body, 'body');
                     return true;
+                  }
+
+                  else if (AST.isStringLiteral(contextNode, true)) {
+                    if (args.length === 0) {
+                      const pv = AST.getPrimitiveValue(contextNode);
+
+                      rule('Calling string.toWellFormed without arg on a string literal can be resolved');
+                      example('f("XyZ".toWellFormed());', 'f("XyZ");');
+                      before(body[i]);
+
+                      let v;
+                      try {
+                        v = pv.toWellFormed();
+                      } catch {
+                      }
+
+                      if (v === undefined) {
+                        body[i] = AST.throwStatement(AST.primitive(`[Preval] Attempted call to string.toWellFormed with invalid args: \`${tmat(body[i], true).replace(/\n/g, '\\n')}\``));
+                      } else {
+                        const finalNode = AST.primitive(v);
+                        const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                        body[i] = finalParent;
+                      }
+
+                      after(body[i]);
+                      assertNoDupeNodes(body, 'body');
+                      return true;
+                    }
                   }
 
                   break;
                 }
                 case symbo('string', 'trim'): {
-                  if (args.length === 0 && contextNode && AST.isStringLiteral(contextNode)) {
-                    rule('A call to `trim` on a string can be resolved');
-                    example('"  Hello, world!\t ".trim()', '"Hello, world!"');
+                  if (!contextNode) {
+                    rule('Calling string.trim without context results in ""');
+                    example('f(String.prototype.trim());', 'f("");');
                     before(body[i]);
 
-                    const finalNode = AST.primitive(AST.getPrimitiveValue(contextNode).trim());
+                    const finalNode = AST.primitive("");
                     const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
                     body[i] = finalParent;
 
-                    before(body[i]);
+                    after(body[i]);
                     assertNoDupeNodes(body, 'body');
                     return true;
+                  }
+
+                  else if (AST.isStringLiteral(contextNode, true)) {
+                    if (args.length === 0) {
+                      const pv = AST.getPrimitiveValue(contextNode);
+
+                      rule('Calling string.trim without arg on a string literal can be resolved');
+                      example('f("XyZ".trim());', 'f("XyZ");');
+                      before(body[i]);
+
+                      let v;
+                      try {
+                        v = pv.trim();
+                      } catch {
+                      }
+
+                      if (v === undefined) {
+                        body[i] = AST.throwStatement(AST.primitive(`[Preval] Attempted call to string.trim with invalid args: \`${tmat(body[i], true).replace(/\n/g, '\\n')}\``));
+                      } else {
+                        const finalNode = AST.primitive(v);
+                        const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                        body[i] = finalParent;
+                      }
+
+                      after(body[i]);
+                      assertNoDupeNodes(body, 'body');
+                      return true;
+                    }
                   }
 
                   break;
                 }
                 case symbo('string', 'trimEnd'): {
-                  if (args.length === 0 && contextNode && AST.isStringLiteral(contextNode)) {
-                    rule('A call to `trimEnd` on a string can be resolved');
-                    example('"  Hello, world!\t ".trimEnd()', '  "Hello, world!"');
+                  if (!contextNode) {
+                    rule('Calling string.trimEnd without context results in ""');
+                    example('f(String.prototype.trimEnd());', 'f("");');
                     before(body[i]);
 
-                    const finalNode = AST.primitive(AST.getPrimitiveValue(contextNode).trimEnd());
+                    const finalNode = AST.primitive("");
                     const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
                     body[i] = finalParent;
 
-                    before(body[i]);
+                    after(body[i]);
                     assertNoDupeNodes(body, 'body');
                     return true;
+                  }
+
+                  else if (AST.isStringLiteral(contextNode, true)) {
+                    if (args.length === 0) {
+                      const pv = AST.getPrimitiveValue(contextNode);
+
+                      rule('Calling string.trimEnd without arg on a string literal can be resolved');
+                      example('f("XyZ".trimEnd());', 'f("XyZ");');
+                      before(body[i]);
+
+                      let v;
+                      try {
+                        v = pv.trimEnd();
+                      } catch {
+                      }
+
+                      if (v === undefined) {
+                        body[i] = AST.throwStatement(AST.primitive(`[Preval] Attempted call to string.trimEnd with invalid args: \`${tmat(body[i], true).replace(/\n/g, '\\n')}\``));
+                      } else {
+                        const finalNode = AST.primitive(v);
+                        const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                        body[i] = finalParent;
+                      }
+
+                      after(body[i]);
+                      assertNoDupeNodes(body, 'body');
+                      return true;
+                    }
                   }
 
                   break;
                 }
                 case symbo('string', 'trimStart'): {
-                  if (args.length === 0 && contextNode && AST.isStringLiteral(contextNode)) {
-                    rule('A call to `trimStart` on a string can be resolved');
-                    example('"  Hello, world!\t ".trimStart()', '"  Hello, world!\t "');
+                  if (!contextNode) {
+                    rule('Calling string.trimStart without context results in ""');
+                    example('f(String.prototype.trimStart());', 'f("");');
                     before(body[i]);
 
-                    const finalNode = AST.primitive(AST.getPrimitiveValue(contextNode).trimStart());
+                    const finalNode = AST.primitive("");
                     const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
                     body[i] = finalParent;
 
-                    before(body[i]);
+                    after(body[i]);
                     assertNoDupeNodes(body, 'body');
                     return true;
+                  }
+
+                  else if (AST.isStringLiteral(contextNode, true)) {
+                    if (args.length === 0) {
+                      const pv = AST.getPrimitiveValue(contextNode);
+
+                      rule('Calling string.trimStart without arg on a string literal can be resolved');
+                      example('f("XyZ".trimStart());', 'f("XyZ");');
+                      before(body[i]);
+
+                      let v;
+                      try {
+                        v = pv.trimStart();
+                      } catch {
+                      }
+
+                      if (v === undefined) {
+                        body[i] = AST.throwStatement(AST.primitive(`[Preval] Attempted call to string.trimStart with invalid args: \`${tmat(body[i], true).replace(/\n/g, '\\n')}\``));
+                      } else {
+                        const finalNode = AST.primitive(v);
+                        const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                        body[i] = finalParent;
+                      }
+
+                      after(body[i]);
+                      assertNoDupeNodes(body, 'body');
+                      return true;
+                    }
                   }
 
                   break;
                 }
                 case symbo('string', 'valueOf'): {
-                  if (args.length === 0 && contextNode && AST.isStringLiteral(contextNode)) {
-                    rule('A call to `valueOf` on a string can be resolved');
-                    example('"Hello, world!".valueOf()', '"Hello, world!"');
+                  if (!contextNode) {
+                    rule('Calling string.valueOf without context results in ""');
+                    example('f(String.prototype.valueOf());', 'f("");');
                     before(body[i]);
 
-                    const finalNode = AST.primitive(AST.getPrimitiveValue(contextNode).valueOf());
+                    const finalNode = AST.primitive("");
                     const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
                     body[i] = finalParent;
 
-                    before(body[i]);
+                    after(body[i]);
                     assertNoDupeNodes(body, 'body');
                     return true;
+                  }
+
+                  else if (AST.isStringLiteral(contextNode, true)) {
+                    if (args.length === 0) {
+                      const pv = AST.getPrimitiveValue(contextNode);
+
+                      rule('Calling string.valueOf without arg on a string literal can be resolved');
+                      example('f("XyZ".valueOf());', 'f("XyZ");');
+                      before(body[i]);
+
+                      let v;
+                      try {
+                        v = pv.valueOf();
+                      } catch {
+                      }
+
+                      if (v === undefined) {
+                        body[i] = AST.throwStatement(AST.primitive(`[Preval] Attempted call to string.valueOf with invalid args: \`${tmat(body[i], true).replace(/\n/g, '\\n')}\``));
+                      } else {
+                        const finalNode = AST.primitive(v);
+                        const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                        body[i] = finalParent;
+                      }
+
+                      after(body[i]);
+                      assertNoDupeNodes(body, 'body');
+                      return true;
+                    }
                   }
 
                   break;
                 }
                 case symbo('string', 'anchor'): {
-                  if (args.length === 0 && contextNode && AST.isStringLiteral(contextNode)) {
-                    rule('A call to `anchor` on a string can be resolved');
-                    example('"Hello, world!".anchor()', '"<a name="undefined">Hello, world!</a>"');
+                  if (!contextNode) {
+                    rule('Calling string.anchor without context can be resolved');
+                    example('f(String.prototype.anchor());', 'f("<a name="undefined"></a>");');
                     before(body[i]);
 
-                    const finalNode = AST.primitive(AST.getPrimitiveValue(contextNode).anchor());
+                    const finalNode = AST.primitive("<a name=\"undefined\"></a>");
                     const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
                     body[i] = finalParent;
 
-                    before(body[i]);
+                    after(body[i]);
                     assertNoDupeNodes(body, 'body');
                     return true;
                   }
-                  todo('string.anchor with args');
+
+                  else if (AST.isStringLiteral(contextNode, true)) {
+                    if (args.length === 0) {
+                      const pv = AST.getPrimitiveValue(contextNode);
+
+                      rule('Calling string.anchor without arg on a string literal can be resolved');
+                      example('f("XyZ".anchor());', 'f(\'<a name="undefined">XyZ</a>\');');
+                      before(body[i]);
+
+                      let v;
+                      try {
+                        v = pv.anchor();
+                      } catch {
+                      }
+
+                      if (v === undefined) {
+                        body[i] = AST.throwStatement(AST.primitive(`[Preval] Attempted call to string.anchor with invalid args: \`${tmat(body[i], true).replace(/\n/g, '\\n')}\``));
+                      } else {
+                        const finalNode = AST.primitive(v);
+                        const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                        body[i] = finalParent;
+                      }
+
+                      after(body[i]);
+                      assertNoDupeNodes(body, 'body');
+                      return true;
+                    }
+                  }
+
+                  else if (args.length === 1 && AST.isStringLiteral(args[0], true)) {
+                    const pv = AST.getPrimitiveValue(contextNode);
+                    const parg = AST.getPrimitiveValue(args[0]);
+
+                    rule('Calling string.anchor with one primitive arg on a string literal can be resolved');
+                    example('f("XyZ".anchor("woop"));', 'f(\'<a name="woop">XyZ</a>\');');
+                    before(body[i]);
+
+                    let v;
+                    try {
+                      v = pv.anchor(parg);
+                    } catch {
+                    }
+
+                    if (v === undefined) {
+                      body[i] = AST.throwStatement(AST.primitive(`[Preval] Attempted call to string.anchor with invalid args: \`${tmat(body[i], true).replace(/\n/g, '\\n')}\``));
+                    } else {
+                      const finalNode = AST.primitive(v);
+                      const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                      body[i] = finalParent;
+                    }
+
+                    after(body[i]);
+                    assertNoDupeNodes(body, 'body');
+                    return true;
+                  }
                   break;
                 }
                 case symbo('string', 'big'): {
-                  if (args.length === 0 && contextNode && AST.isStringLiteral(contextNode)) {
-                    rule('A call to `big` on a string can be resolved');
-                    example('"Hello, world!".big()', '"<big>Hello, world!</big>"');
+                  if (!contextNode) {
+                    rule('Calling string.big without context results in "<big></big>"');
+                    example('f(String.prototype.big());', 'f("<big></big>");');
                     before(body[i]);
 
-                    const finalNode = AST.primitive(AST.getPrimitiveValue(contextNode).big());
+                    const finalNode = AST.primitive("<big></big>");
                     const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
                     body[i] = finalParent;
 
-                    before(body[i]);
+                    after(body[i]);
                     assertNoDupeNodes(body, 'body');
                     return true;
+                  }
+
+                  else if (AST.isStringLiteral(contextNode, true)) {
+                    if (args.length === 0) {
+                      const pv = AST.getPrimitiveValue(contextNode);
+
+                      rule('Calling string.big without arg on a string literal can be resolved');
+                      example('f("XyZ".big());', 'f("<big>XyZ</big>");');
+                      before(body[i]);
+
+                      let v;
+                      try {
+                        v = pv.big();
+                      } catch {
+                      }
+
+                      if (v === undefined) {
+                        body[i] = AST.throwStatement(AST.primitive(`[Preval] Attempted call to string.big with invalid args: \`${tmat(body[i], true).replace(/\n/g, '\\n')}\``));
+                      } else {
+                        const finalNode = AST.primitive(v);
+                        const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                        body[i] = finalParent;
+                      }
+
+                      after(body[i]);
+                      assertNoDupeNodes(body, 'body');
+                      return true;
+                    }
                   }
                   break;
                 }
                 case symbo('string', 'blink'): {
-                  if (args.length === 0 && contextNode && AST.isStringLiteral(contextNode)) {
-                    rule('A call to `blink` on a string can be resolved');
-                    example('"Hello, world!".blink()', '"<blink>Hello, world!</blink>"');
+                  if (!contextNode) {
+                    rule('Calling string.blink without context results in "<blink></blink>"');
+                    example('f(String.prototype.blink());', 'f("<blink></blink>");');
                     before(body[i]);
 
-                    const finalNode = AST.primitive(AST.getPrimitiveValue(contextNode).blink());
+                    const finalNode = AST.primitive("<blink></blink>");
                     const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
                     body[i] = finalParent;
 
-                    before(body[i]);
+                    after(body[i]);
                     assertNoDupeNodes(body, 'body');
                     return true;
+                  }
+
+                  else if (AST.isStringLiteral(contextNode, true)) {
+                    if (args.length === 0) {
+                      const pv = AST.getPrimitiveValue(contextNode);
+
+                      rule('Calling string.blink without arg on a string literal can be resolved');
+                      example('f("XyZ".blink());', 'f("<blink>XyZ</blink>");');
+                      before(body[i]);
+
+                      let v;
+                      try {
+                        v = pv.blink();
+                      } catch {
+                      }
+
+                      if (v === undefined) {
+                        body[i] = AST.throwStatement(AST.primitive(`[Preval] Attempted call to string.blink with invalid args: \`${tmat(body[i], true).replace(/\n/g, '\\n')}\``));
+                      } else {
+                        const finalNode = AST.primitive(v);
+                        const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                        body[i] = finalParent;
+                      }
+
+                      after(body[i]);
+                      assertNoDupeNodes(body, 'body');
+                      return true;
+                    }
                   }
                   break;
                 }
                 case symbo('string', 'bold'): {
-                  if (args.length === 0 && contextNode && AST.isStringLiteral(contextNode)) {
-                    rule('A call to `bold` on a string can be resolved');
-                    example('"Hello, world!".bold()', '"<b>Hello, world!</b>"');
+                  if (!contextNode) {
+                    rule('Calling string.bold without context results in "<b></b>"');
+                    example('f(String.prototype.bold());', 'f("<b></b>");');
                     before(body[i]);
 
-                    const finalNode = AST.primitive(AST.getPrimitiveValue(contextNode).bold());
+                    const finalNode = AST.primitive("<b></b>");
                     const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
                     body[i] = finalParent;
 
-                    before(body[i]);
+                    after(body[i]);
                     assertNoDupeNodes(body, 'body');
                     return true;
+                  }
+
+                  else if (AST.isStringLiteral(contextNode, true)) {
+                    if (args.length === 0) {
+                      const pv = AST.getPrimitiveValue(contextNode);
+
+                      rule('Calling string.bold without arg on a string literal can be resolved');
+                      example('f("XyZ".bold());', 'f("<b>XyZ</b>");');
+                      before(body[i]);
+
+                      let v;
+                      try {
+                        v = pv.bold();
+                      } catch {
+                      }
+
+                      if (v === undefined) {
+                        body[i] = AST.throwStatement(AST.primitive(`[Preval] Attempted call to string.bold with invalid args: \`${tmat(body[i], true).replace(/\n/g, '\\n')}\``));
+                      } else {
+                        const finalNode = AST.primitive(v);
+                        const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                        body[i] = finalParent;
+                      }
+
+                      after(body[i]);
+                      assertNoDupeNodes(body, 'body');
+                      return true;
+                    }
                   }
                   break;
                 }
                 case symbo('string', 'fixed'): {
-                  if (args.length === 0 && contextNode && AST.isStringLiteral(contextNode)) {
-                    rule('A call to `fixed` on a string can be resolved');
-                    example('"Hello, world!".fixed()', '"<tt>Hello, world!</tt>"');
+                  if (!contextNode) {
+                    rule('Calling string.fixed without context results in "<tt></tt>"');
+                    example('f(String.prototype.fixed());', 'f("<tt></tt>");');
                     before(body[i]);
 
-                    const finalNode = AST.primitive(AST.getPrimitiveValue(contextNode).fixed());
+                    const finalNode = AST.primitive("<tt></tt>");
                     const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
                     body[i] = finalParent;
 
-                    before(body[i]);
+                    after(body[i]);
                     assertNoDupeNodes(body, 'body');
                     return true;
+                  }
+
+                  else if (AST.isStringLiteral(contextNode, true)) {
+                    if (args.length === 0) {
+                      const pv = AST.getPrimitiveValue(contextNode);
+
+                      rule('Calling string.fixed without arg on a string literal can be resolved');
+                      example('f("XyZ".fixed());', 'f("<tt>XyZ</tt>");');
+                      before(body[i]);
+
+                      let v;
+                      try {
+                        v = pv.fixed();
+                      } catch {
+                      }
+
+                      if (v === undefined) {
+                        body[i] = AST.throwStatement(AST.primitive(`[Preval] Attempted call to string.fixed with invalid args: \`${tmat(body[i], true).replace(/\n/g, '\\n')}\``));
+                      } else {
+                        const finalNode = AST.primitive(v);
+                        const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                        body[i] = finalParent;
+                      }
+
+                      after(body[i]);
+                      assertNoDupeNodes(body, 'body');
+                      return true;
+                    }
                   }
                   break;
                 }
                 case symbo('string', 'fontcolor'): {
-                  if (args.length === 0 && contextNode && AST.isStringLiteral(contextNode)) {
-                    rule('A call to `fontcolor` on a string can be resolved');
-                    example('"Hello, world!".fontcolor()', '"<font color="undefined">Hello, world!</font>"');
+                  if (!contextNode) {
+                    rule('Calling string.fontcolor without context can be resolved');
+                    example('f(String.prototype.fontcolor());', 'f("<font color="undefined"></font>");');
                     before(body[i]);
 
-                    const finalNode = AST.primitive(AST.getPrimitiveValue(contextNode).fontcolor());
+                    const finalNode = AST.primitive("<font color=\"undefined\">XyZ</font>");
                     const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
                     body[i] = finalParent;
 
-                    before(body[i]);
+                    after(body[i]);
                     assertNoDupeNodes(body, 'body');
                     return true;
                   }
-                  todo('string.fontcolor with args');
+
+                  else if (AST.isStringLiteral(contextNode, true)) {
+                    if (args.length === 0) {
+                      const pv = AST.getPrimitiveValue(contextNode);
+
+                      rule('Calling string.fontcolor without arg on a string literal can be resolved');
+                      example('f("XyZ".fontcolor());', 'f(\'<font color="undefined">XyZ</font>\');');
+                      before(body[i]);
+
+                      let v;
+                      try {
+                        v = pv.fontcolor();
+                      } catch {
+                      }
+
+                      if (v === undefined) {
+                        body[i] = AST.throwStatement(AST.primitive(`[Preval] Attempted call to string.fontcolor with invalid args: \`${tmat(body[i], true).replace(/\n/g, '\\n')}\``));
+                      } else {
+                        const finalNode = AST.primitive(v);
+                        const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                        body[i] = finalParent;
+                      }
+
+                      after(body[i]);
+                      assertNoDupeNodes(body, 'body');
+                      return true;
+                    }
+                  }
+
+                  else if (args.length === 1 && AST.isStringLiteral(args[0], true)) {
+                    const pv = AST.getPrimitiveValue(contextNode);
+                    const parg = AST.getPrimitiveValue(args[0]);
+
+                    rule('Calling string.fontcolor with one primitive arg on a string literal can be resolved');
+                    example('f("XyZ".fontcolor("woop"));', 'f(\'<font color="woop">XyZ</font>\');');
+                    before(body[i]);
+
+                    let v;
+                    try {
+                      v = pv.fontcolor(parg);
+                    } catch {
+                    }
+
+                    if (v === undefined) {
+                      body[i] = AST.throwStatement(AST.primitive(`[Preval] Attempted call to string.fontcolor with invalid args: \`${tmat(body[i], true).replace(/\n/g, '\\n')}\``));
+                    } else {
+                      const finalNode = AST.primitive(v);
+                      const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                      body[i] = finalParent;
+                    }
+
+                    after(body[i]);
+                    assertNoDupeNodes(body, 'body');
+                    return true;
+                  }
                   break;
                 }
                 case symbo('string', 'fontsize'): {
-                  if (args.length === 0 && contextNode && AST.isStringLiteral(contextNode)) {
-                    rule('A call to `fontsize` on a string can be resolved');
-                    example('"Hello, world!".fontsize()', '"<font size="undefined">Hello, world!</font>"');
+                  if (!contextNode) {
+                    rule('Calling string.fontsize without context can be resolved');
+                    example('f(String.prototype.fontsize());', 'f("<font size="undefined"></font>");');
                     before(body[i]);
 
-                    const finalNode = AST.primitive(AST.getPrimitiveValue(contextNode).fontsize());
+                    const finalNode = AST.primitive("<font size=\"undefined\"></font>");
                     const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
                     body[i] = finalParent;
 
-                    before(body[i]);
+                    after(body[i]);
                     assertNoDupeNodes(body, 'body');
                     return true;
                   }
-                  todo('string.fontsize with args');
+
+                  else if (AST.isStringLiteral(contextNode, true)) {
+                    if (args.length === 0) {
+                      const pv = AST.getPrimitiveValue(contextNode);
+
+                      rule('Calling string.fontsize without arg on a string literal can be resolved');
+                      example('f("XyZ".fontsize());', 'f(\'<font size="undefined">XyZ</font>\');');
+                      before(body[i]);
+
+                      let v;
+                      try {
+                        v = pv.fontsize();
+                      } catch {
+                      }
+
+                      if (v === undefined) {
+                        body[i] = AST.throwStatement(AST.primitive(`[Preval] Attempted call to string.fontsize with invalid args: \`${tmat(body[i], true).replace(/\n/g, '\\n')}\``));
+                      } else {
+                        const finalNode = AST.primitive(v);
+                        const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                        body[i] = finalParent;
+                      }
+
+                      after(body[i]);
+                      assertNoDupeNodes(body, 'body');
+                      return true;
+                    }
+                  }
+
+                  else if (args.length === 1 && AST.isStringLiteral(args[0], true)) {
+                    const pv = AST.getPrimitiveValue(contextNode);
+                    const parg = AST.getPrimitiveValue(args[0]);
+
+                    rule('Calling string.fontsize with one primitive arg on a string literal can be resolved');
+                    example('f("XyZ".fontsize("woop"));', 'f(\'<font size="woop">XyZ</font>\');');
+                    before(body[i]);
+
+                    let v;
+                    try {
+                      v = pv.fontsize(parg);
+                    } catch {
+                    }
+
+                    if (v === undefined) {
+                      body[i] = AST.throwStatement(AST.primitive(`[Preval] Attempted call to string.fontsize with invalid args: \`${tmat(body[i], true).replace(/\n/g, '\\n')}\``));
+                    } else {
+                      const finalNode = AST.primitive(v);
+                      const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                      body[i] = finalParent;
+                    }
+
+                    after(body[i]);
+                    assertNoDupeNodes(body, 'body');
+                    return true;
+                  }
                   break;
                 }
                 case symbo('string', 'italics'): {
-                  if (args.length === 0 && contextNode && AST.isStringLiteral(contextNode)) {
-                    rule('A call to `italics` on a string can be resolved');
-                    example('"Hello, world!".italics()', '"<i>Hello, world!</i>"');
+                  if (!contextNode) {
+                    rule('Calling string.italics without context results in "<i></i>"');
+                    example('f(String.prototype.italics());', 'f("<i></i>");');
                     before(body[i]);
 
-                    const finalNode = AST.primitive(AST.getPrimitiveValue(contextNode).italics());
+                    const finalNode = AST.primitive("<i></i>");
                     const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
                     body[i] = finalParent;
 
-                    before(body[i]);
+                    after(body[i]);
                     assertNoDupeNodes(body, 'body');
                     return true;
+                  }
+
+                  else if (AST.isStringLiteral(contextNode, true)) {
+                    if (args.length === 0) {
+                      const pv = AST.getPrimitiveValue(contextNode);
+
+                      rule('Calling string.italics without arg on a string literal can be resolved');
+                      example('f("XyZ".italics());', 'f("<i>XyZ</i>");');
+                      before(body[i]);
+
+                      let v;
+                      try {
+                        v = pv.italics();
+                      } catch {
+                      }
+
+                      if (v === undefined) {
+                        body[i] = AST.throwStatement(AST.primitive(`[Preval] Attempted call to string.italics with invalid args: \`${tmat(body[i], true).replace(/\n/g, '\\n')}\``));
+                      } else {
+                        const finalNode = AST.primitive(v);
+                        const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                        body[i] = finalParent;
+                      }
+
+                      after(body[i]);
+                      assertNoDupeNodes(body, 'body');
+                      return true;
+                    }
                   }
                   break;
                 }
                 case symbo('string', 'link'): {
-                  if (args.length === 0 && contextNode && AST.isStringLiteral(contextNode)) {
-                    rule('A call to `link` on a string can be resolved');
-                    example('"Hello, world!".link()', '"<a href="undefined">Hello, world!</a>"');
+                  if (!contextNode) {
+                    rule('Calling string.link without context can be resolved');
+                    example('f(String.prototype.link());', 'f("<a href="undefined"></a>");');
                     before(body[i]);
 
-                    const finalNode = AST.primitive(AST.getPrimitiveValue(contextNode).link());
+                    const finalNode = AST.primitive("<a href=\"undefined\"></a>");
                     const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
                     body[i] = finalParent;
 
-                    before(body[i]);
+                    after(body[i]);
                     assertNoDupeNodes(body, 'body');
                     return true;
                   }
-                  todo('string.link with args');
+
+                  else if (AST.isStringLiteral(contextNode, true)) {
+                    if (args.length === 0) {
+                      const pv = AST.getPrimitiveValue(contextNode);
+
+                      rule('Calling string.link without arg on a string literal can be resolved');
+                      example('f("XyZ".link());', 'f(\'<a href="undefined">XyZ</a>\');');
+                      before(body[i]);
+
+                      let v;
+                      try {
+                        v = pv.link();
+                      } catch {
+                      }
+
+                      if (v === undefined) {
+                        body[i] = AST.throwStatement(AST.primitive(`[Preval] Attempted call to string.link with invalid args: \`${tmat(body[i], true).replace(/\n/g, '\\n')}\``));
+                      } else {
+                        const finalNode = AST.primitive(v);
+                        const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                        body[i] = finalParent;
+                      }
+
+                      after(body[i]);
+                      assertNoDupeNodes(body, 'body');
+                      return true;
+                    }
+                  }
+
+                  else if (args.length === 1 && AST.isStringLiteral(args[0], true)) {
+                    const pv = AST.getPrimitiveValue(contextNode);
+                    const parg = AST.getPrimitiveValue(args[0]);
+
+                    rule('Calling string.link with one primitive arg on a string literal can be resolved');
+                    example('f("XyZ".link("woop"));', 'f(\'<a href="woop">XyZ</a>\');');
+                    before(body[i]);
+
+                    let v;
+                    try {
+                      v = pv.link(parg);
+                    } catch {
+                    }
+
+                    if (v === undefined) {
+                      body[i] = AST.throwStatement(AST.primitive(`[Preval] Attempted call to string.link with invalid args: \`${tmat(body[i], true).replace(/\n/g, '\\n')}\``));
+                    } else {
+                      const finalNode = AST.primitive(v);
+                      const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                      body[i] = finalParent;
+                    }
+
+                    after(body[i]);
+                    assertNoDupeNodes(body, 'body');
+                    return true;
+                  }
                   break;
                 }
                 case symbo('string', 'small'): {
-                  if (args.length === 0 && contextNode && AST.isStringLiteral(contextNode)) {
-                    rule('A call to `small` on a string can be resolved');
-                    example('"Hello, world!".small()', '"<small>Hello, world!</small>"');
+                  if (!contextNode) {
+                    rule('Calling string.small without context results in "<small></small>"');
+                    example('f(String.prototype.small());', 'f("<small></small>");');
                     before(body[i]);
 
-                    const finalNode = AST.primitive(AST.getPrimitiveValue(contextNode).small());
+                    const finalNode = AST.primitive("<small></small>");
                     const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
                     body[i] = finalParent;
 
-                    before(body[i]);
+                    after(body[i]);
                     assertNoDupeNodes(body, 'body');
                     return true;
+                  }
+
+                  else if (AST.isStringLiteral(contextNode, true)) {
+                    if (args.length === 0) {
+                      const pv = AST.getPrimitiveValue(contextNode);
+
+                      rule('Calling string.small without arg on a string literal can be resolved');
+                      example('f("XyZ".small());', 'f("<small>XyZ</small>");');
+                      before(body[i]);
+
+                      let v;
+                      try {
+                        v = pv.small();
+                      } catch {
+                      }
+
+                      if (v === undefined) {
+                        body[i] = AST.throwStatement(AST.primitive(`[Preval] Attempted call to string.small with invalid args: \`${tmat(body[i], true).replace(/\n/g, '\\n')}\``));
+                      } else {
+                        const finalNode = AST.primitive(v);
+                        const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                        body[i] = finalParent;
+                      }
+
+                      after(body[i]);
+                      assertNoDupeNodes(body, 'body');
+                      return true;
+                    }
                   }
                   break;
                 }
                 case symbo('string', 'strike'): {
-                  if (args.length === 0 && contextNode && AST.isStringLiteral(contextNode)) {
-                    rule('A call to `strike` on a string can be resolved');
-                    example('"Hello, world!".strike()', '"<strike>Hello, world!</strike>"');
+                  if (!contextNode) {
+                    rule('Calling string.strike without context results in "<strike></strike>"');
+                    example('f(String.prototype.strike());', 'f("<strike></strike>");');
                     before(body[i]);
 
-                    const finalNode = AST.primitive(AST.getPrimitiveValue(contextNode).strike());
+                    const finalNode = AST.primitive("<strike></strike>");
                     const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
                     body[i] = finalParent;
 
-                    before(body[i]);
+                    after(body[i]);
                     assertNoDupeNodes(body, 'body');
                     return true;
+                  }
+
+                  else if (AST.isStringLiteral(contextNode, true)) {
+                    if (args.length === 0) {
+                      const pv = AST.getPrimitiveValue(contextNode);
+
+                      rule('Calling string.strike without arg on a string literal can be resolved');
+                      example('f("XyZ".strike());', 'f("<strike>XyZ</strike>");');
+                      before(body[i]);
+
+                      let v;
+                      try {
+                        v = pv.strike();
+                      } catch {
+                      }
+
+                      if (v === undefined) {
+                        body[i] = AST.throwStatement(AST.primitive(`[Preval] Attempted call to string.strike with invalid args: \`${tmat(body[i], true).replace(/\n/g, '\\n')}\``));
+                      } else {
+                        const finalNode = AST.primitive(v);
+                        const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                        body[i] = finalParent;
+                      }
+
+                      after(body[i]);
+                      assertNoDupeNodes(body, 'body');
+                      return true;
+                    }
                   }
                   break;
                 }
                 case symbo('string', 'sub'): {
-                  if (args.length === 0 && contextNode && AST.isStringLiteral(contextNode)) {
-                    rule('A call to `sub` on a string can be resolved');
-                    example('"Hello, world!".sub()', '"<sub>Hello, world!</sub>"');
+                  if (!contextNode) {
+                    rule('Calling string.sub without context results in "<sub></sub>"');
+                    example('f(String.prototype.sub());', 'f("<sub></sub>");');
                     before(body[i]);
 
-                    const finalNode = AST.primitive(AST.getPrimitiveValue(contextNode).sub());
+                    const finalNode = AST.primitive("<sub></sub>");
                     const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
                     body[i] = finalParent;
 
-                    before(body[i]);
+                    after(body[i]);
                     assertNoDupeNodes(body, 'body');
                     return true;
+                  }
+
+                  else if (AST.isStringLiteral(contextNode, true)) {
+                    if (args.length === 0) {
+                      const pv = AST.getPrimitiveValue(contextNode);
+
+                      rule('Calling string.sub without arg on a string literal can be resolved');
+                      example('f("XyZ".sub());', 'f("<sub>XyZ</sub>");');
+                      before(body[i]);
+
+                      let v;
+                      try {
+                        v = pv.sub();
+                      } catch {
+                      }
+
+                      if (v === undefined) {
+                        body[i] = AST.throwStatement(AST.primitive(`[Preval] Attempted call to string.sub with invalid args: \`${tmat(body[i], true).replace(/\n/g, '\\n')}\``));
+                      } else {
+                        const finalNode = AST.primitive(v);
+                        const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                        body[i] = finalParent;
+                      }
+
+                      after(body[i]);
+                      assertNoDupeNodes(body, 'body');
+                      return true;
+                    }
                   }
                   break;
                 }
                 case symbo('string', 'sup'): {
-                  if (args.length === 0 && contextNode && AST.isStringLiteral(contextNode)) {
-                    rule('A call to `sup` on a string can be resolved');
-                    example('"Hello, world!".sup()', '"<sup>Hello, world!</sup>"');
+                  if (!contextNode) {
+                    rule('Calling string.sup without context results in "<sup></sup>"');
+                    example('f(String.prototype.sup());', 'f("<sup></sup>");');
                     before(body[i]);
 
-                    const finalNode = AST.primitive(AST.getPrimitiveValue(contextNode).sup());
+                    const finalNode = AST.primitive("<sup></sup>");
                     const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
                     body[i] = finalParent;
 
-                    before(body[i]);
+                    after(body[i]);
                     assertNoDupeNodes(body, 'body');
                     return true;
+                  }
+
+                  else if (AST.isStringLiteral(contextNode, true)) {
+                    if (args.length === 0) {
+                      const pv = AST.getPrimitiveValue(contextNode);
+
+                      rule('Calling string.sup without arg on a string literal can be resolved');
+                      example('f("XyZ".sup());', 'f("<sup>XyZ</sup>");');
+                      before(body[i]);
+
+                      let v;
+                      try {
+                        v = pv.sup();
+                      } catch {
+                      }
+
+                      if (v === undefined) {
+                        body[i] = AST.throwStatement(AST.primitive(`[Preval] Attempted call to string.sup with invalid args: \`${tmat(body[i], true).replace(/\n/g, '\\n')}\``));
+                      } else {
+                        const finalNode = AST.primitive(v);
+                        const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                        body[i] = finalParent;
+                      }
+
+                      after(body[i]);
+                      assertNoDupeNodes(body, 'body');
+                      return true;
+                    }
                   }
                   break;
                 }

@@ -22,9 +22,11 @@ $(str.length);
 
 `````js filename=intro
 const str /*:string*/ = $coerce(x, `string`);
-$coerce(a, `string`);
-$coerce(b, `number`);
+const tmpArgOverflow /*:unknown*/ = a;
+const tmpArgOverflow$1 /*:unknown*/ = b;
 c;
+$coerce(tmpArgOverflow, `string`);
+$coerce(tmpArgOverflow$1, `number`);
 const tmpCalleeParam /*:number*/ = str.length;
 $(tmpCalleeParam);
 `````
@@ -35,9 +37,11 @@ $(tmpCalleeParam);
 
 `````js filename=intro
 const str = $coerce(x, `string`);
-$coerce(a, `string`);
-$coerce(b, `number`);
+const tmpArgOverflow = a;
+const tmpArgOverflow$1 = b;
 c;
+$coerce(tmpArgOverflow, `string`);
+$coerce(tmpArgOverflow$1, `number`);
 $(str.length);
 `````
 
@@ -47,11 +51,13 @@ With rename=true
 
 `````js filename=intro
 const d = $coerce( x, "string" );
-$coerce( a, "string" );
-$coerce( b, "number" );
+const e = a;
+const f = b;
 c;
-const e = d.length;
-$( e );
+$coerce( e, "string" );
+$coerce( f, "number" );
+const g = d.length;
+$( g );
 `````
 
 
@@ -59,7 +65,6 @@ $( e );
 (This is what phase1 received the first time)
 
 `````js filename=intro
-const tmpStringFirstArg = x;
 const str = $coerce(x, `string`);
 const tmpMCF = str.includes;
 $dotCall(tmpMCF, str, `includes`, a, b, c);

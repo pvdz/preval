@@ -47,7 +47,7 @@ $spy( "c" );
 (This is what phase1 received the first time)
 
 `````js filename=intro
-$spy(`a`);
+const tmpArgOverflow = $spy(`a`);
 $spy(`b`);
 $spy(`c`);
 `````

@@ -21,8 +21,8 @@ $(y);
 
 `````js filename=intro
 const a /*:unknown*/ = $(`a`);
-const x /*:string*/ = $coerce(a, `plustr`);
-$(x);
+const y /*:string*/ = $coerce(a, `plustr`);
+$(y);
 `````
 
 
@@ -50,7 +50,6 @@ $( b );
 `````js filename=intro
 const a = $(`a`);
 const x = $coerce(a, `plustr`);
-const tmpStringFirstArg = x;
 const y = $coerce(x, `string`);
 $(y);
 `````

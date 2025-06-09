@@ -21,9 +21,11 @@ $(str.length);
 
 
 `````js filename=intro
-$coerce(a, `string`);
-$coerce(b, `number`);
+const tmpArgOverflow /*:unknown*/ = a;
+const tmpArgOverflow$1 /*:unknown*/ = b;
 c;
+$coerce(tmpArgOverflow, `string`);
+$coerce(tmpArgOverflow$1, `number`);
 $(3);
 `````
 
@@ -32,9 +34,11 @@ $(3);
 (This ought to be the final result)
 
 `````js filename=intro
-$coerce(a, `string`);
-$coerce(b, `number`);
+const tmpArgOverflow = a;
+const tmpArgOverflow$1 = b;
 c;
+$coerce(tmpArgOverflow, `string`);
+$coerce(tmpArgOverflow$1, `number`);
 $(3);
 `````
 
@@ -43,9 +47,11 @@ $(3);
 With rename=true
 
 `````js filename=intro
-$coerce( a, "string" );
-$coerce( b, "number" );
+const d = a;
+const e = b;
 c;
+$coerce( d, "string" );
+$coerce( e, "number" );
 $( 3 );
 `````
 

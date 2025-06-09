@@ -69,7 +69,6 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   if (test) {
     break;
   } else {
-    const tmpStringFirstArg = counter;
     const tmpBinLhs = $coerce(counter, `string`);
     const tmpIfTest = tmpBinLhs === 5;
     if (tmpIfTest) {

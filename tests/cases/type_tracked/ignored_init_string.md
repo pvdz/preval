@@ -30,11 +30,11 @@ if (itooamanumberjack) {
 `````js filename=intro
 let itooamanumberjack /*:string*/ /*ternaryConst*/ = ``;
 if (imanumberandilovethrees) {
-  const tmpStringFirstArg /*:unknown*/ = $(1);
-  itooamanumberjack = $coerce(tmpStringFirstArg, `string`);
+  const tmpCalleeParam /*:unknown*/ = $(1);
+  itooamanumberjack = $coerce(tmpCalleeParam, `string`);
 } else {
-  const tmpStringFirstArg$1 /*:unknown*/ = $(2);
-  itooamanumberjack = $coerce(tmpStringFirstArg$1, `string`);
+  const tmpCalleeParam$1 /*:unknown*/ = $(2);
+  itooamanumberjack = $coerce(tmpCalleeParam$1, `string`);
 }
 if (itooamanumberjack) {
   $(`a`, itooamanumberjack);
@@ -90,11 +90,11 @@ else {
 `````js filename=intro
 let itooamanumberjack = false;
 if (imanumberandilovethrees) {
-  const tmpStringFirstArg = $(1);
-  itooamanumberjack = $coerce(tmpStringFirstArg, `string`);
+  let tmpCalleeParam = $(1);
+  itooamanumberjack = $coerce(tmpCalleeParam, `string`);
 } else {
-  const tmpStringFirstArg$1 = $(2);
-  itooamanumberjack = $coerce(tmpStringFirstArg$1, `string`);
+  let tmpCalleeParam$1 = $(2);
+  itooamanumberjack = $coerce(tmpCalleeParam$1, `string`);
 }
 if (itooamanumberjack) {
   $(`a`, itooamanumberjack);

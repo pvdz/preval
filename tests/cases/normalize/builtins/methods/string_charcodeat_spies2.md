@@ -52,6 +52,7 @@ $coerce( a, "number" );
 const x = $spy(`a`);
 const y = $spy(`a`);
 const tmpMCF = $string_charCodeAt;
+const tmpArgOverflow = x;
 $coerce(x, `number`);
 `````
 

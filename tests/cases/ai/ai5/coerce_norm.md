@@ -53,7 +53,6 @@ $( b );
 
 `````js filename=intro
 const x = $(1);
-const tmpStringFirstArg = x;
 const str = $coerce(x, `string`);
 $(str);
 `````

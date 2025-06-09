@@ -33,8 +33,8 @@ const spy /*:object*/ /*truthy*/ = {
     return undefined;
   },
 };
-const tmpNumberFirstArg /*:array*/ /*truthy*/ = [spy, spy];
-const tmpCalleeParam /*:number*/ = $coerce(tmpNumberFirstArg, `number`);
+const tmpCalleeParam$1 /*:array*/ /*truthy*/ = [spy, spy];
+const tmpCalleeParam /*:number*/ = $coerce(tmpCalleeParam$1, `number`);
 $(tmpCalleeParam);
 `````
 
@@ -93,8 +93,8 @@ const spy = {
     return undefined;
   },
 };
-const tmpNumberFirstArg = [spy, spy];
-let tmpCalleeParam = $coerce(tmpNumberFirstArg, `number`);
+let tmpCalleeParam$1 = [spy, spy];
+let tmpCalleeParam = $coerce(tmpCalleeParam$1, `number`);
 $(tmpCalleeParam);
 `````
 

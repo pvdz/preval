@@ -17,8 +17,7 @@ $(Math.pow('3', 5.7));
 
 
 `````js filename=intro
-const tmpCalleeParam /*:number*/ = $Math_pow(`3`, 5.7);
-$(tmpCalleeParam);
+$(524.3136350338262);
 `````
 
 
@@ -26,7 +25,7 @@ $(tmpCalleeParam);
 (This ought to be the final result)
 
 `````js filename=intro
-$($Math_pow(`3`, 5.7));
+$(524.3136350338262);
 `````
 
 
@@ -34,8 +33,7 @@ $($Math_pow(`3`, 5.7));
 With rename=true
 
 `````js filename=intro
-const a = $Math_pow( "3", 5.7 );
-$( a );
+$( 524.3136350338262 );
 `````
 
 
@@ -44,7 +42,7 @@ $( a );
 
 `````js filename=intro
 const tmpMCF = $Math_pow;
-let tmpCalleeParam = $Math_pow(`3`, 5.7);
+let tmpCalleeParam = 524.3136350338262;
 $(tmpCalleeParam);
 `````
 
@@ -52,7 +50,7 @@ $(tmpCalleeParam);
 ## Todos triggered
 
 
-- (todo) type trackeed tricks can possibly support static $Math_pow
+None
 
 
 ## Globals

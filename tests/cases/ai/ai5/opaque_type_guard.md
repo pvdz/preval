@@ -86,7 +86,6 @@ if (tmpIfTest) {
   const y = x.length;
   $(y);
 } else {
-  const tmpStringFirstArg = x;
   const tmpCompObj = $coerce(x, `string`);
   const y$1 = tmpCompObj.length;
   $(y$1);

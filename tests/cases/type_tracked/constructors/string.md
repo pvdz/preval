@@ -19,8 +19,8 @@ $(String(x)); // Is the same as `x` and dropping the `String` call should not be
 
 `````js filename=intro
 const tmpBinBothRhs /*:unknown*/ = $(1);
-const x /*:string*/ = $coerce(tmpBinBothRhs, `plustr`);
-$(x);
+const tmpCalleeParam /*:string*/ = $coerce(tmpBinBothRhs, `plustr`);
+$(tmpCalleeParam);
 `````
 
 
@@ -49,7 +49,6 @@ $( b );
 const tmpBinBothLhs = ``;
 const tmpBinBothRhs = $(1);
 const x = tmpBinBothLhs + tmpBinBothRhs;
-const tmpStringFirstArg = x;
 let tmpCalleeParam = $coerce(x, `string`);
 $(tmpCalleeParam);
 `````

@@ -45,7 +45,10 @@ $( "hello, world" );
 
 `````js filename=intro
 const tmpMCF = $string_replace;
-let tmpCalleeParam = $dotCall($string_replace, `hello world`, `replace`, ` `, `, `, $, unknown);
+const tmpArgOverflow = ` `;
+const tmpArgOverflow$1 = `, `;
+unknown;
+let tmpCalleeParam = $dotCall($string_replace, `hello world`, `replace`, tmpArgOverflow, tmpArgOverflow$1);
 $(tmpCalleeParam);
 `````
 

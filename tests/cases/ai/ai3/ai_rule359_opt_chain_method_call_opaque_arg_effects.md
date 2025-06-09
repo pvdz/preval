@@ -164,9 +164,7 @@ const tmpObjLitVal = function ($$0, $$1) {
   let arg2 = $$1;
   debugger;
   $(`method_m_called`, arg1, arg2);
-  const tmpStringFirstArg = arg1;
   const tmpBinBothLhs = $coerce(arg1, `string`);
-  const tmpStringFirstArg$1 = arg2;
   const tmpBinBothRhs = $coerce(arg2, `string`);
   let tmpCalleeParam$1 = tmpBinBothLhs + tmpBinBothRhs;
   const tmpReturnArg = $(`method_m_return`, tmpCalleeParam$1);

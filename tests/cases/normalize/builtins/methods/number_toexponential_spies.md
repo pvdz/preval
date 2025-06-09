@@ -52,7 +52,7 @@ $dotCall( $number_toExponential, 200, "toExponential", a );
 const x = $spy(`a`);
 const y = $spy(`b`);
 const tmpMCF = $number_toExponential;
-const tmpStringFirstArg = x;
+const tmpArgOverflow = x;
 $dotCall($number_toExponential, 200, `toExponential`, x);
 `````
 

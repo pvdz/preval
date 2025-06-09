@@ -115,7 +115,6 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpMCF = $Math_pow;
   const a = $Math_pow(n, 2);
   const b = a / 2;
-  const tmpStringFirstArg = b;
   const c = $coerce(b, `string`);
   $(i, c);
   i = i + 1;

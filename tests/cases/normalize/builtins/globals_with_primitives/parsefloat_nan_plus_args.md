@@ -44,16 +44,17 @@ $( $Number_NaN );
 (This is what phase1 received the first time)
 
 `````js filename=intro
+const tmpArgOverflow = $Number_NaN;
 implicitGlobal;
-let tmpCalleeParam = NaN;
-$($Number_NaN);
+let tmpCalleeParam = $Number_parseFloat(tmpArgOverflow);
+$(tmpCalleeParam);
 `````
 
 
 ## Todos triggered
 
 
-None
+- (todo) type trackeed tricks can possibly support static $Number_parseFloat
 
 
 ## Globals

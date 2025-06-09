@@ -45,7 +45,10 @@ $( "   wo" );
 
 `````js filename=intro
 const tmpMCF = $string_slice;
-let tmpCalleeParam = $dotCall($string_slice, `hello   world`, `slice`, 5, 10, $, unknown);
+const tmpArgOverflow = 5;
+const tmpArgOverflow$1 = 10;
+unknown;
+let tmpCalleeParam = $dotCall($string_slice, `hello   world`, `slice`, tmpArgOverflow, tmpArgOverflow$1);
 $(tmpCalleeParam);
 `````
 

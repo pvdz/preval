@@ -141,11 +141,9 @@ let foo = function ($$0, $$1) {
     $(`foo_called_extra_arg2`, tmpCalleeParam);
   } else {
   }
-  const tmpStringFirstArg = a;
   const tmpBinLhs = $coerce(a, `string`);
   const tmpStringConcatR = $coerce(tmpBinLhs, `plustr`);
   const tmpBinBothLhs = `${tmpStringConcatR}_`;
-  const tmpStringFirstArg$1 = b;
   const tmpBinBothRhs = $coerce(b, `string`);
   let tmpCalleeParam$1 = tmpBinBothLhs + tmpBinBothRhs;
   const tmpReturnArg = $(`foo_return`, tmpCalleeParam$1);

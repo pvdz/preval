@@ -44,8 +44,9 @@ $( "NaN" );
 (This is what phase1 received the first time)
 
 `````js filename=intro
+const tmpArgOverflow = $Number_NaN;
 implicitGlobal;
-let tmpCalleeParam = `NaN`;
+let tmpCalleeParam = $coerce(tmpArgOverflow, `string`);
 $(tmpCalleeParam);
 `````
 
@@ -53,7 +54,7 @@ $(tmpCalleeParam);
 ## Todos triggered
 
 
-None
+- (todo) Support coercing "$Number_NaN" to a "string"
 
 
 ## Globals

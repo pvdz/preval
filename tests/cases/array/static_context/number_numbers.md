@@ -41,8 +41,8 @@ $( $Number_NaN );
 (This is what phase1 received the first time)
 
 `````js filename=intro
-const tmpNumberFirstArg = [1, 2, 3];
-let tmpCalleeParam = $coerce(tmpNumberFirstArg, `number`);
+let tmpCalleeParam$1 = [1, 2, 3];
+let tmpCalleeParam = $coerce(tmpCalleeParam$1, `number`);
 $(tmpCalleeParam);
 `````
 

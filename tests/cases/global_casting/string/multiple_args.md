@@ -21,8 +21,8 @@ $(y);
 
 `````js filename=intro
 const a /*:unknown*/ = $(`a`);
-const y /*:string*/ = $coerce(a, `plustr`);
-$(y);
+const x /*:string*/ = $coerce(a, `plustr`);
+$(x);
 `````
 
 
@@ -50,10 +50,8 @@ $( b );
 `````js filename=intro
 const a = $(`a`);
 const x = $coerce(a, `plustr`);
-const tmpCompObj = [x];
 const tmpArgOverflow = x;
-const tmpStringFirstArg = tmpArgOverflow;
-const y = $coerce(tmpArgOverflow, `string`);
+const y = $coerce(x, `string`);
 $(y);
 `````
 

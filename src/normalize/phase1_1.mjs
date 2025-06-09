@@ -390,11 +390,21 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
       } else {
         firstVisibleNode = node.init;
       }
-      vlog('++ Now processing all writes');
-      meta.writes.forEach(write => {
-        if (skipInit && write.kind === 'var') return;
-        const rhsTyping = inferNodeTyping(fdata, write.kind === 'var' ? write.parentNode.init : write.parentNode.right);
-        vlog('Merging rhs typing with binding;', rhsTyping);
+      vlog('++ Now processing all writes', meta.singleScoped);
+      meta.writes.forEach((write,i) => {
+        // if (meta.singleScoped && write.reachedByReads.size === 0) return vlog('- write', i, ': Skipping; it is not reachable');
+        if (skipInit && write.kind === 'var') return vlog('- write', i, ': Skipping; ternary const that ignores init');
+        const rhs = write.kind === 'var' ? write.parentNode.init : write.parentNode.right;
+        // if (rhs.type === 'Identifier') {
+        //   let notyet = false;
+        //   untypedVarDecls.forEach(obj => {
+        //     if (rhs.name === obj.node.id.name) notyet = true;
+        //   })
+        //   if (notyet) return vlog('  - rhs', rhs.name, 'is not yet resolved so skip it for now');
+        // }
+        vlog('- write', i, ':', write.kind, write.parentNode.type, rhs.name);
+        const rhsTyping = inferNodeTyping(fdata, rhs);
+        vlog('Merging rhs typing with binding;', write.parentNode.type, rhs.name, rhsTyping);
         mergeTyping(rhsTyping, newTyping);
         vlog('newTyping now:', newTyping);
       });

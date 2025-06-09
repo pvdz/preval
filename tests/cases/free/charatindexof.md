@@ -194,13 +194,11 @@ const f = function ($$0) {
 };
 const x = $(`co_rn`);
 const tmpCallCallee = f;
-const tmpStringFirstArg = x;
 let tmpCalleeParam$1 = $coerce(x, `string`);
 let tmpCalleeParam = f(tmpCalleeParam$1);
 $(tmpCalleeParam);
 const y = $(`m#az#e`);
 const tmpCallCallee$1 = f;
-const tmpStringFirstArg$1 = y;
 let tmpCalleeParam$5 = $coerce(y, `string`);
 let tmpCalleeParam$3 = f(tmpCalleeParam$5);
 $(tmpCalleeParam$3);

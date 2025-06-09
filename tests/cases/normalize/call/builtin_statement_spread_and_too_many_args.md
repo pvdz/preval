@@ -9,7 +9,8 @@
 ## Input
 
 `````js filename=intro
-isNaN(...$([1, 2, 3, 4]), $spy('b'), $spy('c'));
+const is = isNaN(...$([1, 2, 3, 4]), $spy('b'), $spy('c'));
+$(is);
 `````
 
 
@@ -17,13 +18,13 @@ isNaN(...$([1, 2, 3, 4]), $spy('b'), $spy('c'));
 
 
 `````js filename=intro
-const tmpCalleeParam /*:array*/ /*truthy*/ = [1, 2, 3, 4];
-const tmpArrSpread /*:unknown*/ = $(tmpCalleeParam);
-const tmpArgOverflow /*:array*/ /*truthy*/ = [...tmpArrSpread];
-$spy(`b`);
-$spy(`c`);
-const tmpEA1 /*:unknown*/ = tmpArgOverflow[0];
-$coerce(tmpEA1, `number`);
+const tmpCalleeParam$3 /*:array*/ /*truthy*/ = [1, 2, 3, 4];
+const tmpArrSpread /*:unknown*/ = $(tmpCalleeParam$3);
+const tmpCalleeParamSpread /*:array*/ /*truthy*/ = [...tmpArrSpread];
+const tmpCalleeParam /*:unknown*/ = $spy(`b`);
+const tmpCalleeParam$1 /*:unknown*/ = $spy(`c`);
+const is /*:boolean*/ = isNaN(...tmpCalleeParamSpread, tmpCalleeParam, tmpCalleeParam$1);
+$(is);
 `````
 
 
@@ -32,10 +33,10 @@ $coerce(tmpEA1, `number`);
 
 `````js filename=intro
 const tmpArrSpread = $([1, 2, 3, 4]);
-const tmpArgOverflow = [...tmpArrSpread];
-$spy(`b`);
-$spy(`c`);
-$coerce(tmpArgOverflow[0], `number`);
+const tmpCalleeParamSpread = [...tmpArrSpread];
+const tmpCalleeParam = $spy(`b`);
+const tmpCalleeParam$1 = $spy(`c`);
+$(isNaN(...tmpCalleeParamSpread, tmpCalleeParam, tmpCalleeParam$1));
 `````
 
 
@@ -46,10 +47,10 @@ With rename=true
 const a = [ 1, 2, 3, 4 ];
 const b = $( a );
 const c = [ ...b ];
-$spy( "b" );
-$spy( "c" );
-const d = c[ 0 ];
-$coerce( d, "number" );
+const d = $spy( "b" );
+const e = $spy( "c" );
+const f = isNaN( ...c, d, e );
+$( f );
 `````
 
 
@@ -57,13 +58,13 @@ $coerce( d, "number" );
 (This is what phase1 received the first time)
 
 `````js filename=intro
-let tmpCalleeParam = [1, 2, 3, 4];
-const tmpArrSpread = $(tmpCalleeParam);
-const tmpArgOverflow = [...tmpArrSpread];
-$spy(`b`);
-$spy(`c`);
-const tmpEA1 = tmpArgOverflow[0];
-$coerce(tmpEA1, `number`);
+let tmpCalleeParam$3 = [1, 2, 3, 4];
+const tmpArrSpread = $(tmpCalleeParam$3);
+let tmpCalleeParamSpread = [...tmpArrSpread];
+let tmpCalleeParam = $spy(`b`);
+let tmpCalleeParam$1 = $spy(`c`);
+const is = isNaN(...tmpCalleeParamSpread, tmpCalleeParam, tmpCalleeParam$1);
+$(is);
 `````
 
 
@@ -72,7 +73,6 @@ $coerce(tmpEA1, `number`);
 
 - (todo) Deal with array spreads in arr mutation?
 - (todo) support array reads statement type VarStatement
-- (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
 
 
 ## Globals
@@ -88,6 +88,7 @@ Should call `$` with:
  - 1: [1, 2, 3, 4]
  - 2: 'Creating spy', 1, 1, ['b', 'b']
  - 3: 'Creating spy', 2, 1, ['c', 'c']
+ - 4: false
  - eval returned: undefined
 
 Pre normalization calls: Same

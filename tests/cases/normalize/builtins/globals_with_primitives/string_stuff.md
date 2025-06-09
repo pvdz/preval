@@ -69,21 +69,21 @@ let tmpCalleeParam = `Infinity`;
 $(tmpCalleeParam);
 let tmpCalleeParam$1 = `-Infinity`;
 $(tmpCalleeParam$1);
-const tmpStringFirstArg = $Number_NaN;
+let tmpCalleeParam$5 = $Number_NaN;
 let tmpCalleeParam$3 = $coerce($Number_NaN, `string`);
 $(tmpCalleeParam$3);
-const tmpStringFirstArg$1 = $Number_POSITIVE_INFINITY;
-let tmpCalleeParam$5 = $coerce($Number_POSITIVE_INFINITY, `string`);
-$(tmpCalleeParam$5);
-const tmpStringFirstArg$3 = $Number_NEGATIVE_INFINITY;
-let tmpCalleeParam$7 = $coerce($Number_NEGATIVE_INFINITY, `string`);
+let tmpCalleeParam$9 = $Number_POSITIVE_INFINITY;
+let tmpCalleeParam$7 = $coerce($Number_POSITIVE_INFINITY, `string`);
 $(tmpCalleeParam$7);
-const tmpStringFirstArg$5 = $Number_MAX_SAFE_INTEGER;
-let tmpCalleeParam$9 = $coerce($Number_MAX_SAFE_INTEGER, `string`);
-$(tmpCalleeParam$9);
-const tmpStringFirstArg$7 = $Number_MIN_SAFE_INTEGER;
-let tmpCalleeParam$11 = $coerce($Number_MIN_SAFE_INTEGER, `string`);
+let tmpCalleeParam$13 = $Number_NEGATIVE_INFINITY;
+let tmpCalleeParam$11 = $coerce($Number_NEGATIVE_INFINITY, `string`);
 $(tmpCalleeParam$11);
+let tmpCalleeParam$17 = $Number_MAX_SAFE_INTEGER;
+let tmpCalleeParam$15 = $coerce($Number_MAX_SAFE_INTEGER, `string`);
+$(tmpCalleeParam$15);
+let tmpCalleeParam$21 = $Number_MIN_SAFE_INTEGER;
+let tmpCalleeParam$19 = $coerce($Number_MIN_SAFE_INTEGER, `string`);
+$(tmpCalleeParam$19);
 `````
 
 

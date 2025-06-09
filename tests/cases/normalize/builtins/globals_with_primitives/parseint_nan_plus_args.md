@@ -44,9 +44,11 @@ $( $Number_NaN );
 (This is what phase1 received the first time)
 
 `````js filename=intro
+const tmpArgOverflow = $Number_NaN;
+const tmpArgOverflow$1 = 1;
 implicitGlobal;
-let tmpCalleeParam = NaN;
-$($Number_NaN);
+let tmpCalleeParam = $Number_parseInt(tmpArgOverflow, tmpArgOverflow$1);
+$(tmpCalleeParam);
 `````
 
 

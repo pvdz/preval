@@ -27,10 +27,10 @@ while (true) {
 
 `````js filename=intro
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpNumberFirstArg /*:unknown*/ = $(1);
-  const x /*:number*/ = $coerce(tmpNumberFirstArg, `number`);
-  const tmpNumberFirstArg$1 /*:unknown*/ = $(2);
-  const y /*:number*/ = $coerce(tmpNumberFirstArg$1, `number`);
+  const tmpCalleeParam /*:unknown*/ = $(1);
+  const x /*:number*/ = $coerce(tmpCalleeParam, `number`);
+  const tmpCalleeParam$1 /*:unknown*/ = $(2);
+  const y /*:number*/ = $coerce(tmpCalleeParam$1, `number`);
   const z /*:number*/ = x / y;
   try {
     $(z);
@@ -81,10 +81,10 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 `````js filename=intro
 while (true) {
-  const tmpNumberFirstArg = $(1);
-  const x = $coerce(tmpNumberFirstArg, `number`);
-  const tmpNumberFirstArg$1 = $(2);
-  const y = $coerce(tmpNumberFirstArg$1, `number`);
+  let tmpCalleeParam = $(1);
+  const x = $coerce(tmpCalleeParam, `number`);
+  let tmpCalleeParam$1 = $(2);
+  const y = $coerce(tmpCalleeParam$1, `number`);
   try {
     const z = x / y;
     $(z);

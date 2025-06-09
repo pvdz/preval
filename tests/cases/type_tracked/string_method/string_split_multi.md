@@ -47,7 +47,10 @@ $( a );
 
 `````js filename=intro
 const tmpMCF = $string_split;
-let tmpCalleeParam = $dotCall($string_split, `hello world`, `split`, ``, $, unknown);
+const tmpArgOverflow = ``;
+const tmpArgOverflow$1 = $;
+unknown;
+let tmpCalleeParam = $dotCall($string_split, `hello world`, `split`, tmpArgOverflow, tmpArgOverflow$1);
 $(tmpCalleeParam);
 `````
 

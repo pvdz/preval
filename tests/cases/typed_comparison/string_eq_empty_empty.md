@@ -19,8 +19,8 @@ $('out:', y);
 
 
 `````js filename=intro
-const tmpStringFirstArg /*:unknown*/ = $(``);
-const x /*:string*/ = $coerce(tmpStringFirstArg, `string`);
+const tmpCalleeParam /*:unknown*/ = $(``);
+const x /*:string*/ = $coerce(tmpCalleeParam, `string`);
 const y /*:boolean*/ /*banged*/ = !x;
 $(`out:`, y);
 `````
@@ -50,8 +50,8 @@ $( "out:", c );
 (This is what phase1 received the first time)
 
 `````js filename=intro
-const tmpStringFirstArg = $(``);
-const x = $coerce(tmpStringFirstArg, `string`);
+let tmpCalleeParam = $(``);
+const x = $coerce(tmpCalleeParam, `string`);
 const y = x === ``;
 $(`out:`, y);
 `````

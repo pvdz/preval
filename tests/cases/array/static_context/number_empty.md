@@ -41,8 +41,8 @@ $( 0 );
 (This is what phase1 received the first time)
 
 `````js filename=intro
-const tmpNumberFirstArg = [];
-let tmpCalleeParam = $coerce(tmpNumberFirstArg, `number`);
+let tmpCalleeParam$1 = [];
+let tmpCalleeParam = $coerce(tmpCalleeParam$1, `number`);
 $(tmpCalleeParam);
 `````
 

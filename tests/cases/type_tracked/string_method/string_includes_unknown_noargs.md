@@ -21,8 +21,8 @@ $(bool);
 
 
 `````js filename=intro
-const tmpStringFirstArg /*:unknown*/ = $spy();
-const str /*:string*/ = $coerce(tmpStringFirstArg, `string`);
+const tmpCalleeParam /*:unknown*/ = $spy();
+const str /*:string*/ = $coerce(tmpCalleeParam, `string`);
 const bool /*:boolean*/ = $dotCall($string_includes, str, `includes`);
 $(bool);
 `````
@@ -51,8 +51,8 @@ $( c );
 (This is what phase1 received the first time)
 
 `````js filename=intro
-const tmpStringFirstArg = $spy();
-const str = $coerce(tmpStringFirstArg, `string`);
+let tmpCalleeParam = $spy();
+const str = $coerce(tmpCalleeParam, `string`);
 const tmpMCF = str.includes;
 const bool = $dotCall(tmpMCF, str, `includes`);
 $(bool);

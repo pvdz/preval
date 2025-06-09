@@ -123,10 +123,8 @@ $( "JSON:", z );
 `````js filename=intro
 let tmpCalleeParam = $boolean_constructor(a);
 $(`Boolean:`, tmpCalleeParam);
-const tmpNumberFirstArg = b;
 let tmpCalleeParam$1 = $coerce(b, `number`);
 $(`Number:`, tmpCalleeParam$1);
-const tmpStringFirstArg = c;
 let tmpCalleeParam$3 = $coerce(c, `string`);
 $(`String:`, tmpCalleeParam$3);
 let tmpCalleeParam$5 = $array_constructor(d);

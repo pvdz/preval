@@ -69,9 +69,7 @@ $( d );
 
 `````js filename=intro
 const x = $(`test`);
-const tmpStringFirstArg = x;
 const y = $coerce(x, `string`);
-const tmpNumberFirstArg = x;
 const z = $coerce(x, `number`);
 const w = $boolean_constructor(x);
 $(y);

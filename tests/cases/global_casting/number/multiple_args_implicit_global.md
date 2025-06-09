@@ -21,9 +21,9 @@ $(y);
 
 `````js filename=intro
 const a /*:unknown*/ = $(`a`);
-const x /*:number*/ = +a;
+const tmpArgOverflow /*:number*/ = +a;
 fail_hard;
-$(x);
+$(tmpArgOverflow);
 `````
 
 
@@ -32,9 +32,9 @@ $(x);
 
 `````js filename=intro
 const a = $(`a`);
-const x = +a;
+const tmpArgOverflow = +a;
 fail_hard;
-$(x);
+$(tmpArgOverflow);
 `````
 
 
@@ -55,10 +55,8 @@ $( b );
 `````js filename=intro
 const a = $(`a`);
 const x = +a;
-const tmpCompObj = [x];
 const tmpArgOverflow = x;
 fail_hard;
-const tmpNumberFirstArg = tmpArgOverflow;
 const y = $coerce(tmpArgOverflow, `number`);
 $(y);
 `````

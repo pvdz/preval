@@ -249,3 +249,19 @@ we can try to enable processAttempt2multiScopeWriteReadOnly in src/reduce_static
 
 ternaryConst annotated test cases might have something interesting to build out
 we should have an `innerLabel`, like innerLoop etc. we should update cases that refer to innerLoop because in most of those cases it's about getting certainty about something and label-break is another form of not executing a certain branch of code.
+
+tests/cases/normalize/switch/poc_out.md heeft nog een ternary bool, kunnen we die beter maken of is dat al
+
+can we introduce a $noop(a,b,c) special symbol that serves to mimic a sequence? That may only be helpful during normalization. But there it should be useful?
+
+in tests/cases/if_test_merging/if_fold_ternary_const_hard_55.md `y` is an alias for `tmpIfTest` and we could drop y in favor of it. not sure if really better tho.
+  - after if(x) we know y is false, at least at that point.
+
+implement the < <= case in src/reduce_static/if_test_transitive.mjs too
+
+
+
+-    mustBePrimitive: undefined, // When we don't know the actual type but we know it must be a primitive. Used to determine if something might spy curing coercion
+
+
+normalization cant deal with globals because it doesnt know about local vs global refs

@@ -43,8 +43,8 @@ $( $Number_NaN );
 (This is what phase1 received the first time)
 
 `````js filename=intro
-let tmpCalleeParam = NaN;
-$($Number_NaN);
+let tmpCalleeParam = $coerce(`50xyz`, `number`);
+$(tmpCalleeParam);
 `````
 
 

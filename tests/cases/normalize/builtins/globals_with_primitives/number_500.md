@@ -41,7 +41,7 @@ $( 500 );
 (This is what phase1 received the first time)
 
 `````js filename=intro
-let tmpCalleeParam = 500;
+let tmpCalleeParam = $coerce(500, `number`);
 $(tmpCalleeParam);
 `````
 

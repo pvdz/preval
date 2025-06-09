@@ -24,6 +24,22 @@ export function sym_prefix(className, proto) {
 }
 
 
+/**
+ *    Global
+ */
+// (We don't support global conceptually yet but we can totally use it as a namespace here)
+
+
+
+export const GLOBAL = new Map([
+  [symbo('global', 'isNaN'),        { prop: 'isNaN',    isProto: true,  typings: { sname: symbo('global', 'isNaN'),     mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, maxlen: 1, returns: 'boolean' }}],
+  [symbo('global', 'isFinite'),     { prop: 'isFinite', isProto: true,  typings: { sname: symbo('global', 'isFinite'),  mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, maxlen: 1, returns: 'boolean'}}],
+  [symbo('global', 'btoa'),         { prop: 'btoa',     isProto: true,  typings: { sname: symbo('global', 'btoa'),      mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, maxlen: 1, returns: 'string'}}],
+  [symbo('global', 'atob'),         { prop: 'atob',     isProto: true,  typings: { sname: symbo('global', 'atob'),      mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, maxlen: 1, returns: 'string'}}],
+  [symbo('global', 'eval'),         { prop: 'atob',     isProto: true,  typings: { sname: symbo('global', 'eval'),      mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, maxlen: 1, returns: 'unknown'}}],
+]);
+
+
 
 /**
  *    Boolean

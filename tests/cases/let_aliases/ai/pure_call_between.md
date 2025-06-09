@@ -51,6 +51,8 @@ $( a, a );
 let x = $(`val`);
 const a = x;
 const tmpMCF = $Math_abs;
+const tmpEA1 = -1;
+$coerce(tmpEA1, `number`);
 const b = x;
 $(a, x);
 `````

@@ -47,7 +47,7 @@ const tmpCalleeParam$11 /*:()=>undefined*/ = function () {
   return undefined;
 };
 $(`Function:`, tmpCalleeParam$11);
-const tmpCalleeParam$13 /*:regex*/ /*truthy*/ = new $regex_constructor(`(?:)`, ``);
+const tmpCalleeParam$13 /*:regex*/ /*truthy*/ = $regex_constructor(`(?:)`, ``);
 $(`RegExp:`, tmpCalleeParam$13);
 const tmpCalleeParam$15 /*:map*/ /*truthy*/ = $map_constructor();
 $(`Map:`, tmpCalleeParam$15);
@@ -73,7 +73,7 @@ $(`Array:`, $array_constructor());
 $(`Object:`, $object_constructor());
 $(`Date:`, $date_constructor().length);
 $(`Function:`, function () {});
-$(`RegExp:`, new $regex_constructor(`(?:)`, ``));
+$(`RegExp:`, $regex_constructor(`(?:)`, ``));
 $(`Map:`, $map_constructor());
 $(`Set:`, $set_constructor());
 $(`Buffer:`, $buffer_constructor());
@@ -101,7 +101,7 @@ const e = function() {
   return undefined;
 };
 $( "Function:", e );
-const f = new $regex_constructor( "(?:)", "" );
+const f = $regex_constructor( "(?:)", "" );
 $( "RegExp:", f );
 const g = $map_constructor();
 $( "Map:", g );
@@ -138,7 +138,7 @@ let tmpCalleeParam$11 = function () {
   return undefined;
 };
 $(`Function:`, tmpCalleeParam$11);
-let tmpCalleeParam$13 = new $regex_constructor(`(?:)`, ``);
+let tmpCalleeParam$13 = $regex_constructor(`(?:)`, ``);
 $(`RegExp:`, tmpCalleeParam$13);
 let tmpCalleeParam$15 = $map_constructor();
 $(`Map:`, tmpCalleeParam$15);

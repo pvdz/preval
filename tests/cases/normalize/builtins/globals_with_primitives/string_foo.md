@@ -41,7 +41,7 @@ $( "foo" );
 (This is what phase1 received the first time)
 
 `````js filename=intro
-let tmpCalleeParam = `foo`;
+let tmpCalleeParam = $coerce(`foo`, `string`);
 $(tmpCalleeParam);
 `````
 

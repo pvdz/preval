@@ -20,7 +20,7 @@ $(f);
 
 
 `````js filename=intro
-const f /*:regex*/ /*truthy*/ = new $regex_constructor(`bar`, `g`);
+const f /*:regex*/ /*truthy*/ = $regex_constructor(`bar`, `g`);
 $(f);
 `````
 
@@ -29,7 +29,7 @@ $(f);
 (This ought to be the final result)
 
 `````js filename=intro
-$(new $regex_constructor(`bar`, `g`));
+$($regex_constructor(`bar`, `g`));
 `````
 
 
@@ -37,7 +37,7 @@ $(new $regex_constructor(`bar`, `g`));
 With rename=true
 
 `````js filename=intro
-const a = new $regex_constructor( "bar", "g" );
+const a = $regex_constructor( "bar", "g" );
 $( a );
 `````
 

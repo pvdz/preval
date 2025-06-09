@@ -42,7 +42,7 @@ $( 300 );
 
 `````js filename=intro
 const tmpMCF = $number_constructor;
-let tmpCalleeParam = 300;
+let tmpCalleeParam = $coerce(`300`, `number`);
 $(tmpCalleeParam);
 `````
 

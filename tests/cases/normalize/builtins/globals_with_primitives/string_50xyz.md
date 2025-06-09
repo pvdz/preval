@@ -43,7 +43,7 @@ $( "50xyz" );
 (This is what phase1 received the first time)
 
 `````js filename=intro
-let tmpCalleeParam = `50xyz`;
+let tmpCalleeParam = $coerce(`50xyz`, `string`);
 $(tmpCalleeParam);
 `````
 

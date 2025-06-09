@@ -65,9 +65,9 @@ $( "-9007199254740991" );
 (This is what phase1 received the first time)
 
 `````js filename=intro
-let tmpCalleeParam = `Infinity`;
+let tmpCalleeParam = $coerce($Number_POSITIVE_INFINITY, `string`);
 $(tmpCalleeParam);
-let tmpCalleeParam$1 = `-Infinity`;
+let tmpCalleeParam$1 = $coerce(-Infinity, `string`);
 $(tmpCalleeParam$1);
 let tmpCalleeParam$5 = $Number_NaN;
 let tmpCalleeParam$3 = $coerce($Number_NaN, `string`);

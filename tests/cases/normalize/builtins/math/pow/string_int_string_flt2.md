@@ -1,20 +1,15 @@
 # Preval test case
 
-# ai_direct_primitive_conversion.md
+# string_int_string_flt2.md
 
-> Ai > Ai1 > Ai direct primitive conversion
+> Normalize > Builtins > Math > Pow > String int string flt2
 >
-> Test: Simplification of String(literal_string) and Number(literal_number).
+> Static expressions can be inlined under certain conditions
 
 ## Input
 
 `````js filename=intro
-// Expected: let s = "hello"; $("string", s); let n = 42; $("number", n);
-let s = String("hello");
-$("string", s);
-
-let n = Number(42);
-$("number", n);
+$(Math.pow('3.123456789', '5.123456789'));
 `````
 
 
@@ -22,8 +17,7 @@ $("number", n);
 
 
 `````js filename=intro
-$(`string`, `hello`);
-$(`number`, 42);
+$(342.1713328755235);
 `````
 
 
@@ -31,8 +25,7 @@ $(`number`, 42);
 (This ought to be the final result)
 
 `````js filename=intro
-$(`string`, `hello`);
-$(`number`, 42);
+$(342.1713328755235);
 `````
 
 
@@ -40,8 +33,7 @@ $(`number`, 42);
 With rename=true
 
 `````js filename=intro
-$( "string", "hello" );
-$( "number", 42 );
+$( 342.1713328755235 );
 `````
 
 
@@ -49,10 +41,9 @@ $( "number", 42 );
 (This is what phase1 received the first time)
 
 `````js filename=intro
-let s = $coerce(`hello`, `string`);
-$(`string`, s);
-let n = $coerce(42, `number`);
-$(`number`, n);
+const tmpMCF = $Math_pow;
+let tmpCalleeParam = 342.1713328755235;
+$(tmpCalleeParam);
 `````
 
 
@@ -72,8 +63,7 @@ None
 
 
 Should call `$` with:
- - 1: 'string', 'hello'
- - 2: 'number', 42
+ - 1: 342.1713328755235
  - eval returned: undefined
 
 Pre normalization calls: Same

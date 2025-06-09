@@ -1126,8 +1126,10 @@ function _inferNodeTyping(fdata, valueNode) {
           mustBePrimitive: false
         });
       }
-      vlog('- Node is an identifier; no attempt is made to figure out its typing');
-      // Not sure we can say anything about this. We could propagate what we already know about this ident ... (TODO). Unsure about ramifications
+
+      // const meta = fdata.globallyUniqueNamingRegistry.get(valueNode.name);
+      // vlog('- Node is an identifier; mustbetype=', meta.typing.mustBeType);
+      // return createTypingObject(meta.typing);
       return createTypingObject({});
     }
     case 'ThisExpression': {

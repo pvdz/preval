@@ -41,7 +41,7 @@ $( "Infinity" );
 (This is what phase1 received the first time)
 
 `````js filename=intro
-let tmpCalleeParam = `Infinity`;
+let tmpCalleeParam = $coerce($Number_POSITIVE_INFINITY, `string`);
 $(tmpCalleeParam);
 `````
 
@@ -49,7 +49,7 @@ $(tmpCalleeParam);
 ## Todos triggered
 
 
-None
+- (todo) Support coercing "$Number_POSITIVE_INFINITY" to a "string"
 
 
 ## Globals

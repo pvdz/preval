@@ -41,15 +41,15 @@ $( $Number_NaN );
 (This is what phase1 received the first time)
 
 `````js filename=intro
-let tmpCalleeParam = NaN;
-$($Number_NaN);
+let tmpCalleeParam = $coerce($Number_NaN, `number`);
+$(tmpCalleeParam);
 `````
 
 
 ## Todos triggered
 
 
-None
+- (todo) Support coercing "$Number_NaN" to a "number"
 
 
 ## Globals

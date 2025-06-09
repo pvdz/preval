@@ -18,7 +18,7 @@ $(y);
 
 
 `````js filename=intro
-const y /*:regex*/ /*truthy*/ = new $regex_constructor(`(?:)`, ``);
+const y /*:regex*/ /*truthy*/ = $regex_constructor(`(?:)`, ``);
 $(y);
 `````
 
@@ -27,7 +27,7 @@ $(y);
 (This ought to be the final result)
 
 `````js filename=intro
-$(new $regex_constructor(`(?:)`, ``));
+$($regex_constructor(`(?:)`, ``));
 `````
 
 
@@ -35,7 +35,7 @@ $(new $regex_constructor(`(?:)`, ``));
 With rename=true
 
 `````js filename=intro
-const a = new $regex_constructor( "(?:)", "" );
+const a = $regex_constructor( "(?:)", "" );
 $( a );
 `````
 
@@ -44,7 +44,7 @@ $( a );
 (This is what phase1 received the first time)
 
 `````js filename=intro
-const y = new $regex_constructor(`(?:)`, ``);
+const y = $regex_constructor(`(?:)`, ``);
 $(y);
 `````
 

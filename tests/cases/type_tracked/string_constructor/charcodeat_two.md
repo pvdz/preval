@@ -42,7 +42,7 @@ $( "PF" );
 
 `````js filename=intro
 const tmpMCF = $String_fromCharCode;
-let tmpCalleeParam = $String_fromCharCode(80, 70);
+let tmpCalleeParam = `PF`;
 $(tmpCalleeParam);
 `````
 

@@ -22,8 +22,11 @@ $('result', val);
 
 
 `````js filename=intro
-$(`key_name`);
-$(`result`, 123);
+const k /*:unknown*/ = $(`key_name`);
+const obj /*:object*/ /*truthy*/ = {};
+obj[k] = 123;
+const val /*:unknown*/ = obj[k];
+$(`result`, val);
 `````
 
 
@@ -31,8 +34,10 @@ $(`result`, 123);
 (This ought to be the final result)
 
 `````js filename=intro
-$(`key_name`);
-$(`result`, 123);
+const k = $(`key_name`);
+const obj = {};
+obj[k] = 123;
+$(`result`, obj[k]);
 `````
 
 
@@ -40,8 +45,11 @@ $(`result`, 123);
 With rename=true
 
 `````js filename=intro
-$( "key_name" );
-$( "result", 123 );
+const a = $( "key_name" );
+const b = {};
+b[a] = 123;
+const c = b[ a ];
+$( "result", c );
 `````
 
 

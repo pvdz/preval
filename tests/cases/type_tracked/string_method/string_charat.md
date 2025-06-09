@@ -42,7 +42,7 @@ $( "l" );
 
 `````js filename=intro
 const tmpMCF = $string_charAt;
-let tmpCalleeParam = $dotCall($string_charAt, `hello`, `charAt`, 2);
+let tmpCalleeParam = `l`;
 $(tmpCalleeParam);
 `````
 

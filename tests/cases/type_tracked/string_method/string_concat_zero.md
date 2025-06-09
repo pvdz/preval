@@ -42,7 +42,7 @@ $( "hello" );
 
 `````js filename=intro
 const tmpMCF = $string_concat;
-let tmpCalleeParam = $dotCall($string_concat, `hello`, `concat`);
+let tmpCalleeParam = `hello`;
 $(tmpCalleeParam);
 `````
 

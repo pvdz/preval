@@ -42,9 +42,9 @@ $( true, false );
 
 `````js filename=intro
 const tmpMCF = $string_includes;
-const bool = $dotCall($string_includes, `321`, `includes`, 1, `2`);
+const bool = true;
 const tmpMCF$1 = $string_includes;
-const bool2 = $dotCall($string_includes, `123`, `includes`, 1, `2`);
+const bool2 = false;
 $(bool, bool2);
 `````
 

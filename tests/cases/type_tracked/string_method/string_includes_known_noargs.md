@@ -45,7 +45,7 @@ $( false );
 
 `````js filename=intro
 const tmpMCF = $string_includes;
-const bool = $dotCall($string_includes, `123`, `includes`);
+const bool = false;
 $(bool);
 `````
 

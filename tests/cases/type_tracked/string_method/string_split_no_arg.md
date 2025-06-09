@@ -44,7 +44,7 @@ $( a );
 
 `````js filename=intro
 const tmpMCF = $string_split;
-let tmpCalleeParam = $dotCall($string_split, `hello world`, `split`);
+let tmpCalleeParam = [`hello world`];
 $(tmpCalleeParam);
 `````
 

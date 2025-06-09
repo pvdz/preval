@@ -42,7 +42,7 @@ $( "hello, world" );
 
 `````js filename=intro
 const tmpMCF = $string_concat;
-let tmpCalleeParam = $dotCall($string_concat, `hello`, `concat`, `,`, ` `, `world`);
+let tmpCalleeParam = `hello, world`;
 $(tmpCalleeParam);
 `````
 
@@ -50,7 +50,7 @@ $(tmpCalleeParam);
 ## Todos triggered
 
 
-- (todo) find test case where template ends up with multiple expressions
+None
 
 
 ## Globals

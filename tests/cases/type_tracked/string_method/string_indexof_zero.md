@@ -42,7 +42,7 @@ $( -1 );
 
 `````js filename=intro
 const tmpMCF = $string_indexOf;
-let tmpCalleeParam = $dotCall($string_indexOf, `hello`, `indexOf`);
+let tmpCalleeParam = -1;
 $(tmpCalleeParam);
 `````
 

@@ -114,7 +114,7 @@ const tmpCallComplexCallee = function ($$0, $$1, $$2, $$3, $$4, $$5) {
 };
 const tmpCallCallee = tmpCallComplexCallee;
 const tmpMCF$3 = $string_split;
-let tmpCalleeParam$3 = $dotCall($string_split, `console|log|bo|x20o`, `split`, `|`);
+let tmpCalleeParam$3 = [`console`, `log`, `bo`, `x20o`];
 let tmpCalleeParam$5 = {};
 let tmpCalleeParam = tmpCallComplexCallee(`0.1('2\\\`\\'\\"\\3')`, 4, 4, tmpCalleeParam$3, 0, tmpCalleeParam$5);
 eval(tmpCalleeParam);

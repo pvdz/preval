@@ -121,7 +121,7 @@ const tmpCallComplexCallee = function ($$0, $$1, $$2, $$3, $$4, $$5) {
 };
 const tmpCallCallee = tmpCallComplexCallee;
 const tmpMCF$3 = $string_split;
-let tmpCalleeParam$3 = $dotCall($string_split, `a|b|c|d|e|x20f|u0020g|not_expr|h|i`, `split`, `|`);
+let tmpCalleeParam$3 = [`a`, `b`, `c`, `d`, `e`, `x20f`, `u0020g`, `not_expr`, `h`, `i`];
 let tmpCalleeParam$5 = {};
 let tmpCalleeParam = tmpCallComplexCallee(`"0\\\`1\\"2\\'3\\\\4\\5\\6\${7}8\\/9"`, 10, 10, tmpCalleeParam$3, 0, tmpCalleeParam$5);
 const x = eval(tmpCalleeParam);

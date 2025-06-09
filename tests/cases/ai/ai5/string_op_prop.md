@@ -53,13 +53,13 @@ $( 3 );
 const obj = { a: 1, b: 2 };
 const tmpCompObj = obj;
 const tmpMCF = $string_split;
-const tmpMCOO = $dotCall($string_split, `a`, `split`, ``);
+const tmpMCOO = [`a`];
 const tmpMCF$1 = tmpMCOO.join;
 const tmpCalleeParam = $dotCall(tmpMCF$1, tmpMCOO, `join`, ``);
 const x = tmpCompObj[tmpCalleeParam];
 const tmpCompObj$1 = obj;
 const tmpMCF$3 = $string_split;
-const tmpMCOO$1 = $dotCall($string_split, `b`, `split`, ``);
+const tmpMCOO$1 = [`b`];
 const tmpMCF$5 = tmpMCOO$1.join;
 const tmpCalleeParam$1 = $dotCall(tmpMCF$5, tmpMCOO$1, `join`, ``);
 const y = tmpCompObj$1[tmpCalleeParam$1];
@@ -71,10 +71,6 @@ $(tmpCalleeParam$3);
 ## Todos triggered
 
 
-- (todo) access object property that also exists on prototype? $array_join
-- (todo) arr mutation may be able to inline this method: tmpMCF$1
-- (todo) arr mutation may be able to inline this method: tmpMCF$5
-- (todo) support array reads statement type ExpressionStatement
 - (todo) support array reads statement type VarStatement
 
 

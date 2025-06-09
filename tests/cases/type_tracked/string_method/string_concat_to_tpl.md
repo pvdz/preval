@@ -6,6 +6,10 @@
 
 This should become a template
 
+## Options
+
+- globals: a b
+
 ## Input
 
 `````js filename=intro
@@ -59,9 +63,7 @@ $(x);
 ## Globals
 
 
-BAD@! Found 2 implicit global bindings:
-
-a, b
+None (except for the 2 globals expected by the test)
 
 
 ## Runtime Outcome

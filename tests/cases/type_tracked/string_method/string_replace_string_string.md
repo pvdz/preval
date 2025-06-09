@@ -42,7 +42,7 @@ $( "hello, world" );
 
 `````js filename=intro
 const tmpMCF = $string_replace;
-let tmpCalleeParam = $dotCall($string_replace, `hello world`, `replace`, ` `, `, `);
+let tmpCalleeParam = `hello, world`;
 $(tmpCalleeParam);
 `````
 

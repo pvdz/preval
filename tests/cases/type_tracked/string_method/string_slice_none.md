@@ -42,7 +42,7 @@ $( "hello   world" );
 
 `````js filename=intro
 const tmpMCF = $string_slice;
-let tmpCalleeParam = $dotCall($string_slice, `hello   world`, `slice`);
+let tmpCalleeParam = `hello   world`;
 $(tmpCalleeParam);
 `````
 

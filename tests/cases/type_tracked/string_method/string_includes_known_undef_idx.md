@@ -46,9 +46,9 @@ $( false, true );
 
 `````js filename=intro
 const tmpMCF = $string_includes;
-const bool1 = $dotCall($string_includes, `undefined123`, `includes`, undefined, 1);
+const bool1 = false;
 const tmpMCF$1 = $string_includes;
-const bool2 = $dotCall($string_includes, `123undefined`, `includes`, undefined, 1);
+const bool2 = true;
 $(bool1, bool2);
 `````
 

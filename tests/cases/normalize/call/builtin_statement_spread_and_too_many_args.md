@@ -19,11 +19,11 @@ isNaN(...$([1, 2, 3, 4]), $spy('b'), $spy('c'));
 `````js filename=intro
 const tmpCalleeParam /*:array*/ /*truthy*/ = [1, 2, 3, 4];
 const tmpArrSpread /*:unknown*/ = $(tmpCalleeParam);
-const tmpCompObj /*:array*/ /*truthy*/ = [...tmpArrSpread];
-const tmpArgOverflow /*:unknown*/ = tmpCompObj[0];
+const tmpArgOverflow /*:array*/ /*truthy*/ = [...tmpArrSpread];
 $spy(`b`);
 $spy(`c`);
-$coerce(tmpArgOverflow, `number`);
+const tmpEA1 /*:unknown*/ = tmpArgOverflow[0];
+$coerce(tmpEA1, `number`);
 `````
 
 
@@ -32,10 +32,10 @@ $coerce(tmpArgOverflow, `number`);
 
 `````js filename=intro
 const tmpArrSpread = $([1, 2, 3, 4]);
-const tmpArgOverflow = [...tmpArrSpread][0];
+const tmpArgOverflow = [...tmpArrSpread];
 $spy(`b`);
 $spy(`c`);
-$coerce(tmpArgOverflow, `number`);
+$coerce(tmpArgOverflow[0], `number`);
 `````
 
 
@@ -46,9 +46,9 @@ With rename=true
 const a = [ 1, 2, 3, 4 ];
 const b = $( a );
 const c = [ ...b ];
-const d = c[ 0 ];
 $spy( "b" );
 $spy( "c" );
+const d = c[ 0 ];
 $coerce( d, "number" );
 `````
 
@@ -59,12 +59,11 @@ $coerce( d, "number" );
 `````js filename=intro
 let tmpCalleeParam = [1, 2, 3, 4];
 const tmpArrSpread = $(tmpCalleeParam);
-const tmpCompObj = [...tmpArrSpread];
-const tmpArgOverflow = tmpCompObj[0];
+const tmpArgOverflow = [...tmpArrSpread];
 $spy(`b`);
 $spy(`c`);
-const tmpEA1 = tmpArgOverflow;
-$coerce(tmpArgOverflow, `number`);
+const tmpEA1 = tmpArgOverflow[0];
+$coerce(tmpEA1, `number`);
 `````
 
 

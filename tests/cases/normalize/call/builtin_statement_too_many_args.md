@@ -17,10 +17,10 @@ isNaN($spy('a'), $spy('b'), $spy('c'));
 
 
 `````js filename=intro
-const tmpEA1 /*:unknown*/ = $spy(`a`);
+const tmpArgOverflow /*:unknown*/ = $spy(`a`);
 $spy(`b`);
 $spy(`c`);
-$coerce(tmpEA1, `number`);
+$coerce(tmpArgOverflow, `number`);
 `````
 
 
@@ -28,10 +28,10 @@ $coerce(tmpEA1, `number`);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpEA1 = $spy(`a`);
+const tmpArgOverflow = $spy(`a`);
 $spy(`b`);
 $spy(`c`);
-$coerce(tmpEA1, `number`);
+$coerce(tmpArgOverflow, `number`);
 `````
 
 
@@ -50,10 +50,11 @@ $coerce( a, "number" );
 (This is what phase1 received the first time)
 
 `````js filename=intro
-const tmpEA1 = $spy(`a`);
+const tmpArgOverflow = $spy(`a`);
 $spy(`b`);
 $spy(`c`);
-$coerce(tmpEA1, `number`);
+const tmpEA1 = tmpArgOverflow;
+$coerce(tmpArgOverflow, `number`);
 `````
 
 

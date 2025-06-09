@@ -44,8 +44,9 @@ $( false );
 (This is what phase1 received the first time)
 
 `````js filename=intro
+const tmpArgOverflow = $Number_NaN;
 implicitGlobal;
-let tmpCalleeParam = false;
+let tmpCalleeParam = isFinite(tmpArgOverflow);
 $(tmpCalleeParam);
 `````
 

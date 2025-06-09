@@ -18,10 +18,10 @@ $(x);
 
 
 `````js filename=intro
-const tmpCalleeParam /*:unknown*/ = $spy(`a`);
+const tmpArgOverflow /*:unknown*/ = $spy(`a`);
 $spy(`b`);
 $spy(`c`);
-const x /*:boolean*/ = isNaN(tmpCalleeParam);
+const x /*:boolean*/ = isNaN(tmpArgOverflow);
 $(x);
 `````
 
@@ -30,10 +30,10 @@ $(x);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCalleeParam = $spy(`a`);
+const tmpArgOverflow = $spy(`a`);
 $spy(`b`);
 $spy(`c`);
-$(isNaN(tmpCalleeParam));
+$(isNaN(tmpArgOverflow));
 `````
 
 
@@ -53,12 +53,10 @@ $( b );
 (This is what phase1 received the first time)
 
 `````js filename=intro
-let tmpCalleeParam = $spy(`a`);
-let tmpCalleeParam$1 = $spy(`b`);
-let tmpCalleeParam$3 = $spy(`c`);
-const tmpCompObj = [tmpCalleeParam];
-const tmpArgOverflow = tmpCalleeParam;
-const x = isNaN(tmpCalleeParam);
+const tmpArgOverflow = $spy(`a`);
+$spy(`b`);
+$spy(`c`);
+const x = isNaN(tmpArgOverflow);
 $(x);
 `````
 

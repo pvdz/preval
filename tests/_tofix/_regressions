@@ -263,5 +263,6 @@ implement the < <= case in src/reduce_static/if_test_transitive.mjs too
 
 -    mustBePrimitive: undefined, // When we don't know the actual type but we know it must be a primitive. Used to determine if something might spy curing coercion
 
-
 normalization cant deal with globals because it doesnt know about local vs global refs
+
+can we introduce a $noop(a,b,c) special symbol that serves to mimic a sequence? That may only be helpful during normalization. But there it should be useful?

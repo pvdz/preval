@@ -244,92 +244,37 @@ let f = function () {
   const chars = [`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`, `J`, `K`];
   const index2char = [];
   const tmpMCF = $string_charCodeAt;
-  const tmpAssignComMemLhsProp$14 = $dotCall(
-    $string_charCodeAt,
-    `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`,
-    `charCodeAt`,
-    0,
-  );
+  const tmpAssignComMemLhsProp$14 = 65;
   index2char[tmpAssignComMemLhsProp$14] = 0;
   const tmpMCF$1 = $string_charCodeAt;
-  const tmpAssignComMemLhsProp$12 = $dotCall(
-    $string_charCodeAt,
-    `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`,
-    `charCodeAt`,
-    1,
-  );
+  const tmpAssignComMemLhsProp$12 = 66;
   index2char[tmpAssignComMemLhsProp$12] = 1;
   const tmpMCF$3 = $string_charCodeAt;
-  const tmpAssignComMemLhsProp$16 = $dotCall(
-    $string_charCodeAt,
-    `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`,
-    `charCodeAt`,
-    2,
-  );
+  const tmpAssignComMemLhsProp$16 = 67;
   index2char[tmpAssignComMemLhsProp$16] = 2;
   const tmpMCF$5 = $string_charCodeAt;
-  const tmpAssignComMemLhsProp$17 = $dotCall(
-    $string_charCodeAt,
-    `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`,
-    `charCodeAt`,
-    3,
-  );
+  const tmpAssignComMemLhsProp$17 = 68;
   index2char[tmpAssignComMemLhsProp$17] = 3;
   const tmpMCF$7 = $string_charCodeAt;
-  const tmpAssignComMemLhsProp$18 = $dotCall(
-    $string_charCodeAt,
-    `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`,
-    `charCodeAt`,
-    4,
-  );
+  const tmpAssignComMemLhsProp$18 = 69;
   index2char[tmpAssignComMemLhsProp$18] = 4;
   const tmpMCF$9 = $string_charCodeAt;
-  const tmpAssignComMemLhsProp$19 = $dotCall(
-    $string_charCodeAt,
-    `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`,
-    `charCodeAt`,
-    5,
-  );
+  const tmpAssignComMemLhsProp$19 = 70;
   index2char[tmpAssignComMemLhsProp$19] = 5;
   const tmpMCF$11 = $string_charCodeAt;
-  const tmpAssignComMemLhsProp$20 = $dotCall(
-    $string_charCodeAt,
-    `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`,
-    `charCodeAt`,
-    6,
-  );
+  const tmpAssignComMemLhsProp$20 = 71;
   index2char[tmpAssignComMemLhsProp$20] = 6;
   const tmpMCF$13 = $string_charCodeAt;
-  const tmpAssignComMemLhsProp$21 = $dotCall(
-    $string_charCodeAt,
-    `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`,
-    `charCodeAt`,
-    7,
-  );
+  const tmpAssignComMemLhsProp$21 = 72;
   index2char[tmpAssignComMemLhsProp$21] = 7;
   const tmpMCF$15 = $string_charCodeAt;
-  const tmpAssignComMemLhsProp$22 = $dotCall(
-    $string_charCodeAt,
-    `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`,
-    `charCodeAt`,
-    8,
-  );
+  const tmpAssignComMemLhsProp$22 = 73;
   index2char[tmpAssignComMemLhsProp$22] = 8;
   const tmpMCF$17 = $string_charCodeAt;
-  const tmpAssignComMemLhsProp$24 = $dotCall(
-    $string_charCodeAt,
-    `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`,
-    `charCodeAt`,
-    9,
-  );
+  const tmpAssignComMemLhsProp$24 = 74;
   index2char[tmpAssignComMemLhsProp$24] = 9;
   const tmpMCF$19 = $string_charCodeAt;
-  const tmpAssignComMemLhsProp$25 = $dotCall(
-    $string_charCodeAt,
-    `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`,
-    `charCodeAt`,
-    10,
-  );
+  const tmpAssignComMemLhsProp$25 = 75;
   index2char[tmpAssignComMemLhsProp$25] = 10;
   let tmpClusterSSA_s$27 = 11;
   while (true) {
@@ -351,10 +296,10 @@ let f = function () {
     }
   }
   const tmpMCF$23 = $string_charCodeAt;
-  const tmpAssignComMemLhsProp$13 = $dotCall($string_charCodeAt, `-`, `charCodeAt`, 0);
+  const tmpAssignComMemLhsProp$13 = 45;
   index2char[tmpAssignComMemLhsProp$13] = 62;
   const tmpMCF$25 = $string_charCodeAt;
-  const tmpAssignComMemLhsProp$15 = $dotCall($string_charCodeAt, `_`, `charCodeAt`, 0);
+  const tmpAssignComMemLhsProp$15 = 95;
   index2char[tmpAssignComMemLhsProp$15] = 63;
   $(index2char, chars);
   return undefined;
@@ -367,6 +312,7 @@ $(tmpCalleeParam);
 ## Todos triggered
 
 
+- (todo) In some (many?) cases the array can access this value so we could move the rhs into the array...
 - (todo) Support string.charCodeAt when the arg is not a string literal
 - (todo) computed property of a primitive access on an unknown expr;
 - (todo) support array reads statement type ExpressionStatement

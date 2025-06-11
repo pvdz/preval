@@ -139,7 +139,7 @@ export function createBuiltinSymbolGlobals() {
     [symbo('String', 'fromCodePoint')]: String.fromCodePoint,
     [symbo('String', 'raw')]: String.raw,
     [symbo('String', 'prototype')]: String.prototype,
-    [symbo('string', 'at')]: String.at,
+    [symbo('string', 'at')]: String.prototype.at,
     [symbo('string', 'charAt')]: String.prototype.charAt,
     [symbo('string', 'charCodeAt')]: String.prototype.charCodeAt,
     [symbo('string', 'constructor')]: String.prototype.constructor,

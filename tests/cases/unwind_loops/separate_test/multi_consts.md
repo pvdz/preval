@@ -35,7 +35,7 @@ const arr1 /*:array*/ /*truthy*/ = [];
 if (test) {
   arr1[0] = 103;
   let tmpClusterSSA_counter /*:number*/ = 3;
-  let tmpClusterSSA_test /*:boolean*/ = true;
+  let tmpClusterSSA_test /*:boolean*/ = 3 < max;
   const arr2 /*:array*/ /*truthy*/ = [101, 102, 103, 104, 105, 106, 107, 108, 109, 1010];
   while ($LOOP_UNROLL_10) {
     if (tmpClusterSSA_test) {
@@ -65,7 +65,7 @@ const arr1 = [];
 if (test) {
   arr1[0] = 103;
   let tmpClusterSSA_counter = 3;
-  let tmpClusterSSA_test = true;
+  let tmpClusterSSA_test = 3 < max;
   const arr2 = [101, 102, 103, 104, 105, 106, 107, 108, 109, 1010];
   while (true) {
     if (tmpClusterSSA_test) {
@@ -95,7 +95,7 @@ const c = [];
 if (b) {
   c[0] = 103;
   let d = 3;
-  let e = true;
+  let e = 3 < a;
   const f = [ 101, 102, 103, 104, 105, 106, 107, 108, 109, 1010 ];
   while ($LOOP_UNROLL_10) {
     if (e) {

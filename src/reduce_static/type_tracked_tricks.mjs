@@ -1311,7 +1311,7 @@ function _typeTrackedTricks(fdata) {
                         if (arg.type === 'SpreadElement') {
                           blockBody.splice(blockIndex, 0, AST.expressionStatement(AST.arrayExpression([arg])));
                         } else {
-                          blockBody.splice(blockIndex, 0, AST.expressionStatement(arg));
+                          blockBody.splice(blockIndex, 0, AST.expressionStatement(arg.type === 'SpreadElement' ? AST.arrayExpression(arg) : arg));
                         }
                       });
 
@@ -1524,10 +1524,13 @@ function _typeTrackedTricks(fdata) {
               vlog('Can we convert this .call() to a regular call?', calleeName, contextName, objMeta.isConstant, objMeta.isBuiltin, context?.type);
               if (
                 context?.type === 'Identifier' &&
-                (objMeta.isConstant && !objMeta.varDeclRef.node.$p.thisAccess) ||
-                (objMeta.isBuiltin && BUILTIN_FUNC_NO_CTX.has(contextName)) ||
-                // Or if the context is known to be a function, it should be fine to fold it up since $dotcall is essentially doing .call()
-                BUILTIN_SYMBOLS.get(contextName)?.typings.mustBeType === 'function'
+                args[0]?.type !== 'SpreadElement' && // context should not be spread in. dont allow $dotcall(f, ...x) sort of transforms.
+                (
+                  (objMeta.isConstant && !objMeta.varDeclRef.node.$p.thisAccess) ||
+                  (objMeta.isBuiltin && BUILTIN_FUNC_NO_CTX.has(contextName)) ||
+                  // Or if the context is known to be a function, it should be fine to fold it up since $dotcall is essentially doing .call()
+                  BUILTIN_SYMBOLS.get(contextName)?.typings.mustBeType === 'function'
+                )
               ) {
                 vlog('Queued transform to eliminate .call');
                 ++changes;
@@ -1661,7 +1664,7 @@ function _typeTrackedTricks(fdata) {
                     index: blockIndex,
                     func: () => {
                       rest.forEach(arg => {
-                        blockBody.splice(blockIndex, 0, AST.expressionStatement(arg));
+                        blockBody.splice(blockIndex, 0, AST.expressionStatement(arg.type === 'SpreadElement' ? AST.arrayExpression(arg) : arg));
                       });
                     },
                   });
@@ -1762,7 +1765,7 @@ function _typeTrackedTricks(fdata) {
                   index: blockIndex,
                   func: () => {
                     rest.forEach(arg => {
-                      blockBody.splice(blockIndex, 0, AST.expressionStatement(arg));
+                      blockBody.splice(blockIndex, 0, AST.expressionStatement(arg.type === 'SpreadElement' ? AST.arrayExpression(arg) : arg));
                     });
                   },
                 });
@@ -1880,7 +1883,7 @@ function _typeTrackedTricks(fdata) {
                     index: blockIndex,
                     func: () => {
                       rest.forEach(arg => {
-                        blockBody.splice(blockIndex, 0, AST.expressionStatement(arg));
+                        blockBody.splice(blockIndex, 0, AST.expressionStatement(arg.type === 'SpreadElement' ? AST.arrayExpression(arg) : arg));
                       });
                     },
                   });
@@ -1958,7 +1961,7 @@ function _typeTrackedTricks(fdata) {
                     index: blockIndex,
                     func: () => {
                       rest.forEach(arg => {
-                        blockBody.splice(blockIndex, 0, AST.expressionStatement(arg));
+                        blockBody.splice(blockIndex, 0, AST.expressionStatement(arg.type === 'SpreadElement' ? AST.arrayExpression(arg) : arg));
                       });
                     },
                   });
@@ -2036,7 +2039,7 @@ function _typeTrackedTricks(fdata) {
                     index: blockIndex,
                     func: () => {
                       rest.forEach(arg => {
-                        blockBody.splice(blockIndex, 0, AST.expressionStatement(arg));
+                        blockBody.splice(blockIndex, 0, AST.expressionStatement(arg.type === 'SpreadElement' ? AST.arrayExpression(arg) : arg));
                       });
                     },
                   });
@@ -2380,7 +2383,7 @@ function _typeTrackedTricks(fdata) {
                     index: blockIndex,
                     func: () => {
                       rest.forEach(arg => {
-                        blockBody.splice(blockIndex, 0, AST.expressionStatement(arg));
+                        blockBody.splice(blockIndex, 0, AST.expressionStatement(arg.type === 'SpreadElement' ? AST.arrayExpression(arg) : arg));
                       });
                     },
                   });
@@ -2463,7 +2466,7 @@ function _typeTrackedTricks(fdata) {
                     index: blockIndex,
                     func: () => {
                       rest.forEach(arg => {
-                        blockBody.splice(blockIndex, 0, AST.expressionStatement(arg));
+                        blockBody.splice(blockIndex, 0, AST.expressionStatement(arg.type === 'SpreadElement' ? AST.arrayExpression(arg) : arg));
                       });
                     },
                   });
@@ -2508,7 +2511,7 @@ function _typeTrackedTricks(fdata) {
                     index: blockIndex,
                     func: () => {
                       rest.forEach(arg => {
-                        blockBody.splice(blockIndex, 0, AST.expressionStatement(arg));
+                        blockBody.splice(blockIndex, 0, AST.expressionStatement(arg.type === 'SpreadElement' ? AST.arrayExpression(arg) : arg));
                       });
                     },
                   });
@@ -2554,7 +2557,7 @@ function _typeTrackedTricks(fdata) {
                         index: blockIndex,
                         func: () => {
                           rest.forEach(arg => {
-                            blockBody.splice(blockIndex, 0, AST.expressionStatement(arg));
+                            blockBody.splice(blockIndex, 0, AST.expressionStatement(arg.type === 'SpreadElement' ? AST.arrayExpression(arg) : arg));
                           });
                         },
                       });
@@ -2588,7 +2591,7 @@ function _typeTrackedTricks(fdata) {
                         index: blockIndex,
                         func: () => {
                           rest.forEach(arg => {
-                            blockBody.splice(blockIndex, 0, AST.expressionStatement(arg));
+                            blockBody.splice(blockIndex, 0, AST.expressionStatement(arg.type === 'SpreadElement' ? AST.arrayExpression(arg) : arg));
                           });
                         },
                       });
@@ -2778,7 +2781,7 @@ function _typeTrackedTricks(fdata) {
                     index: blockIndex,
                     func: () => {
                       rest.forEach(arg => {
-                        blockBody.splice(blockIndex, 0, AST.expressionStatement(arg));
+                        blockBody.splice(blockIndex, 0, AST.expressionStatement(arg.type === 'SpreadElement' ? AST.arrayExpression(arg) : arg));
                       });
                     },
                   });
@@ -2849,7 +2852,7 @@ function _typeTrackedTricks(fdata) {
               }
               else if (
                 AST.isStringLiteral(context, true) &&
-                (args.length === 0 || AST.isPrimitive(args[0]))
+                (args.length === 0 || (args.length === 1 && AST.isPrimitive(args[0])))
               ) {
                 // 'foo'.split()
                 // 'foo'.split('o')
@@ -2875,7 +2878,7 @@ function _typeTrackedTricks(fdata) {
                     index: blockIndex,
                     func: () => {
                       rest.forEach(arg => {
-                        blockBody.splice(blockIndex, 0, AST.expressionStatement(arg));
+                        blockBody.splice(blockIndex, 0, AST.expressionStatement(arg.type === 'SpreadElement' ? AST.arrayExpression(arg) : arg));
                       });
                     },
                   });
@@ -2918,7 +2921,7 @@ function _typeTrackedTricks(fdata) {
                       index: blockIndex,
                       func: () => {
                         rest.forEach(arg => {
-                          blockBody.splice(blockIndex, 0, AST.expressionStatement(arg));
+                          blockBody.splice(blockIndex, 0, AST.expressionStatement(arg.type === 'SpreadElement' ? AST.arrayExpression(arg) : arg));
                         });
                       },
                     });
@@ -3046,7 +3049,7 @@ function _typeTrackedTricks(fdata) {
                     index: blockIndex,
                     func: () => {
                       rest.forEach(arg => {
-                        blockBody.splice(blockIndex, 0, AST.expressionStatement(arg));
+                        blockBody.splice(blockIndex, 0, AST.expressionStatement(arg.type === 'SpreadElement' ? AST.arrayExpression(arg) : arg));
                       });
                     },
                   });
@@ -3128,7 +3131,7 @@ function _typeTrackedTricks(fdata) {
                     index: blockIndex,
                     func: () => {
                       rest.forEach(arg => {
-                        blockBody.splice(blockIndex, 0, AST.expressionStatement(arg));
+                        blockBody.splice(blockIndex, 0, AST.expressionStatement(arg.type === 'SpreadElement' ? AST.arrayExpression(arg) : arg));
                       });
                     },
                   });
@@ -3211,7 +3214,7 @@ function _typeTrackedTricks(fdata) {
                     index: blockIndex,
                     func: () => {
                       rest.forEach(arg => {
-                        blockBody.splice(blockIndex, 0, AST.expressionStatement(arg));
+                        blockBody.splice(blockIndex, 0, AST.expressionStatement(arg.type === 'SpreadElement' ? AST.arrayExpression(arg) : arg));
                       });
                     },
                   });

@@ -6,9 +6,14 @@
 >
 > String replace should fully resolve
 
+Except when any arg is not primitive
+
 ## Input
 
 `````js filename=intro
+// np
+$('hello world'.split('', 5, $, unknown));
+// problem (for normalization, at least)
 $('hello world'.split('', $, unknown));
 `````
 
@@ -18,8 +23,11 @@ $('hello world'.split('', $, unknown));
 
 `````js filename=intro
 unknown;
-const tmpCalleeParam /*:array*/ /*truthy*/ = [`h`, `e`, `l`, `l`, `o`, ` `, `w`, `o`, `r`, `l`, `d`];
+const tmpCalleeParam /*:array*/ /*truthy*/ = [`h`, `e`, `l`, `l`, `o`];
 $(tmpCalleeParam);
+unknown;
+const tmpCalleeParam$1 /*:array*/ /*truthy*/ = $dotCall($string_split, `hello world`, `split`, ``, $);
+$(tmpCalleeParam$1);
 `````
 
 
@@ -28,7 +36,9 @@ $(tmpCalleeParam);
 
 `````js filename=intro
 unknown;
-$([`h`, `e`, `l`, `l`, `o`, ` `, `w`, `o`, `r`, `l`, `d`]);
+$([`h`, `e`, `l`, `l`, `o`]);
+unknown;
+$($dotCall($string_split, `hello world`, `split`, ``, $));
 `````
 
 
@@ -37,8 +47,11 @@ With rename=true
 
 `````js filename=intro
 unknown;
-const a = [ "h", "e", "l", "l", "o", " ", "w", "o", "r", "l", "d" ];
+const a = [ "h", "e", "l", "l", "o" ];
 $( a );
+unknown;
+const b = $dotCall( $string_split, "hello world", "split", "", $ );
+$( b );
 `````
 
 
@@ -48,10 +61,16 @@ $( a );
 `````js filename=intro
 const tmpMCF = $string_split;
 const tmpArgOverflow = ``;
-const tmpArgOverflow$1 = $;
+const tmpArgOverflow$1 = 5;
 unknown;
 let tmpCalleeParam = $dotCall($string_split, `hello world`, `split`, tmpArgOverflow, tmpArgOverflow$1);
 $(tmpCalleeParam);
+const tmpMCF$1 = $string_split;
+const tmpArgOverflow$3 = ``;
+const tmpArgOverflow$5 = $;
+unknown;
+let tmpCalleeParam$1 = $dotCall($string_split, `hello world`, `split`, tmpArgOverflow$3, tmpArgOverflow$5);
+$(tmpCalleeParam$1);
 `````
 
 

@@ -89,13 +89,12 @@ const tmpCalleeParam /*:boolean*/ = 1 >= x$1;
 const tmpCalleeParam$1 /*:boolean*/ = x$1 <= 0;
 if (tmpIfTest$3) {
   $(`a`, tmpCalleeParam, tmpCalleeParam$1);
-  const tmpIfTest$5 /*:boolean*/ = x$1 <= 0;
-  const tmpCalleeParam$3 /*:boolean*/ = 1 >= x$1;
+  const tmpIfTest$2 /*:boolean*/ = x$1 <= 0;
   const tmpCalleeParam$5 /*:boolean*/ = x$1 <= 0;
-  if (tmpIfTest$5) {
-    $(`b`, tmpCalleeParam$3, tmpCalleeParam$5);
+  if (tmpIfTest$2) {
+    $(`b`, true, tmpCalleeParam$5);
   } else {
-    $(`c`, tmpCalleeParam$3, tmpCalleeParam$5);
+    $(`c`, true, tmpCalleeParam$5);
   }
 } else {
   $(`d`, tmpCalleeParam, tmpCalleeParam$1);
@@ -169,13 +168,12 @@ const tmpCalleeParam = 1 >= x$1;
 const tmpCalleeParam$1 = x$1 <= 0;
 if (tmpIfTest$3) {
   $(`a`, tmpCalleeParam, tmpCalleeParam$1);
-  const tmpIfTest$5 = x$1 <= 0;
-  const tmpCalleeParam$3 = 1 >= x$1;
+  const tmpIfTest$2 = x$1 <= 0;
   const tmpCalleeParam$5 = x$1 <= 0;
-  if (tmpIfTest$5) {
-    $(`b`, tmpCalleeParam$3, tmpCalleeParam$5);
+  if (tmpIfTest$2) {
+    $(`b`, true, tmpCalleeParam$5);
   } else {
-    $(`c`, tmpCalleeParam$3, tmpCalleeParam$5);
+    $(`c`, true, tmpCalleeParam$5);
   }
 } else {
   $(`d`, tmpCalleeParam, tmpCalleeParam$1);
@@ -248,24 +246,23 @@ const g = d <= 0;
 if (e) {
   $( "a", f, g );
   const h = d <= 0;
-  const i = 1 >= d;
-  const j = d <= 0;
+  const i = d <= 0;
   if (h) {
-    $( "b", i, j );
+    $( "b", true, i );
   }
   else {
-    $( "c", i, j );
+    $( "c", true, i );
   }
 }
 else {
   $( "d", f, g );
 }
-const k = $( true );
-const l = 1 >= k;
-if (l) {
+const j = $( true );
+const k = 1 >= j;
+if (k) {
   $( "a" );
-  const m = k <= 0;
-  if (m) {
+  const l = j <= 0;
+  if (l) {
     $( "b" );
   }
   else {
@@ -275,11 +272,11 @@ if (l) {
 else {
   $( "d" );
 }
-const n = $( true );
-const o = 1 >= n;
-if (o) {
-  const p = n <= 0;
-  if (p) {
+const m = $( true );
+const n = 1 >= m;
+if (n) {
+  const o = m <= 0;
+  if (o) {
     $( "a" );
     $( "c" );
   }
@@ -291,13 +288,13 @@ if (o) {
 else {
   $( "d" );
 }
-const q = $( true );
+const p = $( true );
 $( "a" );
-const r = 1 >= q;
-if (r) {
+const q = 1 >= p;
+if (q) {
   $( "b" );
-  const s = q <= 0;
-  if (s) {
+  const r = p <= 0;
+  if (r) {
     $( "c" );
     $( "e" );
     $( "g" );
@@ -404,7 +401,7 @@ if (tmpIfTest$15) {
 ## Todos triggered
 
 
-None
+- (todo) transitive reduction with opposite range checks
 
 
 ## Globals

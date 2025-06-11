@@ -5,6 +5,8 @@
 //        const x = y < 10; if (x) $(true);
 //
 
+// TODO: this transform is broken when x is a spy because it should trigger coercion twice but we don't preserve that
+
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, fmat, tmat, rule, example, before, source, after, findBodyOffset, } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { createFreshVar } from '../bindings.mjs';
@@ -112,13 +114,13 @@ function _ifTestTransitive(fdata) {
 
         // So if we know same side, we can compare them to hopefully resolve them.
         if (initNameLeft && read.parentProp === 'left' && AST.isNumberLiteral(read.parentNode.right)) {
-          // When `x < n, x < m`, check if n >= m
-          // When `x <= n, x <= m`, check if n >= m
-          // When `x < n, x <= m`, check if n > m
+          // When `x < n, x < m`, check if n <= m
+          // When `x <= n, x <= m`, check if n <= m
+          // When `x < n, x <= m`, check if n <= m
           const n = AST.getPrimitiveValue(otherNode);
           const m = AST.getPrimitiveValue(read.parentNode.right);
           vlog('- ok; init and read both have a literal number to the right', n, m);
-          if (n >= m) {
+          if (n <= m) {
             rule('When a nested range check is subsumed, we should resolve it; same right');
             example('if (x < 20) $(x < 10);', 'if (x < 10) $(true)');
             before(varNode);
@@ -130,6 +132,7 @@ function _ifTestTransitive(fdata) {
             after(varNode);
             after(read.blockBody[read.blockIndex]);
             changed += 1;
+            vgroupEnd();
             continue;
           } else {
             vlog('- bail: Unfortunately, the inner number is lower than the outer number, so no game');
@@ -141,7 +144,7 @@ function _ifTestTransitive(fdata) {
           const n = AST.getPrimitiveValue(otherNode);
           const m = AST.getPrimitiveValue(read.parentNode.left);
           vlog('- ok; init and read both have a literal number to the left', n, m);
-          if (n <= m) {
+          if (n >= m) {
             rule('When a nested range check is subsumed, we should resolve it; same left');
             example('if (10 < x) $(20 < x);', 'if (10 < x) $(true)');
             before(varNode);
@@ -153,6 +156,7 @@ function _ifTestTransitive(fdata) {
             after(varNode);
             after(read.blockBody[read.blockIndex]);
             changed += 1;
+            vgroupEnd();
             continue;
           } else {
             vlog('- bail: Unfortunately, the inner number is lower than the outer number, so no game');
@@ -183,8 +187,8 @@ function _ifTestTransitive(fdata) {
         vlog('- ok; read is doing a `<` or `<=`, init does the other one');
         // So if we know same side, we can compare them to hopefully resolve them.
         if (initNameLeft && read.parentProp === 'left' && AST.isNumberLiteral(read.parentNode.right)) {
-          // This is `x <= n, x < m`, now check if n > m
-          // This is `x <= n, x < m`, now check if n > m
+          // This is `x <= n, x < m`, now check if n < m
+          // This is `x <= n, x < m`, now check if n < m
           const n = AST.getPrimitiveValue(otherNode);
           const m = AST.getPrimitiveValue(read.parentNode.right);
           vlog('- ok; init and read both have a literal number to the right', n, m);
@@ -200,13 +204,14 @@ function _ifTestTransitive(fdata) {
             after(varNode);
             after(read.blockBody[read.blockIndex]);
             changed += 1;
+            vgroupEnd();
             continue;
           } else {
             vlog('- bail: Unfortunately, the inner number is lower than the outer number, so no game');
           }
         }
         else if (!initNameLeft && read.parentProp === 'right' && AST.isNumberLiteral(read.parentNode.left)) {
-          // This is `n <= x, m <= x`, now check if n >= m
+          // This is `n <= x, m <= x`, now check if n > m
           const n = AST.getPrimitiveValue(otherNode);
           const m = AST.getPrimitiveValue(read.parentNode.left);
           vlog('- ok; init and read both have a literal number to the left', n, m);
@@ -222,6 +227,7 @@ function _ifTestTransitive(fdata) {
             after(varNode);
             after(read.blockBody[read.blockIndex]);
             changed += 1;
+            vgroupEnd();
             continue;
           } else {
             vlog('- bail: Unfortunately, the inner number is lower than the outer number, so no game');

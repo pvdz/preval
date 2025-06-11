@@ -1,0 +1,129 @@
+.js
+
+This is the script that generated these test files. Faster than doing it by AI :p
+
+```
+const fs = require('fs');
+
+const arr = [];
+for (const order of [true, false]) {
+  for (const op of ['<', '<=', '>', '>=', '===']) {
+    for (const n of [0, 1, NaN]) {
+      if (order) {
+        arr.push(`x ${op} ${n}`);
+      } else {
+        arr.push(`${n} ${op} x`);
+      }
+    }
+  }
+}
+
+const cases = [];
+for (const c1 of arr) {
+  for (const c2 of arr) {
+    const a = `if (${c1})`;
+    const b = `if (${c2})`;
+
+    const file = `${a} ${b}`
+      .replaceAll(' ', '_')
+      .replaceAll('(', '')
+      .replaceAll(')', '')
+      .replaceAll('<=', 'lte')
+      .replaceAll('>=', 'gte')
+      .replaceAll('<', 'lt')
+      .replaceAll('>', 'gt')
+      .replaceAll('===', 'eq')
+      .replaceAll('NaN', 'nan');
+
+    const content = (`
+// ${file}
+
+{ // Simplest form
+  const x = $(true);
+  ${a} {
+    ${b} $('a');
+    else $('b');
+  }
+  else $('c');
+}
+
+
+{ // As expr too
+  const x = $(true);
+  ${a} {
+    $('a', ${c1}, ${c2});
+    ${b} $('b', ${c1}, ${c2});
+    else $('c', ${c1}, ${c2});
+  }
+  else $('d', ${c1}, ${c2});
+}
+
+
+{ // Unknown call before inner if
+  const x = $(true);
+  ${a} {
+    $('a');
+    ${b} $('b');
+    else $('c');
+  }
+  else $('d');
+}
+
+
+{ // Unknown call after inner if
+  const x = $(true);
+  ${a} {
+    ${b} $('a');
+    else $('b');
+    $('c');
+  }
+  else $('d');
+}
+
+
+{ // Unknown calls everywhere
+  const x = $(true);
+  $('a');
+  ${a} {
+    $('b');
+    ${b} $('c');
+    else $('d');
+    $('e');
+  }
+  else $('f');
+  $('g');
+}
+`.trim());
+    const loc = `/home/pvdz/proj/preval/tests/cases/if_test_transitive/gen/${file}.md`;
+    fs.writeFileSync(loc, content);
+  }
+}
+
+//
+// if (x < n) if (x < m)
+// ops: 4x (< <= > >=) of 8x (== != === !==)
+// n: 3x (0 1 NaN)
+// 2x: two ifs
+//
+//
+// n = 0, 1, NaN
+// order = x op n, n op x
+// op = < <= > >= ===
+//
+//
+// if (x < n)
+// if (x <= n)
+// if (x > n)
+// if (x >= n)
+// if (x === n)
+//
+// ops: 8
+// vals: *3
+// order: *2
+// =48
+//
+// cross product: 2304
+//
+// -2 ops: 1296
+// -3 ops: 900
+```

@@ -381,7 +381,7 @@ $(result);
 ## Todos triggered
 
 
-None
+- (todo) transitive reduction with opposite range checks
 
 
 ## Globals

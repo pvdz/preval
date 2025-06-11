@@ -89,12 +89,11 @@ const tmpCalleeParam /*:boolean*/ = 1 >= x$1;
 const tmpCalleeParam$1 /*:boolean*/ = 0 === x$1;
 if (tmpIfTest$3) {
   $(`a`, tmpCalleeParam, tmpCalleeParam$1);
-  const tmpCalleeParam$3 /*:boolean*/ = 1 >= x$1;
   const tmpIfTest$2 /*:boolean*/ = 0 === x$1;
   if (tmpIfTest$2) {
-    $(`b`, tmpCalleeParam$3, true);
+    $(`b`, true, true);
   } else {
-    $(`c`, tmpCalleeParam$3, false);
+    $(`c`, true, false);
   }
 } else {
   $(`d`, tmpCalleeParam, tmpCalleeParam$1);
@@ -168,11 +167,10 @@ const tmpCalleeParam = 1 >= x$1;
 const tmpCalleeParam$1 = 0 === x$1;
 if (tmpIfTest$3) {
   $(`a`, tmpCalleeParam, tmpCalleeParam$1);
-  const tmpCalleeParam$3 = 1 >= x$1;
   if (0 === x$1) {
-    $(`b`, tmpCalleeParam$3, true);
+    $(`b`, true, true);
   } else {
-    $(`c`, tmpCalleeParam$3, false);
+    $(`c`, true, false);
   }
 } else {
   $(`d`, tmpCalleeParam, tmpCalleeParam$1);
@@ -244,24 +242,23 @@ const f = 1 >= d;
 const g = 0 === d;
 if (e) {
   $( "a", f, g );
-  const h = 1 >= d;
-  const i = 0 === d;
-  if (i) {
-    $( "b", h, true );
+  const h = 0 === d;
+  if (h) {
+    $( "b", true, true );
   }
   else {
-    $( "c", h, false );
+    $( "c", true, false );
   }
 }
 else {
   $( "d", f, g );
 }
-const j = $( true );
-const k = 1 >= j;
-if (k) {
+const i = $( true );
+const j = 1 >= i;
+if (j) {
   $( "a" );
-  const l = 0 === j;
-  if (l) {
+  const k = 0 === i;
+  if (k) {
     $( "b" );
   }
   else {
@@ -271,11 +268,11 @@ if (k) {
 else {
   $( "d" );
 }
-const m = $( true );
-const n = 1 >= m;
-if (n) {
-  const o = 0 === m;
-  if (o) {
+const l = $( true );
+const m = 1 >= l;
+if (m) {
+  const n = 0 === l;
+  if (n) {
     $( "a" );
     $( "c" );
   }
@@ -287,13 +284,13 @@ if (n) {
 else {
   $( "d" );
 }
-const p = $( true );
+const o = $( true );
 $( "a" );
-const q = 1 >= p;
-if (q) {
+const p = 1 >= o;
+if (p) {
   $( "b" );
-  const r = 0 === p;
-  if (r) {
+  const q = 0 === o;
+  if (q) {
     $( "c" );
     $( "e" );
     $( "g" );

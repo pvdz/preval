@@ -46,13 +46,8 @@ const x /*:unknown*/ = $(6);
 const tmpIfTest /*:boolean*/ = x > 5;
 if (tmpIfTest) {
   $(1);
-  const tmpIfTest$1 /*:boolean*/ = x > 4;
-  if (tmpIfTest$1) {
-    $(2);
-    $(1);
-  } else {
-    $(0);
-  }
+  $(2);
+  $(1);
 } else {
   $(3);
   $(0);
@@ -64,15 +59,10 @@ if (tmpIfTest) {
 (This ought to be the final result)
 
 `````js filename=intro
-const x = $(6);
-if (x > 5) {
+if ($(6) > 5) {
   $(1);
-  if (x > 4) {
-    $(2);
-    $(1);
-  } else {
-    $(0);
-  }
+  $(2);
+  $(1);
 } else {
   $(3);
   $(0);
@@ -88,14 +78,8 @@ const a = $( 6 );
 const b = a > 5;
 if (b) {
   $( 1 );
-  const c = a > 4;
-  if (c) {
-    $( 2 );
-    $( 1 );
-  }
-  else {
-    $( 0 );
-  }
+  $( 2 );
+  $( 1 );
 }
 else {
   $( 3 );

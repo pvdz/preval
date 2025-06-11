@@ -74,12 +74,7 @@
 const x /*:unknown*/ = $(true);
 const tmpIfTest /*:boolean*/ = x > 0;
 if (tmpIfTest) {
-  const tmpIfTest$1 /*:boolean*/ = x > 0;
-  if (tmpIfTest$1) {
-    $(`a`);
-  } else {
-    $(`b`);
-  }
+  $(`a`);
 } else {
   $(`c`);
 }
@@ -89,14 +84,7 @@ const tmpCalleeParam /*:boolean*/ = x$1 > 0;
 const tmpCalleeParam$1 /*:boolean*/ = x$1 > 0;
 if (tmpIfTest$3) {
   $(`a`, tmpCalleeParam, tmpCalleeParam$1);
-  const tmpIfTest$5 /*:boolean*/ = x$1 > 0;
-  const tmpCalleeParam$3 /*:boolean*/ = x$1 > 0;
-  const tmpCalleeParam$5 /*:boolean*/ = x$1 > 0;
-  if (tmpIfTest$5) {
-    $(`b`, tmpCalleeParam$3, tmpCalleeParam$5);
-  } else {
-    $(`c`, tmpCalleeParam$3, tmpCalleeParam$5);
-  }
+  $(`b`, true, true);
 } else {
   $(`d`, tmpCalleeParam, tmpCalleeParam$1);
 }
@@ -104,26 +92,15 @@ const x$3 /*:unknown*/ = $(true);
 const tmpIfTest$7 /*:boolean*/ = x$3 > 0;
 if (tmpIfTest$7) {
   $(`a`);
-  const tmpIfTest$9 /*:boolean*/ = x$3 > 0;
-  if (tmpIfTest$9) {
-    $(`b`);
-  } else {
-    $(`c`);
-  }
+  $(`b`);
 } else {
   $(`d`);
 }
 const x$5 /*:unknown*/ = $(true);
 const tmpIfTest$11 /*:boolean*/ = x$5 > 0;
 if (tmpIfTest$11) {
-  const tmpIfTest$13 /*:boolean*/ = x$5 > 0;
-  if (tmpIfTest$13) {
-    $(`a`);
-    $(`c`);
-  } else {
-    $(`b`);
-    $(`c`);
-  }
+  $(`a`);
+  $(`c`);
 } else {
   $(`d`);
 }
@@ -132,16 +109,9 @@ $(`a`);
 const tmpIfTest$15 /*:boolean*/ = x$7 > 0;
 if (tmpIfTest$15) {
   $(`b`);
-  const tmpIfTest$17 /*:boolean*/ = x$7 > 0;
-  if (tmpIfTest$17) {
-    $(`c`);
-    $(`e`);
-    $(`g`);
-  } else {
-    $(`d`);
-    $(`e`);
-    $(`g`);
-  }
+  $(`c`);
+  $(`e`);
+  $(`g`);
 } else {
   $(`f`);
   $(`g`);
@@ -153,13 +123,8 @@ if (tmpIfTest$15) {
 (This ought to be the final result)
 
 `````js filename=intro
-const x = $(true);
-if (x > 0) {
-  if (x > 0) {
-    $(`a`);
-  } else {
-    $(`b`);
-  }
+if ($(true) > 0) {
+  $(`a`);
 } else {
   $(`c`);
 }
@@ -169,37 +134,19 @@ const tmpCalleeParam = x$1 > 0;
 const tmpCalleeParam$1 = x$1 > 0;
 if (tmpIfTest$3) {
   $(`a`, tmpCalleeParam, tmpCalleeParam$1);
-  const tmpIfTest$5 = x$1 > 0;
-  const tmpCalleeParam$3 = x$1 > 0;
-  const tmpCalleeParam$5 = x$1 > 0;
-  if (tmpIfTest$5) {
-    $(`b`, tmpCalleeParam$3, tmpCalleeParam$5);
-  } else {
-    $(`c`, tmpCalleeParam$3, tmpCalleeParam$5);
-  }
+  $(`b`, true, true);
 } else {
   $(`d`, tmpCalleeParam, tmpCalleeParam$1);
 }
-const x$3 = $(true);
-if (x$3 > 0) {
+if ($(true) > 0) {
   $(`a`);
-  if (x$3 > 0) {
-    $(`b`);
-  } else {
-    $(`c`);
-  }
+  $(`b`);
 } else {
   $(`d`);
 }
-const x$5 = $(true);
-if (x$5 > 0) {
-  if (x$5 > 0) {
-    $(`a`);
-    $(`c`);
-  } else {
-    $(`b`);
-    $(`c`);
-  }
+if ($(true) > 0) {
+  $(`a`);
+  $(`c`);
 } else {
   $(`d`);
 }
@@ -207,15 +154,9 @@ const x$7 = $(true);
 $(`a`);
 if (x$7 > 0) {
   $(`b`);
-  if (x$7 > 0) {
-    $(`c`);
-    $(`e`);
-    $(`g`);
-  } else {
-    $(`d`);
-    $(`e`);
-    $(`g`);
-  }
+  $(`c`);
+  $(`e`);
+  $(`g`);
 } else {
   $(`f`);
   $(`g`);
@@ -230,83 +171,48 @@ With rename=true
 const a = $( true );
 const b = a > 0;
 if (b) {
-  const c = a > 0;
-  if (c) {
-    $( "a" );
-  }
-  else {
-    $( "b" );
-  }
+  $( "a" );
 }
 else {
   $( "c" );
 }
-const d = $( true );
-const e = d > 0;
-const f = d > 0;
-const g = d > 0;
-if (e) {
-  $( "a", f, g );
-  const h = d > 0;
-  const i = d > 0;
-  const j = d > 0;
-  if (h) {
-    $( "b", i, j );
-  }
-  else {
-    $( "c", i, j );
-  }
+const c = $( true );
+const d = c > 0;
+const e = c > 0;
+const f = c > 0;
+if (d) {
+  $( "a", e, f );
+  $( "b", true, true );
 }
 else {
-  $( "d", f, g );
+  $( "d", e, f );
+}
+const g = $( true );
+const h = g > 0;
+if (h) {
+  $( "a" );
+  $( "b" );
+}
+else {
+  $( "d" );
+}
+const i = $( true );
+const j = i > 0;
+if (j) {
+  $( "a" );
+  $( "c" );
+}
+else {
+  $( "d" );
 }
 const k = $( true );
+$( "a" );
 const l = k > 0;
 if (l) {
-  $( "a" );
-  const m = k > 0;
-  if (m) {
-    $( "b" );
-  }
-  else {
-    $( "c" );
-  }
-}
-else {
-  $( "d" );
-}
-const n = $( true );
-const o = n > 0;
-if (o) {
-  const p = n > 0;
-  if (p) {
-    $( "a" );
-    $( "c" );
-  }
-  else {
-    $( "b" );
-    $( "c" );
-  }
-}
-else {
-  $( "d" );
-}
-const q = $( true );
-$( "a" );
-const r = q > 0;
-if (r) {
   $( "b" );
-  const s = q > 0;
-  if (s) {
-    $( "c" );
-    $( "e" );
-    $( "g" );
-  }
-  else {
-    $( "d" );
-    $( "e" );
-    $( "g" );
-  }
+  $( "c" );
+  $( "e" );
+  $( "g" );
 }
 else {
   $( "f" );

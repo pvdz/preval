@@ -7,7 +7,7 @@
 
 // TODO: this transform is broken when x is a spy because it should trigger coercion twice but we don't preserve that
 
-import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, fmat, tmat, rule, example, before, source, after, findBodyOffset, } from '../utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, fmat, tmat, rule, example, before, source, after, findBodyOffset, todo, } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { createFreshVar } from '../bindings.mjs';
 import { symbo } from '../symbols_builtins.mjs';
@@ -67,13 +67,13 @@ function _ifTestTransitive(fdata) {
       else {
         return vlog('- bail: binary expression is not ident with primitive');
       }
-    // TODO: we can apply this sort of trick for some other expressions. it's all about conveying the knowledge
-    // } else if (init.type === 'UnaryExpression') {
-    //   if (init.argument.type === 'Identifier') {
-    //     targetName = init.argument.name;
-    //   } else {
-    //     return vlog('- bail: unary expr is not on ident');
-    //   }
+      // TODO: we can apply this sort of trick for some other expressions. it's all about conveying the knowledge
+      // } else if (init.type === 'UnaryExpression') {
+      //   if (init.argument.type === 'Identifier') {
+      //     targetName = init.argument.name;
+      //   } else {
+      //     return vlog('- bail: unary expr is not on ident');
+      //   }
     } else {
       ASSERT(false);
     }
@@ -93,13 +93,12 @@ function _ifTestTransitive(fdata) {
 
       if (
         read.parentNode.type === 'BinaryExpression' &&
-        init.type === 'BinaryExpression' &&
-        (
-          (init.operator === '<' && read.parentNode.operator === '<') ||
-          init.operator === '<=' && read.parentNode.operator === '<='
-        )
+        init.type === 'BinaryExpression'
       ) {
-        vlog('- ok; read is doing a `<` or `<=`, init is same');
+        const op1 = init.operator;
+        const op2 = read.parentNode.operator;
+        vlog('- found nested binary ops:', op1, op2);
+
         // Table for lt
         // x < n, x < m       x < 20, x < 10     redundant when n >= m (20 >= 10). since x<n, x will be <m when m is equal to or smaller than n, so n>m
         // x < n, m < x       x < 20, 10 < x     no info
@@ -112,134 +111,56 @@ function _ifTestTransitive(fdata) {
         // n <= x, x <= m     10 <= x, x <= 20   no info
         // So in both cases n >= m or n <= m
 
-        // So if we know same side, we can compare them to hopefully resolve them.
-        if (initNameLeft && read.parentProp === 'left' && AST.isNumberLiteral(read.parentNode.right)) {
-          // When `x < n, x < m`, check if n <= m
-          // When `x <= n, x <= m`, check if n <= m
-          // When `x < n, x <= m`, check if n <= m
-          const n = AST.getPrimitiveValue(otherNode);
-          const m = AST.getPrimitiveValue(read.parentNode.right);
-          vlog('- ok; init and read both have a literal number to the right', n, m);
-          if (n <= m) {
-            rule('When a nested range check is subsumed, we should resolve it; same right');
-            example('if (x < 20) $(x < 10);', 'if (x < 10) $(true)');
-            before(varNode);
-            before(read.blockBody[read.blockIndex]);
-
-            if (read.grandIndex < 0) read.grandNode[read.grandProp] = AST.primitive(branch);
-            else read.grandNode[read.grandProp][read.grandIndex] = AST.primitive(branch);
-
-            after(varNode);
-            after(read.blockBody[read.blockIndex]);
+        if (
+          (init.operator === '<' && read.parentNode.operator === '<') ||
+          (init.operator === '<=' && read.parentNode.operator === '<=')
+        ) {
+          vlog('- ok; read is doing a `<` or `<=`, same as init');
+          const applied = simplifyNestedSame(initNameLeft, read, otherNode, varNode, branch, false);
+          if (applied) {
             changed += 1;
             vgroupEnd();
             continue;
-          } else {
-            vlog('- bail: Unfortunately, the inner number is lower than the outer number, so no game');
           }
-        }
-        else if (!initNameLeft && read.parentProp === 'right' && AST.isNumberLiteral(read.parentNode.left)) {
-          // This is `n < x, m < x`, now check if n >= m
-          // This is `n <= x, m <= x`, now check if n >= m
-          const n = AST.getPrimitiveValue(otherNode);
-          const m = AST.getPrimitiveValue(read.parentNode.left);
-          vlog('- ok; init and read both have a literal number to the left', n, m);
-          if (n >= m) {
-            rule('When a nested range check is subsumed, we should resolve it; same left');
-            example('if (10 < x) $(20 < x);', 'if (10 < x) $(true)');
-            before(varNode);
-            before(read.blockBody[read.blockIndex]);
-
-            if (read.grandIndex < 0) read.grandNode[read.grandProp] = AST.primitive(branch);
-            else read.grandNode[read.grandProp][read.grandIndex] = AST.primitive(branch);
-
-            after(varNode);
-            after(read.blockBody[read.blockIndex]);
+        } else if (
+          (init.operator === '>' && read.parentNode.operator === '>') ||
+          (init.operator === '>=' && read.parentNode.operator === '>=')
+        ) {
+          vlog('- ok; read is doing a `>` or `>=`, same as init. flipping the op to <= or < for the next bit of logs:');
+          const applied = simplifyNestedSame(initNameLeft, read, otherNode, varNode, branch, true);
+          if (applied) {
             changed += 1;
             vgroupEnd();
             continue;
-          } else {
-            vlog('- bail: Unfortunately, the inner number is lower than the outer number, so no game');
           }
-        }
-        else {
-          vlog('- bail: read and init dont have number on same side, cant predict');
-        }
-      } else if (
-        read.parentNode.type === 'BinaryExpression' &&
-        init.type === 'BinaryExpression' &&
-        (
+        } else if (
           (init.operator === '<' && read.parentNode.operator === '<=') ||
           (init.operator === '<=' && read.parentNode.operator === '<')
-        )
-      ) {
-        // Table for lt+lte
-        // x < n, x <= m       x < 20, x <= 10     redundant when n > m (20 > 10)
-        // x < n, m <= x       x < 20, 10 <= x     no info
-        // n < x, m <= x       20 < x, 10 <= x     redundant when n < m (10 < 20)
-        // n < x, x <= m       10 < x, x <= 20     no info
-        // Table for lte+lt
-        // x <= n, x < m       x <= 20, x < 10     redundant when n > m (20 > 10)
-        // x <= n, m < x       x <= 20, 10 < x     no info
-        // n <= x, m < x       20 <= x, 10 < x     redundant when n < m (10 < 20)
-        // n <= x, x < m       10 <= x, x < 20     no info
-
-        vlog('- ok; read is doing a `<` or `<=`, init does the other one');
-        // So if we know same side, we can compare them to hopefully resolve them.
-        if (initNameLeft && read.parentProp === 'left' && AST.isNumberLiteral(read.parentNode.right)) {
-          // This is `x <= n, x < m`, now check if n < m
-          // This is `x <= n, x < m`, now check if n < m
-          const n = AST.getPrimitiveValue(otherNode);
-          const m = AST.getPrimitiveValue(read.parentNode.right);
-          vlog('- ok; init and read both have a literal number to the right', n, m);
-          if (n < m) {
-            rule('When a nested range check is subsumed, we should resolve it; diff right');
-            example('if (x < 20) $(x < 10);', 'if (x < 10) $(true)');
-            before(varNode);
-            before(read.blockBody[read.blockIndex]);
-
-            if (read.grandIndex < 0) read.grandNode[read.grandProp] = AST.primitive(branch);
-            else read.grandNode[read.grandProp][read.grandIndex] = AST.primitive(branch);
-
-            after(varNode);
-            after(read.blockBody[read.blockIndex]);
+        ) {
+          vlog('- ok; read is doing a `<` or `<=`, init does the other one');
+          const applied = simplifyNestedOpposite(initNameLeft, read, otherNode, varNode, branch, false);
+          if (applied) {
             changed += 1;
             vgroupEnd();
             continue;
-          } else {
-            vlog('- bail: Unfortunately, the inner number is lower than the outer number, so no game');
           }
-        }
-        else if (!initNameLeft && read.parentProp === 'right' && AST.isNumberLiteral(read.parentNode.left)) {
-          // This is `n <= x, m <= x`, now check if n > m
-          const n = AST.getPrimitiveValue(otherNode);
-          const m = AST.getPrimitiveValue(read.parentNode.left);
-          vlog('- ok; init and read both have a literal number to the left', n, m);
-          if (n > m) {
-            rule('When a nested range check is subsumed, we should resolve it; diff right');
-            example('if (10 < x) $(20 < x);', 'if (10 < x) $(true)');
-            before(varNode);
-            before(read.blockBody[read.blockIndex]);
-
-            if (read.grandIndex < 0) read.grandNode[read.grandProp] = AST.primitive(branch);
-            else read.grandNode[read.grandProp][read.grandIndex] = AST.primitive(branch);
-
-            after(varNode);
-            after(read.blockBody[read.blockIndex]);
+        } else if (
+          (init.operator === '>=' && read.parentNode.operator === '>') ||
+          (init.operator === '>' && read.parentNode.operator === '>=')
+        ) {
+          vlog('- ok; read is doing a `>` or `>=`, init does the other one. flipping op for next bit of logs:');
+          const applied = simplifyNestedOpposite(initNameLeft, read, otherNode, varNode, branch, true);
+          if (applied) {
             changed += 1;
             vgroupEnd();
             continue;
-          } else {
-            vlog('- bail: Unfortunately, the inner number is lower than the outer number, so no game');
           }
-        }
-        else {
-          vlog('- bail: read and init dont have number on same side, cant predict');
+        } else if (['<', '<=', '>', '>='].includes(init.operator) && ['<', '<=', '>', '>='].includes(read.parentNode.operator)) {
+          todo('transitive reduction with opposite range checks'); // `if (x < 5) if (x >= 10) ...`, then the second test is always false
         }
       } else {
         vlog('- bail: read is not matching a supported pattern');
       }
-
 
       vgroupEnd();
     }
@@ -279,5 +200,122 @@ function * readsInsideIfs(reads, ifNodes) {
         }
       }
     }
+  }
+}
+
+function simplifyNestedSame(initNameIsLeft, read, otherNode, varNode, branch, flip) {
+  // Note: this function is called for < and <=
+  //       when code is >= or > the sides are swapped and op is flipped. x>y is y<=x, x>=y is y<x, we know at least one side is a number.
+
+  // So if we know same side, we can compare them to hopefully resolve them.
+  if (initNameIsLeft && read.parentProp === 'left' && AST.isNumberLiteral(read.parentNode.right)) {
+    // flip=true
+    //    When `x >= n, x >= m`, use `n <= x, m <= x`
+    //    When `x > n, x > m`, use `n < x, m < x`
+    // then:
+    //    When `x < n, x < m`, check if n >= m
+    //    When `x <= n, x <= m`, check if n >= m
+
+    const n = AST.getPrimitiveValue(otherNode);
+    const m = AST.getPrimitiveValue(read.parentNode.right);
+    vlog('- ok; init and read both have a literal number to the right, testing', n, m, flip ? m+'>='+n:n+'>='+m);
+    if (flip ? n >= m : n <= m) {
+      rule('When a nested range check is subsumed, we should resolve it; same right');
+      example('if (x < 20) $(x < 10);', 'if (x < 10) $(true)');
+      before(varNode);
+      before(read.blockBody[read.blockIndex]);
+
+      if (read.grandIndex < 0) read.grandNode[read.grandProp] = AST.primitive(branch);
+      else read.grandNode[read.grandProp][read.grandIndex] = AST.primitive(branch);
+
+      after(varNode);
+      after(read.blockBody[read.blockIndex]);
+      return true;
+    } else {
+      vlog('- bail: Unfortunately, the inner number is lower than the outer number, so no game');
+      return false;
+    }
+  }
+  else if (!initNameIsLeft && read.parentProp === 'right' && AST.isNumberLiteral(read.parentNode.left)) {
+    // This is `n < x, m < x`, now check if n >= m
+    // This is `n <= x, m <= x`, now check if n >= m
+    const n = AST.getPrimitiveValue(otherNode);
+    const m = AST.getPrimitiveValue(read.parentNode.left);
+    vlog('- ok; init and read both have a literal number to the left', n, m, flip ? m+'<='+n:n+'<='+m);
+    if (flip ? n <= m : n >= m) {
+      rule('When a nested range check is subsumed, we should resolve it; same left');
+      example('if (20 < x) $(10 < x);', 'if (20 < x) $(true)');
+      before(varNode);
+      before(read.blockBody[read.blockIndex]);
+
+      if (read.grandIndex < 0) read.grandNode[read.grandProp] = AST.primitive(branch);
+      else read.grandNode[read.grandProp][read.grandIndex] = AST.primitive(branch);
+
+      after(varNode);
+      after(read.blockBody[read.blockIndex]);
+      return true;
+    } else {
+      vlog('- bail: Unfortunately, the inner number is lower than the outer number, so no game');
+      return false;
+    }
+  }
+  else {
+    vlog('- bail: read and init dont have number on same side, cant predict');
+  }
+}
+
+function simplifyNestedOpposite(initNameIsLeft, read, otherNode, varNode, branch, flip) {
+  // When flip=true, we have to flip > and >= to <= and <
+
+  // So if we know same side, we can compare them to hopefully resolve them.
+  if (initNameIsLeft && read.parentProp === 'left' && AST.isNumberLiteral(read.parentNode.right)) {
+    // This is `x <= n, x < m`, now check if m > n  ("if x<=5 then x<m for any m bigger than 5")
+    // This is `x < n, x <= m`, now check if n > m  ("if x<5 then x<=m for any m smaller than 5")
+    // This is `x >= n, x > m`, now check if m >= n
+    // This is `x >= n, x > m`, now check if n >= m
+    const n = AST.getPrimitiveValue(otherNode);
+    const m = AST.getPrimitiveValue(read.parentNode.right);
+    vlog('- ok; init and read both have a literal number to the right', n, m, flip ? n+'<='+m:n+'<'+m);
+    if (flip ? n > m : n < m) {
+      rule('When a nested range check is subsumed, we should resolve it; diff right');
+      example('if (x < 20) $(x < 10);', 'if (x < 10) $(true)');
+      before(varNode);
+      before(read.blockBody[read.blockIndex]);
+
+      if (read.grandIndex < 0) read.grandNode[read.grandProp] = AST.primitive(branch);
+      else read.grandNode[read.grandProp][read.grandIndex] = AST.primitive(branch);
+
+      after(varNode);
+      after(read.blockBody[read.blockIndex]);
+      return true;
+    } else {
+      vlog('- bail: Unfortunately, the inner number is lower than the outer number, so no game');
+      return false;
+    }
+  }
+  else if (!initNameIsLeft && read.parentProp === 'right' && AST.isNumberLiteral(read.parentNode.left)) {
+    // This is `n <= x, m <= x`, now check if n >= m
+    const n = AST.getPrimitiveValue(otherNode);
+    const m = AST.getPrimitiveValue(read.parentNode.left);
+    vlog('- ok; init and read both have a literal number to the left', n, m, flip ? m+'>'+n:n+'>'+m);
+    if (flip ? n < m : n > m) {
+      rule('When a nested range check is subsumed, we should resolve it; diff left');
+      example('if (10 < x) $(20 < x);', 'if (10 < x) $(true)');
+      before(varNode);
+      before(read.blockBody[read.blockIndex]);
+
+      if (read.grandIndex < 0) read.grandNode[read.grandProp] = AST.primitive(branch);
+      else read.grandNode[read.grandProp][read.grandIndex] = AST.primitive(branch);
+
+      after(varNode);
+      after(read.blockBody[read.blockIndex]);
+      return true;
+    } else {
+      vlog('- bail: Unfortunately, the inner number is lower than the outer number, so no game');
+      return false;
+    }
+  }
+  else {
+    vlog('- bail: read and init dont have number on same side, cant predict');
   }
 }

@@ -74,12 +74,7 @@
 const x /*:unknown*/ = $(true);
 const tmpIfTest /*:boolean*/ = 0 >= x;
 if (tmpIfTest) {
-  const tmpIfTest$1 /*:boolean*/ = 0 >= x;
-  if (tmpIfTest$1) {
-    $(`a`);
-  } else {
-    $(`b`);
-  }
+  $(`a`);
 } else {
   $(`c`);
 }
@@ -89,14 +84,7 @@ const tmpCalleeParam /*:boolean*/ = 0 >= x$1;
 const tmpCalleeParam$1 /*:boolean*/ = 0 >= x$1;
 if (tmpIfTest$3) {
   $(`a`, tmpCalleeParam, tmpCalleeParam$1);
-  const tmpIfTest$5 /*:boolean*/ = 0 >= x$1;
-  const tmpCalleeParam$3 /*:boolean*/ = 0 >= x$1;
-  const tmpCalleeParam$5 /*:boolean*/ = 0 >= x$1;
-  if (tmpIfTest$5) {
-    $(`b`, tmpCalleeParam$3, tmpCalleeParam$5);
-  } else {
-    $(`c`, tmpCalleeParam$3, tmpCalleeParam$5);
-  }
+  $(`b`, true, true);
 } else {
   $(`d`, tmpCalleeParam, tmpCalleeParam$1);
 }
@@ -104,26 +92,15 @@ const x$3 /*:unknown*/ = $(true);
 const tmpIfTest$7 /*:boolean*/ = 0 >= x$3;
 if (tmpIfTest$7) {
   $(`a`);
-  const tmpIfTest$9 /*:boolean*/ = 0 >= x$3;
-  if (tmpIfTest$9) {
-    $(`b`);
-  } else {
-    $(`c`);
-  }
+  $(`b`);
 } else {
   $(`d`);
 }
 const x$5 /*:unknown*/ = $(true);
 const tmpIfTest$11 /*:boolean*/ = 0 >= x$5;
 if (tmpIfTest$11) {
-  const tmpIfTest$13 /*:boolean*/ = 0 >= x$5;
-  if (tmpIfTest$13) {
-    $(`a`);
-    $(`c`);
-  } else {
-    $(`b`);
-    $(`c`);
-  }
+  $(`a`);
+  $(`c`);
 } else {
   $(`d`);
 }
@@ -132,16 +109,9 @@ $(`a`);
 const tmpIfTest$15 /*:boolean*/ = 0 >= x$7;
 if (tmpIfTest$15) {
   $(`b`);
-  const tmpIfTest$17 /*:boolean*/ = 0 >= x$7;
-  if (tmpIfTest$17) {
-    $(`c`);
-    $(`e`);
-    $(`g`);
-  } else {
-    $(`d`);
-    $(`e`);
-    $(`g`);
-  }
+  $(`c`);
+  $(`e`);
+  $(`g`);
 } else {
   $(`f`);
   $(`g`);
@@ -155,11 +125,7 @@ if (tmpIfTest$15) {
 `````js filename=intro
 const x = $(true);
 if (0 >= x) {
-  if (0 >= x) {
-    $(`a`);
-  } else {
-    $(`b`);
-  }
+  $(`a`);
 } else {
   $(`c`);
 }
@@ -169,37 +135,21 @@ const tmpCalleeParam = 0 >= x$1;
 const tmpCalleeParam$1 = 0 >= x$1;
 if (tmpIfTest$3) {
   $(`a`, tmpCalleeParam, tmpCalleeParam$1);
-  const tmpIfTest$5 = 0 >= x$1;
-  const tmpCalleeParam$3 = 0 >= x$1;
-  const tmpCalleeParam$5 = 0 >= x$1;
-  if (tmpIfTest$5) {
-    $(`b`, tmpCalleeParam$3, tmpCalleeParam$5);
-  } else {
-    $(`c`, tmpCalleeParam$3, tmpCalleeParam$5);
-  }
+  $(`b`, true, true);
 } else {
   $(`d`, tmpCalleeParam, tmpCalleeParam$1);
 }
 const x$3 = $(true);
 if (0 >= x$3) {
   $(`a`);
-  if (0 >= x$3) {
-    $(`b`);
-  } else {
-    $(`c`);
-  }
+  $(`b`);
 } else {
   $(`d`);
 }
 const x$5 = $(true);
 if (0 >= x$5) {
-  if (0 >= x$5) {
-    $(`a`);
-    $(`c`);
-  } else {
-    $(`b`);
-    $(`c`);
-  }
+  $(`a`);
+  $(`c`);
 } else {
   $(`d`);
 }
@@ -207,15 +157,9 @@ const x$7 = $(true);
 $(`a`);
 if (0 >= x$7) {
   $(`b`);
-  if (0 >= x$7) {
-    $(`c`);
-    $(`e`);
-    $(`g`);
-  } else {
-    $(`d`);
-    $(`e`);
-    $(`g`);
-  }
+  $(`c`);
+  $(`e`);
+  $(`g`);
 } else {
   $(`f`);
   $(`g`);
@@ -230,83 +174,48 @@ With rename=true
 const a = $( true );
 const b = 0 >= a;
 if (b) {
-  const c = 0 >= a;
-  if (c) {
-    $( "a" );
-  }
-  else {
-    $( "b" );
-  }
+  $( "a" );
 }
 else {
   $( "c" );
 }
-const d = $( true );
-const e = 0 >= d;
-const f = 0 >= d;
-const g = 0 >= d;
-if (e) {
-  $( "a", f, g );
-  const h = 0 >= d;
-  const i = 0 >= d;
-  const j = 0 >= d;
-  if (h) {
-    $( "b", i, j );
-  }
-  else {
-    $( "c", i, j );
-  }
+const c = $( true );
+const d = 0 >= c;
+const e = 0 >= c;
+const f = 0 >= c;
+if (d) {
+  $( "a", e, f );
+  $( "b", true, true );
 }
 else {
-  $( "d", f, g );
+  $( "d", e, f );
+}
+const g = $( true );
+const h = 0 >= g;
+if (h) {
+  $( "a" );
+  $( "b" );
+}
+else {
+  $( "d" );
+}
+const i = $( true );
+const j = 0 >= i;
+if (j) {
+  $( "a" );
+  $( "c" );
+}
+else {
+  $( "d" );
 }
 const k = $( true );
+$( "a" );
 const l = 0 >= k;
 if (l) {
-  $( "a" );
-  const m = 0 >= k;
-  if (m) {
-    $( "b" );
-  }
-  else {
-    $( "c" );
-  }
-}
-else {
-  $( "d" );
-}
-const n = $( true );
-const o = 0 >= n;
-if (o) {
-  const p = 0 >= n;
-  if (p) {
-    $( "a" );
-    $( "c" );
-  }
-  else {
-    $( "b" );
-    $( "c" );
-  }
-}
-else {
-  $( "d" );
-}
-const q = $( true );
-$( "a" );
-const r = 0 >= q;
-if (r) {
   $( "b" );
-  const s = 0 >= q;
-  if (s) {
-    $( "c" );
-    $( "e" );
-    $( "g" );
-  }
-  else {
-    $( "d" );
-    $( "e" );
-    $( "g" );
-  }
+  $( "c" );
+  $( "e" );
+  $( "g" );
 }
 else {
   $( "f" );

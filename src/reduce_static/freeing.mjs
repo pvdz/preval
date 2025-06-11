@@ -146,7 +146,7 @@ const SUPPORTED_FREE_BUILTINS = new Set([
   symbo('string', 'replaceAll'),
   symbo('string', 'search'),
   symbo('string', 'slice'),
-  symbo('string', 'split'),
+  // symbo('string', 'split'), // returns an array
   symbo('string', 'startsWith'),
   symbo('string', 'substring'),
   symbo('string', 'substr'),

@@ -16,11 +16,11 @@ import * as AST from '../ast.mjs';
 export function ifTestAnded(fdata) {
   group('\n\n\n[ifTestAnded] Checking for if-tests on ANDed values');
   //currentState(fdata, 'ifBooly', true, fdata);
-  const r = _ifTestSolved(fdata);
+  const r = _ifTestAnded(fdata);
   groupEnd();
   return r;
 }
-function _ifTestSolved(fdata) {
+function _ifTestAnded(fdata) {
   let changed = 0;
 
   vlog('Searching for const decls that have an interesting init and are used as an if-test at least once...');

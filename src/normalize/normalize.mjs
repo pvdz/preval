@@ -7100,11 +7100,11 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                   }
 
                   else if (args.length === 0) {
-                    rule('Number.isFinite() no args can be resolved');
-                    example('Number.isFinite()', 'false');
+                    rule('string.fromCodePoint() no args can be resolved');
+                    example('String.fromCodePoint()', '""');
                     before(body[i]);
 
-                    const v = Number.isFinite();
+                    const v = String.fromCodePoint();
 
                     const finalNode = AST.primitive(v);
                     const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
@@ -7140,11 +7140,11 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                   }
 
                   else if (args.length === 0) {
-                    rule('Number.isFinite() no args can be resolved');
-                    example('Number.isFinite()', 'false');
+                    rule('Number.raw() no args can be resolved');
+                    example('Number.raw()', 'false');
                     before(body[i]);
 
-                    const v = Number.isFinite();
+                    const v = Number.raw();
 
                     const finalNode = AST.primitive(v);
                     const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
@@ -7409,8 +7409,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                   }
 
                   // We cannot safely transform `String(...x, y)` because if x is empty then `y` is the one being coerced, else y is ignored.
-                  else if (args.length === 1) {
-                    ASSERT(args[0].type !== 'SpreadElement');
+                  else if (args.length === 1 && args[0].type !== 'SpreadElement') {
 
                     rule('A call to `String` or `string.constructor` with some args should call `$coerce` with one');
                     example('f(String(a));', `f(${SYMBOL_COERCE}(a, "string"));`);
@@ -7429,8 +7428,8 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                 }
                 case symbo('string', 'concat'): {
                   if (!contextNode) {
-                    rule('Calling string.toLowerCase without context results in ""');
-                    example('f(String.prototype.toLowerCase());', 'f("");');
+                    rule('Calling string.concat without context results in ""');
+                    example('f(String.prototype.concat());', 'f("");');
                     before(body[i]);
 
                     const finalNode = AST.primitive("");
@@ -8301,8 +8300,8 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                 }
                 case symbo('string', 'repeat'): {
                   if (!contextNode) {
-                    rule('Calling string.toLowerCase without context results in ""');
-                    example('f(String.prototype.toLowerCase());', 'f("");');
+                    rule('Calling string.repeat without context results in ""');
+                    example('f(String.prototype.repeat());', 'f("");');
                     before(body[i]);
 
                     const finalNode = AST.primitive("");
@@ -8318,18 +8317,18 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                     if (args.length === 0) {
                       const pv = AST.getPrimitiveValue(contextNode);
 
-                      rule('Calling string.toLowerCase without arg on a string literal can be resolved');
-                      example('f("XyZ".toLowerCase());', 'f("xyz");');
+                      rule('Calling string.repeat without arg on a string literal can be resolved');
+                      example('f("XyZ".repeat());', 'f("");');
                       before(body[i]);
 
                       let v;
                       try {
-                        v = pv.toLowerCase();
+                        v = pv.repeat();
                       } catch {
                       }
 
                       if (v === undefined) {
-                        body[i] = AST.throwStatement(AST.primitive(`[Preval] Attempted call to string.toLowerCase with invalid args: \`${tmat(body[i], true).replace(/\n/g, '\\n')}\``));
+                        body[i] = AST.throwStatement(AST.primitive(`[Preval] Attempted call to string.repeat with invalid args: \`${tmat(body[i], true).replace(/\n/g, '\\n')}\``));
                       } else {
                         const finalNode = AST.primitive(v);
                         const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
@@ -9633,33 +9632,33 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                       assertNoDupeNodes(body, 'body');
                       return true;
                     }
-                  }
 
-                  else if (args.length === 1 && AST.isStringLiteral(args[0], true)) {
-                    const pv = AST.getPrimitiveValue(contextNode);
-                    const parg = AST.getPrimitiveValue(args[0]);
+                    else if (args.length === 1 && AST.isStringLiteral(args[0], true)) {
+                      const pv = AST.getPrimitiveValue(contextNode);
+                      const parg = AST.getPrimitiveValue(args[0]);
 
-                    rule('Calling string.anchor with one primitive arg on a string literal can be resolved');
-                    example('f("XyZ".anchor("woop"));', 'f(\'<a name="woop">XyZ</a>\');');
-                    before(body[i]);
+                      rule('Calling string.anchor with one primitive arg on a string literal can be resolved');
+                      example('f("XyZ".anchor("woop"));', 'f(\'<a name="woop">XyZ</a>\');');
+                      before(body[i]);
 
-                    let v;
-                    try {
-                      v = pv.anchor(parg);
-                    } catch {
+                      let v;
+                      try {
+                        v = pv.anchor(parg);
+                      } catch {
+                      }
+
+                      if (v === undefined) {
+                        body[i] = AST.throwStatement(AST.primitive(`[Preval] Attempted call to string.anchor with invalid args: \`${tmat(body[i], true).replace(/\n/g, '\\n')}\``));
+                      } else {
+                        const finalNode = AST.primitive(v);
+                        const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                        body[i] = finalParent;
+                      }
+
+                      after(body[i]);
+                      assertNoDupeNodes(body, 'body');
+                      return true;
                     }
-
-                    if (v === undefined) {
-                      body[i] = AST.throwStatement(AST.primitive(`[Preval] Attempted call to string.anchor with invalid args: \`${tmat(body[i], true).replace(/\n/g, '\\n')}\``));
-                    } else {
-                      const finalNode = AST.primitive(v);
-                      const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-                      body[i] = finalParent;
-                    }
-
-                    after(body[i]);
-                    assertNoDupeNodes(body, 'body');
-                    return true;
                   }
                   break;
                 }
@@ -9872,34 +9871,35 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                       assertNoDupeNodes(body, 'body');
                       return true;
                     }
+
+                    else if (args.length === 1 && AST.isStringLiteral(args[0], true)) {
+                      const pv = AST.getPrimitiveValue(contextNode);
+                      const parg = AST.getPrimitiveValue(args[0]);
+
+                      rule('Calling string.fontcolor with one primitive arg on a string literal can be resolved');
+                      example('f("XyZ".fontcolor("woop"));', 'f(\'<font color="woop">XyZ</font>\');');
+                      before(body[i]);
+
+                      let v;
+                      try {
+                        v = pv.fontcolor(parg);
+                      } catch {
+                      }
+
+                      if (v === undefined) {
+                        body[i] = AST.throwStatement(AST.primitive(`[Preval] Attempted call to string.fontcolor with invalid args: \`${tmat(body[i], true).replace(/\n/g, '\\n')}\``));
+                      } else {
+                        const finalNode = AST.primitive(v);
+                        const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                        body[i] = finalParent;
+                      }
+
+                      after(body[i]);
+                      assertNoDupeNodes(body, 'body');
+                      return true;
+                    }
                   }
 
-                  else if (args.length === 1 && AST.isStringLiteral(args[0], true)) {
-                    const pv = AST.getPrimitiveValue(contextNode);
-                    const parg = AST.getPrimitiveValue(args[0]);
-
-                    rule('Calling string.fontcolor with one primitive arg on a string literal can be resolved');
-                    example('f("XyZ".fontcolor("woop"));', 'f(\'<font color="woop">XyZ</font>\');');
-                    before(body[i]);
-
-                    let v;
-                    try {
-                      v = pv.fontcolor(parg);
-                    } catch {
-                    }
-
-                    if (v === undefined) {
-                      body[i] = AST.throwStatement(AST.primitive(`[Preval] Attempted call to string.fontcolor with invalid args: \`${tmat(body[i], true).replace(/\n/g, '\\n')}\``));
-                    } else {
-                      const finalNode = AST.primitive(v);
-                      const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-                      body[i] = finalParent;
-                    }
-
-                    after(body[i]);
-                    assertNoDupeNodes(body, 'body');
-                    return true;
-                  }
                   break;
                 }
                 case symbo('string', 'fontsize'): {
@@ -10042,34 +10042,35 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                       assertNoDupeNodes(body, 'body');
                       return true;
                     }
+
+                    else if (args.length === 1 && AST.isStringLiteral(args[0], true)) {
+                      const pv = AST.getPrimitiveValue(contextNode);
+                      const parg = AST.getPrimitiveValue(args[0]);
+
+                      rule('Calling string.link with one primitive arg on a string literal can be resolved');
+                      example('f("XyZ".link("woop"));', 'f(\'<a href="woop">XyZ</a>\');');
+                      before(body[i]);
+
+                      let v;
+                      try {
+                        v = pv.link(parg);
+                      } catch {
+                      }
+
+                      if (v === undefined) {
+                        body[i] = AST.throwStatement(AST.primitive(`[Preval] Attempted call to string.link with invalid args: \`${tmat(body[i], true).replace(/\n/g, '\\n')}\``));
+                      } else {
+                        const finalNode = AST.primitive(v);
+                        const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                        body[i] = finalParent;
+                      }
+
+                      after(body[i]);
+                      assertNoDupeNodes(body, 'body');
+                      return true;
+                    }
                   }
 
-                  else if (args.length === 1 && AST.isStringLiteral(args[0], true)) {
-                    const pv = AST.getPrimitiveValue(contextNode);
-                    const parg = AST.getPrimitiveValue(args[0]);
-
-                    rule('Calling string.link with one primitive arg on a string literal can be resolved');
-                    example('f("XyZ".link("woop"));', 'f(\'<a href="woop">XyZ</a>\');');
-                    before(body[i]);
-
-                    let v;
-                    try {
-                      v = pv.link(parg);
-                    } catch {
-                    }
-
-                    if (v === undefined) {
-                      body[i] = AST.throwStatement(AST.primitive(`[Preval] Attempted call to string.link with invalid args: \`${tmat(body[i], true).replace(/\n/g, '\\n')}\``));
-                    } else {
-                      const finalNode = AST.primitive(v);
-                      const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-                      body[i] = finalParent;
-                    }
-
-                    after(body[i]);
-                    assertNoDupeNodes(body, 'body');
-                    return true;
-                  }
                   break;
                 }
                 case symbo('string', 'small'): {

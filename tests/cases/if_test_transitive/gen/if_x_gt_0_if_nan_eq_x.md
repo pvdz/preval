@@ -83,8 +83,7 @@ const tmpIfTest$3 /*:boolean*/ = x$1 > 0;
 const tmpCalleeParam /*:boolean*/ = x$1 > 0;
 if (tmpIfTest$3) {
   $(`a`, tmpCalleeParam, false);
-  const tmpCalleeParam$3 /*:boolean*/ = x$1 > 0;
-  $(`c`, tmpCalleeParam$3, false);
+  $(`c`, true, false);
 } else {
   $(`d`, tmpCalleeParam, false);
 }
@@ -133,7 +132,7 @@ const tmpIfTest$3 = x$1 > 0;
 const tmpCalleeParam = x$1 > 0;
 if (tmpIfTest$3) {
   $(`a`, tmpCalleeParam, false);
-  $(`c`, x$1 > 0, false);
+  $(`c`, true, false);
 } else {
   $(`d`, tmpCalleeParam, false);
 }
@@ -180,34 +179,33 @@ const d = c > 0;
 const e = c > 0;
 if (d) {
   $( "a", e, false );
-  const f = c > 0;
-  $( "c", f, false );
+  $( "c", true, false );
 }
 else {
   $( "d", e, false );
 }
-const g = $( true );
-const h = g > 0;
-if (h) {
+const f = $( true );
+const g = f > 0;
+if (g) {
   $( "a" );
   $( "c" );
 }
 else {
   $( "d" );
 }
-const i = $( true );
-const j = i > 0;
-if (j) {
+const h = $( true );
+const i = h > 0;
+if (i) {
   $( "b" );
   $( "c" );
 }
 else {
   $( "d" );
 }
-const k = $( true );
+const j = $( true );
 $( "a" );
-const l = k > 0;
-if (l) {
+const k = j > 0;
+if (k) {
   $( "b" );
   $( "d" );
   $( "e" );

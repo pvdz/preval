@@ -2,7 +2,7 @@
 
 # label_if-hoisting.md
 
-> Tofix > label if-hoisting
+> Labels > Label if-hoisting
 >
 > Testing to see whether it'll properly hoist labels in branches
 

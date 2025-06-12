@@ -5,24 +5,21 @@
 > Tofix > if flipping regression
 
 it should not need the temp alias of h. if the ident crashes then so be
-it but it cannot change the value of tmpReturnArg$39 when the call does
+it but it cannot change the value of g when the call does
 go through. so the alias is pointless.
 
 ## Input
 
 `````js filename=intro
-if (tmpIfTest$45) {
-  tmpCalleeParam$127;
-  const h /*:unknown*/ = tmpReturnArg$39;
-  tmpSSA__0x2d5594;
-  h(e, d);
-  getParameterByName();
-  unknown(297);
-  alsoUnknown(310);
-  const c /*:unknown*/ = $dotCall(a, document, undefined, b);
-  $(c);
-} else {
-}
+e;
+const h /*:unknown*/ = f;
+g;
+h(e, d);
+i();
+l(297);
+j(310);
+const c /*:unknown*/ = $dotCall(a, k, undefined, b);
+$(c);
 `````
 
 
@@ -30,18 +27,15 @@ if (tmpIfTest$45) {
 
 
 `````js filename=intro
-if (tmpIfTest$45) {
-  tmpCalleeParam$127;
-  const h /*:unknown*/ = tmpReturnArg$39;
-  tmpSSA__0x2d5594;
-  h(e, d);
-  getParameterByName();
-  unknown(297);
-  alsoUnknown(310);
-  const c /*:unknown*/ = $dotCall(a, document, undefined, b);
-  $(c);
-} else {
-}
+e;
+const h /*:unknown*/ = f;
+g;
+h(e, d);
+i();
+l(297);
+j(310);
+const c /*:unknown*/ = $dotCall(a, k, undefined, b);
+$(c);
 `````
 
 
@@ -49,16 +43,14 @@ if (tmpIfTest$45) {
 (This ought to be the final result)
 
 `````js filename=intro
-if (tmpIfTest$45) {
-  tmpCalleeParam$127;
-  const h = tmpReturnArg$39;
-  tmpSSA__0x2d5594;
-  h(e, d);
-  getParameterByName();
-  unknown(297);
-  alsoUnknown(310);
-  $($dotCall(a, document, undefined, b));
-}
+e;
+const h = f;
+g;
+h(e, d);
+i();
+l(297);
+j(310);
+$($dotCall(a, k, undefined, b));
 `````
 
 
@@ -66,17 +58,15 @@ if (tmpIfTest$45) {
 With rename=true
 
 `````js filename=intro
-if (tmpIfTest$45) {
-  tmpCalleeParam$127;
-  const c = tmpReturnArg$39;
-  tmpSSA__0x2d5594;
-  c( e, d );
-  getParameterByName();
-  unknown( 297 );
-  alsoUnknown( 310 );
-  const f = $dotCall( a, document, undefined, b );
-  $( f );
-}
+e;
+const c = f;
+g;
+c( e, d );
+i();
+l( 297 );
+j( 310 );
+const h = $dotCall( a, k, undefined, b );
+$( h );
 `````
 
 
@@ -84,18 +74,15 @@ if (tmpIfTest$45) {
 (This is what phase1 received the first time)
 
 `````js filename=intro
-if (tmpIfTest$45) {
-  tmpCalleeParam$127;
-  const h = tmpReturnArg$39;
-  tmpSSA__0x2d5594;
-  h(e, d);
-  getParameterByName();
-  unknown(297);
-  alsoUnknown(310);
-  const c = $dotCall(a, document, undefined, b);
-  $(c);
-} else {
-}
+e;
+const h = f;
+g;
+h(e, d);
+i();
+l(297);
+j(310);
+const c = $dotCall(a, k, undefined, b);
+$(c);
 `````
 
 
@@ -108,9 +95,9 @@ None
 ## Globals
 
 
-BAD@! Found 11 implicit global bindings:
+BAD@! Found 10 implicit global bindings:
 
-tmpIfTest$45, tmpCalleeParam$127, tmpReturnArg$39, tmpSSA__0x2d5594, e, d, getParameterByName, unknown, alsoUnknown, a, b
+e, f, g, d, i, l, j, a, k, b
 
 
 ## Runtime Outcome

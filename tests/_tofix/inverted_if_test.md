@@ -13,7 +13,7 @@ This does lead to a potential new reduction based on that logic, albeit difficul
 `````js filename=intro
 let b = true;
 $(100);
-const c = $(100);
+const c = $(false);
 let a = !c;
 if (c) {
   b = false;
@@ -40,7 +40,7 @@ $(a);
 
 `````js filename=intro
 $(100);
-const c /*:unknown*/ = $(100);
+const c /*:unknown*/ = $(false);
 if (c) {
   $(false);
 } else {
@@ -64,7 +64,7 @@ if (c) {
 
 `````js filename=intro
 $(100);
-if ($(100)) {
+if ($(false)) {
   $(false);
 } else {
   let a = false;
@@ -86,7 +86,7 @@ With rename=true
 
 `````js filename=intro
 $( 100 );
-const a = $( 100 );
+const a = $( false );
 if (a) {
   $( false );
 }
@@ -111,7 +111,7 @@ else {
 `````js filename=intro
 let b = true;
 $(100);
-const c = $(100);
+const c = $(false);
 let a = !c;
 if (c) {
   b = false;
@@ -151,8 +151,10 @@ None
 
 Should call `$` with:
  - 1: 100
- - 2: 100
- - 3: false
+ - 2: false
+ - 3: 100
+ - 4: 100
+ - 5: false
  - eval returned: undefined
 
 Pre normalization calls: Same

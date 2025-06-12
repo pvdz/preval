@@ -2,7 +2,7 @@
 
 # never_true.md
 
-> Tofix > never true
+> While > Never true
 
 Preval should be able to detect that the test is never updated here.
 

@@ -26,8 +26,7 @@ $(t);
 
 
 `````js filename=intro
-const t /*:string*/ = $dotCall($string_repeat, `005`, `repeat`, 2);
-$(t);
+$(`005005`);
 `````
 
 
@@ -35,7 +34,7 @@ $(t);
 (This ought to be the final result)
 
 `````js filename=intro
-$($dotCall($string_repeat, `005`, `repeat`, 2));
+$(`005005`);
 `````
 
 
@@ -43,8 +42,7 @@ $($dotCall($string_repeat, `005`, `repeat`, 2));
 With rename=true
 
 `````js filename=intro
-const a = $dotCall( $string_repeat, "005", "repeat", 2 );
-$( a );
+$( "005005" );
 `````
 
 

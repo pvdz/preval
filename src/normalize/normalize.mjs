@@ -3639,6 +3639,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
             // Ignore builtins for which we don't define arg count (because we're unsure or just didn't do it)
             const maxlen = tmp.has(funcName) ? 1 : symbol.typings.maxlen;
+            vlog('maxlen:', maxlen);
             if (maxlen >= 0 && maxlen < Infinity && args.length > maxlen) {
               let spreadBefore = false;
               let spreadLast = false; // only relevant when spreadBefore=true
@@ -8329,6 +8330,33 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
                       if (v === undefined) {
                         body[i] = AST.throwStatement(AST.primitive(`[Preval] Attempted call to string.repeat with invalid args: \`${tmat(body[i], true).replace(/\n/g, '\\n')}\``));
+                      } else {
+                        const finalNode = AST.primitive(v);
+                        const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                        body[i] = finalParent;
+                      }
+
+                      after(body[i]);
+                      assertNoDupeNodes(body, 'body');
+                      return true;
+                    }
+
+                    else if (args.length === 1 && AST.isPrimitive(args[0])) {
+                      const pv = AST.getPrimitiveValue(contextNode);
+                      const parg = AST.getPrimitiveValue(args[0]);
+
+                      rule('Calling string.repeat with one prim arg on a string literal can be resolved');
+                      example('f("XyZ".repeat(5));', 'f("XyZXyZXyZXyZXyZ");');
+                      before(body[i]);
+
+                      let v;
+                      try {
+                        v = pv.repeat(parg);
+                      } catch {
+                      }
+
+                      if (v === undefined) {
+                        body[i] = AST.throwStatement(AST.primitive(`[Preval] Attempted call to string.padEnd with invalid args: \`${tmat(body[i], true).replace(/\n/g, '\\n')}\``));
                       } else {
                         const finalNode = AST.primitive(v);
                         const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);

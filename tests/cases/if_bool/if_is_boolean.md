@@ -2,7 +2,7 @@
 
 # if_is_boolean.md
 
-> Tofix > if is boolean
+> If bool > If is boolean
 
 `let y = true; if (x) { y = false; }` is really `let y = Boolean(x)`
 

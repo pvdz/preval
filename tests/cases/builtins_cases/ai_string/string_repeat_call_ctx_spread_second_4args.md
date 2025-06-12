@@ -21,8 +21,7 @@ $(String.prototype.repeat.call("abc", 2, ...$([42, null, undefined, 0])));
 const tmpCalleeParam$1 /*:array*/ /*truthy*/ = [42, null, undefined, 0];
 const tmpMCSP /*:unknown*/ = $(tmpCalleeParam$1);
 [...tmpMCSP];
-const tmpCalleeParam /*:string*/ = $dotCall($string_repeat, `abc`, undefined, 2);
-$(tmpCalleeParam);
+$(`abcabc`);
 `````
 
 
@@ -32,7 +31,7 @@ $(tmpCalleeParam);
 `````js filename=intro
 const tmpMCSP = $([42, null, undefined, 0]);
 [...tmpMCSP];
-$($dotCall($string_repeat, `abc`, undefined, 2));
+$(`abcabc`);
 `````
 
 
@@ -43,8 +42,7 @@ With rename=true
 const a = [ 42, null, undefined, 0 ];
 const b = $( a );
 [ ...b ];
-const c = $dotCall( $string_repeat, "abc", undefined, 2 );
-$( c );
+$( "abcabc" );
 `````
 
 

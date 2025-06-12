@@ -18,8 +18,7 @@ $("abc".repeat(2));
 
 
 `````js filename=intro
-const tmpCalleeParam /*:string*/ = $dotCall($string_repeat, `abc`, `repeat`, 2);
-$(tmpCalleeParam);
+$(`abcabc`);
 `````
 
 
@@ -27,7 +26,7 @@ $(tmpCalleeParam);
 (This ought to be the final result)
 
 `````js filename=intro
-$($dotCall($string_repeat, `abc`, `repeat`, 2));
+$(`abcabc`);
 `````
 
 
@@ -35,8 +34,7 @@ $($dotCall($string_repeat, `abc`, `repeat`, 2));
 With rename=true
 
 `````js filename=intro
-const a = $dotCall( $string_repeat, "abc", "repeat", 2 );
-$( a );
+$( "abcabc" );
 `````
 
 
@@ -45,7 +43,7 @@ $( a );
 
 `````js filename=intro
 const tmpMCF = $string_repeat;
-let tmpCalleeParam = $dotCall($string_repeat, `abc`, `repeat`, 2);
+let tmpCalleeParam = `abcabc`;
 $(tmpCalleeParam);
 `````
 
@@ -53,7 +51,7 @@ $(tmpCalleeParam);
 ## Todos triggered
 
 
-- (todo) type trackeed tricks can possibly support static $string_repeat
+None
 
 
 ## Globals

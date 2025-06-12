@@ -18,8 +18,7 @@ $(String.prototype.repeat.call("abc", 2, 42));
 
 
 `````js filename=intro
-const tmpCalleeParam /*:string*/ = $dotCall($string_repeat, `abc`, undefined, 2);
-$(tmpCalleeParam);
+$(`abcabc`);
 `````
 
 
@@ -27,7 +26,7 @@ $(tmpCalleeParam);
 (This ought to be the final result)
 
 `````js filename=intro
-$($dotCall($string_repeat, `abc`, undefined, 2));
+$(`abcabc`);
 `````
 
 
@@ -35,8 +34,7 @@ $($dotCall($string_repeat, `abc`, undefined, 2));
 With rename=true
 
 `````js filename=intro
-const a = $dotCall( $string_repeat, "abc", undefined, 2 );
-$( a );
+$( "abcabc" );
 `````
 
 

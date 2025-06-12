@@ -257,7 +257,6 @@ can we introduce a $noop(a,b,c) special symbol that serves to mimic a sequence? 
 in tests/cases/if_test_merging/if_fold_ternary_const_hard_55.md `y` is an alias for `tmpIfTest` and we could drop y in favor of it. not sure if really better tho.
   - after if(x) we know y is false, at least at that point.
 
-implement the < <= case in src/reduce_static/if_test_transitive.mjs too
 
 
 
@@ -266,3 +265,11 @@ implement the < <= case in src/reduce_static/if_test_transitive.mjs too
 normalization cant deal with globals because it doesnt know about local vs global refs
 
 can we introduce a $noop(a,b,c) special symbol that serves to mimic a sequence? That may only be helpful during normalization. But there it should be useful?
+
+expand src/reduce_static/if_test_transitive.mjs with other cases?
+
+
+broken reducer: src/reduce_static/if_hoisting.mjs  (current implementation seems unsound if the to-be-hoisted statement modifies the if-test through a closure...)
+
+broken reducer: src/reduce_static/if_test_transitive.mjs   (this transform is broken when x is a spy because it should trigger coercion twice but we don't preserve that)
+

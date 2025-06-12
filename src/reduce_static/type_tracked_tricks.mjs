@@ -1287,45 +1287,41 @@ function _typeTrackedTricks(fdata) {
 
             if (isDotcall) {
               // Context must be a boolean.
-              if (isContextPrimitive) {
-                if (AST.isBoolean(context)) {
-                  const primValue = AST.getPrimitiveValue(context);
-                  ASSERT(typeof primValue === 'boolean', 'any primValue type other than boolean will trigger an error here which is why we checked', context);
-                  let outcome = Boolean.prototype.toString.call(primValue);
+              if (context && AST.isBoolean(context)) {
+                const primValue = AST.getPrimitiveValue(context);
+                ASSERT(typeof primValue === 'boolean', 'any primValue type other than boolean will trigger an error here which is why we checked', context);
+                let outcome = Boolean.prototype.toString.call(primValue);
 
-                  const newNode = AST.primitive(outcome);
+                const newNode = AST.primitive(outcome);
 
-                  vlog('Queued something...');
-                  // Call Boolean.prototype.toString on the context
-                  const rest = args.slice(0);
-                  queue.push({
-                    index: blockIndex,
-                    func: () => {
-                      rule('Calling bool.toString() on a primitive should inline the call');
-                      example('true.toString()', '"true"');
-                      before(blockBody[blockIndex]);
+                vlog('Queued something...');
+                // Call Boolean.prototype.toString on the context
+                const rest = args.slice(0);
+                queue.push({
+                  index: blockIndex,
+                  func: () => {
+                    rule('Calling bool.toString() on a primitive should inline the call');
+                    example('true.toString()', '"true"');
+                    before(blockBody[blockIndex]);
 
-                      if (parentIndex < 0) parentNode[parentProp] = newNode;
-                      else parentNode[parentProp][parentIndex] = newNode;
-                      rest.forEach(arg => {
-                        if (arg.type === 'SpreadElement') {
-                          blockBody.splice(blockIndex, 0, AST.expressionStatement(AST.arrayExpression([arg])));
-                        } else {
-                          blockBody.splice(blockIndex, 0, AST.expressionStatement(arg.type === 'SpreadElement' ? AST.arrayExpression(arg) : arg));
-                        }
-                      });
+                    if (parentIndex < 0) parentNode[parentProp] = newNode;
+                    else parentNode[parentProp][parentIndex] = newNode;
+                    rest.forEach(arg => {
+                      if (arg.type === 'SpreadElement') {
+                        blockBody.splice(blockIndex, 0, AST.expressionStatement(AST.arrayExpression([arg])));
+                      } else {
+                        blockBody.splice(blockIndex, 0, AST.expressionStatement(arg.type === 'SpreadElement' ? AST.arrayExpression(arg) : arg));
+                      }
+                    });
 
-                      after(blockBody.slice(blockIndex, blockIndex + rest.length + 1));
-                      changes += 1;
-                    },
-                  });
-                  return;
-                } else {
-                  vlog('- bail: context is a boolean but we dont know which way');
-                  todo('calling bool_tostring on a non-bool can be predicted to throw');
-                }
+                    after(blockBody.slice(blockIndex, blockIndex + rest.length + 1));
+                    changes += 1;
+                  },
+                });
+                return;
               } else {
-                vlog('- bail: dunno if the context is a primitive alone, alone alone a boolean');
+                vlog('- bail: context is a boolean but we dont know which way');
+                todo('calling bool_tostring on a non-bool can be predicted to throw');
               }
             } else {
               // This will lead to an error since the context won't be bool... Note that you can call
@@ -1648,7 +1644,7 @@ function _typeTrackedTricks(fdata) {
                 });
                 changes += 1;
                 return;
-              } else {
+              } else if (context && AST.isPrimitive(context)) {
                 const primValue = AST.getPrimitiveValue(context);
 
                 rule('Calling number.toString() on a primitive should inline the call');
@@ -1859,6 +1855,7 @@ function _typeTrackedTricks(fdata) {
                 return;
               }
               else if (
+                context &&
                 AST.isStringLiteral(context, true) &&
                 (args.length === 0 || AST.isPrimitive(args[0]))
               ) {
@@ -1938,7 +1935,7 @@ function _typeTrackedTricks(fdata) {
                 changes += 1;
                 return;
               }
-              else {
+              else if (context && AST.isPrimitive(context)) {
                 // - `'foo'.charCodeAt(0)`
                 // - `$dotCall($strin_charCodeAt, 'foo', "prop", 0)`
 
@@ -2016,7 +2013,7 @@ function _typeTrackedTricks(fdata) {
                 changes += 1;
                 return;
               }
-              else {
+              else if (context && AST.isPrimitive(context)) {
                 // - `'foo'.codePointAt(0)`
                 // - `$dotCall($strin_codePointAt, 'foo', "prop", 0)`
 
@@ -2126,7 +2123,7 @@ function _typeTrackedTricks(fdata) {
                 changes += 1;
                 return;
               }
-              else if (!AST.isPrimitive(context)) {
+              else if (!context || !AST.isPrimitive(context)) {
                 // Need concrete value so check if primitive node
                 vlog('- bail: context is not a primitive node so we cant resolve it');
               }
@@ -2216,7 +2213,7 @@ function _typeTrackedTricks(fdata) {
                     }
                   }
                 }
-                else {
+                else { // Note: already confirmed to be primitive node
                   // Call has at least two args
                   // - If if first arg is string and second arg is number, resolve it
                   // - If first arg is not a string, coerce it to a string if const/builtin
@@ -2355,6 +2352,7 @@ function _typeTrackedTricks(fdata) {
                 return;
               }
               else if (
+                context &&
                 AST.isStringLiteral(context, true) &&
                 (args.length === 0 || (AST.isPrimitive(args[0]) && (args.length === 1 || AST.isPrimitive(args[1]))))
               ) {
@@ -2439,6 +2437,7 @@ function _typeTrackedTricks(fdata) {
                 return;
               }
               else if (
+                context &&
                 AST.isStringLiteral(context, true) &&
                 (args.length === 0 || (AST.isPrimitive(args[0]) && (args.length === 1 || AST.isPrimitive(args[1]))))
               ) {
@@ -2755,6 +2754,7 @@ function _typeTrackedTricks(fdata) {
                 return;
               }
               else if (
+                context &&
                 AST.isStringLiteral(context, true) &&
                 (args.length === 0 || (AST.isPrimitive(args[0]) && (args.length === 1 || AST.isPrimitive(args[1]))))
               ) {
@@ -2851,6 +2851,7 @@ function _typeTrackedTricks(fdata) {
 
               }
               else if (
+                context &&
                 AST.isStringLiteral(context, true) &&
                 (args.length === 0 || (args.length === 1 && AST.isPrimitive(args[0])))
               ) {
@@ -3021,6 +3022,7 @@ function _typeTrackedTricks(fdata) {
                 return;
               }
               else if (
+                context &&
                 AST.isStringLiteral(context, true) &&
                 (args.length === 0 || (AST.isPrimitive(args[0]) && (args.length === 1 || AST.isPrimitive(args[1]))))
               ) {
@@ -3103,6 +3105,7 @@ function _typeTrackedTricks(fdata) {
                 return;
               }
               else if (
+                context &&
                 AST.isStringLiteral(context, true) &&
                 (args.length === 0 || (AST.isPrimitive(args[0]) && (args.length === 1 || AST.isPrimitive(args[1]))))
               ) {
@@ -3190,7 +3193,7 @@ function _typeTrackedTricks(fdata) {
                 changes += 1;
                 return;
               }
-              else if (AST.isStringLiteral(context, true)) {
+              else if (context && AST.isStringLiteral(context, true)) {
                 // - `'foo'.valueOf()`
 
                 rule('Calling `valueOf` on a string should resolve to the string');
@@ -3243,6 +3246,7 @@ function _typeTrackedTricks(fdata) {
           case symbo('string', 'sup'): {
             if (isDotcall) {
               if (
+                context &&
                 AST.isStringLiteral(context, true) &&
                 args.every(arg => !arg || AST.isPrimitive(arg))
               ) {

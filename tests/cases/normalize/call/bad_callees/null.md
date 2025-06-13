@@ -20,7 +20,10 @@ $('after');
 
 `````js filename=intro
 $(`before`);
-throw `[Preval] Attempting to call a value that cannot be called: \`null();\``;
+const tmpThrowArg /*:object*/ /*truthy*/ = new $typeError_constructor(
+  `[Preval] Attempting to call a value that cannot be called: \`null();\``,
+);
+throw tmpThrowArg;
 `````
 
 
@@ -29,7 +32,8 @@ throw `[Preval] Attempting to call a value that cannot be called: \`null();\``;
 
 `````js filename=intro
 $(`before`);
-throw `[Preval] Attempting to call a value that cannot be called: \`null();\``;
+const tmpThrowArg = new $typeError_constructor(`[Preval] Attempting to call a value that cannot be called: \`null();\``);
+throw tmpThrowArg;
 `````
 
 
@@ -38,7 +42,8 @@ With rename=true
 
 `````js filename=intro
 $( "before" );
-throw "[Preval] Attempting to call a value that cannot be called: `null();`";
+const a = new $typeError_constructor( "[Preval] Attempting to call a value that cannot be called: `null();`" );
+throw a;
 `````
 
 
@@ -47,7 +52,8 @@ throw "[Preval] Attempting to call a value that cannot be called: `null();`";
 
 `````js filename=intro
 $(`before`);
-throw `[Preval] Attempting to call a value that cannot be called: \`null();\``;
+const tmpThrowArg = new $typeError_constructor(`[Preval] Attempting to call a value that cannot be called: \`null();\``);
+throw tmpThrowArg;
 `````
 
 

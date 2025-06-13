@@ -333,6 +333,15 @@ export function createBuiltinSymbolGlobals() {
     [symbo('set', 'values')]: Set.prototype.values,
     [symbo('set', 'union')]: Set.prototype.union,
 
+    [symbo('Error', 'prototype')]: Error.prototype,
+    [symbo('Error', 'captureStackTrace')]: Error.captureStackTrace,
+    [symbo('Error', 'isError')]: Error.isError,
+    [symbo('error', 'constructor')]: Error,
+    [symbo('error', 'toString')]: Error.prototype.toString,
+
+    [symbo('TypeError', 'prototype')]: TypeError.prototype,
+    [symbo('typeError', 'constructor')]: TypeError,
+
     [symbo('Buffer', 'prototype')]: (typeof Buffer !== 'undefined' ? Buffer : {})?.prototype, // eh.
     [symbo('buffer', 'constructor')]: Buffer.prototype.constructor,
     [symbo('Buffer', 'from')]: (typeof Buffer !== 'undefined' ? Buffer : {})?.from, // eh.

@@ -164,7 +164,7 @@ while (true) {
           } else {
             const tmpIfTest$7 = x === `error`;
             if (tmpIfTest$7) {
-              const tmpThrowArg = new Error(`Invalid state`);
+              const tmpThrowArg = new $error_constructor(`Invalid state`);
               throw tmpThrowArg;
             } else {
               break;
@@ -180,7 +180,7 @@ while (true) {
             } else {
               const tmpIfTest$13 = x === `error`;
               if (tmpIfTest$13) {
-                const tmpThrowArg$1 = new Error(`Invalid state`);
+                const tmpThrowArg$1 = new $error_constructor(`Invalid state`);
                 throw tmpThrowArg$1;
               } else {
                 break;

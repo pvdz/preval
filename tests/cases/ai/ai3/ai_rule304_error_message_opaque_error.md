@@ -25,7 +25,7 @@ $('final_message', message);
 
 
 `````js filename=intro
-const tmpCalleeParam /*:object*/ /*truthy*/ = new Error(`test error`);
+const tmpCalleeParam /*:object*/ /*truthy*/ = new $error_constructor(`test error`);
 const e /*:unknown*/ = $(`e`, tmpCalleeParam);
 let message /*:unknown*/ = undefined;
 try {
@@ -42,7 +42,7 @@ $(`final_message`, message);
 (This ought to be the final result)
 
 `````js filename=intro
-const e = $(`e`, new Error(`test error`));
+const e = $(`e`, new $error_constructor(`test error`));
 let message = undefined;
 try {
   throw e;
@@ -57,7 +57,7 @@ $(`final_message`, message);
 With rename=true
 
 `````js filename=intro
-const a = new Error( "test error" );
+const a = new $error_constructor( "test error" );
 const b = $( "e", a );
 let c = undefined;
 try {
@@ -75,7 +75,7 @@ $( "final_message", c );
 (This is what phase1 received the first time)
 
 `````js filename=intro
-let tmpCalleeParam = new Error(`test error`);
+let tmpCalleeParam = new $error_constructor(`test error`);
 let e = $(`e`, tmpCalleeParam);
 let message = undefined;
 try {

@@ -3538,7 +3538,11 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             example('404("not found")', 'throw new Error()');
             before(body[i]);
 
-            body[i] = AST.throwStatement(AST.primitive(`[Preval] Attempting to call a value that cannot be called: \`${tmat(body[i], true).replace(/\n/g, '\\n')}\``))
+            body[i] = AST.throwStatement(
+              AST.newExpression(AST.identifier('TypeError'), [
+                AST.primitive(`[Preval] Attempting to call a value that cannot be called: \`${tmat(body[i], true).replace(/\n/g, '\\n')}\``)
+              ])
+            )
 
             after(body[i]);
             assertNoDupeNodes(body, 'body');

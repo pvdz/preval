@@ -23,7 +23,10 @@ b();
 
 `````js filename=intro
 $(true);
-throw `[Preval] Attempting to call a value that cannot be called: \`undefined();\``;
+const tmpThrowArg /*:object*/ /*truthy*/ = new $typeError_constructor(
+  `[Preval] Attempting to call a value that cannot be called: \`undefined();\``,
+);
+throw tmpThrowArg;
 `````
 
 
@@ -32,7 +35,8 @@ throw `[Preval] Attempting to call a value that cannot be called: \`undefined();
 
 `````js filename=intro
 $(true);
-throw `[Preval] Attempting to call a value that cannot be called: \`undefined();\``;
+const tmpThrowArg = new $typeError_constructor(`[Preval] Attempting to call a value that cannot be called: \`undefined();\``);
+throw tmpThrowArg;
 `````
 
 
@@ -41,7 +45,8 @@ With rename=true
 
 `````js filename=intro
 $( true );
-throw "[Preval] Attempting to call a value that cannot be called: `undefined();`";
+const a = new $typeError_constructor( "[Preval] Attempting to call a value that cannot be called: `undefined();`" );
+throw a;
 `````
 
 

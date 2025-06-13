@@ -501,6 +501,37 @@ export const PROMISE = new Map([
 
 
 /**
+ *      Error
+ */
+
+
+export const ERROR = new Map([
+  [symbo('Error', 'prototype'),         {prop: 'prototype',         isProto: false, typings: { sname: symbo('Error', 'prototype'),         mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }}],
+  [symbo('Error', 'captureStackTrace'), {prop: 'captureStackTrace', isProto: false, typings: { sname: symbo('Error', 'captureStackTrace'), mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, maxlen: 2, returns: 'undefined' }}],
+  [symbo('Error', 'isError'),           {prop: 'isError',           isProto: false, typings: { sname: symbo('Error', 'isError'),           mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, maxlen: 1, returns: 'boolean' }}],
+
+  [symbo('error', 'constructor'),       {prop: 'constructor',       isProto: true, typings:  { sname: symbo('error', 'constructor'),       mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: false, mustBePrimitive: false, returns: 'error' }}],
+  // [symbo('error', 'message'),           {prop: 'message',           isProto: true, typings:  { sname: symbo('error', 'message'),           mustBeType: 'string', mustBeFalsy: false, mustBeTruthy: false, mustBePrimitive: false }}],
+  // [symbo('error', 'name'),              {prop: 'name',              isProto: true, typings:  { sname: symbo('error', 'name'),              mustBeType: 'string', mustBeFalsy: false, mustBeTruthy: false, mustBePrimitive: false }}],
+  [symbo('error', 'toString'),          {prop: 'toString',          isProto: true, typings:  { sname: symbo('error', 'toString'),          mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, maxlen: 0, returns: 'string' }}],
+]);
+
+
+
+/**
+ *      TypeError
+ */
+
+
+export const TYPEERROR = new Map([
+  [symbo('TypeError', 'prototype'),    {prop: 'prototype',         isProto: false, typings: { sname: symbo('TypeError', 'prototype'),      mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }}],
+
+  [symbo('typeError', 'constructor'),  {prop: 'constructor',       isProto: true, typings:  { sname: symbo('typeError', 'constructor'),    mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'typeError' }}],
+]);
+
+
+
+/**
  *      Buffer
  */
 
@@ -572,6 +603,8 @@ export const BUILTIN_GLOBAL_FUNCS_TO_SYMBOL = new Map([
   ['Buffer', symbo('buffer', 'constructor')],
   ['Map', symbo('map', 'constructor')],
   ['Set', symbo('set', 'constructor')],
+  ['Error', symbo('error', 'constructor')],
+  ['TypeError', symbo('typeError', 'constructor')],
 
   ['parseInt', symbo('Number', 'parseInt')],
   ['parseFloat', symbo('Number', 'parseFloat')],
@@ -605,6 +638,8 @@ export const BUILTIN_SYMBOLS = new Map([
   Array.from(PROMISE.entries()),
   Array.from(MAP.entries()),
   Array.from(SET.entries()),
+  Array.from(ERROR.entries()),
+  Array.from(TYPEERROR.entries()),
   Array.from(BUFFER.entries()),
   Array.from(UINT8ARRAY.entries()),
   Array.from(TEXTDECODER.entries()),

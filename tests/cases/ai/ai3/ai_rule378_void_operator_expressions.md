@@ -95,7 +95,7 @@ const tmpCalleeParam$13 /*:unknown*/ = obj.p;
 $(`res5`, undefined, tmpCalleeParam$13);
 try {
   $(`throwing_op`);
-  const tmpThrowArg /*:object*/ /*truthy*/ = new Error(`test_error`);
+  const tmpThrowArg /*:object*/ /*truthy*/ = new $error_constructor(`test_error`);
   throw tmpThrowArg;
 } catch (e) {
   const tmpCalleeParam$15 /*:unknown*/ = e.name;
@@ -138,7 +138,7 @@ obj.m();
 $(`res5`, undefined, obj.p);
 try {
   $(`throwing_op`);
-  const tmpThrowArg = new Error(`test_error`);
+  const tmpThrowArg = new $error_constructor(`test_error`);
   throw tmpThrowArg;
 } catch (e) {
   $(`res6_error`, e.name, e.message);
@@ -189,7 +189,7 @@ const m = d.p;
 $( "res5", undefined, m );
 try {
   $( "throwing_op" );
-  const n = new Error( "test_error" );
+  const n = new $error_constructor( "test_error" );
   throw n;
 }
 catch (o) {
@@ -264,7 +264,7 @@ const tmpCallComplexCallee = function () {
     $(`throwing_op`);
     const tmpCallComplexCallee$1 = function () {
       debugger;
-      const tmpThrowArg = new Error(`test_error`);
+      const tmpThrowArg = new $error_constructor(`test_error`);
       throw tmpThrowArg;
     };
     tmpCallComplexCallee$1();

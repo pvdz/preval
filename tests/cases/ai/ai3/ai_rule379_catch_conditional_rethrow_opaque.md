@@ -82,7 +82,7 @@ $('log', `final_val after err3: ${final_val2}`);
 try {
   $(`log`, `throwing error 1`);
   try {
-    const tmpThrowArg /*:object*/ /*truthy*/ = new Error(`Original Error 1`);
+    const tmpThrowArg /*:object*/ /*truthy*/ = new $error_constructor(`Original Error 1`);
     throw tmpThrowArg;
   } catch (e) {
     const shouldRethrow /*:unknown*/ = $(`should_rethrow1`, true);
@@ -101,7 +101,7 @@ try {
 }
 try {
   $(`log`, `throwing error 2`);
-  const tmpThrowArg$1 /*:object*/ /*truthy*/ = new Error(`Original Error 2`);
+  const tmpThrowArg$1 /*:object*/ /*truthy*/ = new $error_constructor(`Original Error 2`);
   throw tmpThrowArg$1;
 } catch (e$1) {
   const shouldRethrow$1 /*:unknown*/ = $(`should_rethrow2`, false);
@@ -118,7 +118,7 @@ let final_val2 /*:string*/ /*truthy*/ = `modified_by_inner_catch3_outer_try_cont
 try {
   $(`log`, `throwing error 3`);
   try {
-    const tmpThrowArg$3 /*:object*/ /*truthy*/ = new Error(`Original Error 3`);
+    const tmpThrowArg$3 /*:object*/ /*truthy*/ = new $error_constructor(`Original Error 3`);
     throw tmpThrowArg$3;
   } catch (e_inner) {
     const rethrowDecision /*:unknown*/ = $(`rethrow_inner_3`, false);
@@ -149,7 +149,7 @@ $(`log`, tmpCalleeParam$13);
 try {
   $(`log`, `throwing error 1`);
   try {
-    const tmpThrowArg = new Error(`Original Error 1`);
+    const tmpThrowArg = new $error_constructor(`Original Error 1`);
     throw tmpThrowArg;
   } catch (e) {
     const shouldRethrow = $(`should_rethrow1`, true);
@@ -163,7 +163,7 @@ try {
 }
 try {
   $(`log`, `throwing error 2`);
-  const tmpThrowArg$1 = new Error(`Original Error 2`);
+  const tmpThrowArg$1 = new $error_constructor(`Original Error 2`);
   throw tmpThrowArg$1;
 } catch (e$1) {
   const shouldRethrow$1 = $(`should_rethrow2`, false);
@@ -177,7 +177,7 @@ let final_val2 = `modified_by_inner_catch3_outer_try_continued`;
 try {
   $(`log`, `throwing error 3`);
   try {
-    const tmpThrowArg$3 = new Error(`Original Error 3`);
+    const tmpThrowArg$3 = new $error_constructor(`Original Error 3`);
     throw tmpThrowArg$3;
   } catch (e_inner) {
     const rethrowDecision = $(`rethrow_inner_3`, false);
@@ -201,7 +201,7 @@ With rename=true
 try {
   $( "log", "throwing error 1" );
   try {
-    const a = new Error( "Original Error 1" );
+    const a = new $error_constructor( "Original Error 1" );
     throw a;
   }
   catch (b) {
@@ -221,7 +221,7 @@ catch (f) {
 }
 try {
   $( "log", "throwing error 2" );
-  const i = new Error( "Original Error 2" );
+  const i = new $error_constructor( "Original Error 2" );
   throw i;
 }
 catch (j) {
@@ -238,7 +238,7 @@ let n = "modified_by_inner_catch3_outer_try_continued";
 try {
   $( "log", "throwing error 3" );
   try {
-    const o = new Error( "Original Error 3" );
+    const o = new $error_constructor( "Original Error 3" );
     throw o;
   }
   catch (p) {
@@ -271,7 +271,7 @@ let final_val = `initial_val`;
 try {
   $(`log`, `throwing error 1`);
   try {
-    const tmpThrowArg = new Error(`Original Error 1`);
+    const tmpThrowArg = new $error_constructor(`Original Error 1`);
     throw tmpThrowArg;
   } catch (e) {
     const shouldRethrow = $(`should_rethrow1`, true);
@@ -295,7 +295,7 @@ try {
 }
 try {
   $(`log`, `throwing error 2`);
-  const tmpThrowArg$1 = new Error(`Original Error 2`);
+  const tmpThrowArg$1 = new $error_constructor(`Original Error 2`);
   throw tmpThrowArg$1;
 } catch (e$1) {
   const shouldRethrow$1 = $(`should_rethrow2`, false);
@@ -319,7 +319,7 @@ let final_val2 = `initial_val_for_err3`;
 try {
   $(`log`, `throwing error 3`);
   try {
-    const tmpThrowArg$3 = new Error(`Original Error 3`);
+    const tmpThrowArg$3 = new $error_constructor(`Original Error 3`);
     throw tmpThrowArg$3;
   } catch (e_inner) {
     const rethrowDecision = $(`rethrow_inner_3`, false);

@@ -24,7 +24,7 @@ $('after_try_catch');
 
 
 `````js filename=intro
-const tmpCalleeParam /*:object*/ /*truthy*/ = new Error(`test_error`);
+const tmpCalleeParam /*:object*/ /*truthy*/ = new $error_constructor(`test_error`);
 const x /*:unknown*/ = $(`x`, tmpCalleeParam);
 try {
   throw x;
@@ -39,7 +39,7 @@ $(`after_try_catch`);
 (This ought to be the final result)
 
 `````js filename=intro
-const x = $(`x`, new Error(`test_error`));
+const x = $(`x`, new $error_constructor(`test_error`));
 try {
   throw x;
 } catch (unusedError) {
@@ -53,7 +53,7 @@ $(`after_try_catch`);
 With rename=true
 
 `````js filename=intro
-const a = new Error( "test_error" );
+const a = new $error_constructor( "test_error" );
 const b = $( "x", a );
 try {
   throw b;
@@ -69,7 +69,7 @@ $( "after_try_catch" );
 (This is what phase1 received the first time)
 
 `````js filename=intro
-let tmpCalleeParam = new Error(`test_error`);
+let tmpCalleeParam = new $error_constructor(`test_error`);
 let x = $(`x`, tmpCalleeParam);
 try {
   throw x;

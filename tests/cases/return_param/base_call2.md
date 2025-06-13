@@ -45,7 +45,10 @@ f();
 $(`pass`);
 $(undefined);
 f();
-throw `[Preval] Attempting to call a value that cannot be called: \`const tmpCalleeParam\$3 = 2();\``;
+const tmpThrowArg /*:object*/ /*truthy*/ = new $typeError_constructor(
+  `[Preval] Attempting to call a value that cannot be called: \`const tmpCalleeParam\$3 = 2();\``,
+);
+throw tmpThrowArg;
 `````
 
 
@@ -62,7 +65,10 @@ f();
 $(`pass`);
 $(undefined);
 f();
-throw `[Preval] Attempting to call a value that cannot be called: \`const tmpCalleeParam\$3 = 2();\``;
+const tmpThrowArg = new $typeError_constructor(
+  `[Preval] Attempting to call a value that cannot be called: \`const tmpCalleeParam\$3 = 2();\``,
+);
+throw tmpThrowArg;
 `````
 
 
@@ -81,7 +87,8 @@ a();
 $( "pass" );
 $( undefined );
 a();
-throw "[Preval] Attempting to call a value that cannot be called: `const tmpCalleeParam$3 = 2();`";
+const b = new $typeError_constructor( "[Preval] Attempting to call a value that cannot be called: `const tmpCalleeParam$3 = 2();`" );
+throw b;
 `````
 
 
@@ -100,7 +107,10 @@ f();
 $(`pass`);
 $(undefined);
 f();
-throw `[Preval] Attempting to call a value that cannot be called: \`const tmpCalleeParam\$3 = 2();\``;
+const tmpThrowArg = new $typeError_constructor(
+  `[Preval] Attempting to call a value that cannot be called: \`const tmpCalleeParam\$3 = 2();\``,
+);
+throw tmpThrowArg;
 const tmpCalleeParam$5 = 0;
 `````
 

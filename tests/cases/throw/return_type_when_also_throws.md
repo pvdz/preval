@@ -41,7 +41,7 @@ const _THROW /*:()=>unknown*/ = function () {
   if ($) {
     return undefined;
   } else {
-    const tmpThrowArg /*:object*/ /*truthy*/ = new Error(`always throws`);
+    const tmpThrowArg /*:object*/ /*truthy*/ = new $error_constructor(`always throws`);
     throw tmpThrowArg;
   }
 };
@@ -66,7 +66,7 @@ const _THROW = function () {
   $(`inline`);
   $(`please`);
   if (!$) {
-    const tmpThrowArg = new Error(`always throws`);
+    const tmpThrowArg = new $error_constructor(`always throws`);
     throw tmpThrowArg;
   }
 };
@@ -95,7 +95,7 @@ const a = function() {
     return undefined;
   }
   else {
-    const b = new Error( "always throws" );
+    const b = new $error_constructor( "always throws" );
     throw b;
   }
 };
@@ -123,7 +123,7 @@ const _THROW = function () {
   if ($) {
     return 1;
   } else {
-    const tmpThrowArg = new Error(`always throws`);
+    const tmpThrowArg = new $error_constructor(`always throws`);
     throw tmpThrowArg;
   }
 };

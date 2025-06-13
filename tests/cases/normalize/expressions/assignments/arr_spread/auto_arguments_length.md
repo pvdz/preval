@@ -405,6 +405,13 @@ Should call `$` with:
     '<function>',
     '<function>',
     '<function>',
+    {},
+    '<function>',
+    '<function>',
+    '<function>',
+    '<function>',
+    {},
+    '<function>',
     {
       readBigUInt64LE: '"<function>"',
       readBigUInt64BE: '"<function>"',

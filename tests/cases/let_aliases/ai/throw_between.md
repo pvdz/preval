@@ -22,7 +22,7 @@ $(a, b);
 
 `````js filename=intro
 $(`val`);
-const tmpThrowArg /*:object*/ /*truthy*/ = new Error(`stop`);
+const tmpThrowArg /*:object*/ /*truthy*/ = new $error_constructor(`stop`);
 throw tmpThrowArg;
 `````
 
@@ -32,7 +32,7 @@ throw tmpThrowArg;
 
 `````js filename=intro
 $(`val`);
-const tmpThrowArg = new Error(`stop`);
+const tmpThrowArg = new $error_constructor(`stop`);
 throw tmpThrowArg;
 `````
 
@@ -42,7 +42,7 @@ With rename=true
 
 `````js filename=intro
 $( "val" );
-const a = new Error( "stop" );
+const a = new $error_constructor( "stop" );
 throw a;
 `````
 
@@ -53,7 +53,7 @@ throw a;
 `````js filename=intro
 let x = $(`val`);
 const a = x;
-const tmpThrowArg = new Error(`stop`);
+const tmpThrowArg = new $error_constructor(`stop`);
 throw tmpThrowArg;
 const b = 0;
 `````

@@ -36,7 +36,7 @@ try {
 `````js filename=intro
 try {
   $(1);
-  const tmpThrowArg /*:object*/ /*truthy*/ = new Error(`test`);
+  const tmpThrowArg /*:object*/ /*truthy*/ = new $error_constructor(`test`);
   throw tmpThrowArg;
 } catch (e) {
   $(2);
@@ -51,7 +51,7 @@ try {
 `````js filename=intro
 try {
   $(1);
-  const tmpThrowArg = new Error(`test`);
+  const tmpThrowArg = new $error_constructor(`test`);
   throw tmpThrowArg;
 } catch (e) {
   $(2);
@@ -66,7 +66,7 @@ With rename=true
 `````js filename=intro
 try {
   $( 1 );
-  const a = new Error( "test" );
+  const a = new $error_constructor( "test" );
   throw a;
 }
 catch (b) {
@@ -82,7 +82,7 @@ catch (b) {
 `````js filename=intro
 try {
   $(1);
-  const tmpThrowArg = new Error(`test`);
+  const tmpThrowArg = new $error_constructor(`test`);
   throw tmpThrowArg;
 } catch (e) {
   $(2);

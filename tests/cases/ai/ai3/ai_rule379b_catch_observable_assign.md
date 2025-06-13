@@ -42,7 +42,7 @@ $('log', `final_x_value: ${x}`);
 $(`log`, `x_before_try_catch: initial`);
 let x /*:unknown*/ = undefined;
 try {
-  const tmpThrowArg /*:object*/ /*truthy*/ = new Error(`TestError379b`);
+  const tmpThrowArg /*:object*/ /*truthy*/ = new $error_constructor(`TestError379b`);
   throw tmpThrowArg;
 } catch (e) {
   const decision /*:unknown*/ = $(`log_and_return`, `rethrow_decision: false`, false);
@@ -65,7 +65,7 @@ $(`log`, tmpCalleeParam);
 $(`log`, `x_before_try_catch: initial`);
 let x = undefined;
 try {
-  const tmpThrowArg = new Error(`TestError379b`);
+  const tmpThrowArg = new $error_constructor(`TestError379b`);
   throw tmpThrowArg;
 } catch (e) {
   if ($(`log_and_return`, `rethrow_decision: false`, false)) {
@@ -85,7 +85,7 @@ With rename=true
 $( "log", "x_before_try_catch: initial" );
 let a = undefined;
 try {
-  const b = new Error( "TestError379b" );
+  const b = new $error_constructor( "TestError379b" );
   throw b;
 }
 catch (c) {
@@ -109,7 +109,7 @@ $( "log", f );
 `````js filename=intro
 let throwError = function () {
   debugger;
-  const tmpThrowArg = new Error(`TestError379b`);
+  const tmpThrowArg = new $error_constructor(`TestError379b`);
   throw tmpThrowArg;
 };
 let x = $(`log`, `x_before_try_catch: initial`);

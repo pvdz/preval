@@ -35,7 +35,7 @@ $(`do`);
 $(`not`);
 $(`inline`);
 $(`please`);
-const tmpThrowArg /*:object*/ /*truthy*/ = new Error(`always throws`);
+const tmpThrowArg /*:object*/ /*truthy*/ = new $error_constructor(`always throws`);
 throw tmpThrowArg;
 `````
 
@@ -48,7 +48,7 @@ $(`do`);
 $(`not`);
 $(`inline`);
 $(`please`);
-const tmpThrowArg = new Error(`always throws`);
+const tmpThrowArg = new $error_constructor(`always throws`);
 throw tmpThrowArg;
 `````
 
@@ -61,7 +61,7 @@ $( "do" );
 $( "not" );
 $( "inline" );
 $( "please" );
-const a = new Error( "always throws" );
+const a = new $error_constructor( "always throws" );
 throw a;
 `````
 
@@ -76,7 +76,7 @@ const _THROW = function () {
   $(`not`);
   $(`inline`);
   $(`please`);
-  const tmpThrowArg = new Error(`always throws`);
+  const tmpThrowArg = new $error_constructor(`always throws`);
   throw tmpThrowArg;
 };
 let tmpCalleeParam = _THROW();

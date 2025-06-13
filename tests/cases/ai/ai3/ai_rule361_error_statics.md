@@ -34,18 +34,10 @@
 
 
 `````js filename=intro
-const e /*:object*/ /*truthy*/ = new Error(`my error`);
-const tmpUnaryArg /*:unknown*/ = Error.captureStackTrace;
-const tmpBinLhs /*:string*/ /*truthy*/ = typeof tmpUnaryArg;
-const tmpIfTest /*:boolean*/ = tmpBinLhs === `function`;
-if (tmpIfTest) {
-  $(`captureStackTrace_exists`);
-  const tmpMCF /*:unknown*/ = Error.captureStackTrace;
-  const tmpMCP /*:unknown*/ = $(`my_func_ref`);
-  $dotCall(tmpMCF, Error, `captureStackTrace`, e, tmpMCP);
-} else {
-  $(`captureStackTrace_absent`);
-}
+const e /*:object*/ /*truthy*/ = new $error_constructor(`my error`);
+$(`captureStackTrace_exists`);
+const tmpMCP /*:unknown*/ = $(`my_func_ref`);
+$dotCall($Error_captureStackTrace, $error_constructor, `captureStackTrace`, e, tmpMCP);
 const oldStackLimit /*:unknown*/ = Error.stackTraceLimit;
 const tmpCalleeParam$1 /*:boolean*/ = oldStackLimit > 0;
 const tmpCalleeParam /*:string*/ /*truthy*/ = typeof oldStackLimit;
@@ -64,14 +56,9 @@ $(`restored_stack_limit`, tmpCalleeParam$5);
 (This ought to be the final result)
 
 `````js filename=intro
-const e = new Error(`my error`);
-const tmpUnaryArg = Error.captureStackTrace;
-if (typeof tmpUnaryArg === `function`) {
-  $(`captureStackTrace_exists`);
-  Error.captureStackTrace(e, $(`my_func_ref`));
-} else {
-  $(`captureStackTrace_absent`);
-}
+const e = new $error_constructor(`my error`);
+$(`captureStackTrace_exists`);
+$dotCall($Error_captureStackTrace, $error_constructor, `captureStackTrace`, e, $(`my_func_ref`));
 const oldStackLimit = Error.stackTraceLimit;
 const tmpCalleeParam$1 = oldStackLimit > 0;
 $(`old_stack_limit`, typeof oldStackLimit, tmpCalleeParam$1);
@@ -86,30 +73,21 @@ $(`restored_stack_limit`, Error.stackTraceLimit);
 With rename=true
 
 `````js filename=intro
-const a = new Error( "my error" );
-const b = Error.captureStackTrace;
-const c = typeof b;
-const d = c === "function";
-if (d) {
-  $( "captureStackTrace_exists" );
-  const e = Error.captureStackTrace;
-  const f = $( "my_func_ref" );
-  $dotCall( e, Error, "captureStackTrace", a, f );
-}
-else {
-  $( "captureStackTrace_absent" );
-}
+const a = new $error_constructor( "my error" );
+$( "captureStackTrace_exists" );
+const b = $( "my_func_ref" );
+$dotCall( $Error_captureStackTrace, $error_constructor, "captureStackTrace", a, b );
+const c = Error.stackTraceLimit;
+const d = c > 0;
+const e = typeof c;
+$( "old_stack_limit", e, d );
+const f = $( "new_limit", 5 );
+Error.stackTraceLimit = f;
 const g = Error.stackTraceLimit;
-const h = g > 0;
-const i = typeof g;
-$( "old_stack_limit", i, h );
-const j = $( "new_limit", 5 );
-Error.stackTraceLimit = j;
-const k = Error.stackTraceLimit;
-$( "new_stack_limit_set", k );
-Error.stackTraceLimit = g;
-const l = Error.stackTraceLimit;
-$( "restored_stack_limit", l );
+$( "new_stack_limit_set", g );
+Error.stackTraceLimit = c;
+const h = Error.stackTraceLimit;
+$( "restored_stack_limit", h );
 `````
 
 
@@ -119,15 +97,15 @@ $( "restored_stack_limit", l );
 `````js filename=intro
 const tmpCallComplexCallee = function () {
   debugger;
-  const e = new Error(`my error`);
-  const tmpUnaryArg = Error.captureStackTrace;
+  const e = new $error_constructor(`my error`);
+  const tmpUnaryArg = $Error_captureStackTrace;
   const tmpBinLhs = typeof tmpUnaryArg;
   const tmpIfTest = tmpBinLhs === `function`;
   if (tmpIfTest) {
     $(`captureStackTrace_exists`);
-    const tmpMCF = Error.captureStackTrace;
+    const tmpMCF = $Error_captureStackTrace;
     const tmpMCP = $(`my_func_ref`);
-    $dotCall(tmpMCF, Error, `captureStackTrace`, e, tmpMCP);
+    $dotCall(tmpMCF, $error_constructor, `captureStackTrace`, e, tmpMCP);
   } else {
     $(`captureStackTrace_absent`);
   }
@@ -152,7 +130,7 @@ tmpCallComplexCallee();
 ## Todos triggered
 
 
-None
+- (todo) type trackeed tricks can possibly support static $Error_captureStackTrace
 
 
 ## Globals

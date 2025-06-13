@@ -42,7 +42,10 @@ if ($) {
   b = a;
   tmpClusterSSA_f();
 } else {
-  throw `[Preval] Attempting to call a value that cannot be called: \`undefined(1);\``;
+  const tmpThrowArg /*:object*/ /*truthy*/ = new $typeError_constructor(
+    `[Preval] Attempting to call a value that cannot be called: \`undefined(1);\``,
+  );
+  throw tmpThrowArg;
 }
 `````
 
@@ -63,7 +66,8 @@ if ($) {
   b = a;
   tmpClusterSSA_f();
 } else {
-  throw `[Preval] Attempting to call a value that cannot be called: \`undefined(1);\``;
+  const tmpThrowArg = new $typeError_constructor(`[Preval] Attempting to call a value that cannot be called: \`undefined(1);\``);
+  throw tmpThrowArg;
 }
 `````
 
@@ -87,7 +91,8 @@ if ($) {
   c();
 }
 else {
-  throw "[Preval] Attempting to call a value that cannot be called: `undefined(1);`";
+  const d = new $typeError_constructor( "[Preval] Attempting to call a value that cannot be called: `undefined(1);`" );
+  throw d;
 }
 `````
 

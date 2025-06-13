@@ -17,7 +17,10 @@ $(''?.());
 
 
 `````js filename=intro
-throw `[Preval] Attempting to call a value that cannot be called: \`const tmpChainElementCall = \`\`();\``;
+const tmpThrowArg /*:object*/ /*truthy*/ = new $typeError_constructor(
+  `[Preval] Attempting to call a value that cannot be called: \`const tmpChainElementCall = \`\`();\``,
+);
+throw tmpThrowArg;
 `````
 
 
@@ -25,7 +28,10 @@ throw `[Preval] Attempting to call a value that cannot be called: \`const tmpCha
 (This ought to be the final result)
 
 `````js filename=intro
-throw `[Preval] Attempting to call a value that cannot be called: \`const tmpChainElementCall = \`\`();\``;
+const tmpThrowArg = new $typeError_constructor(
+  `[Preval] Attempting to call a value that cannot be called: \`const tmpChainElementCall = \`\`();\``,
+);
+throw tmpThrowArg;
 `````
 
 
@@ -33,7 +39,8 @@ throw `[Preval] Attempting to call a value that cannot be called: \`const tmpCha
 With rename=true
 
 `````js filename=intro
-throw "[Preval] Attempting to call a value that cannot be called: `const tmpChainElementCall = ``();`";
+const a = new $typeError_constructor( "[Preval] Attempting to call a value that cannot be called: `const tmpChainElementCall = ``();`" );
+throw a;
 `````
 
 

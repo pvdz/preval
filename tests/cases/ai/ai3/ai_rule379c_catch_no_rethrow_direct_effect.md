@@ -33,7 +33,7 @@ $('log', 'done: finished');
 
 `````js filename=intro
 try {
-  const tmpThrowArg /*:object*/ /*truthy*/ = new Error(`TestError379c`);
+  const tmpThrowArg /*:object*/ /*truthy*/ = new $error_constructor(`TestError379c`);
   throw tmpThrowArg;
 } catch (e) {
   const decision /*:unknown*/ = $(`log_and_return`, `rethrow_c_decision: false`, false);
@@ -52,7 +52,7 @@ $(`log`, `done: finished`);
 
 `````js filename=intro
 try {
-  const tmpThrowArg = new Error(`TestError379c`);
+  const tmpThrowArg = new $error_constructor(`TestError379c`);
   throw tmpThrowArg;
 } catch (e) {
   if ($(`log_and_return`, `rethrow_c_decision: false`, false)) {
@@ -70,7 +70,7 @@ With rename=true
 
 `````js filename=intro
 try {
-  const a = new Error( "TestError379c" );
+  const a = new $error_constructor( "TestError379c" );
   throw a;
 }
 catch (b) {
@@ -91,7 +91,7 @@ $( "log", "done: finished" );
 
 `````js filename=intro
 try {
-  const tmpThrowArg = new Error(`TestError379c`);
+  const tmpThrowArg = new $error_constructor(`TestError379c`);
   throw tmpThrowArg;
 } catch (e) {
   const decision = $(`log_and_return`, `rethrow_c_decision: false`, false);

@@ -18,7 +18,10 @@ $(o.oops());
 
 
 `````js filename=intro
-throw `[Preval] Attempting to call a value that cannot be called: \`const tmpCalleeParam = \$dotCall(\`fail\`, o, \`oops\`);\``;
+const tmpThrowArg /*:object*/ /*truthy*/ = new $typeError_constructor(
+  `[Preval] Attempting to call a value that cannot be called: \`const tmpCalleeParam = \$dotCall(\`fail\`, o, \`oops\`);\``,
+);
+throw tmpThrowArg;
 `````
 
 
@@ -26,7 +29,10 @@ throw `[Preval] Attempting to call a value that cannot be called: \`const tmpCal
 (This ought to be the final result)
 
 `````js filename=intro
-throw `[Preval] Attempting to call a value that cannot be called: \`const tmpCalleeParam = \$dotCall(\`fail\`, o, \`oops\`);\``;
+const tmpThrowArg = new $typeError_constructor(
+  `[Preval] Attempting to call a value that cannot be called: \`const tmpCalleeParam = \$dotCall(\`fail\`, o, \`oops\`);\``,
+);
+throw tmpThrowArg;
 `````
 
 
@@ -34,7 +40,8 @@ throw `[Preval] Attempting to call a value that cannot be called: \`const tmpCal
 With rename=true
 
 `````js filename=intro
-throw "[Preval] Attempting to call a value that cannot be called: `const tmpCalleeParam = $dotCall(`fail`, o, `oops`);`";
+const a = new $typeError_constructor( "[Preval] Attempting to call a value that cannot be called: `const tmpCalleeParam = $dotCall(`fail`, o, `oops`);`" );
+throw a;
 `````
 
 

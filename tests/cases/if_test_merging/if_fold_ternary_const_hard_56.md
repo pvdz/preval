@@ -65,7 +65,7 @@ const err_cond /*:unknown*/ = $(false);
 if (x) {
   try {
     if (err_cond) {
-      const tmpThrowArg /*:object*/ /*truthy*/ = new Error(`problem`);
+      const tmpThrowArg /*:object*/ /*truthy*/ = new $error_constructor(`problem`);
       throw tmpThrowArg;
     } else {
       y = true;
@@ -93,7 +93,7 @@ const err_cond = $(false);
 if (x) {
   try {
     if (err_cond) {
-      const tmpThrowArg = new Error(`problem`);
+      const tmpThrowArg = new $error_constructor(`problem`);
       throw tmpThrowArg;
     } else {
       y = true;
@@ -120,7 +120,7 @@ const c = $( false );
 if (a) {
   try {
     if (c) {
-      const d = new Error( "problem" );
+      const d = new $error_constructor( "problem" );
       throw d;
     }
     else {
@@ -152,7 +152,7 @@ if (x) {
   let $finalCatchArg = undefined;
   try {
     if (err_cond) {
-      const tmpThrowArg = new Error(`problem`);
+      const tmpThrowArg = new $error_constructor(`problem`);
       throw tmpThrowArg;
     } else {
       y = true;

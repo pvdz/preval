@@ -24,16 +24,8 @@ test(1, 2, 3);
 
 
 `````js filename=intro
-let x /*:unknown*/ = $(`val`);
-const a /*:unknown*/ = x;
-const tmpMCP /*:()=>undefined*/ = function () {
-  debugger;
-  x = `changed`;
-  return undefined;
-};
-const tmpMCOO /*:array*/ /*truthy*/ = [1];
-$dotCall($array_forEach, tmpMCOO, `forEach`, tmpMCP);
-$(a, x);
+const x /*:unknown*/ = $(`val`);
+$(x, `changed`);
 `````
 
 
@@ -41,13 +33,7 @@ $(a, x);
 (This ought to be the final result)
 
 `````js filename=intro
-let x = $(`val`);
-const a = x;
-const tmpMCP = function () {
-  x = `changed`;
-};
-$dotCall($array_forEach, [1], `forEach`, tmpMCP);
-$(a, x);
+$($(`val`), `changed`);
 `````
 
 
@@ -55,16 +41,8 @@ $(a, x);
 With rename=true
 
 `````js filename=intro
-let a = $( "val" );
-const b = a;
-const c = function() {
-  debugger;
-  a = "changed";
-  return undefined;
-};
-const d = [ 1 ];
-$dotCall( $array_forEach, d, "forEach", c );
-$( b, a );
+const a = $( "val" );
+$( a, "changed" );
 `````
 
 
@@ -96,9 +74,12 @@ test(1, 2, 3);
 ## Todos triggered
 
 
-- (todo) arr mutation may be able to inline this method: $array_forEach
+- (todo) Support this binary expression operator:
+- (todo) do we want to support BinaryExpression as expression statement in free loops?
 - (todo) drop unused rest param?
 - (todo) support array reads statement type ExpressionStatement
+- (todo) support array reads statement type VarStatement
+- (todo) support array reads statement type WhileStatement
 - (todo) type trackeed tricks can possibly support static $array_forEach
 
 

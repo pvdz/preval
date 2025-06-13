@@ -1,19 +1,17 @@
 # Preval test case
 
-# callback_mutation.md
+# foreach_callback_args.md
 
-> Let aliases > Ai > Callback mutation
+> Array methods > Foreach > Ai > Foreach callback args
 >
-> Aliasing with mutation in a callback (should not alias)
+> Test: Array.forEach callback arguments
 
 ## Input
 
 `````js filename=intro
-let x = $("val");
-const a = x;
-[1].forEach(() => { x = "changed"; });
-const b = x;
-$(a, b);
+// Input: [10,20].forEach(fn)
+// Expected: fn receives value, index, array
+[10,20].forEach(function(value, index, array) { $(value, index, array); });
 `````
 
 
@@ -21,8 +19,14 @@ $(a, b);
 
 
 `````js filename=intro
-const x /*:unknown*/ = $(`val`);
-$(x, `changed`);
+const tmpMCOO /*:array*/ /*truthy*/ = [10, 20];
+$(10, 0, tmpMCOO);
+const tmpArrin$1 /*:boolean*/ = 1 in tmpMCOO;
+if (tmpArrin$1) {
+  const tmpArrel$1 /*:primitive*/ = tmpMCOO[1];
+  $(tmpArrel$1, 1, tmpMCOO);
+} else {
+}
 `````
 
 
@@ -30,7 +34,11 @@ $(x, `changed`);
 (This ought to be the final result)
 
 `````js filename=intro
-$($(`val`), `changed`);
+const tmpMCOO = [10, 20];
+$(10, 0, tmpMCOO);
+if (1 in tmpMCOO) {
+  $(tmpMCOO[1], 1, tmpMCOO);
+}
 `````
 
 
@@ -38,8 +46,13 @@ $($(`val`), `changed`);
 With rename=true
 
 `````js filename=intro
-const a = $( "val" );
-$( a, "changed" );
+const a = [ 10, 20 ];
+$( 10, 0, a );
+const b = 1 in a;
+if (b) {
+  const c = a[ 1 ];
+  $( c, 1, a );
+}
 `````
 
 
@@ -47,26 +60,25 @@ $( a, "changed" );
 (This is what phase1 received the first time)
 
 `````js filename=intro
-let x = $(`val`);
-const a = x;
-const tmpMCOO = [1];
+const tmpMCOO = [10, 20];
 const tmpMCF = tmpMCOO.forEach;
-const tmpMCP = function () {
+const tmpMCP = function ($$0, $$1, $$2) {
+  let value = $$0;
+  let index = $$1;
+  let array = $$2;
   debugger;
-  x = `changed`;
+  $(value, index, array);
   return undefined;
 };
 $dotCall(tmpMCF, tmpMCOO, `forEach`, tmpMCP);
-const b = x;
-$(a, x);
 `````
 
 
 ## Todos triggered
 
 
+- (todo) - at least one of the frfr args was not isFree, bailing
 - (todo) Support this binary expression operator:
-- (todo) do we want to support BinaryExpression as expression statement in free loops?
 - (todo) support array reads statement type ExpressionStatement
 - (todo) support array reads statement type VarStatement
 - (todo) support array reads statement type WhileStatement
@@ -83,8 +95,8 @@ None
 
 
 Should call `$` with:
- - 1: 'val'
- - 2: 'val', 'changed'
+ - 1: 10, 0, [10, 20]
+ - 2: 20, 1, [10, 20]
  - eval returned: undefined
 
 Pre normalization calls: Same

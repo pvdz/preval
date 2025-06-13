@@ -25,16 +25,8 @@ $(a, b);
 
 
 `````js filename=intro
-let x /*:unknown*/ = $(`val`);
-const a /*:unknown*/ = x;
-const tmpMCP /*:()=>undefined*/ = function () {
-  debugger;
-  x = `changed`;
-  return undefined;
-};
-const tmpMCOO /*:array*/ /*truthy*/ = [1];
-$dotCall($array_forEach, tmpMCOO, `forEach`, tmpMCP);
-$(a, x);
+const x /*:unknown*/ = $(`val`);
+$(x, `changed`);
 `````
 
 
@@ -42,13 +34,7 @@ $(a, x);
 (This ought to be the final result)
 
 `````js filename=intro
-let x = $(`val`);
-const a = x;
-const tmpMCP = function () {
-  x = `changed`;
-};
-$dotCall($array_forEach, [1], `forEach`, tmpMCP);
-$(a, x);
+$($(`val`), `changed`);
 `````
 
 
@@ -56,16 +42,8 @@ $(a, x);
 With rename=true
 
 `````js filename=intro
-let a = $( "val" );
-const b = a;
-const c = function() {
-  debugger;
-  a = "changed";
-  return undefined;
-};
-const d = [ 1 ];
-$dotCall( $array_forEach, d, "forEach", c );
-$( b, a );
+const a = $( "val" );
+$( a, "changed" );
 `````
 
 
@@ -101,10 +79,15 @@ $(a, x);
 ## Todos triggered
 
 
+- (todo) - at least one of the frfr args was not isFree, bailing
+- (todo) Support non-primitive in first arg to $coerce
+- (todo) Support this binary expression operator:
 - (todo) Support this node type in isFree: DebuggerStatement
-- (todo) arr mutation may be able to inline this method: $array_forEach
-- (todo) i need loopChain for this to work properly
+- (todo) do we want to support BinaryExpression as expression statement in free loops?
+- (todo) regular property access of an ident feels tricky;
 - (todo) support array reads statement type ExpressionStatement
+- (todo) support array reads statement type VarStatement
+- (todo) support array reads statement type WhileStatement
 - (todo) type trackeed tricks can possibly support static $array_forEach
 
 

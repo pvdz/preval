@@ -1055,6 +1055,41 @@ function _typeTrackedTricks(fdata) {
 
             break;
           }
+
+          case 'in': {
+            // We can resolve properties of objects that we can fully resolve
+            // We can resolve indexes of arrays we can fully resolve (this is an artifact of arrya.forEach family transforms)
+            if (
+              AST.isNumberLiteral(node.left) &&
+              node.right.type === 'Identifier'
+            ) {
+              const rightMeta = fdata.globallyUniqueNamingRegistry.get(node.right.name);
+              const write = rightMeta.writes[0];
+              if (
+                rightMeta.isConstant &&
+                write &&
+                rightMeta.varDeclRef.node.type === 'ArrayExpression' &&
+                blockBody === write.blockBody &&
+                blockIndex === write.blockIndex + 1 // back to back statements?
+              ) {
+                rule('Reading <index> in arr when array is defined on previous line can be resolved');
+                example('const x = [1, 2, 3]; $(1 in arr); $(5 in arr);', 'const x = 1, 2, 3]; $(true); $(false);');
+                before(write.blockBody[write.blockIndex]);
+                before(blockBody[blockIndex]);
+
+                const index = AST.getPrimitiveValue(node.left);
+                const outcome = index < rightMeta.varDeclRef.node.elements.length && !!rightMeta.varDeclRef.node.elements[index];
+
+                if (parentIndex < 0) parentNode[parentProp] = AST.primitive(outcome);
+                else parentNode[parentProp][parentIndex] = AST.primitive(outcome);
+
+                after(write.blockBody[write.blockIndex]);
+                after(blockBody[blockIndex]);
+                changes += 1;
+                return;
+              }
+            }
+          }
         }
 
         break;

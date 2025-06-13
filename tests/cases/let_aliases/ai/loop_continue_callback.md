@@ -35,13 +35,18 @@ while (true) {
     if (tmpIfTest$1) {
       i = i + 1;
     } else {
-      const tmpMCP /*:()=>undefined*/ = function () {
-        debugger;
-        x = `changed`;
-        return undefined;
-      };
+      x = `changed`;
+      let tmpClusterSSA_tmpArri /*:number*/ = 1;
       const tmpMCOO /*:array*/ /*truthy*/ = [1];
-      $dotCall($array_forEach, tmpMCOO, `forEach`, tmpMCP);
+      while ($LOOP_UNROLL_10) {
+        const tmpArrc$1 /*:boolean*/ = tmpClusterSSA_tmpArri < 1;
+        if (tmpArrc$1) {
+          0 in tmpMCOO;
+          tmpClusterSSA_tmpArri = tmpClusterSSA_tmpArri + 1;
+        } else {
+          break;
+        }
+      }
       break;
     }
   } else {
@@ -64,10 +69,17 @@ while (true) {
     if (i === 0) {
       i = i + 1;
     } else {
-      const tmpMCP = function () {
-        x = `changed`;
-      };
-      $dotCall($array_forEach, [1], `forEach`, tmpMCP);
+      x = `changed`;
+      let tmpClusterSSA_tmpArri = 1;
+      const tmpMCOO = [1];
+      while (true) {
+        if (tmpClusterSSA_tmpArri < 1) {
+          0 in tmpMCOO;
+          tmpClusterSSA_tmpArri = tmpClusterSSA_tmpArri + 1;
+        } else {
+          break;
+        }
+      }
       break;
     }
   } else {
@@ -93,13 +105,19 @@ while (true) {
       c = c + 1;
     }
     else {
-      const f = function() {
-        debugger;
-        a = "changed";
-        return undefined;
-      };
+      a = "changed";
+      let f = 1;
       const g = [ 1 ];
-      $dotCall( $array_forEach, g, "forEach", f );
+      while ($LOOP_UNROLL_10) {
+        const h = f < 1;
+        if (h) {
+          0 in g;
+          f = f + 1;
+        }
+        else {
+          break;
+        }
+      }
       break;
     }
   }
@@ -151,10 +169,12 @@ $(a, x);
 ## Todos triggered
 
 
-- (todo) - at least one of the frfr args was not isFree, bailing
+- (todo) Support this binary expression operator:
 - (todo) Support this node type in isFree: LabeledStatement
-- (todo) arr mutation may be able to inline this method: $array_forEach
+- (todo) do we want to support BinaryExpression as expression statement in free loops?
 - (todo) support array reads statement type ExpressionStatement
+- (todo) support array reads statement type VarStatement
+- (todo) support array reads statement type WhileStatement
 - (todo) type trackeed tricks can possibly support static $array_forEach
 
 

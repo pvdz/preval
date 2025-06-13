@@ -25,17 +25,11 @@ $(a, b);
 
 
 `````js filename=intro
-const tmpMCP$1 /*:()=>undefined*/ = function () {
-  debugger;
-  x = `changed`;
-  return undefined;
-};
 let x /*:unknown*/ = $(`val`);
 const a /*:unknown*/ = x;
 const tmpMCP /*:()=>undefined*/ = function () {
   debugger;
-  const tmpMCOO$1 /*:array*/ /*truthy*/ = [2];
-  $dotCall($array_forEach, tmpMCOO$1, `forEach`, tmpMCP$1);
+  x = `changed`;
   return undefined;
 };
 const tmpMCOO /*:array*/ /*truthy*/ = [1];
@@ -48,13 +42,10 @@ $(a, x);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpMCP$1 = function () {
-  x = `changed`;
-};
 let x = $(`val`);
 const a = x;
 const tmpMCP = function () {
-  $dotCall($array_forEach, [2], `forEach`, tmpMCP$1);
+  x = `changed`;
 };
 $dotCall($array_map, [1], `map`, tmpMCP);
 $(a, x);
@@ -65,22 +56,16 @@ $(a, x);
 With rename=true
 
 `````js filename=intro
-const a = function() {
+let a = $( "val" );
+const b = a;
+const c = function() {
   debugger;
-  b = "changed";
+  a = "changed";
   return undefined;
 };
-let b = $( "val" );
-const c = b;
-const d = function() {
-  debugger;
-  const e = [ 2 ];
-  $dotCall( $array_forEach, e, "forEach", a );
-  return undefined;
-};
-const f = [ 1 ];
-$dotCall( $array_map, f, "map", d );
-$( c, b );
+const d = [ 1 ];
+$dotCall( $array_map, d, "map", c );
+$( b, a );
 `````
 
 
@@ -113,9 +98,13 @@ $(a, x);
 ## Todos triggered
 
 
-- (todo) arr mutation may be able to inline this method: $array_forEach
+- (todo) Support this binary expression operator:
+- (todo) Support this node type in isFree: DebuggerStatement
 - (todo) arr mutation may be able to inline this method: $array_map
+- (todo) i need loopChain for this to work properly
 - (todo) support array reads statement type ExpressionStatement
+- (todo) support array reads statement type VarStatement
+- (todo) support array reads statement type WhileStatement
 - (todo) type trackeed tricks can possibly support static $array_forEach
 - (todo) type trackeed tricks can possibly support static $array_map
 

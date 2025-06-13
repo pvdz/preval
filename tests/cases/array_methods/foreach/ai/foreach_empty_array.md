@@ -1,19 +1,19 @@
 # Preval test case
 
-# callback_mutation.md
+# foreach_empty_array.md
 
-> Let aliases > Ai > Callback mutation
+> Array methods > Foreach > Ai > Foreach empty array
 >
-> Aliasing with mutation in a callback (should not alias)
+> Test: Array.forEach on empty array
 
 ## Input
 
 `````js filename=intro
-let x = $("val");
-const a = x;
-[1].forEach(() => { x = "changed"; });
-const b = x;
-$(a, b);
+// Input: [].forEach(fn)
+// Expected: fn is never called
+let result = [];
+[].forEach(function(x) { result.push(x); });
+$(result);
 `````
 
 
@@ -21,8 +21,8 @@ $(a, b);
 
 
 `````js filename=intro
-const x /*:unknown*/ = $(`val`);
-$(x, `changed`);
+const result /*:array*/ /*truthy*/ = [];
+$(result);
 `````
 
 
@@ -30,7 +30,7 @@ $(x, `changed`);
 (This ought to be the final result)
 
 `````js filename=intro
-$($(`val`), `changed`);
+$([]);
 `````
 
 
@@ -38,8 +38,8 @@ $($(`val`), `changed`);
 With rename=true
 
 `````js filename=intro
-const a = $( "val" );
-$( a, "changed" );
+const a = [];
+$( a );
 `````
 
 
@@ -47,18 +47,18 @@ $( a, "changed" );
 (This is what phase1 received the first time)
 
 `````js filename=intro
-let x = $(`val`);
-const a = x;
-const tmpMCOO = [1];
+let result = [];
+const tmpMCOO = [];
 const tmpMCF = tmpMCOO.forEach;
-const tmpMCP = function () {
+const tmpMCP = function ($$0) {
+  let x = $$0;
   debugger;
-  x = `changed`;
+  const tmpMCF$1 = result.push;
+  $dotCall(tmpMCF$1, result, `push`, x);
   return undefined;
 };
 $dotCall(tmpMCF, tmpMCOO, `forEach`, tmpMCP);
-const b = x;
-$(a, x);
+$(result);
 `````
 
 
@@ -66,7 +66,8 @@ $(a, x);
 
 
 - (todo) Support this binary expression operator:
-- (todo) do we want to support BinaryExpression as expression statement in free loops?
+- (todo) access object property that also exists on prototype? $array_push
+- (todo) support array reads statement type EmptyStatement
 - (todo) support array reads statement type ExpressionStatement
 - (todo) support array reads statement type VarStatement
 - (todo) support array reads statement type WhileStatement
@@ -83,8 +84,7 @@ None
 
 
 Should call `$` with:
- - 1: 'val'
- - 2: 'val', 'changed'
+ - 1: []
  - eval returned: undefined
 
 Pre normalization calls: Same

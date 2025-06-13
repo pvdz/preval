@@ -1,19 +1,18 @@
 # Preval test case
 
-# callback_mutation.md
+# foreach_sparse_variety.md
 
-> Let aliases > Ai > Callback mutation
+> Array methods > Foreach > Ai > Foreach sparse variety
 >
-> Aliasing with mutation in a callback (should not alias)
+> Test: Array.forEach on varied sparse array
 
 ## Input
 
 `````js filename=intro
-let x = $("val");
-const a = x;
-[1].forEach(() => { x = "changed"; });
-const b = x;
-$(a, b);
+// Input: [1,,undefined,4].forEach(fn)
+// Expected: fn called for present elements (including undefined value)
+let arr = [1,,undefined,4];
+arr.forEach(function(x) { $(x); });
 `````
 
 
@@ -21,8 +20,9 @@ $(a, b);
 
 
 `````js filename=intro
-const x /*:unknown*/ = $(`val`);
-$(x, `changed`);
+$(1);
+$(undefined);
+$(4);
 `````
 
 
@@ -30,7 +30,9 @@ $(x, `changed`);
 (This ought to be the final result)
 
 `````js filename=intro
-$($(`val`), `changed`);
+$(1);
+$(undefined);
+$(4);
 `````
 
 
@@ -38,8 +40,9 @@ $($(`val`), `changed`);
 With rename=true
 
 `````js filename=intro
-const a = $( "val" );
-$( a, "changed" );
+$( 1 );
+$( undefined );
+$( 4 );
 `````
 
 
@@ -47,18 +50,15 @@ $( a, "changed" );
 (This is what phase1 received the first time)
 
 `````js filename=intro
-let x = $(`val`);
-const a = x;
-const tmpMCOO = [1];
-const tmpMCF = tmpMCOO.forEach;
-const tmpMCP = function () {
+let arr = [1, , undefined, 4];
+const tmpMCF = arr.forEach;
+const tmpMCP = function ($$0) {
+  let x = $$0;
   debugger;
-  x = `changed`;
+  $(x);
   return undefined;
 };
-$dotCall(tmpMCF, tmpMCOO, `forEach`, tmpMCP);
-const b = x;
-$(a, x);
+$dotCall(tmpMCF, arr, `forEach`, tmpMCP);
 `````
 
 
@@ -66,7 +66,6 @@ $(a, x);
 
 
 - (todo) Support this binary expression operator:
-- (todo) do we want to support BinaryExpression as expression statement in free loops?
 - (todo) support array reads statement type ExpressionStatement
 - (todo) support array reads statement type VarStatement
 - (todo) support array reads statement type WhileStatement
@@ -83,8 +82,9 @@ None
 
 
 Should call `$` with:
- - 1: 'val'
- - 2: 'val', 'changed'
+ - 1: 1
+ - 2: undefined
+ - 3: 4
  - eval returned: undefined
 
 Pre normalization calls: Same

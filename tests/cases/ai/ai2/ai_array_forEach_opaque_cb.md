@@ -25,8 +25,15 @@ const tmpArrElement /*:unknown*/ = $(`a`);
 const tmpArrElement$1 /*:unknown*/ = $(`b`);
 const cb /*:unknown*/ = $(`opaque_forEach_callback`);
 const arr /*:array*/ /*truthy*/ = [tmpArrElement, tmpArrElement$1];
-$dotCall($array_forEach, arr, `forEach`, cb);
-$(`forEach_done`);
+$dotCall(cb, undefined, undefined, tmpArrElement, 0, arr);
+const tmpArrin$1 /*:boolean*/ = 1 in arr;
+if (tmpArrin$1) {
+  const tmpArrel$1 /*:unknown*/ = arr[1];
+  $dotCall(cb, undefined, undefined, tmpArrel$1, 1, arr);
+  $(`forEach_done`);
+} else {
+  $(`forEach_done`);
+}
 `````
 
 
@@ -37,8 +44,14 @@ $(`forEach_done`);
 const tmpArrElement = $(`a`);
 const tmpArrElement$1 = $(`b`);
 const cb = $(`opaque_forEach_callback`);
-$dotCall($array_forEach, [tmpArrElement, tmpArrElement$1], `forEach`, cb);
-$(`forEach_done`);
+const arr = [tmpArrElement, tmpArrElement$1];
+$dotCall(cb, undefined, undefined, tmpArrElement, 0, arr);
+if (1 in arr) {
+  $dotCall(cb, undefined, undefined, arr[1], 1, arr);
+  $(`forEach_done`);
+} else {
+  $(`forEach_done`);
+}
 `````
 
 
@@ -50,8 +63,16 @@ const a = $( "a" );
 const b = $( "b" );
 const c = $( "opaque_forEach_callback" );
 const d = [ a, b ];
-$dotCall( $array_forEach, d, "forEach", c );
-$( "forEach_done" );
+$dotCall( c, undefined, undefined, a, 0, d );
+const e = 1 in d;
+if (e) {
+  const f = d[ 1 ];
+  $dotCall( c, undefined, undefined, f, 1, d );
+  $( "forEach_done" );
+}
+else {
+  $( "forEach_done" );
+}
 `````
 
 
@@ -72,11 +93,15 @@ $(`forEach_done`);
 ## Todos triggered
 
 
+- (todo) - at least one of the frfr args was not isFree, bailing
 - (todo) access object property that also exists on prototype? $array_forEach
-- (todo) arr mutation may be able to inline this method: $array_forEach
 - (todo) arr mutation may be able to inline this method: tmpMCF
+- (todo) support array reads statement type EmptyStatement
 - (todo) support array reads statement type ExpressionStatement
+- (todo) support array reads statement type VarStatement
+- (todo) support array reads statement type WhileStatement
 - (todo) type trackeed tricks can possibly support static $array_forEach
+- (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
 
 
 ## Globals

@@ -1,19 +1,17 @@
 # Preval test case
 
-# callback_mutation.md
+# foreach_callback_throws.md
 
-> Let aliases > Ai > Callback mutation
+> Array methods > Foreach > Ai > Foreach callback throws
 >
-> Aliasing with mutation in a callback (should not alias)
+> Test: Array.forEach with callback that throws
 
 ## Input
 
 `````js filename=intro
-let x = $("val");
-const a = x;
-[1].forEach(() => { x = "changed"; });
-const b = x;
-$(a, b);
+// Input: [1,2,3].forEach(fn) where fn throws on 2
+// Expected: Only elements before throw are visited
+[1,2,3].forEach(function(x) { $(x); if (x === 2) throw new Error('stop'); });
 `````
 
 
@@ -21,8 +19,10 @@ $(a, b);
 
 
 `````js filename=intro
-const x /*:unknown*/ = $(`val`);
-$(x, `changed`);
+$(1);
+$(2);
+const tmpThrowArg$1 /*:object*/ /*truthy*/ = new $error_constructor(`stop`);
+throw tmpThrowArg$1;
 `````
 
 
@@ -30,7 +30,10 @@ $(x, `changed`);
 (This ought to be the final result)
 
 `````js filename=intro
-$($(`val`), `changed`);
+$(1);
+$(2);
+const tmpThrowArg$1 = new $error_constructor(`stop`);
+throw tmpThrowArg$1;
 `````
 
 
@@ -38,8 +41,10 @@ $($(`val`), `changed`);
 With rename=true
 
 `````js filename=intro
-const a = $( "val" );
-$( a, "changed" );
+$( 1 );
+$( 2 );
+const a = new $error_constructor( "stop" );
+throw a;
 `````
 
 
@@ -47,18 +52,21 @@ $( a, "changed" );
 (This is what phase1 received the first time)
 
 `````js filename=intro
-let x = $(`val`);
-const a = x;
-const tmpMCOO = [1];
+const tmpMCOO = [1, 2, 3];
 const tmpMCF = tmpMCOO.forEach;
-const tmpMCP = function () {
+const tmpMCP = function ($$0) {
+  let x = $$0;
   debugger;
-  x = `changed`;
-  return undefined;
+  $(x);
+  const tmpIfTest = x === 2;
+  if (tmpIfTest) {
+    const tmpThrowArg = new $error_constructor(`stop`);
+    throw tmpThrowArg;
+  } else {
+    return undefined;
+  }
 };
 $dotCall(tmpMCF, tmpMCOO, `forEach`, tmpMCP);
-const b = x;
-$(a, x);
 `````
 
 
@@ -66,7 +74,6 @@ $(a, x);
 
 
 - (todo) Support this binary expression operator:
-- (todo) do we want to support BinaryExpression as expression statement in free loops?
 - (todo) support array reads statement type ExpressionStatement
 - (todo) support array reads statement type VarStatement
 - (todo) support array reads statement type WhileStatement
@@ -83,9 +90,9 @@ None
 
 
 Should call `$` with:
- - 1: 'val'
- - 2: 'val', 'changed'
- - eval returned: undefined
+ - 1: 1
+ - 2: 2
+ - eval returned: ('<crash[ stop ]>')
 
 Pre normalization calls: Same
 

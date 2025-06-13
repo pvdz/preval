@@ -1134,10 +1134,11 @@ function _inferNodeTyping(fdata, valueNode) {
     }
     case 'ThisExpression': {
       vlog('- Node is a `this`');
+      // Note: this may be `undefined`: `f.call(undefined)` works.
       return createTypingObject({
-        mustBeType: 'object',
-        mustBePrimitive: false,
-        mustBeTruthy: true,
+        // mustBeType: 'object',
+        // mustBePrimitive: false,
+        // mustBeTruthy: true,
       });
     }
     case 'UnaryExpression': {

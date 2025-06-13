@@ -29,7 +29,7 @@ $(f.call({y: 1}));
 
 `````js filename=intro
 const f /*:()=>unknown*/ = function () {
-  const tmpPrevalAliasThis /*:object*/ /*truthy*/ = this;
+  const tmpPrevalAliasThis /*:unknown*/ = this;
   debugger;
   $(tmpPrevalAliasThis);
   $(tmpPrevalAliasThis);

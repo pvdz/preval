@@ -53,7 +53,7 @@ $(undefined);
 const obj /*:object*/ /*truthy*/ = {
   f: tmpObjLitVal,
   g() {
-    const tmpPrevalAliasThis /*:object*/ /*truthy*/ = this;
+    const tmpPrevalAliasThis /*:unknown*/ = this;
     debugger;
     const tmpMCF /*:unknown*/ = tmpPrevalAliasThis.f;
     const tmpIfTest /*:unknown*/ = $dotCall(tmpMCF, tmpPrevalAliasThis, `f`);

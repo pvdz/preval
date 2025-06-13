@@ -23,8 +23,8 @@ $(f);
 
 
 `````js filename=intro
-const f /*:(unused)=>unknown*/ = function ($$0) {
-  const tmpPrevalAliasThis$1 /*:object*/ /*truthy*/ = this;
+const f /*:(unused)=>undefined*/ = function ($$0) {
+  const tmpPrevalAliasThis$1 /*:unknown*/ = this;
   debugger;
   tmpPrevalAliasThis$1.e$;
   tmpPrevalAliasThis$1.e$;

@@ -20,7 +20,7 @@ $(function(){ $(this.x); }.apply({x: 15}, ['x']));
 
 `````js filename=intro
 const tmpMCOO /*:()=>undefined*/ = function () {
-  const tmpPrevalAliasThis /*:object*/ /*truthy*/ = this;
+  const tmpPrevalAliasThis /*:unknown*/ = this;
   debugger;
   const tmpCalleeParam$1 /*:unknown*/ = tmpPrevalAliasThis.x;
   $(tmpCalleeParam$1);

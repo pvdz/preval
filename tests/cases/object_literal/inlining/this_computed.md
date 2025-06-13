@@ -19,7 +19,7 @@ $(obj.f());
 
 `````js filename=intro
 const tmpObjLitVal /*:()=>undefined*/ = function () {
-  const tmpPrevalAliasThis /*:object*/ /*truthy*/ = this;
+  const tmpPrevalAliasThis /*:unknown*/ = this;
   debugger;
   const tmpCalleeParam /*:unknown*/ = tmpPrevalAliasThis[`f f`];
   $(tmpCalleeParam);

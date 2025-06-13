@@ -19,7 +19,7 @@ $($(a)?.[$('b')][$('c')](100));
 
 `````js filename=intro
 const tmpObjLitVal$1 /*:(array)=>unknown*/ = function (...$$0 /*:array*/) {
-  const tmpPrevalAliasThis /*:object*/ /*truthy*/ = this;
+  const tmpPrevalAliasThis /*:unknown*/ = this;
   const a$1 /*:array*/ /*truthy*/ = $$0;
   debugger;
   const tmpCalleeParam /*:unknown*/ = $(a$1);

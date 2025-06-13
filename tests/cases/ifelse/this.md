@@ -26,7 +26,7 @@ $(obj.f());
 
 `````js filename=intro
 const f /*:()=>unknown*/ = function () {
-  const tmpPrevalAliasThis /*:object*/ /*truthy*/ = this;
+  const tmpPrevalAliasThis /*:unknown*/ = this;
   debugger;
   const tmpIfTest /*:unknown*/ = $(1);
   if (tmpIfTest) {

@@ -23,7 +23,7 @@ $(a, b);
 
 `````js filename=intro
 const mutate /*:()=>undefined*/ = function () {
-  const tmpPrevalAliasThis /*:object*/ /*truthy*/ = this;
+  const tmpPrevalAliasThis /*:unknown*/ = this;
   debugger;
   tmpPrevalAliasThis.x = `changed`;
   return undefined;

@@ -20,8 +20,8 @@ $(arr[0]() === arr);
 
 
 `````js filename=intro
-const tmpArrElement /*:()=>object*/ = function () {
-  const tmpPrevalAliasThis /*:object*/ /*truthy*/ = this;
+const tmpArrElement /*:()=>unknown*/ = function () {
+  const tmpPrevalAliasThis /*:unknown*/ = this;
   debugger;
   return tmpPrevalAliasThis;
 };

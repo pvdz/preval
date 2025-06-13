@@ -26,7 +26,7 @@ tmpObjLitVal.c();
 
 `````js filename=intro
 const tmpObjLitVal$1 /*:(array)=>undefined*/ = function (...$$0 /*:array*/) {
-  const tmpPrevalAliasThis$1 /*:object*/ /*truthy*/ = this;
+  const tmpPrevalAliasThis$1 /*:unknown*/ = this;
   const $dlr_$$0 /*:array*/ /*truthy*/ = $$0;
   debugger;
   const tmpCalleeParam /*:unknown*/ = $($dlr_$$0);

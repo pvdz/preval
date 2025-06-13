@@ -57,7 +57,7 @@
 
 `````js filename=intro
 const tmpObjLitVal$1 /*:()=>number*/ = function () {
-  const tmpPrevalAliasThis /*:object*/ /*truthy*/ = this;
+  const tmpPrevalAliasThis /*:unknown*/ = this;
   debugger;
   $(`obj_m_called`);
   tmpPrevalAliasThis.p = 30;
@@ -74,7 +74,7 @@ const obj /*:object*/ /*truthy*/ = {
   m: tmpObjLitVal$1,
   _getter_val: 50,
   get getterProp() {
-    const tmpPrevalAliasThis$1 /*:object*/ /*truthy*/ = this;
+    const tmpPrevalAliasThis$1 /*:unknown*/ = this;
     debugger;
     $(`getter_called`);
     const tmpUpdProp /*:unknown*/ = tmpPrevalAliasThis$1._getter_val;

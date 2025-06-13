@@ -50,7 +50,7 @@ const oops /*:object*/ /*truthy*/ = {
     return undefined;
   },
   [tmpObjLitPropKey]() {
-    const tmpPrevalAliasThis /*:object*/ /*truthy*/ = this;
+    const tmpPrevalAliasThis /*:unknown*/ = this;
     debugger;
     const tmpCalleeParam /*:unknown*/ = o.x;
     $(`iterator called, o.x=`, tmpCalleeParam);

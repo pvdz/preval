@@ -115,14 +115,14 @@ const obj /*:object*/ /*truthy*/ = {
   },
   arrow_prop: tmpObjLitVal$1,
   get getter_prop() {
-    const tmpPrevalAliasThis /*:object*/ /*truthy*/ = this;
+    const tmpPrevalAliasThis /*:unknown*/ = this;
     debugger;
     $(`getter_name_check`);
     const tmpReturnArg$1 /*:unknown*/ = tmpPrevalAliasThis._val;
     return tmpReturnArg$1;
   },
   set setter_prop($$0) {
-    const tmpPrevalAliasThis$1 /*:object*/ /*truthy*/ = this;
+    const tmpPrevalAliasThis$1 /*:unknown*/ = this;
     const v /*:unknown*/ = $$0;
     debugger;
     $(`setter_name_check`);

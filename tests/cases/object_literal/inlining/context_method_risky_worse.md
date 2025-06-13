@@ -27,7 +27,7 @@ $(obj.str); // changed!
 
 `````js filename=intro
 const tmpObjLitVal /*:()=>undefined*/ = function () {
-  const tmpPrevalAliasThis /*:object*/ /*truthy*/ = this;
+  const tmpPrevalAliasThis /*:unknown*/ = this;
   debugger;
   tmpPrevalAliasThis.str = `changed`;
   const tmpCalleeParam /*:unknown*/ = tmpPrevalAliasThis.str;

@@ -35,7 +35,7 @@ const tmpAssignMemRhs /*:unknown*/ = $(`new_value`);
 const obj /*:object*/ /*truthy*/ = {
   _val: tmpObjLitVal,
   set prop($$0) {
-    const tmpPrevalAliasThis /*:object*/ /*truthy*/ = this;
+    const tmpPrevalAliasThis /*:unknown*/ = this;
     const value /*:unknown*/ = $$0;
     debugger;
     $(`setter_invoked`, value);

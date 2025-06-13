@@ -30,7 +30,7 @@ $(obj.f());
 
 `````js filename=intro
 const tmpObjLitVal$1 /*:()=>unknown*/ = function () {
-  const tmpPrevalAliasThis /*:object*/ /*truthy*/ = this;
+  const tmpPrevalAliasThis /*:unknown*/ = this;
   debugger;
   const tmpBinLhs /*:unknown*/ = tmpPrevalAliasThis.x;
   const tmpIfTest /*:boolean*/ = tmpBinLhs === `burn`;

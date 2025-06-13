@@ -26,7 +26,7 @@ $(f);
 
 `````js filename=intro
 const f /*:(unused, unused, unused)=>undefined*/ = function ($$0, $$1, $$2) {
-  const tmpPrevalAliasThis /*:object*/ /*truthy*/ = this;
+  const tmpPrevalAliasThis /*:unknown*/ = this;
   debugger;
   const tmpSwitchValue /*:unknown*/ = tmpPrevalAliasThis.state;
   const tmpBinLhs /*:unknown*/ = Yt.PARSING;

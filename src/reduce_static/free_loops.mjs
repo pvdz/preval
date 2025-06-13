@@ -962,7 +962,14 @@ function _runExpression(fdata, node, register, callNodeToCalleeSymbol, prng, use
             register.set('', 'Trying to write to unexpected array property');
             return FAILURE_SYMBOL;
           }
-          obj.elements[node.left.property.name] = AST.primitive(value);
+          try {
+            obj.elements[node.left.property.name] = AST.primitive(value);
+          } catch {
+            // This is valid code but freeloops should ignore it...
+            todo('Attempted to set invalid value to array.length');
+            register.set('', 'Writing to array.length threw an error, probably invalid length');
+            return FAILURE_SYMBOL;
+          }
         }
         return value;
       } else {

@@ -21,9 +21,9 @@ $(a);
 
 `````js filename=intro
 const tmpUnaryArg /*:unknown*/ = $(100);
-const tmpClusterSSA_a /*:number*/ = +tmpUnaryArg;
+const tmpSSA_a /*:number*/ = +tmpUnaryArg;
 $(undefined);
-$(tmpClusterSSA_a);
+$(tmpSSA_a);
 `````
 
 
@@ -32,9 +32,9 @@ $(tmpClusterSSA_a);
 
 `````js filename=intro
 const tmpUnaryArg = $(100);
-const tmpClusterSSA_a = +tmpUnaryArg;
+const tmpSSA_a = +tmpUnaryArg;
 $(undefined);
-$(tmpClusterSSA_a);
+$(tmpSSA_a);
 `````
 
 

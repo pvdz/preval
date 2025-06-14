@@ -33,8 +33,8 @@ $(closure(), 'closure-global2');
 
 `````js filename=intro
 let x /*:unknown*/ = $(100, `init`);
-const tmpCalleeParam /*:unknown*/ = $(x, `closure-return`);
-$(tmpCalleeParam, `closure-global1`);
+const tmpReturnArg$4 /*:unknown*/ = $(x, `closure-return`);
+$(tmpReturnArg$4, `closure-global1`);
 const tmpIfTest /*:unknown*/ = $();
 if (tmpIfTest) {
   x = $(1, `f-return`);

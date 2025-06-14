@@ -20,12 +20,12 @@ $(a);
 
 
 `````js filename=intro
-const tmpClusterSSA_a /*:()=>unknown*/ = function () {
+const tmpSSA_a /*:()=>unknown*/ = function () {
   debugger;
   return undefined;
 };
 $(undefined);
-$(tmpClusterSSA_a);
+$(tmpSSA_a);
 `````
 
 
@@ -33,9 +33,9 @@ $(tmpClusterSSA_a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpClusterSSA_a = function () {};
+const tmpSSA_a = function () {};
 $(undefined);
-$(tmpClusterSSA_a);
+$(tmpSSA_a);
 `````
 
 

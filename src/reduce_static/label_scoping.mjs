@@ -6,12 +6,18 @@
 //
 
 import walk from '../../lib/walk.mjs';
-import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, fmat, tmat, rule, example, before, source, after, findBodyOffset, riskyRule, } from '../utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, fmat, tmat, rule, example, before, source, after, findBodyOffset, riskyRule, todo, currentState } from '../utils.mjs';
 import * as AST from '../ast.mjs';
+import { setPrintPids } from '../../lib/printer.mjs';
 
 export function labelScoping(fdata) {
   group('\n\n\n[labelScoping] Finding var decls to get scoped up by labels\n');
-  //currentState(fdata, 'labelScoping', true, fdata);
+  // currentState(fdata, 'labelScoping', true, fdata);
+
+  // setPrintPids(true);
+  // currentState(fdata, 'labelScoping', true, fdata);
+  // setPrintPids(false);
+
   const r = _labelScoping(fdata);
   groupEnd();
   return r;
@@ -47,32 +53,21 @@ function _labelScoping(fdata) {
 
         const varName = stmt.id.name;
         const meta = fdata.globallyUniqueNamingRegistry.get(varName);
-        // TODO: If not single scoped then the closure must happen inside the label too. If it happens before then all bets are off.
-        if (!meta.singleScoped) return;
 
-        // If the label has no sub-statements then the last read can't be inside of it, eh?
-        if (!node.body.body.length) return;
+        // If all refs are inside the label scope then we're good. Scoping shouldn't matter here.
+        const first = node.$p.npid;
+        const last = node.$p.lastPid;
 
-        // Block chain is the chain of block pid's from current node all the way to Program
-        // If one blockChain is a prefix of the other than the one is in a block that is some ancestor of the other
-        const firstNode = node.body.body[0];
-        const labelBlockChain = firstNode.$p.blockChain;
-        const lastRefBlockChain = meta.rwOrder[meta.rwOrder.length - 1].node.$p.blockChain;
-        vlog('varname:', varName, ', label block:', [labelBlockChain], ', lastref:', [lastRefBlockChain]);
-        if (lastRefBlockChain === labelBlockChain) {
-          const a = meta.rwOrder[meta.rwOrder.length - 1].node.$p.npid;
-          const b = node.body.$p.lastPid;
-          vlog('Same block chain. Check if usage is (or was) before label:', a, '<=', b);
-          if (a > b) {
-            // Usage is _after_ the label, so nope
-            return;
-          } else {
-            // Special case. The last usage is before the label. Or the index is
-            // stale. But in that case it _was_ before the label because it could
-            // not suddenly be _after_ the label, so it should still be safe...
-          }
-        }
-        else if (!lastRefBlockChain.startsWith(labelBlockChain)) {
+        // console.log('wot?', first, last)
+
+        if (!meta.rwOrder.every(ref => {
+          // console.log('test:', ref.kind, ref.node.$p.npid)
+          if (ref.kind === 'var') return true; // skip the var decl itself
+          const pid = ref.node.$p.npid;
+          vlog('  - check:', pid, '?', first, '~', last);
+          return (pid >= first && pid <= last);
+        })) {
+          vlog('- bail: at least one reference was outside of the label;', varName, node.label.name);
           return;
         }
 
@@ -83,11 +78,17 @@ function _labelScoping(fdata) {
         before(body[parentIndex]);
 
         node.body.body.unshift(stmt); // push into the front of the label body
-        body[curr] = AST.emptyStatement();
+        const newNode = AST.emptyStatement(); // We remmeber this so we can search for it.
+        body[curr] = newNode;
 
-        queue.push({
-          index: curr,
-          func: p => body.splice(p, 1),
+        queue.push(() => {
+          // We can't rely on the index anymore because multiple unshifts may have happened but since we don't
+          // splice, the statement must still be there. Find it. Eliminate it.
+          // This is the only thing that should happen in these queues so it should be safe to just do since
+          // every queued step will lookup their node (again) before eliminating it.
+          const index = body.indexOf(newNode);
+          ASSERT(index >= 0, 'the new node should not have disappeared');
+          body.splice(index, 1);
         });
 
         after(body[curr]);
@@ -109,11 +110,17 @@ function _labelScoping(fdata) {
         before(body[parentIndex]);
 
         node.body.body.unshift(stmt); // push into the front of the label body
-        body[curr] = AST.emptyStatement();
+        const newNode = AST.emptyStatement();
+        body[curr] = newNode;
 
-        queue.push({
-          index: curr,
-          func: p => body.splice(p, 1),
+        queue.push(() => {
+          // We can't rely on the index anymore because multiple unshifts may have happened but since we don't
+          // splice, the statement must still be there. Find it. Eliminate it.
+          // This is the only thing that should happen in these queues so it should be safe to just do since
+          // every queued step will lookup their node (again) before eliminating it.
+          const index = body.indexOf(newNode);
+          ASSERT(index >= 0, 'the new node should not have disappeared');
+          body.splice(index, 1);
         });
 
         after(body[curr]);
@@ -127,8 +134,8 @@ function _labelScoping(fdata) {
     }
   }
 
-  queue.sort(({ index: a }, { index: b }) => b - a);
-  queue.forEach(({index, func}) => func(index));
+  // No need to sort them. They will look up their target based on the current AST, not index caches.
+  queue.forEach(func => func());
 
   if (changes) {
     log('Var decls wrapped by label:', changes, '. Restarting from phase1');

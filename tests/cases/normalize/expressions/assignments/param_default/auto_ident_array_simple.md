@@ -21,8 +21,8 @@ $(a);
 
 `````js filename=intro
 $(undefined);
-const tmpClusterSSA_a /*:array*/ /*truthy*/ = [1, 2, 3];
-$(tmpClusterSSA_a);
+const tmpSSA_a /*:array*/ /*truthy*/ = [1, 2, 3];
+$(tmpSSA_a);
 `````
 
 

@@ -20,9 +20,9 @@ $(a);
 
 
 `````js filename=intro
-const tmpClusterSSA_a /*:object*/ /*truthy*/ = new $(1);
+const tmpSSA_a /*:object*/ /*truthy*/ = new $(1);
 $(undefined);
-$(tmpClusterSSA_a);
+$(tmpSSA_a);
 `````
 
 
@@ -30,9 +30,9 @@ $(tmpClusterSSA_a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpClusterSSA_a = new $(1);
+const tmpSSA_a = new $(1);
 $(undefined);
-$(tmpClusterSSA_a);
+$(tmpSSA_a);
 `````
 
 

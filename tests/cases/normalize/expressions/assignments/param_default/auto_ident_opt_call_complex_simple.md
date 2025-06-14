@@ -26,9 +26,9 @@ if (tmpIfTest$1) {
   $(undefined);
   $(undefined);
 } else {
-  const tmpClusterSSA_a$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, 1);
+  const tmpClusterSSA_tmpSSA_a /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, 1);
   $(undefined);
-  $(tmpClusterSSA_a$1);
+  $(tmpClusterSSA_tmpSSA_a);
 }
 `````
 
@@ -42,9 +42,9 @@ if (tmpChainElementCall == null) {
   $(undefined);
   $(undefined);
 } else {
-  const tmpClusterSSA_a$1 = $dotCall(tmpChainElementCall, $, undefined, 1);
+  const tmpClusterSSA_tmpSSA_a = $dotCall(tmpChainElementCall, $, undefined, 1);
   $(undefined);
-  $(tmpClusterSSA_a$1);
+  $(tmpClusterSSA_tmpSSA_a);
 }
 `````
 

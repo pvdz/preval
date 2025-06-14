@@ -969,7 +969,8 @@ export function thisExpression() {
   };
 }
 
-export function throwStatement(argument = null) {
+export function throwStatement(argument) {
+  ASSERT(typeof argument !== 'string', 'must pass in a primitive node. too risky to auto this');
   if (typeof argument !== 'object') {
     ASSERT(false, 'too dangerous not to be explicit about the arg');
   }
@@ -1109,9 +1110,10 @@ export function variableDeclaration(names, inits = null, kind = 'let', areYouSur
 export function varStatement(kind, id, init) {
   ASSERT(arguments.length === varStatement.length, 'vardecl arg count, not more');
   ASSERT(kind === 'let' || kind === 'const', 'var decl should be let or const', kind);
-  ASSERT(typeof id === 'string' || (id && typeof id === 'object' && !Array.isArray(id)));
+  ASSERT(typeof id === 'string' || (id && typeof id === 'object' && !Array.isArray(id)), 'id must be string or non-array object', id);
   if (typeof id === 'string') id = identifier(id);
-  ASSERT(init && typeof init === 'object', 'init must be node'); // prevent issues with string as primitive vs string as ident
+  ASSERT(typeof init !== 'string', 'var init should be node, strings are not converted to idents');
+  ASSERT(init && typeof init === 'object', 'init must be node', init); // prevent issues with string as primitive vs string as ident
 
   const node = {
     type: 'VarStatement',

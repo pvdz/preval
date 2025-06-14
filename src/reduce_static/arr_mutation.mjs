@@ -571,21 +571,35 @@ function _arrMutation(fdata) {
           // Exception to that is when there can be no spies between the write and the read.
           // For example when they are back to back or there are only certain var decls between them.
           let noopBetween = write.blockBody === read.blockBody && write.blockIndex + 1 === read.blockIndex;
+          const idents = [];
           if (!noopBetween) {
             for (let i=write.blockIndex+1; i<=read.blockIndex; ++i) {
               if (i === read.blockIndex) {
                 noopBetween = true;
                 break;
               }
+              const stmt = write.blockBody[i];
               // We can expand on this but there's not that much meat on the bone for other statements here.
-              if (write.blockBody[i].type !== 'VarStatement') break;
+              if (stmt.type !== 'VarStatement') break;
               // There's not many things that are absolutely safe. But we can also support array/object/class here as
               // well as some cases of unary/binary expression when we know the args are prims.
-              if (write.blockBody[i].init.type !== 'FunctionExpression' && !AST.isPrimitive(write.blockBody[i].init)) break;
+              if (stmt.init.type !== 'FunctionExpression' && !AST.isPrimitive(stmt.init)) break;
+              idents.push(stmt.id.name);
             }
           }
           vlog('- back2back=', noopBetween);
-          while (args.length > 3 && (AST.isPrimitive(args[3]) || (args[3].type !== 'SpreadElement' && noopBetween))) {
+          while (
+            args.length > 3 &&
+            (
+              AST.isPrimitive(args[3]) ||
+              (
+                args[3].type !== 'SpreadElement' &&
+                noopBetween &&
+                  // Make sure not to cause a tdz by moving an ident ref up that was defined between declarign the arr and this push...
+                (args[3].type !== 'Identifier' || !idents.includes(args[3].name))
+              )
+            )
+          ) {
             // Remove the first param from the call and append it to the array literal
 
             rule('Push on an array literal with first element a primitive should move the node');

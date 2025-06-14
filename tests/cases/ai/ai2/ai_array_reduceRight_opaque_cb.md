@@ -26,8 +26,15 @@ const tmpArrElement$1 /*:unknown*/ = $(`b`);
 const cb /*:unknown*/ = $(`opaque_reducer_right`);
 const tmpMCP /*:unknown*/ = $(`initial`);
 const arr /*:array*/ /*truthy*/ = [tmpArrElement, tmpArrElement$1];
-const result /*:array*/ /*truthy*/ = $dotCall($array_reduceRight, arr, `reduceRight`, cb, tmpMCP);
-$(`reduceRight_result`, result);
+const tmpClusterSSA_tmpArreout /*:unknown*/ = $dotCall(cb, undefined, undefined, tmpMCP, tmpArrElement$1, 1, arr);
+const tmpArrin$1 /*:boolean*/ = 0 in arr;
+if (tmpArrin$1) {
+  const tmpArrel$1 /*:unknown*/ = arr[0];
+  const tmpClusterSSA_tmpArreout$1 /*:unknown*/ = $dotCall(cb, undefined, undefined, tmpClusterSSA_tmpArreout, tmpArrel$1, 0, arr);
+  $(`reduceRight_result`, tmpClusterSSA_tmpArreout$1);
+} else {
+  $(`reduceRight_result`, tmpClusterSSA_tmpArreout);
+}
 `````
 
 
@@ -39,7 +46,13 @@ const tmpArrElement = $(`a`);
 const tmpArrElement$1 = $(`b`);
 const cb = $(`opaque_reducer_right`);
 const tmpMCP = $(`initial`);
-$(`reduceRight_result`, $dotCall($array_reduceRight, [tmpArrElement, tmpArrElement$1], `reduceRight`, cb, tmpMCP));
+const arr = [tmpArrElement, tmpArrElement$1];
+const tmpClusterSSA_tmpArreout = $dotCall(cb, undefined, undefined, tmpMCP, tmpArrElement$1, 1, arr);
+if (0 in arr) {
+  $(`reduceRight_result`, $dotCall(cb, undefined, undefined, tmpClusterSSA_tmpArreout, arr[0], 0, arr));
+} else {
+  $(`reduceRight_result`, tmpClusterSSA_tmpArreout);
+}
 `````
 
 
@@ -52,8 +65,16 @@ const b = $( "b" );
 const c = $( "opaque_reducer_right" );
 const d = $( "initial" );
 const e = [ a, b ];
-const f = $dotCall( $array_reduceRight, e, "reduceRight", c, d );
-$( "reduceRight_result", f );
+const f = $dotCall( c, undefined, undefined, d, b, 1, e );
+const g = 0 in e;
+if (g) {
+  const h = e[ 0 ];
+  const i = $dotCall( c, undefined, undefined, f, h, 0, e );
+  $( "reduceRight_result", i );
+}
+else {
+  $( "reduceRight_result", f );
+}
 `````
 
 
@@ -75,11 +96,14 @@ $(`reduceRight_result`, result);
 ## Todos triggered
 
 
+- (todo) - at least one of the frfr args was not isFree, bailing
 - (todo) access object property that also exists on prototype? $array_reduceRight
-- (todo) arr mutation may be able to inline this method: $array_reduceRight
+- (todo) support array reads statement type EmptyStatement
 - (todo) support array reads statement type ExpressionStatement
 - (todo) support array reads statement type VarStatement
+- (todo) support array reads statement type WhileStatement
 - (todo) type trackeed tricks can possibly support static $array_reduceRight
+- (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
 
 
 ## Globals

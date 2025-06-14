@@ -1,18 +1,17 @@
 # Preval test case
 
-# math_with_array_reduceRight.md
+# some_sparse_beginning.md
 
-> Math > Ai > Math with array reduceRight
+> Array methods > Reduceright > Ai > Some sparse beginning
 >
-> Math.max with reduceRight on array
+> Test: Array.reduceRight on sparse array with hole at beginning
 
 ## Input
 
 `````js filename=intro
-const arr = [1, 5, 2, 8];
-const max = arr.reduceRight((a, b) => Math.max(a, b));
-$(max);
-// Should be 8
+let arr = [,1,2];
+const x = arr.reduceRight(function(x) { $(x); });
+$(x);
 `````
 
 
@@ -20,7 +19,8 @@ $(max);
 
 
 `````js filename=intro
-$(8);
+$(2);
+$(undefined);
 `````
 
 
@@ -28,7 +28,8 @@ $(8);
 (This ought to be the final result)
 
 `````js filename=intro
-$(8);
+$(2);
+$(undefined);
 `````
 
 
@@ -36,7 +37,8 @@ $(8);
 With rename=true
 
 `````js filename=intro
-$( 8 );
+$( 2 );
+$( undefined );
 `````
 
 
@@ -44,18 +46,16 @@ $( 8 );
 (This is what phase1 received the first time)
 
 `````js filename=intro
-const arr = [1, 5, 2, 8];
+let arr = [, 1, 2];
 const tmpMCF = arr.reduceRight;
-const tmpMCP = function ($$0, $$1) {
-  let a = $$0;
-  let b = $$1;
+const tmpMCP = function ($$0) {
+  let x$1 = $$0;
   debugger;
-  const tmpMCF$1 = $Math_max;
-  const tmpReturnArg = $Math_max(a, b);
-  return tmpReturnArg;
+  $(x$1);
+  return undefined;
 };
-const max = $dotCall(tmpMCF, arr, `reduceRight`, tmpMCP);
-$(max);
+const x = $dotCall(tmpMCF, arr, `reduceRight`, tmpMCP);
+$(x);
 `````
 
 
@@ -66,7 +66,6 @@ $(max);
 - (todo) objects in isFree check
 - (todo) support array reads statement type VarStatement
 - (todo) support array reads statement type WhileStatement
-- (todo) type trackeed tricks can possibly support static $Math_max
 - (todo) type trackeed tricks can possibly support static $array_reduceRight
 
 
@@ -80,7 +79,8 @@ None
 
 
 Should call `$` with:
- - 1: 8
+ - 1: 2
+ - 2: undefined
  - eval returned: undefined
 
 Pre normalization calls: Same

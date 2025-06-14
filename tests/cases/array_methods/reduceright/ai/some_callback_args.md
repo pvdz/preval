@@ -1,18 +1,16 @@
 # Preval test case
 
-# math_with_array_reduceRight.md
+# some_callback_args.md
 
-> Math > Ai > Math with array reduceRight
+> Array methods > Reduceright > Ai > Some callback args
 >
-> Math.max with reduceRight on array
+> Test: Array.reduceRight callback arguments
 
 ## Input
 
 `````js filename=intro
-const arr = [1, 5, 2, 8];
-const max = arr.reduceRight((a, b) => Math.max(a, b));
-$(max);
-// Should be 8
+const x = [10,20].reduceRight(function(value, index, array) { $(value, index, array); });
+$(x);
 `````
 
 
@@ -20,7 +18,8 @@ $(max);
 
 
 `````js filename=intro
-$(8);
+$(20, 10, 0);
+$(undefined);
 `````
 
 
@@ -28,7 +27,8 @@ $(8);
 (This ought to be the final result)
 
 `````js filename=intro
-$(8);
+$(20, 10, 0);
+$(undefined);
 `````
 
 
@@ -36,7 +36,8 @@ $(8);
 With rename=true
 
 `````js filename=intro
-$( 8 );
+$( 20, 10, 0 );
+$( undefined );
 `````
 
 
@@ -44,18 +45,18 @@ $( 8 );
 (This is what phase1 received the first time)
 
 `````js filename=intro
-const arr = [1, 5, 2, 8];
-const tmpMCF = arr.reduceRight;
-const tmpMCP = function ($$0, $$1) {
-  let a = $$0;
-  let b = $$1;
+const tmpMCOO = [10, 20];
+const tmpMCF = tmpMCOO.reduceRight;
+const tmpMCP = function ($$0, $$1, $$2) {
+  let value = $$0;
+  let index = $$1;
+  let array = $$2;
   debugger;
-  const tmpMCF$1 = $Math_max;
-  const tmpReturnArg = $Math_max(a, b);
-  return tmpReturnArg;
+  $(value, index, array);
+  return undefined;
 };
-const max = $dotCall(tmpMCF, arr, `reduceRight`, tmpMCP);
-$(max);
+const x = $dotCall(tmpMCF, tmpMCOO, `reduceRight`, tmpMCP);
+$(x);
 `````
 
 
@@ -66,7 +67,6 @@ $(max);
 - (todo) objects in isFree check
 - (todo) support array reads statement type VarStatement
 - (todo) support array reads statement type WhileStatement
-- (todo) type trackeed tricks can possibly support static $Math_max
 - (todo) type trackeed tricks can possibly support static $array_reduceRight
 
 
@@ -80,7 +80,8 @@ None
 
 
 Should call `$` with:
- - 1: 8
+ - 1: 20, 10, 0
+ - 2: undefined
  - eval returned: undefined
 
 Pre normalization calls: Same

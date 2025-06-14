@@ -1,18 +1,17 @@
 # Preval test case
 
-# math_with_array_reduceRight.md
+# reduce_elided_two_with_init.md
 
-> Math > Ai > Math with array reduceRight
+> Array methods > Reduceright > Reduce elided two with init
 >
-> Math.max with reduceRight on array
+> When the array only has two elements and otherwise elided elements, called without init, the callback should be called for all
 
 ## Input
 
 `````js filename=intro
-const arr = [1, 5, 2, 8];
-const max = arr.reduceRight((a, b) => Math.max(a, b));
-$(max);
-// Should be 8
+let result = [];
+const x = [,,,100,,,,200,,].reduceRight((a,b) => { $(a,b); return a+b; }, 10);
+$(result, x);
 `````
 
 
@@ -20,7 +19,10 @@ $(max);
 
 
 `````js filename=intro
-$(8);
+$(10, 200);
+$(210, 100);
+const result /*:array*/ /*truthy*/ = [];
+$(result, 310);
 `````
 
 
@@ -28,7 +30,9 @@ $(8);
 (This ought to be the final result)
 
 `````js filename=intro
-$(8);
+$(10, 200);
+$(210, 100);
+$([], 310);
 `````
 
 
@@ -36,7 +40,10 @@ $(8);
 With rename=true
 
 `````js filename=intro
-$( 8 );
+$( 10, 200 );
+$( 210, 100 );
+const a = [];
+$( a, 310 );
 `````
 
 
@@ -44,18 +51,19 @@ $( 8 );
 (This is what phase1 received the first time)
 
 `````js filename=intro
-const arr = [1, 5, 2, 8];
-const tmpMCF = arr.reduceRight;
+let result = [];
+const tmpMCOO = [, , , 100, , , , 200, ,];
+const tmpMCF = tmpMCOO.reduceRight;
 const tmpMCP = function ($$0, $$1) {
   let a = $$0;
   let b = $$1;
   debugger;
-  const tmpMCF$1 = $Math_max;
-  const tmpReturnArg = $Math_max(a, b);
+  $(a, b);
+  const tmpReturnArg = a + b;
   return tmpReturnArg;
 };
-const max = $dotCall(tmpMCF, arr, `reduceRight`, tmpMCP);
-$(max);
+const x = $dotCall(tmpMCF, tmpMCOO, `reduceRight`, tmpMCP, 10);
+$(result, x);
 `````
 
 
@@ -63,10 +71,9 @@ $(max);
 
 
 - (todo) Support this binary expression operator:
-- (todo) objects in isFree check
+- (todo) support array reads statement type ExpressionStatement
 - (todo) support array reads statement type VarStatement
 - (todo) support array reads statement type WhileStatement
-- (todo) type trackeed tricks can possibly support static $Math_max
 - (todo) type trackeed tricks can possibly support static $array_reduceRight
 
 
@@ -80,7 +87,9 @@ None
 
 
 Should call `$` with:
- - 1: 8
+ - 1: 10, 200
+ - 2: 210, 100
+ - 3: [], 310
  - eval returned: undefined
 
 Pre normalization calls: Same

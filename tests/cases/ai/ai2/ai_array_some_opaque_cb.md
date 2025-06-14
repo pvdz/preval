@@ -25,8 +25,33 @@ const tmpArrElement /*:unknown*/ = $(`v1`);
 const tmpArrElement$1 /*:unknown*/ = $(`v2`);
 const cb /*:unknown*/ = $(`opaque_some_predicate`);
 const arr /*:array*/ /*truthy*/ = [tmpArrElement, tmpArrElement$1];
-const hasSome /*:boolean*/ = $dotCall($array_some, arr, `some`, cb);
-$(`some_result`, hasSome);
+const tmpArrenow /*:unknown*/ = $dotCall(cb, undefined, undefined, tmpArrElement, 0, arr);
+if (tmpArrenow) {
+  $(`some_result`, true);
+} else {
+  let tmpArreout /*:boolean*/ = false;
+  let tmpClusterSSA_tmpArri /*:number*/ = 1;
+  while ($LOOP_UNROLL_10) {
+    const tmpArrc$1 /*:boolean*/ = tmpClusterSSA_tmpArri < 2;
+    if (tmpArrc$1) {
+      const tmpArrin$1 /*:boolean*/ = tmpClusterSSA_tmpArri in arr;
+      if (tmpArrin$1) {
+        const tmpArrel$1 /*:unknown*/ = arr[tmpClusterSSA_tmpArri];
+        const tmpArrenow$1 /*:unknown*/ = $dotCall(cb, undefined, undefined, tmpArrel$1, tmpClusterSSA_tmpArri, arr);
+        if (tmpArrenow$1) {
+          tmpArreout = true;
+          break;
+        } else {
+        }
+      } else {
+      }
+      tmpClusterSSA_tmpArri = tmpClusterSSA_tmpArri + 1;
+    } else {
+      break;
+    }
+  }
+  $(`some_result`, tmpArreout);
+}
 `````
 
 
@@ -37,7 +62,27 @@ $(`some_result`, hasSome);
 const tmpArrElement = $(`v1`);
 const tmpArrElement$1 = $(`v2`);
 const cb = $(`opaque_some_predicate`);
-$(`some_result`, $dotCall($array_some, [tmpArrElement, tmpArrElement$1], `some`, cb));
+const arr = [tmpArrElement, tmpArrElement$1];
+if ($dotCall(cb, undefined, undefined, tmpArrElement, 0, arr)) {
+  $(`some_result`, true);
+} else {
+  let tmpArreout = false;
+  let tmpClusterSSA_tmpArri = 1;
+  while (true) {
+    if (tmpClusterSSA_tmpArri < 2) {
+      if (tmpClusterSSA_tmpArri in arr) {
+        if ($dotCall(cb, undefined, undefined, arr[tmpClusterSSA_tmpArri], tmpClusterSSA_tmpArri, arr)) {
+          tmpArreout = true;
+          break;
+        }
+      }
+      tmpClusterSSA_tmpArri = tmpClusterSSA_tmpArri + 1;
+    } else {
+      break;
+    }
+  }
+  $(`some_result`, tmpArreout);
+}
 `````
 
 
@@ -49,8 +94,33 @@ const a = $( "v1" );
 const b = $( "v2" );
 const c = $( "opaque_some_predicate" );
 const d = [ a, b ];
-const e = $dotCall( $array_some, d, "some", c );
-$( "some_result", e );
+const e = $dotCall( c, undefined, undefined, a, 0, d );
+if (e) {
+  $( "some_result", true );
+}
+else {
+  let f = false;
+  let g = 1;
+  while ($LOOP_UNROLL_10) {
+    const h = g < 2;
+    if (h) {
+      const i = g in d;
+      if (i) {
+        const j = d[ g ];
+        const k = $dotCall( c, undefined, undefined, j, g, d );
+        if (k) {
+          f = true;
+          break;
+        }
+      }
+      g = g + 1;
+    }
+    else {
+      break;
+    }
+  }
+  $( "some_result", f );
+}
 `````
 
 
@@ -72,11 +142,13 @@ $(`some_result`, hasSome);
 
 
 - (todo) access object property that also exists on prototype? $array_some
-- (todo) arr mutation may be able to inline this method: $array_some
 - (todo) arr mutation may be able to inline this method: tmpMCF
+- (todo) support array reads statement type EmptyStatement
 - (todo) support array reads statement type ExpressionStatement
 - (todo) support array reads statement type VarStatement
+- (todo) support array reads statement type WhileStatement
 - (todo) type trackeed tricks can possibly support static $array_some
+- (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
 
 
 ## Globals

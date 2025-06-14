@@ -33,7 +33,7 @@ const BREAK_SYMBOL = {};
 const SUPPORTED_GLOBAL_FUNCS = [
   SYMBOL_FRFR,
   SYMBOL_COERCE,
-  symbo('array', 'pop'),
+  // symbo('array', 'pop'),
   symbo('array', 'push'),
   symbo('array', 'shift'),
   symbo('array', 'unshift'),
@@ -963,10 +963,13 @@ function _runExpression(fdata, node, register, callNodeToCalleeSymbol, prng, use
             return FAILURE_SYMBOL;
           }
           try {
-            obj.elements[node.left.property.name] = AST.primitive(value);
-          } catch {
+            obj.elements[node.left.property.name] = value; // actual value, not node
+            // array.elements in the AST cannot be sparse; change undefined keys to null (when .length gets bumped up)
+            for (let i=0; i<obj.elements.length; ++i) if (obj.elements[i] === undefined) obj.elements[i] = null;
+          } catch (e) {
             // This is valid code but freeloops should ignore it...
             todo('Attempted to set invalid value to array.length');
+            vlog('Actual message:', e.message, ', assigned value:', [value]);
             register.set('', 'Writing to array.length threw an error, probably invalid length');
             return FAILURE_SYMBOL;
           }

@@ -441,6 +441,192 @@ function processAttempt(fdata, queue) {
           changes += 1;
           return;
         }
+        case symbo('array', 'reduce'): {
+          rule('array.reduce can be converted to regular loops');
+          // See forEach for more examples
+          example(
+            'const x = arr.reduce(func, init);',
+            // Note: for assignments; x should be set afterwards to cover try/catch logic.
+            // Note: reduce case is simpler because there is no context. we do have to juggle the result forward.
+            'let tmplen = arr.length; let tmp = 0; let result = init; while (true) { if (tmp < tmplen) if (i in arr) { result = func(result, arr[i], i, arr); i = i + 1; } else { break; } } const x = result;'
+          );
+          // The no-init case is special because iteration starts at second element, throws if array is empty, but otherwise equal
+          example(
+            'const x = arr.reduce(func);',
+            // Note: for assignments; x should be set afterwards to cover try/catch logic.
+            // Note: reduce case is simpler because there is no context. we do have to juggle the result forward.
+            'let tmplen = arr.length; if (!tmplen) throw new TypeError(); let tmp = 1; let result = arr[0]; while (true) { if (tmp < tmplen) if (i in arr) { result = func(result, arr[i], i, arr); i = i + 1; } else { break; } } const x = result;'
+          );
+          before(read.blockBody[read.blockIndex]);
+
+          // - main transform is same as forEach. same args/context logic.
+          // - callback return value is stored and passed into next call
+          // - result has three cases: expr, assign, var
+          //   - var: create a let with same name. init to false. update to true inside loop when appropriate
+          //   - assign: create tmp var to hold result. after loop assign tmp result to original lhs. this preserves try/catch logic.
+          //   - expr: ignore result. don't store it.
+
+          // reduce adds the complexity of the init: when there is no init and there is no first element, a type error is thrown.
+          // but we don't necessarily know the shape of the array at this point. we also can't just take arr.length/arr[0] due to elided elements...
+          // I think best is to add a check in the transform by setting the init to an object reference and then confirming that the
+          // initial value was overridden at least once, throwing a type error if the result is that initial symbol.
+          // additionally, the transform must check whether the result is still this symbol, and if so, simply replace the result without
+          // calling the callback for it. (it should skip the first iteration in that case)
+
+          const stmt = read.blockBody[read.blockIndex];
+
+          const initArg = read.parentNode.arguments[4]; // dotcall args start with 3 args, then callback arg, then init arg
+
+          const tmplen = createFreshVar('tmpArrlen', fdata);
+          const tmp = createFreshVar('tmpArri', fdata);
+          const tmp2 = createFreshVar('tmpArrc', fdata);
+          const tmp3 = createFreshVar('tmpArrin', fdata);
+          const tmp4 = createFreshVar('tmpArrel', fdata);
+          const tmp5 = createFreshVar('tmpArreout', fdata);
+          const tmp7 = !initArg && createFreshVar('tmpArre1st', fdata);
+          const tmp8 = !initArg && createFreshVar('tmpArrebad', fdata);
+          const tmp9 = !initArg && createFreshVar('tmpArrette', fdata);
+          const tmp10 = !initArg && createFreshVar('tmpArreerr', fdata);
+
+          // Generate this block first. Depending on whether an init was passed on we have slightly different transforms
+          // `result = callback(result, val, counter, arr);`
+          const callbackPart =
+            AST.expressionStatement(
+              AST.assignmentExpression(
+                tmp5,
+                AST.callExpression(
+                  // Note: .reduce always calls the callback with context=undefined
+                  // Note: the .reduce call is a dotcall so at least three params
+                  SYMBOL_DOTCALL,
+                  [
+                    read.parentNode.arguments[3], // callback arg (after 3 $dotcall args!)
+                    AST.undef(), // there is no context arg for .reduce but it's force-called with `undefined`
+                    AST.undef(),
+                    AST.identifier(tmp5), // result
+                    AST.identifier(tmp4), // current value
+                    AST.identifier(tmp), // current index
+                    AST.identifier(varName), // array being iterated
+                  ]
+                )
+              ),
+            );
+
+          const stmts = [
+            // `const len = arr.length;`
+            AST.varStatement('const', tmplen, AST.memberExpression(varName, 'length', false)),
+            // when there is no init to the .reduce call: `if (!arr.length) throw`
+            // this includes elided elements, which makes the transform harder as we don't require to know the shape of the array...
+            // `let counter = 0;`
+            AST.varStatement('let', tmp, AST.primitive(0)),
+            // `let badInit = {};`
+            ... initArg ? [] : [AST.varStatement('const', tmp7, AST.objectExpression())], // empty object, reference as a symbol
+            // `let result = <init arg or special symbol>;` // if .reduce was called with init arg, use that here. otherwise use a symbol indicating no init value was found yet.
+            AST.varStatement('let', tmp5, initArg || AST.identifier(tmp7)),
+            // Transform to normalized code such that we don't have to go through normalization first...:
+            // while (true) {
+            //   const tmp2 = tmp < arr.length;
+            //   if (tmp2) {
+            //     const tmp3 = i in arr;
+            //     if (tmp3) {
+            //       const first = result === firstSymbol;
+            //       if (first) result = arr[i];
+            //     } else {
+            //       const tmp = func(arr[i], i, arr); // invocation is different for context case
+            //       if (tmp) {
+            //       } else {
+            //         result = false;
+            //         break;
+            //       }
+            //     }
+            //     tmp = tmp  + 1;
+            //   } else {
+            //     break;
+            //   }
+            // }
+            // if (result === firstSymbol) throw new TypeError(); // in this case the array was empty or only contained elided elements
+            // const x = result;     // <-- this may be optimized depending on expr/assign/var but not sure we should bother in favor of simplicity...
+            AST.whileStatement(
+              AST.tru(),
+              AST.blockStatement(
+                // `const test = counter < arr.length; if (test)`
+                AST.varStatement('const', tmp2, AST.binaryExpression('<', tmp, tmplen)),
+                AST.ifStatement(
+                  tmp2,
+                  AST.blockStatement(
+                    // `const has = counter in arr; if (has)`
+                    AST.varStatement('const', tmp3, AST.binaryExpression('in', tmp, varName)),
+                    AST.ifStatement(
+                      AST.identifier(tmp3),
+                      AST.blockStatement(
+                        // `const val = arr[counter];`
+                        AST.varStatement('const', tmp4, AST.memberExpression(varName, AST.identifier(tmp), true)), // the current element
+                        // Not pretty but feh.
+                        ... initArg
+                        ? [callbackPart] // just call the callback and assign it to result.
+                        : [
+                          // in this code path we have to check if result is still the special symbol. if so, we must assign
+                          // the array value to it without calling the callback on it. otherwise we call the callback as usual.
+                          AST.varStatement('const', tmp8, AST.binaryExpression('===', tmp5, tmp7)),
+                          AST.ifStatement(tmp8,
+                            AST.blockStatement(
+                              // `result = val`
+                              AST.expressionStatement(AST.assignmentExpression(tmp5, tmp4)),
+                            ),
+                            AST.blockStatement(
+                              callbackPart
+                            ),
+                          ),
+                        ]
+                      ),
+                      AST.blockStatement(),
+                    ),
+                    // `tmp = tmp + 1`
+                    AST.expressionStatement(
+                      AST.assignmentExpression(tmp, AST.binaryExpression('+', tmp, AST.primitive(1)))
+                    )
+                  ),
+                  AST.blockStatement(
+                    AST.breakStatement()
+                  ),
+                )
+              )
+            ),
+            // If the result is still the initial no-result symbol then we must throw here.
+            // `const tmp = result === badInit; if (tmp) { const msg = '...'; throw new TypeError(msg); }`
+            ... initArg ? [] : [
+              AST.varStatement('const', tmp9, AST.binaryExpression('===', tmp5, tmp7)),
+              AST.ifStatement(tmp9,
+                AST.blockStatement(
+                  AST.varStatement('const', tmp10,
+                    AST.newExpression(
+                      'TypeError',
+                      [AST.primitive(
+                        `[Preval] Called .reduce without init on an array without values: \`${tmat(stmt, true).replace(/ /g, '\\n')}\``
+                      )]
+                    )
+                  ),
+                  AST.throwStatement(AST.identifier(tmp10))
+                ),
+                AST.blockStatement()
+              )
+            ],
+            // If the input was an assignment, assign result to it _now_, not before, so try/catch semantics are kept
+            ... (stmt.type === 'ExpressionStatement' && stmt.expression.type === 'AssignmentExpression') ?
+              [AST.expressionStatement(AST.assignmentExpression(stmt.expression.left, AST.identifier(tmp5)))] : [],
+            // If the input was a var statement, create it with undefined now.
+            ... (stmt.type === 'VarStatement') ?
+              [AST.varStatement(stmt.kind, stmt.id, AST.identifier(tmp5))] : [],
+            // And otherwise the result is not stored so we don't need to either. (We could omit the temp var but hopefully this happens elsewhere)
+          ];
+
+          read.blockBody[read.blockIndex] = AST.blockStatement(stmts);
+          // Squash the block at the end of this transform
+          queue.push({index: read.blockIndex, func: () => read.blockBody.splice(read.blockIndex, 1, ...stmts)})
+
+          after(read.blockBody[read.blockIndex]);
+          changes += 1;
+          return;
+        }
       }
     });
   });

@@ -1,27 +1,16 @@
 # Preval test case
 
-# array_method_normalize.md
+# some_callback_args.md
 
-> Ai > Ai5 > Array method normalize
+> Array methods > Reduce > Ai > Some callback args
 >
-> Test normalization of array methods to loops
+> Test: Array.reduce callback arguments
 
 ## Input
 
 `````js filename=intro
-const arr = [1, 2, 3];
-const sum = arr.reduce((a, b) => a + b, 0);
-$(sum);
-
-// Expected:
-// const arr = [1, 2, 3];
-// let sum = 0;
-// let i = 0;
-// while (i < arr.length) {
-//     sum = sum + arr[i];
-//     i = i + 1;
-// }
-// $(sum);
+const x = [10,20].reduce(function(value, index, array) { $(value, index, array); });
+$(x);
 `````
 
 
@@ -29,7 +18,8 @@ $(sum);
 
 
 `````js filename=intro
-$(6);
+$(10, 20, 1);
+$(undefined);
 `````
 
 
@@ -37,7 +27,8 @@ $(6);
 (This ought to be the final result)
 
 `````js filename=intro
-$(6);
+$(10, 20, 1);
+$(undefined);
 `````
 
 
@@ -45,7 +36,8 @@ $(6);
 With rename=true
 
 `````js filename=intro
-$( 6 );
+$( 10, 20, 1 );
+$( undefined );
 `````
 
 
@@ -53,17 +45,18 @@ $( 6 );
 (This is what phase1 received the first time)
 
 `````js filename=intro
-const arr = [1, 2, 3];
-const tmpMCF = arr.reduce;
-const tmpMCP = function ($$0, $$1) {
-  let a = $$0;
-  let b = $$1;
+const tmpMCOO = [10, 20];
+const tmpMCF = tmpMCOO.reduce;
+const tmpMCP = function ($$0, $$1, $$2) {
+  let value = $$0;
+  let index = $$1;
+  let array = $$2;
   debugger;
-  const tmpReturnArg = a + b;
-  return tmpReturnArg;
+  $(value, index, array);
+  return undefined;
 };
-const sum = $dotCall(tmpMCF, arr, `reduce`, tmpMCP, 0);
-$(sum);
+const x = $dotCall(tmpMCF, tmpMCOO, `reduce`, tmpMCP);
+$(x);
 `````
 
 
@@ -71,6 +64,7 @@ $(sum);
 
 
 - (todo) Support this binary expression operator:
+- (todo) objects in isFree check
 - (todo) support array reads statement type VarStatement
 - (todo) support array reads statement type WhileStatement
 - (todo) type trackeed tricks can possibly support static $array_reduce
@@ -86,7 +80,8 @@ None
 
 
 Should call `$` with:
- - 1: 6
+ - 1: 10, 20, 1
+ - 2: undefined
  - eval returned: undefined
 
 Pre normalization calls: Same

@@ -1,27 +1,17 @@
 # Preval test case
 
-# array_method_normalize.md
+# some_sparse_variety.md
 
-> Ai > Ai5 > Array method normalize
+> Array methods > Reduce > Ai > Some sparse variety
 >
-> Test normalization of array methods to loops
+> Test: Array.reduce on varied sparse array
 
 ## Input
 
 `````js filename=intro
-const arr = [1, 2, 3];
-const sum = arr.reduce((a, b) => a + b, 0);
-$(sum);
-
-// Expected:
-// const arr = [1, 2, 3];
-// let sum = 0;
-// let i = 0;
-// while (i < arr.length) {
-//     sum = sum + arr[i];
-//     i = i + 1;
-// }
-// $(sum);
+let arr = [1,,undefined,4];
+const x = arr.reduce(function(x) { $(x); });
+$(x);
 `````
 
 
@@ -29,7 +19,9 @@ $(sum);
 
 
 `````js filename=intro
-$(6);
+$(1);
+$(undefined);
+$(undefined);
 `````
 
 
@@ -37,7 +29,9 @@ $(6);
 (This ought to be the final result)
 
 `````js filename=intro
-$(6);
+$(1);
+$(undefined);
+$(undefined);
 `````
 
 
@@ -45,7 +39,9 @@ $(6);
 With rename=true
 
 `````js filename=intro
-$( 6 );
+$( 1 );
+$( undefined );
+$( undefined );
 `````
 
 
@@ -53,17 +49,16 @@ $( 6 );
 (This is what phase1 received the first time)
 
 `````js filename=intro
-const arr = [1, 2, 3];
+let arr = [1, , undefined, 4];
 const tmpMCF = arr.reduce;
-const tmpMCP = function ($$0, $$1) {
-  let a = $$0;
-  let b = $$1;
+const tmpMCP = function ($$0) {
+  let x$1 = $$0;
   debugger;
-  const tmpReturnArg = a + b;
-  return tmpReturnArg;
+  $(x$1);
+  return undefined;
 };
-const sum = $dotCall(tmpMCF, arr, `reduce`, tmpMCP, 0);
-$(sum);
+const x = $dotCall(tmpMCF, arr, `reduce`, tmpMCP);
+$(x);
 `````
 
 
@@ -71,6 +66,7 @@ $(sum);
 
 
 - (todo) Support this binary expression operator:
+- (todo) objects in isFree check
 - (todo) support array reads statement type VarStatement
 - (todo) support array reads statement type WhileStatement
 - (todo) type trackeed tricks can possibly support static $array_reduce
@@ -86,7 +82,9 @@ None
 
 
 Should call `$` with:
- - 1: 6
+ - 1: 1
+ - 2: undefined
+ - 3: undefined
  - eval returned: undefined
 
 Pre normalization calls: Same

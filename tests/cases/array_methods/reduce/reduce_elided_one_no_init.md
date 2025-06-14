@@ -1,27 +1,17 @@
 # Preval test case
 
-# array_method_normalize.md
+# reduce_elided_one_no_init.md
 
-> Ai > Ai5 > Array method normalize
+> Array methods > Reduce > Reduce elided one no init
 >
-> Test normalization of array methods to loops
+> When the array only has one element and otherwise elided elements, and is called without init, the callback should not be called
 
 ## Input
 
 `````js filename=intro
-const arr = [1, 2, 3];
-const sum = arr.reduce((a, b) => a + b, 0);
-$(sum);
-
-// Expected:
-// const arr = [1, 2, 3];
-// let sum = 0;
-// let i = 0;
-// while (i < arr.length) {
-//     sum = sum + arr[i];
-//     i = i + 1;
-// }
-// $(sum);
+let result = [];
+const x = [,,,100,,,].reduce((a,b) => $(a,b));
+$(result, x);
 `````
 
 
@@ -29,7 +19,8 @@ $(sum);
 
 
 `````js filename=intro
-$(6);
+const result /*:array*/ /*truthy*/ = [];
+$(result, 100);
 `````
 
 
@@ -37,7 +28,7 @@ $(6);
 (This ought to be the final result)
 
 `````js filename=intro
-$(6);
+$([], 100);
 `````
 
 
@@ -45,7 +36,8 @@ $(6);
 With rename=true
 
 `````js filename=intro
-$( 6 );
+const a = [];
+$( a, 100 );
 `````
 
 
@@ -53,17 +45,18 @@ $( 6 );
 (This is what phase1 received the first time)
 
 `````js filename=intro
-const arr = [1, 2, 3];
-const tmpMCF = arr.reduce;
+let result = [];
+const tmpMCOO = [, , , 100, , ,];
+const tmpMCF = tmpMCOO.reduce;
 const tmpMCP = function ($$0, $$1) {
   let a = $$0;
   let b = $$1;
   debugger;
-  const tmpReturnArg = a + b;
+  const tmpReturnArg = $(a, b);
   return tmpReturnArg;
 };
-const sum = $dotCall(tmpMCF, arr, `reduce`, tmpMCP, 0);
-$(sum);
+const x = $dotCall(tmpMCF, tmpMCOO, `reduce`, tmpMCP);
+$(result, x);
 `````
 
 
@@ -71,6 +64,8 @@ $(sum);
 
 
 - (todo) Support this binary expression operator:
+- (todo) objects in isFree check
+- (todo) support array reads statement type ExpressionStatement
 - (todo) support array reads statement type VarStatement
 - (todo) support array reads statement type WhileStatement
 - (todo) type trackeed tricks can possibly support static $array_reduce
@@ -86,7 +81,7 @@ None
 
 
 Should call `$` with:
- - 1: 6
+ - 1: [], 100
  - eval returned: undefined
 
 Pre normalization calls: Same

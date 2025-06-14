@@ -32,16 +32,16 @@ $(x); // x=0 1 (ref tracking does not track values so it should consider if(x) r
 (Annotated with pids)
 
 `````filename=intro
-let y___5__ = $(1);
-let x___10__ = 0;
+let /*___5__*/ y = $(1);
+let /*___10__*/ x = 0;
 while (true) {
-  /*14*/ if (x___16__) {
-    /*17*/ x___23__ = $(1);
-  } /*24*/ else {
+  /*14~25*/ if (/*___16__*/ x) {
+    /*17~23*/ /*___23__*/ x = $(1);
+  } /*24~25*/ else {
     break;
   }
 }
-$(x___29__);
+$(/*___29__*/ x);
 `````
 
 

@@ -32,27 +32,27 @@ $(x); // x=1 2
 (Annotated with pids)
 
 `````filename=intro
-let x___4__ = 1;
+let /*___4__*/ x = 1;
 while (true) {
-  /*8*/ if ($) {
-    /*11*/ $continue___13__: /*14*/ {
-      $(x___18__);
+  /*8~40*/ if ($) {
+    /*11~38*/ /*___13__*/ $continue: /*14~38*/ {
+      $(/*___18__*/ x);
       if ($) {
-        /*21*/ x___25__ = 2;
-        break $continue___27__;
-      } /*28*/ else {
-        const tmpIfTest___31__ = $();
-        if (tmpIfTest___35__) {
-          /*36*/ break;
-        } /*38*/ else {
+        /*21~27*/ /*___25__*/ x = 2;
+        break /*___27__*/ $continue;
+      } /*28~38*/ else {
+        const /*___31__*/ tmpIfTest = $();
+        if (/*___35__*/ tmpIfTest) {
+          /*36~37*/ break;
+        } /*38~38*/ else {
         }
       }
     }
-  } /*39*/ else {
+  } /*39~40*/ else {
     break;
   }
 }
-$(x___44__);
+$(/*___44__*/ x);
 `````
 
 

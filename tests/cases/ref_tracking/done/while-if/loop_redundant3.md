@@ -30,12 +30,12 @@
 (Annotated with pids)
 
 `````filename=intro
-let a___4__ = `unobservable`;
-while ($LOOP_UNROLL_500___8__) {
-  /*9*/ a___13__ = $;
+let /*___4__*/ a = `unobservable`;
+while (/*___8__*/ $LOOP_UNROLL_500) {
+  /*9~21*/ /*___13__*/ a = $;
   if ($) {
-    /*16*/ $(a___20__);
-  } /*21*/ else {
+    /*16~20*/ $(/*___20__*/ a);
+  } /*21~21*/ else {
   }
 }
 `````

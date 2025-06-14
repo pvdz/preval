@@ -34,45 +34,45 @@ $(x);         // x=3
 (Annotated with pids)
 
 `````filename=intro
-let x___8__ = 1;
-let $implicitThrow$1___11__ = false;
-let $finalStep___14__ = false;
-let $finalCatchArg$1___17__ = undefined___18__;
-let $finalArg___20__ = undefined___21__;
-$finally$1___23__: /*24*/ {
-  try /*26*/ {
-    let $implicitThrow___30__ = false;
-    let $finalCatchArg___33__ = undefined___34__;
-    try /*36*/ {
-      $(x___40__);
-      x___44__ = 2;
-      $(x___48__);
-    } catch ($finalImplicit___50__) /*51*/ {
-      $implicitThrow___55__ = true;
-      $finalCatchArg___59__ = $finalImplicit___58__;
+let /*___8__*/ x = 1;
+let /*___11__*/ $implicitThrow$1 = false;
+let /*___14__*/ $finalStep = false;
+let /*___17__*/ $finalCatchArg$1 = /*___18__*/ undefined;
+let /*___20__*/ $finalArg = /*___21__*/ undefined;
+/*___23__*/ $finally$1: /*24~94*/ {
+  try /*26~85*/ {
+    let /*___30__*/ $implicitThrow = false;
+    let /*___33__*/ $finalCatchArg = /*___34__*/ undefined;
+    try /*36~48*/ {
+      $(/*___40__*/ x);
+      /*___44__*/ x = 2;
+      $(/*___48__*/ x);
+    } catch (/*___50__*/ $finalImplicit) /*51~59*/ {
+      /*___55__*/ $implicitThrow = true;
+      /*___59__*/ $finalCatchArg = /*___58__*/ $finalImplicit;
     }
-    $(x___63__);
-    x___67__ = 3;
-    $(x___71__);
-    if ($implicitThrow___73__) {
-      /*74*/ $finalStep___78__ = true;
-      $finalArg___82__ = $finalCatchArg___81__;
-      break $finally$1___84__;
-    } /*85*/ else {
+    $(/*___63__*/ x);
+    /*___67__*/ x = 3;
+    $(/*___71__*/ x);
+    if (/*___73__*/ $implicitThrow) {
+      /*74~84*/ /*___78__*/ $finalStep = true;
+      /*___82__*/ $finalArg = /*___81__*/ $finalCatchArg;
+      break /*___84__*/ $finally$1;
+    } /*85~85*/ else {
     }
-  } catch ($finalImplicit$1___87__) /*88*/ {
-    $(x___92__);
-    throw $finalImplicit$1___94__;
+  } catch (/*___87__*/ $finalImplicit$1) /*88~94*/ {
+    $(/*___92__*/ x);
+    throw /*___94__*/ $finalImplicit$1;
   }
 }
-$(x___98__);
-if ($implicitThrow$1___100__) {
-  /*101*/ throw $finalCatchArg$1___103__;
-} /*104*/ else {
-  if ($finalStep___106__) {
-    /*107*/ throw $finalArg___109__;
-  } /*110*/ else {
-    $(x___114__);
+$(/*___98__*/ x);
+if (/*___100__*/ $implicitThrow$1) {
+  /*101~103*/ throw /*___103__*/ $finalCatchArg$1;
+} /*104~114*/ else {
+  if (/*___106__*/ $finalStep) {
+    /*107~109*/ throw /*___109__*/ $finalArg;
+  } /*110~114*/ else {
+    $(/*___114__*/ x);
   }
 }
 `````

@@ -25,10 +25,10 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 (Annotated with pids)
 
 `````filename=intro
-let dathing___5__ = `jhayon.vercel.app`;
-const d___9__ = $(`x`);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE___15__) {
-  /*16*/ dathing___20__ = $;
+let /*___5__*/ dathing = `jhayon.vercel.app`;
+const /*___9__*/ d = $(`x`);
+while (/*___15__*/ $LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  /*16~24*/ /*___20__*/ dathing = $;
   $($);
 }
 `````

@@ -33,21 +33,21 @@ $(f);
 (Annotated with pids)
 
 `````filename=intro
-let f___4__ = function () /*6*/ {
-  debugger;
-  let x___10__ = 1;
-  try /*13*/ {
-    $();
-    x___20__ = 2;
-    return undefined___23__;
-  } catch (e___25__) /*26*/ {
-    $(x___30__);
-    x___34__ = 3;
-  }
-  $(x___38__);
-  return undefined___40__;
-};
-$(f___44__);
+let /*___4__*/ f = function () /*6*/ {
+    debugger;
+    let /*___10__*/ x = 1;
+    try /*13~23*/ {
+      $();
+      /*___20__*/ x = 2;
+      return /*___23__*/ undefined;
+    } catch (/*___25__*/ e) /*26~34*/ {
+      $(/*___30__*/ x);
+      /*___34__*/ x = 3;
+    }
+    $(/*___38__*/ x);
+    return /*___40__*/ undefined;
+  };
+$(/*___44__*/ f);
 `````
 
 

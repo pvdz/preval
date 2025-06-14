@@ -34,21 +34,21 @@ $(f());
 (Annotated with pids)
 
 `````filename=intro
-let f___5__ = function () /*7*/ {
-  debugger;
-  let x___12__ = 1;
-  const tmpIfTest___15__ = $(false);
-  if (tmpIfTest___20__) {
-    /*21*/ x___29__ = $(2, `prevent optim`);
-    return x___32__;
-  } /*33*/ else {
-    x___41__ = $(3, `prevent optim`);
-    $(`prevent return hoisting`);
-    return x___48__;
-  }
-};
-let tmpCalleeParam___50__ = f___52__();
-$(tmpCalleeParam___56__);
+let /*___5__*/ f = function () /*7*/ {
+    debugger;
+    let /*___12__*/ x = 1;
+    const /*___15__*/ tmpIfTest = $(false);
+    if (/*___20__*/ tmpIfTest) {
+      /*21~32*/ /*___29__*/ x = $(2, `prevent optim`);
+      return /*___32__*/ x;
+    } /*33~48*/ else {
+      /*___41__*/ x = $(3, `prevent optim`);
+      $(`prevent return hoisting`);
+      return /*___48__*/ x;
+    }
+  };
+let /*___50__*/ tmpCalleeParam = /*___52__*/ f();
+$(/*___56__*/ tmpCalleeParam);
 `````
 
 

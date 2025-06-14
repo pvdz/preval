@@ -40,41 +40,41 @@ $(x);          // x=1 2
 (Annotated with pids)
 
 `````filename=intro
-let x___4__ = 1;
-A___7__: /*8*/ {
-  let $implicitThrow$1___12__ = false;
-  let $finalCatchArg$1___15__ = undefined___16__;
-  try /*18*/ {
-    $(x___22__);
-  } catch ($finalImplicit$1___24__) /*25*/ {
-    $implicitThrow$1___29__ = true;
-    $finalCatchArg$1___33__ = $finalImplicit$1___32__;
+let /*___4__*/ x = 1;
+/*___7__*/ A: /*8~86*/ {
+  let /*___12__*/ $implicitThrow$1 = false;
+  let /*___15__*/ $finalCatchArg$1 = /*___16__*/ undefined;
+  try /*18~22*/ {
+    $(/*___22__*/ x);
+  } catch (/*___24__*/ $finalImplicit$1) /*25~33*/ {
+    /*___29__*/ $implicitThrow$1 = true;
+    /*___33__*/ $finalCatchArg$1 = /*___32__*/ $finalImplicit$1;
   }
-  $(x___37__);
+  $(/*___37__*/ x);
   if ($1) {
-    /*40*/ x___44__ = 2;
-    break A___46__;
-  } /*47*/ else {
-    let $implicitThrow___51__ = false;
-    let $finalCatchArg___54__ = undefined___55__;
-    try /*57*/ {
-      $(x___61__);
-    } catch ($finalImplicit___63__) /*64*/ {
-      $(x___68__);
-      throw $finalImplicit___70__;
+    /*40~46*/ /*___44__*/ x = 2;
+    break /*___46__*/ A;
+  } /*47~86*/ else {
+    let /*___51__*/ $implicitThrow = false;
+    let /*___54__*/ $finalCatchArg = /*___55__*/ undefined;
+    try /*57~61*/ {
+      $(/*___61__*/ x);
+    } catch (/*___63__*/ $finalImplicit) /*64~70*/ {
+      $(/*___68__*/ x);
+      throw /*___70__*/ $finalImplicit;
     }
-    $(x___74__);
-    if ($implicitThrow___76__) {
-      /*77*/ throw $finalCatchArg___79__;
-    } /*80*/ else {
-      if ($implicitThrow$1___82__) {
-        /*83*/ throw $finalCatchArg$1___85__;
-      } /*86*/ else {
+    $(/*___74__*/ x);
+    if (/*___76__*/ $implicitThrow) {
+      /*77~79*/ throw /*___79__*/ $finalCatchArg;
+    } /*80~86*/ else {
+      if (/*___82__*/ $implicitThrow$1) {
+        /*83~85*/ throw /*___85__*/ $finalCatchArg$1;
+      } /*86~86*/ else {
       }
     }
   }
 }
-$(x___90__);
+$(/*___90__*/ x);
 `````
 
 

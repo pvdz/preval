@@ -48,23 +48,23 @@ $(f);
 (Annotated with pids)
 
 `````filename=intro
-let f___5__ = function () /*7*/ {
-  debugger;
-  let THIS_IS_DA____$1___12__ = function () /*14*/ {
+let /*___5__*/ f = function () /*7*/ {
     debugger;
-    $(`hello`);
-    return undefined___23__;
+    let /*___12__*/ THIS_IS_DA____$1 = function () /*14*/ {
+        debugger;
+        $(`hello`);
+        return /*___23__*/ undefined;
+      };
+    let /*___25__*/ tmpCalleeParam = /*___27__*/ THIS_IS_DA____();
+    $(/*___31__*/ tmpCalleeParam);
+    return /*___34__*/ undefined;
   };
-  let tmpCalleeParam___25__ = THIS_IS_DA_______27__();
-  $(tmpCalleeParam___31__);
-  return undefined___34__;
-};
-let g___36__ = function () /*38*/ {
-  debugger;
-  $(`always here`);
-  return undefined___47__;
-};
-$(f___51__);
+let /*___36__*/ g = function () /*38*/ {
+    debugger;
+    $(`always here`);
+    return /*___47__*/ undefined;
+  };
+$(/*___51__*/ f);
 `````
 
 

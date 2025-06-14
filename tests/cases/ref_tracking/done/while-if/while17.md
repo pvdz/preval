@@ -37,20 +37,20 @@ $(x); // unreachable
 (Annotated with pids)
 
 `````filename=intro
-let x___4__ = 1;
+let /*___4__*/ x = 1;
 while (true) {
-  /*8*/ const tmpIfTest___11__ = $();
-  if (tmpIfTest___15__) {
-    /*16*/ x___20__ = 2;
-  } /*21*/ else {
+  /*8~41*/ const /*___11__*/ tmpIfTest = $();
+  if (/*___15__*/ tmpIfTest) {
+    /*16~20*/ /*___20__*/ x = 2;
+  } /*21~21*/ else {
   }
   while (true) {
-    /*24*/ const tmpIfTest$1___27__ = $();
-    if (tmpIfTest$1___31__) {
-      /*32*/ x___36__ = 3;
-    } /*37*/ else {
+    /*24~41*/ const /*___27__*/ tmpIfTest$1 = $();
+    if (/*___31__*/ tmpIfTest$1) {
+      /*32~36*/ /*___36__*/ x = 3;
+    } /*37~37*/ else {
     }
-    x___41__ = 4;
+    /*___41__*/ x = 4;
   }
 }
 `````

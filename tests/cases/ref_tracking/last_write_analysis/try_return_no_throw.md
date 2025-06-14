@@ -34,33 +34,33 @@ $(f());
 (Annotated with pids)
 
 `````filename=intro
-let f___5__ = function () /*7*/ {
-  debugger;
-  let x___15__ = 1;
-  let $implicitThrow___18__ = false;
-  let $finalStep___21__ = false;
-  let $finalCatchArg___24__ = undefined___25__;
-  let $finalArg___27__ = undefined___28__;
-  $finally___30__: /*31*/ {
-    try /*33*/ {
-      x___41__ = $(2, `prevent optim`);
-      $finalStep___45__ = true;
-      $finalArg___49__ = x___48__;
-      break $finally___51__;
-    } catch ($finalImplicit___53__) /*54*/ {
-      $implicitThrow___58__ = true;
-      $finalCatchArg___62__ = $finalImplicit___61__;
+let /*___5__*/ f = function () /*7*/ {
+    debugger;
+    let /*___15__*/ x = 1;
+    let /*___18__*/ $implicitThrow = false;
+    let /*___21__*/ $finalStep = false;
+    let /*___24__*/ $finalCatchArg = /*___25__*/ undefined;
+    let /*___27__*/ $finalArg = /*___28__*/ undefined;
+    /*___30__*/ $finally: /*31~62*/ {
+      try /*33~51*/ {
+        /*___41__*/ x = $(2, `prevent optim`);
+        /*___45__*/ $finalStep = true;
+        /*___49__*/ $finalArg = /*___48__*/ x;
+        break /*___51__*/ $finally;
+      } catch (/*___53__*/ $finalImplicit) /*54~62*/ {
+        /*___58__*/ $implicitThrow = true;
+        /*___62__*/ $finalCatchArg = /*___61__*/ $finalImplicit;
+      }
     }
-  }
-  x___70__ = $(3, `prevent optim`);
-  if ($implicitThrow___72__) {
-    /*73*/ throw $finalCatchArg___75__;
-  } /*76*/ else {
-    return $finalArg___79__;
-  }
-};
-let tmpCalleeParam___81__ = f___83__();
-$(tmpCalleeParam___87__);
+    /*___70__*/ x = $(3, `prevent optim`);
+    if (/*___72__*/ $implicitThrow) {
+      /*73~75*/ throw /*___75__*/ $finalCatchArg;
+    } /*76~79*/ else {
+      return /*___79__*/ $finalArg;
+    }
+  };
+let /*___81__*/ tmpCalleeParam = /*___83__*/ f();
+$(/*___87__*/ tmpCalleeParam);
 `````
 
 

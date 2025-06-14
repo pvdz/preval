@@ -34,23 +34,23 @@
 (Annotated with pids)
 
 `````filename=intro
-let x___4__ = 1;
-$(x___9__);
+let /*___4__*/ x = 1;
+$(/*___9__*/ x);
 while (true) {
-  /*12*/ let $implicitThrow___16__ = false;
-  let $finalCatchArg___19__ = undefined___20__;
-  try /*22*/ {
-    $(x___26__);
-  } catch ($finalImplicit___28__) /*29*/ {
-    $(x___33__);
-    x___37__ = 2;
-    throw $finalImplicit___39__;
+  /*12~53*/ let /*___16__*/ $implicitThrow = false;
+  let /*___19__*/ $finalCatchArg = /*___20__*/ undefined;
+  try /*22~26*/ {
+    $(/*___26__*/ x);
+  } catch (/*___28__*/ $finalImplicit) /*29~39*/ {
+    $(/*___33__*/ x);
+    /*___37__*/ x = 2;
+    throw /*___39__*/ $finalImplicit;
   }
-  $(x___43__);
-  x___47__ = 2;
-  if ($implicitThrow___49__) {
-    /*50*/ throw $finalCatchArg___52__;
-  } /*53*/ else {
+  $(/*___43__*/ x);
+  /*___47__*/ x = 2;
+  if (/*___49__*/ $implicitThrow) {
+    /*50~52*/ throw /*___52__*/ $finalCatchArg;
+  } /*53~53*/ else {
   }
 }
 `````

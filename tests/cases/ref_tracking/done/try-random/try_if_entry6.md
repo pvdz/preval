@@ -36,19 +36,19 @@
 (Annotated with pids)
 
 `````filename=intro
-let x___4__ = 1;
-$(x___9__);
+let /*___4__*/ x = 1;
+$(/*___9__*/ x);
 while (true) {
-  /*12*/ let $implicitThrow___16__ = false;
-  let $finalCatchArg___19__ = undefined___20__;
+  /*12~38*/ let /*___16__*/ $implicitThrow = false;
+  let /*___19__*/ $finalCatchArg = /*___20__*/ undefined;
   if ($) {
-    /*23*/ $(x___27__);
-    x___31__ = 2;
-  } /*32*/ else {
+    /*23~31*/ $(/*___27__*/ x);
+    /*___31__*/ x = 2;
+  } /*32~32*/ else {
   }
-  if ($implicitThrow___34__) {
-    /*35*/ throw $finalCatchArg___37__;
-  } /*38*/ else {
+  if (/*___34__*/ $implicitThrow) {
+    /*35~37*/ throw /*___37__*/ $finalCatchArg;
+  } /*38~38*/ else {
   }
 }
 `````

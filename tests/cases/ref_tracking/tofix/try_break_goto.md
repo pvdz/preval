@@ -41,25 +41,25 @@
 (Annotated with pids)
 
 `````filename=intro
-let x___7__ = 1;
-$(x___12__);
-let $implicitThrow___14__ = false;
-let $finalStep___17__ = false;
-let $finalCatchArg___20__ = undefined___21__;
-$finally___23__: /*24*/ {
-  try /*26*/ {
-    $(x___30__);
-    x___34__ = 2;
-    $finalStep___38__ = true;
-    break $finally___40__;
-  } catch ($finalImplicit___42__) /*43*/ {
-    $implicitThrow___47__ = true;
-    $finalCatchArg___51__ = $finalImplicit___50__;
+let /*___7__*/ x = 1;
+$(/*___12__*/ x);
+let /*___14__*/ $implicitThrow = false;
+let /*___17__*/ $finalStep = false;
+let /*___20__*/ $finalCatchArg = /*___21__*/ undefined;
+/*___23__*/ $finally: /*24~51*/ {
+  try /*26~40*/ {
+    $(/*___30__*/ x);
+    /*___34__*/ x = 2;
+    /*___38__*/ $finalStep = true;
+    break /*___40__*/ $finally;
+  } catch (/*___42__*/ $finalImplicit) /*43~51*/ {
+    /*___47__*/ $implicitThrow = true;
+    /*___51__*/ $finalCatchArg = /*___50__*/ $finalImplicit;
   }
 }
-$(x___55__);
-x___59__ = 3;
-$(x___63__);
+$(/*___55__*/ x);
+/*___59__*/ x = 3;
+$(/*___63__*/ x);
 `````
 
 

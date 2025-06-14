@@ -46,48 +46,48 @@
 (Annotated with pids)
 
 `````filename=intro
-let x___4__ = 1;
-a___7__: /*8*/ {
-  b___10__: /*11*/ {
-    x___18__ = 2;
-    x___22__ = 3;
-    let $implicitThrow___24__ = false;
-    let $finalStep___27__ = false;
-    let $finalCatchArg___30__ = undefined___31__;
-    $finally___33__: /*34*/ {
-      try /*36*/ {
+let /*___4__*/ x = 1;
+/*___7__*/ a: /*8~103*/ {
+  /*___10__*/ b: /*11~99*/ {
+    /*___18__*/ x = 2;
+    /*___22__*/ x = 3;
+    let /*___24__*/ $implicitThrow = false;
+    let /*___27__*/ $finalStep = false;
+    let /*___30__*/ $finalCatchArg = /*___31__*/ undefined;
+    /*___33__*/ $finally: /*34~65*/ {
+      try /*36~54*/ {
         if ($) {
-          /*39*/ x___43__ = 4;
-          $finalStep___47__ = true;
-          break $finally___49__;
-        } /*50*/ else {
-          x___54__ = 5;
+          /*39~49*/ /*___43__*/ x = 4;
+          /*___47__*/ $finalStep = true;
+          break /*___49__*/ $finally;
+        } /*50~54*/ else {
+          /*___54__*/ x = 5;
         }
-      } catch ($finalImplicit___56__) /*57*/ {
-        $implicitThrow___61__ = true;
-        $finalCatchArg___65__ = $finalImplicit___64__;
+      } catch (/*___56__*/ $finalImplicit) /*57~65*/ {
+        /*___61__*/ $implicitThrow = true;
+        /*___65__*/ $finalCatchArg = /*___64__*/ $finalImplicit;
       }
     }
-    $(x___69__);
+    $(/*___69__*/ x);
     if ($) {
-      /*72*/ x___76__ = 6;
-      break b___78__;
-    } /*79*/ else {
-      x___83__ = 7;
-      if ($implicitThrow___85__) {
-        /*86*/ throw $finalCatchArg___88__;
-      } /*89*/ else {
-        if ($finalStep___91__) {
-          /*92*/ break a___94__;
-        } /*95*/ else {
-          $(x___99__);
+      /*72~78*/ /*___76__*/ x = 6;
+      break /*___78__*/ b;
+    } /*79~99*/ else {
+      /*___83__*/ x = 7;
+      if (/*___85__*/ $implicitThrow) {
+        /*86~88*/ throw /*___88__*/ $finalCatchArg;
+      } /*89~99*/ else {
+        if (/*___91__*/ $finalStep) {
+          /*92~94*/ break /*___94__*/ a;
+        } /*95~99*/ else {
+          $(/*___99__*/ x);
         }
       }
     }
   }
-  $(x___103__);
+  $(/*___103__*/ x);
 }
-$(x___107__);
+$(/*___107__*/ x);
 `````
 
 

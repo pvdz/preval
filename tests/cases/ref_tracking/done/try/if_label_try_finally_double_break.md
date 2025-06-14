@@ -57,47 +57,47 @@
 (Annotated with pids)
 
 `````filename=intro
-let x___4__ = $(1);
-if (x___9__) {
-  /*10*/ here___12__: /*13*/ {
-    $(x___21__);
-    x___27__ = $(2);
-    $(x___31__);
-    x___37__ = $(3);
-    let $implicitThrow___39__ = false;
-    let $finalStep___42__ = false;
-    let $finalCatchArg___45__ = undefined___46__;
-    $finally___48__: /*49*/ {
-      try /*51*/ {
-        $(x___55__);
-        if (x___57__) {
-          /*58*/ x___64__ = $(4);
-          $finalStep___68__ = true;
-          break $finally___70__;
-        } /*71*/ else {
-          x___77__ = $(5);
+let /*___4__*/ x = $(1);
+if (/*___9__*/ x) {
+  /*10~134*/ /*___12__*/ here: /*13~120*/ {
+    $(/*___21__*/ x);
+    /*___27__*/ x = $(2);
+    $(/*___31__*/ x);
+    /*___37__*/ x = $(3);
+    let /*___39__*/ $implicitThrow = false;
+    let /*___42__*/ $finalStep = false;
+    let /*___45__*/ $finalCatchArg = /*___46__*/ undefined;
+    /*___48__*/ $finally: /*49~88*/ {
+      try /*51~77*/ {
+        $(/*___55__*/ x);
+        if (/*___57__*/ x) {
+          /*58~70*/ /*___64__*/ x = $(4);
+          /*___68__*/ $finalStep = true;
+          break /*___70__*/ $finally;
+        } /*71~77*/ else {
+          /*___77__*/ x = $(5);
         }
-      } catch ($finalImplicit___79__) /*80*/ {
-        $implicitThrow___84__ = true;
-        $finalCatchArg___88__ = $finalImplicit___87__;
+      } catch (/*___79__*/ $finalImplicit) /*80~88*/ {
+        /*___84__*/ $implicitThrow = true;
+        /*___88__*/ $finalCatchArg = /*___87__*/ $finalImplicit;
       }
     }
-    const tmpIfTest___90__ = $();
-    if (tmpIfTest___94__) {
-      /*95*/ $(x___99__);
-      x___105__ = $(61);
-      break here___107__;
-    } /*108*/ else {
-      $(x___112__);
-      x___118__ = $(62);
-      break here___120__;
+    const /*___90__*/ tmpIfTest = $();
+    if (/*___94__*/ tmpIfTest) {
+      /*95~107*/ $(/*___99__*/ x);
+      /*___105__*/ x = $(61);
+      break /*___107__*/ here;
+    } /*108~120*/ else {
+      $(/*___112__*/ x);
+      /*___118__*/ x = $(62);
+      break /*___120__*/ here;
     }
   }
-  $(x___124__);
-  x___130__ = $(8);
-  $(x___134__);
-} /*135*/ else {
-  $(x___139__);
+  $(/*___124__*/ x);
+  /*___130__*/ x = $(8);
+  $(/*___134__*/ x);
+} /*135~139*/ else {
+  $(/*___139__*/ x);
 }
 `````
 

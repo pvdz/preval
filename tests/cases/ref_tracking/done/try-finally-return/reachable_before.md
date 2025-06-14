@@ -31,40 +31,40 @@ $(f);
 (Annotated with pids)
 
 `````filename=intro
-let f___4__ = function () /*6*/ {
-  debugger;
-  let x___14__ = 1;
-  let $implicitThrow___17__ = false;
-  let $finalStep___20__ = false;
-  let $finalCatchArg___23__ = undefined___24__;
-  let $finalArg___26__ = undefined___27__;
-  $finally___29__: /*30*/ {
-    try /*32*/ {
-      const tmpIfTest___35__ = $();
-      if (tmpIfTest___39__) {
-        /*40*/ $finalStep___44__ = true;
-        $finalArg___48__ = undefined___47__;
-        break $finally___50__;
-      } /*51*/ else {
-        x___55__ = 2;
+let /*___4__*/ f = function () /*6*/ {
+    debugger;
+    let /*___14__*/ x = 1;
+    let /*___17__*/ $implicitThrow = false;
+    let /*___20__*/ $finalStep = false;
+    let /*___23__*/ $finalCatchArg = /*___24__*/ undefined;
+    let /*___26__*/ $finalArg = /*___27__*/ undefined;
+    /*___29__*/ $finally: /*30~64*/ {
+      try /*32~55*/ {
+        const /*___35__*/ tmpIfTest = $();
+        if (/*___39__*/ tmpIfTest) {
+          /*40~50*/ /*___44__*/ $finalStep = true;
+          /*___48__*/ $finalArg = /*___47__*/ undefined;
+          break /*___50__*/ $finally;
+        } /*51~55*/ else {
+          /*___55__*/ x = 2;
+        }
+      } catch (/*___57__*/ $finalImplicit) /*58~64*/ {
+        $(/*___62__*/ x);
+        throw /*___64__*/ $finalImplicit;
       }
-    } catch ($finalImplicit___57__) /*58*/ {
-      $(x___62__);
-      throw $finalImplicit___64__;
     }
-  }
-  $(x___68__);
-  if ($implicitThrow___70__) {
-    /*71*/ throw $finalCatchArg___73__;
-  } /*74*/ else {
-    if ($finalStep___76__) {
-      /*77*/ return $finalArg___80__;
-    } /*81*/ else {
-      return undefined___83__;
+    $(/*___68__*/ x);
+    if (/*___70__*/ $implicitThrow) {
+      /*71~73*/ throw /*___73__*/ $finalCatchArg;
+    } /*74~83*/ else {
+      if (/*___76__*/ $finalStep) {
+        /*77~80*/ return /*___80__*/ $finalArg;
+      } /*81~83*/ else {
+        return /*___83__*/ undefined;
+      }
     }
-  }
-};
-$(f___87__);
+  };
+$(/*___87__*/ f);
 `````
 
 

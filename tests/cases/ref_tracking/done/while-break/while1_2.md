@@ -34,25 +34,25 @@ $(x); // unreachable. if it was, then x=1 or 2.
 (Annotated with pids)
 
 `````filename=intro
-let x___4__ = 1;
+let /*___4__*/ x = 1;
 while (true) {
-  /*8*/ if ($) {
-    /*11*/ $continue___13__: /*14*/ {
-      $(x___18__);
+  /*8~34*/ if ($) {
+    /*11~32*/ /*___13__*/ $continue: /*14~32*/ {
+      $(/*___18__*/ x);
       if ($) {
-        /*21*/ if ($1) {
-          /*24*/ x___28__ = 2;
-        } /*29*/ else {
+        /*21~31*/ if ($1) {
+          /*24~28*/ /*___28__*/ x = 2;
+        } /*29~29*/ else {
         }
-        break $continue___31__;
-      } /*32*/ else {
+        break /*___31__*/ $continue;
+      } /*32~32*/ else {
       }
     }
-  } /*33*/ else {
+  } /*33~34*/ else {
     break;
   }
 }
-$(x___38__);
+$(/*___38__*/ x);
 `````
 
 

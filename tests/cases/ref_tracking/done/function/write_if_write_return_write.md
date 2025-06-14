@@ -30,18 +30,18 @@ $(f);
 (Annotated with pids)
 
 `````filename=intro
-let f___4__ = function () /*6*/ {
-  debugger;
-  let x___10__ = 1;
-  if ($) {
-    /*14*/ x___20__ = $(2);
-    return x___23__;
-  } /*24*/ else {
-    $(x___28__);
-    return undefined___30__;
-  }
-};
-$(f___34__);
+let /*___4__*/ f = function () /*6*/ {
+    debugger;
+    let /*___10__*/ x = 1;
+    if ($) {
+      /*14~23*/ /*___20__*/ x = $(2);
+      return /*___23__*/ x;
+    } /*24~30*/ else {
+      $(/*___28__*/ x);
+      return /*___30__*/ undefined;
+    }
+  };
+$(/*___34__*/ f);
 `````
 
 

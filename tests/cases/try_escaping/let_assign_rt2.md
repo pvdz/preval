@@ -33,20 +33,20 @@ $(x);  // <-- x can reach both writes, not just the assign
 (Annotated with pids)
 
 `````filename=intro
-let x___4__ = undefined___5__;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE___7__) {
-  /*8*/ try /*10*/ {
+let /*___4__*/ x = /*___5__*/ undefined;
+while (/*___7__*/ $LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  /*8~34*/ try /*10~26*/ {
     $(`before`);
-    x___21__ = $(1);
-    if (x___23__) {
-      /*24*/ break;
-    } /*26*/ else {
+    /*___21__*/ x = $(1);
+    if (/*___23__*/ x) {
+      /*24~25*/ break;
+    } /*26~26*/ else {
     }
-  } catch (e___28__) /*29*/ {
+  } catch (/*___28__*/ e) /*29~34*/ {
     $(`fail`);
   }
 }
-$(x___38__);
+$(/*___38__*/ x);
 `````
 
 

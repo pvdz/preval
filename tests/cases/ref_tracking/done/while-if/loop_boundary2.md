@@ -39,21 +39,21 @@ $(x); // 5 or 6
 (Annotated with pids)
 
 `````filename=intro
-let x___4__ = 5;
+let /*___4__*/ x = 5;
 while (true) {
-  /*8*/ const tmpIfTest___11__ = $(false);
-  if (tmpIfTest___16__) {
-    /*17*/ x___21__ = 6;
-    $(x___25__);
-  } /*26*/ else {
-    $(x___30__);
+  /*8~35*/ const /*___11__*/ tmpIfTest = $(false);
+  if (/*___16__*/ tmpIfTest) {
+    /*17~25*/ /*___21__*/ x = 6;
+    $(/*___25__*/ x);
+  } /*26~30*/ else {
+    $(/*___30__*/ x);
   }
   if ($) {
-    /*33*/ break;
-  } /*35*/ else {
+    /*33~34*/ break;
+  } /*35~35*/ else {
   }
 }
-$(x___39__);
+$(/*___39__*/ x);
 `````
 
 

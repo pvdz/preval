@@ -62,52 +62,52 @@
 (Annotated with pids)
 
 `````filename=intro
-let x___4__ = 1;
-A___7__: /*8*/ {
-  B___10__: /*11*/ {
-    $(x___19__, 1);
-    $(x___24__, 1);
-    x___29__ = 2;
-    let $implicitThrow___31__ = false;
-    let $finalStep___34__ = false;
-    let $finalCatchArg___37__ = undefined___38__;
-    $finally___40__: /*41*/ {
-      try /*43*/ {
-        $(x___48__, 2);
-        const tmpIfTest___51__ = 2;
-        if (tmpIfTest___54__) {
-          /*55*/ x___59__ = 3;
-          $finalStep___63__ = true;
-          break $finally___65__;
-        } /*66*/ else {
-          x___70__ = 4;
+let /*___4__*/ x = 1;
+/*___7__*/ A: /*8~129*/ {
+  /*___10__*/ B: /*11~119*/ {
+    $(/*___19__*/ x, 1);
+    $(/*___24__*/ x, 1);
+    /*___29__*/ x = 2;
+    let /*___31__*/ $implicitThrow = false;
+    let /*___34__*/ $finalStep = false;
+    let /*___37__*/ $finalCatchArg = /*___38__*/ undefined;
+    /*___40__*/ $finally: /*41~81*/ {
+      try /*43~70*/ {
+        $(/*___48__*/ x, 2);
+        const /*___51__*/ tmpIfTest = 2;
+        if (/*___54__*/ tmpIfTest) {
+          /*55~65*/ /*___59__*/ x = 3;
+          /*___63__*/ $finalStep = true;
+          break /*___65__*/ $finally;
+        } /*66~70*/ else {
+          /*___70__*/ x = 4;
         }
-      } catch ($finalImplicit___72__) /*73*/ {
-        $implicitThrow___77__ = true;
-        $finalCatchArg___81__ = $finalImplicit___80__;
+      } catch (/*___72__*/ $finalImplicit) /*73~81*/ {
+        /*___77__*/ $implicitThrow = true;
+        /*___81__*/ $finalCatchArg = /*___80__*/ $finalImplicit;
       }
     }
-    const tmpIfTest$1___83__ = $();
-    if (tmpIfTest$1___87__) {
-      /*88*/ $(x___92__);
-      break B___94__;
-    } /*95*/ else {
-      $(x___99__, 2, 3, 4);
-      if ($implicitThrow___104__) {
-        /*105*/ throw $finalCatchArg___107__;
-      } /*108*/ else {
-        if ($finalStep___110__) {
-          /*111*/ break A___113__;
-        } /*114*/ else {
-          $(x___118__, 4);
+    const /*___83__*/ tmpIfTest$1 = $();
+    if (/*___87__*/ tmpIfTest$1) {
+      /*88~94*/ $(/*___92__*/ x);
+      break /*___94__*/ B;
+    } /*95~119*/ else {
+      $(/*___99__*/ x, 2, 3, 4);
+      if (/*___104__*/ $implicitThrow) {
+        /*105~107*/ throw /*___107__*/ $finalCatchArg;
+      } /*108~119*/ else {
+        if (/*___110__*/ $finalStep) {
+          /*111~113*/ break /*___113__*/ A;
+        } /*114~119*/ else {
+          $(/*___118__*/ x, 4);
         }
       }
     }
   }
-  $(x___123__, 3, 4);
-  x___129__ = 5;
+  $(/*___123__*/ x, 3, 4);
+  /*___129__*/ x = 5;
 }
-$(x___133__);
+$(/*___133__*/ x);
 `````
 
 

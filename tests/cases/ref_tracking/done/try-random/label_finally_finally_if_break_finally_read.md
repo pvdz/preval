@@ -44,56 +44,56 @@ $(x);                  // x=7 9 (8 is overwritten by 9 but 7 may jump over it)
 (Annotated with pids)
 
 `````filename=intro
-let x___4__ = 1;
-back___7__: /*8*/ {
-  let $implicitThrow$1___15__ = false;
-  let $finalCatchArg$1___18__ = undefined___19__;
-  try /*21*/ {
-    x___25__ = 2;
-  } catch ($finalImplicit$1___27__) /*28*/ {
-    $implicitThrow$1___32__ = true;
-    $finalCatchArg$1___36__ = $finalImplicit$1___35__;
+let /*___4__*/ x = 1;
+/*___7__*/ back: /*8~135*/ {
+  let /*___15__*/ $implicitThrow$1 = false;
+  let /*___18__*/ $finalCatchArg$1 = /*___19__*/ undefined;
+  try /*21~25*/ {
+    /*___25__*/ x = 2;
+  } catch (/*___27__*/ $finalImplicit$1) /*28~36*/ {
+    /*___32__*/ $implicitThrow$1 = true;
+    /*___36__*/ $finalCatchArg$1 = /*___35__*/ $finalImplicit$1;
   }
   $();
-  x___43__ = 3;
-  let $implicitThrow___45__ = false;
-  let $finalStep___48__ = false;
-  let $finalCatchArg___51__ = undefined___52__;
-  $finally___54__: /*55*/ {
-    try /*57*/ {
-      x___62__ = 4;
-      const tmpIfTest___64__ = $();
-      if (tmpIfTest___68__) {
-        /*69*/ x___73__ = 5;
-        $finalStep___77__ = true;
-        break $finally___79__;
-      } /*80*/ else {
-        x___84__ = 6;
+  /*___43__*/ x = 3;
+  let /*___45__*/ $implicitThrow = false;
+  let /*___48__*/ $finalStep = false;
+  let /*___51__*/ $finalCatchArg = /*___52__*/ undefined;
+  /*___54__*/ $finally: /*55~99*/ {
+    try /*57~84*/ {
+      /*___62__*/ x = 4;
+      const /*___64__*/ tmpIfTest = $();
+      if (/*___68__*/ tmpIfTest) {
+        /*69~79*/ /*___73__*/ x = 5;
+        /*___77__*/ $finalStep = true;
+        break /*___79__*/ $finally;
+      } /*80~84*/ else {
+        /*___84__*/ x = 6;
       }
-    } catch ($finalImplicit___86__) /*87*/ {
-      $(`final`, x___93__);
-      x___97__ = 7;
-      throw $finalImplicit___99__;
+    } catch (/*___86__*/ $finalImplicit) /*87~99*/ {
+      $(`final`, /*___93__*/ x);
+      /*___97__*/ x = 7;
+      throw /*___99__*/ $finalImplicit;
     }
   }
-  $(`final`, x___105__);
-  x___109__ = 7;
-  if ($implicitThrow___111__) {
-    /*112*/ throw $finalCatchArg___114__;
-  } /*115*/ else {
-    if ($finalStep___117__) {
-      /*118*/ break back___120__;
-    } /*121*/ else {
-      x___125__ = 8;
-      if ($implicitThrow$1___127__) {
-        /*128*/ throw $finalCatchArg$1___130__;
-      } /*131*/ else {
-        x___135__ = 9;
+  $(`final`, /*___105__*/ x);
+  /*___109__*/ x = 7;
+  if (/*___111__*/ $implicitThrow) {
+    /*112~114*/ throw /*___114__*/ $finalCatchArg;
+  } /*115~135*/ else {
+    if (/*___117__*/ $finalStep) {
+      /*118~120*/ break /*___120__*/ back;
+    } /*121~135*/ else {
+      /*___125__*/ x = 8;
+      if (/*___127__*/ $implicitThrow$1) {
+        /*128~130*/ throw /*___130__*/ $finalCatchArg$1;
+      } /*131~135*/ else {
+        /*___135__*/ x = 9;
       }
     }
   }
 }
-$(x___139__);
+$(/*___139__*/ x);
 `````
 
 

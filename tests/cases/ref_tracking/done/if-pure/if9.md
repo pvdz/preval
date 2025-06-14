@@ -31,18 +31,18 @@
 (Annotated with pids)
 
 `````filename=intro
-let x___5__ = 1;
-const tmpIfTest___8__ = $(1);
-if (tmpIfTest___13__) {
-  /*14*/ const tmpIfTest$1___17__ = $(1);
-  if (tmpIfTest$1___22__) {
-    /*23*/ x___27__ = 10;
-    $(x___31__);
-  } /*32*/ else {
-    $(x___36__);
+let /*___5__*/ x = 1;
+const /*___8__*/ tmpIfTest = $(1);
+if (/*___13__*/ tmpIfTest) {
+  /*14~36*/ const /*___17__*/ tmpIfTest$1 = $(1);
+  if (/*___22__*/ tmpIfTest$1) {
+    /*23~31*/ /*___27__*/ x = 10;
+    $(/*___31__*/ x);
+  } /*32~36*/ else {
+    $(/*___36__*/ x);
   }
-} /*37*/ else {
-  $(x___41__);
+} /*37~41*/ else {
+  $(/*___41__*/ x);
 }
 `````
 

@@ -69,50 +69,50 @@
 (Annotated with pids)
 
 `````filename=intro
-let x___4__ = 1;
-A___7__: /*8*/ {
-  $(x___15__);
-  $(x___19__);
-  x___23__ = 2;
-  let $implicitThrow___25__ = false;
-  let $finalStep___28__ = false;
-  let $finalCatchArg___31__ = undefined___32__;
-  B___34__: /*35*/ {
-    $finally___37__: /*38*/ {
-      try /*40*/ {
-        $(x___44__);
+let /*___4__*/ x = 1;
+/*___7__*/ A: /*8~119*/ {
+  $(/*___15__*/ x);
+  $(/*___19__*/ x);
+  /*___23__*/ x = 2;
+  let /*___25__*/ $implicitThrow = false;
+  let /*___28__*/ $finalStep = false;
+  let /*___31__*/ $finalCatchArg = /*___32__*/ undefined;
+  /*___34__*/ B: /*35~91*/ {
+    /*___37__*/ $finally: /*38~73*/ {
+      try /*40~62*/ {
+        $(/*___44__*/ x);
         if ($) {
-          /*47*/ x___51__ = 3;
-          $finalStep___55__ = true;
-          break $finally___57__;
-        } /*58*/ else {
-          x___62__ = 4;
+          /*47~57*/ /*___51__*/ x = 3;
+          /*___55__*/ $finalStep = true;
+          break /*___57__*/ $finally;
+        } /*58~62*/ else {
+          /*___62__*/ x = 4;
         }
-      } catch ($finalImplicit___64__) /*65*/ {
-        $implicitThrow___69__ = true;
-        $finalCatchArg___73__ = $finalImplicit___72__;
+      } catch (/*___64__*/ $finalImplicit) /*65~73*/ {
+        /*___69__*/ $implicitThrow = true;
+        /*___73__*/ $finalCatchArg = /*___72__*/ $finalImplicit;
       }
     }
     if ($) {
-      /*76*/ $(x___80__, `breaking`);
-      break B___84__;
-    } /*85*/ else {
-      $(x___89__, `in`);
+      /*76~84*/ $(/*___80__*/ x, `breaking`);
+      break /*___84__*/ B;
+    } /*85~91*/ else {
+      $(/*___89__*/ x, `in`);
     }
   }
-  $(x___95__, `out`);
-  if ($implicitThrow___99__) {
-    /*100*/ throw $finalCatchArg___102__;
-  } /*103*/ else {
-    if ($finalStep___105__) {
-      /*106*/ break A___108__;
-    } /*109*/ else {
-      $(x___113__, `after label`);
-      x___119__ = 5;
+  $(/*___95__*/ x, `out`);
+  if (/*___99__*/ $implicitThrow) {
+    /*100~102*/ throw /*___102__*/ $finalCatchArg;
+  } /*103~119*/ else {
+    if (/*___105__*/ $finalStep) {
+      /*106~108*/ break /*___108__*/ A;
+    } /*109~119*/ else {
+      $(/*___113__*/ x, `after label`);
+      /*___119__*/ x = 5;
     }
   }
 }
-$(x___123__, `end`);
+$(/*___123__*/ x, `end`);
 `````
 
 

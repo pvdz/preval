@@ -37,27 +37,27 @@ $(x, y);  // <-- _if_ it breaks, then it must have overwritten x, so init is not
 (Annotated with pids)
 
 `````filename=intro
-const arr___6__ = [1, 2, 3];
-let x___12__ = undefined___13__;
-let y___15__ = 1;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE___18__) {
-  /*19*/ try /*21*/ {
-    let tmpCalleeParam___26__ = arr___28__[0];
-    $(tmpCalleeParam___33__);
-    x___37__ = arr___36__;
-    const tmpMCF___39__ = arr___41__.reverse___42__;
-    $dotCall___45__(tmpMCF___46__, arr___47__, `reverse`);
-    y___55__ = [5, 6];
-    const tmpIfTest___57__ = y___59__ === $;
-    if (tmpIfTest___62__) {
-      /*63*/ break;
-    } /*65*/ else {
+const /*___6__*/ arr = [1, 2, 3];
+let /*___12__*/ x = /*___13__*/ undefined;
+let /*___15__*/ y = 1;
+while (/*___18__*/ $LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  /*19~73*/ try /*21~65*/ {
+    let /*___26__*/ tmpCalleeParam = /*___28__*/ arr[0];
+    $(/*___33__*/ tmpCalleeParam);
+    /*___37__*/ x = /*___36__*/ arr;
+    const /*___39__*/ tmpMCF = /*___41__*/ arr./*___42__*/ reverse;
+    /*___45__*/ $dotCall(/*___46__*/ tmpMCF, /*___47__*/ arr, `reverse`);
+    /*___55__*/ y = [5, 6];
+    const /*___57__*/ tmpIfTest = /*___59__*/ y === $;
+    if (/*___62__*/ tmpIfTest) {
+      /*63~64*/ break;
+    } /*65~65*/ else {
     }
-  } catch (e___67__) /*68*/ {
+  } catch (/*___67__*/ e) /*68~73*/ {
     $(`fail`);
   }
 }
-$(x___77__, y___78__);
+$(/*___77__*/ x, /*___78__*/ y);
 `````
 
 

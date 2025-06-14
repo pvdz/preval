@@ -39,27 +39,27 @@
 (Annotated with pids)
 
 `````filename=intro
-let x___4__ = 1;
-$(x___9__);
+let /*___4__*/ x = 1;
+$(/*___9__*/ x);
 while (true) {
-  /*12*/ let $implicitThrow___16__ = false;
-  let $finalCatchArg___19__ = undefined___20__;
-  try /*22*/ {
-    $(x___26__);
-  } catch ($finalImplicit___28__) /*29*/ {
-    $implicitThrow___33__ = true;
-    $finalCatchArg___37__ = $finalImplicit___36__;
+  /*12~55*/ let /*___16__*/ $implicitThrow = false;
+  let /*___19__*/ $finalCatchArg = /*___20__*/ undefined;
+  try /*22~26*/ {
+    $(/*___26__*/ x);
+  } catch (/*___28__*/ $finalImplicit) /*29~37*/ {
+    /*___33__*/ $implicitThrow = true;
+    /*___37__*/ $finalCatchArg = /*___36__*/ $finalImplicit;
   }
-  $(x___41__);
+  $(/*___41__*/ x);
   if ($1) {
-    /*44*/ x___48__ = 2;
+    /*44~49*/ /*___48__*/ x = 2;
     break;
-  } /*50*/ else {
-    $(x___54__);
+  } /*50~55*/ else {
+    $(/*___54__*/ x);
     break;
   }
 }
-$(x___59__);
+$(/*___59__*/ x);
 `````
 
 

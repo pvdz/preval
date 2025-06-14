@@ -29,16 +29,16 @@ $('after');
 (Annotated with pids)
 
 `````filename=intro
-const arr___5__ = [10, 20];
-const tmpForOfGenNext___10__ = $forOf___12__(arr___13__);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE___15__) {
-  /*16*/ const tmpForOfNext___20__ = tmpForOfGenNext___22__();
-  const tmpIfTest___24__ = tmpForOfNext___26__.done___27__;
-  if (tmpIfTest___29__) {
-    /*30*/ break;
-  } /*32*/ else {
-    const x___35__ = tmpForOfNext___37__.value___38__;
-    $(x___42__);
+const /*___5__*/ arr = [10, 20];
+const /*___10__*/ tmpForOfGenNext = /*___12__*/ $forOf(/*___13__*/ arr);
+while (/*___15__*/ $LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  /*16~43*/ const /*___20__*/ tmpForOfNext = /*___22__*/ tmpForOfGenNext();
+  const /*___24__*/ tmpIfTest = /*___26__*/ tmpForOfNext./*___27__*/ done;
+  if (/*___29__*/ tmpIfTest) {
+    /*30~31*/ break;
+  } /*32~43*/ else {
+    const /*___35__*/ x = /*___37__*/ tmpForOfNext./*___38__*/ value;
+    $(/*___42__*/ x);
     break;
   }
 }

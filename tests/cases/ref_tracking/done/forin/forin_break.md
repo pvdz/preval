@@ -29,16 +29,16 @@ $('after');
 (Annotated with pids)
 
 `````filename=intro
-const obj___5__ = { a___8__: 10, b___11__: 20 };
-const tmpForInGen___14__ = $forIn___16__(obj___17__);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE___19__) {
-  /*20*/ const tmpForInNext___24__ = tmpForInGen___26__();
-  const tmpIfTest___28__ = tmpForInNext___30__.done___31__;
-  if (tmpIfTest___33__) {
-    /*34*/ break;
-  } /*36*/ else {
-    const x___39__ = tmpForInNext___41__.value___42__;
-    $(x___46__);
+const /*___5__*/ obj = { /*___8__*/ a: 10, /*___11__*/ b: 20 };
+const /*___14__*/ tmpForInGen = /*___16__*/ $forIn(/*___17__*/ obj);
+while (/*___19__*/ $LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  /*20~47*/ const /*___24__*/ tmpForInNext = /*___26__*/ tmpForInGen();
+  const /*___28__*/ tmpIfTest = /*___30__*/ tmpForInNext./*___31__*/ done;
+  if (/*___33__*/ tmpIfTest) {
+    /*34~35*/ break;
+  } /*36~47*/ else {
+    const /*___39__*/ x = /*___41__*/ tmpForInNext./*___42__*/ value;
+    $(/*___46__*/ x);
     break;
   }
 }

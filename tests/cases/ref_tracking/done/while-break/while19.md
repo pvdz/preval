@@ -32,19 +32,19 @@ $(x); // x=5, always
 (Annotated with pids)
 
 `````filename=intro
-let x___6__ = 1;
-const tmpIfTest___9__ = $();
-if (tmpIfTest___13__) {
-  /*14*/ x___18__ = 2;
-} /*19*/ else {
+let /*___6__*/ x = 1;
+const /*___9__*/ tmpIfTest = $();
+if (/*___13__*/ tmpIfTest) {
+  /*14~18*/ /*___18__*/ x = 2;
+} /*19~19*/ else {
 }
-const tmpIfTest$1___21__ = $();
-if (tmpIfTest$1___25__) {
-  /*26*/ x___30__ = 3;
-} /*31*/ else {
+const /*___21__*/ tmpIfTest$1 = $();
+if (/*___25__*/ tmpIfTest$1) {
+  /*26~30*/ /*___30__*/ x = 3;
+} /*31~31*/ else {
 }
-x___35__ = 5;
-$(x___39__);
+/*___35__*/ x = 5;
+$(/*___39__*/ x);
 `````
 
 

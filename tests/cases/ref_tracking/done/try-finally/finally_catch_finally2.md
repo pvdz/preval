@@ -41,43 +41,43 @@ $(x, 5);              // x=4 5
 (Annotated with pids)
 
 `````filename=intro
-let x___6__ = 1;
-let $implicitThrow$1___9__ = false;
-let $finalCatchArg$1___12__ = undefined___13__;
-try /*15*/ {
-  $(x___21__, 1);
-  x___26__ = 2;
-  let $implicitThrow___28__ = false;
-  let $finalCatchArg___31__ = undefined___32__;
-  try /*34*/ {
-    $(x___38__, 2);
-    x___43__ = 3;
-  } catch ($finalImplicit___45__) /*46*/ {
-    $implicitThrow___50__ = true;
-    $finalCatchArg___54__ = $finalImplicit___53__;
+let /*___6__*/ x = 1;
+let /*___9__*/ $implicitThrow$1 = false;
+let /*___12__*/ $finalCatchArg$1 = /*___13__*/ undefined;
+try /*15~75*/ {
+  $(/*___21__*/ x, 1);
+  /*___26__*/ x = 2;
+  let /*___28__*/ $implicitThrow = false;
+  let /*___31__*/ $finalCatchArg = /*___32__*/ undefined;
+  try /*34~43*/ {
+    $(/*___38__*/ x, 2);
+    /*___43__*/ x = 3;
+  } catch (/*___45__*/ $finalImplicit) /*46~54*/ {
+    /*___50__*/ $implicitThrow = true;
+    /*___54__*/ $finalCatchArg = /*___53__*/ $finalImplicit;
   }
-  $(x___58__, 2, 3);
-  x___64__ = 4;
-  $(x___68__, 4);
-  if ($implicitThrow___71__) {
-    /*72*/ throw $finalCatchArg___74__;
-  } /*75*/ else {
+  $(/*___58__*/ x, 2, 3);
+  /*___64__*/ x = 4;
+  $(/*___68__*/ x, 4);
+  if (/*___71__*/ $implicitThrow) {
+    /*72~74*/ throw /*___74__*/ $finalCatchArg;
+  } /*75~75*/ else {
   }
-} catch (e___77__) /*78*/ {
-  try /*80*/ {
-    $(x___84__, 1, 2, 3, 4);
-    x___92__ = 5;
-    $(x___96__, 5);
-  } catch ($finalImplicit$1___99__) /*100*/ {
-    $(x___104__, 1, 2, 3, 4, 5);
-    throw $finalImplicit$1___111__;
+} catch (/*___77__*/ e) /*78~111*/ {
+  try /*80~97*/ {
+    $(/*___84__*/ x, 1, 2, 3, 4);
+    /*___92__*/ x = 5;
+    $(/*___96__*/ x, 5);
+  } catch (/*___99__*/ $finalImplicit$1) /*100~111*/ {
+    $(/*___104__*/ x, 1, 2, 3, 4, 5);
+    throw /*___111__*/ $finalImplicit$1;
   }
 }
-$(x___115__, 1, 2, 3, 4, 5);
-if ($implicitThrow$1___122__) {
-  /*123*/ throw $finalCatchArg$1___125__;
-} /*126*/ else {
-  $(x___130__, 5);
+$(/*___115__*/ x, 1, 2, 3, 4, 5);
+if (/*___122__*/ $implicitThrow$1) {
+  /*123~125*/ throw /*___125__*/ $finalCatchArg$1;
+} /*126~131*/ else {
+  $(/*___130__*/ x, 5);
 }
 `````
 

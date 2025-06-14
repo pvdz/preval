@@ -31,28 +31,28 @@ $(a); // x=4. anything else is an uncaught throw.
 (Annotated with pids)
 
 `````filename=intro
-let a___6__ = 1;
-let $implicitThrow___9__ = false;
-let $finalCatchArg___12__ = undefined___13__;
-try /*15*/ {
-  $(a___19__);
-  a___23__ = 2;
-} catch (e___25__) /*26*/ {
-  try /*28*/ {
-    $(a___32__);
-    a___36__ = 3;
-  } catch ($finalImplicit___38__) /*39*/ {
-    $(a___43__);
-    a___47__ = 4;
-    throw $finalImplicit___49__;
+let /*___6__*/ a = 1;
+let /*___9__*/ $implicitThrow = false;
+let /*___12__*/ $finalCatchArg = /*___13__*/ undefined;
+try /*15~23*/ {
+  $(/*___19__*/ a);
+  /*___23__*/ a = 2;
+} catch (/*___25__*/ e) /*26~49*/ {
+  try /*28~36*/ {
+    $(/*___32__*/ a);
+    /*___36__*/ a = 3;
+  } catch (/*___38__*/ $finalImplicit) /*39~49*/ {
+    $(/*___43__*/ a);
+    /*___47__*/ a = 4;
+    throw /*___49__*/ $finalImplicit;
   }
 }
-$(a___53__);
-a___57__ = 4;
-if ($implicitThrow___59__) {
-  /*60*/ throw $finalCatchArg___62__;
-} /*63*/ else {
-  $(a___67__);
+$(/*___53__*/ a);
+/*___57__*/ a = 4;
+if (/*___59__*/ $implicitThrow) {
+  /*60~62*/ throw /*___62__*/ $finalCatchArg;
+} /*63~67*/ else {
+  $(/*___67__*/ a);
 }
 `````
 

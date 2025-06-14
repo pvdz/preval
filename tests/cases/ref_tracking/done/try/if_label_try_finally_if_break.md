@@ -48,49 +48,49 @@
 (Annotated with pids)
 
 `````filename=intro
-let x___4__ = $(1);
-if (x___9__) {
-  /*10*/ here___12__: /*13*/ {
-    $(x___20__);
-    x___26__ = $(2);
-    $(x___30__);
-    x___36__ = $(3);
-    let $implicitThrow___38__ = false;
-    let $finalStep___41__ = false;
-    let $finalCatchArg___44__ = undefined___45__;
-    $finally___47__: /*48*/ {
-      try /*50*/ {
-        $(x___54__);
-        if (x___56__) {
-          /*57*/ x___63__ = $(4);
-          $finalStep___67__ = true;
-          break $finally___69__;
-        } /*70*/ else {
-          x___76__ = $(5);
+let /*___4__*/ x = $(1);
+if (/*___9__*/ x) {
+  /*10~133*/ /*___12__*/ here: /*13~119*/ {
+    $(/*___20__*/ x);
+    /*___26__*/ x = $(2);
+    $(/*___30__*/ x);
+    /*___36__*/ x = $(3);
+    let /*___38__*/ $implicitThrow = false;
+    let /*___41__*/ $finalStep = false;
+    let /*___44__*/ $finalCatchArg = /*___45__*/ undefined;
+    /*___47__*/ $finally: /*48~87*/ {
+      try /*50~76*/ {
+        $(/*___54__*/ x);
+        if (/*___56__*/ x) {
+          /*57~69*/ /*___63__*/ x = $(4);
+          /*___67__*/ $finalStep = true;
+          break /*___69__*/ $finally;
+        } /*70~76*/ else {
+          /*___76__*/ x = $(5);
         }
-      } catch ($finalImplicit___78__) /*79*/ {
-        $implicitThrow___83__ = true;
-        $finalCatchArg___87__ = $finalImplicit___86__;
+      } catch (/*___78__*/ $finalImplicit) /*79~87*/ {
+        /*___83__*/ $implicitThrow = true;
+        /*___87__*/ $finalCatchArg = /*___86__*/ $finalImplicit;
       }
     }
-    $(x___91__);
-    x___97__ = $(6);
-    if ($implicitThrow___99__) {
-      /*100*/ throw $finalCatchArg___102__;
-    } /*103*/ else {
-      if ($finalStep___105__) {
-        /*106*/ break here___108__;
-      } /*109*/ else {
-        $(x___113__);
-        x___119__ = $(7);
+    $(/*___91__*/ x);
+    /*___97__*/ x = $(6);
+    if (/*___99__*/ $implicitThrow) {
+      /*100~102*/ throw /*___102__*/ $finalCatchArg;
+    } /*103~119*/ else {
+      if (/*___105__*/ $finalStep) {
+        /*106~108*/ break /*___108__*/ here;
+      } /*109~119*/ else {
+        $(/*___113__*/ x);
+        /*___119__*/ x = $(7);
       }
     }
   }
-  $(x___123__);
-  x___129__ = $(8);
-  $(x___133__);
-} /*134*/ else {
-  $(x___138__);
+  $(/*___123__*/ x);
+  /*___129__*/ x = $(8);
+  $(/*___133__*/ x);
+} /*134~138*/ else {
+  $(/*___138__*/ x);
 }
 `````
 

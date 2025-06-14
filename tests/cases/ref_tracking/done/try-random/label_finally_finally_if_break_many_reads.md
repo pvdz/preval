@@ -50,61 +50,61 @@ $('end', x);               // x=7 9
 (Annotated with pids)
 
 `````filename=intro
-let x___4__ = 1;
-back___7__: /*8*/ {
-  let $implicitThrow$1___15__ = false;
-  let $finalCatchArg$1___18__ = undefined___19__;
-  try /*21*/ {
-    $(`try1`, x___27__);
-    x___31__ = 2;
-  } catch ($finalImplicit$1___33__) /*34*/ {
-    $implicitThrow$1___38__ = true;
-    $finalCatchArg$1___42__ = $finalImplicit$1___41__;
+let /*___4__*/ x = 1;
+/*___7__*/ back: /*8~169*/ {
+  let /*___15__*/ $implicitThrow$1 = false;
+  let /*___18__*/ $finalCatchArg$1 = /*___19__*/ undefined;
+  try /*21~31*/ {
+    $(`try1`, /*___27__*/ x);
+    /*___31__*/ x = 2;
+  } catch (/*___33__*/ $finalImplicit$1) /*34~42*/ {
+    /*___38__*/ $implicitThrow$1 = true;
+    /*___42__*/ $finalCatchArg$1 = /*___41__*/ $finalImplicit$1;
   }
-  $(`final1`, x___48__);
-  x___52__ = 3;
-  let $implicitThrow___54__ = false;
-  let $finalStep___57__ = false;
-  let $finalCatchArg___60__ = undefined___61__;
-  $finally___63__: /*64*/ {
-    try /*66*/ {
-      $(`try2`, x___72__);
-      x___76__ = 4;
+  $(`final1`, /*___48__*/ x);
+  /*___52__*/ x = 3;
+  let /*___54__*/ $implicitThrow = false;
+  let /*___57__*/ $finalStep = false;
+  let /*___60__*/ $finalCatchArg = /*___61__*/ undefined;
+  /*___63__*/ $finally: /*64~121*/ {
+    try /*66~106*/ {
+      $(`try2`, /*___72__*/ x);
+      /*___76__*/ x = 4;
       if ($1) {
-        /*79*/ $(`if`, x___85__);
-        x___89__ = 5;
-        $finalStep___93__ = true;
-        break $finally___95__;
-      } /*96*/ else {
-        $(`post-if`, x___102__);
-        x___106__ = 6;
+        /*79~95*/ $(`if`, /*___85__*/ x);
+        /*___89__*/ x = 5;
+        /*___93__*/ $finalStep = true;
+        break /*___95__*/ $finally;
+      } /*96~106*/ else {
+        $(`post-if`, /*___102__*/ x);
+        /*___106__*/ x = 6;
       }
-    } catch ($finalImplicit___108__) /*109*/ {
-      $(`final2`, x___115__);
-      x___119__ = 7;
-      throw $finalImplicit___121__;
+    } catch (/*___108__*/ $finalImplicit) /*109~121*/ {
+      $(`final2`, /*___115__*/ x);
+      /*___119__*/ x = 7;
+      throw /*___121__*/ $finalImplicit;
     }
   }
-  $(`final2`, x___127__);
-  x___131__ = 7;
-  if ($implicitThrow___133__) {
-    /*134*/ throw $finalCatchArg___136__;
-  } /*137*/ else {
-    if ($finalStep___139__) {
-      /*140*/ break back___142__;
-    } /*143*/ else {
-      $(`post-final2`, x___149__);
-      x___153__ = 8;
-      if ($implicitThrow$1___155__) {
-        /*156*/ throw $finalCatchArg$1___158__;
-      } /*159*/ else {
-        $(`post-final1`, x___165__);
-        x___169__ = 9;
+  $(`final2`, /*___127__*/ x);
+  /*___131__*/ x = 7;
+  if (/*___133__*/ $implicitThrow) {
+    /*134~136*/ throw /*___136__*/ $finalCatchArg;
+  } /*137~169*/ else {
+    if (/*___139__*/ $finalStep) {
+      /*140~142*/ break /*___142__*/ back;
+    } /*143~169*/ else {
+      $(`post-final2`, /*___149__*/ x);
+      /*___153__*/ x = 8;
+      if (/*___155__*/ $implicitThrow$1) {
+        /*156~158*/ throw /*___158__*/ $finalCatchArg$1;
+      } /*159~169*/ else {
+        $(`post-final1`, /*___165__*/ x);
+        /*___169__*/ x = 9;
       }
     }
   }
 }
-$(`end`, x___175__);
+$(`end`, /*___175__*/ x);
 `````
 
 

@@ -33,17 +33,17 @@ if ($) {
 (Annotated with pids)
 
 `````filename=intro
-let x___4__ = 1;
-loopStop___7__: /*8*/ {
+let /*___4__*/ x = 1;
+/*___7__*/ loopStop: /*8~14*/ {
   if ($) {
-    /*11*/
-  } /*12*/ else {
-    break loopStop___14__;
+    /*11~11*/
+  } /*12~14*/ else {
+    break /*___14__*/ loopStop;
   }
 }
 if ($) {
-  /*17*/ $(x___21__);
-} /*22*/ else {
+  /*17~21*/ $(/*___21__*/ x);
+} /*22~22*/ else {
 }
 `````
 

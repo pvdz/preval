@@ -40,30 +40,30 @@ $(x);
 (Annotated with pids)
 
 `````filename=intro
-let x___4__ = 1;
-try /*7*/ {
-  $(x___13__);
-  x___17__ = 2;
-  let $implicitThrow___19__ = false;
-  let $finalCatchArg___22__ = undefined___23__;
-  try /*25*/ {
-    $(x___29__);
-    x___33__ = 3;
-  } catch (e___35__) /*36*/ {
-    try /*38*/ {
-      $(x___42__);
-      x___46__ = 4;
-    } catch ($finalImplicit___48__) /*49*/ {
-      $implicitThrow___53__ = true;
-      $finalCatchArg___57__ = $finalImplicit___56__;
+let /*___4__*/ x = 1;
+try /*7~61*/ {
+  $(/*___13__*/ x);
+  /*___17__*/ x = 2;
+  let /*___19__*/ $implicitThrow = false;
+  let /*___22__*/ $finalCatchArg = /*___23__*/ undefined;
+  try /*25~33*/ {
+    $(/*___29__*/ x);
+    /*___33__*/ x = 3;
+  } catch (/*___35__*/ e) /*36~57*/ {
+    try /*38~46*/ {
+      $(/*___42__*/ x);
+      /*___46__*/ x = 4;
+    } catch (/*___48__*/ $finalImplicit) /*49~57*/ {
+      /*___53__*/ $implicitThrow = true;
+      /*___57__*/ $finalCatchArg = /*___56__*/ $finalImplicit;
     }
   }
-  x___61__ = 6;
-} catch (e$1___63__) /*64*/ {
-  $(x___68__);
-  x___72__ = 5;
+  /*___61__*/ x = 6;
+} catch (/*___63__*/ e$1) /*64~72*/ {
+  $(/*___68__*/ x);
+  /*___72__*/ x = 5;
 }
-$(x___76__);
+$(/*___76__*/ x);
 `````
 
 

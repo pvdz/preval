@@ -33,24 +33,24 @@ $(x);         // x=2 (it has to go through x=2 if it is to reach the break)
 (Annotated with pids)
 
 `````filename=intro
-let x___4__ = 1;
+let /*___4__*/ x = 1;
 while (true) {
-  /*8*/ $continue___10__: /*11*/ {
+  /*8~39*/ /*___10__*/ $continue: /*11~39*/ {
     if ($) {
-      /*14*/ $(x___18__);
-      break $continue___20__;
-    } /*21*/ else {
-      $(x___26__);
-      x___30__ = 2;
-      const tmpIfTest___32__ = $();
-      if (tmpIfTest___36__) {
-        /*37*/ break;
-      } /*39*/ else {
+      /*14~20*/ $(/*___18__*/ x);
+      break /*___20__*/ $continue;
+    } /*21~39*/ else {
+      $(/*___26__*/ x);
+      /*___30__*/ x = 2;
+      const /*___32__*/ tmpIfTest = $();
+      if (/*___36__*/ tmpIfTest) {
+        /*37~38*/ break;
+      } /*39~39*/ else {
       }
     }
   }
 }
-$(x___43__);
+$(/*___43__*/ x);
 `````
 
 

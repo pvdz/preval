@@ -49,29 +49,29 @@ $(a);
 (Annotated with pids)
 
 `````filename=intro
-let a___7__ = { a___10__: 999, b___13__: 1000 };
-const tmpCalleeParam$1___16__ = { x___19__: 1 };
-const tmpForInGenNext___22__ = $forIn___24__(tmpCalleeParam$1___25__);
-const tmpObjLitVal___27__ = { y___30__: $ };
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE___33__) {
-  /*34*/ const tmpForInNext___38__ = tmpForInGenNext___40__();
-  const tmpIfTest___42__ = tmpForInNext___44__.done___45__;
-  if (tmpIfTest___47__) {
-    /*48*/ break;
-  } /*50*/ else {
-    a___57__ = undefined___56__;
-    const tmpChainElementObject___59__ = tmpObjLitVal___60__;
-    const tmpIfTest$3___62__ = tmpChainElementObject___64__ == null;
-    let tmpAssignMemLhsObj$1___67__ = undefined___68__;
-    if (tmpIfTest$3___70__) {
-      /*71*/
-    } /*72*/ else {
-      a___78__ = tmpChainElementObject___76__.y___77__;
-      tmpAssignMemLhsObj$1___82__ = a___81__;
+let /*___7__*/ a = { /*___10__*/ a: 999, /*___13__*/ b: 1000 };
+const /*___16__*/ tmpCalleeParam$1 = { /*___19__*/ x: 1 };
+const /*___22__*/ tmpForInGenNext = /*___24__*/ $forIn(/*___25__*/ tmpCalleeParam$1);
+const /*___27__*/ tmpObjLitVal = { /*___30__*/ y: $ };
+while (/*___33__*/ $LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  /*34~82*/ const /*___38__*/ tmpForInNext = /*___40__*/ tmpForInGenNext();
+  const /*___42__*/ tmpIfTest = /*___44__*/ tmpForInNext./*___45__*/ done;
+  if (/*___47__*/ tmpIfTest) {
+    /*48~49*/ break;
+  } /*50~82*/ else {
+    /*___57__*/ a = /*___56__*/ undefined;
+    const /*___59__*/ tmpChainElementObject = /*___60__*/ tmpObjLitVal;
+    const /*___62__*/ tmpIfTest$3 = /*___64__*/ tmpChainElementObject == null;
+    let /*___67__*/ tmpAssignMemLhsObj$1 = /*___68__*/ undefined;
+    if (/*___70__*/ tmpIfTest$3) {
+      /*71~71*/
+    } /*72~82*/ else {
+      /*___78__*/ a = /*___76__*/ tmpChainElementObject./*___77__*/ y;
+      /*___82__*/ tmpAssignMemLhsObj$1 = /*___81__*/ a;
     }
   }
 }
-$(a___86__);
+$(/*___86__*/ a);
 `````
 
 

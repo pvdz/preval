@@ -30,48 +30,48 @@ $(x);         // x=3
 (Annotated with pids)
 
 `````filename=intro
-let x___10__ = 1;
-let $implicitThrow$1___13__ = false;
-let $finalStep___16__ = false;
-let $finalStep$1___19__ = false;
-let $finalCatchArg$1___22__ = undefined___23__;
-let $finalArg___25__ = undefined___26__;
-let $finalArg$1___28__ = undefined___29__;
-$finally$1___31__: /*32*/ {
-  try /*34*/ {
-    let $implicitThrow___38__ = false;
-    let $finalCatchArg___41__ = undefined___42__;
-    try /*44*/ {
-      x___48__ = 2;
-    } catch ($finalImplicit___50__) /*51*/ {
-      x___55__ = 3;
-      $finalStep___59__ = true;
-      $finalArg___63__ = $finalImplicit___62__;
-      break $finally$1___65__;
+let /*___10__*/ x = 1;
+let /*___13__*/ $implicitThrow$1 = false;
+let /*___16__*/ $finalStep = false;
+let /*___19__*/ $finalStep$1 = false;
+let /*___22__*/ $finalCatchArg$1 = /*___23__*/ undefined;
+let /*___25__*/ $finalArg = /*___26__*/ undefined;
+let /*___28__*/ $finalArg$1 = /*___29__*/ undefined;
+/*___31__*/ $finally$1: /*32~92*/ {
+  try /*34~83*/ {
+    let /*___38__*/ $implicitThrow = false;
+    let /*___41__*/ $finalCatchArg = /*___42__*/ undefined;
+    try /*44~48*/ {
+      /*___48__*/ x = 2;
+    } catch (/*___50__*/ $finalImplicit) /*51~65*/ {
+      /*___55__*/ x = 3;
+      /*___59__*/ $finalStep = true;
+      /*___63__*/ $finalArg = /*___62__*/ $finalImplicit;
+      break /*___65__*/ $finally$1;
     }
-    x___69__ = 3;
-    if ($implicitThrow___71__) {
-      /*72*/ $finalStep$1___76__ = true;
-      $finalArg$1___80__ = $finalCatchArg___79__;
-      break $finally$1___82__;
-    } /*83*/ else {
+    /*___69__*/ x = 3;
+    if (/*___71__*/ $implicitThrow) {
+      /*72~82*/ /*___76__*/ $finalStep$1 = true;
+      /*___80__*/ $finalArg$1 = /*___79__*/ $finalCatchArg;
+      break /*___82__*/ $finally$1;
+    } /*83~83*/ else {
     }
-  } catch ($finalImplicit$1___85__) /*86*/ {
-    $(x___90__);
-    throw $finalImplicit$1___92__;
+  } catch (/*___85__*/ $finalImplicit$1) /*86~92*/ {
+    $(/*___90__*/ x);
+    throw /*___92__*/ $finalImplicit$1;
   }
 }
-$(x___96__);
-if ($implicitThrow$1___98__) {
-  /*99*/ throw $finalCatchArg$1___101__;
-} /*102*/ else {
-  if ($finalStep___104__) {
-    /*105*/ throw $finalArg___107__;
-  } /*108*/ else {
-    if ($finalStep$1___110__) {
-      /*111*/ throw $finalArg$1___113__;
-    } /*114*/ else {
-      $(x___118__);
+$(/*___96__*/ x);
+if (/*___98__*/ $implicitThrow$1) {
+  /*99~101*/ throw /*___101__*/ $finalCatchArg$1;
+} /*102~118*/ else {
+  if (/*___104__*/ $finalStep) {
+    /*105~107*/ throw /*___107__*/ $finalArg;
+  } /*108~118*/ else {
+    if (/*___110__*/ $finalStep$1) {
+      /*111~113*/ throw /*___113__*/ $finalArg$1;
+    } /*114~118*/ else {
+      $(/*___118__*/ x);
     }
   }
 }

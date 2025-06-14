@@ -31,22 +31,22 @@ $(x); // unreachable (otherwise x=1 2)
 (Annotated with pids)
 
 `````filename=intro
-let x___4__ = 1;
+let /*___4__*/ x = 1;
 while (true) {
-  /*8*/ if ($) {
-    /*11*/ $continue___13__: /*14*/ {
-      $(x___18__);
+  /*8~30*/ if ($) {
+    /*11~28*/ /*___13__*/ $continue: /*14~28*/ {
+      $(/*___18__*/ x);
       if ($) {
-        /*21*/ break $continue___23__;
-      } /*24*/ else {
-        x___28__ = 2;
+        /*21~23*/ break /*___23__*/ $continue;
+      } /*24~28*/ else {
+        /*___28__*/ x = 2;
       }
     }
-  } /*29*/ else {
+  } /*29~30*/ else {
     break;
   }
 }
-$(x___34__);
+$(/*___34__*/ x);
 `````
 
 

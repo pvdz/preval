@@ -33,18 +33,18 @@ $(x); // x=5
 (Annotated with pids)
 
 `````filename=intro
-let x___4__ = 1;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE___7__) {
-  /*8*/ if ($1) {
-    /*11*/ $(x___15__);
-    x___19__ = 5;
+let /*___4__*/ x = 1;
+while (/*___7__*/ $LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  /*8~29*/ if ($1) {
+    /*11~20*/ $(/*___15__*/ x);
+    /*___19__*/ x = 5;
     break;
-  } /*21*/ else {
-    x___25__ = 4;
-    x___29__ = 3;
+  } /*21~29*/ else {
+    /*___25__*/ x = 4;
+    /*___29__*/ x = 3;
   }
 }
-$(x___33__);
+$(/*___33__*/ x);
 `````
 
 

@@ -45,47 +45,47 @@
 (Annotated with pids)
 
 `````filename=intro
-let x___4__ = 1;
-a___7__: /*8*/ {
-  b___10__: /*11*/ {
-    x___18__ = 2;
-    x___22__ = 3;
-    let $implicitThrow___24__ = false;
-    let $finalStep___27__ = false;
-    let $finalCatchArg___30__ = undefined___31__;
-    $finally___33__: /*34*/ {
-      try /*36*/ {
+let /*___4__*/ x = 1;
+/*___7__*/ a: /*8~99*/ {
+  /*___10__*/ b: /*11~95*/ {
+    /*___18__*/ x = 2;
+    /*___22__*/ x = 3;
+    let /*___24__*/ $implicitThrow = false;
+    let /*___27__*/ $finalStep = false;
+    let /*___30__*/ $finalCatchArg = /*___31__*/ undefined;
+    /*___33__*/ $finally: /*34~65*/ {
+      try /*36~54*/ {
         if ($) {
-          /*39*/ x___43__ = 4;
-          $finalStep___47__ = true;
-          break $finally___49__;
-        } /*50*/ else {
-          x___54__ = 5;
+          /*39~49*/ /*___43__*/ x = 4;
+          /*___47__*/ $finalStep = true;
+          break /*___49__*/ $finally;
+        } /*50~54*/ else {
+          /*___54__*/ x = 5;
         }
-      } catch ($finalImplicit___56__) /*57*/ {
-        $implicitThrow___61__ = true;
-        $finalCatchArg___65__ = $finalImplicit___64__;
+      } catch (/*___56__*/ $finalImplicit) /*57~65*/ {
+        /*___61__*/ $implicitThrow = true;
+        /*___65__*/ $finalCatchArg = /*___64__*/ $finalImplicit;
       }
     }
-    $(x___69__);
+    $(/*___69__*/ x);
     if ($) {
-      /*72*/ x___76__ = 6;
-      break b___78__;
-    } /*79*/ else {
-      if ($implicitThrow___81__) {
-        /*82*/ throw $finalCatchArg___84__;
-      } /*85*/ else {
-        if ($finalStep___87__) {
-          /*88*/ break a___90__;
-        } /*91*/ else {
-          $(x___95__);
+      /*72~78*/ /*___76__*/ x = 6;
+      break /*___78__*/ b;
+    } /*79~95*/ else {
+      if (/*___81__*/ $implicitThrow) {
+        /*82~84*/ throw /*___84__*/ $finalCatchArg;
+      } /*85~95*/ else {
+        if (/*___87__*/ $finalStep) {
+          /*88~90*/ break /*___90__*/ a;
+        } /*91~95*/ else {
+          $(/*___95__*/ x);
         }
       }
     }
   }
-  $(x___99__);
+  $(/*___99__*/ x);
 }
-$(x___103__);
+$(/*___103__*/ x);
 `````
 
 

@@ -32,26 +32,26 @@ $(x);          // x=2 3. if the catch throws then that won't reach here.
 (Annotated with pids)
 
 `````filename=intro
-let x___6__ = 1;
-let $implicitThrow___9__ = false;
-let $finalCatchArg___12__ = undefined___13__;
-try /*15*/ {
-  $(x___19__);
-  x___23__ = 2;
-} catch (e___25__) /*26*/ {
-  try /*28*/ {
-    $(x___32__);
-    x___36__ = 3;
-  } catch ($finalImplicit___38__) /*39*/ {
-    $(x___43__);
-    throw $finalImplicit___45__;
+let /*___6__*/ x = 1;
+let /*___9__*/ $implicitThrow = false;
+let /*___12__*/ $finalCatchArg = /*___13__*/ undefined;
+try /*15~23*/ {
+  $(/*___19__*/ x);
+  /*___23__*/ x = 2;
+} catch (/*___25__*/ e) /*26~45*/ {
+  try /*28~36*/ {
+    $(/*___32__*/ x);
+    /*___36__*/ x = 3;
+  } catch (/*___38__*/ $finalImplicit) /*39~45*/ {
+    $(/*___43__*/ x);
+    throw /*___45__*/ $finalImplicit;
   }
 }
-$(x___49__);
-if ($implicitThrow___51__) {
-  /*52*/ throw $finalCatchArg___54__;
-} /*55*/ else {
-  $(x___59__);
+$(/*___49__*/ x);
+if (/*___51__*/ $implicitThrow) {
+  /*52~54*/ throw /*___54__*/ $finalCatchArg;
+} /*55~59*/ else {
+  $(/*___59__*/ x);
 }
 `````
 

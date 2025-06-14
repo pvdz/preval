@@ -33,20 +33,20 @@ $(x, y);
 (Annotated with pids)
 
 `````filename=intro
-const arr___6__ = [1, 2, 3];
-let x___12__ = undefined___13__;
-let y___15__ = 1;
-try /*18*/ {
-  let tmpCalleeParam___22__ = arr___24__[0];
-  $(tmpCalleeParam___29__);
-  x___33__ = arr___32__;
-  const tmpMCF___35__ = arr___37__.reverse___38__;
-  $dotCall___41__(tmpMCF___42__, arr___43__, `reverse`);
-  y___51__ = [5, 6];
-} catch (e___53__) /*54*/ {
+const /*___6__*/ arr = [1, 2, 3];
+let /*___12__*/ x = /*___13__*/ undefined;
+let /*___15__*/ y = 1;
+try /*18~51*/ {
+  let /*___22__*/ tmpCalleeParam = /*___24__*/ arr[0];
+  $(/*___29__*/ tmpCalleeParam);
+  /*___33__*/ x = /*___32__*/ arr;
+  const /*___35__*/ tmpMCF = /*___37__*/ arr./*___38__*/ reverse;
+  /*___41__*/ $dotCall(/*___42__*/ tmpMCF, /*___43__*/ arr, `reverse`);
+  /*___51__*/ y = [5, 6];
+} catch (/*___53__*/ e) /*54~59*/ {
   $(`fail`);
 }
-$(x___63__, y___64__);
+$(/*___63__*/ x, /*___64__*/ y);
 `````
 
 

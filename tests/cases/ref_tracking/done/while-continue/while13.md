@@ -32,21 +32,21 @@ while ($) {
 (Annotated with pids)
 
 `````filename=intro
-let x___4__ = 1;
+let /*___4__*/ x = 1;
 while (true) {
-  /*8*/ if ($) {
-    /*11*/ $continue___13__: /*14*/ {
-      const tmpIfTest___17__ = $(false);
-      if (tmpIfTest___22__) {
-        /*23*/ $(x___27__);
-        x___31__ = 5;
-        break $continue___33__;
-      } /*34*/ else {
-        x___38__ = 4;
-        x___42__ = 3;
+  /*8~44*/ if ($) {
+    /*11~42*/ /*___13__*/ $continue: /*14~42*/ {
+      const /*___17__*/ tmpIfTest = $(false);
+      if (/*___22__*/ tmpIfTest) {
+        /*23~33*/ $(/*___27__*/ x);
+        /*___31__*/ x = 5;
+        break /*___33__*/ $continue;
+      } /*34~42*/ else {
+        /*___38__*/ x = 4;
+        /*___42__*/ x = 3;
       }
     }
-  } /*43*/ else {
+  } /*43~44*/ else {
     break;
   }
 }

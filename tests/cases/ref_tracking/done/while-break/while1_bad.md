@@ -31,23 +31,23 @@ $(x); // unreachable, without DCE it'll be x=1 2
 (Annotated with pids)
 
 `````filename=intro
-let x___4__ = 1;
+let /*___4__*/ x = 1;
 while (true) {
-  /*8*/ if ($) {
-    /*11*/ $continue___13__: /*14*/ {
-      $(x___19__);
-      const tmpIfTest___21__ = $(0);
-      if (tmpIfTest___26__) {
-        /*27*/ x___31__ = 2;
-        break $continue___33__;
-      } /*34*/ else {
+  /*8~36*/ if ($) {
+    /*11~34*/ /*___13__*/ $continue: /*14~34*/ {
+      $(/*___19__*/ x);
+      const /*___21__*/ tmpIfTest = $(0);
+      if (/*___26__*/ tmpIfTest) {
+        /*27~33*/ /*___31__*/ x = 2;
+        break /*___33__*/ $continue;
+      } /*34~34*/ else {
       }
     }
-  } /*35*/ else {
+  } /*35~36*/ else {
     break;
   }
 }
-$(x___40__);
+$(/*___40__*/ x);
 `````
 
 

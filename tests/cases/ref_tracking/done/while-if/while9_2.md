@@ -35,17 +35,17 @@ $(x); // 2, not one (always overwritten before break)
 (Annotated with pids)
 
 `````filename=intro
-let x___4__ = 1;
+let /*___4__*/ x = 1;
 while (true) {
-  /*8*/ if ($) {
-    /*11*/ $(x___15__);
-  } /*16*/ else {
-    $(x___20__);
-    x___24__ = 2;
+  /*8~25*/ if ($) {
+    /*11~15*/ $(/*___15__*/ x);
+  } /*16~25*/ else {
+    $(/*___20__*/ x);
+    /*___24__*/ x = 2;
     break;
   }
 }
-$(x___29__);
+$(/*___29__*/ x);
 `````
 
 

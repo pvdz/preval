@@ -35,21 +35,21 @@ if ($) {
 (Annotated with pids)
 
 `````filename=intro
-let a___5__ = `abc`;
-let b___9__ = `def`;
+let /*___5__*/ a = `abc`;
+let /*___9__*/ b = `def`;
 if ($) {
-  /*14*/ let c___20__ = 1;
-  const d___23__ = $(`x`);
-  const tmpIfTest___29__ = d___31__.length___32__;
-  if (tmpIfTest___34__) {
-    /*35*/ const tmpMCF___38__ = a___40__.slice___41__;
-    b___51__ = $dotCall___45__(tmpMCF___46__, a___47__, `slice`, 1);
-  } /*52*/ else {
-    b___56__ = a___55__;
+  /*14~65*/ let /*___20__*/ c = 1;
+  const /*___23__*/ d = $(`x`);
+  const /*___29__*/ tmpIfTest = /*___31__*/ d./*___32__*/ length;
+  if (/*___34__*/ tmpIfTest) {
+    /*35~51*/ const /*___38__*/ tmpMCF = /*___40__*/ a./*___41__*/ slice;
+    /*___51__*/ b = /*___45__*/ $dotCall(/*___46__*/ tmpMCF, /*___47__*/ a, `slice`, 1);
+  } /*52~56*/ else {
+    /*___56__*/ b = /*___55__*/ a;
   }
-  const h___58__ = b___60__.length___61__;
-  $(h___65__);
-} /*66*/ else {
+  const /*___58__*/ h = /*___60__*/ b./*___61__*/ length;
+  $(/*___65__*/ h);
+} /*66~66*/ else {
 }
 `````
 

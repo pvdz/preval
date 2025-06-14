@@ -29,8 +29,8 @@
 (Annotated with pids)
 
 `````filename=intro
-let c___4__ = 1;
-c___11__ = c___9__ + 1;
+let /*___4__*/ c = 1;
+/*___11__*/ c = /*___9__*/ c + 1;
 `````
 
 

@@ -34,18 +34,18 @@ loopStop: {
 (Annotated with pids)
 
 `````filename=intro
-let x___5__ = 0;
-let $tmpLoopUnrollCheck___8__ = true;
-loopStop___11__: /*12*/ {
-  x___19__ = x___17__ + 1;
-  $(x___23__, 1);
-  const tmpIfTest___26__ = x___28__ < 4;
-  if (tmpIfTest___31__) {
-    /*32*/
-  } /*33*/ else {
-    $(x___37__, 2);
-    $tmpLoopUnrollCheck___42__ = false;
-    break loopStop___44__;
+let /*___5__*/ x = 0;
+let /*___8__*/ $tmpLoopUnrollCheck = true;
+/*___11__*/ loopStop: /*12~44*/ {
+  /*___19__*/ x = /*___17__*/ x + 1;
+  $(/*___23__*/ x, 1);
+  const /*___26__*/ tmpIfTest = /*___28__*/ x < 4;
+  if (/*___31__*/ tmpIfTest) {
+    /*32~32*/
+  } /*33~44*/ else {
+    $(/*___37__*/ x, 2);
+    /*___42__*/ $tmpLoopUnrollCheck = false;
+    break /*___44__*/ loopStop;
   }
 }
 `````

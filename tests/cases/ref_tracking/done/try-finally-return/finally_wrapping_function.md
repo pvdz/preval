@@ -35,45 +35,45 @@ try {
 (Annotated with pids)
 
 `````filename=intro
-let $implicitThrow$1___6__ = false;
-let $finalCatchArg$1___9__ = undefined___10__;
-let f___12__ = function () /*14*/ {
-  debugger;
-  let x___22__ = 1;
-  let $implicitThrow___25__ = false;
-  let $finalStep___28__ = false;
-  let $finalCatchArg___31__ = undefined___32__;
-  let $finalArg___34__ = undefined___35__;
-  $finally___37__: /*38*/ {
-    try /*40*/ {
-      const tmpIfTest___43__ = $();
-      if (tmpIfTest___47__) {
-        /*48*/ x___52__ = 2;
-        $finalStep___56__ = true;
-        $finalArg___60__ = 100;
-        break $finally___62__;
-      } /*63*/ else {
+let /*___6__*/ $implicitThrow$1 = false;
+let /*___9__*/ $finalCatchArg$1 = /*___10__*/ undefined;
+let /*___12__*/ f = function () /*14*/ {
+    debugger;
+    let /*___22__*/ x = 1;
+    let /*___25__*/ $implicitThrow = false;
+    let /*___28__*/ $finalStep = false;
+    let /*___31__*/ $finalCatchArg = /*___32__*/ undefined;
+    let /*___34__*/ $finalArg = /*___35__*/ undefined;
+    /*___37__*/ $finally: /*38~72*/ {
+      try /*40~63*/ {
+        const /*___43__*/ tmpIfTest = $();
+        if (/*___47__*/ tmpIfTest) {
+          /*48~62*/ /*___52__*/ x = 2;
+          /*___56__*/ $finalStep = true;
+          /*___60__*/ $finalArg = 100;
+          break /*___62__*/ $finally;
+        } /*63~63*/ else {
+        }
+      } catch (/*___65__*/ $finalImplicit) /*66~72*/ {
+        $(/*___70__*/ x);
+        throw /*___72__*/ $finalImplicit;
       }
-    } catch ($finalImplicit___65__) /*66*/ {
-      $(x___70__);
-      throw $finalImplicit___72__;
     }
-  }
-  $(x___76__);
-  if ($implicitThrow___78__) {
-    /*79*/ throw $finalCatchArg___81__;
-  } /*82*/ else {
-    if ($finalStep___84__) {
-      /*85*/ return $finalArg___88__;
-    } /*89*/ else {
-      return undefined___91__;
+    $(/*___76__*/ x);
+    if (/*___78__*/ $implicitThrow) {
+      /*79~81*/ throw /*___81__*/ $finalCatchArg;
+    } /*82~91*/ else {
+      if (/*___84__*/ $finalStep) {
+        /*85~88*/ return /*___88__*/ $finalArg;
+      } /*89~91*/ else {
+        return /*___91__*/ undefined;
+      }
     }
-  }
-};
-$(f___95__);
-if ($implicitThrow$1___97__) {
-  /*98*/ throw $finalCatchArg$1___100__;
-} /*101*/ else {
+  };
+$(/*___95__*/ f);
+if (/*___97__*/ $implicitThrow$1) {
+  /*98~100*/ throw /*___100__*/ $finalCatchArg$1;
+} /*101~101*/ else {
 }
 `````
 

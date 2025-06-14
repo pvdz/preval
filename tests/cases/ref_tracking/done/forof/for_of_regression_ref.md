@@ -31,23 +31,23 @@ $(x);
 (Annotated with pids)
 
 `````filename=intro
-$(undefined___9__);
-let x___11__ = undefined___12__;
-const list___14__ = [100];
-let arr___18__ = undefined___19__;
-const tmpForOfGen___21__ = $forOf___23__(list___24__);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE___26__) {
-  /*27*/ const tmpForOfNext___31__ = tmpForOfGen___33__();
-  const tmpIfTest___35__ = tmpForOfNext___37__.done___38__;
-  if (tmpIfTest___40__) {
-    /*41*/ break;
-  } /*43*/ else {
-    arr___49__ = tmpForOfNext___47__.value___48__;
-    x___53__ = arr___52__;
-    $(arr___57__, `for`);
+$(/*___9__*/ undefined);
+let /*___11__*/ x = /*___12__*/ undefined;
+const /*___14__*/ list = [100];
+let /*___18__*/ arr = /*___19__*/ undefined;
+const /*___21__*/ tmpForOfGen = /*___23__*/ $forOf(/*___24__*/ list);
+while (/*___26__*/ $LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  /*27~59*/ const /*___31__*/ tmpForOfNext = /*___33__*/ tmpForOfGen();
+  const /*___35__*/ tmpIfTest = /*___37__*/ tmpForOfNext./*___38__*/ done;
+  if (/*___40__*/ tmpIfTest) {
+    /*41~42*/ break;
+  } /*43~59*/ else {
+    /*___49__*/ arr = /*___47__*/ tmpForOfNext./*___48__*/ value;
+    /*___53__*/ x = /*___52__*/ arr;
+    $(/*___57__*/ arr, `for`);
   }
 }
-$(x___63__);
+$(/*___63__*/ x);
 `````
 
 

@@ -31,23 +31,23 @@ $(a);   // can only observe 3
 (Annotated with pids)
 
 `````filename=intro
-let a___6__ = 1;
-let $implicitThrow___9__ = false;
-let $finalCatchArg___12__ = undefined___13__;
-try /*15*/ {
-  $(a___19__);
-  a___23__ = 2;
-} catch ($finalImplicit___25__) /*26*/ {
-  $(a___30__);
-  a___34__ = 3;
-  throw $finalImplicit___36__;
+let /*___6__*/ a = 1;
+let /*___9__*/ $implicitThrow = false;
+let /*___12__*/ $finalCatchArg = /*___13__*/ undefined;
+try /*15~23*/ {
+  $(/*___19__*/ a);
+  /*___23__*/ a = 2;
+} catch (/*___25__*/ $finalImplicit) /*26~36*/ {
+  $(/*___30__*/ a);
+  /*___34__*/ a = 3;
+  throw /*___36__*/ $finalImplicit;
 }
-$(a___40__);
-a___44__ = 3;
-if ($implicitThrow___46__) {
-  /*47*/ throw $finalCatchArg___49__;
-} /*50*/ else {
-  $(a___54__);
+$(/*___40__*/ a);
+/*___44__*/ a = 3;
+if (/*___46__*/ $implicitThrow) {
+  /*47~49*/ throw /*___49__*/ $finalCatchArg;
+} /*50~54*/ else {
+  $(/*___54__*/ a);
 }
 `````
 

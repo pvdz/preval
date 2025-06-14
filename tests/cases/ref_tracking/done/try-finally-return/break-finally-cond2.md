@@ -29,20 +29,20 @@
 (Annotated with pids)
 
 `````filename=intro
-let x___6__ = 1;
-let $implicitThrow___9__ = false;
-let $finalCatchArg___12__ = undefined___13__;
-try /*15*/ {
-  x___19__ = 2;
-} catch ($finalImplicit___21__) /*22*/ {
-  $(x___26__);
-  throw $finalImplicit___28__;
+let /*___6__*/ x = 1;
+let /*___9__*/ $implicitThrow = false;
+let /*___12__*/ $finalCatchArg = /*___13__*/ undefined;
+try /*15~19*/ {
+  /*___19__*/ x = 2;
+} catch (/*___21__*/ $finalImplicit) /*22~28*/ {
+  $(/*___26__*/ x);
+  throw /*___28__*/ $finalImplicit;
 }
-$(x___32__);
-if ($implicitThrow___34__) {
-  /*35*/ throw $finalCatchArg___37__;
-} /*38*/ else {
-  $(x___42__);
+$(/*___32__*/ x);
+if (/*___34__*/ $implicitThrow) {
+  /*35~37*/ throw /*___37__*/ $finalCatchArg;
+} /*38~42*/ else {
+  $(/*___42__*/ x);
 }
 `````
 

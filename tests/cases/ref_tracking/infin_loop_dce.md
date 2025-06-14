@@ -31,16 +31,16 @@ $(x, `i am dead`);
 (Annotated with pids)
 
 `````filename=intro
-let x___4__ = 1;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE___7__) {
-  /*8*/ const tmpUnaryArg$1___11__ = $(100);
-  if (tmpUnaryArg$1___16__) {
-    /*17*/ x___21__ = 2;
+let /*___4__*/ x = 1;
+while (/*___7__*/ $LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  /*8~23*/ const /*___11__*/ tmpUnaryArg$1 = $(100);
+  if (/*___16__*/ tmpUnaryArg$1) {
+    /*17~22*/ /*___21__*/ x = 2;
     break;
-  } /*23*/ else {
+  } /*23~23*/ else {
   }
 }
-$(x___27__, `i am dead`);
+$(/*___27__*/ x, `i am dead`);
 `````
 
 

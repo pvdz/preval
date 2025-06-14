@@ -33,31 +33,31 @@ $(a); // can observe 1, 2, 3, and 4
 (Annotated with pids)
 
 `````filename=intro
-let a___7__ = 1;
-let $implicitThrow___10__ = false;
-let $finalCatchArg___13__ = undefined___14__;
-try /*16*/ {
-  $(a___20__);
-  a___24__ = 2;
-} catch (e___26__) /*27*/ {
-  try /*29*/ {
-    $(a___33__);
-    a___37__ = 3;
-  } catch ($finalImplicit___39__) /*40*/ {
-    $implicitThrow___44__ = true;
-    $finalCatchArg___48__ = $finalImplicit___47__;
+let /*___7__*/ a = 1;
+let /*___10__*/ $implicitThrow = false;
+let /*___13__*/ $finalCatchArg = /*___14__*/ undefined;
+try /*16~24*/ {
+  $(/*___20__*/ a);
+  /*___24__*/ a = 2;
+} catch (/*___26__*/ e) /*27~48*/ {
+  try /*29~37*/ {
+    $(/*___33__*/ a);
+    /*___37__*/ a = 3;
+  } catch (/*___39__*/ $finalImplicit) /*40~48*/ {
+    /*___44__*/ $implicitThrow = true;
+    /*___48__*/ $finalCatchArg = /*___47__*/ $finalImplicit;
   }
 }
-$(a___52__);
-const tmpIfTest___54__ = $();
-if (tmpIfTest___58__) {
-  /*59*/ a___63__ = 4;
-} /*64*/ else {
+$(/*___52__*/ a);
+const /*___54__*/ tmpIfTest = $();
+if (/*___58__*/ tmpIfTest) {
+  /*59~63*/ /*___63__*/ a = 4;
+} /*64~64*/ else {
 }
-if ($implicitThrow___66__) {
-  /*67*/ throw $finalCatchArg___69__;
-} /*70*/ else {
-  $(a___74__);
+if (/*___66__*/ $implicitThrow) {
+  /*67~69*/ throw /*___69__*/ $finalCatchArg;
+} /*70~74*/ else {
+  $(/*___74__*/ a);
 }
 `````
 

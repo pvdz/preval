@@ -32,7 +32,7 @@ try {
 } catch (e) {
   throw e;
 }
-throw `Preval: This statement contained a read that reached no writes: x;`;
+throw `Preval: This statement contained a read that reached no writes: binding: x, code: x;`;
 `````
 
 
@@ -46,7 +46,7 @@ try {
 } catch (e) {
   throw e;
 }
-throw `Preval: This statement contained a read that reached no writes: x;`;
+throw `Preval: This statement contained a read that reached no writes: binding: x, code: x;`;
 `````
 
 
@@ -61,7 +61,7 @@ try {
 catch (a) {
   throw a;
 }
-throw "Preval: This statement contained a read that reached no writes: x;";
+throw "Preval: This statement contained a read that reached no writes: binding: x, code: x;";
 `````
 
 

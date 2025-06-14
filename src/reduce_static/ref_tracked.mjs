@@ -188,7 +188,7 @@ function _refTracked(fdata) {
             const stringArg = tmat(read.blockBody[read.blockIndex], true).replace(/\n.*/g, ' ').trim();
             const stringArgTrunced = stringArg.slice(0, 50) + (stringArg.length > 50 ? ' ...' : '');
             read.blockBody[read.blockIndex] =
-              AST.throwStatement(AST.primitive(`Preval: This statement contained a read that reached no writes: ${stringArgTrunced}`));
+              AST.throwStatement(AST.primitive(`Preval: This statement contained a read that reached no writes: binding: ${varName}, code: ${stringArgTrunced}`));
 
             after(read.blockBody[read.blockIndex]);
             assertNoDupeNodes(read.blockBody, 'body', true);

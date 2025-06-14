@@ -49,7 +49,7 @@ try {
     $(`log_e_inner`, e_inner);
     throw e_inner;
   }
-  throw `Preval: This statement contained a read that reached no writes: path;`;
+  throw `Preval: This statement contained a read that reached no writes: binding: path, code: path;`;
 } catch (e_outer) {
   const tmpBinBothRhs$7 /*:unknown*/ = $(`E`);
   path = path + tmpBinBothRhs$7;
@@ -75,7 +75,7 @@ try {
     $(`log_e_inner`, e_inner);
     throw e_inner;
   }
-  throw `Preval: This statement contained a read that reached no writes: path;`;
+  throw `Preval: This statement contained a read that reached no writes: binding: path, code: path;`;
 } catch (e_outer) {
   path = path + $(`E`);
   $(`log_e_outer`, e_outer);
@@ -104,7 +104,7 @@ try {
     $( "log_e_inner", e );
     throw e;
   }
-  throw "Preval: This statement contained a read that reached no writes: path;";
+  throw "Preval: This statement contained a read that reached no writes: binding: path, code: path;";
 }
 catch (g) {
   const h = $( "E" );

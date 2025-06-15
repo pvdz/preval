@@ -36,7 +36,7 @@ const SUPPORTED_GLOBAL_FUNCS = [
   // symbo('array', 'pop'),
   symbo('array', 'push'),
   symbo('array', 'shift'),
-  symbo('array', 'unshift'),
+  // symbo('array', 'unshift'),
   'isNaN',
   symbo('Number', 'isNaN'),
   'isFinite',

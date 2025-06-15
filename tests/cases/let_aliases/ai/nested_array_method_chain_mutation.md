@@ -21,21 +21,8 @@ $(a, b);
 
 
 `````js filename=intro
-let x /*:unknown*/ = $(`val`);
-const a /*:unknown*/ = x;
-const tmpMCP /*:()=>boolean*/ = function () {
-  debugger;
-  return true;
-};
-const tmpMCOO$1 /*:array*/ /*truthy*/ = [1, 2];
-const tmpMCOO /*:array*/ /*truthy*/ = $dotCall($array_filter, tmpMCOO$1, `filter`, tmpMCP);
-const tmpMCP$1 /*:()=>undefined*/ = function () {
-  debugger;
-  x = `changed`;
-  return undefined;
-};
-$dotCall($array_forEach, tmpMCOO, `forEach`, tmpMCP$1);
-$(a, x);
+const x /*:unknown*/ = $(`val`);
+$(x, `changed`);
 `````
 
 
@@ -43,15 +30,7 @@ $(a, x);
 (This ought to be the final result)
 
 `````js filename=intro
-let x = $(`val`);
-const a = x;
-const tmpMCP = function () {
-  return true;
-};
-$dotCall($array_forEach, $dotCall($array_filter, [1, 2], `filter`, tmpMCP), `forEach`, function () {
-  x = `changed`;
-});
-$(a, x);
+$($(`val`), `changed`);
 `````
 
 
@@ -59,21 +38,8 @@ $(a, x);
 With rename=true
 
 `````js filename=intro
-let a = $( "val" );
-const b = a;
-const c = function() {
-  debugger;
-  return true;
-};
-const d = [ 1, 2 ];
-const e = $dotCall( $array_filter, d, "filter", c );
-const f = function() {
-  debugger;
-  a = "changed";
-  return undefined;
-};
-$dotCall( $array_forEach, e, "forEach", f );
-$( b, a );
+const a = $( "val" );
+$( a, "changed" );
 `````
 
 
@@ -105,9 +71,15 @@ $(a, x);
 ## Todos triggered
 
 
+- (todo) Support this binary expression operator:
 - (todo) access object property that also exists on prototype? $array_forEach
-- (todo) arr mutation may be able to inline this method: $array_filter
+- (todo) do we want to support BinaryExpression as expression statement in free loops?
+- (todo) do we want to support Literal as expression statement in free loops?
+- (todo) regular property access of an ident feels tricky;
+- (todo) support array reads statement type EmptyStatement
+- (todo) support array reads statement type ExpressionStatement
 - (todo) support array reads statement type VarStatement
+- (todo) support array reads statement type WhileStatement
 - (todo) type trackeed tricks can possibly support static $array_filter
 - (todo) type trackeed tricks can possibly support static $array_forEach
 

@@ -32,17 +32,21 @@ const tmpMCF$1 /*:unknown*/ = x.toString;
 const tmpClusterSSA_tmpArrenow /*:unknown*/ = $dotCall(tmpMCF$1, x, `toString`);
 const tmpMCF$2 /*:unknown*/ = x.toString;
 const tmpClusterSSA_tmpArrenow$1 /*:unknown*/ = $dotCall(tmpMCF$2, x, `toString`);
-const tmpMCP$1 /*:(unknown)=>boolean*/ = function ($$0) {
-  const v$1 /*:unknown*/ = $$0;
-  debugger;
-  const tmpBinLhs /*:unknown*/ = v$1.length;
-  const tmpReturnArg$1 /*:boolean*/ = tmpBinLhs > 0;
-  return tmpReturnArg$1;
-};
-const tmpMCOO$1 /*:array*/ /*truthy*/ = [x, x];
-const z /*:array*/ /*truthy*/ = $dotCall($array_filter, tmpMCOO$1, `filter`, tmpMCP$1);
+const tmpBinLhs /*:unknown*/ = x.length;
+const tmpClusterSSA_tmpArrenow$5 /*:boolean*/ = tmpBinLhs > 0;
+const tmpArreout$1 /*:array*/ /*truthy*/ = [];
+if (tmpClusterSSA_tmpArrenow$5) {
+  $dotCall($array_push, tmpArreout$1, `push`, x);
+} else {
+}
+const tmpBinLhs$1 /*:unknown*/ = x.length;
+const tmpClusterSSA_tmpArrenow$2 /*:boolean*/ = tmpBinLhs$1 > 0;
+if (tmpClusterSSA_tmpArrenow$2) {
+  $dotCall($array_push, tmpArreout$1, `push`, x);
+} else {
+}
 const tmpArreout /*:array*/ /*truthy*/ = [tmpClusterSSA_tmpArrenow, tmpClusterSSA_tmpArrenow$1];
-const tmpCalleeParam /*:primitive*/ = tmpArreout + z;
+const tmpCalleeParam /*:primitive*/ = tmpArreout + tmpArreout$1;
 $(tmpCalleeParam);
 `````
 
@@ -54,12 +58,15 @@ $(tmpCalleeParam);
 const x = $(`test`);
 const tmpClusterSSA_tmpArrenow = x.toString();
 const tmpClusterSSA_tmpArrenow$1 = x.toString();
-const tmpMCP$1 = function (v$1) {
-  const tmpReturnArg$1 = v$1.length > 0;
-  return tmpReturnArg$1;
-};
-const z = $dotCall($array_filter, [x, x], `filter`, tmpMCP$1);
-$([tmpClusterSSA_tmpArrenow, tmpClusterSSA_tmpArrenow$1] + z);
+const tmpClusterSSA_tmpArrenow$5 = x.length > 0;
+const tmpArreout$1 = [];
+if (tmpClusterSSA_tmpArrenow$5) {
+  $dotCall($array_push, tmpArreout$1, `push`, x);
+}
+if (x.length > 0) {
+  $dotCall($array_push, tmpArreout$1, `push`, x);
+}
+$([tmpClusterSSA_tmpArrenow, tmpClusterSSA_tmpArrenow$1] + tmpArreout$1);
 `````
 
 
@@ -72,18 +79,20 @@ const b = a.toString;
 const c = $dotCall( b, a, "toString" );
 const d = a.toString;
 const e = $dotCall( d, a, "toString" );
-const f = function($$0 ) {
-  const g = $$0;
-  debugger;
-  const h = g.length;
-  const i = h > 0;
-  return i;
-};
-const j = [ a, a ];
-const k = $dotCall( $array_filter, j, "filter", f );
-const l = [ c, e ];
-const m = l + k;
-$( m );
+const f = a.length;
+const g = f > 0;
+const h = [];
+if (g) {
+  $dotCall( $array_push, h, "push", a );
+}
+const i = a.length;
+const j = i > 0;
+if (j) {
+  $dotCall( $array_push, h, "push", a );
+}
+const k = [ c, e ];
+const l = k + h;
+$( l );
 `````
 
 
@@ -120,7 +129,6 @@ $(tmpCalleeParam);
 ## Todos triggered
 
 
-- (todo) arr mutation may be able to inline this method: $array_filter
 - (todo) support array reads statement type EmptyStatement
 - (todo) support array reads statement type ExpressionStatement
 - (todo) support array reads statement type VarStatement

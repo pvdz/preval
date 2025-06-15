@@ -380,6 +380,7 @@ export function _exportSpecifier(local, exported) {
 }
 
 export function expressionStatement(expression) {
+  ASSERT(arguments.length === 1, 'arg count');
   ASSERT(expression, 'expression statements should receive a child expression');
   ASSERT(!expression.type.includes('Statement'), 'expression statements should not have statements as child...', expression);
   return {

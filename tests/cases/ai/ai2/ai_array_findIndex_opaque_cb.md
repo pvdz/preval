@@ -25,8 +25,29 @@ const tmpArrElement /*:unknown*/ = $(`x`);
 const tmpArrElement$1 /*:unknown*/ = $(`y`);
 const cb /*:unknown*/ = $(`opaque_findIndex_predicate`);
 const arr /*:array*/ /*truthy*/ = [tmpArrElement, tmpArrElement$1];
-const index /*:number*/ = $dotCall($array_findIndex, arr, `findIndex`, cb);
-$(`findIndex_result`, index);
+const tmpArrnow /*:unknown*/ = $dotCall(cb, undefined, undefined, tmpArrElement, 0, arr);
+if (tmpArrnow) {
+  $(`findIndex_result`, 0);
+} else {
+  let tmpArreout /*:unknown*/ = -1;
+  let tmpClusterSSA_tmpArri /*:number*/ = 1;
+  while ($LOOP_UNROLL_10) {
+    const tmpArrc$1 /*:boolean*/ = tmpClusterSSA_tmpArri < 2;
+    if (tmpArrc$1) {
+      const tmpArrel$1 /*:unknown*/ = arr[tmpClusterSSA_tmpArri];
+      const tmpArrnow$1 /*:unknown*/ = $dotCall(cb, undefined, undefined, tmpArrel$1, tmpClusterSSA_tmpArri, arr);
+      if (tmpArrnow$1) {
+        tmpArreout = tmpClusterSSA_tmpArri;
+        break;
+      } else {
+        tmpClusterSSA_tmpArri = tmpClusterSSA_tmpArri + 1;
+      }
+    } else {
+      break;
+    }
+  }
+  $(`findIndex_result`, tmpArreout);
+}
 `````
 
 
@@ -37,7 +58,26 @@ $(`findIndex_result`, index);
 const tmpArrElement = $(`x`);
 const tmpArrElement$1 = $(`y`);
 const cb = $(`opaque_findIndex_predicate`);
-$(`findIndex_result`, $dotCall($array_findIndex, [tmpArrElement, tmpArrElement$1], `findIndex`, cb));
+const arr = [tmpArrElement, tmpArrElement$1];
+if ($dotCall(cb, undefined, undefined, tmpArrElement, 0, arr)) {
+  $(`findIndex_result`, 0);
+} else {
+  let tmpArreout = -1;
+  let tmpClusterSSA_tmpArri = 1;
+  while (true) {
+    if (tmpClusterSSA_tmpArri < 2) {
+      if ($dotCall(cb, undefined, undefined, arr[tmpClusterSSA_tmpArri], tmpClusterSSA_tmpArri, arr)) {
+        tmpArreout = tmpClusterSSA_tmpArri;
+        break;
+      } else {
+        tmpClusterSSA_tmpArri = tmpClusterSSA_tmpArri + 1;
+      }
+    } else {
+      break;
+    }
+  }
+  $(`findIndex_result`, tmpArreout);
+}
 `````
 
 
@@ -49,8 +89,32 @@ const a = $( "x" );
 const b = $( "y" );
 const c = $( "opaque_findIndex_predicate" );
 const d = [ a, b ];
-const e = $dotCall( $array_findIndex, d, "findIndex", c );
-$( "findIndex_result", e );
+const e = $dotCall( c, undefined, undefined, a, 0, d );
+if (e) {
+  $( "findIndex_result", 0 );
+}
+else {
+  let f = -1;
+  let g = 1;
+  while ($LOOP_UNROLL_10) {
+    const h = g < 2;
+    if (h) {
+      const i = d[ g ];
+      const j = $dotCall( c, undefined, undefined, i, g, d );
+      if (j) {
+        f = g;
+        break;
+      }
+      else {
+        g = g + 1;
+      }
+    }
+    else {
+      break;
+    }
+  }
+  $( "findIndex_result", f );
+}
 `````
 
 
@@ -72,11 +136,13 @@ $(`findIndex_result`, index);
 
 
 - (todo) access object property that also exists on prototype? $array_findIndex
-- (todo) arr mutation may be able to inline this method: $array_findIndex
 - (todo) arr mutation may be able to inline this method: tmpMCF
+- (todo) regular property access of an ident feels tricky;
 - (todo) support array reads statement type ExpressionStatement
 - (todo) support array reads statement type VarStatement
+- (todo) support array reads statement type WhileStatement
 - (todo) type trackeed tricks can possibly support static $array_findIndex
+- (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
 
 
 ## Globals

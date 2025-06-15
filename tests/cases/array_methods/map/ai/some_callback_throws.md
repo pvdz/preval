@@ -1,20 +1,16 @@
 # Preval test case
 
-# math_in_callback.md
+# some_callback_throws.md
 
-> Math > Ai > Math in callback
+> Array methods > Map > Ai > Some callback throws
 >
-> Math in callback function
+> Test: Array.map with callback that throws
 
 ## Input
 
 `````js filename=intro
-const arr = [1, 2, 3];
-const squares = arr.map(x => Math.pow(x, 2));
-$(squares[0]);
-$(squares[1]);
-$(squares[2]);
-// Should be 1, 4, 9
+const x = [1,2,3].map(function(x) { $(x); if (x === 2) throw new Error('stop'); });
+$(x);
 `````
 
 
@@ -23,8 +19,9 @@ $(squares[2]);
 
 `````js filename=intro
 $(1);
-$(4);
-$(9);
+$(2);
+const tmpThrowArg$1 /*:object*/ /*truthy*/ = new $error_constructor(`stop`);
+throw tmpThrowArg$1;
 `````
 
 
@@ -33,8 +30,9 @@ $(9);
 
 `````js filename=intro
 $(1);
-$(4);
-$(9);
+$(2);
+const tmpThrowArg$1 = new $error_constructor(`stop`);
+throw tmpThrowArg$1;
 `````
 
 
@@ -43,8 +41,9 @@ With rename=true
 
 `````js filename=intro
 $( 1 );
-$( 4 );
-$( 9 );
+$( 2 );
+const a = new $error_constructor( "stop" );
+throw a;
 `````
 
 
@@ -52,35 +51,32 @@ $( 9 );
 (This is what phase1 received the first time)
 
 `````js filename=intro
-const arr = [1, 2, 3];
-const tmpMCF = arr.map;
+const tmpMCOO = [1, 2, 3];
+const tmpMCF = tmpMCOO.map;
 const tmpMCP = function ($$0) {
-  let x = $$0;
+  let x$1 = $$0;
   debugger;
-  const tmpMCF$1 = $Math_pow;
-  const tmpReturnArg = $Math_pow(x, 2);
-  return tmpReturnArg;
+  $(x$1);
+  const tmpIfTest = x$1 === 2;
+  if (tmpIfTest) {
+    const tmpThrowArg = new $error_constructor(`stop`);
+    throw tmpThrowArg;
+  } else {
+    return undefined;
+  }
 };
-const squares = $dotCall(tmpMCF, arr, `map`, tmpMCP);
-let tmpCalleeParam = squares[0];
-$(tmpCalleeParam);
-let tmpCalleeParam$1 = squares[1];
-$(tmpCalleeParam$1);
-let tmpCalleeParam$3 = squares[2];
-$(tmpCalleeParam$3);
+const x = $dotCall(tmpMCF, tmpMCOO, `map`, tmpMCP);
+$(x);
 `````
 
 
 ## Todos triggered
 
 
-- (todo) In some (many?) cases the array can access this value so we could move the rhs into the array...
 - (todo) Support this binary expression operator:
-- (todo) support array reads statement type EmptyStatement
 - (todo) support array reads statement type ExpressionStatement
 - (todo) support array reads statement type VarStatement
 - (todo) support array reads statement type WhileStatement
-- (todo) type trackeed tricks can possibly support static $Math_pow
 - (todo) type trackeed tricks can possibly support static $array_map
 
 
@@ -95,9 +91,8 @@ None
 
 Should call `$` with:
  - 1: 1
- - 2: 4
- - 3: 9
- - eval returned: undefined
+ - 2: 2
+ - eval returned: ('<crash[ stop ]>')
 
 Pre normalization calls: Same
 

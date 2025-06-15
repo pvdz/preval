@@ -27,13 +27,35 @@ $(a, b);
 `````js filename=intro
 let x /*:unknown*/ = $(`val`);
 const a /*:unknown*/ = x;
-const tmpMCP /*:()=>undefined*/ = function () {
-  debugger;
-  x = `changed`;
-  return undefined;
-};
+let tmpArri$1 /*:number*/ = 0;
 const tmpMCOO /*:array*/ /*truthy*/ = [1];
-$dotCall($array_map, tmpMCOO, `map`, tmpMCP);
+const tmpArreout /*:array*/ /*truthy*/ = [];
+while (true) {
+  const tmpArrc$1 /*:boolean*/ = tmpArri$1 < 1;
+  if (tmpArrc$1) {
+    const tmpArrin$1 /*:boolean*/ = tmpArri$1 in tmpMCOO;
+    if (tmpArrin$1) {
+      x = `changed`;
+      let tmpClusterSSA_tmpArri /*:number*/ = 1;
+      const tmpMCOO$1 /*:array*/ /*truthy*/ = [2];
+      while ($LOOP_UNROLL_10) {
+        const tmpArrc$2 /*:boolean*/ = tmpClusterSSA_tmpArri < 1;
+        if (tmpArrc$2) {
+          0 in tmpMCOO$1;
+          tmpClusterSSA_tmpArri = tmpClusterSSA_tmpArri + 1;
+        } else {
+          break;
+        }
+      }
+      tmpArreout[tmpArri$1] = undefined;
+    } else {
+    }
+    tmpArri$1 = tmpArri$1 + 1;
+  } else {
+    break;
+  }
+}
+tmpArreout.length = 1;
 $(a, x);
 `````
 
@@ -44,10 +66,31 @@ $(a, x);
 `````js filename=intro
 let x = $(`val`);
 const a = x;
-const tmpMCP = function () {
-  x = `changed`;
-};
-$dotCall($array_map, [1], `map`, tmpMCP);
+let tmpArri$1 = 0;
+const tmpMCOO = [1];
+const tmpArreout = [];
+while (true) {
+  if (tmpArri$1 < 1) {
+    if (tmpArri$1 in tmpMCOO) {
+      x = `changed`;
+      let tmpClusterSSA_tmpArri = 1;
+      const tmpMCOO$1 = [2];
+      while (true) {
+        if (tmpClusterSSA_tmpArri < 1) {
+          0 in tmpMCOO$1;
+          tmpClusterSSA_tmpArri = tmpClusterSSA_tmpArri + 1;
+        } else {
+          break;
+        }
+      }
+      tmpArreout[tmpArri$1] = undefined;
+    }
+    tmpArri$1 = tmpArri$1 + 1;
+  } else {
+    break;
+  }
+}
+tmpArreout.length = 1;
 $(a, x);
 `````
 
@@ -58,13 +101,36 @@ With rename=true
 `````js filename=intro
 let a = $( "val" );
 const b = a;
-const c = function() {
-  debugger;
-  a = "changed";
-  return undefined;
-};
+let c = 0;
 const d = [ 1 ];
-$dotCall( $array_map, d, "map", c );
+const e = [];
+while (true) {
+  const f = c < 1;
+  if (f) {
+    const g = c in d;
+    if (g) {
+      a = "changed";
+      let h = 1;
+      const i = [ 2 ];
+      while ($LOOP_UNROLL_10) {
+        const j = h < 1;
+        if (j) {
+          0 in i;
+          h = h + 1;
+        }
+        else {
+          break;
+        }
+      }
+      e[c] = undefined;
+    }
+    c = c + 1;
+  }
+  else {
+    break;
+  }
+}
+e.length = 1;
 $( b, a );
 `````
 
@@ -98,10 +164,12 @@ $(a, x);
 ## Todos triggered
 
 
+- (todo) - at least one of the frfr args was not isFree, bailing
+- (todo) Support non-primitive in first arg to $coerce
 - (todo) Support this binary expression operator:
 - (todo) Support this node type in isFree: DebuggerStatement
-- (todo) arr mutation may be able to inline this method: $array_map
-- (todo) i need loopChain for this to work properly
+- (todo) do we want to support BinaryExpression as expression statement in free loops?
+- (todo) regular property access of an ident feels tricky;
 - (todo) support array reads statement type ExpressionStatement
 - (todo) support array reads statement type VarStatement
 - (todo) support array reads statement type WhileStatement

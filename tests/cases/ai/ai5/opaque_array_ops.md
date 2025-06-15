@@ -27,16 +27,14 @@ $(y);
 
 `````js filename=intro
 const x /*:unknown*/ = $(`test`);
-const tmpMCP /*:(unknown)=>unknown*/ = function ($$0) {
-  const v /*:unknown*/ = $$0;
-  debugger;
-  const tmpMCF$1 /*:unknown*/ = v.toString;
-  const tmpReturnArg /*:unknown*/ = $dotCall(tmpMCF$1, v, `toString`);
-  return tmpReturnArg;
-};
-const arr /*:array*/ /*truthy*/ = [x, x, x];
-const y /*:array*/ /*truthy*/ = $dotCall($array_map, arr, `map`, tmpMCP);
-$(y);
+const tmpMCF$1 /*:unknown*/ = x.toString;
+const tmpClusterSSA_tmpArrenow /*:unknown*/ = $dotCall(tmpMCF$1, x, `toString`);
+const tmpMCF$2 /*:unknown*/ = x.toString;
+const tmpClusterSSA_tmpArrenow$1 /*:unknown*/ = $dotCall(tmpMCF$2, x, `toString`);
+const tmpMCF$3 /*:unknown*/ = x.toString;
+const tmpClusterSSA_tmpArrenow$2 /*:unknown*/ = $dotCall(tmpMCF$3, x, `toString`);
+const tmpArreout /*:array*/ /*truthy*/ = [tmpClusterSSA_tmpArrenow, tmpClusterSSA_tmpArrenow$1, tmpClusterSSA_tmpArrenow$2];
+$(tmpArreout);
 `````
 
 
@@ -45,11 +43,10 @@ $(y);
 
 `````js filename=intro
 const x = $(`test`);
-const tmpMCP = function (v) {
-  const tmpReturnArg = v.toString();
-  return tmpReturnArg;
-};
-$($dotCall($array_map, [x, x, x], `map`, tmpMCP));
+const tmpClusterSSA_tmpArrenow = x.toString();
+const tmpClusterSSA_tmpArrenow$1 = x.toString();
+const tmpClusterSSA_tmpArrenow$2 = x.toString();
+$([tmpClusterSSA_tmpArrenow, tmpClusterSSA_tmpArrenow$1, tmpClusterSSA_tmpArrenow$2]);
 `````
 
 
@@ -58,16 +55,14 @@ With rename=true
 
 `````js filename=intro
 const a = $( "test" );
-const b = function($$0 ) {
-  const c = $$0;
-  debugger;
-  const d = c.toString;
-  const e = $dotCall( d, c, "toString" );
-  return e;
-};
-const f = [ a, a, a ];
-const g = $dotCall( $array_map, f, "map", b );
-$( g );
+const b = a.toString;
+const c = $dotCall( b, a, "toString" );
+const d = a.toString;
+const e = $dotCall( d, a, "toString" );
+const f = a.toString;
+const g = $dotCall( f, a, "toString" );
+const h = [ c, e, g ];
+$( h );
 `````
 
 
@@ -93,9 +88,12 @@ $(y);
 ## Todos triggered
 
 
-- (todo) arr mutation may be able to inline this method: $array_map
+- (todo) support array reads statement type EmptyStatement
+- (todo) support array reads statement type ExpressionStatement
 - (todo) support array reads statement type VarStatement
+- (todo) support array reads statement type WhileStatement
 - (todo) type trackeed tricks can possibly support static $array_map
+- (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
 
 
 ## Globals

@@ -22,14 +22,9 @@ $(result[2]);
 
 
 `````js filename=intro
-const arr /*:array*/ /*truthy*/ = [4, , 16];
-const result /*:array*/ /*truthy*/ = $dotCall($array_map, arr, `map`, $Math_sqrt);
-const tmpCalleeParam /*:unknown*/ = result[0];
-$(tmpCalleeParam);
-const tmpCalleeParam$1 /*:unknown*/ = result[1];
-$(tmpCalleeParam$1);
-const tmpCalleeParam$3 /*:unknown*/ = result[2];
-$(tmpCalleeParam$3);
+$(2);
+$(undefined);
+$(4);
 `````
 
 
@@ -37,10 +32,9 @@ $(tmpCalleeParam$3);
 (This ought to be the final result)
 
 `````js filename=intro
-const result = $dotCall($array_map, [4, , 16], `map`, $Math_sqrt);
-$(result[0]);
-$(result[1]);
-$(result[2]);
+$(2);
+$(undefined);
+$(4);
 `````
 
 
@@ -48,14 +42,9 @@ $(result[2]);
 With rename=true
 
 `````js filename=intro
-const a = [ 4, ,, 16 ];
-const b = $dotCall( $array_map, a, "map", $Math_sqrt );
-const c = b[ 0 ];
-$( c );
-const d = b[ 1 ];
-$( d );
-const e = b[ 2 ];
-$( e );
+$( 2 );
+$( undefined );
+$( 4 );
 `````
 
 
@@ -79,8 +68,13 @@ $(tmpCalleeParam$3);
 ## Todos triggered
 
 
-- (todo) arr mutation may be able to inline this method: $array_map
+- (todo) In some (many?) cases the array can access this value so we could move the rhs into the array...
+- (todo) Support this binary expression operator:
+- (todo) support array reads statement type EmptyStatement
+- (todo) support array reads statement type ExpressionStatement
 - (todo) support array reads statement type VarStatement
+- (todo) support array reads statement type WhileStatement
+- (todo) type trackeed tricks can possibly support static $Math_sqrt
 - (todo) type trackeed tricks can possibly support static $array_map
 
 

@@ -1,20 +1,17 @@
 # Preval test case
 
-# math_in_callback.md
+# some_basic.md
 
-> Math > Ai > Math in callback
+> Array methods > Map > Ai > Some basic
 >
-> Math in callback function
+> Test: Array.map basic usage
 
 ## Input
 
 `````js filename=intro
-const arr = [1, 2, 3];
-const squares = arr.map(x => Math.pow(x, 2));
-$(squares[0]);
-$(squares[1]);
-$(squares[2]);
-// Should be 1, 4, 9
+let result = [];
+const x = [1,2,3].map(function(x) { result.push(x); });
+$(result, x);
 `````
 
 
@@ -22,9 +19,9 @@ $(squares[2]);
 
 
 `````js filename=intro
-$(1);
-$(4);
-$(9);
+const result /*:array*/ /*truthy*/ = [1, 2, 3];
+const tmpArreout /*:array*/ /*truthy*/ = [undefined, undefined, undefined];
+$(result, tmpArreout);
 `````
 
 
@@ -32,9 +29,7 @@ $(9);
 (This ought to be the final result)
 
 `````js filename=intro
-$(1);
-$(4);
-$(9);
+$([1, 2, 3], [undefined, undefined, undefined]);
 `````
 
 
@@ -42,9 +37,9 @@ $(9);
 With rename=true
 
 `````js filename=intro
-$( 1 );
-$( 4 );
-$( 9 );
+const a = [ 1, 2, 3 ];
+const b = [ undefined, undefined, undefined ];
+$( a, b );
 `````
 
 
@@ -52,35 +47,31 @@ $( 9 );
 (This is what phase1 received the first time)
 
 `````js filename=intro
-const arr = [1, 2, 3];
-const tmpMCF = arr.map;
+let result = [];
+const tmpMCOO = [1, 2, 3];
+const tmpMCF = tmpMCOO.map;
 const tmpMCP = function ($$0) {
-  let x = $$0;
+  let x$1 = $$0;
   debugger;
-  const tmpMCF$1 = $Math_pow;
-  const tmpReturnArg = $Math_pow(x, 2);
-  return tmpReturnArg;
+  const tmpMCF$1 = result.push;
+  $dotCall(tmpMCF$1, result, `push`, x$1);
+  return undefined;
 };
-const squares = $dotCall(tmpMCF, arr, `map`, tmpMCP);
-let tmpCalleeParam = squares[0];
-$(tmpCalleeParam);
-let tmpCalleeParam$1 = squares[1];
-$(tmpCalleeParam$1);
-let tmpCalleeParam$3 = squares[2];
-$(tmpCalleeParam$3);
+const x = $dotCall(tmpMCF, tmpMCOO, `map`, tmpMCP);
+$(result, x);
 `````
 
 
 ## Todos triggered
 
 
-- (todo) In some (many?) cases the array can access this value so we could move the rhs into the array...
 - (todo) Support this binary expression operator:
+- (todo) access object property that also exists on prototype? $array_push
+- (todo) do we want to support Literal as expression statement in free loops?
 - (todo) support array reads statement type EmptyStatement
 - (todo) support array reads statement type ExpressionStatement
 - (todo) support array reads statement type VarStatement
 - (todo) support array reads statement type WhileStatement
-- (todo) type trackeed tricks can possibly support static $Math_pow
 - (todo) type trackeed tricks can possibly support static $array_map
 
 
@@ -94,9 +85,10 @@ None
 
 
 Should call `$` with:
- - 1: 1
- - 2: 4
- - 3: 9
+ - 1: 
+  [1, 2, 3],
+  [undefined, undefined, undefined],
+
  - eval returned: undefined
 
 Pre normalization calls: Same

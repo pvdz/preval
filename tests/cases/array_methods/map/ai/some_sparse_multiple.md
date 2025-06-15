@@ -1,20 +1,17 @@
 # Preval test case
 
-# math_in_callback.md
+# some_sparse_multiple.md
 
-> Math > Ai > Math in callback
+> Array methods > Map > Ai > Some sparse multiple
 >
-> Math in callback function
+> Test: Array.map on sparse array with multiple holes
 
 ## Input
 
 `````js filename=intro
-const arr = [1, 2, 3];
-const squares = arr.map(x => Math.pow(x, 2));
-$(squares[0]);
-$(squares[1]);
-$(squares[2]);
-// Should be 1, 4, 9
+let arr = [1,,3,,5];
+const x = arr.map(function(x) { $(x); });
+$(x);
 `````
 
 
@@ -23,8 +20,10 @@ $(squares[2]);
 
 `````js filename=intro
 $(1);
-$(4);
-$(9);
+$(3);
+$(5);
+const tmpArreout /*:array*/ /*truthy*/ = [undefined, , undefined, , undefined];
+$(tmpArreout);
 `````
 
 
@@ -33,8 +32,9 @@ $(9);
 
 `````js filename=intro
 $(1);
-$(4);
-$(9);
+$(3);
+$(5);
+$([undefined, , undefined, , undefined]);
 `````
 
 
@@ -43,8 +43,10 @@ With rename=true
 
 `````js filename=intro
 $( 1 );
-$( 4 );
-$( 9 );
+$( 3 );
+$( 5 );
+const a = [ undefined, ,, undefined, ,, undefined ];
+$( a );
 `````
 
 
@@ -52,35 +54,27 @@ $( 9 );
 (This is what phase1 received the first time)
 
 `````js filename=intro
-const arr = [1, 2, 3];
+let arr = [1, , 3, , 5];
 const tmpMCF = arr.map;
 const tmpMCP = function ($$0) {
-  let x = $$0;
+  let x$1 = $$0;
   debugger;
-  const tmpMCF$1 = $Math_pow;
-  const tmpReturnArg = $Math_pow(x, 2);
-  return tmpReturnArg;
+  $(x$1);
+  return undefined;
 };
-const squares = $dotCall(tmpMCF, arr, `map`, tmpMCP);
-let tmpCalleeParam = squares[0];
-$(tmpCalleeParam);
-let tmpCalleeParam$1 = squares[1];
-$(tmpCalleeParam$1);
-let tmpCalleeParam$3 = squares[2];
-$(tmpCalleeParam$3);
+const x = $dotCall(tmpMCF, arr, `map`, tmpMCP);
+$(x);
 `````
 
 
 ## Todos triggered
 
 
-- (todo) In some (many?) cases the array can access this value so we could move the rhs into the array...
 - (todo) Support this binary expression operator:
 - (todo) support array reads statement type EmptyStatement
 - (todo) support array reads statement type ExpressionStatement
 - (todo) support array reads statement type VarStatement
 - (todo) support array reads statement type WhileStatement
-- (todo) type trackeed tricks can possibly support static $Math_pow
 - (todo) type trackeed tricks can possibly support static $array_map
 
 
@@ -95,8 +89,9 @@ None
 
 Should call `$` with:
  - 1: 1
- - 2: 4
- - 3: 9
+ - 2: 3
+ - 3: 5
+ - 4: [undefined, , undefined, , undefined]
  - eval returned: undefined
 
 Pre normalization calls: Same

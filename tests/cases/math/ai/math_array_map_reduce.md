@@ -20,17 +20,7 @@ $(sum);
 
 
 `````js filename=intro
-const arr /*:array*/ /*truthy*/ = [0.1, 0.2, 0.3];
-const tmpMCOO /*:array*/ /*truthy*/ = $dotCall($array_map, arr, `map`, $Math_sqrt);
-const tmpMCP$1 /*:(unknown, unknown)=>primitive*/ = function ($$0, $$1) {
-  const a /*:unknown*/ = $$0;
-  const b /*:unknown*/ = $$1;
-  debugger;
-  const tmpReturnArg /*:primitive*/ = a + b;
-  return tmpReturnArg;
-};
-const sum /*:array*/ /*truthy*/ = $dotCall($array_reduce, tmpMCOO, `reduce`, tmpMCP$1, 0);
-$(sum);
+$(1.311163919021962);
 `````
 
 
@@ -38,19 +28,7 @@ $(sum);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpMCOO = $dotCall($array_map, [0.1, 0.2, 0.3], `map`, $Math_sqrt);
-$(
-  $dotCall(
-    $array_reduce,
-    tmpMCOO,
-    `reduce`,
-    function (a, b) {
-      const tmpReturnArg = a + b;
-      return tmpReturnArg;
-    },
-    0,
-  ),
-);
+$(1.311163919021962);
 `````
 
 
@@ -58,17 +36,7 @@ $(
 With rename=true
 
 `````js filename=intro
-const a = [ 0.1, 0.2, 0.3 ];
-const b = $dotCall( $array_map, a, "map", $Math_sqrt );
-const c = function($$0,$$1 ) {
-  const d = $$0;
-  const e = $$1;
-  debugger;
-  const f = d + e;
-  return f;
-};
-const g = $dotCall( $array_reduce, b, "reduce", c, 0 );
-$( g );
+$( 1.311163919021962 );
 `````
 
 
@@ -96,9 +64,15 @@ $(sum);
 ## Todos triggered
 
 
+- (todo) In some (many?) cases the array can access this value so we could move the rhs into the array...
+- (todo) Support this binary expression operator:
 - (todo) access object property that also exists on prototype? $array_reduce
-- (todo) arr mutation may be able to inline this method: $array_map
+- (todo) regular property access of an ident feels tricky;
+- (todo) support array reads statement type EmptyStatement
+- (todo) support array reads statement type ExpressionStatement
 - (todo) support array reads statement type VarStatement
+- (todo) support array reads statement type WhileStatement
+- (todo) type trackeed tricks can possibly support static $Math_sqrt
 - (todo) type trackeed tricks can possibly support static $array_map
 - (todo) type trackeed tricks can possibly support static $array_reduce
 

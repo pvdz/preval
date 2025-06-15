@@ -28,15 +28,10 @@ $(y + z);
 
 `````js filename=intro
 const x /*:unknown*/ = $(`test`);
-const tmpMCP /*:(unknown)=>unknown*/ = function ($$0) {
-  const v /*:unknown*/ = $$0;
-  debugger;
-  const tmpMCF$1 /*:unknown*/ = v.toString;
-  const tmpReturnArg /*:unknown*/ = $dotCall(tmpMCF$1, v, `toString`);
-  return tmpReturnArg;
-};
-const tmpMCOO /*:array*/ /*truthy*/ = [x, x];
-const y /*:array*/ /*truthy*/ = $dotCall($array_map, tmpMCOO, `map`, tmpMCP);
+const tmpMCF$1 /*:unknown*/ = x.toString;
+const tmpClusterSSA_tmpArrenow /*:unknown*/ = $dotCall(tmpMCF$1, x, `toString`);
+const tmpMCF$2 /*:unknown*/ = x.toString;
+const tmpClusterSSA_tmpArrenow$1 /*:unknown*/ = $dotCall(tmpMCF$2, x, `toString`);
 const tmpMCP$1 /*:(unknown)=>boolean*/ = function ($$0) {
   const v$1 /*:unknown*/ = $$0;
   debugger;
@@ -46,7 +41,8 @@ const tmpMCP$1 /*:(unknown)=>boolean*/ = function ($$0) {
 };
 const tmpMCOO$1 /*:array*/ /*truthy*/ = [x, x];
 const z /*:array*/ /*truthy*/ = $dotCall($array_filter, tmpMCOO$1, `filter`, tmpMCP$1);
-const tmpCalleeParam /*:primitive*/ = y + z;
+const tmpArreout /*:array*/ /*truthy*/ = [tmpClusterSSA_tmpArrenow, tmpClusterSSA_tmpArrenow$1];
+const tmpCalleeParam /*:primitive*/ = tmpArreout + z;
 $(tmpCalleeParam);
 `````
 
@@ -56,16 +52,14 @@ $(tmpCalleeParam);
 
 `````js filename=intro
 const x = $(`test`);
-const tmpMCP = function (v) {
-  const tmpReturnArg = v.toString();
-  return tmpReturnArg;
-};
-const y = $dotCall($array_map, [x, x], `map`, tmpMCP);
+const tmpClusterSSA_tmpArrenow = x.toString();
+const tmpClusterSSA_tmpArrenow$1 = x.toString();
 const tmpMCP$1 = function (v$1) {
   const tmpReturnArg$1 = v$1.length > 0;
   return tmpReturnArg$1;
 };
-$(y + $dotCall($array_filter, [x, x], `filter`, tmpMCP$1));
+const z = $dotCall($array_filter, [x, x], `filter`, tmpMCP$1);
+$([tmpClusterSSA_tmpArrenow, tmpClusterSSA_tmpArrenow$1] + z);
 `````
 
 
@@ -74,26 +68,22 @@ With rename=true
 
 `````js filename=intro
 const a = $( "test" );
-const b = function($$0 ) {
-  const c = $$0;
+const b = a.toString;
+const c = $dotCall( b, a, "toString" );
+const d = a.toString;
+const e = $dotCall( d, a, "toString" );
+const f = function($$0 ) {
+  const g = $$0;
   debugger;
-  const d = c.toString;
-  const e = $dotCall( d, c, "toString" );
-  return e;
+  const h = g.length;
+  const i = h > 0;
+  return i;
 };
-const f = [ a, a ];
-const g = $dotCall( $array_map, f, "map", b );
-const h = function($$0 ) {
-  const i = $$0;
-  debugger;
-  const j = i.length;
-  const k = j > 0;
-  return k;
-};
-const l = [ a, a ];
-const m = $dotCall( $array_filter, l, "filter", h );
-const n = g + m;
-$( n );
+const j = [ a, a ];
+const k = $dotCall( $array_filter, j, "filter", f );
+const l = [ c, e ];
+const m = l + k;
+$( m );
 `````
 
 
@@ -131,10 +121,13 @@ $(tmpCalleeParam);
 
 
 - (todo) arr mutation may be able to inline this method: $array_filter
-- (todo) arr mutation may be able to inline this method: $array_map
+- (todo) support array reads statement type EmptyStatement
+- (todo) support array reads statement type ExpressionStatement
 - (todo) support array reads statement type VarStatement
+- (todo) support array reads statement type WhileStatement
 - (todo) type trackeed tricks can possibly support static $array_filter
 - (todo) type trackeed tricks can possibly support static $array_map
+- (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
 
 
 ## Globals

@@ -1,24 +1,32 @@
 # Preval test case
 
-# array_map.md
+# array_map2.md
 
-> Dot call > Array map
+> Dot call > Array map2
 >
 > Undo the "damage" done by dot call when we can detect it not to be necessary. We assert that $dotCall used to be a method call before so if the args are safe to inline, we can undo this step now. It was necessary for safe normalization purposes.
 
 ## Input
 
 `````js filename=intro
-// Undo the "damage" done by dot call when we can detect it not to be necessary. We assert that $dotCall used to be a method call before so if the args are safe to inline, we can undo this step now. It was necessary for safe normalization purposes.
-const pre = [1, 2, 3];
-const map = pre.map;
 const f = function(item) {
   $('hello', item);
   return item + 1;
 };
-const arr = $dotCall(map, pre, 'map', f); // Turn this back into `pre.map(f);`
+const arr = [1, 2, 3].map(f);
 $(arr);
 `````
+
+## O
+
+
+`````js filename=intro
+$(`hello`, 1);
+$(`hello`, 2);
+$(`hello`, 3);
+$([2, 3, 4]);
+`````
+HEADERCHECKME
 
 
 ## Settled
@@ -60,8 +68,6 @@ $( a );
 (This is what phase1 received the first time)
 
 `````js filename=intro
-const pre = [1, 2, 3];
-const map = pre.map;
 const f = function ($$0) {
   let item = $$0;
   debugger;
@@ -69,7 +75,9 @@ const f = function ($$0) {
   const tmpReturnArg = item + 1;
   return tmpReturnArg;
 };
-const arr = $dotCall(map, pre, `map`, f);
+const tmpMCOO = [1, 2, 3];
+const tmpMCF = tmpMCOO.map;
+const arr = $dotCall(tmpMCF, tmpMCOO, `map`, f);
 $(arr);
 `````
 

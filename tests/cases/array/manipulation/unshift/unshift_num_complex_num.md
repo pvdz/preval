@@ -25,13 +25,12 @@ $(NOOP);
 
 
 `````js filename=intro
-const ARR /*:array*/ /*truthy*/ = [20, `a`, `b`, `c`];
+const ARR /*:array*/ /*truthy*/ = [10, $, 20, `a`, `b`, `c`];
 const NOOP /*:()=>unknown*/ = function () {
   debugger;
   $(ARR);
   return undefined;
 };
-$dotCall($array_unshift, ARR, `unshift`, 10, $);
 $(6);
 $dotCall($array_push, ARR, `push`, 6);
 $(NOOP);
@@ -42,11 +41,10 @@ $(NOOP);
 (This ought to be the final result)
 
 `````js filename=intro
-const ARR = [20, `a`, `b`, `c`];
+const ARR = [10, $, 20, `a`, `b`, `c`];
 const NOOP = function () {
   $(ARR);
 };
-$dotCall($array_unshift, ARR, `unshift`, 10, $);
 $(6);
 $dotCall($array_push, ARR, `push`, 6);
 $(NOOP);
@@ -57,13 +55,12 @@ $(NOOP);
 With rename=true
 
 `````js filename=intro
-const a = [ 20, "a", "b", "c" ];
+const a = [ 10, $, 20, "a", "b", "c" ];
 const b = function() {
   debugger;
   $( a );
   return undefined;
 };
-$dotCall( $array_unshift, a, "unshift", 10, $ );
 $( 6 );
 $dotCall( $array_push, a, "push", 6 );
 $( b );

@@ -3,14 +3,14 @@
 // -> `const arr = [2, 3, 4]; f(1); f(arr)`
 
 import walk from '../../lib/walk.mjs';
-import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, fmat, tmat, coerce, findBodyOffset, todo, assertNoDupeNodes, } from '../utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, fmat, tmat, coerce, findBodyOffset, todo, assertNoDupeNodes, currentState, } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { BUILTIN_SYMBOLS, symbo } from '../symbols_builtins.mjs';
 import { SYMBOL_DOTCALL } from '../symbols_preval.mjs';
 
 export function arrMutation(fdata) {
   group('\n\n\n[arrMutation] Checking for array mutations to inline');
-  //currentState(fdata, 'arrMutation', true, fdata);
+  // currentState(fdata, 'arrMutation', true, fdata);
   const r = _arrMutation(fdata);
   groupEnd();
   return r;
@@ -94,6 +94,8 @@ function _arrMutation(fdata) {
     if (write.innerElse !== read.innerElse) return vlog('- bail: Not in same else-branch', write.innerElse, read.innerElse);
     if (write.innerLoop !== read.innerLoop) return vlog('- bail: Not in same loop', write.innerLoop, read.innerLoop);
     if (write.innerTry !== read.innerTry) return vlog('- bail: Not in same try', write.innerTry, read.innerTry);
+
+    // Write and read, consecutive in same scope, same if/loop/try. Now confirm the statements between them don't spy.
 
     let has = AST.hasObservableSideEffectsBetweenRefs(write, read);
     if (has) return vlog('- bail: there are observable side effects between the write and the read');
@@ -299,7 +301,9 @@ function _arrMutation(fdata) {
       }
     }
 
-    // Not a member expression. Most likely an alias (init/assign) or used as arg in a call expression.
+    // Not a member expression. Most likely
+    // - an alias (init/assign), or
+    // - used as callee or arg in a call expression.
 
     if (
       read.parentNode.type === 'CallExpression' &&
@@ -571,35 +575,73 @@ function _arrMutation(fdata) {
           // Exception to that is when there can be no spies between the write and the read.
           // For example when they are back to back or there are only certain var decls between them.
           let noopBetween = write.blockBody === read.blockBody && write.blockIndex + 1 === read.blockIndex;
+          vlog('back to back?', noopBetween);
           const idents = [];
           if (!noopBetween) {
+            // Note: we need this step to support inlining idents.
             for (let i=write.blockIndex+1; i<=read.blockIndex; ++i) {
               if (i === read.blockIndex) {
+                vlog('  - not back to back but statements between were only var statements with funcs, prims, or idents as init');
                 noopBetween = true;
                 break;
               }
               const stmt = write.blockBody[i];
+              if (stmt.type === 'EmptyStatement') continue;
               // We can expand on this but there's not that much meat on the bone for other statements here.
-              if (stmt.type !== 'VarStatement') break;
+              if (stmt.type !== 'VarStatement') {
+                vlog('  - at least one statement was not var;', stmt.type);
+                break;
+              }
               // There's not many things that are absolutely safe. But we can also support array/object/class here as
               // well as some cases of unary/binary expression when we know the args are prims.
-              if (stmt.init.type !== 'FunctionExpression' && !AST.isPrimitive(stmt.init)) break;
+              if (stmt.init.type !== 'FunctionExpression' && !AST.isPrimitive(stmt.init)) {
+                vlog('  - at least one init was not func or prim', stmt.init.type);
+                break;
+              }
+              vlog('  - adding', stmt.id.name, 'to the list');
               idents.push(stmt.id.name);
             }
+            vlog('  - was anything observable?', noopBetween);
           }
-          vlog('- back2back=', noopBetween);
           while (
-            args.length > 3 &&
-            (
-              AST.isPrimitive(args[3]) ||
-              (
-                args[3].type !== 'SpreadElement' &&
-                noopBetween &&
-                  // Make sure not to cause a tdz by moving an ident ref up that was defined between declarign the arr and this push...
-                (args[3].type !== 'Identifier' || !idents.includes(args[3].name))
-              )
-            )
+            true
           ) {
+            if (args.length <= 3) {
+              vlog('  - ok, no more args left');
+              break;
+            }
+            if (AST.isPrimitive(args[3])) {
+              // ok
+            }
+            else if (args[3].type === 'SpreadElement') {
+              // cant move this safely, i guess? maybe?
+              todo('inlining arr push when arg is spread');
+              break;
+            }
+            else if (noopBetween) {
+              // back to back, or verified to only have simple noop vars in between
+              if (args[3].type === 'Identifier') {
+                // this is ok but only when this var was not declared between the arr decl and this push
+                if (idents.includes(args[3].name)) {
+                  // it was. this would cause tdz so we can't
+                  todo('find me fast', args[3].name);
+                  vlog('- stop now. next last arg (', args[3].name,') was defined between arr decl and this push, would lead to tdz');
+                  break;
+                }
+                // ok, should be fine to push
+              }
+              else {
+                // not pushing an ident or primtive. bail
+                todo(`what are we pushing here? ${args[3].type}`);
+                break;
+              }
+            }
+            else {
+              todo('arr push case with at least one observable statement between?');
+              // could not verify noop between arr decl and this push so we cant inline
+              break;
+            }
+
             // Remove the first param from the call and append it to the array literal
 
             rule('Push on an array literal with first element a primitive should move the node');
@@ -876,7 +918,76 @@ function _arrMutation(fdata) {
           // always (?) arr.length + the number of arguments. So we should always replace the
           // actual call with a sequence ending with that number. Other parts will eliminate it.
 
-          while (args.length > 3 && AST.isPrimitive(args[args.length - 1])) {
+          let noopBetween = write.blockBody === read.blockBody && write.blockIndex + 1 === read.blockIndex;
+          vlog('back to back?', noopBetween);
+          const idents = [];
+          if (!noopBetween) {
+            // Note: we need this step to support inlining idents.
+            for (let i=write.blockIndex+1; i<=read.blockIndex; ++i) {
+              if (i === read.blockIndex) {
+                vlog('  - not back to back but statements between were only var statements with funcs, prims, or idents as init');
+                noopBetween = true;
+                break;
+              }
+              const stmt = write.blockBody[i];
+              if (stmt.type === 'EmptyStatement') continue;
+              // We can expand on this but there's not that much meat on the bone for other statements here.
+              if (stmt.type !== 'VarStatement') {
+                vlog('  - at least one statement was not var;', stmt.type);
+                break;
+              }
+              // There's not many things that are absolutely safe. But we can also support array/object/class here as
+              // well as some cases of unary/binary expression when we know the args are prims.
+              if (stmt.init.type !== 'FunctionExpression' && !AST.isPrimitive(stmt.init)) {
+                vlog('  - at least one init was not func or prim', stmt.init.type);
+                break;
+              }
+              vlog('  - adding', stmt.id.name, 'to the list');
+              idents.push(stmt.id.name);
+            }
+            vlog('  - was anything observable?', noopBetween);
+          }
+
+          while (
+            true
+            // args.length > 3 && AST.isPrimitive(args[args.length - 1])
+          ) {
+            if (args.length <= 3) {
+              vlog('  - ok, no more args left');
+              break;
+            }
+            if (AST.isPrimitive(args[3])) {
+              // ok
+            }
+            else if (args[3].type === 'SpreadElement') {
+              // cant move this safely, i guess? maybe?
+              todo('inlining arr push when arg is spread');
+              break;
+            }
+            else if (noopBetween) {
+              // back to back, or verified to only have simple noop vars in between
+              if (args[3].type === 'Identifier') {
+                // this is ok but only when this var was not declared between the arr decl and this push
+                if (idents.includes(args[3].name)) {
+                  // it was. this would cause tdz so we can't
+                  todo('find me fast', args[3].name);
+                  vlog('- stop now. next last arg (', args[3].name,') was defined between arr decl and this push, would lead to tdz');
+                  break;
+                }
+                // ok, should be fine to push
+              }
+              else {
+                // not pushing an ident or primtive. bail
+                todo(`what are we pushing here? ${args[3].type}`);
+                break;
+              }
+            }
+            else {
+              todo('arr push case with at least one observable statement between?');
+              // could not verify noop between arr decl and this push so we cant inline
+              break;
+            }
+
             // Remove the first param from the call and append it to the array literal
 
             rule('Unshift on an array literal with first element simple should move the node');

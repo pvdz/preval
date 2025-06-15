@@ -26,20 +26,28 @@ const tmpMCP /*:(unused)=>undefined*/ = function ($$0) {
   return undefined;
 };
 const tmpMCOO /*:array*/ /*truthy*/ = [1, 2, 3];
-let tmpSSA_tmpArreout /*:unknown*/ = $dotCall(tmpMCP, undefined, undefined, 42, 1, 0, tmpMCOO);
-const tmpArrin$1 /*:boolean*/ = 1 in tmpMCOO;
-if (tmpArrin$1) {
-  const tmpArrel$1 /*:primitive*/ = tmpMCOO[1];
-  tmpSSA_tmpArreout = $dotCall(tmpMCP, undefined, undefined, tmpSSA_tmpArreout, tmpArrel$1, 1, tmpMCOO);
+let tmpSSA_tmpLambdaReduceOut /*:unknown*/ = $dotCall(tmpMCP, undefined, undefined, 42, 1, 0, tmpMCOO);
+const tmpLambdaReduceHas$1 /*:boolean*/ = 1 in tmpMCOO;
+if (tmpLambdaReduceHas$1) {
+  const tmpLambdaReduceVal$1 /*:primitive*/ = tmpMCOO[1];
+  tmpSSA_tmpLambdaReduceOut = $dotCall(tmpMCP, undefined, undefined, tmpSSA_tmpLambdaReduceOut, tmpLambdaReduceVal$1, 1, tmpMCOO);
 } else {
 }
-const tmpArrin$2 /*:boolean*/ = 2 in tmpMCOO;
-if (tmpArrin$2) {
-  const tmpArrel$2 /*:primitive*/ = tmpMCOO[2];
-  const tmpClusterSSA_tmpSSA_tmpArreout /*:unknown*/ = $dotCall(tmpMCP, undefined, undefined, tmpSSA_tmpArreout, tmpArrel$2, 2, tmpMCOO);
-  $(tmpClusterSSA_tmpSSA_tmpArreout);
+const tmpLambdaReduceHas$2 /*:boolean*/ = 2 in tmpMCOO;
+if (tmpLambdaReduceHas$2) {
+  const tmpLambdaReduceVal$2 /*:primitive*/ = tmpMCOO[2];
+  const tmpClusterSSA_tmpSSA_tmpLambdaReduceOut /*:unknown*/ = $dotCall(
+    tmpMCP,
+    undefined,
+    undefined,
+    tmpSSA_tmpLambdaReduceOut,
+    tmpLambdaReduceVal$2,
+    2,
+    tmpMCOO,
+  );
+  $(tmpClusterSSA_tmpSSA_tmpLambdaReduceOut);
 } else {
-  $(tmpSSA_tmpArreout);
+  $(tmpSSA_tmpLambdaReduceOut);
 }
 `````
 
@@ -53,14 +61,14 @@ const tmpMCP = function ($$0) {
   $(tmpPrevalAliasThis === 42);
 };
 const tmpMCOO = [1, 2, 3];
-let tmpSSA_tmpArreout = $dotCall(tmpMCP, undefined, undefined, 42, 1, 0, tmpMCOO);
+let tmpSSA_tmpLambdaReduceOut = $dotCall(tmpMCP, undefined, undefined, 42, 1, 0, tmpMCOO);
 if (1 in tmpMCOO) {
-  tmpSSA_tmpArreout = $dotCall(tmpMCP, undefined, undefined, tmpSSA_tmpArreout, tmpMCOO[1], 1, tmpMCOO);
+  tmpSSA_tmpLambdaReduceOut = $dotCall(tmpMCP, undefined, undefined, tmpSSA_tmpLambdaReduceOut, tmpMCOO[1], 1, tmpMCOO);
 }
 if (2 in tmpMCOO) {
-  $($dotCall(tmpMCP, undefined, undefined, tmpSSA_tmpArreout, tmpMCOO[2], 2, tmpMCOO));
+  $($dotCall(tmpMCP, undefined, undefined, tmpSSA_tmpLambdaReduceOut, tmpMCOO[2], 2, tmpMCOO));
 } else {
-  $(tmpSSA_tmpArreout);
+  $(tmpSSA_tmpLambdaReduceOut);
 }
 `````
 

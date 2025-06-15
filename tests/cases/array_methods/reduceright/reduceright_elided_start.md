@@ -28,60 +28,92 @@ const tmpMCP /*:(unused)=>undefined*/ = function ($$0) {
   return undefined;
 };
 const tmpMCOO /*:array*/ /*truthy*/ = [, , , 1, 2, 3];
-let tmpSSA_tmpArreout$1 /*:unknown*/ = $dotCall(tmpMCP, undefined, undefined, 3, 2, 4, tmpMCOO);
-const tmpArrin$2 /*:boolean*/ = 3 in tmpMCOO;
-const tmpArre1st /*:object*/ /*truthy*/ = {};
-if (tmpArrin$2) {
-  const tmpArrel$2 /*:primitive*/ = tmpMCOO[3];
-  const tmpArrebad$2 /*:boolean*/ = tmpSSA_tmpArreout$1 === tmpArre1st;
-  if (tmpArrebad$2) {
-    tmpSSA_tmpArreout$1 = tmpArrel$2;
+let tmpSSA_tmpLambdaReduceRightOut$1 /*:unknown*/ = $dotCall(tmpMCP, undefined, undefined, 3, 2, 4, tmpMCOO);
+const tmpLambdaReduceRightHas$2 /*:boolean*/ = 3 in tmpMCOO;
+const tmpLambdaReduceRight1st /*:object*/ /*truthy*/ = {};
+if (tmpLambdaReduceRightHas$2) {
+  const tmpLambdaReduceRightVal$2 /*:primitive*/ = tmpMCOO[3];
+  const tmpLambdaReduceRightBad$2 /*:boolean*/ = tmpSSA_tmpLambdaReduceRightOut$1 === tmpLambdaReduceRight1st;
+  if (tmpLambdaReduceRightBad$2) {
+    tmpSSA_tmpLambdaReduceRightOut$1 = tmpLambdaReduceRightVal$2;
   } else {
-    tmpSSA_tmpArreout$1 = $dotCall(tmpMCP, undefined, undefined, tmpSSA_tmpArreout$1, tmpArrel$2, 3, tmpMCOO);
+    tmpSSA_tmpLambdaReduceRightOut$1 = $dotCall(
+      tmpMCP,
+      undefined,
+      undefined,
+      tmpSSA_tmpLambdaReduceRightOut$1,
+      tmpLambdaReduceRightVal$2,
+      3,
+      tmpMCOO,
+    );
   }
 } else {
 }
-const tmpArrin$1 /*:boolean*/ = 2 in tmpMCOO;
-if (tmpArrin$1) {
-  const tmpArrel$1 /*:primitive*/ = tmpMCOO[2];
-  const tmpArrebad$1 /*:boolean*/ = tmpSSA_tmpArreout$1 === tmpArre1st;
-  if (tmpArrebad$1) {
-    tmpSSA_tmpArreout$1 = tmpArrel$1;
+const tmpLambdaReduceRightHas$1 /*:boolean*/ = 2 in tmpMCOO;
+if (tmpLambdaReduceRightHas$1) {
+  const tmpLambdaReduceRightVal$1 /*:primitive*/ = tmpMCOO[2];
+  const tmpLambdaReduceRightBad$1 /*:boolean*/ = tmpSSA_tmpLambdaReduceRightOut$1 === tmpLambdaReduceRight1st;
+  if (tmpLambdaReduceRightBad$1) {
+    tmpSSA_tmpLambdaReduceRightOut$1 = tmpLambdaReduceRightVal$1;
   } else {
-    tmpSSA_tmpArreout$1 = $dotCall(tmpMCP, undefined, undefined, tmpSSA_tmpArreout$1, tmpArrel$1, 2, tmpMCOO);
+    tmpSSA_tmpLambdaReduceRightOut$1 = $dotCall(
+      tmpMCP,
+      undefined,
+      undefined,
+      tmpSSA_tmpLambdaReduceRightOut$1,
+      tmpLambdaReduceRightVal$1,
+      2,
+      tmpMCOO,
+    );
   }
 } else {
 }
-const tmpArrin$3 /*:boolean*/ = 1 in tmpMCOO;
-if (tmpArrin$3) {
-  const tmpArrel$3 /*:primitive*/ = tmpMCOO[1];
-  const tmpArrebad$3 /*:boolean*/ = tmpSSA_tmpArreout$1 === tmpArre1st;
-  if (tmpArrebad$3) {
-    tmpSSA_tmpArreout$1 = tmpArrel$3;
+const tmpLambdaReduceRightHas$3 /*:boolean*/ = 1 in tmpMCOO;
+if (tmpLambdaReduceRightHas$3) {
+  const tmpLambdaReduceRightVal$3 /*:primitive*/ = tmpMCOO[1];
+  const tmpLambdaReduceRightBad$3 /*:boolean*/ = tmpSSA_tmpLambdaReduceRightOut$1 === tmpLambdaReduceRight1st;
+  if (tmpLambdaReduceRightBad$3) {
+    tmpSSA_tmpLambdaReduceRightOut$1 = tmpLambdaReduceRightVal$3;
   } else {
-    tmpSSA_tmpArreout$1 = $dotCall(tmpMCP, undefined, undefined, tmpSSA_tmpArreout$1, tmpArrel$3, 1, tmpMCOO);
+    tmpSSA_tmpLambdaReduceRightOut$1 = $dotCall(
+      tmpMCP,
+      undefined,
+      undefined,
+      tmpSSA_tmpLambdaReduceRightOut$1,
+      tmpLambdaReduceRightVal$3,
+      1,
+      tmpMCOO,
+    );
   }
 } else {
 }
-const tmpArrin$4 /*:boolean*/ = 0 in tmpMCOO;
-if (tmpArrin$4) {
-  const tmpArrel$4 /*:primitive*/ = tmpMCOO[0];
-  const tmpArrebad$4 /*:boolean*/ = tmpSSA_tmpArreout$1 === tmpArre1st;
-  if (tmpArrebad$4) {
-    tmpSSA_tmpArreout$1 = tmpArrel$4;
+const tmpLambdaReduceRightHas$4 /*:boolean*/ = 0 in tmpMCOO;
+if (tmpLambdaReduceRightHas$4) {
+  const tmpLambdaReduceRightVal$4 /*:primitive*/ = tmpMCOO[0];
+  const tmpLambdaReduceRightBad$4 /*:boolean*/ = tmpSSA_tmpLambdaReduceRightOut$1 === tmpLambdaReduceRight1st;
+  if (tmpLambdaReduceRightBad$4) {
+    tmpSSA_tmpLambdaReduceRightOut$1 = tmpLambdaReduceRightVal$4;
   } else {
-    tmpSSA_tmpArreout$1 = $dotCall(tmpMCP, undefined, undefined, tmpSSA_tmpArreout$1, tmpArrel$4, 0, tmpMCOO);
+    tmpSSA_tmpLambdaReduceRightOut$1 = $dotCall(
+      tmpMCP,
+      undefined,
+      undefined,
+      tmpSSA_tmpLambdaReduceRightOut$1,
+      tmpLambdaReduceRightVal$4,
+      0,
+      tmpMCOO,
+    );
   }
 } else {
 }
-const tmpArrette /*:boolean*/ = tmpSSA_tmpArreout$1 === tmpArre1st;
-if (tmpArrette) {
-  const tmpArreerr /*:object*/ /*truthy*/ = new $typeError_constructor(
+const tmpLambdaReduceRightTTE /*:boolean*/ = tmpSSA_tmpLambdaReduceRightOut$1 === tmpLambdaReduceRight1st;
+if (tmpLambdaReduceRightTTE) {
+  const tmpLambdaReduceRightErr /*:object*/ /*truthy*/ = new $typeError_constructor(
     `[Preval] Called .reduceRight without init on an array without values: \`const\\nx\\n=\\n\$dotCall(\$array_reduceRight,\\ntmpMCOO,\\n\`reduceRight\`,\\ntmpMCP);\``,
   );
-  throw tmpArreerr;
+  throw tmpLambdaReduceRightErr;
 } else {
-  $(result, tmpSSA_tmpArreout$1);
+  $(result, tmpSSA_tmpLambdaReduceRightOut$1);
 }
 `````
 
@@ -96,48 +128,80 @@ const tmpMCP = function ($$0) {
   $dotCall($array_push, result, `push`, tmpPrevalAliasThis === undefined);
 };
 const tmpMCOO = [, , , 1, 2, 3];
-let tmpSSA_tmpArreout$1 = $dotCall(tmpMCP, undefined, undefined, 3, 2, 4, tmpMCOO);
-const tmpArrin$2 = 3 in tmpMCOO;
-const tmpArre1st = {};
-if (tmpArrin$2) {
-  const tmpArrel$2 = tmpMCOO[3];
-  if (tmpSSA_tmpArreout$1 === tmpArre1st) {
-    tmpSSA_tmpArreout$1 = tmpArrel$2;
+let tmpSSA_tmpLambdaReduceRightOut$1 = $dotCall(tmpMCP, undefined, undefined, 3, 2, 4, tmpMCOO);
+const tmpLambdaReduceRightHas$2 = 3 in tmpMCOO;
+const tmpLambdaReduceRight1st = {};
+if (tmpLambdaReduceRightHas$2) {
+  const tmpLambdaReduceRightVal$2 = tmpMCOO[3];
+  if (tmpSSA_tmpLambdaReduceRightOut$1 === tmpLambdaReduceRight1st) {
+    tmpSSA_tmpLambdaReduceRightOut$1 = tmpLambdaReduceRightVal$2;
   } else {
-    tmpSSA_tmpArreout$1 = $dotCall(tmpMCP, undefined, undefined, tmpSSA_tmpArreout$1, tmpArrel$2, 3, tmpMCOO);
+    tmpSSA_tmpLambdaReduceRightOut$1 = $dotCall(
+      tmpMCP,
+      undefined,
+      undefined,
+      tmpSSA_tmpLambdaReduceRightOut$1,
+      tmpLambdaReduceRightVal$2,
+      3,
+      tmpMCOO,
+    );
   }
 }
 if (2 in tmpMCOO) {
-  const tmpArrel$1 = tmpMCOO[2];
-  if (tmpSSA_tmpArreout$1 === tmpArre1st) {
-    tmpSSA_tmpArreout$1 = tmpArrel$1;
+  const tmpLambdaReduceRightVal$1 = tmpMCOO[2];
+  if (tmpSSA_tmpLambdaReduceRightOut$1 === tmpLambdaReduceRight1st) {
+    tmpSSA_tmpLambdaReduceRightOut$1 = tmpLambdaReduceRightVal$1;
   } else {
-    tmpSSA_tmpArreout$1 = $dotCall(tmpMCP, undefined, undefined, tmpSSA_tmpArreout$1, tmpArrel$1, 2, tmpMCOO);
+    tmpSSA_tmpLambdaReduceRightOut$1 = $dotCall(
+      tmpMCP,
+      undefined,
+      undefined,
+      tmpSSA_tmpLambdaReduceRightOut$1,
+      tmpLambdaReduceRightVal$1,
+      2,
+      tmpMCOO,
+    );
   }
 }
 if (1 in tmpMCOO) {
-  const tmpArrel$3 = tmpMCOO[1];
-  if (tmpSSA_tmpArreout$1 === tmpArre1st) {
-    tmpSSA_tmpArreout$1 = tmpArrel$3;
+  const tmpLambdaReduceRightVal$3 = tmpMCOO[1];
+  if (tmpSSA_tmpLambdaReduceRightOut$1 === tmpLambdaReduceRight1st) {
+    tmpSSA_tmpLambdaReduceRightOut$1 = tmpLambdaReduceRightVal$3;
   } else {
-    tmpSSA_tmpArreout$1 = $dotCall(tmpMCP, undefined, undefined, tmpSSA_tmpArreout$1, tmpArrel$3, 1, tmpMCOO);
+    tmpSSA_tmpLambdaReduceRightOut$1 = $dotCall(
+      tmpMCP,
+      undefined,
+      undefined,
+      tmpSSA_tmpLambdaReduceRightOut$1,
+      tmpLambdaReduceRightVal$3,
+      1,
+      tmpMCOO,
+    );
   }
 }
 if (0 in tmpMCOO) {
-  const tmpArrel$4 = tmpMCOO[0];
-  if (tmpSSA_tmpArreout$1 === tmpArre1st) {
-    tmpSSA_tmpArreout$1 = tmpArrel$4;
+  const tmpLambdaReduceRightVal$4 = tmpMCOO[0];
+  if (tmpSSA_tmpLambdaReduceRightOut$1 === tmpLambdaReduceRight1st) {
+    tmpSSA_tmpLambdaReduceRightOut$1 = tmpLambdaReduceRightVal$4;
   } else {
-    tmpSSA_tmpArreout$1 = $dotCall(tmpMCP, undefined, undefined, tmpSSA_tmpArreout$1, tmpArrel$4, 0, tmpMCOO);
+    tmpSSA_tmpLambdaReduceRightOut$1 = $dotCall(
+      tmpMCP,
+      undefined,
+      undefined,
+      tmpSSA_tmpLambdaReduceRightOut$1,
+      tmpLambdaReduceRightVal$4,
+      0,
+      tmpMCOO,
+    );
   }
 }
-if (tmpSSA_tmpArreout$1 === tmpArre1st) {
-  const tmpArreerr = new $typeError_constructor(
+if (tmpSSA_tmpLambdaReduceRightOut$1 === tmpLambdaReduceRight1st) {
+  const tmpLambdaReduceRightErr = new $typeError_constructor(
     `[Preval] Called .reduceRight without init on an array without values: \`const\\nx\\n=\\n\$dotCall(\$array_reduceRight,\\ntmpMCOO,\\n\`reduceRight\`,\\ntmpMCP);\``,
   );
-  throw tmpArreerr;
+  throw tmpLambdaReduceRightErr;
 } else {
-  $(result, tmpSSA_tmpArreout$1);
+  $(result, tmpSSA_tmpLambdaReduceRightOut$1);
 }
 `````
 

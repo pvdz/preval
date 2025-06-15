@@ -27,24 +27,24 @@ $(x);
 const f /*:()=>undefined*/ = function () {
   debugger;
   const arr /*:array*/ /*truthy*/ = [1, 2, 3];
-  const tmpArrenow /*:unknown*/ = $dotCall($, undefined, undefined, 1, 0, arr);
-  const tmpArrin$1 /*:boolean*/ = 1 in arr;
-  const tmpArreout /*:array*/ /*truthy*/ = [tmpArrenow];
-  if (tmpArrin$1) {
-    const tmpArrel$1 /*:primitive*/ = arr[1];
-    const tmpArrenow$1 /*:unknown*/ = $dotCall($, undefined, undefined, tmpArrel$1, 1, arr);
-    tmpArreout[1] = tmpArrenow$1;
+  const tmpLambdaMapNow /*:unknown*/ = $dotCall($, undefined, undefined, 1, 0, arr);
+  const tmpLambdaMapHas$1 /*:boolean*/ = 1 in arr;
+  const tmpLambdaMapOut /*:array*/ /*truthy*/ = [tmpLambdaMapNow];
+  if (tmpLambdaMapHas$1) {
+    const tmpLambdaMapVal$1 /*:primitive*/ = arr[1];
+    const tmpLambdaMapNow$1 /*:unknown*/ = $dotCall($, undefined, undefined, tmpLambdaMapVal$1, 1, arr);
+    tmpLambdaMapOut[1] = tmpLambdaMapNow$1;
   } else {
   }
-  const tmpArrin$2 /*:boolean*/ = 2 in arr;
-  if (tmpArrin$2) {
-    const tmpArrel$2 /*:primitive*/ = arr[2];
-    const tmpArrenow$2 /*:unknown*/ = $dotCall($, undefined, undefined, tmpArrel$2, 2, arr);
-    tmpArreout[2] = tmpArrenow$2;
+  const tmpLambdaMapHas$2 /*:boolean*/ = 2 in arr;
+  if (tmpLambdaMapHas$2) {
+    const tmpLambdaMapVal$2 /*:primitive*/ = arr[2];
+    const tmpLambdaMapNow$2 /*:unknown*/ = $dotCall($, undefined, undefined, tmpLambdaMapVal$2, 2, arr);
+    tmpLambdaMapOut[2] = tmpLambdaMapNow$2;
   } else {
   }
-  tmpArreout.length = 3;
-  $(tmpArreout);
+  tmpLambdaMapOut.length = 3;
+  $(tmpLambdaMapOut);
   return undefined;
 };
 f();
@@ -59,19 +59,19 @@ $(x);
 `````js filename=intro
 const f = function () {
   const arr = [1, 2, 3];
-  const tmpArrenow = $dotCall($, undefined, undefined, 1, 0, arr);
-  const tmpArrin$1 = 1 in arr;
-  const tmpArreout = [tmpArrenow];
-  if (tmpArrin$1) {
-    const tmpArrenow$1 = $dotCall($, undefined, undefined, arr[1], 1, arr);
-    tmpArreout[1] = tmpArrenow$1;
+  const tmpLambdaMapNow = $dotCall($, undefined, undefined, 1, 0, arr);
+  const tmpLambdaMapHas$1 = 1 in arr;
+  const tmpLambdaMapOut = [tmpLambdaMapNow];
+  if (tmpLambdaMapHas$1) {
+    const tmpLambdaMapNow$1 = $dotCall($, undefined, undefined, arr[1], 1, arr);
+    tmpLambdaMapOut[1] = tmpLambdaMapNow$1;
   }
   if (2 in arr) {
-    const tmpArrenow$2 = $dotCall($, undefined, undefined, arr[2], 2, arr);
-    tmpArreout[2] = tmpArrenow$2;
+    const tmpLambdaMapNow$2 = $dotCall($, undefined, undefined, arr[2], 2, arr);
+    tmpLambdaMapOut[2] = tmpLambdaMapNow$2;
   }
-  tmpArreout.length = 3;
-  $(tmpArreout);
+  tmpLambdaMapOut.length = 3;
+  $(tmpLambdaMapOut);
 };
 f();
 $(f);

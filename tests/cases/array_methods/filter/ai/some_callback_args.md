@@ -20,14 +20,14 @@ $(x);
 `````js filename=intro
 const tmpMCOO /*:array*/ /*truthy*/ = [10, 20];
 $(10, 0, tmpMCOO);
-const tmpArrin$1 /*:boolean*/ = 1 in tmpMCOO;
-if (tmpArrin$1) {
-  const tmpArrel$1 /*:primitive*/ = tmpMCOO[1];
-  $(tmpArrel$1, 1, tmpMCOO);
+const tmpLambdaFilterHas$1 /*:boolean*/ = 1 in tmpMCOO;
+if (tmpLambdaFilterHas$1) {
+  const tmpLambdaFilterVal$1 /*:primitive*/ = tmpMCOO[1];
+  $(tmpLambdaFilterVal$1, 1, tmpMCOO);
 } else {
 }
-const tmpArreout /*:array*/ /*truthy*/ = [];
-$(tmpArreout);
+const tmpLambdaFilterOut /*:array*/ /*truthy*/ = [];
+$(tmpLambdaFilterOut);
 `````
 
 

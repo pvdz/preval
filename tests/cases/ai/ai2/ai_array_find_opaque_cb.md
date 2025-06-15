@@ -26,28 +26,35 @@ const tmpArrElement$1 /*:unknown*/ = $(`b`);
 const tmpArrElement$3 /*:unknown*/ = $(`c`);
 const cb /*:unknown*/ = $(`opaque_find_predicate`);
 const arr /*:array*/ /*truthy*/ = [tmpArrElement, tmpArrElement$1, tmpArrElement$3];
-const tmpArrnow /*:unknown*/ = $dotCall(cb, undefined, undefined, tmpArrElement, 0, arr);
-if (tmpArrnow) {
+const tmpLambdaFindNow /*:unknown*/ = $dotCall(cb, undefined, undefined, tmpArrElement, 0, arr);
+if (tmpLambdaFindNow) {
   $(`find_result`, tmpArrElement);
 } else {
-  let tmpArreout /*:unknown*/ = undefined;
-  let tmpClusterSSA_tmpArri /*:number*/ = 1;
+  let tmpLambdaFindOut /*:unknown*/ = undefined;
+  let tmpClusterSSA_tmpLambdaFindCounter /*:number*/ = 1;
   while ($LOOP_UNROLL_10) {
-    const tmpArrc$1 /*:boolean*/ = tmpClusterSSA_tmpArri < 3;
-    if (tmpArrc$1) {
-      const tmpArrel$1 /*:unknown*/ = arr[tmpClusterSSA_tmpArri];
-      const tmpArrnow$1 /*:unknown*/ = $dotCall(cb, undefined, undefined, tmpArrel$1, tmpClusterSSA_tmpArri, arr);
-      if (tmpArrnow$1) {
-        tmpArreout = tmpArrel$1;
+    const tmpLambdaFindTest$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaFindCounter < 3;
+    if (tmpLambdaFindTest$1) {
+      const tmpLambdaFindVal$1 /*:unknown*/ = arr[tmpClusterSSA_tmpLambdaFindCounter];
+      const tmpLambdaFindNow$1 /*:unknown*/ = $dotCall(
+        cb,
+        undefined,
+        undefined,
+        tmpLambdaFindVal$1,
+        tmpClusterSSA_tmpLambdaFindCounter,
+        arr,
+      );
+      if (tmpLambdaFindNow$1) {
+        tmpLambdaFindOut = tmpLambdaFindVal$1;
         break;
       } else {
-        tmpClusterSSA_tmpArri = tmpClusterSSA_tmpArri + 1;
+        tmpClusterSSA_tmpLambdaFindCounter = tmpClusterSSA_tmpLambdaFindCounter + 1;
       }
     } else {
       break;
     }
   }
-  $(`find_result`, tmpArreout);
+  $(`find_result`, tmpLambdaFindOut);
 }
 `````
 
@@ -64,22 +71,22 @@ const arr = [tmpArrElement, tmpArrElement$1, tmpArrElement$3];
 if ($dotCall(cb, undefined, undefined, tmpArrElement, 0, arr)) {
   $(`find_result`, tmpArrElement);
 } else {
-  let tmpArreout = undefined;
-  let tmpClusterSSA_tmpArri = 1;
+  let tmpLambdaFindOut = undefined;
+  let tmpClusterSSA_tmpLambdaFindCounter = 1;
   while (true) {
-    if (tmpClusterSSA_tmpArri < 3) {
-      const tmpArrel$1 = arr[tmpClusterSSA_tmpArri];
-      if ($dotCall(cb, undefined, undefined, tmpArrel$1, tmpClusterSSA_tmpArri, arr)) {
-        tmpArreout = tmpArrel$1;
+    if (tmpClusterSSA_tmpLambdaFindCounter < 3) {
+      const tmpLambdaFindVal$1 = arr[tmpClusterSSA_tmpLambdaFindCounter];
+      if ($dotCall(cb, undefined, undefined, tmpLambdaFindVal$1, tmpClusterSSA_tmpLambdaFindCounter, arr)) {
+        tmpLambdaFindOut = tmpLambdaFindVal$1;
         break;
       } else {
-        tmpClusterSSA_tmpArri = tmpClusterSSA_tmpArri + 1;
+        tmpClusterSSA_tmpLambdaFindCounter = tmpClusterSSA_tmpLambdaFindCounter + 1;
       }
     } else {
       break;
     }
   }
-  $(`find_result`, tmpArreout);
+  $(`find_result`, tmpLambdaFindOut);
 }
 `````
 

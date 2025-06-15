@@ -28,13 +28,17 @@ $(y);
 `````js filename=intro
 const x /*:unknown*/ = $(`test`);
 const tmpMCF$1 /*:unknown*/ = x.toString;
-const tmpClusterSSA_tmpArrenow /*:unknown*/ = $dotCall(tmpMCF$1, x, `toString`);
+const tmpClusterSSA_tmpLambdaMapNow /*:unknown*/ = $dotCall(tmpMCF$1, x, `toString`);
 const tmpMCF$2 /*:unknown*/ = x.toString;
-const tmpClusterSSA_tmpArrenow$1 /*:unknown*/ = $dotCall(tmpMCF$2, x, `toString`);
+const tmpClusterSSA_tmpLambdaMapNow$1 /*:unknown*/ = $dotCall(tmpMCF$2, x, `toString`);
 const tmpMCF$3 /*:unknown*/ = x.toString;
-const tmpClusterSSA_tmpArrenow$2 /*:unknown*/ = $dotCall(tmpMCF$3, x, `toString`);
-const tmpArreout /*:array*/ /*truthy*/ = [tmpClusterSSA_tmpArrenow, tmpClusterSSA_tmpArrenow$1, tmpClusterSSA_tmpArrenow$2];
-$(tmpArreout);
+const tmpClusterSSA_tmpLambdaMapNow$2 /*:unknown*/ = $dotCall(tmpMCF$3, x, `toString`);
+const tmpLambdaMapOut /*:array*/ /*truthy*/ = [
+  tmpClusterSSA_tmpLambdaMapNow,
+  tmpClusterSSA_tmpLambdaMapNow$1,
+  tmpClusterSSA_tmpLambdaMapNow$2,
+];
+$(tmpLambdaMapOut);
 `````
 
 
@@ -43,10 +47,10 @@ $(tmpArreout);
 
 `````js filename=intro
 const x = $(`test`);
-const tmpClusterSSA_tmpArrenow = x.toString();
-const tmpClusterSSA_tmpArrenow$1 = x.toString();
-const tmpClusterSSA_tmpArrenow$2 = x.toString();
-$([tmpClusterSSA_tmpArrenow, tmpClusterSSA_tmpArrenow$1, tmpClusterSSA_tmpArrenow$2]);
+const tmpClusterSSA_tmpLambdaMapNow = x.toString();
+const tmpClusterSSA_tmpLambdaMapNow$1 = x.toString();
+const tmpClusterSSA_tmpLambdaMapNow$2 = x.toString();
+$([tmpClusterSSA_tmpLambdaMapNow, tmpClusterSSA_tmpLambdaMapNow$1, tmpClusterSSA_tmpLambdaMapNow$2]);
 `````
 
 

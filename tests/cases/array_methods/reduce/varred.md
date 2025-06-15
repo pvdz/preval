@@ -27,27 +27,27 @@ $(x);
 const f /*:()=>undefined*/ = function () {
   debugger;
   const arr /*:array*/ /*truthy*/ = [1, 2, 3];
-  let tmpSSA_tmpArreout$1 /*:unknown*/ = $dotCall($, undefined, undefined, 1, 2, 1, arr);
-  const tmpArrin$2 /*:boolean*/ = 2 in arr;
-  const tmpArre1st /*:object*/ /*truthy*/ = {};
-  if (tmpArrin$2) {
-    const tmpArrel$2 /*:primitive*/ = arr[2];
-    const tmpArrebad$2 /*:boolean*/ = tmpSSA_tmpArreout$1 === tmpArre1st;
-    if (tmpArrebad$2) {
-      tmpSSA_tmpArreout$1 = tmpArrel$2;
+  let tmpSSA_tmpLambdaReduceOut$1 /*:unknown*/ = $dotCall($, undefined, undefined, 1, 2, 1, arr);
+  const tmpLambdaReduceHas$2 /*:boolean*/ = 2 in arr;
+  const tmpLambdaReduce1st /*:object*/ /*truthy*/ = {};
+  if (tmpLambdaReduceHas$2) {
+    const tmpLambdaReduceVal$2 /*:primitive*/ = arr[2];
+    const tmpLambdaReduceBad$2 /*:boolean*/ = tmpSSA_tmpLambdaReduceOut$1 === tmpLambdaReduce1st;
+    if (tmpLambdaReduceBad$2) {
+      tmpSSA_tmpLambdaReduceOut$1 = tmpLambdaReduceVal$2;
     } else {
-      tmpSSA_tmpArreout$1 = $dotCall($, undefined, undefined, tmpSSA_tmpArreout$1, tmpArrel$2, 2, arr);
+      tmpSSA_tmpLambdaReduceOut$1 = $dotCall($, undefined, undefined, tmpSSA_tmpLambdaReduceOut$1, tmpLambdaReduceVal$2, 2, arr);
     }
   } else {
   }
-  const tmpArrette /*:boolean*/ = tmpSSA_tmpArreout$1 === tmpArre1st;
-  if (tmpArrette) {
-    const tmpArreerr /*:object*/ /*truthy*/ = new $typeError_constructor(
+  const tmpLambdaReduceTTE /*:boolean*/ = tmpSSA_tmpLambdaReduceOut$1 === tmpLambdaReduce1st;
+  if (tmpLambdaReduceTTE) {
+    const tmpLambdaReduceErr /*:object*/ /*truthy*/ = new $typeError_constructor(
       `[Preval] Called .reduce without init on an array without values: \`const\\nx\$1\\n=\\n\$dotCall(\$array_reduce,\\narr,\\n\`reduce\`,\\n\$);\``,
     );
-    throw tmpArreerr;
+    throw tmpLambdaReduceErr;
   } else {
-    $(tmpSSA_tmpArreout$1);
+    $(tmpSSA_tmpLambdaReduceOut$1);
     return undefined;
   }
 };
@@ -63,24 +63,24 @@ $(x);
 `````js filename=intro
 const f = function () {
   const arr = [1, 2, 3];
-  let tmpSSA_tmpArreout$1 = $dotCall($, undefined, undefined, 1, 2, 1, arr);
-  const tmpArrin$2 = 2 in arr;
-  const tmpArre1st = {};
-  if (tmpArrin$2) {
-    const tmpArrel$2 = arr[2];
-    if (tmpSSA_tmpArreout$1 === tmpArre1st) {
-      tmpSSA_tmpArreout$1 = tmpArrel$2;
+  let tmpSSA_tmpLambdaReduceOut$1 = $dotCall($, undefined, undefined, 1, 2, 1, arr);
+  const tmpLambdaReduceHas$2 = 2 in arr;
+  const tmpLambdaReduce1st = {};
+  if (tmpLambdaReduceHas$2) {
+    const tmpLambdaReduceVal$2 = arr[2];
+    if (tmpSSA_tmpLambdaReduceOut$1 === tmpLambdaReduce1st) {
+      tmpSSA_tmpLambdaReduceOut$1 = tmpLambdaReduceVal$2;
     } else {
-      tmpSSA_tmpArreout$1 = $dotCall($, undefined, undefined, tmpSSA_tmpArreout$1, tmpArrel$2, 2, arr);
+      tmpSSA_tmpLambdaReduceOut$1 = $dotCall($, undefined, undefined, tmpSSA_tmpLambdaReduceOut$1, tmpLambdaReduceVal$2, 2, arr);
     }
   }
-  if (tmpSSA_tmpArreout$1 === tmpArre1st) {
-    const tmpArreerr = new $typeError_constructor(
+  if (tmpSSA_tmpLambdaReduceOut$1 === tmpLambdaReduce1st) {
+    const tmpLambdaReduceErr = new $typeError_constructor(
       `[Preval] Called .reduce without init on an array without values: \`const\\nx\$1\\n=\\n\$dotCall(\$array_reduce,\\narr,\\n\`reduce\`,\\n\$);\``,
     );
-    throw tmpArreerr;
+    throw tmpLambdaReduceErr;
   } else {
-    $(tmpSSA_tmpArreout$1);
+    $(tmpSSA_tmpLambdaReduceOut$1);
   }
 };
 f();

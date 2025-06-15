@@ -25,25 +25,33 @@ $(f);
 const f /*:()=>undefined*/ = function () {
   debugger;
   const arr /*:array*/ /*truthy*/ = [1, 2, 3];
-  let tmpSSA_tmpClusterSSA_tmpArreout /*:unknown*/ = $dotCall($, undefined, undefined, 1, 2, 1, arr);
-  const tmpArrin$2 /*:boolean*/ = 2 in arr;
-  const tmpArre1st /*:object*/ /*truthy*/ = {};
-  if (tmpArrin$2) {
-    const tmpArrel$2 /*:primitive*/ = arr[2];
-    const tmpArrebad$2 /*:boolean*/ = tmpSSA_tmpClusterSSA_tmpArreout === tmpArre1st;
-    if (tmpArrebad$2) {
-      tmpSSA_tmpClusterSSA_tmpArreout = tmpArrel$2;
+  let tmpSSA_tmpClusterSSA_tmpLambdaReduceOut /*:unknown*/ = $dotCall($, undefined, undefined, 1, 2, 1, arr);
+  const tmpLambdaReduceHas$2 /*:boolean*/ = 2 in arr;
+  const tmpLambdaReduce1st /*:object*/ /*truthy*/ = {};
+  if (tmpLambdaReduceHas$2) {
+    const tmpLambdaReduceVal$2 /*:primitive*/ = arr[2];
+    const tmpLambdaReduceBad$2 /*:boolean*/ = tmpSSA_tmpClusterSSA_tmpLambdaReduceOut === tmpLambdaReduce1st;
+    if (tmpLambdaReduceBad$2) {
+      tmpSSA_tmpClusterSSA_tmpLambdaReduceOut = tmpLambdaReduceVal$2;
     } else {
-      tmpSSA_tmpClusterSSA_tmpArreout = $dotCall($, undefined, undefined, tmpSSA_tmpClusterSSA_tmpArreout, tmpArrel$2, 2, arr);
+      tmpSSA_tmpClusterSSA_tmpLambdaReduceOut = $dotCall(
+        $,
+        undefined,
+        undefined,
+        tmpSSA_tmpClusterSSA_tmpLambdaReduceOut,
+        tmpLambdaReduceVal$2,
+        2,
+        arr,
+      );
     }
   } else {
   }
-  const tmpArrette /*:boolean*/ = tmpSSA_tmpClusterSSA_tmpArreout === tmpArre1st;
-  if (tmpArrette) {
-    const tmpArreerr /*:object*/ /*truthy*/ = new $typeError_constructor(
+  const tmpLambdaReduceTTE /*:boolean*/ = tmpSSA_tmpClusterSSA_tmpLambdaReduceOut === tmpLambdaReduce1st;
+  if (tmpLambdaReduceTTE) {
+    const tmpLambdaReduceErr /*:object*/ /*truthy*/ = new $typeError_constructor(
       `[Preval] Called .reduce without init on an array without values: \`\$dotCall(\$array_reduce,\\narr,\\n\`reduce\`,\\n\$);\``,
     );
-    throw tmpArreerr;
+    throw tmpLambdaReduceErr;
   } else {
     return undefined;
   }
@@ -59,22 +67,30 @@ $(f);
 `````js filename=intro
 const f = function () {
   const arr = [1, 2, 3];
-  let tmpSSA_tmpClusterSSA_tmpArreout = $dotCall($, undefined, undefined, 1, 2, 1, arr);
-  const tmpArrin$2 = 2 in arr;
-  const tmpArre1st = {};
-  if (tmpArrin$2) {
-    const tmpArrel$2 = arr[2];
-    if (tmpSSA_tmpClusterSSA_tmpArreout === tmpArre1st) {
-      tmpSSA_tmpClusterSSA_tmpArreout = tmpArrel$2;
+  let tmpSSA_tmpClusterSSA_tmpLambdaReduceOut = $dotCall($, undefined, undefined, 1, 2, 1, arr);
+  const tmpLambdaReduceHas$2 = 2 in arr;
+  const tmpLambdaReduce1st = {};
+  if (tmpLambdaReduceHas$2) {
+    const tmpLambdaReduceVal$2 = arr[2];
+    if (tmpSSA_tmpClusterSSA_tmpLambdaReduceOut === tmpLambdaReduce1st) {
+      tmpSSA_tmpClusterSSA_tmpLambdaReduceOut = tmpLambdaReduceVal$2;
     } else {
-      tmpSSA_tmpClusterSSA_tmpArreout = $dotCall($, undefined, undefined, tmpSSA_tmpClusterSSA_tmpArreout, tmpArrel$2, 2, arr);
+      tmpSSA_tmpClusterSSA_tmpLambdaReduceOut = $dotCall(
+        $,
+        undefined,
+        undefined,
+        tmpSSA_tmpClusterSSA_tmpLambdaReduceOut,
+        tmpLambdaReduceVal$2,
+        2,
+        arr,
+      );
     }
   }
-  if (tmpSSA_tmpClusterSSA_tmpArreout === tmpArre1st) {
-    const tmpArreerr = new $typeError_constructor(
+  if (tmpSSA_tmpClusterSSA_tmpLambdaReduceOut === tmpLambdaReduce1st) {
+    const tmpLambdaReduceErr = new $typeError_constructor(
       `[Preval] Called .reduce without init on an array without values: \`\$dotCall(\$array_reduce,\\narr,\\n\`reduce\`,\\n\$);\``,
     );
-    throw tmpArreerr;
+    throw tmpLambdaReduceErr;
   }
 };
 f();

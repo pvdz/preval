@@ -26,31 +26,38 @@ $(x);
 `````js filename=intro
 const f /*:()=>undefined*/ = function () {
   debugger;
-  let tmpArreout /*:unknown*/ /*ternaryConst*/ = -1;
+  let tmpLambdaFindIndexOut /*:unknown*/ /*ternaryConst*/ = -1;
   const tmpMCOO /*:array*/ /*truthy*/ = [1, 2, 3];
-  const tmpArrnow /*:unknown*/ = $dotCall($, undefined, undefined, 1, 0, tmpMCOO);
-  if (tmpArrnow) {
-    tmpArreout = 0;
+  const tmpLambdaFindIndexNow /*:unknown*/ = $dotCall($, undefined, undefined, 1, 0, tmpMCOO);
+  if (tmpLambdaFindIndexNow) {
+    tmpLambdaFindIndexOut = 0;
   } else {
-    let tmpClusterSSA_tmpArri /*:number*/ = 1;
+    let tmpClusterSSA_tmpLambdaFindIndexCounter /*:number*/ = 1;
     while ($LOOP_UNROLL_10) {
-      const tmpArrc$1 /*:boolean*/ = tmpClusterSSA_tmpArri < 3;
-      if (tmpArrc$1) {
-        const tmpArrel$1 /*:primitive*/ = tmpMCOO[tmpClusterSSA_tmpArri];
-        const tmpArrnow$1 /*:unknown*/ = $dotCall($, undefined, undefined, tmpArrel$1, tmpClusterSSA_tmpArri, tmpMCOO);
-        if (tmpArrnow$1) {
-          tmpArreout = tmpClusterSSA_tmpArri;
+      const tmpLambdaFindIndexTest$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaFindIndexCounter < 3;
+      if (tmpLambdaFindIndexTest$1) {
+        const tmpLambdaFindIndexVal$1 /*:primitive*/ = tmpMCOO[tmpClusterSSA_tmpLambdaFindIndexCounter];
+        const tmpLambdaFindIndexNow$1 /*:unknown*/ = $dotCall(
+          $,
+          undefined,
+          undefined,
+          tmpLambdaFindIndexVal$1,
+          tmpClusterSSA_tmpLambdaFindIndexCounter,
+          tmpMCOO,
+        );
+        if (tmpLambdaFindIndexNow$1) {
+          tmpLambdaFindIndexOut = tmpClusterSSA_tmpLambdaFindIndexCounter;
           break;
         } else {
-          tmpClusterSSA_tmpArri = tmpClusterSSA_tmpArri + 1;
+          tmpClusterSSA_tmpLambdaFindIndexCounter = tmpClusterSSA_tmpLambdaFindIndexCounter + 1;
         }
       } else {
         break;
       }
     }
   }
-  x = tmpArreout;
-  $(tmpArreout);
+  x = tmpLambdaFindIndexOut;
+  $(tmpLambdaFindIndexOut);
   return undefined;
 };
 let x /*:unknown*/ = 1;
@@ -65,27 +72,36 @@ $(x);
 
 `````js filename=intro
 const f = function () {
-  let tmpArreout = -1;
+  let tmpLambdaFindIndexOut = -1;
   const tmpMCOO = [1, 2, 3];
   if ($dotCall($, undefined, undefined, 1, 0, tmpMCOO)) {
-    tmpArreout = 0;
+    tmpLambdaFindIndexOut = 0;
   } else {
-    let tmpClusterSSA_tmpArri = 1;
+    let tmpClusterSSA_tmpLambdaFindIndexCounter = 1;
     while (true) {
-      if (tmpClusterSSA_tmpArri < 3) {
-        if ($dotCall($, undefined, undefined, tmpMCOO[tmpClusterSSA_tmpArri], tmpClusterSSA_tmpArri, tmpMCOO)) {
-          tmpArreout = tmpClusterSSA_tmpArri;
+      if (tmpClusterSSA_tmpLambdaFindIndexCounter < 3) {
+        if (
+          $dotCall(
+            $,
+            undefined,
+            undefined,
+            tmpMCOO[tmpClusterSSA_tmpLambdaFindIndexCounter],
+            tmpClusterSSA_tmpLambdaFindIndexCounter,
+            tmpMCOO,
+          )
+        ) {
+          tmpLambdaFindIndexOut = tmpClusterSSA_tmpLambdaFindIndexCounter;
           break;
         } else {
-          tmpClusterSSA_tmpArri = tmpClusterSSA_tmpArri + 1;
+          tmpClusterSSA_tmpLambdaFindIndexCounter = tmpClusterSSA_tmpLambdaFindIndexCounter + 1;
         }
       } else {
         break;
       }
     }
   }
-  x = tmpArreout;
-  $(tmpArreout);
+  x = tmpLambdaFindIndexOut;
+  $(tmpLambdaFindIndexOut);
 };
 let x = 1;
 f();

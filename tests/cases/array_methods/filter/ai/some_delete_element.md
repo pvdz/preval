@@ -22,20 +22,20 @@ $(arr, x);
 const arr /*:array*/ /*truthy*/ = [1, 2, 3];
 delete arr[1];
 $(1);
-const tmpArrin$1 /*:boolean*/ = 1 in arr;
-if (tmpArrin$1) {
-  const tmpArrel$2 /*:primitive*/ = arr[1];
-  $(tmpArrel$2);
+const tmpLambdaFilterHas$1 /*:boolean*/ = 1 in arr;
+if (tmpLambdaFilterHas$1) {
+  const tmpLambdaFilterVal$2 /*:primitive*/ = arr[1];
+  $(tmpLambdaFilterVal$2);
 } else {
 }
-const tmpArrin$2 /*:boolean*/ = 2 in arr;
-if (tmpArrin$2) {
-  const tmpArrel$1 /*:primitive*/ = arr[2];
-  $(tmpArrel$1);
+const tmpLambdaFilterHas$2 /*:boolean*/ = 2 in arr;
+if (tmpLambdaFilterHas$2) {
+  const tmpLambdaFilterVal$1 /*:primitive*/ = arr[2];
+  $(tmpLambdaFilterVal$1);
 } else {
 }
-const tmpArreout /*:array*/ /*truthy*/ = [];
-$(arr, tmpArreout);
+const tmpLambdaFilterOut /*:array*/ /*truthy*/ = [];
+$(arr, tmpLambdaFilterOut);
 `````
 
 

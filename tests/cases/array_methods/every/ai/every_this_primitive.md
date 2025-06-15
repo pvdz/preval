@@ -26,30 +26,37 @@ const tmpMCP /*:(unused)=>undefined*/ = function ($$0) {
   return undefined;
 };
 const tmpMCOO /*:array*/ /*truthy*/ = [1, 2, 3];
-const tmpArrenow /*:unknown*/ = $dotCall(tmpMCP, 42, undefined, 1, 0, tmpMCOO);
-if (tmpArrenow) {
-  let tmpArreout /*:boolean*/ = true;
-  let tmpClusterSSA_tmpArri /*:number*/ = 1;
+const tmpLambdaEveryWas /*:unknown*/ = $dotCall(tmpMCP, 42, undefined, 1, 0, tmpMCOO);
+if (tmpLambdaEveryWas) {
+  let tmpLambdaEveryOut /*:boolean*/ = true;
+  let tmpClusterSSA_tmpLambdaEveryCounter /*:number*/ = 1;
   while ($LOOP_UNROLL_10) {
-    const tmpArrc$1 /*:boolean*/ = tmpClusterSSA_tmpArri < 3;
-    if (tmpArrc$1) {
-      const tmpArrin$1 /*:boolean*/ = tmpClusterSSA_tmpArri in tmpMCOO;
-      if (tmpArrin$1) {
-        const tmpArrel$1 /*:primitive*/ = tmpMCOO[tmpClusterSSA_tmpArri];
-        const tmpArrenow$1 /*:unknown*/ = $dotCall(tmpMCP, 42, undefined, tmpArrel$1, tmpClusterSSA_tmpArri, tmpMCOO);
-        if (tmpArrenow$1) {
+    const tmpLambdaEveryTest$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaEveryCounter < 3;
+    if (tmpLambdaEveryTest$1) {
+      const tmpLambdaEveryHas$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaEveryCounter in tmpMCOO;
+      if (tmpLambdaEveryHas$1) {
+        const tmpLambdaEveryVal$1 /*:primitive*/ = tmpMCOO[tmpClusterSSA_tmpLambdaEveryCounter];
+        const tmpLambdaEveryWas$1 /*:unknown*/ = $dotCall(
+          tmpMCP,
+          42,
+          undefined,
+          tmpLambdaEveryVal$1,
+          tmpClusterSSA_tmpLambdaEveryCounter,
+          tmpMCOO,
+        );
+        if (tmpLambdaEveryWas$1) {
         } else {
-          tmpArreout = false;
+          tmpLambdaEveryOut = false;
           break;
         }
       } else {
       }
-      tmpClusterSSA_tmpArri = tmpClusterSSA_tmpArri + 1;
+      tmpClusterSSA_tmpLambdaEveryCounter = tmpClusterSSA_tmpLambdaEveryCounter + 1;
     } else {
       break;
     }
   }
-  $(tmpArreout);
+  $(tmpLambdaEveryOut);
 } else {
   $(false);
 }
@@ -66,22 +73,22 @@ const tmpMCP = function ($$0) {
 };
 const tmpMCOO = [1, 2, 3];
 if ($dotCall(tmpMCP, 42, undefined, 1, 0, tmpMCOO)) {
-  let tmpArreout = true;
-  let tmpClusterSSA_tmpArri = 1;
+  let tmpLambdaEveryOut = true;
+  let tmpClusterSSA_tmpLambdaEveryCounter = 1;
   while (true) {
-    if (tmpClusterSSA_tmpArri < 3) {
-      if (tmpClusterSSA_tmpArri in tmpMCOO) {
-        if (!$dotCall(tmpMCP, 42, undefined, tmpMCOO[tmpClusterSSA_tmpArri], tmpClusterSSA_tmpArri, tmpMCOO)) {
-          tmpArreout = false;
+    if (tmpClusterSSA_tmpLambdaEveryCounter < 3) {
+      if (tmpClusterSSA_tmpLambdaEveryCounter in tmpMCOO) {
+        if (!$dotCall(tmpMCP, 42, undefined, tmpMCOO[tmpClusterSSA_tmpLambdaEveryCounter], tmpClusterSSA_tmpLambdaEveryCounter, tmpMCOO)) {
+          tmpLambdaEveryOut = false;
           break;
         }
       }
-      tmpClusterSSA_tmpArri = tmpClusterSSA_tmpArri + 1;
+      tmpClusterSSA_tmpLambdaEveryCounter = tmpClusterSSA_tmpLambdaEveryCounter + 1;
     } else {
       break;
     }
   }
-  $(tmpArreout);
+  $(tmpLambdaEveryOut);
 } else {
   $(false);
 }

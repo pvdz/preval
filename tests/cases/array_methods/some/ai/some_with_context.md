@@ -32,32 +32,39 @@ const tmpMCP /*:(unknown)=>undefined*/ = function ($$0) {
 };
 const ctx /*:object*/ /*truthy*/ = { mult: 2 };
 const tmpMCOO /*:array*/ /*truthy*/ = [1, 2, 3];
-const tmpArrenow /*:unknown*/ = $dotCall(tmpMCP, ctx, undefined, 1, 0, tmpMCOO);
-if (tmpArrenow) {
+const tmpLambdaSomeNow /*:unknown*/ = $dotCall(tmpMCP, ctx, undefined, 1, 0, tmpMCOO);
+if (tmpLambdaSomeNow) {
   $(result, true);
 } else {
-  let tmpArreout /*:boolean*/ = false;
-  let tmpClusterSSA_tmpArri /*:number*/ = 1;
+  let tmpLambdaSomeOut /*:boolean*/ = false;
+  let tmpClusterSSA_tmpLambdaSomeCounter /*:number*/ = 1;
   while ($LOOP_UNROLL_10) {
-    const tmpArrc$1 /*:boolean*/ = tmpClusterSSA_tmpArri < 3;
-    if (tmpArrc$1) {
-      const tmpArrin$1 /*:boolean*/ = tmpClusterSSA_tmpArri in tmpMCOO;
-      if (tmpArrin$1) {
-        const tmpArrel$1 /*:primitive*/ = tmpMCOO[tmpClusterSSA_tmpArri];
-        const tmpArrenow$1 /*:unknown*/ = $dotCall(tmpMCP, ctx, undefined, tmpArrel$1, tmpClusterSSA_tmpArri, tmpMCOO);
-        if (tmpArrenow$1) {
-          tmpArreout = true;
+    const tmpLambdaSomeTest$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaSomeCounter < 3;
+    if (tmpLambdaSomeTest$1) {
+      const tmpLambdaSomeHas$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaSomeCounter in tmpMCOO;
+      if (tmpLambdaSomeHas$1) {
+        const tmpLambdaSomeVal$1 /*:primitive*/ = tmpMCOO[tmpClusterSSA_tmpLambdaSomeCounter];
+        const tmpLambdaSomeNow$1 /*:unknown*/ = $dotCall(
+          tmpMCP,
+          ctx,
+          undefined,
+          tmpLambdaSomeVal$1,
+          tmpClusterSSA_tmpLambdaSomeCounter,
+          tmpMCOO,
+        );
+        if (tmpLambdaSomeNow$1) {
+          tmpLambdaSomeOut = true;
           break;
         } else {
         }
       } else {
       }
-      tmpClusterSSA_tmpArri = tmpClusterSSA_tmpArri + 1;
+      tmpClusterSSA_tmpLambdaSomeCounter = tmpClusterSSA_tmpLambdaSomeCounter + 1;
     } else {
       break;
     }
   }
-  $(result, tmpArreout);
+  $(result, tmpLambdaSomeOut);
 }
 `````
 
@@ -76,22 +83,22 @@ const tmpMCOO = [1, 2, 3];
 if ($dotCall(tmpMCP, ctx, undefined, 1, 0, tmpMCOO)) {
   $(result, true);
 } else {
-  let tmpArreout = false;
-  let tmpClusterSSA_tmpArri = 1;
+  let tmpLambdaSomeOut = false;
+  let tmpClusterSSA_tmpLambdaSomeCounter = 1;
   while (true) {
-    if (tmpClusterSSA_tmpArri < 3) {
-      if (tmpClusterSSA_tmpArri in tmpMCOO) {
-        if ($dotCall(tmpMCP, ctx, undefined, tmpMCOO[tmpClusterSSA_tmpArri], tmpClusterSSA_tmpArri, tmpMCOO)) {
-          tmpArreout = true;
+    if (tmpClusterSSA_tmpLambdaSomeCounter < 3) {
+      if (tmpClusterSSA_tmpLambdaSomeCounter in tmpMCOO) {
+        if ($dotCall(tmpMCP, ctx, undefined, tmpMCOO[tmpClusterSSA_tmpLambdaSomeCounter], tmpClusterSSA_tmpLambdaSomeCounter, tmpMCOO)) {
+          tmpLambdaSomeOut = true;
           break;
         }
       }
-      tmpClusterSSA_tmpArri = tmpClusterSSA_tmpArri + 1;
+      tmpClusterSSA_tmpLambdaSomeCounter = tmpClusterSSA_tmpLambdaSomeCounter + 1;
     } else {
       break;
     }
   }
-  $(result, tmpArreout);
+  $(result, tmpLambdaSomeOut);
 }
 `````
 

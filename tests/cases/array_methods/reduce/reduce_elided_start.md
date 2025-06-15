@@ -28,27 +28,27 @@ const tmpMCP /*:(unused)=>undefined*/ = function ($$0) {
   return undefined;
 };
 const tmpMCOO /*:array*/ /*truthy*/ = [, , , 1, 2, 3];
-let tmpSSA_tmpArreout$1 /*:unknown*/ = $dotCall(tmpMCP, undefined, undefined, 1, 2, 4, tmpMCOO);
-const tmpArrin$1 /*:boolean*/ = 5 in tmpMCOO;
-const tmpArre1st /*:object*/ /*truthy*/ = {};
-if (tmpArrin$1) {
-  const tmpArrel$1 /*:primitive*/ = tmpMCOO[5];
-  const tmpArrebad$1 /*:boolean*/ = tmpSSA_tmpArreout$1 === tmpArre1st;
-  if (tmpArrebad$1) {
-    tmpSSA_tmpArreout$1 = tmpArrel$1;
+let tmpSSA_tmpLambdaReduceOut$1 /*:unknown*/ = $dotCall(tmpMCP, undefined, undefined, 1, 2, 4, tmpMCOO);
+const tmpLambdaReduceHas$1 /*:boolean*/ = 5 in tmpMCOO;
+const tmpLambdaReduce1st /*:object*/ /*truthy*/ = {};
+if (tmpLambdaReduceHas$1) {
+  const tmpLambdaReduceVal$1 /*:primitive*/ = tmpMCOO[5];
+  const tmpLambdaReduceBad$1 /*:boolean*/ = tmpSSA_tmpLambdaReduceOut$1 === tmpLambdaReduce1st;
+  if (tmpLambdaReduceBad$1) {
+    tmpSSA_tmpLambdaReduceOut$1 = tmpLambdaReduceVal$1;
   } else {
-    tmpSSA_tmpArreout$1 = $dotCall(tmpMCP, undefined, undefined, tmpSSA_tmpArreout$1, tmpArrel$1, 5, tmpMCOO);
+    tmpSSA_tmpLambdaReduceOut$1 = $dotCall(tmpMCP, undefined, undefined, tmpSSA_tmpLambdaReduceOut$1, tmpLambdaReduceVal$1, 5, tmpMCOO);
   }
 } else {
 }
-const tmpArrette /*:boolean*/ = tmpSSA_tmpArreout$1 === tmpArre1st;
-if (tmpArrette) {
-  const tmpArreerr /*:object*/ /*truthy*/ = new $typeError_constructor(
+const tmpLambdaReduceTTE /*:boolean*/ = tmpSSA_tmpLambdaReduceOut$1 === tmpLambdaReduce1st;
+if (tmpLambdaReduceTTE) {
+  const tmpLambdaReduceErr /*:object*/ /*truthy*/ = new $typeError_constructor(
     `[Preval] Called .reduce without init on an array without values: \`const\\nx\\n=\\n\$dotCall(\$array_reduce,\\ntmpMCOO,\\n\`reduce\`,\\ntmpMCP);\``,
   );
-  throw tmpArreerr;
+  throw tmpLambdaReduceErr;
 } else {
-  $(result, tmpSSA_tmpArreout$1);
+  $(result, tmpSSA_tmpLambdaReduceOut$1);
 }
 `````
 
@@ -63,24 +63,24 @@ const tmpMCP = function ($$0) {
   $dotCall($array_push, result, `push`, tmpPrevalAliasThis === undefined);
 };
 const tmpMCOO = [, , , 1, 2, 3];
-let tmpSSA_tmpArreout$1 = $dotCall(tmpMCP, undefined, undefined, 1, 2, 4, tmpMCOO);
-const tmpArrin$1 = 5 in tmpMCOO;
-const tmpArre1st = {};
-if (tmpArrin$1) {
-  const tmpArrel$1 = tmpMCOO[5];
-  if (tmpSSA_tmpArreout$1 === tmpArre1st) {
-    tmpSSA_tmpArreout$1 = tmpArrel$1;
+let tmpSSA_tmpLambdaReduceOut$1 = $dotCall(tmpMCP, undefined, undefined, 1, 2, 4, tmpMCOO);
+const tmpLambdaReduceHas$1 = 5 in tmpMCOO;
+const tmpLambdaReduce1st = {};
+if (tmpLambdaReduceHas$1) {
+  const tmpLambdaReduceVal$1 = tmpMCOO[5];
+  if (tmpSSA_tmpLambdaReduceOut$1 === tmpLambdaReduce1st) {
+    tmpSSA_tmpLambdaReduceOut$1 = tmpLambdaReduceVal$1;
   } else {
-    tmpSSA_tmpArreout$1 = $dotCall(tmpMCP, undefined, undefined, tmpSSA_tmpArreout$1, tmpArrel$1, 5, tmpMCOO);
+    tmpSSA_tmpLambdaReduceOut$1 = $dotCall(tmpMCP, undefined, undefined, tmpSSA_tmpLambdaReduceOut$1, tmpLambdaReduceVal$1, 5, tmpMCOO);
   }
 }
-if (tmpSSA_tmpArreout$1 === tmpArre1st) {
-  const tmpArreerr = new $typeError_constructor(
+if (tmpSSA_tmpLambdaReduceOut$1 === tmpLambdaReduce1st) {
+  const tmpLambdaReduceErr = new $typeError_constructor(
     `[Preval] Called .reduce without init on an array without values: \`const\\nx\\n=\\n\$dotCall(\$array_reduce,\\ntmpMCOO,\\n\`reduce\`,\\ntmpMCP);\``,
   );
-  throw tmpArreerr;
+  throw tmpLambdaReduceErr;
 } else {
-  $(result, tmpSSA_tmpArreout$1);
+  $(result, tmpSSA_tmpLambdaReduceOut$1);
 }
 `````
 

@@ -24,46 +24,46 @@ $('original_array', arr); // Check if original is mutated
 `````js filename=intro
 const cb /*:unknown*/ = $(`opaque_filter_callback`);
 const arr /*:array*/ /*truthy*/ = [1, 2, 3, 4];
-const tmpArrenow /*:unknown*/ = $dotCall(cb, undefined, undefined, 1, 0, arr);
-const tmpArreout /*:array*/ /*truthy*/ = [];
-if (tmpArrenow) {
-  $dotCall($array_push, tmpArreout, `push`, 1);
+const tmpLambdaFilterWas /*:unknown*/ = $dotCall(cb, undefined, undefined, 1, 0, arr);
+const tmpLambdaFilterOut /*:array*/ /*truthy*/ = [];
+if (tmpLambdaFilterWas) {
+  $dotCall($array_push, tmpLambdaFilterOut, `push`, 1);
 } else {
 }
-const tmpArrin$1 /*:boolean*/ = 1 in arr;
-if (tmpArrin$1) {
-  const tmpArrel$1 /*:primitive*/ = arr[1];
-  const tmpArrenow$1 /*:unknown*/ = $dotCall(cb, undefined, undefined, tmpArrel$1, 1, arr);
-  if (tmpArrenow$1) {
-    $dotCall($array_push, tmpArreout, `push`, tmpArrel$1);
+const tmpLambdaFilterHas$1 /*:boolean*/ = 1 in arr;
+if (tmpLambdaFilterHas$1) {
+  const tmpLambdaFilterVal$1 /*:primitive*/ = arr[1];
+  const tmpLambdaFilterWas$1 /*:unknown*/ = $dotCall(cb, undefined, undefined, tmpLambdaFilterVal$1, 1, arr);
+  if (tmpLambdaFilterWas$1) {
+    $dotCall($array_push, tmpLambdaFilterOut, `push`, tmpLambdaFilterVal$1);
   } else {
   }
 } else {
 }
-const tmpArrin$2 /*:boolean*/ = 2 in arr;
-if (tmpArrin$2) {
-  const tmpArrel$2 /*:primitive*/ = arr[2];
-  const tmpArrenow$2 /*:unknown*/ = $dotCall(cb, undefined, undefined, tmpArrel$2, 2, arr);
-  if (tmpArrenow$2) {
-    $dotCall($array_push, tmpArreout, `push`, tmpArrel$2);
+const tmpLambdaFilterHas$2 /*:boolean*/ = 2 in arr;
+if (tmpLambdaFilterHas$2) {
+  const tmpLambdaFilterVal$2 /*:primitive*/ = arr[2];
+  const tmpLambdaFilterWas$2 /*:unknown*/ = $dotCall(cb, undefined, undefined, tmpLambdaFilterVal$2, 2, arr);
+  if (tmpLambdaFilterWas$2) {
+    $dotCall($array_push, tmpLambdaFilterOut, `push`, tmpLambdaFilterVal$2);
   } else {
   }
 } else {
 }
-const tmpArrin$3 /*:boolean*/ = 3 in arr;
-if (tmpArrin$3) {
-  const tmpArrel$3 /*:primitive*/ = arr[3];
-  const tmpArrenow$3 /*:unknown*/ = $dotCall(cb, undefined, undefined, tmpArrel$3, 3, arr);
-  if (tmpArrenow$3) {
-    $dotCall($array_push, tmpArreout, `push`, tmpArrel$3);
-    $(`result_array`, tmpArreout);
+const tmpLambdaFilterHas$3 /*:boolean*/ = 3 in arr;
+if (tmpLambdaFilterHas$3) {
+  const tmpLambdaFilterVal$3 /*:primitive*/ = arr[3];
+  const tmpLambdaFilterWas$3 /*:unknown*/ = $dotCall(cb, undefined, undefined, tmpLambdaFilterVal$3, 3, arr);
+  if (tmpLambdaFilterWas$3) {
+    $dotCall($array_push, tmpLambdaFilterOut, `push`, tmpLambdaFilterVal$3);
+    $(`result_array`, tmpLambdaFilterOut);
     $(`original_array`, arr);
   } else {
-    $(`result_array`, tmpArreout);
+    $(`result_array`, tmpLambdaFilterOut);
     $(`original_array`, arr);
   }
 } else {
-  $(`result_array`, tmpArreout);
+  $(`result_array`, tmpLambdaFilterOut);
   $(`original_array`, arr);
 }
 `````
@@ -75,35 +75,35 @@ if (tmpArrin$3) {
 `````js filename=intro
 const cb = $(`opaque_filter_callback`);
 const arr = [1, 2, 3, 4];
-const tmpArrenow = $dotCall(cb, undefined, undefined, 1, 0, arr);
-const tmpArreout = [];
-if (tmpArrenow) {
-  $dotCall($array_push, tmpArreout, `push`, 1);
+const tmpLambdaFilterWas = $dotCall(cb, undefined, undefined, 1, 0, arr);
+const tmpLambdaFilterOut = [];
+if (tmpLambdaFilterWas) {
+  $dotCall($array_push, tmpLambdaFilterOut, `push`, 1);
 }
 if (1 in arr) {
-  const tmpArrel$1 = arr[1];
-  if ($dotCall(cb, undefined, undefined, tmpArrel$1, 1, arr)) {
-    $dotCall($array_push, tmpArreout, `push`, tmpArrel$1);
+  const tmpLambdaFilterVal$1 = arr[1];
+  if ($dotCall(cb, undefined, undefined, tmpLambdaFilterVal$1, 1, arr)) {
+    $dotCall($array_push, tmpLambdaFilterOut, `push`, tmpLambdaFilterVal$1);
   }
 }
 if (2 in arr) {
-  const tmpArrel$2 = arr[2];
-  if ($dotCall(cb, undefined, undefined, tmpArrel$2, 2, arr)) {
-    $dotCall($array_push, tmpArreout, `push`, tmpArrel$2);
+  const tmpLambdaFilterVal$2 = arr[2];
+  if ($dotCall(cb, undefined, undefined, tmpLambdaFilterVal$2, 2, arr)) {
+    $dotCall($array_push, tmpLambdaFilterOut, `push`, tmpLambdaFilterVal$2);
   }
 }
 if (3 in arr) {
-  const tmpArrel$3 = arr[3];
-  if ($dotCall(cb, undefined, undefined, tmpArrel$3, 3, arr)) {
-    $dotCall($array_push, tmpArreout, `push`, tmpArrel$3);
-    $(`result_array`, tmpArreout);
+  const tmpLambdaFilterVal$3 = arr[3];
+  if ($dotCall(cb, undefined, undefined, tmpLambdaFilterVal$3, 3, arr)) {
+    $dotCall($array_push, tmpLambdaFilterOut, `push`, tmpLambdaFilterVal$3);
+    $(`result_array`, tmpLambdaFilterOut);
     $(`original_array`, arr);
   } else {
-    $(`result_array`, tmpArreout);
+    $(`result_array`, tmpLambdaFilterOut);
     $(`original_array`, arr);
   }
 } else {
-  $(`result_array`, tmpArreout);
+  $(`result_array`, tmpLambdaFilterOut);
   $(`original_array`, arr);
 }
 `````

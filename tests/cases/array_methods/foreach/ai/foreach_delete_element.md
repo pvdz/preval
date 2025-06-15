@@ -24,16 +24,16 @@ $(arr);
 const arr /*:array*/ /*truthy*/ = [1, 2, 3];
 delete arr[1];
 $(1);
-const tmpArrin$1 /*:boolean*/ = 1 in arr;
-if (tmpArrin$1) {
-  const tmpArrel$2 /*:primitive*/ = arr[1];
-  $(tmpArrel$2);
+const tmpLambdaForeachCounterHas$1 /*:boolean*/ = 1 in arr;
+if (tmpLambdaForeachCounterHas$1) {
+  const tmpLambdaForeachCounterVal$2 /*:primitive*/ = arr[1];
+  $(tmpLambdaForeachCounterVal$2);
 } else {
 }
-const tmpArrin$2 /*:boolean*/ = 2 in arr;
-if (tmpArrin$2) {
-  const tmpArrel$1 /*:primitive*/ = arr[2];
-  $(tmpArrel$1);
+const tmpLambdaForeachCounterHas$2 /*:boolean*/ = 2 in arr;
+if (tmpLambdaForeachCounterHas$2) {
+  const tmpLambdaForeachCounterVal$1 /*:primitive*/ = arr[2];
+  $(tmpLambdaForeachCounterVal$1);
   $(arr);
 } else {
   $(arr);

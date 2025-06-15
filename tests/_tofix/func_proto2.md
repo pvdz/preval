@@ -33,7 +33,7 @@ $(g);
 const g /*:(unused, unused, unused)=>undefined*/ = function ($$0, $$1, $$2) {
   debugger;
   const f /*:(unknown, unknown)=>undefined*/ = function ($$0, $$1) {
-    const tmpPrevalAliasThis /*:object*/ /*truthy*/ = this;
+    const tmpPrevalAliasThis /*:unknown*/ = this;
     const t$987 /*:unknown*/ = $$0;
     const e$767 /*:unknown*/ = $$1;
     debugger;

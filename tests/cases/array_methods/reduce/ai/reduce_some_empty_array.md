@@ -19,10 +19,10 @@ $(result, x);
 
 
 `````js filename=intro
-const tmpArreerr /*:object*/ /*truthy*/ = new $typeError_constructor(
+const tmpLambdaReduceErr /*:object*/ /*truthy*/ = new $typeError_constructor(
   `[Preval] Called .reduce without init on an array without values: \`const\\nx\\n=\\n\$dotCall(\$array_reduce,\\ntmpMCOO,\\n\`reduce\`,\\ntmpMCP);\``,
 );
-throw tmpArreerr;
+throw tmpLambdaReduceErr;
 `````
 
 
@@ -30,10 +30,10 @@ throw tmpArreerr;
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpArreerr = new $typeError_constructor(
+const tmpLambdaReduceErr = new $typeError_constructor(
   `[Preval] Called .reduce without init on an array without values: \`const\\nx\\n=\\n\$dotCall(\$array_reduce,\\ntmpMCOO,\\n\`reduce\`,\\ntmpMCP);\``,
 );
-throw tmpArreerr;
+throw tmpLambdaReduceErr;
 `````
 
 

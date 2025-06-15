@@ -28,6 +28,7 @@ $([2, 3, 4]);
 `````
 HEADERCHECKME
 HEADERCHECKME
+HEADERCHECKME
 
 
 ## Settled
@@ -37,8 +38,8 @@ HEADERCHECKME
 $(`hello`, 1);
 $(`hello`, 2);
 $(`hello`, 3);
-const tmpArreout /*:array*/ /*truthy*/ = [2, 3, 4];
-$(tmpArreout);
+const tmpLambdaMapOut /*:array*/ /*truthy*/ = [2, 3, 4];
+$(tmpLambdaMapOut);
 `````
 
 

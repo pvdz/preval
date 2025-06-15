@@ -129,11 +129,11 @@ function processAttempt(fdata, queue) {
 
           const stmt = read.blockBody[read.blockIndex];
 
-          const tmplen = createFreshVar('tmpArrlen', fdata);
-          const tmp = createFreshVar('tmpArri', fdata);
-          const tmp2 = createFreshVar('tmpArrc', fdata);
-          const tmp3 = createFreshVar('tmpArrin', fdata);
-          const tmp4 = createFreshVar('tmpArrel', fdata);
+          const tmplen = createFreshVar('tmpLambdaForeachLen', fdata);
+          const tmp = createFreshVar('tmpLambdaForeachCounter', fdata);
+          const tmp2 = createFreshVar('tmpLambdaForeachCounterTest', fdata);
+          const tmp3 = createFreshVar('tmpLambdaForeachCounterHas', fdata);
+          const tmp4 = createFreshVar('tmpLambdaForeachCounterVal', fdata);
 
           const stmts = [
             // let tmp = 0;
@@ -220,13 +220,13 @@ function processAttempt(fdata, queue) {
 
           const stmt = read.blockBody[read.blockIndex];
 
-          const tmplen = createFreshVar('tmpArrlen', fdata);
-          const tmp = createFreshVar('tmpArri', fdata);
-          const tmp2 = createFreshVar('tmpArrc', fdata);
-          const tmp3 = createFreshVar('tmpArrin', fdata);
-          const tmp4 = createFreshVar('tmpArrel', fdata);
-          const tmp5 = createFreshVar('tmpArreout', fdata);
-          const tmp6 = createFreshVar('tmpArrenow', fdata);
+          const tmplen = createFreshVar('tmpLambdaEveryLen', fdata);
+          const tmp = createFreshVar('tmpLambdaEveryCounter', fdata);
+          const tmp2 = createFreshVar('tmpLambdaEveryTest', fdata);
+          const tmp3 = createFreshVar('tmpLambdaEveryHas', fdata);
+          const tmp4 = createFreshVar('tmpLambdaEveryVal', fdata);
+          const tmp5 = createFreshVar('tmpLambdaEveryOut', fdata);
+          const tmp6 = createFreshVar('tmpLambdaEveryWas', fdata);
 
           const stmts = [
             // `const len = arr.length;`
@@ -344,13 +344,13 @@ function processAttempt(fdata, queue) {
 
           const stmt = read.blockBody[read.blockIndex];
 
-          const tmplen = createFreshVar('tmpArrlen', fdata);
-          const tmp = createFreshVar('tmpArri', fdata);
-          const tmp2 = createFreshVar('tmpArrc', fdata);
-          const tmp3 = createFreshVar('tmpArrin', fdata);
-          const tmp4 = createFreshVar('tmpArrel', fdata);
-          const tmp5 = createFreshVar('tmpArreout', fdata);
-          const tmp6 = createFreshVar('tmpArrenow', fdata);
+          const tmplen = createFreshVar('tmpLambdaFilterLen', fdata);
+          const tmp = createFreshVar('tmpLambdaFilterCounter', fdata);
+          const tmp2 = createFreshVar('tmpLambdaFilterTest', fdata);
+          const tmp3 = createFreshVar('tmpLambdaFilterHas', fdata);
+          const tmp4 = createFreshVar('tmpLambdaFilterVal', fdata);
+          const tmp5 = createFreshVar('tmpLambdaFilterOut', fdata);
+          const tmp6 = createFreshVar('tmpLambdaFilterWas', fdata);
 
           const stmts = [
             // `const len = arr.length;`
@@ -480,12 +480,12 @@ function processAttempt(fdata, queue) {
 
           const stmt = read.blockBody[read.blockIndex];
 
-          const tmplen = createFreshVar('tmpArrlen', fdata);
-          const tmp = createFreshVar('tmpArri', fdata);
-          const tmp2 = createFreshVar('tmpArrc', fdata);
-          const tmp4 = createFreshVar('tmpArrel', fdata);
-          const tmp5 = createFreshVar('tmpArreout', fdata);
-          const tmp6 = createFreshVar('tmpArrnow', fdata);
+          const tmplen = createFreshVar('tmpLambdaFindLen', fdata);
+          const tmp = createFreshVar('tmpLambdaFindCounter', fdata);
+          const tmp2 = createFreshVar('tmpLambdaFindTest', fdata);
+          const tmp4 = createFreshVar('tmpLambdaFindVal', fdata);
+          const tmp5 = createFreshVar('tmpLambdaFindOut', fdata);
+          const tmp6 = createFreshVar('tmpLambdaFindNow', fdata);
 
           const stmts = [
             // `const len = arr.length;`
@@ -597,12 +597,12 @@ function processAttempt(fdata, queue) {
 
           const stmt = read.blockBody[read.blockIndex];
 
-          const tmplen = createFreshVar('tmpArrlen', fdata);
-          const tmp = createFreshVar('tmpArri', fdata);
-          const tmp2 = createFreshVar('tmpArrc', fdata);
-          const tmp4 = createFreshVar('tmpArrel', fdata);
-          const tmp5 = createFreshVar('tmpArreout', fdata);
-          const tmp6 = createFreshVar('tmpArrnow', fdata);
+          const tmplen = createFreshVar('tmpLambdaFindIndexLen', fdata);
+          const tmp = createFreshVar('tmpLambdaFindIndexCounter', fdata);
+          const tmp2 = createFreshVar('tmpLambdaFindIndexTest', fdata);
+          const tmp4 = createFreshVar('tmpLambdaFindIndexVal', fdata);
+          const tmp5 = createFreshVar('tmpLambdaFindIndexOut', fdata);
+          const tmp6 = createFreshVar('tmpLambdaFindIndexNow', fdata);
 
           const stmts = [
             // `const len = arr.length;`
@@ -711,12 +711,12 @@ function processAttempt(fdata, queue) {
 
           const stmt = read.blockBody[read.blockIndex];
 
-          const tmplen = createFreshVar('tmpArrlen', fdata);
-          const tmp = createFreshVar('tmpArri', fdata);
-          const tmp2 = createFreshVar('tmpArrc', fdata);
-          const tmp4 = createFreshVar('tmpArrel', fdata);
-          const tmp5 = createFreshVar('tmpArreout', fdata);
-          const tmp6 = createFreshVar('tmpArrnow', fdata);
+          const tmplen = createFreshVar('tmpLambdaFindLastLen', fdata);
+          const tmp = createFreshVar('tmpLambdaFindLastCounter', fdata);
+          const tmp2 = createFreshVar('tmpLambdaFindLastTest', fdata);
+          const tmp4 = createFreshVar('tmpLambdaFindLastVal', fdata);
+          const tmp5 = createFreshVar('tmpLambdaFindLastOut', fdata);
+          const tmp6 = createFreshVar('tmpLambdaFindLastNow', fdata);
 
           const stmts = [
             // `const len = arr.length;`
@@ -826,12 +826,12 @@ function processAttempt(fdata, queue) {
 
           const stmt = read.blockBody[read.blockIndex];
 
-          const tmplen = createFreshVar('tmpArrlen', fdata);
-          const tmp = createFreshVar('tmpArri', fdata);
-          const tmp2 = createFreshVar('tmpArrc', fdata);
-          const tmp4 = createFreshVar('tmpArrel', fdata);
-          const tmp5 = createFreshVar('tmpArreout', fdata);
-          const tmp6 = createFreshVar('tmpArrnow', fdata);
+          const tmplen = createFreshVar('tmpLambdaFindLastIndexLen', fdata);
+          const tmp = createFreshVar('tmpLambdaFindLastIndexCounter', fdata);
+          const tmp2 = createFreshVar('tmpLambdaFindLastIndexTest', fdata);
+          const tmp4 = createFreshVar('tmpLambdaFindLastIndexVal', fdata);
+          const tmp5 = createFreshVar('tmpLambdaFindLastIndexOut', fdata);
+          const tmp6 = createFreshVar('tmpLambdaFindLastIndexNow', fdata);
 
           const stmts = [
             // `const len = arr.length;`
@@ -941,13 +941,13 @@ function processAttempt(fdata, queue) {
 
           const stmt = read.blockBody[read.blockIndex];
 
-          const tmplen = createFreshVar('tmpArrlen', fdata);
-          const tmp = createFreshVar('tmpArri', fdata);
-          const tmp2 = createFreshVar('tmpArrc', fdata);
-          const tmp3 = createFreshVar('tmpArrin', fdata);
-          const tmp4 = createFreshVar('tmpArrel', fdata);
-          const tmp5 = createFreshVar('tmpArreout', fdata);
-          const tmp6 = createFreshVar('tmpArrenow', fdata);
+          const tmplen = createFreshVar('tmpLambdaMapLen', fdata);
+          const tmp = createFreshVar('tmpLambdaMapCounter', fdata);
+          const tmp2 = createFreshVar('tmpLambdaMapTest', fdata);
+          const tmp3 = createFreshVar('tmpLambdaMapHas', fdata);
+          const tmp4 = createFreshVar('tmpLambdaMapVal', fdata);
+          const tmp5 = createFreshVar('tmpLambdaMapOut', fdata);
+          const tmp6 = createFreshVar('tmpLambdaMapNow', fdata);
 
           const stmts = [
             // `const len = arr.length;`
@@ -1078,16 +1078,16 @@ function processAttempt(fdata, queue) {
 
           const initArg = read.parentNode.arguments[4]; // dotcall args start with 3 args, then callback arg, then init arg
 
-          const tmplen = createFreshVar('tmpArrlen', fdata);
-          const tmp = createFreshVar('tmpArri', fdata);
-          const tmp2 = createFreshVar('tmpArrc', fdata);
-          const tmp3 = createFreshVar('tmpArrin', fdata);
-          const tmp4 = createFreshVar('tmpArrel', fdata);
-          const tmp5 = createFreshVar('tmpArreout', fdata);
-          const tmp7 = !initArg && createFreshVar('tmpArre1st', fdata);
-          const tmp8 = !initArg && createFreshVar('tmpArrebad', fdata);
-          const tmp9 = !initArg && createFreshVar('tmpArrette', fdata);
-          const tmp10 = !initArg && createFreshVar('tmpArreerr', fdata);
+          const tmplen = createFreshVar('tmpLambdaReduceLen', fdata);
+          const tmp = createFreshVar('tmpLambdaReduceCounter', fdata);
+          const tmp2 = createFreshVar('tmpLambdaReduceTest', fdata);
+          const tmp3 = createFreshVar('tmpLambdaReduceHas', fdata);
+          const tmp4 = createFreshVar('tmpLambdaReduceVal', fdata);
+          const tmp5 = createFreshVar('tmpLambdaReduceOut', fdata);
+          const tmp7 = !initArg && createFreshVar('tmpLambdaReduce1st', fdata);
+          const tmp8 = !initArg && createFreshVar('tmpLambdaReduceBad', fdata);
+          const tmp9 = !initArg && createFreshVar('tmpLambdaReduceTTE', fdata);
+          const tmp10 = !initArg && createFreshVar('tmpLambdaReduceErr', fdata);
 
           // Generate this block first. Depending on whether an init was passed on we have slightly different transforms
           // `result = callback(result, val, counter, arr);`
@@ -1265,16 +1265,16 @@ function processAttempt(fdata, queue) {
 
           const initArg = read.parentNode.arguments[4]; // dotcall args start with 3 args, then callback arg, then init arg
 
-          const tmplen = createFreshVar('tmpArrlen', fdata);
-          const tmp = createFreshVar('tmpArri', fdata);
-          const tmp2 = createFreshVar('tmpArrc', fdata);
-          const tmp3 = createFreshVar('tmpArrin', fdata);
-          const tmp4 = createFreshVar('tmpArrel', fdata);
-          const tmp5 = createFreshVar('tmpArreout', fdata);
-          const tmp7 = !initArg && createFreshVar('tmpArre1st', fdata);
-          const tmp8 = !initArg && createFreshVar('tmpArrebad', fdata);
-          const tmp9 = !initArg && createFreshVar('tmpArrette', fdata);
-          const tmp10 = !initArg && createFreshVar('tmpArreerr', fdata);
+          const tmplen = createFreshVar('tmpLambdaReduceRightLen', fdata);
+          const tmp = createFreshVar('tmpLambdaReduceRightCounter', fdata);
+          const tmp2 = createFreshVar('tmpLambdaReduceRightTest', fdata);
+          const tmp3 = createFreshVar('tmpLambdaReduceRightHas', fdata);
+          const tmp4 = createFreshVar('tmpLambdaReduceRightVal', fdata);
+          const tmp5 = createFreshVar('tmpLambdaReduceRightOut', fdata);
+          const tmp7 = !initArg && createFreshVar('tmpLambdaReduceRight1st', fdata);
+          const tmp8 = !initArg && createFreshVar('tmpLambdaReduceRightBad', fdata);
+          const tmp9 = !initArg && createFreshVar('tmpLambdaReduceRightTTE', fdata);
+          const tmp10 = !initArg && createFreshVar('tmpLambdaReduceRightErr', fdata);
 
           // Generate this block first. Depending on whether an init was passed on we have slightly different transforms
           // `result = callback(result, val, counter, arr);`
@@ -1435,13 +1435,13 @@ function processAttempt(fdata, queue) {
 
           const stmt = read.blockBody[read.blockIndex];
 
-          const tmplen = createFreshVar('tmpArrlen', fdata);
-          const tmp = createFreshVar('tmpArri', fdata);
-          const tmp2 = createFreshVar('tmpArrc', fdata);
-          const tmp3 = createFreshVar('tmpArrin', fdata);
-          const tmp4 = createFreshVar('tmpArrel', fdata);
-          const tmp5 = createFreshVar('tmpArreout', fdata);
-          const tmp6 = createFreshVar('tmpArrenow', fdata);
+          const tmplen = createFreshVar('tmpLambdaSomeLen', fdata);
+          const tmp = createFreshVar('tmpLambdaSomeCounter', fdata);
+          const tmp2 = createFreshVar('tmpLambdaSomeTest', fdata);
+          const tmp3 = createFreshVar('tmpLambdaSomeHas', fdata);
+          const tmp4 = createFreshVar('tmpLambdaSomeVal', fdata);
+          const tmp5 = createFreshVar('tmpLambdaSomeOut', fdata);
+          const tmp6 = createFreshVar('tmpLambdaSomeNow', fdata);
 
           const stmts = [
             // `const len = arr.length;`

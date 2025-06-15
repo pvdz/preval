@@ -22,23 +22,23 @@ $(arr, x);
 const arr /*:array*/ /*truthy*/ = [1, 2, 3];
 delete arr[1];
 $(1);
-const tmpArrin$1 /*:boolean*/ = 1 in arr;
-const tmpArreout /*:array*/ /*truthy*/ = [undefined];
-if (tmpArrin$1) {
-  const tmpArrel$2 /*:primitive*/ = arr[1];
-  $(tmpArrel$2);
-  tmpArreout[1] = undefined;
+const tmpLambdaMapHas$1 /*:boolean*/ = 1 in arr;
+const tmpLambdaMapOut /*:array*/ /*truthy*/ = [undefined];
+if (tmpLambdaMapHas$1) {
+  const tmpLambdaMapVal$2 /*:primitive*/ = arr[1];
+  $(tmpLambdaMapVal$2);
+  tmpLambdaMapOut[1] = undefined;
 } else {
 }
-const tmpArrin$2 /*:boolean*/ = 2 in arr;
-if (tmpArrin$2) {
-  const tmpArrel$1 /*:primitive*/ = arr[2];
-  $(tmpArrel$1);
-  tmpArreout[2] = undefined;
+const tmpLambdaMapHas$2 /*:boolean*/ = 2 in arr;
+if (tmpLambdaMapHas$2) {
+  const tmpLambdaMapVal$1 /*:primitive*/ = arr[2];
+  $(tmpLambdaMapVal$1);
+  tmpLambdaMapOut[2] = undefined;
 } else {
 }
-tmpArreout.length = 3;
-$(arr, tmpArreout);
+tmpLambdaMapOut.length = 3;
+$(arr, tmpLambdaMapOut);
 `````
 
 
@@ -49,18 +49,18 @@ $(arr, tmpArreout);
 const arr = [1, 2, 3];
 delete arr[1];
 $(1);
-const tmpArrin$1 = 1 in arr;
-const tmpArreout = [undefined];
-if (tmpArrin$1) {
+const tmpLambdaMapHas$1 = 1 in arr;
+const tmpLambdaMapOut = [undefined];
+if (tmpLambdaMapHas$1) {
   $(arr[1]);
-  tmpArreout[1] = undefined;
+  tmpLambdaMapOut[1] = undefined;
 }
 if (2 in arr) {
   $(arr[2]);
-  tmpArreout[2] = undefined;
+  tmpLambdaMapOut[2] = undefined;
 }
-tmpArreout.length = 3;
-$(arr, tmpArreout);
+tmpLambdaMapOut.length = 3;
+$(arr, tmpLambdaMapOut);
 `````
 
 

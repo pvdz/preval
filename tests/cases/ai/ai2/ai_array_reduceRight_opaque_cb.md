@@ -26,14 +26,22 @@ const tmpArrElement$1 /*:unknown*/ = $(`b`);
 const cb /*:unknown*/ = $(`opaque_reducer_right`);
 const tmpMCP /*:unknown*/ = $(`initial`);
 const arr /*:array*/ /*truthy*/ = [tmpArrElement, tmpArrElement$1];
-const tmpClusterSSA_tmpArreout /*:unknown*/ = $dotCall(cb, undefined, undefined, tmpMCP, tmpArrElement$1, 1, arr);
-const tmpArrin$1 /*:boolean*/ = 0 in arr;
-if (tmpArrin$1) {
-  const tmpArrel$1 /*:unknown*/ = arr[0];
-  const tmpClusterSSA_tmpArreout$1 /*:unknown*/ = $dotCall(cb, undefined, undefined, tmpClusterSSA_tmpArreout, tmpArrel$1, 0, arr);
-  $(`reduceRight_result`, tmpClusterSSA_tmpArreout$1);
+const tmpClusterSSA_tmpLambdaReduceRightOut /*:unknown*/ = $dotCall(cb, undefined, undefined, tmpMCP, tmpArrElement$1, 1, arr);
+const tmpLambdaReduceRightHas$1 /*:boolean*/ = 0 in arr;
+if (tmpLambdaReduceRightHas$1) {
+  const tmpLambdaReduceRightVal$1 /*:unknown*/ = arr[0];
+  const tmpClusterSSA_tmpLambdaReduceRightOut$1 /*:unknown*/ = $dotCall(
+    cb,
+    undefined,
+    undefined,
+    tmpClusterSSA_tmpLambdaReduceRightOut,
+    tmpLambdaReduceRightVal$1,
+    0,
+    arr,
+  );
+  $(`reduceRight_result`, tmpClusterSSA_tmpLambdaReduceRightOut$1);
 } else {
-  $(`reduceRight_result`, tmpClusterSSA_tmpArreout);
+  $(`reduceRight_result`, tmpClusterSSA_tmpLambdaReduceRightOut);
 }
 `````
 
@@ -47,11 +55,11 @@ const tmpArrElement$1 = $(`b`);
 const cb = $(`opaque_reducer_right`);
 const tmpMCP = $(`initial`);
 const arr = [tmpArrElement, tmpArrElement$1];
-const tmpClusterSSA_tmpArreout = $dotCall(cb, undefined, undefined, tmpMCP, tmpArrElement$1, 1, arr);
+const tmpClusterSSA_tmpLambdaReduceRightOut = $dotCall(cb, undefined, undefined, tmpMCP, tmpArrElement$1, 1, arr);
 if (0 in arr) {
-  $(`reduceRight_result`, $dotCall(cb, undefined, undefined, tmpClusterSSA_tmpArreout, arr[0], 0, arr));
+  $(`reduceRight_result`, $dotCall(cb, undefined, undefined, tmpClusterSSA_tmpLambdaReduceRightOut, arr[0], 0, arr));
 } else {
-  $(`reduceRight_result`, tmpClusterSSA_tmpArreout);
+  $(`reduceRight_result`, tmpClusterSSA_tmpLambdaReduceRightOut);
 }
 `````
 

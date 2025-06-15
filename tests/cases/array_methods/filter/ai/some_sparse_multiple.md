@@ -22,8 +22,8 @@ $(x);
 $(1);
 $(3);
 $(5);
-const tmpArreout /*:array*/ /*truthy*/ = [];
-$(tmpArreout);
+const tmpLambdaFilterOut /*:array*/ /*truthy*/ = [];
+$(tmpLambdaFilterOut);
 `````
 
 

@@ -22,10 +22,10 @@ $(arr, x);
 const arr /*:array*/ /*truthy*/ = [1, 2, 3];
 delete arr[1];
 $(1);
-const tmpArrel$2 /*:primitive*/ = arr[1];
-$(tmpArrel$2);
-const tmpArrel$1 /*:primitive*/ = arr[2];
-$(tmpArrel$1);
+const tmpLambdaFindVal$2 /*:primitive*/ = arr[1];
+$(tmpLambdaFindVal$2);
+const tmpLambdaFindVal$1 /*:primitive*/ = arr[2];
+$(tmpLambdaFindVal$1);
 $(arr, undefined);
 `````
 

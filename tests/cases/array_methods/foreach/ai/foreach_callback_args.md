@@ -21,10 +21,10 @@
 `````js filename=intro
 const tmpMCOO /*:array*/ /*truthy*/ = [10, 20];
 $(10, 0, tmpMCOO);
-const tmpArrin$1 /*:boolean*/ = 1 in tmpMCOO;
-if (tmpArrin$1) {
-  const tmpArrel$1 /*:primitive*/ = tmpMCOO[1];
-  $(tmpArrel$1, 1, tmpMCOO);
+const tmpLambdaForeachCounterHas$1 /*:boolean*/ = 1 in tmpMCOO;
+if (tmpLambdaForeachCounterHas$1) {
+  const tmpLambdaForeachCounterVal$1 /*:primitive*/ = tmpMCOO[1];
+  $(tmpLambdaForeachCounterVal$1, 1, tmpMCOO);
 } else {
 }
 `````

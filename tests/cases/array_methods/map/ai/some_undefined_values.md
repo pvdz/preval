@@ -22,8 +22,8 @@ $(x);
 $(undefined);
 $(2);
 $(undefined);
-const tmpArreout /*:array*/ /*truthy*/ = [undefined, undefined, undefined];
-$(tmpArreout);
+const tmpLambdaMapOut /*:array*/ /*truthy*/ = [undefined, undefined, undefined];
+$(tmpLambdaMapOut);
 `````
 
 

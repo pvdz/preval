@@ -20,10 +20,10 @@ $(x);
 `````js filename=intro
 const tmpMCOO /*:array*/ /*truthy*/ = [10, 20];
 $(10, 0, tmpMCOO);
-const tmpArrin$1 /*:boolean*/ = 1 in tmpMCOO;
-if (tmpArrin$1) {
-  const tmpArrel$1 /*:primitive*/ = tmpMCOO[1];
-  $(tmpArrel$1, 1, tmpMCOO);
+const tmpLambdaSomeHas$1 /*:boolean*/ = 1 in tmpMCOO;
+if (tmpLambdaSomeHas$1) {
+  const tmpLambdaSomeVal$1 /*:primitive*/ = tmpMCOO[1];
+  $(tmpLambdaSomeVal$1, 1, tmpMCOO);
   $(false);
 } else {
   $(false);

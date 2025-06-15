@@ -35,7 +35,7 @@ new B();
 `````js filename=intro
 const A /*:class*/ /*truthy*/ = class {
   constructor($$0) {
-    const tmpPrevalAliasThis /*:object*/ /*truthy*/ = this;
+    const tmpPrevalAliasThis /*:unknown*/ = this;
     const x /*:unknown*/ = $$0;
     debugger;
     $(`A:`, x, tmpPrevalAliasThis);
@@ -44,7 +44,7 @@ const A /*:class*/ /*truthy*/ = class {
 };
 const B /*:class*/ /*truthy*/ = class extends A {
   constructor() {
-    const tmpPrevalAliasThis$1 /*:object*/ /*truthy*/ = this;
+    const tmpPrevalAliasThis$1 /*:unknown*/ = this;
     debugger;
     const a /*:unknown*/ = $(`important`);
     const x$1 /*:unknown*/ = super(a);

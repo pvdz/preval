@@ -32,34 +32,34 @@ const tmpMCP /*:(unknown)=>undefined*/ = function ($$0) {
 };
 const ctx /*:object*/ /*truthy*/ = { mult: 2 };
 const tmpMCOO /*:array*/ /*truthy*/ = [1, 2, 3];
-const tmpArrenow /*:unknown*/ = $dotCall(tmpMCP, ctx, undefined, 1, 0, tmpMCOO);
-const tmpArreout /*:array*/ /*truthy*/ = [];
-if (tmpArrenow) {
-  $dotCall($array_push, tmpArreout, `push`, 1);
+const tmpLambdaFilterWas /*:unknown*/ = $dotCall(tmpMCP, ctx, undefined, 1, 0, tmpMCOO);
+const tmpLambdaFilterOut /*:array*/ /*truthy*/ = [];
+if (tmpLambdaFilterWas) {
+  $dotCall($array_push, tmpLambdaFilterOut, `push`, 1);
 } else {
 }
-const tmpArrin$1 /*:boolean*/ = 1 in tmpMCOO;
-if (tmpArrin$1) {
-  const tmpArrel$1 /*:primitive*/ = tmpMCOO[1];
-  const tmpArrenow$1 /*:unknown*/ = $dotCall(tmpMCP, ctx, undefined, tmpArrel$1, 1, tmpMCOO);
-  if (tmpArrenow$1) {
-    $dotCall($array_push, tmpArreout, `push`, tmpArrel$1);
+const tmpLambdaFilterHas$1 /*:boolean*/ = 1 in tmpMCOO;
+if (tmpLambdaFilterHas$1) {
+  const tmpLambdaFilterVal$1 /*:primitive*/ = tmpMCOO[1];
+  const tmpLambdaFilterWas$1 /*:unknown*/ = $dotCall(tmpMCP, ctx, undefined, tmpLambdaFilterVal$1, 1, tmpMCOO);
+  if (tmpLambdaFilterWas$1) {
+    $dotCall($array_push, tmpLambdaFilterOut, `push`, tmpLambdaFilterVal$1);
   } else {
   }
 } else {
 }
-const tmpArrin$2 /*:boolean*/ = 2 in tmpMCOO;
-if (tmpArrin$2) {
-  const tmpArrel$2 /*:primitive*/ = tmpMCOO[2];
-  const tmpArrenow$2 /*:unknown*/ = $dotCall(tmpMCP, ctx, undefined, tmpArrel$2, 2, tmpMCOO);
-  if (tmpArrenow$2) {
-    $dotCall($array_push, tmpArreout, `push`, tmpArrel$2);
-    $(result, tmpArreout);
+const tmpLambdaFilterHas$2 /*:boolean*/ = 2 in tmpMCOO;
+if (tmpLambdaFilterHas$2) {
+  const tmpLambdaFilterVal$2 /*:primitive*/ = tmpMCOO[2];
+  const tmpLambdaFilterWas$2 /*:unknown*/ = $dotCall(tmpMCP, ctx, undefined, tmpLambdaFilterVal$2, 2, tmpMCOO);
+  if (tmpLambdaFilterWas$2) {
+    $dotCall($array_push, tmpLambdaFilterOut, `push`, tmpLambdaFilterVal$2);
+    $(result, tmpLambdaFilterOut);
   } else {
-    $(result, tmpArreout);
+    $(result, tmpLambdaFilterOut);
   }
 } else {
-  $(result, tmpArreout);
+  $(result, tmpLambdaFilterOut);
 }
 `````
 
@@ -75,27 +75,27 @@ const tmpMCP = function (x$1) {
 };
 const ctx = { mult: 2 };
 const tmpMCOO = [1, 2, 3];
-const tmpArrenow = $dotCall(tmpMCP, ctx, undefined, 1, 0, tmpMCOO);
-const tmpArreout = [];
-if (tmpArrenow) {
-  $dotCall($array_push, tmpArreout, `push`, 1);
+const tmpLambdaFilterWas = $dotCall(tmpMCP, ctx, undefined, 1, 0, tmpMCOO);
+const tmpLambdaFilterOut = [];
+if (tmpLambdaFilterWas) {
+  $dotCall($array_push, tmpLambdaFilterOut, `push`, 1);
 }
 if (1 in tmpMCOO) {
-  const tmpArrel$1 = tmpMCOO[1];
-  if ($dotCall(tmpMCP, ctx, undefined, tmpArrel$1, 1, tmpMCOO)) {
-    $dotCall($array_push, tmpArreout, `push`, tmpArrel$1);
+  const tmpLambdaFilterVal$1 = tmpMCOO[1];
+  if ($dotCall(tmpMCP, ctx, undefined, tmpLambdaFilterVal$1, 1, tmpMCOO)) {
+    $dotCall($array_push, tmpLambdaFilterOut, `push`, tmpLambdaFilterVal$1);
   }
 }
 if (2 in tmpMCOO) {
-  const tmpArrel$2 = tmpMCOO[2];
-  if ($dotCall(tmpMCP, ctx, undefined, tmpArrel$2, 2, tmpMCOO)) {
-    $dotCall($array_push, tmpArreout, `push`, tmpArrel$2);
-    $(result, tmpArreout);
+  const tmpLambdaFilterVal$2 = tmpMCOO[2];
+  if ($dotCall(tmpMCP, ctx, undefined, tmpLambdaFilterVal$2, 2, tmpMCOO)) {
+    $dotCall($array_push, tmpLambdaFilterOut, `push`, tmpLambdaFilterVal$2);
+    $(result, tmpLambdaFilterOut);
   } else {
-    $(result, tmpArreout);
+    $(result, tmpLambdaFilterOut);
   }
 } else {
-  $(result, tmpArreout);
+  $(result, tmpLambdaFilterOut);
 }
 `````
 

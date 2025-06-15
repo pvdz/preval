@@ -20,8 +20,8 @@ $(result, x);
 
 `````js filename=intro
 const result /*:array*/ /*truthy*/ = [];
-const tmpArreout /*:array*/ /*truthy*/ = [];
-$(result, tmpArreout);
+const tmpLambdaMapOut /*:array*/ /*truthy*/ = [];
+$(result, tmpLambdaMapOut);
 `````
 
 

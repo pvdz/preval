@@ -24,7 +24,7 @@ try {
 `````js filename=intro
 try {
   const tmpThrowArg$1 /*:object*/ /*truthy*/ = new $typeError_constructor(
-    `[Preval] Attempting to call a value that cannot be called: \`tmpArreout = \$dotCall(null, undefined, undefined, tmpArreout, tmpArrel, tmpArri, tmpMCOO);\``,
+    `[Preval] Attempting to call a value that cannot be called: \`tmpLambdaReduceOut = \$dotCall(null, undefined, undefined, tmpLambdaReduceOut, tmpLambdaReduceVal, tmpLambdaReduceCounter, tmpMCOO);\``,
   );
   throw tmpThrowArg$1;
 } catch (e) {
@@ -40,7 +40,7 @@ try {
 `````js filename=intro
 try {
   const tmpThrowArg$1 = new $typeError_constructor(
-    `[Preval] Attempting to call a value that cannot be called: \`tmpArreout = \$dotCall(null, undefined, undefined, tmpArreout, tmpArrel, tmpArri, tmpMCOO);\``,
+    `[Preval] Attempting to call a value that cannot be called: \`tmpLambdaReduceOut = \$dotCall(null, undefined, undefined, tmpLambdaReduceOut, tmpLambdaReduceVal, tmpLambdaReduceCounter, tmpMCOO);\``,
   );
   throw tmpThrowArg$1;
 } catch (e) {
@@ -54,7 +54,7 @@ With rename=true
 
 `````js filename=intro
 try {
-  const a = new $typeError_constructor( "[Preval] Attempting to call a value that cannot be called: `tmpArreout = $dotCall(null, undefined, undefined, tmpArreout, tmpArrel, tmpArri, tmpMCOO);`" );
+  const a = new $typeError_constructor( "[Preval] Attempting to call a value that cannot be called: `tmpLambdaReduceOut = $dotCall(null, undefined, undefined, tmpLambdaReduceOut, tmpLambdaReduceVal, tmpLambdaReduceCounter, tmpMCOO);`" );
   throw a;
 }
 catch (b) {

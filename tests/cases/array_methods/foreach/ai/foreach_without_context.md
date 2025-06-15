@@ -31,16 +31,16 @@ const tmpMCP /*:(unused)=>undefined*/ = function ($$0) {
 };
 const tmpMCOO /*:array*/ /*truthy*/ = [1, 2, 3];
 $dotCall(tmpMCP, undefined, undefined, 1, 0, tmpMCOO);
-const tmpArrin$1 /*:boolean*/ = 1 in tmpMCOO;
-if (tmpArrin$1) {
-  const tmpArrel$1 /*:primitive*/ = tmpMCOO[1];
-  $dotCall(tmpMCP, undefined, undefined, tmpArrel$1, 1, tmpMCOO);
+const tmpLambdaForeachCounterHas$1 /*:boolean*/ = 1 in tmpMCOO;
+if (tmpLambdaForeachCounterHas$1) {
+  const tmpLambdaForeachCounterVal$1 /*:primitive*/ = tmpMCOO[1];
+  $dotCall(tmpMCP, undefined, undefined, tmpLambdaForeachCounterVal$1, 1, tmpMCOO);
 } else {
 }
-const tmpArrin$2 /*:boolean*/ = 2 in tmpMCOO;
-if (tmpArrin$2) {
-  const tmpArrel$2 /*:primitive*/ = tmpMCOO[2];
-  $dotCall(tmpMCP, undefined, undefined, tmpArrel$2, 2, tmpMCOO);
+const tmpLambdaForeachCounterHas$2 /*:boolean*/ = 2 in tmpMCOO;
+if (tmpLambdaForeachCounterHas$2) {
+  const tmpLambdaForeachCounterVal$2 /*:primitive*/ = tmpMCOO[2];
+  $dotCall(tmpMCP, undefined, undefined, tmpLambdaForeachCounterVal$2, 2, tmpMCOO);
   $(result);
 } else {
   $(result);

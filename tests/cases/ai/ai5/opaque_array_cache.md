@@ -29,24 +29,24 @@ $(y + z);
 `````js filename=intro
 const x /*:unknown*/ = $(`test`);
 const tmpMCF$1 /*:unknown*/ = x.toString;
-const tmpClusterSSA_tmpArrenow /*:unknown*/ = $dotCall(tmpMCF$1, x, `toString`);
+const tmpClusterSSA_tmpLambdaMapNow /*:unknown*/ = $dotCall(tmpMCF$1, x, `toString`);
 const tmpMCF$2 /*:unknown*/ = x.toString;
-const tmpClusterSSA_tmpArrenow$1 /*:unknown*/ = $dotCall(tmpMCF$2, x, `toString`);
+const tmpClusterSSA_tmpLambdaMapNow$1 /*:unknown*/ = $dotCall(tmpMCF$2, x, `toString`);
 const tmpBinLhs /*:unknown*/ = x.length;
-const tmpClusterSSA_tmpArrenow$5 /*:boolean*/ = tmpBinLhs > 0;
-const tmpArreout$1 /*:array*/ /*truthy*/ = [];
-if (tmpClusterSSA_tmpArrenow$5) {
-  $dotCall($array_push, tmpArreout$1, `push`, x);
+const tmpClusterSSA_tmpLambdaFilterWas /*:boolean*/ = tmpBinLhs > 0;
+const tmpLambdaFilterOut /*:array*/ /*truthy*/ = [];
+if (tmpClusterSSA_tmpLambdaFilterWas) {
+  $dotCall($array_push, tmpLambdaFilterOut, `push`, x);
 } else {
 }
 const tmpBinLhs$1 /*:unknown*/ = x.length;
-const tmpClusterSSA_tmpArrenow$2 /*:boolean*/ = tmpBinLhs$1 > 0;
-if (tmpClusterSSA_tmpArrenow$2) {
-  $dotCall($array_push, tmpArreout$1, `push`, x);
+const tmpClusterSSA_tmpLambdaFilterWas$1 /*:boolean*/ = tmpBinLhs$1 > 0;
+if (tmpClusterSSA_tmpLambdaFilterWas$1) {
+  $dotCall($array_push, tmpLambdaFilterOut, `push`, x);
 } else {
 }
-const tmpArreout /*:array*/ /*truthy*/ = [tmpClusterSSA_tmpArrenow, tmpClusterSSA_tmpArrenow$1];
-const tmpCalleeParam /*:primitive*/ = tmpArreout + tmpArreout$1;
+const tmpLambdaMapOut /*:array*/ /*truthy*/ = [tmpClusterSSA_tmpLambdaMapNow, tmpClusterSSA_tmpLambdaMapNow$1];
+const tmpCalleeParam /*:primitive*/ = tmpLambdaMapOut + tmpLambdaFilterOut;
 $(tmpCalleeParam);
 `````
 
@@ -56,17 +56,17 @@ $(tmpCalleeParam);
 
 `````js filename=intro
 const x = $(`test`);
-const tmpClusterSSA_tmpArrenow = x.toString();
-const tmpClusterSSA_tmpArrenow$1 = x.toString();
-const tmpClusterSSA_tmpArrenow$5 = x.length > 0;
-const tmpArreout$1 = [];
-if (tmpClusterSSA_tmpArrenow$5) {
-  $dotCall($array_push, tmpArreout$1, `push`, x);
+const tmpClusterSSA_tmpLambdaMapNow = x.toString();
+const tmpClusterSSA_tmpLambdaMapNow$1 = x.toString();
+const tmpClusterSSA_tmpLambdaFilterWas = x.length > 0;
+const tmpLambdaFilterOut = [];
+if (tmpClusterSSA_tmpLambdaFilterWas) {
+  $dotCall($array_push, tmpLambdaFilterOut, `push`, x);
 }
 if (x.length > 0) {
-  $dotCall($array_push, tmpArreout$1, `push`, x);
+  $dotCall($array_push, tmpLambdaFilterOut, `push`, x);
 }
-$([tmpClusterSSA_tmpArrenow, tmpClusterSSA_tmpArrenow$1] + tmpArreout$1);
+$([tmpClusterSSA_tmpLambdaMapNow, tmpClusterSSA_tmpLambdaMapNow$1] + tmpLambdaFilterOut);
 `````
 
 

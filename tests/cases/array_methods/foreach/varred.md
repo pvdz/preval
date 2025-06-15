@@ -29,16 +29,16 @@ const f /*:()=>undefined*/ = function () {
   debugger;
   const arr /*:array*/ /*truthy*/ = [1, 2, 3];
   $dotCall($, undefined, undefined, 1, 0, arr);
-  const tmpArrin$1 /*:boolean*/ = 1 in arr;
-  if (tmpArrin$1) {
-    const tmpArrel$1 /*:primitive*/ = arr[1];
-    $dotCall($, undefined, undefined, tmpArrel$1, 1, arr);
+  const tmpLambdaForeachCounterHas$1 /*:boolean*/ = 1 in arr;
+  if (tmpLambdaForeachCounterHas$1) {
+    const tmpLambdaForeachCounterVal$1 /*:primitive*/ = arr[1];
+    $dotCall($, undefined, undefined, tmpLambdaForeachCounterVal$1, 1, arr);
   } else {
   }
-  const tmpArrin$2 /*:boolean*/ = 2 in arr;
-  if (tmpArrin$2) {
-    const tmpArrel$2 /*:primitive*/ = arr[2];
-    $dotCall($, undefined, undefined, tmpArrel$2, 2, arr);
+  const tmpLambdaForeachCounterHas$2 /*:boolean*/ = 2 in arr;
+  if (tmpLambdaForeachCounterHas$2) {
+    const tmpLambdaForeachCounterVal$2 /*:primitive*/ = arr[2];
+    $dotCall($, undefined, undefined, tmpLambdaForeachCounterVal$2, 2, arr);
     $(undefined);
     return undefined;
   } else {

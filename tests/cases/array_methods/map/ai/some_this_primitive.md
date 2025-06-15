@@ -26,24 +26,24 @@ const tmpMCP /*:(unused)=>undefined*/ = function ($$0) {
   return undefined;
 };
 const tmpMCOO /*:array*/ /*truthy*/ = [1, 2, 3];
-const tmpArrenow /*:unknown*/ = $dotCall(tmpMCP, 42, undefined, 1, 0, tmpMCOO);
-const tmpArrin$1 /*:boolean*/ = 1 in tmpMCOO;
-const tmpArreout /*:array*/ /*truthy*/ = [tmpArrenow];
-if (tmpArrin$1) {
-  const tmpArrel$1 /*:primitive*/ = tmpMCOO[1];
-  const tmpArrenow$1 /*:unknown*/ = $dotCall(tmpMCP, 42, undefined, tmpArrel$1, 1, tmpMCOO);
-  tmpArreout[1] = tmpArrenow$1;
+const tmpLambdaMapNow /*:unknown*/ = $dotCall(tmpMCP, 42, undefined, 1, 0, tmpMCOO);
+const tmpLambdaMapHas$1 /*:boolean*/ = 1 in tmpMCOO;
+const tmpLambdaMapOut /*:array*/ /*truthy*/ = [tmpLambdaMapNow];
+if (tmpLambdaMapHas$1) {
+  const tmpLambdaMapVal$1 /*:primitive*/ = tmpMCOO[1];
+  const tmpLambdaMapNow$1 /*:unknown*/ = $dotCall(tmpMCP, 42, undefined, tmpLambdaMapVal$1, 1, tmpMCOO);
+  tmpLambdaMapOut[1] = tmpLambdaMapNow$1;
 } else {
 }
-const tmpArrin$2 /*:boolean*/ = 2 in tmpMCOO;
-if (tmpArrin$2) {
-  const tmpArrel$2 /*:primitive*/ = tmpMCOO[2];
-  const tmpArrenow$2 /*:unknown*/ = $dotCall(tmpMCP, 42, undefined, tmpArrel$2, 2, tmpMCOO);
-  tmpArreout[2] = tmpArrenow$2;
+const tmpLambdaMapHas$2 /*:boolean*/ = 2 in tmpMCOO;
+if (tmpLambdaMapHas$2) {
+  const tmpLambdaMapVal$2 /*:primitive*/ = tmpMCOO[2];
+  const tmpLambdaMapNow$2 /*:unknown*/ = $dotCall(tmpMCP, 42, undefined, tmpLambdaMapVal$2, 2, tmpMCOO);
+  tmpLambdaMapOut[2] = tmpLambdaMapNow$2;
 } else {
 }
-tmpArreout.length = 3;
-$(tmpArreout);
+tmpLambdaMapOut.length = 3;
+$(tmpLambdaMapOut);
 `````
 
 
@@ -56,19 +56,19 @@ const tmpMCP = function ($$0) {
   $(tmpPrevalAliasThis === 42);
 };
 const tmpMCOO = [1, 2, 3];
-const tmpArrenow = $dotCall(tmpMCP, 42, undefined, 1, 0, tmpMCOO);
-const tmpArrin$1 = 1 in tmpMCOO;
-const tmpArreout = [tmpArrenow];
-if (tmpArrin$1) {
-  const tmpArrenow$1 = $dotCall(tmpMCP, 42, undefined, tmpMCOO[1], 1, tmpMCOO);
-  tmpArreout[1] = tmpArrenow$1;
+const tmpLambdaMapNow = $dotCall(tmpMCP, 42, undefined, 1, 0, tmpMCOO);
+const tmpLambdaMapHas$1 = 1 in tmpMCOO;
+const tmpLambdaMapOut = [tmpLambdaMapNow];
+if (tmpLambdaMapHas$1) {
+  const tmpLambdaMapNow$1 = $dotCall(tmpMCP, 42, undefined, tmpMCOO[1], 1, tmpMCOO);
+  tmpLambdaMapOut[1] = tmpLambdaMapNow$1;
 }
 if (2 in tmpMCOO) {
-  const tmpArrenow$2 = $dotCall(tmpMCP, 42, undefined, tmpMCOO[2], 2, tmpMCOO);
-  tmpArreout[2] = tmpArrenow$2;
+  const tmpLambdaMapNow$2 = $dotCall(tmpMCP, 42, undefined, tmpMCOO[2], 2, tmpMCOO);
+  tmpLambdaMapOut[2] = tmpLambdaMapNow$2;
 }
-tmpArreout.length = 3;
-$(tmpArreout);
+tmpLambdaMapOut.length = 3;
+$(tmpLambdaMapOut);
 `````
 
 

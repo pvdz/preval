@@ -26,8 +26,8 @@ const tmpArrElement /*:unknown*/ = $(`item1`);
 const cb /*:unknown*/ = $(`opaque_reducer`);
 const initial /*:unknown*/ = $(`opaque_initial`);
 const arr /*:array*/ /*truthy*/ = [tmpArrElement];
-const tmpClusterSSA_tmpArreout /*:unknown*/ = $dotCall(cb, undefined, undefined, initial, tmpArrElement, 0, arr);
-$(`reduce_result`, tmpClusterSSA_tmpArreout);
+const tmpClusterSSA_tmpLambdaReduceOut /*:unknown*/ = $dotCall(cb, undefined, undefined, initial, tmpArrElement, 0, arr);
+$(`reduce_result`, tmpClusterSSA_tmpLambdaReduceOut);
 `````
 
 

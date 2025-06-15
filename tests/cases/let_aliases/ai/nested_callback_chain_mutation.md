@@ -27,35 +27,35 @@ $(a, b);
 `````js filename=intro
 let x /*:unknown*/ = $(`val`);
 const a /*:unknown*/ = x;
-let tmpArri$1 /*:number*/ = 0;
+let tmpLambdaMapCounter /*:number*/ = 0;
 const tmpMCOO /*:array*/ /*truthy*/ = [1];
-const tmpArreout /*:array*/ /*truthy*/ = [];
+const tmpLambdaMapOut /*:array*/ /*truthy*/ = [];
 while (true) {
-  const tmpArrc$1 /*:boolean*/ = tmpArri$1 < 1;
-  if (tmpArrc$1) {
-    const tmpArrin$1 /*:boolean*/ = tmpArri$1 in tmpMCOO;
-    if (tmpArrin$1) {
+  const tmpLambdaMapTest /*:boolean*/ = tmpLambdaMapCounter < 1;
+  if (tmpLambdaMapTest) {
+    const tmpLambdaMapHas /*:boolean*/ = tmpLambdaMapCounter in tmpMCOO;
+    if (tmpLambdaMapHas) {
       x = `changed`;
-      let tmpClusterSSA_tmpArri /*:number*/ = 1;
+      let tmpClusterSSA_tmpLambdaForeachCounter /*:number*/ = 1;
       const tmpMCOO$1 /*:array*/ /*truthy*/ = [2];
       while ($LOOP_UNROLL_10) {
-        const tmpArrc$2 /*:boolean*/ = tmpClusterSSA_tmpArri < 1;
-        if (tmpArrc$2) {
+        const tmpLambdaForeachCounterTest$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaForeachCounter < 1;
+        if (tmpLambdaForeachCounterTest$1) {
           0 in tmpMCOO$1;
-          tmpClusterSSA_tmpArri = tmpClusterSSA_tmpArri + 1;
+          tmpClusterSSA_tmpLambdaForeachCounter = tmpClusterSSA_tmpLambdaForeachCounter + 1;
         } else {
           break;
         }
       }
-      tmpArreout[tmpArri$1] = undefined;
+      tmpLambdaMapOut[tmpLambdaMapCounter] = undefined;
     } else {
     }
-    tmpArri$1 = tmpArri$1 + 1;
+    tmpLambdaMapCounter = tmpLambdaMapCounter + 1;
   } else {
     break;
   }
 }
-tmpArreout.length = 1;
+tmpLambdaMapOut.length = 1;
 $(a, x);
 `````
 
@@ -66,31 +66,31 @@ $(a, x);
 `````js filename=intro
 let x = $(`val`);
 const a = x;
-let tmpArri$1 = 0;
+let tmpLambdaMapCounter = 0;
 const tmpMCOO = [1];
-const tmpArreout = [];
+const tmpLambdaMapOut = [];
 while (true) {
-  if (tmpArri$1 < 1) {
-    if (tmpArri$1 in tmpMCOO) {
+  if (tmpLambdaMapCounter < 1) {
+    if (tmpLambdaMapCounter in tmpMCOO) {
       x = `changed`;
-      let tmpClusterSSA_tmpArri = 1;
+      let tmpClusterSSA_tmpLambdaForeachCounter = 1;
       const tmpMCOO$1 = [2];
       while (true) {
-        if (tmpClusterSSA_tmpArri < 1) {
+        if (tmpClusterSSA_tmpLambdaForeachCounter < 1) {
           0 in tmpMCOO$1;
-          tmpClusterSSA_tmpArri = tmpClusterSSA_tmpArri + 1;
+          tmpClusterSSA_tmpLambdaForeachCounter = tmpClusterSSA_tmpLambdaForeachCounter + 1;
         } else {
           break;
         }
       }
-      tmpArreout[tmpArri$1] = undefined;
+      tmpLambdaMapOut[tmpLambdaMapCounter] = undefined;
     }
-    tmpArri$1 = tmpArri$1 + 1;
+    tmpLambdaMapCounter = tmpLambdaMapCounter + 1;
   } else {
     break;
   }
 }
-tmpArreout.length = 1;
+tmpLambdaMapOut.length = 1;
 $(a, x);
 `````
 

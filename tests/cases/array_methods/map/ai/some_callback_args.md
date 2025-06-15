@@ -20,16 +20,16 @@ $(x);
 `````js filename=intro
 const tmpMCOO /*:array*/ /*truthy*/ = [10, 20];
 $(10, 0, tmpMCOO);
-const tmpArrin$1 /*:boolean*/ = 1 in tmpMCOO;
-const tmpArreout /*:array*/ /*truthy*/ = [undefined];
-if (tmpArrin$1) {
-  const tmpArrel$1 /*:primitive*/ = tmpMCOO[1];
-  $(tmpArrel$1, 1, tmpMCOO);
-  tmpArreout[1] = undefined;
+const tmpLambdaMapHas$1 /*:boolean*/ = 1 in tmpMCOO;
+const tmpLambdaMapOut /*:array*/ /*truthy*/ = [undefined];
+if (tmpLambdaMapHas$1) {
+  const tmpLambdaMapVal$1 /*:primitive*/ = tmpMCOO[1];
+  $(tmpLambdaMapVal$1, 1, tmpMCOO);
+  tmpLambdaMapOut[1] = undefined;
 } else {
 }
-tmpArreout.length = 2;
-$(tmpArreout);
+tmpLambdaMapOut.length = 2;
+$(tmpLambdaMapOut);
 `````
 
 
@@ -39,14 +39,14 @@ $(tmpArreout);
 `````js filename=intro
 const tmpMCOO = [10, 20];
 $(10, 0, tmpMCOO);
-const tmpArrin$1 = 1 in tmpMCOO;
-const tmpArreout = [undefined];
-if (tmpArrin$1) {
+const tmpLambdaMapHas$1 = 1 in tmpMCOO;
+const tmpLambdaMapOut = [undefined];
+if (tmpLambdaMapHas$1) {
   $(tmpMCOO[1], 1, tmpMCOO);
-  tmpArreout[1] = undefined;
+  tmpLambdaMapOut[1] = undefined;
 }
-tmpArreout.length = 2;
-$(tmpArreout);
+tmpLambdaMapOut.length = 2;
+$(tmpLambdaMapOut);
 `````
 
 

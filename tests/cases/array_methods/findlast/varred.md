@@ -27,29 +27,36 @@ $(x);
 const f /*:()=>undefined*/ = function () {
   debugger;
   const arr /*:array*/ /*truthy*/ = [1, 2, 3];
-  const tmpArrnow /*:unknown*/ = $dotCall($, undefined, undefined, 3, 2, arr);
-  if (tmpArrnow) {
+  const tmpLambdaFindLastNow /*:unknown*/ = $dotCall($, undefined, undefined, 3, 2, arr);
+  if (tmpLambdaFindLastNow) {
     $(3);
     return undefined;
   } else {
-    let tmpArreout /*:unknown*/ = undefined;
-    let tmpClusterSSA_tmpArri /*:number*/ = 1;
+    let tmpLambdaFindLastOut /*:unknown*/ = undefined;
+    let tmpClusterSSA_tmpLambdaFindLastCounter /*:number*/ = 1;
     while ($LOOP_UNROLL_10) {
-      const tmpArrc$1 /*:boolean*/ = tmpClusterSSA_tmpArri >= 0;
-      if (tmpArrc$1) {
-        const tmpArrel$1 /*:primitive*/ = arr[tmpClusterSSA_tmpArri];
-        const tmpArrnow$1 /*:unknown*/ = $dotCall($, undefined, undefined, tmpArrel$1, tmpClusterSSA_tmpArri, arr);
-        if (tmpArrnow$1) {
-          tmpArreout = tmpArrel$1;
+      const tmpLambdaFindLastTest$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaFindLastCounter >= 0;
+      if (tmpLambdaFindLastTest$1) {
+        const tmpLambdaFindLastVal$1 /*:primitive*/ = arr[tmpClusterSSA_tmpLambdaFindLastCounter];
+        const tmpLambdaFindLastNow$1 /*:unknown*/ = $dotCall(
+          $,
+          undefined,
+          undefined,
+          tmpLambdaFindLastVal$1,
+          tmpClusterSSA_tmpLambdaFindLastCounter,
+          arr,
+        );
+        if (tmpLambdaFindLastNow$1) {
+          tmpLambdaFindLastOut = tmpLambdaFindLastVal$1;
           break;
         } else {
-          tmpClusterSSA_tmpArri = tmpClusterSSA_tmpArri - 1;
+          tmpClusterSSA_tmpLambdaFindLastCounter = tmpClusterSSA_tmpLambdaFindLastCounter - 1;
         }
       } else {
         break;
       }
     }
-    $(tmpArreout);
+    $(tmpLambdaFindLastOut);
     return undefined;
   }
 };
@@ -68,22 +75,22 @@ const f = function () {
   if ($dotCall($, undefined, undefined, 3, 2, arr)) {
     $(3);
   } else {
-    let tmpArreout = undefined;
-    let tmpClusterSSA_tmpArri = 1;
+    let tmpLambdaFindLastOut = undefined;
+    let tmpClusterSSA_tmpLambdaFindLastCounter = 1;
     while (true) {
-      if (tmpClusterSSA_tmpArri >= 0) {
-        const tmpArrel$1 = arr[tmpClusterSSA_tmpArri];
-        if ($dotCall($, undefined, undefined, tmpArrel$1, tmpClusterSSA_tmpArri, arr)) {
-          tmpArreout = tmpArrel$1;
+      if (tmpClusterSSA_tmpLambdaFindLastCounter >= 0) {
+        const tmpLambdaFindLastVal$1 = arr[tmpClusterSSA_tmpLambdaFindLastCounter];
+        if ($dotCall($, undefined, undefined, tmpLambdaFindLastVal$1, tmpClusterSSA_tmpLambdaFindLastCounter, arr)) {
+          tmpLambdaFindLastOut = tmpLambdaFindLastVal$1;
           break;
         } else {
-          tmpClusterSSA_tmpArri = tmpClusterSSA_tmpArri - 1;
+          tmpClusterSSA_tmpLambdaFindLastCounter = tmpClusterSSA_tmpLambdaFindLastCounter - 1;
         }
       } else {
         break;
       }
     }
-    $(tmpArreout);
+    $(tmpLambdaFindLastOut);
   }
 };
 f();

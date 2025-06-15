@@ -27,28 +27,36 @@ $(x);
 const f /*:()=>undefined*/ = function () {
   debugger;
   const tmpMCOO /*:array*/ /*truthy*/ = [1, 2, 3];
-  let tmpSSA_tmpClusterSSA_tmpArreout /*:unknown*/ = $dotCall($, undefined, undefined, 3, 2, 1, tmpMCOO);
-  const tmpArrin$2 /*:boolean*/ = 0 in tmpMCOO;
-  const tmpArre1st /*:object*/ /*truthy*/ = {};
-  if (tmpArrin$2) {
-    const tmpArrel$2 /*:primitive*/ = tmpMCOO[0];
-    const tmpArrebad$2 /*:boolean*/ = tmpSSA_tmpClusterSSA_tmpArreout === tmpArre1st;
-    if (tmpArrebad$2) {
-      tmpSSA_tmpClusterSSA_tmpArreout = tmpArrel$2;
+  let tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut /*:unknown*/ = $dotCall($, undefined, undefined, 3, 2, 1, tmpMCOO);
+  const tmpLambdaReduceRightHas$2 /*:boolean*/ = 0 in tmpMCOO;
+  const tmpLambdaReduceRight1st /*:object*/ /*truthy*/ = {};
+  if (tmpLambdaReduceRightHas$2) {
+    const tmpLambdaReduceRightVal$2 /*:primitive*/ = tmpMCOO[0];
+    const tmpLambdaReduceRightBad$2 /*:boolean*/ = tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut === tmpLambdaReduceRight1st;
+    if (tmpLambdaReduceRightBad$2) {
+      tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut = tmpLambdaReduceRightVal$2;
     } else {
-      tmpSSA_tmpClusterSSA_tmpArreout = $dotCall($, undefined, undefined, tmpSSA_tmpClusterSSA_tmpArreout, tmpArrel$2, 0, tmpMCOO);
+      tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut = $dotCall(
+        $,
+        undefined,
+        undefined,
+        tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut,
+        tmpLambdaReduceRightVal$2,
+        0,
+        tmpMCOO,
+      );
     }
   } else {
   }
-  const tmpArrette /*:boolean*/ = tmpSSA_tmpClusterSSA_tmpArreout === tmpArre1st;
-  if (tmpArrette) {
-    const tmpArreerr /*:object*/ /*truthy*/ = new $typeError_constructor(
+  const tmpLambdaReduceRightTTE /*:boolean*/ = tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut === tmpLambdaReduceRight1st;
+  if (tmpLambdaReduceRightTTE) {
+    const tmpLambdaReduceRightErr /*:object*/ /*truthy*/ = new $typeError_constructor(
       `[Preval] Called .reduceRight without init on an array without values: \`x\\n=\\n\$dotCall(\$array_reduceRight,\\ntmpMCOO,\\n\`reduceRight\`,\\n\$);\``,
     );
-    throw tmpArreerr;
+    throw tmpLambdaReduceRightErr;
   } else {
-    x = tmpSSA_tmpClusterSSA_tmpArreout;
-    $(tmpSSA_tmpClusterSSA_tmpArreout);
+    x = tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut;
+    $(tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut);
     return undefined;
   }
 };
@@ -65,25 +73,33 @@ $(x);
 `````js filename=intro
 const f = function () {
   const tmpMCOO = [1, 2, 3];
-  let tmpSSA_tmpClusterSSA_tmpArreout = $dotCall($, undefined, undefined, 3, 2, 1, tmpMCOO);
-  const tmpArrin$2 = 0 in tmpMCOO;
-  const tmpArre1st = {};
-  if (tmpArrin$2) {
-    const tmpArrel$2 = tmpMCOO[0];
-    if (tmpSSA_tmpClusterSSA_tmpArreout === tmpArre1st) {
-      tmpSSA_tmpClusterSSA_tmpArreout = tmpArrel$2;
+  let tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut = $dotCall($, undefined, undefined, 3, 2, 1, tmpMCOO);
+  const tmpLambdaReduceRightHas$2 = 0 in tmpMCOO;
+  const tmpLambdaReduceRight1st = {};
+  if (tmpLambdaReduceRightHas$2) {
+    const tmpLambdaReduceRightVal$2 = tmpMCOO[0];
+    if (tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut === tmpLambdaReduceRight1st) {
+      tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut = tmpLambdaReduceRightVal$2;
     } else {
-      tmpSSA_tmpClusterSSA_tmpArreout = $dotCall($, undefined, undefined, tmpSSA_tmpClusterSSA_tmpArreout, tmpArrel$2, 0, tmpMCOO);
+      tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut = $dotCall(
+        $,
+        undefined,
+        undefined,
+        tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut,
+        tmpLambdaReduceRightVal$2,
+        0,
+        tmpMCOO,
+      );
     }
   }
-  if (tmpSSA_tmpClusterSSA_tmpArreout === tmpArre1st) {
-    const tmpArreerr = new $typeError_constructor(
+  if (tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut === tmpLambdaReduceRight1st) {
+    const tmpLambdaReduceRightErr = new $typeError_constructor(
       `[Preval] Called .reduceRight without init on an array without values: \`x\\n=\\n\$dotCall(\$array_reduceRight,\\ntmpMCOO,\\n\`reduceRight\`,\\n\$);\``,
     );
-    throw tmpArreerr;
+    throw tmpLambdaReduceRightErr;
   } else {
-    x = tmpSSA_tmpClusterSSA_tmpArreout;
-    $(tmpSSA_tmpClusterSSA_tmpArreout);
+    x = tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut;
+    $(tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut);
   }
 };
 let x = 1;

@@ -21,8 +21,8 @@ $(result, x);
 
 `````js filename=intro
 const result /*:array*/ /*truthy*/ = [1, 2];
-const tmpArreout /*:array*/ /*truthy*/ = [];
-$(result, tmpArreout);
+const tmpLambdaFilterOut /*:array*/ /*truthy*/ = [];
+$(result, tmpLambdaFilterOut);
 `````
 
 

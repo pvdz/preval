@@ -28,28 +28,35 @@ const tmpMCP /*:(unused)=>undefined*/ = function ($$0) {
   return undefined;
 };
 const tmpMCOO /*:array*/ /*truthy*/ = [1, 2, 3];
-const tmpArrnow /*:unknown*/ = $dotCall(tmpMCP, undefined, undefined, 1, 0, tmpMCOO);
-if (tmpArrnow) {
+const tmpLambdaFindNow /*:unknown*/ = $dotCall(tmpMCP, undefined, undefined, 1, 0, tmpMCOO);
+if (tmpLambdaFindNow) {
   $(result, 1);
 } else {
-  let tmpArreout /*:unknown*/ = undefined;
-  let tmpClusterSSA_tmpArri /*:number*/ = 1;
+  let tmpLambdaFindOut /*:unknown*/ = undefined;
+  let tmpClusterSSA_tmpLambdaFindCounter /*:number*/ = 1;
   while ($LOOP_UNROLL_10) {
-    const tmpArrc$1 /*:boolean*/ = tmpClusterSSA_tmpArri < 3;
-    if (tmpArrc$1) {
-      const tmpArrel$1 /*:primitive*/ = tmpMCOO[tmpClusterSSA_tmpArri];
-      const tmpArrnow$1 /*:unknown*/ = $dotCall(tmpMCP, undefined, undefined, tmpArrel$1, tmpClusterSSA_tmpArri, tmpMCOO);
-      if (tmpArrnow$1) {
-        tmpArreout = tmpArrel$1;
+    const tmpLambdaFindTest$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaFindCounter < 3;
+    if (tmpLambdaFindTest$1) {
+      const tmpLambdaFindVal$1 /*:primitive*/ = tmpMCOO[tmpClusterSSA_tmpLambdaFindCounter];
+      const tmpLambdaFindNow$1 /*:unknown*/ = $dotCall(
+        tmpMCP,
+        undefined,
+        undefined,
+        tmpLambdaFindVal$1,
+        tmpClusterSSA_tmpLambdaFindCounter,
+        tmpMCOO,
+      );
+      if (tmpLambdaFindNow$1) {
+        tmpLambdaFindOut = tmpLambdaFindVal$1;
         break;
       } else {
-        tmpClusterSSA_tmpArri = tmpClusterSSA_tmpArri + 1;
+        tmpClusterSSA_tmpLambdaFindCounter = tmpClusterSSA_tmpLambdaFindCounter + 1;
       }
     } else {
       break;
     }
   }
-  $(result, tmpArreout);
+  $(result, tmpLambdaFindOut);
 }
 `````
 
@@ -67,22 +74,22 @@ const tmpMCOO = [1, 2, 3];
 if ($dotCall(tmpMCP, undefined, undefined, 1, 0, tmpMCOO)) {
   $(result, 1);
 } else {
-  let tmpArreout = undefined;
-  let tmpClusterSSA_tmpArri = 1;
+  let tmpLambdaFindOut = undefined;
+  let tmpClusterSSA_tmpLambdaFindCounter = 1;
   while (true) {
-    if (tmpClusterSSA_tmpArri < 3) {
-      const tmpArrel$1 = tmpMCOO[tmpClusterSSA_tmpArri];
-      if ($dotCall(tmpMCP, undefined, undefined, tmpArrel$1, tmpClusterSSA_tmpArri, tmpMCOO)) {
-        tmpArreout = tmpArrel$1;
+    if (tmpClusterSSA_tmpLambdaFindCounter < 3) {
+      const tmpLambdaFindVal$1 = tmpMCOO[tmpClusterSSA_tmpLambdaFindCounter];
+      if ($dotCall(tmpMCP, undefined, undefined, tmpLambdaFindVal$1, tmpClusterSSA_tmpLambdaFindCounter, tmpMCOO)) {
+        tmpLambdaFindOut = tmpLambdaFindVal$1;
         break;
       } else {
-        tmpClusterSSA_tmpArri = tmpClusterSSA_tmpArri + 1;
+        tmpClusterSSA_tmpLambdaFindCounter = tmpClusterSSA_tmpLambdaFindCounter + 1;
       }
     } else {
       break;
     }
   }
-  $(result, tmpArreout);
+  $(result, tmpLambdaFindOut);
 }
 `````
 

@@ -26,10 +26,10 @@ const tmpArrElement$1 /*:unknown*/ = $(`b`);
 const cb /*:unknown*/ = $(`opaque_forEach_callback`);
 const arr /*:array*/ /*truthy*/ = [tmpArrElement, tmpArrElement$1];
 $dotCall(cb, undefined, undefined, tmpArrElement, 0, arr);
-const tmpArrin$1 /*:boolean*/ = 1 in arr;
-if (tmpArrin$1) {
-  const tmpArrel$1 /*:unknown*/ = arr[1];
-  $dotCall(cb, undefined, undefined, tmpArrel$1, 1, arr);
+const tmpLambdaForeachCounterHas$1 /*:boolean*/ = 1 in arr;
+if (tmpLambdaForeachCounterHas$1) {
+  const tmpLambdaForeachCounterVal$1 /*:unknown*/ = arr[1];
+  $dotCall(cb, undefined, undefined, tmpLambdaForeachCounterVal$1, 1, arr);
   $(`forEach_done`);
 } else {
   $(`forEach_done`);

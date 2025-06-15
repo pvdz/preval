@@ -23,8 +23,8 @@ f.call({pass: 1});
 
 
 `````js filename=intro
-const f /*:()=>unknown*/ = function () {
-  const tmpPrevalAliasThis /*:object*/ /*truthy*/ = this;
+const f /*:()=>undefined*/ = function () {
+  const tmpPrevalAliasThis /*:unknown*/ = this;
   debugger;
   $(tmpPrevalAliasThis);
   return undefined;

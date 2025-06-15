@@ -24,8 +24,8 @@ $(`pushing another x`);
 $(`pushing another x`);
 $(`pushing another x`);
 const result /*:array*/ /*truthy*/ = [1, 2, 3];
-const tmpArreout /*:array*/ /*truthy*/ = [undefined, undefined, undefined];
-$(result, tmpArreout);
+const tmpLambdaMapOut /*:array*/ /*truthy*/ = [undefined, undefined, undefined];
+$(result, tmpLambdaMapOut);
 `````
 
 

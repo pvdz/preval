@@ -21,8 +21,8 @@ $(x);
 `````js filename=intro
 $(1);
 $(2);
-const tmpArreout /*:array*/ /*truthy*/ = [undefined, undefined];
-$(tmpArreout);
+const tmpLambdaMapOut /*:array*/ /*truthy*/ = [undefined, undefined];
+$(tmpLambdaMapOut);
 `````
 
 

@@ -21,8 +21,8 @@ $(result, x);
 
 `````js filename=intro
 const result /*:array*/ /*truthy*/ = [1, 2];
-const tmpArreout /*:array*/ /*truthy*/ = [undefined, undefined, , ,];
-$(result, tmpArreout);
+const tmpLambdaMapOut /*:array*/ /*truthy*/ = [undefined, undefined, , ,];
+$(result, tmpLambdaMapOut);
 `````
 
 

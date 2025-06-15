@@ -25,30 +25,37 @@ const tmpArrElement /*:unknown*/ = $(`e1`);
 const tmpArrElement$1 /*:unknown*/ = $(`e2`);
 const cb /*:unknown*/ = $(`opaque_every_predicate`);
 const arr /*:array*/ /*truthy*/ = [tmpArrElement, tmpArrElement$1];
-const tmpArrenow /*:unknown*/ = $dotCall(cb, undefined, undefined, tmpArrElement, 0, arr);
-if (tmpArrenow) {
-  let tmpArreout /*:boolean*/ = true;
-  let tmpClusterSSA_tmpArri /*:number*/ = 1;
+const tmpLambdaEveryWas /*:unknown*/ = $dotCall(cb, undefined, undefined, tmpArrElement, 0, arr);
+if (tmpLambdaEveryWas) {
+  let tmpLambdaEveryOut /*:boolean*/ = true;
+  let tmpClusterSSA_tmpLambdaEveryCounter /*:number*/ = 1;
   while ($LOOP_UNROLL_10) {
-    const tmpArrc$1 /*:boolean*/ = tmpClusterSSA_tmpArri < 2;
-    if (tmpArrc$1) {
-      const tmpArrin$1 /*:boolean*/ = tmpClusterSSA_tmpArri in arr;
-      if (tmpArrin$1) {
-        const tmpArrel$1 /*:unknown*/ = arr[tmpClusterSSA_tmpArri];
-        const tmpArrenow$1 /*:unknown*/ = $dotCall(cb, undefined, undefined, tmpArrel$1, tmpClusterSSA_tmpArri, arr);
-        if (tmpArrenow$1) {
+    const tmpLambdaEveryTest$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaEveryCounter < 2;
+    if (tmpLambdaEveryTest$1) {
+      const tmpLambdaEveryHas$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaEveryCounter in arr;
+      if (tmpLambdaEveryHas$1) {
+        const tmpLambdaEveryVal$1 /*:unknown*/ = arr[tmpClusterSSA_tmpLambdaEveryCounter];
+        const tmpLambdaEveryWas$1 /*:unknown*/ = $dotCall(
+          cb,
+          undefined,
+          undefined,
+          tmpLambdaEveryVal$1,
+          tmpClusterSSA_tmpLambdaEveryCounter,
+          arr,
+        );
+        if (tmpLambdaEveryWas$1) {
         } else {
-          tmpArreout = false;
+          tmpLambdaEveryOut = false;
           break;
         }
       } else {
       }
-      tmpClusterSSA_tmpArri = tmpClusterSSA_tmpArri + 1;
+      tmpClusterSSA_tmpLambdaEveryCounter = tmpClusterSSA_tmpLambdaEveryCounter + 1;
     } else {
       break;
     }
   }
-  $(`every_result`, tmpArreout);
+  $(`every_result`, tmpLambdaEveryOut);
 } else {
   $(`every_result`, false);
 }
@@ -64,22 +71,22 @@ const tmpArrElement$1 = $(`e2`);
 const cb = $(`opaque_every_predicate`);
 const arr = [tmpArrElement, tmpArrElement$1];
 if ($dotCall(cb, undefined, undefined, tmpArrElement, 0, arr)) {
-  let tmpArreout = true;
-  let tmpClusterSSA_tmpArri = 1;
+  let tmpLambdaEveryOut = true;
+  let tmpClusterSSA_tmpLambdaEveryCounter = 1;
   while (true) {
-    if (tmpClusterSSA_tmpArri < 2) {
-      if (tmpClusterSSA_tmpArri in arr) {
-        if (!$dotCall(cb, undefined, undefined, arr[tmpClusterSSA_tmpArri], tmpClusterSSA_tmpArri, arr)) {
-          tmpArreout = false;
+    if (tmpClusterSSA_tmpLambdaEveryCounter < 2) {
+      if (tmpClusterSSA_tmpLambdaEveryCounter in arr) {
+        if (!$dotCall(cb, undefined, undefined, arr[tmpClusterSSA_tmpLambdaEveryCounter], tmpClusterSSA_tmpLambdaEveryCounter, arr)) {
+          tmpLambdaEveryOut = false;
           break;
         }
       }
-      tmpClusterSSA_tmpArri = tmpClusterSSA_tmpArri + 1;
+      tmpClusterSSA_tmpLambdaEveryCounter = tmpClusterSSA_tmpLambdaEveryCounter + 1;
     } else {
       break;
     }
   }
-  $(`every_result`, tmpArreout);
+  $(`every_result`, tmpLambdaEveryOut);
 } else {
   $(`every_result`, false);
 }

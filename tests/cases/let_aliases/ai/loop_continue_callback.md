@@ -36,13 +36,13 @@ while (true) {
       i = i + 1;
     } else {
       x = `changed`;
-      let tmpClusterSSA_tmpArri /*:number*/ = 1;
+      let tmpClusterSSA_tmpLambdaForeachCounter /*:number*/ = 1;
       const tmpMCOO /*:array*/ /*truthy*/ = [1];
       while ($LOOP_UNROLL_10) {
-        const tmpArrc$1 /*:boolean*/ = tmpClusterSSA_tmpArri < 1;
-        if (tmpArrc$1) {
+        const tmpLambdaForeachCounterTest$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaForeachCounter < 1;
+        if (tmpLambdaForeachCounterTest$1) {
           0 in tmpMCOO;
-          tmpClusterSSA_tmpArri = tmpClusterSSA_tmpArri + 1;
+          tmpClusterSSA_tmpLambdaForeachCounter = tmpClusterSSA_tmpLambdaForeachCounter + 1;
         } else {
           break;
         }
@@ -70,12 +70,12 @@ while (true) {
       i = i + 1;
     } else {
       x = `changed`;
-      let tmpClusterSSA_tmpArri = 1;
+      let tmpClusterSSA_tmpLambdaForeachCounter = 1;
       const tmpMCOO = [1];
       while (true) {
-        if (tmpClusterSSA_tmpArri < 1) {
+        if (tmpClusterSSA_tmpLambdaForeachCounter < 1) {
           0 in tmpMCOO;
-          tmpClusterSSA_tmpArri = tmpClusterSSA_tmpArri + 1;
+          tmpClusterSSA_tmpLambdaForeachCounter = tmpClusterSSA_tmpLambdaForeachCounter + 1;
         } else {
           break;
         }

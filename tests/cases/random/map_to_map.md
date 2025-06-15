@@ -50,37 +50,37 @@ const tmpCalleeParam$3 /*:array*/ /*truthy*/ = [
 const tmpMCOO$3 /*:map*/ /*truthy*/ = new $map_constructor(tmpCalleeParam$3);
 const tmpArrSpread /*:iterator*/ /*truthy*/ = $dotCall($map_keys, tmpMCOO$3, `keys`);
 const tmpMCOO$1 /*:array*/ /*truthy*/ = [...tmpArrSpread, `module`];
-const tmpArrlen /*:number*/ = tmpMCOO$1.length;
-const tmpArrc /*:boolean*/ = 0 < tmpArrlen;
-const tmpArreout /*:array*/ /*truthy*/ = [];
-if (tmpArrc) {
-  const tmpArrin /*:boolean*/ = 0 in tmpMCOO$1;
-  if (tmpArrin) {
-    const tmpArrel /*:unknown*/ = tmpMCOO$1[0];
-    const tmpClusterSSA_tmpArrenow /*:array*/ /*truthy*/ = [tmpArrel, tmpArrel];
-    tmpArreout[0] = tmpClusterSSA_tmpArrenow;
+const tmpLambdaMapLen /*:number*/ = tmpMCOO$1.length;
+const tmpLambdaMapTest /*:boolean*/ = 0 < tmpLambdaMapLen;
+const tmpLambdaMapOut /*:array*/ /*truthy*/ = [];
+if (tmpLambdaMapTest) {
+  const tmpLambdaMapHas /*:boolean*/ = 0 in tmpMCOO$1;
+  if (tmpLambdaMapHas) {
+    const tmpLambdaMapVal /*:unknown*/ = tmpMCOO$1[0];
+    const tmpClusterSSA_tmpLambdaMapNow /*:array*/ /*truthy*/ = [tmpLambdaMapVal, tmpLambdaMapVal];
+    tmpLambdaMapOut[0] = tmpClusterSSA_tmpLambdaMapNow;
   } else {
   }
-  let tmpClusterSSA_tmpArri /*:number*/ = 1;
+  let tmpClusterSSA_tmpLambdaMapCounter /*:number*/ = 1;
   while ($LOOP_UNROLL_10) {
-    const tmpArrc$1 /*:boolean*/ = tmpClusterSSA_tmpArri < tmpArrlen;
-    if (tmpArrc$1) {
-      const tmpArrin$1 /*:boolean*/ = tmpClusterSSA_tmpArri in tmpMCOO$1;
-      if (tmpArrin$1) {
-        const tmpArrel$1 /*:unknown*/ = tmpMCOO$1[tmpClusterSSA_tmpArri];
-        const tmpClusterSSA_tmpArrenow$1 /*:array*/ /*truthy*/ = [tmpArrel$1, tmpArrel$1];
-        tmpArreout[tmpClusterSSA_tmpArri] = tmpClusterSSA_tmpArrenow$1;
+    const tmpLambdaMapTest$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaMapCounter < tmpLambdaMapLen;
+    if (tmpLambdaMapTest$1) {
+      const tmpLambdaMapHas$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaMapCounter in tmpMCOO$1;
+      if (tmpLambdaMapHas$1) {
+        const tmpLambdaMapVal$1 /*:unknown*/ = tmpMCOO$1[tmpClusterSSA_tmpLambdaMapCounter];
+        const tmpClusterSSA_tmpLambdaMapNow$1 /*:array*/ /*truthy*/ = [tmpLambdaMapVal$1, tmpLambdaMapVal$1];
+        tmpLambdaMapOut[tmpClusterSSA_tmpLambdaMapCounter] = tmpClusterSSA_tmpLambdaMapNow$1;
       } else {
       }
-      tmpClusterSSA_tmpArri = tmpClusterSSA_tmpArri + 1;
+      tmpClusterSSA_tmpLambdaMapCounter = tmpClusterSSA_tmpLambdaMapCounter + 1;
     } else {
       break;
     }
   }
 } else {
 }
-tmpArreout.length = tmpArrlen;
-const tmpMCOO /*:map*/ /*truthy*/ = new $map_constructor(tmpArreout);
+tmpLambdaMapOut.length = tmpLambdaMapLen;
+const tmpMCOO /*:map*/ /*truthy*/ = new $map_constructor(tmpLambdaMapOut);
 const tmpCalleeParam /*:unknown*/ /*truthy*/ = $dotCall($map_get, tmpMCOO, `get`, `\$`);
 $(tmpCalleeParam);
 `````
@@ -99,31 +99,31 @@ const tmpArrElement$9 = [`\$`, `\$`];
 const tmpCalleeParam$3 = [tmpArrElement, tmpArrElement$1, tmpArrElement$3, tmpArrElement$5, tmpArrElement$7, tmpArrElement$9];
 const tmpArrSpread = $dotCall($map_keys, new $map_constructor(tmpCalleeParam$3), `keys`);
 const tmpMCOO$1 = [...tmpArrSpread, `module`];
-const tmpArrlen = tmpMCOO$1.length;
-const tmpArrc = 0 < tmpArrlen;
-const tmpArreout = [];
-if (tmpArrc) {
+const tmpLambdaMapLen = tmpMCOO$1.length;
+const tmpLambdaMapTest = 0 < tmpLambdaMapLen;
+const tmpLambdaMapOut = [];
+if (tmpLambdaMapTest) {
   if (0 in tmpMCOO$1) {
-    const tmpArrel = tmpMCOO$1[0];
-    const tmpClusterSSA_tmpArrenow = [tmpArrel, tmpArrel];
-    tmpArreout[0] = tmpClusterSSA_tmpArrenow;
+    const tmpLambdaMapVal = tmpMCOO$1[0];
+    const tmpClusterSSA_tmpLambdaMapNow = [tmpLambdaMapVal, tmpLambdaMapVal];
+    tmpLambdaMapOut[0] = tmpClusterSSA_tmpLambdaMapNow;
   }
-  let tmpClusterSSA_tmpArri = 1;
+  let tmpClusterSSA_tmpLambdaMapCounter = 1;
   while (true) {
-    if (tmpClusterSSA_tmpArri < tmpArrlen) {
-      if (tmpClusterSSA_tmpArri in tmpMCOO$1) {
-        const tmpArrel$1 = tmpMCOO$1[tmpClusterSSA_tmpArri];
-        const tmpClusterSSA_tmpArrenow$1 = [tmpArrel$1, tmpArrel$1];
-        tmpArreout[tmpClusterSSA_tmpArri] = tmpClusterSSA_tmpArrenow$1;
+    if (tmpClusterSSA_tmpLambdaMapCounter < tmpLambdaMapLen) {
+      if (tmpClusterSSA_tmpLambdaMapCounter in tmpMCOO$1) {
+        const tmpLambdaMapVal$1 = tmpMCOO$1[tmpClusterSSA_tmpLambdaMapCounter];
+        const tmpClusterSSA_tmpLambdaMapNow$1 = [tmpLambdaMapVal$1, tmpLambdaMapVal$1];
+        tmpLambdaMapOut[tmpClusterSSA_tmpLambdaMapCounter] = tmpClusterSSA_tmpLambdaMapNow$1;
       }
-      tmpClusterSSA_tmpArri = tmpClusterSSA_tmpArri + 1;
+      tmpClusterSSA_tmpLambdaMapCounter = tmpClusterSSA_tmpLambdaMapCounter + 1;
     } else {
       break;
     }
   }
 }
-tmpArreout.length = tmpArrlen;
-$($dotCall($map_get, new $map_constructor(tmpArreout), `get`, `\$`));
+tmpLambdaMapOut.length = tmpLambdaMapLen;
+$($dotCall($map_get, new $map_constructor(tmpLambdaMapOut), `get`, `\$`));
 `````
 
 

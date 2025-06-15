@@ -25,20 +25,27 @@ $(f);
 const f /*:()=>undefined*/ = function () {
   debugger;
   const arr /*:array*/ /*truthy*/ = [1, 2, 3];
-  const tmpArrnow /*:unknown*/ = $dotCall($, undefined, undefined, 1, 0, arr);
-  if (tmpArrnow) {
+  const tmpLambdaFindNow /*:unknown*/ = $dotCall($, undefined, undefined, 1, 0, arr);
+  if (tmpLambdaFindNow) {
     return undefined;
   } else {
-    let tmpClusterSSA_tmpArri /*:number*/ = 1;
+    let tmpClusterSSA_tmpLambdaFindCounter /*:number*/ = 1;
     while ($LOOP_UNROLL_10) {
-      const tmpArrc$1 /*:boolean*/ = tmpClusterSSA_tmpArri < 3;
-      if (tmpArrc$1) {
-        const tmpArrel$1 /*:primitive*/ = arr[tmpClusterSSA_tmpArri];
-        const tmpArrnow$1 /*:unknown*/ = $dotCall($, undefined, undefined, tmpArrel$1, tmpClusterSSA_tmpArri, arr);
-        if (tmpArrnow$1) {
+      const tmpLambdaFindTest$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaFindCounter < 3;
+      if (tmpLambdaFindTest$1) {
+        const tmpLambdaFindVal$1 /*:primitive*/ = arr[tmpClusterSSA_tmpLambdaFindCounter];
+        const tmpLambdaFindNow$1 /*:unknown*/ = $dotCall(
+          $,
+          undefined,
+          undefined,
+          tmpLambdaFindVal$1,
+          tmpClusterSSA_tmpLambdaFindCounter,
+          arr,
+        );
+        if (tmpLambdaFindNow$1) {
           break;
         } else {
-          tmpClusterSSA_tmpArri = tmpClusterSSA_tmpArri + 1;
+          tmpClusterSSA_tmpLambdaFindCounter = tmpClusterSSA_tmpLambdaFindCounter + 1;
         }
       } else {
         break;
@@ -58,15 +65,15 @@ $(f);
 `````js filename=intro
 const f = function () {
   const arr = [1, 2, 3];
-  const tmpArrnow = $dotCall($, undefined, undefined, 1, 0, arr);
-  if (!tmpArrnow) {
-    let tmpClusterSSA_tmpArri = 1;
+  const tmpLambdaFindNow = $dotCall($, undefined, undefined, 1, 0, arr);
+  if (!tmpLambdaFindNow) {
+    let tmpClusterSSA_tmpLambdaFindCounter = 1;
     while (true) {
-      if (tmpClusterSSA_tmpArri < 3) {
-        if ($dotCall($, undefined, undefined, arr[tmpClusterSSA_tmpArri], tmpClusterSSA_tmpArri, arr)) {
+      if (tmpClusterSSA_tmpLambdaFindCounter < 3) {
+        if ($dotCall($, undefined, undefined, arr[tmpClusterSSA_tmpLambdaFindCounter], tmpClusterSSA_tmpLambdaFindCounter, arr)) {
           break;
         } else {
-          tmpClusterSSA_tmpArri = tmpClusterSSA_tmpArri + 1;
+          tmpClusterSSA_tmpLambdaFindCounter = tmpClusterSSA_tmpLambdaFindCounter + 1;
         }
       } else {
         break;

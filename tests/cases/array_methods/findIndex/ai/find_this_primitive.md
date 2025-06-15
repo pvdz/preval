@@ -26,28 +26,35 @@ const tmpMCP /*:(unused)=>undefined*/ = function ($$0) {
   return undefined;
 };
 const tmpMCOO /*:array*/ /*truthy*/ = [1, 2, 3];
-const tmpArrnow /*:unknown*/ = $dotCall(tmpMCP, 42, undefined, 1, 0, tmpMCOO);
-if (tmpArrnow) {
+const tmpLambdaFindIndexNow /*:unknown*/ = $dotCall(tmpMCP, 42, undefined, 1, 0, tmpMCOO);
+if (tmpLambdaFindIndexNow) {
   $(0);
 } else {
-  let tmpArreout /*:unknown*/ = -1;
-  let tmpClusterSSA_tmpArri /*:number*/ = 1;
+  let tmpLambdaFindIndexOut /*:unknown*/ = -1;
+  let tmpClusterSSA_tmpLambdaFindIndexCounter /*:number*/ = 1;
   while ($LOOP_UNROLL_10) {
-    const tmpArrc$1 /*:boolean*/ = tmpClusterSSA_tmpArri < 3;
-    if (tmpArrc$1) {
-      const tmpArrel$1 /*:primitive*/ = tmpMCOO[tmpClusterSSA_tmpArri];
-      const tmpArrnow$1 /*:unknown*/ = $dotCall(tmpMCP, 42, undefined, tmpArrel$1, tmpClusterSSA_tmpArri, tmpMCOO);
-      if (tmpArrnow$1) {
-        tmpArreout = tmpClusterSSA_tmpArri;
+    const tmpLambdaFindIndexTest$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaFindIndexCounter < 3;
+    if (tmpLambdaFindIndexTest$1) {
+      const tmpLambdaFindIndexVal$1 /*:primitive*/ = tmpMCOO[tmpClusterSSA_tmpLambdaFindIndexCounter];
+      const tmpLambdaFindIndexNow$1 /*:unknown*/ = $dotCall(
+        tmpMCP,
+        42,
+        undefined,
+        tmpLambdaFindIndexVal$1,
+        tmpClusterSSA_tmpLambdaFindIndexCounter,
+        tmpMCOO,
+      );
+      if (tmpLambdaFindIndexNow$1) {
+        tmpLambdaFindIndexOut = tmpClusterSSA_tmpLambdaFindIndexCounter;
         break;
       } else {
-        tmpClusterSSA_tmpArri = tmpClusterSSA_tmpArri + 1;
+        tmpClusterSSA_tmpLambdaFindIndexCounter = tmpClusterSSA_tmpLambdaFindIndexCounter + 1;
       }
     } else {
       break;
     }
   }
-  $(tmpArreout);
+  $(tmpLambdaFindIndexOut);
 }
 `````
 
@@ -64,21 +71,23 @@ const tmpMCOO = [1, 2, 3];
 if ($dotCall(tmpMCP, 42, undefined, 1, 0, tmpMCOO)) {
   $(0);
 } else {
-  let tmpArreout = -1;
-  let tmpClusterSSA_tmpArri = 1;
+  let tmpLambdaFindIndexOut = -1;
+  let tmpClusterSSA_tmpLambdaFindIndexCounter = 1;
   while (true) {
-    if (tmpClusterSSA_tmpArri < 3) {
-      if ($dotCall(tmpMCP, 42, undefined, tmpMCOO[tmpClusterSSA_tmpArri], tmpClusterSSA_tmpArri, tmpMCOO)) {
-        tmpArreout = tmpClusterSSA_tmpArri;
+    if (tmpClusterSSA_tmpLambdaFindIndexCounter < 3) {
+      if (
+        $dotCall(tmpMCP, 42, undefined, tmpMCOO[tmpClusterSSA_tmpLambdaFindIndexCounter], tmpClusterSSA_tmpLambdaFindIndexCounter, tmpMCOO)
+      ) {
+        tmpLambdaFindIndexOut = tmpClusterSSA_tmpLambdaFindIndexCounter;
         break;
       } else {
-        tmpClusterSSA_tmpArri = tmpClusterSSA_tmpArri + 1;
+        tmpClusterSSA_tmpLambdaFindIndexCounter = tmpClusterSSA_tmpLambdaFindIndexCounter + 1;
       }
     } else {
       break;
     }
   }
-  $(tmpArreout);
+  $(tmpLambdaFindIndexOut);
 }
 `````
 

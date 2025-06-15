@@ -22,16 +22,16 @@ $(arr, x);
 const arr /*:array*/ /*truthy*/ = [1, 2, 3];
 delete arr[1];
 $(1);
-const tmpArrin$1 /*:boolean*/ = 1 in arr;
-if (tmpArrin$1) {
-  const tmpArrel$2 /*:primitive*/ = arr[1];
-  $(tmpArrel$2);
+const tmpLambdaSomeHas$1 /*:boolean*/ = 1 in arr;
+if (tmpLambdaSomeHas$1) {
+  const tmpLambdaSomeVal$2 /*:primitive*/ = arr[1];
+  $(tmpLambdaSomeVal$2);
 } else {
 }
-const tmpArrin$2 /*:boolean*/ = 2 in arr;
-if (tmpArrin$2) {
-  const tmpArrel$1 /*:primitive*/ = arr[2];
-  $(tmpArrel$1);
+const tmpLambdaSomeHas$2 /*:boolean*/ = 2 in arr;
+if (tmpLambdaSomeHas$2) {
+  const tmpLambdaSomeVal$1 /*:primitive*/ = arr[2];
+  $(tmpLambdaSomeVal$1);
   $(arr, false);
 } else {
   $(arr, false);

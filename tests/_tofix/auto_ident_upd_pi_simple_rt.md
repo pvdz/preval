@@ -33,19 +33,19 @@ $(a, tmpClusterSSA_b$2);
 (Annotated with pids)
 
 `````filename=intro
-let a___5__ = undefined___6__;
-let tmpClusterSSA_b$2___8__ = 12;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE___11__) {
-  /*12*/ $(100);
-  tmpClusterSSA_b$2___22__ = tmpClusterSSA_b$2___20__ + 1;
-  a___26__ = tmpClusterSSA_b$2___25__;
-  if (a___28__) {
-    /*29*/
-  } /*30*/ else {
+let /*___5__*/ a = /*___6__*/ undefined;
+let /*___8__*/ tmpClusterSSA_b$2 = 12;
+while (/*___11__*/ $LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  /*12~31*/ $(100);
+  /*___22__*/ tmpClusterSSA_b$2 = /*___20__*/ tmpClusterSSA_b$2 + 1;
+  /*___26__*/ a = /*___25__*/ tmpClusterSSA_b$2;
+  if (/*___28__*/ a) {
+    /*29~29*/
+  } /*30~31*/ else {
     break;
   }
 }
-$(a___35__, tmpClusterSSA_b$2___36__);
+$(/*___35__*/ a, /*___36__*/ tmpClusterSSA_b$2);
 `````
 
 

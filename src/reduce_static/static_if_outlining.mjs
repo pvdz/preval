@@ -122,8 +122,8 @@ function _staticIfOutlining(fdata) {
           return true;
         }
 
-        if (read.pfuncNode === funcNode) {
-          vlog('- This is a recursive function. It is too dangerous.');
+        if (read.funcChain === funcNode.$p.funcChain) {
+          vlog('- This is a recursive function. It is too dangerous.', read.funcChain);
           return true;
         }
       })

@@ -281,6 +281,7 @@ $(`nested_labels_log`, tmpCalleeParam$5);
 - (todo) - at least one of the frfr args was not isFree, bailing
 - (todo) access object property that also exists on prototype? $array_join
 - (todo) access object property that also exists on prototype? $array_push
+- (todo) nodeMightMutateNameUntrapped; Which statement are we missing here? BlockStatement
 - (todo) support array reads statement type WhileStatement
 
 

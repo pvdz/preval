@@ -10,6 +10,45 @@ existing test
 
 we can totally resolve the .toString here. why dont we?
 
+- if a function does not use arguments
+- if the first use of a param in a function reads a prop
+- if the function doesnt escape
+- if target param type is known for all calls to function
+- if the prop resolves to a builtin function in all cases
+- then we could add a new param to the function where we pass in the builtin function as an extra param instead
+
+Result would be something like this:
+```
+const f /*:(unknown)=>unknown*/ = function () {
+  debugger;
+  $(`no`);
+  $(`inlining`);
+  $(`please`);
+  return undefined;
+};
+f();
+$('1,2,3');
+f();
+$('300');
+f();
+$('three');
+```
+or
+```
+  $(`no`);
+  $(`inlining`);
+  $(`please`);
+$('1,2,3');
+  $(`no`);
+  $(`inlining`);
+  $(`please`);
+$('300');
+  $(`no`);
+  $(`inlining`);
+  $(`please`);
+$('three');
+```
+
 ## Input
 
 `````js filename=intro
@@ -32,23 +71,19 @@ $(f('three'));
 
 
 `````js filename=intro
-const f /*:(unknown)=>unknown*/ = function ($$0) {
-  const x /*:unknown*/ = $$0;
+const f /*:(unknown)=>unknown*/ = function () {
   debugger;
   $(`no`);
   $(`inlining`);
   $(`please`);
-  const tmpMCF /*:unknown*/ = x.toString;
-  const y /*:unknown*/ = $dotCall(tmpMCF, x, `toString`);
-  return y;
+  return undefined;
 };
-const tmpCalleeParam$1 /*:array*/ /*truthy*/ = [1, 2, 3];
-const tmpCalleeParam /*:unknown*/ = f(tmpCalleeParam$1);
-$(tmpCalleeParam);
-const tmpCalleeParam$3 /*:unknown*/ = f(300);
-$(tmpCalleeParam$3);
-const tmpCalleeParam$5 /*:unknown*/ = f(`three`);
-$(tmpCalleeParam$5);
+f();
+$('1,2,3');
+f();
+$('300');
+f();
+$('three');
 `````
 
 

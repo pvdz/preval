@@ -75,6 +75,7 @@ $(a, x);
 
 - (todo) Support this binary expression operator:
 - (todo) do we want to support BinaryExpression as expression statement in free loops?
+- (todo) do we want to support Literal as expression statement in free loops?
 - (todo) support array reads statement type ExpressionStatement
 - (todo) support array reads statement type VarStatement
 - (todo) support array reads statement type WhileStatement

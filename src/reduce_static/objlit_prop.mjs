@@ -244,7 +244,7 @@ function _objlitPropAccess(fdata) {
         vlog('- verifyAfterObjectAssign(): Checking', rwOrder.length - wi - 1, 'refs, starting at', wi);
         for (let ri = wi; ri < rwOrder.length; ++ri) {
           const ref = rwOrder[ri];
-          vgroup('- ref', ri, ';', ref.action + ':' + ref.kind, ref.pfuncNode.$p.npid, ref.parentNode.type);
+          vgroup('- ref', ri, ';', ref.action + ':' + ref.kind, ref.funcChain, ref.parentNode.type);
           const r = processRef(meta, rwOrder, writeRef, objExprNode, ref, wi, ri, lastMap);
           vgroupEnd();
           if (r) break;
@@ -255,15 +255,15 @@ function _objlitPropAccess(fdata) {
     function processRef(meta, rwOrder, writeRef, objExprNode, ref, wi, ri, lastMap) {
       // ref should be the next ref in rwOrder, after the writeRef. It may be differently scoped.
 
-      let lastRefArr = lastMap.get(ref.pfuncNode.$p.npid);
+      let lastRefArr = lastMap.get(ref.funcChain);
       if (!lastRefArr) {
         lastRefArr = [];
-        lastMap.set(ref.pfuncNode.$p.npid, lastRefArr);
+        lastMap.set(ref.funcChain, lastRefArr);
       }
 
       if (ref.action === 'write') {
         lastRefArr.push(ref);
-        vlog('- Updated last write ref for scope', ref.pfuncNode.$p.npid, 'to a write');
+        vlog('- Updated last write ref for scope', ref.funcChain, 'to a write');
         return;
       }
 

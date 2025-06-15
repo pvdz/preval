@@ -22,16 +22,14 @@ $(a, b);
 
 
 `````js filename=intro
-let x /*:unknown*/ = $(`val`);
-const a /*:unknown*/ = x;
+const x /*:unknown*/ = $(`val`);
 const tmpMCOO /*:()=>undefined*/ = function () {
   debugger;
-  x = `changed`;
   return undefined;
 };
 const mutate /*:function*/ /*truthy*/ = $dotCall($function_bind, tmpMCOO, `bind`, null);
 mutate();
-$(a, x);
+$(x, `changed`);
 `````
 
 
@@ -39,18 +37,10 @@ $(a, x);
 (This ought to be the final result)
 
 `````js filename=intro
-let x = $(`val`);
-const a = x;
-const mutate = $dotCall(
-  $function_bind,
-  function () {
-    x = `changed`;
-  },
-  `bind`,
-  null,
-);
+const x = $(`val`);
+const mutate = $dotCall($function_bind, function () {}, `bind`, null);
 mutate();
-$(a, x);
+$(x, `changed`);
 `````
 
 
@@ -58,16 +48,14 @@ $(a, x);
 With rename=true
 
 `````js filename=intro
-let a = $( "val" );
-const b = a;
-const c = function() {
+const a = $( "val" );
+const b = function() {
   debugger;
-  a = "changed";
   return undefined;
 };
-const d = $dotCall( $function_bind, c, "bind", null );
-d();
-$( b, a );
+const c = $dotCall( $function_bind, b, "bind", null );
+c();
+$( a, "changed" );
 `````
 
 
@@ -94,6 +82,7 @@ $(a, x);
 
 
 - (todo) access object property that also exists on prototype? $function_bind
+- (todo) this may support .call .apply and .bind but I think that different reducers should tackle it
 - (todo) type trackeed tricks can possibly support static $function_bind
 
 

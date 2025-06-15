@@ -27,20 +27,20 @@ $(x);
 const f /*:()=>undefined*/ = function () {
   debugger;
   const arr /*:array*/ /*truthy*/ = [1, 2, 3];
-  let tmpSSA_tmpLambdaReduceRightOut$1 /*:unknown*/ = $dotCall($, undefined, undefined, 3, 2, 1, arr);
+  let tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut /*:unknown*/ = $dotCall($, undefined, undefined, 3, 2, 1, arr);
   const tmpLambdaReduceRightHas$2 /*:boolean*/ = 0 in arr;
   const tmpLambdaReduceRight1st /*:object*/ /*truthy*/ = {};
   if (tmpLambdaReduceRightHas$2) {
     const tmpLambdaReduceRightVal$2 /*:primitive*/ = arr[0];
-    const tmpLambdaReduceRightBad$2 /*:boolean*/ = tmpSSA_tmpLambdaReduceRightOut$1 === tmpLambdaReduceRight1st;
+    const tmpLambdaReduceRightBad$2 /*:boolean*/ = tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut === tmpLambdaReduceRight1st;
     if (tmpLambdaReduceRightBad$2) {
-      tmpSSA_tmpLambdaReduceRightOut$1 = tmpLambdaReduceRightVal$2;
+      tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut = tmpLambdaReduceRightVal$2;
     } else {
-      tmpSSA_tmpLambdaReduceRightOut$1 = $dotCall(
+      tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut = $dotCall(
         $,
         undefined,
         undefined,
-        tmpSSA_tmpLambdaReduceRightOut$1,
+        tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut,
         tmpLambdaReduceRightVal$2,
         0,
         arr,
@@ -48,14 +48,14 @@ const f /*:()=>undefined*/ = function () {
     }
   } else {
   }
-  const tmpLambdaReduceRightTTE /*:boolean*/ = tmpSSA_tmpLambdaReduceRightOut$1 === tmpLambdaReduceRight1st;
+  const tmpLambdaReduceRightTTE /*:boolean*/ = tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut === tmpLambdaReduceRight1st;
   if (tmpLambdaReduceRightTTE) {
     const tmpLambdaReduceRightErr /*:object*/ /*truthy*/ = new $typeError_constructor(
       `[Preval] Called .reduceRight without init on an array without values: \`const\\nx\$1\\n=\\n\$dotCall(\$array_reduceRight,\\narr,\\n\`reduceRight\`,\\n\$);\``,
     );
     throw tmpLambdaReduceRightErr;
   } else {
-    $(tmpSSA_tmpLambdaReduceRightOut$1);
+    $(tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut);
     return undefined;
   }
 };
@@ -71,32 +71,32 @@ $(x);
 `````js filename=intro
 const f = function () {
   const arr = [1, 2, 3];
-  let tmpSSA_tmpLambdaReduceRightOut$1 = $dotCall($, undefined, undefined, 3, 2, 1, arr);
+  let tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut = $dotCall($, undefined, undefined, 3, 2, 1, arr);
   const tmpLambdaReduceRightHas$2 = 0 in arr;
   const tmpLambdaReduceRight1st = {};
   if (tmpLambdaReduceRightHas$2) {
     const tmpLambdaReduceRightVal$2 = arr[0];
-    if (tmpSSA_tmpLambdaReduceRightOut$1 === tmpLambdaReduceRight1st) {
-      tmpSSA_tmpLambdaReduceRightOut$1 = tmpLambdaReduceRightVal$2;
+    if (tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut === tmpLambdaReduceRight1st) {
+      tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut = tmpLambdaReduceRightVal$2;
     } else {
-      tmpSSA_tmpLambdaReduceRightOut$1 = $dotCall(
+      tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut = $dotCall(
         $,
         undefined,
         undefined,
-        tmpSSA_tmpLambdaReduceRightOut$1,
+        tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut,
         tmpLambdaReduceRightVal$2,
         0,
         arr,
       );
     }
   }
-  if (tmpSSA_tmpLambdaReduceRightOut$1 === tmpLambdaReduceRight1st) {
+  if (tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut === tmpLambdaReduceRight1st) {
     const tmpLambdaReduceRightErr = new $typeError_constructor(
       `[Preval] Called .reduceRight without init on an array without values: \`const\\nx\$1\\n=\\n\$dotCall(\$array_reduceRight,\\narr,\\n\`reduceRight\`,\\n\$);\``,
     );
     throw tmpLambdaReduceRightErr;
   } else {
-    $(tmpSSA_tmpLambdaReduceRightOut$1);
+    $(tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut);
   }
 };
 f();
@@ -164,7 +164,6 @@ $(x);
 
 - (todo) Support this binary expression operator:
 - (todo) objects in isFree check
-- (todo) support array reads statement type EmptyStatement
 - (todo) support array reads statement type ExpressionStatement
 - (todo) support array reads statement type VarStatement
 - (todo) support array reads statement type WhileStatement

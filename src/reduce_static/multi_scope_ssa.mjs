@@ -38,7 +38,7 @@ function _multiScopeSSA(fdata) {
       const isDeclOrAssign = isAssign || isVar;
       const block = ref.blockBody;
 
-      const last = lastMap.get(ref.pfuncNode);
+      const last = lastMap.get(ref.funcChain);
 
       // Check stuff like `x = x + 1`, `x = x + x`, `x = f(x, x)`, and `x = [x, x, x]`.
       // If the rhs of an assignment contains itself, skip any number of self
@@ -107,12 +107,12 @@ function _multiScopeSSA(fdata) {
           seenDecl = true;
           declInnerLoop = ref.innerLoop;
         }
-        lastMap.set(ref.pfuncNode, ref);
-      } else if (last && ref.action === 'read' && last.pfuncNode === ref.pfuncNode) {
+        lastMap.set(ref.funcChain, ref);
+      } else if (last && ref.action === 'read' && last.funcChain === ref.funcChain) {
         // Only apply to back2back writes. If there was a read in the same scope then it's not back2back.
         // However, if two writes had statements between them without observable side effects we still consider
         // them to be back2back, since nothing can observe the difference.
-        lastMap.set(ref.pfuncNode, undefined);
+        lastMap.set(ref.funcChain, undefined);
       }
 
       vgroupEnd();

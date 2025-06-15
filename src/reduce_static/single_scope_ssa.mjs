@@ -49,7 +49,7 @@ function _singleScopeSSA(fdata) {
     // A read can reach a write when;
     // - the blockChain of the write is a prefix of the blockChain of the read, and
     // - either the write is not in a loop or the read.innerLoop is equal to write.innerLoop, and
-    // - have the same pfuncNode, and
+    // - have the same funcChain, and
     // - write.pid < read.pid, and
     // - the read does not reach another write sooner
 
@@ -71,7 +71,7 @@ function _singleScopeSSA(fdata) {
       'Decl scope:',
       declScope,
       ', ref scopes:',
-      rwOrder.map((ref) => ref.pfuncNode.$p.npid),
+      rwOrder.map((ref) => ref.funcChain),
     );
 
     const varDeclWrite = meta.writes.find((write) => write.kind === 'var');

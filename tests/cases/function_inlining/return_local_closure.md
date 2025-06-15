@@ -24,8 +24,8 @@ $(g());
 
 
 `````js filename=intro
-const tmpClusterSSA_tmpReturnArg /*:unknown*/ = $(10);
-$(tmpClusterSSA_tmpReturnArg);
+const y /*:unknown*/ = $(10);
+$(y);
 `````
 
 

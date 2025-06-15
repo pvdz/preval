@@ -63,7 +63,7 @@ function _staticLets(fdata) {
     });
 
     function processRef(ref, i) {
-      const last = lastMap.get(ref.pfuncNode);
+      const last = lastMap.get(ref.funcChain);
       if (
         last &&
         // We only care to inline reads
@@ -71,7 +71,7 @@ function _staticLets(fdata) {
         // Don't change export statements. Heh.
         ref.kind !== 'export' &&
         // Must be in same scope
-        ref.pfuncNode === last.pfuncNode &&
+        ref.funcChain === last.funcChain &&
         // Must be in the same loop or not at all
         ref.innerLoop === last.innerLoop &&
         // Must be in the same try-block or not at all
@@ -143,10 +143,10 @@ function _staticLets(fdata) {
           vlog('At least one write was not an assign. Bailing');
           return true;
         }
-        lastMap.set(ref.pfuncNode, ref);
-      } else if (last?.pfuncNode === ref.pfuncNode) {
+        lastMap.set(ref.funcChain, ref);
+      } else if (last?.funcChain === ref.funcChain) {
         // If we couldn't determine the value for this read, we won't be able to determine it for the next read
-        lastMap.set(ref.pfuncNode, undefined);
+        lastMap.set(ref.funcChainfuncChain, undefined);
       }
     }
   }

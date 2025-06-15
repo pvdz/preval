@@ -90,6 +90,7 @@ $dotCall(tmpMCF, f, `call`, tmpMCP, tmpMCP$1, `nope`, $);
 
 - (todo) access object property that also exists on prototype? $function_call
 - (todo) support array reads statement type ExpressionStatement
+- (todo) this may support .call .apply and .bind but I think that different reducers should tackle it
 
 
 ## Globals

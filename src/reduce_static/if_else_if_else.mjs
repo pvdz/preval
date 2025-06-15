@@ -85,7 +85,7 @@ function _ifelseifelse(fdata) {
       vlog('The write was not an assignment');
       return;
     }
-    if (write.pfuncNode !== varDeclWrite.pfuncNode) {
+    if (write.funcChain !== varDeclWrite.funcChain) {
       vlog('The write must be in the same scope as the var decl');
       return;
     }
@@ -100,17 +100,17 @@ function _ifelseifelse(fdata) {
 
     const read1 = meta.reads[0];
     const read2 = meta.reads[1];
-    if ((read1.pfuncNode === varDeclWrite.pfuncNode) === (read2.pfuncNode === varDeclWrite.pfuncNode)) {
+    if ((read1.funcChain === varDeclWrite.funcChain) === (read2.funcChain === varDeclWrite.funcChain)) {
       vlog(
         'One read must be in the same scope as the var decl and the other must not be',
-        varDeclWrite.pfuncNode.$p.npid,
-        read1.pfuncNode.$p.npid,
-        read2.pfuncNode.$p.npid,
+        varDeclWrite.funcChain,
+        read1.funcChain,
+        read2.funcChain,
       );
       return;
     }
 
-    const nestedRead = read1.pfuncNode === varDeclWrite.pfuncNode ? read2 : read1;
+    const nestedRead = read1.funcChain === varDeclWrite.funcChain ? read2 : read1;
     const topRead = nestedRead === read1 ? read2 : read1;
 
     if (

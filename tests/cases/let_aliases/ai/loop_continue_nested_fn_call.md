@@ -86,6 +86,7 @@ $(a, x);
 
 
 - (todo) Support this node type in isFree: LabeledStatement
+- (todo) nodeMightMutateNameUntrapped; Which statement are we missing here? BlockStatement
 
 
 ## Globals

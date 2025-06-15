@@ -23,26 +23,19 @@ $('call2', f($('argA2'), $('argB2')));
 
 
 `````js filename=intro
-const f /*:(unknown, unknown)=>unknown*/ = function ($$0, $$1) {
-  const a /*:unknown*/ = $$0;
-  const tmpParamBare /*:unknown*/ = $$1;
-  debugger;
-  const tmpIfTest /*:boolean*/ = tmpParamBare === undefined;
-  if (tmpIfTest) {
-    $(`inside_f`, a, a);
-    return a;
-  } else {
-    $(`inside_f`, a, tmpParamBare);
-    return tmpParamBare;
-  }
-};
 const tmpCalleeParam$1 /*:unknown*/ = $(`argA1`);
-const tmpCalleeParam /*:unknown*/ = f(tmpCalleeParam$1);
-$(`call1`, tmpCalleeParam);
+$(`inside_f`, tmpCalleeParam$1, tmpCalleeParam$1);
+$(`call1`, tmpCalleeParam$1);
 const tmpCalleeParam$5 /*:unknown*/ = $(`argA2`);
 const tmpCalleeParam$7 /*:unknown*/ = $(`argB2`);
-const tmpCalleeParam$3 /*:unknown*/ = f(tmpCalleeParam$5, tmpCalleeParam$7);
-$(`call2`, tmpCalleeParam$3);
+const tmpSaooB /*:boolean*/ = tmpCalleeParam$7 === undefined;
+if (tmpSaooB) {
+  $(`inside_f`, tmpCalleeParam$5, tmpCalleeParam$5);
+  $(`call2`, tmpCalleeParam$5);
+} else {
+  $(`inside_f`, tmpCalleeParam$5, tmpCalleeParam$7);
+  $(`call2`, tmpCalleeParam$7);
+}
 `````
 
 
@@ -50,18 +43,18 @@ $(`call2`, tmpCalleeParam$3);
 (This ought to be the final result)
 
 `````js filename=intro
-const f = function (a, tmpParamBare) {
-  if (tmpParamBare === undefined) {
-    $(`inside_f`, a, a);
-    return a;
-  } else {
-    $(`inside_f`, a, tmpParamBare);
-    return tmpParamBare;
-  }
-};
-$(`call1`, f($(`argA1`)));
+const tmpCalleeParam$1 = $(`argA1`);
+$(`inside_f`, tmpCalleeParam$1, tmpCalleeParam$1);
+$(`call1`, tmpCalleeParam$1);
 const tmpCalleeParam$5 = $(`argA2`);
-$(`call2`, f(tmpCalleeParam$5, $(`argB2`)));
+const tmpCalleeParam$7 = $(`argB2`);
+if (tmpCalleeParam$7 === undefined) {
+  $(`inside_f`, tmpCalleeParam$5, tmpCalleeParam$5);
+  $(`call2`, tmpCalleeParam$5);
+} else {
+  $(`inside_f`, tmpCalleeParam$5, tmpCalleeParam$7);
+  $(`call2`, tmpCalleeParam$7);
+}
 `````
 
 
@@ -69,27 +62,20 @@ $(`call2`, f(tmpCalleeParam$5, $(`argB2`)));
 With rename=true
 
 `````js filename=intro
-const a = function($$0,$$1 ) {
-  const b = $$0;
-  const c = $$1;
-  debugger;
-  const d = c === undefined;
-  if (d) {
-    $( "inside_f", b, b );
-    return b;
-  }
-  else {
-    $( "inside_f", b, c );
-    return c;
-  }
-};
-const e = $( "argA1" );
-const f = a( e );
-$( "call1", f );
-const g = $( "argA2" );
-const h = $( "argB2" );
-const i = a( g, h );
-$( "call2", i );
+const a = $( "argA1" );
+$( "inside_f", a, a );
+$( "call1", a );
+const b = $( "argA2" );
+const c = $( "argB2" );
+const d = c === undefined;
+if (d) {
+  $( "inside_f", b, b );
+  $( "call2", b );
+}
+else {
+  $( "inside_f", b, c );
+  $( "call2", c );
+}
 `````
 
 

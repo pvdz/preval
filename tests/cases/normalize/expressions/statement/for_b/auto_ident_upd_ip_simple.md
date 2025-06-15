@@ -30,8 +30,8 @@ $(1);
 $(1);
 $(1);
 $(1);
-$(1);
 let tmpClusterSSA_b$2 /*:number*/ = 12;
+$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
   const tmpPostUpdArgIdent$1 /*:unknown*/ = tmpClusterSSA_b$2;
@@ -59,8 +59,8 @@ $(1);
 $(1);
 $(1);
 $(1);
-$(1);
 let tmpClusterSSA_b$2 = 12;
+$(1);
 while (true) {
   $(1);
   const tmpPostUpdArgIdent$1 = tmpClusterSSA_b$2;
@@ -86,8 +86,8 @@ $( 1 );
 $( 1 );
 $( 1 );
 $( 1 );
-$( 1 );
 let a = 12;
+$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );
   const b = a;

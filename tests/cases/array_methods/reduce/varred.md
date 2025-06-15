@@ -27,27 +27,35 @@ $(x);
 const f /*:()=>undefined*/ = function () {
   debugger;
   const arr /*:array*/ /*truthy*/ = [1, 2, 3];
-  let tmpSSA_tmpLambdaReduceOut$1 /*:unknown*/ = $dotCall($, undefined, undefined, 1, 2, 1, arr);
+  let tmpSSA_tmpClusterSSA_tmpLambdaReduceOut /*:unknown*/ = $dotCall($, undefined, undefined, 1, 2, 1, arr);
   const tmpLambdaReduceHas$2 /*:boolean*/ = 2 in arr;
   const tmpLambdaReduce1st /*:object*/ /*truthy*/ = {};
   if (tmpLambdaReduceHas$2) {
     const tmpLambdaReduceVal$2 /*:primitive*/ = arr[2];
-    const tmpLambdaReduceBad$2 /*:boolean*/ = tmpSSA_tmpLambdaReduceOut$1 === tmpLambdaReduce1st;
+    const tmpLambdaReduceBad$2 /*:boolean*/ = tmpSSA_tmpClusterSSA_tmpLambdaReduceOut === tmpLambdaReduce1st;
     if (tmpLambdaReduceBad$2) {
-      tmpSSA_tmpLambdaReduceOut$1 = tmpLambdaReduceVal$2;
+      tmpSSA_tmpClusterSSA_tmpLambdaReduceOut = tmpLambdaReduceVal$2;
     } else {
-      tmpSSA_tmpLambdaReduceOut$1 = $dotCall($, undefined, undefined, tmpSSA_tmpLambdaReduceOut$1, tmpLambdaReduceVal$2, 2, arr);
+      tmpSSA_tmpClusterSSA_tmpLambdaReduceOut = $dotCall(
+        $,
+        undefined,
+        undefined,
+        tmpSSA_tmpClusterSSA_tmpLambdaReduceOut,
+        tmpLambdaReduceVal$2,
+        2,
+        arr,
+      );
     }
   } else {
   }
-  const tmpLambdaReduceTTE /*:boolean*/ = tmpSSA_tmpLambdaReduceOut$1 === tmpLambdaReduce1st;
+  const tmpLambdaReduceTTE /*:boolean*/ = tmpSSA_tmpClusterSSA_tmpLambdaReduceOut === tmpLambdaReduce1st;
   if (tmpLambdaReduceTTE) {
     const tmpLambdaReduceErr /*:object*/ /*truthy*/ = new $typeError_constructor(
       `[Preval] Called .reduce without init on an array without values: \`const\\nx\$1\\n=\\n\$dotCall(\$array_reduce,\\narr,\\n\`reduce\`,\\n\$);\``,
     );
     throw tmpLambdaReduceErr;
   } else {
-    $(tmpSSA_tmpLambdaReduceOut$1);
+    $(tmpSSA_tmpClusterSSA_tmpLambdaReduceOut);
     return undefined;
   }
 };
@@ -63,24 +71,32 @@ $(x);
 `````js filename=intro
 const f = function () {
   const arr = [1, 2, 3];
-  let tmpSSA_tmpLambdaReduceOut$1 = $dotCall($, undefined, undefined, 1, 2, 1, arr);
+  let tmpSSA_tmpClusterSSA_tmpLambdaReduceOut = $dotCall($, undefined, undefined, 1, 2, 1, arr);
   const tmpLambdaReduceHas$2 = 2 in arr;
   const tmpLambdaReduce1st = {};
   if (tmpLambdaReduceHas$2) {
     const tmpLambdaReduceVal$2 = arr[2];
-    if (tmpSSA_tmpLambdaReduceOut$1 === tmpLambdaReduce1st) {
-      tmpSSA_tmpLambdaReduceOut$1 = tmpLambdaReduceVal$2;
+    if (tmpSSA_tmpClusterSSA_tmpLambdaReduceOut === tmpLambdaReduce1st) {
+      tmpSSA_tmpClusterSSA_tmpLambdaReduceOut = tmpLambdaReduceVal$2;
     } else {
-      tmpSSA_tmpLambdaReduceOut$1 = $dotCall($, undefined, undefined, tmpSSA_tmpLambdaReduceOut$1, tmpLambdaReduceVal$2, 2, arr);
+      tmpSSA_tmpClusterSSA_tmpLambdaReduceOut = $dotCall(
+        $,
+        undefined,
+        undefined,
+        tmpSSA_tmpClusterSSA_tmpLambdaReduceOut,
+        tmpLambdaReduceVal$2,
+        2,
+        arr,
+      );
     }
   }
-  if (tmpSSA_tmpLambdaReduceOut$1 === tmpLambdaReduce1st) {
+  if (tmpSSA_tmpClusterSSA_tmpLambdaReduceOut === tmpLambdaReduce1st) {
     const tmpLambdaReduceErr = new $typeError_constructor(
       `[Preval] Called .reduce without init on an array without values: \`const\\nx\$1\\n=\\n\$dotCall(\$array_reduce,\\narr,\\n\`reduce\`,\\n\$);\``,
     );
     throw tmpLambdaReduceErr;
   } else {
-    $(tmpSSA_tmpLambdaReduceOut$1);
+    $(tmpSSA_tmpClusterSSA_tmpLambdaReduceOut);
   }
 };
 f();
@@ -148,7 +164,6 @@ $(x);
 
 - (todo) Support this binary expression operator:
 - (todo) objects in isFree check
-- (todo) support array reads statement type EmptyStatement
 - (todo) support array reads statement type ExpressionStatement
 - (todo) support array reads statement type VarStatement
 - (todo) support array reads statement type WhileStatement

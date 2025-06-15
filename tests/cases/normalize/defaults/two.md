@@ -24,13 +24,13 @@ $(f('x', 'y'));
 
 
 `````js filename=intro
-const f /*:(primitive, primitive)=>array*/ = function ($$0, $$1) {
+const f /*:(primitive, primitive, boolean)=>array*/ = function ($$0, $$1, $$2) {
   const tmpParamBare /*:primitive*/ = $$0;
   const tmpParamBare$1 /*:primitive*/ = $$1;
+  const tmpOutlinedParam /*:boolean*/ = $$2;
   debugger;
   let a /*:unknown*/ /*ternaryConst*/ = `foo`;
-  const tmpIfTest /*:boolean*/ = tmpParamBare === undefined;
-  if (tmpIfTest) {
+  if (tmpOutlinedParam) {
   } else {
     a = tmpParamBare;
   }
@@ -43,13 +43,13 @@ const f /*:(primitive, primitive)=>array*/ = function ($$0, $$1) {
   const tmpReturnArg /*:array*/ /*truthy*/ = [a, b];
   return tmpReturnArg;
 };
-const tmpCalleeParam /*:array*/ /*truthy*/ = f();
+const tmpCalleeParam /*:array*/ /*truthy*/ = f(undefined, undefined, true);
 $(tmpCalleeParam);
-const tmpCalleeParam$1 /*:array*/ /*truthy*/ = f(`x`);
+const tmpCalleeParam$1 /*:array*/ /*truthy*/ = f(`x`, undefined, false);
 $(tmpCalleeParam$1);
-const tmpCalleeParam$3 /*:array*/ /*truthy*/ = f(undefined, `y`);
+const tmpCalleeParam$3 /*:array*/ /*truthy*/ = f(undefined, `y`, true);
 $(tmpCalleeParam$3);
-const tmpCalleeParam$5 /*:array*/ /*truthy*/ = f(`x`, `y`);
+const tmpCalleeParam$5 /*:array*/ /*truthy*/ = f(`x`, `y`, false);
 $(tmpCalleeParam$5);
 `````
 
@@ -58,9 +58,9 @@ $(tmpCalleeParam$5);
 (This ought to be the final result)
 
 `````js filename=intro
-const f = function (tmpParamBare, tmpParamBare$1) {
+const f = function (tmpParamBare, tmpParamBare$1, tmpOutlinedParam) {
   let a = `foo`;
-  if (!(tmpParamBare === undefined)) {
+  if (!tmpOutlinedParam) {
     a = tmpParamBare;
   }
   let b = `bar`;
@@ -70,10 +70,10 @@ const f = function (tmpParamBare, tmpParamBare$1) {
   const tmpReturnArg = [a, b];
   return tmpReturnArg;
 };
-$(f());
-$(f(`x`));
-$(f(undefined, `y`));
-$(f(`x`, `y`));
+$(f(undefined, undefined, true));
+$(f(`x`, undefined, false));
+$(f(undefined, `y`, true));
+$(f(`x`, `y`, false));
 `````
 
 
@@ -81,17 +81,17 @@ $(f(`x`, `y`));
 With rename=true
 
 `````js filename=intro
-const a = function($$0,$$1 ) {
+const a = function($$0,$$1,$$2 ) {
   const b = $$0;
   const c = $$1;
+  const d = $$2;
   debugger;
-  let d = "foo";
-  const e = b === undefined;
-  if (e) {
+  let e = "foo";
+  if (d) {
 
   }
   else {
-    d = b;
+    e = b;
   }
   let f = "bar";
   const g = c === undefined;
@@ -101,16 +101,16 @@ const a = function($$0,$$1 ) {
   else {
     f = c;
   }
-  const h = [ d, f ];
+  const h = [ e, f ];
   return h;
 };
-const i = a();
+const i = a( undefined, undefined, true );
 $( i );
-const j = a( "x" );
+const j = a( "x", undefined, false );
 $( j );
-const k = a( undefined, "y" );
+const k = a( undefined, "y", true );
 $( k );
-const l = a( "x", "y" );
+const l = a( "x", "y", false );
 $( l );
 `````
 

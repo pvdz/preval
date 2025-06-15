@@ -32,28 +32,36 @@ const tmpMCP /*:(unknown)=>undefined*/ = function ($$0) {
 };
 const tmpLambdaReduceOut /*:object*/ /*truthy*/ = { mult: 2 };
 const tmpMCOO /*:array*/ /*truthy*/ = [1, 2, 3];
-let tmpSSA_tmpLambdaReduceOut /*:unknown*/ = $dotCall(tmpMCP, undefined, undefined, tmpLambdaReduceOut, 1, 0, tmpMCOO);
+let tmpClusterSSA_tmpLambdaReduceOut /*:unknown*/ = $dotCall(tmpMCP, undefined, undefined, tmpLambdaReduceOut, 1, 0, tmpMCOO);
 const tmpLambdaReduceHas$1 /*:boolean*/ = 1 in tmpMCOO;
 if (tmpLambdaReduceHas$1) {
   const tmpLambdaReduceVal$1 /*:primitive*/ = tmpMCOO[1];
-  tmpSSA_tmpLambdaReduceOut = $dotCall(tmpMCP, undefined, undefined, tmpSSA_tmpLambdaReduceOut, tmpLambdaReduceVal$1, 1, tmpMCOO);
+  tmpClusterSSA_tmpLambdaReduceOut = $dotCall(
+    tmpMCP,
+    undefined,
+    undefined,
+    tmpClusterSSA_tmpLambdaReduceOut,
+    tmpLambdaReduceVal$1,
+    1,
+    tmpMCOO,
+  );
 } else {
 }
 const tmpLambdaReduceHas$2 /*:boolean*/ = 2 in tmpMCOO;
 if (tmpLambdaReduceHas$2) {
   const tmpLambdaReduceVal$2 /*:primitive*/ = tmpMCOO[2];
-  const tmpClusterSSA_tmpSSA_tmpLambdaReduceOut /*:unknown*/ = $dotCall(
+  const tmpClusterSSA_tmpLambdaReduceOut$1 /*:unknown*/ = $dotCall(
     tmpMCP,
     undefined,
     undefined,
-    tmpSSA_tmpLambdaReduceOut,
+    tmpClusterSSA_tmpLambdaReduceOut,
     tmpLambdaReduceVal$2,
     2,
     tmpMCOO,
   );
-  $(result, tmpClusterSSA_tmpSSA_tmpLambdaReduceOut);
+  $(result, tmpClusterSSA_tmpLambdaReduceOut$1);
 } else {
-  $(result, tmpSSA_tmpLambdaReduceOut);
+  $(result, tmpClusterSSA_tmpLambdaReduceOut);
 }
 `````
 
@@ -69,14 +77,14 @@ const tmpMCP = function (x$1) {
 };
 const tmpLambdaReduceOut = { mult: 2 };
 const tmpMCOO = [1, 2, 3];
-let tmpSSA_tmpLambdaReduceOut = $dotCall(tmpMCP, undefined, undefined, tmpLambdaReduceOut, 1, 0, tmpMCOO);
+let tmpClusterSSA_tmpLambdaReduceOut = $dotCall(tmpMCP, undefined, undefined, tmpLambdaReduceOut, 1, 0, tmpMCOO);
 if (1 in tmpMCOO) {
-  tmpSSA_tmpLambdaReduceOut = $dotCall(tmpMCP, undefined, undefined, tmpSSA_tmpLambdaReduceOut, tmpMCOO[1], 1, tmpMCOO);
+  tmpClusterSSA_tmpLambdaReduceOut = $dotCall(tmpMCP, undefined, undefined, tmpClusterSSA_tmpLambdaReduceOut, tmpMCOO[1], 1, tmpMCOO);
 }
 if (2 in tmpMCOO) {
-  $(result, $dotCall(tmpMCP, undefined, undefined, tmpSSA_tmpLambdaReduceOut, tmpMCOO[2], 2, tmpMCOO));
+  $(result, $dotCall(tmpMCP, undefined, undefined, tmpClusterSSA_tmpLambdaReduceOut, tmpMCOO[2], 2, tmpMCOO));
 } else {
-  $(result, tmpSSA_tmpLambdaReduceOut);
+  $(result, tmpClusterSSA_tmpLambdaReduceOut);
 }
 `````
 

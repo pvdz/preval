@@ -177,6 +177,7 @@ if ($) {
 ## Todos triggered
 
 
+- (todo) nodeMightMutateNameUntrapped; Which statement are we missing here? BlockStatement
 - (todo) support array reads statement type EmptyStatement
 - (todo) support array reads statement type ExpressionStatement
 

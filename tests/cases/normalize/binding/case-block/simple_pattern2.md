@@ -130,6 +130,7 @@ $(a, x, y, z);
 
 
 - (todo) Deal with array spreads in arr mutation?
+- (todo) nodeMightMutateNameUntrapped; Which statement are we missing here? BlockStatement
 - (todo) support array reads statement type ExpressionStatement
 - (todo) support array reads statement type VarStatement
 - (todo) type trackeed tricks can possibly support static $boolean_constructor

@@ -25,12 +25,12 @@ func({b: 'valBOnly'}); // Test with one defined, one default from destructuring
 
 
 `````js filename=intro
-const func /*:(unknown)=>undefined*/ = function ($$0) {
+const func /*:(unknown, boolean)=>undefined*/ = function ($$0, $$1) {
   const tmpParamBare /*:unknown*/ = $$0;
+  const tmpOutlinedParam /*:boolean*/ = $$1;
   debugger;
   let tmpBindingPatternObjRoot /*:unknown*/ /*ternaryConst*/ = undefined;
-  const tmpIfTest /*:boolean*/ = tmpParamBare === undefined;
-  if (tmpIfTest) {
+  if (tmpOutlinedParam) {
     const tmpCalleeParam /*:object*/ /*truthy*/ = {};
     tmpBindingPatternObjRoot = $(`defaultSource`, tmpCalleeParam);
   } else {
@@ -57,13 +57,14 @@ const func /*:(unknown)=>undefined*/ = function ($$0) {
 };
 const tmpCalleeParam$3 /*:object*/ /*truthy*/ = { a: `valA` };
 const tmpCalleeParam$1 /*:unknown*/ = $(`sourceObj`, tmpCalleeParam$3);
-func(tmpCalleeParam$1);
-func();
-func(undefined);
+const tmpSaooB$7 /*:boolean*/ = tmpCalleeParam$1 === undefined;
+func(tmpCalleeParam$1, tmpSaooB$7);
+func(undefined, true);
+func(undefined, true);
 const tmpCalleeParam$5 /*:object*/ /*truthy*/ = {};
-func(tmpCalleeParam$5);
+func(tmpCalleeParam$5, false);
 const tmpCalleeParam$7 /*:object*/ /*truthy*/ = { b: `valBOnly` };
-func(tmpCalleeParam$7);
+func(tmpCalleeParam$7, false);
 `````
 
 
@@ -71,9 +72,9 @@ func(tmpCalleeParam$7);
 (This ought to be the final result)
 
 `````js filename=intro
-const func = function (tmpParamBare) {
+const func = function (tmpParamBare, tmpOutlinedParam) {
   let tmpBindingPatternObjRoot = undefined;
-  if (tmpParamBare === undefined) {
+  if (tmpOutlinedParam) {
     tmpBindingPatternObjRoot = $(`defaultSource`, {});
   } else {
     tmpBindingPatternObjRoot = tmpParamBare;
@@ -92,11 +93,12 @@ const func = function (tmpParamBare) {
     $(`inside_func`, a, tmpOPBD$1);
   }
 };
-func($(`sourceObj`, { a: `valA` }));
-func();
-func(undefined);
-func({});
-func({ b: `valBOnly` });
+const tmpCalleeParam$1 = $(`sourceObj`, { a: `valA` });
+func(tmpCalleeParam$1, tmpCalleeParam$1 === undefined);
+func(undefined, true);
+func(undefined, true);
+func({}, false);
+func({ b: `valBOnly` }, false);
 `````
 
 
@@ -104,19 +106,19 @@ func({ b: `valBOnly` });
 With rename=true
 
 `````js filename=intro
-const a = function($$0 ) {
+const a = function($$0,$$1 ) {
   const b = $$0;
+  const c = $$1;
   debugger;
-  let c = undefined;
-  const d = b === undefined;
-  if (d) {
+  let d = undefined;
+  if (c) {
     const e = {};
-    c = $( "defaultSource", e );
+    d = $( "defaultSource", e );
   }
   else {
-    c = b;
+    d = b;
   }
-  const f = c.a;
+  const f = d.a;
   let g = undefined;
   const h = f === undefined;
   if (h) {
@@ -125,7 +127,7 @@ const a = function($$0 ) {
   else {
     g = f;
   }
-  const i = c.b;
+  const i = d.b;
   const j = i === undefined;
   if (j) {
     const k = $( "defaultB" );
@@ -139,13 +141,14 @@ const a = function($$0 ) {
 };
 const l = { a: "valA" };
 const m = $( "sourceObj", l );
-a( m );
-a();
-a( undefined );
-const n = {};
-a( n );
-const o = { b: "valBOnly" };
-a( o );
+const n = m === undefined;
+a( m, n );
+a( undefined, true );
+a( undefined, true );
+const o = {};
+a( o, false );
+const p = { b: "valBOnly" };
+a( p, false );
 `````
 
 

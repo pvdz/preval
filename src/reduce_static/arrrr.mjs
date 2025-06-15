@@ -340,7 +340,7 @@ function processAttempt(fdata, queue) {
             // Skip if the read is not in the same loop as the write
             // Skip if the read is in a different function scope
             // If skipped, we can still do it if we can guarantee the array to be immutable
-            if (write.innerLoop === read.innerLoop && write.pfuncNode.$p.npid === read.pfuncNode.$p.npid) {
+            if (write.innerLoop === read.innerLoop && write.funcChain === read.funcChain) {
               vlog('Checking now...');
               if (mayBindingMutateBetweenRefs(meta, write, read, true)) {
                 vlog('May mutate the array. Bailing');
@@ -387,7 +387,7 @@ function processAttempt(fdata, queue) {
             // Skip if the read is not in the same loop as the write
             // Skip if the read is in a different function scope
             // If skipped, we can still do it if we can guarantee the array to be immutable
-            if (write.innerLoop === read.innerLoop && write.pfuncNode.$p.npid === read.pfuncNode.$p.npid) {
+            if (write.innerLoop === read.innerLoop && write.funcChain === read.funcChain) {
               vlog('Checking now...');
               if (mayBindingMutateBetweenRefs(meta, write, read, true)) {
                 vlog('May mutate the array. Bailing');

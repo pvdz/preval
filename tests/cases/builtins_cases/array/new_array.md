@@ -28,8 +28,8 @@ $(error());
 
 
 `````js filename=intro
-const tmpClusterSSA_args /*:array*/ /*truthy*/ = $array_constructor(0);
-$(tmpClusterSSA_args);
+const tmpCalleeParam$1 /*:array*/ /*truthy*/ = $array_constructor(0);
+$(tmpCalleeParam$1);
 `````
 
 

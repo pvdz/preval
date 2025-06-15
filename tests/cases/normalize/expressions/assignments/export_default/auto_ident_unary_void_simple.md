@@ -64,6 +64,7 @@ $(a, arg);
 
 
 - (todo) Exported members must have a local binding so this leads to failure but we could still inline other local occurrences
+- (todo) nodeMightMutateNameUntrapped; Which statement are we missing here? ExportNamedDeclaration
 
 
 ## Globals

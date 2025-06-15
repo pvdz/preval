@@ -17,19 +17,6 @@ const arr = [1, 2, 3].map(f);
 $(arr);
 `````
 
-## O
-
-
-`````js filename=intro
-$(`hello`, 1);
-$(`hello`, 2);
-$(`hello`, 3);
-$([2, 3, 4]);
-`````
-HEADERCHECKME
-HEADERCHECKME
-HEADERCHECKME
-
 
 ## Settled
 

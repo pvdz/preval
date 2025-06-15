@@ -48,7 +48,7 @@ function _singleScopeTdz(fdata) {
       'Decl scope:',
       declScope,
       ', ref scopes:',
-      rwOrder.map((ref) => ref.pfuncNode.$p.npid),
+      rwOrder.map((ref) => ref.funcChain),
     );
 
     const varDeclWrite = meta.writes.find((write) => write.kind === 'var');

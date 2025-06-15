@@ -28,8 +28,8 @@ const tmpObjLitVal /*:unknown*/ = $(3);
 const tmpObjLitVal$1 /*:unknown*/ = $(4);
 const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
 $(tmpClusterSSA_tmpCalleeParam);
-const a /*:object*/ /*truthy*/ = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-$(a, tmpObjLitVal, tmpObjLitVal$1);
+const tmpNestedAssignObjPatternRhs /*:object*/ /*truthy*/ = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
+$(tmpNestedAssignObjPatternRhs, tmpObjLitVal, tmpObjLitVal$1);
 `````
 
 

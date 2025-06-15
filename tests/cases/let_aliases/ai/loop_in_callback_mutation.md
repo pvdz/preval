@@ -84,6 +84,7 @@ $(a, x);
 - (todo) Support this binary expression operator:
 - (todo) Support this node type in isFree: DebuggerStatement
 - (todo) do we want to support BinaryExpression as expression statement in free loops?
+- (todo) do we want to support Literal as expression statement in free loops?
 - (todo) regular property access of an ident feels tricky;
 - (todo) support array reads statement type ExpressionStatement
 - (todo) support array reads statement type VarStatement

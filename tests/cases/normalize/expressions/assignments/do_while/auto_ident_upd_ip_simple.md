@@ -23,7 +23,7 @@ $(a, b);
 
 
 `````js filename=intro
-let a /*:unknown*/ = 10;
+let a /*:unknown*/ = 11;
 $(100);
 $(100);
 $(100);
@@ -35,19 +35,18 @@ $(100);
 $(100);
 $(100);
 $(100);
-let tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_b /*:number*/ = 12;
+let tmpClusterSSA_b$1 /*:number*/ = 12;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
-  const tmpPostUpdArgIdent$1 /*:unknown*/ = tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_b;
-  tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_b =
-    tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_b + 1;
+  const tmpPostUpdArgIdent$1 /*:unknown*/ = tmpClusterSSA_b$1;
+  tmpClusterSSA_b$1 = tmpClusterSSA_b$1 + 1;
   a = tmpPostUpdArgIdent$1;
   if (tmpPostUpdArgIdent$1) {
   } else {
     break;
   }
 }
-$(a, tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_b);
+$(a, tmpClusterSSA_b$1);
 `````
 
 
@@ -55,7 +54,7 @@ $(a, tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpCl
 (This ought to be the final result)
 
 `````js filename=intro
-let a = 10;
+let a = 11;
 $(100);
 $(100);
 $(100);
@@ -67,18 +66,17 @@ $(100);
 $(100);
 $(100);
 $(100);
-let tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_b = 12;
+let tmpClusterSSA_b$1 = 12;
 while (true) {
   $(100);
-  const tmpPostUpdArgIdent$1 = tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_b;
-  tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_b =
-    tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_b + 1;
+  const tmpPostUpdArgIdent$1 = tmpClusterSSA_b$1;
+  tmpClusterSSA_b$1 = tmpClusterSSA_b$1 + 1;
   a = tmpPostUpdArgIdent$1;
   if (!tmpPostUpdArgIdent$1) {
     break;
   }
 }
-$(a, tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_b);
+$(a, tmpClusterSSA_b$1);
 `````
 
 
@@ -86,7 +84,7 @@ $(a, tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpCl
 With rename=true
 
 `````js filename=intro
-let a = 10;
+let a = 11;
 $( 100 );
 $( 100 );
 $( 100 );

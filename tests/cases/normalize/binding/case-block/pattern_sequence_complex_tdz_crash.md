@@ -117,6 +117,7 @@ $(x, y, z);
 
 
 - (todo) Deal with array spreads in arr mutation?
+- (todo) nodeMightMutateNameUntrapped; Which statement are we missing here? BlockStatement
 - (todo) support array reads statement type ExpressionStatement
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
 

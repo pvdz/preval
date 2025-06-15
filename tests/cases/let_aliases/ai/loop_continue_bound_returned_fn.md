@@ -41,9 +41,9 @@ while (true) {
     } else {
       const tmpClusterSSA_tmpMCOO /*:()=>undefined*/ = function () {
         debugger;
-        x = `changed`;
         return undefined;
       };
+      x = `changed`;
       const mutator /*:function*/ /*truthy*/ = $dotCall($function_bind, tmpClusterSSA_tmpMCOO, `bind`, null);
       mutator();
       break;
@@ -68,14 +68,9 @@ while (true) {
     if (i === 0) {
       i = i + 1;
     } else {
-      const mutator = $dotCall(
-        $function_bind,
-        function () {
-          x = `changed`;
-        },
-        `bind`,
-        null,
-      );
+      const tmpClusterSSA_tmpMCOO = function () {};
+      x = `changed`;
+      const mutator = $dotCall($function_bind, tmpClusterSSA_tmpMCOO, `bind`, null);
       mutator();
       break;
     }
@@ -104,9 +99,9 @@ while (true) {
     else {
       const f = function() {
         debugger;
-        a = "changed";
         return undefined;
       };
+      a = "changed";
       const g = $dotCall( $function_bind, f, "bind", null );
       g();
       break;
@@ -165,9 +160,10 @@ $(a, x);
 ## Todos triggered
 
 
-- (todo) - at least one of the frfr args was not isFree, bailing
 - (todo) Support this node type in isFree: LabeledStatement
 - (todo) access object property that also exists on prototype? $function_bind
+- (todo) nodeMightMutateNameUntrapped; Which statement are we missing here? BlockStatement
+- (todo) this may support .call .apply and .bind but I think that different reducers should tackle it
 - (todo) type trackeed tricks can possibly support static $function_bind
 
 

@@ -1,20 +1,25 @@
 // If a function only gets called and the first statement mutates an arg in a static way then we can outline this operation
-// `function f(a) { const x = a + 1; return a; } f(1); f(2);`
-// -> `function f(a) { const x = a; return a; } f(1 + 1); f(2 + 1);`
+//
+//      `function f(a) { const x = a + 1; return a; } f(1); f(2);`
+// ->
+//      `function f(a) { const x = a; return a; } f(1 + 1); f(2 + 1);`
+//
 // (the opposite is "inline identical param")
+// (the tail also has an outline reducer...)
+//
 
 // TODO: Bonus points if the op regards two args rather than a literal
 // TODO: Bonus points for outlining assignments to closures in the same way
 
-import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, fmat, tmat, coerce, findBodyOffset, assertNoDupeNodes, } from '../utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, fmat, tmat, coerce, findBodyOffset, assertNoDupeNodes, currentState, todo, } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { createFreshVar } from '../bindings.mjs';
 import { cloneSimple, isSimpleNodeOrSimpleMember } from '../ast.mjs';
-import { SYMBOL_COERCE } from '../symbols_preval.mjs';
+import { SYMBOL_COERCE, SYMBOL_DOTCALL } from '../symbols_preval.mjs';
 
 export function staticArgOpOutlining(fdata) {
   group('\n\n\n[staticArgOpOutlining] Finding static param ops to outline\n');
-  //currentState(fdata, 'staticArgOpOutlining', true, fdata);
+  currentState(fdata, 'staticArgOpOutlining', true, fdata);
   const r = _staticArgOpOutlining(fdata);
   groupEnd();
   return r;
@@ -259,56 +264,69 @@ function _staticArgOpOutlining(fdata) {
     // Try to validate whether function is safe to modify (does not escape, only called, etc)
     if (
       funcMeta.reads.some((read) => {
-        // TODO: ignore .call() etc as part of this
-        //if (
-        //  read.parentNode.type === 'MemberExpression' &&
-        //  (
-        //    !read.parentNode.computed &&
-        //    (
-        //      read.parentNode.property.name === 'call' ||
-        //      read.parentNode.property.name === 'apply' ||
-        //      read.parentNode.property.name === 'bind'
-        //    )
-        //  )
-        //) {
-        //  // I think bind is actually irrelevant here.
-        //  // I hope I'm not wrong but I think only .call and .apply could observe this change. And maybe .toString, but that's ok. Any other property can't reflect?
-        //  vlog(
-        //    '- The function is used in a member expression with a non-computed .call, .apply, or .bind. Ignoring this case.',
-        //  );
-        //  return;
-        //}
 
-        if (read.parentNode.type !== 'CallExpression' || read.parentProp !== 'callee') {
-          vlog('- The function escapes (at least one read was not a call), bailing');
+        if (read.parentNode.type !== 'CallExpression') {
+          vlog('- bail: parent node is not a call');
+          return true;
+        }
+
+        if (read.parentNode.callee.type !== 'Identifier') {
+          vlog('- bail: calling what?');
           return true;
         }
 
         if (read.parentNode.arguments.some((anode) => anode.type === 'SpreadElement')) {
           // TODO: we can still do this for any params that occur before any spread in all calls
-          vlog('- The function was called with a spread at least once, bailing');
+          vlog('- bail: the function was called with a spread at least once');
           return true;
         }
 
-        if (read.parentNode.arguments.length < funcNode.params.length) {
-          // TODO: we can support this for the args that have been passed on and infer `undefined` for the missing ones...
-          // (We don't care as much about arg overflow, only underflow)
-          vlog('- The function has at least one call where it has fewer args than parameters');
-          return true;
-        }
-
-        if (read.pfuncNode === funcNode) {
+        if (read.funcChain === funcNode.$p.funcChain) {
           vlog('- This is a recursive function. It is too dangerous.');
           return true;
         }
+
+
+        if (read.parentNode.callee.name === SYMBOL_DOTCALL) {
+          if (read.parentIndex === 0) {
+            vlog('ok, called with dotcall');
+            return;
+          }
+
+          if (read.parentIndex === 1) {
+            vlog('- sus, used as context of a dotcall, bail');
+            todo('this may support .call .apply and .bind but I think that different reducers should tackle it');
+            return;
+          }
+
+          vlog('- bail: function is used as arg in context, as such, it escapes');
+          return true;
+        }
+        else {
+          // Parent is call but callee is not dotcall. Then the callee must be target func. Else it'll be an arg and escapes.
+          if (read.parentProp !== 'callee') {
+            vlog('- bail: the function escapes as arg in a regular func call');
+            return true;
+          }
+
+          // if (read.parentNode.arguments.length < funcNode.params.length) {
+          //   // TODO: we can support this for the args that have been passed on and infer `undefined` for the missing ones...
+          //   // (We don't care as much about arg overflow, only underflow)
+          //   vlog('- The function has at least one call where it has fewer args than parameters');
+          //   return true;
+          // }
+
+        }
+
       })
     ) {
       return;
     }
 
-    // Okay, we've verified the function is only called, doesn't escape, and gets at least as many args as params in all calls.
+    // Okay, we've verified the function is only called, doesn't escape, and call args are never spread (but arg count may over- or underflow).
     // Find the first statement of the function and check if and how it uses an arg.
     // TODO: in certain cases we can skip statements (ones that can't possibly spy) to try the next statement.
+    // TODO: when the param is a const locally, typing information may lead is to hoist in more cases even if we don't know concrete values
 
     let max = funcNode.body.body.length - 1;
     const stmtOffset = funcNode.$p.bodyOffset;

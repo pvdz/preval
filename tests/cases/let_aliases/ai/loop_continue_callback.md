@@ -172,6 +172,7 @@ $(a, x);
 - (todo) Support this binary expression operator:
 - (todo) Support this node type in isFree: LabeledStatement
 - (todo) do we want to support BinaryExpression as expression statement in free loops?
+- (todo) nodeMightMutateNameUntrapped; Which statement are we missing here? BlockStatement
 - (todo) support array reads statement type ExpressionStatement
 - (todo) support array reads statement type VarStatement
 - (todo) support array reads statement type WhileStatement

@@ -68,6 +68,7 @@ $(result, x);
 ## Todos triggered
 
 
+- (todo) Support this binary expression operator:
 - (todo) access object property that also exists on prototype? $array_push
 - (todo) support array reads statement type EmptyStatement
 - (todo) support array reads statement type ExpressionStatement

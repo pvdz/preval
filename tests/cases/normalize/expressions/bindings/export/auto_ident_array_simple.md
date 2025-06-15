@@ -57,6 +57,7 @@ $(a);
 ## Todos triggered
 
 
+- (todo) nodeMightMutateNameUntrapped; Which statement are we missing here? ExportNamedDeclaration
 - (todo) support array reads statement type ExportNamedDeclaration
 
 

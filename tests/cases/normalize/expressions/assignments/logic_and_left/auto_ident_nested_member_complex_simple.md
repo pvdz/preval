@@ -31,8 +31,8 @@ const tmpInitAssignLhsComputedObj /*:unknown*/ = $(c);
 const tmpInitAssignLhsComputedProp /*:unknown*/ = $(`y`);
 tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = 3;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
-const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
-$(tmpClusterSSA_tmpCalleeParam);
+const tmpSSA_tmpCalleeParam /*:unknown*/ = $(100);
+$(tmpSSA_tmpCalleeParam);
 $(3, b, c, 3);
 `````
 

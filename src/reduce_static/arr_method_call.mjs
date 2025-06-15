@@ -200,129 +200,6 @@ function processAttempt(fdata, queue) {
           changes += 1;
           return;
         }
-        case symbo('array', 'some'): {
-          rule('array.some can be converted to regular loops');
-          // See forEach for more examples
-          example(
-            'const x = arr.some(func);',
-            // Note: for assignments; x should be set afterwards to cover try/catch logic.
-            'let tmplen = arr.length; let tmp = 0; let result = false; while (true) { if (tmp < tmplen) if (i in arr) { if (func(arr[i], i, arr)) { result = true; break; } i = i + 1; } else { break; } } const x = result;'
-          );
-          before(read.blockBody[read.blockIndex]);
-
-          // - main transform is same as forEach. same args/context logic.
-          // - callback return value is boolean checked, a truthy result ends the loop
-          // - result has three cases: expr, assign, var
-          //   - var: create a let with same name. init to false. update to true inside loop when appropriate
-          //   - assign: create tmp var to hold result. after loop assign tmp result to original lhs. this preserves try/catch logic.
-          //   - expr: ignore result. don't store it.
-
-          const stmt = read.blockBody[read.blockIndex];
-
-          const tmplen = createFreshVar('tmpArrlen', fdata);
-          const tmp = createFreshVar('tmpArri', fdata);
-          const tmp2 = createFreshVar('tmpArrc', fdata);
-          const tmp3 = createFreshVar('tmpArrin', fdata);
-          const tmp4 = createFreshVar('tmpArrel', fdata);
-          const tmp5 = createFreshVar('tmpArreout', fdata);
-          const tmp6 = createFreshVar('tmpArrenow', fdata);
-
-          const stmts = [
-            // `const len = arr.length;`
-            AST.varStatement('const', tmplen, AST.memberExpression(varName, 'length', false)),
-            // `let counter = 0;`
-            AST.varStatement('let', tmp, AST.primitive(0)),
-            // `let result = false;` // empty array.some() is false, too
-            AST.varStatement('let', tmp5, AST.fals()),
-            // Transform to normalized code such that we don't have to go through normalization first...:
-            // while (true) {
-            //   const tmp2 = tmp < arr.length;
-            //   if (tmp2) {
-            //     const tmp3 = i in arr;
-            //     if (tmp3) {
-            //       const tmp = func(arr[i], i, arr); // invocation is different for context case
-            //       if (tmp) {
-            //         result = true;
-            //         break;
-            //       }
-            //     }
-            //     counter = counter  + 1;
-            //   } else {
-            //     break;
-            //   }
-            // }
-            // const x = result;     // <-- this may be optimized depending on expr/assign/var but not sure we should bother in favor of simplicity...
-            AST.whileStatement(
-              AST.tru(),
-              AST.blockStatement(
-                // `const test = counter < arr.length; if (test)`
-                AST.varStatement('const', tmp2, AST.binaryExpression('<', tmp, tmplen)),
-                AST.ifStatement(
-                  tmp2,
-                  AST.blockStatement(
-                    // `const has = counter in arr; if (has)`
-                    AST.varStatement('const', tmp3, AST.binaryExpression('in', tmp, varName)),
-                    AST.ifStatement(
-                      AST.identifier(tmp3),
-                      AST.blockStatement(
-                        // `const val = arr[counter]; const out = callback(val, counter, arr);`
-                        AST.varStatement('const', tmp4, AST.memberExpression(varName, AST.identifier(tmp), true)), // the current element
-                        AST.varStatement('const', tmp6,
-                          AST.callExpression(
-                            // either call the callback (`func(arr[i], i, arr)`) or .call with context (`func.call(ctx, arr[i], i, arr)`)
-                            // Note: some forcefully calls the callback with undefined so we must dotcall and let another rule simplify that when `this` is not used
-                            // Note: the call is a dotcall so at least three params
-                            SYMBOL_DOTCALL,
-                            [
-                              read.parentNode.arguments[3], // callback arg (after 3 $dotcall args!)
-                              read.parentNode.arguments[4] || AST.undef(), // context arg (after 3 $dotcall args!)
-                              AST.undef(),
-                              AST.identifier(tmp4),
-                              AST.identifier(tmp), // current index
-                              AST.identifier(varName), // array being iterated
-                            ]
-                          )
-                        ),
-                        // `if (out)`  -- note that this is a truthy check, not just absolutely `true`
-                        AST.ifStatement(tmp6,
-                          AST.blockStatement(
-                            // `result = true; break;`
-                            AST.expressionStatement(AST.assignmentExpression(tmp5, AST.tru())),
-                            AST.breakStatement(),
-                          ),
-                          AST.blockStatement(),
-                        )
-                      ),
-                      AST.blockStatement(),
-                    ),
-                    // `tmp = tmp + 1`
-                    AST.expressionStatement(
-                      AST.assignmentExpression(tmp, AST.binaryExpression('+', tmp, AST.primitive(1)))
-                    )
-                  ),
-                  AST.blockStatement(
-                    AST.breakStatement()
-                  ),
-                )
-              )
-            ),
-            // If the input was an assignment, assign result to it _now_, not before, so try/catch semantics are kept
-            ... (stmt.type === 'ExpressionStatement' && stmt.expression.type === 'AssignmentExpression') ?
-              [AST.expressionStatement(AST.assignmentExpression(stmt.expression.left, AST.identifier(tmp5)))] : [],
-            // If the input was a var statement, create it with undefined now.
-            ... (stmt.type === 'VarStatement') ?
-              [AST.varStatement(stmt.kind, stmt.id, AST.identifier(tmp5))] : [],
-            // And otherwise the result is not stored so we don't need to either. (We could omit the temp var but hopefully this happens elsewhere)
-          ];
-
-          read.blockBody[read.blockIndex] = AST.blockStatement(stmts);
-          // Squash the block at the end of this transform
-          queue.push({index: read.blockIndex, func: () => read.blockBody.splice(read.blockIndex, 1, ...stmts)})
-
-          after(read.blockBody[read.blockIndex]);
-          changes += 1;
-          return;
-        }
         case symbo('array', 'every'): {
           rule('array.every can be converted to regular loops');
           // See forEach for more examples
@@ -1267,6 +1144,129 @@ function processAttempt(fdata, queue) {
                 AST.blockStatement()
               )
             ],
+            // If the input was an assignment, assign result to it _now_, not before, so try/catch semantics are kept
+            ... (stmt.type === 'ExpressionStatement' && stmt.expression.type === 'AssignmentExpression') ?
+              [AST.expressionStatement(AST.assignmentExpression(stmt.expression.left, AST.identifier(tmp5)))] : [],
+            // If the input was a var statement, create it with undefined now.
+            ... (stmt.type === 'VarStatement') ?
+              [AST.varStatement(stmt.kind, stmt.id, AST.identifier(tmp5))] : [],
+            // And otherwise the result is not stored so we don't need to either. (We could omit the temp var but hopefully this happens elsewhere)
+          ];
+
+          read.blockBody[read.blockIndex] = AST.blockStatement(stmts);
+          // Squash the block at the end of this transform
+          queue.push({index: read.blockIndex, func: () => read.blockBody.splice(read.blockIndex, 1, ...stmts)})
+
+          after(read.blockBody[read.blockIndex]);
+          changes += 1;
+          return;
+        }
+        case symbo('array', 'some'): {
+          rule('array.some can be converted to regular loops');
+          // See forEach for more examples
+          example(
+            'const x = arr.some(func);',
+            // Note: for assignments; x should be set afterwards to cover try/catch logic.
+            'let tmplen = arr.length; let tmp = 0; let result = false; while (true) { if (tmp < tmplen) if (i in arr) { if (func(arr[i], i, arr)) { result = true; break; } i = i + 1; } else { break; } } const x = result;'
+          );
+          before(read.blockBody[read.blockIndex]);
+
+          // - main transform is same as forEach. same args/context logic.
+          // - callback return value is boolean checked, a truthy result ends the loop
+          // - result has three cases: expr, assign, var
+          //   - var: create a let with same name. init to false. update to true inside loop when appropriate
+          //   - assign: create tmp var to hold result. after loop assign tmp result to original lhs. this preserves try/catch logic.
+          //   - expr: ignore result. don't store it.
+
+          const stmt = read.blockBody[read.blockIndex];
+
+          const tmplen = createFreshVar('tmpArrlen', fdata);
+          const tmp = createFreshVar('tmpArri', fdata);
+          const tmp2 = createFreshVar('tmpArrc', fdata);
+          const tmp3 = createFreshVar('tmpArrin', fdata);
+          const tmp4 = createFreshVar('tmpArrel', fdata);
+          const tmp5 = createFreshVar('tmpArreout', fdata);
+          const tmp6 = createFreshVar('tmpArrenow', fdata);
+
+          const stmts = [
+            // `const len = arr.length;`
+            AST.varStatement('const', tmplen, AST.memberExpression(varName, 'length', false)),
+            // `let counter = 0;`
+            AST.varStatement('let', tmp, AST.primitive(0)),
+            // `let result = false;` // empty array.some() is false, too
+            AST.varStatement('let', tmp5, AST.fals()),
+            // Transform to normalized code such that we don't have to go through normalization first...:
+            // while (true) {
+            //   const tmp2 = tmp < arr.length;
+            //   if (tmp2) {
+            //     const tmp3 = i in arr;
+            //     if (tmp3) {
+            //       const tmp = func(arr[i], i, arr); // invocation is different for context case
+            //       if (tmp) {
+            //         result = true;
+            //         break;
+            //       }
+            //     }
+            //     counter = counter  + 1;
+            //   } else {
+            //     break;
+            //   }
+            // }
+            // const x = result;     // <-- this may be optimized depending on expr/assign/var but not sure we should bother in favor of simplicity...
+            AST.whileStatement(
+              AST.tru(),
+              AST.blockStatement(
+                // `const test = counter < arr.length; if (test)`
+                AST.varStatement('const', tmp2, AST.binaryExpression('<', tmp, tmplen)),
+                AST.ifStatement(
+                  tmp2,
+                  AST.blockStatement(
+                    // `const has = counter in arr; if (has)`
+                    AST.varStatement('const', tmp3, AST.binaryExpression('in', tmp, varName)),
+                    AST.ifStatement(
+                      AST.identifier(tmp3),
+                      AST.blockStatement(
+                        // `const val = arr[counter]; const out = callback(val, counter, arr);`
+                        AST.varStatement('const', tmp4, AST.memberExpression(varName, AST.identifier(tmp), true)), // the current element
+                        AST.varStatement('const', tmp6,
+                          AST.callExpression(
+                            // either call the callback (`func(arr[i], i, arr)`) or .call with context (`func.call(ctx, arr[i], i, arr)`)
+                            // Note: some forcefully calls the callback with undefined so we must dotcall and let another rule simplify that when `this` is not used
+                            // Note: the call is a dotcall so at least three params
+                            SYMBOL_DOTCALL,
+                            [
+                              read.parentNode.arguments[3], // callback arg (after 3 $dotcall args!)
+                              read.parentNode.arguments[4] || AST.undef(), // context arg (after 3 $dotcall args!)
+                              AST.undef(),
+                              AST.identifier(tmp4),
+                              AST.identifier(tmp), // current index
+                              AST.identifier(varName), // array being iterated
+                            ]
+                          )
+                        ),
+                        // `if (out)`  -- note that this is a truthy check, not just absolutely `true`
+                        AST.ifStatement(tmp6,
+                          AST.blockStatement(
+                            // `result = true; break;`
+                            AST.expressionStatement(AST.assignmentExpression(tmp5, AST.tru())),
+                            AST.breakStatement(),
+                          ),
+                          AST.blockStatement(),
+                        )
+                      ),
+                      AST.blockStatement(),
+                    ),
+                    // `tmp = tmp + 1`
+                    AST.expressionStatement(
+                      AST.assignmentExpression(tmp, AST.binaryExpression('+', tmp, AST.primitive(1)))
+                    )
+                  ),
+                  AST.blockStatement(
+                    AST.breakStatement()
+                  ),
+                )
+              )
+            ),
             // If the input was an assignment, assign result to it _now_, not before, so try/catch semantics are kept
             ... (stmt.type === 'ExpressionStatement' && stmt.expression.type === 'AssignmentExpression') ?
               [AST.expressionStatement(AST.assignmentExpression(stmt.expression.left, AST.identifier(tmp5)))] : [],

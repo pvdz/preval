@@ -197,7 +197,7 @@ if (tmpIfTest) {
 ## Todos triggered
 
 
-None
+- (todo) return_param on ObjectExpression; should try to cover this expression too
 
 
 ## Globals

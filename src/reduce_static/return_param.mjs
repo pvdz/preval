@@ -18,14 +18,15 @@ import {
   after,
   fmat,
   tmat,
-  findBodyOffset,
+  findBodyOffset, todo, currentState,
 } from '../utils.mjs';
 import * as AST from '../ast.mjs';
-import { SYMBOL_DOTCALL } from '../symbols_preval.mjs';
+import { SYMBOL_COERCE, SYMBOL_DOTCALL, SYMBOL_FRFR } from '../symbols_preval.mjs';
+import { BUILTIN_SYMBOLS } from '../symbols_builtins.mjs';
 
 export function returnsParam(fdata) {
   group('\n\n\n[returnsParam] Checking for functions that return a static mutation of an arg');
-  //currentState(fdata, 'returnsParam', true, fdata);
+  currentState(fdata, 'returnsParam', true, fdata);
   const r = _returnsParam(fdata);
   groupEnd();
   return r;
@@ -34,7 +35,9 @@ function _returnsParam(fdata) {
   // phase1 will already determine the common primitive return value for each function
   // All we have to do here is find all calls to functions that still have a commonReturn set and inline those.
 
+  let changes = 0;
   let queue = [];
+
   fdata.globallyUniqueNamingRegistry.forEach(function (funcMeta, name) {
     if (funcMeta.isBuiltin) return; // We can probably do it for some of these cases? But let's do that in another step
     if (funcMeta.isImplicitGlobal) return;
@@ -47,340 +50,333 @@ function _returnsParam(fdata) {
     processFunc(funcNode, funcMeta);
     vgroupEnd();
   });
+
   function processFunc(funcNode, funcMeta) {
     // Make sure the function doesn't "escape", since we need to be able to transform all calls to it.
-    // TODO: we can do a partial transform by cloning the function but we probably don't want that..?
-    // TODO: alternatively, we could abstract the rest of the function to a fresh function etc. Meh?
+    // TODO: we can do a partial transform if the func escapes by cloning the function, but we probably don't want that..?
+    // TODO: alternatively, we could abstract the rest of the function to a fresh function etc. similarly bad.
 
     // Find the pattern...
     // Find the return value. Check whether it is directly related to a param. Check whether the
     // actual returned value can be determined without additional knowledge specific to that function.
     // If both holds then we can replace all calls to this function by moving the call to a previous
     // statement and replacing the expression with the returned value.
-    // Note: this does inflate op count, but I think this will be okay?
+    // Note: this does inflate op count, but I think deflating functions is ultimately better for preval's own analysis
 
-    if (!funcNode.$p.commonReturn) {
-      vlog('- No common return');
-      return;
-    }
-    if (funcNode.$p.commonReturn.type !== 'Identifier') {
-      vlog('- Common return is not an ident');
-      return;
-    }
+    if (!funcNode.$p.commonReturn) return vlog('- bail: no common return');
+    if (funcNode.$p.commonReturn.type !== 'Identifier') return vlog('- bail: common return is not an ident');
+    if (funcNode.params.some(pnode => pnode.rest)) return vlog('- bail: at least one param was rest');
 
     // It doesn't necessarily matter whether this ident is used in multiple exit points but in practice
     // it'll most likely be just one. Look up the decl of the return value and confirm whether or not
     // it's a derivative of one of the params.
+    // - It should be a constant
+    // - Its init should consist of primitives and param idents
+    // - (We can work with a subset of closure cases but that's a TODO for later...?)
 
-    const returnMeta = fdata.globallyUniqueNamingRegistry.get(funcNode.$p.commonReturn.name);
-    if (returnMeta.isBuiltin) {
-      // we can outline this but another rule should already do this I think
-      vlog('- Returns a builtin.');
-      return;
+    const returnedName = funcNode.$p.commonReturn.name;
+    const returnMeta = fdata.globallyUniqueNamingRegistry.get(returnedName);
+    if (!returnMeta.isConstant) return vlog('- bail: the identifier returned is not a constant');
+
+    const firstRead = returnMeta.reads[0];
+    ASSERT(firstRead, 'since the ident is being returned, there must be at least one read...');
+
+    // Ok we have a func that has one return and it returns a const and is the exact pattern `const x = <expr>; return x;`
+
+    const write = returnMeta.writes[0];
+    ASSERT(write);
+
+    const paramNames = funcNode.$p.paramNames;
+
+    let returnsParam = false;
+    let eliminateReturnDecl = false;
+    vlog('- commonReturn name is', returnedName, ', is that a param name?', paramNames.includes(returnedName));
+    if (paramNames.includes(returnedName)) {
+      // This is the simpler transform
+      returnsParam = returnedName;
     }
-    else if (returnMeta.isImplicitGlobal) {
-      // TODO: I think we can outline this as well but globals may be observable so I'm not sure if it'd be safe
-      vlog('- Returned value is an implicit global');
-      return;
+    // else, the init must be primitive/builtin, or the binding must only be used as returns. we cant guarantee safety in other cases.
+    else if (AST.isPrimitive(returnMeta.varDeclRef.node)) {
+      // cannot spy so this is fine either way. we can keep it and something else will eliminate it if eligible.
     }
-    else if (!returnMeta.isConstant) {
-      vlog('- Returned value is not a constant');
-      return;
+    else if (returnMeta.reads.every(read => read.parentNode.type === 'ReturnStatement')) {
+      // only returns use this var so we can eliminate the decl after this transform, init irrelevant but we can't keep it
+      eliminateReturnDecl = true;
+    }
+    else {
+      return vlog('- bail: returned var is used in non-return places and the init is not a primitive');
     }
 
-    if (returnMeta.reads.length > 1) {
-      if (returnMeta.reads.some((read) => read.parentNode.type !== 'ReturnStatement')) {
-        vlog('- The returned ident was also read outside of returns. Bailing.');
-        return;
+    if (funcMeta.reads.some((read) => {
+      if (read.parentNode.type !== 'CallExpression') {
+        vlog('- bail: parent not a call:', read.parentNode.type);
+        return true; // bad
       }
-    }
-
-    const varDeclWrite = returnMeta.writes.find((write) => write.kind === 'var');
-    if (!varDeclWrite) {
-      // TODO: not sure when this can happen. Should assert it but for now let's just let it slide...
-      vlog('- Returned ident had no var decl');
-      return;
-    }
-
-    if (funcMeta.reads.some((read) => read.parentNode.type !== 'CallExpression' || read.parentProp !== 'callee')) {
+      // This transform only targets function calls so this cache can only get busted if the init was a func call that
+      // was also outlined in the same phase loop. That's fine. Just skip it and the next iteration will get it, eventually.
+      if (read.blockBody[read.blockIndex].type === 'BlockStatement') {
+        // - `function g() { const y = h(); return y; } function f() { const x = g(); return x; }`
+        vlog('- bail: the index cache was busted, that must mean this init was outlined by this transform and we havent gone through phase1 again, yet');
+        return true;
+      }
+      if (read.parentProp === 'callee') return false; // ok
+      if (
+        read.parentNode.callee.type === 'Identifier' &&
+        read.parentNode.callee.name === SYMBOL_DOTCALL &&
+        read.parentNode.arguments[0] === read.node // is the function being dotcalled here? that's fine, that's not escaping
+      ) return false; // ok
+      vlog('- bail: parent:', read.parentNode, ', prop:', read.parentProp);
+      return true; // used in a way that is escaping, oops.
+    })) {
       // TODO: we could allow property lookups as long as it's not a method call... but that's already a bit of an edge case.
-      // We need to remove something from the function so we cannot safely do this.
-      vlog('This function "escapes" so we cannot safely apply this rule');
-      return;
+      // We need to remove something from the function so we cannot safely do this because it may be observed.
+      return vlog('- bail: this function "escapes" so we cannot safely apply this rule');
     }
 
-    let param;
-    let expr;
+    function isNodeOk(node) {
+      if (AST.isPrimitive(node)) return true;
+      if (node.type !== 'Identifier') return false;
+      if ([SYMBOL_DOTCALL, SYMBOL_FRFR, SYMBOL_COERCE].includes(node.name)) return true; // special builtins
+      if (paramNames.includes(node.name)) return true;
+      if (BUILTIN_SYMBOLS.has(node.name)) return true;
+      // TODO: globals, outer locals. but tdz wise, we must assert that they were defined before this call...
+      return false;
+    }
 
-    // Now confirm whether a param was used in the init of this var decl that gets returned
-    // I guess we want to limit the kinds of things that are possible here, for now...
-    const init = varDeclWrite.parentNode.init;
-    switch (init.type) {
-      case 'UnaryExpression': {
-        if (init.argument.type === 'Identifier' && funcNode.$p.paramNames.includes(init.argument.name)) {
-          vlog('We can outline this unary expression on a param!');
-          param = funcNode.params.find((pnode) => pnode.$p.paramVarDeclRef.name === init.argument.name);
-          ASSERT(param, 'should not get here otherwise', init.argument.name, funcNode.params);
-          expr = init;
+    // No need to confirm the init when its a param :)
+    const init = write.parentNode.init;
+    if (!returnsParam) {
+      // Now confirm whether one or more params were used in the init of the var decl that gets returned
+      // This needs to be done per type of expression. And we'll need to repeat most of the logic to support multiple params (in binary, call, etc)
+      // TODO: next step: the returned expression can use _one_ identifier that is local to the function. the transformed init can use the return value of the function in its place. that should work, too.
+      switch (init.type) {
+        case 'UnaryExpression': {
+          if (!isNodeOk(init.argument)) return vlog('- bail: unary arg is not ok');
+          break;
         }
-        break;
-      }
-      case 'BinaryExpression': {
-        const left = init.left;
-        const right = init.right;
-        if (left.type === 'Identifier' && funcNode.$p.paramNames.includes(left.name)) {
-          if (AST.isPrimitive(right)) {
-            vlog('We can outline this! left');
-            param = funcNode.params.find((pnode) => pnode.$p.paramVarDeclRef.name === left.name);
-            ASSERT(param, 'should not get here otherwise', left.name, funcNode.params);
-            expr = init;
-          }
-        } else if (right.type === 'Identifier' && funcNode.$p.paramNames.includes(right.name)) {
-          if (AST.isPrimitive(left)) {
-            vlog('We can outline this! right');
-            param = funcNode.params.find((pnode) => pnode.$p.paramVarDeclRef.name === right.name);
-            ASSERT(param, 'should not get here otherwise', right.name, funcNode.params);
-            expr = init;
-          }
+        case 'BinaryExpression': {
+          if (!isNodeOk(init.left)) return vlog('- bail: left arg is not ok');
+          if (!isNodeOk(init.right)) return vlog('- bail: right arg is not ok');
+          break;
         }
-        break;
-      }
-      case 'CallExpression': {
-        // TODO: we can improve this a little bit by also mapping closures and other params.
-        ASSERT(init.callee.type === 'Identifier', 'normalized to ident calls', init);
-        const funcName = init.callee.name;
-
-        if (funcName === SYMBOL_DOTCALL) {
-          // Is this dotcalling a func with the context a param?
-          const funcName = init.arguments[0].name;
-          const ctxNode = init.arguments[1];
-          const args = init.arguments.slice(3);
-          if (args.every((anode) => AST.isPrimitive(anode))) {
-            // Less likely but the dotcall callee could also be a param (maybe due to transforms or simple a contrived example)
-            const calleeIsParam = init.arguments[0].type === 'Identifier' && funcNode.$p.paramNames.includes(funcName);
-            const contextIsParam = init.arguments[1].type === 'Identifier' && funcNode.$p.paramNames.includes(init.arguments[1].name);
-
-            // Do not outline if context or callee is a local var or something.
-            if ((calleeIsParam || AST.isPrimitive(init.arguments[0])) && (contextIsParam || AST.isPrimitive(init.arguments[1]))) {
-              // `function f(a) { return a.toString(); }`
-              // `function f(a) { return $dotCall(a, x, undefined); }`
-              // `function f(a, b) { return $dotCall(a, b, undefined); }` (like a function apply abstraction)
-              vlog('May be able to outline this dotcall; callee and/or context are params');
-              // Doesn't matter. Both have to be checked below.
-              param = 'ignored_because_both_must_be_resolved';
-              expr = init;
+        case 'CallExpression': {
+          // TODO: we can improve this a little bit by also mapping closures and other params.
+          ASSERT(init.callee.type === 'Identifier', 'normalized to ident calls', init);
+          if (!isNodeOk(init.callee)) return vlog('- bail: callee is not ok', init.callee.type, init.callee.name);
+          // This will also do context checks for dotcall, since that's just an argument too
+          // TODO: we can assert $frfr will call a global func
+          if (!init.arguments.every(anode => isNodeOk(anode))) return vlog('- bail: at least one arg was not ok');
+          break;
+        }
+        case 'Identifier': {
+          // TODO: we can improve this a little bit by also mapping closures and other params.
+          if (!isNodeOk(init)) return vlog('ident was not ok');
+          break;
+        }
+        case 'MemberExpression': {
+          if (!isNodeOk(init.object)) return vlog('object was not ok');
+          if (init.computed && !isNodeOk(init.property)) return vlog('computed prop was not ok');
+          break;
+        }
+        case 'ArrayExpression': {
+          if (init.elements.some(enode => enode && !isNodeOk(enode))) return vlog('- bail: at least one array element was not ok');
+          break;
+        }
+        default: {
+          if (AST.isPrimitive(init)) {} // ok
+          else {
+            // :shrug: There's probably a few more cases we can trivially trap here...
+            if (!['FunctionExpression'].includes(init.type)) {
+              todo(`return_param on ${init.type}; should try to cover this expression too`);
             }
-            else {
-              // `function f(a) { return $dotCall(x, a, undefined); }`
-            }
-          }
-        } else {
-          // Is this directly calling a param?
-          if (funcNode.$p.paramNames.includes(funcName) && init['arguments'].every((anode) => AST.isPrimitive(anode))) {
-            // `function f(a){ return a(); } f(g)`
-            vlog('May be able to outline this ident call');
-            param = funcNode.params.find((pnode) => pnode.$p.paramVarDeclRef.name === funcName);
-            ASSERT(param, 'should not get here otherwise', funcName, funcNode.params);
-            expr = init;
+            return vlog('- bail: unsupported expression type;', init.type);
           }
         }
-        break;
-      }
-      case 'Identifier': {
-        // TODO: we can improve this a little bit by also mapping closures and other params.
-        // `const x = y; return x;` Odd case but this can happen as an artifact of phase2.
-        if (funcNode.$p.paramNames.includes(init.name)) {
-          vlog('This is just returning a param.');
-          param = funcNode.params.find((pnode) => pnode.$p.paramVarDeclRef.name === init.name);
-          ASSERT(param, 'should not get here otherwise', init.name, funcNode.params);
-          expr = init;
-        }
-        break;
-      }
-      case 'MemberExpression': {
-        if (funcNode.$p.paramNames.includes(init.object.name)) {
-          vlog('Returning the property of a param');
-          param = funcNode.params.find((pnode) => pnode.$p.paramVarDeclRef.name === init.object.name);
-          ASSERT(param, 'should not get here otherwise', init.object.name, funcNode.params);
-          expr = init;
-        }
-        break;
-      }
-      default: {
-        // :shrug: There's probably a few more cases we can trivially trap here...
       }
     }
-    if (!param) {
-      vlog('- Returned value could not be determined as a static param expression. Bailing');
-      return;
-    }
 
-    ASSERT(expr, 'if param then expr');
+    vlog('- ok, ident that is being returned is not using local vars');
 
-    // Verify that the call had no spread before or on the target param index
-    let ok = true;
-    funcNode.params.some((pnode, pi) => {
-      if (pnode.rest) {
-        vlog('Function had a rest at index', pi, 'but target param is at index', param.index, 'so must bail');
-        ok = false;
-        return true;
-      }
-      if (pi >= param.index) {
-        // Don't care about spreads that appear later than the target param...
-        return true;
-      }
-    });
-    if (!ok) return false;
-
-    const funcQueue = [];
-    vgroup('Walking all reads for this func...');
-    funcMeta.reads.some((callRead, ri) => {
-      vgroup('-', ri, ':', callRead.parentNode.type, callRead.parentProp);
-      const r = one(callRead, funcQueue, param, expr);
-      vgroupEnd();
-      return !r;
+    vgroup('Checking calls for spreads...');
+    const allok = funcMeta.reads.every((callRead, ri) => {
+      return !callRead.parentNode.arguments.some(anode => anode.type === 'SpreadElement');
     });
     vgroupEnd();
+    if (!allok) return vlog('- bail: at least one call had a spread');
 
-    if (funcQueue.length !== funcMeta.reads.length) {
-      vlog('Was not able to convert all reads so cannot convert any read.');
+
+    // We verified the function, the returned value, the params, the call args... I think we should be good to go?
+
+    if (returnsParam) {
+      rule('If a function returns a param and we control all calls then we can outline that param');
+      example('function f(a) { ...; return a; } const x = f(y);', 'function f(a) { ...; return undefined; } f(y); const x = y;');
     } else {
-      vlog('Was able to convert all reads. Adding them to the queue now.');
-      queue.push(...funcQueue);
-      returnMeta.reads.forEach((read) => {
-        ASSERT(read.parentNode.type === 'ReturnStatement', 'asserted before', read);
+      rule('If the returned value of a func uses no local vars and we know all call sites then we can outline that return value; process call');
+      example(
+        'function f(x){ ...; const tmp = x + 5; return x; } f(100); const a = f(200); a = f(300);',
+        'function f(x){ ...; return undefined; } f(100); x + 5; f(200); const a = 200 + 5; f(300); a = 300 + 5;'
+      );
+    }
+    before(funcNode);
+
+    funcMeta.reads.forEach((callRead, ri) => {
+      vgroup('-', ri, ':', callRead.parentNode.type, callRead.parentProp);
+      transformCall(funcNode, callRead, init, returnsParam);
+      vgroupEnd();
+    });
+
+
+    if (eliminateReturnDecl) {
+      // Clear the init. Will squash afterwards. Don't clear the param init.
+      if (!returnsParam) {
+        write.blockBody[write.blockIndex] = AST.blockStatement(); // Empty. Marks it as replaced. We squash it afterwards.
         queue.push({
-          index: read.blockIndex,
+          index: write.blockIndex,
           func: () => {
-            read.parentNode.argument = AST.identifier('undefined');
-          },
-        });
-      });
-      queue.push({
-        index: varDeclWrite.blockIndex,
-        func: () => {
-          varDeclWrite.blockBody[varDeclWrite.blockIndex] = AST.emptyStatement();
-        },
-      });
+            ASSERT(write.blockBody[write.blockIndex].type === 'BlockStatement', 'right? gets dicy when this doesnt hold because then cache is stale');
+            write.blockBody.splice(write.blockIndex, 1, ...write.blockBody[write.blockIndex].body);
+          }}
+        );
+      }
     }
 
-    function one(callRead, funcQueue, param, expr) {
-      const paramIndex = param.index;
-
-      const callNode = callRead.parentNode; // Calling the function that is returning the param
-      ASSERT(callNode.type === 'CallExpression', 'should not get here otherwise');
-
-      // Verify that the call had no spread before or on the target param index
-      let ok = true;
-      callNode['arguments'].some((anode, ai) => {
-        if (anode.type === 'SpreadElement') {
-          vlog('Call had a spread at index', ai, 'but target param is at index', paramIndex, 'so must bail');
-          ok = false;
-          return true;
-        }
-        if (ai >= paramIndex) {
-          // Don't care about spreads that appear later than the target param...
-          return true;
-        }
-      });
-      if (!ok) return false;
-      //TODO // if there are multiple calls, we must do them all or none...
-
-      // This is the actual value being passed on to the param that's being outlined.
-      // Eg. `function f(x) { return x(); } f(g)` then the clone would be a clone of the ident node `g`
-      const matchingArgNodeClone = AST.cloneSimple(callNode['arguments'][paramIndex]);
-
-      let clone;
-      if (expr.type === 'UnaryExpression') {
-        clone = AST.unaryExpression(expr.operator, matchingArgNodeClone);
+    // We must replace all return args with undefined, not just one. I think we don't have to queue this.
+    returnMeta.reads.forEach(read => {
+      if (read.parentNode.type === 'ReturnStatement') {
+        read.parentNode.argument = AST.undef();
       }
-      else if (expr.type === 'BinaryExpression') {
-        ASSERT((expr.left.type === 'Identifier' && !AST.isPrimitive(expr.left)) ^ (expr.right.type === 'Identifier' && !AST.isPrimitive(expr.right)), 'either must be ident but not both', expr);
-        if (expr.left.type === 'Identifier') {
-          clone = AST.binaryExpression(expr.operator, matchingArgNodeClone, AST.cloneSimple(expr.right));
-        } else {
-          clone = AST.binaryExpression(expr.operator, AST.cloneSimple(expr.left), matchingArgNodeClone);
-        }
-      }
-      else if (expr.type === 'Identifier') {
-        clone = matchingArgNodeClone;
-      }
-      else if (expr.type === 'CallExpression') {
-        ASSERT(expr.callee.type === 'Identifier');
-        // Note: we have to be careful with dotcall as we have to check both the callee and the context separately
+    });
 
-        // `expr` is the call that is at the end of the function, the expression we're trying to move out
-        clone = AST.cloneSortOfSimple(expr); // Normalized call is sort-of-simple
+    after(funcNode);
+    changes = changes + 1;
 
-        const callName = expr.callee.name;
-        if (callName === SYMBOL_DOTCALL) {
-          ASSERT(typeof param === 'string', 'the param for dotcall must be resolved per callee/context'); // see above
-          // The callee (arg 0) might be a param, or the context (arg 1) might be a param, or both
-          // Note: `expr` is the func call inside the function that we are trying to move. callNode is the call to the function
-          //       from which expr is being moved out. We need to check (again) whether the callee/context is a param.
-          const calleeParam =
-            expr.arguments[0].type === 'Identifier' &&
-            funcNode.params.find((pnode) => pnode.$p.paramVarDeclRef.name === expr.arguments[0].name);
-          if (calleeParam) {
-            clone.arguments[0] = AST.cloneSimple(callNode['arguments'][calleeParam.index]);
+    function transformCall(funcNode, callRead, returnedInit, returnsParam) {
+
+      // Given the read of a function that should be a call to it, and the init that is returned
+      // by the function and which should only use params, primitives, or builtins, transform the
+      // init by using the arguments such that the return value is equal.
+
+      const callNode = callRead.parentNode;
+      ASSERT(callNode.type === 'CallExpression');
+      const paramNames = funcNode.$p.paramNames;
+      const args = callNode.arguments.slice(callNode.callee.name === SYMBOL_DOTCALL ? 3 : 0);
+      function cloneArgIfParamElseCloneNode(node) {
+        if (node.type === 'Identifier') {
+          const at = paramNames.indexOf(node.name);
+          if (at >= 0) {
+            return AST.cloneSimple(args[at]);
           }
-          const contextParam =
-            expr.arguments[1].type === 'Identifier' &&
-            funcNode.params.find((pnode) => pnode.$p.paramVarDeclRef.name === expr.arguments[1].name);
-          if (contextParam) {
-            clone.arguments[1] = AST.cloneSimple(callNode['arguments'][contextParam.index]);
+        }
+        return AST.cloneSimple(node);
+      }
+
+      // For each param reference in the init, find the param index and map it to the argument index.
+      // The args should be simple at this point because code is normalized, so we can clone them safely.
+
+      // `function f(a,b,c) { ...; const tmp = a+b; return tmp; } const x = f(a,b,c);` -> `f(a, b, c); const x = b + c;`
+      // The returnInit represents `a+b` and the callRead is `f(a,b,c)`
+      // This can get a bit tricky with multiple cached transforms though...
+
+      // Note: the init was already validated so we can assume stuff here.
+      let transformedInit;
+      if (returnsParam) {
+        vlog('ok wtf shouldnt this work?', [returnedName], cloneArgIfParamElseCloneNode(AST.identifier(returnedName)))
+        transformedInit = cloneArgIfParamElseCloneNode(AST.identifier(returnedName)); // lazy tsktsk
+      } else {
+        switch (returnedInit.type) {
+          case 'UnaryExpression': {
+            transformedInit = AST.unaryExpression(returnedInit.operator, cloneArgIfParamElseCloneNode(returnedInit.argument));
+            break;
           }
-          ASSERT(calleeParam || contextParam, 'should find at least the callee or context as param');
-        } else {
-          // The callee is the param
-          clone.callee = matchingArgNodeClone;
+          case 'BinaryExpression': {
+            transformedInit = AST.binaryExpression(returnedInit.operator, cloneArgIfParamElseCloneNode(returnedInit.left), cloneArgIfParamElseCloneNode(returnedInit.right));
+            break;
+          }
+          case 'CallExpression': {
+            transformedInit = AST.callExpression(cloneArgIfParamElseCloneNode(returnedInit.callee), returnedInit.arguments.map(anode => cloneArgIfParamElseCloneNode(anode)));
+            break;
+          }
+          case 'Identifier': {
+            transformedInit = cloneArgIfParamElseCloneNode(returnedInit);
+            break;
+          }
+          case 'MemberExpression': {
+            transformedInit = AST.memberExpression(cloneArgIfParamElseCloneNode(returnedInit.object), cloneArgIfParamElseCloneNode(returnedInit.property), returnedInit.computed);
+            break;
+          }
+          case 'ArrayExpression': {
+            transformedInit = AST.arrayExpression(
+              returnedInit.elements.map(enode => enode && cloneArgIfParamElseCloneNode(enode))
+            );
+            break;
+          }
+          default: {
+            if (AST.isPrimitive(returnedInit)) {
+              transformedInit = cloneArgIfParamElseCloneNode(returnedInit);
+            }
+            else {
+              ASSERT(false, 'unreachable; earlier check should cover this', returnedInit);
+            }
+          }
         }
+      }
 
-        // We have to replace the proper node here
-        // When we're dotcalling, we replace the context, otherwise the callee
-        if (callName === SYMBOL_DOTCALL) {
-          clone.arguments[1] = matchingArgNodeClone;
-        } else {
+      // Transformed init should be ready to go. Now transform the call.
+      // There are three cases: var decl, assign, or expr.
+
+      const stmt = callRead.blockBody[callRead.blockIndex];
+
+      rule('Outline the return value for one call');
+      example('const x = f(100);', 'f(100); const x = 100 + 5;');
+      example('x = f(100);', 'f(100); x = 100 + 5;');
+      example('f(100);', 'f(100); 100 + 5;');
+      before(stmt);
+
+      if (stmt.type === 'VarStatement') {
+        // `var x = f();` -> `{ f(); var x = init; }`  // note: we squash the block later
+        callRead.blockBody[callRead.blockIndex] = AST.blockStatement(
+          AST.expressionStatement(stmt.init), // Keep original call as is. Ignore the return value.
+          AST.varStatement(stmt.kind, stmt.id, transformedInit),
+        );
+      }
+      else if (stmt.type === 'ExpressionStatement') {
+        if (stmt.expression.type === 'AssignmentExpression') {
+          // `x = f();` -> `{ f(); x = init; }`     // note: we squash the block later
+          callRead.blockBody[callRead.blockIndex] = AST.blockStatement(
+            // Note: dont put left first; that tdz would not trigger until after the (original) func call.
+            AST.expressionStatement(stmt.expression.right), // Keep original call as is. Ignore the return value.
+            AST.expressionStatement(AST.assignmentExpression(stmt.expression.left, transformedInit)),
+          );
         }
-      }
-      else if (expr.type === 'MemberExpression') {
-        clone = AST.memberExpression(matchingArgNodeClone, AST.cloneSimple(expr.property), expr.computed);
-      }
-      else {
-        ASSERT(false);
-      }
+        else if (stmt.expression.type === 'CallExpression') {
+          // `f();` -> `{ f(); init; }`     // note: we squash the block later
+          callRead.blockBody[callRead.blockIndex] = AST.blockStatement(
+            stmt, // Keep original as is.
+            AST.expressionStatement(transformedInit),
+          );
 
-      vlog('Should be able to outline the tail param usage and replace it with the arg');
+        }
+        else ASSERT(false, 'unreachable');
+      }
+      else ASSERT(false, 'unreachable');
 
-      funcQueue.push({
+      after(callRead.blockBody[callRead.blockIndex]);
+
+      // Ok, callRead is updated. Queue the squash.
+
+      queue.push({
         index: callRead.blockIndex,
         func: () => {
-          // Note: all we have to do is change the call. If this causes the return value of the function to
-          // never be used, then another rule will eliminate it. If that causes the param not to be used,
-          // then yet another rule will eliminate it.
+          ASSERT(callRead.blockBody[callRead.blockIndex].type === 'BlockStatement', 'right? gets dicy when this doesnt hold because then cache is stale');
+          callRead.blockBody.splice(callRead.blockIndex, 1, ...callRead.blockBody[callRead.blockIndex].body);
+        }}
+      );
 
-          rule('If a function returns a static operation on a parameter, it should outline this operation');
-          example(
-            'function f(a) { const x = a + 1; return x; } $(f(y));',
-            'function f(a) { const x = a + 1; return x; } f(); $(y + 1);'
-          );
-          before(varDeclWrite.blockBody[varDeclWrite.blockIndex], funcNode);
-          before(callRead.blockBody[callRead.blockIndex], varDeclWrite.blockBody[returnMeta.blockIndex]);
-
-          if (callRead.grandIndex < 0) callRead.grandNode[callRead.grandProp] = clone;
-          else callRead.grandNode[callRead.grandProp][callRead.grandIndex] = clone;
-          callRead.blockBody.splice(callRead.blockIndex, 0, AST.expressionStatement(callRead.parentNode));
-
-          after(callRead.blockBody[callRead.blockIndex]);
-          after(callRead.blockBody[callRead.blockIndex + 1]);
-        },
-      });
-
-      return true;
+      vlog('Should be able to outline the tail param usage and replace it with the arg');
     }
   }
 
-  if (queue.length) {
+  if (changes) {
     queue.sort(({ index: a }, { index: b }) => b - a);
     vgroup('Unwinding', queue.length, 'callbacks');
     queue.forEach(({ func }) => {
@@ -389,8 +385,8 @@ function _returnsParam(fdata) {
     });
     vgroupEnd();
 
-    log('Changed return values:', queue.length, '. Restarting from phase1 to fix up read/write registry');
-    return {what: 'returnsParam', changes: queue.length, next: 'phase1'};
+    log('Changed return values:', changes, '. Restarting from phase1 to fix up read/write registry');
+    return {what: 'returnsParam', changes, next: 'phase1'};
   }
 
   log('Changed return values: 0');

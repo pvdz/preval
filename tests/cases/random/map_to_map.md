@@ -57,8 +57,8 @@ if (tmpLambdaMapTest) {
   const tmpLambdaMapHas /*:boolean*/ = 0 in tmpMCOO$1;
   if (tmpLambdaMapHas) {
     const tmpLambdaMapVal /*:unknown*/ = tmpMCOO$1[0];
-    const tmpClusterSSA_tmpLambdaMapNow /*:array*/ /*truthy*/ = [tmpLambdaMapVal, tmpLambdaMapVal];
-    tmpLambdaMapOut[0] = tmpClusterSSA_tmpLambdaMapNow;
+    const tmpLambdaMapNow /*:array*/ /*truthy*/ = [tmpLambdaMapVal, tmpLambdaMapVal];
+    tmpLambdaMapOut[0] = tmpLambdaMapNow;
   } else {
   }
   let tmpClusterSSA_tmpLambdaMapCounter /*:number*/ = 1;
@@ -68,8 +68,8 @@ if (tmpLambdaMapTest) {
       const tmpLambdaMapHas$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaMapCounter in tmpMCOO$1;
       if (tmpLambdaMapHas$1) {
         const tmpLambdaMapVal$1 /*:unknown*/ = tmpMCOO$1[tmpClusterSSA_tmpLambdaMapCounter];
-        const tmpClusterSSA_tmpLambdaMapNow$1 /*:array*/ /*truthy*/ = [tmpLambdaMapVal$1, tmpLambdaMapVal$1];
-        tmpLambdaMapOut[tmpClusterSSA_tmpLambdaMapCounter] = tmpClusterSSA_tmpLambdaMapNow$1;
+        const tmpLambdaMapNow$1 /*:array*/ /*truthy*/ = [tmpLambdaMapVal$1, tmpLambdaMapVal$1];
+        tmpLambdaMapOut[tmpClusterSSA_tmpLambdaMapCounter] = tmpLambdaMapNow$1;
       } else {
       }
       tmpClusterSSA_tmpLambdaMapCounter = tmpClusterSSA_tmpLambdaMapCounter + 1;
@@ -105,16 +105,16 @@ const tmpLambdaMapOut = [];
 if (tmpLambdaMapTest) {
   if (0 in tmpMCOO$1) {
     const tmpLambdaMapVal = tmpMCOO$1[0];
-    const tmpClusterSSA_tmpLambdaMapNow = [tmpLambdaMapVal, tmpLambdaMapVal];
-    tmpLambdaMapOut[0] = tmpClusterSSA_tmpLambdaMapNow;
+    const tmpLambdaMapNow = [tmpLambdaMapVal, tmpLambdaMapVal];
+    tmpLambdaMapOut[0] = tmpLambdaMapNow;
   }
   let tmpClusterSSA_tmpLambdaMapCounter = 1;
   while (true) {
     if (tmpClusterSSA_tmpLambdaMapCounter < tmpLambdaMapLen) {
       if (tmpClusterSSA_tmpLambdaMapCounter in tmpMCOO$1) {
         const tmpLambdaMapVal$1 = tmpMCOO$1[tmpClusterSSA_tmpLambdaMapCounter];
-        const tmpClusterSSA_tmpLambdaMapNow$1 = [tmpLambdaMapVal$1, tmpLambdaMapVal$1];
-        tmpLambdaMapOut[tmpClusterSSA_tmpLambdaMapCounter] = tmpClusterSSA_tmpLambdaMapNow$1;
+        const tmpLambdaMapNow$1 = [tmpLambdaMapVal$1, tmpLambdaMapVal$1];
+        tmpLambdaMapOut[tmpClusterSSA_tmpLambdaMapCounter] = tmpLambdaMapNow$1;
       }
       tmpClusterSSA_tmpLambdaMapCounter = tmpClusterSSA_tmpLambdaMapCounter + 1;
     } else {

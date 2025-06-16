@@ -31,19 +31,18 @@ $(g());
 
 
 `````js filename=intro
-const g /*:()=>array*/ = function () {
+const g /*:()=>unknown*/ = function () {
   debugger;
   $(false);
   $(true);
   $(false);
-  const tmpClusterSSA_tmpSSA_a$9 /*:array*/ /*truthy*/ = [1, 2, 3];
-  return tmpClusterSSA_tmpSSA_a$9;
+  return undefined;
 };
-const tmpBinBothLhs$5 /*:array*/ /*truthy*/ = g();
-const tmpBinBothRhs$5 /*:array*/ /*truthy*/ = g();
-const tmpCalleeParam$5 /*:boolean*/ = tmpBinBothLhs$5 === tmpBinBothRhs$5;
-$(tmpCalleeParam$5);
-const tmpCalleeParam$7 /*:array*/ /*truthy*/ = g();
+g();
+g();
+$(false);
+g();
+const tmpCalleeParam$7 /*:array*/ /*truthy*/ = [1, 2, 3];
 $(tmpCalleeParam$7);
 `````
 
@@ -56,12 +55,12 @@ const g = function () {
   $(false);
   $(true);
   $(false);
-  const tmpClusterSSA_tmpSSA_a$9 = [1, 2, 3];
-  return tmpClusterSSA_tmpSSA_a$9;
 };
-const tmpBinBothLhs$5 = g();
-$(tmpBinBothLhs$5 === g());
-$(g());
+g();
+g();
+$(false);
+g();
+$([1, 2, 3]);
 `````
 
 
@@ -74,15 +73,14 @@ const a = function() {
   $( false );
   $( true );
   $( false );
-  const b = [ 1, 2, 3 ];
-  return b;
+  return undefined;
 };
-const c = a();
-const d = a();
-const e = c === d;
-$( e );
-const f = a();
-$( f );
+a();
+a();
+$( false );
+a();
+const b = [ 1, 2, 3 ];
+$( b );
 `````
 
 

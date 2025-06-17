@@ -57,9 +57,9 @@ function _inlineOneTimeFunctions(fdata) {
   //assertNoDupeNodes(fdata.tenkoOutput.ast, 'ast');
 
   fdata.globallyUniqueNamingRegistry.forEach(function (funcMeta, funcName) {
-    if (funcMeta.isBuiltin) return;
-    if (funcMeta.isImplicitGlobal) return;
     if (!funcMeta.isConstant) return;
+    if (funcMeta.varDeclRef.node.$p.readsArgumentsAny) return;
+    if (funcMeta.varDeclRef.node.$p.thisAccess) return;
 
     ASSERT(funcMeta.writes.length === 1, 'fix me if we somehow allow constants to be written to more than once. This transform would probably break it.', funcName, 'is a constant but has', funcMeta.writes.length, 'writes so thats odd'); // We drop the decl so if this is not the case, we break stuff.
 

@@ -626,6 +626,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
           } else if (parentNode.type === 'ExpressionStatement') {
             // A statement that is just `arguments`. :shrug:
             vlog('Ignoring `arguments` as an expression statement');
+            thisStack[thisStack.length - 1].$p.readsArgumentsAny = true; // important for example for onetimers. statements like this will eventually be dropped.
             //} else if (
             //  parentNode.type === 'VarStatement' &&
             //  parentNode.id.name.startsWith(ARGUMENTS_ALIAS_PREFIX)

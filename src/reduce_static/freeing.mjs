@@ -499,14 +499,14 @@ function withPredictableStatements(body, firstIndex, lastIndex, fdata, funcQueue
     last.type === 'VarStatement'
       ? last.init
       : last.type === 'ExpressionStatement' && last.expression.type === 'AssignmentExpression'
-        ? last.expression.right
-        : ASSERT(false, 'last should be var or assign, was neither;', last.type, last.expression?.type);
+      ? last.expression.right
+      : ASSERT(false, 'last should be var or assign, was neither;', last.type, last.expression?.type);
   const lastName =
     last.type === 'VarStatement'
       ? last.id.name
-      : last.type === 'ExpressionStatement' && last.expression.type === 'AssignmentExpression' && last.left.type === 'Identifier'
-        ? last.expression.left.name
-        : ASSERT(false, 'assigns should be to idents?', last.left.type);
+      : last.type === 'ExpressionStatement' && last.expression.type === 'AssignmentExpression' && last.expression.left.type === 'Identifier'
+      ? last.expression.left.name
+      : ASSERT(false, 'assigns should be to idents?', last.left.type);
 
   const func = AST.functionExpression(
     Array.from(outer).map((name,i) => AST.param('$$' + i)),
@@ -659,7 +659,6 @@ function _collectFromExpression(node, declared, reffed) {
     }
     case 'AssignmentExpression': {
       collectFromSimpleOrFail(node.left, reffed);
-      collectFromSimpleOrFail(node.right, reffed);
       if (node.right.type === 'Identifier') collectFromSimpleOrFail(node.right);
       else collectFromExpression(node.right, declared, reffed);
       break;

@@ -22,7 +22,7 @@ $(f());
 
 
 `````js filename=intro
-const f /*:()=>unknown*/ = function () {
+const f /*:()=>unknown*/ = function (/*uses arguments*/) {
   const tmpPrevalAliasArgumentsAny /*:arguments*/ /*truthy*/ = arguments;
   debugger;
   $(tmpPrevalAliasArgumentsAny);

@@ -30,7 +30,7 @@ foo($('arg_mismatch_3_val_a', 'three_a'), $('arg_mismatch_3_val_b', 'three_b'), 
 
 
 `````js filename=intro
-const foo /*:(unknown, unknown)=>undefined*/ = function ($$0, $$1) {
+const foo /*:(unknown, unknown)=>undefined*/ = function ($$0, $$1 /*uses arguments*/) {
   const tmpPrevalAliasArgumentsAny /*:arguments*/ /*truthy*/ = arguments;
   const tmpPrevalAliasArgumentsLen /*:number*/ = arguments.length;
   const a /*:unknown*/ = $$0;

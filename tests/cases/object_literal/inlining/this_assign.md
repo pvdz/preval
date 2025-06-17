@@ -21,7 +21,7 @@ $(obj.f());
 
 
 `````js filename=intro
-const tmpObjLitVal$1 /*:()=>undefined*/ = function () {
+const tmpObjLitVal$1 /*:()=>undefined*/ = function (/*uses this*/) {
   const tmpPrevalAliasThis /*:unknown*/ = this;
   debugger;
   tmpPrevalAliasThis.g = 2;

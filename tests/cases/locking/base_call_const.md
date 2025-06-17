@@ -31,7 +31,7 @@ $(g());
 
 `````js filename=intro
 let tmpFuncLock /*:boolean*/ = true;
-const f /*:(unknown, unknown, unknown)=>undefined*/ = function ($$0, $$1, $$2) {
+const f /*:(unknown, unknown, unknown)=>undefined*/ = function ($$0, $$1, $$2 /*uses this*/) {
   const tmpPrevalAliasThis /*:unknown*/ = this;
   const a /*:unknown*/ = $$0;
   const b /*:unknown*/ = $$1;

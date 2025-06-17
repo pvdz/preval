@@ -41,7 +41,7 @@
 
 
 `````js filename=intro
-const testArguments /*:()=>undefined*/ = function () {
+const testArguments /*:()=>undefined*/ = function (/*uses arguments*/) {
   const tmpPrevalAliasArgumentsAny /*:arguments*/ /*truthy*/ = arguments;
   debugger;
   const tmpCalleeParam /*:boolean*/ = $Array_isArray(tmpPrevalAliasArgumentsAny);

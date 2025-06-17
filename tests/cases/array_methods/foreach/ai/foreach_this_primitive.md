@@ -19,7 +19,7 @@
 
 
 `````js filename=intro
-const tmpMCP /*:(unused)=>undefined*/ = function ($$0) {
+const tmpMCP /*:(unused)=>undefined*/ = function ($$0 /*uses this*/) {
   const tmpPrevalAliasThis /*:unknown*/ = this;
   debugger;
   const tmpCalleeParam /*:boolean*/ = tmpPrevalAliasThis === 42;

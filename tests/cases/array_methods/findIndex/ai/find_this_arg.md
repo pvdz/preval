@@ -25,7 +25,7 @@ $(result);
 const tmpCalleeParam /*:array*/ /*truthy*/ = [1, 2, 3];
 const arr /*:unknown*/ = $(tmpCalleeParam);
 const tmpMCF /*:unknown*/ = arr.findIndex;
-const tmpMCP /*:(unknown)=>boolean*/ = function ($$0) {
+const tmpMCP /*:(unknown)=>boolean*/ = function ($$0 /*uses this*/) {
   const tmpPrevalAliasThis /*:unknown*/ = this;
   const x /*:unknown*/ = $$0;
   debugger;

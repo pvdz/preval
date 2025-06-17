@@ -99,7 +99,7 @@ let self_closing_decoder /*:(unknown, unknown)=>unknown*/ = function ($$0, $$1) 
   const $dlr_$$0 /*:unknown*/ = $$0;
   const $dlr_$$1 /*:unknown*/ = $$1;
   debugger;
-  self_closing_decoder = function ($$0, $$1) {
+  self_closing_decoder = function ($$0, $$1 /*uses arguments*/) {
     const tmpPrevalAliasArgumentsAny$1 /*:arguments*/ /*truthy*/ = arguments;
     const $dlr_$$6 /*:unknown*/ = $$0;
     debugger;

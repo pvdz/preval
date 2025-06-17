@@ -21,7 +21,7 @@ $(a)[$('x')]?.(1, 2, 3);
 
 
 `````js filename=intro
-const tmpObjLitVal /*:(array)=>undefined*/ = function (...$$0 /*:array*/) {
+const tmpObjLitVal /*:(array)=>undefined*/ = function (...$$0 /*:array*/ /*uses this*/) {
   const tmpPrevalAliasThis /*:unknown*/ = this;
   const args /*:array*/ /*truthy*/ = $$0;
   debugger;

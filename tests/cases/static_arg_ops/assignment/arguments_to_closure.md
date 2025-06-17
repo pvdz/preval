@@ -23,7 +23,7 @@ $(a);
 
 `````js filename=intro
 let a /*:unknown*/ = { a: 999, b: 1000 };
-const f /*:()=>arguments*/ = function () {
+const f /*:()=>arguments*/ = function (/*uses arguments*/) {
   const tmpPrevalAliasArgumentsAny /*:arguments*/ /*truthy*/ = arguments;
   debugger;
   a = tmpPrevalAliasArgumentsAny;

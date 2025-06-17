@@ -31,7 +31,7 @@ data_decoder(789, 7);
 `````js filename=intro
 let self_closing_decoder /*:()=>unknown*/ = function () {
   debugger;
-  self_closing_decoder = function ($$0, $$1) {
+  self_closing_decoder = function ($$0, $$1 /*uses arguments*/) {
     const tmpPrevalAliasArgumentsAny /*:arguments*/ /*truthy*/ = arguments;
     debugger;
     $(tmpPrevalAliasArgumentsAny);

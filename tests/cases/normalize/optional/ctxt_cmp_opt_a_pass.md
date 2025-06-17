@@ -18,7 +18,7 @@ $($(a)?.[$('b')][$('c')](100));
 
 
 `````js filename=intro
-const tmpObjLitVal$1 /*:(array)=>unknown*/ = function (...$$0 /*:array*/) {
+const tmpObjLitVal$1 /*:(array)=>unknown*/ = function (...$$0 /*:array*/ /*uses this*/) {
   const tmpPrevalAliasThis /*:unknown*/ = this;
   const a$1 /*:array*/ /*truthy*/ = $$0;
   debugger;

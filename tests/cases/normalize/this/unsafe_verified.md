@@ -28,7 +28,7 @@ $(f.call({y: 1}));
 
 
 `````js filename=intro
-const f /*:()=>unknown*/ = function () {
+const f /*:()=>unknown*/ = function (/*uses this*/) {
   const tmpPrevalAliasThis /*:unknown*/ = this;
   debugger;
   $(tmpPrevalAliasThis);

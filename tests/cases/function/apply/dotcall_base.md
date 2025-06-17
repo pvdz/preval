@@ -19,7 +19,7 @@ $($dotCall(apply, f, 'prop-unused', undefined, ['x'])); // should print x
 
 
 `````js filename=intro
-const f /*:()=>unknown*/ = function () {
+const f /*:()=>unknown*/ = function (/*uses arguments*/) {
   const tmpPrevalAliasArgumentsAny /*:arguments*/ /*truthy*/ = arguments;
   debugger;
   $(...tmpPrevalAliasArgumentsAny);

@@ -45,7 +45,7 @@ let func /*:(unknown, unknown)=>unknown*/ = function ($$0, $$1) {
   let arg1 /*:unknown*/ = $$0;
   const arg2 /*:unknown*/ = $$1;
   debugger;
-  func = function ($$0, $$1) {
+  func = function ($$0, $$1 /*uses arguments*/) {
     const tmpPrevalAliasArgumentsAny /*:arguments*/ /*truthy*/ = arguments;
     const newArg1 /*:unknown*/ = $$0;
     debugger;

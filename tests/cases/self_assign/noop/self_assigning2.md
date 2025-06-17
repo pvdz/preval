@@ -41,7 +41,7 @@ $(a, b, c);
 
 `````js filename=intro
 let arg1 /*:unknown*/ = 3;
-const func /*:(unused, unused)=>undefined*/ = function ($$0, $$1) {
+const func /*:(unused, unused)=>undefined*/ = function ($$0, $$1 /*uses arguments*/) {
   const tmpPrevalAliasArgumentsAny /*:arguments*/ /*truthy*/ = arguments;
   debugger;
   if (arg1) {

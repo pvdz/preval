@@ -56,7 +56,7 @@
 
 
 `````js filename=intro
-const tmpObjLitVal$1 /*:()=>number*/ = function () {
+const tmpObjLitVal$1 /*:()=>number*/ = function (/*uses this*/) {
   const tmpPrevalAliasThis /*:unknown*/ = this;
   debugger;
   $(`obj_m_called`);

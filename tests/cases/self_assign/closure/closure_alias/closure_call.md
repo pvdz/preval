@@ -32,7 +32,7 @@ data_decoder(789, 7);
 let self_closing_decoder /*:()=>unknown*/ = function () {
   debugger;
   $(`closure call`);
-  self_closing_decoder = function ($$0, $$1) {
+  self_closing_decoder = function ($$0, $$1 /*uses arguments*/) {
     const tmpPrevalAliasArgumentsAny /*:arguments*/ /*truthy*/ = arguments;
     debugger;
     thisclosurebecomesargumentsobj = tmpPrevalAliasArgumentsAny;

@@ -46,7 +46,7 @@
 
 
 `````js filename=intro
-const strictFunc /*:(unused)=>undefined*/ = function ($$0) {
+const strictFunc /*:(unused)=>undefined*/ = function ($$0 /*uses arguments*/) {
   const tmpPrevalAliasArgumentsAny$1 /*:arguments*/ /*truthy*/ = arguments;
   debugger;
   try {
@@ -64,7 +64,7 @@ const strictFunc /*:(unused)=>undefined*/ = function ($$0) {
 };
 const tmpCalleeParam$13 /*:unknown*/ = $(`arg1`, 1);
 strictFunc(tmpCalleeParam$13);
-const innerNonStrict /*:()=>undefined*/ = function () {
+const innerNonStrict /*:()=>undefined*/ = function (/*uses arguments*/) {
   const tmpPrevalAliasArgumentsAny /*:arguments*/ /*truthy*/ = arguments;
   debugger;
   try {

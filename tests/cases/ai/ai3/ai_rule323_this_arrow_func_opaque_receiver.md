@@ -24,7 +24,7 @@ $('global_call_this_check', globalCallResult);
 
 
 `````js filename=intro
-const tmpObjLitVal$1 /*:()=>unknown*/ = function () {
+const tmpObjLitVal$1 /*:()=>unknown*/ = function (/*uses this*/) {
   const tmpPrevalAliasThis /*:unknown*/ = this;
   debugger;
   const tmpClusterSSA_tmpReturnArg$1 /*:unknown*/ = $(`arrow_this`, tmpPrevalAliasThis);

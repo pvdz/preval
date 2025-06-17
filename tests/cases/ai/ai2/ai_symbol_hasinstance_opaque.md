@@ -42,7 +42,7 @@ try {
 
 
 `````js filename=intro
-const tmpCalleeParam /*:()=>undefined*/ = function () {
+const tmpCalleeParam /*:()=>undefined*/ = function (/*uses this*/) {
   const tmpPrevalAliasThis /*:unknown*/ = this;
   debugger;
   tmpPrevalAliasThis.isCtor = true;

@@ -22,7 +22,7 @@ $(a, b);
 
 
 `````js filename=intro
-const mutate /*:()=>undefined*/ = function () {
+const mutate /*:()=>undefined*/ = function (/*uses this*/) {
   const tmpPrevalAliasThis /*:unknown*/ = this;
   debugger;
   tmpPrevalAliasThis.x = `changed`;

@@ -25,7 +25,7 @@ $(f);
 
 
 `````js filename=intro
-const f /*:(unused, unused, unused)=>undefined*/ = function ($$0, $$1, $$2) {
+const f /*:(unused, unused, unused)=>undefined*/ = function ($$0, $$1, $$2 /*uses this*/) {
   const tmpPrevalAliasThis /*:unknown*/ = this;
   debugger;
   const tmpSwitchValue /*:unknown*/ = tmpPrevalAliasThis.state;

@@ -49,7 +49,7 @@ $('reflect_target_after_defProp', target_obj[def_prop_key]);
 
 
 `````js filename=intro
-const tmpObjLitVal$1 /*:(unknown)=>unknown*/ = function ($$0) {
+const tmpObjLitVal$1 /*:(unknown)=>unknown*/ = function ($$0 /*uses this*/) {
   const tmpPrevalAliasThis /*:unknown*/ = this;
   const x /*:unknown*/ = $$0;
   debugger;
@@ -86,7 +86,7 @@ const this_arg /*:unknown*/ = $(`reflect_this_arg`, tmpCalleeParam$21);
 const tmpMCF$5 /*:unknown*/ = Reflect.apply;
 const tmpCalleeParam$23 /*:unknown*/ = $dotCall(tmpMCF$5, Reflect, `apply`, func_to_apply, this_arg, args_list);
 $(`reflect_apply_result`, tmpCalleeParam$23);
-const tmpCalleeParam$25 /*:(unknown)=>undefined*/ = function ($$0) {
+const tmpCalleeParam$25 /*:(unknown)=>undefined*/ = function ($$0 /*uses this*/) {
   const tmpPrevalAliasThis$1 /*:unknown*/ = this;
   const a /*:unknown*/ = $$0;
   debugger;

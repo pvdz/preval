@@ -27,7 +27,7 @@ $(f());
 
 
 `````js filename=intro
-const f /*:(unused)=>arguments*/ = function ($$0) {
+const f /*:(unused)=>arguments*/ = function ($$0 /*uses arguments*/) {
   const tmpPrevalAliasArgumentsAny /*:arguments*/ /*truthy*/ = arguments;
   debugger;
   return tmpPrevalAliasArgumentsAny;

@@ -19,7 +19,7 @@ $(function(){ $(this.x); }.call({x: 15}, ['x']));
 
 
 `````js filename=intro
-const tmpMCOO /*:()=>undefined*/ = function () {
+const tmpMCOO /*:()=>undefined*/ = function (/*uses this*/) {
   const tmpPrevalAliasThis /*:unknown*/ = this;
   debugger;
   const tmpCalleeParam$1 /*:unknown*/ = tmpPrevalAliasThis.x;

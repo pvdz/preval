@@ -35,7 +35,7 @@ $(f.call({x: 100}));
 
 
 `````js filename=intro
-const f /*:()=>unknown*/ = function () {
+const f /*:()=>unknown*/ = function (/*uses this*/) {
   const tmpPrevalAliasThis /*:unknown*/ = this;
   debugger;
   const tmpClusterSSA_tmpReturnArg$1 /*:unknown*/ = tmpPrevalAliasThis.x;

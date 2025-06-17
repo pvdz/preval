@@ -63,7 +63,7 @@ $(a, b);
 `````js filename=intro
 const arr /*:array*/ /*truthy*/ = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000];
 let arg1 /*:unknown*/ = 3;
-const func /*:(unknown, unknown)=>unknown*/ = function ($$0, $$1) {
+const func /*:(unknown, unknown)=>unknown*/ = function ($$0, $$1 /*uses arguments*/) {
   const tmpPrevalAliasArgumentsAny /*:arguments*/ /*truthy*/ = arguments;
   const newArg1 /*:unknown*/ = $$0;
   const unusedNewArg2 /*:unknown*/ = $$1;

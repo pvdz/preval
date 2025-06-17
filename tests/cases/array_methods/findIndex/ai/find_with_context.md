@@ -21,7 +21,7 @@ $(result, x);
 
 `````js filename=intro
 const result /*:array*/ /*truthy*/ = [];
-const tmpMCP /*:(unknown)=>undefined*/ = function ($$0) {
+const tmpMCP /*:(unknown)=>undefined*/ = function ($$0 /*uses this*/) {
   const tmpPrevalAliasThis /*:unknown*/ = this;
   const x$1 /*:unknown*/ = $$0;
   debugger;

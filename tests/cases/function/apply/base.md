@@ -18,7 +18,7 @@ $(function(){ $(...arguments); }.apply({}, ['x']));
 
 
 `````js filename=intro
-const tmpMCOO /*:()=>unknown*/ = function () {
+const tmpMCOO /*:()=>unknown*/ = function (/*uses arguments*/) {
   const tmpPrevalAliasArgumentsAny /*:arguments*/ /*truthy*/ = arguments;
   debugger;
   $(...tmpPrevalAliasArgumentsAny);

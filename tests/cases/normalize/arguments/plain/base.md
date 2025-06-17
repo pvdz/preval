@@ -20,7 +20,7 @@ f();
 
 
 `````js filename=intro
-const f /*:(unused)=>undefined*/ = function ($$0) {
+const f /*:(unused)=>undefined*/ = function ($$0 /*uses arguments*/) {
   const tmpPrevalAliasArgumentsAny /*:arguments*/ /*truthy*/ = arguments;
   debugger;
   const tmpCalleeParam /*:unknown*/ = tmpPrevalAliasArgumentsAny[0];

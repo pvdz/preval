@@ -78,6 +78,14 @@ function _ifTestMerging(fdata) {
     const parentProp = pathProps[pathProps.length - 1];
     const parentIndex = pathIndexes[pathIndexes.length - 1];
 
+    vlog('Found two matching statements:');
+    vgroup('one:');
+    source(firstThen, true);
+    vgroupEnd();
+    vgroup('two:');
+    source(firstElse, true);
+    vgroupEnd();
+
     rule('When both branches of an If start with the same statement except for true/false cases, merge them to before the If with a Boolean(test)');
     example('if (x) { f(true); p; } else { f(false); q; }', 'const b = Boolean(x); f(b); if (x) { p } else { q }');
     example('if (x) { f(false); p; } else { f(true); q; }', 'const b = !x; f(b); if (x) { p } else { q }');

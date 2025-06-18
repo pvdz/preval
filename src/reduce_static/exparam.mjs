@@ -4,18 +4,20 @@
 // ->
 //          function f(a, b) { g(a, b); } f(1, 2)
 
-import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after } from '../utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, currentState, } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { SYMBOL_DOTCALL, SYMBOL_FRFR } from '../symbols_preval.mjs';
 
 export function pruneExcessiveParams(fdata) {
   group('\n\n\n[pruneExcessiveParams] Pruning excessive params and args\n');
+  // currentState(fdata, 'pruneExcessiveParams', true, fdata);
   const r = _pruneExcessiveParams(fdata);
   groupEnd();
   return r;
 }
 function _pruneExcessiveParams(fdata) {
   const queue = [];
+  const queue2 = []; // squash temp blocks
   let deletedParams = 0;
   let deletedArgs = 0;
 
@@ -107,13 +109,15 @@ function _pruneExcessiveParams(fdata) {
       example('function f(a, b, c) { $(a, c); } f(1, 2, 3);', 'function f(a, c) { $(a, c); } f(1, 3);');
       vlog('Queueing individual pieces to transform...');
 
+      const newMaxParamCount = funcNode.params.length - 1; // Multiple queued callbacks may undercut but that's fine
+
       ++deletedParams;
       vlog('- queued func itself to update');
       queue.push({
         pi,
-        index: funcNode.$p.npid,
+        index: 0, // function processing order is not relevant
         func: () => {
-          vgroup('Eliminating param', pi);
+          vgroup('Eliminating PARAM at param index', pi, ', block index:', meta.varDeclRef?.varDeclIndex);
           rule('When a parameter is not used or observed it can be removed from the function');
           example('function f(a, b, c) { g(a, c); } f(1, 2, 3)', 'function f(a, c) { g(a, c); } f(1, 2, 3)');
           before(funcNode);
@@ -146,7 +150,7 @@ function _pruneExcessiveParams(fdata) {
       // We asserted above that all these nodes are calls
       meta.reads.forEach((read) => {
         // Check dotcall too
-        before(read.blockBody[read.blockIndex]);
+        source(read.blockBody[read.blockIndex], true);
         let isDotcall = false;
         let isFrfr = false;
         if (read.parentProp === 'callee') {}
@@ -161,10 +165,10 @@ function _pruneExcessiveParams(fdata) {
         ++deletedArgs;
         vlog('- queued call to update');
         queue.push({
-          pi,
+          pi, // we need this: when processing the same func, the same call must be processed multiple times too, but we should eliminate args back to front.
           index: read.blockIndex,
           func: () => {
-            vgroup('Eliminating call arg', pi);
+            vgroup('Eliminating CALL arg for param index', pi, ', block index:', read.blockIndex);
             rule('When dropping unused params from a function, calls to that function should remove the parameter too');
             example('function f(a, c) { g(a, c); } f(1, 2, 3)', 'function f(a, c) { g(a, c); } { const t1 = 1; const t2 = 2; const t3 = 3; } f(t1, t3)');
             before(read.blockBody[read.blockIndex]);
@@ -185,21 +189,32 @@ function _pruneExcessiveParams(fdata) {
               callNode.arguments
               .filter(anode => !AST.isPrimitive(anode))
               .map(anode => AST.expressionStatement(AST.cloneSimple(anode.type === 'SpreadElement' ? anode.argument : anode)));
-            vlog('Also injecting call args as statements (to preserve TDZ)');
-            read.blockBody.splice(
-              read.blockIndex, 0,
-              // Not a fan of this. Many args could kind of blow this up. Although in real programs that shouldn't cause a problem here.
-              // In faked input code, maybe... Problems for another time?
-              ...prefixNodes
-            );
 
-            callNode.arguments.splice(targetArgIndex, 1);
-            if (callNode.arguments.length > params.length) {
-              vlog('Culling the arg list to not pass more args than there are params. there should not be any spreads/rest/arguments access so this is safe?');
-              callNode.arguments.length = (isDotcall ? 3 : 0) + (isFrfr ? 1 : 0) + params.length;
+            // One call may be processed multiple times (same func dropping two params etc).
+            // To prevent outlining multiple times we store this outline in a block. Next visits will recognize it and skip the outline.
+
+            if (read.blockBody[read.blockIndex].type !== 'BlockStatement') {
+              vlog('Also injecting call args as statements (to preserve TDZ)');
+              // Store in a block to indicate this call has been outlined
+              read.blockBody[read.blockIndex] = AST.blockStatement(
+                read.blockBody[read.blockIndex],
+                // Not a fan of this. Many args could kind of blow this up. Although in real programs that shouldn't cause a problem here.
+                // In faked input code, maybe... Problems for another time?
+                ...prefixNodes
+              );
+              // Then squash in the end.
+              queue2.push({index: read.blockIndex, func: () => read.blockBody.splice(read.blockIndex, 1, ...read.blockBody[read.blockIndex].body)});
+            } else {
+              vlog('Already outlined the call args for this call this iteration, skipping this step');
             }
 
-            after(read.blockBody.slice(read.blockIndex, read.blockIndex + prefixNodes.length + 1));
+            callNode.arguments.splice(targetArgIndex, 1);
+            if (callNode.arguments.length > newMaxParamCount) {
+              vlog('Culling the arg list to not pass more args than there are params. there should not be any spreads/rest/arguments access so this is safe?', callNode.arguments.length, newMaxParamCount);
+              callNode.arguments.length = (isDotcall ? 3 : 0) + (isFrfr ? 1 : 0) + newMaxParamCount;
+            }
+
+            after(read.blockBody[read.blockIndex]);
             vgroupEnd();
           }
         })
@@ -208,8 +223,10 @@ function _pruneExcessiveParams(fdata) {
   });
 
   if (queue.length) {
-    queue.sort(({ pi: a, index: A }, { pi: b, index: B }) => b-a || B-A);
+    queue.sort(({ pi: A, index: a }, { pi: B, index: b }) => B-A || b-a);
     queue.forEach(({ func }) => func());
+    queue2.sort(({ index: a }, { index: b }) => b-a);
+    queue2.forEach(({ func }) => func());
 
     log('Deleted params:', deletedParams, ', deleted args:', deletedArgs, '. Restarting from normalization (fixup param magic)');
     return {what: 'pruneExcessiveParams', changes: deletedParams, next: 'normal'};

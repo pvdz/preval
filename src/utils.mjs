@@ -2,7 +2,7 @@ import Prettier from '../lib/prettier.mjs';
 import { printer, setPrintPids, setPrintVarTyping } from '../lib/printer.mjs';
 import walk from '../lib/walk.mjs';
 
-import { VERBOSE_TRACING, setVerboseTracing, YELLOW, ORANGE_DIM, PURPLE, RESET, DIM, ORANGE, GREEN, BLUE } from './constants.mjs';
+import { VERBOSE_TRACING, setVerboseTracing, YELLOW, ORANGE_DIM, PURPLE, RESET, DIM, ORANGE, GREEN, BLUE, RED, } from './constants.mjs';
 import { SYMBOL_MAX_LOOP_UNROLL } from './symbols_preval.mjs';
 
 /**
@@ -177,6 +177,10 @@ export function riskyRule(desc, ...rest) {
   log(ORANGE + 'RiskyRule:' + RESET + ' "' + desc + '"', ...rest);
 }
 
+export function hackyRule(desc, ...rest) {
+  log(RED + 'HackRule:' + RESET + ' "' + desc + '"', ...rest);
+}
+
 export function example(from, to, condition) {
   if (VERBOSE_TRACING) {
     if (!condition || typeof condition !== 'function' || condition()) {
@@ -234,12 +238,12 @@ export function source(node, force = false, callCount = 0) {
         groupEnd();
       } else {
         if (force === 'superforce') {
-          log(ORANGE_DIM + 'Source:\n' + RESET + DIM + '| ' + code + RESET);
+          log(ORANGE_DIM + 'Source:\n' + RESET + DIM + '|   ' + code + RESET);
         } else if (callCount === 0) {
           // Print the Source thing only for the first line
-          log(ORANGE_DIM + 'Source:\n' + RESET + DIM + '| ' + code + RESET);
+          log(ORANGE_DIM + 'Source:' + RESET + DIM + '  |   ' + code + RESET);
         } else {
-          log(DIM + '| ' + code + RESET);
+          log(DIM + '|   ' + code + RESET);
         }
       }
       if (anon) node.id = null;

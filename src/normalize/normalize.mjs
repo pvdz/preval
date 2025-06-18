@@ -1,6 +1,6 @@
 import walk from '../../lib/walk.mjs';
 import * as AST from '../ast.mjs';
-import { ASSERT, assertNoDupeNodes, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, rule, example, before, source, after, riskyRule, useRiskyRules, todo, currentState, } from '../utils.mjs';
+import { ASSERT, assertNoDupeNodes, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, rule, example, before, source, after, riskyRule, useRiskyRules, todo, currentState, hackyRule, } from '../utils.mjs';
 
 import { VERBOSE_TRACING, ASSUME_BUILTINS, DCE_ERROR_MSG, ERR_MSG_ILLEGAL_ARRAY_SPREAD, ERR_MSG_ILLEGAL_CALLEE, FRESH, OLD, RED, BLUE, RESET, } from '../constants.mjs';
 import { BUILTIN_GLOBAL_FUNCS_TO_SYMBOL, BUILTIN_FUNC_NO_CTX, BUILTIN_FUNCS_NO_CTX_COERCE_FIRST_TO_NUMBER, BUILTIN_FUNCS_NO_CTX_COERCE_FIRST_TO_STRING, BUILTIN_FUNCS_NO_CTXT_NON_COERCE, BUILTIN_SYMBOLS, GLOBAL_NAMESPACES_FOR_STATIC_METHODS, protoToInstName, symbo, OBJECT, } from '../symbols_builtins.mjs';
@@ -3511,12 +3511,14 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
         let funcName = callee.name;
         const isDotcall = funcName === SYMBOL_DOTCALL;
         let contextNode = undefined;
+        let dotPropNode = undefined;
         let args = nodeArgs.slice(0);
 
         if (isDotcall) {
           callee = args[0];
           funcName = callee.name;
           contextNode = args[1];
+          dotPropNode = args[2];
           args = args.slice(3);
         }
 
@@ -10538,6 +10540,27 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
         // Assert normalized form
         ASSERT(callee.type === 'Identifier', 'callee is ident, rite?', callee);
         ASSERT(!hasComplexArg, 'all args should be simple nodes');
+
+        // Hack to throw in some known strings. Enable to see some extrapolation.
+        if (
+          true &&
+          isDotcall &&
+          contextNode?.name === 'os' &&
+          AST.isPrimitive(dotPropNode) &&
+          AST.getPrimitiveValue(dotPropNode) === 'homedir'
+        ) {
+          // Replace require('os').homedir()
+          hackyRule('Replacing os.homedir() with custom value');
+          example('$dotCall(xyz, os, "homedir")', '"somevalue"');
+          before(body[i]);
+
+          const finalNode = AST.primitive('/home/PREVAL_FAKE_HOMEDIR');
+          const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+          body[i] = finalParent;
+
+          after(body[i]);
+          return true;
+        }
 
         return false;
       }

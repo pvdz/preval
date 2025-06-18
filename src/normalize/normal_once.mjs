@@ -786,6 +786,7 @@ export function phaseNormalOnce(fdata) {
             else parentNode[parentProp][parentIndex] = AST.nul();
 
             after(parentNode);
+            vgroupEnd();
             return true;
           }
         }

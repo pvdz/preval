@@ -64,10 +64,10 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 
 `````js filename=intro
-const tmpFree /*:(primitive)=>boolean*/ = function $free($$0) {
-  const tmp2$1 /*:primitive*/ = $$0;
+const tmpFree$1 /*:(primitive)=>boolean*/ = function $free($$0) {
+  const u /*:primitive*/ = $$0;
   debugger;
-  const v /*:number*/ = $Number_parseInt(tmp2$1);
+  const v /*:number*/ = $Number_parseInt(u);
   const tmpRet$1 /*:boolean*/ = v === 330166;
   return tmpRet$1;
 };
@@ -75,7 +75,7 @@ const main_data_arr /*:array*/ /*truthy*/ = [`ike there `, `wgcCwgZikg`, `LmNvbm
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmp2$2 /*:primitive*/ = main_data_arr[4336];
   $(`testing`);
-  const w /*:boolean*/ = $frfr(tmpFree, tmp2$2);
+  const w /*:boolean*/ = $frfr(tmpFree$1, tmp2$2);
   if (w) {
     break;
   } else {
@@ -90,15 +90,15 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpFree = function $free(tmp2$1) {
-  const tmpRet$1 = $Number_parseInt(tmp2$1) === 330166;
+const tmpFree$1 = function $free(u) {
+  const tmpRet$1 = $Number_parseInt(u) === 330166;
   return tmpRet$1;
 };
 const main_data_arr = [`ike there `, `wgcCwgZikg`, `LmNvbmNhdC`, `eBestCandi`, ` using the`];
 while (true) {
   const tmp2$2 = main_data_arr[4336];
   $(`testing`);
-  if ($frfr(tmpFree, tmp2$2)) {
+  if ($frfr(tmpFree$1, tmp2$2)) {
     break;
   } else {
     $dotCall($array_push, main_data_arr, `push`, $dotCall($array_shift, main_data_arr, `shift`));
@@ -196,6 +196,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 ## Todos triggered
 
 
+- (todo) maybe we can inline a primitive into a frfr that is called multiple times, too?
 - (todo) support array reads statement type VarStatement
 - (todo) support array reads statement type WhileStatement
 - (todo) type trackeed tricks can possibly support static $Number_parseInt

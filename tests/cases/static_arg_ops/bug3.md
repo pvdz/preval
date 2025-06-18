@@ -44,10 +44,10 @@ $(undefined);
 const tmpCalleeParam /*:array*/ /*truthy*/ = [100, 200, 300, 400];
 const arr /*:unknown*/ = $(tmpCalleeParam);
 const h /*:(number)=>undefined*/ = function ($$0) {
-  const $dlr_$$5 /*:number*/ = $$0;
+  const y /*:number*/ = $$0;
   debugger;
-  const tmpCalleeParam$1 /*:unknown*/ = arr[$dlr_$$5];
-  $(tmpCalleeParam$1, $dlr_$$5);
+  const tmpCalleeParam$1 /*:unknown*/ = arr[y];
+  $(tmpCalleeParam$1, y);
   return undefined;
 };
 h(-344);
@@ -62,8 +62,8 @@ $(undefined);
 
 `````js filename=intro
 const arr = $([100, 200, 300, 400]);
-const h = function ($dlr_$$5) {
-  $(arr[$dlr_$$5], $dlr_$$5);
+const h = function (y) {
+  $(arr[y], y);
 };
 h(-344);
 h(364);
@@ -128,6 +128,7 @@ $(undefined);
 ## Todos triggered
 
 
+- (todo) maybe we can inline a primitive into a frfr that is called multiple times, too?
 - (todo) support array reads statement type VarStatement
 
 

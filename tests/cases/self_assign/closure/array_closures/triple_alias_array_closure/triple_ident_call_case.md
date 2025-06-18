@@ -147,8 +147,8 @@ const arr /*:array*/ /*truthy*/ = [
 ];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(`loop`);
-  const tmpCalleeParam$9 /*:primitive*/ = arr[112];
-  const tmpBinLhs$166 /*:number*/ = $Number_parseInt(tmpCalleeParam$9);
+  const _0x5e349d$8 /*:primitive*/ = arr[112];
+  const tmpBinLhs$166 /*:number*/ = $Number_parseInt(_0x5e349d$8);
   if (tmpBinLhs$166) {
     break;
   } else {
@@ -353,6 +353,7 @@ $(tmpCalleeParam$11);
 - (todo) access object property that also exists on prototype? $array_push
 - (todo) access object property that also exists on prototype? $array_shift
 - (todo) can try-escaping support this expr node type? CallExpression
+- (todo) maybe we can inline a primitive into a frfr that is called multiple times, too?
 - (todo) support array reads statement type EmptyStatement
 - (todo) support array reads statement type ExpressionStatement
 - (todo) support array reads statement type VarStatement

@@ -154,7 +154,7 @@ f(tmpCalleeParam);
 ## Todos triggered
 
 
-None
+- (todo) maybe we can inline a primitive into a frfr that is called multiple times, too?
 
 
 ## Globals

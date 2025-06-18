@@ -37,21 +37,22 @@ const tmpFree /*:(string)=>number*/ = function $free($$0) {
   const tmpRet /*:number*/ = $dotCall($string_indexOf, `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`, `indexOf`, a1);
   return tmpRet;
 };
-const f /*:(string)=>string*/ = function ($$0) {
-  const repl$2 /*:string*/ = $$0;
+const f /*:(number)=>string*/ = function ($$0) {
+  const a2 /*:number*/ = $$0;
   debugger;
-  const a2 /*:number*/ = $frfr(tmpFree, repl$2);
   const frout /*:primitive*/ = a2 + b2;
   outputstr = $coerce(frout, `plustr`);
   return outputstr;
 };
 const x /*:unknown*/ = $(`co_rn`);
 const tmpCalleeParam$1 /*:string*/ = $coerce(x, `string`);
-const tmpCalleeParam /*:string*/ = f(tmpCalleeParam$1);
+const tmpFrfrOutline /*:number*/ = $frfr(tmpFree, tmpCalleeParam$1);
+const tmpCalleeParam /*:string*/ = f(tmpFrfrOutline);
 $(tmpCalleeParam);
 const y /*:unknown*/ = $(`m#az#e`);
 const tmpCalleeParam$5 /*:string*/ = $coerce(y, `string`);
-const tmpCalleeParam$3 /*:string*/ = f(tmpCalleeParam$5);
+const tmpFrfrOutline$1 /*:number*/ = $frfr(tmpFree, tmpCalleeParam$5);
+const tmpCalleeParam$3 /*:string*/ = f(tmpFrfrOutline$1);
 $(tmpCalleeParam$3);
 `````
 
@@ -69,12 +70,12 @@ const tmpFree = function $free(repl$1) {
   );
   return tmpRet;
 };
-const f = function (repl$2) {
-  outputstr = $coerce($frfr(tmpFree, repl$2) + b2, `plustr`);
+const f = function (a2) {
+  outputstr = $coerce(a2 + b2, `plustr`);
   return outputstr;
 };
-$(f($coerce($(`co_rn`), `string`)));
-$(f($coerce($(`m#az#e`), `string`)));
+$(f($frfr(tmpFree, $coerce($(`co_rn`), `string`))));
+$(f($frfr(tmpFree, $coerce($(`m#az#e`), `string`))));
 `````
 
 
@@ -92,19 +93,20 @@ const a = function b($$0 ) {
 const f = function($$0 ) {
   const g = $$0;
   debugger;
-  const h = i( a, g );
-  const j = h + b2;
-  outputstr = $coerce( j, "plustr" );
+  const h = g + b2;
+  outputstr = $coerce( h, "plustr" );
   return outputstr;
 };
-const k = $( "co_rn" );
-const l = $coerce( k, "string" );
-const m = f( l );
+const i = $( "co_rn" );
+const j = $coerce( i, "string" );
+const k = l( a, j );
+const m = f( k );
 $( m );
 const n = $( "m#az#e" );
 const o = $coerce( n, "string" );
-const p = f( o );
-$( p );
+const p = l( a, o );
+const q = f( p );
+$( q );
 `````
 
 

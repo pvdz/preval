@@ -54,10 +54,12 @@ const f /*:()=>unknown*/ = function () {
   arr[-344];
   if (unknown) {
     arr[364];
+    unknown;
   } else {
   }
   if (unknown2) {
     arr[364];
+    unknown2;
     return undefined;
   } else {
     return undefined;
@@ -75,9 +77,11 @@ $(function () {
   arr[-344];
   if (unknown) {
     arr[364];
+    unknown;
   }
   if (unknown2) {
     arr[364];
+    unknown2;
   }
 });
 `````
@@ -92,9 +96,11 @@ const a = function() {
   arr[ -344 ];
   if (unknown) {
     arr[ 364 ];
+    unknown;
   }
   if (unknown2) {
     arr[ 364 ];
+    unknown2;
     return undefined;
   }
   else {

@@ -51,9 +51,9 @@ const arr /*:unknown*/ = $(tmpCalleeParam);
 const unknown /*:unknown*/ = $(345);
 const unknown2 /*:unknown*/ = $(347);
 const h /*:(number)=>undefined*/ = function ($$0) {
-  const tmpOutlinedParam$1 /*:number*/ = $$0;
+  const y /*:number*/ = $$0;
   debugger;
-  const tmpCalleeParam$1 /*:unknown*/ = arr[tmpOutlinedParam$1];
+  const tmpCalleeParam$1 /*:unknown*/ = arr[y];
   $(tmpCalleeParam$1);
   return undefined;
 };
@@ -78,8 +78,8 @@ if (unknown2) {
 const arr = $([100, 200, 300, 400]);
 const unknown = $(345);
 const unknown2 = $(347);
-const h = function (tmpOutlinedParam$1) {
-  $(arr[tmpOutlinedParam$1]);
+const h = function (y) {
+  $(arr[y]);
 };
 h(-344);
 if (unknown) {

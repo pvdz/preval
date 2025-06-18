@@ -15,7 +15,7 @@ import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, b
 import * as AST from '../ast.mjs';
 import { createFreshVar } from '../bindings.mjs';
 import { cloneSimple, isSimpleNodeOrSimpleMember } from '../ast.mjs';
-import { SYMBOL_COERCE, SYMBOL_DOTCALL } from '../symbols_preval.mjs';
+import { SYMBOL_COERCE, SYMBOL_DOTCALL, SYMBOL_FRFR } from '../symbols_preval.mjs';
 
 export function staticArgOpOutlining(fdata) {
   group('\n\n\n[staticArgOpOutlining] Finding static param ops to outline\n');
@@ -286,7 +286,6 @@ function _staticArgOpOutlining(fdata) {
           return true;
         }
 
-
         if (read.parentNode.callee.name === SYMBOL_DOTCALL) {
           if (read.parentIndex === 0) {
             vlog('ok, called with dotcall');
@@ -359,6 +358,23 @@ function _staticArgOpOutlining(fdata) {
     const firstStmt = funcNode.body.body[stmtOffset];
 
     vlog('- Was unable to find a target statement to inline an op.');
+
+    vlog('Check for $frfr or $coerce as first statement');
+
+    if (
+      firstStmt.type === 'VarStatement' &&
+      firstStmt.init.type === 'CallExpression' &&
+      firstStmt.init.callee.type === 'Identifier' &&
+      firstStmt.init.callee.name === SYMBOL_FRFR
+    ) {
+      vlog('First statement is var with init of frfr, should be good to outline');
+      // In this case the existence of $frf means the args are all primitives and side effect free.
+      // Check if the actual args are params. Not sure what else they would be but still.
+      // In that case, proceed to outline it. Otherwise leave it for other reducers to resolve.
+      inlineFrfr(funcMeta, funcNode, paramCount, stmt, stmtOffset, firstStmt)
+      return;
+    }
+
     vlog('- Now checking the assignment case. First statement is', firstStmt.type, '...');
 
     if (
@@ -697,7 +713,7 @@ function _staticArgOpOutlining(fdata) {
       firstStmt.expression.right.callee.name === SYMBOL_COERCE
     ) {
       // `function f() { y = $(coerce, x, 'string') }`
-      // Coerce as a statement
+      // Coerce as an assignment statement
 
       vlog('- First statement is assignment (not decl) of a $coerce');
 
@@ -871,8 +887,8 @@ function _staticArgOpOutlining(fdata) {
       firstStmt.init.callee.type === 'Identifier' &&
       firstStmt.init.callee.name === SYMBOL_COERCE
     ) {
-      // `function f() { y = $(coerce, x, 'string') }`
-      // Coerce as a statement
+      // `function f() { const y = $(coerce, x, 'string') }`
+      // Coerce as a var statement
 
       vlog('- First statement is var decl with a $coerce');
 
@@ -965,6 +981,7 @@ function _staticArgOpOutlining(fdata) {
 
     vlog('  - nope.');
   }
+
   function inlineOp(funcMeta, funcNode, paramIndex, paramCount, stmt, stmtIndex) {
     const names = funcNode.$p.paramNames;
 
@@ -1113,6 +1130,110 @@ function _staticArgOpOutlining(fdata) {
 
     after(funcMeta.varDeclRef.varDeclNode);
     funcMeta.reads.forEach((read) => after(read.blockBody[read.blockIndex]));
+    ++changes;
+  }
+
+  function inlineFrfr(funcMeta, funcNode, paramCount, stmt, stmtIndex, firstStmt) {
+    // All call sites transform like this:
+    //
+    //        `function f(a) { const x = $frfr(..., a); ...; } f(1); f(2);`
+    // ->
+    //        `function f(a, x) { ...; } const tmp = $frfr(..., 1); f(1, tmp); const tmp2 = $frfr(..., 2); f(2, tmp2);`
+    //
+    // We have asserted the function does not use arguments/this, and is only called, does not use rest/spread.
+
+    const frfrCallNode = firstStmt.init;
+
+    rule('Function starting with $frfr can outline that call');
+    example(
+      'function f(a) { const x = $frfr(..., a); ...; } f(1); f(2);',
+      'function f(a, x) { ...; } const tmp = $frfr(..., 1); f(1, tmp); const tmp2 = $frfr(..., 2); f(2, tmp2);'
+    );
+    before(funcMeta.varDeclRef.varDeclNode);
+
+    const paramNames = funcNode.$p.paramNames;
+
+    vgroup('Transform all calls');
+    funcMeta.reads.forEach((read,i) => {
+      vgroup('- Transforming call', i);
+      ASSERT(read.parentNode.type === 'CallExpression');
+      ASSERT(read.parentProp === 'callee' || (read.parentNode.callee.name === SYMBOL_DOTCALL && read.parentIndex === 0), 'either called or dotcalled');
+
+      const callNode = read.parentNode;
+      const args = callNode.arguments.slice(callNode.callee.name === SYMBOL_DOTCALL ? 3 : 0);
+
+      function cloneArgIfParamElseCloneNode(node) {
+        if (node.type === 'Identifier') {
+          const at = paramNames.indexOf(node.name);
+          if (at >= 0) {
+            return args[at] ? AST.cloneSimple(args[at]) : AST.undef(); // arg underflow, default to undefined
+          }
+        }
+        return AST.cloneSimple(node);
+      }
+
+      rule('Caller to function starting with $frfr gets that call prepended');
+      example('function f(a) { $frfr(a); } const y = f(x);', 'function f(a) { $frfr(a); } { const tmp = $frfr(x); const y = f(a, tmp); }');
+      before(read.blockBody[read.blockIndex])
+
+      const tmp = createFreshVar('tmpFrfrOutline', fdata);
+
+      read.blockBody[read.blockIndex] = AST.blockStatement(
+        AST.varStatement('const', AST.identifier(tmp), AST.callExpression(SYMBOL_FRFR, frfrCallNode.arguments.map(anode => cloneArgIfParamElseCloneNode(anode)))),
+        read.blockBody[read.blockIndex],
+      );
+      // Change the call to pass on `undefined`. We already confirmed the function does not check `arguments` so this should be ok.
+      vlog('- Do we need to backfill args?', callNode.arguments.length, paramNames.length);
+      while (callNode.arguments.length < paramNames.length) {
+        callNode.arguments.push(AST.undef());
+      }
+      // Push extra arg now.
+      callNode.arguments.push(AST.identifier(tmp));
+      queue.push({
+        index: read.blockIndex,
+        func: () => {
+          read.blockBody.splice(read.blockIndex, 1, ...read.blockBody[read.blockIndex].body); // squash it
+        },
+      });
+
+      after(read.blockBody[read.blockIndex]);
+      vgroupEnd();
+    });
+    vgroupEnd();
+
+    // With all calls transformed, add a new param to the func and map it to the binding
+    // that already existed. Move its init into the header.
+
+    rule('The initial $frfr call is now dropped and a parameter is mapped to its variable instead');
+    example(
+      'function f($$0) { const a = $$0; debugger; const x = $frfr(a); ... }',
+      'function f($$0, $$1) { const a = $$0; const x = $$1; debugger; ... }'
+    );
+    before(funcNode);
+
+    funcNode.body.body[stmtIndex] = AST.blockStatement(); // Cleanup in queue. We don't need this anymore.
+    queue.push({
+      index: stmtIndex,
+      func: () => {
+        funcNode.body.body.splice(stmtIndex, 1); // drop it
+      },
+    });
+
+    const newParamName = '$$' + paramCount;
+    const newParamNode = AST.param('$$' + paramCount, false);
+    const newLocalParamName = firstStmt.id.name;
+    const newLocalParamNode = AST.varStatement('const', newLocalParamName, AST.identifier(newParamName));
+    funcNode.params.push(newParamNode);
+    funcNode.$p.paramNames.push(newLocalParamName);
+    // Need to queue the inject because injecting the arg in the body pushes all other statements down
+    queue.push({
+      index: funcNode.$p.bodyOffset - 1,
+      func: () => {
+        funcNode.body.body.splice(funcNode.$p.bodyOffset - 1, 0, newLocalParamNode);
+      },
+    });
+
+    after(funcMeta.varDeclRef.varDeclNode);
     ++changes;
   }
 

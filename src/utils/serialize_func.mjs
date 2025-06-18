@@ -91,7 +91,7 @@ export function cloneFunctionNode(funcNode, clonedName = 'noname', staticArgs, f
           0,
           AST.varStatement(
             'let',
-            paramDecl.$p.paramVarDeclRef.name,
+            paramDecl.$p.paramVarDeclRef?.name,
             type === 'I'
               ? AST.identifier(paramValue)
               : type === 'N'

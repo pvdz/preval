@@ -233,7 +233,7 @@ export function phasePrimitiveArgInlining(program, fdata, resolve, req, cloneLim
                         0,
                         AST.varStatement(
                           'let',
-                          funcNode.params[paramIndex].$p.paramVarDeclRef.name,
+                          funcNode.params[paramIndex].$p.paramVarDeclRef?.name,
                           type === 'I'
                             ? AST.identifier(paramValue)
                             : type === 'N'

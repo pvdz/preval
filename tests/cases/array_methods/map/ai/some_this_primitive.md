@@ -18,31 +18,17 @@ $(x);
 
 
 `````js filename=intro
-const tmpMCP /*:(unused)=>undefined*/ = function ($$0 /*uses this*/) {
+const tmpMCP /*:()=>undefined*/ = function (/*uses this*/) {
   const tmpPrevalAliasThis /*:unknown*/ = this;
   debugger;
   const tmpCalleeParam /*:boolean*/ = tmpPrevalAliasThis === 42;
   $(tmpCalleeParam);
   return undefined;
 };
-const tmpMCOO /*:array*/ /*truthy*/ = [1, 2, 3];
-const tmpLambdaMapNow /*:unknown*/ = $dotCall(tmpMCP, 42, undefined, 1, 0, tmpMCOO);
-const tmpLambdaMapHas$1 /*:boolean*/ = 1 in tmpMCOO;
-const tmpLambdaMapOut /*:array*/ /*truthy*/ = [tmpLambdaMapNow];
-if (tmpLambdaMapHas$1) {
-  const tmpLambdaMapVal$1 /*:primitive*/ = tmpMCOO[1];
-  const tmpLambdaMapNow$1 /*:unknown*/ = $dotCall(tmpMCP, 42, undefined, tmpLambdaMapVal$1, 1, tmpMCOO);
-  tmpLambdaMapOut[1] = tmpLambdaMapNow$1;
-} else {
-}
-const tmpLambdaMapHas$2 /*:boolean*/ = 2 in tmpMCOO;
-if (tmpLambdaMapHas$2) {
-  const tmpLambdaMapVal$2 /*:primitive*/ = tmpMCOO[2];
-  const tmpLambdaMapNow$2 /*:unknown*/ = $dotCall(tmpMCP, 42, undefined, tmpLambdaMapVal$2, 2, tmpMCOO);
-  tmpLambdaMapOut[2] = tmpLambdaMapNow$2;
-} else {
-}
-tmpLambdaMapOut.length = 3;
+const tmpLambdaMapNow /*:unknown*/ = $dotCall(tmpMCP, 42, undefined);
+const tmpLambdaMapNow$1 /*:unknown*/ = $dotCall(tmpMCP, 42, undefined);
+const tmpLambdaMapNow$2 /*:unknown*/ = $dotCall(tmpMCP, 42, undefined);
+const tmpLambdaMapOut /*:array*/ /*truthy*/ = [tmpLambdaMapNow, tmpLambdaMapNow$1, tmpLambdaMapNow$2];
 $(tmpLambdaMapOut);
 `````
 
@@ -51,24 +37,14 @@ $(tmpLambdaMapOut);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpMCP = function ($$0) {
+const tmpMCP = function () {
   const tmpPrevalAliasThis = this;
   $(tmpPrevalAliasThis === 42);
 };
-const tmpMCOO = [1, 2, 3];
-const tmpLambdaMapNow = $dotCall(tmpMCP, 42, undefined, 1, 0, tmpMCOO);
-const tmpLambdaMapHas$1 = 1 in tmpMCOO;
-const tmpLambdaMapOut = [tmpLambdaMapNow];
-if (tmpLambdaMapHas$1) {
-  const tmpLambdaMapNow$1 = $dotCall(tmpMCP, 42, undefined, tmpMCOO[1], 1, tmpMCOO);
-  tmpLambdaMapOut[1] = tmpLambdaMapNow$1;
-}
-if (2 in tmpMCOO) {
-  const tmpLambdaMapNow$2 = $dotCall(tmpMCP, 42, undefined, tmpMCOO[2], 2, tmpMCOO);
-  tmpLambdaMapOut[2] = tmpLambdaMapNow$2;
-}
-tmpLambdaMapOut.length = 3;
-$(tmpLambdaMapOut);
+const tmpLambdaMapNow = $dotCall(tmpMCP, 42, undefined);
+const tmpLambdaMapNow$1 = $dotCall(tmpMCP, 42, undefined);
+const tmpLambdaMapNow$2 = $dotCall(tmpMCP, 42, undefined);
+$([tmpLambdaMapNow, tmpLambdaMapNow$1, tmpLambdaMapNow$2]);
 `````
 
 
@@ -76,29 +52,17 @@ $(tmpLambdaMapOut);
 With rename=true
 
 `````js filename=intro
-const a = function($$0 ) {
+const a = function() {
   const b = this;
   debugger;
   const c = b === 42;
   $( c );
   return undefined;
 };
-const d = [ 1, 2, 3 ];
-const e = $dotCall( a, 42, undefined, 1, 0, d );
-const f = 1 in d;
-const g = [ e ];
-if (f) {
-  const h = d[ 1 ];
-  const i = $dotCall( a, 42, undefined, h, 1, d );
-  g[1] = i;
-}
-const j = 2 in d;
-if (j) {
-  const k = d[ 2 ];
-  const l = $dotCall( a, 42, undefined, k, 2, d );
-  g[2] = l;
-}
-g.length = 3;
+const d = $dotCall( a, 42, undefined );
+const e = $dotCall( a, 42, undefined );
+const f = $dotCall( a, 42, undefined );
+const g = [ d, e, f ];
 $( g );
 `````
 
@@ -126,6 +90,7 @@ $(x);
 
 
 - (todo) Support this binary expression operator:
+- (todo) support array reads statement type EmptyStatement
 - (todo) support array reads statement type ExpressionStatement
 - (todo) support array reads statement type VarStatement
 - (todo) support array reads statement type WhileStatement

@@ -31,15 +31,15 @@ $(x);
 
 `````js filename=intro
 let x /*:unknown*/ = 0;
-const g /*:(array)=>undefined*/ = function (...$$0 /*:array*/) {
-  const b /*:array*/ /*truthy*/ = $$0;
+const g /*:(unused, array)=>undefined*/ = function ($$0, ...$$1 /*:array*/) {
+  const b /*:array*/ /*truthy*/ = $$1;
   debugger;
   x = b;
   return undefined;
 };
 const tmpCalleeParam /*:array*/ /*truthy*/ = [1, 2];
 $(tmpCalleeParam);
-g(20, 30, 40, 50, 60);
+g(10, 20, 30, 40, 50, 60);
 $(x);
 `````
 
@@ -49,11 +49,11 @@ $(x);
 
 `````js filename=intro
 let x = 0;
-const g = function (...$$0 /*:array*/) {
-  x = $$0;
+const g = function ($$0, ...$$1 /*:array*/) {
+  x = $$1;
 };
 $([1, 2]);
-g(20, 30, 40, 50, 60);
+g(10, 20, 30, 40, 50, 60);
 $(x);
 `````
 
@@ -63,15 +63,15 @@ With rename=true
 
 `````js filename=intro
 let a = 0;
-const b = function($$0 ) {
-  const c = $$0;
+const b = function($$0,$$1 ) {
+  const c = $$1;
   debugger;
   a = c;
   return undefined;
 };
 const d = [ 1, 2 ];
 $( d );
-b( 20, 30, 40, 50, 60 );
+b( 10, 20, 30, 40, 50, 60 );
 $( a );
 `````
 

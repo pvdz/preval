@@ -19,27 +19,16 @@
 
 
 `````js filename=intro
-const tmpMCP /*:(unused)=>undefined*/ = function ($$0 /*uses this*/) {
+const tmpMCP /*:()=>undefined*/ = function (/*uses this*/) {
   const tmpPrevalAliasThis /*:unknown*/ = this;
   debugger;
   const tmpCalleeParam /*:boolean*/ = tmpPrevalAliasThis === 42;
   $(tmpCalleeParam);
   return undefined;
 };
-const tmpMCOO /*:array*/ /*truthy*/ = [1, 2, 3];
-$dotCall(tmpMCP, 42, undefined, 1, 0, tmpMCOO);
-const tmpLambdaForeachCounterHas$1 /*:boolean*/ = 1 in tmpMCOO;
-if (tmpLambdaForeachCounterHas$1) {
-  const tmpLambdaForeachCounterVal$1 /*:primitive*/ = tmpMCOO[1];
-  $dotCall(tmpMCP, 42, undefined, tmpLambdaForeachCounterVal$1, 1, tmpMCOO);
-} else {
-}
-const tmpLambdaForeachCounterHas$2 /*:boolean*/ = 2 in tmpMCOO;
-if (tmpLambdaForeachCounterHas$2) {
-  const tmpLambdaForeachCounterVal$2 /*:primitive*/ = tmpMCOO[2];
-  $dotCall(tmpMCP, 42, undefined, tmpLambdaForeachCounterVal$2, 2, tmpMCOO);
-} else {
-}
+$dotCall(tmpMCP, 42, undefined);
+$dotCall(tmpMCP, 42, undefined);
+$dotCall(tmpMCP, 42, undefined);
 `````
 
 
@@ -47,18 +36,13 @@ if (tmpLambdaForeachCounterHas$2) {
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpMCP = function ($$0) {
+const tmpMCP = function () {
   const tmpPrevalAliasThis = this;
   $(tmpPrevalAliasThis === 42);
 };
-const tmpMCOO = [1, 2, 3];
-$dotCall(tmpMCP, 42, undefined, 1, 0, tmpMCOO);
-if (1 in tmpMCOO) {
-  $dotCall(tmpMCP, 42, undefined, tmpMCOO[1], 1, tmpMCOO);
-}
-if (2 in tmpMCOO) {
-  $dotCall(tmpMCP, 42, undefined, tmpMCOO[2], 2, tmpMCOO);
-}
+$dotCall(tmpMCP, 42, undefined);
+$dotCall(tmpMCP, 42, undefined);
+$dotCall(tmpMCP, 42, undefined);
 `````
 
 
@@ -66,25 +50,16 @@ if (2 in tmpMCOO) {
 With rename=true
 
 `````js filename=intro
-const a = function($$0 ) {
+const a = function() {
   const b = this;
   debugger;
   const c = b === 42;
   $( c );
   return undefined;
 };
-const d = [ 1, 2, 3 ];
-$dotCall( a, 42, undefined, 1, 0, d );
-const e = 1 in d;
-if (e) {
-  const f = d[ 1 ];
-  $dotCall( a, 42, undefined, f, 1, d );
-}
-const g = 2 in d;
-if (g) {
-  const h = d[ 2 ];
-  $dotCall( a, 42, undefined, h, 2, d );
-}
+$dotCall( a, 42, undefined );
+$dotCall( a, 42, undefined );
+$dotCall( a, 42, undefined );
 `````
 
 
@@ -109,7 +84,6 @@ $dotCall(tmpMCF, tmpMCOO, `forEach`, tmpMCP, 42);
 ## Todos triggered
 
 
-- (todo) - at least one of the frfr args was not isFree, bailing
 - (todo) Support this binary expression operator:
 - (todo) support array reads statement type ExpressionStatement
 - (todo) support array reads statement type VarStatement

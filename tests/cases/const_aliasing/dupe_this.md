@@ -23,7 +23,7 @@ $(f);
 
 
 `````js filename=intro
-const f /*:(unused)=>undefined*/ = function ($$0 /*uses this*/) {
+const f /*:()=>undefined*/ = function (/*uses this*/) {
   const tmpPrevalAliasThis$1 /*:unknown*/ = this;
   debugger;
   tmpPrevalAliasThis$1.e$;
@@ -38,7 +38,7 @@ $(f);
 (This ought to be the final result)
 
 `````js filename=intro
-$(function ($$0) {
+$(function () {
   const tmpPrevalAliasThis$1 = this;
   tmpPrevalAliasThis$1.e$;
   tmpPrevalAliasThis$1.e$;
@@ -50,7 +50,7 @@ $(function ($$0) {
 With rename=true
 
 `````js filename=intro
-const a = function($$0 ) {
+const a = function() {
   const b = this;
   debugger;
   b.e$;

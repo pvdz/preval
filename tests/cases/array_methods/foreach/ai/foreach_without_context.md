@@ -22,29 +22,17 @@ $(result);
 
 `````js filename=intro
 const result /*:array*/ /*truthy*/ = [];
-const tmpMCP /*:(unused)=>undefined*/ = function ($$0 /*uses this*/) {
+const tmpMCP /*:()=>undefined*/ = function (/*uses this*/) {
   const tmpPrevalAliasThis /*:unknown*/ = this;
   debugger;
   const tmpMCP$1 /*:boolean*/ = tmpPrevalAliasThis === undefined;
   $dotCall($array_push, result, `push`, tmpMCP$1);
   return undefined;
 };
-const tmpMCOO /*:array*/ /*truthy*/ = [1, 2, 3];
-$dotCall(tmpMCP, undefined, undefined, 1, 0, tmpMCOO);
-const tmpLambdaForeachCounterHas$1 /*:boolean*/ = 1 in tmpMCOO;
-if (tmpLambdaForeachCounterHas$1) {
-  const tmpLambdaForeachCounterVal$1 /*:primitive*/ = tmpMCOO[1];
-  $dotCall(tmpMCP, undefined, undefined, tmpLambdaForeachCounterVal$1, 1, tmpMCOO);
-} else {
-}
-const tmpLambdaForeachCounterHas$2 /*:boolean*/ = 2 in tmpMCOO;
-if (tmpLambdaForeachCounterHas$2) {
-  const tmpLambdaForeachCounterVal$2 /*:primitive*/ = tmpMCOO[2];
-  $dotCall(tmpMCP, undefined, undefined, tmpLambdaForeachCounterVal$2, 2, tmpMCOO);
-  $(result);
-} else {
-  $(result);
-}
+$dotCall(tmpMCP, undefined, undefined);
+$dotCall(tmpMCP, undefined, undefined);
+$dotCall(tmpMCP, undefined, undefined);
+$(result);
 `````
 
 
@@ -53,21 +41,14 @@ if (tmpLambdaForeachCounterHas$2) {
 
 `````js filename=intro
 const result = [];
-const tmpMCP = function ($$0) {
+const tmpMCP = function () {
   const tmpPrevalAliasThis = this;
   $dotCall($array_push, result, `push`, tmpPrevalAliasThis === undefined);
 };
-const tmpMCOO = [1, 2, 3];
-$dotCall(tmpMCP, undefined, undefined, 1, 0, tmpMCOO);
-if (1 in tmpMCOO) {
-  $dotCall(tmpMCP, undefined, undefined, tmpMCOO[1], 1, tmpMCOO);
-}
-if (2 in tmpMCOO) {
-  $dotCall(tmpMCP, undefined, undefined, tmpMCOO[2], 2, tmpMCOO);
-  $(result);
-} else {
-  $(result);
-}
+$dotCall(tmpMCP, undefined, undefined);
+$dotCall(tmpMCP, undefined, undefined);
+$dotCall(tmpMCP, undefined, undefined);
+$(result);
 `````
 
 
@@ -76,29 +57,17 @@ With rename=true
 
 `````js filename=intro
 const a = [];
-const b = function($$0 ) {
+const b = function() {
   const c = this;
   debugger;
   const d = c === undefined;
   $dotCall( $array_push, a, "push", d );
   return undefined;
 };
-const e = [ 1, 2, 3 ];
-$dotCall( b, undefined, undefined, 1, 0, e );
-const f = 1 in e;
-if (f) {
-  const g = e[ 1 ];
-  $dotCall( b, undefined, undefined, g, 1, e );
-}
-const h = 2 in e;
-if (h) {
-  const i = e[ 2 ];
-  $dotCall( b, undefined, undefined, i, 2, e );
-  $( a );
-}
-else {
-  $( a );
-}
+$dotCall( b, undefined, undefined );
+$dotCall( b, undefined, undefined );
+$dotCall( b, undefined, undefined );
+$( a );
 `````
 
 
@@ -126,7 +95,6 @@ $(result);
 ## Todos triggered
 
 
-- (todo) - at least one of the frfr args was not isFree, bailing
 - (todo) Support this binary expression operator:
 - (todo) access object property that also exists on prototype? $array_push
 - (todo) support array reads statement type EmptyStatement

@@ -100,8 +100,10 @@ function _frfr_tricks(fdata) {
             for (let j=paramIndex; j<freeFuncNode.params.length; ++j) {
               freeFuncNode.params[j].name = '$$' + j;
               freeFuncNode.params[j].index = j;
-              freeFuncNode.params[j].$p.paramVarDeclRef.node.name = '$$' + j;
-              freeFuncNode.params[j].$p.paramVarDeclRef.node.index = j;
+              if (freeFuncNode.params[j].$p.paramVarDeclRef) {
+                freeFuncNode.params[j].$p.paramVarDeclRef.node.name = '$$' + j;
+                freeFuncNode.params[j].$p.paramVarDeclRef.node.index = j;
+              }
             }
 
             after(freeFuncMeta.writes[0].blockBody[freeFuncMeta.writes[0].blockIndex]);

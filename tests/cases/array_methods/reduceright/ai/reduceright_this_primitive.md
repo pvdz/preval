@@ -18,45 +18,17 @@ $(x);
 
 
 `````js filename=intro
-const tmpMCP /*:(unused)=>undefined*/ = function ($$0 /*uses this*/) {
+const tmpMCP /*:()=>undefined*/ = function (/*uses this*/) {
   const tmpPrevalAliasThis /*:unknown*/ = this;
   debugger;
   const tmpCalleeParam /*:boolean*/ = tmpPrevalAliasThis === 42;
   $(tmpCalleeParam);
   return undefined;
 };
-const tmpMCOO /*:array*/ /*truthy*/ = [1, 2, 3];
-let tmpSSA_tmpLambdaReduceRightOut /*:unknown*/ = $dotCall(tmpMCP, undefined, undefined, 42, 3, 2, tmpMCOO);
-const tmpLambdaReduceRightHas$1 /*:boolean*/ = 1 in tmpMCOO;
-if (tmpLambdaReduceRightHas$1) {
-  const tmpLambdaReduceRightVal$1 /*:primitive*/ = tmpMCOO[1];
-  tmpSSA_tmpLambdaReduceRightOut = $dotCall(
-    tmpMCP,
-    undefined,
-    undefined,
-    tmpSSA_tmpLambdaReduceRightOut,
-    tmpLambdaReduceRightVal$1,
-    1,
-    tmpMCOO,
-  );
-} else {
-}
-const tmpLambdaReduceRightHas$2 /*:boolean*/ = 0 in tmpMCOO;
-if (tmpLambdaReduceRightHas$2) {
-  const tmpLambdaReduceRightVal$2 /*:primitive*/ = tmpMCOO[0];
-  const tmpClusterSSA_tmpSSA_tmpLambdaReduceRightOut /*:unknown*/ = $dotCall(
-    tmpMCP,
-    undefined,
-    undefined,
-    tmpSSA_tmpLambdaReduceRightOut,
-    tmpLambdaReduceRightVal$2,
-    0,
-    tmpMCOO,
-  );
-  $(tmpClusterSSA_tmpSSA_tmpLambdaReduceRightOut);
-} else {
-  $(tmpSSA_tmpLambdaReduceRightOut);
-}
+$dotCall(tmpMCP, undefined, undefined);
+$dotCall(tmpMCP, undefined, undefined);
+const tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut$1 /*:unknown*/ = $dotCall(tmpMCP, undefined, undefined);
+$(tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut$1);
 `````
 
 
@@ -64,20 +36,13 @@ if (tmpLambdaReduceRightHas$2) {
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpMCP = function ($$0) {
+const tmpMCP = function () {
   const tmpPrevalAliasThis = this;
   $(tmpPrevalAliasThis === 42);
 };
-const tmpMCOO = [1, 2, 3];
-let tmpSSA_tmpLambdaReduceRightOut = $dotCall(tmpMCP, undefined, undefined, 42, 3, 2, tmpMCOO);
-if (1 in tmpMCOO) {
-  tmpSSA_tmpLambdaReduceRightOut = $dotCall(tmpMCP, undefined, undefined, tmpSSA_tmpLambdaReduceRightOut, tmpMCOO[1], 1, tmpMCOO);
-}
-if (0 in tmpMCOO) {
-  $($dotCall(tmpMCP, undefined, undefined, tmpSSA_tmpLambdaReduceRightOut, tmpMCOO[0], 0, tmpMCOO));
-} else {
-  $(tmpSSA_tmpLambdaReduceRightOut);
-}
+$dotCall(tmpMCP, undefined, undefined);
+$dotCall(tmpMCP, undefined, undefined);
+$($dotCall(tmpMCP, undefined, undefined));
 `````
 
 
@@ -85,29 +50,17 @@ if (0 in tmpMCOO) {
 With rename=true
 
 `````js filename=intro
-const a = function($$0 ) {
+const a = function() {
   const b = this;
   debugger;
   const c = b === 42;
   $( c );
   return undefined;
 };
-const d = [ 1, 2, 3 ];
-let e = $dotCall( a, undefined, undefined, 42, 3, 2, d );
-const f = 1 in d;
-if (f) {
-  const g = d[ 1 ];
-  e = $dotCall( a, undefined, undefined, e, g, 1, d );
-}
-const h = 0 in d;
-if (h) {
-  const i = d[ 0 ];
-  const j = $dotCall( a, undefined, undefined, e, i, 0, d );
-  $( j );
-}
-else {
-  $( e );
-}
+$dotCall( a, undefined, undefined );
+$dotCall( a, undefined, undefined );
+const d = $dotCall( a, undefined, undefined );
+$( d );
 `````
 
 
@@ -133,9 +86,7 @@ $(x);
 ## Todos triggered
 
 
-- (todo) - at least one of the frfr args was not isFree, bailing
 - (todo) Support this binary expression operator:
-- (todo) support array reads statement type ExpressionStatement
 - (todo) support array reads statement type VarStatement
 - (todo) support array reads statement type WhileStatement
 - (todo) type trackeed tricks can possibly support static $array_reduceRight

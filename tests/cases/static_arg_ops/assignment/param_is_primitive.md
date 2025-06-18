@@ -24,7 +24,7 @@ $(3);
 
 
 `````js filename=intro
-const f /*:(unused)=>unknown*/ = function ($$0) {
+const f /*:()=>unknown*/ = function () {
   debugger;
   $(100);
   return undefined;
@@ -41,7 +41,7 @@ $(3);
 (This ought to be the final result)
 
 `````js filename=intro
-$(function ($$0) {
+$(function () {
   $(100);
 });
 $(100);
@@ -55,7 +55,7 @@ $(3);
 With rename=true
 
 `````js filename=intro
-const a = function($$0 ) {
+const a = function() {
   debugger;
   $( 100 );
   return undefined;

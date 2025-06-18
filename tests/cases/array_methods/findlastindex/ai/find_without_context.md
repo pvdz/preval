@@ -20,15 +20,14 @@ $(result, x);
 
 `````js filename=intro
 const result /*:array*/ /*truthy*/ = [];
-const tmpMCP /*:(unused)=>undefined*/ = function ($$0 /*uses this*/) {
+const tmpMCP /*:()=>undefined*/ = function (/*uses this*/) {
   const tmpPrevalAliasThis /*:unknown*/ = this;
   debugger;
   const tmpMCP$1 /*:boolean*/ = tmpPrevalAliasThis === undefined;
   $dotCall($array_push, result, `push`, tmpMCP$1);
   return undefined;
 };
-const tmpMCOO /*:array*/ /*truthy*/ = [1, 2, 3];
-const tmpLambdaFindLastIndexNow /*:unknown*/ = $dotCall(tmpMCP, undefined, undefined, 3, 2, tmpMCOO);
+const tmpLambdaFindLastIndexNow /*:unknown*/ = $dotCall(tmpMCP, undefined, undefined);
 if (tmpLambdaFindLastIndexNow) {
   $(result, 2);
 } else {
@@ -37,15 +36,7 @@ if (tmpLambdaFindLastIndexNow) {
   while ($LOOP_UNROLL_10) {
     const tmpLambdaFindLastIndexTest$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaFindLastIndexCounter >= 0;
     if (tmpLambdaFindLastIndexTest$1) {
-      const tmpLambdaFindLastIndexVal$1 /*:primitive*/ = tmpMCOO[tmpClusterSSA_tmpLambdaFindLastIndexCounter];
-      const tmpLambdaFindLastIndexNow$1 /*:unknown*/ = $dotCall(
-        tmpMCP,
-        undefined,
-        undefined,
-        tmpLambdaFindLastIndexVal$1,
-        tmpClusterSSA_tmpLambdaFindLastIndexCounter,
-        tmpMCOO,
-      );
+      const tmpLambdaFindLastIndexNow$1 /*:unknown*/ = $dotCall(tmpMCP, undefined, undefined);
       if (tmpLambdaFindLastIndexNow$1) {
         tmpLambdaFindLastIndexOut = tmpClusterSSA_tmpLambdaFindLastIndexCounter;
         break;
@@ -66,28 +57,18 @@ if (tmpLambdaFindLastIndexNow) {
 
 `````js filename=intro
 const result = [];
-const tmpMCP = function ($$0) {
+const tmpMCP = function () {
   const tmpPrevalAliasThis = this;
   $dotCall($array_push, result, `push`, tmpPrevalAliasThis === undefined);
 };
-const tmpMCOO = [1, 2, 3];
-if ($dotCall(tmpMCP, undefined, undefined, 3, 2, tmpMCOO)) {
+if ($dotCall(tmpMCP, undefined, undefined)) {
   $(result, 2);
 } else {
   let tmpLambdaFindLastIndexOut = -1;
   let tmpClusterSSA_tmpLambdaFindLastIndexCounter = 1;
   while (true) {
     if (tmpClusterSSA_tmpLambdaFindLastIndexCounter >= 0) {
-      if (
-        $dotCall(
-          tmpMCP,
-          undefined,
-          undefined,
-          tmpMCOO[tmpClusterSSA_tmpLambdaFindLastIndexCounter],
-          tmpClusterSSA_tmpLambdaFindLastIndexCounter,
-          tmpMCOO,
-        )
-      ) {
+      if ($dotCall(tmpMCP, undefined, undefined)) {
         tmpLambdaFindLastIndexOut = tmpClusterSSA_tmpLambdaFindLastIndexCounter;
         break;
       } else {
@@ -107,39 +88,37 @@ With rename=true
 
 `````js filename=intro
 const a = [];
-const b = function($$0 ) {
+const b = function() {
   const c = this;
   debugger;
   const d = c === undefined;
   $dotCall( $array_push, a, "push", d );
   return undefined;
 };
-const e = [ 1, 2, 3 ];
-const f = $dotCall( b, undefined, undefined, 3, 2, e );
-if (f) {
+const e = $dotCall( b, undefined, undefined );
+if (e) {
   $( a, 2 );
 }
 else {
-  let g = -1;
-  let h = 1;
+  let f = -1;
+  let g = 1;
   while ($LOOP_UNROLL_10) {
-    const i = h >= 0;
-    if (i) {
-      const j = e[ h ];
-      const k = $dotCall( b, undefined, undefined, j, h, e );
-      if (k) {
-        g = h;
+    const h = g >= 0;
+    if (h) {
+      const i = $dotCall( b, undefined, undefined );
+      if (i) {
+        f = g;
         break;
       }
       else {
-        h = h - 1;
+        g = g - 1;
       }
     }
     else {
       break;
     }
   }
-  $( a, g );
+  $( a, f );
 }
 `````
 
@@ -169,10 +148,9 @@ $(result, x);
 
 
 - (todo) access object property that also exists on prototype? $array_push
-- (todo) regular property access of an ident feels tricky;
+- (todo) do we want to support ArrayExpression as expression statement in free loops?
 - (todo) support array reads statement type EmptyStatement
 - (todo) support array reads statement type VarStatement
-- (todo) support array reads statement type WhileStatement
 - (todo) type trackeed tricks can possibly support static $array_findLastIndex
 
 

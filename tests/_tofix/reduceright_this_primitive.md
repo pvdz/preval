@@ -1,15 +1,21 @@
 # Preval test case
 
-# reduce_some_this_primitive.md
+# reduceright_this_primitive.md
 
-> Array methods > Reduce > Ai > Reduce some this primitive
+> Tofix > reduceright this primitive
 >
-> Test: Array.reduce with thisArg as primitive (number)
+> Test: Array.reduceRight with thisArg as primitive (number)
+
+existing test case
+
+at the time of writing, the result would assign the third call to a var and log that
+but the function always returns undefined so it should just log undefined directly
+and ignore the return value of the third call, too.
 
 ## Input
 
 `````js filename=intro
-const x = [1,2,3].reduce(function(x) { $(this === 42); }, 42);
+const x = [1,2,3].reduceRight(function(x) { $(this === 42); }, 42);
 $(x);
 `````
 
@@ -27,8 +33,8 @@ const tmpMCP /*:()=>undefined*/ = function (/*uses this*/) {
 };
 $dotCall(tmpMCP, undefined, undefined);
 $dotCall(tmpMCP, undefined, undefined);
-const tmpSSA_tmpClusterSSA_tmpLambdaReduceOut$1 /*:unknown*/ = $dotCall(tmpMCP, undefined, undefined);
-$(tmpSSA_tmpClusterSSA_tmpLambdaReduceOut$1);
+const tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut$1 /*:unknown*/ = $dotCall(tmpMCP, undefined, undefined);
+$(tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut$1);
 `````
 
 
@@ -69,7 +75,7 @@ $( d );
 
 `````js filename=intro
 const tmpMCOO = [1, 2, 3];
-const tmpMCF = tmpMCOO.reduce;
+const tmpMCF = tmpMCOO.reduceRight;
 const tmpMCP = function ($$0) {
   const tmpPrevalAliasThis = this;
   let x$1 = $$0;
@@ -78,7 +84,7 @@ const tmpMCP = function ($$0) {
   $(tmpCalleeParam);
   return undefined;
 };
-const x = $dotCall(tmpMCF, tmpMCOO, `reduce`, tmpMCP, 42);
+const x = $dotCall(tmpMCF, tmpMCOO, `reduceRight`, tmpMCP, 42);
 $(x);
 `````
 
@@ -89,7 +95,7 @@ $(x);
 - (todo) Support this binary expression operator:
 - (todo) support array reads statement type VarStatement
 - (todo) support array reads statement type WhileStatement
-- (todo) type trackeed tricks can possibly support static $array_reduce
+- (todo) type trackeed tricks can possibly support static $array_reduceRight
 
 
 ## Globals

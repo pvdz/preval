@@ -20,93 +20,23 @@ $(result, x);
 
 `````js filename=intro
 const result /*:array*/ /*truthy*/ = [];
-const tmpMCP /*:(unused)=>undefined*/ = function ($$0 /*uses this*/) {
+const tmpMCP /*:()=>undefined*/ = function (/*uses this*/) {
   const tmpPrevalAliasThis /*:unknown*/ = this;
   debugger;
   const tmpMCP$1 /*:boolean*/ = tmpPrevalAliasThis === undefined;
   $dotCall($array_push, result, `push`, tmpMCP$1);
   return undefined;
 };
-const tmpMCOO /*:array*/ /*truthy*/ = [, , , 1, 2, 3];
-let tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut /*:unknown*/ = $dotCall(tmpMCP, undefined, undefined, 3, 2, 4, tmpMCOO);
-const tmpLambdaReduceRightHas$2 /*:boolean*/ = 3 in tmpMCOO;
+let tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut /*:unknown*/ = $dotCall(tmpMCP, undefined, undefined);
+let tmpLambdaReduceRightTTE /*:boolean*/ /*ternaryConst*/ = false;
 const tmpLambdaReduceRight1st /*:object*/ /*truthy*/ = {};
-if (tmpLambdaReduceRightHas$2) {
-  const tmpLambdaReduceRightVal$2 /*:primitive*/ = tmpMCOO[3];
-  const tmpLambdaReduceRightBad$2 /*:boolean*/ = tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut === tmpLambdaReduceRight1st;
-  if (tmpLambdaReduceRightBad$2) {
-    tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut = tmpLambdaReduceRightVal$2;
-  } else {
-    tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut = $dotCall(
-      tmpMCP,
-      undefined,
-      undefined,
-      tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut,
-      tmpLambdaReduceRightVal$2,
-      3,
-      tmpMCOO,
-    );
-  }
+const tmpLambdaReduceRightBad$2 /*:boolean*/ = tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut === tmpLambdaReduceRight1st;
+if (tmpLambdaReduceRightBad$2) {
+  tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut = 1;
 } else {
+  tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut = $dotCall(tmpMCP, undefined, undefined);
+  tmpLambdaReduceRightTTE = tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut === tmpLambdaReduceRight1st;
 }
-const tmpLambdaReduceRightHas$1 /*:boolean*/ = 2 in tmpMCOO;
-if (tmpLambdaReduceRightHas$1) {
-  const tmpLambdaReduceRightVal$1 /*:primitive*/ = tmpMCOO[2];
-  const tmpLambdaReduceRightBad$1 /*:boolean*/ = tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut === tmpLambdaReduceRight1st;
-  if (tmpLambdaReduceRightBad$1) {
-    tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut = tmpLambdaReduceRightVal$1;
-  } else {
-    tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut = $dotCall(
-      tmpMCP,
-      undefined,
-      undefined,
-      tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut,
-      tmpLambdaReduceRightVal$1,
-      2,
-      tmpMCOO,
-    );
-  }
-} else {
-}
-const tmpLambdaReduceRightHas$3 /*:boolean*/ = 1 in tmpMCOO;
-if (tmpLambdaReduceRightHas$3) {
-  const tmpLambdaReduceRightVal$3 /*:primitive*/ = tmpMCOO[1];
-  const tmpLambdaReduceRightBad$3 /*:boolean*/ = tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut === tmpLambdaReduceRight1st;
-  if (tmpLambdaReduceRightBad$3) {
-    tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut = tmpLambdaReduceRightVal$3;
-  } else {
-    tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut = $dotCall(
-      tmpMCP,
-      undefined,
-      undefined,
-      tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut,
-      tmpLambdaReduceRightVal$3,
-      1,
-      tmpMCOO,
-    );
-  }
-} else {
-}
-const tmpLambdaReduceRightHas$4 /*:boolean*/ = 0 in tmpMCOO;
-if (tmpLambdaReduceRightHas$4) {
-  const tmpLambdaReduceRightVal$4 /*:primitive*/ = tmpMCOO[0];
-  const tmpLambdaReduceRightBad$4 /*:boolean*/ = tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut === tmpLambdaReduceRight1st;
-  if (tmpLambdaReduceRightBad$4) {
-    tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut = tmpLambdaReduceRightVal$4;
-  } else {
-    tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut = $dotCall(
-      tmpMCP,
-      undefined,
-      undefined,
-      tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut,
-      tmpLambdaReduceRightVal$4,
-      0,
-      tmpMCOO,
-    );
-  }
-} else {
-}
-const tmpLambdaReduceRightTTE /*:boolean*/ = tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut === tmpLambdaReduceRight1st;
 if (tmpLambdaReduceRightTTE) {
   const tmpLambdaReduceRightErr /*:object*/ /*truthy*/ = new $typeError_constructor(
     `[Preval] Called .reduceRight without init on an array without values: \`const\\nx\\n=\\n\$dotCall(\$array_reduceRight,\\ntmpMCOO,\\n\`reduceRight\`,\\ntmpMCP);\``,
@@ -123,79 +53,20 @@ if (tmpLambdaReduceRightTTE) {
 
 `````js filename=intro
 const result = [];
-const tmpMCP = function ($$0) {
+const tmpMCP = function () {
   const tmpPrevalAliasThis = this;
   $dotCall($array_push, result, `push`, tmpPrevalAliasThis === undefined);
 };
-const tmpMCOO = [, , , 1, 2, 3];
-let tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut = $dotCall(tmpMCP, undefined, undefined, 3, 2, 4, tmpMCOO);
-const tmpLambdaReduceRightHas$2 = 3 in tmpMCOO;
+let tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut = $dotCall(tmpMCP, undefined, undefined);
+let tmpLambdaReduceRightTTE = false;
 const tmpLambdaReduceRight1st = {};
-if (tmpLambdaReduceRightHas$2) {
-  const tmpLambdaReduceRightVal$2 = tmpMCOO[3];
-  if (tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut === tmpLambdaReduceRight1st) {
-    tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut = tmpLambdaReduceRightVal$2;
-  } else {
-    tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut = $dotCall(
-      tmpMCP,
-      undefined,
-      undefined,
-      tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut,
-      tmpLambdaReduceRightVal$2,
-      3,
-      tmpMCOO,
-    );
-  }
-}
-if (2 in tmpMCOO) {
-  const tmpLambdaReduceRightVal$1 = tmpMCOO[2];
-  if (tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut === tmpLambdaReduceRight1st) {
-    tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut = tmpLambdaReduceRightVal$1;
-  } else {
-    tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut = $dotCall(
-      tmpMCP,
-      undefined,
-      undefined,
-      tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut,
-      tmpLambdaReduceRightVal$1,
-      2,
-      tmpMCOO,
-    );
-  }
-}
-if (1 in tmpMCOO) {
-  const tmpLambdaReduceRightVal$3 = tmpMCOO[1];
-  if (tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut === tmpLambdaReduceRight1st) {
-    tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut = tmpLambdaReduceRightVal$3;
-  } else {
-    tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut = $dotCall(
-      tmpMCP,
-      undefined,
-      undefined,
-      tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut,
-      tmpLambdaReduceRightVal$3,
-      1,
-      tmpMCOO,
-    );
-  }
-}
-if (0 in tmpMCOO) {
-  const tmpLambdaReduceRightVal$4 = tmpMCOO[0];
-  if (tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut === tmpLambdaReduceRight1st) {
-    tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut = tmpLambdaReduceRightVal$4;
-  } else {
-    tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut = $dotCall(
-      tmpMCP,
-      undefined,
-      undefined,
-      tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut,
-      tmpLambdaReduceRightVal$4,
-      0,
-      tmpMCOO,
-    );
-  }
-}
 if (tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut === tmpLambdaReduceRight1st) {
+  tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut = 1;
+} else {
+  tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut = $dotCall(tmpMCP, undefined, undefined);
+  tmpLambdaReduceRightTTE = tmpSSA_tmpClusterSSA_tmpLambdaReduceRightOut === tmpLambdaReduceRight1st;
+}
+if (tmpLambdaReduceRightTTE) {
   const tmpLambdaReduceRightErr = new $typeError_constructor(
     `[Preval] Called .reduceRight without init on an array without values: \`const\\nx\\n=\\n\$dotCall(\$array_reduceRight,\\ntmpMCOO,\\n\`reduceRight\`,\\ntmpMCP);\``,
   );
@@ -211,67 +82,30 @@ With rename=true
 
 `````js filename=intro
 const a = [];
-const b = function($$0 ) {
+const b = function() {
   const c = this;
   debugger;
   const d = c === undefined;
   $dotCall( $array_push, a, "push", d );
   return undefined;
 };
-const e = [ ,, ,, ,, 1, 2, 3 ];
-let f = $dotCall( b, undefined, undefined, 3, 2, 4, e );
-const g = 3 in e;
-const h = {};
-if (g) {
-  const i = e[ 3 ];
-  const j = f === h;
-  if (j) {
-    f = i;
-  }
-  else {
-    f = $dotCall( b, undefined, undefined, f, i, 3, e );
-  }
-}
-const k = 2 in e;
-if (k) {
-  const l = e[ 2 ];
-  const m = f === h;
-  if (m) {
-    f = l;
-  }
-  else {
-    f = $dotCall( b, undefined, undefined, f, l, 2, e );
-  }
-}
-const n = 1 in e;
-if (n) {
-  const o = e[ 1 ];
-  const p = f === h;
-  if (p) {
-    f = o;
-  }
-  else {
-    f = $dotCall( b, undefined, undefined, f, o, 1, e );
-  }
-}
-const q = 0 in e;
-if (q) {
-  const r = e[ 0 ];
-  const s = f === h;
-  if (s) {
-    f = r;
-  }
-  else {
-    f = $dotCall( b, undefined, undefined, f, r, 0, e );
-  }
-}
-const t = f === h;
-if (t) {
-  const u = new $typeError_constructor( "[Preval] Called .reduceRight without init on an array without values: `const\\nx\\n=\\n$dotCall($array_reduceRight,\\ntmpMCOO,\\n`reduceRight`,\\ntmpMCP);`" );
-  throw u;
+let e = $dotCall( b, undefined, undefined );
+let f = false;
+const g = {};
+const h = e === g;
+if (h) {
+  e = 1;
 }
 else {
-  $( a, f );
+  e = $dotCall( b, undefined, undefined );
+  f = e === g;
+}
+if (f) {
+  const i = new $typeError_constructor( "[Preval] Called .reduceRight without init on an array without values: `const\\nx\\n=\\n$dotCall($array_reduceRight,\\ntmpMCOO,\\n`reduceRight`,\\ntmpMCP);`" );
+  throw i;
+}
+else {
+  $( a, e );
 }
 `````
 
@@ -304,7 +138,6 @@ $(result, x);
 - (todo) access object property that also exists on prototype? $array_push
 - (todo) objects in isFree check
 - (todo) support array reads statement type EmptyStatement
-- (todo) support array reads statement type ExpressionStatement
 - (todo) support array reads statement type VarStatement
 - (todo) support array reads statement type WhileStatement
 - (todo) type trackeed tricks can possibly support static $array_reduceRight

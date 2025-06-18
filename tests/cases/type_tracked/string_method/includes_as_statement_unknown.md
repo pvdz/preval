@@ -22,11 +22,9 @@ $(str.length);
 
 `````js filename=intro
 const str /*:string*/ = $coerce(x, `string`);
-const tmpArgOverflow /*:unknown*/ = a;
-const tmpArgOverflow$1 /*:unknown*/ = b;
+$coerce(a, `string`);
+$coerce(b, `number`);
 c;
-$coerce(tmpArgOverflow, `string`);
-$coerce(tmpArgOverflow$1, `number`);
 const tmpCalleeParam /*:number*/ = str.length;
 $(tmpCalleeParam);
 `````
@@ -37,11 +35,9 @@ $(tmpCalleeParam);
 
 `````js filename=intro
 const str = $coerce(x, `string`);
-const tmpArgOverflow = a;
-const tmpArgOverflow$1 = b;
+$coerce(a, `string`);
+$coerce(b, `number`);
 c;
-$coerce(tmpArgOverflow, `string`);
-$coerce(tmpArgOverflow$1, `number`);
 $(str.length);
 `````
 
@@ -51,13 +47,11 @@ With rename=true
 
 `````js filename=intro
 const d = $coerce( x, "string" );
-const e = a;
-const f = b;
+$coerce( a, "string" );
+$coerce( b, "number" );
 c;
-$coerce( e, "string" );
-$coerce( f, "number" );
-const g = d.length;
-$( g );
+const e = d.length;
+$( e );
 `````
 
 

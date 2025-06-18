@@ -20,32 +20,25 @@ $(result, x);
 
 `````js filename=intro
 const result /*:array*/ /*truthy*/ = [];
-const tmpMCP /*:(unused)=>undefined*/ = function ($$0 /*uses this*/) {
+const tmpMCP /*:()=>undefined*/ = function (/*uses this*/) {
   const tmpPrevalAliasThis /*:unknown*/ = this;
   debugger;
   const tmpMCP$1 /*:boolean*/ = tmpPrevalAliasThis === undefined;
   $dotCall($array_push, result, `push`, tmpMCP$1);
   return undefined;
 };
-const tmpMCOO /*:array*/ /*truthy*/ = [1, 2, 3];
-const tmpLambdaFindLastNow /*:unknown*/ = $dotCall(tmpMCP, undefined, undefined, 3, 2, tmpMCOO);
+const tmpLambdaFindLastNow /*:unknown*/ = $dotCall(tmpMCP, undefined, undefined);
 if (tmpLambdaFindLastNow) {
   $(result, 3);
 } else {
   let tmpLambdaFindLastOut /*:unknown*/ = undefined;
   let tmpClusterSSA_tmpLambdaFindLastCounter /*:number*/ = 1;
+  const tmpMCOO /*:array*/ /*truthy*/ = [1, 2, 3];
   while ($LOOP_UNROLL_10) {
     const tmpLambdaFindLastTest$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaFindLastCounter >= 0;
     if (tmpLambdaFindLastTest$1) {
       const tmpLambdaFindLastVal$1 /*:primitive*/ = tmpMCOO[tmpClusterSSA_tmpLambdaFindLastCounter];
-      const tmpLambdaFindLastNow$1 /*:unknown*/ = $dotCall(
-        tmpMCP,
-        undefined,
-        undefined,
-        tmpLambdaFindLastVal$1,
-        tmpClusterSSA_tmpLambdaFindLastCounter,
-        tmpMCOO,
-      );
+      const tmpLambdaFindLastNow$1 /*:unknown*/ = $dotCall(tmpMCP, undefined, undefined);
       if (tmpLambdaFindLastNow$1) {
         tmpLambdaFindLastOut = tmpLambdaFindLastVal$1;
         break;
@@ -66,20 +59,20 @@ if (tmpLambdaFindLastNow) {
 
 `````js filename=intro
 const result = [];
-const tmpMCP = function ($$0) {
+const tmpMCP = function () {
   const tmpPrevalAliasThis = this;
   $dotCall($array_push, result, `push`, tmpPrevalAliasThis === undefined);
 };
-const tmpMCOO = [1, 2, 3];
-if ($dotCall(tmpMCP, undefined, undefined, 3, 2, tmpMCOO)) {
+if ($dotCall(tmpMCP, undefined, undefined)) {
   $(result, 3);
 } else {
   let tmpLambdaFindLastOut = undefined;
   let tmpClusterSSA_tmpLambdaFindLastCounter = 1;
+  const tmpMCOO = [1, 2, 3];
   while (true) {
     if (tmpClusterSSA_tmpLambdaFindLastCounter >= 0) {
       const tmpLambdaFindLastVal$1 = tmpMCOO[tmpClusterSSA_tmpLambdaFindLastCounter];
-      if ($dotCall(tmpMCP, undefined, undefined, tmpLambdaFindLastVal$1, tmpClusterSSA_tmpLambdaFindLastCounter, tmpMCOO)) {
+      if ($dotCall(tmpMCP, undefined, undefined)) {
         tmpLambdaFindLastOut = tmpLambdaFindLastVal$1;
         break;
       } else {
@@ -99,39 +92,39 @@ With rename=true
 
 `````js filename=intro
 const a = [];
-const b = function($$0 ) {
+const b = function() {
   const c = this;
   debugger;
   const d = c === undefined;
   $dotCall( $array_push, a, "push", d );
   return undefined;
 };
-const e = [ 1, 2, 3 ];
-const f = $dotCall( b, undefined, undefined, 3, 2, e );
-if (f) {
+const e = $dotCall( b, undefined, undefined );
+if (e) {
   $( a, 3 );
 }
 else {
-  let g = undefined;
-  let h = 1;
+  let f = undefined;
+  let g = 1;
+  const h = [ 1, 2, 3 ];
   while ($LOOP_UNROLL_10) {
-    const i = h >= 0;
+    const i = g >= 0;
     if (i) {
-      const j = e[ h ];
-      const k = $dotCall( b, undefined, undefined, j, h, e );
+      const j = h[ g ];
+      const k = $dotCall( b, undefined, undefined );
       if (k) {
-        g = j;
+        f = j;
         break;
       }
       else {
-        h = h - 1;
+        g = g - 1;
       }
     }
     else {
       break;
     }
   }
-  $( a, g );
+  $( a, f );
 }
 `````
 
@@ -164,7 +157,6 @@ $(result, x);
 - (todo) regular property access of an ident feels tricky;
 - (todo) support array reads statement type EmptyStatement
 - (todo) support array reads statement type VarStatement
-- (todo) support array reads statement type WhileStatement
 - (todo) type trackeed tricks can possibly support static $array_findLast
 
 

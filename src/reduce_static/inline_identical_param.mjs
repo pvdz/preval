@@ -238,9 +238,11 @@ function tryInliningPrimitives(meta, funcNode, params) {
     if (paramNode.index !== pi) {
       // Dont need to set index but :shrug:
       paramNode.index = pi;
-      paramNode.$p.paramVarDeclRef.node.index = pi;
       paramNode.name = '$$' + pi;
-      paramNode.$p.paramVarDeclRef.node.name = '$$' + pi;
+      if (paramNode.$p.paramVarDeclRef) {
+        paramNode.$p.paramVarDeclRef.node.index = pi;
+        paramNode.$p.paramVarDeclRef.node.name = '$$' + pi;
+      }
     }
   });
 

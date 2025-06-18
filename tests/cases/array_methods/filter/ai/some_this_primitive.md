@@ -18,40 +18,28 @@ $(x);
 
 
 `````js filename=intro
-const tmpMCP /*:(unused)=>undefined*/ = function ($$0 /*uses this*/) {
+const tmpMCP /*:()=>undefined*/ = function (/*uses this*/) {
   const tmpPrevalAliasThis /*:unknown*/ = this;
   debugger;
   const tmpCalleeParam /*:boolean*/ = tmpPrevalAliasThis === 42;
   $(tmpCalleeParam);
   return undefined;
 };
-const tmpMCOO /*:array*/ /*truthy*/ = [1, 2, 3];
-const tmpLambdaFilterWas /*:unknown*/ = $dotCall(tmpMCP, 42, undefined, 1, 0, tmpMCOO);
+const tmpLambdaFilterWas /*:unknown*/ = $dotCall(tmpMCP, 42, undefined);
 const tmpLambdaFilterOut /*:array*/ /*truthy*/ = [];
 if (tmpLambdaFilterWas) {
   $dotCall($array_push, tmpLambdaFilterOut, `push`, 1);
 } else {
 }
-const tmpLambdaFilterHas$1 /*:boolean*/ = 1 in tmpMCOO;
-if (tmpLambdaFilterHas$1) {
-  const tmpLambdaFilterVal$1 /*:primitive*/ = tmpMCOO[1];
-  const tmpLambdaFilterWas$1 /*:unknown*/ = $dotCall(tmpMCP, 42, undefined, tmpLambdaFilterVal$1, 1, tmpMCOO);
-  if (tmpLambdaFilterWas$1) {
-    $dotCall($array_push, tmpLambdaFilterOut, `push`, tmpLambdaFilterVal$1);
-  } else {
-  }
+const tmpLambdaFilterWas$1 /*:unknown*/ = $dotCall(tmpMCP, 42, undefined);
+if (tmpLambdaFilterWas$1) {
+  $dotCall($array_push, tmpLambdaFilterOut, `push`, 2);
 } else {
 }
-const tmpLambdaFilterHas$2 /*:boolean*/ = 2 in tmpMCOO;
-if (tmpLambdaFilterHas$2) {
-  const tmpLambdaFilterVal$2 /*:primitive*/ = tmpMCOO[2];
-  const tmpLambdaFilterWas$2 /*:unknown*/ = $dotCall(tmpMCP, 42, undefined, tmpLambdaFilterVal$2, 2, tmpMCOO);
-  if (tmpLambdaFilterWas$2) {
-    $dotCall($array_push, tmpLambdaFilterOut, `push`, tmpLambdaFilterVal$2);
-    $(tmpLambdaFilterOut);
-  } else {
-    $(tmpLambdaFilterOut);
-  }
+const tmpLambdaFilterWas$2 /*:unknown*/ = $dotCall(tmpMCP, 42, undefined);
+if (tmpLambdaFilterWas$2) {
+  $dotCall($array_push, tmpLambdaFilterOut, `push`, 3);
+  $(tmpLambdaFilterOut);
 } else {
   $(tmpLambdaFilterOut);
 }
@@ -62,30 +50,21 @@ if (tmpLambdaFilterHas$2) {
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpMCP = function ($$0) {
+const tmpMCP = function () {
   const tmpPrevalAliasThis = this;
   $(tmpPrevalAliasThis === 42);
 };
-const tmpMCOO = [1, 2, 3];
-const tmpLambdaFilterWas = $dotCall(tmpMCP, 42, undefined, 1, 0, tmpMCOO);
+const tmpLambdaFilterWas = $dotCall(tmpMCP, 42, undefined);
 const tmpLambdaFilterOut = [];
 if (tmpLambdaFilterWas) {
   $dotCall($array_push, tmpLambdaFilterOut, `push`, 1);
 }
-if (1 in tmpMCOO) {
-  const tmpLambdaFilterVal$1 = tmpMCOO[1];
-  if ($dotCall(tmpMCP, 42, undefined, tmpLambdaFilterVal$1, 1, tmpMCOO)) {
-    $dotCall($array_push, tmpLambdaFilterOut, `push`, tmpLambdaFilterVal$1);
-  }
+if ($dotCall(tmpMCP, 42, undefined)) {
+  $dotCall($array_push, tmpLambdaFilterOut, `push`, 2);
 }
-if (2 in tmpMCOO) {
-  const tmpLambdaFilterVal$2 = tmpMCOO[2];
-  if ($dotCall(tmpMCP, 42, undefined, tmpLambdaFilterVal$2, 2, tmpMCOO)) {
-    $dotCall($array_push, tmpLambdaFilterOut, `push`, tmpLambdaFilterVal$2);
-    $(tmpLambdaFilterOut);
-  } else {
-    $(tmpLambdaFilterOut);
-  }
+if ($dotCall(tmpMCP, 42, undefined)) {
+  $dotCall($array_push, tmpLambdaFilterOut, `push`, 3);
+  $(tmpLambdaFilterOut);
 } else {
   $(tmpLambdaFilterOut);
 }
@@ -96,41 +75,29 @@ if (2 in tmpMCOO) {
 With rename=true
 
 `````js filename=intro
-const a = function($$0 ) {
+const a = function() {
   const b = this;
   debugger;
   const c = b === 42;
   $( c );
   return undefined;
 };
-const d = [ 1, 2, 3 ];
-const e = $dotCall( a, 42, undefined, 1, 0, d );
-const f = [];
-if (e) {
-  $dotCall( $array_push, f, "push", 1 );
+const d = $dotCall( a, 42, undefined );
+const e = [];
+if (d) {
+  $dotCall( $array_push, e, "push", 1 );
 }
-const g = 1 in d;
+const f = $dotCall( a, 42, undefined );
+if (f) {
+  $dotCall( $array_push, e, "push", 2 );
+}
+const g = $dotCall( a, 42, undefined );
 if (g) {
-  const h = d[ 1 ];
-  const i = $dotCall( a, 42, undefined, h, 1, d );
-  if (i) {
-    $dotCall( $array_push, f, "push", h );
-  }
-}
-const j = 2 in d;
-if (j) {
-  const k = d[ 2 ];
-  const l = $dotCall( a, 42, undefined, k, 2, d );
-  if (l) {
-    $dotCall( $array_push, f, "push", k );
-    $( f );
-  }
-  else {
-    $( f );
-  }
+  $dotCall( $array_push, e, "push", 3 );
+  $( e );
 }
 else {
-  $( f );
+  $( e );
 }
 `````
 

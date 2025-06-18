@@ -20,32 +20,24 @@ $(result, x);
 
 `````js filename=intro
 const result /*:array*/ /*truthy*/ = [];
-const tmpMCP /*:(unused)=>undefined*/ = function ($$0 /*uses this*/) {
+const tmpMCP /*:()=>undefined*/ = function (/*uses this*/) {
   const tmpPrevalAliasThis /*:unknown*/ = this;
   debugger;
   const tmpMCP$1 /*:boolean*/ = tmpPrevalAliasThis === undefined;
   $dotCall($array_push, result, `push`, tmpMCP$1);
   return undefined;
 };
-const tmpMCOO /*:array*/ /*truthy*/ = [1, 2, 3];
-const tmpLambdaEveryWas /*:unknown*/ = $dotCall(tmpMCP, undefined, undefined, 1, 0, tmpMCOO);
+const tmpLambdaEveryWas /*:unknown*/ = $dotCall(tmpMCP, undefined, undefined);
 if (tmpLambdaEveryWas) {
   let tmpLambdaEveryOut /*:boolean*/ = true;
   let tmpClusterSSA_tmpLambdaEveryCounter /*:number*/ = 1;
+  const tmpMCOO /*:array*/ /*truthy*/ = [1, 2, 3];
   while ($LOOP_UNROLL_10) {
     const tmpLambdaEveryTest$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaEveryCounter < 3;
     if (tmpLambdaEveryTest$1) {
       const tmpLambdaEveryHas$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaEveryCounter in tmpMCOO;
       if (tmpLambdaEveryHas$1) {
-        const tmpLambdaEveryVal$1 /*:primitive*/ = tmpMCOO[tmpClusterSSA_tmpLambdaEveryCounter];
-        const tmpLambdaEveryWas$1 /*:unknown*/ = $dotCall(
-          tmpMCP,
-          undefined,
-          undefined,
-          tmpLambdaEveryVal$1,
-          tmpClusterSSA_tmpLambdaEveryCounter,
-          tmpMCOO,
-        );
+        const tmpLambdaEveryWas$1 /*:unknown*/ = $dotCall(tmpMCP, undefined, undefined);
         if (tmpLambdaEveryWas$1) {
         } else {
           tmpLambdaEveryOut = false;
@@ -70,27 +62,18 @@ if (tmpLambdaEveryWas) {
 
 `````js filename=intro
 const result = [];
-const tmpMCP = function ($$0) {
+const tmpMCP = function () {
   const tmpPrevalAliasThis = this;
   $dotCall($array_push, result, `push`, tmpPrevalAliasThis === undefined);
 };
-const tmpMCOO = [1, 2, 3];
-if ($dotCall(tmpMCP, undefined, undefined, 1, 0, tmpMCOO)) {
+if ($dotCall(tmpMCP, undefined, undefined)) {
   let tmpLambdaEveryOut = true;
   let tmpClusterSSA_tmpLambdaEveryCounter = 1;
+  const tmpMCOO = [1, 2, 3];
   while (true) {
     if (tmpClusterSSA_tmpLambdaEveryCounter < 3) {
       if (tmpClusterSSA_tmpLambdaEveryCounter in tmpMCOO) {
-        if (
-          !$dotCall(
-            tmpMCP,
-            undefined,
-            undefined,
-            tmpMCOO[tmpClusterSSA_tmpLambdaEveryCounter],
-            tmpClusterSSA_tmpLambdaEveryCounter,
-            tmpMCOO,
-          )
-        ) {
+        if (!$dotCall(tmpMCP, undefined, undefined)) {
           tmpLambdaEveryOut = false;
           break;
         }
@@ -112,40 +95,39 @@ With rename=true
 
 `````js filename=intro
 const a = [];
-const b = function($$0 ) {
+const b = function() {
   const c = this;
   debugger;
   const d = c === undefined;
   $dotCall( $array_push, a, "push", d );
   return undefined;
 };
-const e = [ 1, 2, 3 ];
-const f = $dotCall( b, undefined, undefined, 1, 0, e );
-if (f) {
-  let g = true;
-  let h = 1;
+const e = $dotCall( b, undefined, undefined );
+if (e) {
+  let f = true;
+  let g = 1;
+  const h = [ 1, 2, 3 ];
   while ($LOOP_UNROLL_10) {
-    const i = h < 3;
+    const i = g < 3;
     if (i) {
-      const j = h in e;
+      const j = g in h;
       if (j) {
-        const k = e[ h ];
-        const l = $dotCall( b, undefined, undefined, k, h, e );
-        if (l) {
+        const k = $dotCall( b, undefined, undefined );
+        if (k) {
 
         }
         else {
-          g = false;
+          f = false;
           break;
         }
       }
-      h = h + 1;
+      g = g + 1;
     }
     else {
       break;
     }
   }
-  $( a, g );
+  $( a, f );
 }
 else {
   $( a, false );

@@ -28,7 +28,7 @@ else $('pass');
 
 
 `````js filename=intro
-const f /*:(unused)=>boolean*/ = function ($$0) {
+const f /*:()=>boolean*/ = function () {
   debugger;
   const x /*:unknown*/ = $(0);
   const y /*:boolean*/ = $boolean_constructor(x);
@@ -49,7 +49,7 @@ if (tmpBoolTrampoline) {
 (This ought to be the final result)
 
 `````js filename=intro
-const f = function ($$0) {
+const f = function () {
   const y = $boolean_constructor($(0));
   return y;
 };
@@ -67,7 +67,7 @@ if ($(0)) {
 With rename=true
 
 `````js filename=intro
-const a = function($$0 ) {
+const a = function() {
   debugger;
   const b = $( 0 );
   const c = $boolean_constructor( b );

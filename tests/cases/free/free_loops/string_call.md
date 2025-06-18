@@ -84,7 +84,10 @@ $(arr);
 ## Todos triggered
 
 
+- (todo) Support $frfr that has multiple/no/generic returns type;
 - (todo) access object property that also exists on prototype? $array_push
+- (todo) do we want to support Literal as expression statement in free loops?
+- (todo) free with zero args, we can eliminate this?
 - (todo) support array reads statement type ExpressionStatement
 - (todo) support array reads statement type WhileStatement
 

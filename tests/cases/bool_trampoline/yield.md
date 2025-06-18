@@ -30,7 +30,7 @@ else $('fail');
 
 
 `````js filename=intro
-const f /*:(unused)=>object*/ = function* ($$0) {
+const f /*:()=>object*/ = function* () {
   debugger;
   const x /*:unknown*/ = $(0);
   const y /*:unknown*/ = yield x;
@@ -47,7 +47,7 @@ $(`pass`);
 (This ought to be the final result)
 
 `````js filename=intro
-const f = function* ($$0) {
+const f = function* () {
   const x = $(0);
   const y = yield x;
   return y;
@@ -63,7 +63,7 @@ $(`pass`);
 With rename=true
 
 `````js filename=intro
-const a = function *($$0 ) {
+const a = function *() {
   debugger;
   const b = $( 0 );
   const c = yield ( b );

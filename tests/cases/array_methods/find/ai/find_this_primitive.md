@@ -18,32 +18,25 @@ $(x);
 
 
 `````js filename=intro
-const tmpMCP /*:(unused)=>undefined*/ = function ($$0 /*uses this*/) {
+const tmpMCP /*:()=>undefined*/ = function (/*uses this*/) {
   const tmpPrevalAliasThis /*:unknown*/ = this;
   debugger;
   const tmpCalleeParam /*:boolean*/ = tmpPrevalAliasThis === 42;
   $(tmpCalleeParam);
   return undefined;
 };
-const tmpMCOO /*:array*/ /*truthy*/ = [1, 2, 3];
-const tmpLambdaFindNow /*:unknown*/ = $dotCall(tmpMCP, 42, undefined, 1, 0, tmpMCOO);
+const tmpLambdaFindNow /*:unknown*/ = $dotCall(tmpMCP, 42, undefined);
 if (tmpLambdaFindNow) {
   $(1);
 } else {
   let tmpLambdaFindOut /*:unknown*/ = undefined;
   let tmpClusterSSA_tmpLambdaFindCounter /*:number*/ = 1;
+  const tmpMCOO /*:array*/ /*truthy*/ = [1, 2, 3];
   while ($LOOP_UNROLL_10) {
     const tmpLambdaFindTest$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaFindCounter < 3;
     if (tmpLambdaFindTest$1) {
       const tmpLambdaFindVal$1 /*:primitive*/ = tmpMCOO[tmpClusterSSA_tmpLambdaFindCounter];
-      const tmpLambdaFindNow$1 /*:unknown*/ = $dotCall(
-        tmpMCP,
-        42,
-        undefined,
-        tmpLambdaFindVal$1,
-        tmpClusterSSA_tmpLambdaFindCounter,
-        tmpMCOO,
-      );
+      const tmpLambdaFindNow$1 /*:unknown*/ = $dotCall(tmpMCP, 42, undefined);
       if (tmpLambdaFindNow$1) {
         tmpLambdaFindOut = tmpLambdaFindVal$1;
         break;
@@ -63,20 +56,20 @@ if (tmpLambdaFindNow) {
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpMCP = function ($$0) {
+const tmpMCP = function () {
   const tmpPrevalAliasThis = this;
   $(tmpPrevalAliasThis === 42);
 };
-const tmpMCOO = [1, 2, 3];
-if ($dotCall(tmpMCP, 42, undefined, 1, 0, tmpMCOO)) {
+if ($dotCall(tmpMCP, 42, undefined)) {
   $(1);
 } else {
   let tmpLambdaFindOut = undefined;
   let tmpClusterSSA_tmpLambdaFindCounter = 1;
+  const tmpMCOO = [1, 2, 3];
   while (true) {
     if (tmpClusterSSA_tmpLambdaFindCounter < 3) {
       const tmpLambdaFindVal$1 = tmpMCOO[tmpClusterSSA_tmpLambdaFindCounter];
-      if ($dotCall(tmpMCP, 42, undefined, tmpLambdaFindVal$1, tmpClusterSSA_tmpLambdaFindCounter, tmpMCOO)) {
+      if ($dotCall(tmpMCP, 42, undefined)) {
         tmpLambdaFindOut = tmpLambdaFindVal$1;
         break;
       } else {
@@ -95,39 +88,39 @@ if ($dotCall(tmpMCP, 42, undefined, 1, 0, tmpMCOO)) {
 With rename=true
 
 `````js filename=intro
-const a = function($$0 ) {
+const a = function() {
   const b = this;
   debugger;
   const c = b === 42;
   $( c );
   return undefined;
 };
-const d = [ 1, 2, 3 ];
-const e = $dotCall( a, 42, undefined, 1, 0, d );
-if (e) {
+const d = $dotCall( a, 42, undefined );
+if (d) {
   $( 1 );
 }
 else {
-  let f = undefined;
-  let g = 1;
+  let e = undefined;
+  let f = 1;
+  const g = [ 1, 2, 3 ];
   while ($LOOP_UNROLL_10) {
-    const h = g < 3;
+    const h = f < 3;
     if (h) {
-      const i = d[ g ];
-      const j = $dotCall( a, 42, undefined, i, g, d );
+      const i = g[ f ];
+      const j = $dotCall( a, 42, undefined );
       if (j) {
-        f = i;
+        e = i;
         break;
       }
       else {
-        g = g + 1;
+        f = f + 1;
       }
     }
     else {
       break;
     }
   }
-  $( f );
+  $( e );
 }
 `````
 
@@ -156,7 +149,6 @@ $(x);
 
 - (todo) regular property access of an ident feels tricky;
 - (todo) support array reads statement type VarStatement
-- (todo) support array reads statement type WhileStatement
 - (todo) type trackeed tricks can possibly support static $array_find
 
 

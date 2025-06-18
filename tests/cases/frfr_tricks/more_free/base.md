@@ -29,7 +29,7 @@ $(t);
 
 
 `````js filename=intro
-const tmpFree /*:(string, unused)=>string*/ = function $free($$0, $$1) {
+const tmpFree /*:(string)=>string*/ = function $free($$0) {
   const xs$1 /*:string*/ = $$0;
   debugger;
   const one /*:string*/ = xs$1 + 5;
@@ -40,8 +40,8 @@ const tmpFree /*:(string, unused)=>string*/ = function $free($$0, $$1) {
 const x /*:unknown*/ = $(`x`);
 const xs /*:string*/ = $coerce(x, `plustr`);
 const y /*:unknown*/ = $(`y`);
-const ys /*:string*/ = $coerce(y, `plustr`);
-const t /*:string*/ = $frfr(tmpFree, xs, ys);
+$coerce(y, `plustr`);
+const t /*:string*/ = $frfr(tmpFree, xs);
 $(t);
 `````
 
@@ -50,12 +50,13 @@ $(t);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpFree = function $free(xs$1, $$1) {
+const tmpFree = function $free(xs$1) {
   const tmpRet = $dotCall($string_repeat, $dotCall($string_slice, xs$1 + 5, `slice`, 1), `repeat`, 2);
   return tmpRet;
 };
 const xs = $coerce($(`x`), `plustr`);
-$($frfr(tmpFree, xs, $coerce($(`y`), `plustr`)));
+$coerce($(`y`), `plustr`);
+$($frfr(tmpFree, xs));
 `````
 
 
@@ -63,7 +64,7 @@ $($frfr(tmpFree, xs, $coerce($(`y`), `plustr`)));
 With rename=true
 
 `````js filename=intro
-const a = function b($$0,$$1 ) {
+const a = function b($$0 ) {
   const c = $$0;
   debugger;
   const d = c + 5;
@@ -74,9 +75,9 @@ const a = function b($$0,$$1 ) {
 const g = $( "x" );
 const h = $coerce( g, "plustr" );
 const i = $( "y" );
-const j = $coerce( i, "plustr" );
-const k = l( a, h, j );
-$( k );
+$coerce( i, "plustr" );
+const j = k( a, h );
+$( j );
 `````
 
 

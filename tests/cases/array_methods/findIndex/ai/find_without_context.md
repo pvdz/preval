@@ -20,15 +20,14 @@ $(result, x);
 
 `````js filename=intro
 const result /*:array*/ /*truthy*/ = [];
-const tmpMCP /*:(unused)=>undefined*/ = function ($$0 /*uses this*/) {
+const tmpMCP /*:()=>undefined*/ = function (/*uses this*/) {
   const tmpPrevalAliasThis /*:unknown*/ = this;
   debugger;
   const tmpMCP$1 /*:boolean*/ = tmpPrevalAliasThis === undefined;
   $dotCall($array_push, result, `push`, tmpMCP$1);
   return undefined;
 };
-const tmpMCOO /*:array*/ /*truthy*/ = [1, 2, 3];
-const tmpLambdaFindIndexNow /*:unknown*/ = $dotCall(tmpMCP, undefined, undefined, 1, 0, tmpMCOO);
+const tmpLambdaFindIndexNow /*:unknown*/ = $dotCall(tmpMCP, undefined, undefined);
 if (tmpLambdaFindIndexNow) {
   $(result, 0);
 } else {
@@ -37,15 +36,7 @@ if (tmpLambdaFindIndexNow) {
   while ($LOOP_UNROLL_10) {
     const tmpLambdaFindIndexTest$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaFindIndexCounter < 3;
     if (tmpLambdaFindIndexTest$1) {
-      const tmpLambdaFindIndexVal$1 /*:primitive*/ = tmpMCOO[tmpClusterSSA_tmpLambdaFindIndexCounter];
-      const tmpLambdaFindIndexNow$1 /*:unknown*/ = $dotCall(
-        tmpMCP,
-        undefined,
-        undefined,
-        tmpLambdaFindIndexVal$1,
-        tmpClusterSSA_tmpLambdaFindIndexCounter,
-        tmpMCOO,
-      );
+      const tmpLambdaFindIndexNow$1 /*:unknown*/ = $dotCall(tmpMCP, undefined, undefined);
       if (tmpLambdaFindIndexNow$1) {
         tmpLambdaFindIndexOut = tmpClusterSSA_tmpLambdaFindIndexCounter;
         break;
@@ -66,28 +57,18 @@ if (tmpLambdaFindIndexNow) {
 
 `````js filename=intro
 const result = [];
-const tmpMCP = function ($$0) {
+const tmpMCP = function () {
   const tmpPrevalAliasThis = this;
   $dotCall($array_push, result, `push`, tmpPrevalAliasThis === undefined);
 };
-const tmpMCOO = [1, 2, 3];
-if ($dotCall(tmpMCP, undefined, undefined, 1, 0, tmpMCOO)) {
+if ($dotCall(tmpMCP, undefined, undefined)) {
   $(result, 0);
 } else {
   let tmpLambdaFindIndexOut = -1;
   let tmpClusterSSA_tmpLambdaFindIndexCounter = 1;
   while (true) {
     if (tmpClusterSSA_tmpLambdaFindIndexCounter < 3) {
-      if (
-        $dotCall(
-          tmpMCP,
-          undefined,
-          undefined,
-          tmpMCOO[tmpClusterSSA_tmpLambdaFindIndexCounter],
-          tmpClusterSSA_tmpLambdaFindIndexCounter,
-          tmpMCOO,
-        )
-      ) {
+      if ($dotCall(tmpMCP, undefined, undefined)) {
         tmpLambdaFindIndexOut = tmpClusterSSA_tmpLambdaFindIndexCounter;
         break;
       } else {
@@ -107,39 +88,37 @@ With rename=true
 
 `````js filename=intro
 const a = [];
-const b = function($$0 ) {
+const b = function() {
   const c = this;
   debugger;
   const d = c === undefined;
   $dotCall( $array_push, a, "push", d );
   return undefined;
 };
-const e = [ 1, 2, 3 ];
-const f = $dotCall( b, undefined, undefined, 1, 0, e );
-if (f) {
+const e = $dotCall( b, undefined, undefined );
+if (e) {
   $( a, 0 );
 }
 else {
-  let g = -1;
-  let h = 1;
+  let f = -1;
+  let g = 1;
   while ($LOOP_UNROLL_10) {
-    const i = h < 3;
-    if (i) {
-      const j = e[ h ];
-      const k = $dotCall( b, undefined, undefined, j, h, e );
-      if (k) {
-        g = h;
+    const h = g < 3;
+    if (h) {
+      const i = $dotCall( b, undefined, undefined );
+      if (i) {
+        f = g;
         break;
       }
       else {
-        h = h + 1;
+        g = g + 1;
       }
     }
     else {
       break;
     }
   }
-  $( a, g );
+  $( a, f );
 }
 `````
 
@@ -169,10 +148,9 @@ $(result, x);
 
 
 - (todo) access object property that also exists on prototype? $array_push
-- (todo) regular property access of an ident feels tricky;
+- (todo) do we want to support ArrayExpression as expression statement in free loops?
 - (todo) support array reads statement type EmptyStatement
 - (todo) support array reads statement type VarStatement
-- (todo) support array reads statement type WhileStatement
 - (todo) type trackeed tricks can possibly support static $array_findIndex
 
 

@@ -40,14 +40,19 @@ $(f(String(y)));
 
 
 `````js filename=intro
-const tmpFree$1 /*:(string)=>string*/ = function $free($$0) {
-  const repl$1 /*:string*/ = $$0;
+const tmpFree$2 /*:(string)=>string*/ = function $free($$0) {
+  const repl$2 /*:string*/ = $$0;
   debugger;
-  const a1 /*:string*/ = $dotCall($string_charAt, repl$1, `charAt`, 0);
-  const a2$1 /*:number*/ = $dotCall($string_indexOf, `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`, `indexOf`, a1);
-  const b1 /*:string*/ = $dotCall($string_charAt, repl$1, `charAt`, 1);
+  const a1 /*:string*/ = $dotCall($string_charAt, repl$2, `charAt`, 0);
+  const tmpRet$1 /*:number*/ = $dotCall(
+    $string_indexOf,
+    `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`,
+    `indexOf`,
+    a1,
+  );
+  const b1 /*:string*/ = $dotCall($string_charAt, repl$2, `charAt`, 1);
   const b2$1 /*:number*/ = $dotCall($string_indexOf, `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`, `indexOf`, b1);
-  const frout /*:number*/ = a2$1 + b2$1;
+  const frout /*:number*/ = tmpRet$1 + b2$1;
   const tmpRet /*:string*/ = $coerce(frout, `string`);
   return tmpRet;
 };
@@ -55,11 +60,11 @@ const f /*:(string)=>string*/ = function ($$0) {
   const inputstr$1 /*:string*/ = $$0;
   debugger;
   const regex /*:regex*/ /*truthy*/ = new $regex_constructor(`[^A-Za-z0-9\\+\\/\\=]`, `g`);
-  const repl$2 /*:string*/ = $dotCall($string_replace, inputstr$1, `replace`, regex, ``);
-  const len /*:number*/ = repl$2.length;
+  const repl$3 /*:string*/ = $dotCall($string_replace, inputstr$1, `replace`, regex, ``);
+  const len /*:number*/ = repl$3.length;
   const test /*:boolean*/ = 0 < len;
   if (test) {
-    const tmpClusterSSA_outputstr /*:string*/ = $frfr(tmpFree$1, repl$2);
+    const tmpClusterSSA_outputstr /*:string*/ = $frfr(tmpFree$2, repl$3);
     return tmpClusterSSA_outputstr;
   } else {
     return ``;
@@ -80,30 +85,30 @@ $(tmpCalleeParam$3);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpFree$1 = function $free(repl$1) {
-  const a2$1 = $dotCall(
+const tmpFree$2 = function $free(repl$2) {
+  const tmpRet$1 = $dotCall(
     $string_indexOf,
     `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`,
     `indexOf`,
-    $dotCall($string_charAt, repl$1, `charAt`, 0),
+    $dotCall($string_charAt, repl$2, `charAt`, 0),
   );
   const tmpRet = $coerce(
-    a2$1 +
+    tmpRet$1 +
       $dotCall(
         $string_indexOf,
         `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`,
         `indexOf`,
-        $dotCall($string_charAt, repl$1, `charAt`, 1),
+        $dotCall($string_charAt, repl$2, `charAt`, 1),
       ),
     `string`,
   );
   return tmpRet;
 };
 const f = function (inputstr$1) {
-  const repl$2 = $dotCall($string_replace, inputstr$1, `replace`, new $regex_constructor(`[^A-Za-z0-9\\+\\/\\=]`, `g`), ``);
-  const len = repl$2.length;
+  const repl$3 = $dotCall($string_replace, inputstr$1, `replace`, new $regex_constructor(`[^A-Za-z0-9\\+\\/\\=]`, `g`), ``);
+  const len = repl$3.length;
   if (0 < len) {
-    const tmpClusterSSA_outputstr = $frfr(tmpFree$1, repl$2);
+    const tmpClusterSSA_outputstr = $frfr(tmpFree$2, repl$3);
     return tmpClusterSSA_outputstr;
   } else {
     return ``;

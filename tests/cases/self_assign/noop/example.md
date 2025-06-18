@@ -32,14 +32,14 @@ $(f); // escapes (important, otherwise different rules would tackle it)
 
 `````js filename=intro
 const arr /*:array*/ /*truthy*/ = [`2175510YjCZON`, `10TAFtVj`, `11526394DNqxUn`, `60YWJuYY`, `794766IkrVMo`, `348105xrUwtS`];
-const f /*:(unknown, unused)=>primitive*/ = function ($$0, $$1) {
+const f /*:(unknown)=>primitive*/ = function ($$0) {
   const c /*:unknown*/ = $$0;
   debugger;
   const tmp /*:number*/ = c - 427;
   const Co$1 /*:primitive*/ = arr[tmp];
   return Co$1;
 };
-const tmpClusterSSA_tmpCalleeParam /*:primitive*/ = f(430, undefined);
+const tmpClusterSSA_tmpCalleeParam /*:primitive*/ = f(430);
 $(tmpClusterSSA_tmpCalleeParam);
 const tmpCalleeParam$1 /*:primitive*/ = f(431);
 $(tmpCalleeParam$1);
@@ -54,12 +54,12 @@ $(f);
 
 `````js filename=intro
 const arr = [`2175510YjCZON`, `10TAFtVj`, `11526394DNqxUn`, `60YWJuYY`, `794766IkrVMo`, `348105xrUwtS`];
-const f = function (c, $$1) {
+const f = function (c) {
   const tmp = c - 427;
   const Co$1 = arr[tmp];
   return Co$1;
 };
-$(f(430, undefined));
+$(f(430));
 $(f(431));
 $(f(432));
 $(f);
@@ -71,14 +71,14 @@ With rename=true
 
 `````js filename=intro
 const a = [ "2175510YjCZON", "10TAFtVj", "11526394DNqxUn", "60YWJuYY", "794766IkrVMo", "348105xrUwtS" ];
-const b = function($$0,$$1 ) {
+const b = function($$0 ) {
   const c = $$0;
   debugger;
   const d = c - 427;
   const e = a[ d ];
   return e;
 };
-const f = b( 430, undefined );
+const f = b( 430 );
 $( f );
 const g = b( 431 );
 $( g );

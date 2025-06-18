@@ -18,15 +18,14 @@ $(x);
 
 
 `````js filename=intro
-const tmpMCP /*:(unused)=>undefined*/ = function ($$0 /*uses this*/) {
+const tmpMCP /*:()=>undefined*/ = function (/*uses this*/) {
   const tmpPrevalAliasThis /*:unknown*/ = this;
   debugger;
   const tmpCalleeParam /*:boolean*/ = tmpPrevalAliasThis === 42;
   $(tmpCalleeParam);
   return undefined;
 };
-const tmpMCOO /*:array*/ /*truthy*/ = [1, 2, 3];
-const tmpLambdaFindLastIndexNow /*:unknown*/ = $dotCall(tmpMCP, 42, undefined, 3, 2, tmpMCOO);
+const tmpLambdaFindLastIndexNow /*:unknown*/ = $dotCall(tmpMCP, 42, undefined);
 if (tmpLambdaFindLastIndexNow) {
   $(2);
 } else {
@@ -35,15 +34,7 @@ if (tmpLambdaFindLastIndexNow) {
   while ($LOOP_UNROLL_10) {
     const tmpLambdaFindLastIndexTest$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaFindLastIndexCounter >= 0;
     if (tmpLambdaFindLastIndexTest$1) {
-      const tmpLambdaFindLastIndexVal$1 /*:primitive*/ = tmpMCOO[tmpClusterSSA_tmpLambdaFindLastIndexCounter];
-      const tmpLambdaFindLastIndexNow$1 /*:unknown*/ = $dotCall(
-        tmpMCP,
-        42,
-        undefined,
-        tmpLambdaFindLastIndexVal$1,
-        tmpClusterSSA_tmpLambdaFindLastIndexCounter,
-        tmpMCOO,
-      );
+      const tmpLambdaFindLastIndexNow$1 /*:unknown*/ = $dotCall(tmpMCP, 42, undefined);
       if (tmpLambdaFindLastIndexNow$1) {
         tmpLambdaFindLastIndexOut = tmpClusterSSA_tmpLambdaFindLastIndexCounter;
         break;
@@ -63,28 +54,18 @@ if (tmpLambdaFindLastIndexNow) {
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpMCP = function ($$0) {
+const tmpMCP = function () {
   const tmpPrevalAliasThis = this;
   $(tmpPrevalAliasThis === 42);
 };
-const tmpMCOO = [1, 2, 3];
-if ($dotCall(tmpMCP, 42, undefined, 3, 2, tmpMCOO)) {
+if ($dotCall(tmpMCP, 42, undefined)) {
   $(2);
 } else {
   let tmpLambdaFindLastIndexOut = -1;
   let tmpClusterSSA_tmpLambdaFindLastIndexCounter = 1;
   while (true) {
     if (tmpClusterSSA_tmpLambdaFindLastIndexCounter >= 0) {
-      if (
-        $dotCall(
-          tmpMCP,
-          42,
-          undefined,
-          tmpMCOO[tmpClusterSSA_tmpLambdaFindLastIndexCounter],
-          tmpClusterSSA_tmpLambdaFindLastIndexCounter,
-          tmpMCOO,
-        )
-      ) {
+      if ($dotCall(tmpMCP, 42, undefined)) {
         tmpLambdaFindLastIndexOut = tmpClusterSSA_tmpLambdaFindLastIndexCounter;
         break;
       } else {
@@ -103,39 +84,37 @@ if ($dotCall(tmpMCP, 42, undefined, 3, 2, tmpMCOO)) {
 With rename=true
 
 `````js filename=intro
-const a = function($$0 ) {
+const a = function() {
   const b = this;
   debugger;
   const c = b === 42;
   $( c );
   return undefined;
 };
-const d = [ 1, 2, 3 ];
-const e = $dotCall( a, 42, undefined, 3, 2, d );
-if (e) {
+const d = $dotCall( a, 42, undefined );
+if (d) {
   $( 2 );
 }
 else {
-  let f = -1;
-  let g = 1;
+  let e = -1;
+  let f = 1;
   while ($LOOP_UNROLL_10) {
-    const h = g >= 0;
-    if (h) {
-      const i = d[ g ];
-      const j = $dotCall( a, 42, undefined, i, g, d );
-      if (j) {
-        f = g;
+    const g = f >= 0;
+    if (g) {
+      const h = $dotCall( a, 42, undefined );
+      if (h) {
+        e = f;
         break;
       }
       else {
-        g = g - 1;
+        f = f - 1;
       }
     }
     else {
       break;
     }
   }
-  $( f );
+  $( e );
 }
 `````
 
@@ -162,9 +141,8 @@ $(x);
 ## Todos triggered
 
 
-- (todo) regular property access of an ident feels tricky;
+- (todo) do we want to support ArrayExpression as expression statement in free loops?
 - (todo) support array reads statement type VarStatement
-- (todo) support array reads statement type WhileStatement
 - (todo) type trackeed tricks can possibly support static $array_findLastIndex
 
 

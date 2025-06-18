@@ -102,7 +102,7 @@ function isSameExpressionExceptBool(nodeA, nodeB, collect, ap, bp, prop) {
         return isSameExpressionExceptBool(nodeA.property, nodeB.property, collect, nodeA, nodeB, 'property');
       } else {
         ASSERT(nodeA.property.type === 'Identifier' && nodeB.property.type === 'Identifier', 'Normalized code, not computed, so this must be a simple ident', nodeA, nodeB);
-        return nodeA.property.name !== nodeB.property.name;
+        return nodeA.property.name === nodeB.property.name;
       }
     }
     case 'NewExpression': {

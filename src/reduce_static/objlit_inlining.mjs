@@ -417,7 +417,7 @@ function process(fdata) {
       vlog('There was a hint of `this` usage, did we find one?', foundThis, ', even if so, we have verified that all usages can be inlined');
     }
 
-    vlog('So far so good; obj does not escape and has no gnarly props and if `this` is used (', thissing, ') then we know they can be inlined:', Array.from(map.keys()));
+    vlog('So far so good; obj does not escape and has no gnarly props and if `this` is used (', thissing, ') then we know they can be inlined:', map.keys());
 
     // If the object is only used as member expressions and all the accesses can be traced then
     // it doesn't really need to exist. We can tear down the object and replace all references
@@ -437,7 +437,8 @@ function process(fdata) {
     });
     if (missing) return;
 
-    vlog('Good to go to eliminate "', objName,'". First eliminating all `this` cases. Then eliminating object property accesses');
+    vlog('Good to go to eliminate "', objName,'" because we can resolve all props and they are only reads');
+    vlog('First eliminating all `this` cases. Then eliminating object property accesses.');
 
     if (thissing) {
       // I think we must first eliminate `this` from all methods. If we can't then `this` must escape and we have to bail.
@@ -524,8 +525,11 @@ function process(fdata) {
           }
         }
       }
+    } else {
+      vlog('This function is not thissing so we can skip the this-elimination step');
     }
 
+    vlog('Eliminating all obj references. They should all be prop reads.');
     objMeta.reads.forEach(read => {
       if (read.parentNode.type === 'MemberExpression' && !read.parentNode.computed) {
         const propNode = map.get(read.parentNode.property.name);
@@ -574,7 +578,13 @@ function process(fdata) {
         return;
       }
       else {
-        if (read.parentNode.type === 'CallExpression' && read.parentNode.callee.type === 'Identifier' && read.parentNode.callee.name === SYMBOL_DOTCALL) {
+        // Object was not used as non-computed member expression...
+        if (
+          read.parentNode.type === 'CallExpression' &&
+          read.parentNode.callee.type === 'Identifier' &&
+          read.parentNode.callee.name === SYMBOL_DOTCALL &&
+          read.parentProp === 1
+        ) {
           // Two forms:
           // - `const f = function(){}; const objlit = {f}; const x = objlit.f; $dotCall(x, objlit, "f", rest)`
           // - `const f = function(){}; const objlit = {f}; $dotCall(x, objlit, "f", rest)`
@@ -608,6 +618,8 @@ function process(fdata) {
             return;
           }
           else if (funcRefMeta.varDeclRef.node.type === 'MemberExpression') {
+            // Func ref is prop value: `const func = a.b` which is dotcalled `$dotcall(func, a, 'b')` sort of thing.
+            // We did not verify the value is an actual func, though. Bail now if that's not the case.
             // tests/cases/object_literal/inlining/dotcall_final_mem.md
 
             // The func ref should be a const with init of `objlit.f`. We have already verified
@@ -619,7 +631,12 @@ function process(fdata) {
             const reffedPropName = funcRefMeta.varDeclRef.node.property.name;
             const propNode = map.get(reffedPropName);
             ASSERT(propNode, 'prop name should have been verified to exist', reffedPropName);
-            ASSERT(propNode.value.type === 'Identifier', 'I think we verified this too?'); // Did we? Can't the prop be a primitive? But then we'd have to abort the whole thing...
+            if (AST.isPrimitive(propNode.value)) {
+              // I think it's fine to bail here. We don't need to eliminate the entire object here. Just as many props as we can. In this case, we can't because it's used in a "funny" way
+              vlog('- bail: the property resolves to a primitive');
+              return;
+            }
+            ASSERT(propNode.value.type === 'Identifier', 'I think we verified this too?', [propNode, funcRefName, tmat(read.parentNode, true), tmat(funcRefMeta.varDeclRef.varDeclNode, true), tmat(propNode ,true )]); // Did we? Can't the prop be a primitive? But then we'd have to abort the whole thing...
             const propValueFuncName = propNode.value.name;
             // Now the value may not be a func but that's a later problem (but not for Preval)
             const valueMeta = fdata.globallyUniqueNamingRegistry.get(propValueFuncName);

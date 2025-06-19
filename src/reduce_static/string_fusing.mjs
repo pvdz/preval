@@ -239,7 +239,7 @@ function _processBinary(fdata, path, parentNode, parentProp, parentIndex) {
 
       const newTemplateNode = AST.templateLiteral(
         ['', ...right.quasis.map((te) => te.value.cooked)],
-        [...right.expressions.map((n) => AST.cloneSimpleOrTemplate(n)), newLeft],
+        [newLeft, ...right.expressions.map((n) => AST.cloneSimpleOrTemplate(n))],
       );
       if (parentIndex < 0) parentNode[parentProp] = newTemplateNode;
       else parentNode[parentProp][parentIndex] = newTemplateNode;

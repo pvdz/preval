@@ -25,7 +25,7 @@ const tmpCalleeParam /*:unknown*/ = $(`left`);
 const unknownLeft /*:string*/ = $coerce(tmpCalleeParam, `string`);
 const tmpCalleeParam$1 /*:unknown*/ = $(`right`);
 const unknownRight /*:string*/ = $coerce(tmpCalleeParam$1, `string`);
-const out /*:string*/ /*truthy*/ = `${unknownRight}${unknownLeft}me`;
+const out /*:string*/ /*truthy*/ = `${unknownLeft}${unknownRight}me`;
 $(out);
 `````
 
@@ -35,7 +35,8 @@ $(out);
 
 `````js filename=intro
 const unknownLeft = $coerce($(`left`), `string`);
-$(`${$(`right`)}${unknownLeft}me`);
+const unknownRight = $coerce($(`right`), `string`);
+$(`${unknownLeft}${unknownRight}me`);
 `````
 
 
@@ -47,7 +48,7 @@ const a = $( "left" );
 const b = $coerce( a, "string" );
 const c = $( "right" );
 const d = $coerce( c, "string" );
-const e = `${d}${b}me`;
+const e = `${b}${d}me`;
 $( e );
 `````
 
@@ -95,14 +96,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Post settled calls: BAD!!
- -  1: 'left'
- -  2: 'right'
- - !3: 'rightleftme'
- -  eval returned: undefined
+Post settled calls: Same
 
-Denormalized calls: BAD!!
- -  1: 'left'
- -  2: 'right'
- - !3: 'rightleftme'
- -  eval returned: undefined
+Denormalized calls: Same

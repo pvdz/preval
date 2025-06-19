@@ -790,6 +790,8 @@ export function property(key, value, shorthand = false, computed = false, kind =
   if (typeof key === 'string') key = identifier(key);
   if (typeof value === 'string') value = identifier(value);
   if (key.type !== 'Identifier') computed = true; // Force strings/number keys to be computed keys
+  ASSERT(key, 'property should receive a key, not nullable', key);
+  ASSERT(value, 'property should receive a value node or string, not nullable', key);
 
   return {
     type: 'Property',

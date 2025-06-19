@@ -243,7 +243,7 @@ $(a, b);
 ## Todos triggered
 
 
-None
+- (todo) Can we inline a function that uses arguments, anyways?
 
 
 ## Globals

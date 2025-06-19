@@ -111,7 +111,7 @@ f(8, 2, 9);
 ## Todos triggered
 
 
-None
+- (todo) Can we inline a function that uses arguments, anyways?
 
 
 ## Globals

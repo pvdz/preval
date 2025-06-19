@@ -220,6 +220,7 @@ tmpCallComplexCallee();
 ## Todos triggered
 
 
+- (todo) Can we inline a function that uses arguments, anyways?
 - (todo) can try-escaping support this expr node type? MemberExpression
 
 

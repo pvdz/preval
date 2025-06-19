@@ -1,11 +1,12 @@
 // Find functions with one statement and a return and inline calls to them
 
-import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, findBodyOffset, todo, } from '../utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, findBodyOffset, todo, currentState, } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { createFreshVar } from '../bindings.mjs';
 
 export function inlineSimpleFuncCalls(fdata) {
   group('\n\n\n[inlineSimpleFuncCalls] Checking for simple func calls that can be inlined');
+  // currentState(fdata, 'inlineSimpleFuncCalls', true, fdata);
   const r = _inlineSimpleFuncCalls(fdata);
   groupEnd();
   return r;
@@ -13,9 +14,8 @@ export function inlineSimpleFuncCalls(fdata) {
 function _inlineSimpleFuncCalls(fdata) {
   const queue = [];
   fdata.globallyUniqueNamingRegistry.forEach(function (meta, funcName) {
-    if (meta.isBuiltin) return;
-    if (meta.isImplicitGlobal) return;
     if (!meta.isConstant) return;
+    if (meta.writes.length !== 1) return; // :shrug:
     if (meta.reads.length === 0) return; // :shrug:
 
     const funcNode = meta.varDeclRef.node;
@@ -37,7 +37,11 @@ function _inlineSimpleFuncCalls(fdata) {
   if (queue.length) {
     // Now unwind the queue in reverse AST order. This way splices should not interfere with each other.
     queue.sort(({index: a}, {index: b}) => b - a);
-    queue.forEach(({func}) => func());
+    queue.forEach(({func}) => {
+      vgroup('Applying queue item');
+      func();
+      vgroupEnd();
+    });
 
     log('Inlined function calls:', queue.length, '. Restarting from phase1 to fix up read/write registry');
     return {what: 'inlineSimpleFuncCalls', changes: queue.length, next: 'phase1'};
@@ -47,7 +51,7 @@ function _inlineSimpleFuncCalls(fdata) {
 }
 function process(meta, funcName, funcNode, fdata, queue) {
   if (funcNode.params.some((pnode) => pnode.rest)) {
-    vlog('Function params has a rest element. Bailing');
+    vlog('- bail: Function param has a rest element');
     return;
   }
 
@@ -68,12 +72,12 @@ function process(meta, funcName, funcNode, fdata, queue) {
   // - Function uses `arguments.length` when we can't determine it (can this even happen without other rules bailing?)
 
   if (funcNode.$p.thisAccess) {
-    vlog('Function uses `this`. Bailing');
+    vlog('- bail: Function uses `this`');
     return;
   }
   if (funcNode.$p.readsArgumentsAny) {
-    // TODO: can we do this anyways? Not if it's actually returned but otherwise..?
-    vlog('Function accesses `arguments`. Bailing');
+    todo('Can we inline a function that uses arguments, anyways?');
+    vlog('- bail: Function accesses `arguments`');
     return;
   }
 
@@ -83,32 +87,44 @@ function process(meta, funcName, funcNode, fdata, queue) {
   const bodyNodes = funcNode.body.body.slice(bodyOffset);
   ASSERT(bodyNodes.length > 0, 'normalized functions must explicitly return so even empty functions must return undefined');
 
+  if (bodyNodes.length > 2) return vlog('- bail: body has more than two statements; risky to proceed due to duplication bloat:', bodyNodes.length);
+
+  const ret = bodyNodes[bodyNodes.length - 1];
+  if (ret.type !== 'ReturnStatement' && ret.type !== 'ThrowStatement') {
+    // Note: cannot be break.
+    if (ret.type !== 'IfStatement') todo(`what last statement is not return? ${ret.type}`);
+    return vlog('- bail: last statement of func is not a return', ret.type);
+  }
+
+  // Figure out the return/throw value. There must be one as all functions have a return value.
+  let paramIndex = -1;
+  let argslen = false;
+  const returnArg = ret.argument;
+  if (returnArg.type === 'Identifier') {
+    if (returnArg.name === funcNode.$p.readsArgumentsLenAs) {
+      return vlog('- bail: func is returning/throwing the `arguments.length` alias');
+    } else if (returnArg.name === funcNode.$p.readsArgumentsAs) {
+      return vlog('- bail: func is returning/throwing the `arguments` alias');
+    } else if (returnArg.name === funcNode.$p.thisAliasAs) {
+      todo('we can probably apply simple_funcs inlining when it returns/throw `this`');
+      return vlog('- bail: returns `this`');
+    } else {
+      paramIndex = funcNode.$p.paramNames.indexOf(returnArg.name);
+    }
+  }
+
+  vlog('- returns or throws param index?', paramIndex, ', argslen?', argslen, ret.type);
+
   if (bodyNodes.length === 1) {
-    const ret = bodyNodes[0];
-    if (ret.type === 'IfStatement') {
-      vlog('Function has only `if`. Bailing.');
-      return;
-    }
+    vlog('- body has 1 statement after header', ret.type);
 
-    // Function only has a return type
-    ASSERT(ret.type === 'ReturnStatement' || ret.type === 'ThrowStatement', 'must end with return/throw?', ret);
+    // The call is entirely replaced with the returned/thrown value.
+    // If the arg is returning a param then the call is replaced with that arg.
+    // The statement can only return one value, which must be simple at this point, so at most one arg is relevant.
+    // Note: It may still return/throw a non-param (primitive, closure, builtin) but we filtered some cases (this/arguments)
+    // Note: we may not be able to transform all calls. That's fine. We're leaving the function for another reducer to clean.
 
-    // The call is entirely replaced with the return arg.
-    // If the arg is a param then the call is replaced with that arg.
-
-    let paramIndex = -1;
-    let argslen = false;
-    const returnArg = ret.argument;
-    if (returnArg.type === 'Identifier') {
-      if (returnArg.name === funcNode.$p.readsArgumentsLenAs) {
-        vlog('This is the `arguments.length` alias (A)');
-        argslen = true;
-      } else {
-        paramIndex = funcNode.$p.paramNames.indexOf(returnArg.name);
-      }
-    }
-
-    vgroup('Processing reads.');
+    vgroup('- ok. Processing reads to the function. Note that some may not be able to transform.');
     meta.reads.forEach((read) => {
       if (read.parentNode.type === 'CallExpression' && read.parentProp === 'callee') {
         if (read.parentNode['arguments'].some((anode) => anode.type === 'SpreadElement')) {
@@ -119,8 +135,9 @@ function process(meta, funcName, funcNode, fdata, queue) {
         queue.push({
           index: read.blockIndex,
           func: () => {
-            rule('Simple function with only a return statement can be inlined');
+            rule('Simple function whcih only returns or throws can be inlined');
             example('function f(x){ return x; } f(a); f(b);', 'a; b;');
+            example('function f(x){ throw x; } f(a); f(b);', 'throw a; throw b;');
             before(read.blockBody[read.blockIndex], funcNode);
 
             const callNode = read.parentNode;
@@ -129,19 +146,20 @@ function process(meta, funcName, funcNode, fdata, queue) {
             let arg;
             if (argslen) {
               // This was the `arguments.length` alias inside this function. Inline it with the number of args of the call now :)
-              arg = AST.literal(callArgs.length);
+              ASSERT(false, 'unreachable'); // would have returned early
             } else if (paramIndex >= 0) {
               // Replace call with the arg in position paramIndex of the call
               // We should not need to clone this since the arg is not reused more then once, and not duplicated in the AST
-              arg = callArgs[paramIndex];
+              arg = AST.cloneSimple(callArgs[paramIndex] || AST.undef());
             } else {
-              // Replace call with a clone of the return arg
+              // Replace call with a clone of the return arg, whatever it is
               arg = AST.cloneSimple(returnArg);
             }
 
             if (ret.type === 'ThrowStatement') {
+              // Push throw before the calling statement. This retains tdz sort of edge cases. Other reducers will clean that up.
               read.blockBody.splice(read.blockIndex, 0, AST.throwStatement(arg));
-              // The rest will be DCE'd so whatever.
+              // The rest will be DCE'd. Must remove call though, or risk infinite transform loop
               if (read.grandIndex < 0) read.grandNode[read.grandProp] = AST.identifier('undefined');
               else read.grandNode[read.grandProp][read.grandIndex] = AST.identifier('undefined');
             } else {
@@ -151,13 +169,13 @@ function process(meta, funcName, funcNode, fdata, queue) {
 
             // Make sure to do this second. If the function ended with a throw, this newNode should precede it
             // Also make sure to retain tdz crash semantics; outline args as statements.
-            read.blockBody.splice(read.blockIndex, 0,
-              ...callArgs
-                .filter(anode => anode.type !== 'FunctionRExpression' && !AST.isPrimitive(anode))
-                .map(anode => AST.expressionStatement(AST.cloneSortOfSimple(anode))), // cant be spread, right?
-            );
+            const outlinedArgs = callArgs
+              .filter(anode => anode.type !== 'FunctionExpression' && !AST.isPrimitive(anode))
+              .map(anode => AST.expressionStatement(AST.cloneSortOfSimple(anode)));
+            // Move call original call args (simple) as statements before the call to retain tdz logic.
+            read.blockBody.splice(read.blockIndex, 0, ...outlinedArgs);
 
-            after(read.blockBody[read.blockIndex]);
+            after(read.blockBody.slice(read.blockIndex, read.blockIndex + 1 + outlinedArgs.length + (ret.type === 'ThrowStatement' ? 1 : 0)));
           },
         });
       } else {
@@ -165,36 +183,33 @@ function process(meta, funcName, funcNode, fdata, queue) {
       }
     });
     vgroupEnd();
-  } else if (bodyNodes.length === 2) {
+  }
+  else if (bodyNodes.length === 2) {
     const stmt = bodyNodes[0];
+    vlog('- body has 2 statements after header:', stmt.type, ret.type);
+
     if (!['ExpressionStatement', 'VarStatement'].includes(stmt.type)) {
-      vlog('Function contained something other than expression or var statement', stmt.type, ', bailing');
+      vlog('- bail: Function contained something other than expression or var statement:', stmt.type);
       return;
     }
-
-    const ret = bodyNodes[1];
-    if (ret.type === 'IfStatement') {
-      vlog('Function has only `if`. Bailing.');
-      return;
-    }
-
-    ASSERT(ret.type === 'ReturnStatement' || ret.type === 'ThrowStatement');
 
     if (stmt.type === 'ExpressionStatement') {
       if (stmt.expression.type === 'AssignmentExpression' && stmt.expression.right.type === 'FunctionExpression') {
-        return; // Too complex with the potential of closures over params
+        return vlog('- bail: assigns a function, edge cases are too complex');
       }
     } else if (stmt.type === 'VarStatement') {
       if (stmt.init.type === 'FunctionExpression') {
-        return; // Too complex with the potential of closures over params
+        return vlog('- bail: returns a fresh function, edge cases are too complex');
       }
     }
 
-    vgroup('Processing', meta.reads.length, 'reads.');
+    vlog('- ok. Function with some statement and a return.');
+
+    vgroup('- Processing', meta.reads.length, 'function reads.');
     meta.reads.forEach((read, ri) => {
       const callNode = read.parentNode;
       if (callNode.type !== 'CallExpression' || read.parentProp !== 'callee') {
-        vlog('-', ri, ': not a call', callNode.type, read.parentProp);
+        vlog('-', ri, ': bail: not a call', callNode.type, read.parentProp);
         return;
       }
 
@@ -203,12 +218,12 @@ function process(meta, funcName, funcNode, fdata, queue) {
         callNode.callee.name === funcName &&
         (callNode.blockChain + ',').startsWith(funcNode.$p.blockChain + ',')
       ) {
-        vlog('-', ri,': call is recursive, bail', callNode.callee.name, funcName);
+        vlog('-', ri,': bail: call is recursive, bail', callNode.callee.name, funcName);
         return;
       }
 
       if (callNode['arguments'].some((anode) => anode.type === 'SpreadElement')) {
-        vlog('-', ri, ': at least one arg was a spread. Bailing');
+        vlog('-', ri, ': bail: at least one arg was a spread. Bailing');
         return;
       }
 
@@ -223,12 +238,12 @@ function process(meta, funcName, funcNode, fdata, queue) {
       }
 
       if (stmt.type === 'VarStatement') {
-        vgroup('-', ri, ': a var');
-        processVar(stmt, ret, paramArgMapper, read, ri, funcNode, fdata, queue);
+        vgroup('-', ri, ': function contained a var statement; processVarStmtCase()');
+        processVarStmtCase(stmt, ret, paramArgMapper, read, ri, funcNode, fdata, queue, argslen, paramIndex, returnArg);
         vgroupEnd();
       } else {
-        vgroup('-', ri, ': a non-var');
-        processNonVar(stmt, ret, paramArgMapper, read, ri, funcNode, queue);
+        vgroup('-', ri, ': function contained an expr statement; processExprStmtCase()');
+        processExprStmtCase(stmt, ret, paramArgMapper, read, ri, funcNode, queue, argslen, paramIndex, returnArg);
         vgroupEnd();
       }
     });
@@ -237,7 +252,7 @@ function process(meta, funcName, funcNode, fdata, queue) {
     // Maybe we'll want to inline with certain other statements but that's tbd.
   }
 }
-function processVar(stmt, ret, paramArgMapper, read, ri, funcNode, fdata, queue) {
+function processVarStmtCase(stmt, ret, paramArgMapper, read, ri, funcNode, fdata, queue, argslen, paramIndex, returnArg) {
   const oldName = stmt.id.name;
   // Special case because we need to create a unique name for the binding
   const fail = { de: false };
@@ -257,6 +272,8 @@ function processVar(stmt, ret, paramArgMapper, read, ri, funcNode, fdata, queue)
     return false;
   }
 
+  vlog('- ok. Func with a var statement can be inlined into this call, queueing transform');
+
   queue.push({
     index: read.blockIndex,
     func: () => {
@@ -270,26 +287,14 @@ function processVar(stmt, ret, paramArgMapper, read, ri, funcNode, fdata, queue)
       const tmpName = createFreshVar(stmt.id.name, fdata);
       const newNode = AST.varStatement('const', tmpName, newInit);
 
-      let paramIndex = -1;
-      let argslen = false;
-      const returnArg = ret.argument;
-      if (returnArg.type === 'Identifier') {
-        if (returnArg.name === funcNode.$p.readsArgumentsLenAs) {
-          vlog('This is the `arguments.length` alias (B)');
-          argslen = true;
-        } else {
-          paramIndex = funcNode.$p.paramNames.indexOf(returnArg.name);
-        }
-      }
-
       let arg;
       if (argslen) {
         // This was the `arguments.length` alias inside this function. Inline it with the number of args of the call now :)
-        arg = AST.literal(callArgs.length);
+        ASSERT(false, 'unreachable'); // would have returned early
       } else if (paramIndex >= 0) {
         // Replace call with the arg in position paramIndex of the call
         // We should not need to clone this since the arg is not reused more then once, and not duplicated in the AST
-        arg = callArgs[paramIndex];
+        arg = AST.cloneSimple(callArgs[paramIndex] || AST.undef());
       } else if (returnArg.type === 'Identifier' && returnArg.name === oldName) {
         // Replace call with renamed local variable
         arg = AST.identifier(tmpName);
@@ -300,7 +305,7 @@ function processVar(stmt, ret, paramArgMapper, read, ri, funcNode, fdata, queue)
 
       if (ret.type === 'ThrowStatement') {
         read.blockBody.splice(read.blockIndex, 0, AST.throwStatement(arg));
-        // The rest will be DCE'd so whatever.
+        // The rest will be DCE'd. Must remove call though, or risk infinite transform loop
         if (read.grandIndex < 0) read.grandNode[read.grandProp] = AST.identifier('undefined');
         else read.grandNode[read.grandProp][read.grandIndex] = AST.identifier('undefined');
       } else {
@@ -310,19 +315,17 @@ function processVar(stmt, ret, paramArgMapper, read, ri, funcNode, fdata, queue)
 
       // Make sure to do this second. If the function ended with a throw, this newNode should precede it
       // Also make sure to retain tdz crash semantics; outline args as statements.
-      read.blockBody.splice(read.blockIndex, 0,
-        ...callArgs
-          .filter(anode => anode.type !== 'FunctionRExpression' && !AST.isPrimitive(anode))
-          .map(anode => AST.expressionStatement(AST.cloneSortOfSimple(anode))), // cant be spread, right?
-        newNode
-      );
+      const outlinedArgs = callArgs
+        .filter(anode => anode.type !== 'FunctionRExpression' && !AST.isPrimitive(anode))
+        .map(anode => AST.expressionStatement(AST.cloneSortOfSimple(anode)));
+      read.blockBody.splice(read.blockIndex, 0, ...outlinedArgs, newNode);
 
-      after(read.blockBody[read.blockIndex]);
+      after(read.blockBody.slice(read.blockIndex, read.blockIndex + 2 + outlinedArgs.length + (ret.type === 'ThrowStatement' ? 1 : 0)));
     },
   });
   return true;
 }
-function processNonVar(stmt, ret, paramArgMapper, read, ri, funcNode, queue) {
+function processExprStmtCase(stmt, ret, paramArgMapper, read, ri, funcNode, queue, argslen, paramIndex, returnArg) {
   const fail = { de: false };
   const newNode = AST.deepCloneForFuncInlining(stmt, paramArgMapper, fail);
   if (fail.ed) {
@@ -340,34 +343,25 @@ function processNonVar(stmt, ret, paramArgMapper, read, ri, funcNode, queue) {
       const callNode = read.parentNode;
       const callArgs = callNode['arguments'];
 
-      let paramIndex = -1;
-      let argslen = false;
-      const returnArg = ret.argument;
-      if (returnArg.type === 'Identifier') {
-        if (returnArg.name === funcNode.$p.readsArgumentsLenAs) {
-          vlog('This is the `arguments.length` alias (C)');
-          argslen = true;
-        } else {
-          paramIndex = funcNode.$p.paramNames.indexOf(returnArg.name);
-        }
-      }
-
       let arg;
       if (argslen) {
+        vlog('- using arguments.length resolved...');
         // This was the `arguments.length` alias inside this function. Inline it with the number of args of the call now :)
-        arg = AST.literal(callArgs.length);
+        ASSERT(false, 'unreachable'); // would have returned early
       } else if (paramIndex >= 0) {
+        vlog('- using arg at index', paramIndex);
         // Replace call with the arg in position paramIndex of the call
         // We should not need to clone this since the arg is not reused more then once, and not duplicated in the AST
-        arg = callArgs[paramIndex];
+        arg = AST.cloneSimple(callArgs[paramIndex] || AST.undef());
       } else {
+        vlog('- using clone of arg, which is not a param or local var');
         // Replace call with a clone of the return arg
         arg = AST.cloneSimple(returnArg);
       }
 
       if (ret.type === 'ThrowStatement') {
         read.blockBody.splice(read.blockIndex, 0, AST.throwStatement(arg));
-        // The rest will be DCE'd so whatever.
+        // The rest will be DCE'd. Must remove call though, or risk infinite transform loop
         if (read.grandIndex < 0) read.grandNode[read.grandProp] = AST.identifier('undefined');
         else read.grandNode[read.grandProp][read.grandIndex] = AST.identifier('undefined');
       } else {
@@ -377,14 +371,15 @@ function processNonVar(stmt, ret, paramArgMapper, read, ri, funcNode, queue) {
 
       // Make sure to do this second. If the function ended with a throw, this newNode should precede it
       // Also make sure to retain tdz crash semantics; outline args as statements.
+      const outlinedArgs = callArgs
+        .filter(anode => anode.type !== 'FunctionRExpression' && !AST.isPrimitive(anode))
+        .map(anode => AST.expressionStatement(AST.cloneSortOfSimple(anode)));
       read.blockBody.splice(read.blockIndex, 0,
-        ...callArgs
-          .filter(anode => anode.type !== 'FunctionRExpression' && !AST.isPrimitive(anode))
-          .map(anode => AST.expressionStatement(AST.cloneSortOfSimple(anode))), // cant be spread, right?
+        ...outlinedArgs, // cant be spread, right?
         newNode
       );
 
-      after(read.blockBody[read.blockIndex]);
+      after(read.blockBody.slice(read.blockIndex, read.blockIndex + 2 + outlinedArgs.length + (ret.type === 'ThrowStatement' ? 1 : 0)));
     },
   });
   return true;

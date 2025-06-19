@@ -184,6 +184,7 @@ tmpCallComplexCallee();
 ## Todos triggered
 
 
+- (todo) Can we inline a function that uses arguments, anyways?
 - (todo) support array reads statement type VarStatement
 - (todo) type trackeed tricks can possibly support static $Array_isArray
 

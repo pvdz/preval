@@ -98,6 +98,7 @@ $(tmpCalleeParam$1);
 ## Todos triggered
 
 
+- (todo) Can we inline a function that uses arguments, anyways?
 - (todo) Support this ident in isFree CallExpression: $array_constructor
 - (todo) regular property access of an ident feels tricky;
 - (todo) type trackeed tricks can possibly support static $array_constructor

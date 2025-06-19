@@ -79,6 +79,7 @@ $(tmpCalleeParam);
 ## Todos triggered
 
 
+- (todo) Can we inline a function that uses arguments, anyways?
 - (todo) support array reads statement type VarStatement
 
 

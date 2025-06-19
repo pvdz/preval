@@ -60,6 +60,7 @@ f();
 ## Todos triggered
 
 
+- (todo) Can we inline a function that uses arguments, anyways?
 - (todo) harden the check for being an arguments object, a prefix check seems brittle
 
 

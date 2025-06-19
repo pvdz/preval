@@ -167,6 +167,7 @@ foo(tmpCalleeParam$9, tmpCalleeParam$11, tmpCalleeParam$13);
 ## Todos triggered
 
 
+- (todo) Can we inline a function that uses arguments, anyways?
 - (todo) find test case where template ends up with multiple expressions
 
 

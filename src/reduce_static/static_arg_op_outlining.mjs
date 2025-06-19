@@ -19,7 +19,7 @@ import { SYMBOL_COERCE, SYMBOL_DOTCALL, SYMBOL_FRFR } from '../symbols_preval.mj
 
 export function staticArgOpOutlining(fdata) {
   group('\n\n\n[staticArgOpOutlining] Finding static param ops to outline\n');
-  currentState(fdata, 'staticArgOpOutlining', true, fdata);
+  // currentState(fdata, 'staticArgOpOutlining', true, fdata);
   const r = _staticArgOpOutlining(fdata);
   groupEnd();
   return r;

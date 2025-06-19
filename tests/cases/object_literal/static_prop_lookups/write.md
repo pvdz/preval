@@ -46,9 +46,8 @@ $( 2 );
 
 `````js filename=intro
 const tmpObjLitVal = $(1);
-const o = { x: tmpObjLitVal };
 const tmpInitAssignLhsComputedRhs = 2;
-o.x = tmpInitAssignLhsComputedRhs;
+const o = { x: tmpInitAssignLhsComputedRhs };
 let tmpCalleeParam = tmpInitAssignLhsComputedRhs;
 $(tmpInitAssignLhsComputedRhs);
 `````

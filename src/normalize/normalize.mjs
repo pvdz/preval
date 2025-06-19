@@ -2166,6 +2166,67 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           return true;
         }
 
+
+        // A bit of a hack but this will try to connect an object assignment to its obj decl
+        // `const obj = {}; const f = function(){}; obj.f = f;`
+        // We can resolve this here but must first move the obj decl next to the obj assign,
+        // past the decls. Otherwise we risk introducing tdz, like the example would.
+
+        currentState(fdata, 'dsafdsa', true, fdata);
+        if (
+          lhs.type === 'MemberExpression' &&
+          lhs.object.type === 'Identifier' &&
+          !lhs.computed && // We have to know the prop because we must assert getter/setter safety. TODO: index props?
+          i > 0
+        ) {
+          vlog('Quick search for reachable decl!', lhs.object.name, i, body.length, ', prev:', body[i-1].type);
+          // `foo.bar = expr`
+          // Check previous statements to see if one of them is the var decl for `foo`.
+          // Skip only past var decls. Stop if you find anything else. Simple heuristic.
+          // There must be at least be a Debugger statement preceding except in global scope. TODO: protect against this edge case.
+          let index = i-1;
+          while (body[index]?.type === 'VarStatement') {
+            const declNode = body[index];
+            vlog('  - next prev is a', declNode.type);
+            if (declNode.id.name === lhs.object.name) {
+              if (declNode.init.type !== 'ObjectExpression') break; // Init is not an object! Oops.
+              const keyName = lhs.property.name;
+              const blockingProp = !declNode.init.properties.every(propNode => {
+                if (propNode.key.name !== keyName) return true;
+                if (propNode.shorthand) return false;
+                if (propNode.computed) return false;
+                if (propNode.method) return false;
+                return propNode.kind === 'init';
+              });
+
+              if (blockingProp) {
+                vlog('- at least one prop blocked this trick. bummer');
+                break;
+              } else {
+                // Ok. This means we can move the obj decl to this place and inline the assignment...
+                rule('When a property assignment is to an object declared a few lines up and we can move it down, move it down and merge it');
+                example('const obj = {}; const f = function(){}; ')
+                before(body[index]);
+                before(body[i]);
+
+                body[index] = AST.emptyStatement(); // TODO: can we splice safely somehow?
+                body[i] = declNode;
+                // `obj.foo = bar` -> `obj = {foo: bar}`
+                declNode.init.properties.push(AST.property(lhs.property, rhs, false, lhs.computed));
+
+                after(body[index]);
+                after(body[i]);
+                return true;
+              }
+            }
+            if (!AST.isPrimitive(declNode.init) && declNode.init.type !== 'FunctionExpression') {
+              // We must guarantee that the object is not observable by some dynamic init value, so we must clamp it down.
+              break;
+            }
+            index = index - 1;
+          }
+        }
+
         // No more special cases for the assignment form. Process the rhs as a generic expression.
         // Kind situations:
         // - statement: the assignment was a statement. This recursive call is fine.
@@ -10541,27 +10602,6 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
         ASSERT(callee.type === 'Identifier', 'callee is ident, rite?', callee);
         ASSERT(!hasComplexArg, 'all args should be simple nodes');
 
-        // Hack to throw in some known strings. Enable to see some extrapolation.
-        if (
-          true &&
-          isDotcall &&
-          contextNode?.name === 'os' &&
-          AST.isPrimitive(dotPropNode) &&
-          AST.getPrimitiveValue(dotPropNode) === 'homedir'
-        ) {
-          // Replace require('os').homedir()
-          hackyRule('Replacing os.homedir() with custom value');
-          example('$dotCall(xyz, os, "homedir")', '"somevalue"');
-          before(body[i]);
-
-          const finalNode = AST.primitive('/home/PREVAL_FAKE_HOMEDIR');
-          const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-          body[i] = finalParent;
-
-          after(body[i]);
-          return true;
-        }
-
         return false;
       }
 
@@ -11378,6 +11418,8 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
       }
 
       case 'MemberExpression': {
+        // NOT visited for assignments to property!
+
         // The object must be simple
         // If computed, the property must be simple. Check this first because in that case, the object must be cached too.
 

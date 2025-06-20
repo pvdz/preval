@@ -22,9 +22,9 @@ f('w', {a: 3}, 'z');
 
 
 `````js filename=intro
-const f /*:(unknown, unknown)=>undefined*/ = function ($$0, $$1) {
+const f /*:(unknown, unused, unknown)=>undefined*/ = function ($$0, $$1, $$2) {
   const x /*:unknown*/ = $$0;
-  const y /*:unknown*/ = $$1;
+  const y /*:unknown*/ = $$2;
   debugger;
   $(x, y);
   return undefined;
@@ -39,7 +39,7 @@ $(`w`, `z`);
 (This ought to be the final result)
 
 `````js filename=intro
-$(function (x, y) {
+$(function (x, $$1, y) {
   $(x, y);
 });
 $(`x`, `y`);
@@ -51,9 +51,9 @@ $(`w`, `z`);
 With rename=true
 
 `````js filename=intro
-const a = function($$0,$$1 ) {
+const a = function($$0,$$1,$$2 ) {
   const b = $$0;
-  const c = $$1;
+  const c = $$2;
   debugger;
   $( b, c );
   return undefined;

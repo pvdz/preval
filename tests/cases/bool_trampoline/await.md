@@ -30,7 +30,7 @@ else $('fail');
 
 
 `````js filename=intro
-const f /*:()=>promise*/ = async function () {
+const f /*:(unused)=>promise*/ = async function ($$0) {
   debugger;
   const x /*:unknown*/ = $(0);
   const y /*:unknown*/ = await x;
@@ -47,7 +47,7 @@ $(`pass`);
 (This ought to be the final result)
 
 `````js filename=intro
-const f = async function () {
+const f = async function ($$0) {
   const x = $(0);
   const y = await x;
   return y;
@@ -63,7 +63,7 @@ $(`pass`);
 With rename=true
 
 `````js filename=intro
-const a = async function() {
+const a = async function($$0 ) {
   debugger;
   const b = $( 0 );
   const c = (await (b));

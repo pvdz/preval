@@ -25,7 +25,7 @@ $(f);
 
 
 `````js filename=intro
-const f /*:()=>undefined*/ = function (/*uses this*/) {
+const f /*:(unused, unused, unused)=>undefined*/ = function ($$0, $$1, $$2 /*uses this*/) {
   const tmpPrevalAliasThis /*:unknown*/ = this;
   debugger;
   const tmpSwitchValue /*:unknown*/ = tmpPrevalAliasThis.state;
@@ -46,7 +46,7 @@ $(f);
 (This ought to be the final result)
 
 `````js filename=intro
-$(function () {
+$(function ($$0, $$1, $$2) {
   const tmpSwitchValue = this.state;
   const tmpIfTest = Yt.PARSING === tmpSwitchValue;
   if (!tmpIfTest) {
@@ -60,7 +60,7 @@ $(function () {
 With rename=true
 
 `````js filename=intro
-const a = function() {
+const a = function($$0,$$1,$$2 ) {
   const b = this;
   debugger;
   const c = b.state;

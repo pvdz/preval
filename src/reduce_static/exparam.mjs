@@ -44,7 +44,7 @@ function _pruneExcessiveParams(fdata) {
     if (funcNode.params.some(param => param.rest)) return vlog('  - bail: at least one func param was a rest'); // the last one but ok
 
     vlog('  - is a function that does not read `arguments`');
-    // Okay, this was a constant that was a function. Assert that all usages are actually calls.
+    // Okay, this was a constant that was a function. Assert that all usages are actually calls and that we control the args.
     // If there's a read that is not a call then the function may "go rogue" and we ignore it here.
     // If any call uses spread then we cannot analyze any param in that index or later safely.
     // (For now let's just bail entirely?)
@@ -54,11 +54,16 @@ function _pruneExcessiveParams(fdata) {
         vlog('    - read:', callNode.type);
         if (callNode.type !== 'CallExpression') return false;
         vlog('    - calls:', callNode.callee.name, 'with', callNode['arguments'].length, 'args');
+        // Either regular call, dotcall, or frfr?
         if (callNode.callee.type !== 'Identifier') return false;
-        // Either regular call or dotcall?
-        if (callNode.callee.name !== name && (callNode.callee.name !== SYMBOL_DOTCALL && callNode.arguments[0] !== read.node)) return false;
+        // We must control the call args so we can only consider when the function is a callee in all cases
+        if (!(
+          callNode.callee.name === name ||
+          (callNode.callee.name === SYMBOL_DOTCALL && read.parentIndex === 0) ||
+          (callNode.callee.name === SYMBOL_FRFR && read.parentIndex === 0)
+        )) return false;
         if (callNode['arguments'].some((pnode) => pnode.type === 'SpreadElement')) return false; // TODO: we could analyze params up to this index...
-        // Ok so this is a call or dotcall to the function and it does not spread an arg
+        // Ok so this is a call or dotcall or frfr to the function and it does not spread an arg
         return true;
       })
     ) {
@@ -107,6 +112,8 @@ function _pruneExcessiveParams(fdata) {
 
       rule('When a function does not use a param, arguments, and all calls are known, we can drop the param');
       example('function f(a, b, c) { $(a, c); } f(1, 2, 3);', 'function f(a, c) { $(a, c); } f(1, 3);');
+      example('function f(a, b, c) { $(a, c); } $dotCall(func, ctx, "x", x, y, z);', 'function f(a, c) { $(a, c); } $dotCall(func, ctx, "x", x, z);');
+      example('function f(a, b, c) { $(a, c); } $frfr(f, 1, 2, 3);', 'function f(a, c) { $(a, c); } $frfr(f, 1, 3);');
       vlog('Queueing individual pieces to transform...');
 
       const newMaxParamCount = funcNode.params.length - 1; // Multiple queued callbacks may undercut but that's fine
@@ -124,6 +131,7 @@ function _pruneExcessiveParams(fdata) {
 
           vlog('Eliminating param index', pi, ', have', funcNode.params.length, 'params');
           funcNode.params.splice(pi, 1);
+          funcNode.$p.paramNames.splice(pi, 1);
           for (let i=pi; i<funcNode.params.length; ++i) {
             const was = funcNode.params[i].name;
             vlog('- Renaming later param', was, 'to', '$$' + i);
@@ -149,7 +157,7 @@ function _pruneExcessiveParams(fdata) {
 
       // We asserted above that all these nodes are calls
       meta.reads.forEach((read) => {
-        // Check dotcall too
+        // Check dotcall/frfr too
         source(read.blockBody[read.blockIndex], true);
         let isDotcall = false;
         let isFrfr = false;

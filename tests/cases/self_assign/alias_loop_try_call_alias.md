@@ -79,10 +79,10 @@ const tmpFree$1 /*:(primitive)=>boolean*/ = function $free($$0) {
 };
 const main_data_arr /*:array*/ /*truthy*/ = [`ike there `, `wgcCwgZikg`, `LmNvbmNhdC`, `eBestCandi`, ` using the`];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmp2$8 /*:primitive*/ = main_data_arr[4336];
+  const tmp2$1 /*:primitive*/ = main_data_arr[4336];
   try {
     $(`testing`);
-    const w /*:boolean*/ = $frfr(tmpFree$1, tmp2$8);
+    const w /*:boolean*/ = $frfr(tmpFree$1, tmp2$1);
     if (w) {
       break;
     } else {
@@ -108,10 +108,10 @@ const tmpFree$1 = function $free(u) {
 };
 const main_data_arr = [`ike there `, `wgcCwgZikg`, `LmNvbmNhdC`, `eBestCandi`, ` using the`];
 while (true) {
-  const tmp2$8 = main_data_arr[4336];
+  const tmp2$1 = main_data_arr[4336];
   try {
     $(`testing`);
-    if ($frfr(tmpFree$1, tmp2$8)) {
+    if ($frfr(tmpFree$1, tmp2$1)) {
       break;
     } else {
       $dotCall($array_push, main_data_arr, `push`, $dotCall($array_shift, main_data_arr, `shift`));
@@ -227,7 +227,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 
 - (todo) can try-escaping support this expr node type? CallExpression
-- (todo) maybe we can inline a primitive into a frfr that is called multiple times, too?
+- (todo) can try-escaping support this expr node type? Literal
+- (todo) free with zero args, we can eliminate this?
 - (todo) support array reads statement type VarStatement
 - (todo) support array reads statement type WhileStatement
 - (todo) type trackeed tricks can possibly support static $Number_parseInt

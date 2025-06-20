@@ -128,7 +128,7 @@ $(undefined);
 ## Todos triggered
 
 
-- (todo) maybe we can inline a primitive into a frfr that is called multiple times, too?
+- (todo) free with zero args, we can eliminate this?
 - (todo) support array reads statement type VarStatement
 
 

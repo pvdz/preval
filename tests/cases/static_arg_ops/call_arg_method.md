@@ -65,7 +65,6 @@ $(t);
 
 
 - (todo) We should be able to resolve the $frfr call but pcode failed to complete with a Node, hasExplicitGlobal=false
-- (todo) maybe we can inline a primitive into a frfr that is called multiple times, too?
 
 
 ## Globals

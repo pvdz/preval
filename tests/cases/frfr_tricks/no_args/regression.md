@@ -52,12 +52,6 @@ const a /*:unknown*/ = $(1);
 const b /*:unknown*/ = $(1);
 $(1);
 $(1);
-const freeA /*:()=>number*/ = function $free() {
-  debugger;
-  const tmpFrfrOutline$7 /*:number*/ = $frfr(freeB, -659, 757);
-  const tmpRet$11 /*:number*/ = tmpFrfrOutline$7 - 359;
-  return tmpRet$11;
-};
 const freeB /*:(unknown)=>number*/ = function $free($$0) {
   const $dlr_$$0 /*:unknown*/ = $$0;
   debugger;
@@ -66,9 +60,8 @@ const freeB /*:(unknown)=>number*/ = function $free($$0) {
   const tmpRet$89 /*:number*/ = tmpCalleeParam$271 - -808;
   return tmpRet$89;
 };
-const x /*:number*/ = $frfr(freeA);
 const y /*:number*/ = $frfr(freeB, a, b);
-$(x, y);
+$(-1206, y);
 `````
 
 
@@ -80,15 +73,17 @@ const a = $(1);
 const b = $(1);
 $(1);
 $(1);
-const freeA = function $free() {
-  const tmpRet$11 = $frfr(freeB, -659, 757) - 359;
-  return tmpRet$11;
-};
-const freeB = function $free($dlr_$$0) {
-  const tmpRet$89 = $dlr_$$0 - 554 - 442 - -808;
-  return tmpRet$89;
-};
-$($frfr(freeA), $frfr(freeB, a, b));
+$(
+  -1206,
+  $frfr(
+    function $free($dlr_$$0) {
+      const tmpRet$89 = $dlr_$$0 - 554 - 442 - -808;
+      return tmpRet$89;
+    },
+    a,
+    b,
+  ),
+);
 `````
 
 
@@ -100,23 +95,16 @@ const a = $( 1 );
 const b = $( 1 );
 $( 1 );
 $( 1 );
-const c = function d() {
+const c = function d($$0 ) {
+  const e = $$0;
   debugger;
-  const e = f( g, -659, 757 );
-  const h = e - 359;
+  const f = e - 554;
+  const g = f - 442;
+  const h = g - -808;
   return h;
 };
-const g = function d($$0 ) {
-  const i = $$0;
-  debugger;
-  const j = i - 554;
-  const k = j - 442;
-  const l = k - -808;
-  return l;
-};
-const m = f( c );
-const n = f( g, a, b );
-$( m, n );
+const i = j( c, a, b );
+$( -1206, i );
 `````
 
 
@@ -154,7 +142,6 @@ $(x, y);
 
 - (todo) free with zero args, we can eliminate this?
 - (todo) frfr and free arg mismatch
-- (todo) maybe we can inline a primitive into a frfr that is called multiple times, too?
 
 
 ## Globals

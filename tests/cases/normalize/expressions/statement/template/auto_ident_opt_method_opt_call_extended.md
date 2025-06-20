@@ -28,8 +28,8 @@ if (tmpIfTest$1) {
   const tmpObjLitVal$1 /*:object*/ /*truthy*/ = { e: $ };
   const tmpClusterSSA_tmpCalleeParam$1 /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
   const tmpClusterSSA_tmpStringConcatL /*:string*/ = $coerce(tmpClusterSSA_tmpCalleeParam$1, `string`);
-  const tmpClusterSSA_tmpCalleeParam /*:string*/ /*truthy*/ = `before  ${tmpClusterSSA_tmpStringConcatL}  after`;
-  $(tmpClusterSSA_tmpCalleeParam);
+  const tmpClusterSSA_tmpCalleeParam$2 /*:string*/ /*truthy*/ = `before  ${tmpClusterSSA_tmpStringConcatL}  after`;
+  $(tmpClusterSSA_tmpCalleeParam$2);
 }
 const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);
@@ -108,7 +108,8 @@ $(a);
 ## Todos triggered
 
 
-- (todo) maybe we can inline a primitive into a frfr that is called multiple times, too?
+- (todo) We should be able to resolve the $frfr call but pcode failed to complete with a Node, hasExplicitGlobal=false
+- (todo) free with zero args, we can eliminate this?
 
 
 ## Globals

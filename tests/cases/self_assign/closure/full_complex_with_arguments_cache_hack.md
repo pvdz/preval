@@ -150,7 +150,6 @@ $(main_data_arr);
 
 
 - (todo) can try-escaping support this expr node type? CallExpression
-- (todo) maybe we can inline a primitive into a frfr that is called multiple times, too?
 - (todo) outline any args for tdz
 - (todo) support array reads statement type ExpressionStatement
 - (todo) support array reads statement type VarStatement

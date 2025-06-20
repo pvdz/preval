@@ -34,8 +34,6 @@
 import walk from '../../lib/walk.mjs';
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, fmat, tmat } from '../utils.mjs';
 import * as AST from '../ast.mjs';
-import {createFreshVar} from '../bindings.mjs';
-import { deepCloneForFuncInlining, labeledStatement, updateExpression } from '../ast.mjs';
 import {MAX_UNROLL_TRUE_COUNT} from "../globals.mjs"
 import { createFreshLabelStatement } from '../labels.mjs';
 import { SYMBOL_LOOP_UNROLL, SYMBOL_MAX_LOOP_UNROLL } from '../symbols_preval.mjs';
@@ -166,7 +164,7 @@ function processAttempt(fdata, unrollLimit) {
       const fail = {};
       // On await/yield: if the loop contained an `await` or `yield` expression then the owner
       //                 function must be okay with it and unrolling does not change that.
-      const clone = deepCloneForFuncInlining(whileNode.body, new Map, fail, true);
+      const clone = AST.deepCloneForFuncInlining(whileNode.body, new Map, fail, true);
       if (fail.ed) {
         vlog('  - bail: body cloning failed', fail);
         return;

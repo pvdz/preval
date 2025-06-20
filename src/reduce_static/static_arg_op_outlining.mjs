@@ -209,15 +209,15 @@ function _staticArgOpOutlining(fdata) {
       return FAIL;
     }
   }
-  function actionable(node, names) {
+  function actionable(node, paramNames) {
     // Returns the param index, or FAIL or SKIP (which are negative)
 
     switch (node.type) {
       case 'VarStatement': {
-        return actionableValue(node.init, names);
+        return actionableValue(node.init, paramNames);
       }
       case 'ExpressionStatement': {
-        const r = actionableValue(node.expression, names);
+        const r = actionableValue(node.expression, paramNames);
         if (node.expression.type === 'AssignmentExpression' && r < 0) {
           // The assignment may be dangerous if the result is SKIP
           return FAIL;
@@ -334,13 +334,13 @@ function _staticArgOpOutlining(fdata) {
     let stmtIndex = stmtOffset;
     ASSERT(stmt, 'normalized funcs must at least have a return statement...');
 
-    const names = funcNode.$p.paramNames;
+    const paramNames = funcNode.$p.paramNames;
     let paramIndex = SKIP;
     while (paramIndex === SKIP && stmtIndex < max) {
       stmt = funcNode.body.body[stmtIndex];
       ASSERT(stmt, 'pointer should not be beyond the last statement yet...', stmtIndex, max);
       vlog('-', stmt.type, stmt.type === 'VarStatement' ? stmt.init.type : stmt.expression?.type ?? stmt.type);
-      paramIndex = actionable(stmt, names);
+      paramIndex = actionable(stmt, paramNames);
       vlog('  -', paramIndex === FAIL ? 'FAIL' : paramIndex === SKIP ? 'SKIP' : paramIndex);
       if (paramIndex === FAIL) {
         vlog('  - Found a blocking statement before finding a target, this is not a statement with op');
@@ -391,10 +391,8 @@ function _staticArgOpOutlining(fdata) {
       const left = firstStmt.expression.left;
       const right = firstStmt.expression.right;
 
-      const leftIsParam = funcNode.$p.paramNames.indexOf(left.name);
-
       // `function f(b) { b = 1; }`
-      ASSERT(!(leftIsParam >= 0), 'if left was a param then it would be SSAd away');
+      ASSERT(funcNode.$p.paramNames.indexOf(left.name) < 0, 'if left was a param then it would be SSAd away');
 
       // `let a = 1; function f(b) { a = 100; }`
 
@@ -456,14 +454,14 @@ function _staticArgOpOutlining(fdata) {
       const left = firstStmt.expression.left;
       const right = firstStmt.expression.right;
 
-      const leftIsParam = funcNode.$p.paramNames.indexOf(left.name);
-      const rightIsParam = funcNode.$p.paramNames.indexOf(right.name);
+      const leftIsParamIndex = funcNode.$p.paramNames.indexOf(left.name);
+      const rightIsParamIndex = funcNode.$p.paramNames.indexOf(right.name);
 
-      ASSERT(!(leftIsParam >= 0), 'assignment to param would be SSAd so this is not expected to hit');
+      ASSERT(!(leftIsParamIndex >= 0), 'assignment to param would be SSAd so this is not expected to hit');
 
-      vlog('- leftIsParam:', leftIsParam, ', rightIsParam:', rightIsParam);
+      vlog('- leftIsParam:', leftIsParamIndex, ', rightIsParam:', rightIsParamIndex);
 
-      if (rightIsParam >= 0) {
+      if (rightIsParamIndex >= 0) {
         // `let a = 1; function f(b) { a = b; }`
         const leftMeta = fdata.globallyUniqueNamingRegistry.get(left.name);
 
@@ -487,7 +485,7 @@ function _staticArgOpOutlining(fdata) {
         funcMeta.reads.forEach(read => {
           before(read.blockBody[read.blockIndex]);
 
-          const arg = read.parentNode.arguments[rightIsParam];
+          const arg = read.parentNode.arguments[rightIsParamIndex];
           ASSERT(isSimpleNodeOrSimpleMember(arg), 'should be normalized code so call should have simple args');
 
           read.blockBody[read.blockIndex] = AST.blockStatement(
@@ -726,7 +724,7 @@ function _staticArgOpOutlining(fdata) {
 
       const lhs = firstStmt.expression.left;
       ASSERT(lhs?.type === 'Identifier', 'right? what else could it be?', lhs);
-      const lhsMeta = fdata.globallyUniqueNamingRegistry.get(lhs.name);
+      // const lhsMeta = fdata.globallyUniqueNamingRegistry.get(lhs.name);
 
       if (arg.type === 'Identifier' && funcNode.$p.paramNames.includes(arg.name)) {
         // `let b = $; function f(a, b) { a = $coerce( b, "plustr" ); } f()`
@@ -983,9 +981,9 @@ function _staticArgOpOutlining(fdata) {
   }
 
   function inlineOp(funcMeta, funcNode, paramIndex, paramCount, stmt, stmtIndex) {
-    const names = funcNode.$p.paramNames;
+    const paramNames = funcNode.$p.paramNames;
 
-    let oldParamName = names[paramIndex];
+    let oldParamName = paramNames[paramIndex];
     vlog('- Target param name: `' + oldParamName + '` with param index:', paramIndex, ', at statement index', stmtIndex);
 
     rule('Part 1: Function that is only called and uses a param in a position where we can outline it');

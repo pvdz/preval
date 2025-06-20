@@ -266,18 +266,18 @@ function _boolTrampolines(fdata) {
           const newLine1 = firstClosure
             ? AST.expressionStatement(AST.assignmentExpression(AST.identifier(firstName), exprClone))
             : AST.varStatement('const', firstName, exprClone);
-          const secondNAme = secondClosure ? lhs2.name : createFreshVar('tmpBoolTrampolineB', fdata);
+          const secondName = secondClosure ? lhs2.name : createFreshVar('tmpBoolTrampolineB', fdata);
           const newRhs = wasInvert
             ? AST.unaryExpression('!', firstName)
             : AST.callExpression(symbo('boolean', 'constructor'), [AST.identifier(firstName)]);
           const newLine2 = secondClosure
-            ? AST.expressionStatement(AST.assignmentExpression(AST.identifier(secondNAme), newRhs))
-            : AST.varStatement('const', secondNAme, newRhs);
+            ? AST.expressionStatement(AST.assignmentExpression(AST.identifier(secondName), newRhs))
+            : AST.varStatement('const', secondName, newRhs);
 
           read.blockBody.splice(read.blockIndex, 0, newLine1, newLine2);
           // Replace the whole func call with the second alias
-          if (read.grandIndex < 0) read.grandNode[read.grandProp] = AST.identifier(secondNAme);
-          else read.grandNode[read.grandProp][read.grandIndex] = AST.identifier(secondNAme);
+          if (read.grandIndex < 0) read.grandNode[read.grandProp] = AST.identifier(secondName);
+          else read.grandNode[read.grandProp][read.grandIndex] = AST.identifier(secondName);
 
           after(newLine1);
           after(newLine2);

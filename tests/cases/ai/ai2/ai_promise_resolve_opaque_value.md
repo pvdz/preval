@@ -97,9 +97,7 @@ $dotCall(tmpMCF$1, tmpMCOO, `then`, tmpMCP);
 ## Globals
 
 
-BAD@! Found 1 implicit global bindings:
-
-Promise
+None
 
 
 ## Runtime Outcome

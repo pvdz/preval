@@ -87,9 +87,7 @@ try {
 ## Globals
 
 
-BAD@! Found 1 implicit global bindings:
-
-TypeError
+None
 
 
 ## Runtime Outcome

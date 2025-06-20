@@ -21,16 +21,20 @@ const BUILTIN_GLOBAL_FUNCS = [
   ['Array', {mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'array'}],
   ['Boolean', {mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'boolean'}],
   ['Date', {mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'date'}],
-  ['Error', 'function'],
-  ['JSON', 'object'],
-  ['Math', 'object'],
+  ['Error', {mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'error'}],
+  ['Function', {mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'function'}],
+  ['JSON', {mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false}],
+  ['Math', {mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false}],
   ['Map', {mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'map'}],
   ['Number', {mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'number'}],
-  ['Object', 'function'],
+  ['Object', {mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'object'}],
+  ['Promise', {mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: undefined}], // throws without new
   ['RegExp', {mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'regex'}],
   ['Set', {mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'set'}],
   ['String', {mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string'}],
-  ['Function', {mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'function'}],
+  ['TextDecoder', {mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: undefined}], // throws without new
+  ['TypeError', {mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: undefined}], // throws without new
+  ['Uint8Array', {mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: undefined}], // throws without new
 
   // NodeJS / Browser
   ['encodeURI', {mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string'}],
@@ -41,7 +45,7 @@ const BUILTIN_GLOBAL_FUNCS = [
   ['unescape', {mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string'}],
   ['btoa', {mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string'}],
   ['atob', {mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string'}],
-  ['Buffer', 'function'],
+  ['Buffer', {mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'buffer'}],
 ];
 export const BUILTIN_GLOBAL_FUNC_NAMES = new Set(BUILTIN_GLOBAL_FUNCS.map(arr => arr[0]));
 

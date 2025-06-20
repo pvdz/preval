@@ -80,9 +80,7 @@ $(`catch_attached`);
 ## Globals
 
 
-BAD@! Found 1 implicit global bindings:
-
-Promise
+None
 
 
 ## Runtime Outcome

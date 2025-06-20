@@ -126,9 +126,7 @@ $dotCall(tmpMCF$3, tmpMCOO, `catch`, tmpMCP$1);
 ## Globals
 
 
-BAD@! Found 1 implicit global bindings:
-
-Promise
+None
 
 
 ## Runtime Outcome

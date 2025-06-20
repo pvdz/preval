@@ -425,19 +425,20 @@ export function forOfStatement(left, right, body, notNormal, async = false) {
   };
 }
 
-export function functionExpressionNormalized(paramNames, body, { id, generator, async, rest } = {}) {
+export function functionExpressionNormalized(paramNames, bodyArr, { id, generator, async, rest } = {}) {
   // Take the params and the body and generate a new function with proper Preval function
-  // header (meaning all params are assigned a var decls at the top, including `this`, and
-  // `arguments` aliases, followed by a debugger statement).
+  // header (meaning all params are assigned a var decls at the top followed by a debugger statement).
   // Then return a new function expression node.
+  // This/arguments are not supported yet (!)
+  // No names are changed, you have to do that before calling here.
 
   ASSERT(
-    body.every((n) => n.type !== 'DebuggerStatement'),
+    bodyArr.every((n) => n.type !== 'DebuggerStatement'),
     'normalized code should not contain the debugger statement. this function should not be called with a body that includes an old function header',
   );
   ASSERT(
     paramNames.every((n) => typeof n === 'string'),
-    'these should not be the $$123 kind but regular param names',
+    'param names should be strings, not nodes or anything else',
     paramNames
   );
 
@@ -447,7 +448,7 @@ export function functionExpressionNormalized(paramNames, body, { id, generator, 
       // Note: I don't think these functions need/want the this/arguments alias? Sorry, future self.
       ...paramNames.map((name, pi) => varStatement('let', name, identifier('$$' + pi))),
       debuggerStatement(),
-      ...body,
+      ...bodyArr,
     ],
     { id, generator, async },
   );
@@ -629,6 +630,7 @@ export function isNewRegex(node) {
   );
 }
 export function isNewRegexLit(node) {
+  ASSERT(node.type !== 'string', 'expecting node, not type');
   // Not an actual lit but a `new RegExp(a, b)` where a and b are strings.
   // Maybe we should change this into a special symbol instead, like $regex(a, b) ? Then we can skip this check
   return (
@@ -1116,7 +1118,7 @@ export function varStatement(kind, id, init) {
   ASSERT(typeof id === 'string' || (id && typeof id === 'object' && !Array.isArray(id)), 'id must be string or non-array object', id);
   if (typeof id === 'string') id = identifier(id);
   ASSERT(typeof init !== 'string', 'var init should be node, strings are not converted to idents');
-  ASSERT(init && typeof init === 'object', 'init must be node', init); // prevent issues with string as primitive vs string as ident
+  ASSERT(init && typeof init === 'object', 'init must be node, was:', init); // prevent issues with string as primitive vs string as ident
 
   const node = {
     type: 'VarStatement',

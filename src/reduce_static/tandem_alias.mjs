@@ -19,7 +19,7 @@ import * as AST from '../ast.mjs';
 
 export function tandemAlias(fdata) {
   group('\n\n\n[tandemAlias] Checking for two variables updated in tandem');
-  currentState(fdata, 'returnClosure', true, fdata);
+  // currentState(fdata, 'tandemAlias', true, fdata);
   const r = _tandemAlias(fdata);
   groupEnd();
   return r;

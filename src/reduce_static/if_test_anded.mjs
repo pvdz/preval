@@ -15,7 +15,7 @@ import * as AST from '../ast.mjs';
 
 export function ifTestAnded(fdata) {
   group('\n\n\n[ifTestAnded] Checking for if-tests on ANDed values');
-  //currentState(fdata, 'ifBooly', true, fdata);
+  //currentState(fdata, 'ifTestAnded', true, fdata);
   const r = _ifTestAnded(fdata);
   groupEnd();
   return r;

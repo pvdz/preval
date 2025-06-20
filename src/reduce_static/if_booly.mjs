@@ -11,7 +11,7 @@ import { symbo } from '../symbols_builtins.mjs';
 
 export function ifBooly(fdata) {
   group('\n\n\n[ifBooly] Checking for bool bindings that conditionally get mutated');
-  currentState(fdata, 'ifBooly', true, fdata);
+  // currentState(fdata, 'ifBooly', true, fdata);
   const r = _ifBooly(fdata);
   groupEnd();
   return r;

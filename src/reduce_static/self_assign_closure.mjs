@@ -30,10 +30,8 @@ import { cloneSimple } from '../ast.mjs';
 
 export function selfAssignClosure(fdata) {
   group('\n\n\n[selfAssignClosure] Checking for self-assigning funcs returning their own closures');
-  currentState(fdata, 'selfAssignClosure', true, fdata);
   // currentState(fdata, 'selfAssignClosure', true, fdata);
   const r = _selfAssignClosure(fdata);
-  currentState(fdata, 'selfAssignClosure', true, fdata);
   groupEnd();
   return r;
 }

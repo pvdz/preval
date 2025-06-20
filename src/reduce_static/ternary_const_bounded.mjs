@@ -15,7 +15,7 @@ import * as AST from '../ast.mjs';
 
 export function ternaryConstBounded(fdata) {
   group('\n\n\n[ternaryConstBounded] Checking for ternaries that are bounded');
-  //currentState(fdata, 'ifBooly', true, fdata);
+  //currentState(fdata, 'ternaryConstBounded', true, fdata);
   const r = _ternaryConstBounded(fdata);
   groupEnd();
   return r;

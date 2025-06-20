@@ -208,6 +208,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
     const parentNode = pathNodes[pathNodes.length - 2];
     const parentProp = pathProps[pathProps.length - 1];
     const parentIndex = pathIndexes[pathIndexes.length - 1];
+    const grandIndex = pathIndexes[pathIndexes.length - 2];
 
     if (before) {
       ASSERT(!parentNode || parentNode.$p);
@@ -279,7 +280,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         node.$p.blockChain = '0,';
         node.$p.funcChain = funcNodeStack.map((n) => n.$p.npid).join(',') + ',';
         node.$p.ownBindings = new Set();
-        node.$p.paramNames = []; // Ends up as a `meta.bfuncNode` in some cases, where this is expected to exist, so leave it.
+        node.$p.paramNames = []; // Program ends up as a `meta.bfuncNode` in some cases, where this array is expected to exist, so leave it.
         loopNodeStack.push(null);
 
 
@@ -500,7 +501,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
       case 'FunctionExpression:before': {
         //node.$p.blockChain = blockIds.join(',');
         node.$p.ownBindings = new Set();
-        node.$p.paramNames = [];
+        node.$p.paramNames = Array(node.params.length); // Intentional size arg: init array as big as holes, in case last param is not used
         node.$p.paramNameToIndex = new Map;
         node.$p.paramIndexToName = new Map;
         node.$p.readsArgumentsAny = false;
@@ -566,6 +567,8 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
           //meta.isImplicitGlobal = false;
         }
 
+        ASSERT(node.params.length === node.$p.paramNames.length, 'paramNames should be in sync with param nodes list, just leave holes for params that have no local binding', node.$p.paramNames, node.params.length, node.params);
+
         break;
       }
 
@@ -608,34 +611,39 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
             parentNode.property.name === 'length'
           ) {
             // This is an `arguments.length` access. Easier to work around than plain unbound `arguments` access.
-            vlog('Marking function as accessing `arguments.length`');
-
             const grandNode = pathNodes[pathNodes.length - 3];
             const grandProp = pathProps[pathProps.length - 2];
             const bodyIndex = pathIndexes[pathIndexes.length - 3]; // This is where grandNode is stored at in the body
+
+            vlog('Marking function as accessing `arguments.length`, aliased to:', grandNode.id.name);
 
             ASSERT(
               grandNode.type === 'VarStatement' && grandProp === 'init',
               '`arguments.length` should only appear for the custom alias in normalized code',
               grandNode.type, grandProp
             );
+
             thisStack[thisStack.length - 1].$p.readsArgumentsLenAt = bodyIndex;
-            thisStack[thisStack.length - 1].$p.readsArgumentsLenAs = grandNode.id.name; // Name of the alias
+            if (grandNode.type === 'VarStatement') {
+              thisStack[thisStack.length - 1].$p.readsArgumentsLenAs = grandNode.id.name; // Name of the alias
+            } else {
+              ASSERT(grandNode.type === 'ExpressionStatement', 'arguments.length should be in the func header, either as init of alias, or as statement pending deletion', grandNode);
+            }
             thisStack[thisStack.length - 1].$p.readsArgumentsLen = true;
             thisStack[thisStack.length - 1].$p.readsArgumentsAny = true;
-          } else if (parentNode.type === 'ExpressionStatement') {
-            // A statement that is just `arguments`. :shrug:
-            vlog('Ignoring `arguments` as an expression statement');
-            thisStack[thisStack.length - 1].$p.readsArgumentsAny = true; // important for example for onetimers. statements like this will eventually be dropped.
-            //} else if (
-            //  parentNode.type === 'VarStatement' &&
-            //  parentNode.id.name.startsWith(ARGUMENTS_ALIAS_PREFIX)
-            //) {
-            //  vlog('Ignoring our own arguments alias');
-          } else {
+          } else if (parentNode.type === 'VarStatement' && parentProp === 'init') {
             // This is an actual read on `arguments`
             // This disables a few tricks because of observable side effects
-            vlog('Marking function as accessing `arguments` in "any" way');
+            vlog('Marking function as accessing `arguments` in "any" way, aliased to', parentNode.id.name);
+
+            const bodyIndex = pathIndexes[pathIndexes.length - 2]; // This is where parentNode is stored at in the body
+            thisStack[thisStack.length - 1].$p.readsArgumentsAny = true;
+            thisStack[thisStack.length - 1].$p.readsArgumentsAs = parentNode.id.name;
+            thisStack[thisStack.length - 1].$p.readsArgumentsAt = bodyIndex;
+          } else if (parentNode.type === 'ExpressionStatement' && parentProp === 'expression') {
+            // as an expression statement... can we ignore this. no.
+            thisStack[thisStack.length - 1].$p.readsArgumentsAny = true;
+          } else {
             thisStack[thisStack.length - 1].$p.readsArgumentsAny = true;
           }
         }
@@ -985,7 +993,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
           //node.$p.paramFuncHeaderRef = {node: funcHeaderParamNode, funcNode};
 
           const paramName = parentNode.id.name;
-          funcNode.$p.paramNames.push(paramName);
+          funcNode.$p.paramNames[node.index] = paramName;
           funcNode.$p.paramNameToIndex.set(paramName, node.index);
           funcNode.$p.paramIndexToName.set(node.index, paramName);
         } else {
@@ -1100,7 +1108,10 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
       case 'ThisExpression:after': {
         if (thisStack.length) {
           vlog('Marking func as having `this` access');
+          ASSERT(parentNode.type === 'VarStatement' && parentProp === 'init', '`this` should always only ever be aliased');
           thisStack[thisStack.length - 1].$p.thisAccess = true;
+          thisStack[thisStack.length - 1].$p.thisAliasAt = grandIndex; // index of var statement in body
+          thisStack[thisStack.length - 1].$p.thisAliasAs = parentNode.id.name;
         }
         break;
       }

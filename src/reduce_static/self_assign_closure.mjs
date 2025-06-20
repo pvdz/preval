@@ -423,6 +423,7 @@ function handleWrapperCase(fdata, meta, targetName, firstWrite, secondWrite, out
 
   // Check if a param is only used for the recursive call, if used at all
   if (firstWrite.parentNode.init.$p.paramNames.some(pname => {
+    if (!pname) return;
     const meta = fdata.globallyUniqueNamingRegistry.get(pname);
     if (
       // outer func params should only have one write
@@ -536,6 +537,7 @@ function handleWrapperCase(fdata, meta, targetName, firstWrite, secondWrite, out
   // Inject param aliases in reverse
   const pnamestmp = firstWrite.parentNode.init.$p.paramNames.reverse(); // being lazy
   secondWrite.parentNode.right.$p.paramNames.reverse().forEach((pname,i) => {
+    if (!pname) return;
     outerFuncBlock.splice(
       outerOffset, 0,
       AST.varStatement('let', pname, AST.identifier(pnamestmp[i]))
@@ -994,7 +996,7 @@ function handleSelfCallingImmediatelyCalled(fdata, first, second, firstCallNode,
       } else {
         return AST.varStatement('let', pname, AST.undef());
       }
-    }),
+    }).filter(Boolean), // prune missing param entries
     // The bool to mark the seal call was executed (loop protection)
     AST.varStatement('let', tmpSealed, AST.fals()),
     // Put any code from between the header and the re-assignment here... Confirmed not to contain this/arguments.
@@ -1149,12 +1151,15 @@ function handleAliasCallingImmediatelyCalled(fdata, first, second, outerFuncNode
   );
   before(first.blockBody[first.blockIndex]);
 
-  outerFuncNode.body.body.splice(-3, 3,
-    ...second.parentNode.right.$p.paramNames.map((aname, i) => {
-      return AST.varStatement('let', aname, tmpCallVarNode.init.arguments[i] || AST.undef());
-    }),
+  const newNodes = [
+    ...second.parentNode.right.$p.paramNames.map((pname, i) => {
+      if (!pname) return;
+      return AST.varStatement('let', pname, tmpCallVarNode.init.arguments[i] || AST.undef());
+    }).filter(Boolean), // Drop unused param entries
     ...second.parentNode.right.body.body.slice(second.parentNode.right.$p.bodyOffset),
-  );
+  ];
+
+  outerFuncNode.body.body.splice(-3, 3, ...newNodes);
 
   after(first.blockBody[first.blockIndex]);
   assertNoDupeNodes(first.blockBody, 'body', true); // var decl of sealer

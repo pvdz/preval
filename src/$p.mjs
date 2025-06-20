@@ -43,9 +43,10 @@ export function $p() {
     // phase1 (these props should exist after phase1/1.1/1.2 ...)
     // - hasFuncDecl // bool. Prevent elimination of blocks containing function declarations
     // - readsArgumentsLen // bool. Does it read `arguments.length`?
-    // - readsArgumentsLenAs // string. Name of the alias, if any
+    // - readsArgumentsLenAs // string. Name of the alias of `arguments.length` in this function, if any. note: when arguments.length is a statement, it is "used" but there is no alias
     // - readsArgumentsLenAt // int. Block index of the args.len alias
     // - readsArgumentsAny // bool. Does it read the implicit `arguments` in any way?
+    // - readsArgumentsAs // string. name of the `arguments` alias for this function. if any. note: when arguments is a statement, it is "used" but there is no alias
     // - containsFunctions // bool. Does a function body contain nested functions (anywhere of any kind)?
     // - unqualifiedLabelUsages // Array<node>. Should contain loop and/or switch nodes. When finding an unqualified break/continue, this tells you where it jumps to.
     // - alwaysCompletes // Set<number>. All code paths complete explicitly and this set tells you the pids where they break to (there may be multiple in case of `If`). We need pids so parent Label nodes know to remove their own pid from this set when they see it.
@@ -58,7 +59,7 @@ export function $p() {
     // - ownBindings // Set<string>. Set of all local bindings in a function scope (may be defined in a block). Excludes the custom $$1 params names.
     // - blockChain // string. Always ends with trailing comma. For all nodes (from phase1), the block chain of this function, including the trailing zero for this function. Same as for refs.
     // - funcChain // string. For functions, the ids of parent functions (and global) up to and including this function. Same as for read/write refs.
-    // - paramNames // Array<string>. functions. phase1. Original param names for the function. Should be in same order but may have holes if certain params are not actually used.
+    // - paramNames // Array<string>. functions, 1:1 with funcNode.params. Holes for unused params. phase1. Param names for the function params. Should be in same order but may have holes if certain params are not actually used. Always check existence. Always set by index, don't push/pop.
     // - paramNameToIndex // Map<string, number>. functions. phase1. if a binding name is a known param, this maps it to the param index.
     // - paramIndexToName // Map<number, string>. functions. phase1. if a param is still known to have a name, this should give it to you. If an index does have a known name then this map will not have it either and return undefined.
     // - primitiveNodeValue // any. When AST.isPrimitive(node) is true this could be the value. otherwise ignore.

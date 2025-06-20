@@ -1221,8 +1221,8 @@ function _staticArgOpOutlining(fdata) {
     const newParamNode = AST.param('$$' + paramCount, false);
     const newLocalParamName = firstStmt.id.name;
     const newLocalParamNode = AST.varStatement('const', newLocalParamName, AST.identifier(newParamName));
+    funcNode.$p.paramNames[funcNode.params.length] = newLocalParamName;
     funcNode.params.push(newParamNode);
-    funcNode.$p.paramNames.push(newLocalParamName);
     // Need to queue the inject because injecting the arg in the body pushes all other statements down
     queue.push({
       index: funcNode.$p.bodyOffset - 1,

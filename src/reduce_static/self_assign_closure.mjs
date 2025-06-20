@@ -986,12 +986,13 @@ function handleSelfCallingImmediatelyCalled(fdata, first, second, firstCallNode,
 
   const newNodes = [
     // Transform the params of outer func to regularly declared variables. Init them to a clone of the arg nodes of first call.
-    ...outerFuncNode.$p.paramNames.map((aname, i) => {
+    ...outerFuncNode.$p.paramNames.map((pname, i) => {
+      if (!pname) return;
       const arg = firstCallNode.arguments[i];
       if (arg) {
-        return AST.varStatement('let', aname, AST.cloneSimpleOrTemplate(arg));
+        return AST.varStatement('let', pname, AST.cloneSimpleOrTemplate(arg));
       } else {
-        return AST.varStatement('let', aname, AST.undef());
+        return AST.varStatement('let', pname, AST.undef());
       }
     }),
     // The bool to mark the seal call was executed (loop protection)

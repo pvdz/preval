@@ -6,6 +6,12 @@
 >
 > Function(eval())()
 
+## Options
+
+Cannot run eval in test runner
+
+- skipEval
+
 ## Input
 
 `````js filename=intro
@@ -86,16 +92,12 @@ None
 
 
 Should call `$` with:
- - eval returned: ('<crash[ <ref> is not defined ]>')
+ - eval returned: ('<skipped by option>')
 
 Pre normalization calls: Same
 
 Normalized calls: Same
 
-Post settled calls: BAD!!
- - !1: 'win'
- - !eval returned: undefined
+Post settled calls: Same
 
-Denormalized calls: BAD!!
- - !1: 'win'
- - !eval returned: undefined
+Denormalized calls: Same

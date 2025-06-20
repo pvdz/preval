@@ -86,8 +86,12 @@ function _freeNested(fdata, $prng, usePrng) {
     // This happens when the function is created while the statements could still be simplified.
 
     const body = funcNode.body.body;
+    const statementCount = body.length - funcNode.$p.bodyOffset;
 
-    if (body.length - funcNode.$p.bodyOffset === 1) {
+    vlog('- func has', statementCount, 'statements');
+
+    if (statementCount === 1) {
+      vlog('- func has one statement');
       const last = body[body.length - 1];
       ASSERT(last?.type === 'ReturnStatement', '$free functions should always result in a return...', last);
 
@@ -136,6 +140,8 @@ function _freeNested(fdata, $prng, usePrng) {
       // If not then bail. Most likely another trick will fix it for us.
       last.argument.type === 'Identifier' && last.argument.name === stmt.id.name
     ) {
+      vlog('- func ends with var/return');
+
       // Get the function alias for this $free func
       const funcAlias =
         parentNode.type === 'VarStatement'
@@ -269,6 +275,7 @@ function _freeNested(fdata, $prng, usePrng) {
         const expr = getExpressionFromNormalizedStatement(body[index]);
         const isFrfr = expr.type === 'CallExpression' && expr.callee.type === 'Identifier' && expr.callee.name === '$frfr';
 
+        vlog('  - does statement', index, 'have a nested frfr?', isFrfr);
         if (isFrfr && body[index].type === 'ExpressionStatement' && body[index].expression === expr) {
           // This is dead code. A $frfr has no side effects by definition and its resulting value is not used. We should eliminate this.
 
@@ -300,15 +307,17 @@ function _freeNested(fdata, $prng, usePrng) {
 
           // Note: calledFreeFuncNode.params should have a .$p.paramVarDeclRef at this point if they have a local const. They may not.
 
+          vlog('  - we can resolve this free call if that function is only called once...', calledFreeMeta.reads.length);
+
           if (calledFreeFuncName === freeFuncName) {
             // Do not collapse recursive $frfr calls. That's gonna be an implosion or smth :p
             // Should not happen though since we only target a function that is read only once
             // and a function calls itself is dead code. But maybe it occurs as an artifact.
-            vlog('Found frfr call but it was recursive;', freeFuncName);
+            vlog('  - Found frfr call but it was recursive;', freeFuncName);
           }
 
           else if (calledFreeMeta.reads.length === 1) {
-            vlog('Found a $frfr calling a $free function inside another $free function, and the called function is only read once. We can squash the $frfr call here.');
+            vlog('  - Found a $frfr calling a $free function inside another $free function, and the called function is only read once. We can squash the $frfr call here.');
 
             // To make it easier (or lazy?) we will inline the called function verbatim and patch
             // the arg names to param names through const aliasing and have other rules clean that up
@@ -354,7 +363,7 @@ function _freeNested(fdata, $prng, usePrng) {
               ? AST.blockStatement(createFreshLabelStatement('$defree', fdata, calledFreeFuncNode.body))
               : calledFreeFuncNode.body
 
-            vlog('- will wrap body in fresh label if it has more than one return statement:', returns.length > 1);
+            vlog('  - will wrap body in fresh label if it has more than one return statement:', returns.length > 1);
             if (returns.length > 1) {
               vlog('  - replacing all returns with a break to fresh label:', labelStatementNode.body[0].label.name);
               returns.forEach(({parentNode, parentIndex}) => {
@@ -362,14 +371,14 @@ function _freeNested(fdata, $prng, usePrng) {
               });
             }
 
-            vgroup('- move call arg nodes to the var decl for each used param');
+            vgroup('  - move call arg nodes to the var decl for each used param');
             // We're inlining the free call, right? So we want to map the value passed in by the call we're inlining
             // to the func being inlined. So we'll find the var statements in the free func header and replace their
             // Param inits with the arg value nodes. Stop when we find the Debugger function boundary.
             before(calledFreeFuncNode);
             for (let i=0; i<calledFreeFuncNode.body.body.length; ++i) {
               const bnode = calledFreeFuncNode.body.body[i];
-              vlog('-', bnode.type);
+              vlog('  -', bnode.type);
               if (bnode.type === 'DebuggerStatement') {
                 calledFreeFuncNode.body.body[i] = AST.emptyStatement(); // Drop the debugger statement. We won't need it anymore.
                 break;
@@ -402,7 +411,7 @@ function _freeNested(fdata, $prng, usePrng) {
             assertNoDupeNodes(body, 'body');
 
             // The statement is either a var decl or an assignment. Assignments are easier. Keep the statement either way. The body is injected AFTER it.
-            vgroup('- replace original call statement with an empty var decl or empty statement');
+            vgroup('  - replace original call statement with an empty var decl or empty statement');
             before(funcNode);
             let lhs;
             if (body[index].type === 'VarStatement') {
@@ -419,7 +428,7 @@ function _freeNested(fdata, $prng, usePrng) {
             after(funcNode);
             vgroupEnd();
 
-            vgroup('- add a return-assignment to all previous', returns.length, 'returns');
+            vgroup('  - add a return-assignment to all previous', returns.length, 'returns');
             before(calledFreeFuncNode);
             if (returns.length > 1) {
               // Prepend the assignment
@@ -433,16 +442,16 @@ function _freeNested(fdata, $prng, usePrng) {
             after(calledFreeFuncNode);
             vgroupEnd();
 
-            vlog('- move func block to parent');
+            vlog('  - move func block to parent');
             // Inject immediately _AFTER_ the original call statement.
             body.splice(index+1, 0, ...labelStatementNode.body);
 
-            vlog('- Remove the eliminated function');
+            vlog('  - Remove the eliminated function');
             calledFreeMeta.varDeclRef.varDeclBody[calledFreeMeta.varDeclRef.varDeclIndex] = AST.emptyStatement();
 
-            vlog('- should be finished!');
+            vlog('  - should be finished!');
 
-            vlog('Final result:');
+            vlog('  - Final result:');
             after(funcNode);
 
             assertNoDupeNodes(body, 'body');
@@ -454,7 +463,7 @@ function _freeNested(fdata, $prng, usePrng) {
       }
     }
 
-    vlog('Found no further frf calls');
+    vlog('Found no further frf calls to refine');
   }
 
   function valueNodeToArgNode(valueNode, funcNode, callNode) {

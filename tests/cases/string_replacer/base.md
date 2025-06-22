@@ -28,24 +28,7 @@ $(getString());
 
 
 `````js filename=intro
-const callback /*:(unknown, unknown)=>string*/ = function ($$0, $$1) {
-  const matchPart /*:unknown*/ = $$0;
-  const matchGroup /*:unknown*/ = $$1;
-  debugger;
-  const tmpBinBothRhs$4 /*:string*/ = $coerce(matchPart, `string`);
-  const tmpIfTest /*:boolean*/ = matchGroup === `/`;
-  if (tmpIfTest) {
-    const tmpReturnArg /*:string*/ /*truthy*/ = `then-string ${tmpBinBothRhs$4} /`;
-    return tmpReturnArg;
-  } else {
-    const tmpBinBothRhs$6 /*:string*/ = $coerce(matchGroup, `string`);
-    const tmpReturnArg$1 /*:string*/ /*truthy*/ = `else-string ${tmpBinBothRhs$4} ${tmpBinBothRhs$6}`;
-    return tmpReturnArg$1;
-  }
-};
-const regex /*:regex*/ /*truthy*/ = new $regex_constructor(`^~([a-z]+|\\/)`, ``);
-const tmpReturnArg$3 /*:string*/ = $dotCall($string_replace, `~/`, `replace`, regex, callback);
-$(tmpReturnArg$3);
+$(`then-string ~/ /`);
 `````
 
 
@@ -53,18 +36,7 @@ $(tmpReturnArg$3);
 (This ought to be the final result)
 
 `````js filename=intro
-const callback = function (matchPart, matchGroup) {
-  const tmpBinBothRhs$4 = $coerce(matchPart, `string`);
-  if (matchGroup === `/`) {
-    const tmpReturnArg = `then-string ${tmpBinBothRhs$4} /`;
-    return tmpReturnArg;
-  } else {
-    const tmpBinBothRhs$6 = $coerce(matchGroup, `string`);
-    const tmpReturnArg$1 = `else-string ${tmpBinBothRhs$4} ${tmpBinBothRhs$6}`;
-    return tmpReturnArg$1;
-  }
-};
-$($dotCall($string_replace, `~/`, `replace`, new $regex_constructor(`^~([a-z]+|\\/)`, ``), callback));
+$(`then-string ~/ /`);
 `````
 
 
@@ -72,25 +44,7 @@ $($dotCall($string_replace, `~/`, `replace`, new $regex_constructor(`^~([a-z]+|\
 With rename=true
 
 `````js filename=intro
-const a = function($$0,$$1 ) {
-  const b = $$0;
-  const c = $$1;
-  debugger;
-  const d = $coerce( b, "string" );
-  const e = c === "/";
-  if (e) {
-    const f = `then-string ${d} /`;
-    return f;
-  }
-  else {
-    const g = $coerce( c, "string" );
-    const h = `else-string ${d} ${g}`;
-    return h;
-  }
-};
-const i = new $regex_constructor( "^~([a-z]+|\\/)", "" );
-const j = $dotCall( $string_replace, "~/", "replace", i, a );
-$( j );
+$( "then-string ~/ /" );
 `````
 
 
@@ -140,7 +94,9 @@ $(tmpCalleeParam);
 ## Todos triggered
 
 
+- (todo) Record this phase1.1 as a test case, please (A)
 - (todo) find test case where template ends up with multiple expressions
+- (todo) sticky flag, lastindex cases
 
 
 ## Globals

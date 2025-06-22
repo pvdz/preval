@@ -113,6 +113,7 @@ import { ternaryConstBounded } from '../reduce_static/ternary_const_bounded.mjs'
 import { ifTestAnded } from '../reduce_static/if_test_anded.mjs';
 import { ifTestTransitive } from '../reduce_static/if_test_transitive.mjs';
 import { ifBooly } from '../reduce_static/if_booly.mjs';
+import { stringReplacer } from '../reduce_static/string_replacer.mjs';
 
 //import { phasePrimitiveArgInlining } from '../reduce_static/phase_primitive_arg_inlining.mjs';
 
@@ -221,6 +222,7 @@ export const BASE_PHASE2_RULES_LIST = [
   ['ifTestAnded', ifTestAnded],
   ['ifTestTransitive', ifTestTransitive],
   ['ifBooly', ifBooly],
+  ['stringReplacer', stringReplacer],
 
   ['freeLoops', freeLoops], // Most other stuff should probably precede this?
 

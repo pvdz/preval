@@ -9,16 +9,27 @@ export function getUid() {
   return uid;
 }
 
+// Note: a $p is always set when creating a node. It is also set to blank when in the before visitor of any node in phase1
 export function $p() {
-  let pid = String(++uid);
+  // Notes:
+  // - pids should be unique across all nodes (there are various assertions making sure this stays)
+  // - pids offset at 1, so they can be falsy checked
+  // - pids are incremental in nature in VISIT order, NOT SOURCE order
+  //   - important: this may diverge if normalization injects a new node
+  //   - normalization/phase1 should NOT rely on this order property. phase1 will try to fix the order after which it's fine again.
+  // - there may be gaps between pids even sibling/traversal nodes (although this should be corrected after phase1..?)
+  const pid = ++uid; // offset 1
 
   return {
-    pid, // string. Incremental unique non-zero id (may have gaps between consecutive nodes but will be unique). Note: walk/visit order, NOT source order (just happens to be most of the time).
-    npid: uid, // number. this is +pid
+    // @deprecated in favor of npid
+    // get pid() { console.trace('Warning: accesses old pid'); return String(pid); }, // string.
+    npid: pid, // number
 
     // Add properties here in a comment but not actually (you would do this for perf) because it makes debugging more noisy
 
-    // prepare/normalize (these props may not exist due to new nodes)
+    // prepare/normalize (set during this phase but these props may not yet exist due to new nodes or traversal order)
+    // - pid, string, deprecated. mostly in visit order but not guaranteed.
+    // - npid, number. mostly in visit order but not guaranteed.
     // - lexScopeId // number. Debug. Every node with a $scope gets its own unique lexical scope id (phase1)
     // - nameMapping: undefined, // Map. Scope tracking for nodes that have a scope
     // - thisAccess: undefined, // boolean. For functions (not arrows), whether it access `this` anywhere in its own scope. Includes whether nested arrows access this in its scope. But not nested functions
@@ -40,7 +51,9 @@ export function $p() {
 
     // - returnBreakThrow // 'return' | 'break' | 'throw', used for dce in normalize
 
-    // phase1 (these props should exist after phase1/1.1/1.2 ...)
+    // phase1 (always re-creates $p from scratch). these props should exist after phase1/1.1/1.2 ...)
+    // - pid, string, deprecated. in visitation order (guaranteed)
+    // - npid, number. in visitation order (guaranteed)
     // - hasFuncDecl // bool. Prevent elimination of blocks containing function declarations
     // - readsArgumentsLen // bool. Does it read `arguments.length`?
     // - readsArgumentsLenAs // string. Name of the alias of `arguments.length` in this function, if any. note: when arguments.length is a statement, it is "used" but there is no alias

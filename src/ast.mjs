@@ -470,6 +470,9 @@ export function functionExpression(params, bodyArr, { id, generator, async, norm
 
   const body = blockStatement(bodyArr);
 
+  const p = $p();
+  p.hoistedVars = [];
+
   return {
     type: 'FunctionExpression',
     generator,
@@ -478,10 +481,7 @@ export function functionExpression(params, bodyArr, { id, generator, async, norm
     id,
     params,
     body,
-    $p: {
-      ...$p(),
-      hoistedVars: [],
-    },
+    $p: p
   };
 }
 

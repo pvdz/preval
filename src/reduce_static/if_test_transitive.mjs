@@ -182,7 +182,7 @@ function * readsInsideIfs(reads, ifNodes) {
   for (const ifNode of ifNodes) {
     // Get the pid before-middle-after the if-node. We need to know where each read falls.
     const pid1 = ifNode.$p.npid;
-    const pid2 = ifNode.alternate.$p.pid; // mid
+    const pid2 = ifNode.alternate.$p.npid; // mid
     const pid3 = ifNode.$p.lastPid;
 
     // Ok, now every read that falls within this if-node has a known range

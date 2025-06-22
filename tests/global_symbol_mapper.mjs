@@ -287,14 +287,16 @@ export function createBuiltinSymbolGlobals() {
     [symbo('JSON', 'parse')]: JSON.parse,
     [symbo('JSON', 'stringify')]: JSON.stringify,
 
+    // The static Promise functions still use their context (Promise etc) to determine subclassing.
+    // The binding is somewhat necessary. It'll break actual subclassing. And we'll have to cross that bridge when we get there.
     [symbo('Promise', 'prototype')]: Promise.prototype,
-    [symbo('Promise', 'all')]: Promise.all,
-    [symbo('Promise', 'allSettled')]: Promise.allSettled,
-    [symbo('Promise', 'any')]: Promise.any,
-    [symbo('Promise', 'race')]: Promise.race,
-    [symbo('Promise', 'reject')]: Promise.reject,
-    [symbo('Promise', 'resolve')]: Promise.resolve,
-    [symbo('Promise', 'try')]: Promise.try,
+    [symbo('Promise', 'all')]: Promise.all.bind(Promise),
+    [symbo('Promise', 'allSettled')]: Promise.allSettled.bind(Promise),
+    [symbo('Promise', 'any')]: Promise.any.bind(Promise),
+    [symbo('Promise', 'race')]: Promise.race.bind(Promise),
+    [symbo('Promise', 'reject')]: Promise.reject.bind(Promise),
+    [symbo('Promise', 'resolve')]: Promise.resolve.bind(Promise),
+    [symbo('Promise', 'try')]: Promise.try, // .bind(Promise), // node 22 doesnt have this yet, apparently
     [symbo('Promise', 'withResolvers')]: Promise.withResolvers,
     [symbo('promise', 'catch')]: Promise.prototype.catch,
     [symbo('promise', 'constructor')]: Promise.prototype.constructor,

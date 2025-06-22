@@ -5,25 +5,10 @@
 //       'bar'
 //
 
-import {
-  after,
-  ASSERT,
-  before,
-  currentState,
-  example,
-  group,
-  groupEnd,
-  hackyRule,
-  log, rule, todo,
-  vgroup,
-  vgroupEnd,
-  vlog,
-} from '../utils.mjs';
+import { after, ASSERT, before, currentState, example, group, groupEnd, hackyRule, log, rule, todo, vgroup, vgroupEnd, vlog, } from '../utils.mjs';
 import * as AST from '../ast.mjs';
-import { NODEJS_REQUIRE, symbo } from '../symbols_builtins.mjs';
+import { symbo } from '../symbols_builtins.mjs';
 import { SYMBOL_COERCE, SYMBOL_DOTCALL } from '../symbols_preval.mjs';
-import { RED, RESET } from '../constants.mjs';
-import { isNewRegexLit } from '../ast.mjs';
 import { createFreshVar } from '../bindings.mjs';
 
 export function stringReplacer(fdata) {

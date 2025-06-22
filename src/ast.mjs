@@ -1020,7 +1020,7 @@ export function tryStatement(block, param, handler, finalizer, paramNullAck = fa
       param,
       body: handler,
     } : null,
-    finalizer,
+    finalizer: finalizer ?? null, // should not be undefined
     $p: $p(),
   };
 }

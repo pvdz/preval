@@ -138,7 +138,6 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
   do {
     changed = false;
     transformProgram(ast);
-    //stmt(null, 'ast', -1, ast, false, false);
     if (VERBOSE_TRACING && firstTime && passes === 0) {
       currentState(fdata, 'post normalize');
     }
@@ -783,6 +782,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
     // This is used for `new` and regular function calls
     // Note: spreads happen in argument order, before evaluating the next argument. We must spread them in an array and then use the arg as new spread-arg.
     // Special case: when the spread case is the last case, the double spread is unnecessary as it only serves to preserve evaluation order of subsequent args.
+
     args.forEach((anode, i) => {
       if (anode.type === 'SpreadElement') {
         if (i === args.length - 1) { // this spread is last arg? use simpler transform
@@ -3103,7 +3103,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
       case 'CallExpression': {
         let callee = node.callee; // after dotcall, this will be the first arg of dotcall (this way we can rename it transparently)
         const nodeArgs = node.arguments;
-        const firstSpread = nodeArgs.length > 0 && nodeArgs[0].type === 'SpreadElement';
+        // const firstSpread = nodeArgs.length > 0 && nodeArgs[0].type === 'SpreadElement';
 
         if (callee.type === 'Super') {
           // Long story short: super() is super annoying to eliminate because of various intricate syntactical rules
@@ -10360,7 +10360,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
             const newArgs = [];
             const newNodes = [];
-            normalizeCallArgs(args, newArgs, newNodes);
+            normalizeCallArgs(nodeArgs, newArgs, newNodes);
             node.arguments = newArgs;
             body.splice(i, 0,
               ...newNodes,
@@ -10384,37 +10384,29 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
             const newArgs = [];
             const newNodes = [];
-            let tmpName;
             if (funcName === SYMBOL_COERCE) {
               vlog('Skipping callee for', funcName);
-              tmpName = SYMBOL_COERCE;
             }
             else if (funcName === SYMBOL_FRFR) {
               vlog('Skipping callee for', funcName);
-              tmpName = SYMBOL_FRFR;
             }
             else if (isDotcall) {
               vlog('Skipping callee for', funcName);
-              tmpName = SYMBOL_DOTCALL;
             }
             else if (funcName === SYMBOL_FORIN) {
               vlog('Skipping callee for', funcName);
-              tmpName = SYMBOL_DOTCALL;
             }
             else if (funcName === SYMBOL_FOROF) {
               vlog('Skipping callee for', funcName);
-              tmpName = SYMBOL_DOTCALL;
             }
             else if (funcName === SYMBOL_COERCE) {
               vlog('Skipping callee for', funcName);
-              tmpName = SYMBOL_COERCE;
             }
             else if (BUILTIN_SYMBOLS.has(funcName)) {
               vlog('Skipping callee for builtin', funcName);
-              tmpName = funcName;
             }
             else {
-              tmpName = createFreshVar('tmpCallCallee', fdata);
+              const tmpName = createFreshVar('tmpCallCallee', fdata);
               newNodes.push(AST.varStatement('const', tmpName, AST.identifier(funcName)));
             }
 

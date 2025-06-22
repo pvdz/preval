@@ -267,8 +267,9 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         break;
       }
 
-      case 'AwaitExpression:after': {
+      case 'AwaitExpression:before': {
         // Tag the current function body as using await.
+        vlog('Marking parent function as using await');
         funcNodeStack[funcNodeStack.length - 1].$p.usesAwait = true;
         break;
       }
@@ -1275,8 +1276,9 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         break;
       }
 
-      case 'YieldExpression:after': {
+      case 'YieldExpression:before': {
         // Tag the current function body as using yield.
+        vlog('Marking parent function as using yield');
         funcNodeStack[funcNodeStack.length - 1].$p.usesYield = true;
         break;
       }

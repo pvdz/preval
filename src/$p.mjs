@@ -78,6 +78,8 @@ export function $p() {
     // - primitiveNodeValue // any. When AST.isPrimitive(node) is true this could be the value. otherwise ignore.
     // - lastPid // number. All nodes. Last pid of child node. Note: if it has no child-nodes then pid==lastPid.
     // - paramVarDeclRef // for func.params (only), the local binding var decl for this param if present, available after phase1, { blockBody, blockIndex, name }. false if set by phase1 but not used. if undefined then it hasnt gone through phase1 yet.
+    // - usesAwait // bool, func nodes. Set to true when at least one `await` usage was seen in this node
+    // - usesYield // bool, func nodes. Set to true when at least one `yield` usage was seen in this node
 
     // - predictable // bool. in freeing only; statements only; tells you whether the statement is predictable or not. this obviously excludes the reference check, purely the statement itself (and any expressions referenced).
   };

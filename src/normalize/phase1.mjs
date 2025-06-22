@@ -267,6 +267,12 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         break;
       }
 
+      case 'AwaitExpression:after': {
+        // Tag the current function body as using await.
+        funcNodeStack[funcNodeStack.length - 1].$p.usesAwait = true;
+        break;
+      }
+
       case 'Program:before': {
         funcNodeStack.push(node);
         ifPidStack.push(0);
@@ -1268,6 +1274,13 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         loopNodeStack.pop();
         break;
       }
+
+      case 'YieldExpression:after': {
+        // Tag the current function body as using yield.
+        funcNodeStack[funcNodeStack.length - 1].$p.usesYield = true;
+        break;
+      }
+
     }
     //const mafter = enableTiming && performance.now();
     //TIMING[key] = (TIMING[key] | 0) + (mafter - mbefore);

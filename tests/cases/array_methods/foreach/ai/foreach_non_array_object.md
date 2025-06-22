@@ -19,14 +19,19 @@ Array.prototype.forEach.call({0:'a',1:'b',length:2}, function(x) { $(x); });
 
 
 `````js filename=intro
-const tmpMCP$1 /*:(unknown)=>undefined*/ = function ($$0) {
-  const x /*:unknown*/ = $$0;
-  debugger;
-  $(x);
-  return undefined;
-};
 const tmpMCP /*:object*/ /*truthy*/ = { [0]: `a`, [1]: `b`, length: 2 };
-$dotCall($array_forEach, tmpMCP, undefined, tmpMCP$1);
+const tmpLambdaForeachCounterHas /*:boolean*/ = 0 in tmpMCP;
+if (tmpLambdaForeachCounterHas) {
+  const tmpLambdaForeachCounterVal /*:unknown*/ = tmpMCP[0];
+  $(tmpLambdaForeachCounterVal);
+} else {
+}
+const tmpLambdaForeachCounterHas$1 /*:boolean*/ = 1 in tmpMCP;
+if (tmpLambdaForeachCounterHas$1) {
+  const tmpLambdaForeachCounterVal$1 /*:unknown*/ = tmpMCP[1];
+  $(tmpLambdaForeachCounterVal$1);
+} else {
+}
 `````
 
 
@@ -34,10 +39,13 @@ $dotCall($array_forEach, tmpMCP, undefined, tmpMCP$1);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpMCP$1 = function (x) {
-  $(x);
-};
-$dotCall($array_forEach, { [0]: `a`, [1]: `b`, length: 2 }, undefined, tmpMCP$1);
+const tmpMCP = { [0]: `a`, [1]: `b`, length: 2 };
+if (0 in tmpMCP) {
+  $(tmpMCP[0]);
+}
+if (1 in tmpMCP) {
+  $(tmpMCP[1]);
+}
 `````
 
 
@@ -45,18 +53,21 @@ $dotCall($array_forEach, { [0]: `a`, [1]: `b`, length: 2 }, undefined, tmpMCP$1)
 With rename=true
 
 `````js filename=intro
-const a = function($$0 ) {
-  const b = $$0;
-  debugger;
-  $( b );
-  return undefined;
-};
-const c = {
+const a = {
   [ 0 ]: "a",
   [ 1 ]: "b",
   length: 2,
 };
-$dotCall( $array_forEach, c, undefined, a );
+const b = 0 in a;
+if (b) {
+  const c = a[ 0 ];
+  $( c );
+}
+const d = 1 in a;
+if (d) {
+  const e = a[ 1 ];
+  $( e );
+}
 `````
 
 
@@ -81,7 +92,7 @@ $dotCall(tmpMCF, tmpMCOO, `call`, tmpMCP, tmpMCP$1);
 ## Todos triggered
 
 
-- (todo) type trackeed tricks can possibly support static $array_forEach
+- (todo) objects in isFree check
 
 
 ## Globals

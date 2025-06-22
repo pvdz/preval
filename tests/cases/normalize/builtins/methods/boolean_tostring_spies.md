@@ -49,7 +49,6 @@ $spy( "b" );
 const x = $spy(`a`);
 const y = $spy(`b`);
 const tmpMCF = $boolean_toString;
-$dotCall($boolean_toString, true, `toString`);
 `````
 
 

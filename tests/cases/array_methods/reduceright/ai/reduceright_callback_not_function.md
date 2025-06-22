@@ -23,10 +23,9 @@ try {
 
 `````js filename=intro
 try {
-  const tmpThrowArg$1 /*:object*/ /*truthy*/ = new $typeError_constructor(
-    `[Preval] Attempting to call a value that cannot be called: \`tmpLambdaReduceRightOut = \$dotCall(null, undefined, undefined, tmpLambdaReduceRightOut, tmpLambdaReduceRightVal, tmpLambdaReduceRightCounter, tmpMCOO);\``,
-  );
-  throw tmpThrowArg$1;
+  const tmpMCOO /*:array*/ /*truthy*/ = [1, 2];
+  const x /*:array*/ /*truthy*/ = $dotCall($array_reduceRight, tmpMCOO, `reduceRight`, null);
+  $(x);
 } catch (e) {
   const tmpCalleeParam /*:boolean*/ = e instanceof TypeError;
   $(tmpCalleeParam);
@@ -39,10 +38,7 @@ try {
 
 `````js filename=intro
 try {
-  const tmpThrowArg$1 = new $typeError_constructor(
-    `[Preval] Attempting to call a value that cannot be called: \`tmpLambdaReduceRightOut = \$dotCall(null, undefined, undefined, tmpLambdaReduceRightOut, tmpLambdaReduceRightVal, tmpLambdaReduceRightCounter, tmpMCOO);\``,
-  );
-  throw tmpThrowArg$1;
+  $($dotCall($array_reduceRight, [1, 2], `reduceRight`, null));
 } catch (e) {
   $(e instanceof TypeError);
 }
@@ -54,12 +50,13 @@ With rename=true
 
 `````js filename=intro
 try {
-  const a = new $typeError_constructor( "[Preval] Attempting to call a value that cannot be called: `tmpLambdaReduceRightOut = $dotCall(null, undefined, undefined, tmpLambdaReduceRightOut, tmpLambdaReduceRightVal, tmpLambdaReduceRightCounter, tmpMCOO);`" );
-  throw a;
+  const a = [ 1, 2 ];
+  const b = $dotCall( $array_reduceRight, a, "reduceRight", null );
+  $( b );
 }
-catch (b) {
-  const c = b instanceof TypeError;
-  $( c );
+catch (c) {
+  const d = c instanceof TypeError;
+  $( d );
 }
 `````
 
@@ -83,15 +80,9 @@ try {
 ## Todos triggered
 
 
-- (todo) Support this binary expression operator:
+- (todo) arr mutation may be able to inline this method: $array_reduceRight
 - (todo) can try-escaping support this expr node type? ArrayExpression
-- (todo) can try-escaping support this expr node type? Literal
-- (todo) can try-escaping support this expr node type? NewExpression
-- (todo) can try-escaping support this expr node type? ObjectExpression
-- (todo) first arg to $dotcall should be a reference to a function: Literal
-- (todo) objects in isFree check
 - (todo) support array reads statement type VarStatement
-- (todo) support array reads statement type WhileStatement
 - (todo) type trackeed tricks can possibly support static $array_reduceRight
 
 

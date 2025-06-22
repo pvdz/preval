@@ -21,15 +21,47 @@ $(result);
 `````js filename=intro
 const tmpCalleeParam /*:object*/ /*truthy*/ = { [0]: `a`, [1]: `b`, length: 2 };
 const obj /*:unknown*/ = $(tmpCalleeParam);
-const tmpMCP /*:(unknown, unknown)=>primitive*/ = function ($$0, $$1) {
-  const acc /*:unknown*/ = $$0;
-  const val /*:unknown*/ = $$1;
-  debugger;
-  const tmpReturnArg /*:primitive*/ = acc + val;
-  return tmpReturnArg;
-};
-const result /*:array*/ /*truthy*/ = $dotCall($array_reduce, obj, undefined, tmpMCP);
-$(result);
+const tmpLambdaReduceLen /*:unknown*/ = obj.length;
+const tmpLambdaReduce1st /*:object*/ /*truthy*/ = {};
+let tmpLambdaReduceOut /*:unknown*/ = tmpLambdaReduce1st;
+const tmpLambdaReduceTest /*:boolean*/ = 0 < tmpLambdaReduceLen;
+if (tmpLambdaReduceTest) {
+  const tmpLambdaReduceHas /*:boolean*/ = 0 in obj;
+  if (tmpLambdaReduceHas) {
+    tmpLambdaReduceOut = obj[0];
+  } else {
+  }
+  let tmpClusterSSA_tmpLambdaReduceCounter /*:number*/ = 1;
+  while ($LOOP_UNROLL_10) {
+    const tmpLambdaReduceTest$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaReduceCounter < tmpLambdaReduceLen;
+    if (tmpLambdaReduceTest$1) {
+      const tmpLambdaReduceHas$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaReduceCounter in obj;
+      if (tmpLambdaReduceHas$1) {
+        const tmpLambdaReduceVal$1 /*:unknown*/ = obj[tmpClusterSSA_tmpLambdaReduceCounter];
+        const tmpLambdaReduceBad$1 /*:boolean*/ = tmpLambdaReduceOut === tmpLambdaReduce1st;
+        if (tmpLambdaReduceBad$1) {
+          tmpLambdaReduceOut = tmpLambdaReduceVal$1;
+        } else {
+          tmpLambdaReduceOut = tmpLambdaReduceOut + tmpLambdaReduceVal$1;
+        }
+      } else {
+      }
+      tmpClusterSSA_tmpLambdaReduceCounter = tmpClusterSSA_tmpLambdaReduceCounter + 1;
+    } else {
+      break;
+    }
+  }
+} else {
+}
+const tmpLambdaReduceTTE /*:boolean*/ = tmpLambdaReduceOut === tmpLambdaReduce1st;
+if (tmpLambdaReduceTTE) {
+  const tmpLambdaReduceErr /*:object*/ /*truthy*/ = new $typeError_constructor(
+    `[Preval] Called .reduce without init on an array without values: \`const\\nresult\\n=\\n\$dotCall(\$array_reduce,\\nobj,\\nundefined,\\ntmpMCP);\``,
+  );
+  throw tmpLambdaReduceErr;
+} else {
+  $(tmpLambdaReduceOut);
+}
 `````
 
 
@@ -38,12 +70,38 @@ $(result);
 
 `````js filename=intro
 const obj = $({ [0]: `a`, [1]: `b`, length: 2 });
-$(
-  $dotCall($array_reduce, obj, undefined, function (acc, val) {
-    const tmpReturnArg = acc + val;
-    return tmpReturnArg;
-  }),
-);
+const tmpLambdaReduceLen = obj.length;
+const tmpLambdaReduce1st = {};
+let tmpLambdaReduceOut = tmpLambdaReduce1st;
+if (0 < tmpLambdaReduceLen) {
+  if (0 in obj) {
+    tmpLambdaReduceOut = obj[0];
+  }
+  let tmpClusterSSA_tmpLambdaReduceCounter = 1;
+  while (true) {
+    if (tmpClusterSSA_tmpLambdaReduceCounter < tmpLambdaReduceLen) {
+      if (tmpClusterSSA_tmpLambdaReduceCounter in obj) {
+        const tmpLambdaReduceVal$1 = obj[tmpClusterSSA_tmpLambdaReduceCounter];
+        if (tmpLambdaReduceOut === tmpLambdaReduce1st) {
+          tmpLambdaReduceOut = tmpLambdaReduceVal$1;
+        } else {
+          tmpLambdaReduceOut = tmpLambdaReduceOut + tmpLambdaReduceVal$1;
+        }
+      }
+      tmpClusterSSA_tmpLambdaReduceCounter = tmpClusterSSA_tmpLambdaReduceCounter + 1;
+    } else {
+      break;
+    }
+  }
+}
+if (tmpLambdaReduceOut === tmpLambdaReduce1st) {
+  const tmpLambdaReduceErr = new $typeError_constructor(
+    `[Preval] Called .reduce without init on an array without values: \`const\\nresult\\n=\\n\$dotCall(\$array_reduce,\\nobj,\\nundefined,\\ntmpMCP);\``,
+  );
+  throw tmpLambdaReduceErr;
+} else {
+  $(tmpLambdaReduceOut);
+}
 `````
 
 
@@ -57,15 +115,45 @@ const a = {
   length: 2,
 };
 const b = $( a );
-const c = function($$0,$$1 ) {
-  const d = $$0;
-  const e = $$1;
-  debugger;
-  const f = d + e;
-  return f;
-};
-const g = $dotCall( $array_reduce, b, undefined, c );
-$( g );
+const c = b.length;
+const d = {};
+let e = d;
+const f = 0 < c;
+if (f) {
+  const g = 0 in b;
+  if (g) {
+    e = b[ 0 ];
+  }
+  let h = 1;
+  while ($LOOP_UNROLL_10) {
+    const i = h < c;
+    if (i) {
+      const j = h in b;
+      if (j) {
+        const k = b[ h ];
+        const l = e === d;
+        if (l) {
+          e = k;
+        }
+        else {
+          e = e + k;
+        }
+      }
+      h = h + 1;
+    }
+    else {
+      break;
+    }
+  }
+}
+const m = e === d;
+if (m) {
+  const n = new $typeError_constructor( "[Preval] Called .reduce without init on an array without values: `const\\nresult\\n=\\n$dotCall($array_reduce,\\nobj,\\nundefined,\\ntmpMCP);`" );
+  throw n;
+}
+else {
+  $( e );
+}
 `````
 
 
@@ -93,7 +181,7 @@ $(result);
 ## Todos triggered
 
 
-- (todo) type trackeed tricks can possibly support static $array_reduce
+None
 
 
 ## Globals

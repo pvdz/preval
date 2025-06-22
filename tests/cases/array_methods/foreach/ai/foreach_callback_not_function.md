@@ -24,10 +24,8 @@ try {
 
 `````js filename=intro
 try {
-  const tmpThrowArg /*:object*/ /*truthy*/ = new $typeError_constructor(
-    `[Preval] Attempting to call a value that cannot be called: \`\$dotCall(null, undefined, undefined, tmpLambdaForeachCounterVal, tmpLambdaForeachCounter, tmpMCOO);\``,
-  );
-  throw tmpThrowArg;
+  const tmpMCOO /*:array*/ /*truthy*/ = [1, 2];
+  $dotCall($array_forEach, tmpMCOO, `forEach`, null);
 } catch (e) {
   const tmpCalleeParam /*:boolean*/ = e instanceof TypeError;
   $(tmpCalleeParam);
@@ -40,10 +38,7 @@ try {
 
 `````js filename=intro
 try {
-  const tmpThrowArg = new $typeError_constructor(
-    `[Preval] Attempting to call a value that cannot be called: \`\$dotCall(null, undefined, undefined, tmpLambdaForeachCounterVal, tmpLambdaForeachCounter, tmpMCOO);\``,
-  );
-  throw tmpThrowArg;
+  $dotCall($array_forEach, [1, 2], `forEach`, null);
 } catch (e) {
   $(e instanceof TypeError);
 }
@@ -55,8 +50,8 @@ With rename=true
 
 `````js filename=intro
 try {
-  const a = new $typeError_constructor( "[Preval] Attempting to call a value that cannot be called: `$dotCall(null, undefined, undefined, tmpLambdaForeachCounterVal, tmpLambdaForeachCounter, tmpMCOO);`" );
-  throw a;
+  const a = [ 1, 2 ];
+  $dotCall( $array_forEach, a, "forEach", null );
 }
 catch (b) {
   const c = b instanceof TypeError;
@@ -83,14 +78,9 @@ try {
 ## Todos triggered
 
 
-- (todo) Support this binary expression operator:
+- (todo) arr mutation may be able to inline this method: $array_forEach
 - (todo) can try-escaping support this expr node type? ArrayExpression
-- (todo) can try-escaping support this expr node type? Literal
-- (todo) can try-escaping support this expr node type? NewExpression
-- (todo) first arg to $dotcall should be a reference to a function: Literal
 - (todo) support array reads statement type ExpressionStatement
-- (todo) support array reads statement type VarStatement
-- (todo) support array reads statement type WhileStatement
 - (todo) type trackeed tricks can possibly support static $array_forEach
 
 

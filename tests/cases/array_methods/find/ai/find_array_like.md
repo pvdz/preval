@@ -21,14 +21,36 @@ $(result);
 `````js filename=intro
 const tmpCalleeParam /*:object*/ /*truthy*/ = { [0]: `a`, [1]: `b`, [2]: `c`, length: 3 };
 const obj /*:unknown*/ = $(tmpCalleeParam);
-const tmpMCP /*:(unknown)=>boolean*/ = function ($$0) {
-  const x /*:unknown*/ = $$0;
-  debugger;
-  const tmpReturnArg /*:boolean*/ = x === `b`;
-  return tmpReturnArg;
-};
-const result /*:unknown*/ /*truthy*/ = $dotCall($array_find, obj, undefined, tmpMCP);
-$(result);
+const tmpLambdaFindLen /*:unknown*/ = obj.length;
+const tmpLambdaFindTest /*:boolean*/ = 0 < tmpLambdaFindLen;
+if (tmpLambdaFindTest) {
+  const tmpLambdaFindVal /*:unknown*/ = obj[0];
+  const tmpLambdaFindNow /*:boolean*/ = tmpLambdaFindVal === `b`;
+  if (tmpLambdaFindNow) {
+    $(`b`);
+  } else {
+    let tmpLambdaFindOut /*:primitive*/ = undefined;
+    let tmpClusterSSA_tmpLambdaFindCounter /*:number*/ = 1;
+    while ($LOOP_UNROLL_10) {
+      const tmpLambdaFindTest$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaFindCounter < tmpLambdaFindLen;
+      if (tmpLambdaFindTest$1) {
+        const tmpLambdaFindVal$1 /*:unknown*/ = obj[tmpClusterSSA_tmpLambdaFindCounter];
+        const tmpLambdaFindNow$1 /*:boolean*/ = tmpLambdaFindVal$1 === `b`;
+        if (tmpLambdaFindNow$1) {
+          tmpLambdaFindOut = `b`;
+          break;
+        } else {
+          tmpClusterSSA_tmpLambdaFindCounter = tmpClusterSSA_tmpLambdaFindCounter + 1;
+        }
+      } else {
+        break;
+      }
+    }
+    $(tmpLambdaFindOut);
+  }
+} else {
+  $(undefined);
+}
 `````
 
 
@@ -37,12 +59,30 @@ $(result);
 
 `````js filename=intro
 const obj = $({ [0]: `a`, [1]: `b`, [2]: `c`, length: 3 });
-$(
-  $dotCall($array_find, obj, undefined, function (x) {
-    const tmpReturnArg = x === `b`;
-    return tmpReturnArg;
-  }),
-);
+const tmpLambdaFindLen = obj.length;
+if (0 < tmpLambdaFindLen) {
+  if (obj[0] === `b`) {
+    $(`b`);
+  } else {
+    let tmpLambdaFindOut = undefined;
+    let tmpClusterSSA_tmpLambdaFindCounter = 1;
+    while (true) {
+      if (tmpClusterSSA_tmpLambdaFindCounter < tmpLambdaFindLen) {
+        if (obj[tmpClusterSSA_tmpLambdaFindCounter] === `b`) {
+          tmpLambdaFindOut = `b`;
+          break;
+        } else {
+          tmpClusterSSA_tmpLambdaFindCounter = tmpClusterSSA_tmpLambdaFindCounter + 1;
+        }
+      } else {
+        break;
+      }
+    }
+    $(tmpLambdaFindOut);
+  }
+} else {
+  $(undefined);
+}
 `````
 
 
@@ -57,14 +97,40 @@ const a = {
   length: 3,
 };
 const b = $( a );
-const c = function($$0 ) {
-  const d = $$0;
-  debugger;
-  const e = d === "b";
-  return e;
-};
-const f = $dotCall( $array_find, b, undefined, c );
-$( f );
+const c = b.length;
+const d = 0 < c;
+if (d) {
+  const e = b[ 0 ];
+  const f = e === "b";
+  if (f) {
+    $( "b" );
+  }
+  else {
+    let g = undefined;
+    let h = 1;
+    while ($LOOP_UNROLL_10) {
+      const i = h < c;
+      if (i) {
+        const j = b[ h ];
+        const k = j === "b";
+        if (k) {
+          g = "b";
+          break;
+        }
+        else {
+          h = h + 1;
+        }
+      }
+      else {
+        break;
+      }
+    }
+    $( g );
+  }
+}
+else {
+  $( undefined );
+}
 `````
 
 
@@ -91,7 +157,7 @@ $(result);
 ## Todos triggered
 
 
-- (todo) type trackeed tricks can possibly support static $array_find
+- (todo) regular property access of an ident feels tricky;
 
 
 ## Globals

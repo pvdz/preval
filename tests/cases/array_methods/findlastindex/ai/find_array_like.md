@@ -21,14 +21,37 @@ $(result);
 `````js filename=intro
 const tmpCalleeParam /*:object*/ /*truthy*/ = { [0]: `a`, [1]: `b`, [2]: `c`, length: 3 };
 const obj /*:unknown*/ = $(tmpCalleeParam);
-const tmpMCP /*:(unknown)=>boolean*/ = function ($$0) {
-  const x /*:unknown*/ = $$0;
-  debugger;
-  const tmpReturnArg /*:boolean*/ = x === `b`;
-  return tmpReturnArg;
-};
-const result /*:number*/ = $dotCall($array_findLastIndex, obj, undefined, tmpMCP);
-$(result);
+const tmpLambdaFindLastIndexLen /*:unknown*/ = obj.length;
+const tmpLambdaFindLastIndexCounter /*:number*/ = tmpLambdaFindLastIndexLen - 1;
+const tmpLambdaFindLastIndexTest /*:boolean*/ = tmpLambdaFindLastIndexCounter >= 0;
+if (tmpLambdaFindLastIndexTest) {
+  const tmpLambdaFindLastIndexVal /*:unknown*/ = obj[tmpLambdaFindLastIndexCounter];
+  const tmpLambdaFindLastIndexNow /*:boolean*/ = tmpLambdaFindLastIndexVal === `b`;
+  if (tmpLambdaFindLastIndexNow) {
+    $(tmpLambdaFindLastIndexCounter);
+  } else {
+    let tmpLambdaFindLastIndexOut /*:unknown*/ = -1;
+    let tmpClusterSSA_tmpLambdaFindLastIndexCounter /*:number*/ = tmpLambdaFindLastIndexCounter - 1;
+    while ($LOOP_UNROLL_10) {
+      const tmpLambdaFindLastIndexTest$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaFindLastIndexCounter >= 0;
+      if (tmpLambdaFindLastIndexTest$1) {
+        const tmpLambdaFindLastIndexVal$1 /*:unknown*/ = obj[tmpClusterSSA_tmpLambdaFindLastIndexCounter];
+        const tmpLambdaFindLastIndexNow$1 /*:boolean*/ = tmpLambdaFindLastIndexVal$1 === `b`;
+        if (tmpLambdaFindLastIndexNow$1) {
+          tmpLambdaFindLastIndexOut = tmpClusterSSA_tmpLambdaFindLastIndexCounter;
+          break;
+        } else {
+          tmpClusterSSA_tmpLambdaFindLastIndexCounter = tmpClusterSSA_tmpLambdaFindLastIndexCounter - 1;
+        }
+      } else {
+        break;
+      }
+    }
+    $(tmpLambdaFindLastIndexOut);
+  }
+} else {
+  $(-1);
+}
 `````
 
 
@@ -37,12 +60,30 @@ $(result);
 
 `````js filename=intro
 const obj = $({ [0]: `a`, [1]: `b`, [2]: `c`, length: 3 });
-$(
-  $dotCall($array_findLastIndex, obj, undefined, function (x) {
-    const tmpReturnArg = x === `b`;
-    return tmpReturnArg;
-  }),
-);
+const tmpLambdaFindLastIndexCounter = obj.length - 1;
+if (tmpLambdaFindLastIndexCounter >= 0) {
+  if (obj[tmpLambdaFindLastIndexCounter] === `b`) {
+    $(tmpLambdaFindLastIndexCounter);
+  } else {
+    let tmpLambdaFindLastIndexOut = -1;
+    let tmpClusterSSA_tmpLambdaFindLastIndexCounter = tmpLambdaFindLastIndexCounter - 1;
+    while (true) {
+      if (tmpClusterSSA_tmpLambdaFindLastIndexCounter >= 0) {
+        if (obj[tmpClusterSSA_tmpLambdaFindLastIndexCounter] === `b`) {
+          tmpLambdaFindLastIndexOut = tmpClusterSSA_tmpLambdaFindLastIndexCounter;
+          break;
+        } else {
+          tmpClusterSSA_tmpLambdaFindLastIndexCounter = tmpClusterSSA_tmpLambdaFindLastIndexCounter - 1;
+        }
+      } else {
+        break;
+      }
+    }
+    $(tmpLambdaFindLastIndexOut);
+  }
+} else {
+  $(-1);
+}
 `````
 
 
@@ -57,14 +98,41 @@ const a = {
   length: 3,
 };
 const b = $( a );
-const c = function($$0 ) {
-  const d = $$0;
-  debugger;
-  const e = d === "b";
-  return e;
-};
-const f = $dotCall( $array_findLastIndex, b, undefined, c );
-$( f );
+const c = b.length;
+const d = c - 1;
+const e = d >= 0;
+if (e) {
+  const f = b[ d ];
+  const g = f === "b";
+  if (g) {
+    $( d );
+  }
+  else {
+    let h = -1;
+    let i = d - 1;
+    while ($LOOP_UNROLL_10) {
+      const j = i >= 0;
+      if (j) {
+        const k = b[ i ];
+        const l = k === "b";
+        if (l) {
+          h = i;
+          break;
+        }
+        else {
+          i = i - 1;
+        }
+      }
+      else {
+        break;
+      }
+    }
+    $( h );
+  }
+}
+else {
+  $( -1 );
+}
 `````
 
 
@@ -91,7 +159,7 @@ $(result);
 ## Todos triggered
 
 
-- (todo) type trackeed tricks can possibly support static $array_findLastIndex
+None
 
 
 ## Globals

@@ -18,15 +18,24 @@ $(x);
 
 
 `````js filename=intro
-const tmpMCP$1 /*:(unknown)=>undefined*/ = function ($$0) {
-  const x$1 /*:unknown*/ = $$0;
-  debugger;
-  $(x$1);
-  return undefined;
-};
 const tmpMCP /*:object*/ /*truthy*/ = { [0]: `a`, [1]: `b`, length: 2 };
-const x /*:array*/ /*truthy*/ = $dotCall($array_map, tmpMCP, undefined, tmpMCP$1);
-$(x);
+const tmpLambdaMapHas /*:boolean*/ = 0 in tmpMCP;
+const tmpLambdaMapOut /*:array*/ /*truthy*/ = [];
+if (tmpLambdaMapHas) {
+  const tmpLambdaMapVal /*:unknown*/ = tmpMCP[0];
+  $(tmpLambdaMapVal);
+  tmpLambdaMapOut[0] = undefined;
+} else {
+}
+const tmpLambdaMapHas$1 /*:boolean*/ = 1 in tmpMCP;
+if (tmpLambdaMapHas$1) {
+  const tmpLambdaMapVal$1 /*:unknown*/ = tmpMCP[1];
+  $(tmpLambdaMapVal$1);
+  tmpLambdaMapOut[1] = undefined;
+} else {
+}
+tmpLambdaMapOut.length = 2;
+$(tmpLambdaMapOut);
 `````
 
 
@@ -34,10 +43,19 @@ $(x);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpMCP$1 = function (x$1) {
-  $(x$1);
-};
-$($dotCall($array_map, { [0]: `a`, [1]: `b`, length: 2 }, undefined, tmpMCP$1));
+const tmpMCP = { [0]: `a`, [1]: `b`, length: 2 };
+const tmpLambdaMapHas = 0 in tmpMCP;
+const tmpLambdaMapOut = [];
+if (tmpLambdaMapHas) {
+  $(tmpMCP[0]);
+  tmpLambdaMapOut[0] = undefined;
+}
+if (1 in tmpMCP) {
+  $(tmpMCP[1]);
+  tmpLambdaMapOut[1] = undefined;
+}
+tmpLambdaMapOut.length = 2;
+$(tmpLambdaMapOut);
 `````
 
 
@@ -45,19 +63,26 @@ $($dotCall($array_map, { [0]: `a`, [1]: `b`, length: 2 }, undefined, tmpMCP$1));
 With rename=true
 
 `````js filename=intro
-const a = function($$0 ) {
-  const b = $$0;
-  debugger;
-  $( b );
-  return undefined;
-};
-const c = {
+const a = {
   [ 0 ]: "a",
   [ 1 ]: "b",
   length: 2,
 };
-const d = $dotCall( $array_map, c, undefined, a );
-$( d );
+const b = 0 in a;
+const c = [];
+if (b) {
+  const d = a[ 0 ];
+  $( d );
+  c[0] = undefined;
+}
+const e = 1 in a;
+if (e) {
+  const f = a[ 1 ];
+  $( f );
+  c[1] = undefined;
+}
+c.length = 2;
+$( c );
 `````
 
 
@@ -83,7 +108,9 @@ $(x);
 ## Todos triggered
 
 
-- (todo) type trackeed tricks can possibly support static $array_map
+- (todo) objects in isFree check
+- (todo) support array reads statement type VarStatement
+- (todo) support array reads statement type WhileStatement
 
 
 ## Globals

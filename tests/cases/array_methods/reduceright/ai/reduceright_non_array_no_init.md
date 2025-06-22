@@ -21,15 +21,48 @@ $(result);
 `````js filename=intro
 const tmpCalleeParam /*:object*/ /*truthy*/ = { [0]: `a`, [1]: `b`, length: 2 };
 const obj /*:unknown*/ = $(tmpCalleeParam);
-const tmpMCP /*:(unknown, unknown)=>primitive*/ = function ($$0, $$1) {
-  const acc /*:unknown*/ = $$0;
-  const val /*:unknown*/ = $$1;
-  debugger;
-  const tmpReturnArg /*:primitive*/ = acc + val;
-  return tmpReturnArg;
-};
-const result /*:array*/ /*truthy*/ = $dotCall($array_reduceRight, obj, undefined, tmpMCP);
-$(result);
+const tmpLambdaReduceRightLen /*:unknown*/ = obj.length;
+const tmpLambdaReduceRightCounter /*:number*/ = tmpLambdaReduceRightLen - 1;
+const tmpLambdaReduceRight1st /*:object*/ /*truthy*/ = {};
+let tmpLambdaReduceRightOut /*:unknown*/ = tmpLambdaReduceRight1st;
+const tmpLambdaReduceRightTest /*:boolean*/ = tmpLambdaReduceRightCounter >= 0;
+if (tmpLambdaReduceRightTest) {
+  const tmpLambdaReduceRightHas /*:boolean*/ = tmpLambdaReduceRightCounter in obj;
+  if (tmpLambdaReduceRightHas) {
+    tmpLambdaReduceRightOut = obj[tmpLambdaReduceRightCounter];
+  } else {
+  }
+  let tmpClusterSSA_tmpLambdaReduceRightCounter /*:number*/ = tmpLambdaReduceRightCounter - 1;
+  while ($LOOP_UNROLL_10) {
+    const tmpLambdaReduceRightTest$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaReduceRightCounter >= 0;
+    if (tmpLambdaReduceRightTest$1) {
+      const tmpLambdaReduceRightHas$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaReduceRightCounter in obj;
+      if (tmpLambdaReduceRightHas$1) {
+        const tmpLambdaReduceRightVal$1 /*:unknown*/ = obj[tmpClusterSSA_tmpLambdaReduceRightCounter];
+        const tmpLambdaReduceRightBad$1 /*:boolean*/ = tmpLambdaReduceRightOut === tmpLambdaReduceRight1st;
+        if (tmpLambdaReduceRightBad$1) {
+          tmpLambdaReduceRightOut = tmpLambdaReduceRightVal$1;
+        } else {
+          tmpLambdaReduceRightOut = tmpLambdaReduceRightOut + tmpLambdaReduceRightVal$1;
+        }
+      } else {
+      }
+      tmpClusterSSA_tmpLambdaReduceRightCounter = tmpClusterSSA_tmpLambdaReduceRightCounter - 1;
+    } else {
+      break;
+    }
+  }
+} else {
+}
+const tmpLambdaReduceRightTTE /*:boolean*/ = tmpLambdaReduceRightOut === tmpLambdaReduceRight1st;
+if (tmpLambdaReduceRightTTE) {
+  const tmpLambdaReduceRightErr /*:object*/ /*truthy*/ = new $typeError_constructor(
+    `[Preval] Called .reduceRight without init on an array without values: \`const\\nresult\\n=\\n\$dotCall(\$array_reduceRight,\\nobj,\\nundefined,\\ntmpMCP);\``,
+  );
+  throw tmpLambdaReduceRightErr;
+} else {
+  $(tmpLambdaReduceRightOut);
+}
 `````
 
 
@@ -38,12 +71,38 @@ $(result);
 
 `````js filename=intro
 const obj = $({ [0]: `a`, [1]: `b`, length: 2 });
-$(
-  $dotCall($array_reduceRight, obj, undefined, function (acc, val) {
-    const tmpReturnArg = acc + val;
-    return tmpReturnArg;
-  }),
-);
+const tmpLambdaReduceRightCounter = obj.length - 1;
+const tmpLambdaReduceRight1st = {};
+let tmpLambdaReduceRightOut = tmpLambdaReduceRight1st;
+if (tmpLambdaReduceRightCounter >= 0) {
+  if (tmpLambdaReduceRightCounter in obj) {
+    tmpLambdaReduceRightOut = obj[tmpLambdaReduceRightCounter];
+  }
+  let tmpClusterSSA_tmpLambdaReduceRightCounter = tmpLambdaReduceRightCounter - 1;
+  while (true) {
+    if (tmpClusterSSA_tmpLambdaReduceRightCounter >= 0) {
+      if (tmpClusterSSA_tmpLambdaReduceRightCounter in obj) {
+        const tmpLambdaReduceRightVal$1 = obj[tmpClusterSSA_tmpLambdaReduceRightCounter];
+        if (tmpLambdaReduceRightOut === tmpLambdaReduceRight1st) {
+          tmpLambdaReduceRightOut = tmpLambdaReduceRightVal$1;
+        } else {
+          tmpLambdaReduceRightOut = tmpLambdaReduceRightOut + tmpLambdaReduceRightVal$1;
+        }
+      }
+      tmpClusterSSA_tmpLambdaReduceRightCounter = tmpClusterSSA_tmpLambdaReduceRightCounter - 1;
+    } else {
+      break;
+    }
+  }
+}
+if (tmpLambdaReduceRightOut === tmpLambdaReduceRight1st) {
+  const tmpLambdaReduceRightErr = new $typeError_constructor(
+    `[Preval] Called .reduceRight without init on an array without values: \`const\\nresult\\n=\\n\$dotCall(\$array_reduceRight,\\nobj,\\nundefined,\\ntmpMCP);\``,
+  );
+  throw tmpLambdaReduceRightErr;
+} else {
+  $(tmpLambdaReduceRightOut);
+}
 `````
 
 
@@ -57,15 +116,46 @@ const a = {
   length: 2,
 };
 const b = $( a );
-const c = function($$0,$$1 ) {
-  const d = $$0;
-  const e = $$1;
-  debugger;
-  const f = d + e;
-  return f;
-};
-const g = $dotCall( $array_reduceRight, b, undefined, c );
-$( g );
+const c = b.length;
+const d = c - 1;
+const e = {};
+let f = e;
+const g = d >= 0;
+if (g) {
+  const h = d in b;
+  if (h) {
+    f = b[ d ];
+  }
+  let i = d - 1;
+  while ($LOOP_UNROLL_10) {
+    const j = i >= 0;
+    if (j) {
+      const k = i in b;
+      if (k) {
+        const l = b[ i ];
+        const m = f === e;
+        if (m) {
+          f = l;
+        }
+        else {
+          f = f + l;
+        }
+      }
+      i = i - 1;
+    }
+    else {
+      break;
+    }
+  }
+}
+const n = f === e;
+if (n) {
+  const o = new $typeError_constructor( "[Preval] Called .reduceRight without init on an array without values: `const\\nresult\\n=\\n$dotCall($array_reduceRight,\\nobj,\\nundefined,\\ntmpMCP);`" );
+  throw o;
+}
+else {
+  $( f );
+}
 `````
 
 
@@ -93,7 +183,7 @@ $(result);
 ## Todos triggered
 
 
-- (todo) type trackeed tricks can possibly support static $array_reduceRight
+None
 
 
 ## Globals

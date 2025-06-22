@@ -18,15 +18,33 @@ $(x);
 
 
 `````js filename=intro
-const tmpMCP$1 /*:(unknown)=>undefined*/ = function ($$0) {
-  const x$1 /*:unknown*/ = $$0;
-  debugger;
-  $(x$1);
-  return undefined;
-};
 const tmpMCP /*:object*/ /*truthy*/ = { [0]: `a`, [1]: `b`, length: 2 };
-const x /*:boolean*/ = $dotCall($array_every, tmpMCP, undefined, tmpMCP$1);
-$(x);
+const tmpLambdaEveryHas /*:boolean*/ = 0 in tmpMCP;
+if (tmpLambdaEveryHas) {
+  const tmpLambdaEveryVal /*:unknown*/ = tmpMCP[0];
+  $(tmpLambdaEveryVal);
+  $(false);
+} else {
+  let tmpLambdaEveryOut /*:boolean*/ = true;
+  let tmpClusterSSA_tmpLambdaEveryCounter /*:number*/ = 1;
+  while ($LOOP_UNROLL_10) {
+    const tmpLambdaEveryTest$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaEveryCounter < 2;
+    if (tmpLambdaEveryTest$1) {
+      const tmpLambdaEveryHas$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaEveryCounter in tmpMCP;
+      if (tmpLambdaEveryHas$1) {
+        const tmpLambdaEveryVal$1 /*:unknown*/ = tmpMCP[tmpClusterSSA_tmpLambdaEveryCounter];
+        $(tmpLambdaEveryVal$1);
+        tmpLambdaEveryOut = false;
+        break;
+      } else {
+        tmpClusterSSA_tmpLambdaEveryCounter = tmpClusterSSA_tmpLambdaEveryCounter + 1;
+      }
+    } else {
+      break;
+    }
+  }
+  $(tmpLambdaEveryOut);
+}
 `````
 
 
@@ -34,10 +52,28 @@ $(x);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpMCP$1 = function (x$1) {
-  $(x$1);
-};
-$($dotCall($array_every, { [0]: `a`, [1]: `b`, length: 2 }, undefined, tmpMCP$1));
+const tmpMCP = { [0]: `a`, [1]: `b`, length: 2 };
+if (0 in tmpMCP) {
+  $(tmpMCP[0]);
+  $(false);
+} else {
+  let tmpLambdaEveryOut = true;
+  let tmpClusterSSA_tmpLambdaEveryCounter = 1;
+  while (true) {
+    if (tmpClusterSSA_tmpLambdaEveryCounter < 2) {
+      if (tmpClusterSSA_tmpLambdaEveryCounter in tmpMCP) {
+        $(tmpMCP[tmpClusterSSA_tmpLambdaEveryCounter]);
+        tmpLambdaEveryOut = false;
+        break;
+      } else {
+        tmpClusterSSA_tmpLambdaEveryCounter = tmpClusterSSA_tmpLambdaEveryCounter + 1;
+      }
+    } else {
+      break;
+    }
+  }
+  $(tmpLambdaEveryOut);
+}
 `````
 
 
@@ -45,19 +81,40 @@ $($dotCall($array_every, { [0]: `a`, [1]: `b`, length: 2 }, undefined, tmpMCP$1)
 With rename=true
 
 `````js filename=intro
-const a = function($$0 ) {
-  const b = $$0;
-  debugger;
-  $( b );
-  return undefined;
-};
-const c = {
+const a = {
   [ 0 ]: "a",
   [ 1 ]: "b",
   length: 2,
 };
-const d = $dotCall( $array_every, c, undefined, a );
-$( d );
+const b = 0 in a;
+if (b) {
+  const c = a[ 0 ];
+  $( c );
+  $( false );
+}
+else {
+  let d = true;
+  let e = 1;
+  while ($LOOP_UNROLL_10) {
+    const f = e < 2;
+    if (f) {
+      const g = e in a;
+      if (g) {
+        const h = a[ e ];
+        $( h );
+        d = false;
+        break;
+      }
+      else {
+        e = e + 1;
+      }
+    }
+    else {
+      break;
+    }
+  }
+  $( d );
+}
 `````
 
 
@@ -83,7 +140,7 @@ $(x);
 ## Todos triggered
 
 
-- (todo) type trackeed tricks can possibly support static $array_every
+- (todo) objects in isFree check
 
 
 ## Globals

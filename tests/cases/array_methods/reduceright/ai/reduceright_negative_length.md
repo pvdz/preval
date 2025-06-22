@@ -21,15 +21,36 @@ $(result);
 `````js filename=intro
 const tmpCalleeParam /*:object*/ /*truthy*/ = { [0]: `a`, [1]: `b`, length: -1 };
 const obj /*:unknown*/ = $(tmpCalleeParam);
-const tmpMCP /*:(unknown, unknown)=>primitive*/ = function ($$0, $$1) {
-  const acc /*:unknown*/ = $$0;
-  const val /*:unknown*/ = $$1;
-  debugger;
-  const tmpReturnArg /*:primitive*/ = acc + val;
-  return tmpReturnArg;
-};
-const result /*:array*/ /*truthy*/ = $dotCall($array_reduceRight, obj, undefined, tmpMCP, ``);
-$(result);
+const tmpLambdaReduceRightLen /*:unknown*/ = obj.length;
+const tmpLambdaReduceRightCounter /*:number*/ = tmpLambdaReduceRightLen - 1;
+const tmpLambdaReduceRightTest /*:boolean*/ = tmpLambdaReduceRightCounter >= 0;
+if (tmpLambdaReduceRightTest) {
+  let tmpLambdaReduceRightOut /*:string*/ = ``;
+  const tmpLambdaReduceRightHas /*:boolean*/ = tmpLambdaReduceRightCounter in obj;
+  if (tmpLambdaReduceRightHas) {
+    const tmpLambdaReduceRightVal /*:unknown*/ = obj[tmpLambdaReduceRightCounter];
+    tmpLambdaReduceRightOut = $coerce(tmpLambdaReduceRightVal, `plustr`);
+  } else {
+  }
+  let tmpClusterSSA_tmpLambdaReduceRightCounter /*:number*/ = tmpLambdaReduceRightCounter - 1;
+  while ($LOOP_UNROLL_10) {
+    const tmpLambdaReduceRightTest$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaReduceRightCounter >= 0;
+    if (tmpLambdaReduceRightTest$1) {
+      const tmpLambdaReduceRightHas$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaReduceRightCounter in obj;
+      if (tmpLambdaReduceRightHas$1) {
+        const tmpLambdaReduceRightVal$1 /*:unknown*/ = obj[tmpClusterSSA_tmpLambdaReduceRightCounter];
+        tmpLambdaReduceRightOut = tmpLambdaReduceRightOut + tmpLambdaReduceRightVal$1;
+      } else {
+      }
+      tmpClusterSSA_tmpLambdaReduceRightCounter = tmpClusterSSA_tmpLambdaReduceRightCounter - 1;
+    } else {
+      break;
+    }
+  }
+  $(tmpLambdaReduceRightOut);
+} else {
+  $(``);
+}
 `````
 
 
@@ -38,18 +59,27 @@ $(result);
 
 `````js filename=intro
 const obj = $({ [0]: `a`, [1]: `b`, length: -1 });
-$(
-  $dotCall(
-    $array_reduceRight,
-    obj,
-    undefined,
-    function (acc, val) {
-      const tmpReturnArg = acc + val;
-      return tmpReturnArg;
-    },
-    ``,
-  ),
-);
+const tmpLambdaReduceRightCounter = obj.length - 1;
+if (tmpLambdaReduceRightCounter >= 0) {
+  let tmpLambdaReduceRightOut = ``;
+  if (tmpLambdaReduceRightCounter in obj) {
+    tmpLambdaReduceRightOut = $coerce(obj[tmpLambdaReduceRightCounter], `plustr`);
+  }
+  let tmpClusterSSA_tmpLambdaReduceRightCounter = tmpLambdaReduceRightCounter - 1;
+  while (true) {
+    if (tmpClusterSSA_tmpLambdaReduceRightCounter >= 0) {
+      if (tmpClusterSSA_tmpLambdaReduceRightCounter in obj) {
+        tmpLambdaReduceRightOut = tmpLambdaReduceRightOut + obj[tmpClusterSSA_tmpLambdaReduceRightCounter];
+      }
+      tmpClusterSSA_tmpLambdaReduceRightCounter = tmpClusterSSA_tmpLambdaReduceRightCounter - 1;
+    } else {
+      break;
+    }
+  }
+  $(tmpLambdaReduceRightOut);
+} else {
+  $(``);
+}
 `````
 
 
@@ -63,15 +93,36 @@ const a = {
   length: -1,
 };
 const b = $( a );
-const c = function($$0,$$1 ) {
-  const d = $$0;
-  const e = $$1;
-  debugger;
-  const f = d + e;
-  return f;
-};
-const g = $dotCall( $array_reduceRight, b, undefined, c, "" );
-$( g );
+const c = b.length;
+const d = c - 1;
+const e = d >= 0;
+if (e) {
+  let f = "";
+  const g = d in b;
+  if (g) {
+    const h = b[ d ];
+    f = $coerce( h, "plustr" );
+  }
+  let i = d - 1;
+  while ($LOOP_UNROLL_10) {
+    const j = i >= 0;
+    if (j) {
+      const k = i in b;
+      if (k) {
+        const l = b[ i ];
+        f = f + l;
+      }
+      i = i - 1;
+    }
+    else {
+      break;
+    }
+  }
+  $( f );
+}
+else {
+  $( "" );
+}
 `````
 
 
@@ -99,7 +150,7 @@ $(result);
 ## Todos triggered
 
 
-- (todo) type trackeed tricks can possibly support static $array_reduceRight
+None
 
 
 ## Globals

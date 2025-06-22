@@ -18,15 +18,12 @@ $(x);
 
 
 `````js filename=intro
-const tmpMCP$1 /*:(unknown)=>undefined*/ = function ($$0) {
-  const x$1 /*:unknown*/ = $$0;
-  debugger;
-  $(x$1);
-  return undefined;
-};
 const tmpMCP /*:object*/ /*truthy*/ = { [0]: `a`, [1]: `b`, length: 2 };
-const x /*:number*/ = $dotCall($array_findLastIndex, tmpMCP, undefined, tmpMCP$1);
-$(x);
+const tmpLambdaFindLastIndexVal /*:unknown*/ = tmpMCP[1];
+$(tmpLambdaFindLastIndexVal);
+const tmpLambdaFindLastIndexVal$1 /*:unknown*/ = tmpMCP[0];
+$(tmpLambdaFindLastIndexVal$1);
+$(-1);
 `````
 
 
@@ -34,10 +31,10 @@ $(x);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpMCP$1 = function (x$1) {
-  $(x$1);
-};
-$($dotCall($array_findLastIndex, { [0]: `a`, [1]: `b`, length: 2 }, undefined, tmpMCP$1));
+const tmpMCP = { [0]: `a`, [1]: `b`, length: 2 };
+$(tmpMCP[1]);
+$(tmpMCP[0]);
+$(-1);
 `````
 
 
@@ -45,19 +42,16 @@ $($dotCall($array_findLastIndex, { [0]: `a`, [1]: `b`, length: 2 }, undefined, t
 With rename=true
 
 `````js filename=intro
-const a = function($$0 ) {
-  const b = $$0;
-  debugger;
-  $( b );
-  return undefined;
-};
-const c = {
+const a = {
   [ 0 ]: "a",
   [ 1 ]: "b",
   length: 2,
 };
-const d = $dotCall( $array_findLastIndex, c, undefined, a );
-$( d );
+const b = a[ 1 ];
+$( b );
+const c = a[ 0 ];
+$( c );
+$( -1 );
 `````
 
 
@@ -83,7 +77,8 @@ $(x);
 ## Todos triggered
 
 
-- (todo) type trackeed tricks can possibly support static $array_findLastIndex
+- (todo) objects in isFree check
+- (todo) regular property access of an ident feels tricky;
 
 
 ## Globals

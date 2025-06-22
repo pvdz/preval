@@ -23,10 +23,9 @@ try {
 
 `````js filename=intro
 try {
-  const tmpThrowArg /*:object*/ /*truthy*/ = new $typeError_constructor(
-    `[Preval] Attempting to call a value that cannot be called: \`const tmpLambdaEveryWas = \$dotCall(null, undefined, undefined, tmpLambdaEveryVal, tmpLambdaEveryCounter, tmpMCOO);\``,
-  );
-  throw tmpThrowArg;
+  const tmpMCOO /*:array*/ /*truthy*/ = [1, 2];
+  const x /*:boolean*/ = $dotCall($array_every, tmpMCOO, `every`, null);
+  $(x);
 } catch (e) {
   const tmpCalleeParam /*:boolean*/ = e instanceof TypeError;
   $(tmpCalleeParam);
@@ -39,10 +38,7 @@ try {
 
 `````js filename=intro
 try {
-  const tmpThrowArg = new $typeError_constructor(
-    `[Preval] Attempting to call a value that cannot be called: \`const tmpLambdaEveryWas = \$dotCall(null, undefined, undefined, tmpLambdaEveryVal, tmpLambdaEveryCounter, tmpMCOO);\``,
-  );
-  throw tmpThrowArg;
+  $($dotCall($array_every, [1, 2], `every`, null));
 } catch (e) {
   $(e instanceof TypeError);
 }
@@ -54,12 +50,13 @@ With rename=true
 
 `````js filename=intro
 try {
-  const a = new $typeError_constructor( "[Preval] Attempting to call a value that cannot be called: `const tmpLambdaEveryWas = $dotCall(null, undefined, undefined, tmpLambdaEveryVal, tmpLambdaEveryCounter, tmpMCOO);`" );
-  throw a;
+  const a = [ 1, 2 ];
+  const b = $dotCall( $array_every, a, "every", null );
+  $( b );
 }
-catch (b) {
-  const c = b instanceof TypeError;
-  $( c );
+catch (c) {
+  const d = c instanceof TypeError;
+  $( d );
 }
 `````
 
@@ -83,14 +80,9 @@ try {
 ## Todos triggered
 
 
-- (todo) Support this binary expression operator:
+- (todo) arr mutation may be able to inline this method: $array_every
 - (todo) can try-escaping support this expr node type? ArrayExpression
-- (todo) can try-escaping support this expr node type? CallExpression
-- (todo) can try-escaping support this expr node type? Literal
-- (todo) can try-escaping support this expr node type? NewExpression
-- (todo) first arg to $dotcall should be a reference to a function: Literal
 - (todo) support array reads statement type VarStatement
-- (todo) support array reads statement type WhileStatement
 - (todo) type trackeed tricks can possibly support static $array_every
 
 

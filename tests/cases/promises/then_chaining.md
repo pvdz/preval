@@ -22,12 +22,13 @@ test().then(v => $('async_return_val', v));
 
 
 `````js filename=intro
-const test /*:()=>promise*/ = async function () {
-  debugger;
+let tmpMCOO /*:unknown*/ = undefined;
+try {
   const tmpReturnArg /*:unknown*/ = $(`opaque_return`);
-  return tmpReturnArg;
-};
-const tmpMCOO /*:promise*/ /*truthy*/ = test();
+  tmpMCOO = $Promise_resolve(tmpReturnArg);
+} catch (tmpRejectErr) {
+  tmpMCOO = $Promise_reject(tmpRejectErr);
+}
 const tmpMCP /*:(unknown)=>unknown*/ = function ($$0) {
   const v /*:unknown*/ = $$0;
   debugger;
@@ -42,11 +43,13 @@ $dotCall($promise_then, tmpMCOO, `then`, tmpMCP);
 (This ought to be the final result)
 
 `````js filename=intro
-const test = async function () {
-  const tmpReturnArg = $(`opaque_return`);
-  return tmpReturnArg;
-};
-$dotCall($promise_then, test(), `then`, function (v) {
+let tmpMCOO = undefined;
+try {
+  tmpMCOO = $Promise_resolve($(`opaque_return`));
+} catch (tmpRejectErr) {
+  tmpMCOO = $Promise_reject(tmpRejectErr);
+}
+$dotCall($promise_then, tmpMCOO, `then`, function (v) {
   const tmpReturnArg$1 = $(`async_return_val`, v);
   return tmpReturnArg$1;
 });
@@ -57,19 +60,21 @@ $dotCall($promise_then, test(), `then`, function (v) {
 With rename=true
 
 `````js filename=intro
-const a = async function() {
-  debugger;
+let a = undefined;
+try {
   const b = $( "opaque_return" );
-  return b;
-};
-const c = a();
+  a = $Promise_resolve( b );
+}
+catch (c) {
+  a = $Promise_reject( c );
+}
 const d = function($$0 ) {
   const e = $$0;
   debugger;
   const f = $( "async_return_val", e );
   return f;
 };
-$dotCall( $promise_then, c, "then", d );
+$dotCall( $promise_then, a, "then", d );
 `````
 
 
@@ -98,7 +103,10 @@ $dotCall(tmpMCF, tmpMCOO, `then`, tmpMCP);
 
 
 - (todo) access object property that also exists on prototype? $promise_then
+- (todo) can try-escaping support this expr node type? CallExpression
 - (todo) inline async functions safely (because await)
+- (todo) type trackeed tricks can possibly support static $Promise_reject
+- (todo) type trackeed tricks can possibly support static $Promise_resolve
 - (todo) type trackeed tricks can possibly support static $promise_then
 
 

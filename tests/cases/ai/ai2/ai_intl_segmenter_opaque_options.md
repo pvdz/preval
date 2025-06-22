@@ -33,14 +33,37 @@ const text /*:unknown*/ = $(`seg_text`, `\u3053\u308c\u306f\u30c6\u30b9\u30c8\u3
 const tmpMCF$1 /*:unknown*/ = segmenter.segment;
 const tmpMCP /*:unknown*/ = $dotCall(tmpMCF$1, segmenter, `segment`, text);
 const tmpMCOO /*:array*/ /*truthy*/ = $Array_from(tmpMCP);
-const tmpMCP$1 /*:(unknown)=>unknown*/ = function ($$0) {
-  const s /*:unknown*/ = $$0;
-  debugger;
-  const tmpReturnArg /*:unknown*/ = s.segment;
-  return tmpReturnArg;
-};
-const segments /*:array*/ /*truthy*/ = $dotCall($array_map, tmpMCOO, `map`, tmpMCP$1);
-$(`seg_segments_array`, segments);
+const tmpLambdaMapLen /*:number*/ = tmpMCOO.length;
+const tmpLambdaMapTest /*:boolean*/ = 0 < tmpLambdaMapLen;
+const tmpLambdaMapOut /*:array*/ /*truthy*/ = [];
+if (tmpLambdaMapTest) {
+  const tmpLambdaMapHas /*:boolean*/ = 0 in tmpMCOO;
+  if (tmpLambdaMapHas) {
+    const tmpLambdaMapVal /*:unknown*/ = tmpMCOO[0];
+    const tmpLambdaMapNow /*:unknown*/ = tmpLambdaMapVal.segment;
+    tmpLambdaMapOut[0] = tmpLambdaMapNow;
+  } else {
+  }
+  let tmpClusterSSA_tmpLambdaMapCounter /*:number*/ = 1;
+  while ($LOOP_UNROLL_10) {
+    const tmpLambdaMapTest$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaMapCounter < tmpLambdaMapLen;
+    if (tmpLambdaMapTest$1) {
+      const tmpLambdaMapHas$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaMapCounter in tmpMCOO;
+      if (tmpLambdaMapHas$1) {
+        const tmpLambdaMapVal$1 /*:unknown*/ = tmpMCOO[tmpClusterSSA_tmpLambdaMapCounter];
+        const tmpLambdaMapNow$1 /*:unknown*/ = tmpLambdaMapVal$1.segment;
+        tmpLambdaMapOut[tmpClusterSSA_tmpLambdaMapCounter] = tmpLambdaMapNow$1;
+      } else {
+      }
+      tmpClusterSSA_tmpLambdaMapCounter = tmpClusterSSA_tmpLambdaMapCounter + 1;
+    } else {
+      break;
+    }
+  }
+} else {
+}
+tmpLambdaMapOut.length = tmpLambdaMapLen;
+$(`seg_segments_array`, tmpLambdaMapOut);
 const tmpMCF$5 /*:unknown*/ = segmenter.resolvedOptions;
 const tmpCompObj /*:unknown*/ = $dotCall(tmpMCF$5, segmenter, `resolvedOptions`);
 const tmpCalleeParam$1 /*:unknown*/ = tmpCompObj.granularity;
@@ -58,13 +81,29 @@ const tmpNewCallee = Intl.Segmenter;
 const segmenter = new tmpNewCallee(locale, options);
 const text = $(`seg_text`, `\u3053\u308c\u306f\u30c6\u30b9\u30c8\u3067\u3059`);
 const tmpMCOO = $Array_from(segmenter.segment(text));
-$(
-  `seg_segments_array`,
-  $dotCall($array_map, tmpMCOO, `map`, function (s) {
-    const tmpReturnArg = s.segment;
-    return tmpReturnArg;
-  }),
-);
+const tmpLambdaMapLen = tmpMCOO.length;
+const tmpLambdaMapTest = 0 < tmpLambdaMapLen;
+const tmpLambdaMapOut = [];
+if (tmpLambdaMapTest) {
+  if (0 in tmpMCOO) {
+    const tmpLambdaMapNow = tmpMCOO[0].segment;
+    tmpLambdaMapOut[0] = tmpLambdaMapNow;
+  }
+  let tmpClusterSSA_tmpLambdaMapCounter = 1;
+  while (true) {
+    if (tmpClusterSSA_tmpLambdaMapCounter < tmpLambdaMapLen) {
+      if (tmpClusterSSA_tmpLambdaMapCounter in tmpMCOO) {
+        const tmpLambdaMapNow$1 = tmpMCOO[tmpClusterSSA_tmpLambdaMapCounter].segment;
+        tmpLambdaMapOut[tmpClusterSSA_tmpLambdaMapCounter] = tmpLambdaMapNow$1;
+      }
+      tmpClusterSSA_tmpLambdaMapCounter = tmpClusterSSA_tmpLambdaMapCounter + 1;
+    } else {
+      break;
+    }
+  }
+}
+tmpLambdaMapOut.length = tmpLambdaMapLen;
+$(`seg_segments_array`, tmpLambdaMapOut);
 $(`seg_resolved_options_gran`, segmenter.resolvedOptions().granularity);
 `````
 
@@ -82,18 +121,39 @@ const f = $( "seg_text", "\u3053\u308c\u306f\u30c6\u30b9\u30c8\u3067\u3059" );
 const g = e.segment;
 const h = $dotCall( g, e, "segment", f );
 const i = $Array_from( h );
-const j = function($$0 ) {
-  const k = $$0;
-  debugger;
-  const l = k.segment;
-  return l;
-};
-const m = $dotCall( $array_map, i, "map", j );
-$( "seg_segments_array", m );
-const n = e.resolvedOptions;
-const o = $dotCall( n, e, "resolvedOptions" );
-const p = o.granularity;
-$( "seg_resolved_options_gran", p );
+const j = i.length;
+const k = 0 < j;
+const l = [];
+if (k) {
+  const m = 0 in i;
+  if (m) {
+    const n = i[ 0 ];
+    const o = n.segment;
+    l[0] = o;
+  }
+  let p = 1;
+  while ($LOOP_UNROLL_10) {
+    const q = p < j;
+    if (q) {
+      const r = p in i;
+      if (r) {
+        const s = i[ p ];
+        const t = s.segment;
+        l[p] = t;
+      }
+      p = p + 1;
+    }
+    else {
+      break;
+    }
+  }
+}
+l.length = j;
+$( "seg_segments_array", l );
+const u = e.resolvedOptions;
+const v = $dotCall( u, e, "resolvedOptions" );
+const w = v.granularity;
+$( "seg_resolved_options_gran", w );
 `````
 
 
@@ -131,6 +191,9 @@ $(`seg_resolved_options_gran`, tmpCalleeParam$1);
 
 
 - (todo) access object property that also exists on prototype? $array_map
+- (todo) regular property access of an ident feels tricky;
+- (todo) support array reads statement type VarStatement
+- (todo) support array reads statement type WhileStatement
 - (todo) type trackeed tricks can possibly support static $Array_from
 - (todo) type trackeed tricks can possibly support static $array_map
 

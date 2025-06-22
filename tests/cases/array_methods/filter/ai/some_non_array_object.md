@@ -18,15 +18,21 @@ $(x);
 
 
 `````js filename=intro
-const tmpMCP$1 /*:(unknown)=>undefined*/ = function ($$0) {
-  const x$1 /*:unknown*/ = $$0;
-  debugger;
-  $(x$1);
-  return undefined;
-};
 const tmpMCP /*:object*/ /*truthy*/ = { [0]: `a`, [1]: `b`, length: 2 };
-const x /*:array*/ /*truthy*/ = $dotCall($array_filter, tmpMCP, undefined, tmpMCP$1);
-$(x);
+const tmpLambdaFilterHas /*:boolean*/ = 0 in tmpMCP;
+if (tmpLambdaFilterHas) {
+  const tmpLambdaFilterVal /*:unknown*/ = tmpMCP[0];
+  $(tmpLambdaFilterVal);
+} else {
+}
+const tmpLambdaFilterHas$1 /*:boolean*/ = 1 in tmpMCP;
+if (tmpLambdaFilterHas$1) {
+  const tmpLambdaFilterVal$1 /*:unknown*/ = tmpMCP[1];
+  $(tmpLambdaFilterVal$1);
+} else {
+}
+const tmpLambdaFilterOut /*:array*/ /*truthy*/ = [];
+$(tmpLambdaFilterOut);
 `````
 
 
@@ -34,10 +40,14 @@ $(x);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpMCP$1 = function (x$1) {
-  $(x$1);
-};
-$($dotCall($array_filter, { [0]: `a`, [1]: `b`, length: 2 }, undefined, tmpMCP$1));
+const tmpMCP = { [0]: `a`, [1]: `b`, length: 2 };
+if (0 in tmpMCP) {
+  $(tmpMCP[0]);
+}
+if (1 in tmpMCP) {
+  $(tmpMCP[1]);
+}
+$([]);
 `````
 
 
@@ -45,19 +55,23 @@ $($dotCall($array_filter, { [0]: `a`, [1]: `b`, length: 2 }, undefined, tmpMCP$1
 With rename=true
 
 `````js filename=intro
-const a = function($$0 ) {
-  const b = $$0;
-  debugger;
-  $( b );
-  return undefined;
-};
-const c = {
+const a = {
   [ 0 ]: "a",
   [ 1 ]: "b",
   length: 2,
 };
-const d = $dotCall( $array_filter, c, undefined, a );
-$( d );
+const b = 0 in a;
+if (b) {
+  const c = a[ 0 ];
+  $( c );
+}
+const d = 1 in a;
+if (d) {
+  const e = a[ 1 ];
+  $( e );
+}
+const f = [];
+$( f );
 `````
 
 
@@ -83,7 +97,9 @@ $(x);
 ## Todos triggered
 
 
-- (todo) type trackeed tricks can possibly support static $array_filter
+- (todo) objects in isFree check
+- (todo) support array reads statement type ExpressionStatement
+- (todo) support array reads statement type WhileStatement
 
 
 ## Globals

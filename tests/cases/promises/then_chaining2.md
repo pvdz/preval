@@ -9,7 +9,7 @@ Preval should detect test().then as a promise method
 ## Input
 
 `````js filename=intro
-    let test /*:()=>promise*/ = async function() {
+let test /*:()=>promise*/ = async function() {
   debugger;
   const tmpReturnArg /*:unknown*/ = $(`opaque_return`);
   return tmpReturnArg;

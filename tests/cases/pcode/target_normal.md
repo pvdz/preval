@@ -54,7 +54,7 @@ const tmpFree$2 /*:(number, string)=>string*/ = function $free($$0, $$1) {
   const out_str$1 /*:string*/ = $$1;
   debugger;
   const alt /*:string*/ = $dotCall($number_toString, perc$3, `toString`, 36);
-  const tmpRet$2 /*:string*/ = out_str$1 + alt;
+  const tmpRet$2 /*:string*/ = `${out_str$1}${alt}`;
   return tmpRet$2;
 };
 const tmpFree$1 /*:(number, string)=>string*/ = function $free($$0, $$1) {
@@ -137,7 +137,8 @@ $(`end`);
 
 `````js filename=intro
 const tmpFree$2 = function $free(perc$3, out_str$1) {
-  const tmpRet$2 = out_str$1 + $dotCall($number_toString, perc$3, `toString`, 36);
+  const alt = $dotCall($number_toString, perc$3, `toString`, 36);
+  const tmpRet$2 = `${out_str$1}${alt}`;
   return tmpRet$2;
 };
 const tmpFree$1 = function $free(perc$1, out_str) {
@@ -197,7 +198,7 @@ const a = function b($$0,$$1 ) {
   const d = $$1;
   debugger;
   const e = $dotCall( $number_toString, c, "toString", 36 );
-  const f = d + e;
+  const f = `${d}${e}`;
   return f;
 };
 const g = function b($$0,$$1 ) {
@@ -331,6 +332,7 @@ $(`end`);
 ## Todos triggered
 
 
+- (todo) find test case where template ends up with multiple expressions
 - (todo) type trackeed tricks can possibly support static $Number_parseInt
 
 

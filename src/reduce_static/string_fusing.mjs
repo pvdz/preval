@@ -1,4 +1,5 @@
 // Find templates that are concat with values that must be string and melt them into a single template
+// Or find two variables where one is known to be a string and the other to be any primitive and form a template
 
 import walk from '../../lib/walk.mjs';
 import {
@@ -21,6 +22,7 @@ import {
 import * as AST from '../ast.mjs';
 import { createFreshVar } from '../bindings.mjs';
 import { normalizeTemplateSimple } from '../ast.mjs';
+import { PRIMITIVE_TYPE_NAMES_PREVAL } from '../constants.mjs';
 
 export function stringFusing(fdata) {
   group('\n\n\n[stringFusing] Searching for strings to fuse together');
@@ -144,8 +146,6 @@ function _processTemplate(fdata, path, parentNode, parentProp, parentIndex) {
 
 function processBinary(fdata, path, parentNode, parentProp, parentIndex) {
   vgroup('Found a binary +');
-  const node = parentIndex < 0 ? parentNode[parentProp] : parentNode[parentProp][parentIndex];
-  source(node, true);
   const changed = _processBinary(fdata, path, parentNode, parentProp, parentIndex);
   vgroupEnd();
   return changed;
@@ -158,9 +158,12 @@ function _processBinary(fdata, path, parentNode, parentProp, parentIndex) {
 
   let left = node.left;
   let right = node.right;
+  let leftMbt = false;
+  let rightMbt = false;
 
   if (left.type === 'Identifier') {
     const meta = fdata.globallyUniqueNamingRegistry.get(left.name, fdata);
+    leftMbt = meta.typing.mustBeType;
     if (meta.isConstant && meta.varDeclRef) {
       const stmt = meta.varDeclRef.varDeclNode;
       const init = stmt.init;
@@ -176,10 +179,12 @@ function _processBinary(fdata, path, parentNode, parentProp, parentIndex) {
       left = undefined;
     }
   } else if (left.type !== 'TemplateLiteral' && !AST.isPrimitive(left)) {
+    leftMbt = 'string';
     left = undefined;
   }
   if (right.type === 'Identifier') {
     const meta = fdata.globallyUniqueNamingRegistry.get(right.name, fdata);
+    rightMbt = meta.typing.mustBeType;
     if (meta.isConstant && meta.varDeclRef) {
       const stmt = meta.varDeclRef.varDeclNode;
       const init = stmt.init;
@@ -194,10 +199,11 @@ function _processBinary(fdata, path, parentNode, parentProp, parentIndex) {
       right = undefined;
     }
   } else if (right.type !== 'TemplateLiteral' && !AST.isPrimitive(right)) {
+    leftMbt = 'string';
     right = undefined;
   }
 
-  vlog('left:', left?.type, ', right:', right?.type);
+  vlog('left:', left?.type, '=', leftMbt, ', right:', right?.type, '=', rightMbt);
 
   if (left && right) {
     // This means left and right are primitives, complex templates, or idents with unknown constant value that must be of primitive type
@@ -247,5 +253,20 @@ function _processBinary(fdata, path, parentNode, parentProp, parentIndex) {
       after(newTemplateNode, parentNode);
       return true;
     }
+  }
+  else if ((leftMbt === 'string' || rightMbt === 'string') && (PRIMITIVE_TYPE_NAMES_PREVAL.has(leftMbt) && PRIMITIVE_TYPE_NAMES_PREVAL.has(rightMbt))) {
+    rule('Adding two primitives together when one is known to be a string should be a template');
+    example('a + b;', '`${a}${b}`;');
+    before(node, parentNode);
+
+    const newTemplateNode = AST.templateLiteral(
+      ['', '', ''],
+      [node.left, node.right],
+    );
+    if (parentIndex < 0) parentNode[parentProp] = newTemplateNode;
+    else parentNode[parentProp][parentIndex] = newTemplateNode;
+
+    after(newTemplateNode, parentNode);
+    return true;
   }
 }

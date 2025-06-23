@@ -71,6 +71,12 @@ $(tmpObjLitVal$159);
 
 
 `````js filename=intro
+const tmpFree /*:()=>string*/ = function $free() {
+  debugger;
+  const tmpBinBothRhs$3631 /*:string*/ = $frfr(tmpFree$1, $, $);
+  const tmpRet /*:string*/ = `${tmpBinBothRhs$3631}`;
+  return tmpRet;
+};
 const tmpFree$1 /*:(unknown, unknown)=>string*/ = function $free($$0, $$1) {
   const $dlr_$$0 /*:unknown*/ = $$0;
   const $dlr_$$1 /*:unknown*/ = $$1;
@@ -112,11 +118,11 @@ const tmpObjLitVal$159 /*:()=>undefined*/ = function () {
     }
   }
   if (tmpIfTest$5467) {
-    let tmpClusterSSA_p$171 /*:string*/ = $frfr(tmpFree$1, $, $);
+    let tmpClusterSSA_p$171 /*:string*/ = $frfr(tmpFree);
     while ($LOOP_UNROLL_10) {
       if (tmpIfTest$5467) {
         const tmpBinBothRhs$1 /*:string*/ = $frfr(tmpFree$1, $, $);
-        tmpClusterSSA_p$171 = tmpClusterSSA_p$171 + tmpBinBothRhs$1;
+        tmpClusterSSA_p$171 = `${tmpClusterSSA_p$171}${tmpBinBothRhs$1}`;
       } else {
         break;
       }
@@ -134,6 +140,11 @@ $(tmpObjLitVal$159);
 (This ought to be the final result)
 
 `````js filename=intro
+const tmpFree = function $free() {
+  const tmpBinBothRhs$3631 = $frfr(tmpFree$1, $, $);
+  const tmpRet = `${tmpBinBothRhs$3631}`;
+  return tmpRet;
+};
 const tmpFree$1 = function $free($dlr_$$0, $dlr_$$1) {
   const tmpBinBothLhs$3633 = $dlr_$$0 + 71046;
   const tmpRet$1 = $String_fromCharCode(tmpBinBothLhs$3633 ^ $dotCall($string_charCodeAt, `xyz`, `charCodeAt`, $dlr_$$1));
@@ -164,10 +175,11 @@ $(function () {
     }
   }
   if (tmpIfTest$5467) {
-    let tmpClusterSSA_p$171 = $frfr(tmpFree$1, $, $);
+    let tmpClusterSSA_p$171 = $frfr(tmpFree);
     while (true) {
       if (tmpIfTest$5467) {
-        tmpClusterSSA_p$171 = tmpClusterSSA_p$171 + $frfr(tmpFree$1, $, $);
+        const tmpBinBothRhs$1 = $frfr(tmpFree$1, $, $);
+        tmpClusterSSA_p$171 = `${tmpClusterSSA_p$171}${tmpBinBothRhs$1}`;
       } else {
         break;
       }
@@ -181,52 +193,58 @@ $(function () {
 With rename=true
 
 `````js filename=intro
-const a = function b($$0,$$1 ) {
-  const c = $$0;
-  const d = $$1;
+const a = function b() {
   debugger;
-  const e = c + 71046;
-  const f = $dotCall( $string_charCodeAt, "xyz", "charCodeAt", d );
-  const g = e ^ f;
-  const h = $String_fromCharCode( g );
-  return h;
+  const c = d( e, $, $ );
+  const f = `${c}`;
+  return f;
 };
-const i = function() {
+const e = function b($$0,$$1 ) {
+  const g = $$0;
+  const h = $$1;
   debugger;
-  let j = tmpSSA_Tu();
-  if (j) {
-    tmpSSA_wu( j );
+  const i = g + 71046;
+  const j = $dotCall( $string_charCodeAt, "xyz", "charCodeAt", h );
+  const k = i ^ j;
+  const l = $String_fromCharCode( k );
+  return l;
+};
+const m = function() {
+  debugger;
+  let n = tmpSSA_Tu();
+  if (n) {
+    tmpSSA_wu( n );
   }
   else {
-    j = tmpSSA_Su();
-    tmpSSA_wu( j );
+    n = tmpSSA_Su();
+    tmpSSA_wu( n );
   }
-  if (j) {
-    tmpSSA__u_t( j );
+  if (n) {
+    tmpSSA__u_t( n );
   }
-  const k = tmpCallObj$3807.toString;
-  $dotCall( k, tmpCallObj$3807, "toString", 36 );
-  const l = new $regex_constructor( "^0.", "" );
-  const m = tmpCallObj$3811.replace;
-  const n = $dotCall( m, tmpCallObj$3811, "replace", l, "" );
+  const o = tmpCallObj$3807.toString;
+  $dotCall( o, tmpCallObj$3807, "toString", 36 );
+  const p = new $regex_constructor( "^0.", "" );
+  const q = tmpCallObj$3811.replace;
+  const r = $dotCall( q, tmpCallObj$3811, "replace", p, "" );
   $coerce( tmpBinBothRhs$32, "string" );
-  $coerce( n, "string" );
-  const o = tmpSSA_Tu();
-  if (o) {
-    tmpClusterSSA_tmpssa3_c$245 = o;
+  $coerce( r, "string" );
+  const s = tmpSSA_Tu();
+  if (s) {
+    tmpClusterSSA_tmpssa3_c$245 = s;
   }
   else {
-    const p = tmpSSA_Su();
-    if (p) {
-      tmpClusterSSA_tmpssa3_c$245 = p;
+    const t = tmpSSA_Su();
+    if (t) {
+      tmpClusterSSA_tmpssa3_c$245 = t;
     }
   }
   if (tmpIfTest$5467) {
-    let q = r( a, $, $ );
+    let u = d( a );
     while ($LOOP_UNROLL_10) {
       if (tmpIfTest$5467) {
-        const s = r( a, $, $ );
-        q = q + s;
+        const v = d( e, $, $ );
+        u = `${u}${v}`;
       }
       else {
         break;
@@ -238,7 +256,7 @@ const i = function() {
     return undefined;
   }
 };
-$( i );
+$( m );
 `````
 
 
@@ -315,9 +333,9 @@ $(tmpObjLitVal$159);
 ## Todos triggered
 
 
-- (todo) - at least one of the frfr args was not isFree, bailing
-- (todo) Support referencing this builtin in isFree: $
 - (todo) Support string.charCodeAt when the arg is not a string literal
+- (todo) Support this node type in isFree: TemplateLiteral
+- (todo) find test case where template ends up with multiple expressions
 - (todo) free with zero args, we can eliminate this?
 
 

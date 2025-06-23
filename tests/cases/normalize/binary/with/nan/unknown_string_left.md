@@ -45,7 +45,7 @@ $(x instanceof NaN);
 `````js filename=intro
 const tmpBinBothRhs /*:unknown*/ = $(`ok`);
 const x /*:string*/ = $coerce(tmpBinBothRhs, `plustr`);
-const tmpArrElement$7 /*:string*/ = x + NaN;
+const tmpArrElement$7 /*:string*/ /*truthy*/ = `${x}NaN`;
 const tmpArrElement$11 /*:number*/ = x << 0;
 const tmpArrElement$13 /*:number*/ = x >> 0;
 const tmpArrElement$15 /*:number*/ = x >>> 0;
@@ -86,7 +86,7 @@ $(tmpCalleeParam$1);
 
 `````js filename=intro
 const x = $coerce($(`ok`), `plustr`);
-const tmpArrElement$7 = x + NaN;
+const tmpArrElement$7 = `${x}NaN`;
 const tmpArrElement$11 = x << 0;
 const tmpArrElement$13 = x >> 0;
 const tmpArrElement$15 = x >>> 0;
@@ -125,7 +125,7 @@ With rename=true
 `````js filename=intro
 const a = $( "ok" );
 const b = $coerce( a, "plustr" );
-const c = b + NaN;
+const c = `${b}NaN`;
 const d = b << 0;
 const e = b >> 0;
 const f = b >>> 0;

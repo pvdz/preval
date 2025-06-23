@@ -46,7 +46,7 @@ $(undefined instanceof x);
 const tmpBinBothRhs /*:unknown*/ = $(ok);
 const x /*:string*/ = $coerce(tmpBinBothRhs, `plustr`);
 const tmpArrElement /*:number*/ = undefined ** x;
-const tmpArrElement$7 /*:string*/ = undefined + x;
+const tmpArrElement$7 /*:string*/ /*truthy*/ = `undefined${x}`;
 const tmpArrElement$11 /*:number*/ = 0 << x;
 const tmpArrElement$13 /*:number*/ = 0 >> x;
 const tmpArrElement$15 /*:number*/ = 0 >>> x;
@@ -88,7 +88,7 @@ $(tmpCalleeParam$1);
 `````js filename=intro
 const x = $coerce($(ok), `plustr`);
 const tmpArrElement = undefined ** x;
-const tmpArrElement$7 = undefined + x;
+const tmpArrElement$7 = `undefined${x}`;
 const tmpArrElement$11 = 0 << x;
 const tmpArrElement$13 = 0 >> x;
 const tmpArrElement$15 = 0 >>> x;
@@ -128,7 +128,7 @@ With rename=true
 const a = $( ok );
 const b = $coerce( a, "plustr" );
 const c = undefined ** b;
-const d = undefined + b;
+const d = `undefined${b}`;
 const e = 0 << b;
 const f = 0 >> b;
 const g = 0 >>> b;

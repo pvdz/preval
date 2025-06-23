@@ -49,10 +49,8 @@ function _ifTestBool(fdata) {
 
     // First find the `var x = a === b``
     const ifTestMeta = fdata.globallyUniqueNamingRegistry.get(node.test.name);
-    if (ifTestMeta.isBuiltin) return;
-    if (ifTestMeta.isImplicitGlobal) return;
-    if (ifTestMeta.varDeclRef.varDeclNode.type !== 'VarStatement') return; // catch, for-x, ???
     if (!ifTestMeta.isConstant) return;
+    if (ifTestMeta.varDeclRef.varDeclNode.type !== 'VarStatement') return; // catch, for-x, ???
     //if (meta.writes.length > 1) return; // TODO: fixme if broken
 
     let varDeclRef = ifTestMeta.writes.find((write) => write.kind === 'var');

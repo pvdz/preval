@@ -1037,13 +1037,13 @@ export function createTypingObject({
   mustBeTruthy = false,
   mustBePrimitive = false,
 
-
   bang = false,
   oneBitAnded = false,
   anded = false,
   orredWith = false,
   xorredWith = false,
 
+  maxlen = false,
   returns = false,
   ...rest
 }) {
@@ -1062,6 +1062,7 @@ export function createTypingObject({
     orredWith,
     xorredWith,
 
+    maxlen,
     returns,
   };
 }

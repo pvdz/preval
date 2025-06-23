@@ -19,16 +19,9 @@ $(a);
 
 
 `````js filename=intro
-const tmpFree /*:(number)=>string*/ = function $free($$0) {
-  const tmpCalleeParam$2 /*:number*/ = $$0;
-  debugger;
-  const tmpStringConcatL /*:string*/ = $coerce(tmpCalleeParam$2, `string`);
-  const tmpRet /*:string*/ /*truthy*/ = `before  ${tmpStringConcatL}  after`;
-  return tmpRet;
-};
 const tmpUnaryArg /*:unknown*/ = $(100);
 const tmpCalleeParam$1 /*:number*/ = ~tmpUnaryArg;
-const tmpCalleeParam /*:string*/ = $frfr(tmpFree, tmpCalleeParam$1);
+const tmpCalleeParam /*:string*/ /*truthy*/ = `before  ${tmpCalleeParam$1}  after`;
 $(tmpCalleeParam);
 const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);
@@ -39,12 +32,9 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpFree = function $free(tmpCalleeParam$2) {
-  const tmpRet = `before  ${tmpCalleeParam$2}  after`;
-  return tmpRet;
-};
 const tmpUnaryArg = $(100);
-$($frfr(tmpFree, ~tmpUnaryArg));
+const tmpCalleeParam$1 = ~tmpUnaryArg;
+$(`before  ${tmpCalleeParam$1}  after`);
 $({ a: 999, b: 1000 });
 `````
 
@@ -53,22 +43,15 @@ $({ a: 999, b: 1000 });
 With rename=true
 
 `````js filename=intro
-const a = function b($$0 ) {
-  const c = $$0;
-  debugger;
-  const d = $coerce( c, "string" );
-  const e = `before  ${d}  after`;
-  return e;
-};
-const f = $( 100 );
-const g = ~f;
-const h = i( a, g );
-$( h );
-const j = {
+const a = $( 100 );
+const b = ~a;
+const c = `before  ${b}  after`;
+$( c );
+const d = {
   a: 999,
   b: 1000,
 };
-$( j );
+$( d );
 `````
 
 

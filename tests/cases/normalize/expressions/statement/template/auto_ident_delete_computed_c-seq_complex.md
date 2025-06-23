@@ -21,20 +21,13 @@ $(a, arg);
 
 
 `````js filename=intro
-const tmpFree /*:(boolean)=>string*/ = function $free($$0) {
-  const tmpCalleeParam$2 /*:boolean*/ = $$0;
-  debugger;
-  const tmpStringConcatL /*:string*/ = $coerce(tmpCalleeParam$2, `string`);
-  const tmpRet /*:string*/ /*truthy*/ = `before  ${tmpStringConcatL}  after`;
-  return tmpRet;
-};
 $(1);
 $(2);
 const arg /*:object*/ /*truthy*/ = { y: 1 };
 const tmpDeleteCompObj /*:unknown*/ = $(arg);
 const tmpDeleteCompProp /*:unknown*/ = $(`y`);
 const tmpCalleeParam$1 /*:boolean*/ = delete tmpDeleteCompObj[tmpDeleteCompProp];
-const tmpCalleeParam /*:string*/ = $frfr(tmpFree, tmpCalleeParam$1);
+const tmpCalleeParam /*:string*/ /*truthy*/ = `before  ${tmpCalleeParam$1}  after`;
 $(tmpCalleeParam);
 const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a, arg);
@@ -45,16 +38,13 @@ $(a, arg);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpFree = function $free(tmpCalleeParam$2) {
-  const tmpRet = `before  ${tmpCalleeParam$2}  after`;
-  return tmpRet;
-};
 $(1);
 $(2);
 const arg = { y: 1 };
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $(`y`);
-$($frfr(tmpFree, delete tmpDeleteCompObj[tmpDeleteCompProp]));
+const tmpCalleeParam$1 = delete tmpDeleteCompObj[tmpDeleteCompProp];
+$(`before  ${tmpCalleeParam$1}  after`);
 $({ a: 999, b: 1000 }, arg);
 `````
 
@@ -63,26 +53,19 @@ $({ a: 999, b: 1000 }, arg);
 With rename=true
 
 `````js filename=intro
-const a = function b($$0 ) {
-  const c = $$0;
-  debugger;
-  const d = $coerce( c, "string" );
-  const e = `before  ${d}  after`;
-  return e;
-};
 $( 1 );
 $( 2 );
-const f = { y: 1 };
-const g = $( f );
-const h = $( "y" );
-const i = delete g[ h ];
-const j = k( a, i );
-$( j );
-const l = {
+const a = { y: 1 };
+const b = $( a );
+const c = $( "y" );
+const d = delete b[ c ];
+const e = `before  ${d}  after`;
+$( e );
+const f = {
   a: 999,
   b: 1000,
 };
-$( l, f );
+$( f, a );
 `````
 
 

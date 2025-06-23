@@ -19,17 +19,10 @@ $(a);
 
 
 `````js filename=intro
-const tmpFree /*:(primitive)=>string*/ = function $free($$0) {
-  const a$1 /*:primitive*/ = $$0;
-  debugger;
-  const tmpStringConcatL /*:string*/ = $coerce(a$1, `string`);
-  const tmpRet /*:string*/ /*truthy*/ = `before  ${tmpStringConcatL}  after`;
-  return tmpRet;
-};
 const tmpBinBothLhs$1 /*:unknown*/ = $(1);
 const tmpBinBothRhs$1 /*:unknown*/ = $(2);
 const a /*:primitive*/ = tmpBinBothLhs$1 + tmpBinBothRhs$1;
-const tmpCalleeParam /*:string*/ = $frfr(tmpFree, a);
+const tmpCalleeParam /*:string*/ /*truthy*/ = `before  ${a}  after`;
 $(tmpCalleeParam);
 $(a);
 `````
@@ -39,12 +32,8 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpFree = function $free(a$1) {
-  const tmpRet = `before  ${a$1}  after`;
-  return tmpRet;
-};
 const a = $(1) + $(2);
-$($frfr(tmpFree, a));
+$(`before  ${a}  after`);
 $(a);
 `````
 
@@ -53,19 +42,12 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = function b($$0 ) {
-  const c = $$0;
-  debugger;
-  const d = $coerce( c, "string" );
-  const e = `before  ${d}  after`;
-  return e;
-};
-const f = $( 1 );
-const g = $( 2 );
-const h = f + g;
-const i = j( a, h );
-$( i );
-$( h );
+const a = $( 1 );
+const b = $( 2 );
+const c = a + b;
+const d = `before  ${c}  after`;
+$( d );
+$( c );
 `````
 
 

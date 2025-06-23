@@ -23,16 +23,9 @@ if (y) {
 
 
 `````js filename=intro
-const tmpFree /*:(number)=>string*/ = function $free($$0) {
-  const y$1 /*:number*/ = $$0;
-  debugger;
-  const tmpStringConcatL /*:string*/ = $coerce(y$1, `string`);
-  const tmpRet /*:string*/ /*truthy*/ = `ALWAYS${tmpStringConcatL}`;
-  return tmpRet;
-};
 const x /*:unknown*/ = $(1234);
 const y /*:number*/ /*truthy*/ /*|200*/ = x | 200;
-const tmpCalleeParam /*:string*/ = $frfr(tmpFree, y);
+const tmpCalleeParam /*:string*/ /*truthy*/ = `ALWAYS${y}`;
 $(tmpCalleeParam);
 `````
 
@@ -41,11 +34,8 @@ $(tmpCalleeParam);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpFree = function $free(y$1) {
-  const tmpRet = `ALWAYS${y$1}`;
-  return tmpRet;
-};
-$($frfr(tmpFree, $(1234) | 200));
+const y = $(1234) | 200;
+$(`ALWAYS${y}`);
 `````
 
 
@@ -53,17 +43,10 @@ $($frfr(tmpFree, $(1234) | 200));
 With rename=true
 
 `````js filename=intro
-const a = function b($$0 ) {
-  const c = $$0;
-  debugger;
-  const d = $coerce( c, "string" );
-  const e = `ALWAYS${d}`;
-  return e;
-};
-const f = $( 1234 );
-const g = f | 200;
-const h = i( a, g );
-$( h );
+const a = $( 1234 );
+const b = a | 200;
+const c = `ALWAYS${b}`;
+$( c );
 `````
 
 

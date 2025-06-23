@@ -22,17 +22,10 @@ $((f($(16))));
 
 
 `````js filename=intro
-const tmpFree /*:(number)=>string*/ = function $free($$0) {
-  const x /*:number*/ = $$0;
-  debugger;
-  const tmpStringConcatL /*:string*/ = $coerce(x, `string`);
-  const tmpRet /*:string*/ /*truthy*/ = `this is ${tmpStringConcatL}`;
-  return tmpRet;
-};
 const tmpCalleeParam$1 /*:unknown*/ = $(16);
 const x$1 /*:number*/ /*&13*/ = tmpCalleeParam$1 & 13;
 if (x$1) {
-  const tmpReturnArg /*:string*/ = $frfr(tmpFree, x$1);
+  const tmpReturnArg /*:string*/ /*truthy*/ = `this is ${x$1}`;
   $(tmpReturnArg);
 } else {
   $(`alt path is always 0`);
@@ -44,13 +37,9 @@ if (x$1) {
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpFree = function $free(x) {
-  const tmpRet = `this is ${x}`;
-  return tmpRet;
-};
 const x$1 = $(16) & 13;
 if (x$1) {
-  $($frfr(tmpFree, x$1));
+  $(`this is ${x$1}`);
 } else {
   $(`alt path is always 0`);
 }
@@ -61,18 +50,11 @@ if (x$1) {
 With rename=true
 
 `````js filename=intro
-const a = function b($$0 ) {
-  const c = $$0;
-  debugger;
-  const d = $coerce( c, "string" );
-  const e = `this is ${d}`;
-  return e;
-};
-const f = $( 16 );
-const g = f & 13;
-if (g) {
-  const h = i( a, g );
-  $( h );
+const a = $( 16 );
+const b = a & 13;
+if (b) {
+  const c = `this is ${b}`;
+  $( c );
 }
 else {
   $( "alt path is always 0" );

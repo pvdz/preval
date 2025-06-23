@@ -61,10 +61,26 @@ function core(fdata) {
 
       after(read.blockBody[read.blockIndex]);
       ++changes;
+      return;
+    }
+
+    if (argNode.type === 'TemplateLiteral') {
+      vlog('Arg is a template literal...');
+      if (kind === 'string' || 'plustr') {
+        rule('Calling $coerce on a template literal with string or plustr will just return the template literal');
+        example('$coerce(`foo`, "string");', '`foo`;');
+        before(read.blockBody[read.blockIndex]);
+
+        read.grandNode[read.grandProp] = read.parentNode.arguments[0];
+
+        after(read.blockBody[read.blockIndex]);
+        changes = changes + 1;
+        return;
+      }
     }
 
     if (argNode.type !== 'Identifier') {
-      // TODO: if it's not a primitive and not an identifier, what is it and can we maybe still resolve it?
+      todo(`if this ${argNode.type} arg to $coerce is not a primitive and not an identifier, what is it and can we maybe still resolve it?`);
       return;
     }
 
@@ -203,6 +219,7 @@ function core(fdata) {
 
       after(read.blockBody[read.blockIndex]);
       ++changes;
+      return;
     }
 
     if (at === 'regex') {
@@ -320,6 +337,34 @@ function core(fdata) {
         after(read.blockBody[read.blockIndex]);
         ++changes;
         return;
+      }
+    }
+
+    // When:
+    // - the arg is coerced to a string / plustr (template would do this)
+    // - the arg is known to be a primitive already (must retain no side effects in templates)
+    // then we can skip the $coerce step because the template will do this too.
+    if (
+      (kind === 'string' || kind === 'plustr') &&
+      argMeta.isConstant && // Is this important? Perhaps this was an invariant ...
+      PRIMITIVE_TYPE_NAMES_PREVAL.has(argMeta.typing.mustBeType) && // Coercion can not have side effects
+      read.blockBody[read.blockIndex].type === 'VarStatement'
+    ) {
+      const resultMeta = fdata.globallyUniqueNamingRegistry.get(read.blockBody[read.blockIndex].id.name);
+      if (resultMeta.isConstant && resultMeta.writes.length === 1 && resultMeta.reads.length === 1) {
+        if (resultMeta.reads[0].parentNode.type === 'TemplateLiteral') {
+          rule('When $coerce has no side effect, coerced to string, and the result is used in a template, the coerce is moot');
+          example('`const n = x * 1; const t = $coerce(n); $(`${t}`)', '`const n = x * 1; const t = $coerce(n); $(`${n}`)')
+          before(read.blockBody[read.blockIndex]);
+          before(resultMeta.reads[0].blockBody[resultMeta.reads[0].blockIndex]);
+
+          resultMeta.reads[0].parentNode[resultMeta.reads[0].parentProp][resultMeta.reads[0].parentIndex] = AST.identifier(argName);
+
+          after(read.blockBody[read.blockIndex]);
+          after(resultMeta.reads[0].blockBody[resultMeta.reads[0].blockIndex]);
+          changes = changes + 1;
+          return;
+        }
       }
     }
   });

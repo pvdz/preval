@@ -21,13 +21,6 @@ $(a, b);
 
 
 `````js filename=intro
-const tmpFree /*:(number)=>string*/ = function $free($$0) {
-  const tmpUpdNum$1 /*:number*/ = $$0;
-  debugger;
-  const tmpStringConcatL /*:string*/ = $coerce(tmpUpdNum$1, `string`);
-  const tmpRet /*:string*/ /*truthy*/ = `before  ${tmpStringConcatL}  after`;
-  return tmpRet;
-};
 const b /*:object*/ /*truthy*/ = { x: 1 };
 const tmpCalleeParam$3 /*:unknown*/ = $(b);
 const tmpUpdObj /*:unknown*/ = $(tmpCalleeParam$3);
@@ -35,7 +28,7 @@ const tmpUpdProp /*:unknown*/ = tmpUpdObj.x;
 const tmpUpdNum /*:number*/ = $coerce(tmpUpdProp, `number`);
 const tmpUpdInc /*:number*/ = tmpUpdNum + 1;
 tmpUpdObj.x = tmpUpdInc;
-const tmpCalleeParam /*:string*/ = $frfr(tmpFree, tmpUpdNum);
+const tmpCalleeParam /*:string*/ /*truthy*/ = `before  ${tmpUpdNum}  after`;
 $(tmpCalleeParam);
 $(tmpUpdNum, b);
 `````
@@ -45,15 +38,11 @@ $(tmpUpdNum, b);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpFree = function $free(tmpUpdNum$1) {
-  const tmpRet = `before  ${tmpUpdNum$1}  after`;
-  return tmpRet;
-};
 const b = { x: 1 };
 const tmpUpdObj = $($(b));
 const tmpUpdNum = $coerce(tmpUpdObj.x, `number`);
 tmpUpdObj.x = tmpUpdNum + 1;
-$($frfr(tmpFree, tmpUpdNum));
+$(`before  ${tmpUpdNum}  after`);
 $(tmpUpdNum, b);
 `````
 
@@ -62,23 +51,16 @@ $(tmpUpdNum, b);
 With rename=true
 
 `````js filename=intro
-const a = function b($$0 ) {
-  const c = $$0;
-  debugger;
-  const d = $coerce( c, "string" );
-  const e = `before  ${d}  after`;
-  return e;
-};
-const f = { x: 1 };
-const g = $( f );
-const h = $( g );
-const i = h.x;
-const j = $coerce( i, "number" );
-const k = j + 1;
-h.x = k;
-const l = m( a, j );
-$( l );
-$( j, f );
+const a = { x: 1 };
+const b = $( a );
+const c = $( b );
+const d = c.x;
+const e = $coerce( d, "number" );
+const f = e + 1;
+c.x = f;
+const g = `before  ${e}  after`;
+$( g );
+$( e, a );
 `````
 
 

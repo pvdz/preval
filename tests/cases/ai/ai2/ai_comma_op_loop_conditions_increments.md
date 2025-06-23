@@ -27,14 +27,6 @@ $('iterations_run', iter_count);
 
 
 `````js filename=intro
-const tmpFree /*:(number, number)=>string*/ = function $free($$0, $$1) {
-  const tmpClusterSSA_i /*:number*/ = $$0;
-  const tmpClusterSSA_j /*:number*/ = $$1;
-  debugger;
-  const tmpStringConcatL$2 /*:string*/ = $coerce(tmpClusterSSA_i, `string`);
-  const tmpRet /*:string*/ /*truthy*/ = `loop_body_i=${tmpStringConcatL$2}_j=${tmpClusterSSA_j}`;
-  return tmpRet;
-};
 let iter_count /*:number*/ = 0;
 $(`init_i_effect`);
 const i /*:unknown*/ = $(`init_i_val`, 0);
@@ -76,7 +68,7 @@ if (tmpIfTest) {
       tmpIfTest$1 = $(`cond_eff2`, false);
     }
     if (tmpIfTest$1) {
-      const tmpMCP$1 /*:string*/ = $frfr(tmpFree, tmpClusterSSA_i$1, tmpClusterSSA_j$1);
+      const tmpMCP$1 /*:string*/ /*truthy*/ = `loop_body_i=${tmpClusterSSA_i$1}_j=${tmpClusterSSA_j$1}`;
       $dotCall($array_push, log, `push`, tmpMCP$1);
       $(`loop_body_effect`, tmpClusterSSA_i$1, tmpClusterSSA_j$1);
       tmpClusterSSA_i$1 = tmpClusterSSA_i$1 + 1;
@@ -100,10 +92,6 @@ $(`iterations_run`, iter_count);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpFree = function $free(tmpClusterSSA_i, tmpClusterSSA_j) {
-  const tmpRet = `loop_body_i=${tmpClusterSSA_i}_j=${tmpClusterSSA_j}`;
-  return tmpRet;
-};
 let iter_count = 0;
 $(`init_i_effect`);
 const i = $(`init_i_val`, 0);
@@ -137,7 +125,7 @@ if (tmpIfTest) {
       tmpIfTest$1 = $(`cond_eff2`, false);
     }
     if (tmpIfTest$1) {
-      $dotCall($array_push, log, `push`, $frfr(tmpFree, tmpClusterSSA_i$1, tmpClusterSSA_j$1));
+      $dotCall($array_push, log, `push`, `loop_body_i=${tmpClusterSSA_i$1}_j=${tmpClusterSSA_j$1}`);
       $(`loop_body_effect`, tmpClusterSSA_i$1, tmpClusterSSA_j$1);
       tmpClusterSSA_i$1 = tmpClusterSSA_i$1 + 1;
       $(`inc_i_effect`, tmpClusterSSA_i$1);
@@ -158,74 +146,66 @@ $(`iterations_run`, iter_count);
 With rename=true
 
 `````js filename=intro
-const a = function b($$0,$$1 ) {
-  const c = $$0;
-  const d = $$1;
-  debugger;
-  const e = $coerce( c, "string" );
-  const f = `loop_body_i=${e}_j=${d}`;
-  return f;
-};
-let g = 0;
+let a = 0;
 $( "init_i_effect" );
-const h = $( "init_i_val", 0 );
+const b = $( "init_i_val", 0 );
 $( "init_j_effect" );
-const i = $( "init_j_val", 5 );
-$( "cond_eff1", h );
-const j = i > 0;
-let k = undefined;
-if (j) {
-  const l = $( "cond_i_limit", 3 );
-  const m = h < l;
-  k = $( "cond_eff2", m );
+const c = $( "init_j_val", 5 );
+$( "cond_eff1", b );
+const d = c > 0;
+let e = undefined;
+if (d) {
+  const f = $( "cond_i_limit", 3 );
+  const g = b < f;
+  e = $( "cond_eff2", g );
 }
 else {
-  k = $( "cond_eff2", false );
+  e = $( "cond_eff2", false );
 }
-const n = [];
-if (k) {
-  const o = $coerce( h, "plustr" );
-  const p = `loop_body_i=${o}_j=`;
-  const q = p + i;
-  $dotCall( $array_push, n, "push", q );
-  $( "loop_body_effect", h, i );
-  const r = $coerce( h, "number" );
-  let s = r + 1;
-  $( "inc_i_effect", s );
-  const t = $coerce( i, "number" );
-  let u = t - 1;
-  $( "inc_j_effect", u );
-  g = 1;
+const h = [];
+if (e) {
+  const i = $coerce( b, "plustr" );
+  const j = `loop_body_i=${i}_j=`;
+  const k = j + c;
+  $dotCall( $array_push, h, "push", k );
+  $( "loop_body_effect", b, c );
+  const l = $coerce( b, "number" );
+  let m = l + 1;
+  $( "inc_i_effect", m );
+  const n = $coerce( c, "number" );
+  let o = n - 1;
+  $( "inc_j_effect", o );
+  a = 1;
   while ($LOOP_UNROLL_10) {
-    $( "cond_eff1", s );
-    const v = u > 0;
-    let w = undefined;
-    if (v) {
-      const x = $( "cond_i_limit", 3 );
-      const y = s < x;
-      w = $( "cond_eff2", y );
+    $( "cond_eff1", m );
+    const p = o > 0;
+    let q = undefined;
+    if (p) {
+      const r = $( "cond_i_limit", 3 );
+      const s = m < r;
+      q = $( "cond_eff2", s );
     }
     else {
-      w = $( "cond_eff2", false );
+      q = $( "cond_eff2", false );
     }
-    if (w) {
-      const z = ba( a, s, u );
-      $dotCall( $array_push, n, "push", z );
-      $( "loop_body_effect", s, u );
-      s = s + 1;
-      $( "inc_i_effect", s );
-      u = u - 1;
-      $( "inc_j_effect", u );
-      g = g + 1;
+    if (q) {
+      const t = `loop_body_i=${m}_j=${o}`;
+      $dotCall( $array_push, h, "push", t );
+      $( "loop_body_effect", m, o );
+      m = m + 1;
+      $( "inc_i_effect", m );
+      o = o - 1;
+      $( "inc_j_effect", o );
+      a = a + 1;
     }
     else {
       break;
     }
   }
 }
-const bb = $dotCall( $array_join, n, "join", "|" );
-$( "comma_loop_log", bb );
-$( "iterations_run", g );
+const u = $dotCall( $array_join, h, "join", "|" );
+$( "comma_loop_log", u );
+$( "iterations_run", a );
 `````
 
 

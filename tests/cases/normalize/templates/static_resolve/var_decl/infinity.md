@@ -53,7 +53,7 @@ $(x);
 ## Todos triggered
 
 
-- (todo) Support coercing "$Number_POSITIVE_INFINITY" to a "string"
+None
 
 
 ## Globals

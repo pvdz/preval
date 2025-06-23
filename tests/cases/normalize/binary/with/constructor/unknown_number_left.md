@@ -49,10 +49,9 @@ $(x instanceof String);
 `````js filename=intro
 const tmpBinBothRhs /*:unknown*/ = $(1);
 const x /*:number*/ = 1 * tmpBinBothRhs;
-const tmpStringConcatR /*:string*/ = $coerce(x, `string`);
 const tmpArrElement$25 /*:boolean*/ = x == String;
 const tmpArrElement$27 /*:boolean*/ = x != String;
-const tmpArrElement$7 /*:string*/ /*truthy*/ = `${tmpStringConcatR}function String() { [native code] }`;
+const tmpArrElement$7 /*:string*/ /*truthy*/ = `${x}function String() { [native code] }`;
 const tmpArrElement$11 /*:number*/ = x << 0;
 const tmpArrElement$13 /*:number*/ = x >> 0;
 const tmpArrElement$15 /*:number*/ = x >>> 0;
@@ -98,10 +97,9 @@ $(tmpCalleeParam$1);
 `````js filename=intro
 const tmpBinBothRhs = $(1);
 const x = 1 * tmpBinBothRhs;
-const tmpStringConcatR = $coerce(x, `string`);
 const tmpArrElement$25 = x == String;
 const tmpArrElement$27 = x != String;
-const tmpArrElement$7 = `${tmpStringConcatR}function String() { [native code] }`;
+const tmpArrElement$7 = `${x}function String() { [native code] }`;
 const tmpArrElement$11 = x << 0;
 const tmpArrElement$13 = x >> 0;
 const tmpArrElement$15 = x >>> 0;
@@ -144,25 +142,24 @@ With rename=true
 `````js filename=intro
 const a = $( 1 );
 const b = 1 * a;
-const c = $coerce( b, "string" );
-const d = b == String;
-const e = b != String;
-const f = `${c}function String() { [native code] }`;
-const g = b << 0;
-const h = b >> 0;
-const i = b >>> 0;
-const j = b < "function String() { [native code] }";
-const k = b > "function String() { [native code] }";
-const l = b <= "function String() { [native code] }";
-const m = b >= "function String() { [native code] }";
-const n = b ^ 0;
-const o = b | 0;
-const p = [ NaN, NaN, NaN, NaN, f, NaN, g, h, i, j, k, l, m, d, e, false, true, 0, n, o ];
+const c = b == String;
+const d = b != String;
+const e = `${b}function String() { [native code] }`;
+const f = b << 0;
+const g = b >> 0;
+const h = b >>> 0;
+const i = b < "function String() { [native code] }";
+const j = b > "function String() { [native code] }";
+const k = b <= "function String() { [native code] }";
+const l = b >= "function String() { [native code] }";
+const m = b ^ 0;
+const n = b | 0;
+const o = [ NaN, NaN, NaN, NaN, e, NaN, f, g, h, i, j, k, l, c, d, false, true, 0, m, n ];
+$( o );
+const p = b in String;
 $( p );
-const q = b in String;
+const q = b instanceof String;
 $( q );
-const r = b instanceof String;
-$( r );
 `````
 
 

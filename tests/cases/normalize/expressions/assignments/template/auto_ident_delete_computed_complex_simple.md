@@ -21,17 +21,10 @@ $(a, arg);
 
 
 `````js filename=intro
-const tmpFree /*:(boolean)=>string*/ = function $free($$0) {
-  const a$1 /*:boolean*/ = $$0;
-  debugger;
-  const tmpStringConcatL /*:string*/ = $coerce(a$1, `string`);
-  const tmpRet /*:string*/ /*truthy*/ = `before  ${tmpStringConcatL}  after`;
-  return tmpRet;
-};
 const arg /*:object*/ /*truthy*/ = { y: 1 };
 const tmpDeleteObj /*:unknown*/ = $(arg);
 const a /*:boolean*/ = delete tmpDeleteObj.y;
-const tmpCalleeParam /*:string*/ = $frfr(tmpFree, a);
+const tmpCalleeParam /*:string*/ /*truthy*/ = `before  ${a}  after`;
 $(tmpCalleeParam);
 $(a, arg);
 `````
@@ -41,14 +34,10 @@ $(a, arg);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpFree = function $free(a$1) {
-  const tmpRet = `before  ${a$1}  after`;
-  return tmpRet;
-};
 const arg = { y: 1 };
 const tmpDeleteObj = $(arg);
 const a = delete tmpDeleteObj.y;
-$($frfr(tmpFree, a));
+$(`before  ${a}  after`);
 $(a, arg);
 `````
 
@@ -57,19 +46,12 @@ $(a, arg);
 With rename=true
 
 `````js filename=intro
-const a = function b($$0 ) {
-  const c = $$0;
-  debugger;
-  const d = $coerce( c, "string" );
-  const e = `before  ${d}  after`;
-  return e;
-};
-const f = { y: 1 };
-const g = $( f );
-const h = delete g.y;
-const i = j( a, h );
-$( i );
-$( h, f );
+const a = { y: 1 };
+const b = $( a );
+const c = delete b.y;
+const d = `before  ${c}  after`;
+$( d );
+$( c, a );
 `````
 
 

@@ -4295,6 +4295,156 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                   break;
                 }
                   //case symbo('String', 'fromCodePoint'): // fromCodePoint can crash on invalid input ... :/
+                case symbo('Promise', 'all'): {
+                  if (args.length === 1) {
+                    riskyRule('A statement that calls Promise.all can be eliminated');
+                    // The arg must be iterable, and expects to be iterated over exhaustively, so spreading it into an array should suffice...
+                    example('Promise.all(x);', '[...x];');
+                    before(body[i]);
+
+                    body.splice(i, 1,
+                      args[i].type === 'SpreadElement'
+                        ? AST.expressionStatement(AST.arrayExpression(args[i]))
+                        : AST.expressionStatement(AST.arrayExpression(AST.spreadElement(args[i]))),
+                      // Context might not be used but if it is referenced we keep for tdz reasons.
+                      ...(contextNode ? [AST.expressionStatement(AST.cloneSimple(contextNode))] : []),
+                    );
+
+                    before(body[i]);
+                    if (contextNode) before(body[i+1]);
+                    after(AST.emptyStatement());
+                    return true;
+                  }
+                  break;
+                }
+                case symbo('Promise', 'anySettled'): {
+                  if (args.length === 1) {
+                    riskyRule('A statement that calls Promise.anySettled can be eliminated');
+                    // The arg must be iterable, and expects to be iterated over exhaustively, so spreading it into an array should suffice...
+                    example('Promise.anySettled(x);', '[...x];');
+                    before(body[i]);
+
+                    body.splice(i, 1,
+                      args[i].type === 'SpreadElement'
+                        ? AST.expressionStatement(AST.arrayExpression(args[i]))
+                        : AST.expressionStatement(AST.arrayExpression(AST.spreadElement(args[i]))),
+                      // Context might not be used but if it is referenced we keep for tdz reasons.
+                      ...(contextNode ? [AST.expressionStatement(AST.cloneSimple(contextNode))] : []),
+                    );
+
+                    before(body[i]);
+                    if (contextNode) before(body[i+1]);
+                    after(AST.emptyStatement());
+                    return true;
+                  }
+                  break;
+                }
+                case symbo('Promise', 'any'): {
+                  if (args.length === 1) {
+                    riskyRule('A statement that calls Promise.any can be eliminated');
+                    // The arg must be iterable, and expects to be iterated over exhaustively, so spreading it into an array should suffice...
+                    example('Promise.any(x);', '[...x];');
+                    before(body[i]);
+
+                    body.splice(i, 1,
+                      args[i].type === 'SpreadElement'
+                        ? AST.expressionStatement(AST.arrayExpression(args[i]))
+                        : AST.expressionStatement(AST.arrayExpression(AST.spreadElement(args[i]))),
+                      // Context might not be used but if it is referenced we keep for tdz reasons.
+                      ...(contextNode ? [AST.expressionStatement(AST.cloneSimple(contextNode))] : []),
+                    );
+
+                    before(body[i]);
+                    if (contextNode) before(body[i+1]);
+                    after(AST.emptyStatement());
+                    return true;
+                  }
+                  break;
+                }
+                case symbo('Promise', 'race'): {
+                  if (args.length === 1) {
+                    riskyRule('A statement that calls Promise.race can be eliminated');
+                    // The arg must be iterable, and expects to be iterated over exhaustively, so spreading it into an array should suffice...
+                    example('Promise.race(x);', '[...x];');
+                    before(body[i]);
+
+                    body.splice(i, 1,
+                      args[i].type === 'SpreadElement'
+                        ? AST.expressionStatement(AST.arrayExpression(args[i]))
+                        : AST.expressionStatement(AST.arrayExpression(AST.spreadElement(args[i]))),
+                      // Context might not be used but if it is referenced we keep for tdz reasons.
+                      ...(contextNode ? [AST.expressionStatement(AST.cloneSimple(contextNode))] : []),
+                    );
+
+                    before(body[i]);
+                    if (contextNode) before(body[i+1]);
+                    after(AST.emptyStatement());
+                    return true;
+                  }
+                  break;
+                }
+                case symbo('Promise', 'reject'): {
+                  if (args.length === 1) {
+                    riskyRule('A statement that calls Promise.reject can be eliminated');
+                    example('Promise.reject(x);', 'x;');
+                    before(body[i]);
+
+                    body.splice(i, 1,
+                      args[i].type === 'SpreadElement'
+                        ? AST.expressionStatement(AST.arrayExpression(args[i]))
+                        : AST.expressionStatement(args[i]),
+                      // Context might not be used but if it is referenced we keep for tdz reasons.
+                      ...(contextNode ? [AST.expressionStatement(AST.cloneSimple(contextNode))] : []),
+                    );
+
+                    before(body[i]);
+                    if (contextNode) before(body[i+1]);
+                    after(AST.emptyStatement());
+                    return true;
+                  }
+                  break;
+                }
+                case symbo('Promise', 'resolve'): {
+                  if (args.length === 1) {
+                    riskyRule('A statement that calls Promise.resolve can be eliminated');
+                    example('Promise.resolve(x);', 'x;');
+                    before(body[i]);
+
+                    body.splice(i, 1,
+                      args[i].type === 'SpreadElement'
+                        ? AST.expressionStatement(AST.arrayExpression(args[i]))
+                        : AST.expressionStatement(args[i]),
+                      // Context might not be used but if it is referenced we keep for tdz reasons.
+                      ...(contextNode ? [AST.expressionStatement(AST.cloneSimple(contextNode))] : []),
+                    );
+
+                    before(body[i]);
+                    if (contextNode) before(body[i+1]);
+                    after(AST.emptyStatement());
+                    return true;
+                  }
+                  break;
+                }
+                // case symbo('Promise', 'race'): // any args
+                case symbo('Promise', 'withResolvers'): {
+                  if (args.length === 0) {
+                    riskyRule('A statement that calls Promise.withResolvers can be eliminated');
+                    // The arg must be iterable, and expects to be iterated over exhaustively, so spreading it into an array should suffice...
+                    example('Promise.withResolvers();', ';');
+                    before(body[i]);
+
+                    body.splice(i, 1,
+                      // Context might not be used but if it is referenced we keep for tdz reasons.
+                      ...(contextNode ? [AST.expressionStatement(AST.cloneSimple(contextNode))] : []),
+                    );
+
+                    if (contextNode) before(body[i+1]);
+                    after(AST.emptyStatement());
+                    return true;
+                  }
+                  break;
+                }
+
                 case symbo('String', 'fromCharCode'): {
                   // Coerce all args to number
                   if (args.every((anode, ai) => anode.type !== 'SpreadElement')) {

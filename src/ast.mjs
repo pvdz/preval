@@ -2598,7 +2598,7 @@ export function _complexExpressionNodeMightSpy(node, fdata) {
         // Computed keys are coerced to string
         if (pnode.computed) return complexExpressionNodeMightSpy(pnode.key, fdata);
         // In normalized code, the value should be simple and cannot spy when the object is defined
-        return false;
+        return complexExpressionNodeMightSpy(pnode.value, fdata);
       });
     }
     case 'UnaryExpression': {

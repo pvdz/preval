@@ -5,7 +5,7 @@ import path from 'path';
 import { preval } from '../src/index.mjs';
 import * as AST from '../src/ast.mjs';
 import {setPrintVarTyping} from '../lib/printer.mjs';
-import { RED, GREEN, YELLOW, BLUE, WHITE, BOLD, RESET, WHITE_BLACK, ORANGE, GOOD, BAD, fmat, fromMarkdownCase, toEvaluationResult, toMarkdownCase, toNormalizedSection, ASSERT, } from './utils.mjs';
+import { RED, GREEN, YELLOW, BLUE, WHITE, BOLD, RESET, WHITE_BLACK, ORANGE, GOOD, BAD, fmat, fromMarkdownCase, toEvaluationResult, toMarkdownCase, toNormalizedSection, ASSERT, REDN, } from './utils.mjs';
 import { DIM, VERBOSE_TRACING, } from '../src/constants.mjs';
 import { SYMBOL_FOROF, SYMBOL_FORIN, SYMBOL_DOTCALL, BUILTIN_REST_HANDLER_NAME, SYMBOL_LOOP_UNROLL, SYMBOL_MAX_LOOP_UNROLL, SYMBOL_THROW_TDZ_ERROR, SYMBOL_PRNG, SYMBOL_COERCE, SYMBOL_FRFR } from '../src/symbols_preval.mjs';
 import { BUILTIN_SYMBOLS, sym_prefix, symbo } from '../src/symbols_builtins.mjs';
@@ -30,6 +30,17 @@ if (isMainThread) {
 }
 if (CONFIG.refTracing) setRefTracing(true);
 
+const runOutcome = {
+  cases: 0,
+  changed: 0,
+  failure: 0,
+  badEval: 0,
+  badEvalNow: 0,
+  changes: [],
+  badEvals: [],
+  badEvalsNow: [],
+  failures: [],
+};
 if (isMainThread && CONFIG.threads > 1) {
   // Spin off multiple threads and have them do the work in chunks. This thread will do the reporting.
 
@@ -40,6 +51,7 @@ if (isMainThread && CONFIG.threads > 1) {
   const resolvers = [];
   const promises = [];
   const threads = [];
+  let finished = 0;
   let broke = false;
   for (let threadIndex = 0; threadIndex < CONFIG.threads; ++threadIndex) {
     promises.push(
@@ -54,14 +66,57 @@ if (isMainThread && CONFIG.threads > 1) {
           },
         });
         let last = '';
-        worker.on('message', (arr) => {
+        worker.on('message', (obj) => {
           if (broke) return;
-          last = arr[arr.length - 2];
-          console.log(...arr);
+          switch (obj.ptype) {
+            case 'msg': {
+              console.log.apply(console, obj.data);
+              break;
+            }
+            case 'start': {
+              console.log.apply(console, obj.data);
+              break;
+            }
+            case 'end': {
+              if (obj.snapChanged) runOutcome.changes.push(obj.file);
+              if (obj.evalChanged) runOutcome.badEvals.push(obj.file);
+              if (obj.snapChanged && obj.evalChanged) runOutcome.badEvalsNow.push(obj.file);
+              break;
+            }
+            case 'crash': {
+              runOutcome.failure += 1;
+              runOutcome.failures.push(obj.file);
+              break;
+            }
+            case 'note': {
+              if (obj.changed) {
+                runOutcome.changed += 1;
+                runOutcome.changes.push(obj.file);
+              }
+              if (obj.badEval) {
+                runOutcome.badEval += 1;
+                runOutcome.badEvals.push(obj.file);
+              }
+              if (obj.badEval && obj.changed) {
+                runOutcome.badEvalNow += 1;
+                runOutcome.badEvalsNow.push(obj.file);
+              }
+              console.log.apply(console, obj.data);
+              break;
+            }
+            case 'finish': {
+              const {cases, snap, fail, badEval, badEvalNow} = obj;
+              runOutcome.cases += cases;
+              finished += 1;
+              console.log('A thread finished...', finished, 'of', CONFIG.threads, 'threads have finished now.');
+              break;
+            }
+            default: ASSERT(false, 'missing test post message ptype:', obj);
+          }
         });
         worker.on('error', (e) => {
           if (broke) return;
-          console.log('Error:', e);
+          console.log('Worker Error:', e);
           console.log('Going to kill all threads and run this test case in verbose mode... : ' + last);
           // We can't abort the workers without fataling nodejs. So instead we mute them and tell the main thread
           // that they've completed. This allows the promise.all to continue and run the failed test case in CLI.
@@ -89,11 +144,23 @@ if (isMainThread && CONFIG.threads > 1) {
     console.log('Test (' + fileToRetryVerbose + ') crashed. Running it in verbose mode in main thread');
     CONFIG.targetFile = fileToRetryVerbose;
   } else {
-    console.log('Finished, no test fataled, exiting now...');
-    //if (isMainThread) {
+    console.log('All threads finished');
+
+    console.log(`Suite finished, ${GREEN}${runOutcome.cases} tests${RESET}`);
+    if (runOutcome.changed) console.log(`- ${ORANGE}${runOutcome.changed} test snapshots mismatched${RESET}`);
+    if (runOutcome.failure) console.log(`- ${BOLD}${RED}${runOutcome.failure} tests crashed${RESET}`);
+    if (runOutcome.badEval) console.log(`- ${REDN}${runOutcome.badEval} tests had inconsistent eval outcomes${runOutcome.badEvalNow?'':' (unchanged)'}${RESET}`);
+    if (runOutcome.badEvalNow) console.log(`  - ${BOLD}${RED}${runOutcome.badEvalNow} of these changed this run${RESET}`);
+
+    if (runOutcome.changes.length) console.log('First ten changes:\n' + runOutcome.changes.slice(0, 10).map(f => '- ' + f).join('\n'));
+    if (runOutcome.badEvalsNow.length) console.log('First ten bad evals changed this run:\n' + runOutcome.badEvalsNow.slice(0, 10).map(f => '- ' + f).join('\n'));
+    if (runOutcome.failures.length) console.log('First ten failures:\n' + runOutcome.failures.slice(0, 10).map(f => '- ' + f).join('\n'));
+    if (!runOutcome.failures.length && !runOutcome.badEvalsNow.length && !runOutcome.changes.length) {
+      if (runOutcome.badEvals.length) console.log('First ten bad evals:\n' + runOutcome.badEvals.slice(0, 10).map(f => '- ' + f).join('\n'));
+    }
+
     console.log(`Suite finished`);
     console.timeEnd('Total ./p time');
-    //}
     process.exit();
   }
 }
@@ -117,7 +184,7 @@ const workerOffset = CONFIG.threadIndex * workerStep;
 if (isMainThread) {
   console.log('Slicing test cases from', workerOffset, 'to', workerOffset + workerStep);
 } else {
-  parentPort.postMessage(['Slicing test cases from', workerOffset, 'to', workerOffset + workerStep]);
+  parentPort.postMessage({ptype: 'msg', data: ['Slicing test cases from', workerOffset, 'to', workerOffset + workerStep]});
 }
 const fileNames = fastFileNames.filter((fn, fi) => fi % CONFIG.threads === CONFIG.threadIndex);
 
@@ -128,7 +195,7 @@ if (CONFIG.randomizedOrder) {
   if (isMainThread) {
     console.log('Shuffling tests...');
   } else {
-    parentPort.postMessage(['Shuffling tests...']);
+    parentPort.postMessage({ptype: 'msg', data: ['Shuffling tests...']});
   }
   fileNames.sort(Math.random);
 }
@@ -142,13 +209,20 @@ let fail = 0; // crash
 let badNorm = 0; // evaluation of normalized code does not match input
 let badFinal = 0; // evaluation of final output does not match input
 
-try {
-  testCases.forEach((tc, i) => runTestCase({ ...tc, withOutput: testCases.length === 1 && !CONFIG.onlyNormalized }, i));
-} catch (e) {
-  console.log(RED + `At least one test crashed hard (${lastStartedFile})`  + RESET);
-  // If you're not seeing a stack trace then it's probably happening in preval. Enable next line:
-  console.log(e);
-}
+testCases.some((tc, i) => {
+  try {
+    runTestCase({ ...tc, withOutput: testCases.length === 1 && !CONFIG.onlyNormalized }, i)
+  } catch (e) {
+    console.log(RED + `At least one test crashed hard ( ${lastStartedFile} )`  + RESET);
+    // If you're not seeing a stack trace then it's probably happening in preval. Enable next line:
+    console.log(e);
+    if (isMainThread) {
+      return true;
+    } else {
+      parentPort.postMessage({ptype: 'msg', data: [RED + `At least one test crashed hard ( ${lastStartedFile} )`  + RESET + '\n' + e.stack]});
+    }
+  }
+});
 
 if (isMainThread) {
   if (CONFIG.fileVerbatim) {
@@ -168,7 +242,10 @@ if (isMainThread) {
     );
   }
   console.timeEnd('Total ./p time');
+} else {
+  parentPort.postMessage({ptype: 'finish', cases: testCases.length});
 }
+
 function runTestCase(
   { md, mdHead, mdOptions, mdChunks, fname, fin, withOutput = false, ...other },
   relativeCaseIndex,
@@ -183,7 +260,7 @@ function runTestCase(
     : fname.includes('test/')
     ? fname.slice(fname.indexOf('test/'))
     : fname;
-  lastStartedFile = fname;
+  lastStartedFile = sname;
   const caseIndex = workerOffset + relativeCaseIndex;
   if (JSON.stringify(other) !== '{}') {
     console.log('received these unexpected args:', other);
@@ -207,7 +284,7 @@ function runTestCase(
     if (isMainThread) {
       console.log(...data);
     } else {
-      parentPort.postMessage(data);
+      parentPort.postMessage({ ptype: 'start', file: sname, data });
     }
   }
 
@@ -232,7 +309,7 @@ function runTestCase(
   const initialPrngSeed = CONFIG.prngSeed ?? mdOptions?.seed ?? 1;
   const todos = new Set;
 
-  let expectedError = false;
+  let sawExpectedError = false;
   try {
     if (CONFIG.verbose === false && CONFIG.targetFile) console.log('\nNow running Preval without output...\n');
     else if (withOutput) console.log('\n--- Actual call now ---\n');
@@ -273,6 +350,8 @@ function runTestCase(
         logDirExtra: CONFIG.logDirExtra,
         logFrom: CONFIG.logFrom,
         maxPass: CONFIG.maxPass ?? mdOptions?.maxPass,
+        reducersOnly: CONFIG.reducersOnly ?? mdOptions?.reducersOnly,
+        reducersSkip: CONFIG.reducersSkip ?? mdOptions?.reducersSkip,
         refTest: isRefTest,
         time: CONFIG.time,
         pcodeTest: isPcodeTest,
@@ -427,19 +506,19 @@ function runTestCase(
       const throws = mdHead.match(/\n### THROWS( .*)?(?:\n|$)/);
       if (throws) {
         if (e.message.includes(throws[1])) {
-          expectedError = true;
+          sawExpectedError = true;
           lastError = e;
         } else {
           if (withOutput) console.log('\nOh no! Thrown error message does not include expected error');
           isExpectingAnError = false;
         }
       } else {
-        expectedError = true;
+        sawExpectedError = true;
         lastError = e;
       }
     }
 
-    if (!expectedError) {
+    if (!sawExpectedError) {
       if (withOutput) ++fail;
       lastError = e;
     }
@@ -568,6 +647,7 @@ function runTestCase(
     };
 
     for (const key of BUILTIN_SYMBOLS.keys()) {
+      if (key.startsWith(symbo('require', ''))) continue; // Ignore the nodejs hack
       ASSERT(key in frameworkInjectedGlobals, 'All builtin symbols should be exposed in the test runner. Missing:', [key]);
     }
     for (const key of Object.keys(frameworkInjectedGlobals)) {
@@ -865,7 +945,7 @@ function runTestCase(
     // Call them and show the result. Also call the function as JS. Compare outputs.
     // Maybe also call them with true, false, zero, one, empty string, and 'preval'?
 
-    !lastError && evalled.$pcode.push(
+    !lastError && output?.pcodeData && evalled.$pcode.push(
       Object.keys(output.pcodeData) // fname
       .sort((a, b) => (a === 'intro' ? -1 : b === 'intro' ? 1 : a < b ? -1 : a > b ? 1 : 0))
       .flatMap((fname) => {
@@ -963,7 +1043,7 @@ function runTestCase(
     if (!lastError) log('-- Skipping pcode eval...');
   }
 
-  if (lastError && !isExpectingAnError) console.log('\n\nPreval crashed hard on test/file, skipped evals:', CONFIG.targetFile);
+  if (lastError && !isExpectingAnError) console.log('\n'+RED+`Preval crashed hard on test/file ${sname} , skipped evals`+RESET);
 
   if (withOutput) {
     console.log('\n');
@@ -988,24 +1068,29 @@ function runTestCase(
     //  );
     //}
 
-    console.error('Error: ' + lastError.message);
+    console.error('The Error: ' + (!lastError.stack ? lastError.message : ''), lastError.stack, '\n');
 
     // Collapse the console.group indent because it was cut-off at an unknown indentation level. We can only reset it to zero now.
     for (let i = 0; i < 20; ++i) console.groupEnd();
 
-    console.log('###################################################', caseIndex + 1, '/', testCases.length, '[', fname, ']');
+    if (isMainThread) {
+      console.log('###################################################', caseIndex + 1, '/', testCases.length, '[', sname, '] <-- ' + RED+ ' TEST FAILED' + RESET);
 
-    console.log(`TEST ${RED}FAIL${RESET} Threw an error`);
-    if (
-      lastError.message?.includes?.('PREVAL ASSERT:') ||
-      lastError.includes?.('PREVAL ASSERT:') ||
-      lastError.stack?.includes('PREVAL ASSERT:')
-    ) {
-      console.log('(stack should be printed above. uncomment me if not)');
+      console.log(`TEST ${RED}FAIL${RESET} Threw an error`);
+      // if (
+      //   lastError.message?.includes?.('PREVAL ASSERT:') ||
+      //   lastError.includes?.('PREVAL ASSERT:') ||
+      //   lastError.stack?.includes('PREVAL ASSERT:')
+      // ) {
+        console.log('(stack should be printed above. uncomment me if not)');
+      // } else {
+      //   console.log(lastError.stack || lastError);
+      // }
+
+      throw ('(the test case failed...)'); // dont show stack trace for this
     } else {
-      console.log(lastError.stack || lastError);
+      parentPort.postMessage({ptype: 'crash', file: sname, message: lastError.message, stack: lastError.stack});
     }
-    throw new Error('the test failed...');
   }
 
   if (CONFIG.onlyNormalized) {
@@ -1029,7 +1114,7 @@ function runTestCase(
     let md2 = toMarkdownCase(
       {
         md, mdOptions, mdHead, mdChunks, fname, fin, output, evalled, lastError, isExpectingAnError, leGlobalSymbols,
-        pcodeData: output.pcodeData,
+        pcodeData: output?.pcodeData ?? '',
         todos
       },
       CONFIG
@@ -1071,8 +1156,21 @@ function runTestCase(
       if (isMainThread) {
         console.log(...data);
       } else {
-        parentPort.postMessage(data);
+        parentPort.postMessage({ptype: 'note', file: sname, data, changed: snapshotChanged, badEval: normalizationDesync || outputDesync});
       }
+    }
+
+    if (!isMainThread) {
+      parentPort.postMessage({
+        ptype: 'end',
+        file: sname,
+        snapChanged: snapshotChanged,
+        evalChanged: normalizationDesync || outputDesync,
+        isExpectingAnError,
+        sawExpectedError,
+        lastError: lastError?.stack,
+        fail
+      });
     }
 
     console.groupEnd();
@@ -1106,7 +1204,7 @@ function runTestCase(
     //if (isMainThread) {
     //  console.log(...data);
     //} else {
-    //  parentPort.postMessage(data);
+    //  parentPort.postMessage({ptype: 'msg', data});
     //}
   }
 }

@@ -7,6 +7,7 @@ import {setPrintPids} from "../lib/printer.mjs";
 import { createOpenRefsState, tmat } from '../src/utils.mjs';
 import { printPcode, serializePcode } from '../src/pcode.mjs';
 
+export const REDN = '\x1b[31m';
 export const RED = '\x1b[31;1m';
 export const GREEN = '\x1b[32m';
 export const YELLOW = '\x1b[33m';

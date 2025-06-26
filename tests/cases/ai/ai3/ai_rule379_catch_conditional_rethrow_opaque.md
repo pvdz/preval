@@ -356,8 +356,10 @@ $(`log`, tmpCalleeParam$13);
 ## Todos triggered
 
 
+- (todo) We should be able to resolve the $frfr call but pcode failed to complete with a Node, hasExplicitGlobal=false
 - (todo) can try-escaping support this expr node type? CallExpression
 - (todo) can try-escaping support this expr node type? NewExpression
+- (todo) free with zero args, we can eliminate this?
 
 
 ## Globals

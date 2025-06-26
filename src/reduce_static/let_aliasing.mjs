@@ -42,10 +42,7 @@ function _letAliasing(fdata) {
   let changed = 0;
   let matches = [];
   fdata.globallyUniqueNamingRegistry.forEach((meta, name) => {
-    if (meta.isBuiltin) return;
-    if (meta.isImplicitGlobal) return;
-    //console.log(meta)
-    if (meta.isConstant) return; // Targeting lets only
+    if (!meta.isLet) return;
 
     // Find back-to-back write, both init to a const decl
 
@@ -57,23 +54,21 @@ function _letAliasing(fdata) {
         prevRead = undefined;
         return;
       }
+      if (rw.kind !== 'var') {
+        prevRead = undefined;
+        return;
+      }
+      if (rw.parentNode.kind !== 'const') {
+        prevRead = undefined;
+        return;
+      }
       if (!prevRead) {
         prevRead = rw;
         return;
       }
-      vlog('   - Found two reads');
 
-      if (prevRead.parentNode.type !== 'VarStatement') {
-        vlog('     - bail: prev is not const decl:', prevRead.parentNode.type);
-        prevRead = rw;
-        return;
-      }
-
-      if (rw.parentNode.type !== 'VarStatement') {
-        vlog('     - bail: next is not const decl:', rw.parentNode.type);
-        prevRead = undefined;
-        return;
-      }
+      ASSERT(prevRead.parentNode.type === 'VarStatement');
+      ASSERT(rw.parentNode.type === 'VarStatement');
 
       vgroup(`    - Found a back to back read to consts (${prevRead.parentNode.id.name} = ${prevRead.parentNode.init.name}, ${rw.parentNode.id.name} = ${prevRead.parentNode.init.name}). Now checking observability.`);
 

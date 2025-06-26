@@ -120,6 +120,7 @@ $(x);
 
 
 - (todo) can try-escaping support this expr node type? Literal
+- (todo) fixme: spyless vars and labeled nodes
 
 
 ## Globals

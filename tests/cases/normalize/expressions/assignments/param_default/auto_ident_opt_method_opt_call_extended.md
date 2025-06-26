@@ -114,7 +114,7 @@ $(a);
 ## Todos triggered
 
 
-None
+- (todo) fixme: spyless vars and labeled nodes
 
 
 ## Globals

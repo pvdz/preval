@@ -88,6 +88,7 @@ $(tmpCalleeParam$3);
 
 
 - (todo) Deal with array spreads in arr mutation?
+- (todo) fixme: spyless vars and labeled nodes
 - (todo) support array reads statement type ExpressionStatement
 - (todo) support array reads statement type VarStatement
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

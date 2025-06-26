@@ -63,6 +63,7 @@ $(max);
 
 
 - (todo) Support this binary expression operator:
+- (todo) fixme: spyless vars and labeled nodes
 - (todo) objects in isFree check
 - (todo) support array reads statement type VarStatement
 - (todo) support array reads statement type WhileStatement

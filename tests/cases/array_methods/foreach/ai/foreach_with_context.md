@@ -139,6 +139,7 @@ $(result);
 
 - (todo) - at least one of the frfr args was not isFree, bailing
 - (todo) access object property that also exists on prototype? $array_push
+- (todo) fixme: spyless vars and labeled nodes
 - (todo) objects in isFree check
 - (todo) support array reads statement type EmptyStatement
 - (todo) support array reads statement type ExpressionStatement

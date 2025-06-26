@@ -176,6 +176,7 @@ $(`original_array`, arr);
 - (todo) Support this binary expression operator:
 - (todo) access object property that also exists on prototype? $array_filter
 - (todo) arr mutation may be able to inline this method: tmpMCF
+- (todo) fixme: spyless vars and labeled nodes
 - (todo) support array reads statement type ExpressionStatement
 - (todo) support array reads statement type VarStatement
 - (todo) support array reads statement type WhileStatement

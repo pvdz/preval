@@ -15,7 +15,7 @@ import {
   after,
   fmat,
   tmat,
-  findBodyOffset,
+  findBodyOffset, todo,
 } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { DIM, RESET, VERBOSE_TRACING } from '../constants.mjs';
@@ -179,39 +179,63 @@ function process(fdata, meta, name, queue, attempted) {
   vgroup('Searching for new target from', currentIndex, ', body has', targetBody.length, 'statements. First ref pid:', firstReadPid, ', last ref pid:', lastReadPid);
   while (currentIndex < targetBody.length) {
     const currPid = targetBody[currentIndex]?.$p.npid;
-    const nextPid = (targetBody[currentIndex + 1]?.$p.npid ?? Infinity);
-    vlog('- loop, current index:', currentIndex, ', currPid: @', currPid, ' (', targetBody[currentIndex]?.type, '), next pid: @', nextPid, '(', targetBody[currentIndex + 1]?.type ?? 'none', ')');
+    const lastPid = targetBody[currentIndex]?.$p.lastPid;
+    vlog('- loop, current index:', currentIndex, ', currPid: @', currPid, ' (', targetBody[currentIndex]?.type, '), last pid: @', lastPid);
 
-    if (!targetBody[currentIndex + 1]) {
-      vlog('  (there is no "after statement" so ref must be inside next node, using Infinity as after pid)');
-    }
-    if (nextPid < firstReadPid) {
+    if (firstReadPid > lastPid) {
       // Keep in mind, this is a single scoped variable and the (only) write
       // happened before all reads. As such, there can be no side effect that
       // spies on this var because that always entails invoking a function.
-
-      // The node after the current node has a lower pid than that of the
-      // first read. This means the first read must occur later and so we
-      // can safely skip the current statement. Nothing can spy on the var yet.
       ++currentIndex;
       vlog('  - Node does not contain ref, skipping to next node');
       continue;
     }
 
     const currNode = targetBody[currentIndex];
-
-    ASSERT(nextPid > firstReadPid, 'next pid is a statement but the read is an expr so it cant match and it must be bigger');
     ASSERT(currNode);
 
-    vlog('  - Ok, curr statement contains the first ref, but was the last ref after this node?', lastReadPid, '>', nextPid, '?');
-    if (lastReadPid > nextPid) {
-      vlog('    - Yes, so the search ends here and we move the decl to before statement @', nextPid);
+    vlog('  - Ok, curr statement contains the first read, but was the last read after this node?', lastReadPid, '>', lastPid, '?');
+    if (lastReadPid > lastPid) {
+      vlog('    - Yes, so the search ends here and we move the decl to after statement @', currNode.$p.npid);
       break;
     }
 
     vlog('    - No, so we can move the decl into this block because there is no later reference');
     // Wait, is that true for loops though? Even if there's no read afterwards, the loop
     // start would need to remember the last value of the end of the previous iteration..?
+
+    // Try to be correct in a few implicit global cases. We kinda of have to forgo on tdz checks here because that would cripple us too much.
+
+    if (currNode.type === 'VarStatement') {
+      if (currNode.init.type === 'Identifier') {
+        const meta = fdata.globallyUniqueNamingRegistry.get(currNode.init.name);
+        if (meta?.isImplicitGlobal) break;
+      }
+      else if (currNode.init.type === 'ArrayExpression') {
+        if (!currNode.init.elements.every(enode => {
+          return !enode || enode.type !== 'Identifier' || !fdata.globallyUniqueNamingRegistry.get(currNode.init.name)?.isImplicitGlobal;
+        })) {
+          break;
+        }
+      }
+      else if (currNode.init.type === 'ObjectExpression') {
+        if (!currNode.init.properties.every(pnode => {
+          if (pnode.type === 'SpreadElement') return vlog('- bail: spread property');
+          if (pnode.computed) {
+            if (AST.isPrimitive(pnode.key)) {}
+            else if (pnode.key.type !== 'Identifier') return vlog('- not moving above unsafe objlit key', pnode.key.type); // i'm not sure what it might be
+            else if (fdata.globallyUniqueNamingRegistry.get(pnode.key.name)?.isImplicitGlobal) return vlog('- not moving above unsafe objlit key', pnode.key.name); // unsafe
+          }
+
+          if (AST.isPrimitive(pnode.value)) {}
+          else if (pnode.value.type !== 'Identifier') return vlog('- not moving above unsafe objlit key', pnode.value.type); // i'm not sure what it might be
+          else if (fdata.globallyUniqueNamingRegistry.get(pnode.value.name)?.isImplicitGlobal) return vlog('- not moving above unsafe objlit key', pnode.value.name); // unsafe
+          return true; // ok
+        })) {
+          break;
+        }
+      }
+    }
 
     // Enter nodes with children.
     // It may not have any (like `return`), in which case that's the read and we break.
@@ -277,6 +301,19 @@ function process(fdata, meta, name, queue, attempted) {
     }
     else if (currNode.type === 'TryStatement') {
       vlog('Try; we want to move stuff out of the Try so we bail here');
+      vgroupEnd();
+      return;
+    }
+    else if (currNode.type === 'LabeledStatement') {
+      todo('fixme: spyless vars and labeled nodes');
+      vlog('- bail: labels, help');
+      vgroupEnd();
+      return;
+    }
+    else if (currNode.type === 'BlockStatement') {
+      // Shouldn't happen but
+      todo('fixme: spyless vars and block nodes');
+      vlog('- bail: blocks, help');
       vgroupEnd();
       return;
     }

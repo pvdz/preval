@@ -168,6 +168,7 @@ $(a, x);
 ## Todos triggered
 
 
+- (todo) fixme: spyless vars and labeled nodes
 - (todo) nodeMightMutateNameUntrapped; Which statement are we missing here? BlockStatement
 
 

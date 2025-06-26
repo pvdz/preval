@@ -69,6 +69,7 @@ $(result, x);
 
 
 - (todo) access object property that also exists on prototype? $array_push
+- (todo) fixme: spyless vars and labeled nodes
 - (todo) support array reads statement type EmptyStatement
 - (todo) support array reads statement type ExpressionStatement
 - (todo) support array reads statement type VarStatement

@@ -112,6 +112,7 @@ $(a);
 
 
 - (todo) do we want to support NewExpression as expression statement in free loops?
+- (todo) fixme: spyless vars and labeled nodes
 
 
 ## Globals

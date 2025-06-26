@@ -79,6 +79,7 @@ $dotCall(tmpMCF, tmpMCOO, `forEach`, tmpMCP);
 
 - (todo) - at least one of the frfr args was not isFree, bailing
 - (todo) Support this binary expression operator:
+- (todo) fixme: spyless vars and labeled nodes
 - (todo) support array reads statement type ExpressionStatement
 - (todo) support array reads statement type VarStatement
 - (todo) support array reads statement type WhileStatement

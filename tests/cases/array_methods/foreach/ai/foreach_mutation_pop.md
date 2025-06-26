@@ -72,6 +72,7 @@ $(result);
 - (todo) access object property that also exists on prototype? $array_pop
 - (todo) access object property that also exists on prototype? $array_push
 - (todo) do we want to support Literal as expression statement in free loops?
+- (todo) fixme: spyless vars and labeled nodes
 - (todo) outline any args for tdz
 - (todo) support array reads statement type EmptyStatement
 - (todo) support array reads statement type ExpressionStatement

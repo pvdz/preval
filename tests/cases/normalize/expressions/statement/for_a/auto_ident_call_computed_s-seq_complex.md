@@ -112,6 +112,7 @@ $(a);
 
 
 - (todo) - at least one of the frfr args was not isFree, bailing
+- (todo) fixme: spyless vars and labeled nodes
 
 
 ## Globals

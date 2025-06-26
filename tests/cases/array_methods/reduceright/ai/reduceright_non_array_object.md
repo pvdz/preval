@@ -140,6 +140,7 @@ $(x);
 ## Todos triggered
 
 
+- (todo) fixme: spyless vars and labeled nodes
 - (todo) objects in isFree check
 
 

@@ -226,6 +226,7 @@ $(tmpCalleeParam$1);
 - (todo) access object property that also exists on prototype? $array_shift
 - (todo) access object property that also exists on prototype? $array_slice
 - (todo) can try-escaping support this expr node type? CallExpression
+- (todo) fixme: spyless vars and labeled nodes
 - (todo) outline any args for tdz
 - (todo) phase1_1 support this array method call? $array_slice
 - (todo) support array reads statement type ExpressionStatement

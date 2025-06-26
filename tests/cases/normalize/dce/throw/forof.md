@@ -103,6 +103,7 @@ $(tmpCalleeParam$1);
 ## Todos triggered
 
 
+- (todo) fixme: spyless vars and labeled nodes
 - (todo) support array reads statement type VarStatement
 
 

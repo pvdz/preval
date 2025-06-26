@@ -92,6 +92,7 @@ $dotCall(tmpMCF, tmpMCOO, `call`, tmpMCP, tmpMCP$1);
 ## Todos triggered
 
 
+- (todo) fixme: spyless vars and labeled nodes
 - (todo) objects in isFree check
 
 

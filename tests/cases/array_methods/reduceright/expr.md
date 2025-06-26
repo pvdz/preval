@@ -152,6 +152,7 @@ $(f);
 
 
 - (todo) Support this binary expression operator:
+- (todo) fixme: spyless vars and labeled nodes
 - (todo) objects in isFree check
 - (todo) support array reads statement type ExpressionStatement
 - (todo) support array reads statement type VarStatement

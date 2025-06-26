@@ -140,6 +140,7 @@ $(x);
 
 - (todo) Support this binary expression operator:
 - (todo) Support this node type in isFree: DebuggerStatement
+- (todo) fixme: spyless vars and labeled nodes
 - (todo) support array reads statement type ExpressionStatement
 - (todo) support array reads statement type VarStatement
 - (todo) support array reads statement type WhileStatement

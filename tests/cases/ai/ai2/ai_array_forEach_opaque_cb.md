@@ -96,6 +96,7 @@ $(`forEach_done`);
 - (todo) - at least one of the frfr args was not isFree, bailing
 - (todo) access object property that also exists on prototype? $array_forEach
 - (todo) arr mutation may be able to inline this method: tmpMCF
+- (todo) fixme: spyless vars and labeled nodes
 - (todo) support array reads statement type EmptyStatement
 - (todo) support array reads statement type ExpressionStatement
 - (todo) support array reads statement type VarStatement

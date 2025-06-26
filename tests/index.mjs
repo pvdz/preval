@@ -152,9 +152,9 @@ if (isMainThread && CONFIG.threads > 1) {
     if (runOutcome.badEval) console.log(`- ${REDN}${runOutcome.badEval} tests had inconsistent eval outcomes${runOutcome.badEvalNow?'':' (unchanged)'}${RESET}`);
     if (runOutcome.badEvalNow) console.log(`  - ${BOLD}${RED}${runOutcome.badEvalNow} of these changed this run${RESET}`);
 
-    if (runOutcome.changes.length) console.log('First ten changes:\n' + runOutcome.changes.slice(0, 10).map(f => '- ' + f).join('\n'));
-    if (runOutcome.badEvalsNow.length) console.log('First ten bad evals changed this run:\n' + runOutcome.badEvalsNow.slice(0, 10).map(f => '- ' + f).join('\n'));
-    if (runOutcome.failures.length) console.log('First ten failures:\n' + runOutcome.failures.slice(0, 10).map(f => '- ' + f).join('\n'));
+    if (runOutcome.changes.length) console.log('First ten changes:\n' + Array.from(new Set(runOutcome.changes)).slice(0, 10).sort().map(f => '- ' + f).join('\n'));
+    if (runOutcome.badEvalsNow.length) console.log('First ten bad evals changed this run:\n' + Array.from(new Set(runOutcome.badEvalsNow)).slice(0, 10).sort().map(f => '- ' + f).join('\n'));
+    if (runOutcome.failures.length) console.log('First ten failures:\n' + Array.from(new Set(runOutcome.failures)).slice(0, 10).sort().map(f => '- ' + f).join('\n'));
     if (!runOutcome.failures.length && !runOutcome.badEvalsNow.length && !runOutcome.changes.length) {
       if (runOutcome.badEvals.length) console.log('First ten bad evals:\n' + runOutcome.badEvals.slice(0, 10).map(f => '- ' + f).join('\n'));
     }

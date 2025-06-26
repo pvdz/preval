@@ -212,6 +212,7 @@ function _frfr_tricks(fdata) {
             }
             vgroupEnd();
           }
+          vgroupEnd();
 
           // Prepend the primitive inits
           const clonedBodyArr = header.concat(clone.body);

@@ -26,7 +26,7 @@ Promise.allSettled(iterable)
 
 `````js filename=intro
 const iterable /*:unknown*/ = $(`opaque_promise_iterable_settled`);
-const tmpMCOO /*:promise*/ /*truthy*/ = $dotCall($Promise_allSettled, Promise, `allSettled`, iterable);
+const tmpMCOO /*:promise*/ /*truthy*/ = $Promise_allSettled(iterable);
 const tmpMCP /*:(unknown)=>unknown*/ = function ($$0) {
   const res /*:unknown*/ = $$0;
   debugger;
@@ -41,7 +41,7 @@ $dotCall($promise_then, tmpMCOO, `then`, tmpMCP);
 (This ought to be the final result)
 
 `````js filename=intro
-$dotCall($promise_then, $dotCall($Promise_allSettled, Promise, `allSettled`, $(`opaque_promise_iterable_settled`)), `then`, function (res) {
+$dotCall($promise_then, $Promise_allSettled($(`opaque_promise_iterable_settled`)), `then`, function (res) {
   const tmpReturnArg = $(`allSettled_results`, res);
   return tmpReturnArg;
 });
@@ -53,7 +53,7 @@ With rename=true
 
 `````js filename=intro
 const a = $( "opaque_promise_iterable_settled" );
-const b = $dotCall( $Promise_allSettled, Promise, "allSettled", a );
+const b = $Promise_allSettled( a );
 const c = function($$0 ) {
   const d = $$0;
   debugger;
@@ -70,7 +70,7 @@ $dotCall( $promise_then, b, "then", c );
 `````js filename=intro
 let iterable = $(`opaque_promise_iterable_settled`);
 const tmpMCF = $Promise_allSettled;
-const tmpMCOO = $dotCall($Promise_allSettled, Promise, `allSettled`, iterable);
+const tmpMCOO = $Promise_allSettled(iterable);
 const tmpMCF$1 = tmpMCOO.then;
 const tmpMCP = function ($$0) {
   let res = $$0;

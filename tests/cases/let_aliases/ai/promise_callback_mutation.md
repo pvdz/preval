@@ -23,7 +23,7 @@ $(a, b);
 `````js filename=intro
 let x /*:unknown*/ = $(`val`);
 const a /*:unknown*/ = x;
-const tmpMCOO /*:promise*/ /*truthy*/ = $dotCall($Promise_resolve, Promise, `resolve`);
+const tmpMCOO /*:promise*/ /*truthy*/ = $Promise_resolve();
 const tmpMCP /*:()=>undefined*/ = function () {
   debugger;
   x = `changed`;
@@ -40,7 +40,7 @@ $(a, x);
 `````js filename=intro
 let x = $(`val`);
 const a = x;
-$dotCall($promise_then, $dotCall($Promise_resolve, Promise, `resolve`), `then`, function () {
+$dotCall($promise_then, $Promise_resolve(), `then`, function () {
   x = `changed`;
 });
 $(a, x);
@@ -53,7 +53,7 @@ With rename=true
 `````js filename=intro
 let a = $( "val" );
 const b = a;
-const c = $dotCall( $Promise_resolve, Promise, "resolve" );
+const c = $Promise_resolve();
 const d = function() {
   debugger;
   a = "changed";
@@ -71,7 +71,7 @@ $( b, a );
 let x = $(`val`);
 const a = x;
 const tmpMCF = $Promise_resolve;
-const tmpMCOO = $dotCall($Promise_resolve, Promise, `resolve`);
+const tmpMCOO = $Promise_resolve();
 const tmpMCF$1 = tmpMCOO.then;
 const tmpMCP = function () {
   debugger;

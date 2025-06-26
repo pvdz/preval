@@ -659,6 +659,11 @@ export const protoToInstName = new Map([
   [symbo('Set', 'prototype'), 'set'],
   [symbo('Date', 'prototype'), 'date'],
   [symbo('Buffer', 'prototype'), 'buffer'],
+  [symbo('Promise', 'prototype'), 'promise'],
+  [symbo('Uint8Array', 'prototype'), 'uint8Array'],
+  [symbo('TextDecoder', 'prototype'), 'textDecoder'],
+  [symbo('Error', 'prototype'), 'error'],
+  [symbo('TypeError', 'prototype'), 'typeError'],
 ]);
 
 // These methods do not trigger side effects, they don't coerce their args (ignore them, or only test them verbatim)
@@ -677,6 +682,15 @@ export const BUILTIN_FUNCS_NO_CTXT_NON_COERCE = new Set([
   symbo('Object', 'isExtensible'),
   symbo('Object', 'isFrozen'),
   symbo('Object', 'isSealed'),
+  // (The promise builtin symbols are actually bound, shhh)
+  symbo('Promise', 'all'),
+  symbo('Promise', 'allSettled'),
+  symbo('Promise', 'any'),
+  symbo('Promise', 'race'),
+  symbo('Promise', 'reject'),
+  symbo('Promise', 'resolve'),
+  symbo('Promise', 'try'),
+  symbo('Promise', 'withResolvers'),
 ]);
 export const BUILTIN_FUNCS_NO_CTX_COERCE_FIRST_TO_NUMBER = new Set([
   'isFinite', // https://tc39.es/ecma262/#sec-isfinite-number . Note: this DOES coerce the arg, unlike Number.isFinite (!)

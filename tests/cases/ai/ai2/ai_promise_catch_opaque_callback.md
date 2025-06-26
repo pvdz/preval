@@ -27,7 +27,7 @@ $('catch_attached');
 
 `````js filename=intro
 const tmpMCP /*:unknown*/ = $(`initial_rejection`);
-const p /*:promise*/ /*truthy*/ = $dotCall($Promise_reject, Promise, `reject`, tmpMCP);
+const p /*:promise*/ /*truthy*/ = $Promise_reject(tmpMCP);
 const onRejected /*:unknown*/ = $(`opaque_catch_callback`);
 $dotCall($promise_catch, p, `catch`, onRejected);
 $(`catch_attached`);
@@ -38,7 +38,7 @@ $(`catch_attached`);
 (This ought to be the final result)
 
 `````js filename=intro
-$dotCall($promise_catch, $dotCall($Promise_reject, Promise, `reject`, $(`initial_rejection`)), `catch`, $(`opaque_catch_callback`));
+$dotCall($promise_catch, $Promise_reject($(`initial_rejection`)), `catch`, $(`opaque_catch_callback`));
 $(`catch_attached`);
 `````
 
@@ -48,7 +48,7 @@ With rename=true
 
 `````js filename=intro
 const a = $( "initial_rejection" );
-const b = $dotCall( $Promise_reject, Promise, "reject", a );
+const b = $Promise_reject( a );
 const c = $( "opaque_catch_callback" );
 $dotCall( $promise_catch, b, "catch", c );
 $( "catch_attached" );

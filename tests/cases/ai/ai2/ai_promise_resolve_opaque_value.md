@@ -30,7 +30,7 @@ Promise.resolve(val).then(v => $('resolved', v));
 
 `````js filename=intro
 const val /*:unknown*/ = $(`opaque_val_for_promise`);
-const tmpMCOO /*:promise*/ /*truthy*/ = $dotCall($Promise_resolve, Promise, `resolve`, val);
+const tmpMCOO /*:promise*/ /*truthy*/ = $Promise_resolve(val);
 const tmpMCP /*:(unknown)=>unknown*/ = function ($$0) {
   const v /*:unknown*/ = $$0;
   debugger;
@@ -45,7 +45,7 @@ $dotCall($promise_then, tmpMCOO, `then`, tmpMCP);
 (This ought to be the final result)
 
 `````js filename=intro
-$dotCall($promise_then, $dotCall($Promise_resolve, Promise, `resolve`, $(`opaque_val_for_promise`)), `then`, function (v) {
+$dotCall($promise_then, $Promise_resolve($(`opaque_val_for_promise`)), `then`, function (v) {
   const tmpReturnArg = $(`resolved`, v);
   return tmpReturnArg;
 });
@@ -57,7 +57,7 @@ With rename=true
 
 `````js filename=intro
 const a = $( "opaque_val_for_promise" );
-const b = $dotCall( $Promise_resolve, Promise, "resolve", a );
+const b = $Promise_resolve( a );
 const c = function($$0 ) {
   const d = $$0;
   debugger;
@@ -74,7 +74,7 @@ $dotCall( $promise_then, b, "then", c );
 `````js filename=intro
 let val = $(`opaque_val_for_promise`);
 const tmpMCF = $Promise_resolve;
-const tmpMCOO = $dotCall($Promise_resolve, Promise, `resolve`, val);
+const tmpMCOO = $Promise_resolve(val);
 const tmpMCF$1 = tmpMCOO.then;
 const tmpMCP = function ($$0) {
   let v = $$0;

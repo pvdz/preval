@@ -25,7 +25,7 @@ Promise.reject(reason).catch(r => $('rejected', r));
 
 `````js filename=intro
 const reason /*:unknown*/ = $(`opaque_rejection_reason`);
-const tmpMCOO /*:promise*/ /*truthy*/ = $dotCall($Promise_reject, Promise, `reject`, reason);
+const tmpMCOO /*:promise*/ /*truthy*/ = $Promise_reject(reason);
 const tmpMCP /*:(unknown)=>unknown*/ = function ($$0) {
   const r /*:unknown*/ = $$0;
   debugger;
@@ -40,7 +40,7 @@ $dotCall($promise_catch, tmpMCOO, `catch`, tmpMCP);
 (This ought to be the final result)
 
 `````js filename=intro
-$dotCall($promise_catch, $dotCall($Promise_reject, Promise, `reject`, $(`opaque_rejection_reason`)), `catch`, function (r) {
+$dotCall($promise_catch, $Promise_reject($(`opaque_rejection_reason`)), `catch`, function (r) {
   const tmpReturnArg = $(`rejected`, r);
   return tmpReturnArg;
 });
@@ -52,7 +52,7 @@ With rename=true
 
 `````js filename=intro
 const a = $( "opaque_rejection_reason" );
-const b = $dotCall( $Promise_reject, Promise, "reject", a );
+const b = $Promise_reject( a );
 const c = function($$0 ) {
   const d = $$0;
   debugger;
@@ -69,7 +69,7 @@ $dotCall( $promise_catch, b, "catch", c );
 `````js filename=intro
 let reason = $(`opaque_rejection_reason`);
 const tmpMCF = $Promise_reject;
-const tmpMCOO = $dotCall($Promise_reject, Promise, `reject`, reason);
+const tmpMCOO = $Promise_reject(reason);
 const tmpMCF$1 = tmpMCOO.catch;
 const tmpMCP = function ($$0) {
   let r = $$0;

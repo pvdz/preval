@@ -27,7 +27,7 @@ $('finally_attached');
 
 `````js filename=intro
 const tmpMCP /*:unknown*/ = $(`val`);
-const p /*:promise*/ /*truthy*/ = $dotCall($Promise_resolve, Promise, `resolve`, tmpMCP);
+const p /*:promise*/ /*truthy*/ = $Promise_resolve(tmpMCP);
 const onFinally /*:unknown*/ = $(`opaque_finally_callback`);
 $dotCall($promise_finally, p, `finally`, onFinally);
 $(`finally_attached`);
@@ -38,7 +38,7 @@ $(`finally_attached`);
 (This ought to be the final result)
 
 `````js filename=intro
-$dotCall($promise_finally, $dotCall($Promise_resolve, Promise, `resolve`, $(`val`)), `finally`, $(`opaque_finally_callback`));
+$dotCall($promise_finally, $Promise_resolve($(`val`)), `finally`, $(`opaque_finally_callback`));
 $(`finally_attached`);
 `````
 
@@ -48,7 +48,7 @@ With rename=true
 
 `````js filename=intro
 const a = $( "val" );
-const b = $dotCall( $Promise_resolve, Promise, "resolve", a );
+const b = $Promise_resolve( a );
 const c = $( "opaque_finally_callback" );
 $dotCall( $promise_finally, b, "finally", c );
 $( "finally_attached" );

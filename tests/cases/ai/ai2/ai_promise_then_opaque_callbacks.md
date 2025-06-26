@@ -28,7 +28,7 @@ $('then_attached');
 
 `````js filename=intro
 const tmpMCP /*:unknown*/ = $(`initial_promise_value`);
-const p /*:promise*/ /*truthy*/ = $dotCall($Promise_resolve, Promise, `resolve`, tmpMCP);
+const p /*:promise*/ /*truthy*/ = $Promise_resolve(tmpMCP);
 const onFulfilled /*:unknown*/ = $(`opaque_onFulfilled`);
 const onRejected /*:unknown*/ = $(`opaque_onRejected`);
 $dotCall($promise_then, p, `then`, onFulfilled, onRejected);
@@ -40,13 +40,7 @@ $(`then_attached`);
 (This ought to be the final result)
 
 `````js filename=intro
-$dotCall(
-  $promise_then,
-  $dotCall($Promise_resolve, Promise, `resolve`, $(`initial_promise_value`)),
-  `then`,
-  $(`opaque_onFulfilled`),
-  $(`opaque_onRejected`),
-);
+$dotCall($promise_then, $Promise_resolve($(`initial_promise_value`)), `then`, $(`opaque_onFulfilled`), $(`opaque_onRejected`));
 $(`then_attached`);
 `````
 
@@ -56,7 +50,7 @@ With rename=true
 
 `````js filename=intro
 const a = $( "initial_promise_value" );
-const b = $dotCall( $Promise_resolve, Promise, "resolve", a );
+const b = $Promise_resolve( a );
 const c = $( "opaque_onFulfilled" );
 const d = $( "opaque_onRejected" );
 $dotCall( $promise_then, b, "then", c, d );

@@ -27,7 +27,7 @@ Promise.all(iterable)
 
 `````js filename=intro
 const iterable /*:unknown*/ = $(`opaque_promise_iterable`);
-const tmpMCOO$1 /*:promise*/ /*truthy*/ = $dotCall($Promise_all, Promise, `all`, iterable);
+const tmpMCOO$1 /*:promise*/ /*truthy*/ = $Promise_all(iterable);
 const tmpMCP /*:(unknown)=>unknown*/ = function ($$0) {
   const res /*:unknown*/ = $$0;
   debugger;
@@ -51,7 +51,7 @@ $dotCall($promise_catch, tmpMCOO, `catch`, tmpMCP$1);
 `````js filename=intro
 $dotCall(
   $promise_catch,
-  $dotCall($promise_then, $dotCall($Promise_all, Promise, `all`, $(`opaque_promise_iterable`)), `then`, function (res) {
+  $dotCall($promise_then, $Promise_all($(`opaque_promise_iterable`)), `then`, function (res) {
     const tmpReturnArg = $(`all_resolved`, res);
     return tmpReturnArg;
   }),
@@ -69,7 +69,7 @@ With rename=true
 
 `````js filename=intro
 const a = $( "opaque_promise_iterable" );
-const b = $dotCall( $Promise_all, Promise, "all", a );
+const b = $Promise_all( a );
 const c = function($$0 ) {
   const d = $$0;
   debugger;
@@ -93,7 +93,7 @@ $dotCall( $promise_catch, f, "catch", g );
 `````js filename=intro
 let iterable = $(`opaque_promise_iterable`);
 const tmpMCF = $Promise_all;
-const tmpMCOO$1 = $dotCall($Promise_all, Promise, `all`, iterable);
+const tmpMCOO$1 = $Promise_all(iterable);
 const tmpMCF$1 = tmpMCOO$1.then;
 const tmpMCP = function ($$0) {
   let res = $$0;

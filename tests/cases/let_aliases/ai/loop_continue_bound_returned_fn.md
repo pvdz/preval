@@ -165,7 +165,7 @@ $(a, x);
 ## Todos triggered
 
 
-- (todo) - at least one of the frfr args was not isFree, bailing
+- (todo) - at least one of the call args to
 - (todo) Support this node type in isFree: LabeledStatement
 - (todo) access object property that also exists on prototype? $function_bind
 - (todo) nodeMightMutateNameUntrapped; Which statement are we missing here? BlockStatement

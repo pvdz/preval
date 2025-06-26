@@ -566,7 +566,7 @@ eval(tmpCalleeParam);
 ## Todos triggered
 
 
-- (todo) - at least one of the frfr args was not isFree, bailing
+- (todo) - at least one of the call args to
 - (todo) can we always safely clone ident refs in this case?
 - (todo) objects in isFree check
 - (todo) support array reads statement type ExpressionStatement

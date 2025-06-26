@@ -142,7 +142,7 @@ $(tmpObjLitVal$159);
 ## Todos triggered
 
 
-- (todo) - at least one of the frfr args was not isFree, bailing
+- (todo) - at least one of the call args to
 - (todo) Support non-primitive in first arg to $coerce
 - (todo) Support referencing this builtin in isFree: $
 - (todo) Support string.charCodeAt when the arg is not a string literal

@@ -164,7 +164,7 @@ $(a, x);
 ## Todos triggered
 
 
-- (todo) - at least one of the frfr args was not isFree, bailing
+- (todo) - at least one of the call args to
 - (todo) Support non-primitive in first arg to $coerce
 - (todo) Support this binary expression operator:
 - (todo) Support this node type in isFree: DebuggerStatement

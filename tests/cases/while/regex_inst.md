@@ -67,7 +67,7 @@ while (true) {
 ## Todos triggered
 
 
-- (todo) Support this node type in isFree: NewExpression
+None
 
 
 ## Globals

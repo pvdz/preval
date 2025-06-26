@@ -109,7 +109,7 @@ while ($LOOP_UNROLL_2) {
 ## Todos triggered
 
 
-- (todo) - at least one of the frfr args was not isFree, bailing
+- (todo) - at least one of the call args to
 - (todo) access object property that also exists on prototype? $array_push
 - (todo) access object property that also exists on prototype? $array_shift
 - (todo) do we want to support Literal as expression statement in free loops?

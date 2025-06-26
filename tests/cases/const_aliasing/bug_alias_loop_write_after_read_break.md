@@ -76,7 +76,7 @@ while (true) {
 ## Todos triggered
 
 
-- (todo) - at least one of the frfr args was not isFree, bailing
+- (todo) - at least one of the call args to
 - (todo) we can still proceed with the loop as long as there is no let-write anywhere in the loop, inc nested
 
 

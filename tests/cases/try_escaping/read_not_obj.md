@@ -99,7 +99,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 ## Todos triggered
 
 
-- (todo) - at least one of the frfr args was not isFree, bailing
+- (todo) - at least one of the call args to
 - (todo) access object property that also exists on prototype? $array_reverse
 - (todo) can try-escaping support this expr node type? CallExpression
 - (todo) objects in isFree check

@@ -278,7 +278,7 @@ $(`nested_labels_log`, tmpCalleeParam$5);
 ## Todos triggered
 
 
-- (todo) - at least one of the frfr args was not isFree, bailing
+- (todo) - at least one of the call args to
 - (todo) access object property that also exists on prototype? $array_join
 - (todo) access object property that also exists on prototype? $array_push
 - (todo) nodeMightMutateNameUntrapped; Which statement are we missing here? BlockStatement

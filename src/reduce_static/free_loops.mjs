@@ -109,7 +109,9 @@ export function _freeLoops(fdata, prng, usePrng) {
     }
     vgroupEnd();
 
+    vlog('OK')
     vlog('Now calling isFree() on the `while` node... Including these idents before it:', Array.from(declaredNameTypes.keys()));
+    vlog('OK')
     for (let i=0; i<node.body.body.length; ++i) {
       const r = isFree(node.body.body[i], fdata, callNodeToCalleeSymbol, declaredNameTypes, true, undefined)
       if (!r || r === FAILURE_SYMBOL) {
@@ -140,7 +142,7 @@ export function _freeLoops(fdata, prng, usePrng) {
     let failed = false;
     for (let i=fromIndex; i<=whileIndex; ++i) {
       const node = blockBody[i];
-      if (runStatement(fdata, node, register, callNodeToCalleeSymbol, prng, usePrng) === FAILURE_SYMBOL) {
+      if (runStatement(fdata, node, register, callNodeToCalleeSymbol, prng, usePrng, i===whileIndex) === FAILURE_SYMBOL) {
         failed = true;
         break;
       }
@@ -148,7 +150,14 @@ export function _freeLoops(fdata, prng, usePrng) {
 
     vlog('Storing final values of pre-loop variables');
     for (let i=fromIndex; i<whileIndex; ++i) {
-      if (blockBody[i].type === 'VarStatement' && blockBody[i].init.type !== 'FunctionExpression') {
+      if (
+        blockBody[i].type === 'VarStatement' &&
+        (
+          !(blockBody[i].init.type === 'FunctionExpression') &&
+          !(blockBody[i].init.type === 'CallExpression' && blockBody[i].init.callee.type === 'Identifier' && blockBody[i].init.callee.name === 'require') &&
+          !(blockBody[i].init.type === 'NewExpression' && blockBody[i].init.callee.type === 'Identifier' && blockBody[i].init.callee.name === symbo('regex', 'constructor'))
+        )
+      ) {
         //vlog('Setting', blockBody[i].id.name, 'to', register.get(blockBody[i].id.name));
         blockBody[i].init = register.get(blockBody[i].id.name);
       }
@@ -300,7 +309,7 @@ function _isFree(node, fdata, callNodeToCalleeSymbol, declaredNameTypes, insideW
         const r = isFree(arg, fdata, callNodeToCalleeSymbol, declaredNameTypes, insideWhile, undefined);
         return (!r || r === FAILURE_SYMBOL);
       })) {
-        todo('- at least one of the frfr args was not isFree, bailing');
+        todo('- at least one of the call args to', calleeName, 'was not isFree, bailing');
         return false;
       }
 
@@ -538,6 +547,11 @@ function _isFree(node, fdata, callNodeToCalleeSymbol, declaredNameTypes, insideW
         }
         return false;
       }
+      // hack.
+      if (node.expression.type === 'CallExpression' && node.expression.callee.type === 'Identifier' && node.expression.callee.name === 'require') {
+        vlog('- ignoring statement that is calling require...');
+        return true;
+      }
       // What do we do with the typing of let assigns? I guess we're just ignoring that right now? Does it matter?
       return isFree(node.expression, fdata, callNodeToCalleeSymbol, declaredNameTypes, insideWhile, undefined);
     }
@@ -581,7 +595,7 @@ function _isFree(node, fdata, callNodeToCalleeSymbol, declaredNameTypes, insideW
         return false;
       }
 
-      vlog('- bail: did not pass any of the other cases where ident would be okay here');
+      vlog('- bail: ident', node.name, 'did not pass any of the other cases where ident would be okay here. it was not defined before the loop and its not a supported global func');
       return false; // Maybe there are more valid cases but I don't know what that looks like right now
     }
     case 'IfStatement': {
@@ -612,6 +626,7 @@ function _isFree(node, fdata, callNodeToCalleeSymbol, declaredNameTypes, insideW
       return false;
     }
     case 'MemberExpression': {
+      vlog('- member expression');
       // Note: this cannot be a call. It can still be a delete but not sure if that's super relevant here...?
       if (AST.isPrimitive(node.object)) {
         vlog('- obj is primitive (', AST.getPrimitiveType(node.object), '). Computed:', node.computed);
@@ -630,8 +645,9 @@ function _isFree(node, fdata, callNodeToCalleeSymbol, declaredNameTypes, insideW
         return false;
       }
       if (node.object.type === 'Identifier') {
-        vlog('- obj is ident', [node.object.name], ', Computed:', node.computed, ', propname:', [node.property.name]);
-        if (declaredNameTypes.get(node.object.name) === 'array') {
+        const dtype = declaredNameTypes.get(node.object.name);
+        vlog('- obj is ident', [node.object.name], ', Computed:', node.computed, ', propname:', [node.property.name], ', type:', node.property.type, ', object declared type:', dtype);
+        if (dtype === 'array') {
           vlog('- obj is an array type');
           if (node.computed) {
             if (AST.isNumberLiteral(node.property)) {
@@ -742,6 +758,19 @@ function _isFree(node, fdata, callNodeToCalleeSymbol, declaredNameTypes, insideW
         // Ignore..? But don't record this var as accessible.
         return true;
       }
+
+      if (!insideWhile) {
+        if (init.type === 'CallExpression' && init.callee.type === 'Identifier' && init.callee.name === 'require') {
+          vlog('- Skipping decl that is a require call. If the id `', id.name ,'` appears inside the while, we break.');
+          return true;
+        }
+        // regular expressions (and stuff like array) are duds and fine to ignore too
+        if (init.type === 'NewExpression' && init.callee.type === 'Identifier' && init.callee.name === symbo('regex', 'constructor')) {
+          vlog('- ignoring new regex...');
+          return true;
+        }
+      }
+
       // Pass in the var id. If it's good then the id will be updated to the type of the expr.
       const r = isFree(init, fdata, callNodeToCalleeSymbol, declaredNameTypes, insideWhile, id.name);
       if (!r || r === FAILURE_SYMBOL) {
@@ -770,21 +799,21 @@ function _isFree(node, fdata, callNodeToCalleeSymbol, declaredNameTypes, insideW
   unreachable();
 }
 
-function runStatement(fdata, node, register, callNodeToCalleeSymbol, prng, usePrng) {
+function runStatement(fdata, node, register, callNodeToCalleeSymbol, prng, usePrng, insideWhile) {
   vgroup('# ', node.type);
-  const r = _runStatement(fdata, node, register, callNodeToCalleeSymbol, prng, usePrng)
+  const r = _runStatement(fdata, node, register, callNodeToCalleeSymbol, prng, usePrng, insideWhile);
   vgroupEnd();
   return r;
 }
-function _runStatement(fdata, node, register, callNodeToCalleeSymbol, prng, usePrng) {
-  ASSERT(arguments.length === 6, 'arg count to runExpression');
+function _runStatement(fdata, node, register, callNodeToCalleeSymbol, prng, usePrng, insideWhile) {
+  ASSERT(arguments.length === 7, 'arg count to runExpression');
   // We use the AST node of inits of declared vars as value holders as well
   // Eg. if an array literal gets pushed into, we push an AST node into its elements array
 
   switch (node.type) {
     case 'BlockStatement': {
       for (let i=0; i<node.body.length; ++i) {
-        switch (runStatement(fdata, node.body[i], register, callNodeToCalleeSymbol, prng, usePrng)) {
+        switch (runStatement(fdata, node.body[i], register, callNodeToCalleeSymbol, prng, usePrng, insideWhile)) {
           case FAILURE_SYMBOL: return FAILURE_SYMBOL;
           case BREAK_SYMBOL: return BREAK_SYMBOL;
         }
@@ -801,6 +830,17 @@ function _runStatement(fdata, node, register, callNodeToCalleeSymbol, prng, useP
       return BREAK_SYMBOL;
     }
     case 'ExpressionStatement': {
+      if (!insideWhile) {
+        if (node.expression.type === 'CallExpression' && node.expression.callee.type === 'Identifier' && node.expression.callee.name === 'require') {
+          vlog('- Skipping pre-while statement that require()s...');
+          return true;
+        }
+        if (node.expression.type === 'NewExpression' && node.expression.callee.type === 'Identifier' && node.expression.callee.name === symbo('regex', 'constructor')) {
+          vlog('- Skipping pre-while statement that is a regex...');
+          return true;
+        }
+      }
+
       const v = runExpression(fdata, node.expression, register, callNodeToCalleeSymbol, prng, usePrng);
       if (v === FAILURE_SYMBOL) return FAILURE_SYMBOL;
       break;
@@ -816,8 +856,8 @@ function _runStatement(fdata, node, register, callNodeToCalleeSymbol, prng, useP
         case FAILURE_SYMBOL: return FAILURE_SYMBOL;
         case BREAK_SYMBOL: return true;
       }
-      if (v) return runStatement(fdata, node.consequent, register, callNodeToCalleeSymbol, prng, usePrng);
-      else return runStatement(fdata, node.alternate, register, callNodeToCalleeSymbol, prng, usePrng);
+      if (v) return runStatement(fdata, node.consequent, register, callNodeToCalleeSymbol, prng, usePrng, insideWhile);
+      else return runStatement(fdata, node.alternate, register, callNodeToCalleeSymbol, prng, usePrng, insideWhile);
     }
     case 'TryStatement': {
       // A try statement can be supported but only if the catch var is not used.
@@ -825,9 +865,9 @@ function _runStatement(fdata, node, register, callNodeToCalleeSymbol, prng, useP
       // cases where that is used, I'm not 100% that it doesn't risk leaking of any kind.
 
       try {
-        return runStatement(fdata, node.block, register, callNodeToCalleeSymbol, prng, usePrng);
+        return runStatement(fdata, node.block, register, callNodeToCalleeSymbol, prng, usePrng, insideWhile);
       } catch {
-        return runStatement(fdata, node.handler.body, register, callNodeToCalleeSymbol, prng, usePrng);
+        return runStatement(fdata, node.handler.body, register, callNodeToCalleeSymbol, prng, usePrng, insideWhile);
       }
     }
     case 'VarStatement': {
@@ -856,6 +896,17 @@ function _runStatement(fdata, node, register, callNodeToCalleeSymbol, prng, useP
         //  AST.primitive(value)
         //);
       } else {
+        if (!insideWhile) {
+          if (init.type === 'CallExpression' && init.callee.type === 'Identifier' && init.callee.name === 'require') {
+            vlog('- Skipping pre-while var init that require()s...');
+            return true;
+          }
+          if (init.type === 'NewExpression' && init.callee.type === 'Identifier' && init.callee.name === symbo('regex', 'constructor')) {
+            vlog('- Skipping pre-while var init that is a regex...');
+            return true;
+          }
+        }
+
         const value = runExpression(fdata, node.init, register, callNodeToCalleeSymbol, prng, usePrng);
         if (value === FAILURE_SYMBOL) return FAILURE_SYMBOL;
         ASSERT(PRIMITIVE_TYPE_NAMES_TYPEOF.has(value === null ? 'null' : typeof value), 'var decl init runexpr should yield a primitive?', node.init, value);
@@ -879,7 +930,7 @@ function _runStatement(fdata, node, register, callNodeToCalleeSymbol, prng, useP
           return FAILURE_SYMBOL;
         }
 
-        switch (runStatement(fdata, node.body, register, callNodeToCalleeSymbol, prng, usePrng)) {
+        switch (runStatement(fdata, node.body, register, callNodeToCalleeSymbol, prng, usePrng, insideWhile)) {
           case FAILURE_SYMBOL: return FAILURE_SYMBOL;
           case BREAK_SYMBOL: return true;
         }

@@ -95,7 +95,6 @@ while (true) {
 ## Todos triggered
 
 
-- (todo) Support this node type in isFree: NewExpression
 - (todo) regular property access of an ident feels tricky;
 
 

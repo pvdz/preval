@@ -72,7 +72,7 @@ $(`reduce_result`, result);
 ## Todos triggered
 
 
-- (todo) - at least one of the frfr args was not isFree, bailing
+- (todo) - at least one of the call args to
 - (todo) access object property that also exists on prototype? $array_reduce
 - (todo) arr mutation may be able to inline this method: tmpMCF
 - (todo) support array reads statement type EmptyStatement

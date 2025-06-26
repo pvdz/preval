@@ -104,7 +104,7 @@ $(`reduceRight_result`, result);
 ## Todos triggered
 
 
-- (todo) - at least one of the frfr args was not isFree, bailing
+- (todo) - at least one of the call args to
 - (todo) access object property that also exists on prototype? $array_reduceRight
 - (todo) fixme: spyless vars and labeled nodes
 - (todo) support array reads statement type EmptyStatement

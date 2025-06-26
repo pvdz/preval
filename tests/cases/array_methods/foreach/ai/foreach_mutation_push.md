@@ -79,7 +79,7 @@ $(result);
 ## Todos triggered
 
 
-- (todo) - at least one of the frfr args was not isFree, bailing
+- (todo) - at least one of the call args to
 - (todo) Support this binary expression operator:
 - (todo) access object property that also exists on prototype? $array_push
 - (todo) do we want to support Literal as expression statement in free loops?

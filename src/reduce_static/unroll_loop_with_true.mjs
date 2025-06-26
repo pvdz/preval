@@ -64,6 +64,7 @@ function _unrollLoopWithTrue(fdata, unrollLimit) {
 function processAttempt(fdata, unrollLimit) {
   if (!(unrollLimit > 0)) {
     log('The unroll limit is not greater than zero, bailing', unrollLimit);
+    return false;
   }
   let updated = 0;
 

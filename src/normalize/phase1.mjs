@@ -1114,11 +1114,16 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
 
       case 'ThisExpression:after': {
         if (thisStack.length) {
-          vlog('Marking func as having `this` access');
-          ASSERT(parentNode.type === 'VarStatement' && parentProp === 'init', '`this` should always only ever be aliased');
-          thisStack[thisStack.length - 1].$p.thisAccess = true;
-          thisStack[thisStack.length - 1].$p.thisAliasAt = grandIndex; // index of var statement in body
-          thisStack[thisStack.length - 1].$p.thisAliasAs = parentNode.id.name;
+          if (parentNode.type === 'ExpressionStatement' && parentProp === 'expression') {
+            // Yes, the `this` keyword appears. But since it's a statement, it's not observable. Ignore.
+            vlog('Seeing `this` as an expression statement. Ignoring it. Cant hurt. Cant be observed.');
+          } else {
+            vlog('Marking func as having `this` access');
+            ASSERT((parentNode.type === 'VarStatement' && parentProp === 'init'), '`this` should always only ever be aliased');
+            thisStack[thisStack.length - 1].$p.thisAccess = true;
+            thisStack[thisStack.length - 1].$p.thisAliasAt = grandIndex; // index of var statement in body
+            thisStack[thisStack.length - 1].$p.thisAliasAs = parentNode.id.name;
+          }
         }
         break;
       }

@@ -172,16 +172,16 @@ function _staticIfOutlining(fdata) {
 
       vlog('- First and only statement is an If');
 
-      const paramIndex = funcNode.$p.paramNameToIndex.get(stmt.test.name);
+      const paramIndex = funcNode.$p.paramNames.indexOf(stmt.test.name);
       ASSERT(paramIndex >= 0 && paramIndex < funcNode.params.length, 'map should be legit and cache should not be stale');
 
       const f1 = AST.functionExpressionNormalized(
-        funcNode.params.map((_, i) => funcNode.$p.paramIndexToName.get(i) ?? '_'),
+        funcNode.params.map((_, i) => funcNode.$p.paramNames[i] ?? '_'),
         stmt.consequent.body,
         {generator: funcNode.generator, async: funcNode.async}
       );
       const f2 = AST.functionExpressionNormalized(
-        funcNode.params.map((_, i) => funcNode.$p.paramIndexToName.get(i) ?? '_'),
+        funcNode.params.map((_, i) => funcNode.$p.paramNames[i] ?? '_'),
         stmt.alternate.body,
         {generator: funcNode.generator, async: funcNode.async}
       );

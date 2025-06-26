@@ -73,8 +73,6 @@ export function $p() {
     // - blockChain // string. Always ends with trailing comma. For all nodes (from phase1), the block chain of this function, including the trailing zero for this function. Same as for refs.
     // - funcChain // string. For functions, the ids of parent functions (and global) up to and including this function. Same as for read/write refs.
     // - paramNames // Array<string>. functions, 1:1 with funcNode.params. Holes for unused params. phase1. Param names for the function params. Should be in same order but may have holes if certain params are not actually used. Always check existence. Always set by index, don't push/pop.
-    // - paramNameToIndex // Map<string, number>. functions. phase1. if a binding name is a known param, this maps it to the param index.
-    // - paramIndexToName // Map<number, string>. functions. phase1. if a param is still known to have a name, this should give it to you. If an index does have a known name then this map will not have it either and return undefined.
     // - primitiveNodeValue // any. When AST.isPrimitive(node) is true this could be the value. otherwise ignore.
     // - lastPid // number. All nodes. Last pid of child node. Note: if it has no child-nodes then pid==lastPid.
     // - paramVarDeclRef // for func.params (only), the local binding var decl for this param if present, available after phase1, { blockBody, blockIndex, name }. false if set by phase1 but not used. if undefined then it hasnt gone through phase1 yet.

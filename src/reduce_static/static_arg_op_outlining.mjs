@@ -619,7 +619,7 @@ function _staticArgOpOutlining(fdata) {
         funcMeta.reads.forEach(read => {
           before(read.blockBody[read.blockIndex]);
 
-          const paramIndex = funcNode.$p.paramNameToIndex.get(arg.name);
+          const paramIndex = funcNode.$p.paramNames.indexOf(arg.name);
           ASSERT(paramIndex >= 0, 'cause it was a param?');
           const clonedCall = AST.cloneSortOfSimple(firstStmt.expression);
           clonedCall.arguments[0] = AST.cloneSimple(read.parentNode.arguments[paramIndex]);
@@ -920,7 +920,7 @@ function _staticArgOpOutlining(fdata) {
         funcMeta.reads.forEach(read => {
           before(read.blockBody[read.blockIndex]);
 
-          const rhsParamIndex = funcNode.$p.paramNameToIndex.get(arg.name);
+          const rhsParamIndex = funcNode.$p.paramNames.indexOf(arg.name);
           const clonedCall = AST.cloneSortOfSimple(callExpr);
           const tmpName = createFreshVar('tmp', fdata);
           clonedCall.arguments[0] = read.parentNode.arguments[rhsParamIndex];

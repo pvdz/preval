@@ -509,8 +509,6 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         //node.$p.blockChain = blockIds.join(',');
         node.$p.ownBindings = new Set();
         node.$p.paramNames = Array(node.params.length); // Intentional size arg: init array as big as holes, in case last param is not used
-        node.$p.paramNameToIndex = new Map;
-        node.$p.paramIndexToName = new Map;
         node.$p.readsArgumentsAny = false;
         node.$p.readsArgumentsLen = false;
         node.$p.readsArgumentsLenAt = -1;
@@ -1001,8 +999,6 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
 
           const paramName = parentNode.id.name;
           funcNode.$p.paramNames[node.index] = paramName;
-          funcNode.$p.paramNameToIndex.set(paramName, node.index);
-          funcNode.$p.paramIndexToName.set(node.index, paramName);
         } else {
           vlog('This is the param');
           // This is the func param (!) `function ($$0) {`

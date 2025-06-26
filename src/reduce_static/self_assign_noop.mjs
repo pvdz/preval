@@ -11,6 +11,8 @@
 //
 // In our target case, f is also being aliased so this rule will also check
 // all aliased cases to confirm they are only ever calling the function.
+// Alternatively, when the inner function does not use any local var of the outer function
+// and no arguments/this in either, then it can just be squashed regardless.
 
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, fmat, tmat, findBodyOffset, findBodyOffsetExpensiveMaybe, allReadsAreCallsOrAliasingOrRecursive, todo, } from '../utils.mjs';
 import * as AST from '../ast.mjs';
@@ -24,8 +26,6 @@ export function selfAssignNoop(fdata) {
   return r;
 }
 function _selfAssignNoop(fdata) {
-  const ast = fdata.tenkoOutput.ast;
-
   let updated = processAttempt(fdata);
 
   log('');
@@ -62,20 +62,20 @@ function processAttempt(fdata) {
   //   return $();
   // }
 
-  fdata.globallyUniqueNamingRegistry.forEach(function (meta, name) {
-    if (meta.isBuiltin) return;
-    if (meta.isImplicitGlobal) return;
-    if (meta.isConstant) return;
+  fdata.globallyUniqueNamingRegistry.forEach(function (meta, varName) {
+    if (!meta.isLet) return;
     if (meta.rwOrder.length <= 2) return; // For now only target a very specific case.
-    if (meta.writes[0]?.action !== 'write' || meta.writes[1]?.action !== 'write') return;
-    if (meta.writes[0].kind !== 'var' || meta.writes[1].kind !== 'assign') return;
 
-    group('- `' + name + '`');
-    process(meta, name);
+    group('- `' + varName + '`');
+    const applied = process(meta, varName);
+    if (!applied) process2(meta, varName);
     groupEnd();
   });
 
   function process(meta, targetFuncName) {
+    if (meta.writes[0]?.action !== 'write' || meta.writes[1]?.action !== 'write') return;
+    if (meta.writes[0].kind !== 'var' || meta.writes[1].kind !== 'assign') return;
+
     // We already verified that the references start with two writes and are only reads after that
     // Now we must confirm that
     // - all reads are regular calls, or assignments to bindings which in turn are only called
@@ -110,7 +110,7 @@ function processAttempt(fdata) {
       return;
     }
 
-    vlog('Have a candidate with two writes...', meta.writes.length, 'writes and', meta.reads.length, 'reads');
+    vlog('Have a candidate with two writes...', meta.writes.length, 'writes and', meta.reads.length, 'reads:', targetFuncName);
 
     // Confirmed that this was the case of a var initialized to a func and
     // inside that function the same binding was updated with a new function
@@ -121,7 +121,7 @@ function processAttempt(fdata) {
     vgroupEnd();
     if (!Array.from(refs).every(ref => {
       const meta = fdata.globallyUniqueNamingRegistry.get(ref);
-      return meta.isImplicitGlobal || meta.isBuiltin || meta.bfuncNode.type === 'Program';
+      return meta.isImplicitGlobal || meta.isBuiltin || meta.bfuncNode?.type === 'Program';
     })) {
       vlog('   - bail: inner function contains reference that is neither local nor global');
       return;
@@ -135,7 +135,7 @@ function processAttempt(fdata) {
     // - the binding is updated inside this function
     // - the update is another function
     // - the inner function has no closures, no references that are neither local nor global
-    // We must now confirm that the outer function
+    vlog('- We must now confirm that the outer function');
     // - only:
     //   - mutates the function (that's verified above)
     //   - then calls this updated function
@@ -274,7 +274,7 @@ function processAttempt(fdata) {
             return
           }
         } else {
-          vlog('  - bail: alias has multiple reads or writes', aliasMeta.writes.length, aliasMeta.reads.length);
+          vlog('  - bail: alias', [aliasName], 'has multiple reads or writes', aliasMeta.writes.length, aliasMeta.reads.length);
           return
         }
       } else {
@@ -321,7 +321,106 @@ function processAttempt(fdata) {
     after(newNodes);
     after(first.blockBody[first.blockIndex + newNodes.length]);
     ++updated;
+    return true;
   }
+
+  function process2(meta, targetFuncName) {
+    if (meta.writes.length !== 2) return;
+    if (meta.writes[0].kind !== 'var') return;
+    if (meta.writes[1].kind !== 'assign') return;
+
+    const outerWrite = meta.writes[0];
+    const innerWrite = meta.writes[1];
+
+    const outerFunc = outerWrite.parentNode.init;
+    if (outerFunc.type === 'FunctionExpression') {
+      // Can't deal with a few things
+      if (outerFunc.async) return;
+      if (outerFunc.generator) return;
+      if (outerFunc.$p.readsArgumentsAny) return;
+      if (outerFunc.$p.thisAccess) return;
+
+      // Search for a simple self-assigning pattern
+      // `let f = function(a,b){ f = function(x,y){ ... }; return f(a,b); };`
+      // ->
+      // `const f = function(a,b){ ... };`
+      // The only requirement is that the inner function should not be using the args.
+      const outerBody = outerFunc.body.body;
+      // Note: 4+x: debugger + assign + const + return + params
+      if (outerBody.length === 4 + outerFunc.params.length) {
+        const offset = findBodyOffsetExpensiveMaybe(outerBody); // normalize doesnt have access to this in $p
+
+        // look for the `f = function(){}; const tmp = f(); return tmp;` pattern
+        const a = outerBody[offset+0];
+        const b = outerBody[offset+1];
+        const c = outerBody[offset+2];
+
+        if (
+          a?.type === 'ExpressionStatement' &&
+          a.expression === innerWrite.parentNode && // verify that this is the inner assign, f = func
+          a.expression.right.type === 'FunctionExpression' && // f = func
+          b?.type === 'VarStatement' &&
+          c?.type === 'ReturnStatement' &&
+          c.argument.type === 'Identifier' &&
+          c.argument.name === b.id.name && // return b
+          b.init.type === 'CallExpression' &&
+          b.init.callee.type === 'Identifier' &&
+          b.init.callee.name === targetFuncName // const b = f(..)
+        ) {
+          const innerFunc = a.expression.right;
+
+          // Initial case: call args should be param names of outer
+          // Test: `const b = f(x,y)` with the args being the names of the params of outer func
+          const sameArgs = b.init.arguments.every((anode,i) => {
+            return anode.type === 'Identifier' && anode.name === outerFunc.$p.paramNames[i]
+          });
+          if (!sameArgs) return todo('self assign simple case but with tmp call has param parity mismatch');
+
+          if (innerFunc.async) return todo('self assign simple case but with inner async');
+          if (innerFunc.generator) return todo('self assign simple case but with inner generator');
+          if (innerFunc.$p.readsArgumentsAny) return todo('self assign simple case but with inner arguments');
+          if (innerFunc.$p.thisAccess) return todo('self assign simple case but with inner this');
+
+          // We should now have validated the shell of the pattern
+          // - `let f = function(a,b,c){ f = function(x,y,z){ ... }; const tmp = f(a, b, c); return tmp; }`
+
+          // Next step is to verify that the inner function does not reference the args. We checked off anything else.
+          // It should be fine if the inner accesses globals.
+
+          const paramsNotUsedInside = outerFunc.$p.paramNames.every((pname,i) => {
+            if (!pname) return true; // param not used
+            const meta = fdata.globallyUniqueNamingRegistry.get(pname);
+            return meta.rwOrder.every(ref => ref.node.$p.npid < innerFunc.$p.npid || ref.node.$p.npid > innerFunc.$p.lastPid);
+          });
+          if (!paramsNotUsedInside) return;
+
+          // We should now have validated the pattern. Flatten it.
+          rule('Function indirection without closure can be flattened');
+          example(
+            'let f = function(a,b,c){ f = function(x,y,z){ ... }; const tmp = f(a, b, c); return tmp; }',
+            'let f = function(a,b,c){ let x = a; let y = b; let z = c; ...; }'
+          );
+          before(outerWrite.blockBody[outerWrite.blockIndex]);
+
+          // Drop the assign, tmp call, return.
+          // Prepend aliases for inner params, map 1:1 to outer params
+          // Append body of inner func.
+          outerBody.splice(offset, 3,
+            ...innerFunc.$p.paramNames.map((innerPname,i) => {
+              return AST.varStatement('let', AST.identifier(innerPname), AST.identifier(outerFunc.$p.paramNames[i]));
+            }).filter(Boolean), // skip elided
+            ...innerFunc.body.body.slice(innerFunc.$p.bodyOffset)
+          );
+
+          after(outerWrite.blockBody[outerWrite.blockIndex]);
+          updated = updated + 1;
+          return true;
+        }
+      }
+    }
+
+  }
+
 
   return updated;
 }

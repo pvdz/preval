@@ -49,23 +49,8 @@ $(the_self_closing_func()); // This should NOT prevent the transform (!), only t
 
 `````js filename=intro
 const main_data_arr /*:array*/ /*truthy*/ = [`this`, `contents`, `is`, `not`, `relevant`, `here`];
-let the_self_closing_func /*:(unknown, unknown)=>unknown*/ = function ($$0, $$1) {
-  const $dlr_$$0 /*:unknown*/ = $$0;
-  const $dlr_$$1 /*:unknown*/ = $$1;
-  debugger;
-  the_self_closing_func = function ($$0, $$1) {
-    const $dlr_$$2 /*:unknown*/ = $$0;
-    debugger;
-    const tmp1 /*:number*/ = $dlr_$$2 - 387;
-    const tmp2 /*:primitive*/ = main_data_arr[tmp1];
-    return tmp2;
-  };
-  const once /*:unknown*/ = the_self_closing_func($dlr_$$0, $dlr_$$1);
-  return once;
-};
-const the_scf_alias /*:function*/ /*truthy*/ = the_self_closing_func;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const a /*:unknown*/ = the_scf_alias(2);
+  const a /*:primitive*/ = main_data_arr[NaN];
   const b /*:number*/ = $Number_parseInt(a);
   $(`testing`, a, b);
   if (b) {
@@ -75,7 +60,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     $dotCall($array_push, main_data_arr, `push`, tmpMCPa);
   }
 }
-const tmpCalleeParam /*:unknown*/ = the_self_closing_func();
+const tmpCalleeParam /*:primitive*/ = main_data_arr[NaN];
 $(tmpCalleeParam);
 `````
 
@@ -85,18 +70,8 @@ $(tmpCalleeParam);
 
 `````js filename=intro
 const main_data_arr = [`this`, `contents`, `is`, `not`, `relevant`, `here`];
-let the_self_closing_func = function ($dlr_$$0, $dlr_$$1) {
-  the_self_closing_func = function ($dlr_$$2, $$1) {
-    const tmp1 = $dlr_$$2 - 387;
-    const tmp2 = main_data_arr[tmp1];
-    return tmp2;
-  };
-  const once = the_self_closing_func($dlr_$$0, $dlr_$$1);
-  return once;
-};
-const the_scf_alias = the_self_closing_func;
 while (true) {
-  const a = the_scf_alias(2);
+  const a = main_data_arr[NaN];
   const b = $Number_parseInt(a);
   $(`testing`, a, b);
   if (b) {
@@ -105,7 +80,7 @@ while (true) {
     $dotCall($array_push, main_data_arr, `push`, $dotCall($array_shift, main_data_arr, `shift`));
   }
 }
-$(the_self_closing_func());
+$(main_data_arr[NaN]);
 `````
 
 
@@ -114,35 +89,20 @@ With rename=true
 
 `````js filename=intro
 const a = [ "this", "contents", "is", "not", "relevant", "here" ];
-let b = function($$0,$$1 ) {
-  const c = $$0;
-  const d = $$1;
-  debugger;
-  b = function($$0,$$1 ) {
-    const e = $$0;
-    debugger;
-    const f = e - 387;
-    const g = a[ f ];
-    return g;
-  };
-  const h = b( c, d );
-  return h;
-};
-const i = b;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const j = i( 2 );
-  const k = $Number_parseInt( j );
-  $( "testing", j, k );
-  if (k) {
+  const b = a[ NaN ];
+  const c = $Number_parseInt( b );
+  $( "testing", b, c );
+  if (c) {
     break;
   }
   else {
-    const l = $dotCall( $array_shift, a, "shift" );
-    $dotCall( $array_push, a, "push", l );
+    const d = $dotCall( $array_shift, a, "shift" );
+    $dotCall( $array_push, a, "push", d );
   }
 }
-const m = b();
-$( m );
+const e = a[ NaN ];
+$( e );
 `````
 
 
@@ -190,8 +150,11 @@ $(tmpCalleeParam);
 
 
 - (todo) Found a self-closing function shell but it did not match a known pattern...
+- (todo) regular property access of an ident feels tricky;
 - (todo) support array reads statement type VarStatement
+- (todo) support array reads statement type WhileStatement
 - (todo) type trackeed tricks can possibly support static $Number_parseInt
+- (todo) we can still proceed with the loop as long as there is no let-write anywhere in the loop, inc nested
 
 
 ## Globals

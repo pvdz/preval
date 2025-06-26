@@ -175,6 +175,7 @@ $(a, b, c);
 
 
 - (todo) Found a self-closing function shell but it did not match a known pattern...
+- (todo) self assign simple case but with inner arguments
 
 
 ## Globals

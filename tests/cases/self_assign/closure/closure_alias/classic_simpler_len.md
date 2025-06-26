@@ -89,6 +89,7 @@ data_decoder(6);
 
 
 - (todo) Found a self-closing function shell but it did not match a known pattern...
+- (todo) self assign simple case but with tmp call has param parity mismatch
 - (todo) self-closing pattern when inner access arguments/this needs refinement
 
 

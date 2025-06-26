@@ -51,22 +51,16 @@ $(h);
 
 
 `````js filename=intro
-let f /*:()=>unknown*/ = function () {
+const f /*:()=>unknown*/ = function () {
   debugger;
-  f = function () {
-    debugger;
-    $(`inner`);
-    return undefined;
-  };
-  const tmpReturnArg /*:unknown*/ = f();
-  return tmpReturnArg;
+  $(`inner`);
+  return undefined;
 };
-const h /*:()=>undefined*/ = function () {
+const h /*:()=>unknown*/ = function () {
   debugger;
-  const g /*:function*/ /*truthy*/ = f;
-  f();
-  g();
-  $(g);
+  $(`inner`);
+  $(`inner`);
+  $(f);
   return undefined;
 };
 $(h);
@@ -77,18 +71,13 @@ $(h);
 (This ought to be the final result)
 
 `````js filename=intro
-let f = function () {
-  f = function () {
-    $(`inner`);
-  };
-  const tmpReturnArg = f();
-  return tmpReturnArg;
+const f = function () {
+  $(`inner`);
 };
 $(function () {
-  const g = f;
-  f();
-  g();
-  $(g);
+  $(`inner`);
+  $(`inner`);
+  $(f);
 });
 `````
 
@@ -97,25 +86,19 @@ $(function () {
 With rename=true
 
 `````js filename=intro
-let a = function() {
+const a = function() {
   debugger;
-  a = function() {
-    debugger;
-    $( "inner" );
-    return undefined;
-  };
-  const b = a();
-  return b;
-};
-const c = function() {
-  debugger;
-  const d = a;
-  a();
-  d();
-  $( d );
+  $( "inner" );
   return undefined;
 };
-$( c );
+const b = function() {
+  debugger;
+  $( "inner" );
+  $( "inner" );
+  $( a );
+  return undefined;
+};
+$( b );
 `````
 
 

@@ -1508,23 +1508,21 @@ function _typeTrackedTricks(fdata) {
                     const funcNameNode = args.shift(); // This should be the actual function name to call
                     args.shift(); // This should be the propname or undefined (ignore)
                     const newCtxtNode = args.shift(); // This would be the actual context of the call
-                    const argsArrNode = args.shift() || AST.arrayExpression(); // The arr arg is optional
+                    const argsArrNode = args.shift(); // The arr arg is optional
 
                     if (newCtxtNode?.type === 'Identifier' && newCtxtNode.name === 'undefined') {
                       // The call has undefined as context. This may as well be a regular call.
                       // Reflection aside (proxy etc), there's no way to distinguish a regular call from .apply with undefined
                       node.callee = funcNameNode;
                       // The rest of the args should be injected as a statement. They are ignored by .apply()
-                      node.arguments = [
-                        AST.spreadElement(argsArrNode)
-                      ];
+                      node.arguments = argsArrNode ? [AST.spreadElement(argsArrNode)]:[]; // Dont spread arg if none was passed
                     } else {
                       // The rest of the args should be injected as a statement. They are ignored by .apply()
                       node.arguments = [
                         funcNameNode,
                         newCtxtNode,
                         AST.undef(),
-                        AST.spreadElement(argsArrNode)
+                        ...argsArrNode ? [AST.spreadElement(argsArrNode)]:[] // Dont spread arg if none was passed
                       ];
                     }
 

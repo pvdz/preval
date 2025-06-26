@@ -1,8 +1,10 @@
 // Look for array literals whose methods get called immediately and try to resolve them if we can guarantee state
-// `const arr = [1, 2, 3]; arr.push(4); f(arr.shift()); f(arr)`
-// -> `const arr = [2, 3, 4]; f(1); f(arr)`
+//
+//      `const arr = [1, 2, 3]; arr.push(4); f(arr.shift()); f(arr)`
+// ->
+//      `const arr = [2, 3, 4]; f(1); f(arr)`
+//
 
-import walk from '../../lib/walk.mjs';
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, fmat, tmat, coerce, findBodyOffset, todo, assertNoDupeNodes, currentState, } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { BUILTIN_SYMBOLS, symbo } from '../symbols_builtins.mjs';
@@ -122,7 +124,17 @@ function _arrMutation(fdata) {
               AST.isPrimitive(read.parentNode.property) &&
               AST.isPrimitive(read.grandNode.right)
             ) {
-              const pkey = AST.getPrimitiveValue(read.parentNode.property);
+              let pkey = AST.getPrimitiveValue(read.parentNode.property);
+
+              if (typeof pkey === 'string') {
+                vlog('  - the key is a string. Is it an index property?', [pkey])
+                if (/^\d+$/.test(pkey)) {
+                  // This is an index property
+                  pkey = Number(pkey);
+                  vlog('    - yes! using', pkey);
+                }
+              }
+
               if (
                 Number.isInteger(pkey) &&
                 pkey >= 0 && pkey < arrNode.elements.length + 10

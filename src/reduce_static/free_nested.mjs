@@ -473,10 +473,21 @@ function _freeNested(fdata, $prng, usePrng) {
 
     if (valueNode.type === 'Identifier' && !AST.isPrimitive(valueNode)) {
       const targetName = valueNode.name;
-      const n = funcNode.$p.paramNameToIndex.get(targetName);
+      const n = funcNode.$p.paramNames.indexOf(targetName);
       if (n >= 0) {
         return callNode.arguments[n+1] ? AST.cloneSimple(callNode.arguments[n+1]) : AST.identifier('undefined');
       } else {
+        // Search for it in the header. It may have been inlined as a param but not yet cleaned up proper.
+        // This happens and it's fine. Just have to take this extra step now.
+        for (let i=0; i<funcNode.$p.bodyOffset; ++i) {
+          const stmt = funcNode.body.body[i];
+          if (stmt.type === 'VarStatement' && stmt.id.name === targetName) {
+            vlog('- var is in func header. use the init instead?');
+            ASSERT(!AST.isComplexNode(stmt.init), 'if it gets inlined, i think it should be to a simple init...', stmt.init);
+            return AST.cloneSimpleOrTemplate(stmt.init);
+          }
+        }
+
         // In this case we have an argument that is an ident that is not recorded as a local function.
         // Then this ought to be a global (builtin or explicit), which would not be passed in as an arg.
         ASSERT(
@@ -487,7 +498,10 @@ function _freeNested(fdata, $prng, usePrng) {
           BUILTIN_GLOBAL_FUNC_NAMES.has(targetName) ||
           BUILTIN_SYMBOLS.has(targetName) ||
           fdata.globallyUniqueNamingRegistry.get(targetName)?.varDeclRef?.node?.$p.blockChain === '0,1,',
-          'if there is no arg then the var must refer to a global of sorts', targetName, BUILTIN_GLOBAL_FUNC_NAMES.has(targetName)
+          'if it is not a param then the var must refer to a global of sorts',
+          targetName,
+          BUILTIN_GLOBAL_FUNC_NAMES.has(targetName),
+          fdata.globallyUniqueNamingRegistry.get(targetName)?.varDeclRef?.node?.$p.blockChain
         );
         return AST.identifier(targetName);
       }

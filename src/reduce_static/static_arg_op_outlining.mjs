@@ -295,7 +295,7 @@ function _staticArgOpOutlining(fdata) {
           if (read.parentIndex === 1) {
             vlog('- sus, used as context of a dotcall, bail');
             todo('this may support .call .apply and .bind but I think that different reducers should tackle it');
-            return;
+            return true;
           }
 
           vlog('- bail: function is used as arg in context, as such, it escapes');
@@ -1155,7 +1155,7 @@ function _staticArgOpOutlining(fdata) {
     funcMeta.reads.forEach((read,i) => {
       vgroup('- Transforming call', i);
       ASSERT(read.parentNode.type === 'CallExpression');
-      ASSERT(read.parentProp === 'callee' || (read.parentNode.callee.name === SYMBOL_DOTCALL && read.parentIndex === 0), 'either called or dotcalled');
+      ASSERT(read.parentProp === 'callee' || (read.parentNode.callee.name === SYMBOL_DOTCALL && read.parentIndex === 0), 'either called or dotcalled', read.parentNode, read.parentProp, read.parentIndex);
 
       const callNode = read.parentNode;
       const args = callNode.arguments.slice(callNode.callee.name === SYMBOL_DOTCALL ? 3 : 0);

@@ -22,14 +22,16 @@ $(a, b);
 
 
 `````js filename=intro
-const x /*:unknown*/ = $(`val`);
+let x /*:unknown*/ = $(`val`);
+const a /*:unknown*/ = x;
 const tmpMCOO /*:()=>undefined*/ = function () {
   debugger;
+  x = `changed`;
   return undefined;
 };
 const mutate /*:function*/ /*truthy*/ = $dotCall($function_bind, tmpMCOO, `bind`, null);
 mutate();
-$(x, `changed`);
+$(a, x);
 `````
 
 
@@ -37,10 +39,18 @@ $(x, `changed`);
 (This ought to be the final result)
 
 `````js filename=intro
-const x = $(`val`);
-const mutate = $dotCall($function_bind, function () {}, `bind`, null);
+let x = $(`val`);
+const a = x;
+const mutate = $dotCall(
+  $function_bind,
+  function () {
+    x = `changed`;
+  },
+  `bind`,
+  null,
+);
 mutate();
-$(x, `changed`);
+$(a, x);
 `````
 
 
@@ -48,14 +58,16 @@ $(x, `changed`);
 With rename=true
 
 `````js filename=intro
-const a = $( "val" );
-const b = function() {
+let a = $( "val" );
+const b = a;
+const c = function() {
   debugger;
+  a = "changed";
   return undefined;
 };
-const c = $dotCall( $function_bind, b, "bind", null );
-c();
-$( a, "changed" );
+const d = $dotCall( $function_bind, c, "bind", null );
+d();
+$( b, a );
 `````
 
 

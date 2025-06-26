@@ -227,7 +227,7 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
         vlog('## queued type resolving for decl of', [declName], '(mustbetype:', meta.typing.mustBeType, ', isprimitive:', meta.typing.mustBePrimitive, ')');
         untypedVarDecls.add({node: declNode, meta});
       } else {
-        vlog('## decl for', [declName], 'already has typing;', meta.typing.mustBeType, meta.typing.mustBePrimitive)
+        vlog('## decl for', [declName], 'already has typing;', [meta.typing.mustBeType], meta.typing.mustBePrimitive)
       }
     } else {
       vlog('## skipped type resolving for non-const of', [declName]);
@@ -394,6 +394,7 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
       meta.writes.forEach((write,i) => {
         // if (meta.singleScoped && write.reachedByReads.size === 0) return vlog('- write', i, ': Skipping; it is not reachable');
         if (skipInit && write.kind === 'var') return vlog('- write', i, ': Skipping; ternary const that ignores init');
+        const lhs = write.kind === 'var' ? write.parentNode.id : write.parentNode.left;
         const rhs = write.kind === 'var' ? write.parentNode.init : write.parentNode.right;
         // if (rhs.type === 'Identifier') {
         //   let notyet = false;
@@ -402,11 +403,12 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
         //   })
         //   if (notyet) return vlog('  - rhs', rhs.name, 'is not yet resolved so skip it for now');
         // }
-        vlog('- write', i, ':', write.kind, write.parentNode.type, rhs.name);
-        const rhsTyping = inferNodeTyping(fdata, rhs);
-        vlog('Merging rhs typing with binding;', write.parentNode.type, rhs.name, rhsTyping);
+        vgroup('- write', i, ':', write.kind, write.parentNode.type, lhs.name, rhs.name);
+        const rhsTyping = inferNodeTyping(fdata, rhs, true);
+        vlog('Merging rhs typing with binding;', write.parentNode.type, lhs.name ?? '<lhs not ident>', rhs.name ?? '<rhs not ident>', rhsTyping);
         mergeTyping(rhsTyping, newTyping);
-        vlog('newTyping now:', newTyping);
+        vlog('newTyping for', lhs.name, 'now:', newTyping);
+        vgroupEnd();
       });
 
       if (
@@ -831,7 +833,7 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
             return;
           }
 
-          // Note: inferNodeTyping will skip idents
+          // Note: inferNodeTyping will not skip idents now (only does that in normalization/phase1)
           if (AST.isPrimitive(anode)) {
             const seen = AST.getPrimitiveType(anode);
             if (newCallerArgTypes[i] === false) {
@@ -867,7 +869,7 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
             }
           }
           else {
-            const inf = inferNodeTyping(fdata, anode).mustBeType;
+            const inf = inferNodeTyping(fdata, anode, true).mustBeType;
             vlog('Param', i, '; type so far:', newCallerArgTypes[i] ?? '<not yet>', ', inferred now:', JSON.stringify(inf));
             if (newCallerArgTypes[i] === undefined) {
               vlog('Param', i, '; did not have a type before, updating');

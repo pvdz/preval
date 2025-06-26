@@ -34,8 +34,8 @@ $(x, 'end');
 const b /*:unknown*/ = $(`x`, `one`);
 const c /*:unknown*/ = $(`y`, `one`);
 $(false, `middle`);
-const a /*:boolean*/ = b === c;
-$(a, `end`);
+const tmpBool$1 /*:boolean*/ = b === c;
+$(tmpBool$1, `end`);
 `````
 
 

@@ -29,7 +29,7 @@ const tmpUpdNum /*:number*/ = $coerce(tmpUpdProp, `number`);
 const tmpUpdInc /*:number*/ = tmpUpdNum + 1;
 tmpUpdObj.x = tmpUpdInc;
 if (tmpUpdInc) {
-  let a /*:unknown*/ = undefined;
+  let a /*:number*/ = 0;
   while ($LOOP_UNROLL_10) {
     $(100);
     const tmpCalleeParam$1 /*:unknown*/ = $(b);
@@ -60,7 +60,7 @@ const tmpUpdObj = $($(b));
 const tmpUpdInc = $coerce(tmpUpdObj.x, `number`) + 1;
 tmpUpdObj.x = tmpUpdInc;
 if (tmpUpdInc) {
-  let a = undefined;
+  let a = 0;
   while (true) {
     $(100);
     const tmpUpdObj$1 = $($(b));
@@ -90,7 +90,7 @@ const e = $coerce( d, "number" );
 const f = e + 1;
 c.x = f;
 if (f) {
-  let g = undefined;
+  let g = 0;
   while ($LOOP_UNROLL_10) {
     $( 100 );
     const h = $( a );

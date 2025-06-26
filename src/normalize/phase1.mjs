@@ -259,7 +259,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
           const meta = fdata.globallyUniqueNamingRegistry.get(node.left.name);
           ASSERT(meta);
           vlog('Resolving the .typing of `' + node.left.name + '` with the details of the rhs', node.right.type);
-          const newTyping = inferNodeTyping(fdata, node.right);
+          const newTyping = inferNodeTyping(fdata, node.right, false);
           vlog('-- Results in', newTyping, 'which we will inject into', meta.typing);
           mergeTyping(newTyping, meta.typing);
           vlog('---- Typing:', meta.typing.mustBeType, meta.typing.mustBePrimitive);
@@ -1238,7 +1238,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
           // But we won't know that until after this entire phase so that's not helpful. We have to
           // incude all writes for now.g
           vlog('Resolving .typing details of the non-param init');
-          const newTyping = inferNodeTyping(fdata, node.init);
+          const newTyping = inferNodeTyping(fdata, node.init, false);
           vlog('Results in', newTyping, 'which we will inject into', meta.typing);
           mergeTyping(newTyping, meta.typing);
           vlog('  - Typing data:', meta.typing);

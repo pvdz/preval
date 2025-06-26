@@ -43,7 +43,7 @@ let count /*:number*/ = 77;
 let str /*:string*/ = `var 44=["\\13\\17\\31\\8\\12\\29\\21\\22\\7\\16\\8\\7\\9`;
 const arr /*:array*/ /*truthy*/ = [``, ``, ``, ``, ``, ``, ``, `x5C`, `x35`, `x36`, ``, `x31`];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpPostUpdArgIdent$1 /*:unknown*/ = count;
+  const tmpPostUpdArgIdent$1 /*:number*/ = count;
   count = count - 1;
   if (tmpPostUpdArgIdent$1) {
     const chr /*:primitive*/ = arr[count];

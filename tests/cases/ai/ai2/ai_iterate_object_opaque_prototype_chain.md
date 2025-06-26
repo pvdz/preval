@@ -277,6 +277,7 @@ $(`for_in_values_accessed`, tmpCalleeParam$13);
 - (todo) access object property that also exists on prototype? $array_join
 - (todo) access object property that also exists on prototype? $array_push
 - (todo) access object property that also exists on prototype? $array_sort
+- (todo) access object property that also exists on prototype? $function_call
 - (todo) support array reads statement type ExpressionStatement
 - (todo) support array reads statement type VarStatement
 - (todo) support array reads statement type WhileStatement

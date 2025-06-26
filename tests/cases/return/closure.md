@@ -33,7 +33,7 @@ const f /*:()=>undefined*/ = function () {
   debugger;
   const g /*:()=>undefined*/ = function () {
     debugger;
-    const tmpPostUpdArgIdent /*:unknown*/ = x;
+    const tmpPostUpdArgIdent /*:primitive*/ = x;
     x = tmpPostUpdArgIdent + 1;
     return undefined;
   };

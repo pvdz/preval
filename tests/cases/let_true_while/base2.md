@@ -28,7 +28,7 @@ $(x, y);
 const y /*:unknown*/ = $(5);
 $(true);
 const z /*:number*/ = y - 1;
-let tmpClusterSSA_y /*:unknown*/ = z;
+let tmpClusterSSA_y /*:number*/ = z;
 if (z) {
   while ($LOOP_UNROLL_10) {
     $(tmpClusterSSA_y);

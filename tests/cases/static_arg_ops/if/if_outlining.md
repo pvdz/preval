@@ -70,6 +70,13 @@ $(push);
 
 
 `````js filename=intro
+const tmpFree /*:(number)=>number*/ = function $free($$0) {
+  const tmpClusterSSA_index$3 /*:number*/ = $$0;
+  debugger;
+  const tmpBinLhs$1 /*:number*/ = tmpClusterSSA_index$3 - 1;
+  const tmpRet /*:number*/ = tmpBinLhs$1 >>> 1;
+  return tmpRet;
+};
 const push /*:(unknown, unknown)=>undefined*/ = function ($$0, $$1) {
   const heap /*:unknown*/ = $$0;
   const node /*:unknown*/ = $$1;
@@ -88,19 +95,18 @@ const push /*:(unknown, unknown)=>undefined*/ = function ($$0, $$1) {
       if (tmpIfTest$369) {
         heap[tmpClusterSSA_parentIndex] = node;
         heap[index$1] = tmpClusterSSA_parent;
-        let tmpClusterSSA_index$3 /*:unknown*/ = tmpClusterSSA_parentIndex;
+        let tmpClusterSSA_index$1 /*:number*/ = tmpClusterSSA_parentIndex;
         let tmpClusterSSA_tmpIfTest$367 /*:boolean*/ = tmpClusterSSA_parentIndex > 0;
         while ($LOOP_UNROLL_100) {
           if (tmpClusterSSA_tmpIfTest$367) {
-            const tmpBinLhs$1 /*:number*/ = tmpClusterSSA_index$3 - 1;
-            const tmpClusterSSA_parentIndex$1 /*:number*/ = tmpBinLhs$1 >>> 1;
+            const tmpClusterSSA_parentIndex$1 /*:number*/ = $frfr(tmpFree, tmpClusterSSA_index$1);
             const tmpClusterSSA_parent$1 /*:unknown*/ = heap[tmpClusterSSA_parentIndex$1];
             const tmpBinLhs$3 /*:unknown*/ = compare(tmpClusterSSA_parent$1, node);
             const tmpIfTest$2 /*:boolean*/ = tmpBinLhs$3 > 0;
             if (tmpIfTest$2) {
               heap[tmpClusterSSA_parentIndex$1] = node;
-              heap[tmpClusterSSA_index$3] = tmpClusterSSA_parent$1;
-              tmpClusterSSA_index$3 = tmpClusterSSA_parentIndex$1;
+              heap[tmpClusterSSA_index$1] = tmpClusterSSA_parent$1;
+              tmpClusterSSA_index$1 = tmpClusterSSA_parentIndex$1;
               tmpClusterSSA_tmpIfTest$367 = tmpClusterSSA_parentIndex$1 > 0;
             } else {
               break $inlinedFunction;
@@ -124,6 +130,10 @@ $(push);
 (This ought to be the final result)
 
 `````js filename=intro
+const tmpFree = function $free(tmpClusterSSA_index$3) {
+  const tmpRet = (tmpClusterSSA_index$3 - 1) >>> 1;
+  return tmpRet;
+};
 $(function (heap, node) {
   $inlinedFunction: {
     const index$1 = heap.length;
@@ -135,16 +145,16 @@ $(function (heap, node) {
       if (compare(tmpClusterSSA_parent, node) > 0) {
         heap[tmpClusterSSA_parentIndex] = node;
         heap[index$1] = tmpClusterSSA_parent;
-        let tmpClusterSSA_index$3 = tmpClusterSSA_parentIndex;
+        let tmpClusterSSA_index$1 = tmpClusterSSA_parentIndex;
         let tmpClusterSSA_tmpIfTest$367 = tmpClusterSSA_parentIndex > 0;
         while (true) {
           if (tmpClusterSSA_tmpIfTest$367) {
-            const tmpClusterSSA_parentIndex$1 = (tmpClusterSSA_index$3 - 1) >>> 1;
+            const tmpClusterSSA_parentIndex$1 = $frfr(tmpFree, tmpClusterSSA_index$1);
             const tmpClusterSSA_parent$1 = heap[tmpClusterSSA_parentIndex$1];
             if (compare(tmpClusterSSA_parent$1, node) > 0) {
               heap[tmpClusterSSA_parentIndex$1] = node;
-              heap[tmpClusterSSA_index$3] = tmpClusterSSA_parent$1;
-              tmpClusterSSA_index$3 = tmpClusterSSA_parentIndex$1;
+              heap[tmpClusterSSA_index$1] = tmpClusterSSA_parent$1;
+              tmpClusterSSA_index$1 = tmpClusterSSA_parentIndex$1;
               tmpClusterSSA_tmpIfTest$367 = tmpClusterSSA_parentIndex$1 > 0;
             } else {
               break $inlinedFunction;
@@ -164,38 +174,44 @@ $(function (heap, node) {
 With rename=true
 
 `````js filename=intro
-const a = function($$0,$$1 ) {
-  const b = $$0;
-  const c = $$1;
+const a = function b($$0 ) {
+  const c = $$0;
+  debugger;
+  const d = c - 1;
+  const e = d >>> 1;
+  return e;
+};
+const f = function($$0,$$1 ) {
+  const g = $$0;
+  const h = $$1;
   debugger;
   $inlinedFunction: {
-    const d = b.length;
-    const e = d > 0;
-    const f = b.push;
-    $dotCall( f, b, "push", c );
-    if (e) {
-      const g = d - 1;
-      const h = g >>> 1;
-      const i = b[ h ];
-      const j = compare( i, c );
-      const k = j > 0;
-      if (k) {
-        b[h] = c;
-        b[d] = i;
-        let l = h;
-        let m = h > 0;
+    const i = g.length;
+    const j = i > 0;
+    const k = g.push;
+    $dotCall( k, g, "push", h );
+    if (j) {
+      const l = i - 1;
+      const m = l >>> 1;
+      const n = g[ m ];
+      const o = compare( n, h );
+      const p = o > 0;
+      if (p) {
+        g[m] = h;
+        g[i] = n;
+        let q = m;
+        let r = m > 0;
         while ($LOOP_UNROLL_100) {
-          if (m) {
-            const n = l - 1;
-            const o = n >>> 1;
-            const p = b[ o ];
-            const q = compare( p, c );
-            const r = q > 0;
-            if (r) {
-              b[o] = c;
-              b[l] = p;
-              l = o;
-              m = o > 0;
+          if (r) {
+            const s = t( a, q );
+            const u = g[ s ];
+            const v = compare( u, h );
+            const w = v > 0;
+            if (w) {
+              g[s] = h;
+              g[q] = u;
+              q = s;
+              r = s > 0;
             }
             else {
               break $inlinedFunction;
@@ -210,7 +226,7 @@ const a = function($$0,$$1 ) {
   }
   return undefined;
 };
-$( a );
+$( f );
 `````
 
 

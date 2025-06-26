@@ -63,7 +63,7 @@ let f /*:()=>unknown*/ = function () {
 };
 const h /*:()=>undefined*/ = function () {
   debugger;
-  const g /*:unknown*/ = f;
+  const g /*:function*/ /*truthy*/ = f;
   f();
   g();
   $(g);

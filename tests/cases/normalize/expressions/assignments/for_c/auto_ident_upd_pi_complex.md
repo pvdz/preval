@@ -30,7 +30,7 @@ if (tmpIfTest) {
   const tmpUpdNum /*:number*/ = $coerce(tmpUpdProp, `number`);
   const tmpUpdInc /*:number*/ = tmpUpdNum + 1;
   tmpUpdObj.x = tmpUpdInc;
-  let tmpClusterSSA_a /*:unknown*/ = tmpUpdInc;
+  let tmpClusterSSA_a /*:number*/ = tmpUpdInc;
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {

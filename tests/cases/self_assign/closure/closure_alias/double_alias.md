@@ -43,12 +43,12 @@ let zzzz /*:()=>unknown*/ = function () {
   const tmpReturnArg$23 /*:unknown*/ = zzzz();
   return tmpReturnArg$23;
 };
-const x /*:unknown*/ = zzzz;
+const x /*:function*/ /*truthy*/ = zzzz;
 const tmpBinBothLhs /*:unknown*/ = zzzz();
 const tmpBinBothRhs /*:unknown*/ = zzzz();
 const tmpCalleeParam /*:boolean*/ = tmpBinBothLhs === tmpBinBothRhs;
 $(`eq`, tmpCalleeParam);
-const y /*:unknown*/ = zzzz;
+const y /*:function*/ /*truthy*/ = zzzz;
 const tmpBinBothLhs$1 /*:unknown*/ = x();
 const tmpBinBothRhs$1 /*:unknown*/ = zzzz();
 const tmpCalleeParam$1 /*:boolean*/ = tmpBinBothLhs$1 === tmpBinBothRhs$1;

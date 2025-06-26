@@ -24,7 +24,7 @@ $(a, x, y);
 `````js filename=intro
 let x /*:unknown*/ = 1;
 let y /*:unknown*/ = 2;
-let a /*:unknown*/ = { a: 999, b: 1000 };
+let a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 const tmpCalleeParam$1 /*:object*/ /*truthy*/ = { x: 1 };
 const tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$1);
 const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);

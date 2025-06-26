@@ -70,7 +70,7 @@ const b /*:()=>undefined*/ = function () {
   $(`after`);
   return undefined;
 };
-let a /*:unknown*/ = b;
+let a /*:function*/ /*truthy*/ = b;
 b();
 b();
 a();

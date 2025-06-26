@@ -32,7 +32,7 @@ const f /*:()=>undefined*/ = function () {
     $(3);
     return undefined;
   } else {
-    let tmpLambdaFindLastOut /*:unknown*/ = undefined;
+    let tmpLambdaFindLastOut /*:primitive*/ = undefined;
     let tmpClusterSSA_tmpLambdaFindLastCounter /*:number*/ = 1;
     while ($LOOP_UNROLL_10) {
       const tmpLambdaFindLastTest$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaFindLastCounter >= 0;

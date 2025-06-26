@@ -64,7 +64,7 @@ const f /*:()=>undefined*/ = function () {
   $(tmpLambdaEveryOut);
   return undefined;
 };
-let x /*:unknown*/ = 1;
+let x /*:primitive*/ = 1;
 f();
 $(f);
 $(x);

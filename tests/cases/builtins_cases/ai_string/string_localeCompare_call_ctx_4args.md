@@ -58,6 +58,7 @@ $(tmpCalleeParam);
 ## Todos triggered
 
 
+- (todo) access object property that also exists on prototype? $function_call
 - (todo) type trackeed tricks can possibly support static $string_localeCompare
 
 

@@ -54,6 +54,7 @@ $(tmpCalleeParam);
 
 
 - (todo) We should be able to resolve the $frfr call but pcode failed to complete with a Node, hasExplicitGlobal=false
+- (todo) access object property that also exists on prototype? $function_call
 - (todo) free with zero args, we can eliminate this?
 - (todo) type trackeed tricks can possibly support static $string_padEnd
 

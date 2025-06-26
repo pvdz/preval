@@ -81,6 +81,7 @@ try {
 ## Todos triggered
 
 
+- (todo) access object property that also exists on prototype? $function_call
 - (todo) can try-escaping support this expr node type? CallExpression
 - (todo) try escaping may support dotcalling $string_replaceAll
 - (todo) type trackeed tricks can possibly support static $string_replaceAll

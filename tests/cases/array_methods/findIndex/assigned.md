@@ -26,7 +26,7 @@ $(x);
 `````js filename=intro
 const f /*:()=>undefined*/ = function () {
   debugger;
-  let tmpLambdaFindIndexOut /*:unknown*/ /*ternaryConst*/ = -1;
+  let tmpLambdaFindIndexOut /*:number*/ /*ternaryConst*/ = -1;
   const tmpMCOO /*:array*/ /*truthy*/ = [1, 2, 3];
   const tmpLambdaFindIndexNow /*:unknown*/ = $dotCall($, undefined, undefined, 1, 0, tmpMCOO);
   if (tmpLambdaFindIndexNow) {
@@ -60,7 +60,7 @@ const f /*:()=>undefined*/ = function () {
   $(tmpLambdaFindIndexOut);
   return undefined;
 };
-let x /*:unknown*/ = 1;
+let x /*:number*/ = 1;
 f();
 $(f);
 $(x);

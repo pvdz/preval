@@ -67,7 +67,7 @@ if (tmpClusterSSA_tmpIfTest) {
 if (tmpIfTest$1) {
   $(`B`);
 } else {
-  let tmpIfTest$3 /*:unknown*/ /*ternaryConst*/ = tmpClusterSSA_tmpIfTest;
+  let tmpIfTest$3 /*:boolean*/ /*ternaryConst*/ = tmpClusterSSA_tmpIfTest;
   if (tmpClusterSSA_tmpIfTest) {
   } else {
     const tmpBinBothRhs$3 /*:unknown*/ = $(3);

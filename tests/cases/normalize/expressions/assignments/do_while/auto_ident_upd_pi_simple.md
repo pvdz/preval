@@ -34,7 +34,7 @@ $(100);
 $(100);
 $(100);
 $(100);
-let a /*:unknown*/ = undefined;
+let a /*:number*/ = 0;
 let tmpClusterSSA_b$2 /*:number*/ = 12;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
@@ -64,7 +64,7 @@ $(100);
 $(100);
 $(100);
 $(100);
-let a = undefined;
+let a = 0;
 let tmpClusterSSA_b$2 = 12;
 while (true) {
   $(100);
@@ -93,7 +93,7 @@ $( 100 );
 $( 100 );
 $( 100 );
 $( 100 );
-let a = undefined;
+let a = 0;
 let b = 12;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 100 );

@@ -37,17 +37,16 @@ let a /*:primitive*/ = 0;
 const obj /*:object*/ /*truthy*/ = {
   get x() {
     debugger;
-    const tmpStringConcatR /*:unknown*/ = s;
+    const tmpStringConcatR /*:string*/ = s;
     s = `${tmpStringConcatR}read;`;
     return a;
   },
   set x($$0) {
     const v /*:unknown*/ = $$0;
     debugger;
-    const tmpBinBothLhs /*:unknown*/ = s;
+    const tmpBinBothLhs /*:string*/ = s;
     const tmpStringConcatL$1 /*:string*/ = $coerce(v, `plustr`);
-    const tmpBinBothRhs /*:string*/ /*truthy*/ = `write[${tmpStringConcatL$1}];`;
-    s = tmpBinBothLhs + tmpBinBothRhs;
+    s = `${tmpBinBothLhs}write[${tmpStringConcatL$1}];`;
     a = a + v;
     return a;
   },
@@ -74,7 +73,7 @@ const obj = {
   set x(v) {
     const tmpBinBothLhs = s;
     const tmpStringConcatL$1 = $coerce(v, `plustr`);
-    s = tmpBinBothLhs + `write[${tmpStringConcatL$1}];`;
+    s = `${tmpBinBothLhs}write[${tmpStringConcatL$1}];`;
     a = a + v;
     return a;
   },
@@ -102,15 +101,14 @@ const c = {
     debugger;
     const f = a;
     const g = $coerce( e, "plustr" );
-    const h = `write[${g}];`;
-    a = f + h;
+    a = `${f}write[${g}];`;
     b = b + e;
     return b;
   },
 };
-const i = c.x;
-const j = i + 5;
-c.x = j;
+const h = c.x;
+const i = h + 5;
+c.x = i;
 $( b, a );
 `````
 

@@ -28,15 +28,15 @@ $(f(0));
 
 `````js filename=intro
 const f /*:(primitive)=>primitive*/ = function ($$0) {
-  const n$2 /*:primitive*/ = $$0;
+  const n$3 /*:primitive*/ = $$0;
   debugger;
-  const tmpCalleeParam /*:primitive*/ = n$2 + 1;
-  const tmpBinLhs /*:unknown*/ = $(tmpCalleeParam);
+  const tmpCalleeParam$2 /*:primitive*/ = n$3 + 1;
+  const tmpBinLhs /*:unknown*/ = $(tmpCalleeParam$2);
   const tmpIfTest /*:boolean*/ = tmpBinLhs > 1000;
   if (tmpIfTest) {
-    return tmpCalleeParam;
+    return tmpCalleeParam$2;
   } else {
-    const tmpClusterSSA_tmpReturnArg$3 /*:primitive*/ = f(tmpCalleeParam);
+    const tmpClusterSSA_tmpReturnArg$3 /*:primitive*/ = f(tmpCalleeParam$2);
     return tmpClusterSSA_tmpReturnArg$3;
   }
 };
@@ -49,12 +49,12 @@ $(tmpCalleeParam$1);
 (This ought to be the final result)
 
 `````js filename=intro
-const f = function (n$2) {
-  const tmpCalleeParam = n$2 + 1;
-  if ($(tmpCalleeParam) > 1000) {
-    return tmpCalleeParam;
+const f = function (n$3) {
+  const tmpCalleeParam$2 = n$3 + 1;
+  if ($(tmpCalleeParam$2) > 1000) {
+    return tmpCalleeParam$2;
   } else {
-    const tmpClusterSSA_tmpReturnArg$3 = f(tmpCalleeParam);
+    const tmpClusterSSA_tmpReturnArg$3 = f(tmpCalleeParam$2);
     return tmpClusterSSA_tmpReturnArg$3;
   }
 };

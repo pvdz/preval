@@ -31,7 +31,7 @@ const tmpLambdaFindLastNow /*:unknown*/ = $dotCall(tmpMCP, undefined, undefined)
 if (tmpLambdaFindLastNow) {
   $(result, 3);
 } else {
-  let tmpLambdaFindLastOut /*:unknown*/ = undefined;
+  let tmpLambdaFindLastOut /*:primitive*/ = undefined;
   let tmpClusterSSA_tmpLambdaFindLastCounter /*:number*/ = 1;
   const tmpMCOO /*:array*/ /*truthy*/ = [1, 2, 3];
   while ($LOOP_UNROLL_10) {

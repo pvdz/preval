@@ -77,7 +77,7 @@ const k /*:array*/ /*truthy*/ = [
   `split`,
 ];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpPostUpdArgIdent$1 /*:unknown*/ = tmpClusterSSA_c$1;
+  const tmpPostUpdArgIdent$1 /*:number*/ = tmpClusterSSA_c$1;
   tmpClusterSSA_c$1 = tmpClusterSSA_c$1 - 1;
   if (tmpPostUpdArgIdent$1) {
     const tmpAssignComMemLhsProp$1 /*:string*/ = $dotCall($number_toString, tmpClusterSSA_c$1, `toString`, 36);
@@ -98,14 +98,14 @@ const tmpArrElement /*:(unknown)=>unknown*/ = function ($$0) {
   return tmpReturnArg$1;
 };
 const tmpMCP$1 /*:regex*/ /*truthy*/ = new $regex_constructor(`\\b\\w+\\b`, `g`);
-const tmpSSA_p /*:string*/ = $dotCall(
+const tmpClusterSSA_p /*:string*/ = $dotCall(
   $string_replace,
   `s(f(p,a,c,k,e,r){e=l;m(!''.n(/^/,l)){o(c--)r[c]=k[c]||c;k=[f(e){j r[e]}];e=f(){j'\\\\w+'};c=1};o(c--)m(k[c])p=p.n(t u('\\\\b'+e(c)+'\\\\b','g'),k[c]);j p}('"0\\\\\`1\\\\"2\\\\\\'3\\\\\\\\4\\\\5\\\\6\${7}8\\\\/9"',q,q,'a|b|c|d|e|v|x|y|h|i'.z('|'),0,{}))`,
   `replace`,
   tmpMCP$1,
   tmpArrElement,
 );
-const x /*:unknown*/ = eval(tmpSSA_p);
+const x /*:unknown*/ = eval(tmpClusterSSA_p);
 $(x);
 `````
 

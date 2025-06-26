@@ -25,7 +25,7 @@ const tmpUnaryArg /*:unknown*/ = $(1);
 const tmpUnaryArg$1 /*:unknown*/ = $(1);
 const a /*:string*/ /*truthy*/ = typeof tmpUnaryArg;
 const tmpClusterSSA_a /*:string*/ /*truthy*/ = typeof tmpUnaryArg$1;
-const tmpCalleeParam /*:string*/ = a + tmpClusterSSA_a;
+const tmpCalleeParam /*:string*/ = `${a}${tmpClusterSSA_a}`;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a, 1);
 `````
@@ -39,7 +39,7 @@ const tmpUnaryArg = $(1);
 const tmpUnaryArg$1 = $(1);
 const a = typeof tmpUnaryArg;
 const tmpClusterSSA_a = typeof tmpUnaryArg$1;
-$(a + tmpClusterSSA_a);
+$(`${a}${tmpClusterSSA_a}`);
 $(tmpClusterSSA_a, 1);
 `````
 
@@ -52,7 +52,7 @@ const a = $( 1 );
 const b = $( 1 );
 const c = typeof a;
 const d = typeof b;
-const e = c + d;
+const e = `${c}${d}`;
 $( e );
 $( d, 1 );
 `````
@@ -79,7 +79,7 @@ $(a, x);
 ## Todos triggered
 
 
-None
+- (todo) find test case where template ends up with multiple expressions
 
 
 ## Globals

@@ -49,7 +49,7 @@ let f /*:(unknown)=>unknown*/ = function ($$0) {
   const tmpReturnArg /*:unknown*/ = f(thisclosurebecomesargumentsobj, out_arg);
   return tmpReturnArg;
 };
-const g /*:unknown*/ = f;
+const g /*:function*/ /*truthy*/ = f;
 const arr /*:array*/ /*truthy*/ = [];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const a /*:unknown*/ = g(arr);

@@ -29,12 +29,12 @@ const f /*:(primitive, primitive, boolean)=>array*/ = function ($$0, $$1, $$2) {
   const tmpParamBare$1 /*:primitive*/ = $$1;
   const tmpOutlinedParam /*:boolean*/ = $$2;
   debugger;
-  let a /*:unknown*/ /*ternaryConst*/ = `foo`;
+  let a /*:primitive*/ /*ternaryConst*/ = `foo`;
   if (tmpOutlinedParam) {
   } else {
     a = tmpParamBare;
   }
-  let b /*:unknown*/ /*ternaryConst*/ = undefined;
+  let b /*:primitive*/ /*ternaryConst*/ = undefined;
   const tmpIfTest$1 /*:boolean*/ = tmpParamBare$1 === undefined;
   if (tmpIfTest$1) {
     b = a;

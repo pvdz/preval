@@ -31,7 +31,7 @@ const tmpMCF /*:unknown*/ = arr.filter;
 const tmpMCP /*:(unknown)=>boolean*/ = function ($$0) {
   const x /*:unknown*/ = $$0;
   debugger;
-  const tmpPostUpdArgIdent /*:unknown*/ = count;
+  const tmpPostUpdArgIdent /*:primitive*/ = count;
   count = tmpPostUpdArgIdent + 1;
   const tmpReturnArg /*:boolean*/ = x > 2;
   return tmpReturnArg;

@@ -19,20 +19,20 @@ $(`${a}${b}`);
 
 
 `````js filename=intro
-const tmpFree$1 /*:(number, number)=>string*/ = function $free($$0, $$1) {
+const tmpFree /*:(number, number)=>string*/ = function $free($$0, $$1) {
   const a$1 /*:number*/ = $$0;
   const b$1 /*:number*/ = $$1;
   debugger;
-  const tmpBinBothRhs$1 /*:string*/ = $coerce(a$1, `string`);
+  const tmpBinBothLhs /*:string*/ = $coerce(a$1, `string`);
   const tmpBinBothRhs /*:string*/ = $coerce(b$1, `string`);
-  const tmpRet /*:string*/ = tmpBinBothRhs$1 + tmpBinBothRhs;
+  const tmpRet /*:string*/ = tmpBinBothLhs + tmpBinBothRhs;
   return tmpRet;
 };
 const tmpCalleeParam /*:unknown*/ = $spy(1);
 const a /*:number*/ = $coerce(tmpCalleeParam, `number`);
 const tmpCalleeParam$1 /*:unknown*/ = $spy(2);
 const b /*:number*/ = $coerce(tmpCalleeParam$1, `number`);
-const tmpCalleeParam$3 /*:string*/ = $frfr(tmpFree$1, a, b);
+const tmpCalleeParam$3 /*:string*/ = $frfr(tmpFree, a, b);
 $(tmpCalleeParam$3);
 `````
 
@@ -41,12 +41,12 @@ $(tmpCalleeParam$3);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpFree$1 = function $free(a$1, b$1) {
+const tmpFree = function $free(a$1, b$1) {
   const tmpRet = $coerce(a$1, `string`) + $coerce(b$1, `string`);
   return tmpRet;
 };
 const a = $coerce($spy(1), `number`);
-$($frfr(tmpFree$1, a, $coerce($spy(2), `number`)));
+$($frfr(tmpFree, a, $coerce($spy(2), `number`)));
 `````
 
 

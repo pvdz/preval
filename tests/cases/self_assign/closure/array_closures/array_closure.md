@@ -43,7 +43,7 @@ let a /*:()=>unknown*/ = function () {
   const tmpReturnArg /*:unknown*/ = a();
   return tmpReturnArg;
 };
-const b /*:unknown*/ = a;
+const b /*:function*/ /*truthy*/ = a;
 const tmpCalleeParam /*:unknown*/ = a();
 $(tmpCalleeParam);
 const tmpCalleeParam$1 /*:unknown*/ = b();

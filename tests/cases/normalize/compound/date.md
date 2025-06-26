@@ -38,17 +38,16 @@ const tmpAssignMemRhs /*:date*/ /*truthy*/ = new $date_constructor(12345);
 const tmpAssignMemLhsObj /*:object*/ /*truthy*/ = {
   get x() {
     debugger;
-    const tmpStringConcatR /*:unknown*/ = s;
+    const tmpStringConcatR /*:string*/ = s;
     s = `${tmpStringConcatR}read;`;
     return a;
   },
   set x($$0) {
     const v /*:unknown*/ = $$0;
     debugger;
-    const tmpBinBothLhs /*:unknown*/ = s;
+    const tmpBinBothLhs /*:string*/ = s;
     const tmpStringConcatL$1 /*:string*/ = $coerce(v, `plustr`);
-    const tmpBinBothRhs /*:string*/ /*truthy*/ = `write[${tmpStringConcatL$1}];`;
-    s = tmpBinBothLhs + tmpBinBothRhs;
+    s = `${tmpBinBothLhs}write[${tmpStringConcatL$1}];`;
     a = a + v;
     return a;
   },
@@ -74,7 +73,7 @@ const tmpAssignMemLhsObj = {
   set x(v) {
     const tmpBinBothLhs = s;
     const tmpStringConcatL$1 = $coerce(v, `plustr`);
-    s = tmpBinBothLhs + `write[${tmpStringConcatL$1}];`;
+    s = `${tmpBinBothLhs}write[${tmpStringConcatL$1}];`;
     a = a + v;
     return a;
   },
@@ -103,8 +102,7 @@ const d = {
     debugger;
     const g = a;
     const h = $coerce( f, "plustr" );
-    const i = `write[${h}];`;
-    a = g + i;
+    a = `${g}write[${h}];`;
     b = b + f;
     return b;
   },

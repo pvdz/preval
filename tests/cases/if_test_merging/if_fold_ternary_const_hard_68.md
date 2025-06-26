@@ -100,8 +100,9 @@ if (y) {
 ## Todos triggered
 
 
+- (todo) access object property that also exists on prototype? $array_join
+- (todo) arr mutation may be able to inline this method: tmpMCF
 - (todo) support array reads statement type ExpressionStatement
-- (todo) support array reads statement type VarStatement
 
 
 ## Globals

@@ -1066,16 +1066,19 @@ export function createTypingObject({
     returns,
   };
 }
-export function inferNodeTyping(fdata, valueNode) {
+export function inferNodeTyping(fdata, valueNode, allowIdentResolve) {
+  ASSERT(arguments.length === inferNodeTyping.length, 'arg count');
   vgroup();
-  const r = _inferNodeTyping(fdata, valueNode);
+  const r = _inferNodeTyping(fdata, valueNode, allowIdentResolve);
   vgroupEnd();
   ASSERT(r && typeof r === 'object', 'inferNodeTyping must return a typing object', r, valueNode);
   return r;
 }
-function _inferNodeTyping(fdata, valueNode) {
+function _inferNodeTyping(fdata, valueNode, allowIdentResolve) {
+  ASSERT(arguments.length === _inferNodeTyping.length, 'arg count');
   // Assumes >= phase1 (so normalized code)
   // Given a node `init`, determine the initial typing for this meta.
+  // During normalization and phase1, mustBeType is unreliable or unset so then allowIdentResolve=false.
 
   ASSERT(valueNode, 'should receive value node', valueNode);
   ASSERT(valueNode.$p, 'nodes should be processed at this point so .$p should exist', valueNode);
@@ -1128,10 +1131,14 @@ function _inferNodeTyping(fdata, valueNode) {
         });
       }
 
-      // const meta = fdata.globallyUniqueNamingRegistry.get(valueNode.name);
-      // vlog('- Node is an identifier; mustbetype=', meta.typing.mustBeType);
-      // return createTypingObject(meta.typing);
-      return createTypingObject({});
+      if (allowIdentResolve) {
+        const meta = fdata.globallyUniqueNamingRegistry.get(valueNode.name);
+        vlog('- Node is an identifier; mustbetype=', meta.typing.mustBeType);
+        return createTypingObject(meta.typing);
+      } else {
+        // Not allowed during normalization
+        return createTypingObject({});
+      }
     }
     case 'ThisExpression': {
       vlog('- Node is a `this`');
@@ -1181,7 +1188,7 @@ function _inferNodeTyping(fdata, valueNode) {
     }
     case 'AwaitExpression': {
       vlog('- Node is an await');
-      return inferNodeTyping(fdata, valueNode.argument);
+      return inferNodeTyping(fdata, valueNode.argument, allowIdentResolve);
     }
     case 'YieldExpression': {
       // mmm the value of a yield is not the argument but the argument for the .next() call, which we won't know here. So we know nothing.
@@ -1483,7 +1490,7 @@ function _inferNodeTyping(fdata, valueNode) {
     case 'CallExpression': {
       const callee = valueNode.callee;
 
-      vlog('- Node is a call', callee.type);
+      vlog('- Node is a call with callee:', callee.type);
       if (callee.type !== 'Identifier') {
         todo(`infertyping on a non-ident? is that a crash or bug? ${callee.type}`);
         return createTypingObject({});

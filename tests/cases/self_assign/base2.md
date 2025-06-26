@@ -69,7 +69,7 @@ let a /*:()=>unknown*/ = function () {
   $();
   return undefined;
 };
-const c /*:unknown*/ = a;
+const c /*:function*/ /*truthy*/ = a;
 a();
 c();
 a();

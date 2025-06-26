@@ -31,7 +31,7 @@ const tmpObjLitVal /*:()=>undefined*/ = function () {
   return undefined;
 };
 let d /*:unknown*/ = { valueOf: tmpObjLitVal };
-let flag /*:unknown*/ = 0;
+let flag /*:number*/ = 0;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpIfTest /*:boolean*/ = flag < 10;
   if (tmpIfTest) {

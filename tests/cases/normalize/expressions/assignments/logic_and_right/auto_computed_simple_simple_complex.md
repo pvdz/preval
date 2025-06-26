@@ -20,7 +20,7 @@ $(a);
 
 
 `````js filename=intro
-let a /*:unknown*/ /*ternaryConst*/ = { a: 999, b: 1000 };
+let a /*:object*/ /*ternaryConst*/ /*truthy*/ = { a: 999, b: 1000 };
 const tmpCalleeParam /*:unknown*/ = $(100);
 if (tmpCalleeParam) {
   const tmpObjLitVal /*:unknown*/ = $(1);

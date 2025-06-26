@@ -144,7 +144,7 @@ const tmpInitAssignLhsComputedObj$3 /*:unknown*/ = c();
 const tmpInitAssignLhsComputedProp$3 /*:unknown*/ = tmp(`c`);
 d();
 const tmpInitAssignLhsComputedProp$5 /*:unknown*/ = tmp(`d`);
-const tmpInitAssignLhsComputedRhs$5 /*:unknown*/ = e;
+const tmpInitAssignLhsComputedRhs$5 /*:primitive*/ /*truthy*/ = e;
 objd[tmpInitAssignLhsComputedProp$5] = tmpInitAssignLhsComputedRhs$5;
 tmpInitAssignLhsComputedObj$3[tmpInitAssignLhsComputedProp$3] = tmpInitAssignLhsComputedRhs$5;
 tmpInitAssignLhsComputedObj$1[tmpInitAssignLhsComputedProp$1] = tmpInitAssignLhsComputedRhs$5;

@@ -55,6 +55,7 @@ $(tmpCalleeParam);
 ## Todos triggered
 
 
+- (todo) access object property that also exists on prototype? $function_call
 - (todo) support array reads statement type ExpressionStatement
 
 

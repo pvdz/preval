@@ -31,7 +31,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   if (tmpIfTest) {
     break;
   } else {
-    const tmpPostUpdArgIdent /*:unknown*/ = b;
+    const tmpPostUpdArgIdent /*:number*/ = b;
     b = b - 1;
     const tmpAssignMemRhs /*:unknown*/ = tmpForOfNext.value;
     tmpPostUpdArgIdent.x = tmpAssignMemRhs;

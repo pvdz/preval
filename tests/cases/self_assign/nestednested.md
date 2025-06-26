@@ -54,7 +54,7 @@ const outer /*:()=>array*/ = function () {
     const tmpReturnArg$23 /*:unknown*/ = f();
     return tmpReturnArg$23;
   };
-  const g /*:unknown*/ = f;
+  const g /*:function*/ /*truthy*/ = f;
   f();
   f();
   g();

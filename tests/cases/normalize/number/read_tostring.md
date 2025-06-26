@@ -56,7 +56,7 @@ $(tmpCalleeParam);
 ## Todos triggered
 
 
-None
+- (todo) serialization of function, fallback if we know the function is not going to be a builtin...
 
 
 ## Globals

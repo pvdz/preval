@@ -40,7 +40,7 @@ let zzzz /*:()=>unknown*/ = function () {
   const tmpReturnArg$23 /*:unknown*/ = zzzz();
   return tmpReturnArg$23;
 };
-const x /*:unknown*/ = zzzz;
+const x /*:function*/ /*truthy*/ = zzzz;
 zzzz();
 zzzz();
 x();

@@ -24,11 +24,11 @@ $(a, b);
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   let tmpClusterSSA_b /*:number*/ = 0;
-  let tmpClusterSSA_a /*:unknown*/ = 1;
+  let tmpClusterSSA_a /*:number*/ = 1;
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
-      const tmpPostUpdArgIdent$1 /*:unknown*/ = tmpClusterSSA_b;
+      const tmpPostUpdArgIdent$1 /*:number*/ = tmpClusterSSA_b;
       tmpClusterSSA_b = tmpClusterSSA_b - 1;
       tmpClusterSSA_a = tmpPostUpdArgIdent$1;
     } else {

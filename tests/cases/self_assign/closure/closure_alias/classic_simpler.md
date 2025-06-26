@@ -40,7 +40,7 @@ let self_closing_decoder /*:()=>unknown*/ = function () {
   const tmpReturnArg /*:unknown*/ = self_closing_decoder(undefined);
   return tmpReturnArg;
 };
-const data_decoder /*:unknown*/ = self_closing_decoder;
+const data_decoder /*:function*/ /*truthy*/ = self_closing_decoder;
 self_closing_decoder(123, 1);
 data_decoder(456, 4);
 data_decoder(789, 7);

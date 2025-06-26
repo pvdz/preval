@@ -62,7 +62,7 @@ let func /*:(unknown, unknown)=>unknown*/ = function ($$0, $$1) {
   const r /*:unknown*/ = func(arg1, arg2);
   return r;
 };
-const alias /*:unknown*/ = func;
+const alias /*:function*/ /*truthy*/ = func;
 const b /*:unknown*/ = func(3, 4);
 const a /*:unknown*/ = func(1, 2);
 alias(7, 8);

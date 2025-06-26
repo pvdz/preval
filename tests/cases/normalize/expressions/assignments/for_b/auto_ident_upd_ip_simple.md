@@ -21,7 +21,7 @@ $(a, b);
 
 
 `````js filename=intro
-let a /*:unknown*/ = 11;
+let a /*:number*/ = 11;
 $(1);
 $(1);
 $(1);
@@ -35,7 +35,7 @@ $(1);
 let tmpClusterSSA_b$1 /*:number*/ = 12;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
-  const tmpPostUpdArgIdent$1 /*:unknown*/ = tmpClusterSSA_b$1;
+  const tmpPostUpdArgIdent$1 /*:number*/ = tmpClusterSSA_b$1;
   tmpClusterSSA_b$1 = tmpClusterSSA_b$1 + 1;
   a = tmpPostUpdArgIdent$1;
   if (tmpPostUpdArgIdent$1) {

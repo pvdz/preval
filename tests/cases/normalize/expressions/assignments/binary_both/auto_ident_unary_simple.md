@@ -63,7 +63,9 @@ $(a, x);
 ## Todos triggered
 
 
-None
+- (todo) We should be able to resolve the $frfr call but pcode failed to complete with a Node, hasExplicitGlobal=false
+- (todo) find test case where template ends up with multiple expressions
+- (todo) free with zero args, we can eliminate this?
 
 
 ## Globals

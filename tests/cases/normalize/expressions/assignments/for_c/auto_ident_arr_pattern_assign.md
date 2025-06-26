@@ -30,7 +30,7 @@ if (tmpIfTest) {
   const tmpArrPatternSplat /*:array*/ /*truthy*/ = [...tmpNestedAssignArrPatternRhs];
   let tmpClusterSSA_x /*:unknown*/ = tmpArrPatternSplat[0];
   let tmpClusterSSA_y /*:unknown*/ = tmpArrPatternSplat[1];
-  let tmpClusterSSA_a /*:unknown*/ = tmpNestedAssignArrPatternRhs;
+  let tmpClusterSSA_a /*:array*/ /*truthy*/ = tmpNestedAssignArrPatternRhs;
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {

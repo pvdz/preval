@@ -42,7 +42,7 @@ let a /*:()=>unknown*/ = function () {
   const tmpReturnArg /*:unknown*/ = a();
   return tmpReturnArg;
 };
-const b /*:unknown*/ = a;
+const b /*:function*/ /*truthy*/ = a;
 const tmpBinBothLhs /*:unknown*/ = a();
 const tmpBinBothRhs /*:unknown*/ = a();
 const tmpCalleeParam /*:boolean*/ = tmpBinBothLhs === tmpBinBothRhs;

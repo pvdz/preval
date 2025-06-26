@@ -32,7 +32,7 @@ const f /*:()=>undefined*/ = function () {
     $(1);
     return undefined;
   } else {
-    let tmpLambdaFindOut /*:unknown*/ = undefined;
+    let tmpLambdaFindOut /*:primitive*/ = undefined;
     let tmpClusterSSA_tmpLambdaFindCounter /*:number*/ = 1;
     while ($LOOP_UNROLL_10) {
       const tmpLambdaFindTest$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaFindCounter < 3;

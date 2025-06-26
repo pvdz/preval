@@ -144,7 +144,7 @@ let self_closing_decoder /*:(unknown, unknown)=>unknown*/ = function ($$0, $$1) 
   return tmpReturnArg;
 };
 const data_arr /*:array*/ /*truthy*/ = [`randomdata1`, `randomdata2`, `randomdata3`, `randomdata4`, `randomdata5`, `randomdata6`];
-const data_decoder /*:unknown*/ = self_closing_decoder;
+const data_decoder /*:function*/ /*truthy*/ = self_closing_decoder;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   try {
     const tmpCalleeParam$145 /*:unknown*/ = data_decoder(477);

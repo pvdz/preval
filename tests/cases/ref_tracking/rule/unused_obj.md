@@ -46,8 +46,8 @@ $(a, b);
 
 
 `````js filename=intro
-let b /*:unknown*/ = 1;
-let a /*:unknown*/ = undefined;
+let b /*:number*/ = 1;
+let a /*:number*/ = 0;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
   const sum /*:number*/ = b + 1;
@@ -67,7 +67,7 @@ $(a, b);
 
 `````js filename=intro
 let b = 1;
-let a = undefined;
+let a = 0;
 while (true) {
   $(1);
   const sum = b + 1;
@@ -86,7 +86,7 @@ With rename=true
 
 `````js filename=intro
 let a = 1;
-let b = undefined;
+let b = 0;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );
   const c = a + 1;

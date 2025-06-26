@@ -64,7 +64,7 @@ let flag /*:unknown*/ = 0;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpIfTest /*:boolean*/ = flag < 10;
   if (tmpIfTest) {
-    const tmpPostUpdArgIdent /*:unknown*/ = a;
+    const tmpPostUpdArgIdent /*:number*/ = a;
     a = a + 1;
     flag = tmpPostUpdArgIdent;
     $(`a++`, tmpPostUpdArgIdent);

@@ -28,7 +28,7 @@ $(x);
 const f /*:()=>undefined*/ = function () {
   debugger;
   $(x);
-  const tmpPostUpdArgIdent /*:unknown*/ = x;
+  const tmpPostUpdArgIdent /*:primitive*/ = x;
   x = tmpPostUpdArgIdent + 1;
   return undefined;
 };

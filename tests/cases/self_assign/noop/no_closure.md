@@ -47,7 +47,7 @@ let f /*:(unknown, unknown)=>unknown*/ = function ($$0, $$1) {
   const tmp /*:unknown*/ = f(a, b);
   return tmp;
 };
-const alias /*:unknown*/ = f;
+const alias /*:function*/ /*truthy*/ = f;
 const tmpCalleeParam /*:unknown*/ = f(428);
 $(tmpCalleeParam);
 const tmpCalleeParam$3 /*:unknown*/ = f(429);

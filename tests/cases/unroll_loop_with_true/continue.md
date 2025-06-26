@@ -37,9 +37,9 @@ if (test$2) {
   let tmpClusterSSA_i$2 /*:number*/ = -1;
   $(`third`);
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    const tmpPostUpdArgIdent$1 /*:unknown*/ = tmpClusterSSA_i$2;
+    const tmpPostUpdArgIdent$2 /*:number*/ = tmpClusterSSA_i$2;
     tmpClusterSSA_i$2 = tmpClusterSSA_i$2 - 1;
-    const tmpIfTest$1 /*:boolean*/ = tmpPostUpdArgIdent$1 > 0;
+    const tmpIfTest$1 /*:boolean*/ = tmpPostUpdArgIdent$2 > 0;
     if (tmpIfTest$1) {
     } else {
       const test$1 /*:unknown*/ = $(`first`);
@@ -65,9 +65,9 @@ if (!test$2) {
   let tmpClusterSSA_i$2 = -1;
   $(`third`);
   while (true) {
-    const tmpPostUpdArgIdent$1 = tmpClusterSSA_i$2;
+    const tmpPostUpdArgIdent$2 = tmpClusterSSA_i$2;
     tmpClusterSSA_i$2 = tmpClusterSSA_i$2 - 1;
-    if (!(tmpPostUpdArgIdent$1 > 0)) {
+    if (!(tmpPostUpdArgIdent$2 > 0)) {
       const test$1 = $(`first`);
       $(`second`);
       if (test$1) {

@@ -26,7 +26,7 @@ $(x);
 `````js filename=intro
 const f /*:()=>undefined*/ = function () {
   debugger;
-  let tmpLambdaFindLastIndexOut /*:unknown*/ /*ternaryConst*/ = -1;
+  let tmpLambdaFindLastIndexOut /*:number*/ /*ternaryConst*/ = -1;
   const tmpMCOO /*:array*/ /*truthy*/ = [1, 2, 3];
   const tmpLambdaFindLastIndexNow /*:unknown*/ = $dotCall($, undefined, undefined, 3, 2, tmpMCOO);
   if (tmpLambdaFindLastIndexNow) {
@@ -60,7 +60,7 @@ const f /*:()=>undefined*/ = function () {
   $(tmpLambdaFindLastIndexOut);
   return undefined;
 };
-let x /*:unknown*/ = 1;
+let x /*:number*/ = 1;
 f();
 $(f);
 $(x);

@@ -51,7 +51,7 @@ let f /*:(unknown, unknown)=>unknown*/ = function ($$0, $$1) {
 };
 const h /*:()=>undefined*/ = function () {
   debugger;
-  const g /*:unknown*/ = f;
+  const g /*:function*/ /*truthy*/ = f;
   f(1, 2);
   g(3, 4);
   return undefined;

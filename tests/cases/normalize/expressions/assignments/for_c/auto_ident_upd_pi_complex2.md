@@ -56,7 +56,7 @@ if (tmpIfTest) {
   const tmpBinLhs /*:unknown*/ = tmpNestedAssignObj.x;
   const tmpNestedPropCompoundComplexRhs /*:primitive*/ = tmpBinLhs + 1;
   tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-  let tmpClusterSSA_a /*:unknown*/ = tmpNestedPropCompoundComplexRhs;
+  let tmpClusterSSA_a /*:primitive*/ = tmpNestedPropCompoundComplexRhs;
   while ($LOOP_UNROLL_10) {
     const tmpClusterSSA_tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpClusterSSA_tmpIfTest$1) {

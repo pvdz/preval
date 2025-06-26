@@ -78,12 +78,12 @@ const push /*:(unknown, unknown)=>undefined*/ = function ($$0, $$1) {
   index$1 ** 0;
   const tmpMCF /*:unknown*/ = heap.push;
   $dotCall(tmpMCF, heap, `push`, node$1);
-  const tmpSaooB$2 /*:number*/ = index$1 - 1;
-  const tmpSaooB$4 /*:number*/ = tmpSaooB$2 >>> 1;
-  siftUp_t(heap, node$1, index$1, tmpSaooB$4);
+  const tmpSaooB$1 /*:number*/ = index$1 - 1;
+  const tmpFrfrOutline /*:number*/ = tmpSaooB$1 >>> 1;
+  siftUp_t(heap, node$1, index$1, tmpFrfrOutline);
   const tmpSaooB /*:number*/ = index$1 - 1;
-  const tmpSaooB$5 /*:number*/ = tmpSaooB >>> 1;
-  siftUp_t(heap, node$1, index$1, tmpSaooB$5);
+  const tmpFrfrOutline$1 /*:number*/ = tmpSaooB >>> 1;
+  siftUp_t(heap, node$1, index$1, tmpFrfrOutline$1);
   siftUp_f(heap, node$1, index$1);
   siftUp_f(heap, node$1, index$1);
   return undefined;

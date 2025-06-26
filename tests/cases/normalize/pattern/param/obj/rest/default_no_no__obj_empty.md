@@ -20,9 +20,9 @@ $(f({}, 10));
 
 
 `````js filename=intro
-const tmpSSA_tmpCalleeParam$1 /*:object*/ /*truthy*/ = {};
+const tmpParamBare /*:object*/ /*truthy*/ = {};
 const tmpCalleeParam$3 /*:array*/ /*truthy*/ = [];
-const x /*:unknown*/ = $objPatternRest(tmpSSA_tmpCalleeParam$1, tmpCalleeParam$3, `x`);
+const x /*:unknown*/ = $objPatternRest(tmpParamBare, tmpCalleeParam$3, `x`);
 $(x);
 `````
 
@@ -31,8 +31,8 @@ $(x);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpSSA_tmpCalleeParam$1 = {};
-$($objPatternRest(tmpSSA_tmpCalleeParam$1, [], `x`));
+const tmpParamBare = {};
+$($objPatternRest(tmpParamBare, [], `x`));
 `````
 
 

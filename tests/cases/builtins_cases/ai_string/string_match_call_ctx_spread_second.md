@@ -65,6 +65,7 @@ $(tmpCalleeParam);
 ## Todos triggered
 
 
+- (todo) access object property that also exists on prototype? $function_call
 - (todo) support array reads statement type VarStatement
 - (todo) type trackeed tricks can possibly support static $string_match
 

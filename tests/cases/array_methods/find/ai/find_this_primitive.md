@@ -29,7 +29,7 @@ const tmpLambdaFindNow /*:unknown*/ = $dotCall(tmpMCP, 42, undefined);
 if (tmpLambdaFindNow) {
   $(1);
 } else {
-  let tmpLambdaFindOut /*:unknown*/ = undefined;
+  let tmpLambdaFindOut /*:primitive*/ = undefined;
   let tmpClusterSSA_tmpLambdaFindCounter /*:number*/ = 1;
   const tmpMCOO /*:array*/ /*truthy*/ = [1, 2, 3];
   while ($LOOP_UNROLL_10) {

@@ -31,6 +31,7 @@ function _redundantInit(fdata) {
     if (meta.isBuiltin) return;
 
     if (meta.typing.mustBeType === 'undefined' && meta.writes[0]?.kind === 'var') {
+      vlog('- The meta for', [name], 'is "undefined" and the first write is var, so...');
       const write = meta.writes[0];
       const init = write.blockBody[write.blockIndex].init;
       if (init.type !== 'Identifier' || init.name !== 'undefined') {
@@ -55,7 +56,7 @@ function _redundantInit(fdata) {
       }
     }
 
-    if (meta.isConstant) return; // The rest is about `let`
+    if (!meta.isLet) return; // The rest is about `let`
     if (!meta.writes.length) return; // when?
     if (!meta.singleScoped) return;
 
@@ -97,7 +98,7 @@ function _redundantInit(fdata) {
     let refinedTyping = getCleanTypingObject();
     for (let i=1; i<meta.writes.length; ++i) {
       const write = meta.writes[i];
-      const newTyping = inferNodeTyping(fdata, write.parentNode.right);
+      const newTyping = inferNodeTyping(fdata, write.parentNode.right, true);
       mergeTyping(newTyping, refinedTyping);
     }
     vlog('- Result:', refinedTyping);
@@ -136,7 +137,7 @@ function _redundantInit(fdata) {
         }
     }
 
-    const alreadyGood = currentPrim && AST.getPrimitiveType(pv) === inferNodeTyping(fdata, write0.parentNode.init).mustBeType;
+    const alreadyGood = currentPrim && AST.getPrimitiveType(pv) === inferNodeTyping(fdata, write0.parentNode.init, true).mustBeType;
     if (alreadyGood) return vlog('- bail: init already primitive that matches type;');
 
     queue.push({

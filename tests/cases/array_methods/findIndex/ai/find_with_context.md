@@ -36,7 +36,7 @@ const tmpLambdaFindIndexNow /*:unknown*/ = $dotCall(tmpMCP, ctx, undefined, 1, 0
 if (tmpLambdaFindIndexNow) {
   $(result, 0);
 } else {
-  let tmpLambdaFindIndexOut /*:unknown*/ = -1;
+  let tmpLambdaFindIndexOut /*:number*/ = -1;
   let tmpClusterSSA_tmpLambdaFindIndexCounter /*:number*/ = 1;
   while ($LOOP_UNROLL_10) {
     const tmpLambdaFindIndexTest$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaFindIndexCounter < 3;

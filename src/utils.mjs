@@ -520,19 +520,20 @@ export function allReadsAreCallsOrAliasingOrRecursive(fdata, meta, recursionBloc
       ASSERT(rw.parentProp === 'init', 'if not right then it would not be a read');
 
       // Verify that left is only assigned to once and only called otherwise
-      const aliasMeta = fdata.globallyUniqueNamingRegistry.get(rw.parentNode.id.name);
+      const aliasName = rw.parentNode.id.name;
+      const aliasMeta = fdata.globallyUniqueNamingRegistry.get(aliasName);
 
       if (aliasMeta.writes.length !== 1) {
-        vlog('   - bail: alias is written more than once');
+        vlog('   - bail: alias', aliasName, 'is written more than once');
         return true;
       }
       if (aliasMeta.reads.length !== 1) {
-        vlog('   - bail: alias is read more than once');
+        vlog('   - bail: alias', aliasName, 'is read more than once');
         return true;
       }
 
       if (aliasMeta.reads[0].parentNode.type !== 'CallExpression' || aliasMeta.reads[0].parentProp !== 'callee') {
-        vlog('   - bail: alias was not only called');
+        vlog('   - bail: alias', aliasName, 'was not only called');
         return true;
       }
 

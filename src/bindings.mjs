@@ -759,7 +759,7 @@ export function preprocessScopeNode(node, parentNode, fdata, funcNode, lexScopeC
   // This function attempts to find all binding names defined in this scope and create unique name mappings for them
   // (This doesn't update any read/write nodes with their new name! Only prepares their new name to be used and unique.)
 
-  ASSERT(typeof unrollLimit === 'number' && unrollLimit > 0, 'should receive a unrollLimit', unrollLimit);
+  ASSERT(typeof unrollLimit === 'number' && unrollLimit >= 0, 'should receive a unrollLimit', unrollLimit);
   if (unrollLimit > MAX_UNROLL_TRUE_COUNT) {
     throw new Error('unrollLoopWithTrue; The unrollLimit (' + unrollLimit + ') is bigger than the hardcoded max MAX_UNROLL_TRUE_COUNT of ' + MAX_UNROLL_TRUE_COUNT);
   }

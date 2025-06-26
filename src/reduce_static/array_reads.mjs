@@ -1,7 +1,9 @@
 // Find array literal property reads to inline
+//
 //    const arr = [1, 2, 3]; x = arr[1]
 //  ->
 //    const arr = [1, 2, 3]; x = 2;
+//
 
 import walk from '../../lib/walk.mjs';
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, fmat, tmat, rule, example, before, source, after, findBodyOffset, riskyRule, todo } from '../utils.mjs';

@@ -106,7 +106,16 @@ function isSameExpressionExceptBool(nodeA, nodeB, collect, ap, bp, prop) {
       }
     }
     case 'NewExpression': {
-      return isSameExpressionExceptBool(nodeA.argument, nodeB.argument, collect, nodeA, nodeB, 'argument');
+      // (A `new` node is basically a call node)
+      if (nodeA.callee.type !== nodeB.callee.type) return false;
+      if (!isSameExpressionExceptBool(nodeA.callee, nodeB.callee, collect, nodeA, nodeB, 'callee')) return false;
+      if (nodeA['arguments'].length !== nodeB['arguments'].length) return false;
+      return nodeA['arguments'].every((anodeA, i) => {
+        const anodeB = nodeB['arguments'][i];
+        if (anodeA.type !== anodeB.type) return false;
+        if (anodeA.type === 'SpreadElement') return isSameExpressionExceptBool(anodeA.argument, anodeB.argument, collect, anodeA, anodeB, 'argument');
+        return isSameExpressionExceptBool(anodeA, anodeB, collect, nodeA['arguments'], nodeB['arguments'], i);
+      });
     }
     case 'AwaitExpression': {
       return isSameExpressionExceptBool(nodeA.argument, nodeB.argument, collect, nodeA, nodeB, 'argument');

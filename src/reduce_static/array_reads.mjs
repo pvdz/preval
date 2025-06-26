@@ -237,7 +237,29 @@ function _arrayReads(fdata) {
             after(read.blockBody[read.blockIndex]);
             changes += 1;
           }
-        } else if (!read.parentNode.computed && read.parentNode.property.name === 'length') {
+        }
+        else if (read.parentNode.computed && AST.isStringLiteral(read.parentNode.property)) {
+          const str = AST.getPrimitiveValue(read.parentNode.property);
+          if (/^\d+$/.test(str)) {
+            // This is an index property
+            const index = Number(str);
+            const enode = arrNode.elements[index];
+            if (!enode || AST.isPrimitive(enode)) {
+              const value = enode ? AST.getPrimitiveValue(enode) : undefined;
+
+              rule('A const array that cant mutate can have any indexed string prop access inlined');
+              example('const arr = [1, 2, 3]; f(arr["2"]);', 'const arr = [1, 2, 3]; f(3);');
+              before(read.blockBody[read.blockIndex]);
+
+              if (read.grandIndex < 0) read.grandNode[read.grandProp] = AST.primitive(value);
+              else read.grandNode[read.grandProp][read.grandIndex] = AST.primitive(value);
+
+              after(read.blockBody[read.blockIndex]);
+              changes += 1;
+            }
+          }
+        }
+        else if (!read.parentNode.computed && read.parentNode.property.name === 'length') {
           const value = arrNode.elements.length;
 
           rule('A const array that cant mutate can have .length inlined');

@@ -1,46 +1,45 @@
 # Preval test case
 
-# noop_with_args_orig_used.md
+# silly_taut.md
 
-> Self assign > Noop > Noop with args orig used
+> Tofix > silly taut
 >
-> Trying to move var decls that are functions down to move let decls closer to their real init.
+> Not sure but found in the wild
 
-This means the result between closure and non-closure is observable, edge cases aside, so we should bail.
+The body of the loop is really just
+
+```
+const b = a[ NaN ];
+const c = $Number_parseInt( b );
+$( "testing", b, c );
+```
+but either way, preval should update the if hoisting reducer to handle this case
 
 ## Input
 
 `````js filename=intro
-// Should NOT inline the_self_closing_func because it's calling alias and sealer
-const main_data_arr/*:array*/ = ['this', 'contents', 'is', 'not', 'relevant', 'here'];
-let the_self_closing_func/*:(unknown, unknown)=>unknown*/ = function($$0, $$1) {
-  const dud_arg1/*:unknown*/ = $$0;
-  const dud_arg2/*:unknown*/ = $$1;
-  debugger;
-  the_self_closing_func = function($$0, $$1) {
-    const noop_arg/*:unknown*/ = $$0;
-    debugger;
-    const tmp1/*:number*/ = noop_arg - 387;
-    const tmp2/*:primitive*/ = main_data_arr[tmp1];
-    return tmp2;
-  };
-  const once/*:unknown*/ = the_self_closing_func(dud_arg1, dud_arg2);
-  return once;
-};
-const the_scf_alias/*:unknown*/ = the_self_closing_func;
+let tmpSealed /*:boolean*/ = false;
+const main_data_arr /*:array*/ /*truthy*/ = [`this`, `contents`, `is`, `not`, `relevant`, `here`];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const a/*:unknown*/ = the_scf_alias(2);
-  const b/*:number*/ = $Number_parseInt(a);
-  $('testing', a, b); // anti-infini-loop
+  let b /*:number*/ /*ternaryConst*/ = 0;
+  const tmp2$3 /*:primitive*/ = main_data_arr[NaN];
+  if (tmpSealed) {
+    b = $Number_parseInt(tmp2$3);
+    $(`testing`, tmp2$3, b);
+  } else {
+    tmpSealed = true;
+    b = $Number_parseInt(tmp2$3);
+    $(`testing`, tmp2$3, b);
+  }
   if (b) {
     break;
   } else {
-    const tmpMCPa/*:primitive*/ = $dotCall($array_shift, main_data_arr, `shift`);
+    const tmpMCPa /*:primitive*/ /*truthy*/ = $dotCall($array_shift, main_data_arr, `shift`);
     $dotCall($array_push, main_data_arr, `push`, tmpMCPa);
   }
 }
-$(the_self_closing_func()); // This should NOT prevent the transform (!), only the alias
-
+const tmp2$1 /*:primitive*/ = main_data_arr[NaN];
+$(tmp2$1);
 `````
 
 
@@ -135,30 +134,19 @@ $( f );
 (This is what phase1 received the first time)
 
 `````js filename=intro
+let tmpSealed = false;
 const main_data_arr = [`this`, `contents`, `is`, `not`, `relevant`, `here`];
-let the_self_closing_func = function ($$0, $$1) {
-  let $dlr_$$0 = $$0;
-  let $dlr_$$1 = $$1;
-  debugger;
-  const dud_arg1 = $dlr_$$0;
-  const dud_arg2 = $dlr_$$1;
-  the_self_closing_func = function ($$0, $$1) {
-    let $dlr_$$2 = $$0;
-    let $dlr_$$4 = $$1;
-    debugger;
-    const noop_arg = $dlr_$$2;
-    const tmp1 = noop_arg - 387;
-    const tmp2 = main_data_arr[tmp1];
-    return tmp2;
-  };
-  const once = the_self_closing_func(dud_arg1, dud_arg2);
-  return once;
-};
-const the_scf_alias = the_self_closing_func;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const a = the_scf_alias(2);
-  const b = $Number_parseInt(a);
-  $(`testing`, a, b);
+  let b = 0;
+  const tmp2$3 = main_data_arr[NaN];
+  if (tmpSealed) {
+    b = $Number_parseInt(tmp2$3);
+    $(`testing`, tmp2$3, b);
+  } else {
+    tmpSealed = true;
+    b = $Number_parseInt(tmp2$3);
+    $(`testing`, tmp2$3, b);
+  }
   if (b) {
     break;
   } else {
@@ -166,21 +154,16 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     $dotCall($array_push, main_data_arr, `push`, tmpMCPa);
   }
 }
-let tmpCalleeParam = the_self_closing_func();
-$(tmpCalleeParam);
+const tmp2$1 = main_data_arr[NaN];
+$(tmp2$1);
 `````
 
 
 ## Todos triggered
 
 
-- (todo) regular property access of an ident feels tricky;
-- (todo) support array reads statement type EmptyStatement
-- (todo) support array reads statement type ExpressionStatement
-- (todo) support array reads statement type VarStatement
 - (todo) support array reads statement type WhileStatement
 - (todo) type trackeed tricks can possibly support static $Number_parseInt
-- (todo) we can still proceed with the loop as long as there is no let-write anywhere in the loop, inc nested
 
 
 ## Globals

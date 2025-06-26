@@ -27,6 +27,7 @@ import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, b
 import * as AST from '../ast.mjs';
 import { createFreshVar } from '../bindings.mjs';
 import { cloneSimple } from '../ast.mjs';
+import { symbo } from '../symbols_builtins.mjs';
 
 export function selfAssignClosure(fdata) {
   group('\n\n\n[selfAssignClosure] Checking for self-assigning funcs returning their own closures');
@@ -367,7 +368,7 @@ function findSelfCloser(fdata, meta, targetName) {
     return vlog('- bail; final return is not returning the tmp call');
   }
 
-  vgroup('- ok: confirmed tentative self closing pattern. Now to drill in...');
+  vlog('- ok: confirmed tentative self closing pattern. Now to drill in...');
 
   // Confirmed this pattern now:
   //
@@ -887,9 +888,9 @@ function handleImmediatelyCalledCases(fdata, meta, targetName, first, second, tm
   const called = firstCallNode.callee.name;
   aliases.delete(targetName);
 
-  const {selfCalling, aliasCalling} = verifySelfAliasCalling(called, targetName, aliases, fdata, meta, firstCallNode, tmpCallVarNode);
+  const {selfCalling, aliasCalling, aliasSelfCalling} = verifySelfAliasCalling(called, targetName, aliases, fdata, meta, firstCallNode, tmpCallVarNode);
   vlog('- Self or alias calling pattern?', selfCalling, aliasCalling);
-  if (!selfCalling && !aliasCalling) {
+  if (!selfCalling && !aliasCalling && !aliasSelfCalling) {
     vlog('- bail: not only self calling and not only alias calling, unsafe');
     return false;
   }
@@ -898,7 +899,7 @@ function handleImmediatelyCalledCases(fdata, meta, targetName, first, second, tm
 
   // Note: the self calling pattern (closures persist, created once, become globals) is different from the
   // alias calling (closures do not persist so are really just a local variable).
-  if (selfCalling) {
+  if (selfCalling || aliasSelfCalling) {
     return handleSelfCallingImmediatelyCalled(fdata, first, second, firstCallNode, callBlockBody, callBlockIndex, tmpCallVarNode, outerFuncNode)
   } else {
     return handleAliasCallingImmediatelyCalled(fdata, first, second, outerFuncNode, tmpCallVarNode);
@@ -1175,12 +1176,12 @@ function verifyImmediatelyCalledCase(fdata, meta, targetName, first) {
   const aliases = new Set([targetName]);
 
   vgroup('Searching for first call of', [targetName], ', starting at', first.blockIndex, '/', first.blockBody.length);
-  const immediatelyCalled = verifyImmediatelyCalledBlock(targetName, first.blockBody, first.blockIndex+1, aliases);
+  const immediatelyCalled = verifyImmediatelyCalledBlock(fdata, targetName, first.blockBody, first.blockIndex+1, aliases);
   vgroupEnd();
 
   return immediatelyCalled;
 }
-function verifyImmediatelyCalledBlock(targetName, blockBody, blockIndex, aliases) {
+function verifyImmediatelyCalledBlock(fdata, targetName, blockBody, blockIndex, aliases) {
   for (; blockIndex < blockBody.length; blockIndex++) {
     const stmt = blockBody[blockIndex];
     vlog('Next statement:', stmt.type);
@@ -1188,16 +1189,25 @@ function verifyImmediatelyCalledBlock(targetName, blockBody, blockIndex, aliases
     if (stmt.type === 'ExpressionStatement') {
       const expr = stmt.expression;
       vlog('Expr stmt, expr type is:', expr.type);
-      if (
-        expr.type === 'CallExpression' &&
-        expr.callee.type === 'Identifier' &&
-        aliases.has(expr.callee.name)
-      ) {
-        vlog('This is calling the target directly or indirectly as "first" action, as statement');
-        return {call: expr, blockBody, blockIndex, aliases};
-      }
 
       if (expr.type === 'CallExpression') {
+        if (
+          expr.callee.type === 'Identifier' &&
+          aliases.has(expr.callee.name)
+        ) {
+          vlog('This is calling the target directly or indirectly as "first" action, as statement');
+          return {call: expr, blockBody, blockIndex, aliases};
+        }
+
+        if (
+          expr.callee.type === 'Identifier' &&
+          expr.callee.name === 'require' &&
+          fdata.globallyUniqueNamingRegistry.get('require').isBuiltin
+        ) {
+          vlog('Skipping a require() call');
+          continue;
+        }
+
         vlog('This is calling another function, fail');
         // There was a function call but our function could not have escaped yet
         // so we should be able to safely ignore this call and continue.
@@ -1261,6 +1271,27 @@ function verifyImmediatelyCalledBlock(targetName, blockBody, blockIndex, aliases
           vlog('   - ok, the function is calling target directly or indirectly as "first" action, var stmt');
           return {call: init, blockBody, blockIndex, aliases};
         }
+
+        if (
+          init.callee.type === 'Identifier' &&
+          init.callee.name === 'require' &&
+          fdata.globallyUniqueNamingRegistry.get('require').isBuiltin
+        ) {
+          vlog('Skipping a require() call');
+          continue;
+        }
+      }
+
+      if (init.type === 'NewExpression') {
+        if (
+          init.callee.type === 'Identifier' &&
+          init.callee.name === symbo('regex', 'constructor') &&
+          init.arguments.every(anode => AST.isPrimitive(anode))
+        ) {
+          vlog('Skipping a regex');
+          continue;
+        }
+
       }
 
       if (init.type === 'Identifier') {
@@ -1304,7 +1335,7 @@ function verifyImmediatelyCalledBlock(targetName, blockBody, blockIndex, aliases
     if (stmt.type === 'LabeledStatement') {
       vgroup('- Entering label. Will bail if not found in here.');
       // This is a one-way trip; we enter unconditionally but we don't continue visiting after the label if not yet found
-      const r = verifyImmediatelyCalledBlock(targetName, stmt.body.body, 0, aliases);
+      const r = verifyImmediatelyCalledBlock(fdata, targetName, stmt.body.body, 0, aliases);
       vgroupEnd();
       return r;
     }
@@ -1312,7 +1343,7 @@ function verifyImmediatelyCalledBlock(targetName, blockBody, blockIndex, aliases
     if (stmt.type === 'WhileStatement') {
       vgroup('- Entering loop. Will bail if not found in here.');
       // This is a one-way trip; we enter unconditionally but we don't continue visiting after the loop if not yet found
-      const r = verifyImmediatelyCalledBlock(targetName, stmt.body.body, 0, aliases);
+      const r = verifyImmediatelyCalledBlock(fdata, targetName, stmt.body.body, 0, aliases);
       vgroupEnd();
       return r;
     }
@@ -1359,6 +1390,7 @@ function verifyImmediatelyCalledBlock(targetName, blockBody, blockIndex, aliases
 function verifySelfAliasCalling(called, targetName, aliases, fdata, meta, firstCallNode, tmpCallVarNode) {
   let selfCalling = false; // The sealer is called once, closure is hoisted outward
   let aliasCalling = false; // The sealer is called over and over again, the closure is not relevant
+  let aliasSelfCalling = false; // The sealer is called multiple times, but first call is as an alias
 
   // Check if either func is called first and alias ignored, or func is not called at all
   if (called === targetName) {
@@ -1461,6 +1493,7 @@ function verifySelfAliasCalling(called, targetName, aliases, fdata, meta, firstC
   } else {
     // Verify that the sealer is not used beyond the pattern
     vlog('- ok! Since an alias was called we must now verify that the sealer itself is not used beyond the pattern', meta.reads.length);
+    vlog('- or, if only one alias ever got called / escaped, then the original can have any number of calls');
 
     let called = 0;
     meta.reads.some((read,i) => {
@@ -1473,13 +1506,47 @@ function verifySelfAliasCalling(called, targetName, aliases, fdata, meta, firstC
       }
     });
     if (called > 1) {
-      vlog('- bail: the sealer function was called more than once. This does not match the pattern.');
-      return {selfCalling, aliasCalling};
+      // The original is called in more than once place. We can still salvage this, too.
+      // If this was the only call to any alias of the func, and the func doesn't escape
+      // either, then it should be fine to call the original anywhere because we asserted
+      // that this was the first call of the script lifetime.
+
+      vgroup('- this looks bad. But if the first call was an alias call and it was the only alias call then we should still be good?');
+      if (Array.from(aliases).every(aname => {
+        let seenCall = false;
+        const ameta = fdata.globallyUniqueNamingRegistry.get(aname);
+        if (ameta.writes.length > 1) {
+          return vlog('- bail: alias has multiple writes:', ameta.writes.length, aname);
+        } // technically salvageable in some cases, I think
+        if (!ameta.reads.every(read => {
+          if (read.parentNode.type === 'CallExpression' && read.parentProp === 'callee') {
+            vlog('- found alias call for:', aname);
+            if (seenCall) return vlog('- bail: at least two alias-calls found'); // Maybe we can salvage this with scope checks or something. Maybe.
+            seenCall = true;
+            return true;
+          }
+          return vlog('- bail: aliases not used as call in at least one case'); // We can zoom in on this to refine.
+        })) {
+          return vlog('- bail: at least one read was not a call');
+        }
+        vlog('- alias', aname, 'seems ok in that regard');
+        return true;
+      })) {
+        vgroupEnd();
+        // phew!
+        vlog('- ok, salvaged. The sealer is called as an alias first but then only directly after that. And we know the alias call must have been the first call.');
+        aliasSelfCalling = true;
+      } else {
+        vgroupEnd();
+        vlog('- bail: at least one alias reference failed the check, see above');
+        vlog('- bail: the sealer function was called more than once and so are the aliases. This does not match the pattern.');
+        return {selfCalling, aliasCalling};
+      }
     }
-    aliasCalling = true;
+    aliasCalling = !aliasSelfCalling;
   }
 
-  return {selfCalling, aliasCalling};
+  return {selfCalling, aliasCalling, aliasSelfCalling};
 }
 function verifyArgumentsAccessibleAtDecl(firstCallNode, fdata, first) {
   // For now, we must verify that all args in the first call are reachable at var decl time

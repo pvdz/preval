@@ -18,9 +18,7 @@ function _singleScopeSSA(fdata) {
   // Shallow clone to prevent mutations to the registry from breaking because their read/write refs did not go through phase1
   new Map(fdata.globallyUniqueNamingRegistry).forEach((meta, name) => {
     if (!meta.singleScoped) return;
-    if (meta.isBuiltin) return;
-    if (meta.isConstant) return; // No need to SSA a constant
-    if (meta.isImplicitGlobal) return;
+    if (!meta.isLet) return; // No need to SSA a constant, catch var, or implicit global.
     if (meta.isExport) return; // Exports are "live" bindings so any update to it might be observable in strange ways
     if (!meta.varDeclRef) return; // ???
     if (meta.varDeclRef.varDeclNode.type !== 'VarStatement') return; // ???

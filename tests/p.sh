@@ -45,6 +45,8 @@ PARAM_PCODE=''
 PARAM_SEED=''
 PARAM_SEED_N=''
 PARAM_TIME=''
+PARAM_RED_ONLY=''
+PARAM_RED_SKIP=''
 
 BOLD="\e[;1;1m";
 BOLD_RED="\e[1;31m";
@@ -97,6 +99,8 @@ Preval CLI Toolkit help:
  --unroll n      User a different cap on the number of times a loop can be unrolled. Higher increases code bloat.
  --implicit-this x User defined ident to replace \`this\` when the function is never called with a context. Defaults to \`undefined\`.
  --randomized    Shuffle the test order. All tests will be visited but in .sort(Math.random) order.
+ --reducersOnly  Comma/space delimited list of reducer names (phase 2/3) to only apply this run
+ --reducersSkip  Comma/space delimited list of reducer names (phase 2/3) to always skip this run
  --refTest       Special mode to test ref tracking. Output will be different, dumping ref tracking state after first phase1 pass.
  --ref-tracing   Print ref tracking trace logs
  --ref           Alias for --no-trace --ref-tracing :shrug:
@@ -237,6 +241,16 @@ Preval CLI Toolkit help:
     --pcode)
       PARAM_PCODE='--pcode'
       ;;
+    --reducersOnly)
+      shift
+      PARAM_RED_ONLY="--reducersOnly"
+      PARAM_RED_ONLY_ARG=$1
+      ;;
+    --reducersSkip)
+      shift
+      PARAM_RED_SKIP="--reducersSkip"
+      PARAM_RED_SKIP_ARG=$1
+      ;;
     --ref-tracing)
       PARAM_REF_TRACING='--refTracing'
       ;;
@@ -309,7 +323,7 @@ set -x
 case "${ACTION}" in
 
     *)
-      ${NODE_BIN} --max-old-space-size=32768 tests/index.mjs ${ACTION} "${ACTION_ARG}" "${PARAM_NO_COLOR}" "${PARAM_NORM}" "${PARAM_FAST}" -t "${PARAM_THREADS}" "${PARAM_LOG}" "${PARAM_LOGTO}" "${PARAM_LOG_FROM}" "${PARAM_LOG_FROM_N}" "${PARAM_MAXPASS}" "${PARAM_MAXPASS_COUNT}" "${PARAM_CLONELIMIT}" "${PARAM_CLONELIMIT_COUNT}" "${PARAM_TRIM_DOLLAR}" "${PARAM_ONLY_OUTPUT}" "${PARAM_TRACE}" "${PARAM_NO_TRACE}" "${PARAM_SILENT}" "${PARAM_SKIP_EVAL}" "${PARAM_UNROLL}" "${PARAM_UNROLL_VALUE}" "${PARAM_IMPTHIS}" "${PARAM_IMPTHIS_VALUE}" "${PARAM_RANDOMIZED}" "${PARAM_REFTEST}" "${PARAM_REF_TRACING}" "${PARAM_RISKY}" "${PARAM_PCODE}" "${PARAM_SEED}" "${PARAM_SEED_N}" "${PARAM_TIME}"
+      ${NODE_BIN} --max-old-space-size=32768 tests/index.mjs ${ACTION} "${ACTION_ARG}" "${PARAM_NO_COLOR}" "${PARAM_NORM}" "${PARAM_FAST}" -t "${PARAM_THREADS}" "${PARAM_LOG}" "${PARAM_LOGTO}" "${PARAM_LOG_FROM}" "${PARAM_LOG_FROM_N}" "${PARAM_MAXPASS}" "${PARAM_MAXPASS_COUNT}" "${PARAM_CLONELIMIT}" "${PARAM_CLONELIMIT_COUNT}" "${PARAM_TRIM_DOLLAR}" "${PARAM_ONLY_OUTPUT}" "${PARAM_TRACE}" "${PARAM_NO_TRACE}" "${PARAM_SILENT}" "${PARAM_SKIP_EVAL}" "${PARAM_UNROLL}" "${PARAM_UNROLL_VALUE}" "${PARAM_IMPTHIS}" "${PARAM_IMPTHIS_VALUE}" "${PARAM_RANDOMIZED}" "${PARAM_REFTEST}" "${PARAM_REF_TRACING}" "${PARAM_RISKY}" "${PARAM_PCODE}" "${PARAM_SEED}" "${PARAM_SEED_N}" "${PARAM_TIME}" "${PARAM_RED_ONLY}" "${PARAM_RED_ONLY_ARG}" "${PARAM_RED_SKIP}" "${PARAM_RED_SKIP_ARG}"
     ;;
 esac
 set +x

@@ -242,6 +242,7 @@ export const BASE_PHASE2_RULES_LIST = [
   //// This one is very invasive and expands the code. Needs more work.
   //['phasePrimitiveArgInlining', phasePrimitiveArgInlining],
 ];
+export const BASE_PHASE2_REDUCER_NAMES = new Set(new Map(BASE_PHASE2_RULES_LIST).keys()); // lay-zey
 
 export function getFreshPhase2RulesState() {
   // Phase2 will rotate the rules as they get used so we need to create a fresh list

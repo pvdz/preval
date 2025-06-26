@@ -1,6 +1,8 @@
 import fs from 'fs';
 import path from 'path';
 import { isMainThread, workerData } from 'worker_threads';
+import { BASE_PHASE2_REDUCER_NAMES, BASE_PHASE2_RULES_LIST } from '../src/normalize/phase2.mjs';
+import { BASE_PHASE3_REDUCER_NAMES } from '../src/normalize/phase3.mjs';
 
 export function parseTestArgs() {
   if (!isMainThread) {
@@ -27,6 +29,8 @@ export function parseTestArgs() {
     pcodeTest: undefined, // Specific pcode test case
     randomizedOrder: false,
     prngSeed: undefined, // Initial seed value for prng. Zero disables it. Defaults to 1.
+    reducersOnly: undefined, // List of reducer names to only allow for this (entire) run / test.
+    reducersSkip: undefined, // List of reducer names to skip for this (entire) run / test.
     refTest: undefined, // Dump special ref tracking debug output / test formatting, instead of normal test cases?
     refTracing: false, // Print ref tracking trace logs
     riskyRules: true, // Enable risky rules. May not be 100% sound but should be ok in most cases and lead to much better results.
@@ -178,6 +182,32 @@ export function parseTestArgs() {
 
       case '--seed': {
         config.prngSeed = argv.shift() | 0; // Convert to number, allow for zero (disables it)
+        break;
+      }
+
+      case '--reducersOnly': {
+        config.reducersOnly = argv.shift().split(/[ ,]+/).map(s => s.trim()).filter(Boolean);
+        config.reducersOnly.forEach(rname => {
+          if (!BASE_PHASE2_REDUCER_NAMES.has(rname) && !BASE_PHASE3_REDUCER_NAMES.has(rname)) {
+            console.log('');
+            console.log('Valid names:', Array.from(BASE_PHASE2_REDUCER_NAMES).join(', '), Array.from(BASE_PHASE3_REDUCER_NAMES).join(', '));
+            console.log('');
+            throw new Error(`Invalid options for \`--reducersOnly\`: "${rname}" is not a known reducer name`);
+          }
+        });
+        break;
+      }
+
+      case '--reducersSkip': {
+        config.reducersSkip = argv.shift().split(/[ ,]+/).map(s => s.trim()).filter(Boolean);
+        config.reducersSkip.forEach(rname => {
+          if (!BASE_PHASE2_REDUCER_NAMES.has(rname) && !BASE_PHASE3_REDUCER_NAMES.has(rname)) {
+            console.log('');
+            console.log('Valid names:', Array.from(BASE_PHASE2_REDUCER_NAMES).join(', '), Array.from(BASE_PHASE3_REDUCER_NAMES).join(', '));
+            console.log('');
+            throw new Error(`Invalid options for \`--reducersSkip\`: "${rname}" is not a known reducer name`);
+          }
+        });
         break;
       }
 

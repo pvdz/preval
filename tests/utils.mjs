@@ -6,6 +6,8 @@ import {printPst} from "../src/utils/print_pst.mjs"
 import {setPrintPids} from "../lib/printer.mjs";
 import { createOpenRefsState, tmat } from '../src/utils.mjs';
 import { printPcode, serializePcode } from '../src/pcode.mjs';
+import { BASE_PHASE2_REDUCER_NAMES } from '../src/normalize/phase2.mjs';
+import { BASE_PHASE3_REDUCER_NAMES } from '../src/normalize/phase3.mjs';
 
 export const REDN = '\x1b[31m';
 export const RED = '\x1b[31;1m';
@@ -126,6 +128,32 @@ export function fromMarkdownCase(md, fname, config) {
             name = 'pcodeTest';
             value = true;
             break;
+          case 'reducersOnly': {
+            name = 'reducersOnly';
+            value = value.split(/[ ,]+/).map(s => s.trim()).filter(Boolean);
+            value.forEach(rname => {
+              if (!BASE_PHASE2_REDUCER_NAMES.has(rname) && !BASE_PHASE3_REDUCER_NAMES.has(rname)) {
+                console.log('');
+                console.log('Valid names:', Array.from(BASE_PHASE2_REDUCER_NAMES).join(', '), Array.from(BASE_PHASE3_REDUCER_NAMES).join(', '));
+                console.log('');
+                throw new Error(`Invalid test options for \`reducersOnly\`: "${rname}" is not a known reducer name`);
+              }
+            });
+            break;
+          }
+          case 'reducersSkip': {
+            name = 'reducersSkip';
+            value = value.split(/[ ,]+/).map(s => s.trim()).filter(Boolean);
+            value.forEach(rname => {
+              if (!BASE_PHASE2_REDUCER_NAMES.has(rname) && !BASE_PHASE3_REDUCER_NAMES.has(rname)) {
+                console.log('');
+                console.log('Valid names:', Array.from(BASE_PHASE2_REDUCER_NAMES).join(', '), Array.from(BASE_PHASE3_REDUCER_NAMES).join(', '));
+                console.log('');
+                throw new Error(`Invalid test options for \`reducersSkip\`: "${rname}" is not a known reducer name`);
+              }
+            });
+            break;
+          }
           case 'seed':
             name = 'seed';
             value = parseInt(value.trim());

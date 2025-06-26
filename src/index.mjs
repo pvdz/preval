@@ -10,7 +10,7 @@ import { prepareNormalization } from './normalize/prepare.mjs';
 import { phase0 } from './normalize/phase0.mjs';
 import { phase1 } from './normalize/phase1.mjs';
 import { getFreshPhase2RulesState, phase2 } from './normalize/phase2.mjs';
-import { phase3 } from './normalize/phase3.mjs';
+import { getFreshPhase3RulesState, phase3 } from './normalize/phase3.mjs';
 import { phase1_1 } from './normalize/phase1_1.mjs';
 import { ASSERT } from './utils.mjs';
 import { freeFuncsForTest } from './reduce_static/free_funcs.mjs';
@@ -40,7 +40,7 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
   {
     const {
       logDir, logDirExtra, logPasses, logPhases, logFrom, maxPass, cloneLimit, allowEval, unrollLimit,
-      implicitThisIdent, refTest, pcodeTest, risky, prngSeed, time,
+      implicitThisIdent, refTest, reducersOnly, reducersSkip, pcodeTest, risky, prngSeed, time,
       ...rest
     } = options;
     if (JSON.stringify(rest) !== '{}') throw new Error(`Preval: Unsupported options received: ${JSON.stringify(rest)}`);
@@ -264,7 +264,14 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
       let inputCode = mod.normalizedCode;
       let passes = 0;
       let phase1s = 0;
-      const phase2RulesListState = getFreshPhase2RulesState();
+      const phase2RulesListState = getFreshPhase2RulesState()
+        .filter(([rname]) => !options.reducersOnly || options.reducersOnly.includes(rname))
+        .filter(([rname]) => !options.reducersSkip?.includes(rname))
+      ;
+      const phase3RulesListState = getFreshPhase3RulesState()
+        .filter(([rname]) => !options.reducersOnly || options.reducersOnly.includes(rname))
+        .filter(([rname]) => !options.reducersSkip?.includes(rname))
+      ;
       const maxPasses = options.maxPass > 0 ? options.maxPass : 0;
       while (changed) {
         ++passes;
@@ -304,7 +311,7 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
             if (changed) vlog('The pre-phase3 normal did change something! starting from phase0');
           }
           if (!changed) {
-            changed = phase3(program, fdata, resolve, req, {unrollLimit: options.unrollLimit});
+            changed = phase3(program, fdata, phase3RulesListState, resolve, req, prng, {unrollLimit: options.unrollLimit});
             options?.onAfterPhase?.(3, passes, phaseLoop, fdata, changed, options);
           }
         } while (changed?.next === 'phase1');

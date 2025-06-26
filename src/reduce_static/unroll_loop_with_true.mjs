@@ -38,7 +38,7 @@ import {MAX_UNROLL_TRUE_COUNT} from "../globals.mjs"
 import { createFreshLabelStatement } from '../labels.mjs';
 import { SYMBOL_LOOP_UNROLL, SYMBOL_MAX_LOOP_UNROLL } from '../symbols_preval.mjs';
 
-export function unrollLoopWithTrue(fdata, unrollLimit = 10) {
+export function unrollLoopWithTrue(fdata, prng, {unrollLimit = 10} = {}) {
   group('\n\n\n[unrollLoopWithTrue] Checking for while loops with true to unroll (limit =' , unrollLimit, ')');
   ASSERT(typeof unrollLimit === 'number' && unrollLimit >= 0, 'should have a unrollLimit', unrollLimit);
   if (unrollLimit > MAX_UNROLL_TRUE_COUNT) {

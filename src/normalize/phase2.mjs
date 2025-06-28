@@ -112,6 +112,7 @@ import { tandemAlias } from '../reduce_static/tandem_alias.mjs';
 import { ternaryConstBounded } from '../reduce_static/ternary_const_bounded.mjs';
 import { ifTestAnded } from '../reduce_static/if_test_anded.mjs';
 import { ifTestTransitive } from '../reduce_static/if_test_transitive.mjs';
+import { fakesync } from '../reduce_static/fakesync.mjs';
 import { ifBooly } from '../reduce_static/if_booly.mjs';
 import { stringReplacer } from '../reduce_static/string_replacer.mjs';
 
@@ -222,6 +223,7 @@ export const BASE_PHASE2_RULES_LIST = [
   ['ifTestAnded', ifTestAnded],
   ['ifTestTransitive', ifTestTransitive],
   ['ifBooly', ifBooly],
+  ['fakesync', fakesync],
   ['stringReplacer', stringReplacer],
 
   ['freeLoops', freeLoops], // Most other stuff should probably precede this?

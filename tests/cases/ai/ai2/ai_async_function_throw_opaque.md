@@ -26,12 +26,13 @@ test().catch(e => $('async_throw_reason', e));
 
 
 `````js filename=intro
-const test /*:()=>promise*/ = async function () {
-  debugger;
+let tmpMCOO /*:unknown*/ = undefined;
+try {
   const tmpThrowArg /*:unknown*/ = $(`opaque_throw_reason`);
   throw tmpThrowArg;
-};
-const tmpMCOO /*:promise*/ /*truthy*/ = test();
+} catch (tmpRejectErr) {
+  tmpMCOO = $Promise_reject(tmpRejectErr);
+}
 const tmpMCP /*:(unknown)=>unknown*/ = function ($$0) {
   const e /*:unknown*/ = $$0;
   debugger;
@@ -46,11 +47,14 @@ $dotCall($promise_catch, tmpMCOO, `catch`, tmpMCP);
 (This ought to be the final result)
 
 `````js filename=intro
-const test = async function () {
+let tmpMCOO = undefined;
+try {
   const tmpThrowArg = $(`opaque_throw_reason`);
   throw tmpThrowArg;
-};
-$dotCall($promise_catch, test(), `catch`, function (e) {
+} catch (tmpRejectErr) {
+  tmpMCOO = $Promise_reject(tmpRejectErr);
+}
+$dotCall($promise_catch, tmpMCOO, `catch`, function (e) {
   const tmpReturnArg = $(`async_throw_reason`, e);
   return tmpReturnArg;
 });
@@ -61,19 +65,21 @@ $dotCall($promise_catch, test(), `catch`, function (e) {
 With rename=true
 
 `````js filename=intro
-const a = async function() {
-  debugger;
+let a = undefined;
+try {
   const b = $( "opaque_throw_reason" );
   throw b;
-};
-const c = a();
+}
+catch (c) {
+  a = $Promise_reject( c );
+}
 const d = function($$0 ) {
   const e = $$0;
   debugger;
   const f = $( "async_throw_reason", e );
   return f;
 };
-$dotCall( $promise_catch, c, "catch", d );
+$dotCall( $promise_catch, a, "catch", d );
 `````
 
 
@@ -102,7 +108,9 @@ $dotCall(tmpMCF, tmpMCOO, `catch`, tmpMCP);
 
 
 - (todo) access object property that also exists on prototype? $promise_catch
+- (todo) can try-escaping support this expr node type? CallExpression
 - (todo) inline async functions safely (because await)
+- (todo) type trackeed tricks can possibly support static $Promise_reject
 - (todo) type trackeed tricks can possibly support static $promise_catch
 
 

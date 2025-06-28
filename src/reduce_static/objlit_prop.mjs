@@ -3,7 +3,7 @@
 // - If we can resolve it to not exist, we should replace it with a prototype if we can
 // - If we can resolve writes then we should update the associated object literal
 
-import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, fmat, tmat, findBodyOffset, todo, } from '../utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, fmat, tmat, findBodyOffset, todo, assertNoDupeNodes, currentState, } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { createFreshVar, mayBindingMutateBetweenRefs } from '../bindings.mjs';
 import { SYMBOL_COERCE, SYMBOL_DOTCALL, SYMBOL_FRFR } from '../symbols_preval.mjs';
@@ -474,7 +474,7 @@ function _objlitPropAccess(fdata) {
           }
 
           // Remember: obj is asserted to be free of get, and set props. computed props may exist but they can only numeric literals.
-          const propNode = objExprNode.properties.find((pnode) => {
+          const propNode = objExprNode.properties.findLast((pnode) => {
             if (readRef.parentNode.computed) {
               return pnode.computed && AST.isNumberLiteral(pnode.key) && 
                      AST.getPrimitiveValue(pnode.key).toString() === propName;
@@ -506,12 +506,14 @@ function _objlitPropAccess(fdata) {
             before(prevWrite.blockBody[prevWrite.blockIndex]);
             before(readRef.blockBody[readRef.blockIndex]);
 
-            propNode.value = readRef.grandNode.right;
+            propNode.value = AST.cloneSimple(readRef.grandNode.right);
             propNode.method = false; // Even when assigning a function, it's no longer a method (-> has special bond)
             readRef.blockBody[readRef.blockIndex] = AST.emptyStatement();
 
             after(prevWrite.blockBody[prevWrite.blockIndex]);
             after(readRef.blockBody[readRef.blockIndex]);
+
+            assertNoDupeNodes(readRef.blockBody, 'body');
 
             updated += 1;
             return true; // "prop mutation". Move to next write

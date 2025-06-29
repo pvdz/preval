@@ -569,7 +569,7 @@ function _objlitPropAccess(fdata) {
 
       ASSERT(readRef.node.type === 'Identifier', 'right?', readRef.node);
       const propName = readRef.parentNode.property.name;
-      const pnode = objExprNode.properties.find((pnode) => !pnode.computed && pnode.key.name === propName);
+      const pnode = objExprNode.properties.findLast((pnode) => !pnode.computed && pnode.key.name === propName);
       if (!pnode) {
         vlog('- Could not find the property...');
         // TODO: can do this when we checked the property can not exist, like through computed prop or whatever
@@ -632,7 +632,8 @@ function _objlitPropAccess(fdata) {
               updated += 1;
             },
           });
-        } else if (BUILTIN_SYMBOLS.has(symbo('object', readRef.parentNode.property.name))) {
+        }
+        else if (BUILTIN_SYMBOLS.has(symbo('object', readRef.parentNode.property.name))) {
           queue.push({
             index: readRef.blockIndex,
             func: () => {
@@ -654,7 +655,8 @@ function _objlitPropAccess(fdata) {
             },
           });
         }
-      } else if (pnode.kind !== 'init') {
+      }
+      else if (pnode.kind !== 'init') {
         // Maybe we can still do something here but for now we're bailing
         vlog('- bail: The property `' + propName + '` resolves to a getter or setter.');
 
@@ -668,7 +670,8 @@ function _objlitPropAccess(fdata) {
           // TODO: This breaks `this` and while it's probably fine in many cases, we do need to confirm them first
           return true;
         }
-      } else if (pnode.method) {
+      }
+      else if (pnode.method) {
         // TODO: can we do anything here?
         vlog('- bail: The property resolves to a method.');
 
@@ -682,7 +685,8 @@ function _objlitPropAccess(fdata) {
           // TODO: This breaks `this` and while it's probably fine in many cases, we do need to confirm them first
           return true;
         }
-      } else {
+      }
+      else {
         vlog('- The object literal contained a node for `' + propName + '` (pid', pnode.$p.npid, ')');
 
         if (readRef.grandNode.type === 'CallExpression' && readRef.grandProp === 'callee') {
@@ -754,7 +758,8 @@ function _objlitPropAccess(fdata) {
             after(readRef.blockBody[readRef.blockIndex]);
             updated += 1;
           }
-        } else {
+        }
+        else {
           rule('An object literal whose property is looked up immediately can resolve the lookup immediately');
           before(writeRef.blockBody[writeRef.blockIndex]);
           before(readRef.blockBody[readRef.blockIndex]);

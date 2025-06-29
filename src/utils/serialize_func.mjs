@@ -168,7 +168,7 @@ export function createNormalizedFunctionFromString(funcString, bodyString, clone
   });
   source(preFdata.tenkoOutput.ast);
   vlog('Set ident/label registry to the outer code');
-  console.log(preFdata.globallyUniqueLabelRegistry, fdata.globallyUniqueLabelRegistry)
+  // console.log(preFdata.globallyUniqueLabelRegistry, fdata.globallyUniqueLabelRegistry)
 
   phaseNormalOnce(preFdata);
   phaseNormalize(preFdata, '<createNormalizedFunctionFromString>', false, null, { allowEval: false });

@@ -1493,70 +1493,6 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             return true;
           }
 
-          // If assigning to a property and the previous statement was a var decl defining the object literal: merge it
-          // Ok tbf this will do much better as a ref tracked plugin so this is just picking a low hanging fruit case
-          if (
-            i &&
-            body[i-1].type === 'VarStatement' &&
-            body[i-1].init.type === 'ObjectExpression' &&
-            a.type === 'Identifier' &&
-            body[i-1].id.name === a.name && // Assigning to property of objlit defined in prev statement
-            // Check to confirm the property is not already defined as a getter/setter...
-            body[i-1].init.properties.every(pnode => {
-              if (pnode.type === 'SpreadElement') {
-                // What about `const x = {...y}; x.a = b;` -> `const x {...y, a: b}` ?
-                todo('assigning to the prop of an objlit with spread could still be combined right');
-                return false;
-              }
-              if (!pnode.computed && !lhs.computed) {
-                // Same ident key. Ok if not the same key or if same key and objlit had it as init (not get/set)
-                // Note: kind is get/set/init
-                return pnode.key.name !== b.name || pnode.kind === 'init';
-              }
-              if (pnode.computed && lhs.computed) {
-                // Both are computed.
-                // If either is not a primitive then we dont know the actual key and return false
-                // If both are primitive but not the same we return true
-                // If both are primitive and the same, we return whether the objlit defined it as init (not get/set)
-
-                if (!AST.isPrimitive(pnode.key) || !AST.isPrimitive(b)) return false; // Don't know
-                if (AST.getPrimitiveValue(pnode.key) !== AST.getPrimitiveValue(b)) return true; // not same key so not a blocker
-                return pnode.kind === 'init'; // Same key, ok if not a getter/setter
-              }
-              ASSERT(pnode.computed !== lhs.computed, 'was asserted above');
-              // In normalized code, if we know the key and it is a valid ident then we would eliminate the computed flag
-              // Otherwise, we apparently don't know the key so we must err on the side of caution: consider it blocking
-
-              // Exception: if the key is a primitive then we can recover by getting the primitive value and comparing it
-              if (pnode.computed) {
-                return AST.isPrimitive(pnode.key) && String(AST.getPrimitiveValue(pnode.key)) !== b.name;
-              }
-
-              // else lhs.computed
-              return AST.isPrimitive(b) && String(AST.getPrimitiveValue(b)) !== pnode.key.name;
-            })
-          ) {
-            if (mem.computed) {
-              if (AST.isPrimitive(mem.property)) {
-                todo('simple prop inlining case with computed prop');
-              }
-            }
-            else {
-              rule('Assigning a property to an object literal defined on the previous line should be inlined');
-              example('const obj = {}; obj.x = 5;', 'const obj = {x: 5}');
-              before(body[i-1]);
-              before(body[i]);
-
-              body[i-1].init.properties.push(AST.property(b, rhs, false, a.computed));
-              body[i] = AST.emptyStatement();
-
-              before(body[i-1]);
-              before(body[i]);
-              assertNoDupeNodes(body, 'body');
-              return true;
-            }
-          }
-
           // `const x = y; x.z = foo;` is just `const x = y; y.z = foo` when back to back
           if (
             i &&
@@ -4808,12 +4744,14 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                 // If there is a context node, let another transform simplify it first
                 else if (allowEval) {
                   if (args.every((anode) => AST.isPrimitive(anode))) {
+                    for (let i=0;i<10;++i)vgroup();
                     // TODO: we could try to find the original point of this call and replace the arg but I'm sure there are plenty of cases where this is not feasible (like conditionals etc)
                     vlog('This call to `Function` has primitive args so we should be able to resolve it...');
                     riskyRule('Call to `Function` with primitive args can be resolved (although there is no guarantee it will work)');
                     example('const x = Function("return 10;");', 'const x = function(){ return 10; };');
                     before(node, body[i]);
 
+                    vlog('- step 1: create new func node');
                     const argString =
                       args
                       .slice(0, -1)
@@ -4827,6 +4765,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                       // Hack for returning this. It wont work in nodejs and in browsers it will return window. So return window.
                       (bodyString === 'return this' || bodyString === 'return this;' ? 'return window' : bodyString) +
                       '}';
+                    vlog('- step 2: createNormalizedFunctionFromString');
                     const finalNode = createNormalizedFunctionFromString(
                       funcString,
                       bodyString,
@@ -4834,6 +4773,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                       fdata,
                     );
 
+                    vlog('- step 3: profit');
                     vlog('Cloned func:');
                     source(finalNode);
 
@@ -4843,6 +4783,8 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
                     after(body[i]);
                     assertNoDupeNodes(body, 'body');
+                    vlog('End of Function() inlinine');
+                    for (let i=0;i<10;++i)vgroupEnd();
                     return true;
                   }
                 }
@@ -12496,8 +12438,9 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
                 changes = true;
                 after(node, parentNodeOrWhatever);
-              } else {
-                // This is a noop
+              }
+              else {
+                // This is a noop for any primitive, including the nullables
                 rule('A non-string primitive that is spread into an object can be deleted');
                 example('({...10});', '({});');
                 before(node, parentNodeOrWhatever);
@@ -12507,7 +12450,8 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                 changes = true;
                 after(node, parentNodeOrWhatever);
               }
-            } else {
+            }
+            else {
               ++hasSpread;
               if (AST.isComplexNode(pnode.argument)) spreadComplex = true;
             }
@@ -12527,7 +12471,8 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
               after(node, parentNodeOrWhatever);
               changes = true;
-            } else if (pnode.key.type === 'literal' && typeof pnode.key.value === 'string') {
+            }
+            else if (pnode.key.type === 'literal' && typeof pnode.key.value === 'string') {
               rule('Property keys that are strings should be templates internally, even if that is technically invalid');
               example('x = {"a": foo}', 'x = {`a`: foo}');
               before(node, parentNodeOrWhatever);
@@ -12610,6 +12555,56 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
         body.splice(i, 0, ...toOutline);
 
         if (changes) return true;
+
+        let propsDropped = 0;
+        const props = new Set;
+        const stmt = body[i];
+        for (let pi = node.properties.length - 1; pi >= 0; --pi) {
+          vlog('node.property[i]:', node.properties[pi])
+          const pnode = node.properties[pi];
+          if (pnode.type === 'SpreadElement') {
+            // noop
+          }
+          else if (pnode.key.type === 'Identifier') {
+            const key = pnode.key.name;
+
+            if (props.has(key + ' ' + pnode.kind)) {
+              if (pnode.init === 'init') {
+                if (props.has(key + ' get') || props.has(key + ' set')) {
+                  // Not sure if this is a legit case in Preval. Smells like a bug.
+                  todo('Found an "init" prop with a later "get" or "set" prop...');
+                  break;
+                }
+              } else {
+                if (props.has(key + ' init')) {
+                  // I don't think this is a legal case ... smells like a bug in Preval
+                  todo('Found a "', pnode.kind, '" prop with a later "init" prop...');
+                  break;
+                }
+              }
+
+              // Drop this one
+              rule('Duplicate property nodes of regular object of same "kind" should only keep the last');
+              example('const x = {a: 1, a: 2};', '2; const x = {a: 2};');
+              before(stmt);
+
+              node.properties.splice(pi, 1);
+              propsDropped = propsDropped + 1;
+              if (!pnode.method && pnode.kind === 'init') {
+                // Methods are functions, declarative noops. Same for getters and setters.
+                // For regular prop values preserve tdz occurrence (even though eval order gets a little messy now)
+                body.splice(i, 0, AST.expressionStatement(pnode.value));
+              }
+
+              after(stmt);
+            } else {
+              vlog('- new prop', [pnode.key?.name], pnode.kind, pnode.method);
+              // Keep this one (most commonly)
+              props.add(key + ' ' + pnode.key.kind);
+            }
+          }
+        }
+        if (propsDropped) return true;
 
         if (wrapKind === 'statement') {
           if (hasSpread === 1 && !hasNonSpread && !spreadComplex) {
@@ -16939,7 +16934,6 @@ function isPump(a, b, c) {
   if (a.callee.property.name === 'pop' && b.callee.property.name === 'unshift') return true;
   return false;
 }
-
 
 function eliminateStatementCallWithCoerce(fdata, body, i, args, contextNode, count, c1, c2) {
   ASSERT(count <= 2);

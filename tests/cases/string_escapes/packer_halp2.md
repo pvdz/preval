@@ -24,7 +24,6 @@ $(x);
 
 
 `````js filename=intro
-let tmpClusterSSA_c$1 /*:number*/ = 25;
 const r /*:object*/ /*truthy*/ = {
   z: `split`,
   y: `not_expr`,
@@ -38,6 +37,7 @@ const r /*:object*/ /*truthy*/ = {
   q: `10`,
   p: `p`,
 };
+let tmpClusterSSA_c$1 /*:number*/ = 25;
 const k /*:array*/ /*truthy*/ = [
   undefined,
   undefined,
@@ -114,8 +114,8 @@ $(x);
 (This ought to be the final result)
 
 `````js filename=intro
-let tmpClusterSSA_c$1 = 25;
 const r = { z: `split`, y: `not_expr`, x: `u0020g`, w: `w`, v: `x20f`, u: `RegExp`, t: `new`, s: `eval`, r: `r`, q: `10`, p: `p` };
+let tmpClusterSSA_c$1 = 25;
 const k = [
   undefined,
   undefined,
@@ -190,8 +190,7 @@ $(
 With rename=true
 
 `````js filename=intro
-let a = 25;
-const b = {
+const a = {
   z: "split",
   y: "not_expr",
   x: "u0020g",
@@ -204,20 +203,21 @@ const b = {
   q: "10",
   p: "p",
 };
+let b = 25;
 const c = [ undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "function", undefined, undefined, undefined, "return", undefined, "String", "if", "replace", "while", undefined, "10", undefined, "eval", "new", "RegExp", "x20f", undefined, "u0020g", "not_expr", "split" ];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const d = a;
-  a = a - 1;
+  const d = b;
+  b = b - 1;
   if (d) {
-    const e = $dotCall( $number_toString, a, "toString", 36 );
-    let f = c[ a ];
+    const e = $dotCall( $number_toString, b, "toString", 36 );
+    let f = c[ b ];
     if (f) {
 
     }
     else {
-      f = $dotCall( $number_toString, a, "toString", 36 );
+      f = $dotCall( $number_toString, b, "toString", 36 );
     }
-    b[e] = f;
+    a[e] = f;
   }
   else {
     break;
@@ -226,7 +226,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 const g = function($$0 ) {
   const h = $$0;
   debugger;
-  const i = b[ h ];
+  const i = a[ h ];
   return i;
 };
 const j = new $regex_constructor( "\\b\\w+\\b", "g" );
@@ -375,6 +375,7 @@ $(x);
 
 
 - (todo) - at least one of the call args to
+- (todo) Support this ident in isFree CallExpression: $number_toString
 - (todo) can we always safely clone ident refs in this case?
 - (todo) objects in isFree check
 - (todo) support array reads statement type ExpressionStatement

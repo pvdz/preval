@@ -114,6 +114,7 @@ import { ifTestAnded } from '../reduce_static/if_test_anded.mjs';
 import { ifTestTransitive } from '../reduce_static/if_test_transitive.mjs';
 import { fakesync } from '../reduce_static/fakesync.mjs';
 import { ifBooly } from '../reduce_static/if_booly.mjs';
+import { nodejsRequire } from '../reduce_static/nodejs_require.mjs';
 import { stringReplacer } from '../reduce_static/string_replacer.mjs';
 import { objlitPropWrite } from '../reduce_static/objlit_prop_write.mjs';
 
@@ -223,6 +224,7 @@ export const BASE_PHASE2_RULES_LIST = [
   ['ternaryConstBounded', ternaryConstBounded],
   ['ifTestAnded', ifTestAnded],
   ['ifTestTransitive', ifTestTransitive],
+  ['nodejsRequire', nodejsRequire],
   ['ifBooly', ifBooly],
   ['fakesync', fakesync],
   ['stringReplacer', stringReplacer],
@@ -369,5 +371,4 @@ function under(num) {
     result += '_' + str.slice(i, i+3);
   }
   return result;
-
 }

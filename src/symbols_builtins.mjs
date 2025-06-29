@@ -586,6 +586,64 @@ export const TEXTDECODER = new Map([
 ]);
 
 
+// The node builtin libs probably need their own file... The goal is for normalization to trivially replace them. (or a dedicated resolver)
+/**
+ *
+ *       node:os
+ *
+ */
+
+
+// Note: these are not exposed in the test runner and will crash when tried.
+export const NODEJS_REQUIRE = new Map([
+  [symbo('require', 'os'), {prop: 'os', isProto: false, typings: { sname: symbo('require', 'os'), mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }}],
+  [symbo('require_os', 'homedir'), {prop: 'homedir', isProto: false, typings: { sname: symbo('require_os', 'homedir'), mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string' }}],
+  [symbo('require_os', 'tmpdir'),  {prop: 'tmpdir',  isProto: false, typings: { sname: symbo('require_os', 'tmpdir'),  mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string' }}],
+  [symbo('require_os', 'hostname'),  {prop: 'hostname',  isProto: false, typings: { sname: symbo('require_os', 'hostname'),  mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string' }}],
+  [symbo('require_os', 'platform'),  {prop: 'platform',  isProto: false, typings: { sname: symbo('require_os', 'platform'),  mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string' }}],
+
+  [symbo('require', 'fs'), {prop: 'fs', isProto: false, typings: { sname: symbo('require', 'fs'), mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }}],
+  [symbo('require_fs', 'existsSync'), {prop: 'existsSync', isProto: false, typings: { sname: symbo('require_fs', 'existsSync'), mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'boolean' }}],
+  [symbo('require_fs', 'accessSync'), {prop: 'accessSync', isProto: false, typings: { sname: symbo('require_fs', 'accessSync'), mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'undefined' }}], // throws on failure, undefined on success. great api design.
+  [symbo('require_fs', 'readdirSync'), {prop: 'readdirSync', isProto: false, typings: { sname: symbo('require_fs', 'readdirSync'), mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'array' }}],
+  [symbo('require_fs', 'statSync'), {prop: 'statSync', isProto: false, typings: { sname: symbo('require_fs', 'statSync'), mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'object' }}],
+  [symbo('require_fs', 'createReadStream'), {prop: 'createReadStream', isProto: false, typings: { sname: symbo('require_fs', 'createReadStream'), mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'object' }}],
+  [symbo('require_fs', 'copyFile'), {prop: 'copyFile', isProto: false, typings: { sname: symbo('require_fs', 'copyFile'), mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'undefined' }}],
+  [symbo('require_fs', 'rename'), {prop: 'rename', isProto: false, typings: { sname: symbo('require_fs', 'rename'), mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'undefined' }}],
+  [symbo('require_fs', 'rmSync'), {prop: 'rmSync', isProto: false, typings: { sname: symbo('require_fs', 'rmSync'), mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'undefined' }}],
+  [symbo('require_fs', 'writeFileSync'), {prop: 'writeFileSync', isProto: false, typings: { sname: symbo('require_fs', 'writeFileSync'), mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'undefined' }}],
+  [symbo('require_fs', 'readFileSync'), {prop: 'readFileSync', isProto: false, typings: { sname: symbo('require_fs', 'readFileSync'), mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: undefined }}],
+  [symbo('require_fs', 'writeFile'), {prop: 'writeFile', isProto: false, typings: { sname: symbo('require_fs', 'writeFile'), mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: undefined }}],
+  [symbo('require_fs', 'readFile'), {prop: 'readFile', isProto: false, typings: { sname: symbo('require_fs', 'readFile'), mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: undefined }}],
+  [symbo('require_fs', 'renameSync'), {prop: 'renameSync', isProto: false, typings: { sname: symbo('require_fs', 'renameSync'), mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'undefined' }}],
+
+  [symbo('require', 'path'), {prop: 'path', isProto: false, typings: { sname: symbo('require', 'path'), mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }}],
+  [symbo('require_path', 'join'), {prop: 'join', isProto: false, typings: { sname: symbo('require_path', 'join'), mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string' }}],
+  [symbo('require_path', 'dirname'), {prop: 'dirname', isProto: false, typings: { sname: symbo('require_path', 'dirname'), mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string' }}],
+
+  [symbo('require', 'request'), {prop: 'request', isProto: false, typings: { sname: symbo('require', 'request'), mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }}],
+  [symbo('require_request', 'get'), {prop: 'get', isProto: false, typings: { sname: symbo('require_request', 'get'), mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: undefined }}],
+  [symbo('require_request', 'post'), {prop: 'post', isProto: false, typings: { sname: symbo('require_request', 'post'), mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: undefined }}],
+
+  [symbo('require', 'child_process'), {prop: 'child_process', isProto: false, typings: { sname: symbo('require', 'child_process'), mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }}],
+  [symbo('require_child_process', 'exec'), {prop: 'exec', isProto: false, typings: { sname: symbo('require_child_process', 'exec'), mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: undefined }}],
+
+  [symbo('require', 'fs_promises'), {prop: 'fs_promises', isProto: false, typings: { sname: symbo('require', 'fs_promises'), mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }}],
+  [symbo('require_fs_promises', 'exists'), {prop: 'exists', isProto: false, typings: { sname: symbo('require_fs_promises', 'exists'), mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'promise' }}],
+  [symbo('require_fs_promises', 'access'), {prop: 'access', isProto: false, typings: { sname: symbo('require_fs_promises', 'access'), mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'undefined' }}], // throws on failure, undefined on succes'promise great api design.
+  [symbo('require_fs_promises', 'stat'), {prop: 'stat', isProto: false, typings: { sname: symbo('require_fs_promises', 'stat'), mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'promise' }}],
+  [symbo('require_fs_promises', 'copyFile'), {prop: 'copyFile', isProto: false, typings: { sname: symbo('require_fs_promises', 'copyFile'), mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'promise' }}],
+  [symbo('require_fs_promises', 'mkdir'), {prop: 'mkdir', isProto: false, typings: { sname: symbo('require_fs_promises', 'mkdir'), mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'promise' }}],
+  [symbo('require_fs_promises', 'readdir'), {prop: 'readdir', isProto: false, typings: { sname: symbo('require_fs_promises', 'readdir'), mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'promise' }}],
+  [symbo('require_fs_promises', 'readFile'), {prop: 'readFile', isProto: false, typings: { sname: symbo('require_fs_promises', 'readFile'), mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'promise' }}],
+  [symbo('require_fs_promises', 'rename'), {prop: 'rename', isProto: false, typings: { sname: symbo('require_fs_promises', 'rename'), mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'promise' }}],
+  [symbo('require_fs_promises', 'rm'), {prop: 'rm', isProto: false, typings: { sname: symbo('require_fs_promises', 'rm'), mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'promise' }}],
+  [symbo('require_fs_promises', 'writeFile'), {prop: 'writeFile', isProto: false, typings: { sname: symbo('require_fs_promises', 'writeFile'), mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'promise' }}],
+]);
+
+
+
+
 
 export const GLOBAL_NAMESPACES_FOR_STATIC_METHODS = new Set([
   'Boolean', 'Number', 'String', 'Array', 'Object', 'Date', 'Function', 'JSON', 'Math', 'RegExp', 'Buffer', 'Map', 'Set', 'Uint8Array', 'TextDecoder',
@@ -619,6 +677,7 @@ export const SYMBOL_TO_BUILTIN_GLOBAL_FUNCS = new Map(
 );
 
 
+
 /**
  *      Aggregates
  */
@@ -644,6 +703,8 @@ export const BUILTIN_SYMBOLS = new Map([
   Array.from(UINT8ARRAY.entries()),
   Array.from(TEXTDECODER.entries()),
   // WeakMap, WeakSet, AraryBuffer, etc?
+
+  Array.from(NODEJS_REQUIRE.entries()),
 ].flat());
 
 // Resolve the prototype symbol to its instance string
@@ -786,4 +847,7 @@ export const BUILTIN_FUNC_NO_CTX = new Set([
   symbo('String', 'fromCharCode'),
   symbo('String', 'fromCodePoint'),
   symbo('String', 'raw'),
+
+  // Hopefully this won't break... but all the nodejs builtins we've added so far are context free utils
+  ...NODEJS_REQUIRE.keys(),
 ]);

@@ -13,9 +13,8 @@ import { createFreshVar } from '../bindings.mjs';
 
 export function stringReplacer(fdata) {
   group('\n\n\n[stringReplacer] Finding non-trivial cases of string.replace to resolve\n');
-  currentState(fdata, 'stringReplacer', true, fdata);
+  // currentState(fdata, 'stringReplacer', true, fdata);
   const r = _stringReplacer(fdata);
-  currentState(fdata, 'stringReplacer', true, fdata);
   groupEnd();
   return r;
 }

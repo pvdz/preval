@@ -26,7 +26,7 @@ import { BUILTIN_SYMBOLS } from '../symbols_builtins.mjs';
 
 export function returnsParam(fdata) {
   group('\n\n\n[returnsParam] Checking for functions that return a static mutation of an arg');
-  currentState(fdata, 'returnsParam', true, fdata);
+  // currentState(fdata, 'returnsParam', true, fdata);
   const r = _returnsParam(fdata);
   groupEnd();
   return r;

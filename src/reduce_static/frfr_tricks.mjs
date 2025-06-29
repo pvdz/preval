@@ -24,9 +24,8 @@ import { SYMBOL_FRFR } from '../symbols_preval.mjs';
 
 export function frfrTricks(fdata) {
   group('\n\n\n[frfrTricks] Searching $frfr calls to optimize\n');
-  currentState(fdata, 'frfrTricks', true, fdata);
+  // currentState(fdata, 'frfrTricks', true, fdata);
   const changed = _frfr_tricks(fdata);
-  currentState(fdata, 'frfrTricks', true, fdata);
   groupEnd();
   return changed;
 }

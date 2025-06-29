@@ -2111,7 +2111,6 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
         // We can resolve this here but must first move the obj decl next to the obj assign,
         // past the decls. Otherwise we risk introducing tdz, like the example would.
 
-        currentState(fdata, 'dsafdsa', true, fdata);
         if (
           lhs.type === 'MemberExpression' &&
           lhs.object.type === 'Identifier' &&

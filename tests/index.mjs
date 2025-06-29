@@ -835,22 +835,24 @@ function runTestCase(
       const frameworkInjectedGlobals = createGlobalPrevalSymbols(stack, $, $spy, $throw);
 
       const logbak = console.log;
-      console.log = () => {}; // dont show logs
 
       let returned;
       try {
         // Note: prepending strict mode forces the code to be strict mode which is what we want in the first place and it prevents
         //       undefined globals from being generated which prevents cross test pollution leading to inconsistent results
-        const func = new Function( // window. eval()
+        const func = Function.apply( // window. eval()
+          undefined,
           // Globals to inject
-          ...Object.keys(frameworkInjectedGlobals),
-          // Test code to execute/eval
-          // Patch "global" arguments so we can detect it (it's the arguments of the Function we generate here) because they blow up test case results.
-          '"use strict"; arguments.$preval_isArguments = true; '+ (initialPrngSeed ? 'Math.random = '+SYMBOL_PRNG+';' : '') + ' ' + inputCode,
+          Array.from(Object.keys(frameworkInjectedGlobals)).concat([
+            // Test code to execute/eval
+            // Patch "global" arguments so we can detect it (it's the arguments of the Function we generate here) because they blow up test case results.
+            '"use strict"; arguments.$preval_isArguments = true; '+ (initialPrngSeed ? 'Math.random = '+SYMBOL_PRNG+';' : '') + ' ' + inputCode,
+          ]),
         );
-        const returns = func(
+        console.log = () => {}; // dont show logs
+        const returns = func.apply(undefined,
           // The values of the injected globals
-          ...Object.values(frameworkInjectedGlobals),
+          Object.values(frameworkInjectedGlobals),
         );
         console.log = logbak;
 

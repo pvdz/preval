@@ -22,7 +22,7 @@ $(a);
 
 
 `````js filename=intro
-const tmpReturnArg /*:()=>unknown*/ = function () {
+const tmpReturnArg /*:()=>undefined*/ = function () {
   debugger;
   return undefined;
 };

@@ -20,7 +20,7 @@ $dotCall(method, obj, undefined);
 
 
 `````js filename=intro
-const g /*:()=>unknown*/ = function () {
+const g /*:()=>undefined*/ = function () {
   debugger;
   $();
   return undefined;

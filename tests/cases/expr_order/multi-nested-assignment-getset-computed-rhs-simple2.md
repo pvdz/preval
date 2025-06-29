@@ -45,7 +45,7 @@ const objd /*:object*/ /*truthy*/ = {
     return 4000;
   },
 };
-const d /*:()=>unknown*/ = function () {
+const d /*:()=>object*/ = function () {
   debugger;
   $(`a`);
   $(`b`);

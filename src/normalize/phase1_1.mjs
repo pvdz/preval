@@ -223,8 +223,8 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
           if (meta.writes.length !== 2) meta.ternaryWritesIgnoreFirst = true;
         }
       }
-      if (!meta.typing.mustBeType || meta.typing.mustBeType === 'primitive') {
-        vlog('## queued type resolving for decl of', [declName], '(mustbetype:', meta.typing.mustBeType, ', isprimitive:', meta.typing.mustBePrimitive, ')');
+      if (!meta.typing.mustBeType || meta.typing.mustBeType === 'primitive' || meta.typing.mustBeType === 'object' || meta.typing.mustBeType === 'plustr') {
+        vlog('## queued type resolving for decl of', [declName], '(mustbetype:', [meta.typing.mustBeType], ', isprimitive:', meta.typing.mustBePrimitive, ')');
         untypedVarDecls.add({node: declNode, meta});
       } else {
         vlog('## decl for', [declName], 'already has typing;', [meta.typing.mustBeType], meta.typing.mustBePrimitive)

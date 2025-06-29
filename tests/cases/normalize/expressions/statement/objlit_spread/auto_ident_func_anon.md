@@ -19,7 +19,7 @@ $(a);
 
 
 `````js filename=intro
-const tmpObjSpreadArg /*:()=>unknown*/ = function () {
+const tmpObjSpreadArg /*:()=>undefined*/ = function () {
   debugger;
   return undefined;
 };

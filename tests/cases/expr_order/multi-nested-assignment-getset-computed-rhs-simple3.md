@@ -38,7 +38,7 @@ g(d);
 
 
 `````js filename=intro
-const d /*:()=>unknown*/ = function () {
+const d /*:()=>undefined*/ = function () {
   debugger;
   $(`a`);
   $(`b`);

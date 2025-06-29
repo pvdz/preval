@@ -23,7 +23,7 @@ f({});
 
 
 `````js filename=intro
-const f /*:()=>unknown*/ = function () {
+const f /*:()=>undefined*/ = function () {
   debugger;
   const obj /*:object*/ /*truthy*/ = {};
   $(obj);

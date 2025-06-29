@@ -19,7 +19,7 @@ $(a);
 
 
 `````js filename=intro
-const tmpAnonDefaultExport /*:()=>unknown*/ = function () {
+const tmpAnonDefaultExport /*:()=>undefined*/ = function () {
   debugger;
   return undefined;
 };

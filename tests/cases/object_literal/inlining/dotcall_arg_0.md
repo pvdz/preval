@@ -19,7 +19,7 @@ $dotCall(obj, window, undefined); // wot
 
 
 `````js filename=intro
-const g /*:()=>unknown*/ = function () {
+const g /*:()=>undefined*/ = function () {
   debugger;
   $();
   return undefined;

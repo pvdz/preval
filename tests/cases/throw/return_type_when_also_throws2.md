@@ -32,7 +32,7 @@ $(_THROW())
 
 
 `````js filename=intro
-const _THROW /*:()=>unknown*/ = function () {
+const _THROW /*:()=>undefined*/ = function () {
   debugger;
   $(`do`);
   $(`not`);

@@ -19,7 +19,7 @@ $(a);
 
 
 `````js filename=intro
-const tmpBinBothRhs /*:()=>unknown*/ = function () {
+const tmpBinBothRhs /*:()=>undefined*/ = function () {
   debugger;
   return undefined;
 };

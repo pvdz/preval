@@ -19,7 +19,7 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParamSpread /*:()=>unknown*/ = function () {
+const tmpCalleeParamSpread /*:()=>undefined*/ = function () {
   debugger;
   return undefined;
 };

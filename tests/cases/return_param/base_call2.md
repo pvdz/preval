@@ -34,7 +34,7 @@ $(tmpCalleeParam$5);
 
 
 `````js filename=intro
-const f /*:()=>unknown*/ = function () {
+const f /*:()=>undefined*/ = function () {
   debugger;
   $(`no`);
   $(`inlining`);

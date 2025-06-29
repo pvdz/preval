@@ -27,7 +27,7 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam$1 /*:()=>unknown*/ = function () {
+const tmpCalleeParam$1 /*:()=>undefined*/ = function () {
   debugger;
   if (x) {
     y;

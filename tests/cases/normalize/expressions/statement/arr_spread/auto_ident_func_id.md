@@ -19,7 +19,7 @@ $(a);
 
 
 `````js filename=intro
-const tmpArrElToSpread /*:()=>unknown*/ = function () {
+const tmpArrElToSpread /*:()=>undefined*/ = function () {
   debugger;
   return undefined;
 };

@@ -406,7 +406,7 @@ export function registerGlobalIdent(
 
   const newMeta = {
     // ident meta data
-    uid: ++fdata.globalNameCounter,
+    uid: fdata.globallyUniqueNamingRegistry.size,
     originalName,
     uniqueName: name,
     isExport, // exports should not have their name changed. we ensure this as the last step of this phase.

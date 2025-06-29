@@ -154,14 +154,22 @@ export function cloneFunctionNode(funcNode, clonedName = 'noname', staticArgs, f
 }
 
 export function createNormalizedFunctionFromString(funcString, bodyString, clonedName = 'noname', fdata) {
+  for (let i=0;i<10;++i)vgroup();
   log('createNormalizedFunctionFromString: Size of function string:', funcString.length);
 
   const preFdata = parseCode(funcString, '');
+
   // I want a phase1 because I want the scope tracking set up for normalizing bindings
   // Skip the uuid reset otherwise we get duplicate pids
-  prepareNormalization(preFdata, /*resolve*/ undefined, /*req*/ undefined, true, {skipUidReset: true});
+  prepareNormalization(preFdata, /*resolve*/ undefined, /*req*/ undefined, true, {
+    skipUidReset: true,
+    overrideNameRegistry: fdata.globallyUniqueNamingRegistry,
+    overrideLabelNameRegistry: fdata.globallyUniqueLabelRegistry,
+  });
   source(preFdata.tenkoOutput.ast);
-  preFdata.globallyUniqueNamingRegistry = fdata.globallyUniqueNamingRegistry;
+  vlog('Set ident/label registry to the outer code');
+  console.log(preFdata.globallyUniqueLabelRegistry, fdata.globallyUniqueLabelRegistry)
+
   phaseNormalOnce(preFdata);
   phaseNormalize(preFdata, '<createNormalizedFunctionFromString>', false, null, { allowEval: false });
 
@@ -196,6 +204,7 @@ export function createNormalizedFunctionFromString(funcString, bodyString, clone
   groupEnd();
   log('## End of function cloning', clonedName, '\n\n');
 
+  for (let i=0;i<10;++i)vgroupEnd();
   return ast.body[0].init;
 }
 

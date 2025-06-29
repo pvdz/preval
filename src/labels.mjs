@@ -30,7 +30,7 @@ export function registerGlobalLabel(fdata, name, originalName, labelStatementNod
 
   fdata.globallyUniqueLabelRegistry.set(name, {
     // ident meta data
-    uid: ++fdata.globalNameCounter,
+    uid: fdata.globallyUniqueNamingRegistry.size,
     originalName,
     uniqueName: name,
     node: labelStatementNode, // This should be the statement node. All referenced labels must exist (syntax error), labels must appear before their usage when traversing

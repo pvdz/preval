@@ -57,8 +57,6 @@ export function phaseNormalOnce(fdata) {
   group('\n\n\n##################################\n## phaseNormalOnce  ::  ' + fdata.fname + '\n##################################\n\n\n');
   currentState(fdata, 'start of once');
 
-  fdata.globallyUniqueLabelRegistry = new Map();
-
   // Process exports first. They are the only statements (in this phase) that must split in multiple statements that can
   // not be wrapped in a block (since export decls _must_ be toplevel). Our walker does not revisit etc so this is better.
 
@@ -1638,8 +1636,7 @@ function hoistingOnce(hoistingRoot, from) {
   if (hoistingRoot.$p.hoistedVars.length) {
     // Note: the parent can be a scope root (global/func), or export (named/default)
     // hoistedVars -> Array<[node, parentNode, parentProp, parentIndex]>
-    group();
-    vlog('Step 1: process bindings');
+    vgroup('Step 1: process bindings');
     rule('Bindings with `var` and function declarations should be pre-hoisted in AST, even if exported');
     example('f(x); var x = 10; f(x);', 'let x; f(x); x = 10; f(x);');
     example('f(x); export var x = 10; f(x);', 'let x; f(x); x = 10; f(x); export {x};');
@@ -1651,7 +1648,6 @@ function hoistingOnce(hoistingRoot, from) {
     const exportedNames = new Set();
     let exportDefault = ''; // There's at most one of these.
     hoistingRoot.$p.hoistedVars.forEach(([what, hoistNode, parentNode, parentProp, parentIndex, exportIndex]) => {
-      group();
       vlog(
         '  - Hoisting step. From ' +
           from +
@@ -1668,7 +1664,6 @@ function hoistingOnce(hoistingRoot, from) {
           (exportIndex >= 0 ? ', export node at global.body[' + exportIndex + ']' : '') +
           (' (`' + (hoistNode.id?.name ?? hoistNode.declarations?.[0]?.id?.name ?? '<unknown>') + '`)'),
       );
-      group();
 
       ASSERT(
         (parentIndex >= 0 ? parentNode[parentProp][parentIndex] : parentNode[parentProp]) === hoistNode,
@@ -1688,23 +1683,26 @@ function hoistingOnce(hoistingRoot, from) {
             if (parentIndex < 0) parentNode[parentProp] = AST.emptyStatement();
             else parentNode[parentProp][parentIndex] = AST.emptyStatement();
           } else {
-            vlog('Queueing bindings to be moved from program/func/block');
+            vgroup('Queueing bindings to be moved from program/func/block');
             before(hoistNode);
             const newNodes = [];
 
             // Decl is not normalized. Can have any number of declarators, can still be pattern
-            vlog('Searching through', hoistNode.declarations.length, 'decrs');
+            vlog('Now searching through', hoistNode.declarations.length, 'decrs to find more var names');
             hoistNode.declarations.forEach((decr) => {
-              vlog('Searching', decr)
+              vlog('Searching a', decr.type);
               findBoundNamesInVarDeclaratorOrVarStatement(decr, varNames);
-              vlog('- Decr defined these names:', varNames);
               // Now we have the names, remove the var keyword from the declaration
-              // If there was no init, ignore this step
+              // If there was no init, ignore this step. If init was `undefined`, keep it (there is a difference).
               // Patterns must have an init (strict syntax) except as lhs of for-in/for-of
               if (decr.init) {
+                vlog('- Decr defined these names:', varNames, 'replacing them with an assignment now...');
                 newNodes.push(AST.assignmentExpression(decr.id, decr.init));
+              } else {
+                vlog('- Decr defined these names:', varNames, ', they had no init so not adding an assignment here');
               }
             });
+
             // Must replace one node with one new node to preserve indexes of other var statements that appear later
             ASSERT(parentIndex >= 0, 'var decls in global/func/block must be inside a body array');
             const newNode = newNodes.length === 0
@@ -1713,7 +1711,8 @@ function hoistingOnce(hoistingRoot, from) {
             if (parentIndex < 0) parentNode[parentProp] = newNode;
             else parentNode[parentProp][parentIndex] = newNode;
 
-            after(newNodes);
+            after(newNode);
+            vgroupEnd();
           }
           break;
         }
@@ -1924,10 +1923,9 @@ function hoistingOnce(hoistingRoot, from) {
           ASSERT(false, 'what other node holds var or func decls?', parentNode);
       }
 
-      log('End of Hoisting step');
-      groupEnd();
-      groupEnd();
+      vlog('End of Hoisting step. Collected', funcsToMove.length, 'funcs to move and', varNames.length, 'vars to hoist:', varNames);
     });
+    vgroupEnd();
 
     // All the `var` names in this hoistingRoot
     const declarVarNamesSet = new Set(varNames);
@@ -1939,6 +1937,7 @@ function hoistingOnce(hoistingRoot, from) {
       // Note: if there are two func decls with the same name in the same scope then we only keep the last one.
       dupeFunc.set(hoistNode.id.name, hoistNode);
     });
+    vlog('End of step 2. Have', funcsToMove.length, 'funcs to move and', declarVarNamesSet.size, 'vars to hoist:', declarVarNamesSet);
     vgroupEnd();
     const uniqueFuncs = Array.from(dupeFunc.values());
 
@@ -1952,6 +1951,7 @@ function hoistingOnce(hoistingRoot, from) {
         }
       });
     }
+    vlog('End of step 3. Now have', funcsToMove.length, 'funcs to move and', declarVarNamesSet.size, 'vars to hoist:', declarVarNamesSet);
     vgroupEnd()
 
     vlog(
@@ -1979,6 +1979,7 @@ function hoistingOnce(hoistingRoot, from) {
       return AST.variableDeclaration(name, hoistNode, 'let', true); // probably const eventually
     });
     rootBody.unshift(...newFuncs);
+    vlog('End of step 4. Generated', newFuncs.length, 'new let funcs');
     vgroupEnd();
 
     vgroup('Step 5: Create new vars for the var decls to be hoisted (' + declarVarNamesSet.size + ' names)');
@@ -1990,19 +1991,23 @@ function hoistingOnce(hoistingRoot, from) {
         return AST.variableDeclaration(name, AST.identifier('undefined'), 'let', true);
       }),
     );
+    vlog('End of step 5. Generated', sorted.length, 'new vars:', sorted);
     vgroupEnd();
 
+    vgroup('Step 5: Create new exports (' + exportedNames.size + ' names)');
     // Push the named exports at the end of the body (doesn't really matter where they appear; they will be live bindings)
     // Special case the default export. Note that default function exports are live bindings as well, unlike default expressions.
     rootBody.push(
       ...Array.from(exportedNames).map((name) => AST._exportNamedDeclarationFromNames(name, name === exportDefault ? 'default' : name)),
     );
+    vlog('End of step 5, created', exportedNames.size, 'exports;', exportedNames);
+    vgroupEnd();
 
+    vlog('Clear the pending hoisted vars set');
     hoistingRoot.$p.hoistedVars.length = 0; // Clear it. We don't need it anymore.
 
     after(hoistingRoot);
 
-    groupEnd();
     vlog('/Hoisting true');
     return true;
   }

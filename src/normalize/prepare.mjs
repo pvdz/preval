@@ -21,7 +21,13 @@ export function prepareNormalization(fdata, resolve, req, oncePass, options) {
   const fname = fdata.fname;
 
   {
-    const {skipUidReset, unrollLimit, ...rest} = options;
+    const {
+      skipUidReset,
+      unrollLimit,
+      overrideNameRegistry,
+      overrideLabelNameRegistry,
+      ...rest
+    } = options;
     ASSERT(Object.keys(rest).length === 0, 'not expecting these options', rest);
   }
 
@@ -35,20 +41,26 @@ export function prepareNormalization(fdata, resolve, req, oncePass, options) {
   const fenceStack = []; // switch, loops. To determine where unqualified break/continue jumps to.
   const breakableStack = []; // for, while, do, and also switch. Not labels, no function-nulls.
 
-  fdata.globalNameCounter = 0;
-  const globallyUniqueNamingRegistry = new Map();
-  fdata.globallyUniqueNamingRegistry = globallyUniqueNamingRegistry;
-  const identNameSuffixOffset = new Map(); // <name, int>
-  fdata.identNameSuffixOffset = identNameSuffixOffset;
-  globals.forEach((_, name) => {
-    ASSERT(name, 'there should be a name for every element of global?', _, name);
-    registerGlobalIdent(fdata, name, name, { isExport: false, isImplicitGlobal: false, isBuiltin: true });
-  });
+  fdata.identNameSuffixOffset = new Map(); // <name, int>
+  if (options.overrideNameRegistry) {
+    // For example: when converting a `Function("return foo")` to `function anon(){ return foo; }`
+    fdata.globallyUniqueNamingRegistry = options.overrideNameRegistry;
+  } else {
+    fdata.globallyUniqueNamingRegistry = new Map;
+    globals.forEach((_, name) => {
+      ASSERT(name, 'there should be a name for every element of global?', _, name);
+      registerGlobalIdent(fdata, name, name, { isExport: false, isImplicitGlobal: false, isBuiltin: true });
+    });
+  }
+  const globallyUniqueNamingRegistry = fdata.globallyUniqueNamingRegistry
 
-  const globallyUniqueLabelRegistry = new Map();
-  fdata.globallyUniqueLabelRegistry = globallyUniqueLabelRegistry;
-  const labelNameSuffixOffset = new Map(); // <name, int>
-  fdata.labelNameSuffixOffset = labelNameSuffixOffset;
+  fdata.labelNameSuffixOffset = new Map(); // <name, int>
+  if (options.overrideLabelNameRegistry) {
+    fdata.globallyUniqueLabelRegistry = options.overrideLabelNameRegistry;
+  } else {
+    fdata.globallyUniqueLabelRegistry = new Map();
+  }
+  const globallyUniqueLabelRegistry = fdata.globallyUniqueNamingRegistry;
 
   const imports = new Map(); // Discovered filenames to import from. We don't care about the imported symbols here just yet.
   fdata.imports = imports;

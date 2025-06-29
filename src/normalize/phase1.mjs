@@ -649,7 +649,11 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
             // as an expression statement... can we ignore this. no.
             thisStack[thisStack.length - 1].$p.readsArgumentsAny = true;
           } else {
-            thisStack[thisStack.length - 1].$p.readsArgumentsAny = true;
+            vlog('This is a failure branch. It most likely means `arguments` was used in global scope or in a function chain that only used arrows');
+            console.dir(pathNodes[pathNodes.length - 3])
+            ASSERT(parentNode.type === 'VarStatement', 'If `arguments` is not .length then it must be init of alias decl, anything else is bad news...', parentNode);
+            ASSERT(parentProp === 'init', 'If `arguments` is not .length then it must be aliased here, anything else is bad news...', parentNode);
+            ASSERT(false, 'unreachable');
           }
         }
         else if ((kind === 'read' || kind === 'write') && /^\$\$\d+$/.test(name)) {
@@ -870,6 +874,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         const parentBlock = blockNodeStack[blockNodeStack.length - 1];
         if (ENABLE_REF_TRACKING) openRefsOnBeforeIf(refTrackState, node, parentBlock);
 
+        if (funcNodeStack.length === 0) TODO('Empty node stack?');
         funcNodeStack[funcNodeStack.length - 1].$p.hasBranch = true;
         break;
       }
@@ -986,6 +991,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
           const blockIndex = pathIndexes[pathIndexes.length - 2];
           vlog('The var decl of this param is at body[' + blockIndex + ']');
 
+          if (funcNodeStack.length === 0) TODO('Empty node stack?');
           const funcNode = funcNodeStack[funcNodeStack.length - 1];
           const funcHeaderParamNode = funcNode.params[node.index];
           ASSERT(funcHeaderParamNode, 'funcHeaderParamNode should be at', node.index, funcNode.params.length);
@@ -1007,6 +1013,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
       }
 
       case 'ReturnStatement:before': {
+        if (funcNodeStack.length === 0) TODO('Empty node stack?');
         const funcNode = funcNodeStack[funcNodeStack.length - 1];
 
         funcNode.$p.returnNodes.push(node);
@@ -1126,6 +1133,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
 
       case 'ThrowStatement:before': {
         // Note: throws can be caught. We have to find the nearest Try or Function boundary, whichever is closer (lowest pid delta)
+        if (funcNodeStack.length === 0) TODO('Empty node stack?');
         const funcNode = funcNodeStack[funcNodeStack.length - 1];
         const tryNode = tryNodeStack[tryNodeStack.length - 1];
         // Note: Neither node has to exist in which case nearest is still undefined
@@ -1243,6 +1251,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         }
 
         // Binding "owner" func node. In which scope was this binding bound?
+        if (funcNodeStack.length === 0) TODO('Empty node stack?');
         meta.bfuncNode = funcNodeStack[funcNodeStack.length - 1];
         break;
       }

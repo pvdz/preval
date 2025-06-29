@@ -129,8 +129,7 @@ function convert(node) {
       return PST.emptyStatement();
     }
     case 'ExportAllDeclaration': {
-      REJECT
-      break;
+      return PST.exportStar(node.source.value);
     }
     case 'ExportDefaultDeclaration': {
       REJECT

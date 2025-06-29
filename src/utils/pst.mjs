@@ -148,6 +148,13 @@ export function exportNamed(pairs) {
   };
 }
 
+export function exportStar(from) {
+  return {
+    type: 'ExportStar',
+    from, // string
+  }
+}
+
 export function expressionStatement(expression) {
   return {
     type: 'ExpressionStatement',

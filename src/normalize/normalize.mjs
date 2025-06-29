@@ -515,7 +515,10 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
         return ASSERT(false); // This should not be visited since it is the first thing to be called and the node should not occur again.
 
       case 'ExportAllDeclaration':
-        TODO;
+        // `export * from 'abc'`
+        // Is there anything we have to do for this?
+        // console.log(body[i])
+        // TODO;
         return false;
 
       // These should not appear. Either because they're not allowed (with), or because they're internal nodes
@@ -14664,6 +14667,12 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
       return true;
     }
 
+    if (!node.specifiers.length) {
+      // `import from 'foo'`
+      vlog('Node has no specifiers')
+      return;
+    }
+
     if (node.specifiers.length > 1) {
       rule('Imports should have one specifier');
       example('import a, {b} from "c"', 'import a from "c"; import {b} from "c"');
@@ -14681,7 +14690,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
     }
 
     const spec = node.specifiers[0];
-    ASSERT(spec);
+    ASSERT(spec, 'missing import specifier', node);
 
     if (spec.type === 'ImportDefaultSpecifier') {
       // Spec wise, a default export is really just this, so we should just normalize this variation away.

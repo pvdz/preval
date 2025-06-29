@@ -11,7 +11,10 @@
 `````js filename=intro
 let x = $(10);
 var a = function(){ return x; }; // Closure, making trivial analysis harder
-var b = {set x(n){ x = $(30, 'from set'); }, get x() { return $(40, 'from get')}};
+var b = {
+  set x(n) { x = $(30, 'from set'); },
+  get x() { return $(40, 'from get'); }
+};
 a = 2;
 b.x = x;
 x = $(20);

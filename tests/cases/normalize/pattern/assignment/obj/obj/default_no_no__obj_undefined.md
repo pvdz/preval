@@ -64,6 +64,7 @@ if (tmpObjPatternCrashTest) {
 ## Todos triggered
 
 
+- (todo) property on nullable; unreachable or hard error?
 - (todo) type trackeed tricks can possibly support static $boolean_constructor
 
 

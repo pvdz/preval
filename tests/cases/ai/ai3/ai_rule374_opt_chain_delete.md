@@ -345,6 +345,7 @@ tmpCallComplexCallee();
 
 
 - (todo) access object property that also exists on prototype? $object_hasOwnProperty
+- (todo) property on nullable; unreachable or hard error?
 
 
 ## Globals

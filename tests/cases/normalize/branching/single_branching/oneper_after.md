@@ -280,6 +280,7 @@ X();
 
 
 - (todo) fixme: spyless vars and labeled nodes
+- (todo) property on nullable; unreachable or hard error?
 
 
 ## Globals

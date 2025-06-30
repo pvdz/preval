@@ -64,7 +64,7 @@ if (tmpObjPatternCrashTest) {
 ## Todos triggered
 
 
-None
+- (todo) property on nullable; unreachable or hard error?
 
 
 ## Globals

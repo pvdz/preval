@@ -52,6 +52,10 @@ function _expandoSplitting(fdata) {
             vlog('- At least one member expression to the target was computed, bailing');
             return true;
           }
+          if (['prototype', 'name', 'length'].includes(read.parentNode.property.name)) {
+            vlog('- Reading proto, name, or length from function');
+            return;
+          }
           if (read.parentNode.property.name in Function.prototype) {
             // I guess we just ignore this. It doesn't break anything and it doesn't help anything.
             return;

@@ -93,6 +93,7 @@ $(y);
 
 
 - (todo) fixme: spyless vars and labeled nodes
+- (todo) property on nullable; unreachable or hard error?
 - (todo) support array reads statement type EmptyStatement
 - (todo) support array reads statement type ExpressionStatement
 - (todo) support array reads statement type VarStatement

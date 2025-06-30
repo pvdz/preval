@@ -148,6 +148,7 @@ $(a, b, c, d);
 
 
 - (todo) objects in isFree check
+- (todo) trying to assign to a property of a primitive, indication of preval issue?
 
 
 ## Globals

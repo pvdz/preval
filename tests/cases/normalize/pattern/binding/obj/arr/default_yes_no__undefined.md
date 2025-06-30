@@ -63,6 +63,7 @@ $(`bad`);
 ## Todos triggered
 
 
+- (todo) property on nullable; unreachable or hard error?
 - (todo) support array reads statement type ExpressionStatement
 
 

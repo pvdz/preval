@@ -73,6 +73,7 @@ if (tmpIfTest$1) {
 
 
 - (todo) Deal with array spreads in arr mutation?
+- (todo) property on nullable; unreachable or hard error?
 - (todo) support array reads statement type ExpressionStatement
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
 

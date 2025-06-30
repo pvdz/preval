@@ -707,7 +707,7 @@ export const BUILTIN_SYMBOLS = new Map([
   Array.from(NODEJS_REQUIRE.entries()),
 ].flat());
 
-// Resolve the prototype symbol to its instance string
+// Resolve the prototype symbol to its instance string. List must keep up to date or proto_prop_reads will fail
 export const protoToInstName = new Map([
   [symbo('Boolean', 'prototype'), 'boolean'],
   [symbo('Number', 'prototype'), 'number'],
@@ -726,6 +726,7 @@ export const protoToInstName = new Map([
   [symbo('Error', 'prototype'), 'error'],
   [symbo('TypeError', 'prototype'), 'typeError'],
 ]);
+export const instaToProtoName = new Map(Array.from(protoToInstName.entries()).map(([key, value]) => [value, key]));
 
 // These methods do not trigger side effects, they don't coerce their args (ignore them, or only test them verbatim)
 export const BUILTIN_FUNCS_NO_CTXT_NON_COERCE = new Set([

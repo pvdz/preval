@@ -80,6 +80,7 @@ $(result, x);
 - (todo) support array reads statement type ExpressionStatement
 - (todo) support array reads statement type VarStatement
 - (todo) support array reads statement type WhileStatement
+- (todo) trying to assign to a property of a primitive, indication of preval issue?
 - (todo) type trackeed tricks can possibly support static $array_reduce
 
 

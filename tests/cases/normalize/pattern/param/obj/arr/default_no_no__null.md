@@ -64,6 +64,7 @@ $(tmpCalleeParam);
 
 
 - (todo) Deal with array spreads in arr mutation?
+- (todo) property on nullable; unreachable or hard error?
 
 
 ## Globals

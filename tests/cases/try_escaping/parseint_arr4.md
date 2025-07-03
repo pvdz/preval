@@ -35,7 +35,7 @@ $(tmpCalleeParam);
 `````js filename=intro
 const arr /*:array*/ /*truthy*/ = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const x /*:primitive*/ = arr[0];
+  const x /*:string*/ = arr[0];
   $(x);
   if (x) {
     const el /*:primitive*/ /*truthy*/ = $dotCall($array_shift, arr, `shift`);
@@ -44,7 +44,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     break;
   }
 }
-const tmpCalleeParam /*:primitive*/ = arr[0];
+const tmpCalleeParam /*:string*/ = arr[0];
 $(tmpCalleeParam);
 `````
 

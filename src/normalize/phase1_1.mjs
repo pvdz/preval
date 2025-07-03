@@ -237,6 +237,139 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
   const minit = enableTiming && performance.now();
   TIMING.init = minit - mstart;
 
+  fdata.globallyUniqueNamingRegistry.forEach((meta, varName) => {
+    if (!meta.hasRangeCheck) return;
+    if (!meta.isLet) return; // Should go up/down (TODO: maybe we don't care as much and the range check still helps for array access?)
+    if (meta.writes.length < 2) return; // init and update
+    if (meta.reads.length < 2) return; // we already found the range check but we would need another observation
+
+    // We're looking for cases where we can apply a clear min/max bound for vars, like loop counters
+    // - Record the initial value
+    // - Confirm one assignment does a ++x kind of update
+    // - Confirm any other assignment is writing numbers
+    // - Confirm numeric assignments don't go out of bounds
+    // - Confirm that the update mutation happens inside the range check `if`
+    // Then... I guess all reads can be guaranteed to be bound
+
+    let initial;
+    let step;
+    let boundsRead;
+    let boundsValue;
+    let assigns = [];
+
+    if (!meta.writes.every(write => {
+      if (write.kind === 'var') {
+        if (!AST.isNumberLiteral(write.parentNode.init)) return false;
+        initial = AST.getPrimitiveValue(write.parentNode.init);
+        return true;
+      }
+
+      const assign = write.parentNode;
+      const rhs = assign.right;
+      if (rhs.type === 'BinaryExpression') {
+        if (step !== undefined) return false; // dont update multiple times. TODO: we can support this too why not..?
+        // Confirm self-updating pattern. We will have to do the other one later (++x vs x++)
+        if (rhs.operator !== '+' && rhs.operator !== '-') return false; // Simple steps only. TODO: what else would be ok here?
+        if (rhs.left.type === 'Identifier' && rhs.left.name === varName && AST.isNumberLiteral(rhs.right)) {
+          step = (rhs.operator === '-' ? -1 : 1) * AST.getPrimitiveValue(rhs.right);
+          if (!isFinite(step)) return false; // nan/infinite
+          return true;
+        }
+        else if (rhs.right.type === 'Identifier' && rhs.right.name === varName && AST.isNumberLiteral(rhs.left)) {
+          step = (rhs.operator === '-' ? -1 : 1) * AST.getPrimitiveValue(rhs.left);
+          if (!isFinite(step)) return false; // nan/infinite
+          return true;
+        }
+        else {
+          return false; // Only allow assignments of numerics and the one self-updater
+        }
+      }
+      if (!AST.isNumberLiteral(rhs)) return false;
+      assigns.push(AST.getPrimitiveValue(rhs)); // We can't check this yet
+    })) return;
+    if (initial === undefined) return;
+
+    // Search for the range check. Make sure there is only one
+    if (!meta.reads.every(read => {
+      if (read.parentNode.type === 'BinaryExpression') {
+        if ('<=>='.includes(read.parentNode.operator)) {
+          if (boundsRead) {
+            todo('can we support multi range check on variable and still assert bounds?');
+            return false;
+          }
+          const lhs = read.parentNode.left;
+          const rhs = read.parentNode.right;
+          if (lhs === read && AST.isNumberLiteral(rhs)) {
+            boundsValue = AST.getPrimitiveValue(rhs);
+            boundsRead = read;
+            return true;
+          }
+          if (rhs === read && AST.isNumberLiteral(lhs)) {
+            boundsValue = AST.getPrimitiveValue(lhs);
+            boundsRead = read;
+            return true;
+          }
+          // Since this is a range check on this read, it must mean the other arg was not a numeric literal. we must bail now.
+          return false;
+        }
+        // Ignore other binary expressions
+        return true;
+      }
+      // Ignore other expressions
+      return true;
+    })) return;
+    if (!boundsRead) return false;
+
+    // We must now have a range check in boundsRead, a min/max value, a self-increment, a step, and all assigns.
+    vlog('- Bounds check for', varName,': initial=', initial, ', bounds:', boundsValue, ', step:', step);
+
+    // Now verify that the mutation happens inside the range check
+    // `if (x < 100) x = x + 1;` not `x = x + 1; if (x < 100) ...`
+    // The bounds check ought to be stored in a var. We'll require it to be fresh for now but (TODO) we can probably work with lets too.
+    // This var must be the test of an `if` and all other reads should happen in one branch or the other (but not both).
+    // Those constraints may be eased later. For now that is the target pattern.
+    const decl = boundsRead.blockBody[boundsRead.blockIndex];
+    if (decl.type !== 'VarStatement') return;
+    if (decl.kind !== 'const') return;
+    const rangeCheckName = decl.id.name;
+    const rangeCheckMeta = fdata.globallyUniqueNamingRegistry.get(rangeCheckName);
+    if (rangeCheckMeta.reads.length !== 1) return; // Expecting `const tmp = x < 100; if (tmp)` sort of struct. One read.
+    const ifStmt = rangeCheckMeta.reads[0].parentNode;
+    if (ifStmt.type !== 'IfStatement') return;
+    if (rangeCheckMeta.reads[0].parentProp !== 'test') return;
+    // All reads must be in one branch of this `if`
+    const start = ifStmt.consequent.$p.npid;
+    const mid = ifStmt.alternate.$p.npid;
+    const end = ifStmt.$p.lastPid;
+    let dir = undefined;
+    if (!meta.reads.every(read => {
+      if (read === boundsRead) return true;
+      const pid = read.node.$p.npid
+      if (pid > start && pid < mid) {
+        if (dir === false) return false; // Already saw a read in the else-branch
+        dir = true;
+        return true;
+      }
+      if (pid > mid && pid <= end) {
+        if (dir === true) return false; // Already saw a read in the then-branch
+        dir = false;
+        return true;
+      }
+      return false; // saw a pid outside of this `if`-node
+    })) return;
+
+    // One last thing; confirm the step goes in the correct direction
+    if (initial - boundsValue > 0 && step > 0) return false; // bound is under the initial but the value only goes up
+    else if (initial - boundsValue < 0 && step < 0) return false; // bound is above the initial but the value only goes down
+    // There is an initial==boundsvalue case but I thiiiink it's not an issue here? The first check will immediately fail in that case.
+
+    vlog('- I think we have now proven that', varName, 'is bound between', initial, 'and', boundsValue, 'with a step of', step);
+    meta.isRangeBound = true;
+    meta.rangeMin = Math.min(initial, boundsValue);
+    meta.rangeMax = Math.max(initial, boundsValue);
+    meta.rangeStep = step;
+  });
+
   const now = Date.now();
   group('Walking AST to collect func call arg types...');
   walk(_callWalker, ast, 'ast');

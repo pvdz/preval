@@ -19,8 +19,8 @@ $(x);
 
 `````js filename=intro
 const tmpCalleeParam /*:array*/ /*truthy*/ = [`pass2`];
-const tmpClusterSSA_tmpArrPatternStep /*:unknown*/ = $(tmpCalleeParam);
-const tmpArrPatternSplat$1 /*:array*/ /*truthy*/ = [...tmpClusterSSA_tmpArrPatternStep];
+const tmpSSA_tmpArrPatternStep /*:unknown*/ = $(tmpCalleeParam);
+const tmpArrPatternSplat$1 /*:array*/ /*truthy*/ = [...tmpSSA_tmpArrPatternStep];
 const tmpAPBD$1 /*:unknown*/ = tmpArrPatternSplat$1[0];
 const tmpIfTest$1 /*:boolean*/ = tmpAPBD$1 === undefined;
 if (tmpIfTest$1) {
@@ -37,8 +37,8 @@ if (tmpIfTest$1) {
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpClusterSSA_tmpArrPatternStep = $([`pass2`]);
-const tmpAPBD$1 = [...tmpClusterSSA_tmpArrPatternStep][0];
+const tmpSSA_tmpArrPatternStep = $([`pass2`]);
+const tmpAPBD$1 = [...tmpSSA_tmpArrPatternStep][0];
 if (tmpAPBD$1 === undefined) {
   x = $(`fail`);
   $(x);
@@ -104,6 +104,7 @@ if (tmpIfTest$1) {
 - (todo) support array reads statement type ExpressionStatement
 - (todo) support array reads statement type VarStatement
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+- (todo) what other ways do member expressions still appear? ExpressionStatement
 
 
 ## Globals

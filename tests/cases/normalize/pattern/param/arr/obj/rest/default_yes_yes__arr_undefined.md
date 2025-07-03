@@ -21,9 +21,9 @@ $(f([undefined, 20, 30], 200));
 
 `````js filename=intro
 const tmpCalleeParam$1 /*:object*/ /*truthy*/ = { a: `pass` };
-const tmpClusterSSA_tmpCalleeParam$3 /*:unknown*/ = $(tmpCalleeParam$1);
+const tmpSSA_tmpCalleeParam$3 /*:unknown*/ = $(tmpCalleeParam$1);
 const tmpCalleeParam$5 /*:array*/ /*truthy*/ = [];
-const x /*:unknown*/ = $objPatternRest(tmpClusterSSA_tmpCalleeParam$3, tmpCalleeParam$5, undefined);
+const x /*:unknown*/ = $objPatternRest(tmpSSA_tmpCalleeParam$3, tmpCalleeParam$5, undefined);
 $(x);
 `````
 
@@ -32,8 +32,8 @@ $(x);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpClusterSSA_tmpCalleeParam$3 = $({ a: `pass` });
-$($objPatternRest(tmpClusterSSA_tmpCalleeParam$3, [], undefined));
+const tmpSSA_tmpCalleeParam$3 = $({ a: `pass` });
+$($objPatternRest(tmpSSA_tmpCalleeParam$3, [], undefined));
 `````
 
 
@@ -94,6 +94,7 @@ $(tmpCalleeParam$7);
 - (todo) support array reads statement type ExpressionStatement
 - (todo) support array reads statement type VarStatement
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+- (todo) what other ways do member expressions still appear? ExpressionStatement
 
 
 ## Globals

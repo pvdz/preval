@@ -36,8 +36,8 @@
 
 
 `````js filename=intro
-const tmpFree /*:(primitive)=>number*/ = function $free($$0) {
-  const a /*:primitive*/ = $$0;
+const tmpFree /*:(string)=>number*/ = function $free($$0) {
+  const a /*:string*/ = $$0;
   debugger;
   const b /*:number*/ = $Number_parseInt(a);
   const tmpRet /*:number*/ = b / 1;
@@ -45,7 +45,7 @@ const tmpFree /*:(primitive)=>number*/ = function $free($$0) {
 };
 const arr /*:array*/ /*truthy*/ = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const a$1 /*:primitive*/ = arr[2];
+  const a$1 /*:string*/ = arr[2];
   $(a$1);
   const c /*:number*/ = $frfr(tmpFree, a$1);
   if (c) {
@@ -55,7 +55,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     $dotCall($array_push, arr, `push`, M);
   }
 }
-const tmpCalleeParam /*:primitive*/ = arr[1];
+const tmpCalleeParam /*:string*/ = arr[1];
 $(tmpCalleeParam);
 `````
 

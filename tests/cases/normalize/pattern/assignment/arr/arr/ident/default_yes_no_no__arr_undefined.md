@@ -63,6 +63,7 @@ if (tmpIfTest) {
 
 - (todo) Deal with array spreads in arr mutation?
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+- (todo) what other ways do member expressions still appear? ExpressionStatement
 
 
 ## Globals

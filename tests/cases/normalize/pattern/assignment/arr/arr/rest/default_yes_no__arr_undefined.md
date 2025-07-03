@@ -18,8 +18,8 @@ $(x);
 
 
 `````js filename=intro
-const tmpClusterSSA_tmpArrPatternStep /*:unknown*/ = $(`pass`);
-const tmpArrPatternSplat$1 /*:array*/ /*truthy*/ = [...tmpClusterSSA_tmpArrPatternStep];
+const tmpSSA_tmpArrPatternStep /*:unknown*/ = $(`pass`);
+const tmpArrPatternSplat$1 /*:array*/ /*truthy*/ = [...tmpSSA_tmpArrPatternStep];
 x = $dotCall($array_slice, tmpArrPatternSplat$1, `slice`, 0);
 $(x);
 `````
@@ -29,8 +29,8 @@ $(x);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpClusterSSA_tmpArrPatternStep = $(`pass`);
-x = $dotCall($array_slice, [...tmpClusterSSA_tmpArrPatternStep], `slice`, 0);
+const tmpSSA_tmpArrPatternStep = $(`pass`);
+x = $dotCall($array_slice, [...tmpSSA_tmpArrPatternStep], `slice`, 0);
 $(x);
 `````
 
@@ -74,6 +74,7 @@ $(x);
 - (todo) access object property that also exists on prototype? $array_slice
 - (todo) type trackeed tricks can possibly support static $array_slice
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+- (todo) what other ways do member expressions still appear? ExpressionStatement
 
 
 ## Globals

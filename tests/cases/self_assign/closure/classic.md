@@ -114,8 +114,8 @@ let self_closing_decoder /*:(unknown, unknown)=>unknown*/ = function ($$0, $$1) 
       self_closing_decoder.SSEYog = true;
     } else {
     }
-    const zxTUZrtMJr /*:primitive*/ = data_arr[0];
-    const SwPwsvZafKnIEsHOu$mUB /*:primitive*/ = silly_compute + zxTUZrtMJr;
+    const zxTUZrtMJr /*:string*/ = data_arr[0];
+    const SwPwsvZafKnIEsHOu$mUB /*:string*/ = silly_compute + zxTUZrtMJr;
     const cLbnPHF__jFdQ /*:unknown*/ = thisclosurebecomesargumentsobj[SwPwsvZafKnIEsHOu$mUB];
     if (cLbnPHF__jFdQ) {
       return cLbnPHF__jFdQ;
@@ -154,8 +154,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 const tmpCalleeParam$53 /*:unknown*/ = data_decoder(467);
 $(tmpCalleeParam$53);
-const tmpCalleeParam /*:primitive*/ = data_arr[0];
-const tmpCalleeParam$1 /*:primitive*/ = data_arr[1];
+const tmpCalleeParam /*:string*/ = data_arr[0];
+const tmpCalleeParam$1 /*:string*/ = data_arr[1];
 $(tmpCalleeParam, tmpCalleeParam$1);
 `````
 

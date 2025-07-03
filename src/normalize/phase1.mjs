@@ -290,7 +290,6 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         node.$p.paramNames = []; // Program ends up as a `meta.bfuncNode` in some cases, where this array is expected to exist, so leave it.
         loopNodeStack.push(null);
 
-
         // Must do this before visiting or the walker gets confused
         // Reminder: code gets parsed between normalization and phase1 so we must convert here, too
         if (firstAfterParse) {
@@ -339,6 +338,26 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         const right = node.right;
         const rip = AST.isPrimitive(right);
         if (rip) right.$p.primitiveNodeValue = AST.getPrimitiveValue(right);
+
+        if ('<=>='.includes(node.operator) && (!lip !== !rip)) {
+          // Check whether this is a range check on an ident and a number
+          if (lip) {
+            if (AST.isNumberLiteral(node.left) && node.right.type === 'Identifier') {
+              const meta = fdata.globallyUniqueNamingRegistry.get(node.left.name);
+              if (meta) {
+                meta.hasRangeCheck = true;
+              }
+            }
+          }
+          else if (rip) {
+            if (AST.isNumberLiteral(node.right) && node.left.type === 'Identifier') {
+              const meta = fdata.globallyUniqueNamingRegistry.get(node.right.name);
+              if (meta) {
+                meta.hasRangeCheck = true;
+              }
+            }
+          }
+        }
         break;
       }
 
@@ -1209,12 +1228,12 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         const name = node.id.name;
         const init = node.init;
         const meta = globallyUniqueNamingRegistry.get(name);
-        //const declWriteRef = meta.writes[meta.writes.length - 1]; // Last write should be this binding
         if (node.kind === 'const') {
           vlog('- marking', meta.uniqueName, 'as constant, ref set to', init.type);
           ASSERT(meta);
           meta.isConstant = true;
-        } else if (node.kind === 'let') {
+        }
+        else if (node.kind === 'let') {
           meta.isLet = true;
         }
         meta.isImplicitGlobal = false;

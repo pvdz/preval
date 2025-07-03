@@ -41,17 +41,9 @@ const arrB /*:array*/ /*truthy*/ = [
 ];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(`protect`);
-  const tmpBinLhs /*:primitive*/ = arrB[51];
-  const abeq /*:boolean*/ = tmpBinLhs === 712261;
-  if (abeq) {
-    break;
-  } else {
-    const arrval /*:primitive*/ /*truthy*/ = $dotCall($array_shift, arrB, `shift`);
-    $dotCall($array_push, arrB, `push`, arrval);
-  }
+  const arrval /*:primitive*/ /*truthy*/ = $dotCall($array_shift, arrB, `shift`);
+  $dotCall($array_push, arrB, `push`, arrval);
 }
-const tmpCalleeParam /*:primitive*/ = arrB[0];
-$(tmpCalleeParam);
 `````
 
 
@@ -72,13 +64,8 @@ const arrB = [
 ];
 while (true) {
   $(`protect`);
-  if (arrB[51] === 712261) {
-    break;
-  } else {
-    $dotCall($array_push, arrB, `push`, $dotCall($array_shift, arrB, `shift`));
-  }
+  $dotCall($array_push, arrB, `push`, $dotCall($array_shift, arrB, `shift`));
 }
-$(arrB[0]);
 `````
 
 
@@ -89,18 +76,9 @@ With rename=true
 const a = [ "body", "abOPIoHFut:bwlFaSsnkTXHOCpGGeeFsJMHCLEPCWr", "return (function() ", "iframe", "[?&]", "translate(-50%, -50%) scale(", "url", "1362209nkUUHI", "replace" ];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( "protect" );
-  const b = a[ 51 ];
-  const c = b === 712261;
-  if (c) {
-    break;
-  }
-  else {
-    const d = $dotCall( $array_shift, a, "shift" );
-    $dotCall( $array_push, a, "push", d );
-  }
+  const b = $dotCall( $array_shift, a, "shift" );
+  $dotCall( $array_push, a, "push", b );
 }
-const e = a[ 0 ];
-$( e );
 `````
 
 

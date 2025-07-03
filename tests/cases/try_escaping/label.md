@@ -126,6 +126,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 - (todo) Support this node type in isFree: LabeledStatement
 - (todo) access object property that also exists on prototype? $array_reverse
 - (todo) support array reads statement type WhileStatement
+- (todo) support builtin $array_reverse for array escape analysis
 
 
 ## Globals

@@ -40,18 +40,6 @@ $(arrB[0]);
 
 
 `````js filename=intro
-const tmpFree /*:(primitive, primitive)=>boolean*/ = function $free($$0, $$1) {
-  const a /*:primitive*/ = $$0;
-  const b /*:primitive*/ = $$1;
-  debugger;
-  const aint /*:number*/ = $Number_parseInt(a);
-  const bint /*:number*/ = $Number_parseInt(b);
-  const a1 /*:number*/ = aint / 1;
-  const b2 /*:number*/ = bint / 2;
-  const ab /*:number*/ = a1 * b2;
-  const tmpRet /*:boolean*/ = ab === 712261;
-  return tmpRet;
-};
 const arrB /*:array*/ /*truthy*/ = [
   `body`,
   `abOPIoHFut:bwlFaSsnkTXHOCpGGeeFsJMHCLEPCWr`,
@@ -65,18 +53,9 @@ const arrB /*:array*/ /*truthy*/ = [
 ];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(`protect`);
-  const a$1 /*:primitive*/ = arrB[51];
-  const b$1 /*:primitive*/ = arrB[18];
-  const abeq /*:boolean*/ = $frfr(tmpFree, a$1, b$1);
-  if (abeq) {
-    break;
-  } else {
-    const arrval /*:primitive*/ /*truthy*/ = $dotCall($array_shift, arrB, `shift`);
-    $dotCall($array_push, arrB, `push`, arrval);
-  }
+  const arrval /*:primitive*/ /*truthy*/ = $dotCall($array_shift, arrB, `shift`);
+  $dotCall($array_push, arrB, `push`, arrval);
 }
-const tmpCalleeParam /*:primitive*/ = arrB[0];
-$(tmpCalleeParam);
 `````
 
 
@@ -84,13 +63,6 @@ $(tmpCalleeParam);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpFree = function $free(a, b) {
-  const aint = $Number_parseInt(a);
-  const bint = $Number_parseInt(b);
-  const a1 = aint / 1;
-  const tmpRet = a1 * (bint / 2) === 712261;
-  return tmpRet;
-};
 const arrB = [
   `body`,
   `abOPIoHFut:bwlFaSsnkTXHOCpGGeeFsJMHCLEPCWr`,
@@ -104,13 +76,8 @@ const arrB = [
 ];
 while (true) {
   $(`protect`);
-  if (tmpFree(arrB[51], arrB[18])) {
-    break;
-  } else {
-    $dotCall($array_push, arrB, `push`, $dotCall($array_shift, arrB, `shift`));
-  }
+  $dotCall($array_push, arrB, `push`, $dotCall($array_shift, arrB, `shift`));
 }
-$(arrB[0]);
 `````
 
 
@@ -118,34 +85,12 @@ $(arrB[0]);
 With rename=true
 
 `````js filename=intro
-const a = function b($$0,$$1 ) {
-  const c = $$0;
-  const d = $$1;
-  debugger;
-  const e = $Number_parseInt( c );
-  const f = $Number_parseInt( d );
-  const g = e / 1;
-  const h = f / 2;
-  const i = g * h;
-  const j = i === 712261;
-  return j;
-};
-const k = [ "body", "abOPIoHFut:bwlFaSsnkTXHOCpGGeeFsJMHCLEPCWr", "return (function() ", "iframe", "[?&]", "translate(-50%, -50%) scale(", "url", "1362209nkUUHI", "replace" ];
+const a = [ "body", "abOPIoHFut:bwlFaSsnkTXHOCpGGeeFsJMHCLEPCWr", "return (function() ", "iframe", "[?&]", "translate(-50%, -50%) scale(", "url", "1362209nkUUHI", "replace" ];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( "protect" );
-  const l = k[ 51 ];
-  const m = k[ 18 ];
-  const n = o( a, l, m );
-  if (n) {
-    break;
-  }
-  else {
-    const p = $dotCall( $array_shift, k, "shift" );
-    $dotCall( $array_push, k, "push", p );
-  }
+  const b = $dotCall( $array_shift, a, "shift" );
+  $dotCall( $array_push, a, "push", b );
 }
-const q = k[ 0 ];
-$( q );
 `````
 
 

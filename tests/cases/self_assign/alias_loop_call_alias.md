@@ -64,24 +64,11 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 
 `````js filename=intro
-const tmpFree$1 /*:(primitive)=>boolean*/ = function $free($$0) {
-  const u /*:primitive*/ = $$0;
-  debugger;
-  const v /*:number*/ = $Number_parseInt(u);
-  const tmpRet$1 /*:boolean*/ = v === 330166;
-  return tmpRet$1;
-};
 const main_data_arr /*:array*/ /*truthy*/ = [`ike there `, `wgcCwgZikg`, `LmNvbmNhdC`, `eBestCandi`, ` using the`];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmp2$1 /*:primitive*/ = main_data_arr[4336];
   $(`testing`);
-  const w /*:boolean*/ = $frfr(tmpFree$1, tmp2$1);
-  if (w) {
-    break;
-  } else {
-    const tmpMCPa /*:primitive*/ /*truthy*/ = $dotCall($array_shift, main_data_arr, `shift`);
-    $dotCall($array_push, main_data_arr, `push`, tmpMCPa);
-  }
+  const tmpMCPa /*:primitive*/ /*truthy*/ = $dotCall($array_shift, main_data_arr, `shift`);
+  $dotCall($array_push, main_data_arr, `push`, tmpMCPa);
 }
 `````
 
@@ -90,19 +77,10 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpFree$1 = function $free(u) {
-  const tmpRet$1 = $Number_parseInt(u) === 330166;
-  return tmpRet$1;
-};
 const main_data_arr = [`ike there `, `wgcCwgZikg`, `LmNvbmNhdC`, `eBestCandi`, ` using the`];
 while (true) {
-  const tmp2$1 = main_data_arr[4336];
   $(`testing`);
-  if (tmpFree$1(tmp2$1)) {
-    break;
-  } else {
-    $dotCall($array_push, main_data_arr, `push`, $dotCall($array_shift, main_data_arr, `shift`));
-  }
+  $dotCall($array_push, main_data_arr, `push`, $dotCall($array_shift, main_data_arr, `shift`));
 }
 `````
 
@@ -111,25 +89,11 @@ while (true) {
 With rename=true
 
 `````js filename=intro
-const a = function b($$0 ) {
-  const c = $$0;
-  debugger;
-  const d = $Number_parseInt( c );
-  const e = d === 330166;
-  return e;
-};
-const f = [ "ike there ", "wgcCwgZikg", "LmNvbmNhdC", "eBestCandi", " using the" ];
+const a = [ "ike there ", "wgcCwgZikg", "LmNvbmNhdC", "eBestCandi", " using the" ];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const g = f[ 4336 ];
   $( "testing" );
-  const h = i( a, g );
-  if (h) {
-    break;
-  }
-  else {
-    const j = $dotCall( $array_shift, f, "shift" );
-    $dotCall( $array_push, f, "push", j );
-  }
+  const b = $dotCall( $array_shift, a, "shift" );
+  $dotCall( $array_push, a, "push", b );
 }
 `````
 

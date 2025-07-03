@@ -479,6 +479,11 @@ export function registerGlobalIdent(
     //       For constants that's easy but for lets this severely restricts what we can track. In most cases just the typeof.
     //       See getCleanTypingObject()
     typing: getCleanTypingObject(), // Set in phase1 and phase1.1
+    // hasRangeCheck: false, // Set in phase1, used in phase1.1 to determine isRangeBound
+    // isRangeBound: false, // Set in phase1, used in phase1.1, when true we know the lower and upper limits of this number ref.
+    // rangeMin: false, // Set in phase1, used in phase1.1, when isRangeBound is true, this is the lower bound
+    // rangeMax: false, // Set in phase1, used in phase1.1, when isRangeBound is true, this is the upper bound
+    // rangeStep: false, // Set in phase1, used in phase1.1, when isRangeBound is true, this is the step value
 
     // Array<undefined | ReturnType<getPrimitiveType>>, available after phase1.1
     // Only set for functions that get called at least once. And only for "ident" calls (that
@@ -1006,7 +1011,7 @@ export function getCleanTypingObject() {
     orredWith: undefined, // number. If set, this meta is the result of a bitwise OR expression with this literal and an unknown value
     xorredWith: undefined, // number. If set, this meta is the result of a bitwise XOR expression with this literal and an unknown value
 
-    returns: undefined, // Set<'undefined' | 'null' | 'boolean' | 'number' | 'string' | 'primitive' | '?'>, // Set for constant functions in phase1.1
+    returns: undefined, // Set<'undefined' | 'null' | 'boolean' | 'number' | 'string' | 'primitive' | '?'>, // Set for constant functions in phase1.1 or by builtins
   };
 }
 export function getUnknownTypingObject() {
@@ -1648,15 +1653,220 @@ function _inferNodeTyping(fdata, valueNode, allowIdentResolve) {
         }
       }
 
-      //hier gingen we voorheen misschien wel checken of wat array.shift() teruggeeft ofzo...
-      if (valueNode.object.type === 'Identifier' && valueNode.computed) {
+      if (valueNode.computed && valueNode.object.type === 'Identifier') {
         // The object needs to be an array literal const
         const ometa = fdata.globallyUniqueNamingRegistry.get(valueNode.object.name);
         const isArray = ometa.isConstant && ometa.writes.length === 1 && ometa.writes[0].parentNode.kind === 'const' && ometa.writes[0].parentNode.init.type === 'ArrayExpression';
         if (isArray) {
-          vlog('Object is an "array"');
+          const arrName = valueNode.object.name;
+          vlog('- The object part is an "array":', valueNode.object.name);
           // Prop is a number if it is a literal number, or if its a reference that was identified to be a number
-          let propIsNumber = AST.isNumberLiteral(valueNode.property);
+          const propIsNumberLit = AST.isNumberLiteral(valueNode.property);
+
+          // If we can assert the size of the array, and we can assert it only contains one type,then we can
+          // assert the type of the lookup accurately without having to worry about the `undefined` case.
+
+          // Phase1.1 only:
+          if (allowIdentResolve) {
+            if (propIsNumberLit) {
+              const index = AST.getPrimitiveValue(valueNode.property);
+              if (Number.isInteger(index) && index >= 0) {
+                const arrNode = ometa.writes[0].parentNode.init;
+                let arrType = arrNode.$p.arrFixedType; // mustBeType or undefined or null
+                let arrSize = arrNode.$p.arrFixedSize;
+                vlog('- memoized arr stats: size', arrSize, ', type:', arrType);
+                if (arrType === undefined) {
+                  arrNode.elements.every(e => {
+                    if (!e) {
+                      arrType = null;
+                      return false;
+                    }
+                    if (e.type === 'SpreadElement') {
+                      arrType = null;
+                      return false;
+                    }
+                    if (AST.isPrimitive(e)) {
+                      if (arrType) return AST.getPrimitiveType(e) === arrType;
+                      arrType = AST.getPrimitiveType(e);
+                      return true;
+                    }
+                    if (e.type === 'Identifier') {
+                      const m = fdata.globallyUniqueNamingRegistry.get(e.name);
+                      const mustBe = m?.typing.mustBeType;
+                      if (mustBe) {
+                        if (arrType) return mustBe === arrType;
+                        arrType = mustBe;
+                        return true;
+                      }
+                    }
+                    arrType = null;
+                    return false; // Unable to determine type right now
+                  });
+                }
+                vlog('- preliminary arr type:', arrType);
+                if (arrType && arrSize === undefined) {
+                  // Ok, but must also verify that we can prove that the array size does not change
+                  // - array can't escape
+                  // - support the pop/push cases, where one element is removed and immediately added
+                  arrSize = arrNode.elements.length;
+                  ometa.reads.every(arrRead => {
+                    // Escape can be pretty much anything that's not a member expression. even coercion when instance toString is replaced etc.
+                    // - `[1,2]+x` but `const arr = [1,2]; arr.toString = function(){this[0]=null;}; $(arr+'');` yikes.
+                    // MemberExpressions can be statement, assignment (left or right), init, delete arg
+                    // - We care about anything where we can't assert the mutation type (that's the point)
+                    // - We do worry about delete because elided elements return undefined.
+
+                    if (arrRead.parentNode.type === 'MemberExpression') {
+                      if (arrRead.grandNode.type === 'delete') {
+                        arrSize = null;
+                        arrType = null;
+                        return vlog('- bail: deleting prop');
+                      }
+                      // Can't allow assignment to .length so we must disallow assignment to non-number computed props and of course .length explicitly.
+                      if (arrRead.grandNode.type === 'AssignmentExpression' && arrRead.grandProp === 'left') {
+                        // There's no real valid reason for assigning to a property on an array that would not
+                        // violate assertions. The exception is writing the same type to an index property as
+                        // we know the array to be. TODO: validate that case.
+                        // - computed props may write to length
+                        // - index props may change the array subtype
+                        // - you have no real business writing to non-computed array props, except for length
+                        arrSize = null;
+                        arrType = null;
+                        return vlog('- bail: assigned value to prop');
+                      }
+
+                      // Other prop reads are fine? Can't be method call because that would be dotcall
+                      return true;
+                    }
+
+                    if (arrRead.parentNode.type === 'CallExpression') {
+                      // This is okay when
+                      // - used as context
+                      // - certain non-mutating builtins are called like slice and tostring
+                      // - certain builtins are called in tandem, like [pop|shift] + [push|unshift]
+
+                      const callNode = arrRead.parentNode;
+                      if (
+                        callNode.callee.type === 'Identifier' &&
+                        callNode.callee.name === SYMBOL_DOTCALL &&
+                        callNode.arguments[0]?.type === 'Identifier' &&
+                        arrRead.parentProp === 'arguments' &&
+                        arrRead.parentIndex === 1 // dotcall context
+                      ) {
+                        const method = callNode.arguments[0].name;
+                        switch (method) {
+                          case symbo('array', 'slice'):
+                            // Sort does not change the array size/type, only swaps elements.
+                          case symbo('array', 'sort'):
+                          {
+                            return true;
+                          }
+                          case symbo('array', 'pop'):
+                          case symbo('array', 'shift'):
+                          {
+                            // Okay if the next statement does a push/unshift as statement (that's the pattern although assign/init would also work)
+                            const next = arrRead.blockBody[arrRead.blockIndex + 1];
+                            // Checking `const tmp = arr.pop(); arr.push(tmp)`, where the popped element is reinjected verbatim
+                            if (
+                              arrRead.grandNode.type === 'VarStatement' &&
+                              next?.type === 'ExpressionStatement' &&
+                              next.expression.type === 'CallExpression' &&
+                              next.expression.arguments.length === 4 && // dotcall requires 3, plus the push/unshift arg
+                              next.expression.callee.type === 'Identifier' &&
+                              next.expression.callee.name === SYMBOL_DOTCALL &&
+                              next.expression.arguments[0]?.type === 'Identifier' &&
+                              (
+                                next.expression.arguments[0].name === symbo('array', 'push') ||
+                                next.expression.arguments[0].name === symbo('array', 'unshift')
+                              ) &&
+                              next.expression.arguments[1].type === 'Identifier' &&
+                              next.expression.arguments[1].name === arrName &&
+                              next.expression.arguments[3].type === 'Identifier' &&
+                              next.expression.arguments[3].name === arrRead.grandNode.id.name // the value that was just popped
+                            ) {
+                              // I think that's it.
+                              vlog('- validated pop/shift + push/unshift pattern');
+                              // Tag the other call so we can skip that check
+                              next.expression.$p.skipArrCheck = true;
+                              return true;
+                            } else {
+                              arrSize = null;
+                              arrType = null;
+                              return vlog('- bail: found pop/shift but next line was not a push/unshift;',
+                                arrRead.grandNode.type,
+                                next?.type,
+                                next?.expression?.type,
+                                next?.expression?.arguments?.length,
+                                next?.expression?.arguments?.[0]?.name,
+                                next?.expression?.arguments?.[1]?.name,
+                                next?.expression?.arguments?.[3]?.name,
+                                arrName,
+                                arrRead.grandNode.id?.name,
+                              );
+                            }
+                          }
+                          case symbo('array', 'unshift'):
+                          case symbo('array', 'push'):
+                          {
+                            if (arrRead.parentNode.$p.skipArrCheck) {
+                              vlog('- validated this unshift/push already');
+                              return true;
+                            } else {
+                              arrSize = null;
+                              arrType = null;
+                              return vlog('- bail: doing unshift/push on an array without pop/shift has multiple uncertainties');
+                            }
+                          }
+                          default: {
+                            if (BUILTIN_SYMBOLS.has(method)) {
+                              todo(`support builtin ${method} for array escape analysis`);
+                            }
+                            arrSize = null;
+                            arrType = null;
+                            return vlog('- bail: arr has unknown dotcall with method', method);
+                          }
+                        }
+                      }
+                      // Direct func calls that somehow use an array are all considered to leak it
+                      arrSize = null;
+                      arrType = null;
+                      return vlog('- bail: arr is part of regular func call', callNode.callee.name, callNode.arguments[0]?.name);
+                    }
+
+                    // Not sure what other usage is ok here. Binary expressions, unary expressions, new, etc. It's all bad.
+                    arrSize = null;
+                    arrType = null;
+                    return vlog('- bail: unknown other array usage');
+                  });
+                }
+                arrNode.$p.arrFixedSize = arrSize;
+                arrNode.$p.arrFixedType = arrType;
+                vlog('- final: arrSize:', arrSize, ', arrType:', arrType);
+                if (arrType && typeof arrSize === 'number') {
+                  // We should be in phase1.1 and can now determine a more concrete type
+                  if (index < arrSize) {
+                    vlog('- inferred type is', arrType);
+                    return createTypingObject({
+                      mustBeType: arrType,
+                      mustBePrimitive: PRIMITIVE_TYPE_NAMES_PREVAL.has(arrType),
+                    });
+                  } else {
+                    vlog('- inferred type is undefined because index is positive but oob');
+                    // We should know what the positive index properties are so this should return undefined...?
+                    return createTypingObject({
+                      mustBeType: 'undefined',
+                      mustBePrimitive: true,
+                      mustBeFalsy: true,
+                      mustBeTruthy: false,
+                    });
+                  }
+                }
+              }
+            }
+          }
+
+
+          let propIsNumber = propIsNumberLit;
           if (!propIsNumber && valueNode.property.type === 'Identifier') {
             const pmeta = fdata.globallyUniqueNamingRegistry.get(valueNode.property.name);
             propIsNumber = pmeta.typing.mustBeType === 'number';

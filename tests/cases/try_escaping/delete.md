@@ -35,7 +35,7 @@
 `````js filename=intro
 const arr /*:array*/ /*truthy*/ = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const x /*:primitive*/ = arr[1];
+  const x /*:string*/ = arr[1];
   try {
     $(x);
     delete arr[1];

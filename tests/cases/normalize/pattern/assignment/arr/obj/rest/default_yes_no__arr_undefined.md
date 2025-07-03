@@ -19,9 +19,9 @@ $(x);
 
 `````js filename=intro
 const tmpCalleeParam /*:object*/ /*truthy*/ = { a: `pass` };
-const tmpClusterSSA_tmpCalleeParam$1 /*:unknown*/ = $(tmpCalleeParam);
+const tmpSSA_tmpCalleeParam$1 /*:unknown*/ = $(tmpCalleeParam);
 const tmpCalleeParam$3 /*:array*/ /*truthy*/ = [];
-x = $objPatternRest(tmpClusterSSA_tmpCalleeParam$1, tmpCalleeParam$3, undefined);
+x = $objPatternRest(tmpSSA_tmpCalleeParam$1, tmpCalleeParam$3, undefined);
 $(x);
 `````
 
@@ -75,6 +75,7 @@ $(x);
 - (todo) Deal with array spreads in arr mutation?
 - (todo) support array reads statement type ExpressionStatement
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+- (todo) what other ways do member expressions still appear? ExpressionStatement
 
 
 ## Globals

@@ -35,7 +35,7 @@ $(arr[0]);
 `````js filename=intro
 const arr /*:array*/ /*truthy*/ = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const x /*:primitive*/ = arr[0];
+  const x /*:string*/ = arr[0];
   $(x);
   const y /*:number*/ = $Number_parseInt(x);
   if (y) {

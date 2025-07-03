@@ -20,14 +20,14 @@ $(f([undefined, 20, 30], 200));
 
 
 `````js filename=intro
-const tmpClusterSSA_tmpArrPatternStep /*:unknown*/ = $(`fail`);
-let tmpClusterSSA_tmpObjPatternCrashTest /*:boolean*/ = tmpClusterSSA_tmpArrPatternStep === undefined;
-if (tmpClusterSSA_tmpObjPatternCrashTest) {
+const tmpSSA_tmpArrPatternStep /*:unknown*/ = $(`fail`);
+let tmpSSA_tmpObjPatternCrashTest /*:boolean*/ = tmpSSA_tmpArrPatternStep === undefined;
+if (tmpSSA_tmpObjPatternCrashTest) {
 } else {
-  tmpClusterSSA_tmpObjPatternCrashTest = tmpClusterSSA_tmpArrPatternStep === null;
+  tmpSSA_tmpObjPatternCrashTest = tmpSSA_tmpArrPatternStep === null;
 }
-if (tmpClusterSSA_tmpObjPatternCrashTest) {
-  tmpClusterSSA_tmpArrPatternStep.cannotDestructureThis;
+if (tmpSSA_tmpObjPatternCrashTest) {
+  tmpSSA_tmpArrPatternStep.cannotDestructureThis;
   $(`ok`);
 } else {
   $(`ok`);
@@ -39,13 +39,13 @@ if (tmpClusterSSA_tmpObjPatternCrashTest) {
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpClusterSSA_tmpArrPatternStep = $(`fail`);
-let tmpClusterSSA_tmpObjPatternCrashTest = tmpClusterSSA_tmpArrPatternStep === undefined;
-if (!tmpClusterSSA_tmpObjPatternCrashTest) {
-  tmpClusterSSA_tmpObjPatternCrashTest = tmpClusterSSA_tmpArrPatternStep === null;
+const tmpSSA_tmpArrPatternStep = $(`fail`);
+let tmpSSA_tmpObjPatternCrashTest = tmpSSA_tmpArrPatternStep === undefined;
+if (!tmpSSA_tmpObjPatternCrashTest) {
+  tmpSSA_tmpObjPatternCrashTest = tmpSSA_tmpArrPatternStep === null;
 }
-if (tmpClusterSSA_tmpObjPatternCrashTest) {
-  tmpClusterSSA_tmpArrPatternStep.cannotDestructureThis;
+if (tmpSSA_tmpObjPatternCrashTest) {
+  tmpSSA_tmpArrPatternStep.cannotDestructureThis;
   $(`ok`);
 } else {
   $(`ok`);
@@ -125,6 +125,7 @@ $(tmpCalleeParam$1);
 - (todo) support array reads statement type ExpressionStatement
 - (todo) support array reads statement type VarStatement
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+- (todo) what other ways do member expressions still appear? ExpressionStatement
 
 
 ## Globals

@@ -125,6 +125,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 - (todo) objects in isFree check
 - (todo) regular property access of an ident feels tricky;
 - (todo) support array reads statement type WhileStatement
+- (todo) support builtin $array_reverse for array escape analysis
 
 
 ## Globals

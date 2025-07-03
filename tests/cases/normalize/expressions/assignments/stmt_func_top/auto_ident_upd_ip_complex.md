@@ -42,7 +42,7 @@ $(undefined);
 `````js filename=intro
 const b = { x: 1 };
 const tmpUpdObj = $($(b));
-const tmpUpdNum = $coerce(tmpUpdObj.x, `number`);
+const tmpUpdNum = Number(tmpUpdObj.x);
 tmpUpdObj.x = tmpUpdNum + 1;
 $(tmpUpdNum, b);
 $(undefined);

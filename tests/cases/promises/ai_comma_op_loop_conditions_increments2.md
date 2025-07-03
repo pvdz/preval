@@ -107,12 +107,12 @@ if (tmpCalleeParam) {
 }
 const log = [];
 if (tmpIfTest) {
-  const tmpStringConcatL$1 = $coerce(i, `plustr`);
+  const tmpStringConcatL$1 = i + ``;
   $dotCall($array_push, log, `push`, `loop_body_i=${tmpStringConcatL$1}_j=` + j);
   $(`loop_body_effect`, i, j);
-  let tmpClusterSSA_i$1 = $coerce(i, `number`) + 1;
+  let tmpClusterSSA_i$1 = Number(i) + 1;
   $(`inc_i_effect`, tmpClusterSSA_i$1);
-  let tmpClusterSSA_j$1 = $coerce(j, `number`) - 1;
+  let tmpClusterSSA_j$1 = Number(j) - 1;
   $(`inc_j_effect`, tmpClusterSSA_j$1);
   iter_count = 1;
   while (true) {

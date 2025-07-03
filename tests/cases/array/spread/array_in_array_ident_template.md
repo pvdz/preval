@@ -41,8 +41,8 @@ $(y);
 
 `````js filename=intro
 $(10);
-const tmpStringConcatR = $coerce($(`x`), `string`);
-const tmpBinBothRhs = $coerce($(`y`), `string`);
+const tmpStringConcatR = String($(`x`));
+const tmpBinBothRhs = String($(`y`));
 if ($) {
   $(20);
 }

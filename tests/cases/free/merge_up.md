@@ -74,7 +74,7 @@ const tmpFree = function $free(tmpStringConcatR, x$1) {
 const tmpUnaryArg = $spy(1);
 const x = +tmpUnaryArg;
 if (x) {
-  if ($frfr(tmpFree, $coerce($(`abc`), `string`), x)) {
+  if (tmpFree(String($(`abc`)), x)) {
     $(`it is 58`);
   }
 }

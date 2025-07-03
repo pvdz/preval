@@ -48,7 +48,7 @@ $(`1.00`);
 (This ought to be the final result)
 
 `````js filename=intro
-$($coerce($(0.30000000000000004), `string`));
+$(String($(0.30000000000000004)));
 const b = $(123.456);
 const c = b.toFixed(2);
 const d = b.toPrecision(4);

@@ -57,7 +57,7 @@ $(4);
 const tmpObjLitVal = function () {
   $(`PASS`);
 };
-$coerce($({ valueOf: tmpObjLitVal }), `number`);
+Number($({ valueOf: tmpObjLitVal }));
 const f = function (c) {
   $(1);
   $(2);

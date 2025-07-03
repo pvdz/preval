@@ -61,12 +61,12 @@ $(i);
 
 `````js filename=intro
 const tmpFree = function $free(n) {
-  const tmpRet = $coerce($Math_pow(n, 2) / 2, `string`);
+  const tmpRet = String($Math_pow(n, 2) / 2);
   return tmpRet;
 };
 let i = 0;
 while (true) {
-  $(i, $frfr(tmpFree, $(i) * 1));
+  $(i, tmpFree($(i) * 1));
   i = i + 1;
   if (i > 10) {
     break;

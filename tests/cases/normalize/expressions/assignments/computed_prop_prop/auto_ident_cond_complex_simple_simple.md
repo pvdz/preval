@@ -40,7 +40,7 @@ if ($(1)) {
   $(2);
 } else {
   const tmpClusterSSA_a = $($(100));
-  $coerce(tmpClusterSSA_a, `string`);
+  String(tmpClusterSSA_a);
   $(tmpClusterSSA_a);
 }
 `````

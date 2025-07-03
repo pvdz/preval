@@ -52,7 +52,7 @@ if (tmpIfTest) {
   $({ a: 999, b: 1000 }, b);
 } else {
   const tmpUpdObj = $($(b));
-  const tmpUpdInc = $coerce(tmpUpdObj.x, `number`) + 1;
+  const tmpUpdInc = Number(tmpUpdObj.x) + 1;
   tmpUpdObj.x = tmpUpdInc;
   $(tmpUpdInc);
   $(tmpUpdInc, b);

@@ -43,7 +43,7 @@ const tmpCompObj$1 = $(b);
 const tmpCalleeParam$1 = $(`d`);
 const tmpNestedPropAssignRhs = tmpCompObj$1[tmpCalleeParam$1];
 tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
-$coerce(tmpNestedPropAssignRhs, `string`);
+String(tmpNestedPropAssignRhs);
 $(tmpNestedPropAssignRhs, b);
 `````
 

@@ -31,7 +31,7 @@ $(`result`, z);
 (This ought to be the final result)
 
 `````js filename=intro
-$(`result`, $coerce($(`unknown`), `number`));
+$(`result`, Number($(`unknown`)));
 `````
 
 

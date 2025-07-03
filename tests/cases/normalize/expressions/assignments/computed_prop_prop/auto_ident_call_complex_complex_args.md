@@ -37,7 +37,7 @@ $(a);
 `````js filename=intro
 const tmpCallComplexCallee = $($);
 const a = tmpCallComplexCallee($(1), $(2));
-$coerce(a, `string`);
+String(a);
 $(a);
 `````
 

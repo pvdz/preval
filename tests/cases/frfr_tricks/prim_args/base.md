@@ -54,11 +54,11 @@ $(rs);
 `````js filename=intro
 const tmpFree = function $free(xs$1, ys$1) {
   const one = $Number_parseInt(xs$1 + 5, 10);
-  const tmpRet = $coerce(one.slice(1, ys$1), `plustr`);
+  const tmpRet = one.slice(1, ys$1) + ``;
   return tmpRet;
 };
-const xs = $coerce($spy(`x`), `plustr`);
-$($frfr(tmpFree, xs, $coerce($spy(`y`), `plustr`)));
+const xs = $spy(`x`) + ``;
+$(tmpFree(xs, $spy(`y`) + ``));
 `````
 
 

@@ -127,7 +127,7 @@ const obj = {
   get getterProp() {
     const tmpPrevalAliasThis$1 = this;
     $(`getter_called`);
-    tmpPrevalAliasThis$1._getter_val = $coerce(tmpPrevalAliasThis$1._getter_val, `number`) + 1;
+    tmpPrevalAliasThis$1._getter_val = Number(tmpPrevalAliasThis$1._getter_val) + 1;
     const tmpReturnArg = tmpPrevalAliasThis$1._getter_val - 1;
     return tmpReturnArg;
   },

@@ -44,7 +44,7 @@ if (tmpChainRootProp == null) {
   $(undefined);
 } else {
   const tmpClusterSSA_a = tmpChainRootProp.x;
-  $coerce(tmpClusterSSA_a, `string`);
+  String(tmpClusterSSA_a);
   $(tmpClusterSSA_a);
 }
 `````

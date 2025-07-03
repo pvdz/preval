@@ -183,11 +183,11 @@ const r = {};
 let tmpSSA_e = function (c$2) {
   let tmpBinBothLhs = ``;
   if (!(c$2 < 45)) {
-    tmpBinBothLhs = tmpSSA_e($frfr(tmpFree, c$2));
+    tmpBinBothLhs = tmpSSA_e(tmpFree(c$2));
   }
   const tmpClusterSSA_c$3 = c$2 % 45;
   if (tmpClusterSSA_c$3 > 35) {
-    const tmpClusterSSA_tmpReturnArg = tmpBinBothLhs + $frfr(tmpFree$1, tmpClusterSSA_c$3);
+    const tmpClusterSSA_tmpReturnArg = tmpBinBothLhs + tmpFree$1(tmpClusterSSA_c$3);
     return tmpClusterSSA_tmpReturnArg;
   } else {
     const tmpClusterSSA_tmpReturnArg$1 = tmpBinBothLhs + $dotCall($number_toString, tmpClusterSSA_c$3, `toString`, 36);

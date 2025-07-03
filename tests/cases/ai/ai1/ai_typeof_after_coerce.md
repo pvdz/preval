@@ -31,7 +31,7 @@ $(`type_is_string`, `string`);
 (This ought to be the final result)
 
 `````js filename=intro
-$coerce($(`input_val`), `string`);
+String($(`input_val`));
 $(`type_is_string`, `string`);
 `````
 

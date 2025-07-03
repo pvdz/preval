@@ -39,7 +39,7 @@ $(a);
 const tmpNewCallee = $($);
 const tmpCalleeParam$1 = $(1);
 const tmpCalleeParam$3 = $(2);
-$coerce(new tmpNewCallee(tmpCalleeParam$1, tmpCalleeParam$3), `string`);
+String(new tmpNewCallee(tmpCalleeParam$1, tmpCalleeParam$3));
 $({ a: 999, b: 1000 });
 `````
 

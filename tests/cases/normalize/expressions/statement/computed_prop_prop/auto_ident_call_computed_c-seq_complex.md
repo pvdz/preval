@@ -39,7 +39,7 @@ $(a);
 `````js filename=intro
 const tmpMCCO = $({ $: $ });
 const tmpMCCP = $(`\$`);
-$coerce(tmpMCCO[tmpMCCP](1), `string`);
+String(tmpMCCO[tmpMCCP](1));
 $({ a: 999, b: 1000 });
 `````
 

@@ -52,7 +52,7 @@ if (tmpIfTest) {
 `````js filename=intro
 const x = $(3);
 $(x);
-let tmpClusterSSA_x = $coerce(x, `number`) + 1;
+let tmpClusterSSA_x = Number(x) + 1;
 $(tmpClusterSSA_x);
 if (tmpClusterSSA_x > 5) {
   $(tmpClusterSSA_x);

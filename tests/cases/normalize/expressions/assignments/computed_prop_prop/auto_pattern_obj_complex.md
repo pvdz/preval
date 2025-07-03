@@ -34,7 +34,7 @@ $(a);
 `````js filename=intro
 const tmpNestedAssignObjPatternRhs = $({ a: 1, b: 2 });
 const a = tmpNestedAssignObjPatternRhs.a;
-$coerce(tmpNestedAssignObjPatternRhs, `string`);
+String(tmpNestedAssignObjPatternRhs);
 $(a);
 `````
 

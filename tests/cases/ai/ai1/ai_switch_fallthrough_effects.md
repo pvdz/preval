@@ -91,7 +91,7 @@ if (1 === val) {
   }
 }
 if (tmpSwitchCaseToStart <= 0) {
-  path = $coerce($(`A`), `plustr`);
+  path = $(`A`) + ``;
 }
 if (tmpSwitchCaseToStart <= 1) {
   $(`use`, path + $(`B`));

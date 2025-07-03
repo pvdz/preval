@@ -62,7 +62,7 @@ while (true) {
     tmpIfTest$1 = x % 2;
   }
   if (tmpIfTest$1) {
-    x = $coerce(x, `number`) + 1;
+    x = Number(x) + 1;
     $(x, `write`);
   } else {
     $(x, `read`);

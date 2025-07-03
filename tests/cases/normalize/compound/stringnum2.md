@@ -35,7 +35,7 @@ $(tmpCalleeParam$1);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpStringConcatL = $coerce($spy(), `plustr`);
+const tmpStringConcatL = $spy() + ``;
 $(`b${tmpStringConcatL}`);
 $(`b${$spy()}`);
 `````

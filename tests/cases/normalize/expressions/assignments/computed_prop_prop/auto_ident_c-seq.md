@@ -37,7 +37,7 @@ $(a, 1);
 $(1);
 $(2);
 const a = $(1);
-$coerce(a, `string`);
+String(a);
 $(a, 1);
 `````
 

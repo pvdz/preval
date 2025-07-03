@@ -42,7 +42,7 @@ if ($ == null) {
   $(undefined);
 } else {
   const tmpClusterSSA_a = $dotCall($, { e: $ }, `e`, 1);
-  $coerce(tmpClusterSSA_a, `string`);
+  String(tmpClusterSSA_a);
   $(tmpClusterSSA_a);
 }
 `````

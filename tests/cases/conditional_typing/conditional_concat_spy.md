@@ -53,7 +53,7 @@ if (tmpIfTest$1787) {
 
 `````js filename=intro
 const lastType = $(2097173);
-const tmpStringConcatL = $coerce($spy(), `plustr`);
+const tmpStringConcatL = $spy() + ``;
 if (lastType === 2097173) {
   $(`-->`, `Parser error! ${tmpStringConcatL} (at EOF)`);
   $(undefined);

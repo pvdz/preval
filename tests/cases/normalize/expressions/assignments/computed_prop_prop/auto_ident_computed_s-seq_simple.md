@@ -37,7 +37,7 @@ $(a, b);
 const tmpAssignRhsCompProp = $(`c`);
 const b = { c: 1 };
 const a = b[tmpAssignRhsCompProp];
-$coerce(a, `string`);
+String(a);
 $(a, b);
 `````
 

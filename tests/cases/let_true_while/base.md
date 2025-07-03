@@ -51,7 +51,7 @@ if (tmpClusterSSA_y) {
 `````js filename=intro
 const y = $(5);
 $(true);
-let tmpClusterSSA_y = $coerce(y, `number`) - 1;
+let tmpClusterSSA_y = Number(y) - 1;
 let tmpClusterSSA_x = tmpClusterSSA_y;
 if (tmpClusterSSA_y) {
   while (true) {

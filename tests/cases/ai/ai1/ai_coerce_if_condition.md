@@ -41,7 +41,7 @@ if (x_coerced) {
 (This ought to be the final result)
 
 `````js filename=intro
-const x_coerced = $coerce($(`opq_val`), `number`);
+const x_coerced = Number($(`opq_val`));
 if (x_coerced) {
   $(`is_truthy`);
   $(`after`, x_coerced);

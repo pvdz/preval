@@ -44,8 +44,8 @@ $(r);
 (This ought to be the final result)
 
 `````js filename=intro
-const xs = $coerce($spy(`x`), `plustr`);
-$coerce($spy(`y`), `plustr`);
+const xs = $spy(`x`) + ``;
+$spy(`y`) + ``;
 $($dotCall($string_slice, xs, `slice`, 1));
 `````
 

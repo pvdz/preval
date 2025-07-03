@@ -32,7 +32,7 @@ $(true);
 
 `````js filename=intro
 $(2) ** 0;
-$coerce($(2), `plustr`);
+$(2) + ``;
 $(true);
 `````
 

@@ -112,13 +112,13 @@ const tmpFree = function $free() {
   return tmpRet;
 };
 const f = function ($dlr_$$0) {
-  unknown = $coerce($dlr_$$0 + b2, `plustr`);
+  unknown = $dlr_$$0 + b2 + ``;
   return unknown;
 };
-const tmpCalleeParam$1 = $coerce($(`co_rn`), `string`);
-$(f($frfr(tmpFree)));
-const tmpCalleeParam$5 = $coerce($(`m#az#e`), `string`);
-$(f($frfr(tmpFree$1)));
+const tmpCalleeParam$1 = String($(`co_rn`));
+$(f(tmpFree()));
+const tmpCalleeParam$5 = String($(`m#az#e`));
+$(f(tmpFree$1()));
 `````
 
 

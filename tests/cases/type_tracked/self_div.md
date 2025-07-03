@@ -74,7 +74,7 @@ if (tmpFrfrOutline$3) {
 
 `````js filename=intro
 const f_f = function (arg$1) {
-  if ($coerce(arg$1 / arg$1, `string`).length === 1) {
+  if (String(arg$1 / arg$1).length === 1) {
     arg$1 % 0;
   }
   $(arg$1 + 1);

@@ -34,7 +34,7 @@ $(tmpCalleeParam$1);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpAssignComMemLhsProp = $coerce($(1.23), `string`);
+const tmpAssignComMemLhsProp = String($(1.23));
 const obj = {};
 obj[tmpAssignComMemLhsProp] = `rounded`;
 $(obj[`1.23`]);

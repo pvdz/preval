@@ -64,21 +64,21 @@ $(`number`);
 (This ought to be the final result)
 
 `````js filename=intro
-$coerce($spy(`Math.cos`), `number`);
+Number($spy(`Math.cos`));
 $(`number`);
-$coerce($spy(`Math.cosh`), `number`);
+Number($spy(`Math.cosh`));
 $(`number`);
-$coerce($spy(`Math.exp`), `number`);
+Number($spy(`Math.exp`));
 $(`number`);
-$coerce($spy(`Math.expm1`), `number`);
+Number($spy(`Math.expm1`));
 $(`number`);
-$coerce($spy(`Math.floor`), `number`);
+Number($spy(`Math.floor`));
 $(`number`);
-$coerce($spy(`Math.fround`), `number`);
+Number($spy(`Math.fround`));
 $(`number`);
-$coerce($spy(`Math.imul`), `number`);
+Number($spy(`Math.imul`));
 $(`number`);
-$coerce($spy(`Math.log`), `number`);
+Number($spy(`Math.log`));
 $(`number`);
 `````
 

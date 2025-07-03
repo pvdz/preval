@@ -58,7 +58,7 @@ const tmpFree$1 = function $free(ten$1) {
   const tmpRet$1 = $Math_max(-10000, $Math_min(10000, 1000000 * sinned));
   return tmpRet$1;
 };
-$($frfr(tmpFree$1, $(120) / 12));
+$(tmpFree$1($(120) / 12));
 `````
 
 

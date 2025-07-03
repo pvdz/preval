@@ -27,7 +27,7 @@ $(tmpCalleeParam);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpStringConcatL = $coerce($(`here`), `plustr`);
+const tmpStringConcatL = $(`here`) + ``;
 $(`this 'thing'${tmpStringConcatL}is 'quoted'`);
 `````
 

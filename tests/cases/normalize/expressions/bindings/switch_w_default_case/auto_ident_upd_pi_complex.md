@@ -46,7 +46,7 @@ $(`fail2`);
 `````js filename=intro
 const b = { x: 1 };
 const tmpUpdObj = $($(b));
-const tmpUpdInc = $coerce(tmpUpdObj.x, `number`) + 1;
+const tmpUpdInc = Number(tmpUpdObj.x) + 1;
 tmpUpdObj.x = tmpUpdInc;
 $(tmpUpdInc, b);
 $(`fail1`);

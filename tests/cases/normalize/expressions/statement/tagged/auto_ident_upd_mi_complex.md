@@ -41,7 +41,7 @@ $(a, b);
 `````js filename=intro
 const b = { x: 1 };
 const tmpUpdObj = $($(b));
-const tmpUpdInc = $coerce(tmpUpdObj.x, `number`) - 1;
+const tmpUpdInc = Number(tmpUpdObj.x) - 1;
 tmpUpdObj.x = tmpUpdInc;
 $([`before `, ` after`], tmpUpdInc);
 $({ a: 999, b: 1000 }, b);

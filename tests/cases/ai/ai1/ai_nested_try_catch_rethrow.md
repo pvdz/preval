@@ -65,7 +65,7 @@ $(`final_path`, path);
 `````js filename=intro
 let path = ``;
 try {
-  path = $coerce($(`A`), `plustr`);
+  path = $(`A`) + ``;
   try {
     path = path + $(`B`);
     const tmpThrowArg = $(`err_inner`);

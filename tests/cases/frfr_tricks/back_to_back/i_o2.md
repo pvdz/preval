@@ -43,7 +43,7 @@ $(rs);
 (This ought to be the final result)
 
 `````js filename=intro
-$($coerce($(), `plustr`));
+$($() + ``);
 `````
 
 

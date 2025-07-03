@@ -50,7 +50,7 @@ const f = function (c) {
   $(2);
   $(c);
 };
-const tmpClusterSSA_x = $coerce(x, `number`);
+const tmpClusterSSA_x = Number(x);
 f(3);
 f(4);
 $(tmpClusterSSA_x);

@@ -43,7 +43,7 @@ $(a);
 const tmpChainElementCall = $({ x: 1 });
 if (!(tmpChainElementCall == null)) {
   const tmpChainRootComputed = $(`x`);
-  $coerce(tmpChainElementCall[tmpChainRootComputed], `string`);
+  String(tmpChainElementCall[tmpChainRootComputed]);
 }
 $({ a: 999, b: 1000 });
 `````

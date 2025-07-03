@@ -41,8 +41,8 @@ $(y);
 
 `````js filename=intro
 const input = $(`test`);
-const x = $coerce(input, `string`);
-const y = $coerce(input, `string`);
+const x = String(input);
+const y = String(input);
 $(x);
 $(y);
 `````

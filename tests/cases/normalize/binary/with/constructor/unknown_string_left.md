@@ -95,7 +95,7 @@ $(tmpCalleeParam$1);
 (This ought to be the final result)
 
 `````js filename=intro
-const x = $coerce($(`ok`), `plustr`);
+const x = $(`ok`) + ``;
 const tmpArrElement$25 = x == String;
 const tmpArrElement$27 = x != String;
 const tmpArrElement$7 = `${x}function String() { [native code] }`;

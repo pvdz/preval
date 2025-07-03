@@ -77,7 +77,7 @@ const f = function (y) {
     const tmpReturnArg = [x, z];
     return tmpReturnArg;
   };
-  const x = $coerce(y, `plustr`);
+  const x = y + ``;
   if (x) {
     $(x, `if`);
   } else {

@@ -38,7 +38,7 @@ $(a);
 `````js filename=intro
 const tmpMCCP = $(`\$`);
 const b = { $: $ };
-$coerce(b[tmpMCCP](1), `string`);
+String(b[tmpMCCP](1));
 $({ a: 999, b: 1000 });
 `````
 

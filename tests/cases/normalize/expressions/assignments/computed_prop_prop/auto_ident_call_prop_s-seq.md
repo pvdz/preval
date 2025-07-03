@@ -34,7 +34,7 @@ $(a);
 
 `````js filename=intro
 const a = $dotCall($, { $: $ }, `\$`, 1);
-$coerce(a, `string`);
+String(a);
 $(a);
 `````
 

@@ -63,21 +63,21 @@ $(`number`);
 (This ought to be the final result)
 
 `````js filename=intro
-$coerce($spy(`Math.sign`), `number`);
+Number($spy(`Math.sign`));
 $(`number`);
-$coerce($spy(`Math.sin`), `number`);
+Number($spy(`Math.sin`));
 $(`number`);
-$coerce($spy(`Math.hypot`), `number`);
+Number($spy(`Math.hypot`));
 $(`number`);
-$coerce($spy(`String`), `string`);
+String($spy(`String`));
 $(`string`);
-$coerce($spy(`Number`), `number`);
+Number($spy(`Number`));
 $(`number`);
 $spy(`Boolean`);
 $(`boolean`);
-$coerce($spy(`parseInt`), `string`);
+String($spy(`parseInt`));
 $(`number`);
-$coerce($spy(`parseFloat`), `string`);
+String($spy(`parseFloat`));
 $(`number`);
 `````
 

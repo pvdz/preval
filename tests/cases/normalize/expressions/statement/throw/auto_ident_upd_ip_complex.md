@@ -37,7 +37,7 @@ throw tmpUpdNum;
 
 `````js filename=intro
 const tmpUpdObj = $($({ x: 1 }));
-const tmpUpdNum = $coerce(tmpUpdObj.x, `number`);
+const tmpUpdNum = Number(tmpUpdObj.x);
 tmpUpdObj.x = tmpUpdNum + 1;
 throw tmpUpdNum;
 `````

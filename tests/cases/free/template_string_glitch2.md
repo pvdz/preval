@@ -43,8 +43,8 @@ $(slashAslashB);
 (This ought to be the final result)
 
 `````js filename=intro
-const xs = $coerce($(`a`), `string`);
-const ys = $coerce($(`b`), `string`);
+const xs = String($(`a`));
+const ys = String($(`b`));
 $(`/${xs}/${ys}`);
 `````
 

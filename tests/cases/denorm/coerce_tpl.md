@@ -29,7 +29,7 @@ $(y);
 (This ought to be the final result)
 
 `````js filename=intro
-const x = $coerce(val, `plustr`);
+const x = val + ``;
 $(`(${x})`);
 `````
 

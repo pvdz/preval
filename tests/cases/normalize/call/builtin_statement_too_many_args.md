@@ -31,7 +31,7 @@ $coerce(tmpArgOverflow, `number`);
 const tmpArgOverflow = $spy(`a`);
 $spy(`b`);
 $spy(`c`);
-$coerce(tmpArgOverflow, `number`);
+Number(tmpArgOverflow);
 `````
 
 

@@ -31,7 +31,7 @@ $(a);
 
 `````js filename=intro
 const a = new $(1);
-$coerce(a, `string`);
+String(a);
 $(a);
 `````
 

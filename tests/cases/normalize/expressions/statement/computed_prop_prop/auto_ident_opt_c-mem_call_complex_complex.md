@@ -51,7 +51,7 @@ if (!(tmpChainElementCall == null)) {
   const tmpChainRootComputed = $(`\$`);
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
   if (!(tmpChainElementObject == null)) {
-    $coerce($dotCall(tmpChainElementObject, tmpChainElementCall, undefined, $(1)), `string`);
+    String($dotCall(tmpChainElementObject, tmpChainElementCall, undefined, $(1)));
   }
 }
 $({ a: 999, b: 1000 });

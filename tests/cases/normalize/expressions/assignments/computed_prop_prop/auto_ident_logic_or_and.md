@@ -47,16 +47,16 @@ if (a) {
 `````js filename=intro
 const a = $($(0));
 if (a) {
-  $coerce(a, `string`);
+  String(a);
   $(a);
 } else {
   const tmpClusterSSA_a = $($(1));
   if (tmpClusterSSA_a) {
     const tmpClusterSSA_a$1 = $($(2));
-    $coerce(tmpClusterSSA_a$1, `string`);
+    String(tmpClusterSSA_a$1);
     $(tmpClusterSSA_a$1);
   } else {
-    $coerce(tmpClusterSSA_a, `string`);
+    String(tmpClusterSSA_a);
     $(tmpClusterSSA_a);
   }
 }

@@ -111,10 +111,10 @@ while (true) {
     b = b + 1;
     flag = b;
     $(`++b`, b);
-    c = $coerce(c, `number`) + 1;
+    c = Number(c) + 1;
     flag = c;
     $(`++c`, c);
-    const tmpPostUpdArgIdent$5 = $coerce(d, `number`);
+    const tmpPostUpdArgIdent$5 = Number(d);
     d = tmpPostUpdArgIdent$5 + 1;
     flag = tmpPostUpdArgIdent$5;
     $(`d++`, tmpPostUpdArgIdent$5);

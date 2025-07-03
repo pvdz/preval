@@ -36,7 +36,7 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal = $(1);
 const a = { b: tmpObjLitVal };
-$coerce(a, `string`);
+String(a);
 const tmpAssignComMemLhsProp = $(`b`);
 a[tmpAssignComMemLhsProp] = 2;
 $(a);

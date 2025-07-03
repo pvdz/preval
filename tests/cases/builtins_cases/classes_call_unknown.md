@@ -69,8 +69,8 @@ $(`JSON:`, tmpCalleeParam$23);
 
 `````js filename=intro
 $(`Boolean:`, $boolean_constructor(a));
-$(`Number:`, $coerce(b, `number`));
-$(`String:`, $coerce(c, `string`));
+$(`Number:`, Number(b));
+$(`String:`, String(c));
 $(`Array:`, $array_constructor(d));
 $(`Object:`, $object_constructor(e));
 $(`Date:`, $date_constructor(f));

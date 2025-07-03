@@ -33,7 +33,7 @@ $(bool);
 (This ought to be the final result)
 
 `````js filename=intro
-const str = $coerce($spy(), `string`);
+const str = String($spy());
 $($dotCall($string_includes, str, `includes`, $spy()));
 `````
 

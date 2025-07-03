@@ -51,7 +51,7 @@ if (tmpCalleeParam) {
   $({ a: 999, b: 1000 }, b);
 } else {
   const tmpUpdObj = $($(b));
-  const tmpUpdNum = $coerce(tmpUpdObj.x, `number`);
+  const tmpUpdNum = Number(tmpUpdObj.x);
   tmpUpdObj.x = tmpUpdNum + 1;
   $(tmpUpdNum);
   $(tmpUpdNum, b);

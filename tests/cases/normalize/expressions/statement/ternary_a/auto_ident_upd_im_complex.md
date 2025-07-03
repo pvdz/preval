@@ -45,7 +45,7 @@ if (tmpUpdNum) {
 `````js filename=intro
 const b = { x: 1 };
 const tmpUpdObj = $($(b));
-const tmpUpdNum = $coerce(tmpUpdObj.x, `number`);
+const tmpUpdNum = Number(tmpUpdObj.x);
 tmpUpdObj.x = tmpUpdNum - 1;
 const a = { a: 999, b: 1000 };
 if (tmpUpdNum) {

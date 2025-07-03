@@ -55,13 +55,13 @@ $(a, b);
 `````js filename=intro
 const b = { x: 1 };
 const tmpUpdObj = $($(b));
-const tmpUpdNum = $coerce(tmpUpdObj.x, `number`);
+const tmpUpdNum = Number(tmpUpdObj.x);
 tmpUpdObj.x = tmpUpdNum + 1;
 if (tmpUpdNum) {
   while (true) {
     $(1);
     const tmpUpdObj$1 = $($(b));
-    const tmpUpdNum$1 = $coerce(tmpUpdObj$1.x, `number`);
+    const tmpUpdNum$1 = Number(tmpUpdObj$1.x);
     tmpUpdObj$1.x = tmpUpdNum$1 + 1;
     if (!tmpUpdNum$1) {
       break;

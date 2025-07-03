@@ -32,7 +32,7 @@ $(arr);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpArrElement = $coerce($spy(), `plustr`);
+const tmpArrElement = $spy() + ``;
 $([tmpArrElement]);
 `````
 

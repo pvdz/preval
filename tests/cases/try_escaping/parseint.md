@@ -43,7 +43,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 `````js filename=intro
 while (true) {
-  const y = $Number_parseInt($coerce($(`1`), `string`));
+  const y = $Number_parseInt(String($(`1`)));
   try {
     $(y);
   } catch (e) {

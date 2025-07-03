@@ -40,8 +40,8 @@ $(tmpCalleeParam);
 
 `````js filename=intro
 const x = $(`test`);
-const tmpStringConcatR = $coerce(x, `plustr`);
-const tmpStringConcatR$3 = $coerce(x, `plustr`);
+const tmpStringConcatR = x + ``;
+const tmpStringConcatR$3 = x + ``;
 $(`${tmpStringConcatR}ab${tmpStringConcatR$3}ac`);
 `````
 

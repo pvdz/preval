@@ -35,7 +35,7 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal = $(1);
 const tmpObjLitVal$3 = $(3);
-$coerce({ x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 }, `string`);
+String({ x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 });
 $({ a: 999, b: 1000 });
 `````
 

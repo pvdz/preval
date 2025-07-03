@@ -41,7 +41,7 @@ $(a);
 `````js filename=intro
 const tmpChainRootProp = $({ x: 1 });
 if (!(tmpChainRootProp == null)) {
-  $coerce(tmpChainRootProp.x, `string`);
+  String(tmpChainRootProp.x);
 }
 $({ a: 999, b: 1000 });
 `````

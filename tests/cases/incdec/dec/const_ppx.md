@@ -30,7 +30,7 @@ throw `Preval: Cannot write to const binding \`x\``;
 (This ought to be the final result)
 
 `````js filename=intro
-$coerce($(0), `number`);
+Number($(0));
 throw `Preval: Cannot write to const binding \`x\``;
 `````
 

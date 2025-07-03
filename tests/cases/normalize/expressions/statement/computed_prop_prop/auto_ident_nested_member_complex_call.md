@@ -52,7 +52,7 @@ const tmpInitAssignLhsComputedProp$1 = $(`y`);
 const tmpInitAssignLhsComputedRhs$1 = $(3);
 tmpInitAssignLhsComputedObj$1[tmpInitAssignLhsComputedProp$1] = tmpInitAssignLhsComputedRhs$1;
 tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = tmpInitAssignLhsComputedRhs$1;
-$coerce(tmpInitAssignLhsComputedRhs$1, `string`);
+String(tmpInitAssignLhsComputedRhs$1);
 $({ a: 999, b: 1000 }, b, c, 3);
 `````
 

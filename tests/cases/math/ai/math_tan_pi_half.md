@@ -47,7 +47,7 @@ const tmpFree$1 = function $free() {
   return tmpRet$3;
 };
 const a = $($Math_tan($Math_PI / 2));
-const b = $($frfr(tmpFree$1));
+const b = $(tmpFree$1());
 $(a);
 $(b);
 `````

@@ -39,7 +39,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 `````js filename=intro
 const tmpUpdObj = $($({ x: 1 }));
-tmpUpdObj.x = $coerce(tmpUpdObj.x, `number`) + 1;
+tmpUpdObj.x = Number(tmpUpdObj.x) + 1;
 while (true) {
   $(1);
 }

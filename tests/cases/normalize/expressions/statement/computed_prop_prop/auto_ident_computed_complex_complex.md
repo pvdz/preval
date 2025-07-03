@@ -39,7 +39,7 @@ $(a, b);
 const b = { c: 1 };
 const tmpCompObj$1 = $(b);
 const tmpCalleeParam$1 = $(`c`);
-$coerce(tmpCompObj$1[tmpCalleeParam$1], `string`);
+String(tmpCompObj$1[tmpCalleeParam$1]);
 $({ a: 999, b: 1000 }, b);
 `````
 

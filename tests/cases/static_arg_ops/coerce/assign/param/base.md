@@ -43,7 +43,7 @@ f();
 `````js filename=intro
 const x = $(`50`);
 const f = function () {
-  const d = $coerce(x, `number`);
+  const d = Number(x);
   $(1);
   $(2);
   $(d);

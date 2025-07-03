@@ -54,9 +54,9 @@ const tmpFree = function $free(xs$1) {
   const tmpRet = $dotCall($string_repeat, $dotCall($string_slice, xs$1 + 5, `slice`, 1), `repeat`, 2);
   return tmpRet;
 };
-const xs = $coerce($(`x`), `plustr`);
-$coerce($(`y`), `plustr`);
-$($frfr(tmpFree, xs));
+const xs = $(`x`) + ``;
+$(`y`) + ``;
+$(tmpFree(xs));
 `````
 
 

@@ -111,7 +111,7 @@ while (true) {
   const tmp2$1 = main_data_arr[4336];
   try {
     $(`testing`);
-    if ($frfr(tmpFree$1, tmp2$1)) {
+    if (tmpFree$1(tmp2$1)) {
       break;
     } else {
       $dotCall($array_push, main_data_arr, `push`, $dotCall($array_shift, main_data_arr, `shift`));

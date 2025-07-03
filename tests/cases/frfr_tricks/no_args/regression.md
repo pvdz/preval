@@ -75,14 +75,10 @@ $(1);
 $(1);
 $(
   -1206,
-  $frfr(
-    function $free($dlr_$$0) {
-      const tmpRet$89 = $dlr_$$0 - 554 - 442 - -808;
-      return tmpRet$89;
-    },
-    a,
-    b,
-  ),
+  (function $free($dlr_$$0) {
+    const tmpRet$89 = $dlr_$$0 - 554 - 442 - -808;
+    return tmpRet$89;
+  })(a, b),
 );
 `````
 

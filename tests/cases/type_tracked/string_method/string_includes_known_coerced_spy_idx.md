@@ -35,10 +35,7 @@ $(bool1, bool2);
 (This ought to be the final result)
 
 `````js filename=intro
-$(
-  $dotCall($string_includes, `123`, `includes`, $coerce($spy(1), `string`), 1),
-  $dotCall($string_includes, `321`, `includes`, $coerce($spy(1), `string`), 1),
-);
+$($dotCall($string_includes, `123`, `includes`, String($spy(1)), 1), $dotCall($string_includes, `321`, `includes`, String($spy(1)), 1));
 `````
 
 

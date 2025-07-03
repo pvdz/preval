@@ -36,7 +36,7 @@ $(a, b);
 
 `````js filename=intro
 const b = { c: 1 };
-$coerce($(b).c, `string`);
+String($(b).c);
 $({ a: 999, b: 1000 }, b);
 `````
 

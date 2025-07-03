@@ -32,7 +32,7 @@ $(`boolean`);
 (This ought to be the final result)
 
 `````js filename=intro
-$coerce($spy(`isFinite`), `number`);
+Number($spy(`isFinite`));
 $(`boolean`);
 `````
 

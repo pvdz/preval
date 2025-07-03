@@ -63,21 +63,21 @@ $(`Math.round:`, `number`);
 (This ought to be the final result)
 
 `````js filename=intro
-$coerce($spy(`Math.log10`), `number`);
+Number($spy(`Math.log10`));
 $(`Math.log10:`, `number`);
-$coerce($spy(`Math.log1p`), `number`);
+Number($spy(`Math.log1p`));
 $(`Math.log1p:`, `number`);
-$coerce($spy(`Math.log2`), `number`);
+Number($spy(`Math.log2`));
 $(`Math.log2:`, `number`);
-$coerce($spy(`Math.max`), `number`);
+Number($spy(`Math.max`));
 $(`Math.max:`, `number`);
-$coerce($spy(`Math.min`), `number`);
+Number($spy(`Math.min`));
 $(`Math.min:`, `number`);
-$coerce($spy(`Math.pow`), `number`);
+Number($spy(`Math.pow`));
 $(`Math.pow:`, `number`);
 $spy(`Math.random`);
 $(`Math.random:`, `number`);
-$coerce($spy(`Math.round`), `number`);
+Number($spy(`Math.round`));
 $(`Math.round:`, `number`);
 `````
 

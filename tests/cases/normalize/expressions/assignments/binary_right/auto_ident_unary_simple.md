@@ -33,7 +33,7 @@ $(`number`, 1);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpStringConcatR = $coerce($(100), `plustr`);
+const tmpStringConcatR = $(100) + ``;
 $(`${tmpStringConcatR}number`);
 $(`number`, 1);
 `````

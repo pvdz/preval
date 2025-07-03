@@ -48,7 +48,7 @@ const tmpFree = function $free(x$1) {
   return tmpRet;
 };
 const tmpUnaryArg = $spy(0);
-if ($frfr(tmpFree, +tmpUnaryArg)) {
+if (tmpFree(+tmpUnaryArg)) {
   $(`it is ten`);
 }
 `````

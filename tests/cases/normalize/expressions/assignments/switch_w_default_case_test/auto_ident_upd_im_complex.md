@@ -66,7 +66,7 @@ const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const b = { x: 1 };
 const tmpUpdObj = $($(b));
-const tmpUpdNum = $coerce(tmpUpdObj.x, `number`);
+const tmpUpdNum = Number(tmpUpdObj.x);
 tmpUpdObj.x = tmpUpdNum - 1;
 if (tmpUpdNum === tmpSwitchValue) {
   tmpSwitchCaseToStart = 0;

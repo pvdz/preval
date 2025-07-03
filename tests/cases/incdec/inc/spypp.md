@@ -32,7 +32,7 @@ $(tmpClusterSSA_x);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpPostUpdArgIdent = $coerce($spy(0), `number`);
+const tmpPostUpdArgIdent = Number($spy(0));
 $(tmpPostUpdArgIdent);
 $(tmpPostUpdArgIdent + 1);
 `````

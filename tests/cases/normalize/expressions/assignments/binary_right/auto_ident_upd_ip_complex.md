@@ -42,7 +42,7 @@ $(tmpUpdNum, b);
 const tmpBinBothLhs = $(100);
 const b = { x: 1 };
 const tmpUpdObj = $($(b));
-const tmpUpdNum = $coerce(tmpUpdObj.x, `number`);
+const tmpUpdNum = Number(tmpUpdObj.x);
 tmpUpdObj.x = tmpUpdNum + 1;
 $(tmpBinBothLhs + tmpUpdNum);
 $(tmpUpdNum, b);

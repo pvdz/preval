@@ -169,7 +169,7 @@ const siftUp_t = function (heap$5, node$3, i$13, tmpClusterSSA_parentIndex) {
     let tmpClusterSSA_tmpIfTest$367 = tmpClusterSSA_parentIndex > 0;
     while (true) {
       if (tmpClusterSSA_tmpIfTest$367) {
-        const tmpClusterSSA_parentIndex$1 = $frfr(tmpFree, tmpClusterSSA_index$1);
+        const tmpClusterSSA_parentIndex$1 = tmpFree(tmpClusterSSA_index$1);
         const tmpClusterSSA_parent$1 = heap$5[tmpClusterSSA_parentIndex$1];
         if (compare(tmpClusterSSA_parent$1, node$3) > 0) {
           heap$5[tmpClusterSSA_parentIndex$1] = node$3;

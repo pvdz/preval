@@ -58,7 +58,7 @@ let d = { valueOf: tmpObjLitVal };
 let flag = 0;
 while (true) {
   if (flag < 10) {
-    const tmpPostUpdArgIdent = $coerce(d, `number`);
+    const tmpPostUpdArgIdent = Number(d);
     d = tmpPostUpdArgIdent + 1;
     flag = tmpPostUpdArgIdent;
     $(`d++`, tmpPostUpdArgIdent);

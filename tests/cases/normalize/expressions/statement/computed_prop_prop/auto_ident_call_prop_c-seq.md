@@ -37,7 +37,7 @@ $(a);
 
 `````js filename=intro
 const tmpMCOO = $({ $: $ });
-$coerce(tmpMCOO.$(1), `string`);
+String(tmpMCOO.$(1));
 $({ a: 999, b: 1000 });
 `````
 

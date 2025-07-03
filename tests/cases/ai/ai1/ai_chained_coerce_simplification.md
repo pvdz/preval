@@ -41,8 +41,8 @@ $(`result2`, val2_final);
 (This ought to be the final result)
 
 `````js filename=intro
-$(`result1`, $coerce($coerce($(`input1`, 123), `number`), `string`));
-$(`result2`, $coerce($(`input2`, `foo`), `string`));
+$(`result1`, String(Number($(`input1`, 123))));
+$(`result2`, String($(`input2`, `foo`)));
 `````
 
 

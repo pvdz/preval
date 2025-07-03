@@ -38,7 +38,7 @@ const tmpBindingPatternArrRoot = { a: 999, b: 1000 };
 const a = [...tmpBindingPatternArrRoot][0];
 $(10);
 $(20);
-$coerce($(100), `plustr`);
+$(100) + ``;
 $(a);
 `````
 

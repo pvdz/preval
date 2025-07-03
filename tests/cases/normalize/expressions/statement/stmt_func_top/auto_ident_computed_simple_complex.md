@@ -37,7 +37,7 @@ $(undefined);
 (This ought to be the final result)
 
 `````js filename=intro
-$coerce($(`c`), `string`);
+String($(`c`));
 $({ a: 999, b: 1000 }, { c: 1 });
 $(undefined);
 `````

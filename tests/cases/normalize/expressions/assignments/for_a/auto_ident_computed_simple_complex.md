@@ -33,7 +33,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 (This ought to be the final result)
 
 `````js filename=intro
-$coerce($(`c`), `string`);
+String($(`c`));
 while (true) {
   $(1);
 }

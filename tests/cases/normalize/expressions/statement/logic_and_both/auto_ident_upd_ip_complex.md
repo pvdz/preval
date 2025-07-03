@@ -49,12 +49,12 @@ if (tmpUpdNum) {
 `````js filename=intro
 const b = { x: 1 };
 const tmpUpdObj = $($(b));
-const tmpUpdNum = $coerce(tmpUpdObj.x, `number`);
+const tmpUpdNum = Number(tmpUpdObj.x);
 tmpUpdObj.x = tmpUpdNum + 1;
 const a = { a: 999, b: 1000 };
 if (tmpUpdNum) {
   const tmpUpdObj$1 = $($(b));
-  tmpUpdObj$1.x = $coerce(tmpUpdObj$1.x, `number`) + 1;
+  tmpUpdObj$1.x = Number(tmpUpdObj$1.x) + 1;
   $(a, b);
 } else {
   $(a, b);

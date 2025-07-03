@@ -45,7 +45,7 @@ const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
 const tmpArrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 const x = tmpArrPatternSplat[0];
 const y = tmpArrPatternSplat[1];
-$coerce(tmpNestedAssignArrPatternRhs, `string`);
+String(tmpNestedAssignArrPatternRhs);
 $({ a: 999, b: 1000 }, x, y);
 `````
 

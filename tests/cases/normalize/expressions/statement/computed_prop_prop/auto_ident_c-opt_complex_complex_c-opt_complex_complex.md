@@ -54,7 +54,7 @@ if (!(tmpChainElementCall == null)) {
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
   if (!(tmpChainElementObject == null)) {
     const tmpChainRootComputed$1 = $(`y`);
-    $coerce(tmpChainElementObject[tmpChainRootComputed$1], `string`);
+    String(tmpChainElementObject[tmpChainRootComputed$1]);
   }
 }
 $({ a: 999, b: 1000 });

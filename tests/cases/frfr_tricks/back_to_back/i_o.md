@@ -69,8 +69,8 @@ const tmpFree = function $free(xs$1, ys$1) {
   const tmpRet = two + two.slice(2);
   return tmpRet;
 };
-const xs = $coerce($spy(`x`), `plustr`);
-$($frfr(tmpFree, xs, $coerce($spy(`y`), `plustr`)));
+const xs = $spy(`x`) + ``;
+$(tmpFree(xs, $spy(`y`) + ``));
 `````
 
 

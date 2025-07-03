@@ -60,7 +60,7 @@ while (true) {
     break;
   } else {
     const tmpUpdObj = $($(b));
-    const tmpUpdInc = $coerce(tmpUpdObj.x, `number`) + 1;
+    const tmpUpdInc = Number(tmpUpdObj.x) + 1;
     tmpUpdObj.x = tmpUpdInc;
     a = tmpUpdInc;
     tmpUpdInc.x = tmpForOfNext.value;

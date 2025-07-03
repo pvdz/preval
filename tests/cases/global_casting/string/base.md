@@ -30,7 +30,7 @@ $(y);
 (This ought to be the final result)
 
 `````js filename=intro
-$($coerce($(`a`), `plustr`));
+$($(`a`) + ``);
 `````
 
 

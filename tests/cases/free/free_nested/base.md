@@ -62,7 +62,7 @@ const g = function $free(n, o) {
   return d;
 };
 const x = $(100) * 1;
-$($frfr(g, x, $(200) * 1));
+$(g(x, $(200) * 1));
 `````
 
 

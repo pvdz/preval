@@ -72,9 +72,9 @@ $(`number`, `Number.NaN`);
 (This ought to be the final result)
 
 `````js filename=intro
-$coerce($spy(`isNaN`), `number`);
+Number($spy(`isNaN`));
 $(`boolean`);
-$coerce($spy(`isFinite`), `number`);
+Number($spy(`isFinite`));
 $(`boolean`);
 $spy(`Number.isFinite`);
 $(`boolean`);
@@ -84,9 +84,9 @@ $spy(`Number.isNaN`);
 $(`boolean`);
 $spy(`Number.isSafeInteger`);
 $(`boolean`);
-$coerce($spy(`Number.parseFloat`), `string`);
+String($spy(`Number.parseFloat`));
 $(`number`);
-$coerce($spy(`Number.parseInt`), `string`);
+String($spy(`Number.parseInt`));
 $(`number`);
 $(`number`, `Number.EPSILON`);
 $(`number`, `Number.MAX_VALUE`);

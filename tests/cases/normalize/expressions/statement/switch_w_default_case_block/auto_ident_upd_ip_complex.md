@@ -84,7 +84,7 @@ const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
 const b = { x: 1 };
 if (tmpIfTest$3) {
   const tmpUpdObj = $($(b));
-  tmpUpdObj.x = $coerce(tmpUpdObj.x, `number`) + 1;
+  tmpUpdObj.x = Number(tmpUpdObj.x) + 1;
 } else {
   if (tmpSwitchCaseToStart <= 1) {
     $(`fail1`);

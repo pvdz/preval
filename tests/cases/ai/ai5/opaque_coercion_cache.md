@@ -40,8 +40,8 @@ $(tmpCalleeParam);
 
 `````js filename=intro
 const x = $(`test`);
-const y = $coerce(x, `string`);
-$(y + $coerce(x, `string`));
+const y = String(x);
+$(y + String(x));
 `````
 
 

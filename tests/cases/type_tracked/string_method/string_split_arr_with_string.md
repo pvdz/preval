@@ -32,7 +32,7 @@ $(res);
 (This ought to be the final result)
 
 `````js filename=intro
-$($dotCall($string_split, $coerce($(`x`), `plustr`), `split`, ` `));
+$($dotCall($string_split, $(`x`) + ``, `split`, ` `));
 `````
 
 

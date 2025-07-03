@@ -37,9 +37,9 @@ $(tmpCalleeParam$7);
 (This ought to be the final result)
 
 `````js filename=intro
-$($coerce($spy(), `string`));
-$($coerce($spy(1, 2), `string`));
-$($coerce($spy(`x`, `y`), `string`));
+$(String($spy()));
+$(String($spy(1, 2)));
+$(String($spy(`x`, `y`)));
 `````
 
 

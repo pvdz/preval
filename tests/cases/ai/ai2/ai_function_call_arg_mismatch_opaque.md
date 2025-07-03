@@ -76,8 +76,8 @@ const foo = function (a, b) {
   if (tmpPrevalAliasArgumentsLen > 2) {
     $(`foo_called_extra_arg2`, tmpPrevalAliasArgumentsAny[2]);
   }
-  const tmpStringConcatR$1 = $coerce(a, `string`);
-  const tmpBinBothRhs$1 = $coerce(b, `string`);
+  const tmpStringConcatR$1 = String(a);
+  const tmpBinBothRhs$1 = String(b);
   $(`foo_return`, `${tmpStringConcatR$1}_${tmpBinBothRhs$1}`);
 };
 foo($(`arg_mismatch_1_val`, `one`));

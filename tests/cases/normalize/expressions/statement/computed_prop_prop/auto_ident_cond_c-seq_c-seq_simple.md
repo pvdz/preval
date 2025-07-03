@@ -39,9 +39,9 @@ $(a);
 
 `````js filename=intro
 if ($(30)) {
-  $coerce($(60), `string`);
+  String($(60));
 } else {
-  $coerce($($(100)), `string`);
+  String($($(100)));
 }
 $({ a: 999, b: 1000 });
 `````

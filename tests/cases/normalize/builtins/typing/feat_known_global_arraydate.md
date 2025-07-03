@@ -77,17 +77,17 @@ $spy(`Array.of`);
 $(`object`);
 $spy(`Date.now`);
 $(`number`);
-$coerce($spy(`Date.UTC`), `number`);
+Number($spy(`Date.UTC`));
 $(`number`);
-$coerce($spy(`Date.parse`), `string`);
+String($spy(`Date.parse`));
 $(`number`);
 const tmpUnaryArg$11 = $JSON_stringify($spy(`JSON.stringify`));
 $(typeof tmpUnaryArg$11);
-$coerce($spy(`Math.abs`), `number`);
+Number($spy(`Math.abs`));
 $(`number`);
-$coerce($spy(`Math.acos`), `number`);
+Number($spy(`Math.acos`));
 $(`number`);
-$coerce($spy(`Math.acosh`), `number`);
+Number($spy(`Math.acosh`));
 $(`number`);
 `````
 

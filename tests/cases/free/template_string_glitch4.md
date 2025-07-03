@@ -44,8 +44,8 @@ $(fxy);
 (This ought to be the final result)
 
 `````js filename=intro
-const xs = $coerce($(), `string`);
-const ys = $coerce($(), `string`);
+const xs = String($());
+const ys = String($());
 $(`/${xs}/${ys}`);
 `````
 

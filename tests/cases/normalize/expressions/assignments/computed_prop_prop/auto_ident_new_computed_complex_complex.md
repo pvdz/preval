@@ -40,7 +40,7 @@ const tmpCompObj$1 = $({ $: $ });
 const tmpCalleeParam$1 = $(`\$`);
 const tmpNewCallee = tmpCompObj$1[tmpCalleeParam$1];
 const a = new tmpNewCallee(1);
-$coerce(a, `string`);
+String(a);
 $(a);
 `````
 

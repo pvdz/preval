@@ -39,7 +39,7 @@ $(a);
 const tmpMCCO = $({ $: $ });
 const tmpMCCP = $(`\$`);
 const a = tmpMCCO[tmpMCCP](1);
-$coerce(a, `string`);
+String(a);
 $(a);
 `````
 

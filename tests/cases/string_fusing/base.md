@@ -34,8 +34,8 @@ $(tmpCalleeParam$3);
 (This ought to be the final result)
 
 `````js filename=intro
-const a = $coerce($(`a`), `string`);
-const b = $coerce($(`a`), `string`);
+const a = String($(`a`));
+const b = String($(`a`));
 $(`[${a}][${b}]`);
 `````
 

@@ -46,7 +46,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 `````js filename=intro
 while (true) {
-  const z = $coerce($(1), `number`) / $coerce($(2), `number`);
+  const z = Number($(1)) / Number($(2));
   try {
     $(z);
   } catch (e) {

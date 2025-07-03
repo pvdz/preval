@@ -71,11 +71,11 @@ const tmpFree = function $free(repl$1) {
   return tmpRet;
 };
 const f = function (a2) {
-  outputstr = $coerce(a2 + b2, `plustr`);
+  outputstr = a2 + b2 + ``;
   return outputstr;
 };
-$(f($frfr(tmpFree, $coerce($(`co_rn`), `string`))));
-$(f($frfr(tmpFree, $coerce($(`m#az#e`), `string`))));
+$(f(tmpFree(String($(`co_rn`)))));
+$(f(tmpFree(String($(`m#az#e`)))));
 `````
 
 

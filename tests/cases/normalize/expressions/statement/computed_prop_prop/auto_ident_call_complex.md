@@ -33,7 +33,7 @@ $(a);
 
 `````js filename=intro
 const tmpCallComplexCallee = $($);
-$coerce(tmpCallComplexCallee(1), `string`);
+String(tmpCallComplexCallee(1));
 $({ a: 999, b: 1000 });
 `````
 

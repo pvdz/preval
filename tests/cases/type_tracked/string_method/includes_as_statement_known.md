@@ -37,8 +37,8 @@ $(3);
 const tmpArgOverflow = a;
 const tmpArgOverflow$1 = b;
 c;
-$coerce(tmpArgOverflow, `string`);
-$coerce(tmpArgOverflow$1, `number`);
+String(tmpArgOverflow);
+Number(tmpArgOverflow$1);
 $(3);
 `````
 

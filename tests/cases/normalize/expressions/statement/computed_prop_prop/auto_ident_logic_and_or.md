@@ -48,9 +48,9 @@ if (tmpCalleeParam) {
   tmpCalleeParam = $($(1));
 }
 if (tmpCalleeParam) {
-  $coerce(tmpCalleeParam, `string`);
+  String(tmpCalleeParam);
 } else {
-  $coerce($($(2)), `string`);
+  String($($(2)));
 }
 $({ a: 999, b: 1000 });
 `````

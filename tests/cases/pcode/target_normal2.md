@@ -124,14 +124,14 @@ const tmpFree = function $free($dlr_$$0) {
 const pcode = function ($dlr_$$2) {
   let out_str$2 = ``;
   if (!($dlr_$$2 < 62)) {
-    out_str$2 = pcode($frfr(tmpFree, $dlr_$$2));
+    out_str$2 = pcode(tmpFree($dlr_$$2));
   }
   const perc$2 = $dlr_$$2 % 62;
   if (perc$2 > 35) {
-    const str = $frfr(tmpFree$1, perc$2, out_str$2);
+    const str = tmpFree$1(perc$2, out_str$2);
     return str;
   } else {
-    const altstr = $frfr(tmpFree$2, perc$2, out_str$2);
+    const altstr = tmpFree$2(perc$2, out_str$2);
     return altstr;
   }
 };

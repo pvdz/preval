@@ -43,13 +43,13 @@ $(tmpCalleeParam$1);
 `````js filename=intro
 const a = $(`x`);
 const b = $(`y`);
-const tmpBinBothRhs$1 = $coerce(a, `string`);
-const tmpBinBothRhs = $coerce(b, `string`);
+const tmpBinBothRhs$1 = String(a);
+const tmpBinBothRhs = String(b);
 $(`A${tmpBinBothRhs$1}B${tmpBinBothRhs}C`);
-const tmpStringConcatL$1 = $coerce(a, `string`);
-const tmpBinBothRhs$7 = $coerce(b, `string`);
-const tmpStringConcatL$5 = $coerce(a, `string`);
-const tmpBinBothRhs$11 = $coerce(b, `string`);
+const tmpStringConcatL$1 = String(a);
+const tmpBinBothRhs$7 = String(b);
+const tmpStringConcatL$5 = String(a);
+const tmpBinBothRhs$11 = String(b);
 $(`AA${tmpStringConcatL$1}B${tmpBinBothRhs$7}CBA${tmpStringConcatL$5}B${tmpBinBothRhs$11}CC`);
 `````
 

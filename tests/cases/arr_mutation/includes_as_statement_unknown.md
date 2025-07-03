@@ -37,7 +37,7 @@ $(tmpCalleeParam);
 `````js filename=intro
 const arr = $Array_from($spy());
 a;
-$coerce(b, `number`);
+Number(b);
 c;
 $(arr.length);
 `````

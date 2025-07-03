@@ -32,8 +32,8 @@ $coerce(y, `string`);
 `````js filename=intro
 const x = $spy(`a`);
 const y = $spy(`b`);
-$coerce(x, `string`);
-$coerce(y, `string`);
+String(x);
+String(y);
 `````
 
 

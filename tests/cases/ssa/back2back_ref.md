@@ -39,7 +39,7 @@ if ($) {
 
 `````js filename=intro
 if ($) {
-  $($coerce($(5), `number`) + 1);
+  $(Number($(5)) + 1);
 }
 `````
 

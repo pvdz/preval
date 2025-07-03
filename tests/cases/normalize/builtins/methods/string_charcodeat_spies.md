@@ -27,7 +27,7 @@ $coerce(x, `number`);
 (This ought to be the final result)
 
 `````js filename=intro
-$coerce($spy(`a`), `number`);
+Number($spy(`a`));
 `````
 
 

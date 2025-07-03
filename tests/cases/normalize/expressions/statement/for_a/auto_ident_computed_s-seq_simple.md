@@ -44,7 +44,7 @@ $(a, b);
 (This ought to be the final result)
 
 `````js filename=intro
-$coerce($(`c`), `string`);
+String($(`c`));
 if ($(0)) {
   while (true) {
     if (!$(0)) {

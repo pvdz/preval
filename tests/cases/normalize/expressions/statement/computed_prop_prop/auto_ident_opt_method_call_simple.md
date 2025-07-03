@@ -34,7 +34,7 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-$coerce($dotCall($, { c: $ }, `c`, 1), `string`);
+String($dotCall($, { c: $ }, `c`, 1));
 $({ a: 999, b: 1000 });
 `````
 

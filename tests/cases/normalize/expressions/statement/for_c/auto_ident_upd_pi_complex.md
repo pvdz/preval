@@ -58,11 +58,11 @@ const tmpIfTest = $(1);
 const b = { x: 1 };
 if (tmpIfTest) {
   const tmpUpdObj = $($(b));
-  tmpUpdObj.x = $coerce(tmpUpdObj.x, `number`) + 1;
+  tmpUpdObj.x = Number(tmpUpdObj.x) + 1;
   while (true) {
     if ($(1)) {
       const tmpUpdObj$1 = $($(b));
-      tmpUpdObj$1.x = $coerce(tmpUpdObj$1.x, `number`) + 1;
+      tmpUpdObj$1.x = Number(tmpUpdObj$1.x) + 1;
     } else {
       break;
     }

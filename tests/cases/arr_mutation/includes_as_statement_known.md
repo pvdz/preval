@@ -33,7 +33,7 @@ $(3);
 
 `````js filename=intro
 a;
-$coerce(b, `number`);
+Number(b);
 c;
 $(3);
 `````

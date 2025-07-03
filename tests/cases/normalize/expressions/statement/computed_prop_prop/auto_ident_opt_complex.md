@@ -41,7 +41,7 @@ $(a);
 `````js filename=intro
 const tmpChainElementCall = $({ x: 1 });
 if (!(tmpChainElementCall == null)) {
-  $coerce(tmpChainElementCall.x, `string`);
+  String(tmpChainElementCall.x);
 }
 $({ a: 999, b: 1000 });
 `````

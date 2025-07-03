@@ -34,9 +34,9 @@ $(tmpCalleeParam);
 (This ought to be the final result)
 
 `````js filename=intro
-const str = $coerce(x, `string`);
-$coerce(a, `string`);
-$coerce(b, `number`);
+const str = String(x);
+String(a);
+Number(b);
 c;
 $(str.length);
 `````

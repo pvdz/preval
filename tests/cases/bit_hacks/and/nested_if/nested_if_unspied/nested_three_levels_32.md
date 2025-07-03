@@ -59,7 +59,7 @@ const tmpFree = function $free(x$1) {
 };
 const tmpUnaryArg = $spy(32);
 const x = +tmpUnaryArg;
-if ($frfr(tmpFree, x)) {
+if (tmpFree(x)) {
   if (x & 32) {
     $(`it is 42`);
   }

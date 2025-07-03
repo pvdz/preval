@@ -33,7 +33,7 @@ $(a);
 
 `````js filename=intro
 const a = new $regex_constructor(`foo`, ``);
-const tmpStringConcatL = $coerce($(100), `plustr`);
+const tmpStringConcatL = $(100) + ``;
 $(`/foo/${tmpStringConcatL}`);
 $(a);
 `````

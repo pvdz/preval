@@ -67,10 +67,10 @@ const tmpFree$1 = function $free(cs$1, g$147) {
 };
 $(tmpFree$1);
 $(function () {
-  $coerce(tmpBinBothRhs$32, `string`);
-  $coerce(tmpClusterSSA_r$2027, `string`);
+  String(tmpBinBothRhs$32);
+  String(tmpClusterSSA_r$2027);
   while (true) {
-    p$171 = p$171 + $frfr(tmpFree$1, $, $);
+    p$171 = p$171 + tmpFree$1($, $);
   }
 });
 `````

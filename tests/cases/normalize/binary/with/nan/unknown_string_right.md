@@ -86,7 +86,7 @@ $(tmpCalleeParam$1);
 (This ought to be the final result)
 
 `````js filename=intro
-const x = $coerce($(ok), `plustr`);
+const x = $(ok) + ``;
 const tmpArrElement = NaN ** x;
 const tmpArrElement$7 = `NaN${x}`;
 const tmpArrElement$11 = 0 << x;

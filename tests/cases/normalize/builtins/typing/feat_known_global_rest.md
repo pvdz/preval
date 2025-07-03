@@ -75,7 +75,7 @@ $spy(`Object.isFrozen`);
 $(`boolean`);
 $spy(`Object.isSealed`);
 $(`boolean`);
-$coerce($spy(`String.fromCharCode`), `number`);
+Number($spy(`String.fromCharCode`));
 $(`string`);
 $String_fromCodePoint($spy(`String.fromCodePoint`));
 $(`string`);

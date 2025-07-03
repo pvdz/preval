@@ -32,7 +32,7 @@ $(true);
 
 `````js filename=intro
 $spy() ** 0;
-$coerce($spy(), `plustr`);
+$spy() + ``;
 $(true);
 `````
 

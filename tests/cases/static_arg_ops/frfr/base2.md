@@ -102,10 +102,10 @@ const f = function (y) {
   $(y);
   $(y);
 };
-const tmpFrfrOutline = $frfr(tmpFree, x * 1, x * 2, x * 3);
+const tmpFrfrOutline = tmpFree(x * 1, x * 2, x * 3);
 f(tmpFrfrOutline);
 $(tmpFrfrOutline + 5);
-const tmpFrfrOutline$1 = $frfr(tmpFree, x - 1, x - 2, x - 3);
+const tmpFrfrOutline$1 = tmpFree(x - 1, x - 2, x - 3);
 f(tmpFrfrOutline$1);
 $(tmpFrfrOutline$1 + 5);
 `````

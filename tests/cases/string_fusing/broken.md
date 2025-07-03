@@ -34,8 +34,8 @@ $(out);
 (This ought to be the final result)
 
 `````js filename=intro
-const unknownLeft = $coerce($(`left`), `string`);
-const unknownRight = $coerce($(`right`), `string`);
+const unknownLeft = String($(`left`));
+const unknownRight = String($(`right`));
 $(`${unknownLeft}${unknownRight}me`);
 `````
 

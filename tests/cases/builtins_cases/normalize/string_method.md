@@ -90,7 +90,7 @@ const tmpFree$2 = function $free(repl$2) {
     `indexOf`,
     $dotCall($string_charAt, repl$2, `charAt`, 0),
   );
-  const tmpRet = $coerce(
+  const tmpRet = String(
     tmpRet$1 +
       $dotCall(
         $string_indexOf,
@@ -98,7 +98,6 @@ const tmpFree$2 = function $free(repl$2) {
         `indexOf`,
         $dotCall($string_charAt, repl$2, `charAt`, 1),
       ),
-    `string`,
   );
   return tmpRet;
 };
@@ -106,14 +105,14 @@ const f = function (inputstr$1) {
   const repl$3 = $dotCall($string_replace, inputstr$1, `replace`, new $regex_constructor(`[^A-Za-z0-9\\+\\/\\=]`, `g`), ``);
   const len = repl$3.length;
   if (0 < len) {
-    const tmpClusterSSA_outputstr = $frfr(tmpFree$2, repl$3);
+    const tmpClusterSSA_outputstr = tmpFree$2(repl$3);
     return tmpClusterSSA_outputstr;
   } else {
     return ``;
   }
 };
-$(f($coerce($(`co_rn`), `string`)));
-$(f($coerce($(`m#az#e`), `string`)));
+$(f(String($(`co_rn`))));
+$(f(String($(`m#az#e`))));
 `````
 
 

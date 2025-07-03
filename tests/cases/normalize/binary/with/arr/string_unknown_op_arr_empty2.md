@@ -34,7 +34,7 @@ $(arr);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpArrElement = $coerce($(``), `string`) == [];
+const tmpArrElement = String($(``)) == [];
 $([tmpArrElement]);
 `````
 

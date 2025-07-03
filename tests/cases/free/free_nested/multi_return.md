@@ -76,7 +76,7 @@ const g = function $free(n, o) {
   }
 };
 const x = $(100) * 1;
-$($frfr(g, x, $(200) * 1));
+$(g(x, $(200) * 1));
 `````
 
 

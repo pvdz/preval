@@ -35,7 +35,7 @@ $(a);
 `````js filename=intro
 const tmpArrElement = $(1);
 const tmpArrElement$3 = $(3);
-$coerce([tmpArrElement, 2, tmpArrElement$3], `string`);
+String([tmpArrElement, 2, tmpArrElement$3]);
 $({ a: 999, b: 1000 });
 `````
 

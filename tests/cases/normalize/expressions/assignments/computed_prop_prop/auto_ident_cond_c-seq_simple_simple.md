@@ -40,11 +40,11 @@ if (tmpIfTest) {
 `````js filename=intro
 if ($(30)) {
   const tmpClusterSSA_a = $(2);
-  $coerce(tmpClusterSSA_a, `string`);
+  String(tmpClusterSSA_a);
   $(tmpClusterSSA_a);
 } else {
   const tmpClusterSSA_a$1 = $($(100));
-  $coerce(tmpClusterSSA_a$1, `string`);
+  String(tmpClusterSSA_a$1);
   $(tmpClusterSSA_a$1);
 }
 `````

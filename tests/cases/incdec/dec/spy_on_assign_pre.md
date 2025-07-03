@@ -58,7 +58,7 @@ let c = { valueOf: tmpObjLitVal };
 let flag = 0;
 while (true) {
   if (flag < 10) {
-    c = $coerce(c, `number`) - 1;
+    c = Number(c) - 1;
     flag = c;
     $(`--c`, c);
   } else {

@@ -38,7 +38,7 @@ $(a);
 const tmpCalleeParam$1 = $(`\$`);
 const tmpNewCallee = { $: $ }[tmpCalleeParam$1];
 const a = new tmpNewCallee(1);
-$coerce(a, `string`);
+String(a);
 $(a);
 `````
 

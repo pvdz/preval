@@ -59,13 +59,13 @@ $(a, b);
 $(100);
 const b = { x: 1 };
 const tmpUpdObj = $($(b));
-const tmpUpdInc = $coerce(tmpUpdObj.x, `number`) - 1;
+const tmpUpdInc = Number(tmpUpdObj.x) - 1;
 tmpUpdObj.x = tmpUpdInc;
 if (tmpUpdInc) {
   while (true) {
     $(100);
     const tmpUpdObj$1 = $($(b));
-    const tmpUpdInc$1 = $coerce(tmpUpdObj$1.x, `number`) - 1;
+    const tmpUpdInc$1 = Number(tmpUpdObj$1.x) - 1;
     tmpUpdObj$1.x = tmpUpdInc$1;
     if (!tmpUpdInc$1) {
       break;

@@ -45,9 +45,9 @@ const f = function () {
   $(1);
   $(2);
 };
-$coerce(x, `number`);
+Number(x);
 f();
-$coerce(x, `number`);
+Number(x);
 f();
 `````
 

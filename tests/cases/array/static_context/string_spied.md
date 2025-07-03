@@ -50,7 +50,7 @@ const spy = {
     $(`y`);
   },
 };
-$coerce([spy, spy], `string`);
+String([spy, spy]);
 `````
 
 

@@ -48,7 +48,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 let x = $(1);
 while (true) {
   if (x % 2) {
-    $($coerce(x, `number`) + 1, `write`);
+    $(Number(x) + 1, `write`);
   } else {
     $(x, `read`);
   }

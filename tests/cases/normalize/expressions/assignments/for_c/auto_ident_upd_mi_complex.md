@@ -61,13 +61,13 @@ const tmpIfTest = $(1);
 const b = { x: 1 };
 if (tmpIfTest) {
   const tmpUpdObj = $($(b));
-  const tmpUpdInc = $coerce(tmpUpdObj.x, `number`) - 1;
+  const tmpUpdInc = Number(tmpUpdObj.x) - 1;
   tmpUpdObj.x = tmpUpdInc;
   let tmpClusterSSA_a = tmpUpdInc;
   while (true) {
     if ($(1)) {
       const tmpUpdObj$1 = $($(b));
-      const tmpUpdInc$1 = $coerce(tmpUpdObj$1.x, `number`) - 1;
+      const tmpUpdInc$1 = Number(tmpUpdObj$1.x) - 1;
       tmpUpdObj$1.x = tmpUpdInc$1;
       tmpClusterSSA_a = tmpUpdInc$1;
     } else {

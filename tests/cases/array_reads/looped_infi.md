@@ -43,12 +43,12 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 `````js filename=intro
 const tmpFree = function $free(tmpUpdVal) {
-  const tmpRet = $coerce(tmpUpdVal, `number`) + 1;
+  const tmpRet = Number(tmpUpdVal) + 1;
   return tmpRet;
 };
 const arr = [1, 2, 3];
 while (true) {
-  const tmpUpdInc = $frfr(tmpFree, arr[0]);
+  const tmpUpdInc = tmpFree(arr[0]);
   arr[0] = tmpUpdInc;
   $(tmpUpdInc);
 }

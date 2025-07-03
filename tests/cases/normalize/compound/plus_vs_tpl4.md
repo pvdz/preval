@@ -64,8 +64,8 @@ const spy = {
     return 1;
   },
 };
-const tmpStringConcatL = $coerce(spy, `plustr`);
-$($frfr(tmpFree, $coerce(spy, `string`), tmpStringConcatL));
+const tmpStringConcatL = spy + ``;
+$(tmpFree(String(spy), tmpStringConcatL));
 `````
 
 

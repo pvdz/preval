@@ -36,8 +36,8 @@ $(res);
 (This ought to be the final result)
 
 `````js filename=intro
-const str = $coerce($(`xyz`), `plustr`);
-$($dotCall($string_split, str, `split`, $coerce($(`y`), `plustr`)));
+const str = $(`xyz`) + ``;
+$($dotCall($string_split, str, `split`, $(`y`) + ``));
 `````
 
 

@@ -40,9 +40,9 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam = $($(0));
 if (tmpCalleeParam) {
-  $coerce(tmpCalleeParam, `string`);
+  String(tmpCalleeParam);
 } else {
-  $coerce($($(2)), `string`);
+  String($($(2)));
 }
 $({ a: 999, b: 1000 });
 `````

@@ -81,8 +81,8 @@ if (tmpIfTest$1) {
 `````js filename=intro
 const tmpObjLitVal = function (arg1, arg2) {
   $(`method_m_called`, arg1, arg2);
-  const tmpBinBothLhs = $coerce(arg1, `string`);
-  const tmpReturnArg = $(`method_m_return`, tmpBinBothLhs + $coerce(arg2, `string`));
+  const tmpBinBothLhs = String(arg1);
+  const tmpReturnArg = $(`method_m_return`, tmpBinBothLhs + String(arg2));
   return tmpReturnArg;
 };
 const objWithValue = $(`get_obj_with_method`, { m: tmpObjLitVal });

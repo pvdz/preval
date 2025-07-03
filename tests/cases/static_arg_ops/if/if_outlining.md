@@ -149,7 +149,7 @@ $(function (heap, node) {
         let tmpClusterSSA_tmpIfTest$367 = tmpClusterSSA_parentIndex > 0;
         while (true) {
           if (tmpClusterSSA_tmpIfTest$367) {
-            const tmpClusterSSA_parentIndex$1 = $frfr(tmpFree, tmpClusterSSA_index$1);
+            const tmpClusterSSA_parentIndex$1 = tmpFree(tmpClusterSSA_index$1);
             const tmpClusterSSA_parent$1 = heap[tmpClusterSSA_parentIndex$1];
             if (compare(tmpClusterSSA_parent$1, node) > 0) {
               heap[tmpClusterSSA_parentIndex$1] = node;

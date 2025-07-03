@@ -39,7 +39,7 @@ const tmpBindingPatternArrRoot = { a: 999, b: 1000 };
 [...tmpBindingPatternArrRoot];
 const tmpNestedAssignArrPatternRhs = $([1, 2]);
 const a = [...tmpNestedAssignArrPatternRhs][0];
-$coerce(tmpNestedAssignArrPatternRhs, `string`);
+String(tmpNestedAssignArrPatternRhs);
 $(a);
 `````
 

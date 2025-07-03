@@ -62,7 +62,7 @@ const tmpLambdaReduceLen = obj.length;
 if (0 < tmpLambdaReduceLen) {
   let tmpLambdaReduceOut = ``;
   if (0 in obj) {
-    tmpLambdaReduceOut = $coerce(obj[0], `plustr`);
+    tmpLambdaReduceOut = obj[0] + ``;
   }
   let tmpClusterSSA_tmpLambdaReduceCounter = 1;
   while (true) {

@@ -33,7 +33,7 @@ $(tmpNestedComplexRhs, tmpNestedComplexRhs);
 
 `````js filename=intro
 const tmpNestedComplexRhs = $(2);
-$coerce(tmpNestedComplexRhs, `string`);
+String(tmpNestedComplexRhs);
 $(tmpNestedComplexRhs, tmpNestedComplexRhs);
 `````
 

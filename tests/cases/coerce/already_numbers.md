@@ -46,11 +46,11 @@ $(tmpCalleeParam$3);
 
 `````js filename=intro
 const tmpFree = function $free(x$1, y$1) {
-  const tmpRet = $coerce(x$1 * 1, `string`) + $coerce(y$1 * 1, `string`);
+  const tmpRet = String(x$1 * 1) + String(y$1 * 1);
   return tmpRet;
 };
-const x = $coerce($spy(1), `number`);
-$($frfr(tmpFree, x, $coerce($spy(2), `number`)));
+const x = Number($spy(1));
+$(tmpFree(x, Number($spy(2))));
 `````
 
 

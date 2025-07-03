@@ -38,7 +38,7 @@ $(tmpNestedAssignObjPatternRhs, b);
 const tmpObjLitVal = $(2);
 const tmpNestedAssignObjPatternRhs = $({ b: tmpObjLitVal });
 const b = tmpNestedAssignObjPatternRhs.b;
-$coerce(tmpNestedAssignObjPatternRhs, `string`);
+String(tmpNestedAssignObjPatternRhs);
 $(tmpNestedAssignObjPatternRhs, b);
 `````
 

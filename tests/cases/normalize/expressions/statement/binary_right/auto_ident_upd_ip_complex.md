@@ -42,7 +42,7 @@ $(a, b);
 const tmpBinBothLhs = $(100);
 const b = { x: 1 };
 const tmpUpdObj = $($(b));
-tmpUpdObj.x = $coerce(tmpUpdObj.x, `number`) + 1;
+tmpUpdObj.x = Number(tmpUpdObj.x) + 1;
 tmpBinBothLhs + 0;
 $({ a: 999, b: 1000 }, b);
 `````

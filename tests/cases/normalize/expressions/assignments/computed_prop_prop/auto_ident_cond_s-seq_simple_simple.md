@@ -31,7 +31,7 @@ $(tmpClusterSSA_a);
 
 `````js filename=intro
 const tmpClusterSSA_a = $(2);
-$coerce(tmpClusterSSA_a, `string`);
+String(tmpClusterSSA_a);
 $(tmpClusterSSA_a);
 `````
 

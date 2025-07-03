@@ -68,9 +68,9 @@ if (t) {
 `````js filename=intro
 const s = $(`s`);
 const t = $(`t`);
-const tmpStringConcatR = $coerce(s, `plustr`);
+const tmpStringConcatR = s + ``;
 if (t) {
-  const tmpStringConcatL$1 = $coerce(t, `plustr`);
+  const tmpStringConcatL$1 = t + ``;
   $(`${tmpStringConcatR}abcdef${tmpStringConcatL$1}`);
 } else {
   $(`${tmpStringConcatR}abcghi`);

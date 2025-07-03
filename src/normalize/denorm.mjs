@@ -4,8 +4,15 @@
 import walk from '../../lib/walk.mjs';
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, source, before, after, assertNoDupeNodes, rule, riskyRule, example, currentState, } from '../utils.mjs';
 import * as AST from '../ast.mjs';
-import { SYMBOL_COERCE, SYMBOL_DOTCALL, SYMBOL_LOOP_UNROLL, SYMBOL_MAX_LOOP_UNROLL } from '../symbols_preval.mjs';
+import {
+  SYMBOL_COERCE,
+  SYMBOL_DOTCALL,
+  SYMBOL_FRFR,
+  SYMBOL_LOOP_UNROLL,
+  SYMBOL_MAX_LOOP_UNROLL,
+} from '../symbols_preval.mjs';
 import { isComplexNode } from '../ast.mjs';
+import { BUILTIN_SYMBOLS } from '../symbols_builtins.mjs';
 
 export function denorm(fdata, resolve, req, options) {
   const ast = fdata.tenkoOutput.ast;
@@ -58,6 +65,65 @@ export function denorm(fdata, resolve, req, options) {
 
           after(node);
           changed = true;
+          return true;
+        }
+        if (node.callee.type === 'Identifier' && node.callee.name === SYMBOL_FRFR) {
+          rule('Calling $frfr can be simplified to callign the function directly');
+          example('$frfr(a,b,c);', 'a(b,c);');
+          before(node);
+
+          node.callee = node.arguments.shift();
+
+          after(node);
+          changed = true;
+          return true;
+        }
+        if (node.callee.type === 'Identifier' && node.callee.name === SYMBOL_COERCE) {
+          switch (AST.getPrimitiveValue(node.arguments[1])) {
+            case 'number': {
+              rule('coerce to number should call Number');
+              example('$coerce(x, "number")', 'Number(x)');
+              before(node);
+
+              node.callee = AST.identifier('Number');
+              node.arguments.pop();
+
+              after(node);
+              changed = true;
+              return true;
+            }
+            case 'string': {
+              rule('coerce to string should call String');
+              example('$coerce(x, "string")', 'String(x)');
+              before(node);
+
+              node.callee = AST.identifier('String');
+              node.arguments.pop();
+
+              after(node);
+              changed = true;
+              return true;
+            }
+            case 'plustr': {
+
+              const parentNode = path.nodes[path.nodes.length - 2];
+              const parentProp = path.props[path.props.length - 1];
+              const parentIndex = path.indexes[path.indexes.length - 1];
+
+              rule('coerce to plustr should concat to empty string');
+              example('$coerce(x, "plustr")', 'x+""');
+              before(parentProp);
+
+              const newNode = AST.binaryExpression('+', node.arguments[0], AST.primitive(''));
+              if (parentIndex < 0) parentNode[parentProp] = newNode;
+              else parentNode[parentProp][parentIndex] = newNode;
+
+              after(parentIndex);
+              changed = true;
+              return true;
+            }
+            default: ASSERT(false, 'unreachable');
+          }
         }
         break;
       }
@@ -121,6 +187,35 @@ export function denorm(fdata, resolve, req, options) {
       }
       case 'IfStatement:before': {
         changed = pruneIfBranches(node) || changed;
+        break;
+      }
+      case 'Identifier:before': {
+        // if (BUILTIN_SYMBOLS.has(node.name)) {
+        //   const parts = node.name.slice(1).split('_');
+        //   if (parts.length === 2) {
+        //     if (parts[0] === 'regex') parts[0] = 'regExp'; // oddball
+        //
+        //     const parentNode = path.nodes[path.nodes.length - 2];
+        //     const parentProp = path.props[path.props.length - 1];
+        //     const parentIndex = path.indexes[path.indexes.length - 1];
+        //
+        //     if (parts[0] === parts[0].toLowerCase()) {
+        //
+        //     } else {
+        //       rule('Builtin symbols should be reverted to normal references when feasible');
+        //       example('string_constructor', 'String');
+        //       before(parentNode);
+        //
+        //       const newNode = AST.memberExpression(parts[0], parts[1]);
+        //       if (parentIndex < 0) parentNode[parentProp] = newNode;
+        //       else parentNode[parentProp][parentIndex] = newNode;
+        //
+        //       after(parentNode);
+        //       changed = true;
+        //       return true;
+        //     }
+        //   }
+        // }
         break;
       }
       case 'VarStatement:before': {

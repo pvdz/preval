@@ -51,7 +51,7 @@ const tmpInitAssignLhsComputedProp = $(`y`);
 const tmpInitAssignLhsComputedRhs = $(3);
 tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = tmpInitAssignLhsComputedRhs;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpInitAssignLhsComputedRhs;
-$coerce(tmpInitAssignLhsComputedRhs, `string`);
+String(tmpInitAssignLhsComputedRhs);
 $(tmpInitAssignLhsComputedRhs, b, c, 3);
 `````
 

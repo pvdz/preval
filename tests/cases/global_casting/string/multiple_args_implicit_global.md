@@ -31,7 +31,7 @@ $(tmpArgOverflow);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpArgOverflow = $coerce($(`a`), `plustr`);
+const tmpArgOverflow = $(`a`) + ``;
 fail_hard;
 $(tmpArgOverflow);
 `````

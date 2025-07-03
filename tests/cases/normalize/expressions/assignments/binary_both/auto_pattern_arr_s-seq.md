@@ -47,7 +47,7 @@ $(10);
 $(20);
 const tmpNestedAssignArrPatternRhs$1 = [1, 2];
 const tmpSSA_a = [...tmpNestedAssignArrPatternRhs$1][0];
-const tmpStringConcatL = $coerce(tmpNestedAssignArrPatternRhs$1, `plustr`);
+const tmpStringConcatL = tmpNestedAssignArrPatternRhs$1 + ``;
 $(`1,2${tmpStringConcatL}`);
 $(tmpSSA_a);
 `````

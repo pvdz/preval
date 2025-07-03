@@ -48,7 +48,7 @@ const tmpCalleeParam = $(100);
 const b = { x: 1 };
 if (tmpCalleeParam) {
   const tmpUpdObj = $($(b));
-  const tmpUpdNum = $coerce(tmpUpdObj.x, `number`);
+  const tmpUpdNum = Number(tmpUpdObj.x);
   tmpUpdObj.x = tmpUpdNum - 1;
   $(tmpUpdNum);
   $(tmpUpdNum, b);

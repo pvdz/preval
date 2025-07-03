@@ -118,7 +118,7 @@ const tmpArrElement = `10,20,30` ** x;
 x ** 0;
 x ** 0;
 x ** 0;
-const tmpStringConcatL = $coerce(x, `plustr`);
+const tmpStringConcatL = x + ``;
 x ** 0;
 const tmpArrElement$11 = 0 << x;
 const tmpArrElement$13 = 0 >> x;

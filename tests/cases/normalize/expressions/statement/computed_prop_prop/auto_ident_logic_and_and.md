@@ -48,12 +48,12 @@ const tmpCalleeParam = $($(1));
 if (tmpCalleeParam) {
   const tmpClusterSSA_tmpCalleeParam = $($(1));
   if (tmpClusterSSA_tmpCalleeParam) {
-    $coerce($($(2)), `string`);
+    String($($(2)));
   } else {
-    $coerce(tmpClusterSSA_tmpCalleeParam, `string`);
+    String(tmpClusterSSA_tmpCalleeParam);
   }
 } else {
-  $coerce(tmpCalleeParam, `string`);
+  String(tmpCalleeParam);
 }
 $({ a: 999, b: 1000 });
 `````

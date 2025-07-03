@@ -97,7 +97,7 @@ $(tmpCalleeParam$1);
 (This ought to be the final result)
 
 `````js filename=intro
-const x = $coerce($(`ok`), `plustr`);
+const x = $(`ok`) + ``;
 const tmpArrElement = x ** 1;
 const tmpArrElement$1 = x * 1;
 const tmpArrElement$3 = x / 1;

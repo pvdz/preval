@@ -51,7 +51,7 @@ const spy = {
     $(`y`);
   },
 };
-$($coerce([spy, spy], `number`));
+$(Number([spy, spy]));
 `````
 
 

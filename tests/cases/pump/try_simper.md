@@ -104,7 +104,7 @@ const arrB = [
 ];
 while (true) {
   $(`protect`);
-  if ($frfr(tmpFree, arrB[51], arrB[18])) {
+  if (tmpFree(arrB[51], arrB[18])) {
     break;
   } else {
     $dotCall($array_push, arrB, `push`, $dotCall($array_shift, arrB, `shift`));

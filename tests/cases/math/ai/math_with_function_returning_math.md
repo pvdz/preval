@@ -40,10 +40,10 @@ $(a);
 `````js filename=intro
 $(
   $(
-    $frfr(function $free() {
+    (function $free() {
       const tmpRet$1 = $Math_abs($Math_sin(-$Math_PI / 2));
       return tmpRet$1;
-    }),
+    })(),
   ),
 );
 `````

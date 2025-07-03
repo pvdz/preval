@@ -68,12 +68,12 @@ $(`postfix_temp_val`, tmpUpdNum$1);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpUpdInc = $coerce($(`initial_c_val`, 5), `number`) + 1;
+const tmpUpdInc = Number($(`initial_c_val`, 5)) + 1;
 $(`final_a_prop`, tmpUpdInc);
 $(`final_b_prop`, tmpUpdInc);
 $(`final_c_val`, tmpUpdInc);
 $(`final_result`, tmpUpdInc);
-const tmpUpdNum$1 = $coerce($(`initial_c_val2`, 10), `number`);
+const tmpUpdNum$1 = Number($(`initial_c_val2`, 10));
 $(`postfix_final_a_prop`, tmpUpdNum$1);
 $(`postfix_final_b_prop`, tmpUpdNum$1);
 $(`postfix_final_c_val`, tmpUpdNum$1 + 1);

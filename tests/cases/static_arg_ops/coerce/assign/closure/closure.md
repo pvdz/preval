@@ -54,9 +54,9 @@ const f = function (c) {
   $(2);
   $(c);
 };
-$coerce(x, `number`);
+Number(x);
 f(3);
-const tmpClusterSSA_y = $coerce(x, `number`);
+const tmpClusterSSA_y = Number(x);
 f(4);
 $(x);
 $(tmpClusterSSA_y);

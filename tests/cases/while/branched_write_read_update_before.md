@@ -49,7 +49,7 @@ $(1);
 while (true) {
   const tmpClusterSSA_x = $(10);
   if (tmpClusterSSA_x % 2) {
-    $($coerce(tmpClusterSSA_x, `number`) + 1, `write`);
+    $(Number(tmpClusterSSA_x) + 1, `write`);
   } else {
     $(tmpClusterSSA_x, `read`);
   }

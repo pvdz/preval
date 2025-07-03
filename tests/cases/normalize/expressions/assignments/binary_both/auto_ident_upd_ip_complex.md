@@ -46,10 +46,10 @@ $(tmpUpdNum$1, b);
 `````js filename=intro
 const b = { x: 1 };
 const tmpUpdObj = $($(b));
-const tmpUpdNum = $coerce(tmpUpdObj.x, `number`);
+const tmpUpdNum = Number(tmpUpdObj.x);
 tmpUpdObj.x = tmpUpdNum + 1;
 const tmpUpdObj$1 = $($(b));
-const tmpUpdNum$1 = $coerce(tmpUpdObj$1.x, `number`);
+const tmpUpdNum$1 = Number(tmpUpdObj$1.x);
 tmpUpdObj$1.x = tmpUpdNum$1 + 1;
 $(tmpUpdNum + tmpUpdNum$1);
 $(tmpUpdNum$1, b);

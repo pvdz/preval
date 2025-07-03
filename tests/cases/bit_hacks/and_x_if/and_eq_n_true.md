@@ -43,7 +43,7 @@ const tmpFree = function $free(x$1) {
   return tmpRet;
 };
 const tmpUnaryArg = $(1);
-$($frfr(tmpFree, +tmpUnaryArg));
+$(tmpFree(+tmpUnaryArg));
 `````
 
 

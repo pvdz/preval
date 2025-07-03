@@ -46,7 +46,7 @@ if (tmpChainElementCall == null) {
 } else {
   const tmpChainRootComputed = $(`x`);
   const tmpClusterSSA_a = tmpChainElementCall[tmpChainRootComputed];
-  $coerce(tmpClusterSSA_a, `string`);
+  String(tmpClusterSSA_a);
   $(tmpClusterSSA_a);
 }
 `````

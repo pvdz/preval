@@ -40,7 +40,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 `````js filename=intro
 const tmpUpdObj = $($({ x: 1 }));
-const tmpUpdNum = $coerce(tmpUpdObj.x, `number`);
+const tmpUpdNum = Number(tmpUpdObj.x);
 tmpUpdObj.x = tmpUpdNum - 1;
 while (true) {
   $(tmpUpdNum);

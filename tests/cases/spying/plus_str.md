@@ -27,7 +27,7 @@ $(tmpCalleeParam);
 (This ought to be the final result)
 
 `````js filename=intro
-$($coerce($spy(), `plustr`));
+$($spy() + ``);
 `````
 
 

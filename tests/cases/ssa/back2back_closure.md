@@ -49,7 +49,7 @@ if ($) {
 
 `````js filename=intro
 if ($) {
-  const tmpPostUpdArgIdent = $coerce($(5), `number`);
+  const tmpPostUpdArgIdent = Number($(5));
   if ($) {
     $(tmpPostUpdArgIdent + 1);
   }

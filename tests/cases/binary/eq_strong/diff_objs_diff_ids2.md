@@ -29,7 +29,7 @@ $(`out:`, y);
 (This ought to be the final result)
 
 `````js filename=intro
-$coerce($, `string`);
+String($);
 $(`out:`, !tmpBinBothRhs$1);
 `````
 

@@ -42,7 +42,7 @@ $(10);
 $(20);
 const tmpNestedAssignArrPatternRhs = [1, 2];
 const a = [...tmpNestedAssignArrPatternRhs][0];
-$coerce(tmpNestedAssignArrPatternRhs, `string`);
+String(tmpNestedAssignArrPatternRhs);
 $(a);
 `````
 

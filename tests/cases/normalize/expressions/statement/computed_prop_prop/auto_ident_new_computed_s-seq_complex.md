@@ -38,7 +38,7 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam$1 = $(`\$`);
 const tmpNewCallee = { $: $ }[tmpCalleeParam$1];
-$coerce(new tmpNewCallee(1), `string`);
+String(new tmpNewCallee(1));
 $({ a: 999, b: 1000 });
 `````
 

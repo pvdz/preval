@@ -54,7 +54,7 @@ $(f);
 
 `````js filename=intro
 $(function () {
-  const tmpStringConcatL = $coerce(desc$1, `plustr`);
+  const tmpStringConcatL = desc$1 + ``;
   if (lastType === 2097173) {
     _THROW(`Parser error! ${tmpStringConcatL} (at EOF)`, tokenStart$5, tokenStop$5, ``);
   } else {

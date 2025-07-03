@@ -30,7 +30,7 @@ $(`out:`, y);
 (This ought to be the final result)
 
 `````js filename=intro
-$(`out:`, $coerce($(`full`), `string`) === `full`);
+$(`out:`, String($(`full`)) === `full`);
 `````
 
 

@@ -51,7 +51,7 @@ const x = $(`test`);
 if (typeof x === `string`) {
   $(x.length);
 } else {
-  $($coerce(x, `string`).length);
+  $(String(x).length);
 }
 `````
 

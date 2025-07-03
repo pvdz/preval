@@ -141,7 +141,7 @@ $(tmpObjLitVal$159);
 
 `````js filename=intro
 const tmpFree = function $free() {
-  const tmpBinBothRhs$3631 = $frfr(tmpFree$1, $, $);
+  const tmpBinBothRhs$3631 = tmpFree$1($, $);
   const tmpRet = `${tmpBinBothRhs$3631}`;
   return tmpRet;
 };
@@ -163,8 +163,8 @@ $(function () {
   }
   tmpCallObj$3807.toString(36);
   const tmpClusterSSA_r$2027 = tmpCallObj$3811.replace(new $regex_constructor(`^0.`, ``), ``);
-  $coerce(tmpBinBothRhs$32, `string`);
-  $coerce(tmpClusterSSA_r$2027, `string`);
+  String(tmpBinBothRhs$32);
+  String(tmpClusterSSA_r$2027);
   const tmpClusterSSA_t$9 = tmpSSA_Tu();
   if (tmpClusterSSA_t$9) {
     tmpClusterSSA_tmpssa3_c$245 = tmpClusterSSA_t$9;
@@ -175,10 +175,10 @@ $(function () {
     }
   }
   if (tmpIfTest$5467) {
-    let tmpClusterSSA_p$171 = $frfr(tmpFree);
+    let tmpClusterSSA_p$171 = tmpFree();
     while (true) {
       if (tmpIfTest$5467) {
-        const tmpBinBothRhs$1 = $frfr(tmpFree$1, $, $);
+        const tmpBinBothRhs$1 = tmpFree$1($, $);
         tmpClusterSSA_p$171 = `${tmpClusterSSA_p$171}${tmpBinBothRhs$1}`;
       } else {
         break;

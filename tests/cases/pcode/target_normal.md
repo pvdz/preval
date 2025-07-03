@@ -152,14 +152,14 @@ const tmpFree = function $free(num_arg) {
 const pcode = function (num_arg$1) {
   let out_str$2 = ``;
   if (!(num_arg$1 < 62)) {
-    out_str$2 = pcode($frfr(tmpFree, num_arg$1));
+    out_str$2 = pcode(tmpFree(num_arg$1));
   }
   const perc$2 = num_arg$1 % 62;
   if (perc$2 > 35) {
-    const str = $frfr(tmpFree$1, perc$2, out_str$2);
+    const str = tmpFree$1(perc$2, out_str$2);
     return str;
   } else {
-    const altstr = $frfr(tmpFree$2, perc$2, out_str$2);
+    const altstr = tmpFree$2(perc$2, out_str$2);
     return altstr;
   }
 };

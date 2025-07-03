@@ -72,7 +72,7 @@ const obj = {
   },
   set x(v) {
     const tmpBinBothLhs = s;
-    const tmpStringConcatL$1 = $coerce(v, `plustr`);
+    const tmpStringConcatL$1 = v + ``;
     s = `${tmpBinBothLhs}write[${tmpStringConcatL$1}];`;
     a = a + v;
     return a;

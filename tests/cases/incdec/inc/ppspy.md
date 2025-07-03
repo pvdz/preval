@@ -32,7 +32,7 @@ $(tmpClusterSSA_x);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpClusterSSA_x = $coerce($spy(0), `number`) + 1;
+const tmpClusterSSA_x = Number($spy(0)) + 1;
 $(tmpClusterSSA_x);
 $(tmpClusterSSA_x);
 `````

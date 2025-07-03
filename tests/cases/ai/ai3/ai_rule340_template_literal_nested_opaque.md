@@ -41,8 +41,8 @@ const name = $(`name`);
 const place = $(`place`);
 const tmpBinBothRhs = $(`num`, 1);
 const count = 1 + tmpBinBothRhs;
-const tmpBinBothRhs$5 = $coerce(name, `string`);
-const tmpBinBothRhs$3 = $coerce(place, `string`);
+const tmpBinBothRhs$5 = String(name);
+const tmpBinBothRhs$3 = String(place);
 $(`final_result`, `Hello ${tmpBinBothRhs$5}, welcome to ${tmpBinBothRhs$3}! Count: ${count}.`);
 `````
 

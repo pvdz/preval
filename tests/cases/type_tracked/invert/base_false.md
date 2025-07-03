@@ -53,7 +53,7 @@ f();
 
 `````js filename=intro
 const f = function () {
-  const x$1 = $coerce($(``), `plustr`);
+  const x$1 = $(``) + ``;
   if (x$1) {
     $(false, `fail`);
     $(x$1, `after`);

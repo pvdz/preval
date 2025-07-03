@@ -48,12 +48,12 @@ $(tmpClusterSSA_a);
 `````js filename=intro
 const bindingPatternArrRoot = { a: 999, b: 1000 };
 [...bindingPatternArrRoot];
-$coerce(unknown, `string`);
+String(unknown);
 $(10);
 $(20);
 const tmpNestedAssignArrPatternRhs = $([1, 2]);
 const tmpClusterSSA_a = [...tmpNestedAssignArrPatternRhs][0];
-$coerce(tmpNestedAssignArrPatternRhs, `string`);
+String(tmpNestedAssignArrPatternRhs);
 $(tmpClusterSSA_a);
 `````
 

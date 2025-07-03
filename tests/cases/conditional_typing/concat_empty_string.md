@@ -32,7 +32,7 @@ $(z);
 (This ought to be the final result)
 
 `````js filename=intro
-$($coerce($(`hello`), `string`));
+$(String($(`hello`)));
 `````
 
 

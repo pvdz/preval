@@ -72,7 +72,7 @@ const tmpFree$21 = function $free(tmpUnaryArg$489) {
 };
 const _0xb34c4b = [`a`, `b`];
 try {
-  if (!$frfr(tmpFree$21, $Number_parseInt($(824)))) {
+  if (!tmpFree$21($Number_parseInt($(824)))) {
     $dotCall($array_push, _0xb34c4b, `push`, $dotCall($array_shift, _0xb34c4b, `shift`));
   }
 } catch (_0xa7aced$11) {

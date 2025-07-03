@@ -56,10 +56,10 @@ if (t) {
 const s = $(`s`);
 const t = $(`t`);
 if (t) {
-  const tmpStringConcatL$2 = $coerce(t, `plustr`);
+  const tmpStringConcatL$2 = t + ``;
   $(`abcdef${tmpStringConcatL$2}`);
 } else {
-  const tmpStringConcatL$4 = $coerce(s, `plustr`);
+  const tmpStringConcatL$4 = s + ``;
   $(`abcghi${tmpStringConcatL$4}`);
 }
 `````

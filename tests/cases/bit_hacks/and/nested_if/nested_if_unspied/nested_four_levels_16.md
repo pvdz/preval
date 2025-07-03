@@ -72,8 +72,8 @@ const tmpFree = function $free(x$3) {
 };
 const tmpUnaryArg = $spy(24);
 const x = +tmpUnaryArg;
-if ($frfr(tmpFree$1, x)) {
-  if ($frfr(tmpFree, x)) {
+if (tmpFree$1(x)) {
+  if (tmpFree(x)) {
     $(`it is 58`);
   }
 }

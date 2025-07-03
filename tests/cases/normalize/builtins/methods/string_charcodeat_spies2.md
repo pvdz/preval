@@ -31,7 +31,7 @@ $coerce(x, `number`);
 `````js filename=intro
 const x = $spy(`a`);
 $spy(`a`);
-$coerce(x, `number`);
+Number(x);
 `````
 
 

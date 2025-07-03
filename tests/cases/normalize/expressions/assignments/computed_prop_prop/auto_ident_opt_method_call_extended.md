@@ -34,7 +34,7 @@ $(tmpClusterSSA_a);
 
 `````js filename=intro
 const tmpClusterSSA_a = $dotCall($, { e: $ }, `e`, 1);
-$coerce(tmpClusterSSA_a, `string`);
+String(tmpClusterSSA_a);
 $(tmpClusterSSA_a);
 `````
 

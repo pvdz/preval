@@ -28,7 +28,7 @@ $(tmpPostUpdArgIdent);
 (This ought to be the final result)
 
 `````js filename=intro
-$($coerce($(1), `number`));
+$(Number($(1)));
 `````
 
 

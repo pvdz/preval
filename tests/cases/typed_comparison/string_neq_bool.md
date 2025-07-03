@@ -29,7 +29,7 @@ $(`out:`, true);
 (This ought to be the final result)
 
 `````js filename=intro
-$coerce($(`foo`), `string`);
+String($(`foo`));
 $(`out:`, true);
 `````
 

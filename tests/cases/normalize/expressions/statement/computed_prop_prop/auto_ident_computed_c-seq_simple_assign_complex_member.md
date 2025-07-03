@@ -46,7 +46,7 @@ const tmpCompObj$1 = $(b);
 const tmpCalleeParam$1 = $(`d`);
 const tmpInitAssignLhsComputedRhs = tmpCompObj$1[tmpCalleeParam$1];
 tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = tmpInitAssignLhsComputedRhs;
-$coerce(tmpInitAssignLhsComputedRhs, `string`);
+String(tmpInitAssignLhsComputedRhs);
 $({ a: 999, b: 1000 }, b);
 `````
 

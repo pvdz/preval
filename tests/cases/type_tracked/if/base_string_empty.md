@@ -36,7 +36,7 @@ if (x) {
 (This ought to be the final result)
 
 `````js filename=intro
-const x = $coerce($(``), `plustr`);
+const x = $(``) + ``;
 if (x) {
   $(x, `false`);
 } else {

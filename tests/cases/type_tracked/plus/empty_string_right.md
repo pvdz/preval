@@ -42,7 +42,7 @@ f();
 
 `````js filename=intro
 const f = function () {
-  const a = $coerce($(1), `plustr`);
+  const a = $(1) + ``;
   $(a, `a`);
   $(a, `b`);
 };

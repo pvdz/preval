@@ -56,10 +56,11 @@ $(tmpClusterSSA_x$2);
 (This ought to be the final result)
 
 `````js filename=intro
-let tmpClusterSSA_x$2 = $frfr(function $free(tmpClusterSSA_x$1) {
+const tmpFree = function $free(tmpClusterSSA_x$1) {
   const tmpRet$8 = tmpClusterSSA_x$1 + 1e-7 + 1e-7 + 1e-7 + 1e-7 + 1e-7 + 1e-7 + 1e-7 + 1e-7 + 1e-7 + 1e-7;
   return tmpRet$8;
-}, $(0) + 1e-7);
+};
+let tmpClusterSSA_x$2 = tmpFree($(0) + 1e-7);
 let tmpClusterSSA_i$2 = 11;
 while (true) {
   if (tmpClusterSSA_i$2 < 100) {

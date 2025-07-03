@@ -63,7 +63,7 @@ const tmpLambdaReduceRightCounter = obj.length - 1;
 if (tmpLambdaReduceRightCounter >= 0) {
   let tmpLambdaReduceRightOut = ``;
   if (tmpLambdaReduceRightCounter in obj) {
-    tmpLambdaReduceRightOut = $coerce(obj[tmpLambdaReduceRightCounter], `plustr`);
+    tmpLambdaReduceRightOut = obj[tmpLambdaReduceRightCounter] + ``;
   }
   let tmpClusterSSA_tmpLambdaReduceRightCounter = tmpLambdaReduceRightCounter - 1;
   while (true) {

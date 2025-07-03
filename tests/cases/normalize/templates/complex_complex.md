@@ -30,8 +30,8 @@ $(tmpCalleeParam);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpBinBothRhs$1 = $coerce($(10), `string`);
-const tmpBinBothRhs = $coerce($(20), `string`);
+const tmpBinBothRhs$1 = String($(10));
+const tmpBinBothRhs = String($(20));
 $(`abc ${tmpBinBothRhs$1} ${tmpBinBothRhs} def`);
 `````
 

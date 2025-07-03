@@ -49,7 +49,7 @@ const f = function () {
 const arr = [`fail`, 2, 3];
 f();
 f();
-$($coerce(arr, `string`));
+$(String(arr));
 `````
 
 

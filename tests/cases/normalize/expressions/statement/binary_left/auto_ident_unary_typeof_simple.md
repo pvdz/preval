@@ -32,7 +32,7 @@ $(a, 1);
 (This ought to be the final result)
 
 `````js filename=intro
-$coerce($(100), `plustr`);
+$(100) + ``;
 $({ a: 999, b: 1000 }, 1);
 `````
 

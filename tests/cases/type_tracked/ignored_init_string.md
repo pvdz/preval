@@ -50,9 +50,9 @@ if (itooamanumberjack) {
 `````js filename=intro
 let itooamanumberjack = ``;
 if (imanumberandilovethrees) {
-  itooamanumberjack = $coerce($(1), `string`);
+  itooamanumberjack = String($(1));
 } else {
-  itooamanumberjack = $coerce($(2), `string`);
+  itooamanumberjack = String($(2));
 }
 if (itooamanumberjack) {
   $(`a`, itooamanumberjack);

@@ -60,21 +60,21 @@ $(`number`);
 (This ought to be the final result)
 
 `````js filename=intro
-$coerce($spy(`Math.asin`), `number`);
+Number($spy(`Math.asin`));
 $(`number`);
-$coerce($spy(`Math.asinh`), `number`);
+Number($spy(`Math.asinh`));
 $(`number`);
-$coerce($spy(`Math.atan`), `number`);
+Number($spy(`Math.atan`));
 $(`number`);
-$coerce($spy(`Math.atan2`), `number`);
+Number($spy(`Math.atan2`));
 $(`number`);
-$coerce($spy(`Math.atanh`), `number`);
+Number($spy(`Math.atanh`));
 $(`number`);
-$coerce($spy(`Math.cbrt`), `number`);
+Number($spy(`Math.cbrt`));
 $(`number`);
-$coerce($spy(`Math.ceil`), `number`);
+Number($spy(`Math.ceil`));
 $(`number`);
-$coerce($spy(`Math.clz32`), `number`);
+Number($spy(`Math.clz32`));
 $(`number`);
 `````
 

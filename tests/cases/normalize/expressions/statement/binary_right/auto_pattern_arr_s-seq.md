@@ -39,7 +39,7 @@ const a = [...tmpBindingPatternArrRoot][0];
 const tmpBinBothLhs = $(100);
 $(10);
 $(20);
-$coerce(tmpBinBothLhs, `plustr`);
+tmpBinBothLhs + ``;
 $(a);
 `````
 

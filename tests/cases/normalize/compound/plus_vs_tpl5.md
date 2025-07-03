@@ -45,8 +45,8 @@ const tmpFree = function $free(tmpBinBothRhs$2, tmpStringConcatL$1) {
   return tmpRet;
 };
 const spy = $spy(`woop`);
-const tmpStringConcatL = $coerce(spy, `plustr`);
-$($frfr(tmpFree, $coerce(spy, `string`), tmpStringConcatL));
+const tmpStringConcatL = spy + ``;
+$(tmpFree(String(spy), tmpStringConcatL));
 `````
 
 

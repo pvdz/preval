@@ -33,7 +33,7 @@ $(tmpUpdNum);
 
 `````js filename=intro
 const tmpUpdObj = $($spy(100));
-const tmpUpdNum = $coerce(tmpUpdObj.x, `number`);
+const tmpUpdNum = Number(tmpUpdObj.x);
 tmpUpdObj.x = tmpUpdNum - 1;
 $(tmpUpdNum);
 `````

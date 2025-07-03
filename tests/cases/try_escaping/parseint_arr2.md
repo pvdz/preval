@@ -72,7 +72,7 @@ const arr = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`];
 while (true) {
   const a$1 = arr[2];
   $(a$1);
-  if ($frfr(tmpFree, a$1)) {
+  if (tmpFree(a$1)) {
     break;
   } else {
     $dotCall($array_push, arr, `push`, $dotCall($array_shift, arr, `shift`));

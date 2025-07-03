@@ -39,7 +39,7 @@ const b = { c: 1 };
 const tmpAssignRhsCompObj = $(b);
 const tmpAssignRhsCompProp = $(`c`);
 const a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
-$coerce(a, `string`);
+String(a);
 $(a, b);
 `````
 

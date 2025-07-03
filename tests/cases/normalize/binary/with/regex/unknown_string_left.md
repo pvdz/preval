@@ -117,7 +117,7 @@ $(tmpCalleeParam$1);
 (This ought to be the final result)
 
 `````js filename=intro
-const x = $coerce($(`ok`), `plustr`);
+const x = $(`ok`) + ``;
 const tmpArrElement = x ** new $regex_constructor(`foo`, `g`);
 const tmpArrElement$1 = x * new $regex_constructor(`foo`, `g`);
 const tmpArrElement$3 = x / new $regex_constructor(`foo`, `g`);

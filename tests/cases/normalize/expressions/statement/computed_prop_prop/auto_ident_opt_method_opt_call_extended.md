@@ -39,7 +39,7 @@ $(a);
 
 `````js filename=intro
 if (!($ == null)) {
-  $coerce($dotCall($, { e: $ }, `e`, 1), `string`);
+  String($dotCall($, { e: $ }, `e`, 1));
 }
 $({ a: 999, b: 1000 });
 `````

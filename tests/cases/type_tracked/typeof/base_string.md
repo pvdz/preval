@@ -28,7 +28,7 @@ $(`string`);
 (This ought to be the final result)
 
 `````js filename=intro
-$coerce($(2), `plustr`);
+$(2) + ``;
 $(`string`);
 `````
 

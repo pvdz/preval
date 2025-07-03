@@ -42,8 +42,8 @@ $(w);
 
 `````js filename=intro
 const x = $(`test`);
-const y = $coerce(x, `string`);
-const z = $coerce(x, `number`);
+const y = String(x);
+const z = Number(x);
 $(y);
 $(z);
 $($boolean_constructor(x));

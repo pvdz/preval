@@ -102,7 +102,7 @@ $(arr2);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpBinBothRhs = $coerce($(``), `string`);
+const tmpBinBothRhs = String($(``));
 const tmpArrElement$25 = tmpBinBothRhs == [10, 20, 30];
 const tmpArrElement$27 = tmpBinBothRhs != [10, 20, 30];
 const tmpArrElement$7 = `${tmpBinBothRhs}10,20,30`;

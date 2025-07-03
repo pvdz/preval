@@ -13,7 +13,7 @@
 
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, fmat, tmat, coerce, findBodyOffset, assertNoDupeNodes, currentState, todo, } from '../utils.mjs';
 import * as AST from '../ast.mjs';
-import { createFreshVar } from '../bindings.mjs';
+import { createFreshVar, GLOBAL_BLOCKCHAIN } from '../bindings.mjs';
 import { cloneSimple, isSimpleNodeOrSimpleMember } from '../ast.mjs';
 import { SYMBOL_COERCE, SYMBOL_DOTCALL, SYMBOL_FRFR } from '../symbols_preval.mjs';
 
@@ -322,7 +322,13 @@ function _staticArgOpOutlining(fdata) {
       return;
     }
 
-    // Okay, we've verified the function is only called, doesn't escape, and call args are never spread (but arg count may over- or underflow).
+    // Okay, we've verified all reads for this function are
+    // - call expressions, with idents for callee
+    // - not recursive
+    // - either called directly, or
+    // - dotcalled with the read as first arg (never second or later)
+    // - no call has spread
+    // (but arg count may still over- or underflow)
     // Find the first statement of the function and check if and how it uses an arg.
     // TODO: in certain cases we can skip statements (ones that can't possibly spy) to try the next statement.
     // TODO: when the param is a const locally, typing information may lead is to hoist in more cases even if we don't know concrete values
@@ -977,7 +983,157 @@ function _staticArgOpOutlining(fdata) {
       return;
     }
 
-    vlog('  - nope.');
+    vlog('- Checking for array case');
+
+    if (
+      firstStmt.type === 'VarStatement' &&
+      firstStmt.init.type === 'MemberExpression' &&
+      // I wonder how far we can push this one, outlining prop lookups.
+      // Let's start with array lookups, which is our initial case.
+      firstStmt.init.computed &&
+      firstStmt.init.object.type === 'Identifier' &&
+      firstStmt.init.property.type === 'Identifier' &&
+      funcNode.$p.paramNames.includes(firstStmt.init.property.name)
+    ) {
+      // `arr[x]`
+      const objMeta = fdata.globallyUniqueNamingRegistry.get(firstStmt.init.object.name);
+      const propMeta = fdata.globallyUniqueNamingRegistry.get(firstStmt.init.property.name);
+      if (
+        objMeta?.typing.mustBeType === 'array' &&
+        propMeta?.typing.mustBeType === 'number' &&
+        objMeta.isConstant &&
+        objMeta.varDeclRef?.node?.$p.blockChain === GLOBAL_BLOCKCHAIN
+      ) {
+        // This is `arr[x]` with arr an array and x a number and x a parameter and the arr a global const
+        // If it was accessible as the first statement of the function then it must be accessible at the
+        // call site of the function, so we should be able to outline this access safely.
+        // One catch is that it bloats the code because it will add a line of code for each call site.
+        // The upside is that it might concretely lookup the value where it would be too dynamic inside the func.
+        rule('Global array lookup as first statement of function can be outlined');
+        example(
+          'const arr = ["a", "b", "c"]; function f(a){ const x = arr[a]; } f(1); f(2);',
+          'const arr = ["a", "b", "c"]; function f(a, x){  } const x = arr[1]; f(1, x); const x2 = arr[2]; f(2, x2);'
+        );
+        before(firstStmt, funcNode);
+
+        vgroup();
+        const paramIndex = funcNode.$p.paramNames.indexOf(firstStmt.init.property.name);
+        funcMeta.reads.forEach(read => {
+          // (reads were already checked above so we can skip the asserts)
+          // This statement, whatever it is, needs to be prefixed by the arr read. We already know it will have to
+          // be a separate statement so there's no question about that. We'll put it in a queue and inline them
+          // afterward.
+
+          if (read.parentNode.callee.name === SYMBOL_DOTCALL) {
+            const tmp = createFreshVar('tmpOAL', fdata); // outlined array lookup
+            queue.push({
+              index: read.blockIndex,
+              func: () => {
+                read.blockBody.splice(read.blockIndex, 0, AST.varStatement(
+                  'const',
+                  tmp,
+                  AST.memberExpression(
+                    firstStmt.init.object.name,
+                    AST.cloneSimple(read.parentNode.arguments[3 + paramIndex] || AST.undef()),
+                    true
+                  )
+                ));
+                after(read.blockBody[read.blockIndex]);
+                after(read.blockBody[read.blockIndex+1]);
+              },
+            });
+
+            before(read.blockBody[read.blockIndex]);
+            while (read.parentNode.arguments.length+3 < funcNode.params.length) read.parentNode.arguments.push(AST.undef());
+            read.parentNode.arguments.push(AST.identifier(tmp));
+            after(read.blockBody[read.blockIndex]);
+          }
+          else if (read.parentNode.callee.name === SYMBOL_FRFR) {
+            const tmp = createFreshVar('tmpOAL', fdata); // outlined array lookup
+            queue.push({
+              index: read.blockIndex,
+              func: () => {
+                read.blockBody.splice(read.blockIndex, 0, AST.varStatement(
+                  'const',
+                  tmp,
+                  AST.memberExpression(
+                    firstStmt.init.object.name,
+                    AST.cloneSimple(read.parentNode.arguments[1 + paramIndex] || AST.undef()),
+                    true
+                  )
+                ));
+                after(read.blockBody[read.blockIndex]);
+                after(read.blockBody[read.blockIndex+1]);
+              },
+            });
+
+            before(read.blockBody[read.blockIndex]);
+            while (read.parentNode.arguments.length+1 < funcNode.params.length) read.parentNode.arguments.push(AST.undef());
+            read.parentNode.arguments.push(AST.identifier(tmp));
+            after(read.blockBody[read.blockIndex]);
+          }
+          else if (read.parentNode.callee.name === funcName) {
+
+            const tmp = createFreshVar('tmpOAL', fdata); // outlined array lookup
+            queue.push({
+              index: read.blockIndex,
+              func: () => {
+                read.blockBody.splice(read.blockIndex, 0, AST.varStatement(
+                  'const',
+                  tmp,
+                  AST.memberExpression(
+                    firstStmt.init.object.name,
+                    AST.cloneSimple(read.parentNode.arguments[paramIndex] || AST.undef()),
+                    true
+                  )
+                ));
+                after(read.blockBody[read.blockIndex]);
+                after(read.blockBody[read.blockIndex+1]);
+              },
+            });
+
+            before(read.blockBody[read.blockIndex]);
+            while (read.parentNode.arguments.length < funcNode.params.length) read.parentNode.arguments.push(AST.undef());
+            read.parentNode.arguments.push(AST.identifier(tmp));
+            after(read.blockBody[read.blockIndex]);
+          }
+          else {
+            todo(`what kind of non-escaping reference is this? ${read.parentNode.type}`);
+            return;
+          }
+        });
+        vgroupEnd();
+
+        const newParamName = '$$' + paramCount;
+        const newParamNode = AST.param('$$' + paramCount, false);
+        funcNode.params.push(newParamNode);
+        const newLocalParamName = firstStmt.id.name;
+        const newLocalParamNode = AST.varStatement('const', newLocalParamName, AST.identifier(newParamName));
+        // Need to queue the inject because injecting the arg in the body pushes all other statements down
+        queue.push({
+          index: funcNode.$p.bodyOffset - 1,
+          func: () => {
+            funcNode.body.body.splice(funcNode.$p.bodyOffset - 1, 0, newLocalParamNode);
+          },
+        });
+
+        queue.push({
+          index: stmtOffset,
+          func: () => {
+            funcNode.body.body.splice(stmtOffset, 1);
+          },
+        });
+
+        queue.push({index: 0, func: () => {
+          after(funcNode.body.body[stmtOffset], funcNode);
+        }});
+
+        ++changes;
+        return;
+      }
+    }
+
+    vlog('- bail. No match.');
   }
 
   function inlineOp(funcMeta, funcNode, paramIndex, paramCount, stmt, stmtIndex) {
@@ -989,7 +1145,7 @@ function _staticArgOpOutlining(fdata) {
     rule('Part 1: Function that is only called and uses a param in a position where we can outline it');
     example(
       'function f(a) { const x = a + 1; g(a); return x; } f(1); f("a");',
-      'function f(a, b) { const x = b; g(a); return x; } f(1, 1 + 1); f("a" + 1);',
+      'function f(a, b) { const x = b; g(a); return x; } const tmp = 1 + 1; f(1, tmp); const tmp2 = "a" + 1; f("a", tmp2);',
     );
     before(funcMeta.varDeclRef.varDeclNode);
     funcMeta.reads.forEach((read) => before(read.blockBody[read.blockIndex]));
@@ -1018,21 +1174,24 @@ function _staticArgOpOutlining(fdata) {
 
     // Replace the expression that we're outlining... The target can only be one of three;
     // `var x = <y>`, `x = <y>`, or `<y>`. We replace the expression y with the new var because we'll outline it.
-    let expr;
+    let outlinedExpr;
     if (stmt.type === 'VarStatement') {
-      expr = stmt.init;
+      outlinedExpr = stmt.init;
       stmt.init = AST.identifier(newLocalParamName);
-    } else if (stmt.expression.type === 'AssignmentExpression') {
-      expr = stmt.expression.right;
+    }
+    else if (stmt.expression.type === 'AssignmentExpression') {
+      outlinedExpr = stmt.expression.right;
       stmt.expression.right = AST.identifier(newLocalParamName);
-    } else if (
+    }
+    else if (
       stmt.expression.type === 'UnaryExpression' ||
       stmt.expression.type === 'BinaryExpression' ||
       stmt.expression.type === 'CallExpression'
     ) {
-      expr = stmt.expression;
+      outlinedExpr = stmt.expression;
       stmt.expression = AST.identifier(newLocalParamName);
-    } else {
+    }
+    else {
       source(stmt, true);
       ASSERT(false, 'implement me', stmt);
     }
@@ -1046,78 +1205,85 @@ function _staticArgOpOutlining(fdata) {
         func: () => {
           vlog('For', funcMeta.uniqueName);
           rule('Part 2: add a new arg in calls to the function, replacing param for arg in same index');
-          example('f(a);', 'let tmp = a + 1; f(a, tmp);');
+          example('f(a);', 'let b = a + 1; f(a, b);');
           before(read.blockBody[read.blockIndex]);
 
           // Must first cache the expression in case it's a string... (otherwise we may accidentally break normalized form)
           // Other rules will reconcile this temporary alias, or melt the string concat, when necessary.
-          const tmpNameA = createFreshVar('tmpSaooA', fdata); // Holds the arg value at param index
-          const tmpNameB = createFreshVar('tmpSaooB', fdata); // Holds the cloned expr result
+          const tmpNameOfOrigArg = createFreshVar('tmpSaooA', fdata); // Holds the original arg value at param index ("a")
+          const tmpNameOfNewArgValue = createFreshVar('tmpSaooB', fdata); // Holds the new arg value that is the outlined expr ("a"+1)
 
-          const args = read.parentNode.arguments;
+          const isDotcall = read.parentNode.callee.type === 'Identifier' && read.parentNode.callee.name === SYMBOL_DOTCALL;
           // Make sure there are enough params right now otherwise our new arg will become an earlier one and map to the wrong param (-> tests/cases/normalize/defaults/one.md)
           // `function (a,b,c) {} f(a)` -> `f(a,undefined,undefined)`
-          while (paramCount > args.length) {
-            args.push(AST.identifier('undefined'));
+          while (paramCount > read.parentNode.arguments.length - (isDotcall ? 3 : 0)) {
+            read.parentNode.arguments.push(AST.identifier('undefined'));
           }
 
           // The expression that got outlined is `expr`. We need to clone it because we may copy it to multiple func calls.
           // We must find the position of the parameter (this is `oldParamName`, at `paramIndex` of the func param list)
           // This can have various forms. Once we find it, replace it with the arg at same index
           let clone;
-          if (expr.type === 'UnaryExpression') {
-            ASSERT(expr.argument.type === 'Identifier' && expr.argument.name === oldParamName);
+          if (outlinedExpr.type === 'UnaryExpression') {
+            vlog('replacing unary');
+            ASSERT(outlinedExpr.argument.type === 'Identifier' && outlinedExpr.argument.name === oldParamName);
             // `!$$1`
-            clone = AST.unaryExpression(expr.operator, tmpNameA);
+            clone = AST.unaryExpression(outlinedExpr.operator, tmpNameOfOrigArg);
           }
-          else if (expr.type === 'BinaryExpression') {
-            if (expr.left.type === 'Identifier' && expr.left.name === oldParamName) {
+          else if (outlinedExpr.type === 'BinaryExpression') {
+            vlog('replacing binary');
+            // TODO: Can we not outline `a+a`?
+            if (outlinedExpr.left.type === 'Identifier' && outlinedExpr.left.name === oldParamName) {
               // `$$1 + a`
-              clone = AST.binaryExpression(expr.operator, tmpNameA, AST.cloneSimple(expr.right));
-            } else if (expr.right.type === 'Identifier' && expr.right.name === oldParamName) {
+              clone = AST.binaryExpression(outlinedExpr.operator, tmpNameOfOrigArg, AST.cloneSimple(outlinedExpr.right));
+            } else if (outlinedExpr.right.type === 'Identifier' && outlinedExpr.right.name === oldParamName) {
               // `a + $$1`
-              clone = AST.binaryExpression(expr.operator, AST.cloneSimple(expr.left), tmpNameA);
+              clone = AST.binaryExpression(outlinedExpr.operator, AST.cloneSimple(outlinedExpr.left), tmpNameOfOrigArg);
             } else {
               ASSERT(false);
             }
-          } else if (expr.type === 'CallExpression') {
+          }
+          else if (outlinedExpr.type === 'CallExpression') {
+            vlog('replacing call');
             // Either calling the parameter directly, a method on the property, or calling a function or method with the parameter as arg
             // At this point, the param node name is
-            if (expr.callee.type === 'Identifier') {
-              if (expr.callee.name === oldParamName) {
-                // $$0(0)
-                clone = AST.callExpression(tmpNameA, expr.arguments.map(a => AST.cloneSimple(a)));
-              } else {
-                // f($$0)     (for any one arg)
-                clone = AST.callExpression(tmpNameA, expr.arguments.map(a => AST.cloneSimple(a)));
-              }
+            ASSERT(outlinedExpr.callee.type === 'Identifier');
+
+            if (outlinedExpr.callee.name === oldParamName) {
+              // $$0(0)
+              // tests/cases/return_param/returned_and_called.md
+              clone = AST.callExpression(tmpNameOfOrigArg, outlinedExpr.arguments.map(a => AST.cloneSimple(a)));
             } else {
-              ASSERT(expr.callee.type === 'MemberExpression' && !expr.callee.computed, 'should be non-computed member yes?', expr.type, !!expr.computed, expr);
-              if (expr.callee.object.type === 'Identifier' && expr.callee.object.name === oldParamName) {
-                // $$0.slice(0)
-                clone = AST.callExpression(AST.memberExpression(tmpNameA, expr.callee.property.name), expr.arguments.map(a => AST.cloneSimple(a)));
-              } else {
-                // xyz.foo($$0)
-                // "foo".slice($$0)
-                clone = AST.callExpression(AST.cloneSimple(expr.callee), expr.arguments.map(a => a.type === 'Identifier' && a.name === oldParamName ? AST.identifier(tmpNameA) : AST.cloneSimple(a)));
-              }
+              // f($$0)     (for any one arg)
+              todo('no test coverage for outlining a call that does not replace the callee');
+              clone = AST.callExpression(
+                AST.cloneSimple(outlinedExpr.callee),
+                outlinedExpr.arguments.map(a => {
+                  if (a.type === 'Identifier' && a.name === oldParamName) return AST.identifier(tmpNameOfNewArgValue);
+                  return AST.cloneSimple(a)
+                }),
+              );
             }
-          } else if (expr.type === 'TemplateLiteral') {
-            ASSERT(expr.expressions.length === 1 && expr.expressions[0].type === 'Identifier' && expr.expressions[0].name === oldParamName);
+          }
+          else if (outlinedExpr.type === 'TemplateLiteral') {
+            vlog('replacing template');
+
+            ASSERT(outlinedExpr.expressions.length === 1 && outlinedExpr.expressions[0].type === 'Identifier' && outlinedExpr.expressions[0].name === oldParamName);
             // `a ${$$1} b`
-            clone = AST.templateLiteral(expr.quasis.map(q => q.value.cooked), [AST.identifier(tmpNameA)]);
-          } else {
-            ASSERT(false, 'implement me', expr.type);
+            clone = AST.templateLiteral(outlinedExpr.quasis.map(q => q.value.cooked), [AST.identifier(tmpNameOfOrigArg)]);
+          }
+          else {
+            ASSERT(false, 'implement me', outlinedExpr.type);
           }
           ASSERT(clone, 'clone must be set');
 
           read.blockBody.splice(
             read.blockIndex,
             0,
-            AST.varStatement('const', AST.identifier(tmpNameA), AST.cloneSimple(read.parentNode.arguments[paramIndex])),
-            AST.varStatement('const', AST.identifier(tmpNameB), clone),
+            AST.varStatement('const', AST.identifier(tmpNameOfOrigArg), AST.cloneSimple(read.parentNode.arguments[paramIndex + (isDotcall ? 3 : 0)])),
+            AST.varStatement('const', AST.identifier(tmpNameOfNewArgValue), clone),
           );
-          read.parentNode.arguments.push(AST.identifier(tmpNameB));
+          read.parentNode.arguments.push(AST.identifier(tmpNameOfNewArgValue));
 
           after(read.blockBody[read.blockIndex]);
           after(read.blockBody[read.blockIndex + 1]);
@@ -1220,7 +1386,7 @@ function _staticArgOpOutlining(fdata) {
     const newParamName = '$$' + paramCount;
     const newParamNode = AST.param('$$' + paramCount, false);
     const newLocalParamName = firstStmt.id.name;
-    const newLocalParamNode = AST.varStatement('const', newLocalParamName, AST.identifier(newParamName));
+    const newLocalParamNode = AST.varStatement('let', newLocalParamName, AST.identifier(newParamName));
     funcNode.$p.paramNames[funcNode.params.length] = newLocalParamName;
     funcNode.params.push(newParamNode);
     // Need to queue the inject because injecting the arg in the body pushes all other statements down

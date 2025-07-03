@@ -26,10 +26,8 @@ const tmpFree /*:(number, number)=>string*/ = function $free($$0, $$1) {
   const y$1 /*:number*/ = $$1;
   debugger;
   const a /*:number*/ = x$1 * 1;
-  const tmpBinBothLhs /*:string*/ = $coerce(a, `string`);
   const b /*:number*/ = y$1 * 1;
-  const tmpBinBothRhs /*:string*/ = $coerce(b, `string`);
-  const tmpRet /*:string*/ = tmpBinBothLhs + tmpBinBothRhs;
+  const tmpRet /*:string*/ = `${a}${b}`;
   return tmpRet;
 };
 const tmpCalleeParam /*:unknown*/ = $spy(1);
@@ -46,7 +44,9 @@ $(tmpCalleeParam$3);
 
 `````js filename=intro
 const tmpFree = function $free(x$1, y$1) {
-  const tmpRet = String(x$1 * 1) + String(y$1 * 1);
+  const a = x$1 * 1;
+  const b = y$1 * 1;
+  const tmpRet = `${a}${b}`;
   return tmpRet;
 };
 const x = Number($spy(1));
@@ -63,18 +63,16 @@ const a = function b($$0,$$1 ) {
   const d = $$1;
   debugger;
   const e = c * 1;
-  const f = $coerce( e, "string" );
-  const g = d * 1;
-  const h = $coerce( g, "string" );
-  const i = f + h;
-  return i;
+  const f = d * 1;
+  const g = `${e}${f}`;
+  return g;
 };
-const j = $spy( 1 );
+const h = $spy( 1 );
+const i = $coerce( h, "number" );
+const j = $spy( 2 );
 const k = $coerce( j, "number" );
-const l = $spy( 2 );
-const m = $coerce( l, "number" );
-const n = o( a, k, m );
-$( n );
+const l = m( a, i, k );
+$( l );
 `````
 
 
@@ -102,7 +100,7 @@ $(tmpCalleeParam$3);
 ## Todos triggered
 
 
-None
+- (todo) find test case where template ends up with multiple expressions
 
 
 ## Globals

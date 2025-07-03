@@ -63,7 +63,7 @@ const tmpFree$1 /*:(number, string)=>string*/ = function $free($$0, $$1) {
   debugger;
   const plus /*:number*/ = perc$1 + 29;
   const chr /*:string*/ = $String_fromCharCode(plus);
-  const tmpRet$1 /*:string*/ = out_str + chr;
+  const tmpRet$1 /*:string*/ = `${out_str}${chr}`;
   return tmpRet$1;
 };
 const tmpFree /*:(number)=>number*/ = function $free($$0) {
@@ -142,7 +142,8 @@ const tmpFree$2 = function $free(perc$3, out_str$1) {
   return tmpRet$2;
 };
 const tmpFree$1 = function $free(perc$1, out_str) {
-  const tmpRet$1 = out_str + $String_fromCharCode(perc$1 + 29);
+  const chr = $String_fromCharCode(perc$1 + 29);
+  const tmpRet$1 = `${out_str}${chr}`;
   return tmpRet$1;
 };
 const tmpFree = function $free(num_arg) {
@@ -207,7 +208,7 @@ const g = function b($$0,$$1 ) {
   debugger;
   const j = h + 29;
   const k = $String_fromCharCode( j );
-  const l = i + k;
+  const l = `${i}${k}`;
   return l;
 };
 const m = function b($$0 ) {

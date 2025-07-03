@@ -19,20 +19,11 @@ $(`${a}${b}`);
 
 
 `````js filename=intro
-const tmpFree /*:(number, number)=>string*/ = function $free($$0, $$1) {
-  const a$1 /*:number*/ = $$0;
-  const b$1 /*:number*/ = $$1;
-  debugger;
-  const tmpBinBothLhs /*:string*/ = $coerce(a$1, `string`);
-  const tmpBinBothRhs /*:string*/ = $coerce(b$1, `string`);
-  const tmpRet /*:string*/ = tmpBinBothLhs + tmpBinBothRhs;
-  return tmpRet;
-};
 const tmpCalleeParam /*:unknown*/ = $spy(1);
 const a /*:number*/ = $coerce(tmpCalleeParam, `number`);
 const tmpCalleeParam$1 /*:unknown*/ = $spy(2);
 const b /*:number*/ = $coerce(tmpCalleeParam$1, `number`);
-const tmpCalleeParam$3 /*:string*/ = $frfr(tmpFree, a, b);
+const tmpCalleeParam$3 /*:string*/ = `${a}${b}`;
 $(tmpCalleeParam$3);
 `````
 
@@ -41,12 +32,9 @@ $(tmpCalleeParam$3);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpFree = function $free(a$1, b$1) {
-  const tmpRet = String(a$1) + String(b$1);
-  return tmpRet;
-};
 const a = Number($spy(1));
-$(tmpFree(a, Number($spy(2))));
+const b = Number($spy(2));
+$(`${a}${b}`);
 `````
 
 
@@ -54,21 +42,12 @@ $(tmpFree(a, Number($spy(2))));
 With rename=true
 
 `````js filename=intro
-const a = function b($$0,$$1 ) {
-  const c = $$0;
-  const d = $$1;
-  debugger;
-  const e = $coerce( c, "string" );
-  const f = $coerce( d, "string" );
-  const g = e + f;
-  return g;
-};
-const h = $spy( 1 );
-const i = $coerce( h, "number" );
-const j = $spy( 2 );
-const k = $coerce( j, "number" );
-const l = m( a, i, k );
-$( l );
+const a = $spy( 1 );
+const b = $coerce( a, "number" );
+const c = $spy( 2 );
+const d = $coerce( c, "number" );
+const e = `${b}${d}`;
+$( e );
 `````
 
 
@@ -94,7 +73,7 @@ $(tmpCalleeParam$3);
 ## Todos triggered
 
 
-None
+- (todo) find test case where template ends up with multiple expressions
 
 
 ## Globals

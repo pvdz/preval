@@ -30,7 +30,7 @@ $(y + z);
 const x /*:unknown*/ = $(`test`);
 const y /*:string*/ = $coerce(x, `string`);
 const z /*:string*/ = $coerce(x, `string`);
-const tmpCalleeParam /*:string*/ = y + z;
+const tmpCalleeParam /*:string*/ = `${y}${z}`;
 $(tmpCalleeParam);
 `````
 
@@ -41,7 +41,8 @@ $(tmpCalleeParam);
 `````js filename=intro
 const x = $(`test`);
 const y = String(x);
-$(y + String(x));
+const z = String(x);
+$(`${y}${z}`);
 `````
 
 
@@ -52,7 +53,7 @@ With rename=true
 const a = $( "test" );
 const b = $coerce( a, "string" );
 const c = $coerce( a, "string" );
-const d = b + c;
+const d = `${b}${c}`;
 $( d );
 `````
 

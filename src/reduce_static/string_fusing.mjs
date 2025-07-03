@@ -69,7 +69,7 @@ function _stringFusing(fdata, nodeType, path) {
       vgroup();
       const parentNode = path.nodes[path.nodes.length - 2];
       const parentProp = path.props[path.props.length - 1];
-      source(parentNode[parentProp], true);
+      // source(parentNode[parentProp], true);
       const node = parentIndex < 0 ? parentNode[parentProp] : parentNode[parentProp][parentIndex];
       const normNode = AST.normalizeTemplateSimple(node);
       if (normNode !== node) {
@@ -98,7 +98,7 @@ function _stringFusing(fdata, nodeType, path) {
 function processTemplate(fdata, path, parentNode, parentProp, parentIndex) {
   vgroup('Found a template');
   const node = parentIndex < 0 ? parentNode[parentProp] : parentNode[parentProp][parentIndex];
-  source(node, true);
+  source(node);
   const r = _processTemplate(fdata, path, parentNode, parentProp, parentIndex);
   vgroupEnd();
   return r;
@@ -117,7 +117,7 @@ function _processTemplate(fdata, path, parentNode, parentProp, parentIndex) {
         const init = stmt.init;
         vlog('- const:', !!meta.isConstant, ', init type:', init.type);
         if (meta.isConstant && init.type === 'TemplateLiteral') {
-          source(init, true);
+          source(init);
 
           // Okay should be safe to concat to a string
           // We can append this to the quasi but then we have to deal with raw/cooked stuff. So we just inject it as another expression.
@@ -246,6 +246,24 @@ function _processBinary(fdata, path, parentNode, parentProp, parentIndex) {
       const newTemplateNode = AST.templateLiteral(
         ['', ...right.quasis.map((te) => te.value.cooked)],
         [newLeft, ...right.expressions.map((n) => AST.cloneSimpleOrTemplate(n))],
+      );
+      if (parentIndex < 0) parentNode[parentProp] = newTemplateNode;
+      else parentNode[parentProp][parentIndex] = newTemplateNode;
+
+      after(newTemplateNode, parentNode);
+      return true;
+    }
+    else if (leftMbt === 'string' && rightMbt === 'string') {
+      rule('Adding two idents that are known strings should result in a template');
+      example(
+        'const a = String(x); const b = String(y); const c = a + b; $(c);',
+        '`const a = String(x); const b = String(y); const c = `${a}${b}`; $(c);`',
+      );
+      before(node, parentNode);
+
+      const newTemplateNode = AST.templateLiteral(
+        ['', '', ''],
+        [node.left, node.right],
       );
       if (parentIndex < 0) parentNode[parentProp] = newTemplateNode;
       else parentNode[parentProp][parentIndex] = newTemplateNode;

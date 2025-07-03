@@ -41,7 +41,7 @@ const tmpFree /*:(string)=>string*/ = function $free($$0) {
   const one /*:string*/ = xs$1 + 5;
   const two /*:string*/ = $dotCall($string_slice, one, `slice`, 1);
   const two$1 /*:string*/ = $dotCall($string_slice, xs$1, `slice`, 2);
-  const tmpRet /*:string*/ = two + two$1;
+  const tmpRet /*:string*/ = `${two}${two$1}`;
   return tmpRet;
 };
 const x /*:unknown*/ = $spy(`x`);
@@ -58,7 +58,9 @@ $(rs);
 
 `````js filename=intro
 const tmpFree = function $free(xs$1) {
-  const tmpRet = $dotCall($string_slice, xs$1 + 5, `slice`, 1) + $dotCall($string_slice, xs$1, `slice`, 2);
+  const two = $dotCall($string_slice, xs$1 + 5, `slice`, 1);
+  const two$1 = $dotCall($string_slice, xs$1, `slice`, 2);
+  const tmpRet = `${two}${two$1}`;
   return tmpRet;
 };
 const xs = $spy(`x`) + ``;
@@ -77,7 +79,7 @@ const a = function b($$0 ) {
   const d = c + 5;
   const e = $dotCall( $string_slice, d, "slice", 1 );
   const f = $dotCall( $string_slice, c, "slice", 2 );
-  const g = e + f;
+  const g = `${e}${f}`;
   return g;
 };
 const h = $spy( "x" );

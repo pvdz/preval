@@ -41,7 +41,7 @@ const tmpObjLitVal /*:(unknown, unknown)=>unknown*/ = function ($$0, $$1) {
   $(`method_m_called`, arg1, arg2);
   const tmpBinBothLhs /*:string*/ = $coerce(arg1, `string`);
   const tmpBinBothRhs /*:string*/ = $coerce(arg2, `string`);
-  const tmpCalleeParam$1 /*:string*/ = tmpBinBothLhs + tmpBinBothRhs;
+  const tmpCalleeParam$1 /*:string*/ = `${tmpBinBothLhs}${tmpBinBothRhs}`;
   const tmpReturnArg /*:unknown*/ = $(`method_m_return`, tmpCalleeParam$1);
   return tmpReturnArg;
 };
@@ -82,7 +82,8 @@ if (tmpIfTest$1) {
 const tmpObjLitVal = function (arg1, arg2) {
   $(`method_m_called`, arg1, arg2);
   const tmpBinBothLhs = String(arg1);
-  const tmpReturnArg = $(`method_m_return`, tmpBinBothLhs + String(arg2));
+  const tmpBinBothRhs = String(arg2);
+  const tmpReturnArg = $(`method_m_return`, `${tmpBinBothLhs}${tmpBinBothRhs}`);
   return tmpReturnArg;
 };
 const objWithValue = $(`get_obj_with_method`, { m: tmpObjLitVal });
@@ -119,7 +120,7 @@ const a = function($$0,$$1 ) {
   $( "method_m_called", b, c );
   const d = $coerce( b, "string" );
   const e = $coerce( c, "string" );
-  const f = d + e;
+  const f = `${d}${e}`;
   const g = $( "method_m_return", f );
   return g;
 };

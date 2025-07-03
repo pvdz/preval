@@ -97,10 +97,10 @@ $(tmpCalleeParam);
 
 
 - (todo) Support this binary expression operator:
+- (todo) array reads var statement with init BinaryExpression
+- (todo) array reads var statement with init CallExpression
 - (todo) can try-escaping support this expr node type? CallExpression
 - (todo) inline async functions safely (because await)
-- (todo) support array reads statement type VarStatement
-- (todo) support array reads statement type WhileStatement
 - (todo) type trackeed tricks can possibly support static $Promise_reject
 - (todo) type trackeed tricks can possibly support static $Promise_resolve
 - (todo) type trackeed tricks can possibly support static $array_forEach

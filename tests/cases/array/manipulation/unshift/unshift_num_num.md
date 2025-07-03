@@ -90,7 +90,8 @@ $(NOOP);
 
 
 - (todo) access object property that also exists on prototype? $array_push
-- (todo) support array reads statement type VarStatement
+- (todo) array reads var statement with init CallExpression
+- (todo) support array reads statement type ExpressionStatement
 
 
 ## Globals

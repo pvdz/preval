@@ -174,10 +174,10 @@ $(arr);
 
 - (todo) access object property that also exists on prototype? $array_push
 - (todo) access object property that also exists on prototype? $array_shift
+- (todo) array reads var statement with init CallExpression
 - (todo) can try-escaping support this expr node type? CallExpression
 - (todo) outline any args for tdz
 - (todo) support array reads statement type ExpressionStatement
-- (todo) support array reads statement type VarStatement
 - (todo) type trackeed tricks can possibly support static $Number_parseInt
 
 

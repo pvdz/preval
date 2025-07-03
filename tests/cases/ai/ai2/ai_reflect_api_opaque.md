@@ -297,7 +297,7 @@ $(`reflect_target_after_defProp`, tmpCalleeParam$33);
 ## Todos triggered
 
 
-- (todo) support array reads statement type VarStatement
+- (todo) array reads var statement with init CallExpression
 
 
 ## Globals

@@ -355,10 +355,7 @@ $(tmpCalleeParam$11);
 - (todo) can try-escaping support this expr node type? CallExpression
 - (todo) can try-escaping support this expr node type? Literal
 - (todo) free with zero args, we can eliminate this?
-- (todo) support array reads statement type EmptyStatement
 - (todo) support array reads statement type ExpressionStatement
-- (todo) support array reads statement type VarStatement
-- (todo) support array reads statement type WhileStatement
 - (todo) type trackeed tricks can possibly support static $Number_parseInt
 - (todo) we can still proceed with the loop as long as there is no let-write anywhere in the loop, inc nested
 

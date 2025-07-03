@@ -72,7 +72,6 @@ while (true) {
 
 
 - (todo) do we want to support ArrayExpression as expression statement in free loops?
-- (todo) support array reads statement type WhileStatement
 
 
 ## Globals

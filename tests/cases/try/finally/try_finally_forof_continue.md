@@ -123,8 +123,8 @@ $(3);
 ## Todos triggered
 
 
+- (todo) array reads var statement with init CallExpression
 - (todo) can try-escaping support this expr node type? CallExpression
-- (todo) support array reads statement type VarStatement
 
 
 ## Globals

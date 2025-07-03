@@ -159,7 +159,7 @@ $(a, b, c);
 
 
 - (todo) Can we inline a function that uses arguments, anyways?
-- (todo) support array reads statement type VarStatement
+- (todo) array reads var statement with init CallExpression
 
 
 ## Globals

@@ -81,8 +81,8 @@ try {
 
 
 - (todo) arr mutation may be able to inline this method: $array_filter
+- (todo) array reads var statement with init CallExpression
 - (todo) can try-escaping support this expr node type? ArrayExpression
-- (todo) support array reads statement type VarStatement
 - (todo) type trackeed tricks can possibly support static $array_filter
 
 

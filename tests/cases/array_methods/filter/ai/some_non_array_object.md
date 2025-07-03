@@ -100,7 +100,6 @@ $(x);
 - (todo) fixme: spyless vars and labeled nodes
 - (todo) objects in isFree check
 - (todo) support array reads statement type ExpressionStatement
-- (todo) support array reads statement type WhileStatement
 
 
 ## Globals

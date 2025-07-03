@@ -75,8 +75,8 @@ const program = { modules: tmpObjLitVal, main: tmpObjLitVal$1 };
 ## Todos triggered
 
 
+- (todo) array reads var statement with init NewExpression
 - (todo) support array reads statement type ExpressionStatement
-- (todo) support array reads statement type VarStatement
 
 
 ## Globals

@@ -85,8 +85,8 @@ $(x);
 ## Todos triggered
 
 
+- (todo) array reads var statement with init CallExpression
 - (todo) drop unused rest param?
-- (todo) support array reads statement type VarStatement
 
 
 ## Globals

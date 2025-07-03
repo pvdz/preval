@@ -276,7 +276,6 @@ $(tmpCalleeParam);
 
 
 - (todo) access object property that also exists on prototype? $array_join
-- (todo) support array reads statement type WhileStatement
 
 
 ## Globals

@@ -79,16 +79,18 @@ function _arrayReads(fdata) {
   }
 
   /**
-   * @param {BlockStatement['body']} block An array
+   * @param {BlockStatement['body']} blockArr An array
    * @param {number} index
    * @param {ArrayExpression} arrNode
    * @param {string} arrName
    * @returns {'bail' | 'changed' | undefined} An undefined means the statement does not prevent us from checking the next statement
    */
-  function walkBlock(block, index, arrNode, arrName) {
-    if (index >= block.length) return vlog('- No more statements after index', index);
-    while (block[index]) {
-      const next = block[index];
+  function walkBlock(blockArr, index, arrNode, arrName) {
+    vlog('- walkBlock', index, blockArr.length, arrName);
+    if (index >= blockArr.length) return vlog('- No more statements after index', index);
+    while (blockArr[index]) {
+      const next = blockArr[index];
+      vlog('--', next.type);
       vlog('- Statement', index, ';', next?.type);
       if (
         next.type === 'VarStatement' &&
@@ -143,6 +145,16 @@ function _arrayReads(fdata) {
         // The current statement could not have changed the array. Continue searching.
         vlog('  - It was not an indexed prop read but a regular read on the array should not mutate it, skipping');
       }
+      else if (next.type === 'VarStatement') {
+        if (next.init.type === 'FunctionExpression') {
+          vlog('  - skip func init');
+        } else if (next.init.type === 'ArrayExpression' && next.init.elements.every(enode => !enode || !AST.isComplexNode(enode))) {
+          vlog('  - skip array with simple nodes');
+        } else {
+          todo(`array reads var statement with init ${next.init.type}`, next.init.object?.name, arrName);
+          return 'bail';
+        }
+      }
       else if (
         next.type === 'ExpressionStatement' &&
         next.expression.type === 'AssignmentExpression' &&
@@ -190,11 +202,22 @@ function _arrayReads(fdata) {
         return walkBlock(next.body, 0, arrNode, arrName);
       }
       else if (next.type === 'TryStatement') {
-        // I believe this is safe to do. Not the Catch block tho.
+        // I believe this is safe to do (the ops are not observable, not likely to throw either? could be wrong). Not the Catch block tho.
         walkBlock(next.block, 0, arrNode, arrName);
         // Since a try is followed by a catch and we can't predict the catch, we can't safely assume much about the state of the array
         // I guess there are some cases where we can. Maybe worth checking into at some point but not now.
         return 'bail';
+      }
+      else if (next.type === 'WhileStatement') {
+        vlog('- bail: Entering a loop is unsafe. This is not the same logic as, say, `try`, because it loops and may resolve to a different value');
+        // vgroup('  - entering while');
+        // // Just don't continue afterwards since we can't predict whether or not it loops or breaks.
+        // walkBlock(next.body.body, 0, arrNode, arrName);
+        // vgroupEnd();
+        return 'bail';
+      }
+      else if (next.type === 'EmptyStatement') {
+        // ok
       }
       else {
         // TODO: This may be a statement that we can ignore but there are many cases to cover here

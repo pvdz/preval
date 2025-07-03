@@ -132,7 +132,6 @@ $(tmpSSA_zC9nb);
 
 - (todo) - at least one of the call args to
 - (todo) Support this node type in isFree: DebuggerStatement
-- (todo) support array reads statement type EmptyStatement
 - (todo) support array reads statement type ExpressionStatement
 
 

@@ -141,8 +141,8 @@ $(x);
 ## Todos triggered
 
 
+- (todo) array reads var statement with init CallExpression
 - (todo) do we want to support ArrayExpression as expression statement in free loops?
-- (todo) support array reads statement type VarStatement
 - (todo) type trackeed tricks can possibly support static $array_findIndex
 
 

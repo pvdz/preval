@@ -69,8 +69,8 @@ $(tmpCalleeParam);
 
 
 - (todo) In some (many?) cases the array can access this value so we could move the rhs into the array...
+- (todo) array reads var statement with init CallExpression
 - (todo) support array reads statement type ExpressionStatement
-- (todo) support array reads statement type VarStatement
 
 
 ## Globals

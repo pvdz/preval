@@ -219,7 +219,6 @@ $dotCall(tmpMCF$3, tmpMCCO, undefined, tmpMCP$3);
 - (todo) can try-escaping support this expr node type? CallExpression
 - (todo) can try-escaping support this expr node type? MemberExpression
 - (todo) support array reads statement type ExpressionStatement
-- (todo) support array reads statement type WhileStatement
 
 
 ## Globals

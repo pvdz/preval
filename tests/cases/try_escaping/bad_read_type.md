@@ -97,7 +97,6 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 - (todo) Support this node type in isFree: NewExpression
 - (todo) access object property that also exists on prototype? $array_reverse
 - (todo) can try-escaping support this expr node type? NewExpression
-- (todo) support array reads statement type WhileStatement
 
 
 ## Globals

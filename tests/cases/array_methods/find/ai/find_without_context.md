@@ -154,9 +154,9 @@ $(result, x);
 
 
 - (todo) access object property that also exists on prototype? $array_push
+- (todo) array reads var statement with init CallExpression
 - (todo) regular property access of an ident feels tricky;
-- (todo) support array reads statement type EmptyStatement
-- (todo) support array reads statement type VarStatement
+- (todo) support array reads statement type ExpressionStatement
 - (todo) type trackeed tricks can possibly support static $array_find
 
 

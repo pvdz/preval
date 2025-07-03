@@ -169,8 +169,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 - (todo) Support this node type in isFree: LabeledStatement
 - (todo) free with zero args, we can eliminate this?
-- (todo) support array reads statement type VarStatement
-- (todo) support array reads statement type WhileStatement
+- (todo) support array reads statement type ExpressionStatement
 - (todo) type trackeed tricks can possibly support static $Number_parseInt
 - (todo) we can still proceed with the loop as long as there is no let-write anywhere in the loop, inc nested
 

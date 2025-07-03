@@ -112,11 +112,10 @@ while ($LOOP_UNROLL_2) {
 - (todo) - at least one of the call args to
 - (todo) access object property that also exists on prototype? $array_push
 - (todo) access object property that also exists on prototype? $array_shift
+- (todo) array reads var statement with init CallExpression
 - (todo) do we want to support Literal as expression statement in free loops?
 - (todo) outline any args for tdz
 - (todo) support array reads statement type ExpressionStatement
-- (todo) support array reads statement type VarStatement
-- (todo) support array reads statement type WhileStatement
 
 
 ## Globals

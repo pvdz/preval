@@ -160,12 +160,12 @@ $(result, x);
 
 - (todo) - at least one of the call args to
 - (todo) access object property that also exists on prototype? $array_push
+- (todo) array reads var statement with init BinaryExpression
+- (todo) array reads var statement with init CallExpression
+- (todo) array reads var statement with init ObjectExpression
 - (todo) fixme: spyless vars and labeled nodes
 - (todo) objects in isFree check
-- (todo) support array reads statement type EmptyStatement
 - (todo) support array reads statement type ExpressionStatement
-- (todo) support array reads statement type VarStatement
-- (todo) support array reads statement type WhileStatement
 - (todo) type trackeed tricks can possibly support static $array_reduceRight
 
 

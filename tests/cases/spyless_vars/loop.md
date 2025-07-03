@@ -138,7 +138,6 @@ $(tmpCalleeParam$1);
 - (todo) access object property that also exists on prototype? $array_slice
 - (todo) can try-escaping support this expr node type? CallExpression
 - (todo) phase1_1 support this array method call? $array_slice
-- (todo) support array reads statement type WhileStatement
 - (todo) type trackeed tricks can possibly support static $array_slice
 
 

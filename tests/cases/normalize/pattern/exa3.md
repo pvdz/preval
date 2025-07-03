@@ -184,7 +184,7 @@ $(a, c, rest);
 ## Todos triggered
 
 
-- (todo) support array reads statement type VarStatement
+- (todo) array reads var statement with init CallExpression
 
 
 ## Globals

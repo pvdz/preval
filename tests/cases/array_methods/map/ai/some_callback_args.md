@@ -92,10 +92,11 @@ $(x);
 
 - (todo) - at least one of the call args to
 - (todo) Support this binary expression operator:
+- (todo) array reads var statement with init BinaryExpression
+- (todo) array reads var statement with init CallExpression
+- (todo) array reads var statement with init MemberExpression
 - (todo) fixme: spyless vars and labeled nodes
 - (todo) support array reads statement type ExpressionStatement
-- (todo) support array reads statement type VarStatement
-- (todo) support array reads statement type WhileStatement
 - (todo) type trackeed tricks can possibly support static $array_map
 
 

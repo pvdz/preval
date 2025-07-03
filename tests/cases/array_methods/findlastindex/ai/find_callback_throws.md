@@ -74,9 +74,8 @@ $(x);
 
 
 - (todo) Support this node type in isFree: LabeledStatement
+- (todo) array reads var statement with init CallExpression
 - (todo) regular property access of an ident feels tricky;
-- (todo) support array reads statement type VarStatement
-- (todo) support array reads statement type WhileStatement
 - (todo) type trackeed tricks can possibly support static $array_findLastIndex
 
 

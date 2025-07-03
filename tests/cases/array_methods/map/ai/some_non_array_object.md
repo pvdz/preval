@@ -108,10 +108,10 @@ $(x);
 ## Todos triggered
 
 
+- (todo) array reads var statement with init MemberExpression
+- (todo) array reads var statement with init ObjectExpression
 - (todo) fixme: spyless vars and labeled nodes
 - (todo) objects in isFree check
-- (todo) support array reads statement type VarStatement
-- (todo) support array reads statement type WhileStatement
 
 
 ## Globals

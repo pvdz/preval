@@ -101,9 +101,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 - (todo) - at least one of the call args to
 - (todo) access object property that also exists on prototype? $array_reverse
+- (todo) array reads var statement with init ObjectExpression
 - (todo) can try-escaping support this expr node type? CallExpression
 - (todo) objects in isFree check
-- (todo) support array reads statement type VarStatement
 - (todo) try escaping may support dotcalling $array_reverse
 
 

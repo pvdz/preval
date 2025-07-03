@@ -180,8 +180,7 @@ if (tmpIfTest$3) {
 
 
 - (todo) access object property that also exists on prototype? $array_push
-- (todo) support array reads statement type VarStatement
-- (todo) support array reads statement type WhileStatement
+- (todo) array reads var statement with init CallExpression
 
 
 ## Globals

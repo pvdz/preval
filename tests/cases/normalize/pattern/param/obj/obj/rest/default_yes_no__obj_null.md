@@ -77,8 +77,8 @@ $(tmpCalleeParam$5);
 ## Todos triggered
 
 
+- (todo) array reads var statement with init CallExpression
 - (todo) support array reads statement type ExpressionStatement
-- (todo) support array reads statement type VarStatement
 
 
 ## Globals

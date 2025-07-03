@@ -87,7 +87,7 @@ $(tmpCalleeParam);
 
 
 - (todo) access object property that also exists on prototype? $function_apply
-- (todo) support array reads statement type VarStatement
+- (todo) array reads var statement with init CallExpression
 - (todo) this may support .call .apply and .bind but I think that different reducers should tackle it
 
 

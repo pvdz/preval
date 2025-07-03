@@ -106,11 +106,10 @@ $(`reduceRight_result`, result);
 
 - (todo) - at least one of the call args to
 - (todo) access object property that also exists on prototype? $array_reduceRight
+- (todo) array reads var statement with init BinaryExpression
+- (todo) array reads var statement with init CallExpression
 - (todo) fixme: spyless vars and labeled nodes
-- (todo) support array reads statement type EmptyStatement
 - (todo) support array reads statement type ExpressionStatement
-- (todo) support array reads statement type VarStatement
-- (todo) support array reads statement type WhileStatement
 - (todo) type trackeed tricks can possibly support static $array_reduceRight
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
 

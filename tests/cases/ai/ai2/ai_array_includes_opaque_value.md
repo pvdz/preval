@@ -80,8 +80,8 @@ $(`includes_result`, hasIt);
 - (todo) access object property that also exists on prototype? $array_includes
 - (todo) arr mutation may be able to inline this method: $array_includes
 - (todo) arr mutation may be able to inline this method: tmpMCF
+- (todo) array reads var statement with init CallExpression
 - (todo) support array reads statement type ExpressionStatement
-- (todo) support array reads statement type VarStatement
 - (todo) type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $array_includes
 
 

@@ -61,8 +61,8 @@ $(result);
 ## Todos triggered
 
 
+- (todo) array reads var statement with init ObjectExpression
 - (todo) support array reads statement type ExpressionStatement
-- (todo) support array reads statement type VarStatement
 - (todo) type trackeed tricks can possibly support static $String_raw
 
 

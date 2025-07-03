@@ -122,7 +122,6 @@ $(a);
 
 
 - (todo) objects in isFree check
-- (todo) support array reads statement type WhileStatement
 
 
 ## Globals

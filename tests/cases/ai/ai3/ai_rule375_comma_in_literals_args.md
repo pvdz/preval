@@ -298,7 +298,7 @@ tmpCallComplexCallee();
 ## Todos triggered
 
 
-- (todo) support array reads statement type VarStatement
+- (todo) array reads var statement with init CallExpression
 - (todo) type trackeed tricks can possibly support static $JSON_stringify
 
 

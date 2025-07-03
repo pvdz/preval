@@ -138,8 +138,8 @@ while (true) {
 
 
 - (todo) Found a self-closing function shell but it did not match a known pattern...
+- (todo) array reads var statement with init CallExpression
 - (todo) self-closing function pattern with unreachable first call arg
-- (todo) support array reads statement type VarStatement
 
 
 ## Globals

@@ -80,14 +80,14 @@ $(result, x);
 - (todo) - at least one of the call args to
 - (todo) access object property that also exists on prototype? $array_push
 - (todo) arr push case with at least one observable statement between?
+- (todo) array reads var statement with init BinaryExpression
+- (todo) array reads var statement with init CallExpression
+- (todo) array reads var statement with init MemberExpression
 - (todo) do we want to support Literal as expression statement in free loops?
 - (todo) find me fast
 - (todo) fixme: spyless vars and labeled nodes
 - (todo) regular property access of an ident feels tricky;
-- (todo) support array reads statement type EmptyStatement
 - (todo) support array reads statement type ExpressionStatement
-- (todo) support array reads statement type VarStatement
-- (todo) support array reads statement type WhileStatement
 - (todo) type trackeed tricks can possibly support static $array_findLastIndex
 
 

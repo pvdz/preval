@@ -97,7 +97,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 ## Todos triggered
 
 
-- (todo) support array reads statement type WhileStatement
+None
 
 
 ## Globals

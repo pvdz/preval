@@ -71,8 +71,8 @@ $(sum);
 
 
 - (todo) Support this binary expression operator:
-- (todo) support array reads statement type VarStatement
-- (todo) support array reads statement type WhileStatement
+- (todo) array reads var statement with init BinaryExpression
+- (todo) array reads var statement with init CallExpression
 - (todo) type trackeed tricks can possibly support static $array_reduce
 
 

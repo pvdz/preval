@@ -128,8 +128,8 @@ $(undefined);
 ## Todos triggered
 
 
+- (todo) array reads var statement with init CallExpression
 - (todo) free with zero args, we can eliminate this?
-- (todo) support array reads statement type VarStatement
 
 
 ## Globals

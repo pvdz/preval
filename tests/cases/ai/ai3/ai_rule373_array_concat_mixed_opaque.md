@@ -192,9 +192,9 @@ tmpCallComplexCallee();
 - (todo) access object property that also exists on prototype? $array_concat
 - (todo) access object property that also exists on prototype? $function_call
 - (todo) arr mutation may be able to inline this method: tmpMCF
+- (todo) array reads var statement with init CallExpression
 - (todo) can try-escaping support this expr node type? CallExpression
 - (todo) support array reads statement type ExpressionStatement
-- (todo) support array reads statement type VarStatement
 - (todo) try escaping may support dotcalling $array_concat
 - (todo) type trackeed tricks can possibly support static $JSON_stringify
 

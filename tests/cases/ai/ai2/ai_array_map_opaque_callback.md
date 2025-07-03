@@ -114,10 +114,11 @@ $(`original_array`, arr);
 - (todo) Support this binary expression operator:
 - (todo) access object property that also exists on prototype? $array_map
 - (todo) arr mutation may be able to inline this method: tmpMCF
+- (todo) array reads var statement with init BinaryExpression
+- (todo) array reads var statement with init CallExpression
+- (todo) array reads var statement with init MemberExpression
 - (todo) fixme: spyless vars and labeled nodes
 - (todo) support array reads statement type ExpressionStatement
-- (todo) support array reads statement type VarStatement
-- (todo) support array reads statement type WhileStatement
 - (todo) type trackeed tricks can possibly support static $array_map
 
 

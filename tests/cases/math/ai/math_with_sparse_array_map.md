@@ -70,11 +70,10 @@ $(tmpCalleeParam$3);
 
 - (todo) In some (many?) cases the array can access this value so we could move the rhs into the array...
 - (todo) Support this binary expression operator:
+- (todo) array reads var statement with init BinaryExpression
+- (todo) array reads var statement with init CallExpression
 - (todo) fixme: spyless vars and labeled nodes
-- (todo) support array reads statement type EmptyStatement
 - (todo) support array reads statement type ExpressionStatement
-- (todo) support array reads statement type VarStatement
-- (todo) support array reads statement type WhileStatement
 - (todo) type trackeed tricks can possibly support static $Math_sqrt
 - (todo) type trackeed tricks can possibly support static $array_map
 

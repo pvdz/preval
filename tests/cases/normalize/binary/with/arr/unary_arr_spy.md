@@ -112,8 +112,8 @@ $(arr);
 ## Todos triggered
 
 
+- (todo) array reads var statement with init UnaryExpression
 - (todo) support array reads statement type ExpressionStatement
-- (todo) support array reads statement type VarStatement
 
 
 ## Globals

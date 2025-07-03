@@ -75,10 +75,9 @@ $(`reduce_result`, result);
 - (todo) - at least one of the call args to
 - (todo) access object property that also exists on prototype? $array_reduce
 - (todo) arr mutation may be able to inline this method: tmpMCF
-- (todo) support array reads statement type EmptyStatement
+- (todo) array reads var statement with init BinaryExpression
+- (todo) array reads var statement with init CallExpression
 - (todo) support array reads statement type ExpressionStatement
-- (todo) support array reads statement type VarStatement
-- (todo) support array reads statement type WhileStatement
 - (todo) type trackeed tricks can possibly support static $array_reduce
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
 

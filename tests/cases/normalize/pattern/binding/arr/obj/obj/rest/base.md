@@ -74,8 +74,8 @@ $(y);
 
 
 - (todo) Deal with array spreads in arr mutation?
+- (todo) array reads var statement with init CallExpression
 - (todo) can we always safely clone ident refs in this case?
-- (todo) support array reads statement type VarStatement
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
 
 

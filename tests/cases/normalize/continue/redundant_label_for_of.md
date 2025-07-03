@@ -151,7 +151,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 ## Todos triggered
 
 
-- (todo) support array reads statement type VarStatement
+- (todo) array reads var statement with init NewExpression
 
 
 ## Globals

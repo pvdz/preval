@@ -73,14 +73,13 @@ $(a, x);
 
 - (todo) Support this binary expression operator:
 - (todo) access object property that also exists on prototype? $array_forEach
+- (todo) array reads var statement with init BinaryExpression
+- (todo) array reads var statement with init CallExpression
 - (todo) do we want to support BinaryExpression as expression statement in free loops?
 - (todo) do we want to support Literal as expression statement in free loops?
 - (todo) fixme: spyless vars and labeled nodes
 - (todo) regular property access of an ident feels tricky;
-- (todo) support array reads statement type EmptyStatement
 - (todo) support array reads statement type ExpressionStatement
-- (todo) support array reads statement type VarStatement
-- (todo) support array reads statement type WhileStatement
 - (todo) type trackeed tricks can possibly support static $array_filter
 - (todo) type trackeed tricks can possibly support static $array_forEach
 

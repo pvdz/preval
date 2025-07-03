@@ -152,8 +152,7 @@ $(tmpCalleeParam);
 
 
 - (todo) Found a self-closing function shell but it did not match a known pattern...
-- (todo) support array reads statement type VarStatement
-- (todo) support array reads statement type WhileStatement
+- (todo) support array reads statement type ExpressionStatement
 - (todo) type trackeed tricks can possibly support static $Number_parseInt
 
 

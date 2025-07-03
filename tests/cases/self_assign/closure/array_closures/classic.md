@@ -381,7 +381,6 @@ $(data_arr);
 - (todo) can try-escaping support this expr node type? CallExpression
 - (todo) self assign simple case but with inner arguments
 - (todo) self-closing pattern when inner access arguments/this needs refinement
-- (todo) support array reads statement type WhileStatement
 - (todo) type trackeed tricks can possibly support static $Number_parseFloat
 
 

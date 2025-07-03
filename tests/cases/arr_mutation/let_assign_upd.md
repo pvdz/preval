@@ -125,7 +125,6 @@ $(arr);
 ## Todos triggered
 
 
-- (todo) support array reads statement type EmptyStatement
 - (todo) support array reads statement type ExpressionStatement
 
 

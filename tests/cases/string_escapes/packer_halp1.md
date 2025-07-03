@@ -133,10 +133,10 @@ $(x);
 
 
 - (todo) - at least one of the call args to
+- (todo) array reads var statement with init ObjectExpression
 - (todo) can we always safely clone ident refs in this case?
 - (todo) objects in isFree check
 - (todo) support array reads statement type ExpressionStatement
-- (todo) support array reads statement type VarStatement
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
 
 

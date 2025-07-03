@@ -91,10 +91,9 @@ $(rra);
 
 - (todo) access object property that also exists on prototype? $array_pop
 - (todo) access object property that also exists on prototype? $array_reverse
+- (todo) array reads var statement with init CallExpression
 - (todo) phase1_1 support this array method call? $array_reverse
-- (todo) support array reads statement type EmptyStatement
 - (todo) support array reads statement type ExpressionStatement
-- (todo) support array reads statement type VarStatement
 - (todo) type trackeed tricks can possibly support static $array_pop
 
 

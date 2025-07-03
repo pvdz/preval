@@ -263,9 +263,8 @@ $(`iterations_run`, iter_count);
 - (todo) - at least one of the call args to
 - (todo) access object property that also exists on prototype? $array_join
 - (todo) access object property that also exists on prototype? $array_push
+- (todo) array reads var statement with init CallExpression
 - (todo) find test case where template ends up with multiple expressions
-- (todo) support array reads statement type VarStatement
-- (todo) support array reads statement type WhileStatement
 
 
 ## Globals

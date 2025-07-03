@@ -296,9 +296,9 @@ $(tmpCalleeParam$11);
 
 - (todo) access object property that also exists on prototype? $array_map
 - (todo) access object property that also exists on prototype? $map_values
+- (todo) array reads var statement with init BinaryExpression
+- (todo) array reads var statement with init NewExpression
 - (todo) regular property access of an ident feels tricky;
-- (todo) support array reads statement type VarStatement
-- (todo) support array reads statement type WhileStatement
 - (todo) type trackeed tricks can possibly support static $Array_from
 - (todo) type trackeed tricks can possibly support static $Math_sqrt
 - (todo) type trackeed tricks can possibly support static $array_map

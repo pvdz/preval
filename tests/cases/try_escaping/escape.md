@@ -119,7 +119,6 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 
 - (todo) can try-escaping support this expr node type? CallExpression
-- (todo) support array reads statement type WhileStatement
 
 
 ## Globals

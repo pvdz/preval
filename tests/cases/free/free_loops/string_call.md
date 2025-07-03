@@ -89,7 +89,6 @@ $(arr);
 - (todo) do we want to support Literal as expression statement in free loops?
 - (todo) free with zero args, we can eliminate this?
 - (todo) support array reads statement type ExpressionStatement
-- (todo) support array reads statement type WhileStatement
 
 
 ## Globals

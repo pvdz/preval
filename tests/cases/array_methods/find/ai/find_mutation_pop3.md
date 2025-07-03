@@ -92,8 +92,6 @@ $(result, undefined);
 - (todo) outline any args for tdz
 - (todo) regular property access of an ident feels tricky;
 - (todo) support array reads statement type ExpressionStatement
-- (todo) support array reads statement type VarStatement
-- (todo) support array reads statement type WhileStatement
 
 
 ## Globals

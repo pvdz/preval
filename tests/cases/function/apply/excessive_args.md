@@ -80,7 +80,7 @@ $(tmpCalleeParam);
 
 - (todo) Can we inline a function that uses arguments, anyways?
 - (todo) access object property that also exists on prototype? $function_apply
-- (todo) support array reads statement type VarStatement
+- (todo) array reads var statement with init CallExpression
 
 
 ## Globals

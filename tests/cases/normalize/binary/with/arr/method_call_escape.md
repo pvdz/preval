@@ -82,7 +82,7 @@ $(tmpCalleeParam);
 
 
 - (todo) arr mutation may be able to inline this method: tmpArrElement
-- (todo) support array reads statement type VarStatement
+- (todo) array reads var statement with init CallExpression
 
 
 ## Globals

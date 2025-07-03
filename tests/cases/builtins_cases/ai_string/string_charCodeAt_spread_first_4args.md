@@ -61,7 +61,7 @@ $(tmpCalleeParam);
 
 
 - (todo) Support string.charCodeAt when the arg is not a string literal
-- (todo) support array reads statement type VarStatement
+- (todo) array reads var statement with init CallExpression
 
 
 ## Globals

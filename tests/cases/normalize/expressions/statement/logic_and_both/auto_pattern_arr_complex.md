@@ -95,8 +95,8 @@ if (tmpIfTest) {
 
 
 - (todo) Deal with array spreads in arr mutation?
+- (todo) array reads var statement with init CallExpression
 - (todo) support array reads statement type ExpressionStatement
-- (todo) support array reads statement type VarStatement
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
 
 

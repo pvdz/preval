@@ -249,7 +249,6 @@ $(tmpCalleeParam$23);
 - (todo) access object property that also exists on prototype? $array_push
 - (todo) access object property that also exists on prototype? $array_shift
 - (todo) can try-escaping support this expr node type? CallExpression
-- (todo) support array reads statement type WhileStatement
 - (todo) type trackeed tricks can possibly support static $Number_parseInt
 
 

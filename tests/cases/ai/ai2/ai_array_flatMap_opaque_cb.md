@@ -70,9 +70,9 @@ $(`flatMap_result`, result);
 - (todo) access object property that also exists on prototype? $array_flatMap
 - (todo) arr mutation may be able to inline this method: $array_flatMap
 - (todo) arr mutation may be able to inline this method: tmpMCF
+- (todo) array reads var statement with init CallExpression
 - (todo) support $array_flatmap with arguments?
 - (todo) support array reads statement type ExpressionStatement
-- (todo) support array reads statement type VarStatement
 
 
 ## Globals

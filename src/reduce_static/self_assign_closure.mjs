@@ -26,7 +26,6 @@ import walk from '../../lib/walk.mjs';
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, fmat, tmat, findBodyOffset, findBodyOffsetExpensiveMaybe, assertNoDupeNodes, todo, currentState, } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { createFreshVar } from '../bindings.mjs';
-import { cloneSimple } from '../ast.mjs';
 import { symbo } from '../symbols_builtins.mjs';
 
 export function selfAssignClosure(fdata) {
@@ -306,7 +305,8 @@ function findSelfCloser(fdata, meta, targetName) {
   if (firstWrite.parentNode.type !== 'VarStatement') {
     return vlog('- bail: first write was not a var, after all');
   }
-  if (firstWrite.parentNode.init.type !== 'FunctionExpression') {
+  const funcNode = firstWrite.parentNode.init;
+  if (funcNode.type !== 'FunctionExpression') {
     return vlog('- bail: first write did not init to function');
   }
   if (secondWrite.parentNode.type !== 'AssignmentExpression') {
@@ -316,7 +316,7 @@ function findSelfCloser(fdata, meta, targetName) {
   if (secondWrite.parentNode.right.type !== 'FunctionExpression') {
     return vlog('- bail: second write was not a function');
   }
-  const outerFuncBlock = firstWrite.parentNode.init.body.body;
+  const outerFuncBlock = funcNode.body.body;
   if (!outerFuncBlock.includes(secondWrite.grandNode)) {
     return vlog('- bail: Second assign was not in root of function that was assigned in the first write');
   }
@@ -342,7 +342,57 @@ function findSelfCloser(fdata, meta, targetName) {
     closingNode.type !== 'ExpressionStatement' ||
     closingNode.expression !== secondWrite.parentNode
   ) {
-    return vlog('- bail; third-last statement of outer function was not the assignment of the inner function');
+
+    if (
+      tmpRet.type === 'ReturnStatement' &&
+      tmpRet.argument.type === 'Identifier' &&
+      tmpRet.argument.name === 'undefined' &&
+      tmpCall.type === 'ExpressionStatement' &&
+      tmpCall.expression.type === 'AssignmentExpression' &&
+      tmpCall.expression.left.type === 'Identifier' &&
+      tmpCall.expression.right.type === 'FunctionExpression' &&
+      tmpCall.expression.left.name === targetName // So, assigning a function to itself
+    ) {
+      // This is a similar pattern except it doesn't call the func...
+      if (funcNode.$p.bodyOffset !== 1) { // Note: debugger would then be 0
+        // Note: the local aliases also count if the inner function closes over them. Offset=0 ensures none of that applies here.
+        todo('self_assign_closure: non-calling assign variant with params, arguments usage, or this usage', funcNode.$p.bodyOffset);
+      } else {
+        // This is some form of `let f = function(){ f = function(..) { .. }; return undefined; }` ... okay
+        // I think folding this up is only unsafe if the function gets expandos and is assigned to an alias to dodge that etc.
+        // Who would do that. Ok, I'll probably find out sooner or later.
+        // There's two cases to consider now: one where the inner function is empty (that's what I've seen) and one where
+        // the inner function does something. In the latter case, the first call is moot but the second may not be and it again
+        // depends on aliases and such.
+        if (
+          tmpCall.expression.right.body.body.length !== 2 ||
+          tmpCall.expression.right.body.body[0].type !== 'DebuggerStatement' || // cant even
+          tmpCall.expression.right.body.body[1].type !== 'ReturnStatement' || // cant even
+          tmpCall.expression.right.body.body[1].argument.type !== 'Identifier' ||
+          tmpCall.expression.right.body.body[1].argument.name !== 'undefined' // Make sure it doesn't return a param or closure
+        ) {
+          todo('self_assign_closure: the self-assigning non-calling case where the inner func has code',
+            tmpCall.expression.right.body.body.length,
+            tmpCall.expression.right.body.body[0]?.type,
+            tmpCall.expression.right.body.body[1]?.type,
+            tmpCall.expression.right.body.body[1]?.argument?.name
+          );
+          return vlog('- bail: this needs more safe guards');
+        }
+
+
+        rule('Self-assigning function when outer function has no params can fold');
+        example('let f = function(){ f = function() { return undefined; }; return undefined; };', 'let f = function(..) { .. };');
+        before(firstWrite.blockBody[firstWrite.blockIndex]);
+
+        firstWrite.parentNode.init = tmpCall.expression.right;
+
+        after(firstWrite.blockBody[firstWrite.blockIndex]);
+        return true;
+      }
+    }
+
+    return vlog('- bail; third-last statement of outer function was not the assignment of the inner function;', closingNode.type, closingNode.expression?.type);
   }
 
   // `var tmp = targetName()`

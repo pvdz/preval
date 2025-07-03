@@ -101,7 +101,7 @@ export function fromMarkdownCase(md, fname, config) {
             break;
           }
           case 'cloneLimit':
-          case 'loopProtectLimit':
+          case 'loopProtectLimit': // Call count to $
           case 'maxPass':
             value = parseInt(value.trim());
             if (isNaN(value)) throw new Error('Test case contained invalid value for `' + name + '` (' + value + ')');
@@ -270,7 +270,7 @@ export function toNormalizedSection(obj) {
   );
 }
 
-function toSettledSection(obj) {
+export function toSettledSection(obj) {
   return (
     '## Settled\n\n\n' + // two empty lines. this way diff always captures this as the hunk header (with the default U3)
     Object.keys(obj)

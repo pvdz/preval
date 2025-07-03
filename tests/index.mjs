@@ -5,7 +5,7 @@ import path from 'path';
 import { preval } from '../src/index.mjs';
 import * as AST from '../src/ast.mjs';
 import {setPrintVarTyping} from '../lib/printer.mjs';
-import { RED, GREEN, YELLOW, BLUE, WHITE, BOLD, RESET, WHITE_BLACK, ORANGE, GOOD, BAD, fmat, fromMarkdownCase, toEvaluationResult, toMarkdownCase, toNormalizedSection, ASSERT, REDN, } from './utils.mjs';
+import { RED, GREEN, YELLOW, BLUE, WHITE, BOLD, RESET, WHITE_BLACK, ORANGE, GOOD, BAD, fmat, fromMarkdownCase, toEvaluationResult, toMarkdownCase, toNormalizedSection, ASSERT, REDN, toSettledSection, } from './utils.mjs';
 import { DIM, VERBOSE_TRACING, } from '../src/constants.mjs';
 import { SYMBOL_FOROF, SYMBOL_FORIN, SYMBOL_DOTCALL, BUILTIN_REST_HANDLER_NAME, SYMBOL_LOOP_UNROLL, SYMBOL_MAX_LOOP_UNROLL, SYMBOL_THROW_TDZ_ERROR, SYMBOL_PRNG, SYMBOL_COERCE, SYMBOL_FRFR } from '../src/symbols_preval.mjs';
 import { BUILTIN_SYMBOLS, sym_prefix, symbo } from '../src/symbols_builtins.mjs';
@@ -1135,9 +1135,16 @@ function runTestCase(
         } else {
           console.log('Not writing result. Dumping now...');
           if (!CONFIG.logPasses && !CONFIG.logPhases) console.log('Use `--log` or `--logto` or --log-passes to dump intermediate logs');
-          console.log('-----------------------');
-          console.log(md2);
-          console.log('-----------------------');
+          if (CONFIG.fileVerbatim) {
+            console.log('Only showing settled part due to fileVerbatim flag (F):');
+            console.log('-----------------------');
+            console.log(toSettledSection(output.files));
+            console.log('-----------------------');
+          } else {
+            console.log('-----------------------');
+            console.log(md2);
+            console.log('-----------------------');
+          }
         }
       } else {
         fs.writeFileSync(fname, md2, 'utf8');

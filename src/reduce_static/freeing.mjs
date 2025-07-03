@@ -45,7 +45,7 @@ import walk from '../../lib/walk.mjs';
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, fmat, tmat, rule, example, before, source, after, findBodyOffset, todo, clearStdio, currentState } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { BUILTIN_SYMBOLS, MATH, NUMBER, STRING, symbo } from '../symbols_builtins.mjs';
-import { createFreshVar, getMeta } from '../bindings.mjs';
+import { createFreshVar, getMeta, GLOBAL_BLOCKCHAIN } from '../bindings.mjs';
 import { PRIMITIVE_TYPE_NAMES_PREVAL, setVerboseTracing, VERBOSE_TRACING } from '../constants.mjs';
 import { pcodeSupportedBuiltinFuncs, runFreeWithPcode } from '../pcode.mjs';
 import { BUILTIN_GLOBAL_FUNC_NAMES } from '../globals.mjs';
@@ -305,7 +305,7 @@ function _freeing(fdata, $prng, usePrng) {
         //  vlog('-', [name], 'is `arguments` and added to the arg list');
         } else {
           const meta = fdata.globallyUniqueNamingRegistry.get(name);
-          if (meta.isConstant && meta.varDeclRef.node.$p.blockChain === '0,1,') {
+          if (meta.isConstant && meta.varDeclRef.node.$p.blockChain === GLOBAL_BLOCKCHAIN) {
             // This is a global var. No need to pass this in. We can reach it from anywhere.
             vlog('-', [name], 'is an explicit user global');
             return true;
@@ -849,7 +849,8 @@ function isFreeExpression(exprNode, fdata) {
         return true;
       }
       const meta = fdata.globallyUniqueNamingRegistry.get(funcName);
-      vlog('  - Ident "', funcName, '", meta typing:', JSON.stringify(meta.typing));
+      ASSERT(meta, 'if missing check if another reducer failed to go to phase1');
+      vlog('  - Ident "', funcName, '", meta typing:', JSON.stringify(meta?.typing));
       if (PRIMITIVE_TYPE_NAMES_PREVAL.has(meta.typing.mustBeType) || meta.typing.mustBePrimitive) {
         vlog('    - ident=ok');
         return true;

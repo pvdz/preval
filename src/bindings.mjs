@@ -18,6 +18,8 @@ const MUTATES = 'MUTATES';
 const COMPLETES = 'COMPLETES';
 const LABELS = 'LABELS';
 
+export const GLOBAL_BLOCKCHAIN = '0,1,';
+
 /**
  * @param parentNode
  * @param parentProp

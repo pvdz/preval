@@ -57,9 +57,9 @@ function _tandemAlias(fdata) {
       // Now we must check both sides because we're not walking the writes of the other meta
 
       vgroup('write', i);
-      if (body[index-1]) source(body[index-1], true);
-      source(body[index], true);
-      if (body[index+1]) source(body[index], true);
+      if (body[index-1]) source(body[index-1]);
+      source(body[index]);
+      if (body[index+1]) source(body[index]);
       vgroupEnd();
 
       const is = isSameAssign('before', body[index], body[index-1], name2) || isSameAssign('after ', body[index], body[index+1], name1, name2);

@@ -362,7 +362,7 @@ function process(fdata, meta, name, queue, attempted) {
       before(write.blockBody);
 
       vlog('Removing:');
-      source(write.blockBody[write.blockIndex], true);
+      // source(write.blockBody[write.blockIndex], true);
 
       ASSERT(write.blockBody[write.blockIndex].deleting, 'we should only be deleting nodes marked for deletion... if this fails then queue order is incorrect and its removing the wrong nodes, very bad');
       write.blockBody[write.blockIndex].deleting = false; // each only once

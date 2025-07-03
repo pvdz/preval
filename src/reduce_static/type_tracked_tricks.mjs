@@ -35,7 +35,7 @@ import {
   SYMBOL_TO_BUILTIN_GLOBAL_FUNCS,
 } from '../symbols_builtins.mjs';
 import * as AST from '../ast.mjs';
-import { getRegexFromLiteralNode, isNumberValueNode } from '../ast.mjs';
+import { getRegexFromLiteralNode, isNewRegex, isNewRegexLit, isNumberValueNode } from '../ast.mjs';
 import { ALL_NON_PRIMITIVE_TYPE_NAMES, PRIMITIVE_TYPE_NAMES_PREVAL, PRIMITIVE_TYPE_NAMES_TYPEOF } from '../constants.mjs';
 import { BUILTIN_GLOBAL_FUNC_NAMES } from '../globals.mjs';
 import { createFreshVar } from '../bindings.mjs';
@@ -491,6 +491,17 @@ function _typeTrackedTricks(fdata) {
               after(AST.tru(), parentNode);
               ++changes;
             }
+            // else if (argMeta.typing.mustBeType === 'function') {
+            //   rule('Bitwise inverting a function yields -1');
+            //   example('~null', '-1');
+            //   before(node, parentNode);
+            //
+            //   if (parentIndex < 0) parentNode[parentProp] = AST.literal(-1);
+            //   else parentNode[parentProp][parentIndex] = AST.literal(-1);
+            //
+            //   after(AST.tru(), parentNode);
+            //   ++changes;
+            // }
             break;
           }
           case 'typeof': {
@@ -1639,6 +1650,23 @@ function _typeTrackedTricks(fdata) {
               ++changes;
               return;
             }
+
+            if (
+              parentNode.type === 'ExpressionStatement' &&
+              isDotcall &&
+              fdata.globallyUniqueNamingRegistry.get(targetName)?.typing.mustBeType === 'function'
+            ) {
+              rule('Calling function.toString as a statement can be dropped');
+              example('function f(){} f.toString();');
+              before(blockBody[blockIndex]);
+
+              blockBody[blockIndex] = AST.emptyStatement();
+
+              after(blockBody[blockIndex]);
+              ++changes;
+              return;
+            }
+
             break;
           }
           case symbo('number', 'toString'): {
@@ -1755,15 +1783,16 @@ function _typeTrackedTricks(fdata) {
             const ctxMeta = fdata.globallyUniqueNamingRegistry.get(context?.name);
             if (
               isDotcall &&
+              // Check .test() call:
               context?.type === 'Identifier' &&
               ctxMeta?.isConstant &&
               ctxMeta.writes.length === 1 &&
-              ctxMeta.varDeclRef.node.type === 'NewExpression' &&
-              ctxMeta.varDeclRef.node.callee.type === 'Identifier' &&
-              ctxMeta.varDeclRef.node.callee.name === symbo('regex', 'constructor') &&
+              (args.length === 0 || AST.isPrimitive(args[0])) &&
+              // Check context:
+              AST.isNewRegex(ctxMeta.varDeclRef.node) &&
+              ctxMeta.varDeclRef.node.arguments.length <= 2 &&
               (!ctxMeta.varDeclRef.node.arguments[0] || AST.isPrimitive(ctxMeta.varDeclRef.node.arguments[0])) &&
-              (!ctxMeta.varDeclRef.node.arguments[1] || AST.isPrimitive(ctxMeta.varDeclRef.node.arguments[1])) &&
-              (args.length === 0 || AST.isPrimitive(args[0]))
+              (!ctxMeta.varDeclRef.node.arguments[1] || AST.isPrimitive(ctxMeta.varDeclRef.node.arguments[1]))
             ) {
               const pattern = ctxMeta.varDeclRef.node.arguments[0] ? String(AST.getPrimitiveValue(ctxMeta.varDeclRef.node.arguments[0])) : undefined;
               const flags = ctxMeta.varDeclRef.node.arguments[1] ? String(AST.getPrimitiveValue(ctxMeta.varDeclRef.node.arguments[1])) : undefined;
@@ -1803,6 +1832,40 @@ function _typeTrackedTricks(fdata) {
               after(blockBody[blockIndex]);
               ++changes;
               return;
+            }
+
+            if (parentNode.type === 'ExpressionStatement') {
+              if (
+                // regex.test as statement is noop if args are primitives, doesn't matter if we don't know concrete values
+                isDotcall &&
+
+                // Check .test() call:
+                context?.type === 'Identifier' &&
+                (PRIMITIVE_TYPE_NAMES_PREVAL.has(ctxMeta?.typing.mustBeType) || ctxMeta?.typing.mustBeType === 'regex') &&
+                (
+                  args.length === 0 ||
+                  AST.isPrimitive(args[0]) ||
+                  PRIMITIVE_TYPE_NAMES_PREVAL.has(fdata.globallyUniqueNamingRegistry.get(args[0]?.name)?.typing?.mustBeType)
+                ) &&
+                // Check context:
+                AST.isNewRegex(ctxMeta.varDeclRef.node) &&
+                ctxMeta.varDeclRef.node.arguments.length <= 2 && // this checks the RegExp() call !
+                (!ctxMeta.varDeclRef.node.arguments[0] || AST.isPrimitive(ctxMeta.varDeclRef.node.arguments[0])) &&
+                (!ctxMeta.varDeclRef.node.arguments[1] || AST.isPrimitive(ctxMeta.varDeclRef.node.arguments[1]))
+              ) {
+
+                rule('regex.test as statement when args are primitives / regex is not observable and can be dropped');
+                example('/foo/.test("brafoody");', ';');
+                example('new RegExp("foo").test("brafoody");', ';');
+                example(`${SYMBOL_DOTCALL}(${symbo('regex', 'test')}, /foo/, "xyz", "brafoody");`, ';');
+                before(blockBody[blockIndex]);
+
+                blockBody[blockIndex] = AST.emptyStatement();
+
+                after(blockBody[blockIndex]);
+                ++changes;
+                return;
+              }
             }
 
             break;

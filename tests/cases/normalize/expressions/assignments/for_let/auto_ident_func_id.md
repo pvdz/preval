@@ -19,7 +19,7 @@ $(a);
 
 
 `````js filename=intro
-const xyz /*:()=>unknown*/ = function () {
+const xyz /*:()=>unknown*/ = function $pcompiled() {
   debugger;
   return undefined;
 };
@@ -34,7 +34,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 (This ought to be the final result)
 
 `````js filename=intro
-const xyz = function () {};
+const xyz = function $pcompiled() {};
 while (true) {
   $(xyz);
   $(1);
@@ -46,7 +46,7 @@ while (true) {
 With rename=true
 
 `````js filename=intro
-const a = function() {
+const a = function b() {
   debugger;
   return undefined;
 };

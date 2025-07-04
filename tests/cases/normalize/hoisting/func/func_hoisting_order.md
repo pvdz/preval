@@ -25,27 +25,27 @@ $(a,b,d,f,h,x);
 
 
 `````js filename=intro
-const a /*:()=>unknown*/ = function () {
+const a /*:()=>unknown*/ = function $pcompiled() {
   debugger;
   return undefined;
 };
-const b /*:()=>unknown*/ = function () {
+const b /*:()=>unknown*/ = function $pcompiled() {
   debugger;
   return undefined;
 };
-const d /*:()=>unknown*/ = function () {
+const d /*:()=>unknown*/ = function $pcompiled() {
   debugger;
   return undefined;
 };
-const f /*:()=>unknown*/ = function () {
+const f /*:()=>unknown*/ = function $pcompiled() {
   debugger;
   return undefined;
 };
-const h /*:()=>unknown*/ = function () {
+const h /*:()=>unknown*/ = function $pcompiled() {
   debugger;
   return undefined;
 };
-const x /*:()=>unknown*/ = function () {
+const x /*:()=>unknown*/ = function $pcompiled() {
   debugger;
   return undefined;
 };
@@ -58,12 +58,12 @@ $(a, b, d, f, h, x);
 
 `````js filename=intro
 $(
-  function () {},
-  function () {},
-  function () {},
-  function () {},
-  function () {},
-  function () {},
+  function $pcompiled() {},
+  function $pcompiled() {},
+  function $pcompiled() {},
+  function $pcompiled() {},
+  function $pcompiled() {},
+  function $pcompiled() {},
 );
 `````
 
@@ -72,31 +72,31 @@ $(
 With rename=true
 
 `````js filename=intro
-const a = function() {
+const a = function b() {
   debugger;
   return undefined;
 };
-const b = function() {
+const c = function b() {
   debugger;
   return undefined;
 };
-const c = function() {
+const d = function b() {
   debugger;
   return undefined;
 };
-const d = function() {
+const e = function b() {
   debugger;
   return undefined;
 };
-const e = function() {
+const f = function b() {
   debugger;
   return undefined;
 };
-const f = function() {
+const g = function b() {
   debugger;
   return undefined;
 };
-$( a, b, c, d, e, f );
+$( a, c, d, e, f, g );
 `````
 
 

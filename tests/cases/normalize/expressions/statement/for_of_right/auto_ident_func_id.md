@@ -19,7 +19,7 @@ $(a);
 
 
 `````js filename=intro
-const f /*:()=>undefined*/ = function () {
+const f /*:()=>undefined*/ = function $pcompiled() {
   debugger;
   return undefined;
 };
@@ -42,7 +42,7 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpForOfGenNext = $forOf(function () {});
+const tmpForOfGenNext = $forOf(function $pcompiled() {});
 while (true) {
   const tmpForOfNext = tmpForOfGenNext();
   if (tmpForOfNext.done) {
@@ -59,26 +59,26 @@ $({ a: 999, b: 1000 });
 With rename=true
 
 `````js filename=intro
-const a = function() {
+const a = function b() {
   debugger;
   return undefined;
 };
-const b = $forOf( a );
+const c = $forOf( a );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const c = b();
-  const d = c.done;
-  if (d) {
+  const d = c();
+  const e = d.done;
+  if (e) {
     break;
   }
   else {
-    c.value;
+    d.value;
   }
 }
-const e = {
+const f = {
   a: 999,
   b: 1000,
 };
-$( e );
+$( f );
 `````
 
 

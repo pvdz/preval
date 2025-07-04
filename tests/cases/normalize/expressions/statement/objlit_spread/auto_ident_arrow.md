@@ -19,7 +19,7 @@ $(a);
 
 
 `````js filename=intro
-const tmpObjSpreadArg /*:()=>undefined*/ = function () {
+const tmpObjSpreadArg /*:()=>undefined*/ = function $pcompiled() {
   debugger;
   return undefined;
 };
@@ -33,7 +33,7 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpObjSpreadArg = function () {};
+const tmpObjSpreadArg = function $pcompiled() {};
 ({ ...tmpObjSpreadArg });
 $({ a: 999, b: 1000 });
 `````
@@ -43,16 +43,16 @@ $({ a: 999, b: 1000 });
 With rename=true
 
 `````js filename=intro
-const a = function() {
+const a = function b() {
   debugger;
   return undefined;
 };
 { ... a };
-const b = {
+const c = {
   a: 999,
   b: 1000,
 };
-$( b );
+$( c );
 `````
 
 

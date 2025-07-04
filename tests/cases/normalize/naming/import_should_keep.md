@@ -32,7 +32,7 @@ const f /*:()=>unknown*/ = function () {
   const x$1 /*:unknown*/ = $(1);
   return x$1;
 };
-const g /*:(unknown)=>unknown*/ = function ($$0) {
+const g /*:(unknown)=>unknown*/ = function $pcompiled($$0) {
   const x$3 /*:unknown*/ = $$0;
   debugger;
   return x$3;
@@ -55,7 +55,7 @@ const f = function () {
   const x$1 = $(1);
   return x$1;
 };
-const g = function (x$3) {
+const g = function $pcompiled(x$3) {
   return x$3;
 };
 const c = class {};
@@ -76,18 +76,18 @@ const a = function() {
   const b = $( 1 );
   return b;
 };
-const c = function($$0 ) {
-  const d = $$0;
+const c = function d($$0 ) {
+  const e = $$0;
   debugger;
-  return d;
+  return e;
 };
-const e = class   {
+const f = class   {
 
 };
-export { e as c };
-const f = $( 1 );
-const g = $( f );
-export { g as x };
+export { f as c };
+const g = $( 1 );
+const h = $( g );
+export { h as x };
 export { a as f };
 export { c as g };
 `````

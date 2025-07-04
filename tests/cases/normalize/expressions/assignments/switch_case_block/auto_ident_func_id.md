@@ -27,7 +27,7 @@ const tmpBinBothLhs /*:unknown*/ = $(1);
 const tmpBinBothRhs /*:unknown*/ = $(1);
 const tmpIfTest /*:boolean*/ = tmpBinBothLhs === tmpBinBothRhs;
 if (tmpIfTest) {
-  const f /*:()=>undefined*/ = function () {
+  const f /*:()=>undefined*/ = function $pcompiled() {
     debugger;
     return undefined;
   };
@@ -44,7 +44,7 @@ if (tmpIfTest) {
 
 `````js filename=intro
 if ($(1) === $(1)) {
-  $(function () {});
+  $(function $pcompiled() {});
 } else {
   $({ a: 999, b: 1000 });
 }
@@ -59,18 +59,18 @@ const a = $( 1 );
 const b = $( 1 );
 const c = a === b;
 if (c) {
-  const d = function() {
+  const d = function e() {
     debugger;
     return undefined;
   };
   $( d );
 }
 else {
-  const e = {
+  const f = {
     a: 999,
     b: 1000,
   };
-  $( e );
+  $( f );
 }
 `````
 

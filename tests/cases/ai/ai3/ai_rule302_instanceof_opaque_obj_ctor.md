@@ -21,7 +21,7 @@ let result = $('result', obj instanceof Ctor);
 
 
 `````js filename=intro
-const MyClass /*:()=>undefined*/ = function () {
+const MyClass /*:()=>undefined*/ = function $pcompiled() {
   debugger;
   return undefined;
 };
@@ -37,7 +37,7 @@ $(`result`, tmpCalleeParam$1);
 (This ought to be the final result)
 
 `````js filename=intro
-const MyClass = function () {};
+const MyClass = function $pcompiled() {};
 const obj = $(`obj`, new MyClass());
 $(`result`, obj instanceof $(`Ctor`, MyClass));
 `````
@@ -47,15 +47,15 @@ $(`result`, obj instanceof $(`Ctor`, MyClass));
 With rename=true
 
 `````js filename=intro
-const a = function() {
+const a = function b() {
   debugger;
   return undefined;
 };
-const b = new a();
-const c = $( "obj", b );
-const d = $( "Ctor", a );
-const e = c instanceof d;
-$( "result", e );
+const c = new a();
+const d = $( "obj", c );
+const e = $( "Ctor", a );
+const f = d instanceof e;
+$( "result", f );
 `````
 
 

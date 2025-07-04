@@ -23,7 +23,7 @@ $(x);
 
 
 `````js filename=intro
-const r /*:(unknown)=>number*/ = function ($$0) {
+const r /*:(unknown)=>number*/ = function $pcompiled($$0) {
   const n /*:unknown*/ = $$0;
   debugger;
   const tmpIfTest /*:boolean*/ = n > 100;
@@ -45,7 +45,7 @@ $(x);
 (This ought to be the final result)
 
 `````js filename=intro
-const r = function (n) {
+const r = function $pcompiled(n) {
   if (n > 100) {
     return 10;
   } else {
@@ -61,22 +61,22 @@ $(r($(10)));
 With rename=true
 
 `````js filename=intro
-const a = function($$0 ) {
-  const b = $$0;
+const a = function b($$0 ) {
+  const c = $$0;
   debugger;
-  const c = b > 100;
-  if (c) {
+  const d = c > 100;
+  if (d) {
     return 10;
   }
   else {
-    const d = b + 1;
-    const e = a( d );
-    return e;
+    const e = c + 1;
+    const f = a( e );
+    return f;
   }
 };
-const f = $( 10 );
-const g = a( f );
-$( g );
+const g = $( 10 );
+const h = a( g );
+$( h );
 `````
 
 

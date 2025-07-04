@@ -18,7 +18,7 @@ $(function(){}.prototype);
 
 
 `````js filename=intro
-const tmpCompObj /*:()=>undefined*/ = function () {
+const tmpCompObj /*:()=>undefined*/ = function $pcompiled() {
   debugger;
   return undefined;
 };
@@ -31,7 +31,7 @@ $(tmpCalleeParam);
 (This ought to be the final result)
 
 `````js filename=intro
-$(function () {}.prototype);
+$(function $pcompiled() {}.prototype);
 `````
 
 
@@ -39,12 +39,12 @@ $(function () {}.prototype);
 With rename=true
 
 `````js filename=intro
-const a = function() {
+const a = function b() {
   debugger;
   return undefined;
 };
-const b = a.prototype;
-$( b );
+const c = a.prototype;
+$( c );
 `````
 
 

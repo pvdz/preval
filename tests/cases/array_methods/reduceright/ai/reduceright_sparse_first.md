@@ -22,7 +22,7 @@ $(result);
 const tmpCalleeParam /*:array*/ /*truthy*/ = [, 2, 3];
 const arr /*:unknown*/ = $(tmpCalleeParam);
 const tmpMCF /*:unknown*/ = arr.reduceRight;
-const tmpMCP /*:(unknown, unknown)=>primitive*/ = function ($$0, $$1) {
+const tmpMCP /*:(unknown, unknown)=>primitive*/ = function $pcompiled($$0, $$1) {
   const acc /*:unknown*/ = $$0;
   const val /*:unknown*/ = $$1;
   debugger;
@@ -41,7 +41,7 @@ $(result);
 const arr = $([, 2, 3]);
 const tmpMCF = arr.reduceRight;
 $(
-  $dotCall(tmpMCF, arr, `reduceRight`, function (acc, val) {
+  $dotCall(tmpMCF, arr, `reduceRight`, function $pcompiled(acc, val) {
     const tmpReturnArg = acc + val;
     return tmpReturnArg;
   }),
@@ -56,15 +56,15 @@ With rename=true
 const a = [ ,, 2, 3 ];
 const b = $( a );
 const c = b.reduceRight;
-const d = function($$0,$$1 ) {
-  const e = $$0;
-  const f = $$1;
+const d = function e($$0,$$1 ) {
+  const f = $$0;
+  const g = $$1;
   debugger;
-  const g = e + f;
-  return g;
+  const h = f + g;
+  return h;
 };
-const h = $dotCall( c, b, "reduceRight", d );
-$( h );
+const i = $dotCall( c, b, "reduceRight", d );
+$( i );
 `````
 
 

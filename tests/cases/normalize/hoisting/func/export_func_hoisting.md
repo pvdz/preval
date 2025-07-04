@@ -27,31 +27,31 @@ $(a,b,d,f,h,x);
 
 
 `````js filename=intro
-const a /*:()=>unknown*/ = function () {
+const a /*:()=>unknown*/ = function $pcompiled() {
   debugger;
   return undefined;
 };
-const b /*:()=>unknown*/ = function () {
+const b /*:()=>unknown*/ = function $pcompiled() {
   debugger;
   return undefined;
 };
-const d /*:()=>unknown*/ = function () {
+const d /*:()=>unknown*/ = function $pcompiled() {
   debugger;
   return undefined;
 };
-const f /*:()=>unknown*/ = function () {
+const f /*:()=>unknown*/ = function $pcompiled() {
   debugger;
   return undefined;
 };
-const h /*:()=>unknown*/ = function () {
+const h /*:()=>unknown*/ = function $pcompiled() {
   debugger;
   return undefined;
 };
-const l /*:()=>unknown*/ = function () {
+const l /*:()=>unknown*/ = function $pcompiled() {
   debugger;
   return undefined;
 };
-const x /*:()=>unknown*/ = function () {
+const x /*:()=>unknown*/ = function $pcompiled() {
   debugger;
   return undefined;
 };
@@ -66,13 +66,13 @@ export { a };
 (This ought to be the final result)
 
 `````js filename=intro
-const a = function () {};
-const b = function () {};
-const d = function () {};
-const f = function () {};
-const h = function () {};
-const l = function () {};
-$(a, b, d, f, h, function () {});
+const a = function $pcompiled() {};
+const b = function $pcompiled() {};
+const d = function $pcompiled() {};
+const f = function $pcompiled() {};
+const h = function $pcompiled() {};
+const l = function $pcompiled() {};
+$(a, b, d, f, h, function $pcompiled() {});
 export { l };
 export { h };
 export { a };
@@ -83,37 +83,37 @@ export { a };
 With rename=true
 
 `````js filename=intro
-const a = function() {
+const a = function b() {
   debugger;
   return undefined;
 };
-const b = function() {
+const c = function b() {
   debugger;
   return undefined;
 };
-const c = function() {
+const d = function b() {
   debugger;
   return undefined;
 };
-const d = function() {
+const e = function b() {
   debugger;
   return undefined;
 };
-const e = function() {
+const f = function b() {
   debugger;
   return undefined;
 };
-const f = function() {
+const g = function b() {
   debugger;
   return undefined;
 };
-const g = function() {
+const h = function b() {
   debugger;
   return undefined;
 };
-$( a, b, c, d, e, g );
-export { f as l };
-export { e as h };
+$( a, c, d, e, f, h );
+export { g as l };
+export { f as h };
 export { a as a };
 `````
 

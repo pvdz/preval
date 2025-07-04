@@ -37,7 +37,7 @@ $(tmpCalleeParam$1);
 `````
 
 `````js filename=x
-const tmpAnonDefaultExport /*:()=>unknown*/ = function () {
+const tmpAnonDefaultExport /*:()=>unknown*/ = function $pcompiled() {
   debugger;
   return 100;
 };
@@ -55,7 +55,7 @@ $(x.name);
 `````
 
 `````js filename=x
-const tmpAnonDefaultExport = function () {
+const tmpAnonDefaultExport = function $pcompiled() {
   return 100;
 };
 export { tmpAnonDefaultExport as default };
@@ -74,7 +74,7 @@ $( b );
 `````
 
 `````js filename=x
-const a = function() {
+const a = function b() {
   debugger;
   return 100;
 };

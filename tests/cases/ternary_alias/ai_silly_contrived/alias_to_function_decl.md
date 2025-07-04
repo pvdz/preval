@@ -21,7 +21,7 @@ $(b);
 
 
 `````js filename=intro
-const a /*:()=>unknown*/ = function () {
+const a /*:()=>unknown*/ = function $pcompiled() {
   debugger;
   return undefined;
 };
@@ -37,7 +37,7 @@ if (x) {
 (This ought to be the final result)
 
 `````js filename=intro
-const a = function () {};
+const a = function $pcompiled() {};
 if (x) {
   $(undefined);
 } else {
@@ -50,7 +50,7 @@ if (x) {
 With rename=true
 
 `````js filename=intro
-const a = function() {
+const a = function b() {
   debugger;
   return undefined;
 };

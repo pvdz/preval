@@ -55,7 +55,7 @@ $(x);
 let a /*:()=>unknown*/ = function () {
   debugger;
   $();
-  a = function () {
+  a = function $pcompiled() {
     debugger;
     return undefined;
   };
@@ -73,7 +73,7 @@ $(x);
 `````js filename=intro
 let a = function () {
   $();
-  a = function () {};
+  a = function $pcompiled() {};
   $();
 };
 $(a());
@@ -87,15 +87,15 @@ With rename=true
 let a = function() {
   debugger;
   $();
-  a = function() {
+  a = function b() {
     debugger;
     return undefined;
   };
   $();
   return undefined;
 };
-const b = a();
-$( b );
+const c = a();
+$( c );
 `````
 
 

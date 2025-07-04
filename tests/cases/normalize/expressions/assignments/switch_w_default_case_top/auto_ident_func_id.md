@@ -42,7 +42,7 @@ if (tmpIfTest) {
 }
 const tmpIfTest$3 /*:boolean*/ = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$3) {
-  a = function () {
+  a = function $pcompiled() {
     debugger;
     return undefined;
   };
@@ -75,7 +75,7 @@ if ($(1) === tmpSwitchValue) {
   }
 }
 if (tmpSwitchCaseToStart <= 0) {
-  a = function () {};
+  a = function $pcompiled() {};
 }
 if (tmpSwitchCaseToStart <= 1) {
   $(`fail1`);
@@ -111,13 +111,13 @@ else {
 }
 const g = c <= 0;
 if (g) {
-  a = function() {
+  a = function h() {
     debugger;
     return undefined;
   };
 }
-const h = c <= 1;
-if (h) {
+const i = c <= 1;
+if (i) {
   $( "fail1" );
   $( "fail2" );
   $( a );

@@ -23,7 +23,7 @@ let a /*:unknown*/ /*truthy*/ = { a: 999, b: 1000 };
 while (true) {
   const tmpIfTest /*:unknown*/ = $(1);
   if (tmpIfTest) {
-    a = function () {
+    a = function $pcompiled() {
       debugger;
       return undefined;
     };
@@ -42,7 +42,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 while (true) {
   if ($(1)) {
-    a = function () {};
+    a = function $pcompiled() {};
   } else {
     break;
   }
@@ -62,7 +62,7 @@ let a = {
 while (true) {
   const b = $( 1 );
   if (b) {
-    a = function() {
+    a = function c() {
       debugger;
       return undefined;
     };

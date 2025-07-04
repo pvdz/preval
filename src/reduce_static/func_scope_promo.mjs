@@ -20,6 +20,7 @@ import {
 } from '../utils.mjs';
 import { getIdentUsageKind } from '../bindings.mjs';
 import * as AST from '../ast.mjs';
+import { SYMBOL_PCOMPILED } from '../symbols_preval.mjs';
 
 // - For each function
 //   - Walk the entire body
@@ -203,6 +204,7 @@ export function findClosureRefs(funcNode) {
       }
       case 'Identifier:before': {
         const name = node.name;
+        if (name === SYMBOL_PCOMPILED) return; // ignore
         if (!AST.isPrimitive(node) && name !== 'arguments') {
           const parentNode = path.nodes[path.nodes.length - 2];
           const parentProp = path.props[path.props.length - 1];

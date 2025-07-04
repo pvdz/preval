@@ -22,7 +22,7 @@ $(result);
 const tmpCalleeParam /*:array*/ /*truthy*/ = [undefined, null, 0, ``, false];
 const arr /*:unknown*/ = $(tmpCalleeParam);
 const tmpMCF /*:unknown*/ = arr.findIndex;
-const tmpMCP /*:(unknown)=>boolean*/ = function ($$0) {
+const tmpMCP /*:(unknown)=>boolean*/ = function $pcompiled($$0) {
   const x /*:unknown*/ = $$0;
   debugger;
   const tmpReturnArg /*:boolean*/ = x === undefined;
@@ -40,7 +40,7 @@ $(result);
 const arr = $([undefined, null, 0, ``, false]);
 const tmpMCF = arr.findIndex;
 $(
-  $dotCall(tmpMCF, arr, `findIndex`, function (x) {
+  $dotCall(tmpMCF, arr, `findIndex`, function $pcompiled(x) {
     const tmpReturnArg = x === undefined;
     return tmpReturnArg;
   }),
@@ -55,14 +55,14 @@ With rename=true
 const a = [ undefined, null, 0, "", false ];
 const b = $( a );
 const c = b.findIndex;
-const d = function($$0 ) {
-  const e = $$0;
+const d = function e($$0 ) {
+  const f = $$0;
   debugger;
-  const f = e === undefined;
-  return f;
+  const g = f === undefined;
+  return g;
 };
-const g = $dotCall( c, b, "findIndex", d );
-$( g );
+const h = $dotCall( c, b, "findIndex", d );
+$( h );
 `````
 
 

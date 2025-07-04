@@ -39,7 +39,7 @@
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, tmat, todo, } from './utils.mjs';
 import * as AST from './ast.mjs';
 import { VERBOSE_TRACING, setVerboseTracing, YELLOW, ORANGE_DIM, PURPLE, RESET, DIM, ORANGE, PRIMITIVE_TYPE_NAMES_PREVAL, PRIMITIVE_TYPE_NAMES_TYPEOF, } from './constants.mjs';
-import { SYMBOL_COERCE, SYMBOL_DOTCALL } from './symbols_preval.mjs';
+import { SYMBOL_COERCE, SYMBOL_DOTCALL, SYMBOL_FRFR, SYMBOL_PCOMPILED } from './symbols_preval.mjs';
 import { BUILTIN_SYMBOLS, symbo } from './symbols_builtins.mjs';
 
 const NONE = 0;
@@ -50,6 +50,9 @@ export const SO_MESSAGE = '<max pcode call depth exceeded>';
 
 /** @var {Set<string>} we need the func node because a let binding can have multiple funcs assigned to it. true means its a built-in we support */
 export const pcodeSupportedBuiltinFuncs = new Set([
+  // This will fail a lot of tests...
+  // '$', // Testing framework console.log. Keep in mind the compiled code will not emit these because the func is supposed to be side effect free. But it's helpful for debugging to allow it.
+
   // global builtins (only include those that return a primitive we can transform into)
   //'clearInterval', // has side-effect. returns an object in nodejs
   //'clearTimeout', // has side-effect. returns an object in nodejs
@@ -244,8 +247,10 @@ export function pcanCompile(funcNode, fdata, funcName) {
     vlog('- pcode can compile body:');
     vlog('  - the func calls:', calls);
     vlog('  - the local regs:', locals);
+    if (!funcNode.id) funcNode.id = AST.identifier(SYMBOL_PCOMPILED);
     return calls;
   }
+  if (funcNode.id?.name === SYMBOL_PCOMPILED) todo('function was marked as $pcompiled but the validator rejected it');
   vlog('- fail:', calls, locals);
   return false;
 }

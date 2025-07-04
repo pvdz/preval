@@ -19,7 +19,7 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam$1 /*:()=>undefined*/ = function () {
+const tmpCalleeParam$1 /*:()=>undefined*/ = function $pcompiled() {
   debugger;
   return undefined;
 };
@@ -34,7 +34,7 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCalleeParam$1 = function () {};
+const tmpCalleeParam$1 = function $pcompiled() {};
 $([`before `, ` after`], tmpCalleeParam$1);
 $({ a: 999, b: 1000 });
 `````
@@ -44,17 +44,17 @@ $({ a: 999, b: 1000 });
 With rename=true
 
 `````js filename=intro
-const a = function() {
+const a = function b() {
   debugger;
   return undefined;
 };
-const b = [ "before ", " after" ];
-$( b, a );
-const c = {
+const c = [ "before ", " after" ];
+$( c, a );
+const d = {
   a: 999,
   b: 1000,
 };
-$( c );
+$( d );
 `````
 
 

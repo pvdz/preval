@@ -20,7 +20,7 @@ $(x);
 
 
 `````js filename=intro
-const tmpObjLitVal /*:()=>number*/ = function () {
+const tmpObjLitVal /*:()=>number*/ = function $pcompiled() {
   debugger;
   return 0.30000000000000004;
 };
@@ -34,7 +34,7 @@ $(x);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpObjLitVal = function () {
+const tmpObjLitVal = function $pcompiled() {
   return 0.30000000000000004;
 };
 $({ valueOf: tmpObjLitVal } + 0.6);
@@ -45,13 +45,13 @@ $({ valueOf: tmpObjLitVal } + 0.6);
 With rename=true
 
 `````js filename=intro
-const a = function() {
+const a = function b() {
   debugger;
   return 0.30000000000000004;
 };
-const b = { valueOf: a };
-const c = b + 0.6;
-$( c );
+const c = { valueOf: a };
+const d = c + 0.6;
+$( d );
 `````
 
 

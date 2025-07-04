@@ -29,7 +29,7 @@ export default function(){};
 
 
 `````js filename=intro
-const f /*:()=>unknown*/ = function () {
+const f /*:()=>unknown*/ = function $pcompiled() {
   debugger;
   return undefined;
 };
@@ -43,7 +43,7 @@ const g /*:number*/ /*truthy*/ = 1;
 export { g };
 const h /*:number*/ /*truthy*/ = 2;
 export { h as i };
-const tmpAnonDefaultExport /*:()=>unknown*/ = function () {
+const tmpAnonDefaultExport /*:()=>unknown*/ = function $pcompiled() {
   debugger;
   return undefined;
 };
@@ -58,7 +58,7 @@ export { f };
 (This ought to be the final result)
 
 `````js filename=intro
-const f = function () {};
+const f = function $pcompiled() {};
 const a = 1;
 export { a };
 const b = 2;
@@ -69,7 +69,7 @@ const g = 1;
 export { g };
 const h = 2;
 export { h as i };
-const tmpAnonDefaultExport = function () {};
+const tmpAnonDefaultExport = function $pcompiled() {};
 export { tmpAnonDefaultExport as default };
 const c = 3;
 export { c };
@@ -81,29 +81,29 @@ export { f };
 With rename=true
 
 `````js filename=intro
-const a = function() {
+const a = function b() {
   debugger;
   return undefined;
 };
-const b = 1;
-export { b as a };
-const c = 2;
-export { c as b };
-const d = class   {
+const c = 1;
+export { c as a };
+const d = 2;
+export { d as b };
+const e = class   {
 
 };
-export { d as X };
-const e = 1;
-export { e as g };
-const f = 2;
-export { f as i };
-const g = function() {
+export { e as X };
+const f = 1;
+export { f as g };
+const g = 2;
+export { g as i };
+const h = function b() {
   debugger;
   return undefined;
 };
-export { g as default };
-const h = 3;
-export { h as c };
+export { h as default };
+const i = 3;
+export { i as c };
 export { a as f };
 `````
 

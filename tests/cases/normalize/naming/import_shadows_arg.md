@@ -20,7 +20,7 @@ export const x = $(f());
 
 
 `````js filename=intro
-const g /*:(unknown)=>unknown*/ = function ($$0) {
+const g /*:(unknown)=>unknown*/ = function $pcompiled($$0) {
   const x$1 /*:unknown*/ = $$0;
   debugger;
   return x$1;
@@ -36,7 +36,7 @@ export { g };
 (This ought to be the final result)
 
 `````js filename=intro
-const g = function (x$1) {
+const g = function $pcompiled(x$1) {
   return x$1;
 };
 const x = $(f());
@@ -49,14 +49,14 @@ export { g };
 With rename=true
 
 `````js filename=intro
-const a = function($$0 ) {
-  const b = $$0;
+const a = function b($$0 ) {
+  const c = $$0;
   debugger;
-  return b;
+  return c;
 };
-const c = f();
-const d = $( c );
-export { d as x };
+const d = f();
+const e = $( d );
+export { e as x };
 export { a as g };
 `````
 

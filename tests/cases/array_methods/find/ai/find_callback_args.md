@@ -24,7 +24,7 @@ $(result);
 const tmpCalleeParam /*:array*/ /*truthy*/ = [1, 2, 3];
 const arr /*:unknown*/ = $(tmpCalleeParam);
 const tmpMCF /*:unknown*/ = arr.find;
-const tmpMCP /*:(unknown, unknown, unknown)=>boolean*/ = function ($$0, $$1, $$2) {
+const tmpMCP /*:(unknown, unknown, unknown)=>boolean*/ = function $pcompiled($$0, $$1, $$2) {
   const value /*:unknown*/ = $$0;
   const index /*:unknown*/ = $$1;
   const array /*:unknown*/ = $$2;
@@ -54,7 +54,7 @@ $(result);
 const arr = $([1, 2, 3]);
 const tmpMCF = arr.find;
 $(
-  $dotCall(tmpMCF, arr, `find`, function (value, index, array) {
+  $dotCall(tmpMCF, arr, `find`, function $pcompiled(value, index, array) {
     if (value === 2) {
       if (index === 1) {
         const tmpClusterSSA_tmpReturnArg$1 = array === arr;
@@ -77,17 +77,17 @@ With rename=true
 const a = [ 1, 2, 3 ];
 const b = $( a );
 const c = b.find;
-const d = function($$0,$$1,$$2 ) {
-  const e = $$0;
-  const f = $$1;
-  const g = $$2;
+const d = function e($$0,$$1,$$2 ) {
+  const f = $$0;
+  const g = $$1;
+  const h = $$2;
   debugger;
-  const h = e === 2;
-  if (h) {
-    const i = f === 1;
-    if (i) {
-      const j = g === b;
-      return j;
+  const i = f === 2;
+  if (i) {
+    const j = g === 1;
+    if (j) {
+      const k = h === b;
+      return k;
     }
     else {
       return false;
@@ -97,8 +97,8 @@ const d = function($$0,$$1,$$2 ) {
     return false;
   }
 };
-const k = $dotCall( c, b, "find", d );
-$( k );
+const l = $dotCall( c, b, "find", d );
+$( l );
 `````
 
 

@@ -22,7 +22,7 @@ $(result);
 const tmpCalleeParam /*:array*/ /*truthy*/ = [0, ``, false, null, undefined, NaN];
 const arr /*:unknown*/ = $(tmpCalleeParam);
 const tmpMCF /*:unknown*/ = arr.findLastIndex;
-const tmpMCP /*:(unknown)=>boolean*/ = function ($$0) {
+const tmpMCP /*:(unknown)=>boolean*/ = function $pcompiled($$0) {
   const x /*:unknown*/ = $$0;
   debugger;
   const tmpReturnArg /*:boolean*/ = x === 0;
@@ -40,7 +40,7 @@ $(result);
 const arr = $([0, ``, false, null, undefined, NaN]);
 const tmpMCF = arr.findLastIndex;
 $(
-  $dotCall(tmpMCF, arr, `findLastIndex`, function (x) {
+  $dotCall(tmpMCF, arr, `findLastIndex`, function $pcompiled(x) {
     const tmpReturnArg = x === 0;
     return tmpReturnArg;
   }),
@@ -55,14 +55,14 @@ With rename=true
 const a = [ 0, "", false, null, undefined, NaN ];
 const b = $( a );
 const c = b.findLastIndex;
-const d = function($$0 ) {
-  const e = $$0;
+const d = function e($$0 ) {
+  const f = $$0;
   debugger;
-  const f = e === 0;
-  return f;
+  const g = f === 0;
+  return g;
 };
-const g = $dotCall( c, b, "findLastIndex", d );
-$( g );
+const h = $dotCall( c, b, "findLastIndex", d );
+$( h );
 `````
 
 

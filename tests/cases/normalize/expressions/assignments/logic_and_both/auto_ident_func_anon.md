@@ -19,7 +19,7 @@ $(a);
 
 
 `````js filename=intro
-const tmpNestedComplexRhs /*:()=>unknown*/ = function () {
+const tmpNestedComplexRhs /*:()=>unknown*/ = function $pcompiled() {
   debugger;
   return undefined;
 };
@@ -32,7 +32,7 @@ $(tmpNestedComplexRhs);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpNestedComplexRhs = function () {};
+const tmpNestedComplexRhs = function $pcompiled() {};
 $(tmpNestedComplexRhs);
 $(tmpNestedComplexRhs);
 `````
@@ -42,7 +42,7 @@ $(tmpNestedComplexRhs);
 With rename=true
 
 `````js filename=intro
-const a = function() {
+const a = function b() {
   debugger;
   return undefined;
 };

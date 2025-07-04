@@ -64,7 +64,7 @@ $(`third`);
 const tmpMCF /*:unknown*/ = pkg.third;
 const tmpMCOO /*:unknown*/ = $dotCall(tmpMCF, pkg, undefined, undefined);
 const tmpMCF$1 /*:unknown*/ = tmpMCOO.then;
-const tmpMCP$1 /*:(unused)=>undefined*/ = function ($$0) {
+const tmpMCP$1 /*:(unused)=>undefined*/ = function $pcompiled($$0) {
   debugger;
   return undefined;
 };
@@ -95,7 +95,7 @@ require(`cssesc`);
 const pkg = require(`failure`);
 $(`third`);
 const tmpMCOO = pkg.third(undefined);
-const tmpMCCO = tmpMCOO.then(function ($$0) {});
+const tmpMCCO = tmpMCOO.then(function $pcompiled($$0) {});
 tmpMCCO.undefined(function (_0x125e11) {
   try {
     const funcBody = _0x125e11.response.data;
@@ -118,27 +118,27 @@ $( "third" );
 const b = a.third;
 const c = $dotCall( b, a, undefined, undefined );
 const d = c.then;
-const e = function($$0 ) {
+const e = function f($$0 ) {
   debugger;
   return undefined;
 };
-const f = $dotCall( d, c, "then", e );
-const g = f.undefined;
-const h = function($$0 ) {
-  const i = $$0;
+const g = $dotCall( d, c, "then", e );
+const h = g.undefined;
+const i = function($$0 ) {
+  const j = $$0;
   debugger;
   try {
-    const j = i.response;
-    const k = j.data;
-    const l = new $function_constructor( undefined, k );
-    l( require );
+    const k = j.response;
+    const l = k.data;
+    const m = new $function_constructor( undefined, l );
+    m( require );
   }
-  catch (m) {
-    $dotCall( $console_log, console, "log", m );
+  catch (n) {
+    $dotCall( $console_log, console, "log", n );
   }
   return undefined;
 };
-$dotCall( g, f, undefined, h );
+$dotCall( h, g, undefined, i );
 `````
 
 

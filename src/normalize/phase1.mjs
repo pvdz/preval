@@ -35,7 +35,7 @@ import {
   openRefsOnAfterLabel, createState,
 } from '../utils/ref_tracking.mjs';
 import { addLabelReference, registerGlobalLabel } from '../labels.mjs';
-import { SYMBOL_COERCE } from '../symbols_preval.mjs';
+import { SYMBOL_COERCE, SYMBOL_FREE, SYMBOL_PCOMPILED } from '../symbols_preval.mjs';
 
 // This phase is fairly mechanical and should only do discovery, no AST changes.
 // It sets up scope tracking, imports/exports tracking, return value analysis, ref tracking (which binding can see which binding). That sort of thing.
@@ -584,11 +584,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         vlog('Final func commonReturn:', node.$p.commonReturn);
 
         if (node.id) {
-          ASSERT(node.id.name === '$free', 'the only function id that we should have left is the $free function');
-          //
-          //const meta = globallyUniqueNamingRegistry.get(node.id.name);
-          //ASSERT(meta, 'there should be a meta for this name', node.id.name);
-          //meta.isImplicitGlobal = false;
+          ASSERT(node.id.name === SYMBOL_FREE || node.id.name === SYMBOL_PCOMPILED, 'the only function id that we should have left is the $free and $pcompiled function');
         }
 
         ASSERT(node.params.length === node.$p.paramNames.length, 'paramNames should be in sync with param nodes list, just leave holes for params that have no local binding', node.$p.paramNames, node.params.length, node.params);
@@ -681,8 +677,11 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
           if (parentIndex < 0) parentNode[parentProp] = paramNode;
           else parentNode[parentProp][parentIndex] = paramNode;
         }
-        else if (name === '$free') {
+        else if (name === SYMBOL_FREE) {
           vlog('Ignoring special $free case');
+        }
+        else if (name === SYMBOL_PCOMPILED) {
+          vlog('Ignoring special $pcompiled case');
         }
         else if (kind !== 'none' && kind !== 'label') {
           ASSERT(kind === 'read' || kind === 'write', 'consider what to do if this check fails', kind, node);

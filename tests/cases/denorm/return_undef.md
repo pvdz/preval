@@ -18,7 +18,7 @@ $(() => x ? void $(1) : void $(2));
 
 
 `````js filename=intro
-const tmpCalleeParam /*:()=>unknown*/ = function () {
+const tmpCalleeParam /*:()=>unknown*/ = function $pcompiled() {
   debugger;
   return undefined;
 };
@@ -41,7 +41,7 @@ $(tmpCalleeParam$1);
 (This ought to be the final result)
 
 `````js filename=intro
-$(function () {});
+$(function $pcompiled() {});
 $(function () {
   if (x) {
     $(1);
@@ -56,12 +56,12 @@ $(function () {
 With rename=true
 
 `````js filename=intro
-const a = function() {
+const a = function b() {
   debugger;
   return undefined;
 };
 $( a );
-const b = function() {
+const c = function() {
   debugger;
   if (x) {
     $( 1 );
@@ -72,7 +72,7 @@ const b = function() {
     return undefined;
   }
 };
-$( b );
+$( c );
 `````
 
 

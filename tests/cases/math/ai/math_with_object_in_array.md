@@ -20,11 +20,11 @@ $(a);
 
 
 `````js filename=intro
-const tmpObjLitVal /*:()=>number*/ = function () {
+const tmpObjLitVal /*:()=>number*/ = function $pcompiled() {
   debugger;
   return 3;
 };
-const tmpObjLitVal$1 /*:()=>number*/ = function () {
+const tmpObjLitVal$1 /*:()=>number*/ = function $pcompiled() {
   debugger;
   return 7;
 };
@@ -40,10 +40,10 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpObjLitVal = function () {
+const tmpObjLitVal = function $pcompiled() {
   return 3;
 };
-const tmpObjLitVal$1 = function () {
+const tmpObjLitVal$1 = function $pcompiled() {
   return 7;
 };
 const tmpArrElement = { valueOf: tmpObjLitVal };
@@ -55,19 +55,19 @@ $($($Math_max(tmpArrElement, { valueOf: tmpObjLitVal$1 })));
 With rename=true
 
 `````js filename=intro
-const a = function() {
+const a = function b() {
   debugger;
   return 3;
 };
-const b = function() {
+const c = function b() {
   debugger;
   return 7;
 };
-const c = { valueOf: a };
-const d = { valueOf: b };
-const e = $Math_max( c, d );
-const f = $( e );
-$( f );
+const d = { valueOf: a };
+const e = { valueOf: c };
+const f = $Math_max( d, e );
+const g = $( f );
+$( g );
 `````
 
 

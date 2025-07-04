@@ -17,7 +17,7 @@ export default function f() {}
 
 
 `````js filename=intro
-const f /*:()=>unknown*/ = function () {
+const f /*:()=>unknown*/ = function $pcompiled() {
   debugger;
   return undefined;
 };
@@ -29,7 +29,7 @@ export { f as default };
 (This ought to be the final result)
 
 `````js filename=intro
-const f = function () {};
+const f = function $pcompiled() {};
 export { f as default };
 `````
 
@@ -38,7 +38,7 @@ export { f as default };
 With rename=true
 
 `````js filename=intro
-const a = function() {
+const a = function b() {
   debugger;
   return undefined;
 };

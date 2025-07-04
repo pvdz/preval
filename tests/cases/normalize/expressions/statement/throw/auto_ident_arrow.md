@@ -19,7 +19,7 @@ $(a);
 
 
 `````js filename=intro
-const tmpThrowArg /*:()=>unknown*/ = function () {
+const tmpThrowArg /*:()=>unknown*/ = function $pcompiled() {
   debugger;
   return undefined;
 };
@@ -31,7 +31,7 @@ throw tmpThrowArg;
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpThrowArg = function () {};
+const tmpThrowArg = function $pcompiled() {};
 throw tmpThrowArg;
 `````
 
@@ -40,7 +40,7 @@ throw tmpThrowArg;
 With rename=true
 
 `````js filename=intro
-const a = function() {
+const a = function b() {
   debugger;
   return undefined;
 };

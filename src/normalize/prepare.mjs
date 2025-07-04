@@ -1,7 +1,14 @@
 import walk from '../../lib/walk.mjs';
 import * as AST from '../ast.mjs';
 import { VERBOSE_TRACING, RED, BLUE, RESET, DIM, setVerboseTracing, } from '../constants.mjs';
-import { THIS_ALIAS_BASE_NAME, ARGUMENTS_ALIAS_BASE_NAME, ARGLENGTH_ALIAS_BASE_NAME, IMPLICIT_GLOBAL_PREFIX, SYMBOL_THROW_TDZ_ERROR, } from '../symbols_preval.mjs';
+import {
+  THIS_ALIAS_BASE_NAME,
+  ARGUMENTS_ALIAS_BASE_NAME,
+  ARGLENGTH_ALIAS_BASE_NAME,
+  IMPLICIT_GLOBAL_PREFIX,
+  SYMBOL_THROW_TDZ_ERROR,
+  SYMBOL_PCOMPILED, SYMBOL_FREE,
+} from '../symbols_preval.mjs';
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, rule, example, before, after, source, assertNoDupeNodes, currentState, } from '../utils.mjs';
 import {$p, resetUid} from '../$p.mjs';
 import globals from '../globals.mjs';
@@ -411,7 +418,9 @@ export function prepareNormalization(fdata, resolve, req, oncePass, options) {
           // Note: this could be a property write, but it's not a binding mutation.
           // Ignore: Preval special parameter name
           vlog('This is a special param "keyword" by Preval. Ignoring.');
-        } else if (node.name === '$free') {
+        } else if (node.name === SYMBOL_FREE) {
+          vlog('This is the special case id of a function expression');
+        } else if (node.name === SYMBOL_PCOMPILED) {
           vlog('This is the special case id of a function expression');
         } else if (kind !== 'none' && kind !== 'label') {
           ASSERT(!node.$p.uniqueName, 'dont do this twice');

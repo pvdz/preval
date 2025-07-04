@@ -33,7 +33,7 @@ if ($) f();
 
 `````js filename=intro
 if ($) {
-  const tmpSSA_x /*:()=>unknown*/ = function () {
+  const tmpSSA_x /*:()=>unknown*/ = function $pcompiled() {
     debugger;
     return undefined;
   };
@@ -52,7 +52,7 @@ if ($) {
 
 `````js filename=intro
 if ($) {
-  const tmpSSA_x = function () {};
+  const tmpSSA_x = function $pcompiled() {};
   $(tmpSSA_x);
   if ($) {
     $(tmpSSA_x);
@@ -66,7 +66,7 @@ With rename=true
 
 `````js filename=intro
 if ($) {
-  const a = function() {
+  const a = function b() {
     debugger;
     return undefined;
   };

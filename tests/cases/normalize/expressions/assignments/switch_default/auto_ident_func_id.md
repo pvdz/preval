@@ -23,7 +23,7 @@ $(a);
 
 `````js filename=intro
 $(1);
-const f /*:()=>unknown*/ = function () {
+const f /*:()=>unknown*/ = function $pcompiled() {
   debugger;
   return undefined;
 };
@@ -36,7 +36,7 @@ $(f);
 
 `````js filename=intro
 $(1);
-$(function () {});
+$(function $pcompiled() {});
 `````
 
 
@@ -45,7 +45,7 @@ With rename=true
 
 `````js filename=intro
 $( 1 );
-const a = function() {
+const a = function b() {
   debugger;
   return undefined;
 };

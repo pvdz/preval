@@ -96,6 +96,7 @@ $(tmpCalleeParam);
 
 - (todo) Record this phase1.1 as a test case, please (A)
 - (todo) find test case where template ends up with multiple expressions
+- (todo) function was marked as $pcompiled but the validator rejected it
 - (todo) sticky flag, lastindex cases
 
 

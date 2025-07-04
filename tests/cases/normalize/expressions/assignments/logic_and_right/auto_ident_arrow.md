@@ -21,7 +21,7 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(100);
 if (tmpCalleeParam) {
-  const tmpNestedComplexRhs /*:()=>undefined*/ = function () {
+  const tmpNestedComplexRhs /*:()=>undefined*/ = function $pcompiled() {
     debugger;
     return undefined;
   };
@@ -41,7 +41,7 @@ if (tmpCalleeParam) {
 `````js filename=intro
 const tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
-  const tmpNestedComplexRhs = function () {};
+  const tmpNestedComplexRhs = function $pcompiled() {};
   $(tmpNestedComplexRhs);
   $(tmpNestedComplexRhs);
 } else {
@@ -57,7 +57,7 @@ With rename=true
 `````js filename=intro
 const a = $( 100 );
 if (a) {
-  const b = function() {
+  const b = function c() {
     debugger;
     return undefined;
   };
@@ -66,11 +66,11 @@ if (a) {
 }
 else {
   $( a );
-  const c = {
+  const d = {
     a: 999,
     b: 1000,
   };
-  $( c );
+  $( d );
 }
 `````
 

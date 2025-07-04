@@ -22,7 +22,7 @@ $(result);
 const tmpCalleeParam /*:array*/ /*truthy*/ = [1, 2, 3, 4, 5];
 const arr /*:unknown*/ = $(tmpCalleeParam);
 const tmpMCF /*:unknown*/ = arr.find;
-const tmpMCP /*:(unknown)=>boolean*/ = function ($$0) {
+const tmpMCP /*:(unknown)=>boolean*/ = function $pcompiled($$0) {
   const x /*:unknown*/ = $$0;
   debugger;
   const tmpBinLhs /*:number*/ = x % 2;
@@ -41,7 +41,7 @@ $(result);
 const arr = $([1, 2, 3, 4, 5]);
 const tmpMCF = arr.find;
 $(
-  $dotCall(tmpMCF, arr, `find`, function (x) {
+  $dotCall(tmpMCF, arr, `find`, function $pcompiled(x) {
     const tmpReturnArg = x % 2 === 0;
     return tmpReturnArg;
   }),
@@ -56,15 +56,15 @@ With rename=true
 const a = [ 1, 2, 3, 4, 5 ];
 const b = $( a );
 const c = b.find;
-const d = function($$0 ) {
-  const e = $$0;
+const d = function e($$0 ) {
+  const f = $$0;
   debugger;
-  const f = e % 2;
-  const g = f === 0;
-  return g;
+  const g = f % 2;
+  const h = g === 0;
+  return h;
 };
-const h = $dotCall( c, b, "find", d );
-$( h );
+const i = $dotCall( c, b, "find", d );
+$( i );
 `````
 
 

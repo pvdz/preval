@@ -19,7 +19,7 @@ $(a);
 
 
 `````js filename=intro
-const tmpBinBothRhs /*:()=>undefined*/ = function () {
+const tmpBinBothRhs /*:()=>undefined*/ = function $pcompiled() {
   debugger;
   return undefined;
 };
@@ -34,7 +34,7 @@ $(tmpClusterSSA_a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpBinBothRhs = function () {};
+const tmpBinBothRhs = function $pcompiled() {};
 const tmpClusterSSA_a = { a: 999, b: 1000 } * tmpBinBothRhs;
 $(tmpClusterSSA_a);
 $(tmpClusterSSA_a);
@@ -45,17 +45,17 @@ $(tmpClusterSSA_a);
 With rename=true
 
 `````js filename=intro
-const a = function() {
+const a = function b() {
   debugger;
   return undefined;
 };
-const b = {
+const c = {
   a: 999,
   b: 1000,
 };
-const c = b * a;
-$( c );
-$( c );
+const d = c * a;
+$( d );
+$( d );
 `````
 
 

@@ -27,7 +27,7 @@ $(a);
 `````js filename=intro
 const tmpSwitchValue /*:unknown*/ = $(1);
 let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
-const a /*:()=>undefined*/ = function () {
+const a /*:()=>undefined*/ = function $pcompiled() {
   debugger;
   return undefined;
 };
@@ -59,7 +59,7 @@ if (tmpIfTest$5) {
 `````js filename=intro
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
-const a = function () {};
+const a = function $pcompiled() {};
 if (a === tmpSwitchValue) {
   tmpSwitchCaseToStart = 0;
 } else {
@@ -84,22 +84,22 @@ With rename=true
 `````js filename=intro
 const a = $( 1 );
 let b = 1;
-const c = function() {
+const c = function d() {
   debugger;
   return undefined;
 };
-const d = c === a;
-if (d) {
+const e = c === a;
+if (e) {
   b = 0;
 }
 else {
-  const e = 2 === a;
-  if (e) {
+  const f = 2 === a;
+  if (f) {
     b = 2;
   }
 }
-const f = b <= 1;
-if (f) {
+const g = b <= 1;
+if (g) {
   $( "fail1" );
   $( "fail2" );
   $( c );

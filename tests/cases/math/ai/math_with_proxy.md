@@ -21,7 +21,7 @@ $(a);
 
 `````js filename=intro
 const tmpNewCallee /*:unknown*/ = Proxy;
-const tmpObjLitVal /*:()=>number*/ = function () {
+const tmpObjLitVal /*:()=>number*/ = function $pcompiled() {
   debugger;
   return -42;
 };
@@ -39,7 +39,7 @@ $(a);
 
 `````js filename=intro
 const tmpNewCallee = Proxy;
-const tmpObjLitVal = function () {
+const tmpObjLitVal = function $pcompiled() {
   return -42;
 };
 const tmpCalleeParam = { valueOf: tmpObjLitVal };
@@ -53,16 +53,16 @@ With rename=true
 
 `````js filename=intro
 const a = Proxy;
-const b = function() {
+const b = function c() {
   debugger;
   return -42;
 };
-const c = { valueOf: b };
-const d = {};
-const e = new a( c, d );
-const f = $Math_abs( e );
-const g = $( f );
-$( g );
+const d = { valueOf: b };
+const e = {};
+const f = new a( d, e );
+const g = $Math_abs( f );
+const h = $( g );
+$( h );
 `````
 
 

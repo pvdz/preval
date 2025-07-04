@@ -4,7 +4,15 @@ import { ASSERT, assertNoDupeNodes, log, group, groupEnd, vlog, vgroup, vgroupEn
 
 import { VERBOSE_TRACING, ASSUME_BUILTINS, DCE_ERROR_MSG, ERR_MSG_ILLEGAL_ARRAY_SPREAD, ERR_MSG_ILLEGAL_CALLEE, FRESH, OLD, RED, BLUE, RESET, } from '../constants.mjs';
 import { BUILTIN_GLOBAL_FUNCS_TO_SYMBOL, BUILTIN_FUNC_NO_CTX, BUILTIN_FUNCS_NO_CTX_COERCE_FIRST_TO_NUMBER, BUILTIN_FUNCS_NO_CTX_COERCE_FIRST_TO_STRING, BUILTIN_FUNCS_NO_CTXT_NON_COERCE, BUILTIN_SYMBOLS, GLOBAL_NAMESPACES_FOR_STATIC_METHODS, protoToInstName, symbo, OBJECT, } from '../symbols_builtins.mjs';
-import { BUILTIN_REST_HANDLER_NAME, SYMBOL_COERCE, SYMBOL_FORIN, SYMBOL_FOROF, SYMBOL_FRFR, SYMBOL_THROW_TDZ_ERROR, } from '../symbols_preval.mjs';
+import {
+  BUILTIN_REST_HANDLER_NAME,
+  SYMBOL_COERCE,
+  SYMBOL_FORIN,
+  SYMBOL_FOROF, SYMBOL_FREE,
+  SYMBOL_FRFR,
+  SYMBOL_PCOMPILED,
+  SYMBOL_THROW_TDZ_ERROR,
+} from '../symbols_preval.mjs';
 import { SYMBOL_DOTCALL, SYMBOL_LOOP_UNROLL, SYMBOL_MAX_LOOP_UNROLL } from '../symbols_preval.mjs';
 import { createFreshVar, } from '../bindings.mjs';
 import globals, { BUILTIN_GLOBAL_FUNC_NAMES } from '../globals.mjs';
@@ -2065,7 +2073,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           return true;
         }
 
-        if (rhs.type === 'FunctionExpression' && rhs.id && rhs.id.name !== '$free') {
+        if (rhs.type === 'FunctionExpression' && rhs.id && (rhs.id.name !== SYMBOL_FREE && rhs.id.name !== SYMBOL_PCOMPILED)) {
           // Note: this happens here (assignment) and in a var decl!
           // The id of a function expression is kind of special.
           // - It only exists inside the function
@@ -11100,8 +11108,11 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
         vlog('- name: `' + node.name + '`');
 
-        if (node.name === '$free') {
+        if (node.name === SYMBOL_FREE) {
           ASSERT(parentNodeOrWhatever.type === 'FunctionExpression' && parentNodeOrWhatever.id === node, '$free is only allowed as function ids');
+          return;
+        }
+        if (node.name === SYMBOL_PCOMPILED) {
           return;
         }
 
@@ -15542,7 +15553,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
       return true;
     }
 
-    if (init.type === 'FunctionExpression' && init.id && init.id.name !== '$free') {
+    if (init.type === 'FunctionExpression' && init.id && (init.id.name !== SYMBOL_FREE && init.id.name !== SYMBOL_PCOMPILED)) {
       // Note: this happens here (var decl) and in assignment!
       // The id of a function expression is kind of special.
       // - It only exists inside the function

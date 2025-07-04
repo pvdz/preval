@@ -83,6 +83,8 @@ export const SYMBOL_PRNG = '$prng';
 export const SYMBOL_FREE = '$free';
 export const SYMBOL_FRFR = '$frfr';
 
+export const SYMBOL_PCOMPILED = '$pcompiled';
+
 export const GLOBAL_PREVAL_SYMBOLS = new Set([
   '$',
   BUILTIN_REST_HANDLER_NAME,

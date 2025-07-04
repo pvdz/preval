@@ -20,7 +20,7 @@ $dotCall(alias, obj, 'g');
 
 
 `````js filename=intro
-const g /*:()=>string*/ = function () {
+const g /*:()=>string*/ = function $pcompiled() {
   debugger;
   return `win`;
 };
@@ -34,7 +34,7 @@ $dotCall(alias, obj, `g`);
 (This ought to be the final result)
 
 `````js filename=intro
-const g = function () {
+const g = function $pcompiled() {
   return `win`;
 };
 $dotCall($Object_prototype.g, { f: g }, `g`);
@@ -45,13 +45,13 @@ $dotCall($Object_prototype.g, { f: g }, `g`);
 With rename=true
 
 `````js filename=intro
-const a = function() {
+const a = function b() {
   debugger;
   return "win";
 };
-const b = $Object_prototype.g;
-const c = { f: a };
-$dotCall( b, c, "g" );
+const c = $Object_prototype.g;
+const d = { f: a };
+$dotCall( c, d, "g" );
 `````
 
 

@@ -22,7 +22,7 @@ $(result);
 const tmpCalleeParam /*:array*/ /*truthy*/ = [0, ``, false, null, undefined, 1];
 const arr /*:unknown*/ = $(tmpCalleeParam);
 const tmpMCF /*:unknown*/ = arr.findLastIndex;
-const tmpMCP /*:(unknown)=>unknown*/ = function ($$0) {
+const tmpMCP /*:(unknown)=>unknown*/ = function $pcompiled($$0) {
   const x /*:unknown*/ = $$0;
   debugger;
   return x;
@@ -39,7 +39,7 @@ $(result);
 const arr = $([0, ``, false, null, undefined, 1]);
 const tmpMCF = arr.findLastIndex;
 $(
-  $dotCall(tmpMCF, arr, `findLastIndex`, function (x) {
+  $dotCall(tmpMCF, arr, `findLastIndex`, function $pcompiled(x) {
     return x;
   }),
 );
@@ -53,13 +53,13 @@ With rename=true
 const a = [ 0, "", false, null, undefined, 1 ];
 const b = $( a );
 const c = b.findLastIndex;
-const d = function($$0 ) {
-  const e = $$0;
+const d = function e($$0 ) {
+  const f = $$0;
   debugger;
-  return e;
+  return f;
 };
-const f = $dotCall( c, b, "findLastIndex", d );
-$( f );
+const g = $dotCall( c, b, "findLastIndex", d );
+$( g );
 `````
 
 

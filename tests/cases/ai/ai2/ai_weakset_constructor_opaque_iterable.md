@@ -26,7 +26,7 @@ $('weakset_constructed_has2', wset.has(val2_obj));
 `````js filename=intro
 const tmpCalleeParam /*:object*/ /*truthy*/ = {};
 const val1_obj /*:unknown*/ = $(`ws_val1_obj`, tmpCalleeParam);
-const tmpCalleeParam$1 /*:()=>undefined*/ = function () {
+const tmpCalleeParam$1 /*:()=>undefined*/ = function $pcompiled() {
   debugger;
   return undefined;
 };
@@ -50,7 +50,7 @@ $(`weakset_constructed_has2`, tmpCalleeParam$9);
 
 `````js filename=intro
 const val1_obj = $(`ws_val1_obj`, {});
-const val2_obj = $(`ws_val2_obj`, function () {});
+const val2_obj = $(`ws_val2_obj`, function $pcompiled() {});
 const tmpArrElement$3 = $(`ws_val3_obj`, []);
 const iterable = $(`opaque_ws_iterable`, [val1_obj, val2_obj, tmpArrElement$3]);
 const wset = new WeakSet(iterable);
@@ -65,22 +65,22 @@ With rename=true
 `````js filename=intro
 const a = {};
 const b = $( "ws_val1_obj", a );
-const c = function() {
+const c = function d() {
   debugger;
   return undefined;
 };
-const d = $( "ws_val2_obj", c );
-const e = [];
-const f = $( "ws_val3_obj", e );
-const g = [ b, d, f ];
-const h = $( "opaque_ws_iterable", g );
-const i = new WeakSet( h );
-const j = i.has;
-const k = $dotCall( j, i, "has", b );
-$( "weakset_constructed_has1", k );
-const l = i.has;
-const m = $dotCall( l, i, "has", d );
-$( "weakset_constructed_has2", m );
+const e = $( "ws_val2_obj", c );
+const f = [];
+const g = $( "ws_val3_obj", f );
+const h = [ b, e, g ];
+const i = $( "opaque_ws_iterable", h );
+const j = new WeakSet( i );
+const k = j.has;
+const l = $dotCall( k, j, "has", b );
+$( "weakset_constructed_has1", l );
+const m = j.has;
+const n = $dotCall( m, j, "has", e );
+$( "weakset_constructed_has2", n );
 `````
 
 

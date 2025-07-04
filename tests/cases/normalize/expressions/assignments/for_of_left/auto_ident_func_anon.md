@@ -29,7 +29,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   if (tmpIfTest) {
     break;
   } else {
-    a = function () {
+    a = function $pcompiled() {
       debugger;
       return undefined;
     };
@@ -52,7 +52,7 @@ while (true) {
   if (tmpForOfNext.done) {
     break;
   } else {
-    a = function () {};
+    a = function $pcompiled() {};
     a.x = tmpForOfNext.value;
   }
 }
@@ -78,12 +78,12 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     break;
   }
   else {
-    a = function() {
+    a = function g() {
       debugger;
       return undefined;
     };
-    const g = e.value;
-    a.x = g;
+    const h = e.value;
+    a.x = h;
   }
 }
 $( a );

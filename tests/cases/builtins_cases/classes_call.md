@@ -42,7 +42,7 @@ $(`Object:`, tmpCalleeParam$7);
 const tmpCompObj /*:date*/ /*truthy*/ = $date_constructor();
 const tmpCalleeParam$9 /*:unknown*/ = tmpCompObj.length;
 $(`Date:`, tmpCalleeParam$9);
-const tmpCalleeParam$11 /*:()=>undefined*/ = function () {
+const tmpCalleeParam$11 /*:()=>undefined*/ = function $pcompiled() {
   debugger;
   return undefined;
 };
@@ -72,7 +72,7 @@ $(`String:`, ``);
 $(`Array:`, $array_constructor());
 $(`Object:`, $object_constructor());
 $(`Date:`, $date_constructor().length);
-$(`Function:`, function () {});
+$(`Function:`, function $pcompiled() {});
 $(`RegExp:`, $regex_constructor(`(?:)`, ``));
 $(`Map:`, $map_constructor());
 $(`Set:`, $set_constructor());
@@ -96,23 +96,23 @@ $( "Object:", b );
 const c = $date_constructor();
 const d = c.length;
 $( "Date:", d );
-const e = function() {
+const e = function f() {
   debugger;
   return undefined;
 };
 $( "Function:", e );
-const f = $regex_constructor( "(?:)", "" );
-$( "RegExp:", f );
-const g = $map_constructor();
-$( "Map:", g );
-const h = $set_constructor();
-$( "Set:", h );
-const i = $buffer_constructor();
-$( "Buffer:", i );
-const j = Math();
-$( "Math:", j );
-const k = JSON();
-$( "JSON:", k );
+const g = $regex_constructor( "(?:)", "" );
+$( "RegExp:", g );
+const h = $map_constructor();
+$( "Map:", h );
+const i = $set_constructor();
+$( "Set:", i );
+const j = $buffer_constructor();
+$( "Buffer:", j );
+const k = Math();
+$( "Math:", k );
+const l = JSON();
+$( "JSON:", l );
 `````
 
 

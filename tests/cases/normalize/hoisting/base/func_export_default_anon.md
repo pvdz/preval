@@ -20,7 +20,7 @@ $(f);
 
 `````js filename=intro
 $(f);
-const tmpAnonDefaultExport /*:()=>unknown*/ = function () {
+const tmpAnonDefaultExport /*:()=>unknown*/ = function $pcompiled() {
   debugger;
   return undefined;
 };
@@ -34,7 +34,7 @@ $(f);
 
 `````js filename=intro
 $(f);
-const tmpAnonDefaultExport = function () {};
+const tmpAnonDefaultExport = function $pcompiled() {};
 export { tmpAnonDefaultExport as default };
 $(f);
 `````
@@ -45,7 +45,7 @@ With rename=true
 
 `````js filename=intro
 $( f );
-const a = function() {
+const a = function b() {
   debugger;
   return undefined;
 };

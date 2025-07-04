@@ -19,7 +19,7 @@ $(a);
 
 
 `````js filename=intro
-const tmpBinBothLhs /*:()=>undefined*/ = function () {
+const tmpBinBothLhs /*:()=>undefined*/ = function $pcompiled() {
   debugger;
   return undefined;
 };
@@ -34,7 +34,7 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-(function () {} + $(100));
+(function $pcompiled() {} + $(100));
 $({ a: 999, b: 1000 });
 `````
 
@@ -43,17 +43,17 @@ $({ a: 999, b: 1000 });
 With rename=true
 
 `````js filename=intro
-const a = function() {
+const a = function b() {
   debugger;
   return undefined;
 };
-const b = $( 100 );
-a + b;
-const c = {
+const c = $( 100 );
+a + c;
+const d = {
   a: 999,
   b: 1000,
 };
-$( c );
+$( d );
 `````
 
 

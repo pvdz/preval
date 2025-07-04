@@ -21,7 +21,7 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitPropKey /*:unknown*/ = Symbol.toPrimitive;
-const tmpObjLitPropVal /*:()=>number*/ = function () {
+const tmpObjLitPropVal /*:()=>number*/ = function $pcompiled() {
   debugger;
   return -99;
 };
@@ -37,7 +37,7 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitPropKey = Symbol.toPrimitive;
-const tmpObjLitPropVal = function () {
+const tmpObjLitPropVal = function $pcompiled() {
   return -99;
 };
 $($($Math_abs({ [tmpObjLitPropKey]: tmpObjLitPropVal })));
@@ -49,14 +49,14 @@ With rename=true
 
 `````js filename=intro
 const a = Symbol.toPrimitive;
-const b = function() {
+const b = function c() {
   debugger;
   return -99;
 };
-const c = { [ a ]: b };
-const d = $Math_abs( c );
-const e = $( d );
-$( e );
+const d = { [ a ]: b };
+const e = $Math_abs( d );
+const f = $( e );
+$( f );
 `````
 
 

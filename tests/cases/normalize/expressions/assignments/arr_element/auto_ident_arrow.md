@@ -25,11 +25,11 @@ $(a);
 
 
 `````js filename=intro
-const a /*:()=>undefined*/ = function () {
+const a /*:()=>undefined*/ = function $pcompiled() {
   debugger;
   return undefined;
 };
-const tmpClusterSSA_a /*:()=>undefined*/ = function () {
+const tmpClusterSSA_a /*:()=>undefined*/ = function $pcompiled() {
   debugger;
   return undefined;
 };
@@ -43,8 +43,8 @@ $(tmpClusterSSA_a);
 (This ought to be the final result)
 
 `````js filename=intro
-const a = function () {};
-const tmpClusterSSA_a = function () {};
+const a = function $pcompiled() {};
+const tmpClusterSSA_a = function $pcompiled() {};
 $(a + tmpClusterSSA_a);
 $(tmpClusterSSA_a);
 `````
@@ -54,17 +54,17 @@ $(tmpClusterSSA_a);
 With rename=true
 
 `````js filename=intro
-const a = function() {
+const a = function b() {
   debugger;
   return undefined;
 };
-const b = function() {
+const c = function b() {
   debugger;
   return undefined;
 };
-const c = a + b;
+const d = a + c;
+$( d );
 $( c );
-$( b );
 `````
 
 

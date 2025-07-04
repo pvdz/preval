@@ -22,7 +22,7 @@ $(a);
 
 
 `````js filename=intro
-const tmpClusterSSA_a /*:()=>unknown*/ = function () {
+const tmpClusterSSA_a /*:()=>unknown*/ = function $pcompiled() {
   debugger;
   return undefined;
 };
@@ -35,7 +35,7 @@ $(tmpClusterSSA_a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpClusterSSA_a = function () {};
+const tmpClusterSSA_a = function $pcompiled() {};
 $(tmpClusterSSA_a);
 $(tmpClusterSSA_a);
 `````
@@ -45,7 +45,7 @@ $(tmpClusterSSA_a);
 With rename=true
 
 `````js filename=intro
-const a = function() {
+const a = function b() {
   debugger;
   return undefined;
 };

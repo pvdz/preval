@@ -19,7 +19,7 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam /*:()=>undefined*/ = function () {
+const tmpCalleeParam /*:()=>undefined*/ = function $pcompiled() {
   debugger;
   return undefined;
 };
@@ -33,7 +33,7 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-$(function () {});
+$(function $pcompiled() {});
 $({ a: 999, b: 1000 });
 `````
 
@@ -42,16 +42,16 @@ $({ a: 999, b: 1000 });
 With rename=true
 
 `````js filename=intro
-const a = function() {
+const a = function b() {
   debugger;
   return undefined;
 };
 $( a );
-const b = {
+const c = {
   a: 999,
   b: 1000,
 };
-$( b );
+$( c );
 `````
 
 

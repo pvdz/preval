@@ -18,7 +18,7 @@ f();
 
 
 `````js filename=intro
-const f /*:()=>unknown*/ = function () {
+const f /*:()=>unknown*/ = function $pcompiled() {
   debugger;
   return undefined;
 };
@@ -30,7 +30,7 @@ export { f };
 (This ought to be the final result)
 
 `````js filename=intro
-const f = function () {};
+const f = function $pcompiled() {};
 export { f };
 `````
 
@@ -39,7 +39,7 @@ export { f };
 With rename=true
 
 `````js filename=intro
-const a = function() {
+const a = function b() {
   debugger;
   return undefined;
 };

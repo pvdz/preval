@@ -33,7 +33,7 @@ $('ws_has_val1_after_delete', wset.has(val1));
 const wset /*:object*/ /*truthy*/ = new WeakSet();
 const tmpCalleeParam /*:object*/ /*truthy*/ = {};
 const val1 /*:unknown*/ = $(`ws_val1_methods`, tmpCalleeParam);
-const foo /*:()=>undefined*/ = function () {
+const foo /*:()=>undefined*/ = function $pcompiled() {
   debugger;
   return undefined;
 };
@@ -65,7 +65,7 @@ $(`ws_has_val1_after_delete`, tmpCalleeParam$9);
 `````js filename=intro
 const wset = new WeakSet();
 const val1 = $(`ws_val1_methods`, {});
-const val2 = $(`ws_val2_methods`, function () {});
+const val2 = $(`ws_val2_methods`, function $pcompiled() {});
 wset.add(val1);
 $(`ws_has_val1`, wset.has(val1));
 $(`ws_has_val2_unseen`, wset.has(val2));
@@ -82,29 +82,29 @@ With rename=true
 const a = new WeakSet();
 const b = {};
 const c = $( "ws_val1_methods", b );
-const d = function() {
+const d = function e() {
   debugger;
   return undefined;
 };
-const e = $( "ws_val2_methods", d );
-const f = a.add;
-$dotCall( f, a, "add", c );
-const g = a.has;
-const h = $dotCall( g, a, "has", c );
-$( "ws_has_val1", h );
-const i = a.has;
-const j = $dotCall( i, a, "has", e );
-$( "ws_has_val2_unseen", j );
-const k = a.add;
-const l = [];
-const m = $( "ws_val_temp", l );
-$dotCall( k, a, "add", m );
-const n = a.delete;
-const o = $dotCall( n, a, "delete", c );
-$( "ws_delete_val1_result", o );
-const p = a.has;
-const q = $dotCall( p, a, "has", c );
-$( "ws_has_val1_after_delete", q );
+const f = $( "ws_val2_methods", d );
+const g = a.add;
+$dotCall( g, a, "add", c );
+const h = a.has;
+const i = $dotCall( h, a, "has", c );
+$( "ws_has_val1", i );
+const j = a.has;
+const k = $dotCall( j, a, "has", f );
+$( "ws_has_val2_unseen", k );
+const l = a.add;
+const m = [];
+const n = $( "ws_val_temp", m );
+$dotCall( l, a, "add", n );
+const o = a.delete;
+const p = $dotCall( o, a, "delete", c );
+$( "ws_delete_val1_result", p );
+const q = a.has;
+const r = $dotCall( q, a, "has", c );
+$( "ws_has_val1_after_delete", r );
 `````
 
 

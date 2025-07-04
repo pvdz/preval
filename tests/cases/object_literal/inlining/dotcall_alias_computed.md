@@ -29,7 +29,7 @@ const order /*:()=>undefined*/ = function () {
   $(tmpCalleeParam);
   return undefined;
 };
-const g /*:()=>string*/ = function () {
+const g /*:()=>string*/ = function $pcompiled() {
   debugger;
   return `win`;
 };
@@ -46,7 +46,7 @@ $(order);
 const order = function () {
   $($dotCall(alias, obj, undefined));
 };
-const g = function () {
+const g = function $pcompiled() {
   return `win`;
 };
 const obj = { f: g };
@@ -65,7 +65,7 @@ const a = function() {
   $( b );
   return undefined;
 };
-const e = function() {
+const e = function f() {
   debugger;
   return "win";
 };

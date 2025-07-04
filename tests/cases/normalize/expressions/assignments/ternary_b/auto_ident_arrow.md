@@ -21,7 +21,7 @@ $(a);
 `````js filename=intro
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
-  const tmpNestedComplexRhs /*:()=>undefined*/ = function () {
+  const tmpNestedComplexRhs /*:()=>undefined*/ = function $pcompiled() {
     debugger;
     return undefined;
   };
@@ -41,7 +41,7 @@ if (tmpIfTest) {
 
 `````js filename=intro
 if ($(1)) {
-  const tmpNestedComplexRhs = function () {};
+  const tmpNestedComplexRhs = function $pcompiled() {};
   $(tmpNestedComplexRhs);
   $(tmpNestedComplexRhs);
 } else {
@@ -57,7 +57,7 @@ With rename=true
 `````js filename=intro
 const a = $( 1 );
 if (a) {
-  const b = function() {
+  const b = function c() {
     debugger;
     return undefined;
   };
@@ -65,13 +65,13 @@ if (a) {
   $( b );
 }
 else {
-  const c = $( 200 );
-  $( c );
-  const d = {
+  const d = $( 200 );
+  $( d );
+  const e = {
     a: 999,
     b: 1000,
   };
-  $( d );
+  $( e );
 }
 `````
 

@@ -28,7 +28,7 @@ $(a);
 `````js filename=intro
 const tmpSwitchValue /*:unknown*/ = $(1);
 let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
-const tmpBinLhs /*:()=>undefined*/ = function () {
+const tmpBinLhs /*:()=>undefined*/ = function $pcompiled() {
   debugger;
   return undefined;
 };
@@ -64,7 +64,7 @@ $(a);
 `````js filename=intro
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
-if (function () {} === tmpSwitchValue) {
+if (function $pcompiled() {} === tmpSwitchValue) {
   tmpSwitchCaseToStart = 0;
 } else {
   if (2 === tmpSwitchValue) {
@@ -89,27 +89,27 @@ With rename=true
 `````js filename=intro
 const a = $( 1 );
 let b = 1;
-const c = function() {
+const c = function d() {
   debugger;
   return undefined;
 };
-const d = c === a;
-if (d) {
+const e = c === a;
+if (e) {
   b = 0;
 }
 else {
-  const e = 2 === a;
-  if (e) {
+  const f = 2 === a;
+  if (f) {
     b = 2;
   }
 }
-const f = b <= 0;
-if (f) {
+const g = b <= 0;
+if (g) {
 
 }
 else {
-  const g = b <= 1;
-  if (g) {
+  const h = b <= 1;
+  if (h) {
     $( "fail1" );
     $( "fail2" );
   }
@@ -117,11 +117,11 @@ else {
     $( "fail2" );
   }
 }
-const h = {
+const i = {
   a: 999,
   b: 1000,
 };
-$( h );
+$( i );
 `````
 
 

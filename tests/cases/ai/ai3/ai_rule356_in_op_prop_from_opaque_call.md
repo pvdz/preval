@@ -27,7 +27,7 @@ $('final_result2', result2);
 `````js filename=intro
 const tmpCalleeParam /*:object*/ /*truthy*/ = { a: 1, b: 2 };
 const obj /*:unknown*/ = $(`getObject`, tmpCalleeParam);
-const tmpCalleeParam$1 /*:()=>string*/ = function () {
+const tmpCalleeParam$1 /*:()=>string*/ = function $pcompiled() {
   debugger;
   return `a`;
 };
@@ -35,7 +35,7 @@ const propName /*:unknown*/ = $(`getPropName`, tmpCalleeParam$1);
 const tmpBinLhs /*:unknown*/ = propName();
 const result /*:boolean*/ = tmpBinLhs in obj;
 $(`final_result`, result);
-const tmpCalleeParam$3 /*:()=>string*/ = function () {
+const tmpCalleeParam$3 /*:()=>string*/ = function $pcompiled() {
   debugger;
   return `c`;
 };
@@ -51,11 +51,11 @@ $(`final_result2`, result2);
 
 `````js filename=intro
 const obj = $(`getObject`, { a: 1, b: 2 });
-const propName = $(`getPropName`, function () {
+const propName = $(`getPropName`, function $pcompiled() {
   return `a`;
 });
 $(`final_result`, propName() in obj);
-const propName2 = $(`getNonExistPropName`, function () {
+const propName2 = $(`getNonExistPropName`, function $pcompiled() {
   return `c`;
 });
 $(`final_result2`, propName2() in obj);
@@ -71,22 +71,22 @@ const a = {
   b: 2,
 };
 const b = $( "getObject", a );
-const c = function() {
+const c = function d() {
   debugger;
   return "a";
 };
-const d = $( "getPropName", c );
-const e = d();
-const f = e in b;
-$( "final_result", f );
-const g = function() {
+const e = $( "getPropName", c );
+const f = e();
+const g = f in b;
+$( "final_result", g );
+const h = function d() {
   debugger;
   return "c";
 };
-const h = $( "getNonExistPropName", g );
-const i = h();
-const j = i in b;
-$( "final_result2", j );
+const i = $( "getNonExistPropName", h );
+const j = i();
+const k = j in b;
+$( "final_result2", k );
 `````
 
 

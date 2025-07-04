@@ -43,7 +43,9 @@ function _ifHoisting(fdata) {
 
     if (a.type !== b.type) return false;
 
-    if (a.type === 'VarStatement') return almostIdenticalSlow(a.init, b.init);
+    if (a.type === 'VarStatement') {
+      return almostIdenticalSlow(a.init, b.init);
+    }
 
     // Laaaaazy. But why not.
     return tmat(a, true) === tmat(b, true);
@@ -100,6 +102,7 @@ function _ifHoisting(fdata) {
       });
 
       blockBody.splice(blockIndex, 0, firstThen);
+      firstThen.kind = 'let'; // Prevent hoisting up a const that is assigned in the other branch
       // Preserve if-test expression (tdz semantics)
       blockBody.splice(blockIndex, 0, AST.expressionStatement(AST.cloneSimple(node.test)));
       node.consequent.body.shift();

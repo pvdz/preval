@@ -112,13 +112,13 @@ export function denorm(fdata, resolve, req, options) {
 
               rule('coerce to plustr should concat to empty string');
               example('$coerce(x, "plustr")', 'x+""');
-              before(parentProp);
+              before(parentNode);
 
               const newNode = AST.binaryExpression('+', node.arguments[0], AST.primitive(''));
               if (parentIndex < 0) parentNode[parentProp] = newNode;
               else parentNode[parentProp][parentIndex] = newNode;
 
-              after(parentIndex);
+              after(parentNode);
               changed = true;
               return true;
             }

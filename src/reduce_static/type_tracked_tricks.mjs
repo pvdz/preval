@@ -1667,6 +1667,21 @@ function _typeTrackedTricks(fdata) {
               return;
             }
 
+            if (
+              isDotcall &&
+              fdata.globallyUniqueNamingRegistry.get(targetName)?.typing.mustBeType === 'function'
+            ) {
+              riskyRule('Calling function.toString cannot safely be done but we can just return an empty function string');
+              example('function f(){} f.toString();', '"function(){}"');
+              before(blockBody[blockIndex]);
+
+              blockBody[blockIndex] = AST.primitive('function(){}'); // We could even add a comment in here. But we shouldn't.
+
+              after(blockBody[blockIndex]);
+              ++changes;
+              return;
+            }
+
             break;
           }
           case symbo('number', 'toString'): {

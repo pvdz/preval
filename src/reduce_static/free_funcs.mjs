@@ -105,15 +105,17 @@ export function _freeFuncs(fdata, prng, usePrng, pcodeTestMode) {
   // Each cycle, see if all called names (or itself) are in validated. If so, move to validated as well.
   // Keep doing so until there are no more changes. The rest is thereby invalidated.
 
-  vlog('Trying to validate/reject the candidates');
+  vlog('Trying to validate/reject the candidates until no more changes');
   let changes = true;
   while (changes) {
     changes = false;
+    vlog('- Again\n');
     for (const [funcName, {func, calls}] of candidates.entries()) {
+      vgroup('- Candidate', [funcName]);
       // Either a direct recursive call, or all functions being called are also (going to be) compiled to pcode
       let all = true;
       calls.forEach(callee => {
-        vlog('- testing', [callee])
+        vlog('- Testing callee', [callee])
         if (callee === funcName || validated.has(callee)) return vlog('  - is in the validated set or recursion');
         vlog('  - was not in the validated set (yet), was not recursion');
         all = false;
@@ -124,6 +126,7 @@ export function _freeFuncs(fdata, prng, usePrng, pcodeTestMode) {
         validatedUserFuncNames.add(funcName);
         changes = true;
       }
+      vgroupEnd();
     }
   }
 
@@ -139,6 +142,7 @@ export function _freeFuncs(fdata, prng, usePrng, pcodeTestMode) {
     // This set includes all the builtins that pcode supports...
     validated.forEach((funcNode, funcName) => {
       if (!pcodeSupportedBuiltinFuncs.has(funcName)) {
+        vlog('');
         vgroup('- pcodeSupportedBuiltinFuncs does not yet have:', [funcName], '; compiling that now');
         const pcode = pcompile(funcNode, fdata);
         fdata.pcodeOutput.set(funcNode.$p.npid, { pcode, funcNode, name: funcName });

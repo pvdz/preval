@@ -1,5 +1,5 @@
 import {walkStmt, WALK_NO_FURTHER, HARD_STOP} from '../lib/walk_stmt_norm.mjs';
-import {ASSERT, source, tmat, vlog, log, vgroup, vgroupEnd, todo} from './utils.mjs';
+import { ASSERT, source, tmat, vlog, log, vgroup, vgroupEnd, todo, after, before } from './utils.mjs';
 import { $p } from './$p.mjs';
 import { createFreshVar } from './bindings.mjs';
 import {
@@ -961,10 +961,14 @@ export function templateLiteral(cookedStrings, expressions) {
     type: 'TemplateLiteral',
     expressions,
     quasis: cookedStrings.map((str, si) => {
-      return templateElement(str.replace(/([\\`$])/g, '\\$1'), si === cookedStrings.length - 1, str);
+      return quasi(str, si === cookedStrings.length - 1);
     }),
     $p: $p(),
   };
+}
+
+export function quasi(cookedString, tail) {
+  return templateElement(cookedString.replace(/([\\`$])/g, '\\$1'), tail, cookedString);
 }
 
 export function thisExpression() {
@@ -2598,6 +2602,7 @@ export function _complexExpressionNodeMightSpy(node, fdata) {
         // Computed keys are coerced to string
         if (pnode.computed) return complexExpressionNodeMightSpy(pnode.key, fdata);
         // In normalized code, the value should be simple and cannot spy when the object is defined
+        // But the ident may trigger tdz, so we should take care of that maybe?
         return ;// complexExpressionNodeMightSpy(pnode.value, fdata);
       });
     }
@@ -3080,28 +3085,33 @@ export function getExpressionFromNormalizedStatement(stmtNode) {
 
 
 export function normalizeTemplateSimple(node) {
+  let changed = false;
   vgroup('normalizeTemplateSimple; Walking the', node.expressions.length, 'expressions of the template...');
-  let newNode = node;
-  for (let i = newNode.expressions.length - 1; i >= 0; --i) {
-    const outerExpressions = newNode.expressions.slice(0);
-    const outerQuasis = newNode.quasis.slice(0);
-    const expr = outerExpressions[i];
-    vlog('- expr', i, 'is', expr.type);
+
+  const newExpressions = [];
+  const newStrings = [];
+
+  const expressions = node.expressions;
+  const quasis = node.quasis;
+  ASSERT(expressions.length + 1 === quasis.length, 'templates should always have one more str than expr');
+
+  newStrings.push(quasis[0].value.cooked);
+
+  for (let outerIndex = 0; outerIndex<expressions.length; ++outerIndex) {
+    const prevStr = newStrings[newStrings.length-1];
+    const expr = expressions[outerIndex];
+    const nextStr = quasis[outerIndex + 1].value.cooked;
+    vlog('- expr', outerIndex, 'is', expr.type, ', str before/after:', [prevStr, nextStr]);
     if (isPrimitive(expr)) {
-      vlog('- Inlining primitive at', i);
-      // Drop the expression that represents the primitive
-      // Squash the value of the quasi at the same position of the expression, with the primitive and its next expression sibling
       const val = getPrimitiveValue(expr);
-      outerExpressions.splice(i, 1); // Drop the expr
-      outerQuasis[i].value.cooked += val + outerQuasis[i + 1].value.cooked; // merge left str + prim value + right str into one str
-      outerQuasis.splice(i + 1, 1); // Drop the right str
-      newNode = templateLiteral(
-        outerQuasis.map((te) => te.value.cooked),
-        outerExpressions,
-      );
+      const joined = prevStr + val + nextStr;
+      vlog('  - Primitive value is:', [val], ', squashed:', [joined]);
+
+      newStrings[newStrings.length-1] = joined;
+      changed = true;
     }
     else if (expr.type === 'TemplateLiteral') {
-      vlog('- Inlining non-primitive template at', i);
+      vlog('  - Inlining non-primitive template at', outerIndex);
 
       // So we have a template nested in another template
       // `a${`A${x}B`}b`
@@ -3109,34 +3119,40 @@ export function normalizeTemplateSimple(node) {
       // 'a', tpl, 'b'
       // And we have inner
       // 'A', x, 'B'
-      // The template is one expression and so we want to go from `'a' tpl 'b'` to `'aA' x 'Bb'`
-      // This means that for a template at position i, we merge the left-most string of the inner
-      // template with the string at position i and we merge the right most string of the inner
-      // template with the string at position i+1. We then remove the expression at position i
-      // (which is the template) and replace it with all the expressions inside the inner template.
-      // We don't remove any strings but we move all the inner template strings except the outer most
-      // into the outer strings, between index i and i+1.
-      // Then we should end up with `aA${x}Bb`
 
-      const innerExpressions = expr.expressions;
-      const leftMost = expr.quasis[0];
-      const rightMost = expr.quasis[expr.quasis.length - 1];
-      const innerQuasis = expr.quasis.slice(1, -1);
-
-      ASSERT(outerExpressions.length > 0);
-      outerExpressions.splice(i, 1, ...innerExpressions);
-      outerQuasis[i].value.cooked = outerQuasis[i].value.cooked + leftMost.value.cooked;
-      outerQuasis[i + 1].value.cooked = rightMost.value.cooked + outerQuasis[i + 1].value.cooked;
-      outerQuasis.splice(i + 1, 0, ...innerQuasis);
-      newNode = templateLiteral(
-        outerQuasis.map((te) => te.value.cooked),
-        outerExpressions,
-      );
+      vlog('- strings of inner template:', expr.quasis.map(q => q.value.cooked));
+      vlog('- first pushing the left-most string:', [prevStr, '+', expr.quasis[0].value.cooked]);
+      newStrings[newStrings.length - 1] = prevStr + expr.quasis[0].value.cooked;
+      for (let innerIndex=0; innerIndex<expr.expressions.length; ++innerIndex) {
+        vlog('- adding expr', innerIndex, 'and the string tothe right:', [expr.quasis[innerIndex+1].value.cooked]);
+        newExpressions.push(expr.expressions[innerIndex]);
+        newStrings.push(expr.quasis[innerIndex+1].value.cooked);
+      }
+      // Fuse the outer end string with the last string in newStrings (the inner template will have been fused into that segment already)
+      newStrings[newStrings.length - 1] = newStrings[newStrings.length - 1] + nextStr;
+      changed = true;
+    }
+    else {
+      vlog('  - Not changed');
+      newExpressions.push(expr);
+      newStrings.push(nextStr);
     }
   }
   vgroupEnd();
 
-  return newNode;
+  ASSERT(newStrings.length > 0, 'should have at least one string');
+  ASSERT(newStrings.length === newExpressions.length + 1, 'always have one more string than exprs, normalization messed up', newStrings.length, newExpressions.length);
+
+  vlog('- changes:', changed);
+
+  if (!changed) return node;
+
+  const t = templateLiteral(
+    newStrings,
+    newExpressions,
+  );
+
+  return t;
 }
 
 /**

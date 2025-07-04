@@ -93,7 +93,7 @@ $(tmpCalleeParam$3);
 ## Todos triggered
 
 
-- (todo) no test coverage? for outlining a call that replaces the callee
+None
 
 
 ## Globals

@@ -20,8 +20,6 @@ import {
   findBodyOffset,
 } from '../utils.mjs';
 import * as AST from '../ast.mjs';
-import { createFreshVar } from '../bindings.mjs';
-import { normalizeTemplateSimple } from '../ast.mjs';
 import { PRIMITIVE_TYPE_NAMES_PREVAL } from '../constants.mjs';
 
 export function stringFusing(fdata) {
@@ -199,7 +197,7 @@ function _processBinary(fdata, path, parentNode, parentProp, parentIndex) {
       right = undefined;
     }
   } else if (right.type !== 'TemplateLiteral' && !AST.isPrimitive(right)) {
-    leftMbt = 'string';
+    rightMbt = 'string';
     right = undefined;
   }
 
@@ -223,6 +221,7 @@ function _processBinary(fdata, path, parentNode, parentProp, parentIndex) {
 
       const newRight = AST.cloneSimpleOrTemplate(right);
 
+      // Create new template by appending the right operand to the left template
       const newTemplateNode = AST.templateLiteral(
         [...left.quasis.map((te) => te.value.cooked), ''],
         [...left.expressions.map((n) => AST.cloneSimpleOrTemplate(n)), newRight],
@@ -243,6 +242,7 @@ function _processBinary(fdata, path, parentNode, parentProp, parentIndex) {
 
       const newLeft = AST.cloneSimpleOrTemplate(left);
 
+      // Create new template by prepending the left operand to the right template
       const newTemplateNode = AST.templateLiteral(
         ['', ...right.quasis.map((te) => te.value.cooked)],
         [newLeft, ...right.expressions.map((n) => AST.cloneSimpleOrTemplate(n))],

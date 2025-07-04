@@ -13724,13 +13724,49 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
         return;
       }
 
+      case 'YieldExpression': {
+
+        if (AST.isComplexNode(node.argument)) {
+          rule('Yield argument cannot be complex');
+          example('yield f()', '(tmp = f(), yield tmp)');
+          before(node, parentNodeOrWhatever);
+
+          const tmpName = createFreshVar('tmpYieldArg', fdata);
+          const newNodes = [AST.varStatement('const', tmpName, node.argument)];
+          const finalNode = AST.yieldExpression(tmpName, node.delegate);
+          const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+          body.splice(i, 1, ...newNodes, finalParent);
+
+          after(newNodes);
+          after(finalNode, finalParent);
+          assertNoDupeNodes(body, 'body');
+          return true;
+        }
+
+        if (
+          node.argument.type === 'Identifier' &&
+          (node.argument.name === SYMBOL_MAX_LOOP_UNROLL || node.argument.name.startsWith(SYMBOL_LOOP_UNROLL))
+        ) {
+          rule('Any usage of the unroll constants as arg of await should become `true`');
+          example('x = + $LOOP_DONE_UNROLLING_ALWAYS_TRUE;', 'x = + true');
+          before(body[i]);
+
+          node.argument = AST.tru();
+
+          after(body[i]);
+          return true;
+        }
+
+        return false;
+      }
+
+
       case 'Directive':
       case 'MetaProperty':
       case 'MethodDefinition':
       case 'Property':
       case 'RestElement':
-      case 'SpreadElement':
-      case 'YieldExpression': {
+      case 'SpreadElement': {
         log(RED + 'Missed expr:', node.type, RESET);
         return false;
       }

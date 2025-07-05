@@ -91,6 +91,7 @@ testArgsPrototypeChain(1, 2, 3);
 
 - (todo) Can we inline a function that uses arguments, anyways?
 - (todo) access object property that also exists on prototype? $object_constructor
+- (todo) inline arguments when function does not have that many params yet
 - (todo) type trackeed tricks can possibly support static $Object_getPrototypeOf
 
 

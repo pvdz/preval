@@ -23,15 +23,7 @@ testArgsEmpty();
 
 
 `````js filename=intro
-const testArgsEmpty /*:()=>undefined*/ = function (/*uses arguments*/) {
-  const tmpPrevalAliasArgumentsAny /*:arguments*/ /*truthy*/ = arguments;
-  debugger;
-  const first /*:unknown*/ = tmpPrevalAliasArgumentsAny[0];
-  const second /*:unknown*/ = tmpPrevalAliasArgumentsAny[1];
-  $(0, first, second);
-  return undefined;
-};
-testArgsEmpty();
+$(0, undefined, undefined);
 `````
 
 
@@ -39,11 +31,7 @@ testArgsEmpty();
 (This ought to be the final result)
 
 `````js filename=intro
-const testArgsEmpty = function () {
-  const tmpPrevalAliasArgumentsAny = arguments;
-  $(0, tmpPrevalAliasArgumentsAny[0], tmpPrevalAliasArgumentsAny[1]);
-};
-testArgsEmpty();
+$(0, undefined, undefined);
 `````
 
 
@@ -51,15 +39,7 @@ testArgsEmpty();
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  const b = c;
-  debugger;
-  const d = b[ 0 ];
-  const e = b[ 1 ];
-  $( 0, d, e );
-  return undefined;
-};
-a();
+$( 0, undefined, undefined );
 `````
 
 

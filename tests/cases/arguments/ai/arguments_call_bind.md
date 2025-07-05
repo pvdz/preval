@@ -111,6 +111,7 @@ testArgsCallBind(`x`, `y`);
 - (todo) Can we inline a function that uses arguments, anyways?
 - (todo) access object property that also exists on prototype? $function_bind
 - (todo) access object property that also exists on prototype? $function_call
+- (todo) inline arguments when function does not have that many params yet
 - (todo) this may support .call .apply and .bind but I think that different reducers should tackle it
 - (todo) type trackeed tricks can possibly support static $function_bind
 

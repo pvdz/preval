@@ -22,11 +22,12 @@ testArgsRestParam(1, 2, 3, 4, 5);
 
 
 `````js filename=intro
-const testArgsRestParam /*:(unused, unused, array)=>undefined*/ = function ($$0, $$1, ...$$2 /*:array*/) {
+const testArgsRestParam /*:(unused, unused, array)=>undefined*/ = function ($$0, $$1, ...$$2 /*:array*/ /*uses arguments*/) {
+  const tmpPrevalAliasArgumentsLen /*:number*/ = arguments.length;
   const rest /*:array*/ /*truthy*/ = $$2;
   debugger;
   const restLen /*:number*/ = rest.length;
-  $(5, restLen, rest);
+  $(tmpPrevalAliasArgumentsLen, restLen, rest);
   return undefined;
 };
 testArgsRestParam(1, 2, 3, 4, 5);
@@ -38,8 +39,9 @@ testArgsRestParam(1, 2, 3, 4, 5);
 
 `````js filename=intro
 const testArgsRestParam = function ($$0, $$1, ...$$2 /*:array*/) {
+  const tmpPrevalAliasArgumentsLen = arguments.length;
   const rest = $$2;
-  $(5, rest.length, rest);
+  $(tmpPrevalAliasArgumentsLen, rest.length, rest);
 };
 testArgsRestParam(1, 2, 3, 4, 5);
 `````
@@ -50,10 +52,11 @@ With rename=true
 
 `````js filename=intro
 const a = function($$0,$$1,$$2 ) {
-  const b = $$2;
+  const b = c.length;
+  const d = $$2;
   debugger;
-  const c = b.length;
-  $( 5, c, b );
+  const e = d.length;
+  $( b, e, d );
   return undefined;
 };
 a( 1, 2, 3, 4, 5 );

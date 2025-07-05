@@ -132,6 +132,7 @@ testArgsParameterShadowingDefineProperty(1, 2, 3);
 
 - (todo) Can we inline a function that uses arguments, anyways?
 - (todo) can try-escaping support this expr node type? ObjectExpression
+- (todo) inline arguments when function does not have that many params yet
 - (todo) type trackeed tricks can possibly support static $Object_defineProperty
 
 

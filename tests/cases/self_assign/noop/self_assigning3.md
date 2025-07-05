@@ -44,25 +44,25 @@ $(a, b, c);
 const arr /*:array*/ /*truthy*/ = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000];
 const unknownarr /*:unknown*/ = $(arr);
 let arg1 /*:unknown*/ = 1;
-const func /*:(number, unused)=>undefined*/ = function ($$0, $$1 /*uses arguments*/) {
-  const tmpPrevalAliasArgumentsAny /*:arguments*/ /*truthy*/ = arguments;
+const func /*:(number, number)=>undefined*/ = function ($$0, $$1) {
   const newArg1 /*:number*/ = $$0;
+  const tmpOutlinedParam /*:number*/ = $$1;
   debugger;
-  const index /*:number*/ = newArg1 - 1;
-  unknownarr[index];
+  unknownarr[tmpOutlinedParam];
   if (arg1) {
     $(`inside arg1:`, arg1);
     return undefined;
   } else {
+    const tmpPrevalAliasArgumentsAny /*:array*/ /*truthy*/ = [newArg1, ,];
     arg1 = tmpPrevalAliasArgumentsAny;
     $(`inside arg1:`, tmpPrevalAliasArgumentsAny);
     return undefined;
   }
 };
-func(1, 2);
-const tmpClusterSSA_a /*:unknown*/ = arg1;
-func(5, 6);
-$(tmpClusterSSA_a, b, arg1);
+func(1, 0);
+const a /*:unknown*/ = arg1;
+func(5, 4);
+$(a, b, arg1);
 `````
 
 
@@ -72,21 +72,20 @@ $(tmpClusterSSA_a, b, arg1);
 `````js filename=intro
 const unknownarr = $([100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]);
 let arg1 = 1;
-const func = function (newArg1, $$1) {
-  const tmpPrevalAliasArgumentsAny = arguments;
-  const index = newArg1 - 1;
-  unknownarr[index];
+const func = function (newArg1, tmpOutlinedParam) {
+  unknownarr[tmpOutlinedParam];
   if (arg1) {
     $(`inside arg1:`, arg1);
   } else {
+    const tmpPrevalAliasArgumentsAny = [newArg1, ,];
     arg1 = tmpPrevalAliasArgumentsAny;
     $(`inside arg1:`, tmpPrevalAliasArgumentsAny);
   }
 };
-func(1, 2);
-const tmpClusterSSA_a = arg1;
-func(5, 6);
-$(tmpClusterSSA_a, b, arg1);
+func(1, 0);
+const a = arg1;
+func(5, 4);
+$(a, b, arg1);
 `````
 
 
@@ -98,25 +97,25 @@ const a = [ 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000 ];
 const c = $( a );
 let d = 1;
 const e = function($$0,$$1 ) {
-  const f = g;
-  const h = $$0;
+  const f = $$0;
+  const g = $$1;
   debugger;
-  const i = h - 1;
-  c[ i ];
+  c[ g ];
   if (d) {
     $( "inside arg1:", d );
     return undefined;
   }
   else {
-    d = f;
-    $( "inside arg1:", f );
+    const h = [ f, , ];
+    d = h;
+    $( "inside arg1:", h );
     return undefined;
   }
 };
-e( 1, 2 );
-const j = d;
-e( 5, 6 );
-$( j, b, d );
+e( 1, 0 );
+const i = d;
+e( 5, 4 );
+$( i, b, d );
 `````
 
 
@@ -160,6 +159,7 @@ $(a, b, c);
 
 - (todo) Can we inline a function that uses arguments, anyways?
 - (todo) array reads var statement with init CallExpression
+- (todo) support array reads statement type ExpressionStatement
 
 
 ## Globals

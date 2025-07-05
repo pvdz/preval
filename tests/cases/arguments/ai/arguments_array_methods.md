@@ -358,6 +358,7 @@ testArgsArrayMethods(1, 2, 3, 4, 5);
 
 - (todo) Can we inline a function that uses arguments, anyways?
 - (todo) array reads var statement with init BinaryExpression
+- (todo) inline arguments when function does not have that many params yet
 - (todo) regular property access of an ident feels tricky;
 - (todo) type trackeed tricks can possibly support static $array_slice
 

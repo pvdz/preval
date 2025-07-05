@@ -93,6 +93,7 @@ testArgsParameterShadowingDestructuringArgs(`a`, `b`, `c`, `d`, `e`);
 - (todo) Can we inline a function that uses arguments, anyways?
 - (todo) Deal with array spreads in arr mutation?
 - (todo) access object property that also exists on prototype? $array_slice
+- (todo) inline arguments when function does not have that many params yet
 - (todo) type trackeed tricks can possibly support static $array_slice
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
 

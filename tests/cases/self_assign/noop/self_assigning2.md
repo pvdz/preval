@@ -41,24 +41,25 @@ $(a, b, c);
 
 `````js filename=intro
 let arg1 /*:unknown*/ = 3;
-const func /*:(unused, unused)=>undefined*/ = function ($$0, $$1 /*uses arguments*/) {
-  const tmpPrevalAliasArgumentsAny /*:arguments*/ /*truthy*/ = arguments;
+const func /*:(number)=>undefined*/ = function ($$0) {
+  const newArg1 /*:number*/ = $$0;
   debugger;
   if (arg1) {
     $(`always arg1:`, arg1);
     return undefined;
   } else {
+    const tmpPrevalAliasArgumentsAny /*:array*/ /*truthy*/ = [newArg1, ,];
     arg1 = tmpPrevalAliasArgumentsAny;
     $(`always arg1:`, tmpPrevalAliasArgumentsAny);
     return undefined;
   }
 };
-func(3, 4);
-const tmpClusterSSA_b /*:unknown*/ = arg1;
-func(1, 2);
+func(3);
+const b /*:unknown*/ = arg1;
+func(1);
 const a /*:unknown*/ = arg1;
-func(5, 6);
-$(a, tmpClusterSSA_b, arg1);
+func(5);
+$(a, b, arg1);
 `````
 
 
@@ -67,21 +68,21 @@ $(a, tmpClusterSSA_b, arg1);
 
 `````js filename=intro
 let arg1 = 3;
-const func = function ($$0, $$1) {
-  const tmpPrevalAliasArgumentsAny = arguments;
+const func = function (newArg1) {
   if (arg1) {
     $(`always arg1:`, arg1);
   } else {
+    const tmpPrevalAliasArgumentsAny = [newArg1, ,];
     arg1 = tmpPrevalAliasArgumentsAny;
     $(`always arg1:`, tmpPrevalAliasArgumentsAny);
   }
 };
-func(3, 4);
-const tmpClusterSSA_b = arg1;
-func(1, 2);
+func(3);
+const b = arg1;
+func(1);
 const a = arg1;
-func(5, 6);
-$(a, tmpClusterSSA_b, arg1);
+func(5);
+$(a, b, arg1);
 `````
 
 
@@ -90,24 +91,25 @@ With rename=true
 
 `````js filename=intro
 let a = 3;
-const b = function($$0,$$1 ) {
-  const c = d;
+const b = function($$0 ) {
+  const c = $$0;
   debugger;
   if (a) {
     $( "always arg1:", a );
     return undefined;
   }
   else {
-    a = c;
-    $( "always arg1:", c );
+    const d = [ c, , ];
+    a = d;
+    $( "always arg1:", d );
     return undefined;
   }
 };
-b( 3, 4 );
+b( 3 );
 const e = a;
-b( 1, 2 );
+b( 1 );
 const f = a;
-b( 5, 6 );
+b( 5 );
 $( f, e, a );
 `````
 
@@ -152,6 +154,7 @@ $(a, b, c);
 
 
 - (todo) Can we inline a function that uses arguments, anyways?
+- (todo) support array reads statement type ExpressionStatement
 
 
 ## Globals

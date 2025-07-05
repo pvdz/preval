@@ -100,6 +100,7 @@ $(tmpCalleeParam$1);
 
 - (todo) Can we inline a function that uses arguments, anyways?
 - (todo) Support this ident in isFree CallExpression: $array_constructor
+- (todo) inline arguments when function does not have that many params yet
 - (todo) regular property access of an ident feels tricky;
 - (todo) type trackeed tricks can possibly support static $array_constructor
 

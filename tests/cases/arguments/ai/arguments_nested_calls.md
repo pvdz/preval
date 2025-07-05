@@ -122,6 +122,7 @@ testNestedCalls(10, 20);
 
 
 - (todo) Can we inline a function that uses arguments, anyways?
+- (todo) inline arguments when function does not have that many params yet
 - (todo) support Identifier as var init in let_hoisting noob check
 
 

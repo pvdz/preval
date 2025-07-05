@@ -6,6 +6,10 @@
 >
 > Return this
 
+## Options
+
+- expectBad
+
 ## Input
 
 `````js filename=intro
@@ -25,23 +29,18 @@ $(obj.f());
 
 
 `````js filename=intro
-const f /*:()=>unknown*/ = function (/*uses arguments*/) {
-  const tmpPrevalAliasArgumentsAny /*:arguments*/ /*truthy*/ = arguments;
-  debugger;
-  const tmpIfTest /*:unknown*/ = $(1);
-  if (tmpIfTest) {
-    const tmpIfTest$1 /*:unknown*/ = $(2);
-    if (tmpIfTest$1) {
-      return tmpPrevalAliasArgumentsAny;
-    } else {
-      return undefined;
-    }
+const tmpIfTest /*:unknown*/ = $(1);
+if (tmpIfTest) {
+  const tmpIfTest$1 /*:unknown*/ = $(2);
+  if (tmpIfTest$1) {
+    const tmpClusterSSA_tmpCalleeParam /*:array*/ /*truthy*/ = [];
+    $(tmpClusterSSA_tmpCalleeParam);
   } else {
-    return undefined;
+    $(undefined);
   }
-};
-const tmpCalleeParam /*:unknown*/ = f();
-$(tmpCalleeParam);
+} else {
+  $(undefined);
+}
 `````
 
 
@@ -49,15 +48,15 @@ $(tmpCalleeParam);
 (This ought to be the final result)
 
 `````js filename=intro
-const f = function () {
-  const tmpPrevalAliasArgumentsAny = arguments;
-  if ($(1)) {
-    if ($(2)) {
-      return tmpPrevalAliasArgumentsAny;
-    }
+if ($(1)) {
+  if ($(2)) {
+    $([]);
+  } else {
+    $(undefined);
   }
-};
-$(f());
+} else {
+  $(undefined);
+}
 `````
 
 
@@ -65,25 +64,20 @@ $(f());
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  const b = c;
-  debugger;
-  const d = $( 1 );
-  if (d) {
-    const e = $( 2 );
-    if (e) {
-      return b;
-    }
-    else {
-      return undefined;
-    }
+const a = $( 1 );
+if (a) {
+  const b = $( 2 );
+  if (b) {
+    const c = [];
+    $( c );
   }
   else {
-    return undefined;
+    $( undefined );
   }
-};
-const f = a();
-$( f );
+}
+else {
+  $( undefined );
+}
 `````
 
 
@@ -117,6 +111,8 @@ $(tmpCalleeParam);
 
 
 - (todo) Can we inline a function that uses arguments, anyways?
+- (todo) support array reads statement type ExpressionStatement
+- (todo) support array reads statement type ReturnStatement
 
 
 ## Globals
@@ -138,6 +134,14 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Post settled calls: Same
+Post settled calls: BAD!! (expected)
+ -  1: 1
+ -  2: 2
+ - !3: []
+ -  eval returned: undefined
 
-Denormalized calls: Same
+Denormalized calls: BAD!! (expected)
+ -  1: 1
+ -  2: 2
+ - !3: []
+ -  eval returned: undefined

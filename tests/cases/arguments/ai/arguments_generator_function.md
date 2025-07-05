@@ -167,6 +167,7 @@ $(results);
 
 - (todo) access object property that also exists on prototype? $array_push
 - (todo) do we want to support YieldExpression as expression statement in free loops?
+- (todo) inline arguments when function does not have that many params yet
 - (todo) inline generator functions safely (because yield)
 - (todo) regular property access of an ident feels tricky;
 

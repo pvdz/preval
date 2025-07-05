@@ -52,24 +52,19 @@ callee doesnt even work in strict mode
 
 
 `````js filename=intro
-const strictFunc /*:(unused)=>undefined*/ = function ($$0 /*uses arguments*/) {
-  const tmpPrevalAliasArgumentsAny$1 /*:arguments*/ /*truthy*/ = arguments;
-  debugger;
-  try {
-    const callee /*:unknown*/ = tmpPrevalAliasArgumentsAny$1.callee;
-    const tmpCalleeParam$7 /*:string*/ /*truthy*/ = typeof callee;
-    $(`callee_accessed`, tmpCalleeParam$7);
-  } catch (e) {
-    const tmpCalleeParam$9 /*:unknown*/ = e.name;
-    const tmpMCOO$1 /*:unknown*/ = e.message;
-    const tmpMCF$1 /*:unknown*/ = tmpMCOO$1.includes;
-    const tmpCalleeParam$11 /*:unknown*/ = $dotCall(tmpMCF$1, tmpMCOO$1, `includes`, `callee`);
-    $(`callee_error`, tmpCalleeParam$9, tmpCalleeParam$11);
-  }
-  return undefined;
-};
-const tmpCalleeParam$13 /*:unknown*/ = $(`arg1`, 1);
-strictFunc(tmpCalleeParam$13);
+const a /*:unknown*/ = $(`arg1`, 1);
+const tmpPrevalAliasArgumentsAny$1 /*:array*/ /*truthy*/ = [a];
+try {
+  const callee /*:unknown*/ = tmpPrevalAliasArgumentsAny$1.callee;
+  const tmpCalleeParam$7 /*:string*/ /*truthy*/ = typeof callee;
+  $(`callee_accessed`, tmpCalleeParam$7);
+} catch (e) {
+  const tmpCalleeParam$9 /*:unknown*/ = e.name;
+  const tmpMCOO$1 /*:unknown*/ = e.message;
+  const tmpMCF$1 /*:unknown*/ = tmpMCOO$1.includes;
+  const tmpCalleeParam$11 /*:unknown*/ = $dotCall(tmpMCF$1, tmpMCOO$1, `includes`, `callee`);
+  $(`callee_error`, tmpCalleeParam$9, tmpCalleeParam$11);
+}
 const innerNonStrict /*:()=>undefined*/ = function (/*uses arguments*/) {
   const tmpPrevalAliasArgumentsAny /*:arguments*/ /*truthy*/ = arguments;
   debugger;
@@ -95,18 +90,16 @@ innerNonStrict(tmpCalleeParam$5);
 (This ought to be the final result)
 
 `````js filename=intro
-const strictFunc = function ($$0) {
-  const tmpPrevalAliasArgumentsAny$1 = arguments;
-  try {
-    const callee = tmpPrevalAliasArgumentsAny$1.callee;
-    $(`callee_accessed`, typeof callee);
-  } catch (e) {
-    const tmpCalleeParam$9 = e.name;
-    const tmpMCOO$1 = e.message;
-    $(`callee_error`, tmpCalleeParam$9, tmpMCOO$1.includes(`callee`));
-  }
-};
-strictFunc($(`arg1`, 1));
+const a = $(`arg1`, 1);
+const tmpPrevalAliasArgumentsAny$1 = [a];
+try {
+  const callee = tmpPrevalAliasArgumentsAny$1.callee;
+  $(`callee_accessed`, typeof callee);
+} catch (e) {
+  const tmpCalleeParam$9 = e.name;
+  const tmpMCOO$1 = e.message;
+  $(`callee_error`, tmpCalleeParam$9, tmpMCOO$1.includes(`callee`));
+}
 const innerNonStrict = function () {
   const tmpPrevalAliasArgumentsAny = arguments;
   try {
@@ -126,44 +119,39 @@ innerNonStrict($(`arg2`, 2));
 With rename=true
 
 `````js filename=intro
-const a = function($$0 ) {
-  const b = c;
+const a = $( "arg1", 1 );
+const b = [ a ];
+try {
+  const c = b.callee;
+  const d = typeof c;
+  $( "callee_accessed", d );
+}
+catch (e) {
+  const f = e.name;
+  const g = e.message;
+  const h = g.includes;
+  const i = $dotCall( h, g, "includes", "callee" );
+  $( "callee_error", f, i );
+}
+const j = function() {
+  const k = l;
   debugger;
   try {
-    const d = b.callee;
-    const e = typeof d;
-    $( "callee_accessed", e );
+    const m = k.callee;
+    const n = typeof m;
+    $( "inner_callee_accessed", n );
   }
-  catch (f) {
-    const g = f.name;
-    const h = f.message;
-    const i = h.includes;
-    const j = $dotCall( i, h, "includes", "callee" );
-    $( "callee_error", g, j );
+  catch (o) {
+    const p = o.name;
+    const q = o.message;
+    const r = q.includes;
+    const s = $dotCall( r, q, "includes", "callee" );
+    $( "inner_callee_error", p, s );
   }
   return undefined;
 };
-const k = $( "arg1", 1 );
-a( k );
-const l = function() {
-  const m = c;
-  debugger;
-  try {
-    const n = m.callee;
-    const o = typeof n;
-    $( "inner_callee_accessed", o );
-  }
-  catch (p) {
-    const q = p.name;
-    const r = p.message;
-    const s = r.includes;
-    const t = $dotCall( s, r, "includes", "callee" );
-    $( "inner_callee_error", q, t );
-  }
-  return undefined;
-};
-const u = $( "arg2", 2 );
-l( u );
+const t = $( "arg2", 2 );
+j( t );
 `````
 
 
@@ -228,6 +216,7 @@ tmpCallComplexCallee();
 
 - (todo) Can we inline a function that uses arguments, anyways?
 - (todo) can try-escaping support this expr node type? MemberExpression
+- (todo) inline arguments when function does not have that many params yet
 
 
 ## Globals

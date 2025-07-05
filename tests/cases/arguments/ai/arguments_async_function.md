@@ -90,6 +90,7 @@ testArgsAsync(`async_arg`);
 ## Todos triggered
 
 
+- (todo) inline arguments when function does not have that many params yet
 - (todo) inline async functions safely (because await)
 - (todo) type trackeed tricks can possibly support static $Promise_resolve
 

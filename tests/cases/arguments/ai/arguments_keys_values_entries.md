@@ -89,6 +89,7 @@ testArgsKeysValuesEntries(`a`, `b`, `c`);
 
 
 - (todo) Can we inline a function that uses arguments, anyways?
+- (todo) inline arguments when function does not have that many params yet
 - (todo) type trackeed tricks can possibly support static $Object_entries
 - (todo) type trackeed tricks can possibly support static $Object_keys
 - (todo) type trackeed tricks can possibly support static $Object_values

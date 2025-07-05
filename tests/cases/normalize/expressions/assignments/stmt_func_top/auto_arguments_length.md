@@ -6,6 +6,10 @@
 >
 > Normalization of assignments should work the same everywhere they are
 
+## Options
+
+- expectBad
+
 ## Input
 
 `````js filename=intro
@@ -22,13 +26,8 @@ $(f());
 
 
 `````js filename=intro
-const f /*:()=>unknown*/ = function (/*uses arguments*/) {
-  const tmpPrevalAliasArgumentsAny /*:arguments*/ /*truthy*/ = arguments;
-  debugger;
-  $(tmpPrevalAliasArgumentsAny);
-  return undefined;
-};
-f();
+const tmpPrevalAliasArgumentsAny /*:array*/ /*truthy*/ = [];
+$(tmpPrevalAliasArgumentsAny);
 $(undefined);
 `````
 
@@ -37,10 +36,7 @@ $(undefined);
 (This ought to be the final result)
 
 `````js filename=intro
-const f = function () {
-  $(arguments);
-};
-f();
+$([]);
 $(undefined);
 `````
 
@@ -49,13 +45,8 @@ $(undefined);
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  const b = c;
-  debugger;
-  $( b );
-  return undefined;
-};
-a();
+const a = [];
+$( a );
 $( undefined );
 `````
 
@@ -81,6 +72,7 @@ $(tmpCalleeParam);
 
 
 - (todo) Can we inline a function that uses arguments, anyways?
+- (todo) support array reads statement type ExpressionStatement
 
 
 ## Globals
@@ -101,6 +93,12 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Post settled calls: Same
+Post settled calls: BAD!! (expected)
+ - !1: []
+ -  2: undefined
+ -  eval returned: undefined
 
-Denormalized calls: Same
+Denormalized calls: BAD!! (expected)
+ - !1: []
+ -  2: undefined
+ -  eval returned: undefined

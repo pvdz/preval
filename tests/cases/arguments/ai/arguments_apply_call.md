@@ -105,6 +105,7 @@ testArgsApply(`x`, `y`, `z`);
 - (todo) Can we inline a function that uses arguments, anyways?
 - (todo) access object property that also exists on prototype? $function_apply
 - (todo) harden the check for being an arguments object, a prefix check seems brittle
+- (todo) inline arguments when function does not have that many params yet
 
 
 ## Globals

@@ -84,6 +84,7 @@ testArgsJsonStringify(`string`, 42, true, null);
 
 
 - (todo) Can we inline a function that uses arguments, anyways?
+- (todo) inline arguments when function does not have that many params yet
 - (todo) type trackeed tricks can possibly support static $JSON_parse
 - (todo) type trackeed tricks can possibly support static $JSON_stringify
 

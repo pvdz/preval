@@ -62,6 +62,7 @@ f();
 
 - (todo) Can we inline a function that uses arguments, anyways?
 - (todo) harden the check for being an arguments object, a prefix check seems brittle
+- (todo) inline arguments when function does not have that many params yet
 
 
 ## Globals

@@ -190,6 +190,7 @@ testMixedTypes(`string`, 42, true, null, undefined, tmpCalleeParam, tmpCalleePar
 - (todo) arr push case with at least one observable statement between?
 - (todo) array reads var statement with init MemberExpression
 - (todo) array reads var statement with init UnaryExpression
+- (todo) inline arguments when function does not have that many params yet
 - (todo) regular property access of an ident feels tricky;
 - (todo) support array reads statement type ExpressionStatement
 

@@ -179,6 +179,7 @@ testArgsParameterShadowingSymbolIterator(`a`, `b`, `c`);
 - (todo) Can we inline a function that uses arguments, anyways?
 - (todo) access object property that also exists on prototype? $array_push
 - (todo) array reads var statement with init MemberExpression
+- (todo) inline arguments when function does not have that many params yet
 - (todo) regular property access of an ident feels tricky;
 - (todo) support array reads statement type ExpressionStatement
 

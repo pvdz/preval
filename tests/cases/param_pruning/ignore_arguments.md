@@ -65,6 +65,7 @@ f();
 
 
 - (todo) Can we inline a function that uses arguments, anyways?
+- (todo) inline arguments when function does not have that many params yet
 
 
 ## Globals

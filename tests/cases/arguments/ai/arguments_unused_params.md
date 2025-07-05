@@ -27,20 +27,7 @@ testUnusedParams('x', 'y', 'z', 'w', 'v');
 
 
 `````js filename=intro
-const testUnusedParams /*:(unused, string, unused, string, unused)=>undefined*/ = function ($$0, $$1, $$2, $$3, $$4 /*uses arguments*/) {
-  const tmpPrevalAliasArgumentsAny /*:arguments*/ /*truthy*/ = arguments;
-  const a /*:string*/ = $$1;
-  const b /*:string*/ = $$3;
-  debugger;
-  const first /*:unknown*/ = tmpPrevalAliasArgumentsAny[0];
-  const second /*:unknown*/ = tmpPrevalAliasArgumentsAny[1];
-  const third /*:unknown*/ = tmpPrevalAliasArgumentsAny[2];
-  const fourth /*:unknown*/ = tmpPrevalAliasArgumentsAny[3];
-  const fifth /*:unknown*/ = tmpPrevalAliasArgumentsAny[4];
-  $(5, first, second, third, fourth, fifth, a, b);
-  return undefined;
-};
-testUnusedParams(`x`, `y`, `z`, `w`, `v`);
+$(5, `x`, `y`, `z`, `w`, `v`, `y`, `w`);
 `````
 
 
@@ -48,20 +35,7 @@ testUnusedParams(`x`, `y`, `z`, `w`, `v`);
 (This ought to be the final result)
 
 `````js filename=intro
-const testUnusedParams = function ($$0, a, $$2, b, $$4) {
-  const tmpPrevalAliasArgumentsAny = arguments;
-  $(
-    5,
-    tmpPrevalAliasArgumentsAny[0],
-    tmpPrevalAliasArgumentsAny[1],
-    tmpPrevalAliasArgumentsAny[2],
-    tmpPrevalAliasArgumentsAny[3],
-    tmpPrevalAliasArgumentsAny[4],
-    a,
-    b,
-  );
-};
-testUnusedParams(`x`, `y`, `z`, `w`, `v`);
+$(5, `x`, `y`, `z`, `w`, `v`, `y`, `w`);
 `````
 
 
@@ -69,20 +43,7 @@ testUnusedParams(`x`, `y`, `z`, `w`, `v`);
 With rename=true
 
 `````js filename=intro
-const a = function($$0,$$1,$$2,$$3,$$4 ) {
-  const b = c;
-  const d = $$1;
-  const e = $$3;
-  debugger;
-  const f = b[ 0 ];
-  const g = b[ 1 ];
-  const h = b[ 2 ];
-  const i = b[ 3 ];
-  const j = b[ 4 ];
-  $( 5, f, g, h, i, j, d, e );
-  return undefined;
-};
-a( "x", "y", "z", "w", "v" );
+$( 5, "x", "y", "z", "w", "v", "y", "w" );
 `````
 
 
@@ -116,6 +77,7 @@ testUnusedParams(`x`, `y`, `z`, `w`, `v`);
 
 
 - (todo) Can we inline a function that uses arguments, anyways?
+- (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
 
 
 ## Globals

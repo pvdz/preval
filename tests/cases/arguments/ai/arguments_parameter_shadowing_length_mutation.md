@@ -6,6 +6,12 @@
 >
 > Test parameter shadowing with length mutation attempts
 
+## Options
+
+In strict mode, assigning to .length would throw.
+
+- expectBad
+
 ## Input
 
 `````js filename=intro
@@ -106,14 +112,14 @@ Should call `$` with:
 
 Pre normalization calls: Same
 
-Normalized calls: BAD!?
+Normalized calls: BAD!? (expected)
  - !1: 'TypeError', 3, 3
  -  eval returned: undefined
 
-Post settled calls: BAD!!
+Post settled calls: BAD!! (expected)
  - !1: undefined, 3, 3
  -  eval returned: undefined
 
-Denormalized calls: BAD!!
+Denormalized calls: BAD!! (expected)
  - !1: undefined, 3, 3
  -  eval returned: undefined

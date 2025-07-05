@@ -6,6 +6,10 @@
 >
 > A trampoline is a function that just calls another function, and maybe returns its return value
 
+## Options
+
+- expectBad
+
 ## Input
 
 `````js filename=intro
@@ -22,14 +26,9 @@ $(q);
 
 
 `````js filename=intro
-const f /*:(unused, unused, unused, unused, unused)=>unknown*/ = function ($$0, $$1, $$2, $$3, $$4 /*uses arguments*/) {
-  const tmpPrevalAliasArgumentsAny /*:arguments*/ /*truthy*/ = arguments;
-  debugger;
-  const r /*:unknown*/ = $(tmpPrevalAliasArgumentsAny);
-  return r;
-};
-const q /*:unknown*/ = f(1, 2, 3, 4, 5);
-$(q);
+const tmpPrevalAliasArgumentsAny /*:array*/ /*truthy*/ = [1, 2, 3, 4, 5];
+const r /*:unknown*/ = $(tmpPrevalAliasArgumentsAny);
+$(r);
 `````
 
 
@@ -37,11 +36,7 @@ $(q);
 (This ought to be the final result)
 
 `````js filename=intro
-const f = function ($$0, $$1, $$2, $$3, $$4) {
-  const r = $(arguments);
-  return r;
-};
-$(f(1, 2, 3, 4, 5));
+$($([1, 2, 3, 4, 5]));
 `````
 
 
@@ -49,14 +44,9 @@ $(f(1, 2, 3, 4, 5));
 With rename=true
 
 `````js filename=intro
-const a = function($$0,$$1,$$2,$$3,$$4 ) {
-  const b = c;
-  debugger;
-  const d = $( b );
-  return d;
-};
-const e = a( 1, 2, 3, 4, 5 );
-$( e );
+const a = [ 1, 2, 3, 4, 5 ];
+const b = $( a );
+$( b );
 `````
 
 
@@ -84,6 +74,8 @@ $(q);
 
 
 - (todo) Can we inline a function that uses arguments, anyways?
+- (todo) array reads var statement with init CallExpression
+- (todo) support CallExpression as var init in let_hoisting noob check
 
 
 ## Globals
@@ -104,6 +96,12 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Post settled calls: Same
+Post settled calls: BAD!! (expected)
+ - !1: [1, 2, 3, 4, 5]
+ - !2: [1, 2, 3, 4, 5]
+ -  eval returned: undefined
 
-Denormalized calls: Same
+Denormalized calls: BAD!! (expected)
+ - !1: [1, 2, 3, 4, 5]
+ - !2: [1, 2, 3, 4, 5]
+ -  eval returned: undefined

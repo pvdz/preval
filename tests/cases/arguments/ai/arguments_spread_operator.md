@@ -79,6 +79,7 @@ testArgsSpread(1, 2, 3, 4, 5);
 
 - (todo) Can we inline a function that uses arguments, anyways?
 - (todo) Deal with array spreads in arr mutation?
+- (todo) inline arguments when function does not have that many params yet
 
 
 ## Globals

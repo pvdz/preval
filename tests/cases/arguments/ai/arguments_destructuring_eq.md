@@ -1,15 +1,15 @@
 # Preval test case
 
-# arguments_destructuring.md
+# arguments_destructuring_eq.md
 
-> Arguments > Ai > Arguments destructuring
+> Arguments > Ai > Arguments destructuring eq
 >
 > Test destructuring arguments object
 
 ## Input
 
 `````js filename=intro
-function testArgsDestructuring() {
+function testArgsDestructuring(a,b,c,d,e) {
   const [first, second, ...rest] = arguments;
   $(first, second, rest);
 }
@@ -21,17 +21,8 @@ testArgsDestructuring('a', 'b', 'c', 'd', 'e');
 
 
 `````js filename=intro
-const testArgsDestructuring /*:()=>undefined*/ = function (/*uses arguments*/) {
-  const tmpPrevalAliasArgumentsAny /*:arguments*/ /*truthy*/ = arguments;
-  debugger;
-  const tmpArrPatternSplat /*:array*/ /*truthy*/ = [...tmpPrevalAliasArgumentsAny];
-  const first /*:unknown*/ = tmpArrPatternSplat[0];
-  const second /*:unknown*/ = tmpArrPatternSplat[1];
-  const rest /*:array*/ /*truthy*/ = $dotCall($array_slice, tmpArrPatternSplat, `slice`, 2);
-  $(first, second, rest);
-  return undefined;
-};
-testArgsDestructuring(`a`, `b`, `c`, `d`, `e`);
+const rest /*:array*/ /*truthy*/ = [`c`, `d`, `e`];
+$(`a`, `b`, rest);
 `````
 
 
@@ -39,12 +30,7 @@ testArgsDestructuring(`a`, `b`, `c`, `d`, `e`);
 (This ought to be the final result)
 
 `````js filename=intro
-const testArgsDestructuring = function () {
-  const tmpPrevalAliasArgumentsAny = arguments;
-  const tmpArrPatternSplat = [...tmpPrevalAliasArgumentsAny];
-  $(tmpArrPatternSplat[0], tmpArrPatternSplat[1], $dotCall($array_slice, tmpArrPatternSplat, `slice`, 2));
-};
-testArgsDestructuring(`a`, `b`, `c`, `d`, `e`);
+$(`a`, `b`, [`c`, `d`, `e`]);
 `````
 
 
@@ -52,17 +38,8 @@ testArgsDestructuring(`a`, `b`, `c`, `d`, `e`);
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  const b = c;
-  debugger;
-  const d = [ ...b ];
-  const e = d[ 0 ];
-  const f = d[ 1 ];
-  const g = $dotCall( $array_slice, d, "slice", 2 );
-  $( e, f, g );
-  return undefined;
-};
-a( "a", "b", "c", "d", "e" );
+const a = [ "c", "d", "e" ];
+$( "a", "b", a );
 `````
 
 
@@ -70,8 +47,13 @@ a( "a", "b", "c", "d", "e" );
 (This is what phase1 received the first time)
 
 `````js filename=intro
-let testArgsDestructuring = function () {
+let testArgsDestructuring = function ($$0, $$1, $$2, $$3, $$4) {
   const tmpPrevalAliasArgumentsAny = arguments;
+  let a = $$0;
+  let b = $$1;
+  let c = $$2;
+  let d = $$3;
+  let e = $$4;
   debugger;
   const tmpBindingPatternArrRoot = tmpPrevalAliasArgumentsAny;
   const tmpArrPatternSplat = [...tmpBindingPatternArrRoot];
@@ -92,7 +74,9 @@ testArgsDestructuring(`a`, `b`, `c`, `d`, `e`);
 - (todo) Can we inline a function that uses arguments, anyways?
 - (todo) Deal with array spreads in arr mutation?
 - (todo) access object property that also exists on prototype? $array_slice
-- (todo) inline arguments when function does not have that many params yet
+- (todo) array reads var statement with init ArrayExpression
+- (todo) array reads var statement with init CallExpression
+- (todo) support array reads statement type ExpressionStatement
 - (todo) type trackeed tricks can possibly support static $array_slice
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
 

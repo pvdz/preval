@@ -6,6 +6,10 @@
 >
 > Normalization of assignments should work the same everywhere they are
 
+## Options
+
+- expectBad
+
 ## Input
 
 `````js filename=intro
@@ -22,16 +26,9 @@ $(a);
 
 
 `````js filename=intro
-let a /*:unknown*/ = { a: 999, b: 1000 };
-const f /*:()=>arguments*/ = function (/*uses arguments*/) {
-  const tmpPrevalAliasArgumentsAny /*:arguments*/ /*truthy*/ = arguments;
-  debugger;
-  a = tmpPrevalAliasArgumentsAny;
-  return tmpPrevalAliasArgumentsAny;
-};
-const tmpCalleeParam /*:arguments*/ /*truthy*/ = f();
-$(tmpCalleeParam);
-$(a);
+const tmpPrevalAliasArgumentsAny /*:array*/ /*truthy*/ = [];
+$(tmpPrevalAliasArgumentsAny);
+$(tmpPrevalAliasArgumentsAny);
 `````
 
 
@@ -39,14 +36,9 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-const f = function () {
-  const tmpPrevalAliasArgumentsAny = arguments;
-  a = tmpPrevalAliasArgumentsAny;
-  return tmpPrevalAliasArgumentsAny;
-};
-$(f());
-$(a);
+const tmpPrevalAliasArgumentsAny = [];
+$(tmpPrevalAliasArgumentsAny);
+$(tmpPrevalAliasArgumentsAny);
 `````
 
 
@@ -54,18 +46,8 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = {
-  a: 999,
-  b: 1000,
-};
-const b = function() {
-  const c = d;
-  debugger;
-  a = c;
-  return c;
-};
-const e = b();
-$( e );
+const a = [];
+$( a );
 $( a );
 `````
 
@@ -91,6 +73,9 @@ $(a);
 
 
 - (todo) Can we inline a function that uses arguments, anyways?
+- (todo) support Identifier as var init in let_hoisting noob check
+- (todo) support array reads statement type ExpressionStatement
+- (todo) support array reads statement type ReturnStatement
 
 
 ## Globals
@@ -111,6 +96,12 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Post settled calls: Same
+Post settled calls: BAD!! (expected)
+ - !1: []
+ - !2: []
+ -  eval returned: undefined
 
-Denormalized calls: Same
+Denormalized calls: BAD!! (expected)
+ - !1: []
+ - !2: []
+ -  eval returned: undefined

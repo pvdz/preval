@@ -70,7 +70,8 @@ $(a, b, c);
 ## Todos triggered
 
 
-None
+- (todo) support ExpressionStatement as statement in let_hoisting noob check
+- (todo) support ObjectExpression as var init in let_hoisting noob check
 
 
 ## Globals

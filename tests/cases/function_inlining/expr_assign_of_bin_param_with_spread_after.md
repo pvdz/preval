@@ -86,6 +86,7 @@ $(x);
 
 
 - (todo) array reads var statement with init CallExpression
+- (todo) support CallExpression as var init in let_hoisting noob check
 
 
 ## Globals

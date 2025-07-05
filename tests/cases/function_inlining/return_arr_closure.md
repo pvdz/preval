@@ -81,6 +81,7 @@ $(tmpCalleeParam$1);
 ## Todos triggered
 
 
+- (todo) support CallExpression as var init in let_hoisting noob check
 - (todo) support array reads statement type ExpressionStatement
 
 

@@ -171,6 +171,7 @@ const tmpMCF$7 = $(pkg);
 - (todo) VarStatement; how else might an array be used that we may want to support in phase1_1?
 - (todo) array reads var statement with init CallExpression
 - (todo) can try-escaping support this expr node type? CallExpression
+- (todo) support CallExpression as var init in let_hoisting noob check
 - (todo) support array reads statement type ExpressionStatement
 - (todo) we can still proceed with the loop as long as there is no let-write anywhere in the loop, inc nested
 

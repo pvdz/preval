@@ -98,6 +98,7 @@ $(tmpCalleeParam$1);
 
 
 - (todo) Deal with array spreads in arr mutation?
+- (todo) support Identifier as var init in let_hoisting noob check
 - (todo) support array reads statement type ExpressionStatement
 
 

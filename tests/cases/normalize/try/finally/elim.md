@@ -113,6 +113,7 @@ $(tmpCalleeParam);
 
 
 - (todo) can try-escaping support this expr node type? CallExpression
+- (todo) support TryStatement as statement in let_hoisting noob check
 
 
 ## Globals

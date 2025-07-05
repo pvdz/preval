@@ -80,6 +80,7 @@ $(x);
 
 
 - (todo) can try-escaping support this expr node type? Literal
+- (todo) support LabeledStatement as statement in let_hoisting noob check
 
 
 ## Globals

@@ -104,6 +104,7 @@ $(tmpCalleeParam);
 
 
 - (todo) access object property that also exists on prototype? $function_call
+- (todo) support ExpressionStatement as statement in let_hoisting noob check
 - (todo) this may support .call .apply and .bind but I think that different reducers should tackle it
 
 

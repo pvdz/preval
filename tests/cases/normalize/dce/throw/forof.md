@@ -105,6 +105,7 @@ $(tmpCalleeParam$1);
 
 - (todo) array reads var statement with init CallExpression
 - (todo) fixme: spyless vars and labeled nodes
+- (todo) support CallExpression as var init in let_hoisting noob check
 
 
 ## Globals

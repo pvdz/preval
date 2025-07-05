@@ -62,6 +62,7 @@ $(a);
 ## Todos triggered
 
 
+- (todo) support CallExpression as var init in let_hoisting noob check
 - (todo) type trackeed tricks can possibly support static $Math_exp
 
 

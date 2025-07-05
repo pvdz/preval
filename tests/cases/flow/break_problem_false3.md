@@ -144,6 +144,7 @@ f();
 
 
 - (todo) drop unused rest param?
+- (todo) support Identifier as var init in let_hoisting noob check
 - (todo) support array reads statement type ExpressionStatement
 
 

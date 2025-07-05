@@ -92,6 +92,7 @@ $(tmpCalleeParam, tmpCalleeParam$1);
 
 
 - (todo) property on nullable; unreachable or hard error?
+- (todo) support Identifier as var init in let_hoisting noob check
 - (todo) support array reads statement type ExpressionStatement
 
 

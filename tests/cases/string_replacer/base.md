@@ -98,6 +98,7 @@ $(tmpCalleeParam);
 - (todo) find test case where template ends up with multiple expressions
 - (todo) function was marked as $pcompiled but the validator rejected it
 - (todo) sticky flag, lastindex cases
+- (todo) support NewExpression as var init in let_hoisting noob check
 
 
 ## Globals

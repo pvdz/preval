@@ -65,6 +65,7 @@ $(x);
 
 
 - (todo) access object property that also exists on prototype? $buffer_toString
+- (todo) support CallExpression as var init in let_hoisting noob check
 - (todo) type trackeed tricks can possibly support static $Buffer_from
 
 

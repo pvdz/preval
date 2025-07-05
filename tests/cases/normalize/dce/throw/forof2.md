@@ -112,6 +112,7 @@ $(tmpCalleeParam$1);
 
 
 - (todo) fixme: spyless vars and labeled nodes
+- (todo) support ObjectExpression as var init in let_hoisting noob check
 
 
 ## Globals

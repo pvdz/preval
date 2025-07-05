@@ -63,7 +63,7 @@ $(tmpCalleeParam);
 ## Todos triggered
 
 
-None
+- (todo) support ObjectExpression as var init in let_hoisting noob check
 
 
 ## Globals

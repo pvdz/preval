@@ -22,9 +22,9 @@ $(a);
 
 
 `````js filename=intro
-const tmpClusterSSA_a /*:unknown*/ = $(1);
-$(tmpClusterSSA_a);
-$(tmpClusterSSA_a);
+const a /*:unknown*/ = $(1);
+$(a);
+$(a);
 `````
 
 
@@ -32,9 +32,9 @@ $(tmpClusterSSA_a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpClusterSSA_a = $(1);
-$(tmpClusterSSA_a);
-$(tmpClusterSSA_a);
+const a = $(1);
+$(a);
+$(a);
 `````
 
 
@@ -67,7 +67,7 @@ $(a);
 ## Todos triggered
 
 
-None
+- (todo) support CallExpression as var init in let_hoisting noob check
 
 
 ## Globals

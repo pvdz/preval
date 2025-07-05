@@ -281,6 +281,7 @@ X();
 
 - (todo) fixme: spyless vars and labeled nodes
 - (todo) property on nullable; unreachable or hard error?
+- (todo) support Identifier as var init in let_hoisting noob check
 
 
 ## Globals

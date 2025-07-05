@@ -88,7 +88,7 @@ if ($implicitThrow) {
 ## Todos triggered
 
 
-None
+- (todo) support TryStatement as statement in let_hoisting noob check
 
 
 ## Globals

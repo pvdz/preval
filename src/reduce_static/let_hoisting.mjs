@@ -25,11 +25,11 @@ import {
   after,
   fmat,
   tmat,
-  findBodyOffset, todo,
+  findBodyOffset, todo, clearStdio,
 } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { createFreshVar, mayBindingMutateBetweenRefs } from '../bindings.mjs';
-import {RESET, GREEN, VERBOSE_TRACING} from '../constants.mjs';
+import { RESET, GREEN, VERBOSE_TRACING, PRIMITIVE_TYPE_NAMES_PREVAL, setVerboseTracing } from '../constants.mjs';
 import { SYMBOL_FRFR } from '../symbols_preval.mjs';
 
 export function letHoisting(fdata) {
@@ -42,7 +42,16 @@ export function letHoisting(fdata) {
 function _letHoisting(fdata) {
   const ast = fdata.tenkoOutput.ast;
 
-  let updated = processAttempt1MoveVarDeclAboveClosure(fdata);
+  let updated = 0;
+  const queue = [];
+
+  if (!updated) {
+    updated = processAttemptClosingTheGap(fdata);
+  }
+
+  if (!updated) {
+    updated = processAttempt1MoveVarDeclAboveClosure(fdata);
+  }
 
   if (!updated) {
     updated = processAttempt3OnlyUsedInOtherScope(fdata);
@@ -56,11 +65,118 @@ function _letHoisting(fdata) {
 
   log('');
   if (updated) {
+
+    queue.sort(({ index: a }, { index: b }) => b - a);
+    queue.forEach(({ index, func }) => func());
+
     log('Var decls moved up:', updated, '. Restarting from phase1 to fix up read/write registry');
     return {what: 'letHoisting', changes: updated, next: 'phase1'};
   }
   log('Var decls moved up: 0.');
+
+  function processAttemptClosingTheGap(fdata) {
+    vlog('\nLet hoisting, attempt 0: merge assign with its let decl when on same level with no observables in between');
+
+    let updated = 0;
+
+    fdata.globallyUniqueNamingRegistry.forEach((meta, varName) => {
+      // if (varName === '_0xe548a5') {
+      //   console.log('start')
+      //   clearStdio()
+      //   setVerboseTracing(true)
+      // }
+      if (!meta.isLet) return;
+      if (meta.isExport) return;
+
+      const declWrite = meta.writes.find(write => write.kind === 'var');
+      if (!declWrite) return todo('bug: let is missing its decl');
+      const start = meta.rwOrder.indexOf(declWrite);
+      if (start < 0) return todo('bug: write is not found in rworder');
+      let assignWrite;
+      for (let i=start; i<meta.rwOrder.length; ++i) {
+        const ref = meta.rwOrder[i];
+        if (ref.blockBody !== declWrite.blockBody) continue;
+        if (ref.action !== 'write') return vlog('- bail: decl has read in same block before write');
+        if (ref.kind === 'var') continue; // the decl itself
+        if (ref.kind !== 'assign') return vlog('- bail: decl has unknown write in same block before write', ref.kind);
+        assignWrite = ref;
+        break;
+      }
+      if (!assignWrite) return vlog('- bail: no read after decl in same block');
+
+      vlog('- ok, now confirm if statements between let decl and first read in same block have observables in between');
+      const body = declWrite.blockBody;
+      for (let i=declWrite.blockIndex + 1; i<assignWrite.blockIndex; ++i) {
+        const stmt = body[i];
+        switch (stmt.type) {
+          case 'VarStatement': {
+            const init = stmt.init;
+            if (init.type === 'BinaryExpression') {
+              if (!(AST.isPrimitive(init.left) || (init.left.type === 'Identifier' && PRIMITIVE_TYPE_NAMES_PREVAL.has(fdata.globallyUniqueNamingRegistry.get(init.left.name)?.typing.mustBeType)))) {
+                return vlog('- bail: binary expression is not primitive');
+              }
+              if (!(AST.isPrimitive(init.right) || (init.right.type === 'Identifier' && PRIMITIVE_TYPE_NAMES_PREVAL.has(fdata.globallyUniqueNamingRegistry.get(init.right.name)?.typing.mustBeType)))) {
+                return vlog('- bail: binary expression is not primitive');
+              }
+              continue;
+            }
+            else if (init.type === 'MemberExpression') {
+              if (AST.isPrimitive(init.object)) continue;
+              if (init.object.type !== 'Identifier') return vlog('- bail: obj is not prim or ident');
+              const mustBe = fdata.globallyUniqueNamingRegistry.get(init.object.name).typing.mustBeType
+              if (PRIMITIVE_TYPE_NAMES_PREVAL.has(mustBe) || mustBe === 'array') continue;
+              return vlog('- bail: object prop read is not safe');
+            }
+            else if (init.type === 'FunctionExpression') {
+              continue;
+            }
+            else if (AST.isPrimitive(init)) {
+              continue;
+            }
+            else if (init.type === 'ArrayExpression') {
+              if (init.elements.every(e => !e || AST.isPrimitive(e))) continue;
+              return vlog('- bail: array expression with non-primitives');
+            }
+            else {
+              todo(`support ${init.type} as var init in let_hoisting noob check`);
+              return vlog('- bail: unknown statement between');
+            }
+          }
+          case 'EmptyStatement': { continue; }
+          default: {
+            todo(`support ${stmt.type} as statement in let_hoisting noob check`);
+            return vlog('- bail: unknown statement between');
+          }
+        }
+      }
+
+      vlog('if we got here then we should be able to merge the write with the read!');
+
+      rule('a let can be merged with its first write when the statements between them are noobs');
+      example(
+        'let x = undefined; const a = 5 + 10; const y = arr[100]; x = 15;',
+        '; const a = 5 + 10; const y = arr[100]; let x = 15;'
+      );
+      before(declWrite.blockBody[declWrite.blockIndex]);
+      before(assignWrite.blockBody[assignWrite.blockIndex]);
+
+      const prevInit = declWrite.blockBody[declWrite.blockIndex].init;
+      assignWrite.blockBody[assignWrite.blockIndex] = AST.varStatement('let', assignWrite.parentNode.left, assignWrite.parentNode.right);
+      declWrite.blockBody[declWrite.blockIndex] = AST.emptyStatement();
+      queue.push({
+        index: declWrite.blockIndex,
+        func: () => declWrite.blockBody.splice(declWrite.blockIndex, 0, AST.expressionStatement(prevInit)),
+      });
+
+      after(declWrite.blockBody[declWrite.blockIndex]);
+      after(assignWrite.blockBody[assignWrite.blockIndex]);
+      updated = updated + 1;
+    });
+
+    return updated;
+  }
 }
+
 
 function processAttempt1MoveVarDeclAboveClosure(fdata) {
   vlog('\nLet hoisting, attempt 1: try to move var decls above closure references');

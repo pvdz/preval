@@ -22,8 +22,8 @@ $('use', x);
 
 
 `````js filename=intro
-const tmpClusterSSA_x /*:unknown*/ = $(`val_in_iife`);
-$(`use`, tmpClusterSSA_x);
+const x /*:unknown*/ = $(`val_in_iife`);
+$(`use`, x);
 `````
 
 

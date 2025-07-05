@@ -146,6 +146,7 @@ tmpCallComplexCallee();
 
 
 - (todo) can try-escaping support this expr node type? CallExpression
+- (todo) support CallExpression as var init in let_hoisting noob check
 
 
 ## Globals

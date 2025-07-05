@@ -70,6 +70,7 @@ $(tmpCalleeParam$3);
 
 
 - (todo) array reads var statement with init CallExpression
+- (todo) support Identifier as var init in let_hoisting noob check
 - (todo) support array reads statement type ExpressionStatement
 
 

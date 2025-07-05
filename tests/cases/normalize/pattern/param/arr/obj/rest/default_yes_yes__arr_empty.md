@@ -94,6 +94,7 @@ $(tmpCalleeParam$7);
 - (todo) array reads var statement with init ArrayExpression
 - (todo) array reads var statement with init CallExpression
 - (todo) array reads var statement with init ObjectExpression
+- (todo) support Identifier as var init in let_hoisting noob check
 - (todo) support array reads statement type ExpressionStatement
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
 

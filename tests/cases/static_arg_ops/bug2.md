@@ -167,6 +167,7 @@ $(tmpCalleeParam$3);
 
 
 - (todo) array reads var statement with init CallExpression
+- (todo) support ExpressionStatement as statement in let_hoisting noob check
 
 
 ## Globals

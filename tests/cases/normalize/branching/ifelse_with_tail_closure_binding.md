@@ -91,7 +91,8 @@ $(tmpCalleeParam);
 ## Todos triggered
 
 
-None
+- (todo) support ExpressionStatement as statement in let_hoisting noob check
+- (todo) support IfStatement as statement in let_hoisting noob check
 
 
 ## Globals

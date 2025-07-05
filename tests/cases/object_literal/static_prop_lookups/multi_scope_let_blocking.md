@@ -102,7 +102,8 @@ f();
 ## Todos triggered
 
 
-None
+- (todo) support ExpressionStatement as statement in let_hoisting noob check
+- (todo) support Identifier as var init in let_hoisting noob check
 
 
 ## Globals

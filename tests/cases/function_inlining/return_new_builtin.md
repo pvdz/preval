@@ -59,7 +59,7 @@ $(tmpCalleeParam);
 ## Todos triggered
 
 
-None
+- (todo) support NewExpression as var init in let_hoisting noob check
 
 
 ## Globals

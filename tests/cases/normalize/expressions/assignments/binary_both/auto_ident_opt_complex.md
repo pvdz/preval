@@ -132,7 +132,7 @@ $(a);
 ## Todos triggered
 
 
-None
+- (todo) support ExpressionStatement as statement in let_hoisting noob check
 
 
 ## Globals

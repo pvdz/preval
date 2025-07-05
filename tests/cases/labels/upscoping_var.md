@@ -30,14 +30,14 @@ $(6);
 
 `````js filename=intro
 A: {
-  const tmpClusterSSA_x /*:unknown*/ = $(0);
-  $(1, tmpClusterSSA_x);
+  const x /*:unknown*/ = $(0);
+  $(1, x);
   while (true) {
-    const tmpIfTest /*:unknown*/ = $(`a`, tmpClusterSSA_x);
+    const tmpIfTest /*:unknown*/ = $(`a`, x);
     if (tmpIfTest) {
       break A;
     } else {
-      const tmpIfTest$1 /*:unknown*/ = $(`b`, tmpClusterSSA_x);
+      const tmpIfTest$1 /*:unknown*/ = $(`b`, x);
       if (tmpIfTest$1) {
         break;
       } else {
@@ -45,7 +45,7 @@ A: {
       }
     }
   }
-  $(5, tmpClusterSSA_x);
+  $(5, x);
 }
 $(6);
 `````
@@ -56,20 +56,20 @@ $(6);
 
 `````js filename=intro
 A: {
-  const tmpClusterSSA_x = $(0);
-  $(1, tmpClusterSSA_x);
+  const x = $(0);
+  $(1, x);
   while (true) {
-    if ($(`a`, tmpClusterSSA_x)) {
+    if ($(`a`, x)) {
       break A;
     } else {
-      if ($(`b`, tmpClusterSSA_x)) {
+      if ($(`b`, x)) {
         break;
       } else {
         $(42);
       }
     }
   }
-  $(5, tmpClusterSSA_x);
+  $(5, x);
 }
 $(6);
 `````

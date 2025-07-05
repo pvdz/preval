@@ -142,6 +142,7 @@ while (true) {
 
 
 - (todo) do we want to support BinaryExpression as expression statement in free loops?
+- (todo) support ExpressionStatement as statement in let_hoisting noob check
 
 
 ## Globals

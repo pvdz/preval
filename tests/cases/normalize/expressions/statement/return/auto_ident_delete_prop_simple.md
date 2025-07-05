@@ -77,7 +77,7 @@ $(a, arg);
 ## Todos triggered
 
 
-None
+- (todo) support UnaryExpression as var init in let_hoisting noob check
 
 
 ## Globals

@@ -98,9 +98,9 @@ const func /*:(unknown, unknown)=>unknown*/ = function ($$0, $$1 /*uses argument
     return expando_result;
   }
 };
-const tmpClusterSSA_a /*:unknown*/ = func(3, 4);
+const a /*:unknown*/ = func(3, 4);
 const b /*:unknown*/ = func(1, 2);
-$(tmpClusterSSA_a, b);
+$(a, b);
 `````
 
 

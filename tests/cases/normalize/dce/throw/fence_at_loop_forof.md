@@ -209,6 +209,7 @@ $(tmpCalleeParam$1);
 
 - (todo) array reads var statement with init CallExpression
 - (todo) fixme: spyless vars and labeled nodes
+- (todo) support WhileStatement as statement in let_hoisting noob check
 
 
 ## Globals

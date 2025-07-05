@@ -44,8 +44,7 @@ const f /*:()=>undefined*/ = function () {
   $(x);
   return undefined;
 };
-let x /*:unknown*/ = $;
-x = $(1);
+const x /*:unknown*/ = $(1);
 const tmpCalleeParam /*:unknown*/ = x.headers;
 $(tmpCalleeParam);
 $(f);
@@ -59,8 +58,7 @@ $(f);
 const f = function () {
   $(x);
 };
-let x = $;
-x = $(1);
+const x = $(1);
 $(x.headers);
 $(f);
 `````
@@ -75,8 +73,7 @@ const a = function() {
   $( b );
   return undefined;
 };
-let b = $;
-b = $( 1 );
+const b = $( 1 );
 const c = b.headers;
 $( c );
 $( a );
@@ -107,7 +104,7 @@ $(f);
 ## Todos triggered
 
 
-None
+- (todo) support IfStatement as statement in let_hoisting noob check
 
 
 ## Globals

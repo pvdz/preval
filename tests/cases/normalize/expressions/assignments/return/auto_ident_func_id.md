@@ -22,12 +22,12 @@ $(a);
 
 
 `````js filename=intro
-const tmpClusterSSA_a /*:()=>unknown*/ = function $pcompiled() {
+const a /*:()=>unknown*/ = function $pcompiled() {
   debugger;
   return undefined;
 };
-$(tmpClusterSSA_a);
-$(tmpClusterSSA_a);
+$(a);
+$(a);
 `````
 
 
@@ -35,9 +35,9 @@ $(tmpClusterSSA_a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpClusterSSA_a = function $pcompiled() {};
-$(tmpClusterSSA_a);
-$(tmpClusterSSA_a);
+const a = function $pcompiled() {};
+$(a);
+$(a);
 `````
 
 

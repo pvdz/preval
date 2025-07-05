@@ -25,9 +25,9 @@ $(a, arg);
 
 `````js filename=intro
 const arg /*:object*/ /*truthy*/ = { y: 1 };
-const tmpClusterSSA_a /*:boolean*/ = delete arg.y;
-$(tmpClusterSSA_a);
-$(tmpClusterSSA_a, arg);
+const a /*:boolean*/ = delete arg.y;
+$(a);
+$(a, arg);
 `````
 
 
@@ -36,9 +36,9 @@ $(tmpClusterSSA_a, arg);
 
 `````js filename=intro
 const arg = { y: 1 };
-const tmpClusterSSA_a = delete arg.y;
-$(tmpClusterSSA_a);
-$(tmpClusterSSA_a, arg);
+const a = delete arg.y;
+$(a);
+$(a, arg);
 `````
 
 
@@ -73,7 +73,7 @@ $(a, arg);
 ## Todos triggered
 
 
-None
+- (todo) support UnaryExpression as var init in let_hoisting noob check
 
 
 ## Globals

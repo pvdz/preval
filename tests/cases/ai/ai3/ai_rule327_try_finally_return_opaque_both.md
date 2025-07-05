@@ -101,6 +101,7 @@ $(`result`, tmpCalleeParam);
 
 
 - (todo) can try-escaping support this expr node type? CallExpression
+- (todo) support LabeledStatement as statement in let_hoisting noob check
 
 
 ## Globals

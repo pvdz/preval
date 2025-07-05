@@ -80,6 +80,7 @@ $(tmpCalleeParam);
 
 
 - (todo) Can we inline a function that uses arguments, anyways?
+- (todo) support IfStatement as statement in let_hoisting noob check
 
 
 ## Globals

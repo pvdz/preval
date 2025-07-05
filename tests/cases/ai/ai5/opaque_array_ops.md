@@ -97,6 +97,7 @@ $(y);
 - (todo) array reads var statement with init MemberExpression
 - (todo) fixme: spyless vars and labeled nodes
 - (todo) property on nullable; unreachable or hard error?
+- (todo) support Identifier as var init in let_hoisting noob check
 - (todo) support array reads statement type ExpressionStatement
 - (todo) type trackeed tricks can possibly support static $array_map
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

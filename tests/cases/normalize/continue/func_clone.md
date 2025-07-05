@@ -110,6 +110,7 @@ $(tmpCalleeParam);
 
 
 - (todo) Support referencing this builtin in isFree: $
+- (todo) support WhileStatement as statement in let_hoisting noob check
 
 
 ## Globals

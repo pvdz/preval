@@ -88,7 +88,7 @@ $(tmpCalleeParam);
 ## Todos triggered
 
 
-None
+- (todo) support Identifier as var init in let_hoisting noob check
 
 
 ## Globals

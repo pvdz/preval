@@ -76,6 +76,7 @@ $(tmpCalleeParam$1);
 - (todo) access object property that also exists on prototype? $array_slice
 - (todo) array reads var statement with init ArrayExpression
 - (todo) array reads var statement with init CallExpression
+- (todo) support Identifier as var init in let_hoisting noob check
 - (todo) support array reads statement type ExpressionStatement
 - (todo) type trackeed tricks can possibly support static $array_slice
 

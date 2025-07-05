@@ -114,6 +114,7 @@ $(tmpCalleeParam$3);
 
 - (todo) Deal with array spreads in arr mutation?
 - (todo) array reads var statement with init CallExpression
+- (todo) support IfStatement as statement in let_hoisting noob check
 - (todo) support array reads statement type ExpressionStatement
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
 

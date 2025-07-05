@@ -27,12 +27,12 @@ $(a, b);
 `````js filename=intro
 let x /*:unknown*/ = $(`val`);
 const a /*:unknown*/ = x;
-const tmpClusterSSA_tmpMCOO /*:()=>undefined*/ = function () {
+const tmpMCOO /*:()=>undefined*/ = function () {
   debugger;
   x = `changed`;
   return undefined;
 };
-const mutator /*:function*/ /*truthy*/ = $dotCall($function_bind, tmpClusterSSA_tmpMCOO, `bind`, null);
+const mutator /*:function*/ /*truthy*/ = $dotCall($function_bind, tmpMCOO, `bind`, null);
 mutator();
 $(a, x);
 `````
@@ -101,7 +101,6 @@ $(a, x);
 ## Todos triggered
 
 
-- (todo) access object property that also exists on prototype? $function_bind
 - (todo) this may support .call .apply and .bind but I think that different reducers should tackle it
 - (todo) type trackeed tricks can possibly support static $function_bind
 

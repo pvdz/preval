@@ -631,6 +631,7 @@ tmp(obja, objb, objc, objd, obje);
 
 
 - (todo) Deal with array spreads in arr mutation?
+- (todo) support ObjectExpression as var init in let_hoisting noob check
 
 
 ## Globals

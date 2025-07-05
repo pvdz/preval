@@ -83,7 +83,7 @@ $(a);
 ## Todos triggered
 
 
-None
+- (todo) support CallExpression as var init in let_hoisting noob check
 
 
 ## Globals

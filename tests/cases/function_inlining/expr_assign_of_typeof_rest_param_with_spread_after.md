@@ -87,6 +87,7 @@ $(x);
 
 - (todo) array reads var statement with init CallExpression
 - (todo) drop unused rest param?
+- (todo) support CallExpression as var init in let_hoisting noob check
 
 
 ## Globals

@@ -77,6 +77,7 @@ if ($implicitThrow) {
 
 
 - (todo) can try-escaping support this expr node type? Literal
+- (todo) support TryStatement as statement in let_hoisting noob check
 
 
 ## Globals

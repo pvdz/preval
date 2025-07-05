@@ -22,9 +22,9 @@ $(a);
 
 
 `````js filename=intro
-const tmpClusterSSA_a /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, ``);
-$(tmpClusterSSA_a);
-$(tmpClusterSSA_a);
+const a /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, ``);
+$(a);
+$(a);
 `````
 
 
@@ -32,9 +32,9 @@ $(tmpClusterSSA_a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpClusterSSA_a = new $regex_constructor(`foo`, ``);
-$(tmpClusterSSA_a);
-$(tmpClusterSSA_a);
+const a = new $regex_constructor(`foo`, ``);
+$(a);
+$(a);
 `````
 
 
@@ -67,7 +67,7 @@ $(a);
 ## Todos triggered
 
 
-None
+- (todo) support NewExpression as var init in let_hoisting noob check
 
 
 ## Globals

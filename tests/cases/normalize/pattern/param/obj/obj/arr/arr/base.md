@@ -77,6 +77,7 @@ $(tmpCalleeParam);
 - (todo) array reads var statement with init MemberExpression
 - (todo) array reads var statement with init ObjectExpression
 - (todo) can we always safely clone ident refs in this case?
+- (todo) support Identifier as var init in let_hoisting noob check
 - (todo) support array reads statement type ExpressionStatement
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
 

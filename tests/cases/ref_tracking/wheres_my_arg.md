@@ -91,6 +91,7 @@ $(`result:`, tmpCalleeParam);
 
 
 - (todo) sticky flag, lastindex cases
+- (todo) support NewExpression as var init in let_hoisting noob check
 
 
 ## Globals

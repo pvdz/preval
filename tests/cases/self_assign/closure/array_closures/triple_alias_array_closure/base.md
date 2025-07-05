@@ -185,6 +185,7 @@ $(tmpCalleeParam);
 - (todo) access object property that also exists on prototype? $array_push
 - (todo) access object property that also exists on prototype? $array_shift
 - (todo) can try-escaping support this expr node type? CallExpression
+- (todo) support CallExpression as var init in let_hoisting noob check
 - (todo) support array reads statement type ExpressionStatement
 - (todo) type trackeed tricks can possibly support static $Number_parseInt
 - (todo) we can still proceed with the loop as long as there is no let-write anywhere in the loop, inc nested

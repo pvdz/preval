@@ -78,6 +78,7 @@ $(tmpCalleeParam$5);
 
 
 - (todo) array reads var statement with init CallExpression
+- (todo) support IfStatement as statement in let_hoisting noob check
 
 
 ## Globals

@@ -148,6 +148,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 - (todo) Support this node type in isFree: LabeledStatement
 - (todo) computed property access of an array but not index prop
 - (todo) free with zero args, we can eliminate this?
+- (todo) support CallExpression as var init in let_hoisting noob check
 - (todo) support array reads statement type ExpressionStatement
 - (todo) type trackeed tricks can possibly support static $Number_parseInt
 - (todo) we can still proceed with the loop as long as there is no let-write anywhere in the loop, inc nested

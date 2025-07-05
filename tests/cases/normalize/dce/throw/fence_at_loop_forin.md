@@ -214,6 +214,7 @@ $(tmpCalleeParam$1);
 
 
 - (todo) fixme: spyless vars and labeled nodes
+- (todo) support WhileStatement as statement in let_hoisting noob check
 
 
 ## Globals

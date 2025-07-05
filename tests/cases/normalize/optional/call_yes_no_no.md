@@ -156,6 +156,7 @@ if (tmpIfTest) {
 
 
 - (todo) return_param on ObjectExpression; should try to cover this expression too
+- (todo) support ObjectExpression as var init in let_hoisting noob check
 
 
 ## Globals

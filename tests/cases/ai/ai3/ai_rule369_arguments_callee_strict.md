@@ -6,6 +6,12 @@
 >
 > Rule 369: arguments.callee in strict mode
 
+## Options
+
+callee doesnt even work in strict mode
+
+- skipEval
+
 ## Input
 
 `````js filename=intro
@@ -234,11 +240,7 @@ None
 
 
 Should call `$` with:
- - 1: 'arg1', 1
- - 2: 'callee_error', 'TypeError', true
- - 3: 'arg2', 2
- - 4: 'inner_callee_error', 'TypeError', true
- - eval returned: undefined
+ - eval returned: ('<skipped by option>')
 
 Pre normalization calls: Same
 

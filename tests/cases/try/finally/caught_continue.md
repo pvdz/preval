@@ -11,7 +11,7 @@
 `````js filename=intro
 try {
   $(1);
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_NO_UNROLLS_LEFT) {
     $(2);
     if ($(3)) {
       continue; // should not be trapped by the finally
@@ -30,7 +30,7 @@ try {
 `````js filename=intro
 try {
   $(1);
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_NO_UNROLLS_LEFT) {
     $(2);
     const tmpIfTest /*:unknown*/ = $(3);
     if (tmpIfTest) {
@@ -72,7 +72,7 @@ With rename=true
 `````js filename=intro
 try {
   $( 1 );
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_NO_UNROLLS_LEFT) {
     $( 2 );
     const a = $( 3 );
     if (a) {
@@ -99,7 +99,7 @@ let $implicitThrow = false;
 let $finalCatchArg = undefined;
 try {
   $(1);
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_NO_UNROLLS_LEFT) {
     $continue: {
       $(2);
       const tmpIfTest = $(3);

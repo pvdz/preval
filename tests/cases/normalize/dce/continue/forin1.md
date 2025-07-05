@@ -30,7 +30,7 @@ while (true) {
   if (tmpIfTest) {
     const tmpCalleeParam /*:object*/ /*truthy*/ = { a: 1, b: 2 };
     const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
-    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    while ($LOOP_NO_UNROLLS_LEFT) {
       const tmpForInNext /*:unknown*/ = tmpForInGen();
       const tmpIfTest$1 /*:unknown*/ = tmpForInNext.done;
       if (tmpIfTest$1) {
@@ -84,7 +84,7 @@ while (true) {
       b: 2,
     };
     const c = $forIn( b );
-    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    while ($LOOP_NO_UNROLLS_LEFT) {
       const d = c();
       const e = d.done;
       if (e) {
@@ -113,7 +113,7 @@ while (true) {
   if (tmpIfTest) {
     let tmpCalleeParam = { a: 1, b: 2 };
     const tmpForInGen = $forIn(tmpCalleeParam);
-    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    while ($LOOP_NO_UNROLLS_LEFT) {
       const tmpForInNext = tmpForInGen();
       const tmpIfTest$1 = tmpForInNext.done;
       if (tmpIfTest$1) {

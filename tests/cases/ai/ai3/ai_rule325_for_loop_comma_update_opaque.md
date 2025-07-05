@@ -32,7 +32,7 @@ if (tmpIfTest) {
   $(`update1`, tmpCalleeParam);
   const tmpCalleeParam$1 /*:primitive*/ = i + 2;
   let tmpClusterSSA_i /*:unknown*/ = $(`update2`, tmpCalleeParam$1);
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpBinLhs$1 /*:unknown*/ = $(`cond_val_i`, tmpClusterSSA_i);
     const tmpIfTest$1 /*:boolean*/ = tmpBinLhs$1 < bound;
     if (tmpIfTest$1) {
@@ -92,7 +92,7 @@ if (d) {
   $( "update1", e );
   const f = b + 2;
   let g = $( "update2", f );
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const h = $( "cond_val_i", g );
     const i = h < a;
     if (i) {

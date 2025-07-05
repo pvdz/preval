@@ -31,7 +31,7 @@ const tmpIfTest /*:boolean*/ = tmpBinLhs < limit;
 if (tmpIfTest) {
   $(`loop_body`, 0);
   let tmpClusterSSA_x /*:unknown*/ = $(`update_x`, 1);
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpBinLhs$1 /*:unknown*/ = $(`cond_check`, tmpClusterSSA_x);
     const tmpIfTest$2 /*:boolean*/ = tmpBinLhs$1 < limit;
     if (tmpIfTest$2) {
@@ -91,7 +91,7 @@ const c = b < a;
 if (c) {
   $( "loop_body", 0 );
   let d = $( "update_x", 1 );
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const e = $( "cond_check", d );
     const f = e < a;
     if (f) {

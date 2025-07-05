@@ -10,7 +10,7 @@
 
 `````js filename=intro
 let test = true;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   if (test) {
     $();
     test = false;
@@ -50,7 +50,7 @@ $();
 
 `````js filename=intro
 let test = true;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   if (test) {
     $();
     test = false;

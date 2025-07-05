@@ -29,7 +29,7 @@ if ($) {
   $(tmpClusterSSA_arr);
 } else {
   let arr /*:unknown*/ = undefined;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     arr = [2, 3, 4];
     $(2);
     if ($) {
@@ -74,7 +74,7 @@ if ($) {
 }
 else {
   let b = undefined;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     b = [ 2, 3, 4 ];
     $( 2 );
     if ($) {

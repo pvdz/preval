@@ -27,7 +27,7 @@ for (lhs in rhs) {
 
 `````js filename=intro
 const tmpForInGenNext /*:unknown*/ = $forIn(rhs);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForInNext /*:unknown*/ = tmpForInGenNext();
   const tmpIfTest /*:unknown*/ = tmpForInNext.done;
   if (tmpIfTest) {
@@ -70,7 +70,7 @@ With rename=true
 
 `````js filename=intro
 const a = $forIn( rhs );
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const b = a();
   const c = b.done;
   if (c) {
@@ -95,7 +95,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````js filename=intro
 let lhs = undefined;
 const tmpForInGenNext = $forIn(rhs);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForInNext = tmpForInGenNext();
   const tmpIfTest = tmpForInNext.done;
   if (tmpIfTest) {

@@ -25,7 +25,7 @@ const tmpAssignRhsCompProp /*:unknown*/ = $(`c`);
 const b /*:object*/ /*truthy*/ = { c: 1 };
 const a /*:unknown*/ = b[tmpAssignRhsCompProp];
 const tmpForOfGenNext /*:unknown*/ = $forOf(a);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
@@ -66,7 +66,7 @@ const a = $( "c" );
 const b = { c: 1 };
 const c = b[ a ];
 const d = $forOf( c );
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const e = d();
   const f = e.done;
   if (f) {
@@ -91,7 +91,7 @@ const tmpAssignRhsCompProp = $(`c`);
 a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
 let tmpCalleeParam = a;
 const tmpForOfGenNext = $forOf(a);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForOfNext = tmpForOfGenNext();
   const tmpIfTest = tmpForOfNext.done;
   if (tmpIfTest) {

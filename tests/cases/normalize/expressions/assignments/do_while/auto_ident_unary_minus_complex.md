@@ -26,7 +26,7 @@ const tmpUnaryArg /*:unknown*/ = $(100);
 const tmpClusterSSA_a /*:number*/ = -tmpUnaryArg;
 if (tmpClusterSSA_a) {
   let a /*:number*/ = 0;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $(100);
     const tmpUnaryArg$1 /*:unknown*/ = $(100);
     a = -tmpUnaryArg$1;
@@ -75,7 +75,7 @@ const a = $( 100 );
 const b = -a;
 if (b) {
   let c = 0;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $( 100 );
     const d = $( 100 );
     c = -d;

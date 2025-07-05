@@ -28,7 +28,7 @@ const tmpNestedPropAssignRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam];
 b.c = tmpNestedPropAssignRhs;
 if (tmpNestedPropAssignRhs) {
   let a /*:unknown*/ = undefined;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $(100);
     const tmpCompObj$1 /*:unknown*/ = $(b);
     const tmpCalleeParam$1 /*:unknown*/ = $(`d`);
@@ -90,7 +90,7 @@ const d = b[ c ];
 a.c = d;
 if (d) {
   let e = undefined;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $( 100 );
     const f = $( a );
     const g = $( "d" );

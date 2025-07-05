@@ -36,7 +36,7 @@ const f /*:(unknown)=>undefined*/ = function ($$0) {
     if ($) {
       return undefined;
     } else {
-      while ($LOOP_UNROLL_10) {
+      while ($LOOP_UNROLLS_LEFT_10) {
         if ($) {
           break;
         } else {
@@ -82,7 +82,7 @@ const a = function($$0 ) {
       return undefined;
     }
     else {
-      while ($LOOP_UNROLL_10) {
+      while ($LOOP_UNROLLS_LEFT_10) {
         if ($) {
           break;
         }

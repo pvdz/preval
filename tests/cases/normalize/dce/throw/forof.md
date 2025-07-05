@@ -82,7 +82,7 @@ let f = function () {
   debugger;
   let tmpCalleeParam = [10, 20];
   const tmpForOfGenNext = $forOf(tmpCalleeParam);
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_NO_UNROLLS_LEFT) {
     const tmpForOfNext = tmpForOfGenNext();
     const tmpIfTest = tmpForOfNext.done;
     if (tmpIfTest) {

@@ -20,7 +20,7 @@ if (x) {
   y = false;
 }
 if (y) {
-  while ($LOOP_UNROLL_9) {
+  while ($LOOP_UNROLLS_LEFT_9) {
     if (x) {
       if ($) {
         x = false;
@@ -42,7 +42,7 @@ if (y) {
 let tmpClusterSSA_x /*:boolean*/ = !$;
 if ($) {
 } else {
-  while ($LOOP_UNROLL_9) {
+  while ($LOOP_UNROLLS_LEFT_9) {
     if (tmpClusterSSA_x) {
       if ($) {
         tmpClusterSSA_x = false;
@@ -84,7 +84,7 @@ if ($) {
 
 }
 else {
-  while ($LOOP_UNROLL_9) {
+  while ($LOOP_UNROLLS_LEFT_9) {
     if (a) {
       if ($) {
         a = false;
@@ -113,7 +113,7 @@ if (x) {
   y = false;
 }
 if (y) {
-  while ($LOOP_UNROLL_9) {
+  while ($LOOP_UNROLLS_LEFT_9) {
     if (x) {
       if ($) {
         x = false;

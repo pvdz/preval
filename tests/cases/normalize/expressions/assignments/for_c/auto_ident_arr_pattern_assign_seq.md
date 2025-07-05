@@ -33,7 +33,7 @@ if (tmpIfTest) {
   let tmpClusterSSA_x /*:unknown*/ = tmpArrPatternSplat[0];
   let tmpClusterSSA_y /*:unknown*/ = tmpArrPatternSplat[1];
   let tmpClusterSSA_a /*:array*/ /*truthy*/ = tmpNestedAssignArrPatternRhs;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       $(tmpClusterSSA_x);
@@ -108,7 +108,7 @@ if (a) {
   let f = e[ 0 ];
   let g = e[ 1 ];
   let h = d;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const i = $( 1 );
     if (i) {
       $( f );

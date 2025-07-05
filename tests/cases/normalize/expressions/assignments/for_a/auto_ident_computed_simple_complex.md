@@ -23,7 +23,7 @@ $(a, b);
 `````js filename=intro
 const tmpAssignRhsCompProp /*:unknown*/ = $(`c`);
 $coerce(tmpAssignRhsCompProp, `string`);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $(1);
 }
 `````
@@ -46,7 +46,7 @@ With rename=true
 `````js filename=intro
 const a = $( "c" );
 $coerce( a, "string" );
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $( 1 );
 }
 `````

@@ -36,7 +36,7 @@ let /*___11__*/ x = /*___12__*/ undefined;
 const /*___14__*/ list = [100];
 let /*___18__*/ arr = /*___19__*/ undefined;
 const /*___21__*/ tmpForInGenNext = /*___23__*/ $forIn(/*___24__*/ list);
-while (/*___26__*/ $LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while (/*___26__*/ $LOOP_NO_UNROLLS_LEFT) {
   /*27~59*/ const /*___31__*/ tmpForInNext = /*___33__*/ tmpForInGenNext();
   const /*___35__*/ tmpIfTest = /*___37__*/ tmpForInNext./*___38__*/ done;
   if (/*___40__*/ tmpIfTest) {

@@ -26,7 +26,7 @@ const tmpIfTest /*:unknown*/ = $(1);
 const b /*:object*/ /*truthy*/ = { x: 1 };
 if (tmpIfTest) {
   b.x = 3;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       b.x = 3;
@@ -72,7 +72,7 @@ const a = $( 1 );
 const b = { x: 1 };
 if (a) {
   b.x = 3;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const c = $( 1 );
     if (c) {
       b.x = 3;

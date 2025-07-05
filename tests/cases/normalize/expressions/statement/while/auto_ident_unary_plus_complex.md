@@ -22,7 +22,7 @@ $(a);
 const tmpUnaryArg /*:unknown*/ = $(100);
 const tmpIfTest /*:number*/ = +tmpUnaryArg;
 if (tmpIfTest) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $(100);
     const tmpUnaryArg$1 /*:unknown*/ = $(100);
     const tmpIfTest$1 /*:number*/ = +tmpUnaryArg$1;
@@ -63,7 +63,7 @@ With rename=true
 const a = $( 100 );
 const b = +a;
 if (b) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $( 100 );
     const c = $( 100 );
     const d = +c;

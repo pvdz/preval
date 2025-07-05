@@ -28,7 +28,7 @@ if (tmpIfTest) {
 } else {
   tmpChainElementCall.x;
 }
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $(1);
 }
 `````
@@ -61,7 +61,7 @@ if (c) {
 else {
   b.x;
 }
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $( 1 );
 }
 `````

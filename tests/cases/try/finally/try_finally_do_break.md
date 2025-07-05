@@ -16,7 +16,7 @@ do {
     $(2);
     break;
   }
-} while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE)
+} while ($LOOP_NO_UNROLLS_LEFT)
 $(3);
 `````
 

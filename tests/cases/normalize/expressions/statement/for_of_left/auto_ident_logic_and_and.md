@@ -22,7 +22,7 @@ $(a);
 const tmpCalleeParam$1 /*:object*/ /*truthy*/ = { x: 1 };
 const tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$1);
 const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForOfNext /*:unknown*/ = tmpForOfGen();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
@@ -80,7 +80,7 @@ With rename=true
 const a = { x: 1 };
 const b = $( a );
 const c = $forOf( b );
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const d = c();
   const e = d.done;
   if (e) {
@@ -117,7 +117,7 @@ let a = { a: 999, b: 1000 };
 let tmpCalleeParam$1 = { x: 1 };
 let tmpCalleeParam = $(tmpCalleeParam$1);
 const tmpForOfGen = $forOf(tmpCalleeParam);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForOfNext = tmpForOfGen();
   const tmpIfTest = tmpForOfNext.done;
   if (tmpIfTest) {

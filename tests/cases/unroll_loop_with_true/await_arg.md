@@ -10,7 +10,7 @@
 
 `````js filename=intro
 async function f() {
-  const x = await $LOOP_DONE_UNROLLING_ALWAYS_TRUE;
+  const x = await $LOOP_NO_UNROLLS_LEFT;
   $(x);
 }
 $(f);

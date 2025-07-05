@@ -21,7 +21,7 @@ $(a);
 `````js filename=intro
 const tmpNewCallee /*:unknown*/ = $($);
 const xyz /*:object*/ /*truthy*/ = new tmpNewCallee(1);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $(xyz);
   $(1);
 }
@@ -47,7 +47,7 @@ With rename=true
 `````js filename=intro
 const a = $( $ );
 const b = new a( 1 );
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $( b );
   $( 1 );
 }

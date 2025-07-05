@@ -24,7 +24,7 @@ const tmpCalleeParam /*:()=>undefined*/ = function $pcompiled() {
   return undefined;
 };
 const tmpForOfGenNext /*:unknown*/ = $forOf(tmpCalleeParam);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
@@ -64,7 +64,7 @@ const a = function b() {
   return undefined;
 };
 const c = $forOf( a );
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const d = c();
   const e = d.done;
   if (e) {
@@ -92,7 +92,7 @@ let tmpCalleeParam = function () {
   return undefined;
 };
 const tmpForOfGenNext = $forOf(tmpCalleeParam);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForOfNext = tmpForOfGenNext();
   const tmpIfTest = tmpForOfNext.done;
   if (tmpIfTest) {

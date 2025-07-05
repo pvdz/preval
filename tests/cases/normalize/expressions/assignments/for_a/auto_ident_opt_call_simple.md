@@ -24,7 +24,7 @@ if (tmpIfTest) {
 } else {
   $(1);
 }
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $(1);
 }
 `````
@@ -54,7 +54,7 @@ if (a) {
 else {
   $( 1 );
 }
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $( 1 );
 }
 `````

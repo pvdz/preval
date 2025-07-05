@@ -36,7 +36,7 @@ if (tmpIfTest) {
     $(`keep, do not eval`);
   } else {
   }
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpIfTest$2 /*:unknown*/ = $(true);
     if (tmpIfTest$2) {
       const tmpBinBothLhs$1 /*:unknown*/ = $(1, `disc`);
@@ -93,7 +93,7 @@ if (a) {
   if (d) {
     $( "keep, do not eval" );
   }
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const e = $( true );
     if (e) {
       const f = $( 1, "disc" );

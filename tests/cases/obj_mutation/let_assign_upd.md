@@ -29,7 +29,7 @@ const tmpBinLhs$1 /*:unknown*/ = tmpClusterSSA_blob.xyz;
 const tmpIfTest /*:boolean*/ = tmpBinLhs$1 < 10;
 if (tmpIfTest) {
   let blob /*:unknown*/ = undefined;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     blob = { thing: `woop`, xyz: 1 };
     $(blob);
     const tmpBinLhs$2 /*:unknown*/ = blob.xyz;
@@ -81,7 +81,7 @@ const b = a.xyz;
 const c = b < 10;
 if (c) {
   let d = undefined;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     d = {
       thing: "woop",
       xyz: 1,

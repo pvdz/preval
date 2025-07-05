@@ -11,7 +11,7 @@
 
 `````js filename=intro
 let y = 1;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   try {
     [5, 6, $, missing]; // <-- this is the line being checked
     $(y);
@@ -28,7 +28,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 `````js filename=intro
 let y /*:number*/ = 1;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   try {
     missing;
     $(y);
@@ -70,7 +70,7 @@ With rename=true
 
 `````js filename=intro
 let a = 1;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   try {
     missing;
     $( a );
@@ -92,7 +92,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 `````js filename=intro
 let y = 1;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   try {
     missing;
     $(y);

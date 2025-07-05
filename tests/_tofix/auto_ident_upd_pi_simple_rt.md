@@ -15,7 +15,7 @@ Why does preval not know a is a number here (at the time of writing)?
 `````js filename=intro
 let a /*:unknown*/ = undefined;
 let tmpClusterSSA_b$2 /*:number*/ = 12;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $(100);
   tmpClusterSSA_b$2 = tmpClusterSSA_b$2 + 1;
   a = tmpClusterSSA_b$2;
@@ -35,7 +35,7 @@ $(a, tmpClusterSSA_b$2);
 `````filename=intro
 let /*___5__*/ a = /*___6__*/ undefined;
 let /*___8__*/ tmpClusterSSA_b$2 = 12;
-while (/*___11__*/ $LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while (/*___11__*/ $LOOP_NO_UNROLLS_LEFT) {
   /*12~31*/ $(100);
   /*___22__*/ tmpClusterSSA_b$2 = /*___20__*/ tmpClusterSSA_b$2 + 1;
   /*___26__*/ a = /*___25__*/ tmpClusterSSA_b$2;

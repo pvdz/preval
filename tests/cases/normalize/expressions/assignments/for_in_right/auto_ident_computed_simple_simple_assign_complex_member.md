@@ -27,7 +27,7 @@ const tmpCalleeParam$1 /*:unknown*/ = $(`d`);
 const tmpNestedPropAssignRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam$1];
 b.c = tmpNestedPropAssignRhs;
 const tmpForInGen /*:unknown*/ = $forIn(tmpNestedPropAssignRhs);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForInNext /*:unknown*/ = tmpForInGen();
   const tmpIfTest /*:unknown*/ = tmpForInNext.done;
   if (tmpIfTest) {
@@ -75,7 +75,7 @@ const c = $( "d" );
 const d = b[ c ];
 a.c = d;
 const e = $forIn( d );
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const f = e();
   const g = f.done;
   if (g) {
@@ -103,7 +103,7 @@ b.c = tmpNestedPropAssignRhs;
 a = tmpNestedPropAssignRhs;
 let tmpCalleeParam = a;
 const tmpForInGen = $forIn(a);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForInNext = tmpForInGen();
   const tmpIfTest = tmpForInNext.done;
   if (tmpIfTest) {

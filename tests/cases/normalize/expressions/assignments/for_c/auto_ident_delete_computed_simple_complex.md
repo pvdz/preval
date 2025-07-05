@@ -26,7 +26,7 @@ const arg /*:object*/ /*truthy*/ = { y: 1 };
 if (tmpIfTest) {
   const tmpDeleteCompProp /*:unknown*/ = $(`y`);
   let tmpClusterSSA_a /*:boolean*/ = delete arg[tmpDeleteCompProp];
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       const tmpDeleteCompProp$1 /*:unknown*/ = $(`y`);
@@ -76,7 +76,7 @@ const b = { y: 1 };
 if (a) {
   const c = $( "y" );
   let d = delete b[ c ];
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const e = $( 1 );
     if (e) {
       const f = $( "y" );

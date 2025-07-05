@@ -13,7 +13,7 @@
 let cTmp = $(1);
 let n = 1;
 $(3);
-while ($LOOP_UNROLL_10) {
+while ($LOOP_UNROLLS_LEFT_10) {
   n = n + 1;
   const tmpIfTest$1 = n < 2;
   if (tmpIfTest$1) {
@@ -63,7 +63,7 @@ $( "pass" );
 `````js filename=intro
 let cTmp = $(1);
 let n = 1;
-while ($LOOP_UNROLL_10) {
+while ($LOOP_UNROLLS_LEFT_10) {
   $(3);
   n = n + 1;
   const tmpIfTest$1 = n < 2;

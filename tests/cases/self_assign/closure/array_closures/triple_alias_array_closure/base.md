@@ -41,7 +41,7 @@ loopStop$3: {
   const alias2 = g;                    // Irrelevant but complicates heuristic
   const alias3 = alias1();             // Now alias gets called, f is sealed, only `alias1` is not sealed now.
   
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_NO_UNROLLS_LEFT) {
   $('loop'); // This just prevents the test runner from going long
     try {
       const str = alias2(457);
@@ -65,7 +65,7 @@ $(f()); // Won't be reached in the test
 
 `````js filename=intro
 const arr /*:array*/ /*truthy*/ = [`trash`, `fire`, `is`, `hot`];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $(`loop`);
   const str /*:primitive*/ = arr[112];
   const tmpBinLhs$166 /*:number*/ = $Number_parseInt(str);
@@ -102,7 +102,7 @@ With rename=true
 
 `````js filename=intro
 const a = [ "trash", "fire", "is", "hot" ];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $( "loop" );
   const b = a[ 112 ];
   const c = $Number_parseInt( b );
@@ -151,7 +151,7 @@ let g = function ($$0, $$1) {
 const alias1 = f;
 const alias2 = g;
 const alias3 = alias1();
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $(`loop`);
   try {
     const str$1 = alias2(457);

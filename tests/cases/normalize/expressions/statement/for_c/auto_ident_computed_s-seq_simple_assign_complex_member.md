@@ -29,7 +29,7 @@ if (tmpIfTest) {
   const tmpCalleeParam /*:unknown*/ = $(`d`);
   const tmpAssignComputedRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam];
   b[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       const tmpAssignComMemLhsProp$1 /*:unknown*/ = $(`c`);
@@ -91,7 +91,7 @@ if (a) {
   const e = $( "d" );
   const f = d[ e ];
   b[c] = f;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const g = $( 1 );
     if (g) {
       const h = $( "c" );

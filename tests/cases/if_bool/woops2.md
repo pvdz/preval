@@ -14,7 +14,7 @@ const test /*:unknown*/ = $(false);
 if (test) {
 } else {
   $(`B`);
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_NO_UNROLLS_LEFT) {
     const test$1 /*:unknown*/ = $(`C`);
     $(`D`);
     if (test$1) {
@@ -39,7 +39,7 @@ const test /*:unknown*/ = $(false);
 if (test) {
 } else {
   $(`B`);
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_NO_UNROLLS_LEFT) {
     const test$1 /*:unknown*/ = $(`C`);
     $(`D`);
     if (test$1) {
@@ -78,7 +78,7 @@ if (a) {
 }
 else {
   $( "B" );
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_NO_UNROLLS_LEFT) {
     const b = $( "C" );
     $( "D" );
     if (b) {
@@ -101,7 +101,7 @@ const test = $(false);
 if (test) {
 } else {
   $(`B`);
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_NO_UNROLLS_LEFT) {
     const test$1 = $(`C`);
     $(`D`);
     if (test$1) {

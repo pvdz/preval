@@ -23,7 +23,7 @@ const tmpObjLitVal /*:unknown*/ = $(1);
 const tmpObjLitVal$3 /*:unknown*/ = $(3);
 const a /*:object*/ /*truthy*/ = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
 const tmpForInGen /*:unknown*/ = $forIn(a);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForInNext /*:unknown*/ = tmpForInGen();
   const tmpIfTest /*:unknown*/ = tmpForInNext.done;
   if (tmpIfTest) {
@@ -68,7 +68,7 @@ const c = {
   z: b,
 };
 const d = $forIn( c );
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const e = d();
   const f = e.done;
   if (f) {
@@ -93,7 +93,7 @@ const tmpObjLitVal$3 = $(3);
 a = { x: tmpObjLitVal, y: tmpObjLitVal$1, z: tmpObjLitVal$3 };
 let tmpCalleeParam = a;
 const tmpForInGen = $forIn(a);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForInNext = tmpForInGen();
   const tmpIfTest = tmpForInNext.done;
   if (tmpIfTest) {

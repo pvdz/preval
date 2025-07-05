@@ -27,7 +27,7 @@ $(3);
 `````js filename=intro
 const tmpCalleeParam /*:array*/ /*truthy*/ = [`a`, `b`, `c`];
 const tmpForOfGenNext /*:unknown*/ = $forOf(tmpCalleeParam);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
@@ -71,7 +71,7 @@ With rename=true
 `````js filename=intro
 const a = [ "a", "b", "c" ];
 const b = $forOf( a );
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const c = b();
   const d = c.done;
   if (d) {
@@ -98,7 +98,7 @@ $( 3 );
 `````js filename=intro
 let tmpCalleeParam = [`a`, `b`, `c`];
 const tmpForOfGenNext = $forOf(tmpCalleeParam);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForOfNext = tmpForOfGenNext();
   const tmpIfTest = tmpForOfNext.done;
   if (tmpIfTest) {

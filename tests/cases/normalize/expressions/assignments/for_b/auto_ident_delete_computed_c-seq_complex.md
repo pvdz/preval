@@ -29,7 +29,7 @@ const tmpDeleteCompProp /*:unknown*/ = $(`y`);
 const tmpClusterSSA_a /*:boolean*/ = delete tmpDeleteCompObj[tmpDeleteCompProp];
 if (tmpClusterSSA_a) {
   let a /*:boolean*/ = false;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $(1);
     $(1);
     $(2);
@@ -89,7 +89,7 @@ const c = $( "y" );
 const d = delete b[ c ];
 if (d) {
   let e = false;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $( 1 );
     $( 1 );
     $( 2 );

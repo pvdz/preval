@@ -26,7 +26,7 @@ $(2);
 const arg /*:object*/ /*truthy*/ = { y: 1 };
 const tmpDeleteObj /*:unknown*/ = $(arg);
 delete tmpDeleteObj.y;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $(1);
 }
 `````
@@ -55,7 +55,7 @@ $( 2 );
 const a = { y: 1 };
 const b = $( a );
 delete b.y;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $( 1 );
 }
 `````

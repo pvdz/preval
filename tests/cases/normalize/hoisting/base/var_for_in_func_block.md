@@ -28,7 +28,7 @@ let x /*:unknown*/ = undefined;
 $(undefined);
 const tmpCalleeParam /*:object*/ /*truthy*/ = { y: 100 };
 const tmpForInGenNext /*:unknown*/ = $forIn(tmpCalleeParam);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForInNext /*:unknown*/ = tmpForInGenNext();
   const tmpIfTest /*:unknown*/ = tmpForInNext.done;
   if (tmpIfTest) {
@@ -70,7 +70,7 @@ let a = undefined;
 $( undefined );
 const b = { y: 100 };
 const c = $forIn( b );
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const d = c();
   const e = d.done;
   if (e) {
@@ -95,7 +95,7 @@ let f = function () {
   $(undefined);
   let tmpCalleeParam = { y: 100 };
   const tmpForInGenNext = $forIn(tmpCalleeParam);
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_NO_UNROLLS_LEFT) {
     const tmpForInNext = tmpForInGenNext();
     const tmpIfTest = tmpForInNext.done;
     if (tmpIfTest) {

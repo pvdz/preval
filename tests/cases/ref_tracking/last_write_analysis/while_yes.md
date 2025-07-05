@@ -33,7 +33,7 @@ const x /*:unknown*/ = $(`a`);
 $(x);
 let tmpClusterSSA_x /*:unknown*/ = $(`b`);
 if (tmpClusterSSA_x) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     tmpClusterSSA_x = $(0);
     if (tmpClusterSSA_x) {
     } else {
@@ -75,7 +75,7 @@ const a = $( "a" );
 $( a );
 let b = $( "b" );
 if (b) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     b = $( 0 );
     if (b) {
 

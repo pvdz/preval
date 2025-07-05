@@ -9,8 +9,8 @@
 ## Input
 
 `````js filename=intro
-exit: while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  again: while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+exit: while ($LOOP_NO_UNROLLS_LEFT) {
+  again: while ($LOOP_NO_UNROLLS_LEFT) {
     if ($()) {
       if ($()) {
         break again;
@@ -28,7 +28,7 @@ exit: while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 
 `````js filename=intro
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   nestedLoop: {
     const tmpIfTest /*:unknown*/ = $();
     if (tmpIfTest) {
@@ -72,7 +72,7 @@ while (true) {
 With rename=true
 
 `````js filename=intro
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   nestedLoop: {
     const a = $();
     if (a) {
@@ -94,7 +94,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 (This is what phase1 received the first time)
 
 `````js filename=intro
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   nestedLoop: {
     const tmpIfTest = $();
     if (tmpIfTest) {

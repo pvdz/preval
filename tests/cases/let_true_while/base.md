@@ -29,7 +29,7 @@ const tmpPostUpdArgIdent /*:number*/ = $coerce(y, `number`);
 let tmpClusterSSA_y /*:number*/ = tmpPostUpdArgIdent - 1;
 let tmpClusterSSA_x /*:number*/ = tmpClusterSSA_y;
 if (tmpClusterSSA_y) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $(tmpClusterSSA_x);
     tmpClusterSSA_y = tmpClusterSSA_y - 1;
     tmpClusterSSA_x = tmpClusterSSA_y;
@@ -79,7 +79,7 @@ const b = $coerce( a, "number" );
 let c = b - 1;
 let d = c;
 if (c) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $( d );
     c = c - 1;
     d = c;

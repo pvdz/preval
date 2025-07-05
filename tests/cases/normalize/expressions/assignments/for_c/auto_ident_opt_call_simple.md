@@ -27,7 +27,7 @@ if (tmpIfTest) {
   } else {
     tmpClusterSSA_a = $(1);
   }
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpIfTest$2 /*:unknown*/ = $(1);
     if (tmpIfTest$2) {
       tmpClusterSSA_a = undefined;
@@ -88,7 +88,7 @@ if (a) {
   else {
     b = $( 1 );
   }
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const d = $( 1 );
     if (d) {
       b = undefined;

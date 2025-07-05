@@ -28,7 +28,7 @@ if (a) {
   const tmpCalleeParam$1 /*:unknown*/ = $(2);
   xyz = $(tmpCalleeParam$1);
 }
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $(xyz);
   $(1);
 }
@@ -67,7 +67,7 @@ else {
   const d = $( 2 );
   c = $( d );
 }
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $( c );
   $( 1 );
 }

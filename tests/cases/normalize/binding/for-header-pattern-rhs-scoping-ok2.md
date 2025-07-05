@@ -23,7 +23,7 @@ for (let [x] in [y]) {
 const y /*:object*/ /*truthy*/ = {};
 const tmpCalleeParam /*:array*/ /*truthy*/ = [y];
 const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForInNext /*:unknown*/ = tmpForInGen();
   const tmpIfTest /*:unknown*/ = tmpForInNext.done;
   if (tmpIfTest) {
@@ -63,7 +63,7 @@ With rename=true
 const a = {};
 const b = [ a ];
 const c = $forIn( b );
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const d = c();
   const e = d.done;
   if (e) {
@@ -86,7 +86,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 let y = {};
 let tmpCalleeParam = [y];
 const tmpForInGen = $forIn(tmpCalleeParam);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForInNext = tmpForInGen();
   const tmpIfTest = tmpForInNext.done;
   if (tmpIfTest) {

@@ -38,7 +38,7 @@ if (tmpLambdaFindLastNow) {
 } else {
   let tmpLambdaFindLastOut /*:primitive*/ = undefined;
   let tmpClusterSSA_tmpLambdaFindLastCounter /*:number*/ = 1;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpLambdaFindLastTest$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaFindLastCounter >= 0;
     if (tmpLambdaFindLastTest$1) {
       const tmpLambdaFindLastVal$1 /*:primitive*/ = tmpMCOO[tmpClusterSSA_tmpLambdaFindLastCounter];
@@ -122,7 +122,7 @@ if (i) {
 else {
   let j = undefined;
   let k = 1;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const l = k >= 0;
     if (l) {
       const m = h[ k ];

@@ -229,7 +229,7 @@ loopStop: {
       }
     }
   }
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_NO_UNROLLS_LEFT) {
     const tmpCalleeParam$32 /*:unknown*/ = $(0);
     const tmpIfTest$11 /*:unknown*/ = $(tmpCalleeParam$32);
     if (tmpIfTest$11) {
@@ -671,7 +671,7 @@ loopStop: {
       }
     }
   }
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_NO_UNROLLS_LEFT) {
     const co = $( 0 );
     const cp = $( co );
     if (cp) {

@@ -11,7 +11,7 @@
 
 `````js filename=intro
 const arr = [1, 2, 3];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const I_AM_A_PRIM = arr[0];
   const result = I_AM_A_PRIM + 1;
   arr[0] = result;
@@ -26,7 +26,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 `````js filename=intro
 const arr /*:array*/ /*truthy*/ = [1, 2, 3];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const I_AM_A_PRIM /*:primitive*/ = arr[0];
   const result /*:primitive*/ = I_AM_A_PRIM + 1;
   arr[0] = result;
@@ -53,7 +53,7 @@ With rename=true
 
 `````js filename=intro
 const a = [ 1, 2, 3 ];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const b = a[ 0 ];
   const c = b + 1;
   a[0] = c;
@@ -67,7 +67,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 `````js filename=intro
 const arr = [1, 2, 3];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const I_AM_A_PRIM = arr[0];
   const result = I_AM_A_PRIM + 1;
   arr[0] = result;

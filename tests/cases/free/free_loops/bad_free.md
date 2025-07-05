@@ -47,7 +47,7 @@ const tmpObjLitVal$159 /*:()=>undefined*/ = function () {
   debugger;
   $coerce(tmpBinBothRhs$32, `string`);
   $coerce(tmpClusterSSA_r$2027, `string`);
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_NO_UNROLLS_LEFT) {
     const tmpBinBothRhs$3631 /*:number*/ = $frfr(tmpFree$1, $, $);
     p$171 = p$171 + tmpBinBothRhs$3631;
   }
@@ -94,7 +94,7 @@ const h = function() {
   debugger;
   $coerce( tmpBinBothRhs$32, "string" );
   $coerce( tmpClusterSSA_r$2027, "string" );
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_NO_UNROLLS_LEFT) {
     const i = j( a, $, $ );
     p$171 = p$171 + i;
   }

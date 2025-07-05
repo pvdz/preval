@@ -153,7 +153,7 @@ loopStop: {
       break loopStop;
     }
   }
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_NO_UNROLLS_LEFT) {
     $(100);
     const tmpIfTest$12 /*:unknown*/ = $(30);
     if (tmpIfTest$12) {
@@ -446,7 +446,7 @@ loopStop: {
       break loopStop;
     }
   }
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_NO_UNROLLS_LEFT) {
     $( 100 );
     const bh = $( 30 );
     if (bh) {

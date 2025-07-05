@@ -12,7 +12,7 @@
 ## Input
 
 `````js filename=intro
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) { // Unrelated to loop unrolling so let's skip that
+while ($LOOP_NO_UNROLLS_LEFT) { // Unrelated to loop unrolling so let's skip that
   const arr = [1, 2, 3, 4];
   const test = $('never');
   if (test) {
@@ -32,7 +32,7 @@ $('exit');
 
 
 `````js filename=intro
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const test /*:unknown*/ = $(`never`);
   const arr /*:array*/ /*truthy*/ = [1, 2, 3, 4];
   if (test) {
@@ -72,7 +72,7 @@ $(`exit`);
 With rename=true
 
 `````js filename=intro
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const a = $( "never" );
   const b = [ 1, 2, 3, 4 ];
   if (a) {
@@ -94,7 +94,7 @@ $( "exit" );
 (This is what phase1 received the first time)
 
 `````js filename=intro
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const arr = [1, 2, 3, 4];
   const test = $(`never`);
   if (test) {

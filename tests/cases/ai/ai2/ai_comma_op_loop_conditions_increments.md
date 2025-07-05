@@ -56,7 +56,7 @@ if (tmpIfTest) {
   let tmpClusterSSA_j$1 /*:number*/ = tmpPostUpdArgIdent$1 - 1;
   $(`inc_j_effect`, tmpClusterSSA_j$1);
   iter_count = 1;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $(`cond_eff1`, tmpClusterSSA_i$1);
     const tmpCalleeParam$2 /*:boolean*/ = tmpClusterSSA_j$1 > 0;
     let tmpIfTest$1 /*:unknown*/ /*ternaryConst*/ = undefined;
@@ -176,7 +176,7 @@ if (e) {
   let o = n - 1;
   $( "inc_j_effect", o );
   a = 1;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $( "cond_eff1", m );
     const p = o > 0;
     let q = undefined;

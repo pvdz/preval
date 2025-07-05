@@ -74,7 +74,7 @@ const $continue /*:()=>undefined*/ = function () {
 };
 const tmpIfTest$1 /*:unknown*/ = $(false);
 if (tmpIfTest$1) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $(`uhoh`);
     const tmpIfTest$2 /*:unknown*/ = $(false);
     if (tmpIfTest$2) {
@@ -144,7 +144,7 @@ const a = function() {
 };
 const c = $( false );
 if (c) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $( "uhoh" );
     const d = $( false );
     if (d) {

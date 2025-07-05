@@ -25,7 +25,7 @@ $(a, b, c, d);
 `````js filename=intro
 const b /*:object*/ /*truthy*/ = { x: 1 };
 const c /*:object*/ /*truthy*/ = { y: 2 };
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpInitAssignLhsComputedObj /*:unknown*/ = $(b);
   const tmpInitAssignLhsComputedProp /*:unknown*/ = $(`x`);
   const tmpInitAssignLhsComputedObj$1 /*:unknown*/ = $(c);
@@ -61,7 +61,7 @@ With rename=true
 `````js filename=intro
 const a = { x: 1 };
 const b = { y: 2 };
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const c = $( a );
   const d = $( "x" );
   const e = $( b );

@@ -24,7 +24,7 @@ const tmpArrPatternSplat /*:array*/ /*truthy*/ = [...tmpBindingPatternArrRoot];
 const a /*:unknown*/ = tmpArrPatternSplat[0];
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $(10);
     $(20);
     const tmpIfTest$1 /*:unknown*/ = $(1);
@@ -73,7 +73,7 @@ const b = [ ...a ];
 const c = b[ 0 ];
 const d = $( 1 );
 if (d) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $( 10 );
     $( 20 );
     const e = $( 1 );

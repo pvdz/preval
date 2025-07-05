@@ -49,7 +49,7 @@ tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = 3;
 tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 3;
 const tmpIfTest /*:unknown*/ = $(0);
 if (tmpIfTest) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpIfTest$1 /*:unknown*/ = $(0);
     if (tmpIfTest$1) {
     } else {
@@ -122,7 +122,7 @@ d[e] = 3;
 b[c] = 3;
 const n = $( 0 );
 if (n) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const o = $( 0 );
     if (o) {
 

@@ -82,7 +82,7 @@ $(arr[0]);
 
 `````js filename=intro
 const arr /*:array*/ /*truthy*/ = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpCalleeParam /*:string*/ = arr[0];
   $(tmpCalleeParam);
   const M /*:primitive*/ /*truthy*/ = $dotCall($array_shift, arr, `shift`);
@@ -108,7 +108,7 @@ With rename=true
 
 `````js filename=intro
 const a = [ "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k" ];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const b = a[ 0 ];
   $( b );
   const c = $dotCall( $array_shift, a, "shift" );

@@ -26,12 +26,12 @@ $(x, 'outer');
 
 `````js filename=intro
 let x /*:unknown*/ = $(10);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $(x, `inner`);
   const tmpIfTest /*:unknown*/ = $(true);
   if (tmpIfTest) {
   } else {
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       $(x, `inner`);
       const tmpIfTest$1 /*:unknown*/ = $(true);
       if (tmpIfTest$1) {
@@ -70,14 +70,14 @@ With rename=true
 
 `````js filename=intro
 let a = $( 10 );
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $( a, "inner" );
   const b = $( true );
   if (b) {
 
   }
   else {
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       $( a, "inner" );
       const c = $( true );
       if (c) {

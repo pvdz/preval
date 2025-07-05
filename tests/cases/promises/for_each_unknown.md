@@ -38,7 +38,7 @@ if (tmpLambdaForeachCounterTest) {
   } else {
   }
   let tmpClusterSSA_tmpLambdaForeachCounter /*:number*/ = 1;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpLambdaForeachCounterTest$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaForeachCounter < tmpLambdaForeachLen$1;
     if (tmpLambdaForeachCounterTest$1) {
       const tmpLambdaForeachCounterHas$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaForeachCounter in tmpMCOO;
@@ -121,7 +121,7 @@ if (g) {
     }
   }
   let k = 1;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const l = k < f;
     if (l) {
       const m = k in e;

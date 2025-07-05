@@ -11,7 +11,7 @@
 
 `````js filename=intro
 const arr = [1, 2, 3];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   try {
     $(new arr);
     arr.reverse();
@@ -27,7 +27,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 `````js filename=intro
 const arr /*:array*/ /*truthy*/ = [1, 2, 3];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   try {
     const tmpCalleeParam /*:object*/ /*truthy*/ = new arr();
     $(tmpCalleeParam);
@@ -60,7 +60,7 @@ With rename=true
 
 `````js filename=intro
 const a = [ 1, 2, 3 ];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   try {
     const b = new a();
     $( b );
@@ -78,7 +78,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 `````js filename=intro
 const arr = [1, 2, 3];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   try {
     let tmpCalleeParam = new arr();
     $(tmpCalleeParam);

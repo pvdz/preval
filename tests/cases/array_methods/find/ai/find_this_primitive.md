@@ -32,7 +32,7 @@ if (tmpLambdaFindNow) {
   let tmpLambdaFindOut /*:primitive*/ = undefined;
   let tmpClusterSSA_tmpLambdaFindCounter /*:number*/ = 1;
   const tmpMCOO /*:array*/ /*truthy*/ = [1, 2, 3];
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpLambdaFindTest$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaFindCounter < 3;
     if (tmpLambdaFindTest$1) {
       const tmpLambdaFindVal$1 /*:primitive*/ = tmpMCOO[tmpClusterSSA_tmpLambdaFindCounter];
@@ -103,7 +103,7 @@ else {
   let e = undefined;
   let f = 1;
   const g = [ 1, 2, 3 ];
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const h = f < 3;
     if (h) {
       const i = g[ f ];

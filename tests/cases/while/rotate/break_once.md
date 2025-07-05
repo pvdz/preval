@@ -11,7 +11,7 @@
 `````js filename=intro
 let x = /foo/;
 x.foo = `object`; // Move this inside the while
-while ($LOOP_UNROLL_10) {
+while ($LOOP_UNROLLS_LEFT_10) {
   const tmp = x.foo;
   $(tmp);
   const end = $(x);
@@ -38,7 +38,7 @@ if (end) {
 } else {
   let tmpClusterSSA_x /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, ``);
   tmpClusterSSA_x.foo = `object`;
-  while ($LOOP_UNROLL_9) {
+  while ($LOOP_UNROLLS_LEFT_9) {
     const tmp$1 /*:unknown*/ = tmpClusterSSA_x.foo;
     $(tmp$1);
     const end$1 /*:unknown*/ = $(tmpClusterSSA_x);
@@ -91,7 +91,7 @@ if (c) {
 else {
   let d = new $regex_constructor( "foo", "" );
   d.foo = "object";
-  while ($LOOP_UNROLL_9) {
+  while ($LOOP_UNROLLS_LEFT_9) {
     const e = d.foo;
     $( e );
     const f = $( d );
@@ -113,7 +113,7 @@ else {
 `````js filename=intro
 let x = new $regex_constructor(`foo`, ``);
 x.foo = `object`;
-while ($LOOP_UNROLL_10) {
+while ($LOOP_UNROLLS_LEFT_10) {
   const tmp = x.foo;
   $(tmp);
   const end = $(x);

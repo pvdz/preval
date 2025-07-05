@@ -28,7 +28,7 @@ if (tmpIfTest) {
   const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$1);
   tmpForOfGenNext = $forOf(tmpClusterSSA_tmpCalleeParam);
 }
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
   const tmpIfTest$1 /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest$1) {
@@ -79,7 +79,7 @@ else {
   const d = $( c );
   b = $forOf( d );
 }
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const e = b();
   const f = e.done;
   if (f) {
@@ -111,7 +111,7 @@ if (tmpIfTest) {
   tmpCalleeParam = $(tmpCalleeParam$1);
 }
 const tmpForOfGenNext = $forOf(tmpCalleeParam);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForOfNext = tmpForOfGenNext();
   const tmpIfTest$1 = tmpForOfNext.done;
   if (tmpIfTest$1) {

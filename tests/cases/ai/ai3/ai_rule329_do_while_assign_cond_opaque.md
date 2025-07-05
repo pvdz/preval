@@ -30,7 +30,7 @@ const tmpCalleeParam /*:primitive*/ = x + 1;
 let tmpClusterSSA_x /*:unknown*/ = $(`update_x`, tmpCalleeParam);
 const tmpIfTest /*:boolean*/ = tmpClusterSSA_x < limit;
 if (tmpIfTest) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $(`loop_body`, tmpClusterSSA_x);
     const tmpCalleeParam$1 /*:primitive*/ = tmpClusterSSA_x + 1;
     tmpClusterSSA_x = $(`update_x`, tmpCalleeParam$1);
@@ -81,7 +81,7 @@ const c = a + 1;
 let d = $( "update_x", c );
 const e = d < b;
 if (e) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $( "loop_body", d );
     const f = d + 1;
     d = $( "update_x", f );

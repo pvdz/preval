@@ -25,7 +25,7 @@ const tmpCalleeParam$1 /*:unknown*/ = $(1);
 const tmpCalleeParam$3 /*:unknown*/ = $(2);
 const tmpCalleeParam /*:object*/ /*truthy*/ = new $(tmpCalleeParam$1, tmpCalleeParam$3);
 const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForInNext /*:unknown*/ = tmpForInGen();
   const tmpIfTest /*:unknown*/ = tmpForInNext.done;
   if (tmpIfTest) {
@@ -66,7 +66,7 @@ const a = $( 1 );
 const b = $( 2 );
 const c = new $( a, b );
 const d = $forIn( c );
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const e = d();
   const f = e.done;
   if (f) {
@@ -95,7 +95,7 @@ let tmpCalleeParam$1 = $(1);
 let tmpCalleeParam$3 = $(2);
 let tmpCalleeParam = new tmpNewCallee(tmpCalleeParam$1, tmpCalleeParam$3);
 const tmpForInGen = $forIn(tmpCalleeParam);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForInNext = tmpForInGen();
   const tmpIfTest = tmpForInNext.done;
   if (tmpIfTest) {

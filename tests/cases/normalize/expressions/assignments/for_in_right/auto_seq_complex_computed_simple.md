@@ -23,7 +23,7 @@ $(a);
 const tmpObjLitVal /*:unknown*/ = $(1);
 const a /*:object*/ /*truthy*/ = { b: tmpObjLitVal };
 const tmpForInGen /*:unknown*/ = $forIn(a);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForInNext /*:unknown*/ = tmpForInGen();
   const tmpIfTest /*:unknown*/ = tmpForInNext.done;
   if (tmpIfTest) {
@@ -69,7 +69,7 @@ With rename=true
 const a = $( 1 );
 const b = { b: a };
 const c = $forIn( b );
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const d = c();
   const e = d.done;
   if (e) {
@@ -96,7 +96,7 @@ const tmpObjLitVal = $(1);
 a = { b: tmpObjLitVal };
 let tmpCalleeParam = a;
 const tmpForInGen = $forIn(a);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForInNext = tmpForInGen();
   const tmpIfTest = tmpForInNext.done;
   if (tmpIfTest) {

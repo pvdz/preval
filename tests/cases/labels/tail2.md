@@ -33,7 +33,7 @@ if ($) {
   $(`inner`);
   $(`end`);
 } else {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     if ($) {
       $(`inner`);
       break;
@@ -75,7 +75,7 @@ if ($) {
   $( "end" );
 }
 else {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     if ($) {
       $( "inner" );
       break;

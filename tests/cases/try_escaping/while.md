@@ -11,9 +11,9 @@
 
 `````js filename=intro
 const arr = [1, 2, 3];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   try {
-    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) if ($(1)) break;
+    while ($LOOP_NO_UNROLLS_LEFT) if ($(1)) break;
     $(arr[0]);
     arr.reverse();
   } catch {
@@ -28,9 +28,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 `````js filename=intro
 const arr /*:array*/ /*truthy*/ = [1, 2, 3];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   try {
-    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    while ($LOOP_NO_UNROLLS_LEFT) {
       const tmpIfTest /*:unknown*/ = $(1);
       if (tmpIfTest) {
         break;
@@ -73,9 +73,9 @@ With rename=true
 
 `````js filename=intro
 const a = [ 1, 2, 3 ];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   try {
-    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    while ($LOOP_NO_UNROLLS_LEFT) {
       const b = $( 1 );
       if (b) {
         break;
@@ -97,9 +97,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 `````js filename=intro
 const arr = [1, 2, 3];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   try {
-    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    while ($LOOP_NO_UNROLLS_LEFT) {
       const tmpIfTest = $(1);
       if (tmpIfTest) {
         break;

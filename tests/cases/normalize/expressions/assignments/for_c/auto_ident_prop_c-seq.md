@@ -26,7 +26,7 @@ const b /*:object*/ /*truthy*/ = { c: 1 };
 if (tmpIfTest) {
   const tmpAssignRhsProp /*:unknown*/ = $(b);
   let tmpClusterSSA_a /*:unknown*/ = tmpAssignRhsProp.c;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       const tmpAssignRhsProp$1 /*:unknown*/ = $(b);
@@ -74,7 +74,7 @@ const b = { c: 1 };
 if (a) {
   const c = $( b );
   let d = c.c;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const e = $( 1 );
     if (e) {
       const f = $( b );

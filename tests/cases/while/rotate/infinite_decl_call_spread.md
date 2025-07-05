@@ -17,7 +17,7 @@ Note: Because a regex is a stateful object, Preval won't eliminate it.
 `````js filename=intro
 const s = $('hello');
 let x = $(1, ...s, 3);
-while ($LOOP_UNROLL_10) {
+while ($LOOP_UNROLLS_LEFT_10) {
   $(x);
   x = $(1, ...s, 3);
 }
@@ -30,7 +30,7 @@ $(x); // unreachable
 
 `````js filename=intro
 const s /*:unknown*/ = $(`hello`);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const x /*:unknown*/ = $(1, ...s, 3);
   $(x);
 }
@@ -53,7 +53,7 @@ With rename=true
 
 `````js filename=intro
 const a = $( "hello" );
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const b = $( 1, ...a, 3 );
   $( b );
 }
@@ -66,7 +66,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````js filename=intro
 const s = $(`hello`);
 let x = undefined;
-while ($LOOP_UNROLL_10) {
+while ($LOOP_UNROLLS_LEFT_10) {
   x = $(1, ...s, 3);
   $(x);
 }

@@ -30,7 +30,7 @@ if (tmpIfTest) {
   const tmpArrElement$1 /*:unknown*/ = $(4);
   x = tmpArrElement;
   y = tmpArrElement$1;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       const tmpArrElement$2 /*:unknown*/ = $(3);
@@ -86,7 +86,7 @@ if (c) {
   const e = $( 4 );
   a = d;
   b = e;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const f = $( 1 );
     if (f) {
       const g = $( 3 );

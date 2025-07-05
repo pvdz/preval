@@ -11,7 +11,7 @@
 
 `````js filename=intro
 const arr = [1, 2, 3];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   try {
     arr = $;
     $(arr[0]);
@@ -27,7 +27,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 
 `````js filename=intro
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   try {
     throw `Preval: Cannot write to const binding \`arr\``;
   } catch (e) {
@@ -55,7 +55,7 @@ while (true) {
 With rename=true
 
 `````js filename=intro
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   try {
     throw "Preval: Cannot write to const binding `arr`";
   }
@@ -71,7 +71,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 `````js filename=intro
 const arr = [1, 2, 3];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   try {
     arr = $;
     let tmpCalleeParam = arr[0];

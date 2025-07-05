@@ -26,7 +26,7 @@ $(10);
 $(20);
 const tmpCalleeParam /*:array*/ /*truthy*/ = [1, 2];
 const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForInNext /*:unknown*/ = tmpForInGen();
   const tmpIfTest /*:unknown*/ = tmpForInNext.done;
   if (tmpIfTest) {
@@ -74,7 +74,7 @@ $( 10 );
 $( 20 );
 const d = [ 1, 2 ];
 const e = $forIn( d );
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const f = e();
   const g = f.done;
   if (g) {
@@ -99,7 +99,7 @@ $(10);
 $(20);
 let tmpCalleeParam = [1, 2];
 const tmpForInGen = $forIn(tmpCalleeParam);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForInNext = tmpForInGen();
   const tmpIfTest = tmpForInNext.done;
   if (tmpIfTest) {

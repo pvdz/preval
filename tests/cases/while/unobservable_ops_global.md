@@ -29,7 +29,7 @@ $(1);
 let tmpClusterSSA_s /*:number*/ /*truthy*/ = s | 10;
 const tmpClusterSSA_x /*:unknown*/ = $(true);
 if (tmpClusterSSA_x) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $(1);
     tmpClusterSSA_s = tmpClusterSSA_s | 10;
     const tmpClusterSSA_x$1 /*:unknown*/ = $(true);
@@ -76,7 +76,7 @@ $( 1 );
 let b = a | 10;
 const c = $( true );
 if (c) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $( 1 );
     b = b | 10;
     const d = $( true );

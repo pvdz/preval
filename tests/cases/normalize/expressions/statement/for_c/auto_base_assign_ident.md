@@ -24,7 +24,7 @@ $(a, b);
 let b /*:unknown*/ /*ternaryConst*/ = 1;
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     b = $(2);
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
@@ -63,7 +63,7 @@ With rename=true
 let a = 1;
 const b = $( 1 );
 if (b) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     a = $( 2 );
     const c = $( 1 );
     if (c) {

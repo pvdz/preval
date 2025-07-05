@@ -28,7 +28,7 @@ const tmpNestedAssignArrPatternRhs /*:unknown*/ = $(tmpCalleeParam$1);
 const tmpArrPatternSplat$1 /*:array*/ /*truthy*/ = [...tmpNestedAssignArrPatternRhs];
 const a /*:unknown*/ = tmpArrPatternSplat$1[0];
 const tmpForOfGenNext /*:unknown*/ = $forOf(tmpNestedAssignArrPatternRhs);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
@@ -80,7 +80,7 @@ const c = $( b );
 const d = [ ...c ];
 const e = d[ 0 ];
 const f = $forOf( c );
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const g = f();
   const h = g.done;
   if (h) {
@@ -110,7 +110,7 @@ const tmpArrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
 a = tmpArrPatternSplat$1[0];
 tmpCalleeParam = tmpNestedAssignArrPatternRhs;
 const tmpForOfGenNext = $forOf(tmpNestedAssignArrPatternRhs);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForOfNext = tmpForOfGenNext();
   const tmpIfTest = tmpForOfNext.done;
   if (tmpIfTest) {

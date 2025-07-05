@@ -12,7 +12,7 @@
 `````js filename=intro
 const arr = [1, 2, 3];
 let x = $(1);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   try {
     if (x) $ === 2; // It's safe... what can I say. At the time of writing it was catching a branch and not eliminated yet.
     else break;
@@ -30,7 +30,7 @@ $(x);
 
 `````js filename=intro
 const x /*:unknown*/ = $(1);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   try {
     if (x) {
     } else {
@@ -69,7 +69,7 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   try {
     if (a) {
 
@@ -93,7 +93,7 @@ $( a );
 `````js filename=intro
 const arr = [1, 2, 3];
 let x = $(1);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   try {
     if (x) {
     } else {

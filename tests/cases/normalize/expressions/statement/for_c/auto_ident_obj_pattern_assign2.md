@@ -43,7 +43,7 @@ if (test) {
   $(4);
   x = p;
   y = z;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const test$1 /*:unknown*/ = $(0);
     if (test$1) {
       const p$1 /*:unknown*/ = $(3);
@@ -101,7 +101,7 @@ if (d) {
   $( 4 );
   a = e;
   b = c;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const f = $( 0 );
     if (f) {
       const g = $( 3 );

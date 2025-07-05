@@ -128,7 +128,7 @@ const arr /*:array*/ = [
   100,
   101,
 ];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const ARR_LEN /*:unknown*/ = arr.length; // <-- get rid of this unknown
   const tmpIfTest$1 /*:boolean*/ = tmpClusterSSA_counter$2 < ARR_LEN;
   if (tmpIfTest$1) {
@@ -296,7 +296,7 @@ const arr = [
   100,
   101,
 ];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const ARR_LEN = arr.length;
   const tmpIfTest$1 = tmpClusterSSA_counter$2 < ARR_LEN;
   if (tmpIfTest$1) {

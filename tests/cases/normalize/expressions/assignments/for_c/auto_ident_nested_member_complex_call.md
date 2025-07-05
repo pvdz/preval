@@ -35,7 +35,7 @@ if (tmpIfTest) {
   tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = tmpInitAssignLhsComputedRhs;
   tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpInitAssignLhsComputedRhs;
   let tmpClusterSSA_a /*:unknown*/ = tmpInitAssignLhsComputedRhs;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       const tmpNestedAssignComMemberObj$1 /*:unknown*/ = $(b);
@@ -111,7 +111,7 @@ if (a) {
   f[g] = h;
   d[e] = h;
   let i = h;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const j = $( 1 );
     if (j) {
       const k = $( b );

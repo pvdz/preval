@@ -13,7 +13,7 @@
 const arr = [1, 2, 3];
 let x = $(1);
 const y = $(3);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   try {
     if (x) x = $ === 2; // At the time of writing it was catching a branch and not eliminated yet.
     else x = $ === 3;
@@ -32,7 +32,7 @@ $(x);
 `````js filename=intro
 let x /*:unknown*/ = $(1);
 $(3);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   try {
     if (x) {
       x = $ === 2;
@@ -76,7 +76,7 @@ With rename=true
 `````js filename=intro
 let a = $( 1 );
 $( 3 );
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   try {
     if (a) {
       a = $ === 2;
@@ -101,7 +101,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 const arr = [1, 2, 3];
 let x = $(1);
 const y = $(3);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   try {
     if (x) {
       x = $ === 2;

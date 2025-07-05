@@ -14,7 +14,7 @@
 
 `````js filename=intro
 let x = 1;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   if ($) {
     $(x); // x=1 2
     continue;
@@ -33,7 +33,7 @@ $(x); // unreachable
 
 `````filename=intro
 let /*___4__*/ x = 1;
-while (/*___7__*/ $LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while (/*___7__*/ $LOOP_NO_UNROLLS_LEFT) {
   /*8~29*/ /*___10__*/ $continue: /*11~29*/ {
     if ($) {
       /*14~20*/ $(/*___18__*/ x);

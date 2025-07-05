@@ -27,7 +27,7 @@ const tmpMCCP /*:unknown*/ = $(`\$`);
 const tmpMCF /*:unknown*/ = tmpMCCO[tmpMCCP];
 const a /*:unknown*/ = $dotCall(tmpMCF, tmpMCCO, undefined, 1);
 const tmpForInGen /*:unknown*/ = $forIn(a);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForInNext /*:unknown*/ = tmpForInGen();
   const tmpIfTest /*:unknown*/ = tmpForInNext.done;
   if (tmpIfTest) {
@@ -70,7 +70,7 @@ const c = $( "$" );
 const d = b[ c ];
 const e = $dotCall( d, b, undefined, 1 );
 const f = $forIn( e );
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const g = f();
   const h = g.done;
   if (h) {
@@ -96,7 +96,7 @@ const tmpMCF = tmpMCCO[tmpMCCP];
 a = $dotCall(tmpMCF, tmpMCCO, undefined, 1);
 let tmpCalleeParam = a;
 const tmpForInGen = $forIn(a);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForInNext = tmpForInGen();
   const tmpIfTest = tmpForInNext.done;
   if (tmpIfTest) {

@@ -13,7 +13,7 @@
 
 `````js filename=intro
 const arr = [1, 2, 3, 4, 5];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) { // The refs inside a loop should not be inlined
+while ($LOOP_NO_UNROLLS_LEFT) { // The refs inside a loop should not be inlined
   const test = $('never');
   if (test) {
     break;
@@ -31,7 +31,7 @@ $(arr.slice(0));              // Don't let arr escape
 
 `````js filename=intro
 const arr /*:array*/ /*truthy*/ = [1, 2, 3, 4, 5];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const test /*:unknown*/ = $(`never`);
   if (test) {
     break;
@@ -66,7 +66,7 @@ With rename=true
 
 `````js filename=intro
 const a = [ 1, 2, 3, 4, 5 ];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const b = $( "never" );
   if (b) {
     break;
@@ -86,7 +86,7 @@ $( d );
 
 `````js filename=intro
 const arr = [1, 2, 3, 4, 5];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const test = $(`never`);
   if (test) {
     break;

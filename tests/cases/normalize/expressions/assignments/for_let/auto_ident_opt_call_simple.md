@@ -25,7 +25,7 @@ if (tmpIfTest) {
 } else {
   xyz = $(1);
 }
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $(xyz);
   $(1);
 }
@@ -60,7 +60,7 @@ if (a) {
 else {
   b = $( 1 );
 }
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $( b );
   $( 1 );
 }

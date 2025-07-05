@@ -16,7 +16,7 @@
     let B = `jhayon.vercel.app`;
     let one = 1;
     const ex = $('x');
-    while ($LOOP_UNROLL_5) {
+    while ($LOOP_UNROLLS_LEFT_5) {
       const test = one < 1;
         A = ex.length;
         const first = A[0];

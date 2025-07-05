@@ -10,7 +10,7 @@
 
 `````js filename=intro
 let f = function (a) {
-  [...$LOOP_DONE_UNROLLING_ALWAYS_TRUE];
+  [...$LOOP_NO_UNROLLS_LEFT];
   return undefined;
 };
 f();
@@ -21,7 +21,7 @@ f();
 
 
 `````js filename=intro
-[...$LOOP_DONE_UNROLLING_ALWAYS_TRUE];
+[...$LOOP_NO_UNROLLS_LEFT];
 `````
 
 
@@ -29,7 +29,7 @@ f();
 (This ought to be the final result)
 
 `````js filename=intro
-[...$LOOP_DONE_UNROLLING_ALWAYS_TRUE];
+[...$LOOP_NO_UNROLLS_LEFT];
 `````
 
 
@@ -37,7 +37,7 @@ f();
 With rename=true
 
 `````js filename=intro
-[ ...$LOOP_DONE_UNROLLING_ALWAYS_TRUE ];
+[ ...$LOOP_NO_UNROLLS_LEFT ];
 `````
 
 
@@ -48,7 +48,7 @@ With rename=true
 let f = function ($$0) {
   let a = $$0;
   debugger;
-  [...$LOOP_DONE_UNROLLING_ALWAYS_TRUE];
+  [...$LOOP_NO_UNROLLS_LEFT];
   return undefined;
 };
 f();

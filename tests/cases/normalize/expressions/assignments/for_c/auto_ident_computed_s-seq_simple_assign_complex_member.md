@@ -30,7 +30,7 @@ if (tmpIfTest) {
   const tmpNestedPropAssignRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam];
   b[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
   let tmpClusterSSA_a /*:unknown*/ = tmpNestedPropAssignRhs;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       const tmpNestedAssignComMemberProp$1 /*:unknown*/ = $(`c`);
@@ -99,7 +99,7 @@ if (a) {
   const f = d[ e ];
   b[c] = f;
   let g = f;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const h = $( 1 );
     if (h) {
       const i = $( "c" );

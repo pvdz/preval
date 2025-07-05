@@ -12,7 +12,7 @@
 
 `````js filename=intro
 const s = $(10);
-let count = $LOOP_UNROLL_10;
+let count = $LOOP_UNROLLS_LEFT_10;
 $('before');
 let wat = s | 10;
 let chk = $(true);
@@ -50,7 +50,7 @@ if (chk) {
   } else {
     count = false;
   }
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     if (count) {
       $(`inside`);
       tmpClusterSSA_wat = tmpClusterSSA_wat | 10;
@@ -121,7 +121,7 @@ if (c) {
   else {
     d = false;
   }
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     if (d) {
       $( "inside" );
       e = e | 10;

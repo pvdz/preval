@@ -26,7 +26,7 @@ const tmpCalleeParam$1 /*:object*/ /*truthy*/ = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam$1);
 const b /*:unknown*/ = tmpNestedAssignObjPatternRhs.b;
 const tmpForInGen /*:unknown*/ = $forIn(tmpNestedAssignObjPatternRhs);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForInNext /*:unknown*/ = tmpForInGen();
   const tmpIfTest /*:unknown*/ = tmpForInNext.done;
   if (tmpIfTest) {
@@ -69,7 +69,7 @@ const b = { b: a };
 const c = $( b );
 const d = c.b;
 const e = $forIn( c );
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const f = e();
   const g = f.done;
   if (g) {
@@ -100,7 +100,7 @@ const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$1);
 b = tmpNestedAssignObjPatternRhs.b;
 tmpCalleeParam = tmpNestedAssignObjPatternRhs;
 const tmpForInGen = $forIn(tmpNestedAssignObjPatternRhs);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForInNext = tmpForInGen();
   const tmpIfTest = tmpForInNext.done;
   if (tmpIfTest) {

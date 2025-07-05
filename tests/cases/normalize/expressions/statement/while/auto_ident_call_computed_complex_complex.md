@@ -27,7 +27,7 @@ const tmpMCCP /*:unknown*/ = $(`\$`);
 const tmpMCF /*:unknown*/ = tmpMCCO[tmpMCCP];
 const tmpIfTest /*:unknown*/ = $dotCall(tmpMCF, tmpMCCO, undefined, 1);
 if (tmpIfTest) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $(100);
     const tmpMCCO$1 /*:unknown*/ = $(b);
     const tmpMCCP$1 /*:unknown*/ = $(`\$`);
@@ -76,7 +76,7 @@ const c = $( "$" );
 const d = b[ c ];
 const e = $dotCall( d, b, undefined, 1 );
 if (e) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $( 100 );
     const f = $( a );
     const g = $( "$" );

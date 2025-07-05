@@ -27,7 +27,7 @@ while (true) {
 
 `````js filename=intro
 let x /*:boolean*/ = true;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   if (x) {
     x = false;
     $(`first`);
@@ -59,7 +59,7 @@ With rename=true
 
 `````js filename=intro
 let a = true;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   if (a) {
     a = false;
     $( "first" );

@@ -1070,7 +1070,7 @@ const TP$cloneX2$cloneX1 /*:(unused, unknown, unused, unknown, unknown)=>unknown
   let vNeX134 /*:unknown*/ = undefined;
   let wNeX70 /*:unknown*/ = undefined;
   let SSA_SNeX76 /*:unknown*/ = yNeX272;
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_NO_UNROLLS_LEFT) {
     const fooBinBothRhsX4240 /*:string*/ /*truthy*/ = typeof SSA_SNeX76;
     const fooIfTestX13134 /*:boolean*/ = `number` == fooBinBothRhsX4240;
     if (fooIfTestX13134) {
@@ -2778,7 +2778,7 @@ const c = function($$0,$$1,$$2,$$3,$$4 ) {
   let gg = undefined;
   let bo = undefined;
   let gy = f;
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_NO_UNROLLS_LEFT) {
     const gz = typeof gy;
     const ha = "number" == gz;
     if (ha) {

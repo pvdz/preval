@@ -24,7 +24,7 @@ $(a, b);
 const b /*:object*/ /*truthy*/ = { c: 1 };
 const tmpAssignRhsProp /*:unknown*/ = $(b);
 const xyz /*:unknown*/ = tmpAssignRhsProp.c;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $(xyz);
   $(1);
 }
@@ -50,7 +50,7 @@ With rename=true
 const a = { c: 1 };
 const b = $( a );
 const c = b.c;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $( c );
   $( 1 );
 }

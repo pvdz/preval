@@ -27,7 +27,7 @@ $(3);
 `````js filename=intro
 const tmpCalleeParam /*:object*/ /*truthy*/ = { a: 1 };
 const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForInNext /*:unknown*/ = tmpForInGen();
   const tmpIfTest /*:unknown*/ = tmpForInNext.done;
   if (tmpIfTest) {
@@ -71,7 +71,7 @@ With rename=true
 `````js filename=intro
 const a = { a: 1 };
 const b = $forIn( a );
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const c = b();
   const d = c.done;
   if (d) {
@@ -98,7 +98,7 @@ $( 3 );
 `````js filename=intro
 let tmpCalleeParam = { a: 1 };
 const tmpForInGen = $forIn(tmpCalleeParam);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForInNext = tmpForInGen();
   const tmpIfTest = tmpForInNext.done;
   if (tmpIfTest) {

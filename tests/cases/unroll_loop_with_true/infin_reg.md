@@ -45,7 +45,7 @@ $(11);
 $(12);
 $(13);
 let tmpClusterSSA_i$2 /*:number*/ = 14;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $(tmpClusterSSA_i$2);
   tmpClusterSSA_i$2 = tmpClusterSSA_i$2 + 1;
   const tmpClusterSSA_tst$1 /*:boolean*/ = tmpClusterSSA_i$2 > -5;
@@ -107,7 +107,7 @@ $( 11 );
 $( 12 );
 $( 13 );
 let a = 14;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $( a );
   a = a + 1;
   const b = a > -5;

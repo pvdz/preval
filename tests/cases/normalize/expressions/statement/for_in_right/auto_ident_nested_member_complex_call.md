@@ -33,7 +33,7 @@ const tmpInitAssignLhsComputedRhs$1 /*:unknown*/ = $(3);
 tmpInitAssignLhsComputedObj$1[tmpInitAssignLhsComputedProp$1] = tmpInitAssignLhsComputedRhs$1;
 tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = tmpInitAssignLhsComputedRhs$1;
 const tmpForInGen /*:unknown*/ = $forIn(tmpInitAssignLhsComputedRhs$1);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForInNext /*:unknown*/ = tmpForInGen();
   const tmpIfTest /*:unknown*/ = tmpForInNext.done;
   if (tmpIfTest) {
@@ -87,7 +87,7 @@ const g = $( 3 );
 e[f] = g;
 b[c] = g;
 const h = $forIn( g );
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const i = h();
   const j = i.done;
   if (j) {
@@ -123,7 +123,7 @@ const tmpInitAssignLhsComputedRhs = tmpInitAssignLhsComputedRhs$1;
 tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = tmpInitAssignLhsComputedRhs;
 let tmpCalleeParam = tmpInitAssignLhsComputedRhs;
 const tmpForInGen = $forIn(tmpInitAssignLhsComputedRhs);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForInNext = tmpForInGen();
   const tmpIfTest = tmpForInNext.done;
   if (tmpIfTest) {

@@ -13,7 +13,7 @@
 const arr = [1, 2, 3];
 let x = undefined;
 let y = 1;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   try {
     $(arr[0]);
     x = arr;
@@ -35,7 +35,7 @@ $(x, y);
 let x /*:unknown*/ = undefined;
 let y /*:unknown*/ /*truthy*/ = 1;
 const arr /*:array*/ /*truthy*/ = [1, 2, 3];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpCalleeParam /*:primitive*/ = arr[0];
   try {
     $(tmpCalleeParam);
@@ -87,7 +87,7 @@ With rename=true
 let a = undefined;
 let b = 1;
 const c = [ 1, 2, 3 ];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const d = c[ 0 ];
   try {
     $( d );
@@ -114,7 +114,7 @@ $( a, b );
 const arr = [1, 2, 3];
 let x = undefined;
 let y = 1;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   try {
     let tmpCalleeParam = arr[0];
     $(tmpCalleeParam);

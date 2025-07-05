@@ -35,7 +35,7 @@ let /*___5__*/ f = function () /*7*/ {
     debugger;
     let /*___12__*/ tmpCalleeParam = [10, 20];
     const /*___17__*/ tmpForOfGenNext = /*___19__*/ $forOf(/*___20__*/ tmpCalleeParam);
-    while (/*___22__*/ $LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    while (/*___22__*/ $LOOP_NO_UNROLLS_LEFT) {
       /*23~56*/ const /*___27__*/ tmpForOfNext = /*___29__*/ tmpForOfGenNext();
       const /*___31__*/ tmpIfTest = /*___33__*/ tmpForOfNext./*___34__*/ done;
       if (/*___36__*/ tmpIfTest) {

@@ -28,7 +28,7 @@ if (tmpIfTest) {
     const tmpCalleeParam /*:unknown*/ = $(1);
     $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam);
   }
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpIfTest$2 /*:unknown*/ = $(1);
     if (tmpIfTest$2) {
       const tmpChainElementCall$1 /*:unknown*/ = $($);
@@ -88,7 +88,7 @@ if (a) {
     const d = $( 1 );
     $dotCall( b, $, undefined, d );
   }
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const e = $( 1 );
     if (e) {
       const f = $( $ );

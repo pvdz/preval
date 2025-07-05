@@ -24,7 +24,7 @@ $(a, arg);
 const tmpUnaryArg /*:unknown*/ = $(1);
 const tmpCalleeParam /*:string*/ /*truthy*/ = typeof tmpUnaryArg;
 const tmpForOfGenNext /*:unknown*/ = $forOf(tmpCalleeParam);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
@@ -63,7 +63,7 @@ With rename=true
 const a = $( 1 );
 const b = typeof a;
 const c = $forOf( b );
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const d = c();
   const e = d.done;
   if (e) {
@@ -90,7 +90,7 @@ let a = { a: 999, b: 1000 };
 const tmpUnaryArg = $(arg);
 let tmpCalleeParam = typeof tmpUnaryArg;
 const tmpForOfGenNext = $forOf(tmpCalleeParam);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForOfNext = tmpForOfGenNext();
   const tmpIfTest = tmpForOfNext.done;
   if (tmpIfTest) {

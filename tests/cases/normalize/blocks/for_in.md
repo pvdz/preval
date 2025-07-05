@@ -19,7 +19,7 @@ for (x in $(1)) $(2);
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(1);
 const tmpForInGenNext /*:unknown*/ = $forIn(tmpCalleeParam);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForInNext /*:unknown*/ = tmpForInGenNext();
   const tmpIfTest /*:unknown*/ = tmpForInNext.done;
   if (tmpIfTest) {
@@ -55,7 +55,7 @@ With rename=true
 `````js filename=intro
 const a = $( 1 );
 const b = $forIn( a );
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const c = b();
   const d = c.done;
   if (d) {
@@ -75,7 +75,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````js filename=intro
 let tmpCalleeParam = $(1);
 const tmpForInGenNext = $forIn(tmpCalleeParam);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForInNext = tmpForInGenNext();
   const tmpIfTest = tmpForInNext.done;
   if (tmpIfTest) {

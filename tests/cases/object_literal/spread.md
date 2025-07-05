@@ -11,7 +11,7 @@
 `````js filename=intro
 const x = $({ a: 1, b: 2 });
 const b /*:object*/ = { x: 1, ...x };
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   b.x = 3;
   b.x = 3;
   $(1);
@@ -26,7 +26,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 const tmpCalleeParam /*:object*/ /*truthy*/ = { a: 1, b: 2 };
 const x /*:unknown*/ = $(tmpCalleeParam);
 const b /*:object*/ /*truthy*/ = { x: 1, ...x };
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   b.x = 3;
   b.x = 3;
   $(1);
@@ -61,7 +61,7 @@ const c = {
   x: 1,
   ... b,
 };
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   c.x = 3;
   c.x = 3;
   $( 1 );
@@ -76,7 +76,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 let tmpCalleeParam = { a: 1, b: 2 };
 const x = $(tmpCalleeParam);
 const b = { x: 1, ...x };
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   b.x = 3;
   b.x = 3;
   $(1);

@@ -20,7 +20,7 @@ $('after');
 
 
 `````js filename=intro
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpObjLitVal /*:unknown*/ = $(1);
   const tmpObjLitVal$1 /*:unknown*/ = $(2);
   const tmpCalleeParam /*:object*/ /*truthy*/ = { a: tmpObjLitVal, b: tmpObjLitVal$1 };
@@ -49,7 +49,7 @@ while (true) {
 With rename=true
 
 `````js filename=intro
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const a = $( 1 );
   const b = $( 2 );
   const c = {

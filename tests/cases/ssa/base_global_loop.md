@@ -32,7 +32,7 @@ const tmpIfTest /*:boolean*/ = tmpClusterSSA_x > 5;
 if (tmpIfTest) {
   $(tmpClusterSSA_x);
 } else {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     tmpClusterSSA_x = tmpClusterSSA_x + 1;
     $(tmpClusterSSA_x);
     const tmpIfTest$1 /*:boolean*/ = tmpClusterSSA_x > 5;
@@ -83,7 +83,7 @@ if (d) {
   $( c );
 }
 else {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     c = c + 1;
     $( c );
     const e = c > 5;

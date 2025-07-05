@@ -30,7 +30,7 @@ const f /*:()=>undefined*/ = function () {
     return undefined;
   } else {
     let tmpClusterSSA_tmpLambdaFindIndexCounter /*:number*/ = 1;
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       const tmpLambdaFindIndexTest$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaFindIndexCounter < 3;
       if (tmpLambdaFindIndexTest$1) {
         const tmpLambdaFindIndexVal$1 /*:primitive*/ = arr[tmpClusterSSA_tmpLambdaFindIndexCounter];
@@ -99,7 +99,7 @@ const a = function() {
   }
   else {
     let d = 1;
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       const e = d < 3;
       if (e) {
         const f = b[ d ];

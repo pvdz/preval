@@ -27,7 +27,7 @@ $(100);
 const b /*:object*/ /*truthy*/ = { c: $ };
 const tmpClusterSSA_tmpIfTest /*:unknown*/ = $dotCall($, b, `c`, 1);
 if (tmpClusterSSA_tmpIfTest) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $(100);
     const tmpChainElementObject$1 /*:unknown*/ = b.c;
     const tmpClusterSSA_tmpIfTest$1 /*:unknown*/ = $dotCall(tmpChainElementObject$1, b, `c`, 1);
@@ -69,7 +69,7 @@ $( 100 );
 const a = { c: $ };
 const b = $dotCall( $, a, "c", 1 );
 if (b) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $( 100 );
     const c = a.c;
     const d = $dotCall( c, a, "c", 1 );

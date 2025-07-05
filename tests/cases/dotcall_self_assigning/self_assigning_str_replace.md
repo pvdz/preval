@@ -48,7 +48,7 @@ $(str);
 let str /*:string*/ = `var 44=["\\13\\17\\31\\8\\12\\29\\21\\22\\7\\16\\8\\7\\9`;
 let tmpClusterSSA_count$1 /*:number*/ = 66;
 const arr /*:array*/ /*truthy*/ = [``, ``, ``, ``, ``, ``, ``, `x5C`, `x35`, `x36`, ``, `x31`];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpPostUpdArgIdent$2 /*:number*/ = tmpClusterSSA_count$1;
   tmpClusterSSA_count$1 = tmpClusterSSA_count$1 - 1;
   if (tmpPostUpdArgIdent$2) {
@@ -96,7 +96,7 @@ With rename=true
 let a = "var 44=[\"\\13\\17\\31\\8\\12\\29\\21\\22\\7\\16\\8\\7\\9";
 let b = 66;
 const c = [ "", "", "", "", "", "", "", "x5C", "x35", "x36", "", "x31" ];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const d = b;
   b = b - 1;
   if (d) {

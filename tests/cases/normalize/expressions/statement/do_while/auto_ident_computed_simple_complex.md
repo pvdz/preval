@@ -28,7 +28,7 @@ const tmpCalleeParam /*:unknown*/ = $(`c`);
 const b /*:object*/ /*truthy*/ = { c: 1 };
 const tmpIfTest /*:unknown*/ = b[tmpCalleeParam];
 if (tmpIfTest) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $(100);
     const tmpCalleeParam$1 /*:unknown*/ = $(`c`);
     const tmpIfTest$1 /*:unknown*/ = b[tmpCalleeParam$1];
@@ -73,7 +73,7 @@ const a = $( "c" );
 const b = { c: 1 };
 const c = b[ a ];
 if (c) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $( 100 );
     const d = $( "c" );
     const e = b[ d ];

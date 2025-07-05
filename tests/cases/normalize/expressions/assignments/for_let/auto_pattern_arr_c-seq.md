@@ -26,7 +26,7 @@ $(20);
 const tmpCalleeParam /*:array*/ /*truthy*/ = [1, 2];
 const tmpNestedAssignArrPatternRhs /*:unknown*/ = $(tmpCalleeParam);
 [...tmpNestedAssignArrPatternRhs];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $(tmpNestedAssignArrPatternRhs);
   $(1);
 }
@@ -64,7 +64,7 @@ $( 20 );
 const b = [ 1, 2 ];
 const c = $( b );
 [ ...c ];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $( c );
   $( 1 );
 }

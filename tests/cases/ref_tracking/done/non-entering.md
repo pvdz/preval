@@ -50,7 +50,7 @@ let /*___7__*/ a = {};
 let /*___10__*/ tmpCalleeParam$1 = [];
 let /*___13__*/ tmpCalleeParam = $(/*___16__*/ tmpCalleeParam$1);
 const /*___18__*/ tmpForOfGen = /*___20__*/ $forOf(/*___21__*/ tmpCalleeParam);
-while (/*___23__*/ $LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while (/*___23__*/ $LOOP_NO_UNROLLS_LEFT) {
   /*24~46*/ const /*___28__*/ tmpForOfNext = /*___30__*/ tmpForOfGen();
   const /*___32__*/ tmpIfTest = /*___34__*/ tmpForOfNext./*___35__*/ done;
   if (/*___37__*/ tmpIfTest) {

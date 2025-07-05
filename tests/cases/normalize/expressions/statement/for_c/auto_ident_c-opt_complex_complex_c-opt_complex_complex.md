@@ -38,7 +38,7 @@ if (tmpIfTest) {
       tmpChainElementObject[tmpChainRootComputed$1];
     }
   }
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpIfTest$2 /*:unknown*/ = $(1);
     if (tmpIfTest$2) {
       const tmpChainElementCall$1 /*:unknown*/ = $(b);
@@ -126,7 +126,7 @@ if (a) {
       g[ i ];
     }
   }
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const j = $( 1 );
     if (j) {
       const k = $( c );

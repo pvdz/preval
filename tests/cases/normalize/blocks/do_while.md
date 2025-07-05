@@ -21,7 +21,7 @@ while ($(2));
 $(1);
 const tmpIfTest /*:unknown*/ = $(2);
 if (tmpIfTest) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $(1);
     const tmpIfTest$1 /*:unknown*/ = $(2);
     if (tmpIfTest$1) {
@@ -57,7 +57,7 @@ With rename=true
 $( 1 );
 const a = $( 2 );
 if (a) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $( 1 );
     const b = $( 2 );
     if (b) {

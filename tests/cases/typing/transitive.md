@@ -10,7 +10,7 @@
 
 `````js filename=intro
 let original_target /*:number*/ /*truthy*/ = 27;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const alias_target /*:unknown*/ = original_target;
   $(original_target);
   const opaque_test /*:boolean*/ = $(true);
@@ -28,7 +28,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 `````js filename=intro
 let original_target /*:number*/ /*truthy*/ = 27;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const alias_target /*:number*/ /*truthy*/ = original_target;
   $(original_target);
   const opaque_test /*:unknown*/ = $(true);
@@ -63,7 +63,7 @@ With rename=true
 
 `````js filename=intro
 let a = 27;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const b = a;
   $( a );
   const c = $( true );
@@ -82,7 +82,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 `````js filename=intro
 let original_target = 27;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const alias_target = original_target;
   $(original_target);
   const opaque_test = $(true);

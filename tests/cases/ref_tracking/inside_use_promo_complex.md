@@ -14,7 +14,7 @@ const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam);
 const tmpClusterSSA_a /*:unknown*/ = tmpNestedAssignObjPatternRhs.a;
 if (tmpNestedAssignObjPatternRhs) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $(100);
     const tmpCalleeParam$1 /*:object*/ = { a: 1, b: 2 };
     const tmpNestedAssignObjPatternRhs$1 /*:unknown*/ = $(tmpCalleeParam$1);
@@ -40,7 +40,7 @@ const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam);
 const tmpClusterSSA_a /*:unknown*/ = tmpNestedAssignObjPatternRhs.a;
 if (tmpNestedAssignObjPatternRhs) {
   let a /*:unknown*/ = 999;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $(100);
     const tmpCalleeParam$1 /*:object*/ /*truthy*/ = { a: 1, b: 2 };
     const tmpNestedAssignObjPatternRhs$1 /*:unknown*/ = $(tmpCalleeParam$1);
@@ -92,7 +92,7 @@ const b = $( a );
 const c = b.a;
 if (b) {
   let d = 999;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $( 100 );
     const e = {
       a: 1,
@@ -124,7 +124,7 @@ const tmpCalleeParam = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
 const tmpClusterSSA_a = tmpNestedAssignObjPatternRhs.a;
 if (tmpNestedAssignObjPatternRhs) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $(100);
     const tmpCalleeParam$1 = { a: 1, b: 2 };
     const tmpNestedAssignObjPatternRhs$1 = $(tmpCalleeParam$1);

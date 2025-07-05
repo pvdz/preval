@@ -12,7 +12,7 @@
 `````js filename=intro
 const arr = [1, 2, 3];
 const obj = {'1,2,3': 'pass'}
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   try {
     arr.reverse();
     $(obj[arr]);
@@ -29,7 +29,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````js filename=intro
 const arr /*:array*/ /*truthy*/ = [1, 2, 3];
 const obj /*:object*/ /*truthy*/ = { [`1,2,3`]: `pass` };
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   try {
     $dotCall($array_reverse, arr, `reverse`);
     const tmpCalleeParam /*:unknown*/ = obj[arr];
@@ -64,7 +64,7 @@ With rename=true
 `````js filename=intro
 const a = [ 1, 2, 3 ];
 const b = { [ "1,2,3" ]: "pass" };
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   try {
     $dotCall( $array_reverse, a, "reverse" );
     const c = b[ a ];
@@ -83,7 +83,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````js filename=intro
 const arr = [1, 2, 3];
 const obj = { [`1,2,3`]: `pass` };
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   try {
     const tmpMCF = arr.reverse;
     $dotCall(tmpMCF, arr, `reverse`);

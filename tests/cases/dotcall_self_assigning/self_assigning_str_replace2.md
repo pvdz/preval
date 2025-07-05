@@ -16,7 +16,7 @@ and see if the resulting function returns the same primitive. if so, we would ha
 let count /*:number*/ = 77;
 let str = `var 44=["\\13\\17\\31\\8\\12\\29\\21\\22\\7\\16\\8\\7\\9`;
 const arr /*:array*/ = [``, ``, ``, ``, ``, ``, ``, `x5C`, `x35`, `x36`, ``, `x31`];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpPostUpdArgIdent$1 = count;
   count = count - 1;
   if (tmpPostUpdArgIdent$1) {
@@ -42,7 +42,7 @@ $(str);
 let count /*:number*/ = 77;
 let str /*:string*/ = `var 44=["\\13\\17\\31\\8\\12\\29\\21\\22\\7\\16\\8\\7\\9`;
 const arr /*:array*/ /*truthy*/ = [``, ``, ``, ``, ``, ``, ``, `x5C`, `x35`, `x36`, ``, `x31`];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpPostUpdArgIdent$1 /*:number*/ = count;
   count = count - 1;
   if (tmpPostUpdArgIdent$1) {
@@ -91,7 +91,7 @@ With rename=true
 let a = 77;
 let b = "var 44=[\"\\13\\17\\31\\8\\12\\29\\21\\22\\7\\16\\8\\7\\9";
 const c = [ "", "", "", "", "", "", "", "x5C", "x35", "x36", "", "x31" ];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const d = a;
   a = a - 1;
   if (d) {
@@ -117,7 +117,7 @@ $( b );
 let count = 77;
 let str = `var 44=["\\13\\17\\31\\8\\12\\29\\21\\22\\7\\16\\8\\7\\9`;
 const arr = [``, ``, ``, ``, ``, ``, ``, `x5C`, `x35`, `x36`, ``, `x31`];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpPostUpdArgIdent$1 = count;
   count = count - 1;
   if (tmpPostUpdArgIdent$1) {

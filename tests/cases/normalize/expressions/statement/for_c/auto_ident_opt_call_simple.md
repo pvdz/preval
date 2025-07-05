@@ -26,7 +26,7 @@ if (tmpIfTest) {
   } else {
     $(1);
   }
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpIfTest$2 /*:unknown*/ = $(1);
     if (tmpIfTest$2) {
       const tmpIfTest$4 /*:boolean*/ = $ == null;
@@ -80,7 +80,7 @@ if (a) {
   else {
     $( 1 );
   }
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const c = $( 1 );
     if (c) {
       const d = $ == null;

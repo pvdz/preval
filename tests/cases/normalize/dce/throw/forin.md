@@ -85,7 +85,7 @@ let f = function () {
   debugger;
   let tmpCalleeParam = { a: 1, b: 2 };
   const tmpForInGen = $forIn(tmpCalleeParam);
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_NO_UNROLLS_LEFT) {
     const tmpForInNext = tmpForInGen();
     const tmpIfTest = tmpForInNext.done;
     if (tmpIfTest) {

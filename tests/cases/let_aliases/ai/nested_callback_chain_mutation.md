@@ -38,7 +38,7 @@ while (true) {
       x = `changed`;
       let tmpClusterSSA_tmpLambdaForeachCounter /*:number*/ = 1;
       const tmpMCOO$1 /*:array*/ /*truthy*/ = [2];
-      while ($LOOP_UNROLL_10) {
+      while ($LOOP_UNROLLS_LEFT_10) {
         const tmpLambdaForeachCounterTest$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaForeachCounter < 1;
         if (tmpLambdaForeachCounterTest$1) {
           0 in tmpMCOO$1;
@@ -112,7 +112,7 @@ while (true) {
       a = "changed";
       let h = 1;
       const i = [ 2 ];
-      while ($LOOP_UNROLL_10) {
+      while ($LOOP_UNROLLS_LEFT_10) {
         const j = h < 1;
         if (j) {
           0 in i;

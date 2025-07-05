@@ -29,7 +29,7 @@ if (tmpIfTest) {
   a = $dotCall(tmpChainElementCall, $, undefined, 1);
   tmpForInGen = $forIn(a);
 }
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForInNext /*:unknown*/ = tmpForInGen();
   const tmpIfTest$1 /*:unknown*/ = tmpForInNext.done;
   if (tmpIfTest$1) {
@@ -83,7 +83,7 @@ else {
   a = $dotCall( b, $, undefined, 1 );
   d = $forIn( a );
 }
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const e = d();
   const f = e.done;
   if (f) {
@@ -113,7 +113,7 @@ if (tmpIfTest) {
 }
 let tmpCalleeParam = a;
 const tmpForInGen = $forIn(a);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForInNext = tmpForInGen();
   const tmpIfTest$1 = tmpForInNext.done;
   if (tmpIfTest$1) {

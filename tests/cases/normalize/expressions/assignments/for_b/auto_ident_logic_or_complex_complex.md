@@ -164,7 +164,7 @@ loopStop: {
       break loopStop;
     }
   }
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_NO_UNROLLS_LEFT) {
     const tmpCalleeParam$22 /*:unknown*/ = $(0);
     const tmpClusterSSA_a$11 /*:unknown*/ = $(tmpCalleeParam$22);
     if (tmpClusterSSA_a$11) {
@@ -488,7 +488,7 @@ loopStop: {
       break loopStop;
     }
   }
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_NO_UNROLLS_LEFT) {
     const bi = $( 0 );
     const bj = $( bi );
     if (bj) {

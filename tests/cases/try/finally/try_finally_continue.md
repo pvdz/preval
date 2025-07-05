@@ -9,7 +9,7 @@
 ## Input
 
 `````js filename=intro
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   try {
     $(1);
   } finally {
@@ -25,7 +25,7 @@ $(3);
 
 
 `````js filename=intro
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   try {
     $(1);
   } catch ($finalImplicit) {}
@@ -51,7 +51,7 @@ while (true) {
 With rename=true
 
 `````js filename=intro
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   try {
     $( 1 );
   }
@@ -67,7 +67,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 (This is what phase1 received the first time)
 
 `````js filename=intro
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   let $implicitThrow = false;
   let $finalCatchArg = undefined;
   try {

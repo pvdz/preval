@@ -8,8 +8,8 @@
 
 `````js filename=intro
 let x = 1;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) { // infinite
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) { // infinite
+  while ($LOOP_NO_UNROLLS_LEFT) {
     if ($) {
       $(x);
     } else {
@@ -87,7 +87,7 @@ $(x); // <- DCE me
 
 `````js filename=intro
 let x /*:number*/ /*truthy*/ = 1;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $(x);
   if ($) {
   } else {
@@ -116,7 +116,7 @@ With rename=true
 
 `````js filename=intro
 let a = 1;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $( a );
   if ($) {
 
@@ -133,7 +133,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 `````js filename=intro
 let x = 1;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   nestedLoop: {
     if ($) {
       $(x);

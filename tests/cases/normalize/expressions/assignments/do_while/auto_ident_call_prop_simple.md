@@ -28,7 +28,7 @@ const b /*:object*/ /*truthy*/ = { $: $ };
 const tmpClusterSSA_a /*:unknown*/ = $dotCall($, b, `\$`, 1);
 if (tmpClusterSSA_a) {
   let a /*:unknown*/ = undefined;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $(100);
     const tmpMCF$1 /*:unknown*/ = b.$;
     a = $dotCall(tmpMCF$1, b, `\$`, 1);
@@ -76,7 +76,7 @@ const a = { $: $ };
 const b = $dotCall( $, a, "$", 1 );
 if (b) {
   let c = undefined;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $( 100 );
     const d = a.$;
     c = $dotCall( d, a, "$", 1 );

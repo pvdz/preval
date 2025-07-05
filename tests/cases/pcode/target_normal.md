@@ -118,7 +118,7 @@ $(s$9);
 let tmpClusterSSA_i$2 /*:number*/ = 466;
 const s$10 /*:string*/ = pcode(466);
 $(s$10);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   tmpClusterSSA_i$2 = tmpClusterSSA_i$2 - 1;
   const tmpIfTest$3 /*:boolean*/ = tmpClusterSSA_i$2 > 0;
   if (tmpIfTest$3) {
@@ -266,7 +266,7 @@ $( bj );
 let bk = 466;
 const bl = q( 466 );
 $( bl );
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   bk = bk - 1;
   const bm = bk > 0;
   if (bm) {

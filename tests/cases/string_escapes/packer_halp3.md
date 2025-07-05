@@ -139,7 +139,7 @@ const k /*:array*/ /*truthy*/ = [
   `u0020g`,
   `not_expr`,
 ];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpPostUpdArgIdent$1 /*:number*/ = tmpClusterSSA_c$2;
   tmpClusterSSA_c$2 = tmpClusterSSA_c$2 - 1;
   if (tmpPostUpdArgIdent$1) {
@@ -384,7 +384,7 @@ let bg = 41;
 const bh = k( 41 );
 j[bh] = "eval";
 const bi = [ undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "function", "return", "if", "replace", "while", "eval", "String", "new", "RegExp", "36", "split", "toString", "10", "x20f", "u0020g", "not_expr" ];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const bj = bg;
   bg = bg - 1;
   if (bj) {

@@ -23,7 +23,7 @@ $('woohoo');
 
 
 `````js filename=intro
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpIfTest /*:unknown*/ = $(false);
   if (tmpIfTest) {
     $(`uhoh`);
@@ -52,7 +52,7 @@ while (true) {
 With rename=true
 
 `````js filename=intro
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const a = $( false );
   if (a) {
     $( "uhoh" );

@@ -20,7 +20,7 @@ if (test) {
   chk = false;
 }
 if (chk) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     if (test) {
       const y = $(1);
       test = $(y);
@@ -48,7 +48,7 @@ $(a);
 const x /*:unknown*/ = $(1);
 const test /*:unknown*/ = $(x);
 if (test) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $(100);
     const y /*:unknown*/ = $(1);
     const tmpClusterSSA_test /*:unknown*/ = $(y);
@@ -87,7 +87,7 @@ With rename=true
 const a = $( 1 );
 const b = $( a );
 if (b) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $( 100 );
     const c = $( 1 );
     const d = $( c );
@@ -121,7 +121,7 @@ if (test) {
   chk = false;
 }
 if (chk) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     if (test) {
       const y = $(1);
       test = $(y);

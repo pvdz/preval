@@ -34,7 +34,7 @@ tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = tmpInitAssignLhsComp
 tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpInitAssignLhsComputedRhs;
 const tmpIfTest /*:unknown*/ = $(0);
 if (tmpIfTest) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpIfTest$1 /*:unknown*/ = $(0);
     if (tmpIfTest$1) {
     } else {
@@ -87,7 +87,7 @@ e[f] = g;
 b[c] = g;
 const h = $( 0 );
 if (h) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const i = $( 0 );
     if (i) {
 

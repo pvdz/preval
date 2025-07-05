@@ -24,7 +24,7 @@ $(a, b);
 const tmpCalleeParam /*:unknown*/ = $(`c`);
 const b /*:object*/ /*truthy*/ = { c: 1 };
 const xyz /*:unknown*/ = b[tmpCalleeParam];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $(xyz);
   $(1);
 }
@@ -51,7 +51,7 @@ With rename=true
 const a = $( "c" );
 const b = { c: 1 };
 const c = b[ a ];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $( c );
   $( 1 );
 }

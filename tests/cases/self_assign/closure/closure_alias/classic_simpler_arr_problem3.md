@@ -50,7 +50,7 @@ let f /*:(unknown)=>unknown*/ = function ($$0) {
   return tmpReturnArg;
 };
 const g /*:function*/ /*truthy*/ = f;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const arr /*:array*/ /*truthy*/ = [];
   const a /*:unknown*/ = g(arr);
   const b /*:unknown*/ = g(arr);
@@ -97,7 +97,7 @@ let a = function($$0 ) {
   return e;
 };
 const f = a;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const g = [];
   const h = f( g );
   const i = f( g );

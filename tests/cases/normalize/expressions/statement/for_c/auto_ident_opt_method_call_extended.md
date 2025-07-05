@@ -25,7 +25,7 @@ const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   const tmpObjLitVal$1 /*:object*/ /*truthy*/ = { e: $ };
   $dotCall($, tmpObjLitVal$1, `e`, 1);
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       const tmpChainElementObject$1 /*:unknown*/ = tmpObjLitVal$1.e;
@@ -68,7 +68,7 @@ const a = $( 1 );
 if (a) {
   const b = { e: $ };
   $dotCall( $, b, "e", 1 );
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const c = $( 1 );
     if (c) {
       const d = b.e;

@@ -119,7 +119,7 @@ const tmpObjLitVal$159 /*:()=>undefined*/ = function () {
   }
   if (tmpIfTest$5467) {
     let tmpClusterSSA_p$171 /*:string*/ = $frfr(tmpFree);
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       if (tmpIfTest$5467) {
         const tmpBinBothRhs$1 /*:string*/ = $frfr(tmpFree$1, $, $);
         tmpClusterSSA_p$171 = `${tmpClusterSSA_p$171}${tmpBinBothRhs$1}`;
@@ -241,7 +241,7 @@ const m = function() {
   }
   if (tmpIfTest$5467) {
     let u = d( a );
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       if (tmpIfTest$5467) {
         const v = d( e, $, $ );
         u = `${u}${v}`;

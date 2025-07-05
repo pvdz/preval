@@ -13,7 +13,7 @@
 
 `````js filename=intro
 const arr = [1, 2, 3];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const x = $(1);
   try {
     if (x) break;
@@ -56,7 +56,7 @@ $( 1 );
 
 `````js filename=intro
 const arr = [1, 2, 3];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const x = $(1);
   try {
     if (x) {

@@ -30,7 +30,7 @@ const tmpUpdInc /*:number*/ = tmpUpdNum + 1;
 tmpUpdObj.x = tmpUpdInc;
 const tmpIfTest /*:unknown*/ = $(0);
 if (tmpIfTest) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpIfTest$1 /*:unknown*/ = $(0);
     if (tmpIfTest$1) {
     } else {
@@ -75,7 +75,7 @@ const f = e + 1;
 c.x = f;
 const g = $( 0 );
 if (g) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const h = $( 0 );
     if (h) {
 

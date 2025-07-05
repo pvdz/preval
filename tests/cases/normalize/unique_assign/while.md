@@ -26,7 +26,7 @@ const a /*:unknown*/ = $(1);
 const tmpIfTest /*:boolean*/ = a < 10;
 if (tmpIfTest) {
   let tmpClusterSSA_a /*:primitive*/ = a + 1;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $(tmpClusterSSA_a);
     const tmpIfTest$1 /*:boolean*/ = tmpClusterSSA_a < 10;
     if (tmpIfTest$1) {
@@ -72,7 +72,7 @@ const a = $( 1 );
 const b = a < 10;
 if (b) {
   let c = a + 1;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $( c );
     const d = c < 10;
     if (d) {

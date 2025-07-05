@@ -151,7 +151,7 @@ loopStop: {
   } catch (e$10) {
     $(`error`);
   }
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_NO_UNROLLS_LEFT) {
     try {
       const test$11 /*:unknown*/ = $(`first`);
       $(`second`);
@@ -459,7 +459,7 @@ loopStop: {
   catch (v) {
     $( "error" );
   }
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_NO_UNROLLS_LEFT) {
     try {
       const w = $( "first" );
       $( "second" );

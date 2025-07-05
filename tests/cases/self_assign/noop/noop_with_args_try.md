@@ -26,7 +26,7 @@ let the_self_closing_func/*:(unknown, unknown)=>unknown*/ = function($$0, $$1) {
   return once;
 };
 const the_scf_alias/*:unknown*/ = the_self_closing_func;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   try {
     const a/*:unknown*/ = the_scf_alias(2);
     const b/*:number*/ = $Number_parseInt(a);
@@ -51,7 +51,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 `````js filename=intro
 const main_data_arr /*:array*/ /*truthy*/ = [`this`, `contents`, `is`, `not`, `relevant`, `here`];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmp2 /*:unknown*/ = main_data_arr[-385];
   const b /*:number*/ = $Number_parseInt(tmp2);
   try {
@@ -99,7 +99,7 @@ With rename=true
 
 `````js filename=intro
 const a = [ "this", "contents", "is", "not", "relevant", "here" ];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const b = a[ -385 ];
   const c = $Number_parseInt( b );
   try {
@@ -145,7 +145,7 @@ let the_self_closing_func = function ($$0, $$1) {
   return once;
 };
 const the_scf_alias = the_self_closing_func;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   try {
     const a = the_scf_alias(2);
     const b = $Number_parseInt(a);

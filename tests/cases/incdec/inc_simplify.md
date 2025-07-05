@@ -19,7 +19,7 @@ let b = 0;
 let c = {valueOf: () => { $('c flag now:', flag); }};
 let d = {valueOf: () => { $('d flag now:', flag); }};
 let flag = 0;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   if (flag < 10) {
     
     flag = a++;
@@ -61,7 +61,7 @@ const tmpObjLitVal$1 /*:()=>undefined*/ = function () {
 };
 let d /*:unknown*/ = { valueOf: tmpObjLitVal$1 };
 let flag /*:unknown*/ = 0;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpIfTest /*:boolean*/ = flag < 10;
   if (tmpIfTest) {
     const tmpPostUpdArgIdent /*:number*/ = a;
@@ -145,7 +145,7 @@ const f = function() {
 };
 let g = { valueOf: f };
 let d = 0;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const h = d < 10;
   if (h) {
     const i = a;
@@ -191,7 +191,7 @@ const tmpObjLitVal$1 = function () {
 };
 let d = { valueOf: tmpObjLitVal$1 };
 let flag = 0;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpIfTest = flag < 10;
   if (tmpIfTest) {
     const tmpPostUpdArgIdent = $coerce(a, `number`);

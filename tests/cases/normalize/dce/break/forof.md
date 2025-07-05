@@ -35,7 +35,7 @@ if (tmpIfTest) {
   } else {
     tmpForOfNext.value;
   }
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpIfTest$2 /*:unknown*/ = $(true);
     if (tmpIfTest$2) {
       const tmpCalleeParam$1 /*:array*/ /*truthy*/ = [10, 20];
@@ -101,7 +101,7 @@ if (a) {
   else {
     d.value;
   }
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const f = $( true );
     if (f) {
       const g = [ 10, 20 ];
@@ -136,7 +136,7 @@ while (true) {
   if (tmpIfTest) {
     let tmpCalleeParam = [10, 20];
     const tmpForOfGenNext = $forOf(tmpCalleeParam);
-    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    while ($LOOP_NO_UNROLLS_LEFT) {
       const tmpForOfNext = tmpForOfGenNext();
       const tmpIfTest$1 = tmpForOfNext.done;
       if (tmpIfTest$1) {

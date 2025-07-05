@@ -1127,7 +1127,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             if (isNonBoolLoopTrue(enode)) {
               todo('this implies a bug and we should prevent it; a');
               rule('Any usage of the unroll constants as array literal should become `true`');
-              example('x = + $LOOP_DONE_UNROLLING_ALWAYS_TRUE;', 'x = + true');
+              example('x = + $LOOP_NO_UNROLLS_LEFT;', 'x = + true');
               before(body[i]);
 
               node.elements[n] = AST.tru();
@@ -2101,7 +2101,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
         if (isNonBoolLoopTrue(lhs)) {
           todo('this implies a bug and we should prevent it; b');
           rule('Any usage of the unroll constants that is not a while-test should become `true`');
-          example('x = $LOOP_DONE_UNROLLING_ALWAYS_TRUE;', 'x = true');
+          example('x = $LOOP_NO_UNROLLS_LEFT;', 'x = true');
           before(body[i]);
 
           body[i] = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, AST.tru());
@@ -2216,7 +2216,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
         if (isNonBoolLoopTrue(node.argument)) {
           todo('this implies a bug and we should prevent it; c');
           rule('Any usage of the unroll constants as arg of await should become `true`');
-          example('x = + $LOOP_DONE_UNROLLING_ALWAYS_TRUE;', 'x = + true');
+          example('x = + $LOOP_NO_UNROLLS_LEFT;', 'x = + true');
           before(body[i]);
 
           node.argument = AST.tru();
@@ -2919,7 +2919,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
         if (isNonBoolLoopTrue(node.left)) {
           todo('this implies a bug and we should prevent it; d');
           rule('Any usage of the unroll constants as lhs of binary expression should become `true`');
-          example('x = $LOOP_DONE_UNROLLING_ALWAYS_TRUE + 1;', 'x = true + 1');
+          example('x = $LOOP_NO_UNROLLS_LEFT + 1;', 'x = true + 1');
           before(body[i]);
 
           node.left = AST.tru();
@@ -2930,7 +2930,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
         if (isNonBoolLoopTrue(node.right)) {
           todo('this implies a bug and we should prevent it; e');
           rule('Any usage of the unroll constants as rhs of binary expression should become `true`');
-          example('x = 1 + $LOOP_DONE_UNROLLING_ALWAYS_TRUE;', 'x = 1 + true');
+          example('x = 1 + $LOOP_NO_UNROLLS_LEFT;', 'x = 1 + true');
           before(body[i]);
 
           node.right = AST.tru();
@@ -10552,7 +10552,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           if (isNonBoolLoopTrue(argNode)) {
             todo('this implies a bug and we should prevent it; f');
             rule('A call arg that is the special infinite loop `true` value can just be `true`');
-            example('$($LOOP_DONE_UNROLLING_ALWAYS_TRUE)', '$(true);');
+            example('$($LOOP_NO_UNROLLS_LEFT)', '$(true);');
             before(body[i]);
 
             node.arguments[n] = AST.tru();
@@ -11316,7 +11316,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
         ) {
           todo('this implies a bug and we should prevent it; g');
           rule('Any usage of the unroll constants that is not the while-test should become `true`');
-          example('x = $LOOP_DONE_UNROLLING_ALWAYS_TRUE;', 'x = true');
+          example('x = $LOOP_NO_UNROLLS_LEFT;', 'x = true');
           before(body[i]);
 
           const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, AST.tru());
@@ -12253,7 +12253,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
         if (node.computed && isNonBoolLoopTrue(node.property)) {
           todo('this implies a bug and we should prevent it; h');
           rule('Any usage of the unroll constants that is not a while-test should become `true`');
-          example('x = $LOOP_DONE_UNROLLING_ALWAYS_TRUE;', 'x = true');
+          example('x = $LOOP_NO_UNROLLS_LEFT;', 'x = true');
           before(body[i]);
 
           node.property = AST.tru();
@@ -12415,7 +12415,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           if (isNonBoolLoopTrue(argNode)) {
             todo('this implies a bug and we should prevent it; j');
             rule('A call arg that is the special infinite loop `true` value can just be `true`');
-            example('$($LOOP_DONE_UNROLLING_ALWAYS_TRUE)', '$(true);');
+            example('$($LOOP_NO_UNROLLS_LEFT)', '$(true);');
             before(body[i]);
 
             node.arguments[n] = AST.tru();
@@ -12548,7 +12548,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             if (pnode.computed && isNonBoolLoopTrue(pnode.key)) {
               todo('this implies a bug and we should prevent it; k');
               rule('Any usage of the unroll constants as obj literal property value should become `true`');
-              example('x = + $LOOP_DONE_UNROLLING_ALWAYS_TRUE;', 'x = + true');
+              example('x = + $LOOP_NO_UNROLLS_LEFT;', 'x = + true');
               before(body[i]);
 
               pnode.key = AST.tru();
@@ -12561,7 +12561,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             if (isNonBoolLoopTrue(pnode.value)) {
               todo('this implies a bug and we should prevent it; l');
               rule('Any usage of the unroll constants as obj literal property value should become `true`');
-              example('x = + $LOOP_DONE_UNROLLING_ALWAYS_TRUE;', 'x = + true');
+              example('x = + $LOOP_NO_UNROLLS_LEFT;', 'x = + true');
               before(body[i]);
 
               pnode.value = AST.tru();
@@ -13539,7 +13539,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
         if (isNonBoolLoopTrue(node.argument)) {
           todo('this implies a bug and we should prevent it; m');
           rule('Any usage of the unroll constants as arg of a unary expression should become `true`');
-          example('x = + $LOOP_DONE_UNROLLING_ALWAYS_TRUE;', 'x = + true');
+          example('x = + $LOOP_NO_UNROLLS_LEFT;', 'x = + true');
           before(body[i]);
 
           node.argument = AST.tru();
@@ -13763,7 +13763,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
         if (isNonBoolLoopTrue(node.argument)) {
           todo('this implies a bug and we should prevent it; n');
           rule('Any usage of the unroll constants as arg of await should become `true`');
-          example('x = + $LOOP_DONE_UNROLLING_ALWAYS_TRUE;', 'x = + true');
+          example('x = + $LOOP_NO_UNROLLS_LEFT;', 'x = + true');
           before(body[i]);
 
           node.argument = AST.tru();
@@ -14016,7 +14016,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
     if (isNonBoolLoopTrue(node.test)) {
       todo('this implies a bug and we should prevent it; o');
       rule('The if test that is the special infinite loop `true` value can just be `true`');
-      example('if ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) f();', 'if (true) f();');
+      example('if ($LOOP_NO_UNROLLS_LEFT) f();', 'if (true) f();');
       before(node);
 
       node.test = AST.tru();
@@ -15126,7 +15126,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
     if (isNonBoolLoopTrue(node.argument)) {
       todo('this implies a bug and we should prevent it; p');
       rule('Any usage of the unroll constants as return arg should become `true`');
-      example('return $LOOP_DONE_UNROLLING_ALWAYS_TRUE;', 'return true');
+      example('return $LOOP_NO_UNROLLS_LEFT;', 'return true');
       before(body[i]);
 
       node.argument = AST.tru();
@@ -15185,7 +15185,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
     if (isNonBoolLoopTrue(node.argument)) {
       todo('this implies a bug and we should prevent it; q');
       rule('Any usage of the unroll constants as throw arg should become `true`');
-      example('throw $LOOP_DONE_UNROLLING_ALWAYS_TRUE;', 'throw true');
+      example('throw $LOOP_NO_UNROLLS_LEFT;', 'throw true');
       before(body[i]);
 
       node.argument = AST.tru();

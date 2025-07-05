@@ -42,7 +42,7 @@ if (tmpIfTest) {
     $(`loop`, x);
     $(`infiloop, do not eliminate`);
   }
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpIfTest$2 /*:unknown*/ = $(true);
     if (tmpIfTest$2) {
       $(`loop`);
@@ -123,7 +123,7 @@ if (a) {
     $( "loop", f );
     $( "infiloop, do not eliminate" );
   }
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const g = $( true );
     if (g) {
       $( "loop" );
@@ -162,7 +162,7 @@ while (true) {
     $(`loop`);
     let tmpCalleeParam = [1, 2];
     const tmpForOfGenNext = $forOf(tmpCalleeParam);
-    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    while ($LOOP_NO_UNROLLS_LEFT) {
       const tmpForOfNext = tmpForOfGenNext();
       const tmpIfTest$1 = tmpForOfNext.done;
       if (tmpIfTest$1) {

@@ -184,7 +184,7 @@ loopStop$1: {
         break loopStop;
       }
     }
-    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    while ($LOOP_NO_UNROLLS_LEFT) {
       const tmpIfTest$22 /*:unknown*/ = $(false);
       if (tmpIfTest$22) {
         $(`uhoh`);
@@ -332,7 +332,7 @@ loopStop$1: {
     }
   } else {
   }
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_NO_UNROLLS_LEFT) {
     const tmpIfTest$46 /*:unknown*/ = $(false);
     if (tmpIfTest$46) {
       $(`uhoh`);
@@ -744,7 +744,7 @@ loopStop$1: {
         break loopStop;
       }
     }
-    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    while ($LOOP_NO_UNROLLS_LEFT) {
       const w = $( false );
       if (w) {
         $( "uhoh" );
@@ -872,7 +872,7 @@ loopStop$1: {
       break loopStop$1;
     }
   }
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_NO_UNROLLS_LEFT) {
     const bu = $( false );
     if (bu) {
       $( "uhoh" );

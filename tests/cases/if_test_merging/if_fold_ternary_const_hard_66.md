@@ -60,7 +60,7 @@ if (cond) {
     y = true;
   } else {
   }
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpClusterSSA_cond /*:unknown*/ = $(false);
     if (tmpClusterSSA_cond) {
       if (x) {
@@ -120,7 +120,7 @@ if (c) {
   if (a) {
     b = true;
   }
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const d = $( false );
     if (d) {
       if (a) {

@@ -33,7 +33,7 @@ const f /*:()=>undefined*/ = function () {
     tmpLambdaSomeOut = true;
   } else {
     let tmpClusterSSA_tmpLambdaSomeCounter /*:number*/ = 1;
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       const tmpLambdaSomeTest$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaSomeCounter < 3;
       if (tmpLambdaSomeTest$1) {
         const tmpLambdaSomeHas$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaSomeCounter in tmpMCOO;
@@ -120,7 +120,7 @@ const a = function() {
   }
   else {
     let e = 1;
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       const f = e < 3;
       if (f) {
         const g = e in c;

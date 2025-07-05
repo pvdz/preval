@@ -30,7 +30,7 @@ const tmpNestedPropAssignRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam];
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
 if (tmpNestedPropAssignRhs) {
   let a /*:unknown*/ = undefined;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $(1);
     const tmpNestedAssignComMemberObj$1 /*:unknown*/ = $(b);
     const tmpNestedAssignComMemberProp$1 /*:unknown*/ = $(`c`);
@@ -100,7 +100,7 @@ const f = d[ e ];
 b[c] = f;
 if (f) {
   let g = undefined;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $( 1 );
     const h = $( a );
     const i = $( "c" );

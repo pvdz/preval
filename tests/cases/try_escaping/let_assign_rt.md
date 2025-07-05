@@ -17,7 +17,7 @@ only be able to reach the assignment to x, not the var decl init.
 const arr = [1, 2, 3];
 let x = undefined;
 let y = 1;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   try {
     $(arr[0]);
     x = arr;
@@ -40,7 +40,7 @@ $(x, y);  // <-- _if_ it breaks, then it must have overwritten x, so init is not
 const /*___6__*/ arr = [1, 2, 3];
 let /*___12__*/ x = /*___13__*/ undefined;
 let /*___15__*/ y = 1;
-while (/*___18__*/ $LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while (/*___18__*/ $LOOP_NO_UNROLLS_LEFT) {
   /*19~73*/ try /*21~65*/ {
     let /*___26__*/ tmpCalleeParam = /*___28__*/ arr[0];
     $(/*___33__*/ tmpCalleeParam);

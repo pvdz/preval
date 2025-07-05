@@ -46,7 +46,7 @@ if (same) {
   maybegx = g[x];
 }
 if (maybegx) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $(1);
     let maybegx$1 /*:unknown*/ /*ternaryConst*/ = undefined;
     const g$1 /*:unknown*/ = $(b);
@@ -113,7 +113,7 @@ else {
   a = c[ e ];
 }
 if (a) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $( 1 );
     let f = undefined;
     const g = $( b );

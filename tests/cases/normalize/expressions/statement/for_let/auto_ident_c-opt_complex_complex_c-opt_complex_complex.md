@@ -37,7 +37,7 @@ if (tmpIfTest) {
     xyz = tmpChainElementObject[tmpChainRootComputed$1];
   }
 }
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $(xyz);
   $(1);
 }
@@ -90,7 +90,7 @@ else {
     a = g[ i ];
   }
 }
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $( a );
   $( 1 );
 }

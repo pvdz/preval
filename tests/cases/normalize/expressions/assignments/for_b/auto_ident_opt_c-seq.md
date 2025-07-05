@@ -30,7 +30,7 @@ if (tmpIfTest$1) {
   a = tmpChainRootProp.x;
 }
 if (a) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $(1);
     const tmpChainRootProp$1 /*:unknown*/ = $(b);
     const tmpIfTest$2 /*:boolean*/ = tmpChainRootProp$1 == null;
@@ -93,7 +93,7 @@ else {
   a = c.x;
 }
 if (a) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $( 1 );
     const e = $( b );
     const f = e == null;

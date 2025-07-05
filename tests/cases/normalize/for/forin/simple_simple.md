@@ -21,7 +21,7 @@ for (a in b) $(a);
 `````js filename=intro
 const b /*:object*/ /*truthy*/ = { x: 1, y: 2 };
 const tmpForInGenNext /*:unknown*/ = $forIn(b);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForInNext /*:unknown*/ = tmpForInGenNext();
   const tmpIfTest /*:unknown*/ = tmpForInNext.done;
   if (tmpIfTest) {
@@ -59,7 +59,7 @@ const a = {
   y: 2,
 };
 const b = $forIn( a );
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const c = b();
   const d = c.done;
   if (d) {
@@ -80,7 +80,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 let a = undefined;
 let b = { x: 1, y: 2 };
 const tmpForInGenNext = $forIn(b);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForInNext = tmpForInGenNext();
   const tmpIfTest = tmpForInNext.done;
   if (tmpIfTest) {

@@ -15,7 +15,7 @@
     let B = `jhayon.vercel.app`;
     let tmpClusterSSA__0x2c65c8$1 = 1;
     const tmpClusterSSA__0x15f773 = $('x');
-    while ($LOOP_UNROLL_500) {
+    while ($LOOP_UNROLLS_LEFT_500) {
       const tmpIfTest$8 = tmpClusterSSA__0x2c65c8$1 < 1;
         A = tmpClusterSSA__0x15f773.length;
         const tmpBinBothLhs$30 = A[0];

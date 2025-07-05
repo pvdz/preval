@@ -23,7 +23,7 @@ $(a, b);
 `````js filename=intro
 let tmpClusterSSA_b /*:unknown*/ = $(2);
 if (tmpClusterSSA_b) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $(100);
     tmpClusterSSA_b = $(2);
     if (tmpClusterSSA_b) {
@@ -62,7 +62,7 @@ With rename=true
 `````js filename=intro
 let a = $( 2 );
 if (a) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $( 100 );
     a = $( 2 );
     if (a) {

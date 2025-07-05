@@ -42,7 +42,7 @@ if (L) {
     arr[0] = tmpAssignComputedRhs$1;
   } else {
     let tmpClusterSSA_L /*:unknown*/ = $(`L_next`);
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       if (tmpClusterSSA_L) {
         $(`S_loop`);
         const tmpAssignComputedRhs$2 /*:unknown*/ = $(`val_loop`);
@@ -123,7 +123,7 @@ if (b) {
   }
   else {
     let g = $( "L_next" );
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       if (g) {
         $( "S_loop" );
         const h = $( "val_loop" );

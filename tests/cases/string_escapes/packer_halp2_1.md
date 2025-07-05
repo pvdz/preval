@@ -31,7 +31,7 @@ loopStop: {
       tmpAssignComputedRhs$1 = $dotCall($number_toString, tmpClusterSSA_c$2, `toString`, 36);
     }
     $dlr_$$5[tmpAssignComMemLhsProp$1] = tmpAssignComputedRhs$1;
-    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    while ($LOOP_NO_UNROLLS_LEFT) {
       const tmpPostUpdArgIdent$2/*:number*/ = tmpClusterSSA_c$2;
       tmpClusterSSA_c$2 = tmpClusterSSA_c$2 - 1;
       if (tmpPostUpdArgIdent$2) {
@@ -123,7 +123,7 @@ const $dlr_$$3 /*:array*/ /*truthy*/ = [
   `not_expr`,
   `split`,
 ];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpPostUpdArgIdent$2 /*:number*/ = tmpClusterSSA_c$2;
   tmpClusterSSA_c$2 = tmpClusterSSA_c$2 - 1;
   if (tmpPostUpdArgIdent$2) {
@@ -226,7 +226,7 @@ const a = {
 };
 let b = 10;
 const c = [ undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "function", undefined, undefined, undefined, "return", undefined, "String", "if", "replace", "while", undefined, "10", undefined, "eval", "new", "RegExp", "x20f", undefined, "u0020g", "not_expr", "split" ];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const d = b;
   b = b - 1;
   if (d) {
@@ -312,7 +312,7 @@ loopStop: {
       tmpAssignComputedRhs$1 = $dotCall($number_toString, tmpClusterSSA_c$2, `toString`, 36);
     }
     $dlr_$$5[tmpAssignComMemLhsProp$1] = tmpAssignComputedRhs$1;
-    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    while ($LOOP_NO_UNROLLS_LEFT) {
       const tmpPostUpdArgIdent$2 = tmpClusterSSA_c$2;
       tmpClusterSSA_c$2 = tmpClusterSSA_c$2 - 1;
       if (tmpPostUpdArgIdent$2) {

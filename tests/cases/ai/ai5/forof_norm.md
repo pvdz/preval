@@ -92,7 +92,7 @@ else {
 const arr = [1, 2, 3];
 const sum = 0;
 const tmpForOfGenNext = $forOf(arr);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForOfNext = tmpForOfGenNext();
   const tmpIfTest = tmpForOfNext.done;
   if (tmpIfTest) {

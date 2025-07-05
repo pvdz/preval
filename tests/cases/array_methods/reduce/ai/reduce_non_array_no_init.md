@@ -32,7 +32,7 @@ if (tmpLambdaReduceTest) {
   } else {
   }
   let tmpClusterSSA_tmpLambdaReduceCounter /*:number*/ = 1;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpLambdaReduceTest$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaReduceCounter < tmpLambdaReduceLen;
     if (tmpLambdaReduceTest$1) {
       const tmpLambdaReduceHas$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaReduceCounter in obj;
@@ -125,7 +125,7 @@ if (f) {
     e = b[ 0 ];
   }
   let h = 1;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const i = h < c;
     if (i) {
       const j = h in b;

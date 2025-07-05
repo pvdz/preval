@@ -31,7 +31,7 @@ if (tmpIfTest) {
   } else {
     tmpClusterSSA_a = tmpChainRootProp.x;
   }
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpIfTest$2 /*:unknown*/ = $(1);
     if (tmpIfTest$2) {
       tmpClusterSSA_a = undefined;
@@ -98,7 +98,7 @@ if (a) {
   else {
     b = d.x;
   }
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const f = $( 1 );
     if (f) {
       b = undefined;

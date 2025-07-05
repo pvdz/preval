@@ -38,7 +38,7 @@ if (tmpLambdaFindIndexNow) {
 } else {
   let tmpLambdaFindIndexOut /*:number*/ = -1;
   let tmpClusterSSA_tmpLambdaFindIndexCounter /*:number*/ = 1;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpLambdaFindIndexTest$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaFindIndexCounter < 3;
     if (tmpLambdaFindIndexTest$1) {
       const tmpLambdaFindIndexVal$1 /*:primitive*/ = tmpMCOO[tmpClusterSSA_tmpLambdaFindIndexCounter];
@@ -123,7 +123,7 @@ if (i) {
 else {
   let j = -1;
   let k = 1;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const l = k < 3;
     if (l) {
       const m = h[ k ];

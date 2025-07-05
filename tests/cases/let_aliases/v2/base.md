@@ -13,7 +13,7 @@
 `````js filename=intro
 let counter = 0;
 const arr = [];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   if (counter < 5) {
     const alias = counter;                  // <- redundant
     const chr = `abcdef`.charAt(counter);
@@ -59,7 +59,7 @@ $( a );
 `````js filename=intro
 let counter = 0;
 const arr = [];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpIfTest = counter < 5;
   if (tmpIfTest) {
     const alias = counter;

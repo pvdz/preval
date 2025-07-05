@@ -25,7 +25,7 @@ const tmpIfTest /*:unknown*/ = $(1);
 const arg /*:object*/ /*truthy*/ = { y: 1 };
 if (tmpIfTest) {
   let tmpClusterSSA_a /*:boolean*/ = delete arg.y;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       tmpClusterSSA_a = delete arg.y;
@@ -71,7 +71,7 @@ const a = $( 1 );
 const b = { y: 1 };
 if (a) {
   let c = delete b.y;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const d = $( 1 );
     if (d) {
       c = delete b.y;

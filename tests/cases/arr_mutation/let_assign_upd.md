@@ -29,7 +29,7 @@ const tmpBinLhs$1 /*:primitive*/ = tmpClusterSSA_arr[0];
 const tmpIfTest /*:boolean*/ = tmpBinLhs$1 < 10;
 if (tmpIfTest) {
   let arr /*:unknown*/ = undefined;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     arr = [1];
     $(arr);
     const tmpBinLhs$2 /*:unknown*/ = arr[0];
@@ -78,7 +78,7 @@ const b = a[ 0 ];
 const c = b < 10;
 if (c) {
   let d = undefined;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     d = [ 1 ];
     $( d );
     const e = d[ 0 ];

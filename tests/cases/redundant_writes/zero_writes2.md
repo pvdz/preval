@@ -38,7 +38,7 @@ while (true) {
     let x$1 /*:unknown*/ = undefined;
     const obj /*:object*/ /*truthy*/ = { a: 1, b: 2 };
     const tmpForInGenNext /*:unknown*/ = $forIn(obj);
-    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    while ($LOOP_NO_UNROLLS_LEFT) {
       const tmpForInNext /*:unknown*/ = tmpForInGenNext();
       const tmpIfTest /*:unknown*/ = tmpForInNext.done;
       if (tmpIfTest) {
@@ -99,7 +99,7 @@ while (true) {
       b: 2,
     };
     const d = $forIn( c );
-    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    while ($LOOP_NO_UNROLLS_LEFT) {
       const e = d();
       const f = e.done;
       if (f) {
@@ -132,7 +132,7 @@ while (true) {
     let x$1 = undefined;
     const obj = { a: 1, b: 2 };
     const tmpForInGenNext = $forIn(obj);
-    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    while ($LOOP_NO_UNROLLS_LEFT) {
       const tmpForInNext = tmpForInGenNext();
       const tmpIfTest = tmpForInNext.done;
       if (tmpIfTest) {

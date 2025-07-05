@@ -28,7 +28,7 @@ const tmpCalleeParam /*:array*/ /*truthy*/ = [10, 20];
 const iterable /*:unknown*/ = $(`iterable`, tmpCalleeParam);
 let sum /*:primitive*/ = 0;
 const tmpForOfGenNext /*:unknown*/ = $forOf(iterable);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
@@ -72,7 +72,7 @@ const a = [ 10, 20 ];
 const b = $( "iterable", a );
 let c = 0;
 const d = $forOf( b );
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const e = d();
   const f = e.done;
   if (f) {
@@ -96,7 +96,7 @@ let tmpCalleeParam = [10, 20];
 let iterable = $(`iterable`, tmpCalleeParam);
 let sum = 0;
 const tmpForOfGenNext = $forOf(iterable);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForOfNext = tmpForOfGenNext();
   const tmpIfTest = tmpForOfNext.done;
   if (tmpIfTest) {

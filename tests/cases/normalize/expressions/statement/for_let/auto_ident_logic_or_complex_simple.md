@@ -25,7 +25,7 @@ if (xyz) {
 } else {
   xyz = 2;
 }
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $(xyz);
   $(1);
 }
@@ -59,7 +59,7 @@ if (b) {
 else {
   b = 2;
 }
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $( b );
   $( 1 );
 }

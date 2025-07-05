@@ -32,7 +32,7 @@ if (x) {
     throw `error`;
   } else {
     $(2);
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       if (x) {
         $(1);
         if ($) {
@@ -88,7 +88,7 @@ if (x) {
   }
   else {
     $( 2 );
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       if (x) {
         $( 1 );
         if ($) {

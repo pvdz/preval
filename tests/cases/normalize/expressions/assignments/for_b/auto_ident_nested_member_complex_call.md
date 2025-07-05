@@ -34,7 +34,7 @@ tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = tmpInitAssignLhsComp
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpInitAssignLhsComputedRhs;
 if (tmpInitAssignLhsComputedRhs) {
   let a /*:unknown*/ = undefined;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $(1);
     const tmpNestedAssignComMemberObj$1 /*:unknown*/ = $(b);
     const tmpNestedAssignComMemberProp$1 /*:unknown*/ = $(`x`);
@@ -107,7 +107,7 @@ e[f] = g;
 b[c] = g;
 if (g) {
   let h = undefined;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $( 1 );
     const i = $( a );
     const j = $( "x" );

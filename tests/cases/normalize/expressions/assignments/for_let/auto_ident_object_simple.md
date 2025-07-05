@@ -20,7 +20,7 @@ $(a);
 
 `````js filename=intro
 const xyz /*:object*/ /*truthy*/ = { x: 1, y: 2, z: 3 };
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $(xyz);
   $(1);
 }
@@ -48,7 +48,7 @@ const a = {
   y: 2,
   z: 3,
 };
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $( a );
   $( 1 );
 }

@@ -38,7 +38,7 @@ if (tmpIfTest) {
       tmpClusterSSA_a = $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, tmpCalleeParam);
     }
   }
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpIfTest$2 /*:unknown*/ = $(1);
     if (tmpIfTest$2) {
       tmpClusterSSA_a = undefined;
@@ -129,7 +129,7 @@ if (a) {
       b = $dotCall( g, d, undefined, i );
     }
   }
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const j = $( 1 );
     if (j) {
       b = undefined;

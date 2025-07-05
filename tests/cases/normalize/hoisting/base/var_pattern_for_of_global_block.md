@@ -26,7 +26,7 @@ $(undefined);
 const tmpArrElement /*:array*/ /*truthy*/ = [100];
 const tmpCalleeParam /*:array*/ /*truthy*/ = [tmpArrElement];
 const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForOfNext /*:unknown*/ = tmpForOfGen();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
@@ -73,7 +73,7 @@ $( undefined );
 const b = [ 100 ];
 const c = [ b ];
 const d = $forOf( c );
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const e = d();
   const f = e.done;
   if (f) {
@@ -99,7 +99,7 @@ $(undefined);
 const tmpArrElement = [100];
 let tmpCalleeParam = [tmpArrElement];
 const tmpForOfGen = $forOf(tmpCalleeParam);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForOfNext = tmpForOfGen();
   const tmpIfTest = tmpForOfNext.done;
   if (tmpIfTest) {

@@ -21,7 +21,7 @@ for (a of b) $(a);
 `````js filename=intro
 const b /*:object*/ /*truthy*/ = { x: 1, y: 2 };
 const tmpForOfGen /*:unknown*/ = $forOf(b);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForOfNext /*:unknown*/ = tmpForOfGen();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
@@ -59,7 +59,7 @@ const a = {
   y: 2,
 };
 const b = $forOf( a );
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const c = b();
   const d = c.done;
   if (d) {
@@ -80,7 +80,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 let a = undefined;
 let b = { x: 1, y: 2 };
 const tmpForOfGen = $forOf(b);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForOfNext = tmpForOfGen();
   const tmpIfTest = tmpForOfNext.done;
   if (tmpIfTest) {

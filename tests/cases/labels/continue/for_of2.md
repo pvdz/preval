@@ -29,7 +29,7 @@ $('c');
 `````js filename=intro
 const x /*:object*/ /*truthy*/ = { a: 0, b: 1 };
 const tmpForOfGenNext /*:unknown*/ = $forOf(x);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
@@ -72,7 +72,7 @@ const a = {
   b: 1,
 };
 const b = $forOf( a );
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const c = b();
   const d = c.done;
   if (d) {
@@ -94,7 +94,7 @@ $( "c" );
 `````js filename=intro
 let x = { a: 0, b: 1 };
 const tmpForOfGenNext = $forOf(x);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForOfNext = tmpForOfGenNext();
   const tmpIfTest = tmpForOfNext.done;
   if (tmpIfTest) {

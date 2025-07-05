@@ -29,7 +29,7 @@ if (tmpIfTest$1) {
   a = $(1);
 }
 if (a) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $(100);
     const tmpIfTest$2 /*:boolean*/ = $ == null;
     if (tmpIfTest$2) {
@@ -88,7 +88,7 @@ else {
   a = $( 1 );
 }
 if (a) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $( 100 );
     const c = $ == null;
     if (c) {

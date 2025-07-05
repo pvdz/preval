@@ -28,9 +28,9 @@ if ($) f();
 
 `````js filename=intro
 if ($) {
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_NO_UNROLLS_LEFT) {
     let x /*:unknown*/ = $(1);
-    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    while ($LOOP_NO_UNROLLS_LEFT) {
       $(x);
       x = $(2);
     }
@@ -61,9 +61,9 @@ With rename=true
 
 `````js filename=intro
 if ($) {
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_NO_UNROLLS_LEFT) {
     let a = $( 1 );
-    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    while ($LOOP_NO_UNROLLS_LEFT) {
       $( a );
       a = $( 2 );
     }

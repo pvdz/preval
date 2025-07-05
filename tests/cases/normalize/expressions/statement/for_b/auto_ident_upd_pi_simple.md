@@ -32,7 +32,7 @@ $(1);
 $(1);
 $(1);
 let tmpClusterSSA_b$2 /*:number*/ = 12;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $(1);
   tmpClusterSSA_b$2 = tmpClusterSSA_b$2 + 1;
   if (tmpClusterSSA_b$2) {
@@ -86,7 +86,7 @@ $( 1 );
 $( 1 );
 $( 1 );
 let a = 12;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $( 1 );
   a = a + 1;
   if (a) {

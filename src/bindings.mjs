@@ -820,11 +820,11 @@ export function preprocessScopeNode(node, parentNode, fdata, funcNode, lexScopeC
     node.$p.nameMapping = new Map([...globals.keys()].map((k) => [k, k]));
 
     for (let i=0; i<=unrollLimit; ++i) {
-      // $LOOP_UNROLL_1 $LOOP_UNROLL_2 $LOOP_UNROLL_3 etc
+      // $LOOP_UNROLLS_LEFT_1 $LOOP_UNROLLS_LEFT_2 $LOOP_UNROLLS_LEFT_3 etc
       // Special symbols whose number suffix has semantic meaning
       node.$p.nameMapping.set(`${SYMBOL_LOOP_UNROLL}${i}`, `${SYMBOL_LOOP_UNROLL}${i}`);
     }
-    // $LOOP_DONE_UNROLLING_ALWAYS_TRUE
+    // $LOOP_NO_UNROLLS_LEFT
     // "signals not to unroll any further, but to treat this as "true" anyways"
     node.$p.nameMapping.set(SYMBOL_MAX_LOOP_UNROLL, SYMBOL_MAX_LOOP_UNROLL);
     // $SYMBOL_FULLY_UNROLL

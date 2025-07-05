@@ -31,7 +31,7 @@ $('after');
 `````filename=intro
 const /*___5__*/ obj = { /*___8__*/ a: 10, /*___11__*/ b: 20 };
 const /*___14__*/ tmpForInGen = /*___16__*/ $forIn(/*___17__*/ obj);
-while (/*___19__*/ $LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while (/*___19__*/ $LOOP_NO_UNROLLS_LEFT) {
   /*20~47*/ const /*___24__*/ tmpForInNext = /*___26__*/ tmpForInGen();
   const /*___28__*/ tmpIfTest = /*___30__*/ tmpForInNext./*___31__*/ done;
   if (/*___33__*/ tmpIfTest) {

@@ -22,7 +22,7 @@ while (true) {
 
 `````js filename=intro
 $(10);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const x /*:unknown*/ = $(20, `set`);
   $(x, `loop`);
 }
@@ -45,7 +45,7 @@ With rename=true
 
 `````js filename=intro
 $( 10 );
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const a = $( 20, "set" );
   $( a, "loop" );
 }

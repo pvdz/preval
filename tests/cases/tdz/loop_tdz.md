@@ -10,7 +10,7 @@
 
 `````js filename=intro
 if ($) {
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_NO_UNROLLS_LEFT) {
     tdz
   }
 } else {

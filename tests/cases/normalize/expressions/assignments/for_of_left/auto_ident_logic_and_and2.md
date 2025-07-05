@@ -25,7 +25,7 @@ let a /*:unknown*/ = { a: 999, b: 1000 };
 const tmpCalleeParam$1 /*:object*/ /*truthy*/ = {};
 const tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$1);
 const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForOfNext /*:unknown*/ = tmpForOfGen();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
@@ -87,7 +87,7 @@ let a = {
 const b = {};
 const c = $( b );
 const d = $forOf( c );
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const e = d();
   const f = e.done;
   if (f) {
@@ -120,7 +120,7 @@ let a = { a: 999, b: 1000 };
 let tmpCalleeParam$1 = {};
 let tmpCalleeParam = $(tmpCalleeParam$1);
 const tmpForOfGen = $forOf(tmpCalleeParam);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForOfNext = tmpForOfGen();
   const tmpIfTest = tmpForOfNext.done;
   if (tmpIfTest) {

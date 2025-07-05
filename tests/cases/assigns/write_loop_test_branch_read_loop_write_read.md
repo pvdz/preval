@@ -30,7 +30,7 @@ if (tmpIfTest) {
     $(x);
   } else {
   }
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     x = $(20);
     const tmpIfTest$2 /*:unknown*/ = $(x);
     if (tmpIfTest$2) {
@@ -87,7 +87,7 @@ if (b) {
   if (c) {
     $( a );
   }
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     a = $( 20 );
     const d = $( a );
     if (d) {

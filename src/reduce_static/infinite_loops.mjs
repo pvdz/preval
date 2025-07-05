@@ -69,7 +69,7 @@ function _infiniteLoops(fdata) {
             } else {
               // Note: we would even do SYMBOL_FULLY_UNROLL here ...
               rule('An infinite loop should never be unrolled');
-              example('while (true) {}', 'while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {}');
+              example('while (true) {}', 'while ($LOOP_NO_UNROLLS_LEFT) {}');
               before(node);
 
               node.test = AST.identifier(SYMBOL_MAX_LOOP_UNROLL);

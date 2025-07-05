@@ -13,7 +13,7 @@ at all. Instead we can update the old instance...
 `````js filename=intro
 const anything /*:unknown*/ = $(1);
 let obj /*:object*/ = { b: anything };
-while ($LOOP_UNROLL_10) {
+while ($LOOP_UNROLLS_LEFT_10) {
   const test /*:unknown*/ = $(1);
   if (test) {
     const newvalue /*:unknown*/ = $(1);
@@ -36,7 +36,7 @@ const test /*:unknown*/ = $(1);
 if (test) {
   const newvalue /*:unknown*/ = $(1);
   let tmpClusterSSA_obj /*:object*/ /*truthy*/ = { b: newvalue };
-  while ($LOOP_UNROLL_9) {
+  while ($LOOP_UNROLLS_LEFT_9) {
     const test$1 /*:unknown*/ = $(1);
     if (test$1) {
       const newvalue$1 /*:unknown*/ = $(1);
@@ -85,7 +85,7 @@ const b = $( 1 );
 if (b) {
   const c = $( 1 );
   let d = { b: c };
-  while ($LOOP_UNROLL_9) {
+  while ($LOOP_UNROLLS_LEFT_9) {
     const e = $( 1 );
     if (e) {
       const f = $( 1 );
@@ -110,7 +110,7 @@ else {
 `````js filename=intro
 const anything = $(1);
 let obj = { b: anything };
-while ($LOOP_UNROLL_10) {
+while ($LOOP_UNROLLS_LEFT_10) {
   const test = $(1);
   if (test) {
     const newvalue = $(1);

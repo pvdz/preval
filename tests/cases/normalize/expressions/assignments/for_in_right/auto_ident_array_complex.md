@@ -23,7 +23,7 @@ const tmpArrElement /*:unknown*/ = $(1);
 const tmpArrElement$3 /*:unknown*/ = $(3);
 const a /*:array*/ /*truthy*/ = [tmpArrElement, 2, tmpArrElement$3];
 const tmpForInGen /*:unknown*/ = $forIn(a);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForInNext /*:unknown*/ = tmpForInGen();
   const tmpIfTest /*:unknown*/ = tmpForInNext.done;
   if (tmpIfTest) {
@@ -64,7 +64,7 @@ const a = $( 1 );
 const b = $( 3 );
 const c = [ a, 2, b ];
 const d = $forIn( c );
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const e = d();
   const f = e.done;
   if (f) {
@@ -89,7 +89,7 @@ const tmpArrElement$3 = $(3);
 a = [tmpArrElement, tmpArrElement$1, tmpArrElement$3];
 let tmpCalleeParam = a;
 const tmpForInGen = $forIn(a);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForInNext = tmpForInGen();
   const tmpIfTest = tmpForInNext.done;
   if (tmpIfTest) {

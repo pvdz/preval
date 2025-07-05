@@ -50,7 +50,7 @@ loopStop: {
   if (tmpIfTest$3) {
     const tmpClusterSSA_tmpIfTest$3 /*:unknown*/ = $(`cond_part_C`, true);
     if (tmpClusterSSA_tmpIfTest$3) {
-      while ($LOOP_UNROLL_10) {
+      while ($LOOP_UNROLLS_LEFT_10) {
         const tmpBinLhs$2 /*:unknown*/ = $(`increment`, i);
         i = tmpBinLhs$2 + 1;
         const tmpBinLhs$4 /*:unknown*/ = $(`check_i_for_continue`, i);
@@ -155,7 +155,7 @@ loopStop: {
   if (h) {
     const i = $( "cond_part_C", true );
     if (i) {
-      while ($LOOP_UNROLL_10) {
+      while ($LOOP_UNROLLS_LEFT_10) {
         const j = $( "increment", a );
         a = j + 1;
         const k = $( "check_i_for_continue", a );

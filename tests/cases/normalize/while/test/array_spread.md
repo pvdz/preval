@@ -20,7 +20,7 @@ $('after');
 
 
 `````js filename=intro
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpCalleeParam /*:array*/ /*truthy*/ = [1, 2, 3];
   const tmpArrSpread /*:unknown*/ = $(tmpCalleeParam);
   [...tmpArrSpread];
@@ -45,7 +45,7 @@ while (true) {
 With rename=true
 
 `````js filename=intro
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const a = [ 1, 2, 3 ];
   const b = $( a );
   [ ...b ];

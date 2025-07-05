@@ -24,7 +24,7 @@ $(a);
 const b /*:object*/ /*truthy*/ = { c: $ };
 const tmpClusterSSA_a /*:unknown*/ = $dotCall($, b, `c`, 1);
 const tmpForOfGenNext /*:unknown*/ = $forOf(tmpClusterSSA_a);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
   const tmpIfTest$1 /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest$1) {
@@ -62,7 +62,7 @@ With rename=true
 const a = { c: $ };
 const b = $dotCall( $, a, "c", 1 );
 const c = $forOf( b );
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const d = c();
   const e = d.done;
   if (e) {
@@ -93,7 +93,7 @@ if (tmpIfTest) {
 }
 let tmpCalleeParam = a;
 const tmpForOfGenNext = $forOf(a);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForOfNext = tmpForOfGenNext();
   const tmpIfTest$1 = tmpForOfNext.done;
   if (tmpIfTest$1) {

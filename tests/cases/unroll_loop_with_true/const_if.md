@@ -9,7 +9,7 @@
 ## Input
 
 `````js filename=intro
-if ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+if ($LOOP_NO_UNROLLS_LEFT) {
   $('PASS');
 } else {
   $('FAIL');

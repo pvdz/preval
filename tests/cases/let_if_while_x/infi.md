@@ -34,7 +34,7 @@ $(`before`);
 const tmpBinBothRhs /*:unknown*/ = $(5);
 const x /*:boolean*/ = 0 < tmpBinBothRhs;
 if (x) {
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_NO_UNROLLS_LEFT) {
     $(`again`);
   }
 } else {
@@ -67,7 +67,7 @@ $( "before" );
 const a = $( 5 );
 const b = 0 < a;
 if (b) {
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_NO_UNROLLS_LEFT) {
     $( "again" );
   }
 }

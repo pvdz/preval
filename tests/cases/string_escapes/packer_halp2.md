@@ -76,7 +76,7 @@ const k /*:array*/ /*truthy*/ = [
   `not_expr`,
   `split`,
 ];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpPostUpdArgIdent$1 /*:number*/ = tmpClusterSSA_c$1;
   tmpClusterSSA_c$1 = tmpClusterSSA_c$1 - 1;
   if (tmpPostUpdArgIdent$1) {
@@ -205,7 +205,7 @@ const a = {
 };
 let b = 25;
 const c = [ undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "function", undefined, undefined, undefined, "return", undefined, "String", "if", "replace", "while", undefined, "10", undefined, "eval", "new", "RegExp", "x20f", undefined, "u0020g", "not_expr", "split" ];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const d = b;
   b = b - 1;
   if (d) {

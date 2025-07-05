@@ -10,7 +10,7 @@ The `thisisanumber` would get initialized to false while the type was `false`. h
 
 `````js filename=intro
 let x = $(1);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpIfTest = x % 3;
   let thisisanumber = false;
   if (tmpIfTest) {
@@ -34,7 +34,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 `````js filename=intro
 let x /*:unknown*/ = $(1);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpIfTest /*:number*/ = x % 3;
   let thisisanumber /*:number*/ /*ternaryConst*/ = 0;
   if (tmpIfTest) {
@@ -82,7 +82,7 @@ With rename=true
 
 `````js filename=intro
 let a = $( 1 );
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const b = a % 3;
   let c = 0;
   if (b) {
@@ -108,7 +108,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 `````js filename=intro
 let x = $(1);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpIfTest = x % 3;
   let thisisanumber = false;
   if (tmpIfTest) {

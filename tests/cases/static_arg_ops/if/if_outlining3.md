@@ -36,7 +36,7 @@ const siftUp = function(heap, node, i, cond) {
       heap[i] = parent;
       let index2 = parentIndex;
       let test2 = parentIndex > 0;
-      while ($LOOP_UNROLL_100) {
+      while ($LOOP_UNROLLS_LEFT_100) {
         if (test2) {
           $(123);
         } else {
@@ -51,7 +51,7 @@ const siftUp = function(heap, node, i, cond) {
     heap[i] = node;
     let index = i;
     let parentIndex = index > 0;
-    while ($LOOP_UNROLL_100) {
+    while ($LOOP_UNROLLS_LEFT_100) {
       if (parentIndex) {
         $(123);
       } else {
@@ -100,7 +100,7 @@ const siftUp_t /*:(unknown, unknown, unknown, number)=>undefined*/ = function ($
   if (test) {
     heap$1[parentIndex] = node;
     heap$1[i] = parent;
-    while ($LOOP_UNROLL_100) {
+    while ($LOOP_UNROLLS_LEFT_100) {
       const test2 /*:boolean*/ = parentIndex > 0;
       if (test2) {
         $(123);
@@ -121,7 +121,7 @@ const siftUp_f /*:(unknown, unknown, unknown)=>undefined*/ = function ($$0, $$1,
   heap$2[i$1] = node$2;
   const parentIndex$1 /*:boolean*/ = i$1 > 0;
   if (parentIndex$1) {
-    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    while ($LOOP_NO_UNROLLS_LEFT) {
       $(123);
     }
     return undefined;
@@ -206,7 +206,7 @@ const h = function($$0,$$1,$$2,$$3 ) {
   if (r) {
     l[o] = m;
     l[n] = p;
-    while ($LOOP_UNROLL_100) {
+    while ($LOOP_UNROLLS_LEFT_100) {
       const s = o > 0;
       if (s) {
         $( 123 );
@@ -229,7 +229,7 @@ const k = function($$0,$$1,$$2 ) {
   t[v] = u;
   const w = v > 0;
   if (w) {
-    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    while ($LOOP_NO_UNROLLS_LEFT) {
       $( 123 );
     }
     return undefined;
@@ -277,7 +277,7 @@ const siftUp = function ($$0, $$1, $$2, $$3) {
       heap$1[i] = parent;
       let index2 = parentIndex;
       let test2 = parentIndex > 0;
-      while ($LOOP_UNROLL_100) {
+      while ($LOOP_UNROLLS_LEFT_100) {
         if (test2) {
           $(123);
         } else {
@@ -292,7 +292,7 @@ const siftUp = function ($$0, $$1, $$2, $$3) {
     heap$1[i] = node;
     let index$2 = i;
     let parentIndex$1 = index$2 > 0;
-    while ($LOOP_UNROLL_100) {
+    while ($LOOP_UNROLLS_LEFT_100) {
       if (parentIndex$1) {
         $(123);
       } else {

@@ -13,7 +13,7 @@
 
 `````js filename=intro
 const arr = [1, 2, 3, 4, 5];
-while ($LOOP_UNROLL_1) {      // The unrolled body is not in a loop so it can inline there (that's how we unroll this hack anyways)
+while ($LOOP_UNROLLS_LEFT_1) {      // The unrolled body is not in a loop so it can inline there (that's how we unroll this hack anyways)
   const test = $('never');
   if (test) {
     break;
@@ -36,7 +36,7 @@ if (test) {
 } else {
   const tmp /*:unknown*/ /*truthy*/ = $dotCall($array_shift, arr, `shift`);
   $dotCall($array_push, arr, `push`, tmp);
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_NO_UNROLLS_LEFT) {
     const test$1 /*:unknown*/ = $(`never`);
     if (test$1) {
       break;
@@ -83,7 +83,7 @@ if (a) {
 else {
   const c = $dotCall( $array_shift, b, "shift" );
   $dotCall( $array_push, b, "push", c );
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_NO_UNROLLS_LEFT) {
     const d = $( "never" );
     if (d) {
       break;
@@ -104,7 +104,7 @@ $( f );
 
 `````js filename=intro
 const arr = [1, 2, 3, 4, 5];
-while ($LOOP_UNROLL_1) {
+while ($LOOP_UNROLLS_LEFT_1) {
   const test = $(`never`);
   if (test) {
     break;

@@ -36,7 +36,7 @@ while(true) {
 
 `````js filename=intro
 let x /*:number*/ /*truthy*/ = 10;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   foo: {
     while (true) {
       const t /*:unknown*/ = $(x);
@@ -88,7 +88,7 @@ With rename=true
 
 `````js filename=intro
 let a = 10;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   foo: {
     while (true) {
       const b = $( a );

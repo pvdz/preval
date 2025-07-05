@@ -25,7 +25,7 @@ const arg /*:object*/ /*truthy*/ = { y: 1 };
 const tmpDeleteObj /*:unknown*/ = $(arg);
 const tmpCalleeParam /*:boolean*/ = delete tmpDeleteObj.y;
 const tmpForOfGenNext /*:unknown*/ = $forOf(tmpCalleeParam);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
@@ -66,7 +66,7 @@ const a = { y: 1 };
 const b = $( a );
 const c = delete b.y;
 const d = $forOf( c );
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const e = d();
   const f = e.done;
   if (f) {
@@ -93,7 +93,7 @@ let a = { a: 999, b: 1000 };
 const tmpDeleteObj = $(arg);
 let tmpCalleeParam = delete tmpDeleteObj.y;
 const tmpForOfGenNext = $forOf(tmpCalleeParam);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForOfNext = tmpForOfGenNext();
   const tmpIfTest = tmpForOfNext.done;
   if (tmpIfTest) {

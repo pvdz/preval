@@ -28,7 +28,7 @@ const tmpCalleeParam /*:unknown*/ = $(1);
 const tmpCalleeParam$1 /*:unknown*/ = $(2);
 const tmpIfTest /*:unknown*/ = $(tmpCalleeParam, tmpCalleeParam$1);
 if (tmpIfTest) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $(100);
     const tmpCalleeParam$2 /*:unknown*/ = $(1);
     const tmpCalleeParam$4 /*:unknown*/ = $(2);
@@ -72,7 +72,7 @@ const a = $( 1 );
 const b = $( 2 );
 const c = $( a, b );
 if (c) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $( 100 );
     const d = $( 1 );
     const e = $( 2 );

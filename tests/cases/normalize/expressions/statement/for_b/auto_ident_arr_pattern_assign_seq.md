@@ -24,7 +24,7 @@ $(a, x, y);
 `````js filename=intro
 let x /*:unknown*/ = 1;
 let y /*:unknown*/ = 2;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $(x);
   $(y);
   const tmpArrElement /*:unknown*/ = $(3);
@@ -60,7 +60,7 @@ With rename=true
 `````js filename=intro
 let a = 1;
 let b = 2;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $( a );
   $( b );
   const c = $( 3 );

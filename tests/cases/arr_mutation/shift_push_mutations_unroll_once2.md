@@ -13,7 +13,7 @@
 
 `````js filename=intro
 const arr = [1, 2, 3, 4, 5];
-while ($LOOP_UNROLL_1) {      // The unrolled body is not in a loop so it can inline there (that's how we unroll this hack anyways)
+while ($LOOP_UNROLLS_LEFT_1) {      // The unrolled body is not in a loop so it can inline there (that's how we unroll this hack anyways)
   const test = $('never');
   if (test) {
     $(arr.slice(0));              // Don't let arr escape
@@ -38,7 +38,7 @@ if (test) {
 } else {
   const tmp /*:unknown*/ /*truthy*/ = $dotCall($array_shift, arr, `shift`);
   $dotCall($array_push, arr, `push`, tmp);
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_NO_UNROLLS_LEFT) {
     const test$1 /*:unknown*/ = $(`never`);
     if (test$1) {
       const tmpCalleeParam$1 /*:array*/ /*truthy*/ = $dotCall($array_slice, arr, `slice`, 0);
@@ -88,7 +88,7 @@ if (a) {
 else {
   const d = $dotCall( $array_shift, b, "shift" );
   $dotCall( $array_push, b, "push", d );
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_NO_UNROLLS_LEFT) {
     const e = $( "never" );
     if (e) {
       const f = $dotCall( $array_slice, b, "slice", 0 );
@@ -109,7 +109,7 @@ else {
 
 `````js filename=intro
 const arr = [1, 2, 3, 4, 5];
-while ($LOOP_UNROLL_1) {
+while ($LOOP_UNROLLS_LEFT_1) {
   const test = $(`never`);
   if (test) {
     const tmpMCF = arr.slice;

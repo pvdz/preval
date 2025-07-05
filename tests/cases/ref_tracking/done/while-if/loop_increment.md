@@ -16,7 +16,7 @@
 `````js filename=intro
 {
   let c = 1;
-  while ($LOOP_UNROLL_500) {
+  while ($LOOP_UNROLLS_LEFT_500) {
     c = c + 1;
     break;
   }

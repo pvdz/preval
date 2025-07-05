@@ -29,7 +29,7 @@ const tmpCalleeParam /*:object*/ /*truthy*/ = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam);
 let tmpClusterSSA_b /*:unknown*/ /*ternaryConst*/ = tmpNestedAssignObjPatternRhs.b;
 if (tmpNestedAssignObjPatternRhs) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $(100);
     const tmpObjLitVal$1 /*:unknown*/ = $(2);
     const tmpCalleeParam$1 /*:object*/ /*truthy*/ = { b: tmpObjLitVal$1 };
@@ -80,7 +80,7 @@ const b = { b: a };
 const c = $( b );
 let d = c.b;
 if (c) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $( 100 );
     const e = $( 2 );
     const f = { b: e };

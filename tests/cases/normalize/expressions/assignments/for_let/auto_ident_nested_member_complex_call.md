@@ -32,7 +32,7 @@ const tmpInitAssignLhsComputedProp /*:unknown*/ = $(`y`);
 const tmpInitAssignLhsComputedRhs /*:unknown*/ = $(3);
 tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = tmpInitAssignLhsComputedRhs;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpInitAssignLhsComputedRhs;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $(tmpInitAssignLhsComputedRhs);
   $(1);
 }
@@ -70,7 +70,7 @@ const f = $( "y" );
 const g = $( 3 );
 e[f] = g;
 b[c] = g;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $( g );
   $( 1 );
 }

@@ -12,7 +12,7 @@
 `````js filename=intro
 const arr = [1, 2, 3];
 const obj = {'1,2,3': 'pass'}
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   try {
     $(obj[arr]);
     arr.reverse();
@@ -29,7 +29,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````js filename=intro
 const obj /*:object*/ /*truthy*/ = { [`1,2,3`]: `pass` };
 const arr /*:array*/ /*truthy*/ = [1, 2, 3];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   try {
     const tmpCalleeParam /*:unknown*/ = obj[arr];
     $(tmpCalleeParam);
@@ -64,7 +64,7 @@ With rename=true
 `````js filename=intro
 const a = { [ "1,2,3" ]: "pass" };
 const b = [ 1, 2, 3 ];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   try {
     const c = a[ b ];
     $( c );
@@ -83,7 +83,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````js filename=intro
 const arr = [1, 2, 3];
 const obj = { [`1,2,3`]: `pass` };
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   try {
     let tmpCalleeParam = obj[arr];
     $(tmpCalleeParam);

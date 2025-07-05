@@ -20,7 +20,7 @@ $(a);
 
 `````js filename=intro
 const tmpClusterSSA_tmpForOfGenNext /*:unknown*/ = $forOf(60);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForOfNext /*:unknown*/ = tmpClusterSSA_tmpForOfGenNext();
   const tmpIfTest$1 /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest$1) {
@@ -56,7 +56,7 @@ With rename=true
 
 `````js filename=intro
 const a = $forOf( 60 );
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const b = a();
   const c = b.done;
   if (c) {
@@ -88,7 +88,7 @@ if (tmpIfTest) {
   tmpCalleeParam = $(tmpCalleeParam$1);
 }
 const tmpForOfGenNext = $forOf(tmpCalleeParam);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForOfNext = tmpForOfGenNext();
   const tmpIfTest$1 = tmpForOfNext.done;
   if (tmpIfTest$1) {

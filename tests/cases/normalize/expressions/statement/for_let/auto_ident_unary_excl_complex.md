@@ -20,7 +20,7 @@ $(a);
 
 `````js filename=intro
 const tmpUnaryArg /*:unknown*/ = $(100);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const xyz /*:boolean*/ /*banged*/ = !tmpUnaryArg;
   $(xyz);
   $(1);
@@ -45,7 +45,7 @@ With rename=true
 
 `````js filename=intro
 const a = $( 100 );
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const b = !a;
   $( b );
   $( 1 );

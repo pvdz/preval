@@ -21,7 +21,7 @@ $('after_loop');
 `````js filename=intro
 const tmpIfTest /*:unknown*/ = $(`cond`);
 if (tmpIfTest) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpIfTest$1 /*:unknown*/ = $(`cond`);
     if (tmpIfTest$1) {
     } else {
@@ -58,7 +58,7 @@ With rename=true
 `````js filename=intro
 const a = $( "cond" );
 if (a) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const b = $( "cond" );
     if (b) {
 

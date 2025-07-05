@@ -31,7 +31,7 @@ $(x); // unreachable
 
 `````js filename=intro
 let x /*:unknown*/ = $(1);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $(x);
   x = $(2);
   if ($) {
@@ -64,7 +64,7 @@ With rename=true
 
 `````js filename=intro
 let a = $( 1 );
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $( a );
   a = $( 2 );
   if ($) {

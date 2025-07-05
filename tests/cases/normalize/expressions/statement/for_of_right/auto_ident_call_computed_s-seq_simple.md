@@ -24,7 +24,7 @@ $(a);
 const b /*:object*/ /*truthy*/ = { $: $ };
 const tmpCalleeParam /*:unknown*/ = $dotCall($, b, `\$`, 1);
 const tmpForOfGenNext /*:unknown*/ = $forOf(tmpCalleeParam);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
@@ -62,7 +62,7 @@ With rename=true
 const a = { $: $ };
 const b = $dotCall( $, a, "$", 1 );
 const c = $forOf( b );
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const d = c();
   const e = d.done;
   if (e) {
@@ -90,7 +90,7 @@ const tmpMCOO = b;
 const tmpMCF = tmpMCOO.$;
 let tmpCalleeParam = $dotCall(tmpMCF, tmpMCOO, `\$`, 1);
 const tmpForOfGenNext = $forOf(tmpCalleeParam);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForOfNext = tmpForOfGenNext();
   const tmpIfTest = tmpForOfNext.done;
   if (tmpIfTest) {

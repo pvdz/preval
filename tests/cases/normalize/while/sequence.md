@@ -27,7 +27,7 @@ if (tmpIfTest$1) {
   tmpIfTest = $dotCall(tmpChainElementObject, tmpClusterSSA_x, `x`, tmpClusterSSA_x);
 }
 if (tmpIfTest) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     tmpClusterSSA_x ** 0;
     tmpClusterSSA_x = NaN.x;
     let tmpIfTest$2 /*:unknown*/ /*ternaryConst*/ = undefined;
@@ -87,7 +87,7 @@ else {
   b = $dotCall( d, a, "x", a );
 }
 if (b) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     a ** 0;
     a = NaN.x;
     let e = undefined;

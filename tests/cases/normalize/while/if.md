@@ -28,7 +28,7 @@ if ($) f();
 if ($) {
   let tmpClusterSSA_i$1 /*:number*/ = 1;
   $(1, `sub`);
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     tmpClusterSSA_i$1 = tmpClusterSSA_i$1 + 1;
     const tmpIfTest$2 /*:boolean*/ = tmpClusterSSA_i$1 < 10;
     if (tmpIfTest$2) {
@@ -79,7 +79,7 @@ With rename=true
 if ($) {
   let a = 1;
   $( 1, "sub" );
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     a = a + 1;
     const b = a < 10;
     if (b) {

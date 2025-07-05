@@ -19,7 +19,7 @@ $(a);
 
 
 `````js filename=intro
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpNewCallee /*:unknown*/ = $($);
   new tmpNewCallee(1);
   $(100);
@@ -43,7 +43,7 @@ while (true) {
 With rename=true
 
 `````js filename=intro
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const a = $( $ );
   new a( 1 );
   $( 100 );

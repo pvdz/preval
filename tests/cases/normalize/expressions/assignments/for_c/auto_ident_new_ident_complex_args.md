@@ -26,7 +26,7 @@ if (tmpIfTest) {
   const tmpCalleeParam /*:unknown*/ = $(1);
   const tmpCalleeParam$1 /*:unknown*/ = $(2);
   let tmpClusterSSA_a /*:object*/ /*truthy*/ = new $(tmpCalleeParam, tmpCalleeParam$1);
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       const tmpCalleeParam$2 /*:unknown*/ = $(1);
@@ -77,7 +77,7 @@ if (a) {
   const b = $( 1 );
   const c = $( 2 );
   let d = new $( b, c );
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const e = $( 1 );
     if (e) {
       const f = $( 1 );

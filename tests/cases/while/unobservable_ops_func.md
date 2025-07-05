@@ -35,7 +35,7 @@ const f /*:()=>undefined*/ = function () {
   let tmpClusterSSA_s /*:number*/ /*truthy*/ = s | 10;
   const tmpClusterSSA_x /*:unknown*/ = $(true);
   if (tmpClusterSSA_x) {
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       parseExpression(lexerFlags$285, astProp$181);
       tmpClusterSSA_s = tmpClusterSSA_s | 10;
       const tmpClusterSSA_x$1 /*:unknown*/ = $(true);
@@ -97,7 +97,7 @@ const a = function() {
   let c = b | 10;
   const d = $( true );
   if (d) {
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       parseExpression( lexerFlags$285, astProp$181 );
       c = c | 10;
       const e = $( true );

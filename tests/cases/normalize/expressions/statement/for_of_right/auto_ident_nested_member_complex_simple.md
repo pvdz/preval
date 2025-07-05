@@ -32,7 +32,7 @@ const tmpInitAssignLhsComputedProp$1 /*:unknown*/ = $(`y`);
 tmpInitAssignLhsComputedObj$1[tmpInitAssignLhsComputedProp$1] = 3;
 tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = 3;
 const tmpForOfGenNext /*:unknown*/ = $forOf(3);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
@@ -84,7 +84,7 @@ const f = $( "y" );
 e[f] = 3;
 b[c] = 3;
 const g = $forOf( 3 );
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const h = g();
   const i = h.done;
   if (i) {
@@ -120,7 +120,7 @@ const tmpInitAssignLhsComputedRhs = tmpInitAssignLhsComputedRhs$1;
 tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = tmpInitAssignLhsComputedRhs;
 let tmpCalleeParam = tmpInitAssignLhsComputedRhs;
 const tmpForOfGenNext = $forOf(tmpInitAssignLhsComputedRhs);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForOfNext = tmpForOfGenNext();
   const tmpIfTest = tmpForOfNext.done;
   if (tmpIfTest) {

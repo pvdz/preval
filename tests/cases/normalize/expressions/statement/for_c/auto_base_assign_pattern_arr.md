@@ -29,7 +29,7 @@ if (tmpIfTest) {
   const tmpArrAssignPatternRhs /*:unknown*/ = $(tmpCalleeParam);
   const tmpArrPatternSplat /*:array*/ /*truthy*/ = [...tmpArrAssignPatternRhs];
   b = tmpArrPatternSplat[0];
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       const tmpArrElement$1 /*:unknown*/ = $(2);
@@ -83,7 +83,7 @@ if (b) {
   const e = $( d );
   const f = [ ...e ];
   a = f[ 0 ];
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const g = $( 1 );
     if (g) {
       const h = $( 2 );

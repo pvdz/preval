@@ -30,7 +30,7 @@ $(true);
 const z /*:number*/ = y - 1;
 let tmpClusterSSA_y /*:number*/ = z;
 if (z) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $(tmpClusterSSA_y);
     const z$1 /*:number*/ = tmpClusterSSA_y - 1;
     tmpClusterSSA_y = z$1;
@@ -79,7 +79,7 @@ $( true );
 const b = a - 1;
 let c = b;
 if (b) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $( c );
     const d = c - 1;
     c = d;

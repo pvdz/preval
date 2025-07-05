@@ -24,7 +24,7 @@ const tmpBinBothRhs /*:unknown*/ = $(2);
 tmpBinBothLhs + tmpBinBothRhs;
 const tmpIfTest /*:unknown*/ = $(0);
 if (tmpIfTest) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpIfTest$1 /*:unknown*/ = $(0);
     if (tmpIfTest$1) {
     } else {
@@ -63,7 +63,7 @@ const b = $( 2 );
 a + b;
 const c = $( 0 );
 if (c) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const d = $( 0 );
     if (d) {
 

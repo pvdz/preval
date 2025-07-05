@@ -9,7 +9,7 @@
 ## Input
 
 `````js filename=intro
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   let continued = false;
   if ($()) {
     if ($()) {
@@ -33,7 +33,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 
 `````js filename=intro
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpIfTest /*:unknown*/ = $();
   if (tmpIfTest) {
     const tmpIfTest$1 /*:unknown*/ = $();
@@ -71,7 +71,7 @@ while (true) {
 With rename=true
 
 `````js filename=intro
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const a = $();
   if (a) {
     const b = $();
@@ -90,7 +90,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 (This is what phase1 received the first time)
 
 `````js filename=intro
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   let continued = false;
   const tmpIfTest = $();
   if (tmpIfTest) {

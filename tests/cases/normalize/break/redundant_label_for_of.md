@@ -34,7 +34,7 @@ const tmpCalleeParam$3 /*:array*/ /*truthy*/ = [`a`, `b`];
 const tmpCalleeParam$1 /*:set*/ /*truthy*/ = new $set_constructor(tmpCalleeParam$3);
 const tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$1);
 const tmpForOfGenNext /*:unknown*/ = $forOf(tmpCalleeParam);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
@@ -92,7 +92,7 @@ const b = [ "a", "b" ];
 const c = new $set_constructor( b );
 const d = $( c );
 const e = $forOf( d );
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const f = e();
   const g = f.done;
   if (g) {
@@ -126,7 +126,7 @@ let tmpCalleeParam$3 = [`a`, `b`];
 let tmpCalleeParam$1 = new tmpNewCallee(tmpCalleeParam$3);
 let tmpCalleeParam = $(tmpCalleeParam$1);
 const tmpForOfGenNext = $forOf(tmpCalleeParam);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForOfNext = tmpForOfGenNext();
   const tmpIfTest = tmpForOfNext.done;
   if (tmpIfTest) {

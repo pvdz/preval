@@ -27,7 +27,7 @@ const tmpCompObj /*:unknown*/ = $(b);
 const tmpCalleeParam /*:unknown*/ = $(`d`);
 const tmpInitAssignLhsComputedRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam];
 b[tmpInitAssignLhsComputedProp] = tmpInitAssignLhsComputedRhs;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $(tmpInitAssignLhsComputedRhs);
   $(1);
 }
@@ -64,7 +64,7 @@ const c = $( b );
 const d = $( "d" );
 const e = c[ d ];
 b[a] = e;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $( e );
   $( 1 );
 }

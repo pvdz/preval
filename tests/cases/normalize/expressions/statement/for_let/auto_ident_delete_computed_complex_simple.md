@@ -24,7 +24,7 @@ $(a, arg);
 const arg /*:object*/ /*truthy*/ = { y: 1 };
 const tmpDeleteObj /*:unknown*/ = $(arg);
 const xyz /*:boolean*/ = delete tmpDeleteObj.y;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $(xyz);
   $(1);
 }
@@ -51,7 +51,7 @@ With rename=true
 const a = { y: 1 };
 const b = $( a );
 const c = delete b.y;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $( c );
   $( 1 );
 }

@@ -29,7 +29,7 @@ const b /*:object*/ /*truthy*/ = { $: $ };
 const tmpMCF /*:unknown*/ = b[tmpMCCP];
 const tmpIfTest /*:unknown*/ = $dotCall(tmpMCF, b, undefined, 1);
 if (tmpIfTest) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $(100);
     const tmpMCCP$1 /*:unknown*/ = $(`\$`);
     const tmpMCF$1 /*:unknown*/ = b[tmpMCCP$1];
@@ -76,7 +76,7 @@ const b = { $: $ };
 const c = b[ a ];
 const d = $dotCall( c, b, undefined, 1 );
 if (d) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $( 100 );
     const e = $( "$" );
     const f = b[ e ];

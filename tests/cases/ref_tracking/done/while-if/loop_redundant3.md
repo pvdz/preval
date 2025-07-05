@@ -15,7 +15,7 @@
 `````js filename=intro
 {
   let a = "unobservable";
-  while ($LOOP_UNROLL_500) {
+  while ($LOOP_UNROLLS_LEFT_500) {
     a = $;
     if ($) {
       $(a)
@@ -31,7 +31,7 @@
 
 `````filename=intro
 let /*___4__*/ a = `unobservable`;
-while (/*___8__*/ $LOOP_UNROLL_500) {
+while (/*___8__*/ $LOOP_UNROLLS_LEFT_500) {
   /*9~21*/ /*___13__*/ a = $;
   if ($) {
     /*16~20*/ $(/*___20__*/ a);

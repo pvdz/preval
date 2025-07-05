@@ -26,7 +26,7 @@ const arg /*:object*/ /*truthy*/ = { y: 1 };
 if (tmpIfTest) {
   const tmpDeleteCompProp /*:unknown*/ = $(`y`);
   delete arg[tmpDeleteCompProp];
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       const tmpDeleteCompProp$1 /*:unknown*/ = $(`y`);
@@ -73,7 +73,7 @@ const b = { y: 1 };
 if (a) {
   const c = $( "y" );
   delete b[ c ];
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const d = $( 1 );
     if (d) {
       const e = $( "y" );

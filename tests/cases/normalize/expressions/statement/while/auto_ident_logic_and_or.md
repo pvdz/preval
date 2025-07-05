@@ -218,7 +218,7 @@ loopStop: {
       break loopStop;
     }
   }
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_NO_UNROLLS_LEFT) {
     const tmpCalleeParam$32 /*:unknown*/ = $(1);
     let tmpIfTest$11 /*:unknown*/ = $(tmpCalleeParam$32);
     if (tmpIfTest$11) {
@@ -626,7 +626,7 @@ loopStop: {
       break loopStop;
     }
   }
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_NO_UNROLLS_LEFT) {
     const cd = $( 1 );
     let ce = $( cd );
     if (ce) {

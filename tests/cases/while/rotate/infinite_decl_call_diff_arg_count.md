@@ -10,7 +10,7 @@
 
 `````js filename=intro
 let x = $(1, 2, 3);
-while ($LOOP_UNROLL_10) {
+while ($LOOP_UNROLLS_LEFT_10) {
   $(x);
   x = $(1, 2);
 }
@@ -23,7 +23,7 @@ $(x); // unreachable
 
 `````js filename=intro
 let x /*:unknown*/ = $(1, 2, 3);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $(x);
   x = $(1, 2);
 }
@@ -47,7 +47,7 @@ With rename=true
 
 `````js filename=intro
 let a = $( 1, 2, 3 );
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $( a );
   a = $( 1, 2 );
 }
@@ -59,7 +59,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 `````js filename=intro
 let x = $(1, 2, 3);
-while ($LOOP_UNROLL_10) {
+while ($LOOP_UNROLLS_LEFT_10) {
   $(x);
   x = $(1, 2);
 }

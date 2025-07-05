@@ -48,7 +48,7 @@ let f /*:(unknown)=>unknown*/ = function ($$0) {
   const tmpReturnArg /*:unknown*/ = f(thisclosurebecomesargumentsobj, out_arg);
   return tmpReturnArg;
 };
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const arr /*:array*/ /*truthy*/ = [];
   const a /*:unknown*/ = f(arr);
   const b /*:unknown*/ = f(arr);
@@ -93,7 +93,7 @@ let a = function($$0 ) {
   const e = a( c, b );
   return e;
 };
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const f = [];
   const g = a( f );
   const h = a( f );

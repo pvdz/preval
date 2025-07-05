@@ -25,7 +25,7 @@ const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   let tmpClusterSSA_b /*:number*/ = 2;
   let tmpClusterSSA_a /*:number*/ = 2;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       tmpClusterSSA_b = tmpClusterSSA_b + 1;
@@ -72,7 +72,7 @@ const a = $( 1 );
 if (a) {
   let b = 2;
   let c = 2;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const d = $( 1 );
     if (d) {
       b = b + 1;

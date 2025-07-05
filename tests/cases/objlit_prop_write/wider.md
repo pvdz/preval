@@ -18,7 +18,7 @@
 const val = $(1);
 const distract = function () {
   debugger;
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_NO_UNROLLS_LEFT) {
     $(tmpSSA_zC9nb, another_glob);
   }
   return undefined;
@@ -45,7 +45,7 @@ $(tmpSSA_zC9nb);
 const val /*:unknown*/ = $(1);
 const distract /*:()=>undefined*/ = function () {
   debugger;
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_NO_UNROLLS_LEFT) {
     $(tmpSSA_zC9nb, another_glob);
   }
   return undefined;
@@ -86,7 +86,7 @@ With rename=true
 const a = $( 1 );
 const b = function() {
   debugger;
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_NO_UNROLLS_LEFT) {
     $( c, d );
   }
   return undefined;
@@ -111,7 +111,7 @@ $( c );
 const val = $(1);
 const distract = function () {
   debugger;
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_NO_UNROLLS_LEFT) {
     $(tmpSSA_zC9nb, another_glob);
   }
   return undefined;

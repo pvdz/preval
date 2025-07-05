@@ -13,7 +13,7 @@ into the else branch. I think there's room for improvement here
 let xyz /*:boolean*/ = !$(true);
 if ($) {
 } else {
-  while ($LOOP_UNROLL_9) {
+  while ($LOOP_UNROLLS_LEFT_9) {
     if (xyz) {
       if ($()) {
         xyz = false;
@@ -35,7 +35,7 @@ const tmpUnaryArg /*:unknown*/ = $(true);
 let xyz /*:boolean*/ = !tmpUnaryArg;
 if ($) {
 } else {
-  while ($LOOP_UNROLL_9) {
+  while ($LOOP_UNROLLS_LEFT_9) {
     if (xyz) {
       const tmpIfTest /*:unknown*/ = $();
       if (tmpIfTest) {
@@ -80,7 +80,7 @@ if ($) {
 
 }
 else {
-  while ($LOOP_UNROLL_9) {
+  while ($LOOP_UNROLLS_LEFT_9) {
     if (b) {
       const c = $();
       if (c) {
@@ -103,7 +103,7 @@ const tmpUnaryArg = $(true);
 let xyz = !tmpUnaryArg;
 if ($) {
 } else {
-  while ($LOOP_UNROLL_9) {
+  while ($LOOP_UNROLLS_LEFT_9) {
     if (xyz) {
       const tmpIfTest = $();
       if (tmpIfTest) {

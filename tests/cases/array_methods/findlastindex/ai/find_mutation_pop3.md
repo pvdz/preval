@@ -15,7 +15,7 @@ const tmpArrel /*:primitive*/ = arr[0];
 $dotCall($array_unshift, result, `unshift`, tmpArrel);
 $dotCall($array_shift, arr, `shift`);
 let tmpClusterSSA_tmpArri /*:number*/ = 1;
-while ($LOOP_UNROLL_10) {
+while ($LOOP_UNROLLS_LEFT_10) {
   const tmpArrc$1 /*:boolean*/ = tmpClusterSSA_tmpArri < 3;
   if (tmpArrc$1) {
     const tmpArrel$1 /*:primitive*/ = arr[tmpClusterSSA_tmpArri];
@@ -66,7 +66,7 @@ const tmpArrel = arr[0];
 $dotCall($array_unshift, result, `unshift`, tmpArrel);
 $dotCall($array_shift, arr, `shift`);
 let tmpClusterSSA_tmpArri = 1;
-while ($LOOP_UNROLL_10) {
+while ($LOOP_UNROLLS_LEFT_10) {
   const tmpArrc$1 = tmpClusterSSA_tmpArri < 3;
   if (tmpArrc$1) {
     const tmpArrel$1 = arr[tmpClusterSSA_tmpArri];

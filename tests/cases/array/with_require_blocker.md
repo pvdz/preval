@@ -45,7 +45,7 @@ const range/*:regex*/ /*truthy*/ = new $regex_constructor(`b`, ``);
 const unlock_alias/*:unknown*/ = outer_unlocker;
 
 const vault_lock/*:unknown*/ = the_vault();
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   try {
     const val/*:unknown*/ = unlock_alias(201);
     const test = val === 'matter'; // should be first hit because 201-200 is 1, second element is "matter"
@@ -138,7 +138,7 @@ const escapes = new $regex_constructor(`a`, ``);
 const range = new $regex_constructor(`b`, ``);
 const unlock_alias = outer_unlocker;
 const vault_lock = the_vault();
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   try {
     const val = unlock_alias(201);
     const test = val === `matter`;

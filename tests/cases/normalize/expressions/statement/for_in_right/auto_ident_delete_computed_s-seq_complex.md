@@ -27,7 +27,7 @@ const tmpDeleteCompProp /*:unknown*/ = $(`y`);
 const arg /*:object*/ /*truthy*/ = { y: 1 };
 const tmpCalleeParam /*:boolean*/ = delete arg[tmpDeleteCompProp];
 const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForInNext /*:unknown*/ = tmpForInGen();
   const tmpIfTest /*:unknown*/ = tmpForInNext.done;
   if (tmpIfTest) {
@@ -72,7 +72,7 @@ const a = $( "y" );
 const b = { y: 1 };
 const c = delete b[ a ];
 const d = $forIn( c );
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const e = d();
   const f = e.done;
   if (f) {
@@ -102,7 +102,7 @@ const tmpDeleteCompObj = arg;
 const tmpDeleteCompProp = $(`y`);
 let tmpCalleeParam = delete tmpDeleteCompObj[tmpDeleteCompProp];
 const tmpForInGen = $forIn(tmpCalleeParam);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForInNext = tmpForInGen();
   const tmpIfTest = tmpForInNext.done;
   if (tmpIfTest) {

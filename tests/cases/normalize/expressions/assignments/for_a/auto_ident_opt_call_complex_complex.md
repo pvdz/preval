@@ -26,7 +26,7 @@ if (tmpIfTest) {
   const tmpCalleeParam /*:unknown*/ = $(1);
   $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam);
 }
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $(1);
 }
 `````
@@ -59,7 +59,7 @@ else {
   const c = $( 1 );
   $dotCall( a, $, undefined, c );
 }
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $( 1 );
 }
 `````

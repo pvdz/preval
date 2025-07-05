@@ -49,7 +49,7 @@ if (tmpIfTest) {
   tmpInitAssignLhsComputedObj$1[tmpInitAssignLhsComputedProp$1] = 3;
   tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = 3;
   tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       const tmpNestedAssignComMemberObj$1 /*:unknown*/ = $(b);
@@ -163,7 +163,7 @@ if (a) {
   g[h] = 3;
   e[f] = 3;
   c[d] = 3;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const o = $( 1 );
     if (o) {
       const p = $( b );

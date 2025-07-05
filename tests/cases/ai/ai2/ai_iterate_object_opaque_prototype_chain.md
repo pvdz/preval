@@ -67,7 +67,7 @@ obj[tmpAssignComMemLhsProp$1] = tmpAssignComputedRhs$1;
 const tmpForInGen /*:unknown*/ = $forIn(obj);
 const keys_iterated /*:array*/ /*truthy*/ = [];
 const values_during_iteration /*:array*/ /*truthy*/ = [];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForInNext /*:unknown*/ = tmpForInGen();
   const tmpIfTest /*:unknown*/ = tmpForInNext.done;
   if (tmpIfTest) {
@@ -165,7 +165,7 @@ g[h] = i;
 const j = $forIn( g );
 const k = [];
 const l = [];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const m = j();
   const n = m.done;
   if (n) {
@@ -230,7 +230,7 @@ tmpAssignComputedObj$1[tmpAssignComputedProp$1] = tmpAssignComputedRhs$1;
 let keys_iterated = [];
 let values_during_iteration = [];
 const tmpForInGen = $forIn(obj);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForInNext = tmpForInGen();
   const tmpIfTest = tmpForInNext.done;
   if (tmpIfTest) {

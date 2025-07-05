@@ -27,7 +27,7 @@ while (true) {
 
 `````js filename=intro
 let x /*:unknown*/ = $(1);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpIfTest /*:number*/ = x % 3;
   let tmpIfTest$1 /*:number*/ /*ternaryConst*/ = 0;
   if (tmpIfTest) {
@@ -76,7 +76,7 @@ With rename=true
 
 `````js filename=intro
 let a = $( 1 );
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const b = a % 3;
   let c = 0;
   if (b) {

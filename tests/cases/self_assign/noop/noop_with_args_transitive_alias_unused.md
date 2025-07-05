@@ -27,7 +27,7 @@ let the_self_closing_func/*:(unknown, unknown)=>unknown*/ = function($$0, $$1) {
 };
 const the_scf_alias = the_self_closing_func;
 const the_scf_alias2 = the_scf_alias1;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const a/*:unknown*/ = the_scf_alias2(2);
   const b/*:number*/ = $Number_parseInt(a);
   $('testing', a, b); // anti-infini-loop
@@ -48,7 +48,7 @@ $(the_self_closing_func()); // This should prevent the transform (!)
 `````js filename=intro
 const the_scf_alias2 /*:unknown*/ = the_scf_alias1;
 const main_data_arr /*:array*/ /*truthy*/ = [`this`, `contents`, `is`, `not`, `relevant`, `here`];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const a /*:unknown*/ = the_scf_alias2(2);
   const b /*:number*/ = $Number_parseInt(a);
   $(`testing`, a, b);
@@ -90,7 +90,7 @@ With rename=true
 `````js filename=intro
 const a = the_scf_alias1;
 const b = [ "this", "contents", "is", "not", "relevant", "here" ];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const c = a( 2 );
   const d = $Number_parseInt( c );
   $( "testing", c, d );
@@ -132,7 +132,7 @@ let the_self_closing_func = function ($$0, $$1) {
 };
 const the_scf_alias = the_self_closing_func;
 const the_scf_alias2 = the_scf_alias1;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const a = the_scf_alias2(2);
   const b = $Number_parseInt(a);
   $(`testing`, a, b);

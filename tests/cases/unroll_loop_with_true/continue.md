@@ -36,7 +36,7 @@ if (test$2) {
 } else {
   let tmpClusterSSA_i$1 /*:number*/ = -1;
   $(`third`);
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_NO_UNROLLS_LEFT) {
     const tmpPostUpdArgIdent$2 /*:number*/ = tmpClusterSSA_i$1;
     tmpClusterSSA_i$1 = tmpClusterSSA_i$1 - 1;
     const tmpIfTest$1 /*:boolean*/ = tmpPostUpdArgIdent$2 > 0;
@@ -93,7 +93,7 @@ if (a) {
 else {
   let b = -1;
   $( "third" );
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_NO_UNROLLS_LEFT) {
     const c = b;
     b = b - 1;
     const d = c > 0;

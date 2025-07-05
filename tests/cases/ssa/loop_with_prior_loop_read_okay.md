@@ -36,7 +36,7 @@ if ($) {
   $(x);
   if ($) {
   } else {
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       $(x);
       if ($) {
         break;
@@ -44,7 +44,7 @@ if ($) {
       }
     }
   }
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_NO_UNROLLS_LEFT) {
     const tmpClusterSSA_x /*:unknown*/ = $(2);
     $(tmpClusterSSA_x);
   }
@@ -86,14 +86,14 @@ if ($) {
 
   }
   else {
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       $( a );
       if ($) {
         break;
       }
     }
   }
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_NO_UNROLLS_LEFT) {
     const b = $( 2 );
     $( b );
   }

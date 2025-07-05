@@ -15,7 +15,7 @@ let a /*:boolean*/ = !c;
 if (c) {
   $(a);           // <-- this must be false because a=!c and c=truthy in this branch
 } else {
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_NO_UNROLLS_LEFT) {
     $(100);
     const d /*:unknown*/ = $(100);
     a = !d;
@@ -39,7 +39,7 @@ if (c) {
   $(false);
 } else {
   let a /*:boolean*/ = false;
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_NO_UNROLLS_LEFT) {
     $(100);
     const d /*:unknown*/ = $(100);
     a = !d;
@@ -86,7 +86,7 @@ if (a) {
 }
 else {
   let b = false;
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_NO_UNROLLS_LEFT) {
     $( 100 );
     const c = $( 100 );
     b = !c;
@@ -109,7 +109,7 @@ let a = !c;
 if (c) {
   $(a);
 } else {
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_NO_UNROLLS_LEFT) {
     $(100);
     const d = $(100);
     a = !d;

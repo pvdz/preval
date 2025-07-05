@@ -23,7 +23,7 @@ $(a);
 `````js filename=intro
 const b /*:object*/ /*truthy*/ = { $: $ };
 $dotCall($, b, `\$`, 1);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $(1);
 }
 `````
@@ -46,7 +46,7 @@ With rename=true
 `````js filename=intro
 const a = { $: $ };
 $dotCall( $, a, "$", 1 );
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $( 1 );
 }
 `````

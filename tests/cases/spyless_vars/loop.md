@@ -42,7 +42,7 @@ $(arr.slice(0, 3));
 
 `````js filename=intro
 const arr /*:array*/ /*truthy*/ = [`one`, `two`, `three`, `four`, `five`];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $(1);
   const next /*:unknown*/ /*truthy*/ = $dotCall($array_shift, arr, `shift`);
   $dotCall($array_push, arr, `push`, next);
@@ -80,7 +80,7 @@ With rename=true
 
 `````js filename=intro
 const a = [ "one", "two", "three", "four", "five" ];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $( 1 );
   const b = $dotCall( $array_shift, a, "shift" );
   $dotCall( $array_push, a, "push", b );

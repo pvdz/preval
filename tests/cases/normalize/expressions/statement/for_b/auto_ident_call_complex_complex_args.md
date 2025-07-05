@@ -26,7 +26,7 @@ const tmpCalleeParam /*:unknown*/ = $(1);
 const tmpCalleeParam$1 /*:unknown*/ = $(2);
 const tmpIfTest /*:unknown*/ = tmpCallComplexCallee(tmpCalleeParam, tmpCalleeParam$1);
 if (tmpIfTest) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $(1);
     const tmpCallComplexCallee$1 /*:unknown*/ = $($);
     const tmpCalleeParam$2 /*:unknown*/ = $(1);
@@ -72,7 +72,7 @@ const b = $( 1 );
 const c = $( 2 );
 const d = a( b, c );
 if (d) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $( 1 );
     const e = $( $ );
     const f = $( 1 );

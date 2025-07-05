@@ -10,7 +10,7 @@
 
 `````js filename=intro
 const arr = [1, 2, 3];
-while($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while($LOOP_NO_UNROLLS_LEFT) {
   ++arr[0];
   $(arr[0]);
 }
@@ -29,7 +29,7 @@ const tmpFree /*:(primitive)=>number*/ = function $free($$0) {
   return tmpRet;
 };
 const arr /*:array*/ /*truthy*/ = [1, 2, 3];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpUpdVal$1 /*:primitive*/ = arr[0];
   const tmpUpdInc /*:number*/ = $frfr(tmpFree, tmpUpdVal$1);
   arr[0] = tmpUpdInc;
@@ -67,7 +67,7 @@ const a = function b($$0 ) {
   return e;
 };
 const f = [ 1, 2, 3 ];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const g = f[ 0 ];
   const h = i( a, g );
   f[0] = h;
@@ -81,7 +81,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 `````js filename=intro
 const arr = [1, 2, 3];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpUpdObj = arr;
   const tmpUpdProp = 0;
   const tmpUpdVal = tmpUpdObj[tmpUpdProp];

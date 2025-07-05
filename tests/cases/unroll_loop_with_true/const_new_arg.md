@@ -9,7 +9,7 @@
 ## Input
 
 `````js filename=intro
-const x = new String($LOOP_DONE_UNROLLING_ALWAYS_TRUE);
+const x = new String($LOOP_NO_UNROLLS_LEFT);
 $(x);
 `````
 

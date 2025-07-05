@@ -23,7 +23,7 @@ $(a);
 `````js filename=intro
 const b /*:object*/ /*truthy*/ = { $: $ };
 const tmpForInGenNext /*:unknown*/ = $forIn(b);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForInNext /*:unknown*/ = tmpForInGenNext();
   const tmpIfTest /*:unknown*/ = tmpForInNext.done;
   if (tmpIfTest) {
@@ -66,7 +66,7 @@ With rename=true
 `````js filename=intro
 const a = { $: $ };
 const b = $forIn( a );
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const c = b();
   const d = c.done;
   if (d) {
@@ -95,7 +95,7 @@ $( i );
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpForInGenNext = $forIn(b);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForInNext = tmpForInGenNext();
   const tmpIfTest = tmpForInNext.done;
   if (tmpIfTest) {

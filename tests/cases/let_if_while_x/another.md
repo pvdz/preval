@@ -12,7 +12,7 @@
 const b = { x: 1 };
 const c = { y: 2 };
 const a = { a: 999, b: 1000 };
-let loopTest = $LOOP_UNROLL_10;
+let loopTest = $LOOP_UNROLLS_LEFT_10;
 $(100);
 const B = $(b);
 const X = $(`x`);
@@ -67,7 +67,7 @@ if (three) {
   C[Y$1] = T;
   B$1[X$1] = T;
   if (T) {
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       $(100);
       const B$2 /*:unknown*/ = $(b);
       const X$2 /*:unknown*/ = $(`x`);
@@ -157,7 +157,7 @@ if (g) {
   j[k] = l;
   h[i] = l;
   if (l) {
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       $( 100 );
       const m = $( a );
       const n = $( "x" );

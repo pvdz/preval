@@ -46,7 +46,7 @@ const testArgsParameterShadowingSymbolIterator /*:()=>undefined*/ = function (/*
     $dotCall($array_push, results, `push`, tmpMCP);
     const tmpMCF$5 /*:unknown*/ = iterator.next;
     let tmpClusterSSA_next /*:unknown*/ = $dotCall(tmpMCF$5, iterator, `next`);
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       const tmpIfTest$1 /*:unknown*/ = tmpClusterSSA_next.done;
       if (tmpIfTest$1) {
         break;
@@ -119,7 +119,7 @@ const a = function() {
     $dotCall( $array_push, j, "push", k );
     const l = f.next;
     let m = $dotCall( l, f, "next" );
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       const n = m.done;
       if (n) {
         break;

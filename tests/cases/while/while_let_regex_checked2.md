@@ -40,7 +40,7 @@ if (tmpIfTest) {
 } else {
   let tmpClusterSSA_x /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, ``);
   tmpClusterSSA_x.foo = `object`;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpCalleeParam$1 /*:unknown*/ = tmpClusterSSA_x.foo;
     $(tmpCalleeParam$1);
     const tmpIfTest$1 /*:unknown*/ = $(tmpClusterSSA_x);
@@ -91,7 +91,7 @@ if (c) {
 else {
   let d = new $regex_constructor( "foo", "" );
   d.foo = "object";
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const e = d.foo;
     $( e );
     const f = $( d );

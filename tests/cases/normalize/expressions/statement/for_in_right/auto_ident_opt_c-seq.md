@@ -31,7 +31,7 @@ if (tmpIfTest) {
   const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = tmpChainRootProp.x;
   tmpForInGen = $forIn(tmpClusterSSA_tmpCalleeParam);
 }
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForInNext /*:unknown*/ = tmpForInGen();
   const tmpIfTest$1 /*:unknown*/ = tmpForInNext.done;
   if (tmpIfTest$1) {
@@ -84,7 +84,7 @@ else {
   const e = b.x;
   d = $forIn( e );
 }
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const f = d();
   const g = f.done;
   if (g) {
@@ -117,7 +117,7 @@ if (tmpIfTest) {
 } else {
 }
 const tmpForInGen = $forIn(tmpCalleeParam);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForInNext = tmpForInGen();
   const tmpIfTest$1 = tmpForInNext.done;
   if (tmpIfTest$1) {

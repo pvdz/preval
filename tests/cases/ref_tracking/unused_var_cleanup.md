@@ -13,7 +13,7 @@ const x = $(false);
 let $tmpLoopUnrollCheck = true; // <--
 if (x) {
   $(`body`);
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     if (x) {
       $(`body`);
     } else {
@@ -33,7 +33,7 @@ $(`after`);
 `````js filename=intro
 const x /*:unknown*/ = $(false);
 if (x) {
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_NO_UNROLLS_LEFT) {
     $(`body`);
   }
 } else {
@@ -62,7 +62,7 @@ With rename=true
 `````js filename=intro
 const a = $( false );
 if (a) {
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_NO_UNROLLS_LEFT) {
     $( "body" );
   }
 }
@@ -79,7 +79,7 @@ else {
 const x = $(false);
 let $tmpLoopUnrollCheck = true;
 if (x) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $(`body`);
     if (x) {
     } else {

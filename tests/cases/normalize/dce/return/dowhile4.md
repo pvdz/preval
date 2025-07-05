@@ -10,7 +10,7 @@
 
 `````js filename=intro
 const f = function() {
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_NO_UNROLLS_LEFT) {
     const t = $(1, `return`);
     return t;
   }
@@ -53,7 +53,7 @@ $( a );
 `````js filename=intro
 const f = function () {
   debugger;
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_NO_UNROLLS_LEFT) {
     const t = $(1, `return`);
     return t;
   }

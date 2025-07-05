@@ -25,7 +25,7 @@ const b /*:object*/ /*truthy*/ = { c: 1 };
 const tmpAssignRhsCompObj /*:unknown*/ = $(b);
 const tmpAssignRhsCompProp /*:unknown*/ = $(`c`);
 tmpAssignRhsCompObj[tmpAssignRhsCompProp];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $(1);
 }
 `````
@@ -52,7 +52,7 @@ const a = { c: 1 };
 const b = $( a );
 const c = $( "c" );
 b[ c ];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $( 1 );
 }
 `````

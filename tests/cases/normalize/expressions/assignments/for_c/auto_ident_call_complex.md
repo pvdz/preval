@@ -23,7 +23,7 @@ const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   const tmpCallComplexCallee /*:unknown*/ = $($);
   let tmpClusterSSA_a /*:unknown*/ = tmpCallComplexCallee(1);
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       const tmpCallComplexCallee$1 /*:unknown*/ = $($);
@@ -70,7 +70,7 @@ const a = $( 1 );
 if (a) {
   const b = $( $ );
   let c = b( 1 );
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const d = $( 1 );
     if (d) {
       const e = $( $ );

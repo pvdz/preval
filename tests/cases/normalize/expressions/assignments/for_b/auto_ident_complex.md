@@ -24,7 +24,7 @@ $(a, b);
 const tmpClusterSSA_a /*:unknown*/ = $(1);
 if (tmpClusterSSA_a) {
   let a /*:unknown*/ = undefined;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $(1);
     a = $(1);
     if (a) {
@@ -67,7 +67,7 @@ With rename=true
 const a = $( 1 );
 if (a) {
   let b = undefined;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $( 1 );
     b = $( 1 );
     if (b) {

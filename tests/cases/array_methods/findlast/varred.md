@@ -34,7 +34,7 @@ const f /*:()=>undefined*/ = function () {
   } else {
     let tmpLambdaFindLastOut /*:primitive*/ = undefined;
     let tmpClusterSSA_tmpLambdaFindLastCounter /*:number*/ = 1;
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       const tmpLambdaFindLastTest$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaFindLastCounter >= 0;
       if (tmpLambdaFindLastTest$1) {
         const tmpLambdaFindLastVal$1 /*:primitive*/ = arr[tmpClusterSSA_tmpLambdaFindLastCounter];
@@ -114,7 +114,7 @@ const a = function() {
   else {
     let d = undefined;
     let e = 1;
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       const f = e >= 0;
       if (f) {
         const g = b[ e ];

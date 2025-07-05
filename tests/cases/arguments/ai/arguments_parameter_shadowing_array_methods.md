@@ -40,7 +40,7 @@ const testArgsParameterShadowingArrayMethods /*:()=>undefined*/ = function (/*us
     } else {
     }
     let tmpClusterSSA_tmpLambdaMapCounter /*:number*/ = 1;
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       const tmpLambdaMapTest$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaMapCounter < tmpLambdaMapLen;
       if (tmpLambdaMapTest$1) {
         const tmpLambdaMapHas$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaMapCounter in tmpPrevalAliasArgumentsAny;
@@ -73,7 +73,7 @@ const testArgsParameterShadowingArrayMethods /*:()=>undefined*/ = function (/*us
     } else {
     }
     let tmpClusterSSA_tmpLambdaFilterCounter /*:number*/ = 1;
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       const tmpLambdaFilterTest$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaFilterCounter < tmpLambdaFilterLen;
       if (tmpLambdaFilterTest$1) {
         const tmpLambdaFilterHas$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaFilterCounter in tmpPrevalAliasArgumentsAny;
@@ -104,7 +104,7 @@ const testArgsParameterShadowingArrayMethods /*:()=>undefined*/ = function (/*us
     } else {
     }
     let tmpClusterSSA_tmpLambdaReduceCounter /*:number*/ = 1;
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       const tmpLambdaReduceTest$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaReduceCounter < tmpLambdaReduceLen;
       if (tmpLambdaReduceTest$1) {
         const tmpLambdaReduceHas$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaReduceCounter in tmpPrevalAliasArgumentsAny;
@@ -224,7 +224,7 @@ const a = function() {
       f[0] = i;
     }
     let j = 1;
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       const k = j < d;
       if (k) {
         const l = j in b;
@@ -254,7 +254,7 @@ const a = function() {
       }
     }
     let u = 1;
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       const v = u < o;
       if (v) {
         const w = u in b;
@@ -282,7 +282,7 @@ const a = function() {
       ba = 0 + bd;
     }
     let be = 1;
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       const bf = be < z;
       if (bf) {
         const bg = be in b;

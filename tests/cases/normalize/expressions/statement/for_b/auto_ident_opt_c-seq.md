@@ -30,7 +30,7 @@ if (tmpIfTest$1) {
   tmpIfTest = tmpChainRootProp.x;
 }
 if (tmpIfTest) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $(1);
     let tmpIfTest$2 /*:unknown*/ /*ternaryConst*/ = undefined;
     const tmpChainRootProp$1 /*:unknown*/ = $(b);
@@ -93,7 +93,7 @@ else {
   a = c.x;
 }
 if (a) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $( 1 );
     let e = undefined;
     const f = $( b );

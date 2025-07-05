@@ -47,7 +47,7 @@ if (tmpIfTest) {
   let tmpClusterSSA_y /*:number*/ = tmpBinLhs$1 + 1;
   const tmpMCF$1 /*:unknown*/ = a.push;
   $dotCall(tmpMCF$1, a, `push`, 1);
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpBinLhs$2 /*:unknown*/ = a.length;
     const tmpIfTest$1 /*:boolean*/ = tmpBinLhs$2 < 10;
     if (tmpIfTest$1) {
@@ -111,7 +111,7 @@ if (f) {
   let j = i + 1;
   const k = b.push;
   $dotCall( k, b, "push", 1 );
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const l = b.length;
     const m = l < 10;
     if (m) {

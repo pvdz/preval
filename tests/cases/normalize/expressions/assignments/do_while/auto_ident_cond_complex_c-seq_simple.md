@@ -31,7 +31,7 @@ if (tmpIfTest$1) {
   a = $(tmpCalleeParam);
 }
 if (a) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $(100);
     const tmpIfTest$2 /*:unknown*/ = $(1);
     if (tmpIfTest$2) {
@@ -97,7 +97,7 @@ else {
   a = $( c );
 }
 if (a) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $( 100 );
     const d = $( 1 );
     if (d) {

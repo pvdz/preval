@@ -666,10 +666,10 @@ function runTestCase(
 
     const max = CONFIG.unrollLimit ?? mdOptions?.unroll ?? 10;
     for (let i=0; i<=max; ++i) {
-      // $LOOP_UNROLL_1 $LOOP_UNROLL_2 $LOOP_UNROLL_3 etc. Alias as `true`
+      // $LOOP_UNROLLS_LEFT_1 $LOOP_UNROLLS_LEFT_2 $LOOP_UNROLLS_LEFT_3 etc. Alias as `true`
       frameworkInjectedGlobals[`${SYMBOL_LOOP_UNROLL}${i}`] = true;
     }
-    // $LOOP_DONE_UNROLLING_ALWAYS_TRUE. Alias as `true`
+    // $LOOP_NO_UNROLLS_LEFT. Alias as `true`
     frameworkInjectedGlobals[SYMBOL_MAX_LOOP_UNROLL] = true; // "signals not to unroll any further, but to treat this as "true" anyways"
     frameworkInjectedGlobals[SYMBOL_FULLY_UNROLL] = true; // "signals to always unroll when a loop is eligible to do so"
 

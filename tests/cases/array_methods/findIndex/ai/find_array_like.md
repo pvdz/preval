@@ -31,7 +31,7 @@ if (tmpLambdaFindIndexTest) {
   } else {
     let tmpLambdaFindIndexOut /*:number*/ = -1;
     let tmpClusterSSA_tmpLambdaFindIndexCounter /*:number*/ = 1;
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       const tmpLambdaFindIndexTest$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaFindIndexCounter < tmpLambdaFindIndexLen;
       if (tmpLambdaFindIndexTest$1) {
         const tmpLambdaFindIndexVal$1 /*:unknown*/ = obj[tmpClusterSSA_tmpLambdaFindIndexCounter];
@@ -108,7 +108,7 @@ if (d) {
   else {
     let g = -1;
     let h = 1;
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       const i = h < c;
       if (i) {
         const j = b[ h ];

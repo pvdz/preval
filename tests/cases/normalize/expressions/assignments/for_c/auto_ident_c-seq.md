@@ -24,7 +24,7 @@ $(a, x);
 let a /*:unknown*/ = { a: 999, b: 1000 };
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $(1);
     $(2);
     a = $(1);
@@ -72,7 +72,7 @@ let a = {
 };
 const b = $( 1 );
 if (b) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $( 1 );
     $( 2 );
     a = $( 1 );

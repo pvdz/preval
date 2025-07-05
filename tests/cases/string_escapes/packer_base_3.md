@@ -16,7 +16,7 @@ let tmpClusterSSA_c$1/*:number*/ = 0;
 let tmpAssignComputedRhs$2/*:string*/ /*truthy*/ = `console`;
 r[0] = tmpAssignComputedRhs$2;
 const k/*:array*/ /*truthy*/ = [`console`, `log`, `boo`];
-while ($LOOP_UNROLL_8) {
+while ($LOOP_UNROLLS_LEFT_8) {
   const tmpPostUpdArgIdent$1/*:number*/ = tmpClusterSSA_c$1;
   tmpClusterSSA_c$1 = tmpClusterSSA_c$1 - 1;
   if (tmpPostUpdArgIdent$1) {
@@ -96,7 +96,7 @@ let tmpClusterSSA_c$1 = 0;
 let tmpAssignComputedRhs$2 = `console`;
 r[0] = tmpAssignComputedRhs$2;
 const k = [`console`, `log`, `boo`];
-while ($LOOP_UNROLL_8) {
+while ($LOOP_UNROLLS_LEFT_8) {
   const tmpPostUpdArgIdent$1 = tmpClusterSSA_c$1;
   tmpClusterSSA_c$1 = tmpClusterSSA_c$1 - 1;
   if (tmpPostUpdArgIdent$1) {

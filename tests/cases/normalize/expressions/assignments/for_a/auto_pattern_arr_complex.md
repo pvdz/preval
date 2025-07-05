@@ -24,7 +24,7 @@ const tmpBindingPatternArrRoot /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 const tmpCalleeParam /*:array*/ /*truthy*/ = [1, 2];
 const tmpArrAssignPatternRhs /*:unknown*/ = $(tmpCalleeParam);
 [...tmpArrAssignPatternRhs];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $(1);
 }
 `````
@@ -56,7 +56,7 @@ const a = {
 const b = [ 1, 2 ];
 const c = $( b );
 [ ...c ];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $( 1 );
 }
 `````

@@ -33,7 +33,7 @@ if (tmpLambdaReduceRightTest) {
   } else {
   }
   let tmpClusterSSA_tmpLambdaReduceRightCounter /*:number*/ = tmpLambdaReduceRightCounter - 1;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpLambdaReduceRightTest$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaReduceRightCounter >= 0;
     if (tmpLambdaReduceRightTest$1) {
       const tmpLambdaReduceRightHas$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaReduceRightCounter in obj;
@@ -104,7 +104,7 @@ if (e) {
     f = $coerce( h, "plustr" );
   }
   let i = d - 1;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const j = i >= 0;
     if (j) {
       const k = i in b;

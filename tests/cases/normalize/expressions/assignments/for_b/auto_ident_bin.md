@@ -24,7 +24,7 @@ const tmpBinBothRhs /*:unknown*/ = $(2);
 const tmpClusterSSA_a /*:primitive*/ = tmpBinBothLhs + tmpBinBothRhs;
 if (tmpClusterSSA_a) {
   let a /*:primitive*/ = undefined;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $(1);
     const tmpBinBothLhs$1 /*:unknown*/ = $(1);
     const tmpBinBothRhs$1 /*:unknown*/ = $(2);
@@ -71,7 +71,7 @@ const b = $( 2 );
 const c = a + b;
 if (c) {
   let d = undefined;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $( 1 );
     const e = $( 1 );
     const f = $( 2 );

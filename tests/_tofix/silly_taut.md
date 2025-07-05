@@ -20,7 +20,7 @@ but either way, preval should update the if hoisting reducer to handle this case
 `````js filename=intro
 let tmpSealed /*:boolean*/ = false;
 const main_data_arr /*:array*/ /*truthy*/ = [`this`, `contents`, `is`, `not`, `relevant`, `here`];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   let b /*:number*/ /*ternaryConst*/ = 0;
   const tmp2$3 /*:primitive*/ = main_data_arr[NaN];
   if (tmpSealed) {
@@ -49,7 +49,7 @@ $(tmp2$1);
 `````js filename=intro
 let tmpSealed /*:boolean*/ = false;
 const main_data_arr /*:array*/ /*truthy*/ = [`this`, `contents`, `is`, `not`, `relevant`, `here`];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   let b /*:number*/ /*ternaryConst*/ = 0;
   const tmp2$3 /*:primitive*/ = main_data_arr[NaN];
   if (tmpSealed) {
@@ -105,7 +105,7 @@ With rename=true
 `````js filename=intro
 let a = false;
 const b = [ "this", "contents", "is", "not", "relevant", "here" ];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   let c = 0;
   const d = b[ NaN ];
   if (a) {
@@ -136,7 +136,7 @@ $( f );
 `````js filename=intro
 let tmpSealed = false;
 const main_data_arr = [`this`, `contents`, `is`, `not`, `relevant`, `here`];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   let b = 0;
   const tmp2$3 = main_data_arr[NaN];
   if (tmpSealed) {

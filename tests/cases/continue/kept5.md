@@ -10,8 +10,8 @@
 
 `````js filename=intro
 
-exit: while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  again: while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+exit: while ($LOOP_NO_UNROLLS_LEFT) {
+  again: while ($LOOP_NO_UNROLLS_LEFT) {
     if ($(1)) {
       if ($(2)) {
         break again;
@@ -24,7 +24,7 @@ exit: while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 $(4);
 
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   let continued = false;
   if ($(5)) {
     if ($(6)) {
@@ -50,7 +50,7 @@ $(8);
 
 
 `````js filename=intro
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   nestedLoop: {
     const tmpIfTest /*:unknown*/ = $(1);
     if (tmpIfTest) {
@@ -69,7 +69,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   }
 }
 $(4);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpIfTest$5 /*:unknown*/ = $(5);
   if (tmpIfTest$5) {
     const tmpIfTest$7 /*:unknown*/ = $(6);
@@ -122,7 +122,7 @@ $(8);
 With rename=true
 
 `````js filename=intro
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   nestedLoop: {
     const a = $( 1 );
     if (a) {
@@ -138,7 +138,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   }
 }
 $( 4 );
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const d = $( 5 );
   if (d) {
     const e = $( 6 );
@@ -158,7 +158,7 @@ $( 8 );
 (This is what phase1 received the first time)
 
 `````js filename=intro
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   nestedLoop: {
     const tmpIfTest = $(1);
     if (tmpIfTest) {
@@ -177,7 +177,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   }
 }
 $(4);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   let continued = false;
   const tmpIfTest$5 = $(5);
   if (tmpIfTest$5) {

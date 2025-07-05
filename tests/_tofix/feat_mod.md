@@ -12,7 +12,7 @@ existing test
 
 `````js filename=intro
 let x = $(1);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   if (x % 2) {
     $(++x, 'write');
   } else {
@@ -27,7 +27,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 `````js filename=intro
 let x /*:unknown*/ = $(1);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpIfTest /*:number*/ = x % 2;
   if (tmpIfTest) {
     const tmpPostUpdArgIdent /*:number*/ = $coerce(x, `number`);
@@ -61,7 +61,7 @@ With rename=true
 
 `````js filename=intro
 let a = $( 1 );
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const b = a % 2;
   if (b) {
     const c = $coerce( a, "number" );
@@ -80,7 +80,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 `````js filename=intro
 let x = $(1);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpIfTest = x % 2;
   if (tmpIfTest) {
     const tmpPostUpdArgIdent = $coerce(x, `number`);

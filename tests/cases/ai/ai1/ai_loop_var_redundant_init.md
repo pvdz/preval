@@ -30,7 +30,7 @@ if (tmpIfTest) {
   let tmpClusterSSA_iteration /*:number*/ = 1;
   const tmpSSA_current /*:unknown*/ = $(`val`);
   let tmpClusterSSA_sum /*:primitive*/ = 0 + tmpSSA_current;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpPostUpdArgIdent$1 /*:number*/ = tmpClusterSSA_iteration;
     tmpClusterSSA_iteration = tmpClusterSSA_iteration + 1;
     const tmpIfTest$1 /*:unknown*/ = $(`cond`, tmpPostUpdArgIdent$1);
@@ -81,7 +81,7 @@ if (a) {
   let b = 1;
   const c = $( "val" );
   let d = 0 + c;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const e = b;
     b = b + 1;
     const f = $( "cond", e );

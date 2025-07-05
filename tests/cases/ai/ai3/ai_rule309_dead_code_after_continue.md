@@ -30,7 +30,7 @@ if (tmpIfTest) {
   $(`loop_start`, 0);
   $(`before_continue`, 0);
   let tmpClusterSSA_i /*:number*/ = 1;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpBinBothRhs$1 /*:unknown*/ = $(`max`, 2);
     const tmpIfTest$1 /*:boolean*/ = tmpClusterSSA_i < tmpBinBothRhs$1;
     if (tmpIfTest$1) {
@@ -83,7 +83,7 @@ if (b) {
   $( "loop_start", 0 );
   $( "before_continue", 0 );
   let c = 1;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const d = $( "max", 2 );
     const e = c < d;
     if (e) {

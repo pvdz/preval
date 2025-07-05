@@ -21,7 +21,7 @@ $(a);
 `````js filename=intro
 $(100);
 const tmpForOfGenNext /*:unknown*/ = $forOf(undefined);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
@@ -59,7 +59,7 @@ With rename=true
 `````js filename=intro
 $( 100 );
 const a = $forOf( undefined );
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const b = a();
   const c = b.done;
   if (c) {
@@ -85,7 +85,7 @@ let a = { a: 999, b: 1000 };
 $(100);
 let tmpCalleeParam = undefined;
 const tmpForOfGenNext = $forOf(undefined);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForOfNext = tmpForOfGenNext();
   const tmpIfTest = tmpForOfNext.done;
   if (tmpIfTest) {

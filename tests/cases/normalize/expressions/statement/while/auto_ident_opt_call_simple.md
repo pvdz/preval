@@ -26,7 +26,7 @@ if (tmpIfTest$1) {
   tmpIfTest = $(1);
 }
 if (tmpIfTest) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $(100);
     let tmpIfTest$2 /*:unknown*/ /*ternaryConst*/ = undefined;
     const tmpIfTest$4 /*:boolean*/ = $ == null;
@@ -83,7 +83,7 @@ else {
   a = $( 1 );
 }
 if (a) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $( 100 );
     let c = undefined;
     const d = $ == null;

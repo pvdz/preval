@@ -12,7 +12,7 @@
 let s = $('hello');
 let t = $('there');
 let x = $(1, ...s, 3);
-while ($LOOP_UNROLL_10) {
+while ($LOOP_UNROLLS_LEFT_10) {
   $(x);
   x = $(1, ...t, 3);
 }
@@ -27,7 +27,7 @@ $(x); // unreachable
 const s /*:unknown*/ = $(`hello`);
 const t /*:unknown*/ = $(`there`);
 let x /*:unknown*/ = $(1, ...s, 3);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $(x);
   x = $(1, ...t, 3);
 }
@@ -55,7 +55,7 @@ With rename=true
 const a = $( "hello" );
 const b = $( "there" );
 let c = $( 1, ...a, 3 );
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $( c );
   c = $( 1, ...b, 3 );
 }
@@ -69,7 +69,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 let s = $(`hello`);
 let t = $(`there`);
 let x = $(1, ...s, 3);
-while ($LOOP_UNROLL_10) {
+while ($LOOP_UNROLLS_LEFT_10) {
   $(x);
   x = $(1, ...t, 3);
 }

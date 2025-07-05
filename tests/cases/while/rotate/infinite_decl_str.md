@@ -16,7 +16,7 @@ Note: Because a regex is a stateful object, Preval won't eliminate it.
 
 `````js filename=intro
 let x = 'foo';
-while ($LOOP_UNROLL_10) {
+while ($LOOP_UNROLLS_LEFT_10) {
   $(x);
   x = 'foo';
 }
@@ -28,7 +28,7 @@ $(x); // unreachable
 
 
 `````js filename=intro
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $(`foo`);
 }
 `````
@@ -48,7 +48,7 @@ while (true) {
 With rename=true
 
 `````js filename=intro
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $( "foo" );
 }
 `````
@@ -59,7 +59,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 `````js filename=intro
 let x = `foo`;
-while ($LOOP_UNROLL_10) {
+while ($LOOP_UNROLLS_LEFT_10) {
   $(x);
   x = `foo`;
 }

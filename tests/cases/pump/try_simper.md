@@ -10,7 +10,7 @@
 
 `````js filename=intro
 const arrB = [`body`, `abOPIoHFut:bwlFaSsnkTXHOCpGGeeFsJMHCLEPCWr`, `return (function() `, `iframe`, `[?&]`, `translate(-50%, -50%) scale(`, `url`, `1362209nkUUHI`, `replace`];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $('protect');
   const a = arrB[51];
   const aint = parseInt(a);
@@ -51,7 +51,7 @@ const arrB /*:array*/ /*truthy*/ = [
   `1362209nkUUHI`,
   `replace`,
 ];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $(`protect`);
   const arrval /*:primitive*/ /*truthy*/ = $dotCall($array_shift, arrB, `shift`);
   $dotCall($array_push, arrB, `push`, arrval);
@@ -86,7 +86,7 @@ With rename=true
 
 `````js filename=intro
 const a = [ "body", "abOPIoHFut:bwlFaSsnkTXHOCpGGeeFsJMHCLEPCWr", "return (function() ", "iframe", "[?&]", "translate(-50%, -50%) scale(", "url", "1362209nkUUHI", "replace" ];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $( "protect" );
   const b = $dotCall( $array_shift, a, "shift" );
   $dotCall( $array_push, a, "push", b );
@@ -109,7 +109,7 @@ const arrB = [
   `1362209nkUUHI`,
   `replace`,
 ];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $(`protect`);
   const a = arrB[51];
   const aint = $Number_parseInt(a);

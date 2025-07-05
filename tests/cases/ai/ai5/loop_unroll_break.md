@@ -105,7 +105,7 @@ const tmpIfTest /*:boolean*/ = 0 < x;
 if (tmpIfTest) {
   let tmpClusterSSA_result /*:number*/ = 1;
   let tmpSSA_i /*:number*/ = 1;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpIfTest$2 /*:boolean*/ = tmpSSA_i < x;
     if (tmpIfTest$2) {
       const tmpIfTest$4 /*:boolean*/ = tmpSSA_i === 0;
@@ -233,7 +233,7 @@ const b = 0 < a;
 if (b) {
   let c = 1;
   let d = 1;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const e = d < a;
     if (e) {
       const f = d === 0;

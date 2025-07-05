@@ -26,7 +26,7 @@ while (x) {
 if (x) {
   const tmpIfTest /*:unknown*/ = $(`yes`);
   if (tmpIfTest) {
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       if (x) {
         const tmpIfTest$1 /*:unknown*/ = $(`yes`);
         if (tmpIfTest$1) {
@@ -71,7 +71,7 @@ With rename=true
 if (x) {
   const a = $( "yes" );
   if (a) {
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       if (x) {
         const b = $( "yes" );
         if (b) {

@@ -28,7 +28,7 @@ if (x) {
 `````js filename=intro
 const x /*:unknown*/ = $();
 if (x) {
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_NO_UNROLLS_LEFT) {
     $(`round and`);
   }
 } else {
@@ -54,7 +54,7 @@ With rename=true
 `````js filename=intro
 const a = $();
 if (a) {
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_NO_UNROLLS_LEFT) {
     $( "round and" );
   }
 }

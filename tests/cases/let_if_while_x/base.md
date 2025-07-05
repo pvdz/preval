@@ -43,7 +43,7 @@ if (x) {
   let flag /*:boolean*/ = true;
   $(`inner`, 0);
   let tmpClusterSSA_n /*:number*/ = 1;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     if (flag) {
       $(`inner`, tmpClusterSSA_n);
       tmpClusterSSA_n = tmpClusterSSA_n + 1;
@@ -102,7 +102,7 @@ if (b) {
   let c = true;
   $( "inner", 0 );
   let d = 1;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     if (c) {
       $( "inner", d );
       d = d + 1;

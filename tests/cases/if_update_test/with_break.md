@@ -27,7 +27,7 @@ while (count) {
 `````js filename=intro
 const chk /*:unknown*/ = $(true);
 if (chk) {
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_NO_UNROLLS_LEFT) {
     $(`inside`);
   }
 } else {
@@ -53,7 +53,7 @@ With rename=true
 `````js filename=intro
 const a = $( true );
 if (a) {
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_NO_UNROLLS_LEFT) {
     $( "inside" );
   }
 }

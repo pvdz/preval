@@ -29,7 +29,7 @@ const test /*:unknown*/ = $(`first`);
 $(`second`);
 if (test) {
 } else {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $(`third`);
     const test$1 /*:unknown*/ = $(`first`);
     $(`second`);
@@ -71,7 +71,7 @@ if (a) {
 
 }
 else {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $( "third" );
     const b = $( "first" );
     $( "second" );

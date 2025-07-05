@@ -25,7 +25,7 @@ const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   const tmpUnaryArg /*:unknown*/ = $(1);
   let tmpClusterSSA_a /*:string*/ /*truthy*/ = typeof tmpUnaryArg;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       const tmpUnaryArg$1 /*:unknown*/ = $(1);
@@ -72,7 +72,7 @@ const a = $( 1 );
 if (a) {
   const b = $( 1 );
   let c = typeof b;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const d = $( 1 );
     if (d) {
       const e = $( 1 );

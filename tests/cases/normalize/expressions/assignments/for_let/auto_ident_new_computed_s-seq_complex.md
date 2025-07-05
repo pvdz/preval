@@ -25,7 +25,7 @@ const tmpCalleeParam /*:unknown*/ = $(`\$`);
 const b /*:object*/ /*truthy*/ = { $: $ };
 const tmpNewCallee /*:unknown*/ = b[tmpCalleeParam];
 const xyz /*:object*/ /*truthy*/ = new tmpNewCallee(1);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $(xyz);
   $(1);
 }
@@ -54,7 +54,7 @@ const a = $( "$" );
 const b = { $: $ };
 const c = b[ a ];
 const d = new c( 1 );
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $( d );
   $( 1 );
 }

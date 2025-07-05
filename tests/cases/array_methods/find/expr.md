@@ -30,7 +30,7 @@ const f /*:()=>undefined*/ = function () {
     return undefined;
   } else {
     let tmpClusterSSA_tmpLambdaFindCounter /*:number*/ = 1;
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       const tmpLambdaFindTest$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaFindCounter < 3;
       if (tmpLambdaFindTest$1) {
         const tmpLambdaFindVal$1 /*:primitive*/ = arr[tmpClusterSSA_tmpLambdaFindCounter];
@@ -99,7 +99,7 @@ const a = function() {
   }
   else {
     let d = 1;
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       const e = d < 3;
       if (e) {
         const f = b[ d ];

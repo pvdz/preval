@@ -34,7 +34,7 @@ if (tmpIfTest) {
   const tmpInitAssignLhsComputedProp /*:unknown*/ = $(`y`);
   tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = 7;
   tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 7;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       const tmpAssignComMemLhsObj$1 /*:unknown*/ = $(b);
@@ -99,7 +99,7 @@ if (a) {
   const g = $( "y" );
   f[g] = 7;
   d[e] = 7;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const h = $( 1 );
     if (h) {
       const i = $( b );

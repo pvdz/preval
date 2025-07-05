@@ -25,7 +25,7 @@ const b /*:object*/ /*truthy*/ = { c: 1 };
 const tmpAssignRhsProp /*:unknown*/ = $(b);
 const a /*:unknown*/ = tmpAssignRhsProp.c;
 const tmpForOfGenNext /*:unknown*/ = $forOf(a);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
@@ -65,7 +65,7 @@ const a = { c: 1 };
 const b = $( a );
 const c = b.c;
 const d = $forOf( c );
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const e = d();
   const f = e.done;
   if (f) {
@@ -89,7 +89,7 @@ const tmpAssignRhsProp = $(b);
 a = tmpAssignRhsProp.c;
 let tmpCalleeParam = a;
 const tmpForOfGenNext = $forOf(a);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForOfNext = tmpForOfGenNext();
   const tmpIfTest = tmpForOfNext.done;
   if (tmpIfTest) {

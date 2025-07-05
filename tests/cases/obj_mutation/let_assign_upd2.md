@@ -27,7 +27,7 @@ $(blob);
 const tmpBinLhs$1 /*:unknown*/ = blob.xyz;
 const tmpIfTest /*:boolean*/ = tmpBinLhs$1 < 10;
 if (tmpIfTest) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpBinLhs$2 /*:unknown*/ = blob.xyz;
     const tmpAssignMemRhs$1 /*:primitive*/ = tmpBinLhs$2 + 1;
     blob.xyz = tmpAssignMemRhs$1;
@@ -79,7 +79,7 @@ $( a );
 const b = a.xyz;
 const c = b < 10;
 if (c) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const d = a.xyz;
     const e = d + 1;
     a.xyz = e;

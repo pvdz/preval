@@ -32,7 +32,7 @@ $(1);
 $(1);
 $(1);
 const b /*:object*/ /*truthy*/ = { c: 1 };
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $(1);
   const tmpIfTest$1 /*:unknown*/ = b.c;
   if (tmpIfTest$1) {
@@ -85,7 +85,7 @@ $( 1 );
 $( 1 );
 $( 1 );
 const a = { c: 1 };
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $( 1 );
   const b = a.c;
   if (b) {

@@ -22,7 +22,7 @@ $(a);
 const tmpBinBothLhs /*:unknown*/ = $(1);
 const tmpBinBothRhs /*:unknown*/ = $(2);
 const a /*:primitive*/ = tmpBinBothLhs + tmpBinBothRhs;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $(a);
   $(1);
 }
@@ -48,7 +48,7 @@ With rename=true
 const a = $( 1 );
 const b = $( 2 );
 const c = a + b;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $( c );
   $( 1 );
 }

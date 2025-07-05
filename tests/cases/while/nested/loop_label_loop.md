@@ -32,13 +32,13 @@ while(true) {
 
 `````js filename=intro
 let x /*:number*/ /*truthy*/ = 10;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const t /*:unknown*/ = $(x);
   if (t) {
     $(x);
   } else {
     x = 20;
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       $(20);
       const t$1 /*:unknown*/ = $(20);
       if (t$1) {
@@ -79,14 +79,14 @@ With rename=true
 
 `````js filename=intro
 let a = 10;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const b = $( a );
   if (b) {
     $( a );
   }
   else {
     a = 20;
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       $( 20 );
       const c = $( 20 );
       if (c) {

@@ -29,7 +29,7 @@ $(2);
 const tmpClusterSSA_a /*:unknown*/ = $(1);
 if (tmpClusterSSA_a) {
   let a /*:unknown*/ = undefined;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $(100);
     $(1);
     $(2);
@@ -82,7 +82,7 @@ $( 2 );
 const a = $( 1 );
 if (a) {
   let b = undefined;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $( 100 );
     $( 1 );
     $( 2 );

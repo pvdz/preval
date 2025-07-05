@@ -23,7 +23,7 @@ const tmpBinBothLhs /*:unknown*/ = $(1);
 const tmpBinBothRhs /*:unknown*/ = $(2);
 const tmpIfTest /*:primitive*/ = tmpBinBothLhs + tmpBinBothRhs;
 if (tmpIfTest) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $(100);
     const tmpBinBothLhs$1 /*:unknown*/ = $(1);
     const tmpBinBothRhs$1 /*:unknown*/ = $(2);
@@ -65,7 +65,7 @@ const a = $( 1 );
 const b = $( 2 );
 const c = a + b;
 if (c) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $( 100 );
     const d = $( 1 );
     const e = $( 2 );

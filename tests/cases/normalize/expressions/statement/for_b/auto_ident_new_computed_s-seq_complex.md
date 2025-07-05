@@ -22,7 +22,7 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ /*truthy*/ = { $: $ };
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpCalleeParam /*:unknown*/ = $(`\$`);
   const tmpNewCallee /*:unknown*/ = b[tmpCalleeParam];
   new tmpNewCallee(1);
@@ -50,7 +50,7 @@ With rename=true
 
 `````js filename=intro
 const a = { $: $ };
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const b = $( "$" );
   const c = a[ b ];
   new c( 1 );

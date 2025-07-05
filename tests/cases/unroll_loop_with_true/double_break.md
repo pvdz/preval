@@ -35,7 +35,7 @@ if (test) {
   if (tmpIfTest) {
   } else {
     $(`third`);
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       const test$1 /*:unknown*/ = $(`first`);
       $(`second`);
       if (test$1) {
@@ -97,7 +97,7 @@ else {
   }
   else {
     $( "third" );
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       const c = $( "first" );
       $( "second" );
       if (c) {

@@ -30,7 +30,7 @@ if (tmpIfTest) {
   } else {
     tmpClusterSSA_a = $dotCall($, tmpObjLitVal$1, `e`, 1);
   }
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       tmpClusterSSA_a = undefined;
@@ -96,7 +96,7 @@ if (a) {
   else {
     b = $dotCall( $, d, "e", 1 );
   }
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const e = $( 1 );
     if (e) {
       b = undefined;

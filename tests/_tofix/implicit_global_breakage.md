@@ -29,7 +29,7 @@ $(x);
 
 `````js filename=intro
 $1;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $(2);
   $1;
 }
@@ -53,7 +53,7 @@ With rename=true
 
 `````js filename=intro
 $1;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $( 2 );
   $1;
 }

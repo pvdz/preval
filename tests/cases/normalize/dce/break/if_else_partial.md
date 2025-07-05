@@ -31,7 +31,7 @@ if (tmpIfTest) {
     $(`after`);
   } else {
     $(`keep, do not eval`);
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       const tmpIfTest$2 /*:unknown*/ = $(true);
       if (tmpIfTest$2) {
         const tmpIfTest$4 /*:unknown*/ = $(1);
@@ -92,7 +92,7 @@ if (a) {
   }
   else {
     $( "keep, do not eval" );
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       const c = $( true );
       if (c) {
         const d = $( 1 );

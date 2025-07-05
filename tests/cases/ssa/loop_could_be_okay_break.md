@@ -36,7 +36,7 @@ if ($) {
   $(x);
   if ($) {
   } else {
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       const x$1 /*:unknown*/ = $(2);
       $(x$1);
       if ($) {
@@ -81,7 +81,7 @@ if ($) {
 
   }
   else {
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       const b = $( 2 );
       $( b );
       if ($) {

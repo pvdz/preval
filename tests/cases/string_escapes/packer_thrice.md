@@ -130,7 +130,7 @@ const k /*:array*/ /*truthy*/ = [
   `bo`,
   `x20o`,
 ];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpPostUpdArgIdent$1 /*:number*/ = tmpClusterSSA_c$2;
   tmpClusterSSA_c$2 = tmpClusterSSA_c$2 - 1;
   if (tmpPostUpdArgIdent$1) {
@@ -365,7 +365,7 @@ let bg = 34;
 const bh = k( 34 );
 j[bh] = "eval";
 const bi = [ undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "function", "return", "if", "replace", undefined, "while", "eval", "String", "new", "RegExp", "28", "split", "toString", "console", "log", "bo", "x20o" ];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const bj = bg;
   bg = bg - 1;
   if (bj) {

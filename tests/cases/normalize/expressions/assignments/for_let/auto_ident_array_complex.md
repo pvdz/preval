@@ -22,7 +22,7 @@ $(a);
 const tmpArrElement /*:unknown*/ = $(1);
 const tmpArrElement$3 /*:unknown*/ = $(3);
 const xyz /*:array*/ /*truthy*/ = [tmpArrElement, 2, tmpArrElement$3];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $(xyz);
   $(1);
 }
@@ -50,7 +50,7 @@ With rename=true
 const a = $( 1 );
 const b = $( 3 );
 const c = [ a, 2, b ];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $( c );
   $( 1 );
 }

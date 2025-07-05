@@ -24,7 +24,7 @@ $(a);
 const b /*:object*/ /*truthy*/ = { $: $ };
 const tmpIfTest /*:unknown*/ = $dotCall($, b, `\$`, 1);
 if (tmpIfTest) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $(1);
     const tmpMCF$1 /*:unknown*/ = b.$;
     const tmpIfTest$1 /*:unknown*/ = $dotCall(tmpMCF$1, b, `\$`, 1);
@@ -64,7 +64,7 @@ With rename=true
 const a = { $: $ };
 const b = $dotCall( $, a, "$", 1 );
 if (b) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $( 1 );
     const c = a.$;
     const d = $dotCall( c, a, "$", 1 );

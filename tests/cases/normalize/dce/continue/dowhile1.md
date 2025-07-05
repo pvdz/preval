@@ -85,7 +85,7 @@ while (true) {
     $(`loop`);
     const tmpIfTest$1 /*:unknown*/ = $(true);
     if (tmpIfTest$1) {
-      while ($LOOP_UNROLL_10) {
+      while ($LOOP_UNROLLS_LEFT_10) {
         $(`loop`);
         const tmpIfTest$2 /*:unknown*/ = $(true);
         if (tmpIfTest$2) {
@@ -141,7 +141,7 @@ while (true) {
     $( "loop" );
     const b = $( true );
     if (b) {
-      while ($LOOP_UNROLL_10) {
+      while ($LOOP_UNROLLS_LEFT_10) {
         $( "loop" );
         const c = $( true );
         if (c) {

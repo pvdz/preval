@@ -11,7 +11,7 @@
 `````js filename=intro
 let counter /*:number*/ = 0;
 const arr /*:array*/ = [];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   arr.push(counter);
   counter = counter + 1;
   const test /*:boolean*/ = counter > 20;
@@ -61,7 +61,7 @@ $( a );
 `````js filename=intro
 let counter = 0;
 const arr = [];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpMCF = arr.push;
   $dotCall(tmpMCF, arr, `push`, counter);
   counter = counter + 1;

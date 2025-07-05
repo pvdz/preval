@@ -32,7 +32,7 @@ if (tmpIfTest) {
   const tmpObjLitVal$1 /*:unknown*/ = $(4);
   x = tmpObjLitVal;
   y = tmpObjLitVal$1;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       $(x);
@@ -96,7 +96,7 @@ if (c) {
   const e = $( 4 );
   a = d;
   b = e;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const f = $( 1 );
     if (f) {
       $( a );

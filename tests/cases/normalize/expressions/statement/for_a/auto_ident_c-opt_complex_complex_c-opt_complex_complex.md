@@ -38,7 +38,7 @@ if (tmpIfTest) {
 }
 const tmpIfTest$3 /*:unknown*/ = $(0);
 if (tmpIfTest$3) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpIfTest$2 /*:unknown*/ = $(0);
     if (tmpIfTest$2) {
     } else {
@@ -102,7 +102,7 @@ else {
 }
 const i = $( 0 );
 if (i) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const j = $( 0 );
     if (j) {
 

@@ -22,7 +22,7 @@ $(a);
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   let tmpClusterSSA_a /*:array*/ /*truthy*/ = [1, 2, 3];
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       tmpClusterSSA_a = [1, 2, 3];
@@ -65,7 +65,7 @@ With rename=true
 const a = $( 1 );
 if (a) {
   let b = [ 1, 2, 3 ];
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const c = $( 1 );
     if (c) {
       b = [ 1, 2, 3 ];

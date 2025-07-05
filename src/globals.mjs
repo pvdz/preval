@@ -96,13 +96,13 @@ const globalNames = new Map([
 ]);
 
 for (let i=0; i<=MAX_UNROLL_TRUE_COUNT; ++i) {
-  // $LOOP_UNROLL_1 $LOOP_UNROLL_2 $LOOP_UNROLL_3 etc
+  // $LOOP_UNROLLS_LEFT_1 $LOOP_UNROLLS_LEFT_2 $LOOP_UNROLLS_LEFT_3 etc
   // Special symbols whose number suffix has semantic meaning. Ultimately they boil down to an alias for "true",
   // where the name implies that we can still unroll this infinite `while(true)` that many times, before bailing.
   // We can't set it to actual `true` though because then loop unrolling goes infinite.
   globalNames.set(`${SYMBOL_LOOP_UNROLL}${i}`, { mustBeType: 'boolean', mustBeFalsy: false, mustBeTruthy: false, mustBePrimitive: true });
 }
-// $LOOP_DONE_UNROLLING_ALWAYS_TRUE
+// $LOOP_NO_UNROLLS_LEFT
 // "signals not to unroll any further. Cannot set this as "true" because that'll cause infinite loops when transforming.
 globalNames.set(SYMBOL_MAX_LOOP_UNROLL, { mustBeType: 'boolean', mustBeFalsy: false, mustBeTruthy: false, mustBePrimitive: true });
 globalNames.set(SYMBOL_FULLY_UNROLL, { mustBeType: 'boolean', mustBeFalsy: false, mustBeTruthy: false, mustBePrimitive: true });

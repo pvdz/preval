@@ -42,7 +42,7 @@ if (L) {
     obj.p = tmpAssignMemRhs$1;
   } else {
     let tmpClusterSSA_L /*:unknown*/ = $(`L_next`);
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       if (tmpClusterSSA_L) {
         $(`S_loop_body`);
         const tmpAssignMemRhs$2 /*:unknown*/ = $(`v_loop_assign`);
@@ -119,7 +119,7 @@ if (b) {
   }
   else {
     let g = $( "L_next" );
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       if (g) {
         $( "S_loop_body" );
         const h = $( "v_loop_assign" );

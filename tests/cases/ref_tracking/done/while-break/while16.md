@@ -14,7 +14,7 @@
 
 `````js filename=intro
 let x = 1;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   if ($1) {
     $(x); // x=1 3
     x = 5;
@@ -34,7 +34,7 @@ $(x); // x=5
 
 `````filename=intro
 let /*___4__*/ x = 1;
-while (/*___7__*/ $LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while (/*___7__*/ $LOOP_NO_UNROLLS_LEFT) {
   /*8~29*/ if ($1) {
     /*11~20*/ $(/*___15__*/ x);
     /*___19__*/ x = 5;

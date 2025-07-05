@@ -9,7 +9,7 @@
 ## Input
 
 `````js filename=intro
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   if ($()) {
     if ($()) {
       continue;
@@ -20,8 +20,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   }
 }
 
-exit: while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  again: while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+exit: while ($LOOP_NO_UNROLLS_LEFT) {
+  again: while ($LOOP_NO_UNROLLS_LEFT) {
     if ($()) {
       if ($()) {
         break again;
@@ -33,7 +33,7 @@ exit: while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   }
 }
 
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   let continued = false;
   if ($()) {
     if ($()) {
@@ -94,7 +94,7 @@ const $continue /*:()=>undefined*/ = function () {
     return undefined;
   }
 };
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $continue: {
     const tmpIfTest$5 /*:unknown*/ = $();
     if (tmpIfTest$5) {
@@ -112,7 +112,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     }
   }
 }
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   nestedLoop: {
     const tmpIfTest$11 /*:unknown*/ = $();
     if (tmpIfTest$11) {
@@ -130,7 +130,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     }
   }
 }
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpIfTest$17 /*:unknown*/ = $();
   if (tmpIfTest$17) {
     const tmpIfTest$19 /*:unknown*/ = $();
@@ -225,7 +225,7 @@ const a = function() {
     return undefined;
   }
 };
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $continue: {
     const e = $();
     if (e) {
@@ -240,7 +240,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     }
   }
 }
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   nestedLoop: {
     const h = $();
     if (h) {
@@ -255,7 +255,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     }
   }
 }
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const k = $();
   if (k) {
     const l = $();
@@ -295,7 +295,7 @@ let $continue = function () {
     return undefined;
   }
 };
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $continue: {
     const tmpIfTest$5 = $();
     if (tmpIfTest$5) {
@@ -313,7 +313,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     }
   }
 }
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   nestedLoop: {
     const tmpIfTest$11 = $();
     if (tmpIfTest$11) {
@@ -331,7 +331,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     }
   }
 }
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   let continued = false;
   const tmpIfTest$17 = $();
   if (tmpIfTest$17) {

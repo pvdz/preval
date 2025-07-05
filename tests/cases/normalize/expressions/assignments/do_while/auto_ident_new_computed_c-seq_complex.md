@@ -24,7 +24,7 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ /*truthy*/ = { $: $ };
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $(100);
   const tmpCompObj /*:unknown*/ = $(b);
   const tmpCalleeParam /*:unknown*/ = $(`\$`);
@@ -54,7 +54,7 @@ With rename=true
 
 `````js filename=intro
 const a = { $: $ };
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $( 100 );
   const b = $( a );
   const c = $( "$" );

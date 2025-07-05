@@ -33,7 +33,7 @@ const f /*:()=>undefined*/ = function () {
     tmpLambdaFindLastIndexOut = 2;
   } else {
     let tmpClusterSSA_tmpLambdaFindLastIndexCounter /*:number*/ = 1;
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       const tmpLambdaFindLastIndexTest$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaFindLastIndexCounter >= 0;
       if (tmpLambdaFindLastIndexTest$1) {
         const tmpLambdaFindLastIndexVal$1 /*:primitive*/ = tmpMCOO[tmpClusterSSA_tmpLambdaFindLastIndexCounter];
@@ -124,7 +124,7 @@ const a = function() {
   }
   else {
     let e = 1;
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       const f = e >= 0;
       if (f) {
         const g = c[ e ];

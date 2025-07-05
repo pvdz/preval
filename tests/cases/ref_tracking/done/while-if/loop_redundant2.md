@@ -13,7 +13,7 @@
 `````js filename=intro
 let dathing = "jhayon.vercel.app";
 const d = $( "x" );
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   dathing = $;
   $(dathing);
 }
@@ -27,7 +27,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````filename=intro
 let /*___5__*/ dathing = `jhayon.vercel.app`;
 const /*___9__*/ d = $(`x`);
-while (/*___15__*/ $LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while (/*___15__*/ $LOOP_NO_UNROLLS_LEFT) {
   /*16~24*/ /*___20__*/ dathing = $;
   $($);
 }

@@ -30,7 +30,7 @@ const f /*:()=>undefined*/ = function () {
     return undefined;
   } else {
     let tmpClusterSSA_tmpLambdaSomeCounter /*:number*/ = 1;
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       const tmpLambdaSomeTest$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaSomeCounter < 3;
       if (tmpLambdaSomeTest$1) {
         const tmpLambdaSomeHas$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaSomeCounter in arr;
@@ -104,7 +104,7 @@ const a = function() {
   }
   else {
     let d = 1;
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       const e = d < 3;
       if (e) {
         const f = d in b;

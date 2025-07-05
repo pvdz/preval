@@ -27,13 +27,13 @@ $(x);
 `````js filename=intro
 $(10);
 let x /*:unknown*/ = undefined;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpClusterSSA_x /*:unknown*/ = $(20);
   const tmpIfTest /*:unknown*/ = $(true);
   if (tmpIfTest) {
     $(tmpClusterSSA_x);
   } else {
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       x = $(20);
       const tmpIfTest$1 /*:unknown*/ = $(true);
       if (tmpIfTest$1) {
@@ -76,14 +76,14 @@ With rename=true
 `````js filename=intro
 $( 10 );
 let a = undefined;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const b = $( 20 );
   const c = $( true );
   if (c) {
     $( b );
   }
   else {
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       a = $( 20 );
       const d = $( true );
       if (d) {

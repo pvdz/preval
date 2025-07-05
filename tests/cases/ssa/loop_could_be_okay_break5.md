@@ -18,7 +18,7 @@ if (tmpLoopRetCode) {
   $tmpLoopUnrollCheck = false;
 }
 if ($tmpLoopUnrollCheck) {
-  while ($LOOP_UNROLL_9) {
+  while ($LOOP_UNROLLS_LEFT_9) {
     if (tmpLoopRetCode) {
       if ($) {
         tmpLoopRetCode = false;
@@ -40,7 +40,7 @@ if ($tmpLoopUnrollCheck) {
 let tmpClusterSSA_tmpLoopRetCode /*:boolean*/ = !$;
 if ($) {
 } else {
-  while ($LOOP_UNROLL_9) {
+  while ($LOOP_UNROLLS_LEFT_9) {
     if (tmpClusterSSA_tmpLoopRetCode) {
       if ($) {
         tmpClusterSSA_tmpLoopRetCode = false;
@@ -82,7 +82,7 @@ if ($) {
 
 }
 else {
-  while ($LOOP_UNROLL_9) {
+  while ($LOOP_UNROLLS_LEFT_9) {
     if (a) {
       if ($) {
         a = false;
@@ -111,7 +111,7 @@ if (tmpLoopRetCode) {
   $tmpLoopUnrollCheck = false;
 }
 if ($tmpLoopUnrollCheck) {
-  while ($LOOP_UNROLL_9) {
+  while ($LOOP_UNROLLS_LEFT_9) {
     if (tmpLoopRetCode) {
       if ($) {
         tmpLoopRetCode = false;

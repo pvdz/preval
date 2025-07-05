@@ -38,7 +38,7 @@ if (tmpIfTest) {
   }
 }
 const xyz /*:unknown*/ = a;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $(xyz);
   $(1);
 }
@@ -93,7 +93,7 @@ else {
   }
 }
 const j = a;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $( j );
   $( 1 );
 }

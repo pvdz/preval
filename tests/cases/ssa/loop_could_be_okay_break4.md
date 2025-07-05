@@ -24,7 +24,7 @@ while (tmpLoopRetCode) {
 if ($) {
 } else {
   let tmpLoopRetCode /*:boolean*/ = true;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     if ($) {
       tmpLoopRetCode = false;
     } else {
@@ -65,7 +65,7 @@ if ($) {
 }
 else {
   let a = true;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     if ($) {
       a = false;
     }

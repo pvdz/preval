@@ -27,7 +27,7 @@ $(100);
 const arg /*:object*/ /*truthy*/ = { y: 1 };
 const tmpIfTest /*:boolean*/ = delete arg.y;
 if (tmpIfTest) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $(100);
     const tmpIfTest$1 /*:boolean*/ = delete arg.y;
     if (tmpIfTest$1) {
@@ -68,7 +68,7 @@ $( 100 );
 const a = { y: 1 };
 const b = delete a.y;
 if (b) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $( 100 );
     const c = delete a.y;
     if (c) {

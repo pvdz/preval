@@ -11,7 +11,7 @@
 `````js filename=intro
 {
   const arr = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k'];
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_NO_UNROLLS_LEFT) {
     try {
       const x = arr[1];
       $(x);
@@ -34,7 +34,7 @@
 
 `````js filename=intro
 const arr /*:array*/ /*truthy*/ = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const x /*:primitive*/ = arr[1];
   try {
     $(x);
@@ -76,7 +76,7 @@ With rename=true
 
 `````js filename=intro
 const a = [ "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k" ];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const b = a[ 1 ];
   try {
     $( b );
@@ -98,7 +98,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 `````js filename=intro
 const arr = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   try {
     const x = arr[1];
     $(x);

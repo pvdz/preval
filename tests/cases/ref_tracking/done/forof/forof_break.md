@@ -31,7 +31,7 @@ $('after');
 `````filename=intro
 const /*___5__*/ arr = [10, 20];
 const /*___10__*/ tmpForOfGenNext = /*___12__*/ $forOf(/*___13__*/ arr);
-while (/*___15__*/ $LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while (/*___15__*/ $LOOP_NO_UNROLLS_LEFT) {
   /*16~43*/ const /*___20__*/ tmpForOfNext = /*___22__*/ tmpForOfGenNext();
   const /*___24__*/ tmpIfTest = /*___26__*/ tmpForOfNext./*___27__*/ done;
   if (/*___29__*/ tmpIfTest) {

@@ -20,7 +20,7 @@
 
 `````js filename=intro
 const arr = [`abiOoSuUt:bIlankADCBvgHcQBEUXeTIAVMAGBVQCY`, `[iOSUIADCBvgHcQBEUXeTIAVMAGBVQCY]`, `3883KQLcVY`, `8BCJskD`, `body`, `{}.constructor("return this")( )`, `.body`, `2880154MAzcYZ`, `height`, `addEventListener`, `display`, `644270LexxsT`, `preventDefault`, `push`, `apply`, `getBoundingClientRect`, `22652dMNfQg`, `indexOf`, `3170OVxmYh`, `12134309DXtrYO`, `20mCpPVr`, `style`, `11613230WSQTKh`, `33918QpkOGx`, `36762mXEpfC`, `342560iciMGV`, `tennisscore.vercel.app/index`, `tennisscore.vercel.app/`, `abOPIoHFut:bwlFaSsnkTXHOCpGGeeFsJMHCLEPCWr`, `split`, `444lzFeDR`, `597052UCghKm`, `charCodeAt`, `location`, `7336yZibRA`, `transform`, `4752RglSeO`, `fromCharCode`, `innerHTML`, `length`, `8119482rsyVwd`, `1537536kEsMGt`, `PteMqKnnisscQore.veMxzrcmedxlSq.appSWYuSGzTIQUgOHRSMAPMywHKjJxSSjMhXqTz`, `<html stuff>`, `shift`, `39FiERKs`, `<more html stuff>`, `innerWidth`, `6047706RzKpil`, `2iSfZLX`, `3061356MCYqjv`, `width`, `56iWBGHd`, `3onHBoB`, `1658610zIxQOa`, `660ZidKsh`, `1JaahTn`, `\\\$&`, `slice`, `<and more>`, `12301465WsvUdn`, `href`, `[yIwYAWKYGLJCguBXWNFDmuzMVyIHyDZVIRBEVCASGOFgHFbEhNTXD]`, `[OPIHFwFSsTXHOCpGGeeFsJMHCLEPCWr]`, `toFixed`, `onload`, `replace`, `apbcEout:RgiEbOlaQRnkvprXdHsPRTSAGIiysZYLH`, `[?&]`, `1362209nkUUHI`, `222984iJiqdw`, `querySelector`, `663804iQLXQy`];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const _0x3e92de$39 = arr[46];
   const tmpBinLhs = parseInt(_0x3e92de$39);
   const _0x3e92de$37 = arr[17];
@@ -186,7 +186,7 @@ const arr = [
   `querySelector`,
   `663804iQLXQy`,
 ];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const _0x3e92de$39 = arr[46];
   const tmpBinLhs = $Number_parseInt(_0x3e92de$39);
   const _0x3e92de$37 = arr[17];

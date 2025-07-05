@@ -11,7 +11,7 @@
 `````js filename=intro
 let x = /foo/;
 x.foo = `object`; // Move this inside the while
-while ($LOOP_UNROLL_10) {
+while ($LOOP_UNROLLS_LEFT_10) {
   const tmp = x.foo;
   $(tmp);
   x = /foo/;
@@ -26,7 +26,7 @@ while ($LOOP_UNROLL_10) {
 `````js filename=intro
 let x /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, ``);
 x.foo = `object`;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmp /*:unknown*/ = x.foo;
   $(tmp);
   x = new $regex_constructor(`foo`, ``);
@@ -55,7 +55,7 @@ With rename=true
 `````js filename=intro
 let a = new $regex_constructor( "foo", "" );
 a.foo = "object";
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const b = a.foo;
   $( b );
   a = new $regex_constructor( "foo", "" );
@@ -70,7 +70,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````js filename=intro
 let x = new $regex_constructor(`foo`, ``);
 x.foo = `object`;
-while ($LOOP_UNROLL_10) {
+while ($LOOP_UNROLLS_LEFT_10) {
   const tmp = x.foo;
   $(tmp);
   x = new $regex_constructor(`foo`, ``);

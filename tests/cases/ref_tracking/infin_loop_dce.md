@@ -14,7 +14,7 @@
 
 `````js filename=intro
 let x = 1;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpUnaryArg$1 /*:unknown*/ = $(100);
   if (tmpUnaryArg$1) {
     x = 2;
@@ -32,7 +32,7 @@ $(x, `i am dead`);
 
 `````filename=intro
 let /*___4__*/ x = 1;
-while (/*___7__*/ $LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while (/*___7__*/ $LOOP_NO_UNROLLS_LEFT) {
   /*8~23*/ const /*___11__*/ tmpUnaryArg$1 = $(100);
   if (/*___16__*/ tmpUnaryArg$1) {
     /*17~22*/ /*___21__*/ x = 2;

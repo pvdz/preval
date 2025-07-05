@@ -22,7 +22,7 @@ $(a);
 const tmpUnaryArg /*:unknown*/ = $(100);
 const tmpCalleeParam /*:number*/ = -tmpUnaryArg;
 const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForInNext /*:unknown*/ = tmpForInGen();
   const tmpIfTest /*:unknown*/ = tmpForInNext.done;
   if (tmpIfTest) {
@@ -61,7 +61,7 @@ With rename=true
 const a = $( 100 );
 const b = -a;
 const c = $forIn( b );
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const d = c();
   const e = d.done;
   if (e) {
@@ -87,7 +87,7 @@ let a = { a: 999, b: 1000 };
 const tmpUnaryArg = $(100);
 let tmpCalleeParam = -tmpUnaryArg;
 const tmpForInGen = $forIn(tmpCalleeParam);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForInNext = tmpForInGen();
   const tmpIfTest = tmpForInNext.done;
   if (tmpIfTest) {

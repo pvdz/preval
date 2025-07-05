@@ -58,7 +58,7 @@ if (tmpIfTest) {
     }
   }
   let tmpClusterSSA_i /*:number*/ = 1;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpBinBothRhs$1 /*:unknown*/ = $(`limit_i`, 3);
     const tmpIfTest$2 /*:boolean*/ = tmpClusterSSA_i < tmpBinBothRhs$1;
     if (tmpIfTest$2) {
@@ -169,7 +169,7 @@ if (b) {
     }
   }
   let g = 1;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const h = $( "limit_i", 3 );
     const i = g < h;
     if (i) {

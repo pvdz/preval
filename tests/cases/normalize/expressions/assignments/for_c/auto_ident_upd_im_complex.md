@@ -31,7 +31,7 @@ if (tmpIfTest) {
   const tmpUpdInc /*:number*/ = tmpUpdNum - 1;
   tmpUpdObj.x = tmpUpdInc;
   let tmpClusterSSA_a /*:number*/ = tmpUpdNum;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       const tmpCalleeParam$1 /*:unknown*/ = $(b);
@@ -95,7 +95,7 @@ if (a) {
   const g = f - 1;
   d.x = g;
   let h = f;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const i = $( 1 );
     if (i) {
       const j = $( b );

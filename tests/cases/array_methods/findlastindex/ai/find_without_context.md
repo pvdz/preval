@@ -33,7 +33,7 @@ if (tmpLambdaFindLastIndexNow) {
 } else {
   let tmpLambdaFindLastIndexOut /*:number*/ = -1;
   let tmpClusterSSA_tmpLambdaFindLastIndexCounter /*:number*/ = 1;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpLambdaFindLastIndexTest$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaFindLastIndexCounter >= 0;
     if (tmpLambdaFindLastIndexTest$1) {
       const tmpLambdaFindLastIndexNow$1 /*:unknown*/ = $dotCall(tmpMCP, undefined, undefined);
@@ -102,7 +102,7 @@ if (e) {
 else {
   let f = -1;
   let g = 1;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const h = g >= 0;
     if (h) {
       const i = $dotCall( b, undefined, undefined );

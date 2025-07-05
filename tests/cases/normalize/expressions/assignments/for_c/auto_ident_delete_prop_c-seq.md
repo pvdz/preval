@@ -28,7 +28,7 @@ if (tmpIfTest) {
   $(2);
   const tmpDeleteObj /*:unknown*/ = $(arg);
   let tmpClusterSSA_a /*:boolean*/ = delete tmpDeleteObj.y;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       $(1);
@@ -86,7 +86,7 @@ if (a) {
   $( 2 );
   const c = $( b );
   let d = delete c.y;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const e = $( 1 );
     if (e) {
       $( 1 );

@@ -25,7 +25,7 @@ if (tmpIfTest) {
   $tmpLoopUnrollCheck = false;
 }
 if ($tmpLoopUnrollCheck) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     if (tmpIfTest) {
       const tmpCalleeParam$1 = $(b);
       const tmpNestedAssignObj$1 = $(tmpCalleeParam$1);
@@ -57,7 +57,7 @@ if (tmpIfTest) {
   const tmpNestedPropCompoundComplexRhs /*:primitive*/ = tmpBinLhs + 1;
   tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
   let tmpClusterSSA_a /*:primitive*/ = tmpNestedPropCompoundComplexRhs;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpClusterSSA_tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpClusterSSA_tmpIfTest$1) {
       const tmpCalleeParam$1 /*:unknown*/ = $(b);
@@ -119,7 +119,7 @@ if (a) {
   const f = e + 1;
   d.x = f;
   let g = f;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const h = $( 1 );
     if (h) {
       const i = $( b );
@@ -165,7 +165,7 @@ if (tmpIfTest) {
   $tmpLoopUnrollCheck = false;
 }
 if ($tmpLoopUnrollCheck) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     if (tmpIfTest) {
       const tmpCalleeParam$1 = $(b);
       const tmpNestedAssignObj$1 = $(tmpCalleeParam$1);

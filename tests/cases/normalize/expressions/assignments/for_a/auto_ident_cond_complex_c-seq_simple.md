@@ -26,7 +26,7 @@ if (tmpIfTest) {
   const tmpCalleeParam /*:unknown*/ = $(100);
   $(tmpCalleeParam);
 }
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $(1);
 }
 `````
@@ -59,7 +59,7 @@ else {
   const b = $( 100 );
   $( b );
 }
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $( 1 );
 }
 `````

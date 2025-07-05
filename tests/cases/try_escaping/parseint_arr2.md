@@ -11,7 +11,7 @@
 `````js filename=intro
 {
   const arr = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k'];
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_NO_UNROLLS_LEFT) {
     const a = arr[2];
     $(a);
     try {
@@ -44,7 +44,7 @@ const tmpFree /*:(string)=>number*/ = function $free($$0) {
   return tmpRet;
 };
 const arr /*:array*/ /*truthy*/ = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const a$1 /*:string*/ = arr[2];
   $(a$1);
   const c /*:number*/ = $frfr(tmpFree, a$1);
@@ -94,7 +94,7 @@ const a = function b($$0 ) {
   return e;
 };
 const f = [ "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k" ];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const g = f[ 2 ];
   $( g );
   const h = i( a, g );
@@ -116,7 +116,7 @@ $( k );
 
 `````js filename=intro
 const arr = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const a = arr[2];
   $(a);
   try {

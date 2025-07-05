@@ -22,7 +22,7 @@ for ($(a).x in b) $(a.x);
 const b /*:object*/ /*truthy*/ = { x: 1, y: 2 };
 const tmpForInGenNext /*:unknown*/ = $forIn(b);
 const a /*:object*/ /*truthy*/ = {};
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForInNext /*:unknown*/ = tmpForInGenNext();
   const tmpIfTest /*:unknown*/ = tmpForInNext.done;
   if (tmpIfTest) {
@@ -67,7 +67,7 @@ const a = {
 };
 const b = $forIn( a );
 const c = {};
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const d = b();
   const e = d.done;
   if (e) {
@@ -91,7 +91,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 let a = {};
 let b = { x: 1, y: 2 };
 const tmpForInGenNext = $forIn(b);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForInNext = tmpForInGenNext();
   const tmpIfTest = tmpForInNext.done;
   if (tmpIfTest) {

@@ -25,7 +25,7 @@ const tmpIfTest /*:unknown*/ = $(1);
 const b /*:object*/ /*truthy*/ = { c: 1 };
 if (tmpIfTest) {
   b.c = 2;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       b.c = 2;
@@ -68,7 +68,7 @@ const a = $( 1 );
 const b = { c: 1 };
 if (a) {
   b.c = 2;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const c = $( 1 );
     if (c) {
       b.c = 2;

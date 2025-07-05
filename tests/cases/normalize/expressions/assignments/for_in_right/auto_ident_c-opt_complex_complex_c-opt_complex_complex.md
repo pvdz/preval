@@ -38,7 +38,7 @@ if (tmpIfTest) {
   }
 }
 const tmpForInGen /*:unknown*/ = $forIn(a);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForInNext /*:unknown*/ = tmpForInGen();
   const tmpIfTest$3 /*:unknown*/ = tmpForInNext.done;
   if (tmpIfTest$3) {
@@ -104,7 +104,7 @@ else {
   }
 }
 const j = $forIn( a );
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const k = j();
   const l = k.done;
   if (l) {
@@ -143,7 +143,7 @@ if (tmpIfTest) {
 }
 let tmpCalleeParam = a;
 const tmpForInGen = $forIn(a);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForInNext = tmpForInGen();
   const tmpIfTest$3 = tmpForInNext.done;
   if (tmpIfTest$3) {

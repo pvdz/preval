@@ -25,7 +25,7 @@ const tmpNestedComplexRhs /*:unknown*/ = $(2);
 if (tmpNestedComplexRhs) {
   let b /*:unknown*/ = 1;
   let a /*:unknown*/ = undefined;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $(100);
     const tmpNestedComplexRhs$1 /*:unknown*/ = $(2);
     b = tmpNestedComplexRhs$1;
@@ -74,7 +74,7 @@ const a = $( 2 );
 if (a) {
   let b = 1;
   let c = undefined;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $( 100 );
     const d = $( 2 );
     b = d;

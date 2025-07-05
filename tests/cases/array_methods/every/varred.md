@@ -31,7 +31,7 @@ const f /*:()=>undefined*/ = function () {
   if (tmpLambdaEveryWas) {
     let tmpLambdaEveryOut /*:boolean*/ = true;
     let tmpClusterSSA_tmpLambdaEveryCounter /*:number*/ = 1;
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       const tmpLambdaEveryTest$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaEveryCounter < 3;
       if (tmpLambdaEveryTest$1) {
         const tmpLambdaEveryHas$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaEveryCounter in arr;
@@ -114,7 +114,7 @@ const a = function() {
   if (c) {
     let d = true;
     let e = 1;
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       const f = e < 3;
       if (f) {
         const g = e in b;

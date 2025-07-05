@@ -29,7 +29,7 @@ if (tmpIfTest) {
   let tmpClusterSSA_x /*:unknown*/ = tmpObjLitVal;
   let tmpClusterSSA_y /*:unknown*/ = tmpObjLitVal$1;
   let tmpClusterSSA_a /*:object*/ /*truthy*/ = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       const tmpObjLitVal$2 /*:unknown*/ = $(3);
@@ -91,7 +91,7 @@ if (a) {
     x: b,
     y: c,
   };
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const g = $( 1 );
     if (g) {
       const h = $( 3 );

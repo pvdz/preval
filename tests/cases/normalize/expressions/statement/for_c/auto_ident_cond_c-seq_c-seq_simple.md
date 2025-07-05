@@ -28,7 +28,7 @@ if (tmpIfTest) {
     const tmpCalleeParam /*:unknown*/ = $(100);
     $(tmpCalleeParam);
   }
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpIfTest$2 /*:unknown*/ = $(1);
     if (tmpIfTest$2) {
       const tmpIfTest$4 /*:unknown*/ = $(30);
@@ -89,7 +89,7 @@ if (a) {
     const c = $( 100 );
     $( c );
   }
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const d = $( 1 );
     if (d) {
       const e = $( 30 );

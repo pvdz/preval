@@ -50,7 +50,7 @@ if ($) {
   if ($) {
   } else {
     let tmpLoopRetCode /*:boolean*/ = true;
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       const tmpClusterSSA_x$1 /*:unknown*/ = $(2);
       $(tmpClusterSSA_x$1);
       if ($) {
@@ -104,7 +104,7 @@ if ($) {
   }
   else {
     let b = true;
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       const c = $( 2 );
       $( c );
       if ($) {

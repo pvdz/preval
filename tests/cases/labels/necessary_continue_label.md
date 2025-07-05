@@ -27,7 +27,7 @@ $(1, `outer`);
 $(1, `inner`);
 const tmpIfTest /*:unknown*/ = $(false);
 if (tmpIfTest) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $(1, `outer`);
     $(1, `inner`);
     const tmpIfTest$1 /*:unknown*/ = $(false);
@@ -67,7 +67,7 @@ $( 1, "outer" );
 $( 1, "inner" );
 const a = $( false );
 if (a) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $( 1, "outer" );
     $( 1, "inner" );
     const b = $( false );

@@ -25,7 +25,7 @@ const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   const tmpObjLitVal$1 /*:object*/ /*truthy*/ = { e: $ };
   let tmpClusterSSA_a /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       const tmpChainElementObject$1 /*:unknown*/ = tmpObjLitVal$1.e;
@@ -71,7 +71,7 @@ const a = $( 1 );
 if (a) {
   const b = { e: $ };
   let c = $dotCall( $, b, "e", 1 );
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const d = $( 1 );
     if (d) {
       const e = b.e;

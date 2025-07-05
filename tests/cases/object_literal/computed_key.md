@@ -11,7 +11,7 @@
 `````js filename=intro
 const x = $(true);
 const b /*:object*/ = { [x]: 1 };
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   b.x = 3;
   b.x = 3;
   $(1);
@@ -25,7 +25,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````js filename=intro
 const x /*:unknown*/ = $(true);
 const b /*:object*/ /*truthy*/ = { [x]: 1 };
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   b.x = 3;
   b.x = 3;
   $(1);
@@ -53,7 +53,7 @@ With rename=true
 `````js filename=intro
 const a = $( true );
 const b = { [ a ]: 1 };
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   b.x = 3;
   b.x = 3;
   $( 1 );
@@ -67,7 +67,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````js filename=intro
 const x = $(true);
 const b = { [x]: 1 };
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   b.x = 3;
   b.x = 3;
   $(1);

@@ -23,7 +23,7 @@ $(a);
 `````js filename=intro
 const tmpIfTest$3 /*:unknown*/ = $(0);
 if (tmpIfTest$3) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpIfTest$1 /*:unknown*/ = $(0);
     if (tmpIfTest$1) {
     } else {
@@ -58,7 +58,7 @@ With rename=true
 `````js filename=intro
 const a = $( 0 );
 if (a) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const b = $( 0 );
     if (b) {
 

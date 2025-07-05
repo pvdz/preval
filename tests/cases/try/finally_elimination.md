@@ -122,7 +122,7 @@ if ($finalStep) {
       throw $finalArg$1;
     } else {
       let tmpCalleeParam /*:unknown*/ = undefined;
-      while ($LOOP_UNROLL_10) {
+      while ($LOOP_UNROLLS_LEFT_10) {
         let $finalStep$2 /*:boolean*/ = false;
         let $finalStep$4 /*:boolean*/ = false;
         let $finalStep$6 /*:boolean*/ = false;
@@ -308,7 +308,7 @@ else {
     }
     else {
       let m = undefined;
-      while ($LOOP_UNROLL_10) {
+      while ($LOOP_UNROLLS_LEFT_10) {
         let n = false;
         let o = false;
         let p = false;

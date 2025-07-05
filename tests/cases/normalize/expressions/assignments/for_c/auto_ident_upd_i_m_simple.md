@@ -25,7 +25,7 @@ const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   let tmpClusterSSA_b /*:number*/ = 0;
   let tmpClusterSSA_a /*:number*/ = 1;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       const tmpPostUpdArgIdent$1 /*:number*/ = tmpClusterSSA_b;
@@ -74,7 +74,7 @@ const a = $( 1 );
 if (a) {
   let b = 0;
   let c = 1;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const d = $( 1 );
     if (d) {
       const e = b;

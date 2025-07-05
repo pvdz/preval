@@ -33,7 +33,7 @@ if (tmpIfTest) {
   } else {
     $(`keep`);
   }
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpIfTest$2 /*:unknown*/ = $(true);
     if (tmpIfTest$2) {
       const tmpBinBothLhs$1 /*:unknown*/ = $(1, `disc`);
@@ -95,7 +95,7 @@ if (a) {
   else {
     $( "keep" );
   }
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const e = $( true );
     if (e) {
       const f = $( 1, "disc" );

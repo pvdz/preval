@@ -28,7 +28,7 @@ if (tmpIfTest) {
   const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam);
   let tmpClusterSSA_b /*:unknown*/ = tmpNestedAssignObjPatternRhs.b;
   let tmpClusterSSA_a /*:unknown*/ = tmpNestedAssignObjPatternRhs;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       const tmpObjLitVal$1 /*:unknown*/ = $(2);
@@ -86,7 +86,7 @@ if (a) {
   const d = $( c );
   let e = d.b;
   let f = d;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const g = $( 1 );
     if (g) {
       const h = $( 2 );

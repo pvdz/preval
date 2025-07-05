@@ -10,7 +10,7 @@
 
 `````js filename=intro
 let test = 4;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   if (test) {
     $('loop');
     test = test - 1;
@@ -28,7 +28,7 @@ $('end');
 
 `````js filename=intro
 let test /*:number*/ = 4;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $(`loop`);
   test = test - 1;
   if (test) {
@@ -63,7 +63,7 @@ With rename=true
 
 `````js filename=intro
 let a = 4;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $( "loop" );
   a = a - 1;
   if (a) {
@@ -83,7 +83,7 @@ $( "end" );
 
 `````js filename=intro
 let test = 4;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   if (test) {
     $(`loop`);
     test = test - 1;

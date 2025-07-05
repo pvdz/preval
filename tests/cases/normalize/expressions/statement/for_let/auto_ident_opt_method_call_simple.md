@@ -23,7 +23,7 @@ $(a);
 `````js filename=intro
 const b /*:object*/ /*truthy*/ = { c: $ };
 const tmpClusterSSA_xyz /*:unknown*/ = $dotCall($, b, `c`, 1);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $(tmpClusterSSA_xyz);
   $(1);
 }
@@ -48,7 +48,7 @@ With rename=true
 `````js filename=intro
 const a = { c: $ };
 const b = $dotCall( $, a, "c", 1 );
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $( b );
   $( 1 );
 }

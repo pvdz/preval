@@ -11,7 +11,7 @@
 `````js filename=intro
 const useless = new $(1);
 let simplifyMe = useless;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $(100);
   const tmp = $(1);
   simplifyMe = tmp;
@@ -29,7 +29,7 @@ $(simplifyMe);
 `````js filename=intro
 new $(1);
 let simplifyMe /*:unknown*/ = undefined;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $(100);
   simplifyMe = $(1);
   if (simplifyMe) {
@@ -64,7 +64,7 @@ With rename=true
 `````js filename=intro
 new $( 1 );
 let a = undefined;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $( 100 );
   a = $( 1 );
   if (a) {
@@ -81,7 +81,7 @@ $( a );
 `````js filename=intro
 const useless = new $(1);
 let simplifyMe = useless;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $(100);
   const tmp = $(1);
   simplifyMe = tmp;

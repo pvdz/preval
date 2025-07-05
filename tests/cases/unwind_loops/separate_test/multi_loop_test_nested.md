@@ -36,7 +36,7 @@ while (true) {
     $(`yolo`);
     counter = tmpClusterSSA_counter + 1;
     let tmpClusterSSA_test$1 /*:boolean*/ = counter < 10;
-    while ($LOOP_UNROLL_9) {
+    while ($LOOP_UNROLLS_LEFT_9) {
       if (tmpClusterSSA_test$1) {
         $(`yolo`);
         counter = counter + 1;
@@ -100,7 +100,7 @@ while (true) {
     $( "yolo" );
     a = b + 1;
     let d = a < 10;
-    while ($LOOP_UNROLL_9) {
+    while ($LOOP_UNROLLS_LEFT_9) {
       if (d) {
         $( "yolo" );
         a = a + 1;

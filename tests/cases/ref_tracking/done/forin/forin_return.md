@@ -36,7 +36,7 @@ let /*___5__*/ f = function () /*7*/ {
     debugger;
     const /*___12__*/ obj = { /*___15__*/ a: 10, /*___18__*/ b: 20 };
     const /*___21__*/ tmpForInGen = /*___23__*/ $forIn(/*___24__*/ obj);
-    while (/*___26__*/ $LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    while (/*___26__*/ $LOOP_NO_UNROLLS_LEFT) {
       /*27~60*/ const /*___31__*/ tmpForInNext = /*___33__*/ tmpForInGen();
       const /*___35__*/ tmpIfTest = /*___37__*/ tmpForInNext./*___38__*/ done;
       if (/*___40__*/ tmpIfTest) {

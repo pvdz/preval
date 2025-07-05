@@ -31,7 +31,7 @@ if (tmpIfTest$1) {
   a = $dotCall($, tmpObjLitVal$1, `e`, 1);
   tmpForInGen = $forIn(a);
 }
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForInNext /*:unknown*/ = tmpForInGen();
   const tmpIfTest$3 /*:unknown*/ = tmpForInNext.done;
   if (tmpIfTest$3) {
@@ -84,7 +84,7 @@ else {
   a = $dotCall( $, d, "e", 1 );
   c = $forIn( a );
 }
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const e = c();
   const f = e.done;
   if (f) {
@@ -123,7 +123,7 @@ if (tmpIfTest) {
 }
 let tmpCalleeParam = a;
 const tmpForInGen = $forIn(a);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForInNext = tmpForInGen();
   const tmpIfTest$3 = tmpForInNext.done;
   if (tmpIfTest$3) {

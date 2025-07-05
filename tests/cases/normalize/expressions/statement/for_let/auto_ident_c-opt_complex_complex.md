@@ -30,7 +30,7 @@ if (tmpIfTest) {
   const tmpChainRootComputed /*:unknown*/ = $(`x`);
   xyz = tmpChainElementCall[tmpChainRootComputed];
 }
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $(xyz);
   $(1);
 }
@@ -69,7 +69,7 @@ else {
   const e = $( "x" );
   a = c[ e ];
 }
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $( a );
   $( 1 );
 }

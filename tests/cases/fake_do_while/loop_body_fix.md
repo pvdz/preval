@@ -10,7 +10,7 @@ can be promoted to the parent block because the outer if inside the while is ess
 In this example the inner call and test update should be in the loop root
 
 let test = 9;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
     if (test) {
       $('inner');
       test = test - 1;
@@ -20,7 +20,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 
 let test = 9;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
     $('inner');
     test = test - 1;
     if (test) {
@@ -39,7 +39,7 @@ this will allow the code to ssa the test var, for better or worse
 
 `````js filename=intro
 let test = 9;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   if (test) {
     $('inner');
     test = test - 1;
@@ -55,7 +55,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 `````js filename=intro
 let test /*:number*/ = 9;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $(`inner`);
   test = test - 1;
   if (test) {
@@ -86,7 +86,7 @@ With rename=true
 
 `````js filename=intro
 let a = 9;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $( "inner" );
   a = a - 1;
   if (a) {
@@ -104,7 +104,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 `````js filename=intro
 let test = 9;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   if (test) {
     $(`inner`);
     test = test - 1;

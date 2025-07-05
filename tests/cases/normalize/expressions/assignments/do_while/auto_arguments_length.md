@@ -25,7 +25,7 @@ $(100);
 const tmpClusterSSA_a /*:unknown*/ = arguments;
 if (arguments) {
   let a /*:unknown*/ = undefined;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $(100);
     a = arguments;
     if (a) {
@@ -70,7 +70,7 @@ $( 100 );
 const a = arguments;
 if (arguments) {
   let b = undefined;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $( 100 );
     b = arguments;
     if (b) {

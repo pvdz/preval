@@ -31,7 +31,7 @@ if (tmpIfTest) {
     const tmpCalleeParam$3 /*:unknown*/ = $(2);
     const tmpClusterSSA_tmpIfTest$1 /*:unknown*/ = $(tmpCalleeParam$3);
     if (tmpClusterSSA_tmpIfTest$1) {
-      while ($LOOP_UNROLL_10) {
+      while ($LOOP_UNROLLS_LEFT_10) {
         $(100);
         const tmpCalleeParam$2 /*:unknown*/ = $(1);
         const tmpIfTest$1 /*:unknown*/ = $(tmpCalleeParam$2);
@@ -106,7 +106,7 @@ if (b) {
     const e = $( 2 );
     const f = $( e );
     if (f) {
-      while ($LOOP_UNROLL_10) {
+      while ($LOOP_UNROLLS_LEFT_10) {
         $( 100 );
         const g = $( 1 );
         const h = $( g );

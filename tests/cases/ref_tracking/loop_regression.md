@@ -23,7 +23,7 @@ let a /*:unknown*/ = { a: 999, b: 1000 };
 const tmpCalleeParam$1 /*:object*/ = { x: 1 };
 const tmpForInGenNext /*:unknown*/ = $forIn(tmpCalleeParam$1);
 const tmpObjLitVal /*:object*/ = { y: $ };
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForInNext /*:unknown*/ = tmpForInGenNext();
   const tmpIfTest /*:unknown*/ = tmpForInNext.done;
   if (tmpIfTest) {
@@ -53,7 +53,7 @@ let /*___7__*/ a = { /*___10__*/ a: 999, /*___13__*/ b: 1000 };
 const /*___16__*/ tmpCalleeParam$1 = { /*___19__*/ x: 1 };
 const /*___22__*/ tmpForInGenNext = /*___24__*/ $forIn(/*___25__*/ tmpCalleeParam$1);
 const /*___27__*/ tmpObjLitVal = { /*___30__*/ y: $ };
-while (/*___33__*/ $LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while (/*___33__*/ $LOOP_NO_UNROLLS_LEFT) {
   /*34~82*/ const /*___38__*/ tmpForInNext = /*___40__*/ tmpForInGenNext();
   const /*___42__*/ tmpIfTest = /*___44__*/ tmpForInNext./*___45__*/ done;
   if (/*___47__*/ tmpIfTest) {

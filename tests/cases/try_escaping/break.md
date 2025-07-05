@@ -13,7 +13,7 @@
 let x = 1;
 function f() {
   const arr = [1, 2, 3];
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_NO_UNROLLS_LEFT) {
     try {
       return $;
       $(arr[0]);
@@ -75,7 +75,7 @@ $( 1 );
 let f = function () {
   debugger;
   const arr = [1, 2, 3];
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_NO_UNROLLS_LEFT) {
     try {
       return $;
     } catch (e) {

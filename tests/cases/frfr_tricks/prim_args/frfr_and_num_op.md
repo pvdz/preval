@@ -28,7 +28,7 @@ while (true) {
 
 `````js filename=intro
 let limiter /*:number*/ = 0;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const a /*:number*/ = limiter * 288;
   const b /*:number*/ = limiter % 41344;
   $(unknown);
@@ -60,7 +60,7 @@ With rename=true
 
 `````js filename=intro
 let a = 0;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const b = a * 288;
   const c = a % 41344;
   $( unknown );

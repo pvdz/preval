@@ -24,7 +24,7 @@ $(blob);
 `````js filename=intro
 const blob /*:object*/ /*truthy*/ = { thing: `woop` };
 const tmpForInGen /*:unknown*/ = $forIn(blob);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForInNext /*:unknown*/ = tmpForInGen();
   const tmpIfTest /*:unknown*/ = tmpForInNext.done;
   if (tmpIfTest) {
@@ -62,7 +62,7 @@ With rename=true
 `````js filename=intro
 const a = { thing: "woop" };
 const b = $forIn( a );
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const c = b();
   const d = c.done;
   if (d) {
@@ -83,7 +83,7 @@ $( a );
 `````js filename=intro
 const blob = { thing: `woop` };
 const tmpForInGen = $forIn(blob);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForInNext = tmpForInGen();
   const tmpIfTest = tmpForInNext.done;
   if (tmpIfTest) {

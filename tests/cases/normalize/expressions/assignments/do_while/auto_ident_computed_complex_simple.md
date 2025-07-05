@@ -29,7 +29,7 @@ const tmpAssignRhsProp /*:unknown*/ = $(b);
 const tmpClusterSSA_a /*:unknown*/ = tmpAssignRhsProp.c;
 if (tmpClusterSSA_a) {
   let a /*:unknown*/ = undefined;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $(100);
     const tmpAssignRhsProp$1 /*:unknown*/ = $(b);
     a = tmpAssignRhsProp$1.c;
@@ -78,7 +78,7 @@ const b = $( a );
 const c = b.c;
 if (c) {
   let d = undefined;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $( 100 );
     const e = $( a );
     d = e.c;

@@ -62,13 +62,13 @@ export const SYMBOL_FOROF = '$forOf';
  * Preval should consider any ident that starts with this as `true`
  * but transforms can tell how many times this loop can still be unrolled.
  */
-export const SYMBOL_LOOP_UNROLL = '$LOOP_UNROLL_';
+export const SYMBOL_LOOP_UNROLL = '$LOOP_UNROLLS_LEFT_';
 /**
  * This is a special symbol exclusively as while-test.
  * Preval should consider this ident as `true` and transforms should
  * consider that this loop can no longer be unrolled any further.
  */
-export const SYMBOL_MAX_LOOP_UNROLL = '$LOOP_DONE_UNROLLING_ALWAYS_TRUE';
+export const SYMBOL_MAX_LOOP_UNROLL = '$LOOP_NO_UNROLLS_LEFT';
 
 /**
  * This would be the opposite symbol that signifies that

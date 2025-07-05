@@ -13,7 +13,7 @@
 
 `````js filename=intro
 const arr = [1, 2, 3, 4, 5];
-while ($LOOP_UNROLL_2) {      // The unrolled body is not in a loop so it can inline there (that's how we unroll this hack anyways)
+while ($LOOP_UNROLLS_LEFT_2) {      // The unrolled body is not in a loop so it can inline there (that's how we unroll this hack anyways)
   const test = $('never');
   if (test) {
     break;
@@ -33,7 +33,7 @@ const test /*:unknown*/ = $(`never`);
 if (test) {
 } else {
   const arr /*:array*/ /*truthy*/ = [2, 3, 4, 5, 1];
-  while ($LOOP_UNROLL_1) {
+  while ($LOOP_UNROLLS_LEFT_1) {
     const test$1 /*:unknown*/ = $(`never`);
     if (test$1) {
       break;
@@ -73,7 +73,7 @@ if (a) {
 }
 else {
   const b = [ 2, 3, 4, 5, 1 ];
-  while ($LOOP_UNROLL_1) {
+  while ($LOOP_UNROLLS_LEFT_1) {
     const c = $( "never" );
     if (c) {
       break;
@@ -92,7 +92,7 @@ else {
 
 `````js filename=intro
 const arr = [1, 2, 3, 4, 5];
-while ($LOOP_UNROLL_2) {
+while ($LOOP_UNROLLS_LEFT_2) {
   const test = $(`never`);
   if (test) {
     break;

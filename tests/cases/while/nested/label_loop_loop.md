@@ -29,7 +29,7 @@ $(x);
 
 `````js filename=intro
 let x /*:number*/ /*truthy*/ = 10;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpIfTest /*:unknown*/ = $(x);
   if (tmpIfTest) {
   } else {
@@ -59,7 +59,7 @@ With rename=true
 
 `````js filename=intro
 let a = 10;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const b = $( a );
   if (b) {
 

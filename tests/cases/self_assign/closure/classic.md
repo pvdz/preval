@@ -63,7 +63,7 @@ let self_closing_decoder /*:(unknown, unknown)=>unknown*/ = function($$0, $$1) {
 };
 const data_arr = [`encodedgarble1`, `encodedgarble2`, `encodedgarble3`];
 const data_decoder /*:unknown*/ = self_closing_decoder;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   try {
     const tmpCalleeParam$145 /*:unknown*/ = data_decoder(477);
     const tmpUnaryArg$71 /*:number*/ = $Number_parseFloat(tmpCalleeParam$145);
@@ -137,7 +137,7 @@ let self_closing_decoder /*:(unknown, unknown)=>unknown*/ = function ($$0, $$1) 
 };
 const data_arr /*:array*/ /*truthy*/ = [`encodedgarble1`, `encodedgarble2`, `encodedgarble3`];
 const data_decoder /*:function*/ /*truthy*/ = self_closing_decoder;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   try {
     const tmpCalleeParam$145 /*:unknown*/ = data_decoder(477);
     const tmpUnaryArg$71 /*:number*/ = $Number_parseFloat(tmpCalleeParam$145);
@@ -262,7 +262,7 @@ let b = function($$0,$$1 ) {
 };
 const k = [ "encodedgarble1", "encodedgarble2", "encodedgarble3" ];
 const v = b;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   try {
     const w = v( 477 );
     const x = $Number_parseFloat( w );
@@ -349,7 +349,7 @@ let self_closing_decoder = function ($$0, $$1) {
 };
 const data_arr = [`encodedgarble1`, `encodedgarble2`, `encodedgarble3`];
 const data_decoder = self_closing_decoder;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   try {
     const tmpCalleeParam$145 = data_decoder(477);
     const tmpUnaryArg$71 = $Number_parseFloat(tmpCalleeParam$145);

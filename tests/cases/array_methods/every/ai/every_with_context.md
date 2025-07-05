@@ -36,7 +36,7 @@ const tmpLambdaEveryWas /*:unknown*/ = $dotCall(tmpMCP, ctx, undefined, 1, 0, tm
 if (tmpLambdaEveryWas) {
   let tmpLambdaEveryOut /*:boolean*/ = true;
   let tmpClusterSSA_tmpLambdaEveryCounter /*:number*/ = 1;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpLambdaEveryTest$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaEveryCounter < 3;
     if (tmpLambdaEveryTest$1) {
       const tmpLambdaEveryHas$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaEveryCounter in tmpMCOO;
@@ -123,7 +123,7 @@ const i = $dotCall( b, g, undefined, 1, 0, h );
 if (i) {
   let j = true;
   let k = 1;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const l = k < 3;
     if (l) {
       const m = k in h;

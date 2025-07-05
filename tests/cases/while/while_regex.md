@@ -21,7 +21,7 @@ while (x) {
 
 `````js filename=intro
 const x /*:regex*/ /*truthy*/ = new $regex_constructor(`foo`, ``);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $(x);
 }
 `````
@@ -43,7 +43,7 @@ With rename=true
 
 `````js filename=intro
 const a = new $regex_constructor( "foo", "" );
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $( a );
 }
 `````

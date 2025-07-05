@@ -40,7 +40,7 @@ if (x) {
   if (x) {
   } else {
     let tmpClusterSSA_x /*:unknown*/ = $(4);
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       if (tmpClusterSSA_x) {
         $(1);
         const tmpIfTest$1 /*:unknown*/ = $(1);
@@ -111,7 +111,7 @@ if (a) {
   }
   else {
     let c = $( 4 );
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       if (c) {
         $( 1 );
         const d = $( 1 );

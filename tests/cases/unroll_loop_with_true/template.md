@@ -9,7 +9,7 @@
 ## Input
 
 `````js filename=intro
-const x = `is it ${$LOOP_DONE_UNROLLING_ALWAYS_TRUE} that stuff`;
+const x = `is it ${$LOOP_NO_UNROLLS_LEFT} that stuff`;
 $(x);
 `````
 

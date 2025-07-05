@@ -110,7 +110,7 @@ const chars /*:array*/ /*truthy*/ = [
   `U`,
   `V`,
 ];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpIfTest$1 /*:boolean*/ = tmpClusterSSA_s$1 < 64;
   if (tmpIfTest$1) {
     const tmpAssignComputedRhs$1 /*:unknown*/ = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`[tmpClusterSSA_s$1];
@@ -215,7 +215,7 @@ a[85] = 20;
 a[86] = 21;
 let b = 22;
 const c = [ "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V" ];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const d = b < 64;
   if (d) {
     const e = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"[ b ];

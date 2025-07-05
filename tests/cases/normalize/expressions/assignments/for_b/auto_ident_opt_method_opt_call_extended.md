@@ -29,7 +29,7 @@ if (tmpIfTest$3) {
   a = $dotCall($, tmpObjLitVal$1, `e`, 1);
 }
 if (a) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $(1);
     const tmpChainElementObject$1 /*:unknown*/ = tmpObjLitVal$1.e;
     const tmpIfTest$1 /*:boolean*/ = tmpChainElementObject$1 == null;
@@ -91,7 +91,7 @@ else {
   a = $dotCall( $, c, "e", 1 );
 }
 if (a) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $( 1 );
     const d = c.e;
     const e = d == null;

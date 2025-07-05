@@ -22,7 +22,7 @@ $(a);
 const tmpObjLitVal /*:unknown*/ = $(1);
 const tmpObjLitVal$3 /*:unknown*/ = $(3);
 const xyz /*:object*/ /*truthy*/ = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $(xyz);
   $(1);
 }
@@ -54,7 +54,7 @@ const c = {
   y: 2,
   z: b,
 };
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $( c );
   $( 1 );
 }

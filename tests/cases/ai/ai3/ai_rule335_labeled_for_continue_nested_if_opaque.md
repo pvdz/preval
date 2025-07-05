@@ -37,7 +37,7 @@ if (tmpIfTest) {
     $(`after_if_and_continue_target`, 0);
   }
   let tmpClusterSSA_i /*:number*/ = 1;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $(`loop_update_i`, tmpClusterSSA_i);
     const tmpBinLhs$1 /*:unknown*/ = $(`loop_cond_i`, tmpClusterSSA_i);
     const tmpIfTest$2 /*:boolean*/ = tmpBinLhs$1 < 1;
@@ -110,7 +110,7 @@ if (b) {
     $( "after_if_and_continue_target", 0 );
   }
   let d = 1;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $( "loop_update_i", d );
     const e = $( "loop_cond_i", d );
     const f = e < 1;

@@ -31,7 +31,7 @@ const tmpInitAssignLhsComputedObj$1 /*:unknown*/ = $(c);
 const tmpInitAssignLhsComputedProp$1 /*:unknown*/ = $(`y`);
 tmpInitAssignLhsComputedObj$1[tmpInitAssignLhsComputedProp$1] = 3;
 tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = 3;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $(3);
   $(1);
 }
@@ -67,7 +67,7 @@ const e = $( d );
 const f = $( "y" );
 e[f] = 3;
 b[c] = 3;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $( 3 );
   $( 1 );
 }

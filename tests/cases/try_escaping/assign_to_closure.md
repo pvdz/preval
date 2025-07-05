@@ -16,7 +16,7 @@ function f() {
 }
 $(f);
 const arr = [1, 2, 3];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   try {
     x = 2;
     $(arr[0]);
@@ -40,7 +40,7 @@ const f /*:()=>undefined*/ = function () {
 let x /*:number*/ /*truthy*/ = 1;
 $(f);
 const arr /*:array*/ /*truthy*/ = [1, 2, 3];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   x = 2;
   const tmpCalleeParam /*:primitive*/ = arr[0];
   try {
@@ -88,7 +88,7 @@ const a = function() {
 let b = 1;
 $( a );
 const c = [ 1, 2, 3 ];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   b = 2;
   const d = c[ 0 ];
   try {
@@ -114,7 +114,7 @@ let f = function () {
 let x = 1;
 $(f);
 const arr = [1, 2, 3];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   try {
     x = 2;
     let tmpCalleeParam = arr[0];

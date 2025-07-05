@@ -32,7 +32,7 @@ if (test) {
 } else {
   let tmp /*:boolean*/ = true;
   $(`third`);
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const test$1 /*:unknown*/ = $(`first`);
     $(`second`);
     if (test$1) {
@@ -86,7 +86,7 @@ if (a) {
 else {
   let b = true;
   $( "third" );
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const c = $( "first" );
     $( "second" );
     if (c) {

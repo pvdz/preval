@@ -34,7 +34,7 @@ const f /*:()=>undefined*/ = function () {
   } else {
     let tmpLambdaFindOut /*:primitive*/ = undefined;
     let tmpClusterSSA_tmpLambdaFindCounter /*:number*/ = 1;
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       const tmpLambdaFindTest$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaFindCounter < 3;
       if (tmpLambdaFindTest$1) {
         const tmpLambdaFindVal$1 /*:primitive*/ = arr[tmpClusterSSA_tmpLambdaFindCounter];
@@ -114,7 +114,7 @@ const a = function() {
   else {
     let d = undefined;
     let e = 1;
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       const f = e < 3;
       if (f) {
         const g = b[ e ];

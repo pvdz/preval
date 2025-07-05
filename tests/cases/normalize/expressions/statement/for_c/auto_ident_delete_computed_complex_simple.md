@@ -26,7 +26,7 @@ const arg /*:object*/ /*truthy*/ = { y: 1 };
 if (tmpIfTest) {
   const tmpDeleteObj /*:unknown*/ = $(arg);
   delete tmpDeleteObj.y;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       const tmpDeleteObj$1 /*:unknown*/ = $(arg);
@@ -73,7 +73,7 @@ const b = { y: 1 };
 if (a) {
   const c = $( b );
   delete c.y;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const d = $( 1 );
     if (d) {
       const e = $( b );

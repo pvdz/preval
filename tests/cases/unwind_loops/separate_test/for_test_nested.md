@@ -31,7 +31,7 @@ while (true) {
   const tmpCalleeParam$1 /*:object*/ /*truthy*/ = { a: 1 };
   const tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$1);
   const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_NO_UNROLLS_LEFT) {
     const tmpForOfNext /*:unknown*/ = tmpForOfGen();
     const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
     if (tmpIfTest) {
@@ -85,7 +85,7 @@ while (true) {
   const c = { a: 1 };
   const d = $( c );
   const e = $forOf( d );
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_NO_UNROLLS_LEFT) {
     const f = e();
     const g = f.done;
     if (g) {
@@ -118,7 +118,7 @@ while (true) {
     let tmpCalleeParam$1 = { a: 1 };
     let tmpCalleeParam = $(tmpCalleeParam$1);
     const tmpForOfGen = $forOf(tmpCalleeParam);
-    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    while ($LOOP_NO_UNROLLS_LEFT) {
       const tmpForOfNext = tmpForOfGen();
       const tmpIfTest = tmpForOfNext.done;
       if (tmpIfTest) {

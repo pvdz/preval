@@ -14,7 +14,7 @@
 
 `````js filename=intro
 let x = 1;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   if ($) {
     x = 5;  // overwrites x=1 3 (this step is the key to this test. it is not in the root of the loop and not in the same block as the break)
     if ($1) {
@@ -36,7 +36,7 @@ $(x);         // x=5
 
 `````filename=intro
 let /*___4__*/ x = 1;
-while (/*___7__*/ $LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while (/*___7__*/ $LOOP_NO_UNROLLS_LEFT) {
   /*8~33*/ if ($) {
     /*11~32*/ /*___15__*/ x = 5;
     if ($1) {

@@ -30,7 +30,7 @@ const tmpUpdInc /*:number*/ = tmpUpdNum + 1;
 tmpUpdObj.x = tmpUpdInc;
 if (tmpUpdInc) {
   let a /*:number*/ = 0;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $(1);
     const tmpCalleeParam$1 /*:unknown*/ = $(b);
     const tmpUpdObj$1 /*:unknown*/ = $(tmpCalleeParam$1);
@@ -91,7 +91,7 @@ const f = e + 1;
 c.x = f;
 if (f) {
   let g = 0;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $( 1 );
     const h = $( a );
     const i = $( h );

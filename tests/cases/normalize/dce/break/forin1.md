@@ -37,7 +37,7 @@ if (tmpIfTest) {
     tmpForInNext.value;
     $(`keep`);
   }
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpIfTest$2 /*:unknown*/ = $(true);
     if (tmpIfTest$2) {
       const tmpCalleeParam$1 /*:object*/ /*truthy*/ = { a: 1, b: 2 };
@@ -115,7 +115,7 @@ if (a) {
     d.value;
     $( "keep" );
   }
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const f = $( true );
     if (f) {
       const g = {
@@ -154,7 +154,7 @@ while (true) {
   if (tmpIfTest) {
     let tmpCalleeParam = { a: 1, b: 2 };
     const tmpForInGen = $forIn(tmpCalleeParam);
-    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    while ($LOOP_NO_UNROLLS_LEFT) {
       const tmpForInNext = tmpForInGen();
       const tmpIfTest$1 = tmpForInNext.done;
       if (tmpIfTest$1) {

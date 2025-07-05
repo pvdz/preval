@@ -59,7 +59,7 @@ if (x) {
   if (tmpIfTest) {
     y = true;
     let tmpClusterSSA_i /*:number*/ = 1;
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       const tmpIfTest$1 /*:boolean*/ = tmpClusterSSA_i < N;
       if (tmpIfTest$1) {
         tmpClusterSSA_i = tmpClusterSSA_i + 1;
@@ -119,7 +119,7 @@ if (a) {
   if (d) {
     b = true;
     let e = 1;
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       const f = e < c;
       if (f) {
         e = e + 1;

@@ -45,7 +45,7 @@ if (tmpLambdaMapTest) {
   } else {
   }
   let tmpClusterSSA_tmpLambdaMapCounter /*:number*/ = 1;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpLambdaMapTest$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaMapCounter < tmpLambdaMapLen;
     if (tmpLambdaMapTest$1) {
       const tmpLambdaMapHas$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaMapCounter in tmpMCOO;
@@ -132,7 +132,7 @@ if (k) {
     l[0] = o;
   }
   let p = 1;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const q = p < j;
     if (q) {
       const r = p in i;

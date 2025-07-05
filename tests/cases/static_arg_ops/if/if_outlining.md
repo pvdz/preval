@@ -34,7 +34,7 @@ const siftUp = function(heap, node, i, tmpOutlinedParam) {
       heap[i] = tmpClusterSSA_parent;
       let tmpClusterSSA_index$3 = tmpClusterSSA_parentIndex;
       let tmpClusterSSA_tmpIfTest$367 = tmpClusterSSA_parentIndex > 0;
-      while ($LOOP_UNROLL_100) {
+      while ($LOOP_UNROLLS_LEFT_100) {
         if (tmpClusterSSA_tmpIfTest$367) {
           const tmpBinLhs$1 = tmpClusterSSA_index$3 - 1;
           const tmpClusterSSA_parentIndex$1 = tmpBinLhs$1 >>> 1;
@@ -97,7 +97,7 @@ const push /*:(unknown, unknown)=>undefined*/ = function ($$0, $$1) {
         heap[index$1] = tmpClusterSSA_parent;
         let tmpClusterSSA_index$1 /*:number*/ = tmpClusterSSA_parentIndex;
         let tmpClusterSSA_tmpIfTest$367 /*:boolean*/ = tmpClusterSSA_parentIndex > 0;
-        while ($LOOP_UNROLL_100) {
+        while ($LOOP_UNROLLS_LEFT_100) {
           if (tmpClusterSSA_tmpIfTest$367) {
             const tmpClusterSSA_parentIndex$1 /*:number*/ = $frfr(tmpFree, tmpClusterSSA_index$1);
             const tmpClusterSSA_parent$1 /*:unknown*/ = heap[tmpClusterSSA_parentIndex$1];
@@ -201,7 +201,7 @@ const f = function($$0,$$1 ) {
         g[i] = n;
         let q = m;
         let r = m > 0;
-        while ($LOOP_UNROLL_100) {
+        while ($LOOP_UNROLLS_LEFT_100) {
           if (r) {
             const s = t( a, q );
             const u = g[ s ];
@@ -262,7 +262,7 @@ const siftUp = function ($$0, $$1, $$2, $$3) {
       heap$1[i] = tmpClusterSSA_parent;
       let tmpClusterSSA_index$3 = tmpClusterSSA_parentIndex;
       let tmpClusterSSA_tmpIfTest$367 = tmpClusterSSA_parentIndex > 0;
-      while ($LOOP_UNROLL_100) {
+      while ($LOOP_UNROLLS_LEFT_100) {
         if (tmpClusterSSA_tmpIfTest$367) {
           const tmpBinLhs$1 = tmpClusterSSA_index$3 - 1;
           const tmpClusterSSA_parentIndex$1 = tmpBinLhs$1 >>> 1;

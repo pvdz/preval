@@ -27,7 +27,7 @@ if (tmpIfTest) {
   const tmpCompObj /*:unknown*/ = $(b);
   const tmpNewCallee /*:unknown*/ = tmpCompObj.$;
   let tmpClusterSSA_a /*:object*/ /*truthy*/ = new tmpNewCallee(1);
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       const tmpCompObj$1 /*:unknown*/ = $(b);
@@ -78,7 +78,7 @@ if (a) {
   const c = $( b );
   const d = c.$;
   let e = new d( 1 );
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const f = $( 1 );
     if (f) {
       const g = $( b );

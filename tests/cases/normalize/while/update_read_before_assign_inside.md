@@ -23,7 +23,7 @@ $('unreachable');
 
 `````js filename=intro
 let x /*:primitive*/ = true;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $(x);
   x = x + 1;
 }
@@ -47,7 +47,7 @@ With rename=true
 
 `````js filename=intro
 let a = true;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $( a );
   a = a + 1;
 }

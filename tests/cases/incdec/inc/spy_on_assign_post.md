@@ -9,7 +9,7 @@
 `````js filename=intro
 let d = {valueOf: () => { $('d flag now:', flag); }};
 let flag = 0;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   if (flag < 10) {
     flag = d++;
     $('d++', flag);
@@ -32,7 +32,7 @@ const tmpObjLitVal /*:()=>undefined*/ = function () {
 };
 let d /*:unknown*/ = { valueOf: tmpObjLitVal };
 let flag /*:number*/ = 0;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpIfTest /*:boolean*/ = flag < 10;
   if (tmpIfTest) {
     const tmpPostUpdArgIdent /*:number*/ = $coerce(d, `number`);
@@ -81,7 +81,7 @@ const a = function() {
 };
 let c = { valueOf: a };
 let b = 0;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const d = b < 10;
   if (d) {
     const e = $coerce( c, "number" );
@@ -108,7 +108,7 @@ const tmpObjLitVal = function () {
 };
 let d = { valueOf: tmpObjLitVal };
 let flag = 0;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpIfTest = flag < 10;
   if (tmpIfTest) {
     const tmpPostUpdArgIdent = $coerce(d, `number`);

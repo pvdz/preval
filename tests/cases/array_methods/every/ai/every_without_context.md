@@ -32,7 +32,7 @@ if (tmpLambdaEveryWas) {
   let tmpLambdaEveryOut /*:boolean*/ = true;
   let tmpClusterSSA_tmpLambdaEveryCounter /*:number*/ = 1;
   const tmpMCOO /*:array*/ /*truthy*/ = [1, 2, 3];
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpLambdaEveryTest$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaEveryCounter < 3;
     if (tmpLambdaEveryTest$1) {
       const tmpLambdaEveryHas$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaEveryCounter in tmpMCOO;
@@ -107,7 +107,7 @@ if (e) {
   let f = true;
   let g = 1;
   const h = [ 1, 2, 3 ];
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const i = g < 3;
     if (i) {
       const j = g in h;

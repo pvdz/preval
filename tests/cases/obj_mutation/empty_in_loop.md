@@ -24,7 +24,7 @@ $(blob);
 
 `````js filename=intro
 const blob /*:object*/ /*truthy*/ = { thing: `boing` };
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   blob.thing = `boing`;
   $(1);
 }
@@ -48,7 +48,7 @@ With rename=true
 
 `````js filename=intro
 const a = { thing: "boing" };
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   a.thing = "boing";
   $( 1 );
 }

@@ -47,7 +47,7 @@ loopStop$3: {
   const alias1 = a;
   const alias2 = b;
   const alias3 = alias1();
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_NO_UNROLLS_LEFT) {
     $('loop')
     try {
       const tmpUnaryArg$65/*:number*/ = parseInt(alias2(714));
@@ -114,7 +114,7 @@ const arr /*:array*/ /*truthy*/ = [
   `asyncItera`,
   `t provide `,
 ];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $(`loop`);
   const tmpCalleeParam$9 /*:primitive*/ = arr[112];
   const tmpBinLhs$166 /*:number*/ = $Number_parseInt(tmpCalleeParam$9);
@@ -190,7 +190,7 @@ With rename=true
 
 `````js filename=intro
 const a = [ "o+qs5DkTS", "displayNam", "VQ5vY4Jbig", "previous", "nk\">", "TqTwnd5/c+", "FaGG+cRqIi", "getPrototy", "ch2p7teUW5", "binary", "1549114mYdRSK", "qfVUyPGyG", "nV7NqmuKE", "MVWzWKgjww", "mark", "//BaPJuXX", "loaded", "call", "he WebCryp", "RSASSA-PKC", "E31n2Gh9QE", "N8h3TKFzuv", "Stb3euiWtm", "return", "ILhA", "G9w0BAQEFA", "7340072VkQjzG", "c-link\" ta", "63rBGDGDE", "b6cIzo9YK", "RuH/AHrSL6", "replace", "encode", "Vk2ghqMihj", "setPrototy", "ker.", "asyncItera", "t provide " ];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $( "loop" );
   const b = a[ 112 ];
   const c = $Number_parseInt( b );
@@ -278,7 +278,7 @@ let b = function ($$0, $$1) {
 const alias1 = a;
 const alias2 = b;
 const alias3 = alias1();
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $(`loop`);
   try {
     let tmpCalleeParam = alias2(714);

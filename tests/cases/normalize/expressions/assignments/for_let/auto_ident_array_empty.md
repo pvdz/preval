@@ -20,7 +20,7 @@ $(a);
 
 `````js filename=intro
 const xyz /*:array*/ /*truthy*/ = [];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $(xyz);
   $(1);
 }
@@ -44,7 +44,7 @@ With rename=true
 
 `````js filename=intro
 const a = [];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $( a );
   $( 1 );
 }

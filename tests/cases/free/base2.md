@@ -13,7 +13,7 @@ There are some catches but this is the base case.
 
 `````js filename=intro
 let i = 0;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const r = $(i);
   const n = r * 1;
   const a = $Math_pow(n, 2);
@@ -43,7 +43,7 @@ const tmpFree /*:(number)=>string*/ = function $free($$0) {
   return tmpRet;
 };
 let i /*:number*/ = 0;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const r /*:unknown*/ = $(i);
   const n$1 /*:number*/ = r * 1;
   const c /*:string*/ = $frfr(tmpFree, n$1);
@@ -92,7 +92,7 @@ const a = function b($$0 ) {
   return f;
 };
 let g = 0;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const h = $( g );
   const i = h * 1;
   const j = k( a, i );
@@ -112,7 +112,7 @@ $( g );
 
 `````js filename=intro
 let i = 0;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const r = $(i);
   const n = r * 1;
   const a = $Math_pow(n, 2);

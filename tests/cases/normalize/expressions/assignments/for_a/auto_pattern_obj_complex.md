@@ -22,7 +22,7 @@ $(a);
 const tmpCalleeParam /*:object*/ /*truthy*/ = { a: 1, b: 2 };
 const tmpAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam);
 tmpAssignObjPatternRhs.a;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $(1);
 }
 `````
@@ -49,7 +49,7 @@ const a = {
 };
 const b = $( a );
 b.a;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $( 1 );
 }
 `````

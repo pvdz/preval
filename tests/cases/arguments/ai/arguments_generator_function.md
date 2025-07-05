@@ -44,7 +44,7 @@ const testArgsGenerator /*:()=>object*/ = function* (/*uses arguments*/) {
 const gen /*:object*/ /*truthy*/ = testArgsGenerator(`a`, `b`, `c`);
 const tmpForOfGenNext /*:unknown*/ = $forOf(gen);
 const results /*:array*/ /*truthy*/ = [];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
   const tmpIfTest$3 /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest$3) {
@@ -105,7 +105,7 @@ const a = function *() {
 const g = a( "a", "b", "c" );
 const h = $forOf( g );
 const i = [];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const j = h();
   const k = j.done;
   if (k) {
@@ -147,7 +147,7 @@ let testArgsGenerator = function* () {
 const gen = testArgsGenerator(`a`, `b`, `c`);
 const results = [];
 const tmpForOfGenNext = $forOf(gen);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForOfNext = tmpForOfGenNext();
   const tmpIfTest$1 = tmpForOfNext.done;
   if (tmpIfTest$1) {

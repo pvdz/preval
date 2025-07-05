@@ -28,7 +28,7 @@ const b /*:object*/ /*truthy*/ = { c: 1 };
 const tmpCompObj /*:unknown*/ = $(b);
 const tmpIfTest /*:unknown*/ = tmpCompObj.c;
 if (tmpIfTest) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $(100);
     const tmpCompObj$1 /*:unknown*/ = $(b);
     const tmpIfTest$1 /*:unknown*/ = tmpCompObj$1.c;
@@ -71,7 +71,7 @@ const a = { c: 1 };
 const b = $( a );
 const c = b.c;
 if (c) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $( 100 );
     const d = $( a );
     const e = d.c;

@@ -30,7 +30,7 @@ if (tmpIfTest) {
     $(tmpClusterSSA_x, `branch`);
   } else {
   }
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpIfTest$2 /*:unknown*/ = $(tmpClusterSSA_x);
     if (tmpIfTest$2) {
       tmpClusterSSA_x = $(0);
@@ -83,7 +83,7 @@ if (b) {
   if (d) {
     $( c, "branch" );
   }
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const e = $( c );
     if (e) {
       c = $( 0 );

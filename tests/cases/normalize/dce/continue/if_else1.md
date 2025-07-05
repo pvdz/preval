@@ -30,7 +30,7 @@ $('after, wont eval due to infinite loop');
 `````js filename=intro
 const tmpIfTest /*:unknown*/ = $(true);
 if (tmpIfTest) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $(1);
     const tmpIfTest$1 /*:unknown*/ = $(true);
     if (tmpIfTest$1) {
@@ -69,7 +69,7 @@ With rename=true
 `````js filename=intro
 const a = $( true );
 if (a) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $( 1 );
     const b = $( true );
     if (b) {

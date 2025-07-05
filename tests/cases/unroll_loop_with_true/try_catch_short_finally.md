@@ -51,7 +51,7 @@ try {
 $(`finally`);
 if ($finalStep) {
 } else {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     let $finalStep$1 /*:boolean*/ = false;
     try {
       const test$1 /*:unknown*/ = $(`first`);
@@ -158,7 +158,7 @@ if (a) {
 
 }
 else {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     let e = false;
     try {
       const f = $( "first" );

@@ -27,7 +27,7 @@ if (tmpIfTest) {
   const tmpMCOO /*:unknown*/ = $(b);
   const tmpMCF /*:unknown*/ = tmpMCOO.$;
   let tmpClusterSSA_a /*:unknown*/ = $dotCall(tmpMCF, tmpMCOO, `\$`, 1);
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       const tmpMCOO$1 /*:unknown*/ = $(b);
@@ -78,7 +78,7 @@ if (a) {
   const c = $( b );
   const d = c.$;
   let e = $dotCall( d, c, "$", 1 );
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const f = $( 1 );
     if (f) {
       const g = $( b );

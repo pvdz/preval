@@ -163,7 +163,7 @@ loopStop: {
       break loopStop;
     }
   }
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_NO_UNROLLS_LEFT) {
     const tmpCalleeParam$22 /*:unknown*/ = $(0);
     const tmpIfTest$11 /*:unknown*/ = $(tmpCalleeParam$22);
     if (tmpIfTest$11) {
@@ -474,7 +474,7 @@ loopStop: {
       break loopStop;
     }
   }
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_NO_UNROLLS_LEFT) {
     const bs = $( 0 );
     const bt = $( bs );
     if (bt) {

@@ -28,7 +28,7 @@ $(3);
 
 `````js filename=intro
 $(1);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $(2);
   const tmpIfTest /*:unknown*/ = $(true);
   if (tmpIfTest) {
@@ -58,7 +58,7 @@ With rename=true
 
 `````js filename=intro
 $( 1 );
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $( 2 );
   const a = $( true );
   if (a) {

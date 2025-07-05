@@ -36,7 +36,7 @@ $(100);
 $(100);
 let a /*:unknown*/ = undefined;
 const b /*:object*/ /*truthy*/ = { c: 1 };
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $(100);
   a = b.c;
   if (a) {
@@ -93,7 +93,7 @@ $( 100 );
 $( 100 );
 let a = undefined;
 const b = { c: 1 };
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $( 100 );
   a = b.c;
   if (a) {

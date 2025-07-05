@@ -21,7 +21,7 @@ $(x);
 const tmpIfTest /*:unknown*/ = $(true);
 if (tmpIfTest) {
   let x /*:unknown*/ = undefined;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     x = $(10);
     const tmpIfTest$1 /*:unknown*/ = $(true);
     if (tmpIfTest$1) {
@@ -62,7 +62,7 @@ With rename=true
 const a = $( true );
 if (a) {
   let b = undefined;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     b = $( 10 );
     const c = $( true );
     if (c) {

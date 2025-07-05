@@ -29,7 +29,7 @@ $(undefined);
 let x /*:unknown*/ = undefined;
 const list /*:array*/ /*truthy*/ = [100];
 const tmpForOfGen /*:unknown*/ = $forOf(list);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForOfNext /*:unknown*/ = tmpForOfGen();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
@@ -73,7 +73,7 @@ $( undefined );
 let a = undefined;
 const b = [ 100 ];
 const c = $forOf( b );
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const d = c();
   const e = d.done;
   if (e) {
@@ -98,7 +98,7 @@ let x = undefined;
 const list = [100];
 let arr = undefined;
 const tmpForOfGen = $forOf(list);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForOfNext = tmpForOfGen();
   const tmpIfTest = tmpForOfNext.done;
   if (tmpIfTest) {

@@ -26,7 +26,7 @@ $(f());
 
 `````js filename=intro
 if ($) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $(1);
     if ($) {
     } else {
@@ -63,7 +63,7 @@ With rename=true
 
 `````js filename=intro
 if ($) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $( 1 );
     if ($) {
 

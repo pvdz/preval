@@ -30,7 +30,7 @@ const f /*:()=>undefined*/ = function () {
     return undefined;
   } else {
     let tmpClusterSSA_tmpLambdaFindLastIndexCounter /*:number*/ = 1;
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       const tmpLambdaFindLastIndexTest$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaFindLastIndexCounter >= 0;
       if (tmpLambdaFindLastIndexTest$1) {
         const tmpLambdaFindLastIndexVal$1 /*:primitive*/ = arr[tmpClusterSSA_tmpLambdaFindLastIndexCounter];
@@ -108,7 +108,7 @@ const a = function() {
   }
   else {
     let d = 1;
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       const e = d >= 0;
       if (e) {
         const f = b[ d ];

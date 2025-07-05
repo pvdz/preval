@@ -30,7 +30,7 @@ $('done_loop');
 `````js filename=intro
 const obj /*:unknown*/ = $(`getObject`);
 const tmpForInGen /*:unknown*/ = $forIn(obj);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForInNext /*:unknown*/ = tmpForInGen();
   const tmpIfTest /*:unknown*/ = tmpForInNext.done;
   if (tmpIfTest) {
@@ -82,7 +82,7 @@ With rename=true
 `````js filename=intro
 const a = $( "getObject" );
 const b = $forIn( a );
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const c = b();
   const d = c.done;
   if (d) {
@@ -112,7 +112,7 @@ $( "done_loop" );
 `````js filename=intro
 let obj = $(`getObject`);
 const tmpForInGen = $forIn(obj);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForInNext = tmpForInGen();
   const tmpIfTest = tmpForInNext.done;
   if (tmpIfTest) {

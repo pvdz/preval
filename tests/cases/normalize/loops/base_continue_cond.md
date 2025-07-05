@@ -27,7 +27,7 @@ $(f());
 
 `````js filename=intro
 let n /*:number*/ = 0;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   n = n + 1;
   $(n);
 }
@@ -51,7 +51,7 @@ With rename=true
 
 `````js filename=intro
 let a = 0;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   a = a + 1;
   $( a );
 }

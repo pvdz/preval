@@ -29,7 +29,7 @@ const tmpCompObj /*:unknown*/ = $(b);
 const tmpCalleeParam /*:unknown*/ = $(`c`);
 const tmpIfTest /*:unknown*/ = tmpCompObj[tmpCalleeParam];
 if (tmpIfTest) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $(100);
     const tmpCompObj$1 /*:unknown*/ = $(b);
     const tmpCalleeParam$1 /*:unknown*/ = $(`c`);
@@ -78,7 +78,7 @@ const b = $( a );
 const c = $( "c" );
 const d = b[ c ];
 if (d) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $( 100 );
     const e = $( a );
     const f = $( "c" );

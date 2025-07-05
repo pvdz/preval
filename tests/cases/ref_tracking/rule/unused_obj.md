@@ -26,7 +26,7 @@ a:
 `````js filename=intro
 let b = 1;
 let a = { a: 999, b: 1000 };
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $(1);
   const lhs = b;
   const sum = lhs + 1;
@@ -48,7 +48,7 @@ $(a, b);
 `````js filename=intro
 let b /*:number*/ = 1;
 let a /*:number*/ = 0;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $(1);
   const sum /*:number*/ = b + 1;
   b = sum;
@@ -87,7 +87,7 @@ With rename=true
 `````js filename=intro
 let a = 1;
 let b = 0;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $( 1 );
   const c = a + 1;
   a = c;
@@ -109,7 +109,7 @@ $( b, a );
 `````js filename=intro
 let b = 1;
 let a = { a: 999, b: 1000 };
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $(1);
   const lhs = b;
   const sum = lhs + 1;

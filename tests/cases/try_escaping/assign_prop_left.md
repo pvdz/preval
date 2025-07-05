@@ -12,7 +12,7 @@
 {
   let a = $(1);
   const arr = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k'];
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_NO_UNROLLS_LEFT) {
     try {
       arr[286] = a;
       $(a);
@@ -36,7 +36,7 @@
 `````js filename=intro
 const a /*:unknown*/ = $(1);
 const arr /*:array*/ /*truthy*/ = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   try {
     arr[286] = a;
     $(a);
@@ -79,7 +79,7 @@ With rename=true
 `````js filename=intro
 const a = $( 1 );
 const b = [ "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k" ];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   try {
     b[286] = a;
     $( a );
@@ -101,7 +101,7 @@ $( a );
 `````js filename=intro
 let a = $(1);
 const arr = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   try {
     arr[286] = a;
     $(a);

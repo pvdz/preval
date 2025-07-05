@@ -230,7 +230,7 @@ loopStop: {
       }
     }
   }
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_NO_UNROLLS_LEFT) {
     const tmpCalleeParam$32 /*:unknown*/ = $(0);
     const tmpClusterSSA_a$22 /*:unknown*/ = $(tmpCalleeParam$32);
     if (tmpClusterSSA_a$22) {
@@ -685,7 +685,7 @@ loopStop: {
       }
     }
   }
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_NO_UNROLLS_LEFT) {
     const ce = $( 0 );
     const cf = $( ce );
     if (cf) {

@@ -29,7 +29,7 @@ const b /*:object*/ /*truthy*/ = { c: 1 };
 const tmpClusterSSA_a /*:unknown*/ = b[tmpAssignRhsCompProp];
 if (tmpClusterSSA_a) {
   let a /*:unknown*/ = undefined;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $(100);
     const tmpAssignRhsCompProp$1 /*:unknown*/ = $(`c`);
     a = b[tmpAssignRhsCompProp$1];
@@ -80,7 +80,7 @@ const b = { c: 1 };
 const c = b[ a ];
 if (c) {
   let d = undefined;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $( 100 );
     const e = $( "c" );
     d = b[ e ];

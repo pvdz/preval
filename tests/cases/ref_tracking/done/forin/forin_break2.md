@@ -79,7 +79,7 @@ else {
 `````js filename=intro
 const wat = { a: 1, b: 2 };
 const tmpForInGen = $forIn(wat);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForInNext = tmpForInGen();
   const tmpIfTest = tmpForInNext.done;
   if (tmpIfTest) {

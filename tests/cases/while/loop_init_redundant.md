@@ -11,7 +11,7 @@
 `````js filename=intro
 const useless = new $(1);
 let a = useless;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $(100);
   const tmpNestedComplexRhs$2 = new $(1);
   a = tmpNestedComplexRhs$2;
@@ -25,7 +25,7 @@ $(a);
 
 `````js filename=intro
 new $(1);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $(100);
   new $(1);
 }
@@ -49,7 +49,7 @@ With rename=true
 
 `````js filename=intro
 new $( 1 );
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $( 100 );
   new $( 1 );
 }
@@ -62,7 +62,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````js filename=intro
 const useless = new $(1);
 let a = useless;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $(100);
   const tmpNestedComplexRhs$2 = new $(1);
   a = tmpNestedComplexRhs$2;

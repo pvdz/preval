@@ -15,7 +15,7 @@ only be able to reach the assignment to x, not the var decl init.
 
 `````js filename=intro
 let x = undefined;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   try {
     $('before');
     x = $(1);
@@ -34,7 +34,7 @@ $(x);  // <-- x can reach both writes, not just the assign
 
 `````filename=intro
 let /*___4__*/ x = /*___5__*/ undefined;
-while (/*___7__*/ $LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while (/*___7__*/ $LOOP_NO_UNROLLS_LEFT) {
   /*8~34*/ try /*10~26*/ {
     $(`before`);
     /*___21__*/ x = $(1);

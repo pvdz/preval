@@ -18,7 +18,7 @@ if ($) {
   let b = "jhayon.vercel.app"; // never observed, overwritten in both branches in the loop
   let c = 1;
   const d = $( "x" );
-  while ($LOOP_UNROLL_500) {
+  while ($LOOP_UNROLLS_LEFT_500) {
     a = d.slice(0);
     const e = a[ 0 ];
     const f = e === ".";
@@ -47,7 +47,7 @@ if ($) {
   let /*___14__*/ b = `jhayon.vercel.app`;
   let /*___18__*/ c = 1;
   const /*___21__*/ d = $(`x`);
-  while (/*___27__*/ $LOOP_UNROLL_500) {
+  while (/*___27__*/ $LOOP_UNROLLS_LEFT_500) {
     /*28~108*/ const /*___35__*/ tmpMCF = /*___37__*/ d./*___38__*/ slice;
     /*___48__*/ a = /*___42__*/ $dotCall(/*___43__*/ tmpMCF, /*___44__*/ d, `slice`, 0);
     const /*___50__*/ e = /*___52__*/ a[0];

@@ -33,7 +33,7 @@ $(x);
 
 `````js filename=intro
 let x /*:number*/ /*truthy*/ = 1;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $(x);
   if ($) {
   } else {
@@ -62,7 +62,7 @@ With rename=true
 
 `````js filename=intro
 let a = 1;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $( a );
   if ($) {
 

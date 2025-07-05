@@ -31,7 +31,7 @@ if (tmpLambdaSomeNow) {
 } else {
   let tmpLambdaSomeOut /*:boolean*/ = false;
   let tmpClusterSSA_tmpLambdaSomeCounter /*:number*/ = 1;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpLambdaSomeTest$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaSomeCounter < 2;
     if (tmpLambdaSomeTest$1) {
       const tmpLambdaSomeHas$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaSomeCounter in arr;
@@ -108,7 +108,7 @@ if (e) {
 else {
   let f = false;
   let g = 1;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const h = g < 2;
     if (h) {
       const i = g in d;

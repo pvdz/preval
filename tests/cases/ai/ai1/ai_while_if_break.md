@@ -35,7 +35,7 @@ if (tmpIfTest) {
     $(`S4`);
   } else {
     $(`S3`);
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       const tmpIfTest$2 /*:unknown*/ = $(`L`);
       if (tmpIfTest$2) {
         $(`S1`);
@@ -104,7 +104,7 @@ if (a) {
   }
   else {
     $( "S3" );
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       const c = $( "L" );
       if (c) {
         $( "S1" );

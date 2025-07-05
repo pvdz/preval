@@ -27,7 +27,7 @@ let log /*:string*/ = ``;
 $(`iterable_effect`);
 const obj /*:object*/ /*truthy*/ = { a: 1, b: 2 };
 const tmpForInGen /*:unknown*/ = $forIn(obj);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForInNext /*:unknown*/ = tmpForInGen();
   const tmpIfTest /*:unknown*/ = tmpForInNext.done;
   if (tmpIfTest) {
@@ -71,7 +71,7 @@ const b = {
   b: 2,
 };
 const c = $forIn( b );
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const d = c();
   const e = d.done;
   if (e) {
@@ -95,7 +95,7 @@ let obj = { a: 1, b: 2 };
 $(`iterable_effect`);
 let tmpCalleeParam = obj;
 const tmpForInGen = $forIn(obj);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForInNext = tmpForInGen();
   const tmpIfTest = tmpForInNext.done;
   if (tmpIfTest) {

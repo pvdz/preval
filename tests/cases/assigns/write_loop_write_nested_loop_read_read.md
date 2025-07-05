@@ -31,7 +31,7 @@ while (true) {
     const tmpClusterSSA_x /*:unknown*/ = $(20, `set`);
     const tmpIfTest$1 /*:unknown*/ = $(true);
     if (tmpIfTest$1) {
-      while ($LOOP_UNROLL_10) {
+      while ($LOOP_UNROLLS_LEFT_10) {
         $(tmpClusterSSA_x, `loop`);
         const tmpIfTest$2 /*:unknown*/ = $(true);
         if (tmpIfTest$2) {
@@ -87,7 +87,7 @@ while (true) {
     const b = $( 20, "set" );
     const c = $( true );
     if (c) {
-      while ($LOOP_UNROLL_10) {
+      while ($LOOP_UNROLLS_LEFT_10) {
         $( b, "loop" );
         const d = $( true );
         if (d) {

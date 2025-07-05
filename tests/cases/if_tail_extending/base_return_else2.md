@@ -13,7 +13,7 @@
 const f = function() {
   const tmpAfterLabel = function($tmpLoopUnrollCheck) {
     if ($tmpLoopUnrollCheck) {
-      while ($LOOP_UNROLL_10) {
+      while ($LOOP_UNROLLS_LEFT_10) {
         if (x) {
           $(1);
           if ($) {
@@ -58,7 +58,7 @@ if (x) {
   $(1);
   if ($) {
     $(2);
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       if (x) {
         $(1);
         if ($) {
@@ -110,7 +110,7 @@ if (x) {
   $( 1 );
   if ($) {
     $( 2 );
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       if (x) {
         $( 1 );
         if ($) {
@@ -139,7 +139,7 @@ const f = function () {
     let $tmpLoopUnrollCheck$1 = $$0;
     debugger;
     if ($tmpLoopUnrollCheck$1) {
-      while ($LOOP_UNROLL_10) {
+      while ($LOOP_UNROLLS_LEFT_10) {
         if (x) {
           $(1);
           if ($) {

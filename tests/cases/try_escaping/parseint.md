@@ -25,7 +25,7 @@ while (true) {
 
 
 `````js filename=intro
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpCalleeParam /*:unknown*/ = $(`1`);
   const x /*:string*/ = $coerce(tmpCalleeParam, `string`);
   const y /*:number*/ = $Number_parseInt(x);
@@ -57,7 +57,7 @@ while (true) {
 With rename=true
 
 `````js filename=intro
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const a = $( "1" );
   const b = $coerce( a, "string" );
   const c = $Number_parseInt( b );

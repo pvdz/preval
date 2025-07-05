@@ -24,7 +24,7 @@ if (tmpIfTest) {
   const tmpCalleeParam /*:object*/ /*truthy*/ = { a: 1, b: 2 };
   const tmpAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam);
   let tmpClusterSSA_a /*:unknown*/ = tmpAssignObjPatternRhs.a;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       const tmpCalleeParam$1 /*:object*/ /*truthy*/ = { a: 1, b: 2 };
@@ -73,7 +73,7 @@ if (a) {
   };
   const c = $( b );
   let d = c.a;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const e = $( 1 );
     if (e) {
       const f = {

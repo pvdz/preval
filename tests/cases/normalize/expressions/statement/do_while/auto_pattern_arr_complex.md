@@ -28,7 +28,7 @@ $(100);
 const tmpCalleeParam /*:array*/ /*truthy*/ = [1, 2];
 const tmpIfTest /*:unknown*/ = $(tmpCalleeParam);
 if (tmpIfTest) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $(100);
     const tmpCalleeParam$1 /*:array*/ /*truthy*/ = [1, 2];
     const tmpIfTest$1 /*:unknown*/ = $(tmpCalleeParam$1);
@@ -79,7 +79,7 @@ $( 100 );
 const d = [ 1, 2 ];
 const e = $( d );
 if (e) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $( 100 );
     const f = [ 1, 2 ];
     const g = $( f );

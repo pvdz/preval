@@ -20,7 +20,7 @@ $(p, q);
 
 `````js filename=intro
 const b /*:array*/ /*truthy*/ = [10, 20];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpArrAssignPatternRhs /*:unknown*/ = $(b);
   [...tmpArrAssignPatternRhs];
 }
@@ -44,7 +44,7 @@ With rename=true
 
 `````js filename=intro
 const a = [ 10, 20 ];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const b = $( a );
   [ ...b ];
 }

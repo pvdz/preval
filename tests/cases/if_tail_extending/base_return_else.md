@@ -32,7 +32,7 @@ const x /*:unknown*/ = $();
 if (x) {
   $(1);
   if ($) {
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       $(2);
       $(1);
       if ($) {
@@ -74,7 +74,7 @@ const a = $();
 if (a) {
   $( 1 );
   if ($) {
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       $( 2 );
       $( 1 );
       if ($) {

@@ -37,7 +37,7 @@ if (tmpIfTest$1) {
   }
 }
 if (a) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $(1);
     const tmpChainElementCall$1 /*:unknown*/ = $(b);
     const tmpIfTest$2 /*:boolean*/ = tmpChainElementCall$1 == null;
@@ -124,7 +124,7 @@ else {
   }
 }
 if (a) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $( 1 );
     const i = $( b );
     const j = i == null;

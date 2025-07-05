@@ -25,7 +25,7 @@ $(2);
 $(0);
 const tmpIfTest /*:unknown*/ = $(true);
 if (tmpIfTest) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpIfTest$1 /*:unknown*/ = $(true);
     if (tmpIfTest$1) {
     } else {
@@ -64,7 +64,7 @@ With rename=true
 $( 0 );
 const a = $( true );
 if (a) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const b = $( true );
     if (b) {
 

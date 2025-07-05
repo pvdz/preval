@@ -22,7 +22,7 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal /*:unknown*/ = $(1);
 const xyz /*:object*/ /*truthy*/ = { b: tmpObjLitVal };
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $(xyz);
   $(1);
 }
@@ -48,7 +48,7 @@ With rename=true
 `````js filename=intro
 const a = $( 1 );
 const b = { b: a };
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $( b );
   $( 1 );
 }

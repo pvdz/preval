@@ -21,7 +21,7 @@ const tmpFree = function $free(x) {
 const data_array = [`first`, `second`, `third`, `fourth`, `fifth`];
 require(`cssesc`);                                            // this prevented freeloops from finding the type of the data array
 const pkg = require(`failure`);                               // distraction for preval
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const val = data_array[4];
   try {
     if ($frfr(tmpFree, val)) {
@@ -160,7 +160,7 @@ const tmpFree = function $free($$0) {
 const data_array = [`first`, `second`, `third`, `fourth`, `fifth`];
 require(`cssesc`);
 const pkg = require(`failure`);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const val = data_array[4];
   try {
     const tmpIfTest = $frfr(tmpFree, val);

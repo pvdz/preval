@@ -28,7 +28,7 @@ if (tmpIfTest) {
     tmpClusterSSA_a = $(tmpCalleeParam$1);
   } else {
   }
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       const tmpCalleeParam$2 /*:unknown*/ = $(1);
@@ -88,7 +88,7 @@ if (a) {
     const d = $( 2 );
     c = $( d );
   }
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const e = $( 1 );
     if (e) {
       const f = $( 1 );

@@ -17,7 +17,7 @@
 `````js filename=intro
 let flag = true;
 let b = 12;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   if (flag) {
     $(100);
     flag = b;
@@ -37,7 +37,7 @@ $(a, b);
 `````js filename=intro
 let flag /*:primitive*/ = true;
 let b /*:number*/ = 12;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   if (flag) {
     $(100);
     flag = b;
@@ -76,7 +76,7 @@ With rename=true
 `````js filename=intro
 let a = true;
 let b = 12;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   if (a) {
     $( 100 );
     a = b;
@@ -100,7 +100,7 @@ $( c, b );
 `````js filename=intro
 let flag = true;
 let b = 12;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   if (flag) {
     $(100);
     flag = b;

@@ -36,7 +36,7 @@ if ($) {
     $(tmpClusterSSA_x);
   } else {
     let x /*:unknown*/ = undefined;
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       x = $(2);
       $(x);
       if ($) {
@@ -89,7 +89,7 @@ if ($) {
   }
   else {
     let b = undefined;
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       b = $( 2 );
       $( b );
       if ($) {

@@ -28,7 +28,7 @@ if (tmpIfTest$1) {
   const tmpObjLitVal$1 /*:object*/ /*truthy*/ = { e: $ };
   xyz = $dotCall($, tmpObjLitVal$1, `e`, 1);
 }
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $(xyz);
   $(1);
 }
@@ -64,7 +64,7 @@ else {
   const c = { e: $ };
   b = $dotCall( $, c, "e", 1 );
 }
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $( b );
   $( 1 );
 }

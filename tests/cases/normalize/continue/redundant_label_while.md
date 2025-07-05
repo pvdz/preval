@@ -41,7 +41,7 @@ if (x) {
   } else {
     x = $(4);
   }
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     if (x) {
       $(1);
       const tmpIfTest$1 /*:unknown*/ = $(1);
@@ -109,7 +109,7 @@ if (a) {
   else {
     a = $( 4 );
   }
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     if (a) {
       $( 1 );
       const c = $( 1 );

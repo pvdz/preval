@@ -22,7 +22,7 @@ $(a, arg);
 
 `````js filename=intro
 const tmpUnaryArg /*:unknown*/ = $(1);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const a /*:string*/ /*truthy*/ = typeof tmpUnaryArg;
   $(a);
   $(1);
@@ -47,7 +47,7 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const b = typeof a;
   $( b );
   $( 1 );

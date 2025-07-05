@@ -23,7 +23,7 @@ const xyz /*:()=>unknown*/ = function $pcompiled() {
   debugger;
   return undefined;
 };
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $(xyz);
   $(1);
 }
@@ -50,7 +50,7 @@ const a = function b() {
   debugger;
   return undefined;
 };
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $( a );
   $( 1 );
 }

@@ -28,7 +28,7 @@ const f /*:()=>undefined*/ = function () {
   const tmpLambdaEveryWas /*:unknown*/ = $dotCall($, undefined, undefined, 1, 0, arr);
   if (tmpLambdaEveryWas) {
     let tmpClusterSSA_tmpLambdaEveryCounter /*:number*/ = 1;
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       const tmpLambdaEveryTest$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaEveryCounter < 3;
       if (tmpLambdaEveryTest$1) {
         const tmpLambdaEveryHas$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaEveryCounter in arr;
@@ -100,7 +100,7 @@ const a = function() {
   const c = $dotCall( $, undefined, undefined, 1, 0, b );
   if (c) {
     let d = 1;
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       const e = d < 3;
       if (e) {
         const f = d in b;

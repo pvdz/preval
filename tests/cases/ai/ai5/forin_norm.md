@@ -40,7 +40,7 @@ $(keys);
 const obj /*:object*/ /*truthy*/ = { a: 1, b: 2 };
 const tmpForInGen /*:unknown*/ = $forIn(obj);
 const keys /*:array*/ /*truthy*/ = [];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForInNext /*:unknown*/ = tmpForInGen();
   const tmpIfTest /*:unknown*/ = tmpForInNext.done;
   if (tmpIfTest) {
@@ -85,7 +85,7 @@ const a = {
 };
 const b = $forIn( a );
 const c = [];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const d = b();
   const e = d.done;
   if (e) {
@@ -108,7 +108,7 @@ $( c );
 const obj = { a: 1, b: 2 };
 const keys = [];
 const tmpForInGen = $forIn(obj);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForInNext = tmpForInGen();
   const tmpIfTest = tmpForInNext.done;
   if (tmpIfTest) {

@@ -30,7 +30,7 @@ while (true) {
   if (tmpIfTest) {
     const tmpIfTest$1 /*:unknown*/ = $(true);
     if (tmpIfTest$1) {
-      while ($LOOP_UNROLL_10) {
+      while ($LOOP_UNROLLS_LEFT_10) {
         const tmpIfTest$2 /*:unknown*/ = $(true);
         if (tmpIfTest$2) {
         } else {
@@ -77,7 +77,7 @@ while (true) {
   if (a) {
     const b = $( true );
     if (b) {
-      while ($LOOP_UNROLL_10) {
+      while ($LOOP_UNROLLS_LEFT_10) {
         const c = $( true );
         if (c) {
 

@@ -29,7 +29,7 @@ const tmpLambdaEveryWas /*:unknown*/ = $dotCall(cb, undefined, undefined, tmpArr
 if (tmpLambdaEveryWas) {
   let tmpLambdaEveryOut /*:boolean*/ = true;
   let tmpClusterSSA_tmpLambdaEveryCounter /*:number*/ = 1;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpLambdaEveryTest$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaEveryCounter < 2;
     if (tmpLambdaEveryTest$1) {
       const tmpLambdaEveryHas$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaEveryCounter in arr;
@@ -105,7 +105,7 @@ const e = $dotCall( c, undefined, undefined, a, 0, d );
 if (e) {
   let f = true;
   let g = 1;
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const h = g < 2;
     if (h) {
       const i = g in d;

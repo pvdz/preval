@@ -25,7 +25,7 @@ const tmpCalleeParam /*:unknown*/ = $(`c`);
 $coerce(tmpCalleeParam, `string`);
 const tmpIfTest /*:unknown*/ = $(0);
 if (tmpIfTest) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpIfTest$1 /*:unknown*/ = $(0);
     if (tmpIfTest$1) {
     } else {
@@ -64,7 +64,7 @@ const a = $( "c" );
 $coerce( a, "string" );
 const b = $( 0 );
 if (b) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const c = $( 0 );
     if (c) {
 

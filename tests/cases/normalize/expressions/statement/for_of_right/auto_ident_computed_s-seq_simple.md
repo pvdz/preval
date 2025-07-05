@@ -25,7 +25,7 @@ const tmpCalleeParam$1 /*:unknown*/ = $(`c`);
 const b /*:object*/ /*truthy*/ = { c: 1 };
 const tmpCalleeParam /*:unknown*/ = b[tmpCalleeParam$1];
 const tmpForOfGenNext /*:unknown*/ = $forOf(tmpCalleeParam);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
@@ -66,7 +66,7 @@ const a = $( "c" );
 const b = { c: 1 };
 const c = b[ a ];
 const d = $forOf( c );
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const e = d();
   const f = e.done;
   if (f) {
@@ -94,7 +94,7 @@ const tmpCompObj = b;
 const tmpCalleeParam$1 = $(`c`);
 let tmpCalleeParam = tmpCompObj[tmpCalleeParam$1];
 const tmpForOfGenNext = $forOf(tmpCalleeParam);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForOfNext = tmpForOfGenNext();
   const tmpIfTest = tmpForOfNext.done;
   if (tmpIfTest) {

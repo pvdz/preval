@@ -22,7 +22,7 @@ $(a, b);
 
 `````js filename=intro
 const tmpForInGen /*:unknown*/ = $forIn(0);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForInNext /*:unknown*/ = tmpForInGen();
   const tmpIfTest /*:unknown*/ = tmpForInNext.done;
   if (tmpIfTest) {
@@ -58,7 +58,7 @@ With rename=true
 
 `````js filename=intro
 const a = $forIn( 0 );
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const b = a();
   const c = b.done;
   if (c) {
@@ -86,7 +86,7 @@ const tmpPostUpdArgIdent = $coerce(b, `number`);
 b = tmpPostUpdArgIdent - 1;
 let tmpCalleeParam = b;
 const tmpForInGen = $forIn(b);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForInNext = tmpForInGen();
   const tmpIfTest = tmpForInNext.done;
   if (tmpIfTest) {

@@ -31,7 +31,7 @@ const tmpCalleeParam /*:array*/ /*truthy*/ = [tmpArrElement, tmpArrElement$1];
 const iterable /*:unknown*/ = $(`iterable`, tmpCalleeParam);
 const tmpForOfGenNext /*:unknown*/ = $forOf(iterable);
 const funcs /*:array*/ /*truthy*/ = [];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
@@ -102,7 +102,7 @@ const c = [ a, b ];
 const d = $( "iterable", c );
 const e = $forOf( d );
 const f = [];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const g = e();
   const h = g.done;
   if (h) {
@@ -143,7 +143,7 @@ const tmpArrElement$1 = $(`item2`);
 let tmpCalleeParam = [tmpArrElement, tmpArrElement$1];
 let iterable = $(`iterable`, tmpCalleeParam);
 const tmpForOfGenNext = $forOf(iterable);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForOfNext = tmpForOfGenNext();
   const tmpIfTest = tmpForOfNext.done;
   if (tmpIfTest) {

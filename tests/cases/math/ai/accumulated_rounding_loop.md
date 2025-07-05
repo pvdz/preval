@@ -39,7 +39,7 @@ const x /*:unknown*/ = $(0);
 const tmpClusterSSA_x /*:primitive*/ = x + 1e-7;
 let tmpClusterSSA_x$2 /*:primitive*/ = $frfr(tmpFree, tmpClusterSSA_x);
 let tmpClusterSSA_i$2 /*:number*/ = 11;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpIfTest$1 /*:boolean*/ = tmpClusterSSA_i$2 < 100;
   if (tmpIfTest$1) {
     tmpClusterSSA_x$2 = tmpClusterSSA_x$2 + 1e-7;
@@ -97,7 +97,7 @@ const n = $( 0 );
 const o = n + 1e-7;
 let p = q( a, o );
 let r = 11;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const s = r < 100;
   if (s) {
     p = p + 1e-7;

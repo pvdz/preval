@@ -19,7 +19,7 @@ if ($) {
   let b = "jhayon.vercel.app"; // never observed, overwritten in both branches in the loop
   let c = 1;
   const d = $( "x" );
-  while ($LOOP_UNROLL_500) {
+  while ($LOOP_UNROLLS_LEFT_500) {
     a = d.slice(0);
     const e = a[ 0 ];
     const f = e === ".";

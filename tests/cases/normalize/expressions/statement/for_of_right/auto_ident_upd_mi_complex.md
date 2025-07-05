@@ -29,7 +29,7 @@ const tmpUpdNum /*:number*/ = $coerce(tmpUpdProp, `number`);
 const tmpUpdInc /*:number*/ = tmpUpdNum - 1;
 tmpUpdObj.x = tmpUpdInc;
 const tmpForOfGenNext /*:unknown*/ = $forOf(tmpUpdInc);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
@@ -76,7 +76,7 @@ const e = $coerce( d, "number" );
 const f = e - 1;
 c.x = f;
 const g = $forOf( f );
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const h = g();
   const i = h.done;
   if (i) {
@@ -108,7 +108,7 @@ const tmpUpdInc = tmpUpdNum - 1;
 tmpUpdObj.x = tmpUpdInc;
 let tmpCalleeParam = tmpUpdInc;
 const tmpForOfGenNext = $forOf(tmpUpdInc);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpForOfNext = tmpForOfGenNext();
   const tmpIfTest = tmpForOfNext.done;
   if (tmpIfTest) {

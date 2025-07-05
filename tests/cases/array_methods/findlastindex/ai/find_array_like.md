@@ -32,7 +32,7 @@ if (tmpLambdaFindLastIndexTest) {
   } else {
     let tmpLambdaFindLastIndexOut /*:number*/ = -1;
     let tmpClusterSSA_tmpLambdaFindLastIndexCounter /*:number*/ = tmpLambdaFindLastIndexCounter - 1;
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       const tmpLambdaFindLastIndexTest$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaFindLastIndexCounter >= 0;
       if (tmpLambdaFindLastIndexTest$1) {
         const tmpLambdaFindLastIndexVal$1 /*:unknown*/ = obj[tmpClusterSSA_tmpLambdaFindLastIndexCounter];
@@ -110,7 +110,7 @@ if (e) {
   else {
     let h = -1;
     let i = d - 1;
-    while ($LOOP_UNROLL_10) {
+    while ($LOOP_UNROLLS_LEFT_10) {
       const j = i >= 0;
       if (j) {
         const k = b[ i ];

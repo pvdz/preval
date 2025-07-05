@@ -10,7 +10,7 @@
 
 `````js filename=intro
 function f() {
-  throw $LOOP_DONE_UNROLLING_ALWAYS_TRUE;
+  throw $LOOP_NO_UNROLLS_LEFT;
 }
 $(f);
 `````

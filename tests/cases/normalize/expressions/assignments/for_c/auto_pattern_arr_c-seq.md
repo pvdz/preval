@@ -30,7 +30,7 @@ if (tmpIfTest) {
   const tmpArrAssignPatternRhs /*:unknown*/ = $(tmpCalleeParam);
   const tmpArrPatternSplat$1 /*:array*/ /*truthy*/ = [...tmpArrAssignPatternRhs];
   let tmpClusterSSA_a /*:unknown*/ = tmpArrPatternSplat$1[0];
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       $(10);
@@ -96,7 +96,7 @@ if (d) {
   const f = $( e );
   const g = [ ...f ];
   let h = g[ 0 ];
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     const i = $( 1 );
     if (i) {
       $( 10 );

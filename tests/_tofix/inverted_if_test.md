@@ -20,7 +20,7 @@ if (c) {
 } else {
 }
 if (b) {
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_NO_UNROLLS_LEFT) {
     $(100);
     const d = $(100);
     a = !d;                   // <--
@@ -45,7 +45,7 @@ if (c) {
   $(false);
 } else {
   let a /*:boolean*/ = false;
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_NO_UNROLLS_LEFT) {
     $(100);
     const d /*:unknown*/ = $(100);
     a = !d;
@@ -92,7 +92,7 @@ if (a) {
 }
 else {
   let b = false;
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_NO_UNROLLS_LEFT) {
     $( 100 );
     const c = $( 100 );
     b = !c;
@@ -118,7 +118,7 @@ if (c) {
 } else {
 }
 if (b) {
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_NO_UNROLLS_LEFT) {
     $(100);
     const d = $(100);
     a = !d;

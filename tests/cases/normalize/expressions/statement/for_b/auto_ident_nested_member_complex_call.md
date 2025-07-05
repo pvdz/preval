@@ -33,7 +33,7 @@ const tmpInitAssignLhsComputedRhs$1 /*:unknown*/ = $(3);
 tmpInitAssignLhsComputedObj$1[tmpInitAssignLhsComputedProp$1] = tmpInitAssignLhsComputedRhs$1;
 tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = tmpInitAssignLhsComputedRhs$1;
 if (tmpInitAssignLhsComputedRhs$1) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $(1);
     const tmpInitAssignLhsComputedObj$2 /*:unknown*/ = $(b);
     const tmpInitAssignLhsComputedProp$2 /*:unknown*/ = $(`x`);
@@ -100,7 +100,7 @@ const g = $( 3 );
 e[f] = g;
 b[c] = g;
 if (g) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_UNROLLS_LEFT_10) {
     $( 1 );
     const h = $( a );
     const i = $( "x" );

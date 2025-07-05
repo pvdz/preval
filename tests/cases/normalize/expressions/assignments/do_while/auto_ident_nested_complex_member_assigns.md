@@ -29,7 +29,7 @@ $(a, b, c);
 
 `````js filename=intro
 const b /*:object*/ /*truthy*/ = { x: 1 };
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $(100);
   const tmpNestedAssignComMemberObj /*:unknown*/ = $(b);
   const tmpNestedAssignComMemberProp /*:unknown*/ = $(`x`);
@@ -87,7 +87,7 @@ With rename=true
 
 `````js filename=intro
 const a = { x: 1 };
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $( 100 );
   const b = $( a );
   const c = $( "x" );

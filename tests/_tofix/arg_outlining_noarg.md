@@ -18,7 +18,7 @@ const the_self_closing_func /*:(primitive)=>primitive*/ = function ($$0) {
   const tmp2 /*:primitive*/ = main_data_arr[tmp1];
   return tmp2;
 };
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const a /*:primitive*/ = the_self_closing_func(2);
   const b /*:number*/ = $Number_parseInt(a);
   $(`testing`, a, b);
@@ -46,7 +46,7 @@ const the_self_closing_func /*:(primitive)=>primitive*/ = function ($$0) {
   const tmp2 /*:primitive*/ = main_data_arr[tmp1];
   return tmp2;
 };
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const a /*:primitive*/ = the_self_closing_func(2);
   const b /*:number*/ = $Number_parseInt(a);
   $(`testing`, a, b);
@@ -98,7 +98,7 @@ const b = function($$0 ) {
   const e = a[ d ];
   return e;
 };
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const f = b( 2 );
   const g = $Number_parseInt( f );
   $( "testing", f, g );
@@ -128,7 +128,7 @@ const the_self_closing_func = function ($$0) {
   const tmp2 = main_data_arr[tmp1];
   return tmp2;
 };
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const a = the_self_closing_func(2);
   const b = $Number_parseInt(a);
   $(`testing`, a, b);

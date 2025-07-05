@@ -25,7 +25,7 @@ let the_self_closing_func/*:(unknown, unknown)=>unknown*/ = function($$0, $$1) {
   return once;
 };
 const the_scf_alias/*:unknown*/ = the_self_closing_func;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const a/*:unknown*/ = the_scf_alias(4639);
   const b/*:number*/ = $Number_parseInt(a);
   const c/*:unknown*/ = the_scf_alias(710);
@@ -65,7 +65,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 `````js filename=intro
 const main_data_arr /*:array*/ /*truthy*/ = [`ike there `, `wgcCwgZikg`, `LmNvbmNhdC`, `eBestCandi`, ` using the`];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $(`testing`);
   const tmpMCPa /*:primitive*/ /*truthy*/ = $dotCall($array_shift, main_data_arr, `shift`);
   $dotCall($array_push, main_data_arr, `push`, tmpMCPa);
@@ -90,7 +90,7 @@ With rename=true
 
 `````js filename=intro
 const a = [ "ike there ", "wgcCwgZikg", "LmNvbmNhdC", "eBestCandi", " using the" ];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   $( "testing" );
   const b = $dotCall( $array_shift, a, "shift" );
   $dotCall( $array_push, a, "push", b );
@@ -122,7 +122,7 @@ let the_self_closing_func = function ($$0, $$1) {
   return once;
 };
 const the_scf_alias = the_self_closing_func;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while ($LOOP_NO_UNROLLS_LEFT) {
   const a = the_scf_alias(4639);
   const b = $Number_parseInt(a);
   const c = the_scf_alias(710);

@@ -1621,18 +1621,6 @@ function _inferNodeTyping(fdata, valueNode, allowIdentResolve) {
           });
         }
 
-        if (AST.isPrimitive(valueNode)) {
-          // Not very useful because this will get resolved... that's kind of the point here... but ok
-          if (AST.getPrimitiveType(valueNode) === 'string' && valueNode.property.name === 'length') {
-            const str = AST.getPrimitiveValue(valueNode);
-            return createTypingObject({
-              mustBeType: 'number',
-              mustBePrimitive: true,
-              mustBeTruthy: str.length > 0,
-            });
-          }
-        }
-
         if (valueNode.object.type === 'Identifier' && valueNode.property.name === 'length' && valueNode.object.name !== 'arguments') {
           vlog('Checking if this is .length on a certain type (string,array,func)');
           const meta = fdata.globallyUniqueNamingRegistry.get(valueNode.object.name);

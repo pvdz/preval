@@ -21,6 +21,8 @@ export const IMPLICIT_GLOBAL_PREFIX = '$prevalImplicit$';
  */
 export const BUILTIN_REST_HANDLER_NAME = '$objPatternRest';
 
+export const SYMBOL_INVALID_FUNCTION = '$InvalidFunction';
+
 /**
  * Syntactic clue that this was an actual method call before, not an arbitrary .call method
  * When reconstructing it, we should be safe to assume the source code was trying to access

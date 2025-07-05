@@ -10,21 +10,25 @@ export function phase0(code, fname, subCall) {
   log('- Parsing input code with Tenko...');
 
   const start = Date.now();
-  const tenkoOutput = Tenko.Tenko(code, {
-    exposeScopes: true, // func cloning needs it. shouldn't add too much overhead except for debug output
-    collectTokens: Tenko.COLLECT_TOKENS_NONE,
-    goalMode: Tenko.GOAL_MODULE,
-    locationTracking: false,
-    toplevelAwait: true,
-    alwaysAllowOctalEscapes: true, // It's possible for eval/Function to drop these into the code while transforming so we need this option
-    astUids: false, // For debugging
-  });
+  let tenkoOutput;
+  try {
+    tenkoOutput = Tenko.Tenko(code, {
+      exposeScopes: true, // func cloning needs it. shouldn't add too much overhead except for debug output
+      collectTokens: Tenko.COLLECT_TOKENS_NONE,
+      goalMode: Tenko.GOAL_MODULE,
+      locationTracking: false,
+      toplevelAwait: true,
+      alwaysAllowOctalEscapes: true, // It's possible for eval/Function to drop these into the code while transforming so we need this option
+      astUids: false, // For debugging
+    });
 
-  //console.dir(tenkoOutput.ast, {depth: null});
+    //console.dir(tenkoOutput.ast, {depth: null});
 
-  log('- Finished parsing (', Date.now() - start, 'ms)');
+    log('- Finished parsing (', Date.now() - start, 'ms)');
+  } finally {
+    groupEnd();
+  }
 
-  groupEnd();
 
   return {
     // fdata

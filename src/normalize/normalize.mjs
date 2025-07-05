@@ -9,7 +9,7 @@ import {
   SYMBOL_COERCE,
   SYMBOL_FORIN,
   SYMBOL_FOROF, SYMBOL_FREE,
-  SYMBOL_FRFR,
+  SYMBOL_FRFR, SYMBOL_INVALID_FUNCTION,
   SYMBOL_PCOMPILED,
   SYMBOL_THROW_TDZ_ERROR,
 } from '../symbols_preval.mjs';
@@ -19,6 +19,7 @@ import globals, { BUILTIN_GLOBAL_FUNC_NAMES } from '../globals.mjs';
 import { createNormalizedFunctionFromString } from '../utils/serialize_func.mjs';
 import { addLabelReference, createFreshLabelStatement, removeLabelReference } from '../labels.mjs';
 import { isBoolean } from '../ast.mjs';
+import { phase0 } from './phase0.mjs';
 
 // pattern: tests/cases/ssa/back2back_bad.md (the call should be moved into the branches, replacing the var assigns)
 
@@ -4754,6 +4755,33 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                 // If there is a context node, let another transform simplify it first
                 else if (allowEval) {
                   if (args.every((anode) => AST.isPrimitive(anode))) {
+
+                    // We have to first validate that the body is in fact parseable. It may be garble, invalid, or
+                    // bugged (whether preval or input source, doesn't matter here). If we don't then preval might
+                    // crash next time phase0 is reached.
+                    // It's also relevant to preserve the call because it's very possible this was caused by a preval bug, not input source.
+                    // If parsing crashes, rewrite the constructor to a special `$FunctionInvalid()` to get it out of
+                    // the way as we can not recover from that.
+
+                    try {
+                      // Note: No args is fine. We should parse the body as if it were wrapped in a function.
+                      //       This is in particular relevant for things like return statements, this, and arguments.
+                      if (args.length) {
+                        const code = String(AST.getPrimitiveValue(args[args.length - 1]));
+                        phase0(`function anon(){ ${code} }`, 'anon', true);
+                      }
+                    } catch {
+                      vlog('Parsing failed, going to rename this to a special symbol to prevent attempting it again');
+                      rule('Call to Function contains source that cannot be parsed; permanently marking that as failed');
+                      example('$function_constructor("x x")();', SYMBOL_INVALID_FUNCTION + '("x x")();');
+                      before(body[i]);
+
+                      node.callee = AST.identifier(SYMBOL_INVALID_FUNCTION);
+
+                      after(body[i]);
+                      return true;
+                    }
+
                     for (let i=0;i<10;++i)vgroup();
                     // TODO: we could try to find the original point of this call and replace the arg but I'm sure there are plenty of cases where this is not feasible (like conditionals etc)
                     vlog('This call to `Function` has primitive args so we should be able to resolve it...');

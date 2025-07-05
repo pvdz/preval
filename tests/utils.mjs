@@ -106,6 +106,9 @@ export function fromMarkdownCase(md, fname, config) {
             value = parseInt(value.trim());
             if (isNaN(value)) throw new Error('Test case contained invalid value for `' + name + '` (' + value + ')');
             break;
+          case 'expectBad': // Expect eval mismatch for whatever reason
+            value = true;
+            break;
           case 'refTest':
             value = true;
             break;
@@ -353,7 +356,7 @@ export function toSpecialPcodeSection(pcodeData) {
   );
 }
 
-export function toEvaluationResult(evalled, implicitGlobals, skipFinal, globalsToIgnore = []) {
+export function toEvaluationResult(evalled, implicitGlobals, skipFinal, globalsToIgnore = [], expectBad) {
   function printStack(stack) {
     ASSERT(stack, 'missing stack...?');
     return stack
@@ -386,14 +389,14 @@ export function toEvaluationResult(evalled, implicitGlobals, skipFinal, globalsT
     return ' ' + badPrefix + '\n' + mapped.join('\n') + '\n\n';
   }
 
-  const preEvalResult = showDiffInOutput(inputOutput, preOutput, 'BAD!%');
-  const normalizedEvalResult = showDiffInOutput(inputOutput, normalizedOutput, 'BAD!?');
+  const preEvalResult = showDiffInOutput(inputOutput, preOutput, 'BAD!%' + (expectBad ? ' (expected)':''));
+  const normalizedEvalResult = showDiffInOutput(inputOutput, normalizedOutput, 'BAD!?' + (expectBad ? ' (expected)':''));
   const finalEvalResult = skipFinal
     ? ''
-    : 'Post settled calls:' + showDiffInOutput(inputOutput, settledOutput, 'BAD!!');
+    : 'Post settled calls:' + showDiffInOutput(inputOutput, settledOutput, 'BAD!!' + (expectBad ? ' (expected)':''));
   const denormEvalResult = skipFinal
     ? ''
-    : 'Denormalized calls:' + showDiffInOutput(inputOutput, denormOutput, 'BAD!!');
+    : 'Denormalized calls:' + showDiffInOutput(inputOutput, denormOutput, 'BAD!!' + (expectBad ? ' (expected)':''));
   const hasError = !(inputOutput === preOutput && inputOutput === normalizedOutput && (skipFinal || inputOutput === settledOutput) && (skipFinal || inputOutput === denormOutput));
 
   // Only show this when the transforms mismatch the input. Otherwise ignore.
@@ -404,14 +407,14 @@ export function toEvaluationResult(evalled, implicitGlobals, skipFinal, globalsT
   const denorm_invOutput = printStack(evalled.$denorm_inv);
   const result_pcode = evalled.$pcode;
 
-  const preEvalResult_inv = input_invOutput !== pre_invOutput ? '\n\nPre normalization inverse calls: BAD!%\n' + inputOutput : '';
-  const normalizedEvalResult_inv = input_invOutput !== normalized_invOutput ? '\n\nNormalization inverse calls: BAD!?\n' + normalizedOutput : '';
+  const preEvalResult_inv = input_invOutput !== pre_invOutput ? '\n\nPre normalization inverse calls: BAD!%' + (expectBad ? ' (expected)':'') + '\n' + inputOutput : '';
+  const normalizedEvalResult_inv = input_invOutput !== normalized_invOutput ? '\n\nNormalization inverse calls: BAD!?' + (expectBad ? ' (expected)':'') + '\n' + normalizedOutput : '';
   const finalEvalResult_inv = skipFinal
     ? ''
-    : (input_invOutput !== settled_invOutput ? '\n\nOutput inverse calls: BAD!!\n' + settled_invOutput + '\n\n'  : '');
+    : (input_invOutput !== settled_invOutput ? '\n\nOutput inverse calls: BAD!!' + (expectBad ? ' (expected)':'') + '\n' + settled_invOutput + '\n\n'  : '');
   const denormEvalResult_inv = skipFinal
     ? ''
-    : (input_invOutput !== settled_invOutput ? '\n\nDenormalized inverse calls: BAD!!\n' + denorm_invOutput + '\n'  : '');
+    : (input_invOutput !== settled_invOutput ? '\n\nDenormalized inverse calls: BAD!!' + (expectBad ? ' (expected)':'') + '\n' + denorm_invOutput + '\n'  : '');
 
   const globalsLeft = new Set(implicitGlobals);
   const ignoresLeft = globalsToIgnore.slice(0);
@@ -511,7 +514,7 @@ export function toMarkdownCase({ md, mdHead, mdOptions, mdChunks, fname, fin, ou
       //(wasRefTest || CONFIG.onlyOutput ? '' : toPreNormalSection(output.pre)),
       (wasRefTest || wasPcodeTest || CONFIG.onlyOutput ? '' : toNormalizedSection(output.normalized)),
       toTodosSection(todos),
-      toEvaluationResult(evalled, output.implicitGlobals, false, mdOptions.globals),
+      toEvaluationResult(evalled, output.implicitGlobals, false, mdOptions.globals, mdOptions.expectBad),
     ].filter(Boolean).join('\n\n\n');
   }
 

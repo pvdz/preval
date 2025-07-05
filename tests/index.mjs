@@ -327,7 +327,7 @@ function runTestCase(
       },
       req(importPath) {
         if (withOutput) {
-          console.log('Preval test harnas; require(' + importPath + ')');
+          console.log('Preval test harness; require(' + importPath + ')');
           if (CONFIG.fileVerbatim && importPath !== 'intro') {
             console.log('TODO: currently skipping imports from `./p F` runs');
           } else {
@@ -1107,7 +1107,7 @@ function runTestCase(
       }
       console.log(toNormalizedSection(output.normalized));
       console.log();
-      console.log(toEvaluationResult(evalled, output.implicitGlobals, true, mdOptions.globals));
+      console.log(toEvaluationResult(evalled, output.implicitGlobals, true, mdOptions.globals, mdOptions.expectBad));
       if (isPcodeTest) {
         console.log(evalled.$pcode.join('\n'));
       }
@@ -1123,8 +1123,8 @@ function runTestCase(
     );
 
     let snapshotChanged = md2 !== md;
-    let normalizationDesync = md2.includes('BAD?!');
-    let outputDesync = md2.includes('BAD!!');
+    let normalizationDesync = !mdOptions.expectBad && md2.includes('BAD?!');
+    let outputDesync = !mdOptions.expectBad && md2.includes('BAD!!');
 
     if (snapshotChanged) {
       ++snap;

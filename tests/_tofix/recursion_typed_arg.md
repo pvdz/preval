@@ -70,11 +70,11 @@ $(tmpCalleeParam);
 
 `````js filename=intro
 const tmpFree = function $free($dlr_$$0) {
-  const tmpRet = $coerce($dlr_$$0 / $dlr_$$0, `string`);
+  const tmpRet = String($dlr_$$0 / $dlr_$$0);
   return tmpRet;
 };
 const func = function ($dlr_$$1) {
-  const onetoo = $frfr(tmpFree, $dlr_$$1).length;
+  const onetoo = tmpFree($dlr_$$1).length;
   if (1 === onetoo) {
     return `end`;
   } else {

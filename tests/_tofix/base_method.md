@@ -71,19 +71,23 @@ $(f('three'));
 
 
 `````js filename=intro
-const f /*:(unknown)=>unknown*/ = function () {
+const f /*:(unknown)=>unknown*/ = function ($$0) {
+  const x /*:unknown*/ = $$0;
   debugger;
   $(`no`);
   $(`inlining`);
   $(`please`);
-  return undefined;
+  const tmpMCF /*:unknown*/ = x.toString;
+  const y /*:unknown*/ = $dotCall(tmpMCF, x, `toString`);
+  return y;
 };
-f();
-$('1,2,3');
-f();
-$('300');
-f();
-$('three');
+const tmpCalleeParam$1 /*:array*/ /*truthy*/ = [1, 2, 3];
+const tmpCalleeParam /*:unknown*/ = f(tmpCalleeParam$1);
+$(tmpCalleeParam);
+const tmpCalleeParam$3 /*:unknown*/ = f(300);
+$(tmpCalleeParam$3);
+const tmpCalleeParam$5 /*:unknown*/ = f(`three`);
+$(tmpCalleeParam$5);
 `````
 
 
@@ -156,7 +160,7 @@ $(tmpCalleeParam$5);
 ## Todos triggered
 
 
-- (todo) support array reads statement type VarStatement
+- (todo) array reads var statement with init CallExpression
 
 
 ## Globals

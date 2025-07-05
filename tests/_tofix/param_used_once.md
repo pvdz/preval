@@ -817,7 +817,7 @@ $(TP$cloneX2$cloneX1);
 
 
 `````js filename=intro
-const fooCalleeParamX11238 /*:(unknown)=>unknown*/ = function ($$0) {
+const fooCalleeParamX11238 /*:(unknown)=>unknown*/ = function $pcompiled($$0) {
   const nCeX401 /*:unknown*/ = $$0;
   debugger;
   return nCeX401;
@@ -1785,7 +1785,7 @@ $(TP$cloneX2$cloneX1);
 (This ought to be the final result)
 
 `````js filename=intro
-const fooCalleeParamX11238 = function (nCeX401) {
+const fooCalleeParamX11238 = function $pcompiled(nCeX401) {
   return nCeX401;
 };
 $(function ($$0, mNeX765, $$2, gNeX352, yNeX272) {
@@ -2523,389 +2523,389 @@ $(function ($$0, mNeX765, $$2, gNeX352, yNeX272) {
 With rename=true
 
 `````js filename=intro
-const a = function($$0 ) {
-  const b = $$0;
+const a = function b($$0 ) {
+  const c = $$0;
   debugger;
-  return b;
+  return c;
 };
-const c = function($$0,$$1,$$2,$$3,$$4 ) {
-  const d = $$1;
-  const e = $$3;
-  const f = $$4;
+const d = function($$0,$$1,$$2,$$3,$$4 ) {
+  const e = $$1;
+  const f = $$3;
+  const g = $$4;
   debugger;
-  const g = function($$0,$$1,$$2 ) {
-    const h = $$0;
-    const i = $$1;
-    const j = $$2;
+  const h = function($$0,$$1,$$2 ) {
+    const i = $$0;
+    const j = $$1;
+    const k = $$2;
     debugger;
-    const k = l;
-    const m = n;
-    const o = p;
-    const q = SP( r, i, j );
-    const s = UA( o, h, q );
-    const t = [ 4, m, s ];
-    const u = RP$cloneX5( k, $, t, v );
-    return u;
+    const l = m;
+    const n = o;
+    const p = q;
+    const r = SP( s, j, k );
+    const t = UA( p, i, r );
+    const u = [ 4, n, t ];
+    const v = RP$cloneX5( l, $, u, w );
+    return v;
   };
-  const w = function($$0,$$1 ) {
-    const x = $$0;
-    const y = $$1;
+  const x = function($$0,$$1 ) {
+    const y = $$0;
+    const z = $$1;
     debugger;
-    const z = l;
-    const ba = n;
-    const bb = p;
-    const bc = SP( r, zAe, y );
-    const bd = UA( bb, x, bc );
-    const be = [ 4, ba, bd ];
-    const bf = RP$cloneX5( z, $, be, v );
-    return bf;
+    const ba = m;
+    const bb = o;
+    const bc = q;
+    const bd = SP( s, zAe, z );
+    const be = UA( bc, y, bd );
+    const bf = [ 4, bb, be ];
+    const bg = RP$cloneX5( ba, $, bf, w );
+    return bg;
   };
-  const bg = function($$0,$$1 ) {
-    const bh = $$0;
-    const bi = $$1;
+  const bh = function($$0,$$1 ) {
+    const bi = $$0;
+    const bj = $$1;
     debugger;
-    const bj = l;
-    const bk = n;
-    const bl = bm;
-    const bn = bo;
-    const bp = SP( r, bh, bi );
-    const bq = UA( bl, bn, bp );
-    const br = [ 4, bk, bq ];
-    const bs = RP$cloneX5( bj, $, br, v );
-    return bs;
+    const bk = m;
+    const bl = o;
+    const bm = bn;
+    const bo = bp;
+    const bq = SP( s, bi, bj );
+    const br = UA( bm, bo, bq );
+    const bs = [ 4, bl, br ];
+    const bt = RP$cloneX5( bk, $, bs, w );
+    return bt;
   };
-  const bt = function($$0 ) {
-    const bu = $$0;
+  const bu = function($$0 ) {
+    const bv = $$0;
     debugger;
-    const bv = l;
-    const bw = n;
-    const bx = bm;
-    const by = bo;
-    const bz = SP( r, zAe, bu );
-    const ca = UA( bx, by, bz );
-    const cb = [ 4, bw, ca ];
-    const cc = RP$cloneX5( bv, $, cb, v );
-    return cc;
+    const bw = m;
+    const bx = o;
+    const by = bn;
+    const bz = bp;
+    const ca = SP( s, zAe, bv );
+    const cb = UA( by, bz, ca );
+    const cc = [ 4, bx, cb ];
+    const cd = RP$cloneX5( bw, $, cc, w );
+    return cd;
   };
-  const cd = function($$0,$$1 ) {
-    const ce = $$0;
-    const cf = $$1;
+  const ce = function($$0,$$1 ) {
+    const cf = $$0;
+    const cg = $$1;
     debugger;
-    const cg = l;
-    const ch = n;
-    const ci = SP( r, ce, cf );
-    const cj = [ 4, ch, ci ];
-    const ck = RP$cloneX5( cg, $, cj, v );
-    return ck;
+    const ch = m;
+    const ci = o;
+    const cj = SP( s, cf, cg );
+    const ck = [ 4, ci, cj ];
+    const cl = RP$cloneX5( ch, $, ck, w );
+    return cl;
   };
-  const cl = function($$0 ) {
-    const cm = $$0;
+  const cm = function($$0 ) {
+    const cn = $$0;
     debugger;
-    const cn = l;
-    const co = n;
-    const cp = SP( r, zAe, cm );
-    const cq = [ 4, co, cp ];
-    const cr = RP$cloneX5( cn, $, cq, v );
-    return cr;
+    const co = m;
+    const cp = o;
+    const cq = SP( s, zAe, cn );
+    const cr = [ 4, cp, cq ];
+    const cs = RP$cloneX5( co, $, cr, w );
+    return cs;
   };
-  const cs = function($$0 ) {
-    const ct = $$0;
+  const ct = function($$0 ) {
+    const cu = $$0;
     debugger;
-    const cu = l;
-    const cv = [ 5, n, ct ];
-    const cw = RP$cloneX5( cu, $, cv, cx );
-    return cw;
+    const cv = m;
+    const cw = [ 5, o, cu ];
+    const cx = RP$cloneX5( cv, $, cw, cy );
+    return cx;
   };
-  const cy = function($$0 ) {
-    const cz = $$0;
+  const cz = function($$0 ) {
+    const da = $$0;
     debugger;
-    const da = l;
-    const db = n;
-    const dc = $yX2( Iq, cz );
-    const dd = [ 4, db, dc ];
-    const de = RP$cloneX5( da, $, dd, df );
-    return de;
+    const db = m;
+    const dc = o;
+    const dd = $yX2( Iq, da );
+    const de = [ 4, dc, dd ];
+    const df = RP$cloneX5( db, $, de, dg );
+    return df;
   };
-  const dg = function() {
+  const dh = function() {
     debugger;
-    const dh = RP$cloneX5( l, $, di, dj );
-    return dh;
+    const di = RP$cloneX5( m, $, dj, dk );
+    return di;
   };
-  const dk = function($$0 ) {
-    const dl = $$0;
+  const dl = function($$0 ) {
+    const dm = $$0;
     debugger;
-    const dm = l;
-    const dn = [ 6, n, dl ];
-    const dp = RP$cloneX5( dm, $, dn, dq );
-    return dp;
+    const dn = m;
+    const dp = [ 6, o, dm ];
+    const dq = RP$cloneX5( dn, $, dp, dr );
+    return dq;
   };
-  const dr = function($$0,$$1 ) {
-    const ds = $$0;
-    const dt = $$1;
+  const ds = function($$0,$$1 ) {
+    const dt = $$0;
+    const du = $$1;
     debugger;
-    const du = l;
-    const dv = n;
-    const dw = function($$0 ) {
-      const dx = $$0;
+    const dv = m;
+    const dw = o;
+    const dx = function($$0 ) {
+      const dy = $$0;
       debugger;
-      const dy = YE( ds, dx, dt );
-      return dy;
+      const dz = YE( dt, dy, du );
+      return dz;
     };
-    const dz = [ 6, dv, dw ];
-    const ea = RP$cloneX5( du, $, dz, eb );
-    return ea;
+    const ea = [ 6, dw, dx ];
+    const eb = RP$cloneX5( dv, $, ea, ec );
+    return eb;
   };
-  let ec = undefined;
-  const ed = function($$0 ) {
-    const ee = $$0;
+  let ed = undefined;
+  const ee = function($$0 ) {
+    const ef = $$0;
     debugger;
-    const ef = ee[ 1 ];
-    const eg = PA( ec );
-    const eh = WE( eg );
-    const ei = YA( ef, eh );
-    const ej = ei[ 2 ];
-    const ek = typeof ej;
-    const el = "number" == ek;
-    if (el) {
-      const em = l;
-      const en = n;
-      const eo = ei[ 1 ];
-      const ep = ZE( eo, eq );
-      const er = RP$cloneX5( em, $, en, ep );
-      return er;
+    const eg = ef[ 1 ];
+    const eh = PA( ed );
+    const ei = WE( eh );
+    const ej = YA( eg, ei );
+    const ek = ej[ 2 ];
+    const el = typeof ek;
+    const em = "number" == el;
+    if (em) {
+      const en = m;
+      const eo = o;
+      const ep = ej[ 1 ];
+      const eq = ZE( ep, er );
+      const es = RP$cloneX5( en, $, eo, eq );
+      return es;
     }
     else {
       throw JAe;
     }
   };
-  const es = function() {
+  const et = function() {
     debugger;
-    const et = l;
-    const eu = [ 4, n, ev ];
-    const ew = RP$cloneX5( et, $, eu, ex );
-    return ew;
+    const eu = m;
+    const ev = [ 4, o, ew ];
+    const ex = RP$cloneX5( eu, $, ev, ey );
+    return ex;
   };
+  let ez = undefined;
+  const fa = function($$0 ) {
+    const fb = $$0;
+    debugger;
+    let fc = undefined;
+    if (fb) {
+      fc = TU;
+    }
+    else {
+      fc = _U;
+    }
+    const fd = m;
+    const fe = [ 4, o, fc ];
+    const ff = RP$cloneX5( fd, $, fe, ez );
+    return ff;
+  };
+  const fg = function($$0,$$1 ) {
+    const fh = $$0;
+    const fi = $$1;
+    debugger;
+    const fj = m;
+    const fk = o;
+    const fl = q;
+    const fm = SP( s, fn, fi );
+    const fo = UA( fl, fh, fm );
+    const fp = [ 4, fk, fo ];
+    const fq = RP$cloneX5( fj, $, fp, w );
+    return fq;
+  };
+  const fr = function($$0 ) {
+    const fs = $$0;
+    debugger;
+    const ft = m;
+    const fu = o;
+    const fv = bn;
+    const fw = bp;
+    const fx = SP( s, fy, fs );
+    const fz = UA( fv, fw, fx );
+    const ga = [ 4, fu, fz ];
+    const gb = RP$cloneX5( ft, $, ga, w );
+    return gb;
+  };
+  const gc = function($$0 ) {
+    const gd = $$0;
+    debugger;
+    const ge = m;
+    const gf = o;
+    const gg = SP( s, gh, gd );
+    const gi = [ 4, gf, gg ];
+    const gj = RP$cloneX5( ge, $, gi, w );
+    return gj;
+  };
+  const gk = function($$0 ) {
+    const gl = $$0;
+    debugger;
+    const gm = m;
+    const gn = o;
+    const go = XT( gl );
+    const gp = __( go, Jq );
+    const gq = [ 4, gn, gp ];
+    const gr = RP$cloneX5( gm, $, gq, gs );
+    return gr;
+  };
+  let gt = undefined;
+  let ew = undefined;
+  let dk = undefined;
+  let fy = undefined;
+  let dg = undefined;
+  let bn = undefined;
   let ey = undefined;
-  const ez = function($$0 ) {
-    const fa = $$0;
-    debugger;
-    let fb = undefined;
-    if (fa) {
-      fb = TU;
-    }
-    else {
-      fb = _U;
-    }
-    const fc = l;
-    const fd = [ 4, n, fb ];
-    const fe = RP$cloneX5( fc, $, fd, ey );
-    return fe;
-  };
-  const ff = function($$0,$$1 ) {
-    const fg = $$0;
-    const fh = $$1;
-    debugger;
-    const fi = l;
-    const fj = n;
-    const fk = p;
-    const fl = SP( r, fm, fh );
-    const fn = UA( fk, fg, fl );
-    const fo = [ 4, fj, fn ];
-    const fp = RP$cloneX5( fi, $, fo, v );
-    return fp;
-  };
-  const fq = function($$0 ) {
-    const fr = $$0;
-    debugger;
-    const fs = l;
-    const ft = n;
-    const fu = bm;
-    const fv = bo;
-    const fw = SP( r, fx, fr );
-    const fy = UA( fu, fv, fw );
-    const fz = [ 4, ft, fy ];
-    const ga = RP$cloneX5( fs, $, fz, v );
-    return ga;
-  };
-  const gb = function($$0 ) {
-    const gc = $$0;
-    debugger;
-    const gd = l;
-    const ge = n;
-    const gf = SP( r, gg, gc );
-    const gh = [ 4, ge, gf ];
-    const gi = RP$cloneX5( gd, $, gh, v );
-    return gi;
-  };
-  const gj = function($$0 ) {
-    const gk = $$0;
-    debugger;
-    const gl = l;
-    const gm = n;
-    const gn = XT( gk );
-    const go = __( gn, Jq );
-    const gp = [ 4, gm, go ];
-    const gq = RP$cloneX5( gl, $, gp, gr );
-    return gq;
-  };
+  let w = undefined;
+  let cy = undefined;
+  let fn = undefined;
+  let m = e;
+  let o = f;
   let gs = undefined;
-  let ev = undefined;
+  let ec = undefined;
+  let er = undefined;
+  let dr = undefined;
   let dj = undefined;
-  let fx = undefined;
-  let df = undefined;
-  let bm = undefined;
-  let ex = undefined;
-  let v = undefined;
-  let cx = undefined;
-  let fm = undefined;
-  let l = d;
-  let n = e;
-  let gr = undefined;
-  let eb = undefined;
-  let eq = undefined;
-  let dq = undefined;
-  let di = undefined;
-  const gt = function($$0 ) {
-    const gu = $$0;
+  const gu = function($$0 ) {
+    const gv = $$0;
     debugger;
-    const gv = l;
-    const gw = [ 5, n, gu ];
-    const gx = RP$cloneX5( gv, $, gw, gs );
-    return gx;
+    const gw = m;
+    const gx = [ 5, o, gv ];
+    const gy = RP$cloneX5( gw, $, gx, gt );
+    return gy;
   };
-  let p = undefined;
-  let r = undefined;
-  let gg = undefined;
-  let bo = undefined;
-  let gy = f;
+  let q = undefined;
+  let s = undefined;
+  let gh = undefined;
+  let bp = undefined;
+  let gz = g;
   while ($LOOP_NO_UNROLLS_LEFT) {
-    const gz = typeof gy;
-    const ha = "number" == gz;
-    if (ha) {
-      const hb = YE$cloneX5( l, $, n );
-      return hb;
+    const ha = typeof gz;
+    const hb = "number" == ha;
+    if (hb) {
+      const hc = YE$cloneX5( m, $, o );
+      return hc;
     }
     else {
-      const hc = gy[ 0 ];
-      let hd = 24;
-      const he = 0 === hc;
-      if (he) {
-        hd = 0;
+      const hd = gz[ 0 ];
+      let he = 24;
+      const hf = 0 === hd;
+      if (hf) {
+        he = 0;
       }
       else {
-        const hf = 1 === hc;
-        if (hf) {
-          hd = 1;
+        const hg = 1 === hd;
+        if (hg) {
+          he = 1;
         }
         else {
-          const hg = 2 === hc;
-          if (hg) {
-            hd = 2;
+          const hh = 2 === hd;
+          if (hh) {
+            he = 2;
           }
           else {
-            const hh = 3 === hc;
-            if (hh) {
-              hd = 3;
+            const hi = 3 === hd;
+            if (hi) {
+              he = 3;
             }
             else {
-              const hi = 4 === hc;
-              if (hi) {
-                hd = 4;
+              const hj = 4 === hd;
+              if (hj) {
+                he = 4;
               }
               else {
-                const hj = 5 === hc;
-                if (hj) {
-                  hd = 5;
+                const hk = 5 === hd;
+                if (hk) {
+                  he = 5;
                 }
                 else {
-                  const hk = 6 === hc;
-                  if (hk) {
-                    hd = 6;
+                  const hl = 6 === hd;
+                  if (hl) {
+                    he = 6;
                   }
                   else {
-                    const hl = 7 === hc;
-                    if (hl) {
-                      hd = 7;
+                    const hm = 7 === hd;
+                    if (hm) {
+                      he = 7;
                     }
                     else {
-                      const hm = 8 === hc;
-                      if (hm) {
-                        hd = 8;
+                      const hn = 8 === hd;
+                      if (hn) {
+                        he = 8;
                       }
                       else {
-                        const hn = 9 === hc;
-                        if (hn) {
-                          hd = 9;
+                        const ho = 9 === hd;
+                        if (ho) {
+                          he = 9;
                         }
                         else {
-                          const ho = 10 === hc;
-                          if (ho) {
-                            hd = 10;
+                          const hp = 10 === hd;
+                          if (hp) {
+                            he = 10;
                           }
                           else {
-                            const hp = 11 === hc;
-                            if (hp) {
-                              hd = 11;
+                            const hq = 11 === hd;
+                            if (hq) {
+                              he = 11;
                             }
                             else {
-                              const hq = 12 === hc;
-                              if (hq) {
-                                hd = 12;
+                              const hr = 12 === hd;
+                              if (hr) {
+                                he = 12;
                               }
                               else {
-                                const hr = 13 === hc;
-                                if (hr) {
-                                  hd = 13;
+                                const hs = 13 === hd;
+                                if (hs) {
+                                  he = 13;
                                 }
                                 else {
-                                  const hs = 14 === hc;
-                                  if (hs) {
-                                    hd = 14;
+                                  const ht = 14 === hd;
+                                  if (ht) {
+                                    he = 14;
                                   }
                                   else {
-                                    const ht = 15 === hc;
-                                    if (ht) {
-                                      hd = 15;
+                                    const hu = 15 === hd;
+                                    if (hu) {
+                                      he = 15;
                                     }
                                     else {
-                                      const hu = 16 === hc;
-                                      if (hu) {
-                                        hd = 16;
+                                      const hv = 16 === hd;
+                                      if (hv) {
+                                        he = 16;
                                       }
                                       else {
-                                        const hv = 17 === hc;
-                                        if (hv) {
-                                          hd = 17;
+                                        const hw = 17 === hd;
+                                        if (hw) {
+                                          he = 17;
                                         }
                                         else {
-                                          const hw = 18 === hc;
-                                          if (hw) {
-                                            hd = 18;
+                                          const hx = 18 === hd;
+                                          if (hx) {
+                                            he = 18;
                                           }
                                           else {
-                                            const hx = 19 === hc;
-                                            if (hx) {
-                                              hd = 19;
+                                            const hy = 19 === hd;
+                                            if (hy) {
+                                              he = 19;
                                             }
                                             else {
-                                              const hy = 20 === hc;
-                                              if (hy) {
-                                                hd = 20;
+                                              const hz = 20 === hd;
+                                              if (hz) {
+                                                he = 20;
                                               }
                                               else {
-                                                const hz = 21 === hc;
-                                                if (hz) {
-                                                  hd = 21;
+                                                const ia = 21 === hd;
+                                                if (ia) {
+                                                  he = 21;
                                                 }
                                                 else {
-                                                  const ia = 22 === hc;
-                                                  if (ia) {
-                                                    hd = 22;
+                                                  const ib = 22 === hd;
+                                                  if (ib) {
+                                                    he = 22;
                                                   }
                                                   else {
-                                                    const ib = 23 === hc;
-                                                    if (ib) {
-                                                      hd = 23;
+                                                    const ic = 23 === hd;
+                                                    if (ic) {
+                                                      he = 23;
                                                     }
                                                   }
                                                 }
@@ -2930,379 +2930,379 @@ const c = function($$0,$$1,$$2,$$3,$$4 ) {
           }
         }
       }
-      const ic = hd <= 0;
-      if (ic) {
-        gs = gy[ 1 ];
-        return gt;
+      const id = he <= 0;
+      if (id) {
+        gt = gz[ 1 ];
+        return gu;
       }
       else {
-        const id = hd <= 1;
-        if (id) {
-          gr = gy[ 1 ];
-          return gj;
+        const ie = he <= 1;
+        if (ie) {
+          gs = gz[ 1 ];
+          return gk;
         }
         else {
-          const ie = hd <= 2;
-          if (ie) {
-            const ig = gy[ 2 ];
-            const ih = gy[ 1 ];
-            const ii = NP$cloneX2$clone( $, l, $, n, ig, ih, a );
-            return ii;
+          const ig = he <= 2;
+          if (ig) {
+            const ih = gz[ 2 ];
+            const ii = gz[ 1 ];
+            const ij = NP$cloneX2$clone( $, m, $, o, ih, ii, a );
+            return ij;
           }
           else {
-            const ij = hd <= 3;
-            if (ij) {
-              const ik = gy[ 2 ];
-              const il = gy[ 1 ];
-              const im = NP$cloneX2$clone( $, l, $, n, ik, il, WA );
-              return im;
+            const ik = he <= 3;
+            if (ik) {
+              const il = gz[ 2 ];
+              const im = gz[ 1 ];
+              const io = NP$cloneX2$clone( $, m, $, o, il, im, WA );
+              return io;
             }
             else {
-              const io = hd <= 4;
-              if (io) {
-                const ip = gy[ 4 ];
-                const iq = gy[ 2 ];
-                const ir = gy[ 3 ];
-                const is = gy[ 1 ];
-                const it = LP$cloneX2$clone( $, l, $, n, ip, iq, ir, ZA, is );
-                return it;
+              const ip = he <= 4;
+              if (ip) {
+                const iq = gz[ 4 ];
+                const ir = gz[ 2 ];
+                const is = gz[ 3 ];
+                const it = gz[ 1 ];
+                const iu = LP$cloneX2$clone( $, m, $, o, iq, ir, is, ZA, it );
+                return iu;
               }
               else {
-                const iu = hd <= 5;
-                if (iu) {
-                  const iv = gy[ 4 ];
-                  const iw = gy[ 2 ];
-                  const ix = gy[ 3 ];
-                  const iy = gy[ 1 ];
-                  const iz = LP$cloneX2$clone( $, l, $, n, iv, iw, ix, KA, iy );
-                  return iz;
+                const iv = he <= 5;
+                if (iv) {
+                  const iw = gz[ 4 ];
+                  const ix = gz[ 2 ];
+                  const iy = gz[ 3 ];
+                  const iz = gz[ 1 ];
+                  const ja = LP$cloneX2$clone( $, m, $, o, iw, ix, iy, KA, iz );
+                  return ja;
                 }
                 else {
-                  const ja = hd <= 6;
-                  if (ja) {
-                    const jb = gy[ 4 ];
-                    const jc = gy[ 2 ];
-                    const jd = gy[ 3 ];
-                    const je = gy[ 1 ];
-                    const jf = LP$cloneX2$clone( $, l, $, n, jb, jc, jd, QA, je );
-                    return jf;
+                  const jb = he <= 6;
+                  if (jb) {
+                    const jc = gz[ 4 ];
+                    const jd = gz[ 2 ];
+                    const je = gz[ 3 ];
+                    const jf = gz[ 1 ];
+                    const jg = LP$cloneX2$clone( $, m, $, o, jc, jd, je, QA, jf );
+                    return jg;
                   }
                   else {
-                    const jg = hd <= 7;
-                    if (jg) {
-                      const jh = gy[ 4 ];
-                      const ji = gy[ 2 ];
-                      const jj = gy[ 3 ];
-                      const jk = gy[ 1 ];
-                      const jl = LP$cloneX2$clone( $, l, $, n, jh, ji, jj, $A, jk );
-                      return jl;
+                    const jh = he <= 7;
+                    if (jh) {
+                      const ji = gz[ 4 ];
+                      const jj = gz[ 2 ];
+                      const jk = gz[ 3 ];
+                      const jl = gz[ 1 ];
+                      const jm = LP$cloneX2$clone( $, m, $, o, ji, jj, jk, $A, jl );
+                      return jm;
                     }
                     else {
-                      const jm = hd <= 8;
-                      if (jm) {
-                        v = gy[ 4 ];
-                        const jn = gy[ 3 ];
-                        const jo = gy[ 2 ];
-                        r = gy[ 1 ];
-                        const jp = typeof jo;
-                        const jq = "number" == jp;
-                        if (jq) {
-                          const jr = typeof jn;
-                          const js = "number" == jr;
-                          if (js) {
-                            const jt = 0 === jn;
-                            if (jt) {
-                              return cl;
+                      const jn = he <= 8;
+                      if (jn) {
+                        w = gz[ 4 ];
+                        const jo = gz[ 3 ];
+                        const jp = gz[ 2 ];
+                        s = gz[ 1 ];
+                        const jq = typeof jp;
+                        const jr = "number" == jq;
+                        if (jr) {
+                          const js = typeof jo;
+                          const jt = "number" == js;
+                          if (jt) {
+                            const ju = 0 === jo;
+                            if (ju) {
+                              return cm;
                             }
                             else {
-                              return cd;
+                              return ce;
                             }
                           }
                           else {
-                            gg = jn[ 1 ];
-                            return gb;
+                            gh = jo[ 1 ];
+                            return gc;
                           }
                         }
                         else {
-                          const ju = jo[ 0 ];
-                          const jv = 0 === ju;
-                          if (jv) {
-                            bo = jo[ 2 ];
-                            bm = jo[ 1 ];
-                            const jw = typeof jn;
-                            const jx = "number" == jw;
-                            if (jx) {
-                              const jy = 0 === jn;
-                              if (jy) {
-                                return bt;
+                          const jv = jp[ 0 ];
+                          const jw = 0 === jv;
+                          if (jw) {
+                            bp = jp[ 2 ];
+                            bn = jp[ 1 ];
+                            const jx = typeof jo;
+                            const jy = "number" == jx;
+                            if (jy) {
+                              const jz = 0 === jo;
+                              if (jz) {
+                                return bu;
                               }
                               else {
-                                return bg;
+                                return bh;
                               }
                             }
                             else {
-                              fx = jn[ 1 ];
-                              return fq;
+                              fy = jo[ 1 ];
+                              return fr;
                             }
                           }
                           else {
-                            p = jo[ 1 ];
-                            const jz = typeof jn;
-                            const ka = "number" == jz;
-                            if (ka) {
-                              const kb = 0 === jn;
-                              if (kb) {
-                                return w;
+                            q = jp[ 1 ];
+                            const ka = typeof jo;
+                            const kb = "number" == ka;
+                            if (kb) {
+                              const kc = 0 === jo;
+                              if (kc) {
+                                return x;
                               }
                               else {
-                                return g;
+                                return h;
                               }
                             }
                             else {
-                              fm = jn[ 1 ];
-                              return ff;
+                              fn = jo[ 1 ];
+                              return fg;
                             }
                           }
                         }
                       }
                       else {
-                        const kc = hd <= 9;
-                        if (kc) {
-                          ey = gy[ 1 ];
-                          return ez;
+                        const kd = he <= 9;
+                        if (kd) {
+                          ez = gz[ 1 ];
+                          return fa;
                         }
                         else {
-                          const kd = hd <= 10;
-                          if (kd) {
-                            n = [ 7, n ];
-                            gy = gy[ 1 ];
+                          const ke = he <= 10;
+                          if (ke) {
+                            o = [ 7, o ];
+                            gz = gz[ 1 ];
                           }
                           else {
-                            const ke = hd <= 11;
-                            if (ke) {
-                              const kf = gy[ 1 ];
-                              n = [ 2, n, kf ];
-                              gy = gy[ 2 ];
+                            const kf = he <= 11;
+                            if (kf) {
+                              const kg = gz[ 1 ];
+                              o = [ 2, o, kg ];
+                              gz = gz[ 2 ];
                             }
                             else {
-                              const kg = hd <= 12;
-                              if (kg) {
-                                const kh = gy[ 1 ];
-                                n = [ 3, n, kh ];
-                                gy = gy[ 2 ];
+                              const kh = he <= 12;
+                              if (kh) {
+                                const ki = gz[ 1 ];
+                                o = [ 3, o, ki ];
+                                gz = gz[ 2 ];
                               }
                               else {
-                                const ki = hd <= 13;
-                                if (ki) {
-                                  ex = gy[ 3 ];
-                                  const kj = gy[ 2 ];
-                                  const kk = Q_$clone( $ );
-                                  _A( kk, kj );
-                                  ev = TA( kk );
-                                  return es;
+                                const kj = he <= 13;
+                                if (kj) {
+                                  ey = gz[ 3 ];
+                                  const kk = gz[ 2 ];
+                                  const kl = Q_$clone( $ );
+                                  _A( kl, kk );
+                                  ew = TA( kl );
+                                  return et;
                                 }
                                 else {
-                                  const kl = hd <= 14;
-                                  if (kl) {
-                                    eq = gy[ 3 ];
-                                    ec = gy[ 2 ];
-                                    return ed;
+                                  const km = he <= 14;
+                                  if (km) {
+                                    er = gz[ 3 ];
+                                    ed = gz[ 2 ];
+                                    return ee;
                                   }
                                   else {
-                                    const km = hd <= 15;
-                                    if (km) {
-                                      eb = gy[ 1 ];
-                                      return dr;
+                                    const kn = he <= 15;
+                                    if (kn) {
+                                      ec = gz[ 1 ];
+                                      return ds;
                                     }
                                     else {
-                                      const kn = hd <= 16;
-                                      if (kn) {
-                                        dq = gy[ 1 ];
-                                        return dk;
+                                      const ko = he <= 16;
+                                      if (ko) {
+                                        dr = gz[ 1 ];
+                                        return dl;
                                       }
                                       else {
-                                        const ko = hd <= 17;
-                                        if (ko) {
-                                          const kp = gy[ 1 ];
-                                          n = [ 0, n, kp ];
-                                          gy = gy[ 2 ];
+                                        const kp = he <= 17;
+                                        if (kp) {
+                                          const kq = gz[ 1 ];
+                                          o = [ 0, o, kq ];
+                                          gz = gz[ 2 ];
                                         }
                                         else {
-                                          const kq = hd <= 18;
-                                          if (kq) {
-                                            const kr = gy[ 1 ];
-                                            const ks = kr[ 0 ];
-                                            const kt = gy[ 2 ];
-                                            const ku = kr[ 1 ];
-                                            const kv = ku[ 1 ];
-                                            const kw = n;
-                                            const kx = l;
-                                            const ky = 0 === ks;
-                                            if (ky) {
-                                              l = function($$0,$$1 ) {
-                                                const kz = $$0;
-                                                const la = $$1;
+                                          const kr = he <= 18;
+                                          if (kr) {
+                                            const ks = gz[ 1 ];
+                                            const kt = ks[ 0 ];
+                                            const ku = gz[ 2 ];
+                                            const kv = ks[ 1 ];
+                                            const kw = kv[ 1 ];
+                                            const kx = o;
+                                            const ky = m;
+                                            const kz = 0 === kt;
+                                            if (kz) {
+                                              m = function($$0,$$1 ) {
+                                                const la = $$0;
+                                                const lb = $$1;
                                                 debugger;
-                                                const lb = [ 0, la ];
-                                                const lc = [ 1, kw, lb ];
-                                                const ld = RP( kx, kz, lc, kt );
-                                                return ld;
+                                                const lc = [ 0, lb ];
+                                                const ld = [ 1, kx, lc ];
+                                                const le = RP( ky, la, ld, ku );
+                                                return le;
                                               };
-                                              n = 0;
-                                              gy = kv;
+                                              o = 0;
+                                              gz = kw;
                                             }
                                             else {
-                                              l = function($$0,$$1 ) {
-                                                const le = $$0;
-                                                const lf = $$1;
+                                              m = function($$0,$$1 ) {
+                                                const lf = $$0;
+                                                const lg = $$1;
                                                 debugger;
-                                                const lg = [ 1, lf ];
-                                                const lh = [ 1, kw, lg ];
-                                                const li = RP( kx, le, lh, kt );
-                                                return li;
+                                                const lh = [ 1, lg ];
+                                                const li = [ 1, kx, lh ];
+                                                const lj = RP( ky, lf, li, ku );
+                                                return lj;
                                               };
-                                              n = 0;
-                                              gy = kv;
+                                              o = 0;
+                                              gz = kw;
                                             }
                                           }
                                           else {
-                                            const lj = hd <= 19;
-                                            if (lj) {
-                                              const lk = [ 0, WB, Rq ];
-                                              throw lk;
+                                            const lk = he <= 19;
+                                            if (lk) {
+                                              const ll = [ 0, WB, Rq ];
+                                              throw ll;
                                             }
                                             else {
-                                              const ll = hd <= 20;
-                                              if (ll) {
-                                                dj = gy[ 3 ];
-                                                di = [ 8, n, Mq ];
-                                                return dg;
+                                              const lm = he <= 20;
+                                              if (lm) {
+                                                dk = gz[ 3 ];
+                                                dj = [ 8, o, Mq ];
+                                                return dh;
                                               }
                                               else {
-                                                const lm = hd <= 21;
-                                                if (lm) {
-                                                  df = gy[ 2 ];
-                                                  return cy;
+                                                const ln = he <= 21;
+                                                if (ln) {
+                                                  dg = gz[ 2 ];
+                                                  return cz;
                                                 }
                                                 else {
-                                                  const ln = hd <= 22;
-                                                  if (ln) {
-                                                    cx = gy[ 1 ];
-                                                    return cs;
+                                                  const lo = he <= 22;
+                                                  if (lo) {
+                                                    cy = gz[ 1 ];
+                                                    return ct;
                                                   }
                                                   else {
-                                                    const lo = hd <= 23;
-                                                    if (lo) {
-                                                      const lp = gy[ 2 ];
-                                                      const lq = gy[ 1 ];
-                                                      const lr = typeof lq;
-                                                      const ls = "number" == lr;
-                                                      if (ls) {
-                                                        let lt = 4;
-                                                        const lu = 0 === lq;
-                                                        if (lu) {
-                                                          lt = 0;
+                                                    const lp = he <= 23;
+                                                    if (lp) {
+                                                      const lq = gz[ 2 ];
+                                                      const lr = gz[ 1 ];
+                                                      const ls = typeof lr;
+                                                      const lt = "number" == ls;
+                                                      if (lt) {
+                                                        let lu = 4;
+                                                        const lv = 0 === lr;
+                                                        if (lv) {
+                                                          lu = 0;
                                                         }
                                                         else {
-                                                          const lv = 1 === lq;
-                                                          if (lv) {
-                                                            lt = 1;
+                                                          const lw = 1 === lr;
+                                                          if (lw) {
+                                                            lu = 1;
                                                           }
                                                           else {
-                                                            const lw = 2 === lq;
-                                                            if (lw) {
-                                                              lt = 2;
+                                                            const lx = 2 === lr;
+                                                            if (lx) {
+                                                              lu = 2;
                                                             }
                                                             else {
-                                                              const lx = 3 === lq;
-                                                              if (lx) {
-                                                                lt = 3;
+                                                              const ly = 3 === lr;
+                                                              if (ly) {
+                                                                lu = 3;
                                                               }
                                                             }
                                                           }
                                                         }
-                                                        const ly = lt <= 0;
-                                                        if (ly) {
-                                                          const lz = PP$cloneX3$clone( $, l, $, n, lp );
-                                                          return lz;
+                                                        const lz = lu <= 0;
+                                                        if (lz) {
+                                                          const ma = PP$cloneX3$clone( $, m, $, o, lq );
+                                                          return ma;
                                                         }
                                                         else {
-                                                          const ma = lt <= 1;
-                                                          if (ma) {
-                                                            const mb = PP$cloneX3$clone( $, l, $, n, lp );
-                                                            return mb;
+                                                          const mb = lu <= 1;
+                                                          if (mb) {
+                                                            const mc = PP$cloneX3$clone( $, m, $, o, lq );
+                                                            return mc;
                                                           }
                                                           else {
-                                                            const mc = lt <= 2;
-                                                            if (mc) {
-                                                              const md = PP$cloneX3$clone( $, l, $, n, lp );
-                                                              return md;
+                                                            const md = lu <= 2;
+                                                            if (md) {
+                                                              const me = PP$cloneX3$clone( $, m, $, o, lq );
+                                                              return me;
                                                             }
                                                             else {
-                                                              const me = lt <= 3;
-                                                              if (me) {
-                                                                const mf = [ 0, WB, Oq ];
-                                                                throw mf;
+                                                              const mf = lu <= 3;
+                                                              if (mf) {
+                                                                const mg = [ 0, WB, Oq ];
+                                                                throw mg;
                                                               }
                                                               else {
-                                                                const mg = PP$cloneX3$clone( $, l, $, n, lp );
-                                                                return mg;
+                                                                const mh = PP$cloneX3$clone( $, m, $, o, lq );
+                                                                return mh;
                                                               }
                                                             }
                                                           }
                                                         }
                                                       }
                                                       else {
-                                                        const mh = lq[ 0 ];
-                                                        let mi = 10;
-                                                        const mj = 0 === mh;
-                                                        if (mj) {
-                                                          mi = 0;
+                                                        const mi = lr[ 0 ];
+                                                        let mj = 10;
+                                                        const mk = 0 === mi;
+                                                        if (mk) {
+                                                          mj = 0;
                                                         }
                                                         else {
-                                                          const mk = 1 === mh;
-                                                          if (mk) {
-                                                            mi = 1;
+                                                          const ml = 1 === mi;
+                                                          if (ml) {
+                                                            mj = 1;
                                                           }
                                                           else {
-                                                            const ml = 2 === mh;
-                                                            if (ml) {
-                                                              mi = 2;
+                                                            const mm = 2 === mi;
+                                                            if (mm) {
+                                                              mj = 2;
                                                             }
                                                             else {
-                                                              const mm = 3 === mh;
-                                                              if (mm) {
-                                                                mi = 3;
+                                                              const mn = 3 === mi;
+                                                              if (mn) {
+                                                                mj = 3;
                                                               }
                                                               else {
-                                                                const mn = 4 === mh;
-                                                                if (mn) {
-                                                                  mi = 4;
+                                                                const mo = 4 === mi;
+                                                                if (mo) {
+                                                                  mj = 4;
                                                                 }
                                                                 else {
-                                                                  const mo = 5 === mh;
-                                                                  if (mo) {
-                                                                    mi = 5;
+                                                                  const mp = 5 === mi;
+                                                                  if (mp) {
+                                                                    mj = 5;
                                                                   }
                                                                   else {
-                                                                    const mp = 6 === mh;
-                                                                    if (mp) {
-                                                                      mi = 6;
+                                                                    const mq = 6 === mi;
+                                                                    if (mq) {
+                                                                      mj = 6;
                                                                     }
                                                                     else {
-                                                                      const mq = 7 === mh;
-                                                                      if (mq) {
-                                                                        mi = 7;
+                                                                      const mr = 7 === mi;
+                                                                      if (mr) {
+                                                                        mj = 7;
                                                                       }
                                                                       else {
-                                                                        const mr = 8 === mh;
-                                                                        if (mr) {
-                                                                          mi = 8;
+                                                                        const ms = 8 === mi;
+                                                                        if (ms) {
+                                                                          mj = 8;
                                                                         }
                                                                         else {
-                                                                          const ms = 9 === mh;
-                                                                          if (ms) {
-                                                                            mi = 9;
+                                                                          const mt = 9 === mi;
+                                                                          if (mt) {
+                                                                            mj = 9;
                                                                           }
                                                                         }
                                                                       }
@@ -3313,63 +3313,63 @@ const c = function($$0,$$1,$$2,$$3,$$4 ) {
                                                             }
                                                           }
                                                         }
-                                                        const mt = mi <= 0;
-                                                        if (mt) {
-                                                          const mu = PP$cloneX3$clone( $, l, $, n, lp );
-                                                          return mu;
+                                                        const mu = mj <= 0;
+                                                        if (mu) {
+                                                          const mv = PP$cloneX3$clone( $, m, $, o, lq );
+                                                          return mv;
                                                         }
                                                         else {
-                                                          const mv = mi <= 1;
-                                                          if (mv) {
-                                                            const mw = PP$cloneX3$clone( $, l, $, n, lp );
-                                                            return mw;
+                                                          const mw = mj <= 1;
+                                                          if (mw) {
+                                                            const mx = PP$cloneX3$clone( $, m, $, o, lq );
+                                                            return mx;
                                                           }
                                                           else {
-                                                            const mx = mi <= 2;
-                                                            if (mx) {
-                                                              const my = PP$cloneX3$clone( $, l, $, n, lp );
-                                                              return my;
+                                                            const my = mj <= 2;
+                                                            if (my) {
+                                                              const mz = PP$cloneX3$clone( $, m, $, o, lq );
+                                                              return mz;
                                                             }
                                                             else {
-                                                              const mz = mi <= 3;
-                                                              if (mz) {
-                                                                const na = PP$cloneX3$clone( $, l, $, n, lp );
-                                                                return na;
+                                                              const na = mj <= 3;
+                                                              if (na) {
+                                                                const nb = PP$cloneX3$clone( $, m, $, o, lq );
+                                                                return nb;
                                                               }
                                                               else {
-                                                                const nb = mi <= 4;
-                                                                if (nb) {
-                                                                  const nc = PP$cloneX3$clone( $, l, $, n, lp );
-                                                                  return nc;
+                                                                const nc = mj <= 4;
+                                                                if (nc) {
+                                                                  const nd = PP$cloneX3$clone( $, m, $, o, lq );
+                                                                  return nd;
                                                                 }
                                                                 else {
-                                                                  const nd = mi <= 5;
-                                                                  if (nd) {
-                                                                    const ne = PP$cloneX3$clone( $, l, $, n, lp );
-                                                                    return ne;
+                                                                  const ne = mj <= 5;
+                                                                  if (ne) {
+                                                                    const nf = PP$cloneX3$clone( $, m, $, o, lq );
+                                                                    return nf;
                                                                   }
                                                                   else {
-                                                                    const nf = mi <= 6;
-                                                                    if (nf) {
-                                                                      const ng = PP$cloneX3$clone( $, l, $, n, lp );
-                                                                      return ng;
+                                                                    const ng = mj <= 6;
+                                                                    if (ng) {
+                                                                      const nh = PP$cloneX3$clone( $, m, $, o, lq );
+                                                                      return nh;
                                                                     }
                                                                     else {
-                                                                      const nh = mi <= 7;
-                                                                      if (nh) {
-                                                                        const ni = PP$cloneX3$clone( $, l, $, n, lp );
-                                                                        return ni;
+                                                                      const ni = mj <= 7;
+                                                                      if (ni) {
+                                                                        const nj = PP$cloneX3$clone( $, m, $, o, lq );
+                                                                        return nj;
                                                                       }
                                                                       else {
-                                                                        const nj = mi <= 8;
-                                                                        if (nj) {
-                                                                          const nk = lq[ 2 ];
-                                                                          const nl = _P$cloneX4$clone( $, l, $, n, nk, lp );
-                                                                          return nl;
+                                                                        const nk = mj <= 8;
+                                                                        if (nk) {
+                                                                          const nl = lr[ 2 ];
+                                                                          const nm = _P$cloneX4$clone( $, m, $, o, nl, lq );
+                                                                          return nm;
                                                                         }
                                                                         else {
-                                                                          const nm = PP$cloneX3$clone( $, l, $, n, lp );
-                                                                          return nm;
+                                                                          const nn = PP$cloneX3$clone( $, m, $, o, lq );
+                                                                          return nn;
                                                                         }
                                                                       }
                                                                     }
@@ -3382,12 +3382,12 @@ const c = function($$0,$$1,$$2,$$3,$$4 ) {
                                                       }
                                                     }
                                                     else {
-                                                      const nn = gy[ 3 ];
-                                                      const no = gy[ 1 ];
-                                                      const np = gy[ 2 ];
-                                                      const nq = OE$clone( np, $ );
-                                                      const nr = IP$cloneX3$cloneX1( $, l, $, n, nn, no, nq );
-                                                      return nr;
+                                                      const no = gz[ 3 ];
+                                                      const np = gz[ 1 ];
+                                                      const nq = gz[ 2 ];
+                                                      const nr = OE$clone( nq, $ );
+                                                      const ns = IP$cloneX3$cloneX1( $, m, $, o, no, np, nr );
+                                                      return ns;
                                                     }
                                                   }
                                                 }
@@ -3416,7 +3416,7 @@ const c = function($$0,$$1,$$2,$$3,$$4 ) {
   }
   return undefined;
 };
-$( c );
+$( d );
 `````
 
 
@@ -4527,10 +4527,10 @@ $(TP$cloneX2$cloneX1);
 
 
 - (todo) Support this node type in isFree: LabeledStatement
+- (todo) array reads var statement with init CallExpression
 - (todo) support array reads statement type ExpressionStatement
 - (todo) support array reads statement type ReturnStatement
 - (todo) support array reads statement type ThrowStatement
-- (todo) support array reads statement type VarStatement
 - (todo) we can still proceed with the loop as long as there is no let-write anywhere in the loop, inc nested
 
 

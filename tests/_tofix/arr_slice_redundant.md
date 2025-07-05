@@ -68,7 +68,7 @@ $(y);
 
 
 - (todo) Deal with array spreads in arr mutation?
-- (todo) support array reads statement type VarStatement
+- (todo) array reads var statement with init CallExpression
 - (todo) type trackeed tricks can possibly support static $array_slice
 
 

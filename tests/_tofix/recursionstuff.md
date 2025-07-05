@@ -92,7 +92,7 @@ const tmpFree2 = function $free($dlr_$$1) {
 };
 const selfcaller = function ($dlr_$$3) {
   $($dlr_$$3);
-  const tmpIfTest = $frfr(tmpFree2, $dlr_$$3);
+  const tmpIfTest = tmpFree2($dlr_$$3);
   if (!tmpIfTest) {
     selfcaller($dlr_$$3 + 1);
   }

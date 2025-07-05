@@ -68,7 +68,7 @@ while ($LOOP_NO_UNROLLS_LEFT) {
 let x = $(1);
 while (true) {
   if (x % 2) {
-    x = $coerce(x, `number`) + 1;
+    x = Number(x) + 1;
     $(x, `write`);
   } else {
     $(x, `read`);

@@ -32,21 +32,21 @@ $(tmpCalleeParam$1);
 
 
 `````js filename=intro
-const f /*:(primitive)=>array*/ = function ($$0) {
+const f /*:(primitive, boolean)=>array*/ = function ($$0, $$1) {
   const $dlr_$$1 /*:primitive*/ = $$0;
+  const tmpOutlinedParam /*:boolean*/ = $$1;
   debugger;
-  let b /*:unknown*/ /*ternaryConst*/ = `bar`;
-  const tmpIfTest$1 /*:boolean*/ = $dlr_$$1 === undefined;
-  if (tmpIfTest$1) {
+  let b /*:primitive*/ /*ternaryConst*/ = `bar`;
+  if (tmpOutlinedParam) {
   } else {
     b = $dlr_$$1;
   }
   const tmpReturnArg /*:array*/ /*truthy*/ = [`x`, b];
   return tmpReturnArg;
 };
-const tmpCalleeParam /*:array*/ /*truthy*/ = f();
+const tmpCalleeParam /*:array*/ /*truthy*/ = f(undefined, true);
 $(tmpCalleeParam);
-const tmpCalleeParam$1 /*:array*/ /*truthy*/ = f(`y`);
+const tmpCalleeParam$1 /*:array*/ /*truthy*/ = f(`y`, false);
 $(tmpCalleeParam$1);
 `````
 
@@ -55,16 +55,16 @@ $(tmpCalleeParam$1);
 (This ought to be the final result)
 
 `````js filename=intro
-const f = function ($dlr_$$1) {
+const f = function ($dlr_$$1, tmpOutlinedParam) {
   let b = `bar`;
-  if (!($dlr_$$1 === undefined)) {
+  if (!tmpOutlinedParam) {
     b = $dlr_$$1;
   }
   const tmpReturnArg = [`x`, b];
   return tmpReturnArg;
 };
-$(f());
-$(f(`y`));
+$(f(undefined, true));
+$(f(`y`, false));
 `````
 
 
@@ -72,23 +72,23 @@ $(f(`y`));
 With rename=true
 
 `````js filename=intro
-const a = function($$0 ) {
+const a = function($$0,$$1 ) {
   const b = $$0;
+  const c = $$1;
   debugger;
-  let c = "bar";
-  const d = b === undefined;
-  if (d) {
+  let d = "bar";
+  if (c) {
 
   }
   else {
-    c = b;
+    d = b;
   }
-  const e = [ "x", c ];
+  const e = [ "x", d ];
   return e;
 };
-const f = a();
+const f = a( undefined, true );
 $( f );
-const g = a( "y" );
+const g = a( "y", false );
 $( g );
 `````
 

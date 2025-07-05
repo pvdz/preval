@@ -28,13 +28,7 @@ $(obj);
 
 
 `````js filename=intro
-const obj /*:object*/ /*truthy*/ = {};
-obj[`7H`] = `a`;
-obj[`7G`] = `b`;
-obj[`7F`] = `c`;
-obj[`7E`] = `d`;
-obj[`7D`] = `e`;
-obj[`7C`] = `f`;
+const obj /*:object*/ /*truthy*/ = { [`7H`]: `a`, [`7G`]: `b`, [`7F`]: `c`, [`7E`]: `d`, [`7D`]: `e`, [`7C`]: `f` };
 $(obj);
 `````
 
@@ -43,14 +37,7 @@ $(obj);
 (This ought to be the final result)
 
 `````js filename=intro
-const obj = {};
-obj[`7H`] = `a`;
-obj[`7G`] = `b`;
-obj[`7F`] = `c`;
-obj[`7E`] = `d`;
-obj[`7D`] = `e`;
-obj[`7C`] = `f`;
-$(obj);
+$({ [`7H`]: `a`, [`7G`]: `b`, [`7F`]: `c`, [`7E`]: `d`, [`7D`]: `e`, [`7C`]: `f` });
 `````
 
 
@@ -58,13 +45,14 @@ $(obj);
 With rename=true
 
 `````js filename=intro
-const a = {};
-a["7H"] = "a";
-a["7G"] = "b";
-a["7F"] = "c";
-a["7E"] = "d";
-a["7D"] = "e";
-a["7C"] = "f";
+const a = {
+  [ "7H" ]: "a",
+  [ "7G" ]: "b",
+  [ "7F" ]: "c",
+  [ "7E" ]: "d",
+  [ "7D" ]: "e",
+  [ "7C" ]: "f",
+};
 $( a );
 `````
 
@@ -87,7 +75,7 @@ $(obj);
 ## Todos triggered
 
 
-- (todo) simple prop inlining case with computed prop
+None
 
 
 ## Globals

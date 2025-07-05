@@ -39,19 +39,18 @@ $(z);
 
 
 `````js filename=intro
-const g /*:()=>array*/ = function () {
+const g /*:()=>unknown*/ = function () {
   debugger;
   $(false);
   $(true);
   $(false);
-  const g$1 /*:array*/ /*truthy*/ = [1, 2, 3];
-  return g$1;
+  return undefined;
 };
-const x /*:array*/ /*truthy*/ = g();
-const y /*:array*/ /*truthy*/ = g();
-const xy /*:boolean*/ = x === y;
-$(xy);
-const z /*:array*/ /*truthy*/ = g();
+g();
+g();
+$(false);
+g();
+const z /*:array*/ /*truthy*/ = [1, 2, 3];
 $(z);
 `````
 
@@ -64,12 +63,12 @@ const g = function () {
   $(false);
   $(true);
   $(false);
-  const g$1 = [1, 2, 3];
-  return g$1;
 };
-const x = g();
-$(x === g());
-$(g());
+g();
+g();
+$(false);
+g();
+$([1, 2, 3]);
 `````
 
 
@@ -82,15 +81,14 @@ const a = function() {
   $( false );
   $( true );
   $( false );
-  const b = [ 1, 2, 3 ];
-  return b;
+  return undefined;
 };
-const c = a();
-const d = a();
-const e = c === d;
-$( e );
-const f = a();
-$( f );
+a();
+a();
+$( false );
+a();
+const b = [ 1, 2, 3 ];
+$( b );
 `````
 
 
@@ -127,8 +125,8 @@ $(z);
 ## Todos triggered
 
 
+- (todo) array reads var statement with init BinaryExpression
 - (todo) support array reads statement type ExpressionStatement
-- (todo) support array reads statement type ReturnStatement
 
 
 ## Globals

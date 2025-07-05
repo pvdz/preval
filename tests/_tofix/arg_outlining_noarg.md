@@ -39,15 +39,8 @@ $(tmpCalleeParam);
 
 `````js filename=intro
 const main_data_arr /*:array*/ /*truthy*/ = [`this`, `contents`, `is`, `not`, `relevant`, `here`];
-const the_self_closing_func /*:(primitive)=>primitive*/ = function ($$0) {
-  const $dlr_$$2 /*:primitive*/ = $$0;
-  debugger;
-  const tmp1 /*:number*/ = $dlr_$$2 - 387;
-  const tmp2 /*:primitive*/ = main_data_arr[tmp1];
-  return tmp2;
-};
 while ($LOOP_NO_UNROLLS_LEFT) {
-  const a /*:primitive*/ = the_self_closing_func(2);
+  const a /*:unknown*/ = main_data_arr[-385];
   const b /*:number*/ = $Number_parseInt(a);
   $(`testing`, a, b);
   if (b) {
@@ -57,7 +50,7 @@ while ($LOOP_NO_UNROLLS_LEFT) {
     $dotCall($array_push, main_data_arr, `push`, tmpMCPa);
   }
 }
-const tmpCalleeParam /*:primitive*/ = the_self_closing_func();
+const tmpCalleeParam /*:primitive*/ = main_data_arr[$Number_NaN];
 $(tmpCalleeParam);
 `````
 
@@ -67,13 +60,8 @@ $(tmpCalleeParam);
 
 `````js filename=intro
 const main_data_arr = [`this`, `contents`, `is`, `not`, `relevant`, `here`];
-const the_self_closing_func = function ($dlr_$$2) {
-  const tmp1 = $dlr_$$2 - 387;
-  const tmp2 = main_data_arr[tmp1];
-  return tmp2;
-};
 while (true) {
-  const a = the_self_closing_func(2);
+  const a = main_data_arr[-385];
   const b = $Number_parseInt(a);
   $(`testing`, a, b);
   if (b) {
@@ -82,7 +70,7 @@ while (true) {
     $dotCall($array_push, main_data_arr, `push`, $dotCall($array_shift, main_data_arr, `shift`));
   }
 }
-$(the_self_closing_func());
+$(main_data_arr[$Number_NaN]);
 `````
 
 
@@ -91,27 +79,20 @@ With rename=true
 
 `````js filename=intro
 const a = [ "this", "contents", "is", "not", "relevant", "here" ];
-const b = function($$0 ) {
-  const c = $$0;
-  debugger;
-  const d = c - 387;
-  const e = a[ d ];
-  return e;
-};
 while ($LOOP_NO_UNROLLS_LEFT) {
-  const f = b( 2 );
-  const g = $Number_parseInt( f );
-  $( "testing", f, g );
-  if (g) {
+  const b = a[ -385 ];
+  const c = $Number_parseInt( b );
+  $( "testing", b, c );
+  if (c) {
     break;
   }
   else {
-    const h = $dotCall( $array_shift, a, "shift" );
-    $dotCall( $array_push, a, "push", h );
+    const d = $dotCall( $array_shift, a, "shift" );
+    $dotCall( $array_push, a, "push", d );
   }
 }
-const i = b();
-$( i );
+const e = a[ $Number_NaN ];
+$( e );
 `````
 
 
@@ -147,7 +128,7 @@ $(tmpCalleeParam);
 ## Todos triggered
 
 
-- (todo) support array reads statement type VarStatement
+- (todo) computed property access of an array but not index prop
 - (todo) type trackeed tricks can possibly support static $Number_parseInt
 
 

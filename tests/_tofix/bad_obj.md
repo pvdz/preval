@@ -42,7 +42,7 @@ $(a);
 
 
 `````js filename=intro
-let a /*:unknown*/ = { a: 999, b: 1000 };
+let a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 const tmpCalleeParam$1 /*:array*/ /*truthy*/ = [123];
 const tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$1);
 const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
@@ -153,9 +153,9 @@ $(a);
 ## Todos triggered
 
 
+- (todo) array reads var statement with init CallExpression
 - (todo) do we want to support ObjectExpression as expression statement in free loops?
 - (todo) objects in isFree check
-- (todo) support array reads statement type VarStatement
 
 
 ## Globals

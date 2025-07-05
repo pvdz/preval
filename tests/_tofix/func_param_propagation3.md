@@ -32,22 +32,10 @@ $(tmpCalleeParam$1);
 
 
 `````js filename=intro
-const f /*:(primitive)=>array*/ = function ($$0) {
-  const $dlr_$$2 /*:primitive*/ = $$0;
-  debugger;
-  const tmpIfTest$1 /*:boolean*/ = $dlr_$$2 === undefined;
-  if (tmpIfTest$1) {
-    const c /*:array*/ /*truthy*/ = [`x`, `bar`];
-    return c;
-  } else {
-    const d /*:array*/ /*truthy*/ = [`x`, $dlr_$$2];
-    return d;
-  }
-};
-const tmpCalleeParam /*:array*/ /*truthy*/ = f();
-$(tmpCalleeParam);
-const tmpCalleeParam$1 /*:array*/ /*truthy*/ = f(`y`);
-$(tmpCalleeParam$1);
+const c /*:array*/ /*truthy*/ = [`x`, `bar`];
+$(c);
+const d /*:array*/ /*truthy*/ = [`x`, `y`];
+$(d);
 `````
 
 
@@ -55,17 +43,8 @@ $(tmpCalleeParam$1);
 (This ought to be the final result)
 
 `````js filename=intro
-const f = function ($dlr_$$2) {
-  if ($dlr_$$2 === undefined) {
-    const c = [`x`, `bar`];
-    return c;
-  } else {
-    const d = [`x`, $dlr_$$2];
-    return d;
-  }
-};
-$(f());
-$(f(`y`));
+$([`x`, `bar`]);
+$([`x`, `y`]);
 `````
 
 
@@ -73,23 +52,10 @@ $(f(`y`));
 With rename=true
 
 `````js filename=intro
-const a = function($$0 ) {
-  const b = $$0;
-  debugger;
-  const c = b === undefined;
-  if (c) {
-    const d = [ "x", "bar" ];
-    return d;
-  }
-  else {
-    const e = [ "x", b ];
-    return e;
-  }
-};
-const f = a();
-$( f );
-const g = a( "y" );
-$( g );
+const a = [ "x", "bar" ];
+$( a );
+const b = [ "x", "y" ];
+$( b );
 `````
 
 
@@ -120,6 +86,7 @@ $(tmpCalleeParam$1);
 ## Todos triggered
 
 
+- (todo) support array reads statement type ExpressionStatement
 - (todo) support array reads statement type ReturnStatement
 
 

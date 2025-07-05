@@ -37,7 +37,7 @@ endlessLoop();
 
 
 `````js filename=intro
-const callback /*:(unused, unused)=>unknown*/ = function ($$0, $$1) {
+const callback /*:(unused, unused)=>undefined*/ = function ($$0, $$1) {
   debugger;
   require_request_get(`some url`);
   return undefined;

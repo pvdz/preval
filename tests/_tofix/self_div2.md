@@ -72,7 +72,7 @@ if (tmpSaooB$1) {
 
 `````js filename=intro
 const f = function (arg) {
-  if ($coerce(arg / arg, `string`).length === 1) {
+  if (String(arg / arg).length === 1) {
     arg % 0;
   }
   $(arg + 1);

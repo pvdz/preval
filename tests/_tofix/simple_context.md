@@ -23,7 +23,7 @@ f.call({pass: 1});
 
 
 `````js filename=intro
-const f /*:()=>undefined*/ = function () {
+const f /*:()=>undefined*/ = function (/*uses this*/) {
   const tmpPrevalAliasThis /*:unknown*/ = this;
   debugger;
   $(tmpPrevalAliasThis);
@@ -85,6 +85,7 @@ $dotCall(tmpMCF, f, `call`, tmpMCP);
 
 
 - (todo) access object property that also exists on prototype? $function_call
+- (todo) this may support .call .apply and .bind but I think that different reducers should tackle it
 
 
 ## Globals

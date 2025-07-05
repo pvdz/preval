@@ -24,7 +24,7 @@ $(a);
 
 `````js filename=intro
 let a /*:unknown*/ = { a: 999, b: 1000 };
-const f /*:(unused)=>undefined*/ = function ($$0) {
+const f /*:(unused)=>undefined*/ = function ($$0 /*uses arguments*/) {
   const tmpPrevalAliasArgumentsAny /*:arguments*/ /*truthy*/ = arguments;
   debugger;
   a = tmpPrevalAliasArgumentsAny;
@@ -99,7 +99,8 @@ $(a);
 ## Todos triggered
 
 
-None
+- (todo) Can we inline a function that uses arguments, anyways?
+- (todo) inline arguments when function does not have that many params yet
 
 
 ## Globals

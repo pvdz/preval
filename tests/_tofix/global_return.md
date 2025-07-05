@@ -116,14 +116,14 @@ const b = function $free() {
   return tmpRet;
 };
 const CALLME = function ($dlr_$$0) {
-  unknown = $coerce($dlr_$$0 + b2, `plustr`);
+  unknown = $dlr_$$0 + b2 + ``;
   $(`if this updates unknown then whats the return type`);
   return unknown;
 };
-const tmpCalleeParam$1 = $coerce($(`co_rn`), `string`);
-$(CALLME($frfr(b)));
-const tmpCalleeParam$5 = $coerce($(`m#az#e`), `string`);
-$(CALLME($frfr(a)));
+const tmpCalleeParam$1 = String($(`co_rn`));
+$(CALLME(b()));
+const tmpCalleeParam$5 = String($(`m#az#e`));
+$(CALLME(a()));
 `````
 
 

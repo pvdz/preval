@@ -19,7 +19,12 @@ $(function(){}.prototype);
 
 
 `````js filename=intro
-$(undefined);
+const tmpCompObj /*:()=>undefined*/ = function $pcompiled() {
+  debugger;
+  return undefined;
+};
+const tmpCalleeParam /*:unknown*/ = tmpCompObj.prototype;
+$(tmpCalleeParam);
 `````
 
 
@@ -27,7 +32,7 @@ $(undefined);
 (This ought to be the final result)
 
 `````js filename=intro
-$(undefined);
+$(function $pcompiled() {}.prototype);
 `````
 
 
@@ -35,7 +40,12 @@ $(undefined);
 With rename=true
 
 `````js filename=intro
-$( undefined );
+const a = function b() {
+  debugger;
+  return undefined;
+};
+const c = a.prototype;
+$( c );
 `````
 
 
@@ -75,10 +85,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Post settled calls: BAD!!
- - !1: undefined
- -  eval returned: undefined
+Post settled calls: Same
 
-Denormalized calls: BAD!!
- - !1: undefined
- -  eval returned: undefined
+Denormalized calls: Same

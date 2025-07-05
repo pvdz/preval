@@ -1,8 +1,8 @@
 # Preval test case
 
-# try_inference.md
+# array_try_inference.md
 
-> Array > Try inference
+> Tofix > array try inference
 >
 > In this case we know for sure that the type of arr is an array. We should support that.
 
@@ -33,7 +33,7 @@ try {
   arr = [];
 }
 const tmpMCF$1 /*:unknown*/ = arr.forEach;
-const tmpMCP /*:(unknown)=>primitive*/ = function ($$0) {
+const tmpMCP /*:(unknown)=>primitive*/ = function $pcompiled($$0) {
   const x /*:unknown*/ = $$0;
   debugger;
   const tmpReturnArg /*:primitive*/ = x + 10;
@@ -57,7 +57,7 @@ try {
 }
 const tmpMCF$1 = arr.forEach;
 $(
-  $dotCall(tmpMCF$1, arr, `forEach`, function (x) {
+  $dotCall(tmpMCF$1, arr, `forEach`, function $pcompiled(x) {
     const tmpReturnArg = x + 10;
     return tmpReturnArg;
   }),
@@ -80,14 +80,14 @@ catch (e) {
   a = [];
 }
 const f = a.forEach;
-const g = function($$0 ) {
-  const h = $$0;
+const g = function h($$0 ) {
+  const i = $$0;
   debugger;
-  const i = h + 10;
-  return i;
+  const j = i + 10;
+  return j;
 };
-const j = $dotCall( f, a, "forEach", g );
-$( j );
+const k = $dotCall( f, a, "forEach", g );
+$( k );
 `````
 
 
@@ -119,8 +119,8 @@ $(tmpCalleeParam$1);
 ## Todos triggered
 
 
+- (todo) array reads var statement with init CallExpression
 - (todo) can try-escaping support this expr node type? ArrayExpression
-- (todo) support array reads statement type VarStatement
 
 
 ## Globals

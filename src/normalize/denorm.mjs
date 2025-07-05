@@ -5,9 +5,10 @@ import walk from '../../lib/walk.mjs';
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, source, before, after, assertNoDupeNodes, rule, riskyRule, example, currentState, } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import {
+  isNonBoolLoopTrue,
   SYMBOL_COERCE,
   SYMBOL_DOTCALL,
-  SYMBOL_FRFR,
+  SYMBOL_FRFR, SYMBOL_FULLY_UNROLL,
   SYMBOL_LOOP_UNROLL,
   SYMBOL_MAX_LOOP_UNROLL,
 } from '../symbols_preval.mjs';
@@ -488,7 +489,7 @@ export function denorm(fdata, resolve, req, options) {
         break;
       }
       case 'WhileStatement:before': {
-        if (node.test.type === 'Identifier' && (node.test.name === SYMBOL_MAX_LOOP_UNROLL || node.test.name.startsWith(SYMBOL_LOOP_UNROLL))) {
+        if (isNonBoolLoopTrue(node.test)) {
           rule('While loops should have boolean true condition');
           example('while (SYMBOL_MAX_LOOP_UNROLL) {}', 'while (true) {}');
           before(node);

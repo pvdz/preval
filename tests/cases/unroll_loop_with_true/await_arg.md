@@ -73,6 +73,7 @@ $(f);
 
 
 - (todo) inline async functions safely (because await)
+- (todo) this implies a bug and we should prevent it; c
 
 
 ## Globals

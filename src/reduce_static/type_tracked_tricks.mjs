@@ -26,7 +26,7 @@ import {
   SYMBOL_DOTCALL,
   BUILTIN_REST_HANDLER_NAME,
   SYMBOL_LOOP_UNROLL,
-  SYMBOL_MAX_LOOP_UNROLL, SYMBOL_COERCE,
+  SYMBOL_MAX_LOOP_UNROLL, SYMBOL_COERCE, SYMBOL_FULLY_UNROLL,
 } from '../symbols_preval.mjs';
 import {
   BUILTIN_SYMBOLS,
@@ -284,7 +284,11 @@ function _typeTrackedTricks(fdata) {
 
                     if (
                       read.parentNode.type === 'WhileStatement' &&
-                      (testName.startsWith(SYMBOL_LOOP_UNROLL) || testName === SYMBOL_MAX_LOOP_UNROLL)
+                      (
+                        testName.startsWith(SYMBOL_LOOP_UNROLL) ||
+                        testName === SYMBOL_MAX_LOOP_UNROLL ||
+                        testName === SYMBOL_FULLY_UNROLL
+                      )
                     ) {
                       // Ignore. Do not replace while() tests. That risks infinite loops.
                       vlog('- skipped. Not replacing while() tests with `true` here');

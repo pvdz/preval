@@ -67,6 +67,7 @@ function _infiniteLoops(fdata) {
             if (node.test.type === 'Identifier' && node.test.name === SYMBOL_MAX_LOOP_UNROLL) {
               // Already good
             } else {
+              // Note: we would even do SYMBOL_FULLY_UNROLL here ...
               rule('An infinite loop should never be unrolled');
               example('while (true) {}', 'while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {}');
               before(node);

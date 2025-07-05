@@ -6,7 +6,7 @@ import {
   PRIMITIVE_TYPE_NAMES_PREVAL,
   ALL_PREVAL_TYPE_NAMES, PRIMITIVE_TYPE_NAMES_TYPEOF,
 } from './constants.mjs';
-import { IMPLICIT_GLOBAL_PREFIX, SYMBOL_LOOP_UNROLL, SYMBOL_MAX_LOOP_UNROLL, SYMBOL_COERCE, SYMBOL_FRFR, SYMBOL_DOTCALL, } from './symbols_preval.mjs';
+import { IMPLICIT_GLOBAL_PREFIX, SYMBOL_LOOP_UNROLL, SYMBOL_MAX_LOOP_UNROLL, SYMBOL_COERCE, SYMBOL_FRFR, SYMBOL_DOTCALL, SYMBOL_FULLY_UNROLL } from './symbols_preval.mjs';
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, source, fmat, tmat, todo } from './utils.mjs';
 import globals, {MAX_UNROLL_TRUE_COUNT} from './globals.mjs';
 import * as Tenko from '../lib/tenko.prod.mjs'; // This way it works in browsers and nodejs and github pages ... :/
@@ -827,6 +827,10 @@ export function preprocessScopeNode(node, parentNode, fdata, funcNode, lexScopeC
     // $LOOP_DONE_UNROLLING_ALWAYS_TRUE
     // "signals not to unroll any further, but to treat this as "true" anyways"
     node.$p.nameMapping.set(SYMBOL_MAX_LOOP_UNROLL, SYMBOL_MAX_LOOP_UNROLL);
+    // $SYMBOL_FULLY_UNROLL
+    // "signals to keep unrolling this loop as long as the heuristics would allow it"
+    // Used for specific cases where we only want to unroll certain loops, no matter how long it takes, because we know it's ending.
+    node.$p.nameMapping.set(SYMBOL_FULLY_UNROLL, SYMBOL_FULLY_UNROLL)
 
   } else {
     // non-global scope

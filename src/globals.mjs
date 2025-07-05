@@ -1,6 +1,6 @@
 // Built-in symbol names and their `typeof` result
 
-import { SYMBOL_FORIN, SYMBOL_FOROF, SYMBOL_DOTCALL, BUILTIN_REST_HANDLER_NAME, SYMBOL_LOOP_UNROLL, SYMBOL_MAX_LOOP_UNROLL, SYMBOL_COERCE, } from './symbols_preval.mjs';
+import { SYMBOL_FORIN, SYMBOL_FOROF, SYMBOL_DOTCALL, BUILTIN_REST_HANDLER_NAME, SYMBOL_LOOP_UNROLL, SYMBOL_MAX_LOOP_UNROLL, SYMBOL_COERCE, SYMBOL_FULLY_UNROLL, } from './symbols_preval.mjs';
 import { BUILTIN_SYMBOLS, } from './symbols_builtins.mjs';
 
 // We have to set a max of unrolling infinite loops because we have to predefine their global constant value here.
@@ -105,5 +105,6 @@ for (let i=0; i<=MAX_UNROLL_TRUE_COUNT; ++i) {
 // $LOOP_DONE_UNROLLING_ALWAYS_TRUE
 // "signals not to unroll any further. Cannot set this as "true" because that'll cause infinite loops when transforming.
 globalNames.set(SYMBOL_MAX_LOOP_UNROLL, { mustBeType: 'boolean', mustBeFalsy: false, mustBeTruthy: false, mustBePrimitive: true });
+globalNames.set(SYMBOL_FULLY_UNROLL, { mustBeType: 'boolean', mustBeFalsy: false, mustBeTruthy: false, mustBePrimitive: true });
 
 export default globalNames;

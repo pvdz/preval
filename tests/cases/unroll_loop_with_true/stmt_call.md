@@ -48,7 +48,7 @@ $(true);
 ## Todos triggered
 
 
-- (todo) when does the loop unroll constant escape?
+- (todo) this implies a bug and we should prevent it; f
 
 
 ## Globals

@@ -53,6 +53,7 @@ $(x);
 
 
 - (todo) support array reads statement type ExpressionStatement
+- (todo) this implies a bug and we should prevent it; a
 
 
 ## Globals

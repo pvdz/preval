@@ -3,7 +3,7 @@ import { printer, setPrintPids, setPrintVarTyping } from '../lib/printer.mjs';
 import walk from '../lib/walk.mjs';
 
 import { VERBOSE_TRACING, setVerboseTracing, YELLOW, ORANGE_DIM, PURPLE, RESET, DIM, ORANGE, GREEN, BLUE, RED, } from './constants.mjs';
-import { SYMBOL_MAX_LOOP_UNROLL } from './symbols_preval.mjs';
+import { SYMBOL_FULLY_UNROLL, SYMBOL_MAX_LOOP_UNROLL } from './symbols_preval.mjs';
 
 /**
  * Allow the use of risky rules? These are rules that are not completely sound but should be okay in normal environments.
@@ -573,7 +573,7 @@ function isOneSetBit(v) {
  */
 export function debugStringMapOfSetOfReadOrWrites(map) {
   const entries = Array.from(map.entries());
-  return entries.filter(([name]) => name !== SYMBOL_MAX_LOOP_UNROLL).map(([name, set]) => {
+  return entries.filter(([name]) => name !== SYMBOL_MAX_LOOP_UNROLL && name !== SYMBOL_FULLY_UNROLL).map(([name, set]) => {
     return `${name}:${debugStringListOfReadOrWrites(set)}`;
   }).join(', ') || '<none>';
 }

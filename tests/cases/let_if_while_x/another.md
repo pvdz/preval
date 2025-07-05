@@ -229,8 +229,9 @@ $(a, b, c, 3);
 
 
 - (todo) Support this ident in isFree CallExpression: $boolean_constructor
+- (todo) this implies a bug and we should prevent it; g
+- (todo) this implies a bug and we should prevent it; r
 - (todo) type trackeed tricks can possibly support static $boolean_constructor
-- (todo) while constant managed to escape
 
 
 ## Globals

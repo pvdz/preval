@@ -7,7 +7,7 @@ import * as AST from '../src/ast.mjs';
 import {setPrintVarTyping} from '../lib/printer.mjs';
 import { RED, GREEN, YELLOW, BLUE, WHITE, BOLD, RESET, WHITE_BLACK, ORANGE, GOOD, BAD, fmat, fromMarkdownCase, toEvaluationResult, toMarkdownCase, toNormalizedSection, ASSERT, REDN, toSettledSection, } from './utils.mjs';
 import { DIM, VERBOSE_TRACING, } from '../src/constants.mjs';
-import { SYMBOL_FOROF, SYMBOL_FORIN, SYMBOL_DOTCALL, BUILTIN_REST_HANDLER_NAME, SYMBOL_LOOP_UNROLL, SYMBOL_MAX_LOOP_UNROLL, SYMBOL_THROW_TDZ_ERROR, SYMBOL_PRNG, SYMBOL_COERCE, SYMBOL_FRFR } from '../src/symbols_preval.mjs';
+import { SYMBOL_FOROF, SYMBOL_FORIN, SYMBOL_DOTCALL, BUILTIN_REST_HANDLER_NAME, SYMBOL_LOOP_UNROLL, SYMBOL_MAX_LOOP_UNROLL, SYMBOL_THROW_TDZ_ERROR, SYMBOL_PRNG, SYMBOL_COERCE, SYMBOL_FRFR, SYMBOL_FULLY_UNROLL, } from '../src/symbols_preval.mjs';
 import { BUILTIN_SYMBOLS, sym_prefix, symbo } from '../src/symbols_builtins.mjs';
 import { coerce, currentState, log, setRefTracing, tmat, vlog } from '../src/utils.mjs';
 import { getTestFileNames, PROJECT_ROOT_DIR } from './cases.mjs';
@@ -628,7 +628,8 @@ function runTestCase(
       [SYMBOL_FORIN]: $forIn,
       [SYMBOL_FOROF]: $forOf,
       [SYMBOL_THROW_TDZ_ERROR]: $throwTDZError,
-      [SYMBOL_MAX_LOOP_UNROLL]: true, // TODO: this would need to be configurable and then this value is update
+      [SYMBOL_MAX_LOOP_UNROLL]: true,
+      [SYMBOL_FULLY_UNROLL]: true,
 
       ...createBuiltinSymbolGlobals(),
 
@@ -655,7 +656,7 @@ function runTestCase(
         [
           '$', '$spy', '$throw',
           'Function',
-          SYMBOL_DOTCALL, SYMBOL_THROW_TDZ_ERROR, SYMBOL_MAX_LOOP_UNROLL, BUILTIN_REST_HANDLER_NAME,
+          SYMBOL_DOTCALL, SYMBOL_THROW_TDZ_ERROR, SYMBOL_MAX_LOOP_UNROLL, SYMBOL_FULLY_UNROLL, BUILTIN_REST_HANDLER_NAME,
           SYMBOL_COERCE, SYMBOL_PRNG, SYMBOL_FRFR, SYMBOL_FORIN, SYMBOL_FOROF,
         ].includes(key) ||
         key.startsWith(sym_prefix('console', true)) ||
@@ -670,6 +671,7 @@ function runTestCase(
     }
     // $LOOP_DONE_UNROLLING_ALWAYS_TRUE. Alias as `true`
     frameworkInjectedGlobals[SYMBOL_MAX_LOOP_UNROLL] = true; // "signals not to unroll any further, but to treat this as "true" anyways"
+    frameworkInjectedGlobals[SYMBOL_FULLY_UNROLL] = true; // "signals to always unroll when a loop is eligible to do so"
 
     return frameworkInjectedGlobals;
   }

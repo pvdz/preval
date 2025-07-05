@@ -178,7 +178,8 @@ $(wat);
 ## Todos triggered
 
 
-- (todo) while constant managed to escape
+- (todo) this implies a bug and we should prevent it; g
+- (todo) this implies a bug and we should prevent it; r
 
 
 ## Globals

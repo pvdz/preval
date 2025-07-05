@@ -85,6 +85,7 @@ while (true) {
 
 
 - (todo) can try-escaping support this expr node type? CallExpression
+- (todo) this implies a bug and we should prevent it; o
 
 
 ## Globals

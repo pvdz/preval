@@ -71,6 +71,25 @@ export const SYMBOL_LOOP_UNROLL = '$LOOP_UNROLL_';
 export const SYMBOL_MAX_LOOP_UNROLL = '$LOOP_DONE_UNROLLING_ALWAYS_TRUE';
 
 /**
+ * This would be the opposite symbol that signifies that
+ * @type {string}
+ */
+export const SYMBOL_FULLY_UNROLL = '$LOOP_INF_UNROLLS_LEFT';
+
+export function isLoopTrue(node) {
+  return (node.type === 'Literal' && node.value === true) || isNonBoolLoopTrue(node);
+}
+export function isNonBoolLoopTrue(node) {
+  return node.type === 'Identifier' && (node.name === SYMBOL_MAX_LOOP_UNROLL || isUnrollableLoop(node));
+}
+export function isUnrollableLoop(node) {
+  return (
+    node.name === SYMBOL_FULLY_UNROLL ||
+    node.name.startsWith(SYMBOL_LOOP_UNROLL)
+  );
+}
+
+/**
  * We compile this when we know the previous line ought to trigger a TDZ error.
  * This helps rules automatically clean up the remainder as part of DCE sweeps.
  */
@@ -95,6 +114,7 @@ export const GLOBAL_PREVAL_SYMBOLS = new Set([
   SYMBOL_FORIN,
   SYMBOL_FOROF,
   SYMBOL_MAX_LOOP_UNROLL,
+  SYMBOL_FULLY_UNROLL,
   SYMBOL_THROW_TDZ_ERROR,
   SYMBOL_PRNG,
   SYMBOL_FREE,

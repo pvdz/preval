@@ -5,11 +5,11 @@ import { ASSERT, assertNoDupeNodes, log, group, groupEnd, vlog, vgroup, vgroupEn
 import { VERBOSE_TRACING, ASSUME_BUILTINS, DCE_ERROR_MSG, ERR_MSG_ILLEGAL_ARRAY_SPREAD, ERR_MSG_ILLEGAL_CALLEE, FRESH, OLD, RED, BLUE, RESET, } from '../constants.mjs';
 import { BUILTIN_GLOBAL_FUNCS_TO_SYMBOL, BUILTIN_FUNC_NO_CTX, BUILTIN_FUNCS_NO_CTX_COERCE_FIRST_TO_NUMBER, BUILTIN_FUNCS_NO_CTX_COERCE_FIRST_TO_STRING, BUILTIN_FUNCS_NO_CTXT_NON_COERCE, BUILTIN_SYMBOLS, GLOBAL_NAMESPACES_FOR_STATIC_METHODS, protoToInstName, symbo, OBJECT, } from '../symbols_builtins.mjs';
 import {
-  BUILTIN_REST_HANDLER_NAME,
+  BUILTIN_REST_HANDLER_NAME, isLoopTrue, isNonBoolLoopTrue, isUnrollableLoop,
   SYMBOL_COERCE,
   SYMBOL_FORIN,
   SYMBOL_FOROF, SYMBOL_FREE,
-  SYMBOL_FRFR, SYMBOL_INVALID_FUNCTION,
+  SYMBOL_FRFR, SYMBOL_FULLY_UNROLL, SYMBOL_INVALID_FUNCTION,
   SYMBOL_PCOMPILED,
   SYMBOL_THROW_TDZ_ERROR,
 } from '../symbols_preval.mjs';
@@ -1124,10 +1124,8 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
               last = n;
             }
 
-            if (
-              enode.type === 'Identifier' &&
-              (enode.name === SYMBOL_MAX_LOOP_UNROLL || enode.name.startsWith(SYMBOL_LOOP_UNROLL))
-            ) {
+            if (isNonBoolLoopTrue(enode)) {
+              todo('this implies a bug and we should prevent it; a');
               rule('Any usage of the unroll constants as array literal should become `true`');
               example('x = + $LOOP_DONE_UNROLLING_ALWAYS_TRUE;', 'x = + true');
               before(body[i]);
@@ -2100,10 +2098,8 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           return true;
         }
 
-        if (
-          lhs.type === 'Identifier' &&
-          (lhs.name === SYMBOL_MAX_LOOP_UNROLL || lhs.name.startsWith(SYMBOL_LOOP_UNROLL))
-        ) {
+        if (isNonBoolLoopTrue(lhs)) {
+          todo('this implies a bug and we should prevent it; b');
           rule('Any usage of the unroll constants that is not a while-test should become `true`');
           example('x = $LOOP_DONE_UNROLLING_ALWAYS_TRUE;', 'x = true');
           before(body[i]);
@@ -2217,10 +2213,8 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           return true;
         }
 
-        if (
-          node.argument.type === 'Identifier' &&
-          (node.argument.name === SYMBOL_MAX_LOOP_UNROLL || node.argument.name.startsWith(SYMBOL_LOOP_UNROLL))
-        ) {
+        if (isNonBoolLoopTrue(node.argument)) {
+          todo('this implies a bug and we should prevent it; c');
           rule('Any usage of the unroll constants as arg of await should become `true`');
           example('x = + $LOOP_DONE_UNROLLING_ALWAYS_TRUE;', 'x = + true');
           before(body[i]);
@@ -2922,10 +2916,8 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           }
         }
 
-        if (
-          node.left.type === 'Identifier' &&
-          (node.left.name === SYMBOL_MAX_LOOP_UNROLL || node.left.name.startsWith(SYMBOL_LOOP_UNROLL))
-        ) {
+        if (isNonBoolLoopTrue(node.left)) {
+          todo('this implies a bug and we should prevent it; d');
           rule('Any usage of the unroll constants as lhs of binary expression should become `true`');
           example('x = $LOOP_DONE_UNROLLING_ALWAYS_TRUE + 1;', 'x = true + 1');
           before(body[i]);
@@ -2935,10 +2927,8 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           after(body[i]);
           return true;
         }
-        if (
-          node.right.type === 'Identifier' &&
-          (node.right.name === SYMBOL_MAX_LOOP_UNROLL || node.right.name.startsWith(SYMBOL_LOOP_UNROLL))
-        ) {
+        if (isNonBoolLoopTrue(node.right)) {
+          todo('this implies a bug and we should prevent it; e');
           rule('Any usage of the unroll constants as rhs of binary expression should become `true`');
           example('x = 1 + $LOOP_DONE_UNROLLING_ALWAYS_TRUE;', 'x = 1 + true');
           before(body[i]);
@@ -10559,11 +10549,8 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
         let newArg = false;
         node.arguments.forEach((argNode, n) => {
-          if (
-            argNode.type === 'Identifier' &&
-            (argNode.name === SYMBOL_MAX_LOOP_UNROLL || argNode.name.startsWith(SYMBOL_LOOP_UNROLL))
-          ) {
-            todo('when does the loop unroll constant escape?');
+          if (isNonBoolLoopTrue(argNode)) {
+            todo('this implies a bug and we should prevent it; f');
             rule('A call arg that is the special infinite loop `true` value can just be `true`');
             example('$($LOOP_DONE_UNROLLING_ALWAYS_TRUE)', '$(true);');
             before(body[i]);
@@ -11322,9 +11309,12 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
         if (
           parentNodeOrWhatever.type !== 'WhileStatement' &&
-          (node.name === SYMBOL_MAX_LOOP_UNROLL || node.name.startsWith(SYMBOL_LOOP_UNROLL))
+          (
+            node.name === SYMBOL_MAX_LOOP_UNROLL ||
+            isUnrollableLoop(node)
+          )
         ) {
-          todo('while constant managed to escape');
+          todo('this implies a bug and we should prevent it; g');
           rule('Any usage of the unroll constants that is not the while-test should become `true`');
           example('x = $LOOP_DONE_UNROLLING_ALWAYS_TRUE;', 'x = true');
           before(body[i]);
@@ -12260,11 +12250,8 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           return true;
         }
 
-        if (
-          node.computed &&
-          node.property.type === 'Identifier' &&
-          (node.property.name === SYMBOL_MAX_LOOP_UNROLL || node.property.name.startsWith(SYMBOL_LOOP_UNROLL))
-        ) {
+        if (node.computed && isNonBoolLoopTrue(node.property)) {
+          todo('this implies a bug and we should prevent it; h');
           rule('Any usage of the unroll constants that is not a while-test should become `true`');
           example('x = $LOOP_DONE_UNROLLING_ALWAYS_TRUE;', 'x = true');
           before(body[i]);
@@ -12425,10 +12412,8 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
         }
 
         node.arguments.forEach((argNode, n) => {
-          if (
-            argNode?.type === 'Identifier' &&
-            (argNode.name === SYMBOL_MAX_LOOP_UNROLL || argNode.name.startsWith(SYMBOL_LOOP_UNROLL))
-          ) {
+          if (isNonBoolLoopTrue(argNode)) {
+            todo('this implies a bug and we should prevent it; j');
             rule('A call arg that is the special infinite loop `true` value can just be `true`');
             example('$($LOOP_DONE_UNROLLING_ALWAYS_TRUE)', '$(true);');
             before(body[i]);
@@ -12560,11 +12545,8 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
               }
             }
 
-            if (
-              pnode.computed &&
-              pnode.key.type === 'Identifier' &&
-              (pnode.key.name === SYMBOL_MAX_LOOP_UNROLL || pnode.key.name.startsWith(SYMBOL_LOOP_UNROLL))
-            ) {
+            if (pnode.computed && isNonBoolLoopTrue(pnode.key)) {
+              todo('this implies a bug and we should prevent it; k');
               rule('Any usage of the unroll constants as obj literal property value should become `true`');
               example('x = + $LOOP_DONE_UNROLLING_ALWAYS_TRUE;', 'x = + true');
               before(body[i]);
@@ -12576,10 +12558,8 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
               return true;
             }
 
-            if (
-              pnode.value.type === 'Identifier' &&
-              (pnode.value.name === SYMBOL_MAX_LOOP_UNROLL || pnode.value.name.startsWith(SYMBOL_LOOP_UNROLL))
-            ) {
+            if (isNonBoolLoopTrue(pnode.value)) {
+              todo('this implies a bug and we should prevent it; l');
               rule('Any usage of the unroll constants as obj literal property value should become `true`');
               example('x = + $LOOP_DONE_UNROLLING_ALWAYS_TRUE;', 'x = + true');
               before(body[i]);
@@ -13556,10 +13536,8 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           return true;
         }
 
-        if (
-          node.argument.type === 'Identifier' &&
-          (node.argument.name === SYMBOL_MAX_LOOP_UNROLL || node.argument.name.startsWith(SYMBOL_LOOP_UNROLL))
-        ) {
+        if (isNonBoolLoopTrue(node.argument)) {
+          todo('this implies a bug and we should prevent it; m');
           rule('Any usage of the unroll constants as arg of a unary expression should become `true`');
           example('x = + $LOOP_DONE_UNROLLING_ALWAYS_TRUE;', 'x = + true');
           before(body[i]);
@@ -13782,10 +13760,8 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           return true;
         }
 
-        if (
-          node.argument.type === 'Identifier' &&
-          (node.argument.name === SYMBOL_MAX_LOOP_UNROLL || node.argument.name.startsWith(SYMBOL_LOOP_UNROLL))
-        ) {
+        if (isNonBoolLoopTrue(node.argument)) {
+          todo('this implies a bug and we should prevent it; n');
           rule('Any usage of the unroll constants as arg of await should become `true`');
           example('x = + $LOOP_DONE_UNROLLING_ALWAYS_TRUE;', 'x = + true');
           before(body[i]);
@@ -14037,10 +14013,8 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
       }
     }
 
-    if (
-      node.test.type === 'Identifier' &&
-      (node.test.name === SYMBOL_MAX_LOOP_UNROLL || node.test.name.startsWith(SYMBOL_LOOP_UNROLL))
-    ) {
+    if (isNonBoolLoopTrue(node.test)) {
+      todo('this implies a bug and we should prevent it; o');
       rule('The if test that is the special infinite loop `true` value can just be `true`');
       example('if ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) f();', 'if (true) f();');
       before(node);
@@ -15149,10 +15123,8 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
       return true;
     }
 
-    if (
-      node.argument.type === 'Identifier' &&
-      (node.argument.name === SYMBOL_MAX_LOOP_UNROLL || node.argument.name.startsWith(SYMBOL_LOOP_UNROLL))
-    ) {
+    if (isNonBoolLoopTrue(node.argument)) {
+      todo('this implies a bug and we should prevent it; p');
       rule('Any usage of the unroll constants as return arg should become `true`');
       example('return $LOOP_DONE_UNROLLING_ALWAYS_TRUE;', 'return true');
       before(body[i]);
@@ -15210,10 +15182,8 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
       }
     }
 
-    if (
-      node.argument.type === 'Identifier' &&
-      (node.argument.name === SYMBOL_MAX_LOOP_UNROLL || node.argument.name.startsWith(SYMBOL_LOOP_UNROLL))
-    ) {
+    if (isNonBoolLoopTrue(node.argument)) {
+      todo('this implies a bug and we should prevent it; q');
       rule('Any usage of the unroll constants as throw arg should become `true`');
       example('throw $LOOP_DONE_UNROLLING_ALWAYS_TRUE;', 'throw true');
       before(body[i]);
@@ -15672,10 +15642,8 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
       }
     }
 
-    if (
-      init.type === 'Identifier' &&
-      (init.name === SYMBOL_MAX_LOOP_UNROLL || init.name.startsWith(SYMBOL_LOOP_UNROLL))
-    ) {
+    if (isNonBoolLoopTrue(init)) {
+      todo('this implies a bug and we should prevent it; r');
       if (transformExpression('var', init, body, i, node, id, node.kind)) {
         assertNoDupeNodes(body, 'body');
         return true;
@@ -15906,10 +15874,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
       return true;
     }
 
-    if (
-      !AST.isTrue(node.test) &&
-      !(node.test.type === 'Identifier' && (node.test.name.startsWith(SYMBOL_LOOP_UNROLL) || node.test.name === SYMBOL_MAX_LOOP_UNROLL))
-    ) {
+    if (!isLoopTrue(node.test)) {
       // We do this because it makes all reads that relate to the loop be inside the block.
       // There are heuristics that want to know whether a binding is used inside a loop and if
       // we don't do this then parts of the loop may not be inside the block. And we already

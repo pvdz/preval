@@ -32,11 +32,11 @@
 // I think other constructs like try/catch, return, throw, etc, are all ok...
 
 import walk from '../../lib/walk.mjs';
-import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, fmat, tmat } from '../utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, fmat, tmat, todo, } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import {MAX_UNROLL_TRUE_COUNT} from "../globals.mjs"
 import { createFreshLabelStatement } from '../labels.mjs';
-import { SYMBOL_LOOP_UNROLL, SYMBOL_MAX_LOOP_UNROLL } from '../symbols_preval.mjs';
+import { isLoopTrue, SYMBOL_FULLY_UNROLL, SYMBOL_LOOP_UNROLL, SYMBOL_MAX_LOOP_UNROLL } from '../symbols_preval.mjs';
 
 export function unrollLoopWithTrue(fdata, prng, {unrollLimit = 10} = {}) {
   group('\n\n\n[unrollLoopWithTrue] Checking for while loops with true to unroll (limit =' , unrollLimit, ')');
@@ -82,17 +82,14 @@ function processAttempt(fdata, unrollLimit) {
     if (whileNode.type !== 'WhileStatement') return;
     if (whileNode.test.type === 'Identifier' && whileNode.test.name === SYMBOL_MAX_LOOP_UNROLL) return;
 
-    const isWhileTrue =
-      AST.isTrue(whileNode.test) ||
-      (
-        whileNode.test.type === 'Identifier' &&
-        whileNode.test.name.startsWith(SYMBOL_LOOP_UNROLL)
-      );
-    ASSERT(isWhileTrue, 'all whiles must be normalized to while(true) (in some form) at this point', whileNode.test);
+    ASSERT(isLoopTrue(whileNode.test), 'all whiles must be normalized to while(true) (in some form) at this point', whileNode.test);
 
     if (
       whileNode.test.type === 'Identifier' &&
-      whileNode.test.name.startsWith(SYMBOL_LOOP_UNROLL) &&
+      (
+        whileNode.test.name.startsWith(SYMBOL_LOOP_UNROLL) ||
+        whileNode.test.name === SYMBOL_FULLY_UNROLL
+      ) &&
       (path.nodes[path.nodes.length - 3]?.type === 'IfStatement')
     ) {
       // Technically we don't need this check but it leads to a significant uptick in code bloat so for now we're keeping this check
@@ -178,7 +175,12 @@ function processAttempt(fdata, unrollLimit) {
       const labelStatementNode = createFreshLabelStatement('loopStop', fdata, AST.blockStatement(clone, blockBody[blockIndex]));
 
       const condCount = AST.isTrue(whileNode.test) ? unrollLimit - 1 : parseInt(whileNode.test.name.slice(SYMBOL_LOOP_UNROLL.length), 10) - 1;
-      const condIdent = condCount > 0 ? SYMBOL_LOOP_UNROLL + condCount : SYMBOL_MAX_LOOP_UNROLL;
+      const condIdent =
+        whileNode.test.name === SYMBOL_FULLY_UNROLL
+          ? SYMBOL_FULLY_UNROLL
+          : condCount > 0
+          ? SYMBOL_LOOP_UNROLL + condCount
+          : SYMBOL_MAX_LOOP_UNROLL;
 
       const walker = function replacer(node, beforeWalk, nodeType, path) {
         if (beforeWalk) {

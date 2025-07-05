@@ -92,6 +92,7 @@ Should call `$` with:
     '<function>',
     '<function>',
     true,
+    true,
     '<function>',
     '<function>',
     '<function>',

@@ -101,6 +101,9 @@ function _ifHoisting(fdata) {
         }
       });
 
+      // It feels like there is a risk of transform loop here, with this reducer hoisting up var decls
+      // and merging them at the top. And then SSA undoing that. In practice, it seems this is not the
+      // case. There are a bunch of tests trying to capture this issue.
       blockBody.splice(blockIndex, 0, firstThen);
       firstThen.kind = 'let'; // Prevent hoisting up a const that is assigned in the other branch
       // Preserve if-test expression (tdz semantics)

@@ -763,7 +763,7 @@ export function objectExpression(...properties) {
 
   return {
     type: 'ObjectExpression',
-    properties,
+    properties, // Should be list of AST.property() !
     $p: $p(),
   };
 }

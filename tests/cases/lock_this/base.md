@@ -31,7 +31,7 @@ const f = function() {
   $(z);
   // etc. then calls into another function, sometimes passing in a method from the instance as arg, for indirect calls
   const e = this.e;
-  const red = this.d(e);          // A as context again, might do b.call(a) etc
+  const ret = this.d(e);          // A as context again, might do b.call(a) etc
   return ret;
 };
 function start(p, q) {
@@ -94,7 +94,7 @@ const f /*:()=>unknown*/ = function (/*uses this*/) {
   $(z);
   const e$1 /*:unknown*/ = tmpPrevalAliasThis$1.e;
   const tmpMCF /*:unknown*/ = tmpPrevalAliasThis$1.d;
-  $dotCall(tmpMCF, tmpPrevalAliasThis$1, `d`, e$1);
+  const ret /*:unknown*/ = $dotCall(tmpMCF, tmpPrevalAliasThis$1, `d`, e$1);
   return ret;
 };
 start(100, 200);
@@ -131,7 +131,7 @@ const f = function () {
   const tmpPrevalAliasThis$1 = this;
   const x = tmpPrevalAliasThis$1.p;
   $(x + tmpPrevalAliasThis$1.q);
-  tmpPrevalAliasThis$1.d(tmpPrevalAliasThis$1.e);
+  const ret = tmpPrevalAliasThis$1.d(tmpPrevalAliasThis$1.e);
   return ret;
 };
 start(100, 200);
@@ -186,8 +186,8 @@ const k = function() {
   $( r );
   const s = o.e;
   const t = o.d;
-  $dotCall( t, o, "d", s );
-  return ret;
+  const u = $dotCall( t, o, "d", s );
+  return u;
 };
 e( 100, 200 );
 $( undefined );
@@ -241,7 +241,7 @@ const f = function () {
   $(z);
   const e$1 = tmpPrevalAliasThis$1.e;
   const tmpMCF = tmpPrevalAliasThis$1.d;
-  const red = $dotCall(tmpMCF, tmpPrevalAliasThis$1, `d`, e$1);
+  const ret = $dotCall(tmpMCF, tmpPrevalAliasThis$1, `d`, e$1);
   return ret;
 };
 let tmpCalleeParam = start(100, 200);
@@ -259,9 +259,7 @@ None
 ## Globals
 
 
-BAD@! Found 1 implicit global bindings:
-
-ret
+None
 
 
 ## Runtime Outcome
@@ -270,7 +268,9 @@ ret
 Should call `$` with:
  - 1: NaN
  - 2: 'Hello from e'
- - eval returned: ('<crash[ <ref> is not defined ]>')
+ - 3: undefined
+ - 4: '<function>'
+ - eval returned: undefined
 
 Pre normalization calls: Same
 

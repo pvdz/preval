@@ -1148,7 +1148,7 @@ function runTestCase(
             console.log('-----------------------');
           }
         }
-      } else {
+      } else if (!lastError && !isExpectingAnError) {
         fs.writeFileSync(fname, md2, 'utf8');
       }
     }

@@ -144,7 +144,9 @@ export function _freeFuncs(fdata, prng, usePrng, pcodeTestMode) {
       if (!pcodeSupportedBuiltinFuncs.has(funcName)) {
         vlog('');
         vgroup('- pcodeSupportedBuiltinFuncs does not yet have:', [funcName], '; compiling that now');
+        for (let i=0;i<10;++i) vgroup();
         const pcode = pcompile(funcNode, fdata);
+        for (let i=0;i<10;++i) vgroupEnd();
         fdata.pcodeOutput.set(funcNode.$p.npid, { pcode, funcNode, name: funcName });
         fdata.pcodeOutput.set(funcName, { pcode, funcNode, name: funcName });
 

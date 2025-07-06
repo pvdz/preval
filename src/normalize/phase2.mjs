@@ -117,6 +117,7 @@ import { ifBooly } from '../reduce_static/if_booly.mjs';
 import { nodejsRequire } from '../reduce_static/nodejs_require.mjs';
 import { stringReplacer } from '../reduce_static/string_replacer.mjs';
 import { objlitPropWrite } from '../reduce_static/objlit_prop_write.mjs';
+import { lockThis } from '../reduce_static/lock_this.mjs';
 
 //import { phasePrimitiveArgInlining } from '../reduce_static/phase_primitive_arg_inlining.mjs';
 
@@ -229,6 +230,7 @@ export const BASE_PHASE2_RULES_LIST = [
   ['fakesync', fakesync],
   ['stringReplacer', stringReplacer],
   ['objlitPropWrite', objlitPropWrite],
+  ['lockThis', lockThis],
 
   ['freeLoops', freeLoops], // Most other stuff should probably precede this?
 

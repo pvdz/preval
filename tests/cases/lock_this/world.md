@@ -67,6 +67,7 @@ const one/*:()=>unknown*/ = function(/*uses this*/) {
   const tmpReturnArg$5/*:unknown*/ = $dotCall(tmpMCF$23, this, `EX_PROP_C`, tmpUpdInc);
   return tmpReturnArg$5;
 };
+// This constructor (A) is not eliminated by lockThis because it has no refs left so it'll be eliminated elsewhere
 const A/*:(unknown)=>undefined*/ = function(secretly_one/*uses this*/) {
   this.EX_PROP_H = secretly_one;
   const arr/*:array*/ /*truthy*/ = [1, 0, 0];

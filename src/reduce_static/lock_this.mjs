@@ -551,8 +551,7 @@ function _lockThis(fdata) {
     // Can we inline all the things? What about references like arrays? We must confirm that they are not
     // read more than once. Or if they are, guarantee that all-but-the-last case is not mutated.
 
-
-    vlog('- now carving out the constructor and replacing', instancePropStuff.length, 'prop nodes');
+    vlog('- now carving out the constructor and replacing', instancePropStuff.length, 'prop nodes:', new Set(instancePropStuff.map(([_x, prop]) => prop)));
 
     currentState(fdata, 'lockThis', true, fdata);
 

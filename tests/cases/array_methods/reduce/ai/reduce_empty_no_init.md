@@ -65,18 +65,18 @@ const a = [];
 const b = $( a );
 try {
   const c = b.reduce;
-  const d = function e($$0,$$1 ) {
-    const f = $$0;
-    const g = $$1;
+  const d = function $pcompiled($$0,$$1 ) {
+    const e = $$0;
+    const f = $$1;
     debugger;
-    const h = f + g;
-    return h;
+    const g = e + f;
+    return g;
   };
   $dotCall( c, b, "reduce", d );
 }
-catch (i) {
-  const j = i.name;
-  $( j );
+catch (h) {
+  const i = h.name;
+  $( i );
 }
 `````
 

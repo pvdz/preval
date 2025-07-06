@@ -56,15 +56,15 @@ With rename=true
 const a = [ ,, 2, 3 ];
 const b = $( a );
 const c = b.reduce;
-const d = function e($$0,$$1 ) {
-  const f = $$0;
-  const g = $$1;
+const d = function $pcompiled($$0,$$1 ) {
+  const e = $$0;
+  const f = $$1;
   debugger;
-  const h = f + g;
-  return h;
+  const g = e + f;
+  return g;
 };
-const i = $dotCall( c, b, "reduce", d );
-$( i );
+const h = $dotCall( c, b, "reduce", d );
+$( h );
 `````
 
 

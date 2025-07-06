@@ -72,31 +72,31 @@ $(
 With rename=true
 
 `````js filename=intro
-const a = function b() {
+const a = function $pcompiled() {
   debugger;
   return undefined;
 };
-const c = function b() {
+const b = function $pcompiled() {
   debugger;
   return undefined;
 };
-const d = function b() {
+const c = function $pcompiled() {
   debugger;
   return undefined;
 };
-const e = function b() {
+const d = function $pcompiled() {
   debugger;
   return undefined;
 };
-const f = function b() {
+const e = function $pcompiled() {
   debugger;
   return undefined;
 };
-const g = function b() {
+const f = function $pcompiled() {
   debugger;
   return undefined;
 };
-$( a, c, d, e, f, g );
+$( a, b, c, d, e, f );
 `````
 
 

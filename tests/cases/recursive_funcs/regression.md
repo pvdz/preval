@@ -193,58 +193,58 @@ $(function () {
 With rename=true
 
 `````js filename=intro
-const a = function b() {
+const a = function $free() {
   debugger;
-  const c = d( e, $, $ );
-  const f = `${c}`;
-  return f;
+  const b = c( d, $, $ );
+  const e = `${b}`;
+  return e;
 };
-const e = function b($$0,$$1 ) {
-  const g = $$0;
-  const h = $$1;
+const d = function $free($$0,$$1 ) {
+  const f = $$0;
+  const g = $$1;
   debugger;
-  const i = g + 71046;
-  const j = $dotCall( $string_charCodeAt, "xyz", "charCodeAt", h );
-  const k = i ^ j;
-  const l = $String_fromCharCode( k );
-  return l;
+  const h = f + 71046;
+  const i = $dotCall( $string_charCodeAt, "xyz", "charCodeAt", g );
+  const j = h ^ i;
+  const k = $String_fromCharCode( j );
+  return k;
 };
-const m = function() {
+const l = function() {
   debugger;
-  let n = tmpSSA_Tu();
-  if (n) {
-    tmpSSA_wu( n );
+  let m = tmpSSA_Tu();
+  if (m) {
+    tmpSSA_wu( m );
   }
   else {
-    n = tmpSSA_Su();
-    tmpSSA_wu( n );
+    m = tmpSSA_Su();
+    tmpSSA_wu( m );
   }
-  if (n) {
-    tmpSSA__u_t( n );
+  if (m) {
+    tmpSSA__u_t( m );
   }
-  const o = tmpCallObj$3807.toString;
-  $dotCall( o, tmpCallObj$3807, "toString", 36 );
-  const p = new $regex_constructor( "^0.", "" );
-  const q = tmpCallObj$3811.replace;
-  const r = $dotCall( q, tmpCallObj$3811, "replace", p, "" );
+  const n = tmpCallObj$3807.toString;
+  $dotCall( n, tmpCallObj$3807, "toString", 36 );
+  const o = new $regex_constructor( "^0.", "" );
+  const p = tmpCallObj$3811.replace;
+  const q = $dotCall( p, tmpCallObj$3811, "replace", o, "" );
   $coerce( tmpBinBothRhs$32, "string" );
-  $coerce( r, "string" );
-  const s = tmpSSA_Tu();
-  if (s) {
-    tmpClusterSSA_tmpssa3_c$245 = s;
+  $coerce( q, "string" );
+  const r = tmpSSA_Tu();
+  if (r) {
+    tmpClusterSSA_tmpssa3_c$245 = r;
   }
   else {
-    const t = tmpSSA_Su();
-    if (t) {
-      tmpClusterSSA_tmpssa3_c$245 = t;
+    const s = tmpSSA_Su();
+    if (s) {
+      tmpClusterSSA_tmpssa3_c$245 = s;
     }
   }
   if (tmpIfTest$5467) {
-    let u = d( a );
+    let t = c( a );
     while ($LOOP_UNROLLS_LEFT_10) {
       if (tmpIfTest$5467) {
-        const v = d( e, $, $ );
-        u = `${u}${v}`;
+        const u = c( d, $, $ );
+        t = `${t}${u}`;
       }
       else {
         break;
@@ -256,7 +256,7 @@ const m = function() {
     return undefined;
   }
 };
-$( m );
+$( l );
 `````
 
 

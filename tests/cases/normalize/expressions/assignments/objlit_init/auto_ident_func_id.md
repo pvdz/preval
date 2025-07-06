@@ -43,12 +43,12 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = function b() {
+const a = function $pcompiled() {
   debugger;
   return undefined;
 };
-const c = { x: a };
-$( c );
+const b = { x: a };
+$( b );
 $( a );
 `````
 

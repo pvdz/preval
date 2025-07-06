@@ -140,32 +140,32 @@ const a = function() {
   $( k, m, q );
   return undefined;
 };
-const f = function r($$0,$$1,$$2 ) {
-  const s = $$0;
-  const t = $$1;
-  const u = $$2;
+const f = function $pcompiled($$0,$$1,$$2 ) {
+  const r = $$0;
+  const s = $$1;
+  const t = $$2;
   debugger;
-  let v = s;
-  if (s) {
+  let u = r;
+  if (r) {
 
   }
   else {
-    v = 0;
+    u = 0;
   }
-  let w = undefined;
+  let v = undefined;
+  if (s) {
+    v = u + s;
+  }
+  else {
+    v = u + 0;
+  }
   if (t) {
-    w = v + t;
+    const w = v + t;
+    return w;
   }
   else {
-    w = v + 0;
-  }
-  if (u) {
-    const x = w + u;
+    const x = v + 0;
     return x;
-  }
-  else {
-    const y = w + 0;
-    return y;
   }
 };
 a( 10, 20, 30 );

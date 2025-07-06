@@ -58,21 +58,21 @@ $(tmpFree(x, Number($spy(2))));
 With rename=true
 
 `````js filename=intro
-const a = function b($$0,$$1 ) {
-  const c = $$0;
-  const d = $$1;
+const a = function $free($$0,$$1 ) {
+  const b = $$0;
+  const c = $$1;
   debugger;
+  const d = b * 1;
   const e = c * 1;
-  const f = d * 1;
-  const g = `${e}${f}`;
-  return g;
+  const f = `${d}${e}`;
+  return f;
 };
-const h = $spy( 1 );
-const i = $coerce( h, "number" );
-const j = $spy( 2 );
-const k = $coerce( j, "number" );
-const l = m( a, i, k );
-$( l );
+const g = $spy( 1 );
+const h = $coerce( g, "number" );
+const i = $spy( 2 );
+const j = $coerce( i, "number" );
+const k = l( a, h, j );
+$( k );
 `````
 
 

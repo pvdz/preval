@@ -193,65 +193,65 @@ $(push);
 With rename=true
 
 `````js filename=intro
-const a = function b($$0 ) {
-  const c = $$0;
+const a = function $free($$0 ) {
+  const b = $$0;
   debugger;
-  const d = c - 1;
-  const e = d >>> 1;
-  return e;
+  const c = b - 1;
+  const d = c >>> 1;
+  return d;
 };
-const f = function($$0,$$1 ) {
-  const g = $$0;
-  const h = $$1;
+const e = function($$0,$$1 ) {
+  const f = $$0;
+  const g = $$1;
   debugger;
-  const i = g.length;
-  const j = i > 0;
-  const k = g.push;
-  $dotCall( k, g, "push", h );
-  if (j) {
-    const l = i - 1;
-    const m = l >>> 1;
-    n( g, h, i, m );
-    const o = i - 1;
-    const p = o >>> 1;
-    n( g, h, i, p );
-    const q = i - 1;
-    const r = q >>> 1;
-    n( g, h, i, r );
-    const s = i - 1;
-    const t = s >>> 1;
-    n( g, h, i, t );
+  const h = f.length;
+  const i = h > 0;
+  const j = f.push;
+  $dotCall( j, f, "push", g );
+  if (i) {
+    const k = h - 1;
+    const l = k >>> 1;
+    m( f, g, h, l );
+    const n = h - 1;
+    const o = n >>> 1;
+    m( f, g, h, o );
+    const p = h - 1;
+    const q = p >>> 1;
+    m( f, g, h, q );
+    const r = h - 1;
+    const s = r >>> 1;
+    m( f, g, h, s );
     return undefined;
   }
   else {
     return undefined;
   }
 };
-const n = function($$0,$$1,$$2,$$3 ) {
-  const u = $$0;
-  const v = $$1;
-  const w = $$2;
-  const x = $$3;
+const m = function($$0,$$1,$$2,$$3 ) {
+  const t = $$0;
+  const u = $$1;
+  const v = $$2;
+  const w = $$3;
   debugger;
-  const y = u[ x ];
-  const z = compare( y, v );
-  const ba = z > 0;
-  if (ba) {
-    u[x] = v;
-    u[w] = y;
-    let bb = x;
-    let bc = x > 0;
+  const x = t[ w ];
+  const y = compare( x, u );
+  const z = y > 0;
+  if (z) {
+    t[w] = u;
+    t[v] = x;
+    let ba = w;
+    let bb = w > 0;
     while ($LOOP_UNROLLS_LEFT_100) {
-      if (bc) {
-        const bd = be( a, bb );
-        const bf = u[ bd ];
-        const bg = compare( bf, v );
-        const bh = bg > 0;
-        if (bh) {
-          u[bd] = v;
-          u[bb] = bf;
-          bb = bd;
-          bc = bd > 0;
+      if (bb) {
+        const bc = bd( a, ba );
+        const be = t[ bc ];
+        const bf = compare( be, u );
+        const bg = bf > 0;
+        if (bg) {
+          t[bc] = u;
+          t[ba] = be;
+          ba = bc;
+          bb = bc > 0;
         }
         else {
           return undefined;
@@ -267,7 +267,7 @@ const n = function($$0,$$1,$$2,$$3 ) {
     return undefined;
   }
 };
-$( f );
+$( e );
 `````
 
 

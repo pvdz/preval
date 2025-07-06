@@ -78,9 +78,10 @@ $(tmpClusterSSA_x$2);
 With rename=true
 
 `````js filename=intro
-const a = function b($$0 ) {
-  const c = $$0;
+const a = function $free($$0 ) {
+  const b = $$0;
   debugger;
+  const c = b + 1e-7;
   const d = c + 1e-7;
   const e = d + 1e-7;
   const f = e + 1e-7;
@@ -90,24 +91,23 @@ const a = function b($$0 ) {
   const j = i + 1e-7;
   const k = j + 1e-7;
   const l = k + 1e-7;
-  const m = l + 1e-7;
-  return m;
+  return l;
 };
-const n = $( 0 );
-const o = n + 1e-7;
-let p = q( a, o );
-let r = 11;
+const m = $( 0 );
+const n = m + 1e-7;
+let o = p( a, n );
+let q = 11;
 while ($LOOP_NO_UNROLLS_LEFT) {
-  const s = r < 100;
-  if (s) {
-    p = p + 1e-7;
-    r = r + 1;
+  const r = q < 100;
+  if (r) {
+    o = o + 1e-7;
+    q = q + 1;
   }
   else {
     break;
   }
 }
-$( p );
+$( o );
 `````
 
 

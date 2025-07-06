@@ -55,14 +55,14 @@ With rename=true
 const a = [ 1, 2, 3 ];
 const b = $( a );
 const c = b.reduceRight;
-const d = function e($$0 ) {
-  const f = $$0;
+const d = function $pcompiled($$0 ) {
+  const e = $$0;
   debugger;
-  const g = f > 5;
-  return g;
+  const f = e > 5;
+  return f;
 };
-const h = $dotCall( c, b, "reduceRight", d );
-$( h );
+const g = $dotCall( c, b, "reduceRight", d );
+$( g );
 `````
 
 

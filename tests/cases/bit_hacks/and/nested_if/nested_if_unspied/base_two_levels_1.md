@@ -58,17 +58,17 @@ if (tmpFree(+tmpUnaryArg)) {
 With rename=true
 
 `````js filename=intro
-const a = function b($$0 ) {
-  const c = $$0;
+const a = function $free($$0 ) {
+  const b = $$0;
   debugger;
-  const d = c & 10;
-  const e = d === 10;
-  return e;
+  const c = b & 10;
+  const d = c === 10;
+  return d;
 };
-const f = $spy( 1 );
-const g = +f;
-const h = i( a, g );
-if (h) {
+const e = $spy( 1 );
+const f = +e;
+const g = h( a, f );
+if (g) {
   $( "it is ten" );
 }
 `````

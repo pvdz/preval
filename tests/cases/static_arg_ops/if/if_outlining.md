@@ -174,44 +174,44 @@ $(function (heap, node) {
 With rename=true
 
 `````js filename=intro
-const a = function b($$0 ) {
-  const c = $$0;
+const a = function $free($$0 ) {
+  const b = $$0;
   debugger;
-  const d = c - 1;
-  const e = d >>> 1;
-  return e;
+  const c = b - 1;
+  const d = c >>> 1;
+  return d;
 };
-const f = function($$0,$$1 ) {
-  const g = $$0;
-  const h = $$1;
+const e = function($$0,$$1 ) {
+  const f = $$0;
+  const g = $$1;
   debugger;
   $inlinedFunction: {
-    const i = g.length;
-    const j = i > 0;
-    const k = g.push;
-    $dotCall( k, g, "push", h );
-    if (j) {
-      const l = i - 1;
-      const m = l >>> 1;
-      const n = g[ m ];
-      const o = compare( n, h );
-      const p = o > 0;
-      if (p) {
-        g[m] = h;
-        g[i] = n;
-        let q = m;
-        let r = m > 0;
+    const h = f.length;
+    const i = h > 0;
+    const j = f.push;
+    $dotCall( j, f, "push", g );
+    if (i) {
+      const k = h - 1;
+      const l = k >>> 1;
+      const m = f[ l ];
+      const n = compare( m, g );
+      const o = n > 0;
+      if (o) {
+        f[l] = g;
+        f[h] = m;
+        let p = l;
+        let q = l > 0;
         while ($LOOP_UNROLLS_LEFT_100) {
-          if (r) {
-            const s = t( a, q );
-            const u = g[ s ];
-            const v = compare( u, h );
-            const w = v > 0;
-            if (w) {
-              g[s] = h;
-              g[q] = u;
-              q = s;
-              r = s > 0;
+          if (q) {
+            const r = s( a, p );
+            const t = f[ r ];
+            const u = compare( t, g );
+            const v = u > 0;
+            if (v) {
+              f[r] = g;
+              f[p] = t;
+              p = r;
+              q = r > 0;
             }
             else {
               break $inlinedFunction;
@@ -226,7 +226,7 @@ const f = function($$0,$$1 ) {
   }
   return undefined;
 };
-$( f );
+$( e );
 `````
 
 

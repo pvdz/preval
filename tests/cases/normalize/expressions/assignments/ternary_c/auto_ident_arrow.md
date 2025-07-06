@@ -66,7 +66,7 @@ if (a) {
   $( c );
 }
 else {
-  const d = function e() {
+  const d = function $pcompiled() {
     debugger;
     return undefined;
   };

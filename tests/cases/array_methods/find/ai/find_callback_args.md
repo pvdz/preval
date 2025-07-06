@@ -77,17 +77,17 @@ With rename=true
 const a = [ 1, 2, 3 ];
 const b = $( a );
 const c = b.find;
-const d = function e($$0,$$1,$$2 ) {
-  const f = $$0;
-  const g = $$1;
-  const h = $$2;
+const d = function $pcompiled($$0,$$1,$$2 ) {
+  const e = $$0;
+  const f = $$1;
+  const g = $$2;
   debugger;
-  const i = f === 2;
-  if (i) {
-    const j = g === 1;
-    if (j) {
-      const k = h === b;
-      return k;
+  const h = e === 2;
+  if (h) {
+    const i = f === 1;
+    if (i) {
+      const j = g === b;
+      return j;
     }
     else {
       return false;
@@ -97,8 +97,8 @@ const d = function e($$0,$$1,$$2 ) {
     return false;
   }
 };
-const l = $dotCall( c, b, "find", d );
-$( l );
+const k = $dotCall( c, b, "find", d );
+$( k );
 `````
 
 

@@ -111,13 +111,13 @@ const a = function() {
   else {
     let f = undefined;
     if (unknown) {
-      f = function g() {
+      f = function $pcompiled() {
         debugger;
         return false;
       };
     }
     else {
-      f = function g() {
+      f = function $pcompiled() {
         debugger;
         return undefined;
       };

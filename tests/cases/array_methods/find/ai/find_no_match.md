@@ -55,14 +55,14 @@ With rename=true
 const a = [ 1, 2, 3, 4, 5 ];
 const b = $( a );
 const c = b.find;
-const d = function e($$0 ) {
-  const f = $$0;
+const d = function $pcompiled($$0 ) {
+  const e = $$0;
   debugger;
-  const g = f > 10;
-  return g;
+  const f = e > 10;
+  return f;
 };
-const h = $dotCall( c, b, "find", d );
-$( h );
+const g = $dotCall( c, b, "find", d );
+$( g );
 `````
 
 

@@ -91,16 +91,16 @@ const a = $( 1 );
 const b = $( 1 );
 $( 1 );
 $( 1 );
-const c = function d($$0 ) {
-  const e = $$0;
+const c = function $free($$0 ) {
+  const d = $$0;
   debugger;
-  const f = e - 554;
-  const g = f - 442;
-  const h = g - -808;
-  return h;
+  const e = d - 554;
+  const f = e - 442;
+  const g = f - -808;
+  return g;
 };
-const i = j( c, a, b );
-$( -1206, i );
+const h = i( c, a, b );
+$( -1206, h );
 `````
 
 

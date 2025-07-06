@@ -86,24 +86,24 @@ if (x) {
 With rename=true
 
 `````js filename=intro
-const a = function b($$0,$$1 ) {
-  const c = $$0;
-  const d = $$1;
+const a = function $free($$0,$$1 ) {
+  const b = $$0;
+  const c = $$1;
   debugger;
-  const e = $dotCall( $string_charAt, c, "charAt", 1 );
-  const f = d & 48;
-  const g = f === 48;
-  const h = g + e;
-  const i = `${h}${e}`;
-  return i;
+  const d = $dotCall( $string_charAt, b, "charAt", 1 );
+  const e = c & 48;
+  const f = e === 48;
+  const g = f + d;
+  const h = `${g}${d}`;
+  return h;
 };
-const j = $spy( 1 );
-const k = +j;
-if (k) {
-  const l = $( "abc" );
-  const m = $coerce( l, "string" );
-  const n = o( a, m, k );
-  if (n) {
+const i = $spy( 1 );
+const j = +i;
+if (j) {
+  const k = $( "abc" );
+  const l = $coerce( k, "string" );
+  const m = n( a, l, j );
+  if (m) {
     $( "it is 58" );
   }
 }

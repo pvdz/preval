@@ -48,13 +48,13 @@ With rename=true
 
 `````js filename=intro
 const a = Symbol.toPrimitive;
-const b = function c() {
+const b = function $pcompiled() {
   debugger;
   return 0.30000000000000004;
 };
-const d = { [ a ]: b };
-const e = d + 0.6;
-$( e );
+const c = { [ a ]: b };
+const d = c + 0.6;
+$( d );
 `````
 
 

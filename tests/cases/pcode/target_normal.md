@@ -194,84 +194,84 @@ $(`end`);
 With rename=true
 
 `````js filename=intro
-const a = function b($$0,$$1 ) {
-  const c = $$0;
-  const d = $$1;
+const a = function $free($$0,$$1 ) {
+  const b = $$0;
+  const c = $$1;
   debugger;
-  const e = $dotCall( $number_toString, c, "toString", 36 );
-  const f = `${d}${e}`;
-  return f;
+  const d = $dotCall( $number_toString, b, "toString", 36 );
+  const e = `${c}${d}`;
+  return e;
 };
-const g = function b($$0,$$1 ) {
-  const h = $$0;
-  const i = $$1;
+const f = function $free($$0,$$1 ) {
+  const g = $$0;
+  const h = $$1;
   debugger;
-  const j = h + 29;
-  const k = $String_fromCharCode( j );
-  const l = `${i}${k}`;
-  return l;
+  const i = g + 29;
+  const j = $String_fromCharCode( i );
+  const k = `${h}${j}`;
+  return k;
 };
-const m = function b($$0 ) {
-  const n = $$0;
+const l = function $free($$0 ) {
+  const m = $$0;
   debugger;
-  const o = n / 62;
-  const p = $Number_parseInt( o );
-  return p;
+  const n = m / 62;
+  const o = $Number_parseInt( n );
+  return o;
 };
-const q = function($$0 ) {
-  const r = $$0;
+const p = function($$0 ) {
+  const q = $$0;
   debugger;
-  let s = "";
-  const t = r < 62;
-  if (t) {
+  let r = "";
+  const s = q < 62;
+  if (s) {
 
   }
   else {
-    const u = v( m, r );
-    s = q( u );
+    const t = u( l, q );
+    r = p( t );
   }
-  const w = r % 62;
-  const x = w > 35;
-  if (x) {
-    const y = v( g, w, s );
-    return y;
+  const v = q % 62;
+  const w = v > 35;
+  if (w) {
+    const x = u( f, v, r );
+    return x;
   }
   else {
-    const z = v( a, w, s );
-    return z;
+    const y = u( a, v, r );
+    return y;
   }
 };
-q( 1 );
-q( 2 );
-const ba = q( 476 );
+p( 1 );
+p( 2 );
+const z = p( 476 );
+$( z );
+const ba = p( 475 );
 $( ba );
-const bb = q( 475 );
+const bb = p( 474 );
 $( bb );
-const bc = q( 474 );
+const bc = p( 473 );
 $( bc );
-const bd = q( 473 );
+const bd = p( 472 );
 $( bd );
-const be = q( 472 );
+const be = p( 471 );
 $( be );
-const bf = q( 471 );
+const bf = p( 470 );
 $( bf );
-const bg = q( 470 );
+const bg = p( 469 );
 $( bg );
-const bh = q( 469 );
+const bh = p( 468 );
 $( bh );
-const bi = q( 468 );
+const bi = p( 467 );
 $( bi );
-const bj = q( 467 );
-$( bj );
-let bk = 466;
-const bl = q( 466 );
-$( bl );
+let bj = 466;
+const bk = p( 466 );
+$( bk );
 while ($LOOP_NO_UNROLLS_LEFT) {
-  bk = bk - 1;
-  const bm = bk > 0;
-  if (bm) {
-    const bn = q( bk );
-    $( bn );
+  bj = bj - 1;
+  const bl = bj > 0;
+  if (bl) {
+    const bm = p( bj );
+    $( bm );
   }
   else {
     break;

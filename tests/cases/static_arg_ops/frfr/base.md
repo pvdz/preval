@@ -94,37 +94,37 @@ With rename=true
 
 `````js filename=intro
 const a = $( "50" );
-const b = function c($$0,$$1,$$2 ) {
-  const d = $$0;
-  const e = $$1;
-  const f = $$2;
+const b = function $free($$0,$$1,$$2 ) {
+  const c = $$0;
+  const d = $$1;
+  const e = $$2;
   debugger;
-  const g = d + e;
-  const h = g / f;
-  return h;
+  const f = c + d;
+  const g = f / e;
+  return g;
 };
-const i = function($$0 ) {
-  const j = $$0;
+const h = function($$0 ) {
+  const i = $$0;
   debugger;
-  $( j );
-  $( j );
-  $( j );
+  $( i );
+  $( i );
+  $( i );
   return undefined;
 };
-const k = a * 1;
-const l = a * 2;
-const m = a * 3;
-const n = o( b, k, l, m );
-i( n );
-const p = n + 5;
-$( p );
-const q = a - 1;
-const r = a - 2;
-const s = a - 3;
-const t = o( b, q, r, s );
-i( t );
-const u = t + 5;
-$( u );
+const j = a * 1;
+const k = a * 2;
+const l = a * 3;
+const m = n( b, j, k, l );
+h( m );
+const o = m + 5;
+$( o );
+const p = a - 1;
+const q = a - 2;
+const r = a - 3;
+const s = n( b, p, q, r );
+h( s );
+const t = s + 5;
+$( t );
 `````
 
 

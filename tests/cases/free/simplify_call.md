@@ -86,29 +86,29 @@ $(`thend`);
 With rename=true
 
 `````js filename=intro
-const a = function b($$0 ) {
-  const c = $$0;
+const a = function $free($$0 ) {
+  const b = $$0;
   debugger;
+  const c = -b;
   const d = -c;
-  const e = -d;
-  return e;
+  return d;
 };
-const f = [ "a", "b" ];
+const e = [ "a", "b" ];
 try {
-  const g = $( 824 );
-  const h = $Number_parseInt( g );
-  const i = j( a, h );
-  if (i) {
+  const f = $( 824 );
+  const g = $Number_parseInt( f );
+  const h = i( a, g );
+  if (h) {
 
   }
   else {
-    const k = $dotCall( $array_shift, f, "shift" );
-    $dotCall( $array_push, f, "push", k );
+    const j = $dotCall( $array_shift, e, "shift" );
+    $dotCall( $array_push, e, "push", j );
   }
 }
-catch (l) {
-  const m = $dotCall( $array_shift, f, "shift" );
-  $dotCall( $array_push, f, "push", m );
+catch (k) {
+  const l = $dotCall( $array_shift, e, "shift" );
+  $dotCall( $array_push, e, "push", l );
 }
 $( "thend" );
 `````

@@ -111,13 +111,13 @@ else {
 }
 const g = c <= 0;
 if (g) {
-  a = function h() {
+  a = function $pcompiled() {
     debugger;
     return undefined;
   };
 }
-const i = c <= 1;
-if (i) {
+const h = c <= 1;
+if (h) {
   $( "fail1" );
   $( "fail2" );
   $( a );

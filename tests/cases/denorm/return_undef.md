@@ -56,12 +56,12 @@ $(function () {
 With rename=true
 
 `````js filename=intro
-const a = function b() {
+const a = function $pcompiled() {
   debugger;
   return undefined;
 };
 $( a );
-const c = function() {
+const b = function() {
   debugger;
   if (x) {
     $( 1 );
@@ -72,7 +72,7 @@ const c = function() {
     return undefined;
   }
 };
-$( c );
+$( b );
 `````
 
 

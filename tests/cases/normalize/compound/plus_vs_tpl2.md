@@ -73,16 +73,16 @@ $(tmpFree(String(spy), tmpStringConcatL));
 With rename=true
 
 `````js filename=intro
-const a = function b($$0,$$1 ) {
-  const c = $$0;
-  const d = $$1;
+const a = function $free($$0,$$1 ) {
+  const b = $$0;
+  const c = $$1;
   debugger;
-  const e = `a${d}`;
-  const f = `a${c}`;
-  const g = e === f;
-  return g;
+  const d = `a${c}`;
+  const e = `a${b}`;
+  const f = d === e;
+  return f;
 };
-const h = {
+const g = {
   valueOf(  ) {
     debugger;
     return "a";
@@ -92,10 +92,10 @@ const h = {
     return "b";
   },
 };
-const i = $coerce( h, "plustr" );
-const j = $coerce( h, "string" );
-const k = l( a, j, i );
-$( k );
+const h = $coerce( g, "plustr" );
+const i = $coerce( g, "string" );
+const j = k( a, i, h );
+$( j );
 `````
 
 

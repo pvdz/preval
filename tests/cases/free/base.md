@@ -80,27 +80,27 @@ $(i);
 With rename=true
 
 `````js filename=intro
-const a = function b($$0 ) {
-  const c = $$0;
+const a = function $free($$0 ) {
+  const b = $$0;
   debugger;
-  const d = $Math_pow( c, 2 );
-  const e = d / 2;
-  const f = $coerce( e, "string" );
-  return f;
+  const c = $Math_pow( b, 2 );
+  const d = c / 2;
+  const e = $coerce( d, "string" );
+  return e;
 };
-let g = 0;
+let f = 0;
 while ($LOOP_NO_UNROLLS_LEFT) {
-  const h = $( g );
-  const i = h * 1;
-  const j = k( a, i );
-  $( g, j );
-  g = g + 1;
-  const l = g > 10;
-  if (l) {
+  const g = $( f );
+  const h = g * 1;
+  const i = j( a, h );
+  $( f, i );
+  f = f + 1;
+  const k = f > 10;
+  if (k) {
     break;
   }
 }
-$( g );
+$( f );
 `````
 
 

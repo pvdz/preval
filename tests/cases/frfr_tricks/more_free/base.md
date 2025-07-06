@@ -64,20 +64,20 @@ $(tmpFree(xs));
 With rename=true
 
 `````js filename=intro
-const a = function b($$0 ) {
-  const c = $$0;
+const a = function $free($$0 ) {
+  const b = $$0;
   debugger;
-  const d = c + 5;
-  const e = $dotCall( $string_slice, d, "slice", 1 );
-  const f = $dotCall( $string_repeat, e, "repeat", 2 );
-  return f;
+  const c = b + 5;
+  const d = $dotCall( $string_slice, c, "slice", 1 );
+  const e = $dotCall( $string_repeat, d, "repeat", 2 );
+  return e;
 };
-const g = $( "x" );
-const h = $coerce( g, "plustr" );
-const i = $( "y" );
-$coerce( i, "plustr" );
-const j = k( a, h );
-$( j );
+const f = $( "x" );
+const g = $coerce( f, "plustr" );
+const h = $( "y" );
+$coerce( h, "plustr" );
+const i = j( a, g );
+$( i );
 `````
 
 

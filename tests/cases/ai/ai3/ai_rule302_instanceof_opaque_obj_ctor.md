@@ -47,15 +47,15 @@ $(`result`, obj instanceof $(`Ctor`, MyClass));
 With rename=true
 
 `````js filename=intro
-const a = function b() {
+const a = function $pcompiled() {
   debugger;
   return undefined;
 };
-const c = new a();
-const d = $( "obj", c );
-const e = $( "Ctor", a );
-const f = d instanceof e;
-$( "result", f );
+const b = new a();
+const c = $( "obj", b );
+const d = $( "Ctor", a );
+const e = c instanceof d;
+$( "result", e );
 `````
 
 

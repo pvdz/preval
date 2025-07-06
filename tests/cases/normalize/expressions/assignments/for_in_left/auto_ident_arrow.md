@@ -78,12 +78,12 @@ while ($LOOP_NO_UNROLLS_LEFT) {
     break;
   }
   else {
-    a = function g() {
+    a = function $pcompiled() {
       debugger;
       return undefined;
     };
-    const h = e.value;
-    a.x = h;
+    const g = e.value;
+    a.x = g;
   }
 }
 $( a );

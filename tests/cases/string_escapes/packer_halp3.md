@@ -320,102 +320,102 @@ $(
 With rename=true
 
 `````js filename=intro
-const a = function b($$0 ) {
-  const c = $$0;
+const a = function $free($$0 ) {
+  const b = $$0;
   debugger;
-  const d = c + 29;
-  const e = $String_fromCharCode( d );
-  return e;
+  const c = b + 29;
+  const d = $String_fromCharCode( c );
+  return d;
 };
-const f = function b($$0 ) {
-  const g = $$0;
+const e = function $free($$0 ) {
+  const f = $$0;
   debugger;
-  const h = g / 52;
-  const i = $Number_parseInt( h );
-  return i;
+  const g = f / 52;
+  const h = $Number_parseInt( g );
+  return h;
 };
-const j = {};
-let k = function($$0 ) {
-  const l = $$0;
+const i = {};
+let j = function($$0 ) {
+  const k = $$0;
   debugger;
-  let m = "";
-  const n = l < 52;
-  if (n) {
+  let l = "";
+  const m = k < 52;
+  if (m) {
 
   }
   else {
-    const o = p( f, l );
-    m = k( o );
+    const n = o( e, k );
+    l = j( n );
   }
-  const q = l % 52;
-  const r = q > 35;
-  if (r) {
-    const s = p( a, q );
-    const t = m + s;
-    return t;
+  const p = k % 52;
+  const q = p > 35;
+  if (q) {
+    const r = o( a, p );
+    const s = l + r;
+    return s;
   }
   else {
-    const u = $dotCall( $number_toString, q, "toString", 36 );
-    const v = m + u;
-    return v;
+    const t = $dotCall( $number_toString, p, "toString", 36 );
+    const u = l + t;
+    return u;
   }
 };
-const w = k( 51 );
-j[w] = "not_expr";
-const x = k( 50 );
-j[x] = "u0020g";
-const y = k( 49 );
-j[y] = "x20f";
-const z = k( 48 );
-j[z] = "10";
-const ba = k( 47 );
-j[ba] = "toString";
-const bb = k( 46 );
-j[bb] = "split";
-const bc = k( 45 );
-j[bc] = "36";
-const bd = k( 44 );
-j[bd] = "RegExp";
-const be = k( 43 );
-j[be] = "new";
-const bf = k( 42 );
-j[bf] = "String";
-let bg = 41;
-const bh = k( 41 );
-j[bh] = "eval";
-const bi = [ undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "function", "return", "if", "replace", "while", "eval", "String", "new", "RegExp", "36", "split", "toString", "10", "x20f", "u0020g", "not_expr" ];
+const v = j( 51 );
+i[v] = "not_expr";
+const w = j( 50 );
+i[w] = "u0020g";
+const x = j( 49 );
+i[x] = "x20f";
+const y = j( 48 );
+i[y] = "10";
+const z = j( 47 );
+i[z] = "toString";
+const ba = j( 46 );
+i[ba] = "split";
+const bb = j( 45 );
+i[bb] = "36";
+const bc = j( 44 );
+i[bc] = "RegExp";
+const bd = j( 43 );
+i[bd] = "new";
+const be = j( 42 );
+i[be] = "String";
+let bf = 41;
+const bg = j( 41 );
+i[bg] = "eval";
+const bh = [ undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "function", "return", "if", "replace", "while", "eval", "String", "new", "RegExp", "36", "split", "toString", "10", "x20f", "u0020g", "not_expr" ];
 while ($LOOP_NO_UNROLLS_LEFT) {
-  const bj = bg;
-  bg = bg - 1;
-  if (bj) {
-    const bk = k( bg );
-    let bl = bi[ bg ];
-    if (bl) {
+  const bi = bf;
+  bf = bf - 1;
+  if (bi) {
+    const bj = j( bf );
+    let bk = bh[ bf ];
+    if (bk) {
 
     }
     else {
-      bl = k( bg );
+      bk = j( bf );
     }
-    j[bk] = bl;
+    i[bj] = bk;
   }
   else {
     break;
   }
 }
-const bm = function($$0 ) {
-  const bn = $$0;
+const bl = function($$0 ) {
+  const bm = $$0;
   debugger;
-  const bo = j[ bn ];
-  return bo;
+  const bn = i[ bm ];
+  return bn;
 };
-k = function bp() {
+j = function $pcompiled() {
   debugger;
   return "\\w+";
 };
-const bq = new $regex_constructor( "\\b\\w+\\b", "g" );
-const br = $dotCall( $string_replace, "F(A(p,a,c,k,e,r){e=A(c){B c.L(a)};C(!''.D(/^/,G)){E(c--)r[e(c)]=k[c]||e(c);k=[A(e){B r[e]}];e=A(){B'\\\\w+'};c=1};E(c--)C(k[c])p=p.D(H I('\\\\b'+e(c)+'\\\\b','g'),k[c]);B p}('s(f(p,a,c,k,e,r){e=l;m(!\\'\\'.n(/^/,l)){o(c--)r[c]=k[c]||c;k=[f(e){j r[e]}];e=f(){j\\'\\\\\\\\w+\\'};c=1};o(c--)m(k[c])p=p.n(t u(\\'\\\\\\\\b\\'+e(c)+\\'\\\\\\\\b\\',\\'g\\'),k[c]);j p}(\\'\"0\\\\\\\\`1\\\\\\\\\"2\\\\\\\\\\\\\\'3\\\\\\\\\\\\\\\\4\\\\\\\\5\\\\\\\\6${7}8\\\\\\\\/9\"\\',q,q,\\'a|b|c|d|e|v|x|y|h|i\\'.z(\\'|\\'),0,{}))',J,J,'|||||||||||||||A||||B||G|C|D|E||M||F|H|I|N||O|P|K'.K('|'),0,{}))", "replace", bq, bm );
-const bs = eval( br );
-$( bs );
+const bo = new $regex_constructor( "\\b\\w+\\b", "g" );
+const bp = $dotCall( $string_replace, "F(A(p,a,c,k,e,r){e=A(c){B c.L(a)};C(!''.D(/^/,G)){E(c--)r[e(c)]=k[c]||e(c);k=[A(e){B r[e]}];e=A(){B'\\\\w+'};c=1};E(c--)C(k[c])p=p.D(H I('\\\\b'+e(c)+'\\\\b','g'),k[c]);B p}('s(f(p,a,c,k,e,r){e=l;m(!\\'\\'.n(/^/,l)){o(c--)r[c]=k[c]||c;k=[f(e){j r[e]}];e=f(){j\\'\\\\\\\\w+\\'};c=1};o(c--)m(k[c])p=p.n(t u(\\'\\\\\\\\b\\'+e(c)+\\'\\\\\\\\b\\',\\'g\\'),k[c]);j p}(\\'\"0\\\\\\\\`1\\\\\\\\\"2\\\\\\\\\\\\\\'3\\\\\\\\\\\\\\\\4\\\\\\\\5\\\\\\\\6${7}8\\\\\\\\/9\"\\',q,q,\\'a|b|c|d|e|v|x|y|h|i\\'.z(\\'|\\'),0,{}))',J,J,'|||||||||||||||A||||B||G|C|D|E||M||F|H|I|N||O|P|K'.K('|'),0,{}))", "replace", bo, bl );
+const bq = eval( bp );
+$( bq );
 `````
 
 

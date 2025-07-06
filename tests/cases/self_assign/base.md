@@ -87,15 +87,15 @@ With rename=true
 let a = function() {
   debugger;
   $();
-  a = function b() {
+  a = function $pcompiled() {
     debugger;
     return undefined;
   };
   $();
   return undefined;
 };
-const c = a();
-$( c );
+const b = a();
+$( b );
 `````
 
 

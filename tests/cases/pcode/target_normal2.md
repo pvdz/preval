@@ -145,57 +145,57 @@ $(pcode(2));
 With rename=true
 
 `````js filename=intro
-const a = function b($$0,$$1 ) {
-  const c = $$0;
-  const d = $$1;
+const a = function $free($$0,$$1 ) {
+  const b = $$0;
+  const c = $$1;
   debugger;
-  const e = $dotCall( $number_toString, c, "toString", 36 );
-  const f = `${d}${e}`;
-  return f;
+  const d = $dotCall( $number_toString, b, "toString", 36 );
+  const e = `${c}${d}`;
+  return e;
 };
-const g = function b($$0,$$1 ) {
-  const h = $$0;
-  const i = $$1;
+const f = function $free($$0,$$1 ) {
+  const g = $$0;
+  const h = $$1;
   debugger;
-  const j = h + 29;
-  const k = $String_fromCharCode( j );
-  const l = `${i}${k}`;
-  return l;
+  const i = g + 29;
+  const j = $String_fromCharCode( i );
+  const k = `${h}${j}`;
+  return k;
 };
-const m = function b($$0 ) {
-  const n = $$0;
+const l = function $free($$0 ) {
+  const m = $$0;
   debugger;
-  const o = n / 62;
-  const p = $Number_parseInt( o );
-  return p;
+  const n = m / 62;
+  const o = $Number_parseInt( n );
+  return o;
 };
-const q = function($$0 ) {
-  const r = $$0;
+const p = function($$0 ) {
+  const q = $$0;
   debugger;
-  let s = "";
-  const t = r < 62;
-  if (t) {
+  let r = "";
+  const s = q < 62;
+  if (s) {
 
   }
   else {
-    const u = v( m, r );
-    s = q( u );
+    const t = u( l, q );
+    r = p( t );
   }
-  const w = r % 62;
-  const x = w > 35;
-  if (x) {
-    const y = v( g, w, s );
-    return y;
+  const v = q % 62;
+  const w = v > 35;
+  if (w) {
+    const x = u( f, v, r );
+    return x;
   }
   else {
-    const z = v( a, w, s );
-    return z;
+    const y = u( a, v, r );
+    return y;
   }
 };
-const ba = q( 1 );
+const z = p( 1 );
+$( z );
+const ba = p( 2 );
 $( ba );
-const bb = q( 2 );
-$( bb );
 `````
 
 

@@ -46,14 +46,14 @@ $($($Math_max(5, { valueOf: tmpObjLitVal })));
 With rename=true
 
 `````js filename=intro
-const a = function b() {
+const a = function $pcompiled() {
   debugger;
   return 10;
 };
-const c = { valueOf: a };
-const d = $Math_max( 5, c );
-const e = $( d );
-$( e );
+const b = { valueOf: a };
+const c = $Math_max( 5, b );
+const d = $( c );
+$( d );
 `````
 
 

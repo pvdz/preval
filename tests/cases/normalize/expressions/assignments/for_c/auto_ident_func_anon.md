@@ -62,7 +62,7 @@ let a = {
 while (true) {
   const b = $( 1 );
   if (b) {
-    a = function c() {
+    a = function $pcompiled() {
       debugger;
       return undefined;
     };

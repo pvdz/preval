@@ -81,29 +81,29 @@ export { f };
 With rename=true
 
 `````js filename=intro
-const a = function b() {
+const a = function $pcompiled() {
   debugger;
   return undefined;
 };
-const c = 1;
-export { c as a };
-const d = 2;
-export { d as b };
-const e = class   {
+const b = 1;
+export { b as a };
+const c = 2;
+export { c as b };
+const d = class   {
 
 };
-export { e as X };
-const f = 1;
-export { f as g };
-const g = 2;
-export { g as i };
-const h = function b() {
+export { d as X };
+const e = 1;
+export { e as g };
+const f = 2;
+export { f as i };
+const g = function $pcompiled() {
   debugger;
   return undefined;
 };
-export { h as default };
-const i = 3;
-export { i as c };
+export { g as default };
+const h = 3;
+export { h as c };
 export { a as f };
 `````
 

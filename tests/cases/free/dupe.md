@@ -67,18 +67,18 @@ if (x) {
 With rename=true
 
 `````js filename=intro
-const a = function b($$0 ) {
-  const c = $$0;
+const a = function $free($$0 ) {
+  const b = $$0;
   debugger;
-  const d = c & 48;
-  const e = d === 48;
-  return e;
+  const c = b & 48;
+  const d = c === 48;
+  return d;
 };
-const f = $spy( 1 );
-const g = +f;
-if (g) {
-  const h = i( a, g );
-  if (h) {
+const e = $spy( 1 );
+const f = +e;
+if (f) {
+  const g = h( a, f );
+  if (g) {
     $( "it is 58" );
   }
 }

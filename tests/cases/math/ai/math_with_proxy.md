@@ -53,16 +53,16 @@ With rename=true
 
 `````js filename=intro
 const a = Proxy;
-const b = function c() {
+const b = function $pcompiled() {
   debugger;
   return -42;
 };
-const d = { valueOf: b };
-const e = {};
-const f = new a( d, e );
-const g = $Math_abs( f );
-const h = $( g );
-$( h );
+const c = { valueOf: b };
+const d = {};
+const e = new a( c, d );
+const f = $Math_abs( e );
+const g = $( f );
+$( g );
 `````
 
 

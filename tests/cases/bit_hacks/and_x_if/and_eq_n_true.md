@@ -51,17 +51,17 @@ $(tmpFree(+tmpUnaryArg));
 With rename=true
 
 `````js filename=intro
-const a = function b($$0 ) {
-  const c = $$0;
+const a = function $free($$0 ) {
+  const b = $$0;
   debugger;
-  const d = c & 32768;
-  const e = $boolean_constructor( d );
-  return e;
+  const c = b & 32768;
+  const d = $boolean_constructor( c );
+  return d;
 };
-const f = $( 1 );
-const g = +f;
-const h = i( a, g );
-$( h );
+const e = $( 1 );
+const f = +e;
+const g = h( a, f );
+$( g );
 `````
 
 

@@ -65,22 +65,22 @@ With rename=true
 `````js filename=intro
 const a = {};
 const b = $( "ws_val1_obj", a );
-const c = function d() {
+const c = function $pcompiled() {
   debugger;
   return undefined;
 };
-const e = $( "ws_val2_obj", c );
-const f = [];
-const g = $( "ws_val3_obj", f );
-const h = [ b, e, g ];
-const i = $( "opaque_ws_iterable", h );
-const j = new WeakSet( i );
-const k = j.has;
-const l = $dotCall( k, j, "has", b );
-$( "weakset_constructed_has1", l );
-const m = j.has;
-const n = $dotCall( m, j, "has", e );
-$( "weakset_constructed_has2", n );
+const d = $( "ws_val2_obj", c );
+const e = [];
+const f = $( "ws_val3_obj", e );
+const g = [ b, d, f ];
+const h = $( "opaque_ws_iterable", g );
+const i = new WeakSet( h );
+const j = i.has;
+const k = $dotCall( j, i, "has", b );
+$( "weakset_constructed_has1", k );
+const l = i.has;
+const m = $dotCall( l, i, "has", d );
+$( "weakset_constructed_has2", m );
 `````
 
 

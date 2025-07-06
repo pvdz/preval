@@ -74,7 +74,7 @@ $( b );
 `````
 
 `````js filename=x
-const a = function b() {
+const a = function $pcompiled() {
   debugger;
   return 100;
 };

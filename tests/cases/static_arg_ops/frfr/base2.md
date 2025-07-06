@@ -115,38 +115,38 @@ $(tmpFrfrOutline$1 + 5);
 With rename=true
 
 `````js filename=intro
-const a = function b($$0,$$1,$$2 ) {
-  const c = $$0;
-  const d = $$1;
-  const e = $$2;
+const a = function $free($$0,$$1,$$2 ) {
+  const b = $$0;
+  const c = $$1;
+  const d = $$2;
   debugger;
-  const f = c + d;
-  const g = f / e;
-  return g;
+  const e = b + c;
+  const f = e / d;
+  return f;
 };
-const h = $( "50" );
-const i = function($$0 ) {
-  const j = $$0;
+const g = $( "50" );
+const h = function($$0 ) {
+  const i = $$0;
   debugger;
-  $( j );
-  $( j );
-  $( j );
+  $( i );
+  $( i );
+  $( i );
   return undefined;
 };
-const k = h * 1;
-const l = h * 2;
-const m = h * 3;
-const n = o( a, k, l, m );
-i( n );
-const p = n + 5;
-$( p );
-const q = h - 1;
-const r = h - 2;
-const s = h - 3;
-const t = o( a, q, r, s );
-i( t );
-const u = t + 5;
-$( u );
+const j = g * 1;
+const k = g * 2;
+const l = g * 3;
+const m = n( a, j, k, l );
+h( m );
+const o = m + 5;
+$( o );
+const p = g - 1;
+const q = g - 2;
+const r = g - 3;
+const s = n( a, p, q, r );
+h( s );
+const t = s + 5;
+$( t );
 `````
 
 

@@ -1025,101 +1025,101 @@ $(DECODER_FUNC());
 With rename=true
 
 `````js filename=intro
-const a = function b($$0,$$1,$$2 ) {
-  const c = $$0;
-  const d = $$1;
-  const e = $$2;
+const a = function $free($$0,$$1,$$2 ) {
+  const b = $$0;
+  const c = $$1;
+  const d = $$2;
   debugger;
-  const f = e % 4;
-  const g = $dotCall( $string_charCodeAt, "s6T^", "charCodeAt", f );
-  const h = c + d;
-  const i = h + g;
-  return i;
+  const e = d % 4;
+  const f = $dotCall( $string_charCodeAt, "s6T^", "charCodeAt", e );
+  const g = b + c;
+  const h = g + f;
+  return h;
 };
-const j = function b($$0,$$1 ) {
-  const k = $$0;
-  const l = $$1;
+const i = function $free($$0,$$1 ) {
+  const j = $$0;
+  const k = $$1;
   debugger;
-  const m = k ^ l;
-  const n = $String_fromCharCode( m );
-  return n;
+  const l = j ^ k;
+  const m = $String_fromCharCode( l );
+  return m;
 };
-const o = function b($$0 ) {
-  const p = $$0;
+const n = function $free($$0 ) {
+  const o = $$0;
   debugger;
-  const q = p + 10;
-  const r = $dotCall( $string_charCodeAt, "function(){}", "charCodeAt", q );
-  const s = r - 10;
-  const t = s === 0;
-  return t;
+  const p = o + 10;
+  const q = $dotCall( $string_charCodeAt, "function(){}", "charCodeAt", p );
+  const r = q - 10;
+  const s = r === 0;
+  return s;
 };
-const u = function b($$0,$$1 ) {
-  const v = $$0;
-  const w = $$1;
+const t = function $free($$0,$$1 ) {
+  const u = $$0;
+  const v = $$1;
   debugger;
-  const x = $dotCall( $string_charCodeAt, v, "charCodeAt", w );
-  const y = $dotCall( $number_toString, x, "toString", 16 );
-  const z = `00${y}`;
-  const ba = $dotCall( $string_slice, z, "slice", -2 );
-  return ba;
+  const w = $dotCall( $string_charCodeAt, u, "charCodeAt", v );
+  const x = $dotCall( $number_toString, w, "toString", 16 );
+  const y = `00${x}`;
+  const z = $dotCall( $string_slice, y, "slice", -2 );
+  return z;
 };
-const bb = function b($$0,$$1 ) {
-  const bc = $$0;
-  const bd = $$1;
+const ba = function $free($$0,$$1 ) {
+  const bb = $$0;
+  const bc = $$1;
   debugger;
-  const be = -2 * bc;
-  const bf = be & 6;
-  const bg = bd >> bf;
-  const bh = 255 & bg;
-  return bh;
+  const bd = -2 * bb;
+  const be = bd & 6;
+  const bf = bc >> be;
+  const bg = 255 & bf;
+  return bg;
 };
-const bi = function b($$0,$$1 ) {
-  const bj = $$0;
-  const bk = $$1;
+const bh = function $free($$0,$$1 ) {
+  const bi = $$0;
+  const bj = $$1;
   debugger;
-  const bl = bj + bk;
-  const bm = bl % 256;
-  return bm;
+  const bk = bi + bj;
+  const bl = bk % 256;
+  return bl;
 };
-const bn = function() {
+const bm = function() {
   debugger;
-  let bo = 0;
+  let bn = 0;
+  let bo = "";
   let bp = "";
   let bq = "";
-  let br = "";
-  let bs = 0;
-  let bt = undefined;
-  let bu = 0;
+  let br = 0;
+  let bs = undefined;
+  let bt = 0;
   while (true) {
-    const bv = bu;
-    bu = bu + 1;
-    const bw = $dotCall( $string_charAt, "W6CVcEg5HSka", "charAt", bv );
-    if (bw) {
-      const bx = $dotCall( $string_indexOf, "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/=", "indexOf", bw );
-      const by = ~bx;
-      if (by) {
-        const bz = bs % 4;
-        if (bz) {
-          const ca = bt * 64;
-          bt = ca + bx;
+    const bu = bt;
+    bt = bt + 1;
+    const bv = $dotCall( $string_charAt, "W6CVcEg5HSka", "charAt", bu );
+    if (bv) {
+      const bw = $dotCall( $string_indexOf, "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/=", "indexOf", bv );
+      const bx = ~bw;
+      if (bx) {
+        const by = br % 4;
+        if (by) {
+          const bz = bs * 64;
+          bs = bz + bw;
         }
         else {
-          bt = bx;
+          bs = bw;
         }
-        const cb = bs;
-        bs = bs + 1;
-        const cc = cb % 4;
-        if (cc) {
-          let cd = undefined;
-          const ce = cf( o, bu );
-          if (ce) {
-            cd = bs;
+        const ca = br;
+        br = br + 1;
+        const cb = ca % 4;
+        if (cb) {
+          let cc = undefined;
+          const cd = ce( n, bt );
+          if (cd) {
+            cc = br;
           }
           else {
-            const cg = cf( bb, bs, bt );
-            cd = $String_fromCharCode( cg );
+            const cf = ce( ba, br, bs );
+            cc = $String_fromCharCode( cf );
           }
-          bq = bq + cd;
+          bp = bp + cc;
         }
       }
     }
@@ -1127,75 +1127,75 @@ const bn = function() {
       break;
     }
   }
-  let ch = 0;
-  const ci = bq.length;
+  let cg = 0;
+  const ch = bp.length;
   while (true) {
-    const cj = ch < ci;
-    if (cj) {
-      const ck = cf( u, bq, ch );
-      br = `${br}%${ck}`;
-      ch = ch + 1;
+    const ci = cg < ch;
+    if (ci) {
+      const cj = ce( t, bp, cg );
+      bq = `${bq}%${cj}`;
+      cg = cg + 1;
     }
     else {
       break;
     }
   }
-  const cl = decodeURIComponent( br );
-  let cm = 0;
-  const cn = [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 247, 248, 249, 250, 251, 252, 253, 254, 255 ];
+  const ck = decodeURIComponent( bq );
+  let cl = 0;
+  const cm = [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 247, 248, 249, 250, 251, 252, 253, 254, 255 ];
   while (true) {
-    const co = cm < 256;
-    if (co) {
-      const cp = cn[ cm ];
-      const cq = cf( a, bo, cp, cm );
-      bo = cq % 256;
-      const cr = cn[ cm ];
-      const cs = cn[ bo ];
-      cn[cm] = cs;
-      cn[bo] = cr;
-      cm = cm + 1;
+    const cn = cl < 256;
+    if (cn) {
+      const co = cm[ cl ];
+      const cp = ce( a, bn, co, cl );
+      bn = cp % 256;
+      const cq = cm[ cl ];
+      const cr = cm[ bn ];
+      cm[cl] = cr;
+      cm[bn] = cq;
+      cl = cl + 1;
     }
     else {
       break;
     }
   }
+  let cs = 0;
   let ct = 0;
   let cu = 0;
-  let cv = 0;
   while (true) {
-    const cw = cl.length;
-    const cx = cv < cw;
-    if (cx) {
-      const cy = ct + 1;
-      ct = cy % 256;
-      const cz = cn[ ct ];
-      const da = cu + cz;
-      cu = da % 256;
-      const db = cn[ ct ];
-      const dc = cn[ cu ];
-      cn[ct] = dc;
-      cn[cu] = db;
-      const dd = $dotCall( $string_charCodeAt, cl, "charCodeAt", cv );
-      const de = cn[ ct ];
-      const df = cn[ cu ];
-      const dg = cf( bi, de, df );
-      const dh = cn[ dg ];
-      const di = cf( j, dd, dh );
-      bp = `${bp}${di}`;
-      cv = cv + 1;
+    const cv = ck.length;
+    const cw = cu < cv;
+    if (cw) {
+      const cx = cs + 1;
+      cs = cx % 256;
+      const cy = cm[ cs ];
+      const cz = ct + cy;
+      ct = cz % 256;
+      const da = cm[ cs ];
+      const db = cm[ ct ];
+      cm[cs] = db;
+      cm[ct] = da;
+      const dc = $dotCall( $string_charCodeAt, ck, "charCodeAt", cu );
+      const dd = cm[ cs ];
+      const de = cm[ ct ];
+      const df = ce( bh, dd, de );
+      const dg = cm[ df ];
+      const dh = ce( i, dc, dg );
+      bo = `${bo}${dh}`;
+      cu = cu + 1;
     }
     else {
       break;
     }
   }
-  return bp;
+  return bo;
 };
-const dj = bn();
+const di = bm();
+$( di );
+const dj = bm();
 $( dj );
-const dk = bn();
+const dk = bm();
 $( dk );
-const dl = bn();
-$( dl );
 `````
 
 

@@ -71,22 +71,22 @@ const a = {
   b: 2,
 };
 const b = $( "getObject", a );
-const c = function d() {
+const c = function $pcompiled() {
   debugger;
   return "a";
 };
-const e = $( "getPropName", c );
-const f = e();
-const g = f in b;
-$( "final_result", g );
-const h = function d() {
+const d = $( "getPropName", c );
+const e = d();
+const f = e in b;
+$( "final_result", f );
+const g = function $pcompiled() {
   debugger;
   return "c";
 };
-const i = $( "getNonExistPropName", h );
-const j = i();
-const k = j in b;
-$( "final_result2", k );
+const h = $( "getNonExistPropName", g );
+const i = h();
+const j = i in b;
+$( "final_result2", j );
 `````
 
 

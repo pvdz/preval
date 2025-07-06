@@ -45,17 +45,17 @@ $(tmpClusterSSA_a);
 With rename=true
 
 `````js filename=intro
-const a = function b() {
+const a = function $pcompiled() {
   debugger;
   return undefined;
 };
-const c = {
+const b = {
   a: 999,
   b: 1000,
 };
-const d = c * a;
-$( d );
-$( d );
+const c = b * a;
+$( c );
+$( c );
 `````
 
 

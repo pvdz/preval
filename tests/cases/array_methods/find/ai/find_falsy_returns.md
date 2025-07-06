@@ -53,13 +53,13 @@ With rename=true
 const a = [ 0, "", false, null, undefined, 1 ];
 const b = $( a );
 const c = b.find;
-const d = function e($$0 ) {
-  const f = $$0;
+const d = function $pcompiled($$0 ) {
+  const e = $$0;
   debugger;
-  return f;
+  return e;
 };
-const g = $dotCall( c, b, "find", d );
-$( g );
+const f = $dotCall( c, b, "find", d );
+$( f );
 `````
 
 

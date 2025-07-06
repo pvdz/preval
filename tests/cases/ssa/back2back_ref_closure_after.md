@@ -65,7 +65,7 @@ With rename=true
 
 `````js filename=intro
 if ($) {
-  const a = function b() {
+  const a = function $pcompiled() {
     debugger;
     return undefined;
   };

@@ -45,13 +45,13 @@ $dotCall($Object_prototype.g, { f: g }, `g`);
 With rename=true
 
 `````js filename=intro
-const a = function b() {
+const a = function $pcompiled() {
   debugger;
   return "win";
 };
-const c = $Object_prototype.g;
-const d = { f: a };
-$dotCall( c, d, "g" );
+const b = $Object_prototype.g;
+const c = { f: a };
+$dotCall( b, c, "g" );
 `````
 
 

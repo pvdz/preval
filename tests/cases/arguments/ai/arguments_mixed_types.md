@@ -132,13 +132,13 @@ const a = function() {
   $( 8, e );
   return undefined;
 };
-const u = function v() {
+const u = function $pcompiled() {
   debugger;
   return undefined;
 };
-const w = {};
-const x = [];
-a( "string", 42, true, null, undefined, w, x, u );
+const v = {};
+const w = [];
+a( "string", 42, true, null, undefined, v, w, u );
 `````
 
 

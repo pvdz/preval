@@ -55,19 +55,19 @@ $($($Math_max(tmpArrElement, { valueOf: tmpObjLitVal$1 })));
 With rename=true
 
 `````js filename=intro
-const a = function b() {
+const a = function $pcompiled() {
   debugger;
   return 3;
 };
-const c = function b() {
+const b = function $pcompiled() {
   debugger;
   return 7;
 };
-const d = { valueOf: a };
-const e = { valueOf: c };
-const f = $Math_max( d, e );
-const g = $( f );
-$( g );
+const c = { valueOf: a };
+const d = { valueOf: b };
+const e = $Math_max( c, d );
+const f = $( e );
+$( f );
 `````
 
 

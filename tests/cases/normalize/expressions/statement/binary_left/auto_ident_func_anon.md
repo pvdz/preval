@@ -43,17 +43,17 @@ $({ a: 999, b: 1000 });
 With rename=true
 
 `````js filename=intro
-const a = function b() {
+const a = function $pcompiled() {
   debugger;
   return undefined;
 };
-const c = $( 100 );
-a + c;
-const d = {
+const b = $( 100 );
+a + b;
+const c = {
   a: 999,
   b: 1000,
 };
-$( d );
+$( c );
 `````
 
 

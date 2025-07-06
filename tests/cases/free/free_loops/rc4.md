@@ -771,99 +771,99 @@ $(rc4(`dcGC`, `nJW9W5Ke`));
 With rename=true
 
 `````js filename=intro
-const a = function b($$0,$$1,$$2,$$3 ) {
-  const c = $$0;
-  const d = $$1;
-  const e = $$2;
-  const f = $$3;
+const a = function $free($$0,$$1,$$2,$$3 ) {
+  const b = $$0;
+  const c = $$1;
+  const d = $$2;
+  const e = $$3;
   debugger;
-  const g = c % d;
-  const h = $dotCall( $string_charCodeAt, e, "charCodeAt", g );
-  const i = f + h;
-  return i;
+  const f = b % c;
+  const g = $dotCall( $string_charCodeAt, d, "charCodeAt", f );
+  const h = e + g;
+  return h;
 };
-const j = function b($$0,$$1 ) {
-  const k = $$0;
-  const l = $$1;
+const i = function $free($$0,$$1 ) {
+  const j = $$0;
+  const k = $$1;
   debugger;
-  const m = k + l;
-  const n = m % 256;
-  return n;
+  const l = j + k;
+  const m = l % 256;
+  return m;
 };
-const o = function b($$0,$$1 ) {
-  const p = $$0;
-  const q = $$1;
+const n = function $free($$0,$$1 ) {
+  const o = $$0;
+  const p = $$1;
   debugger;
-  const r = p ^ q;
-  const s = $String_fromCharCode( r );
-  return s;
+  const q = o ^ p;
+  const r = $String_fromCharCode( q );
+  return r;
 };
-const t = function($$0,$$1 ) {
-  const u = $$0;
-  const v = $$1;
+const s = function($$0,$$1 ) {
+  const t = $$0;
+  const u = $$1;
   debugger;
+  let v = 0;
   let w = 0;
-  let x = 0;
-  const y = [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 247, 248, 249, 250, 251, 252, 253, 254, 255 ];
+  const x = [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 247, 248, 249, 250, 251, 252, 253, 254, 255 ];
   while (true) {
-    const z = x < 256;
-    if (z) {
-      const ba = y[ x ];
-      const bb = w + ba;
-      const bc = u.length;
-      const bd = be( a, x, bc, u, bb );
-      w = bd % 256;
-      const bf = y[ x ];
-      const bg = y[ w ];
-      y[x] = bg;
-      y[w] = bf;
-      x = x + 1;
+    const y = w < 256;
+    if (y) {
+      const z = x[ w ];
+      const ba = v + z;
+      const bb = t.length;
+      const bc = bd( a, w, bb, t, ba );
+      v = bc % 256;
+      const be = x[ w ];
+      const bf = x[ v ];
+      x[w] = bf;
+      x[v] = be;
+      w = w + 1;
     }
     else {
       break;
     }
   }
-  let bh = "";
+  let bg = "";
+  let bh = 0;
   let bi = 0;
   let bj = 0;
-  let bk = 0;
   while (true) {
-    const bl = atob( v );
-    const bm = bl.length;
-    const bn = bk < bm;
-    if (bn) {
-      const bo = bi + 1;
-      bi = bo % 256;
-      const bp = y[ bi ];
-      const bq = bj + bp;
-      bj = bq % 256;
-      const br = y[ bi ];
-      const bs = y[ bj ];
-      y[bi] = bs;
-      y[bj] = br;
-      const bt = $dotCall( $string_charCodeAt, bl, "charCodeAt", bk );
-      const bu = y[ bi ];
-      const bv = y[ bj ];
-      const bw = be( j, bu, bv );
-      const bx = y[ bw ];
-      const by = be( o, bt, bx );
-      bh = `${bh}${by}`;
-      bk = bk + 1;
+    const bk = atob( u );
+    const bl = bk.length;
+    const bm = bj < bl;
+    if (bm) {
+      const bn = bh + 1;
+      bh = bn % 256;
+      const bo = x[ bh ];
+      const bp = bi + bo;
+      bi = bp % 256;
+      const bq = x[ bh ];
+      const br = x[ bi ];
+      x[bh] = br;
+      x[bi] = bq;
+      const bs = $dotCall( $string_charCodeAt, bk, "charCodeAt", bj );
+      const bt = x[ bh ];
+      const bu = x[ bi ];
+      const bv = bd( i, bt, bu );
+      const bw = x[ bv ];
+      const bx = bd( n, bs, bw );
+      bg = `${bg}${bx}`;
+      bj = bj + 1;
     }
     else {
       break;
     }
   }
-  return bh;
+  return bg;
 };
-const bz = t( "s6T^", "W4bWW6pcPSoU" );
+const by = s( "s6T^", "W4bWW6pcPSoU" );
+$( by );
+const bz = s( "eZDG", "WQNcNaOVnG" );
 $( bz );
-const ca = t( "eZDG", "WQNcNaOVnG" );
+const ca = s( "yfRM", "aaddP0j+" );
 $( ca );
-const cb = t( "yfRM", "aaddP0j+" );
+const cb = s( "dcGC", "nJW9W5Ke" );
 $( cb );
-const cc = t( "dcGC", "nJW9W5Ke" );
-$( cc );
 `````
 
 

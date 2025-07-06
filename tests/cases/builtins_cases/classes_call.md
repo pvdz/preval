@@ -96,23 +96,23 @@ $( "Object:", b );
 const c = $date_constructor();
 const d = c.length;
 $( "Date:", d );
-const e = function f() {
+const e = function $pcompiled() {
   debugger;
   return undefined;
 };
 $( "Function:", e );
-const g = $regex_constructor( "(?:)", "" );
-$( "RegExp:", g );
-const h = $map_constructor();
-$( "Map:", h );
-const i = $set_constructor();
-$( "Set:", i );
-const j = $buffer_constructor();
-$( "Buffer:", j );
-const k = Math();
-$( "Math:", k );
-const l = JSON();
-$( "JSON:", l );
+const f = $regex_constructor( "(?:)", "" );
+$( "RegExp:", f );
+const g = $map_constructor();
+$( "Map:", g );
+const h = $set_constructor();
+$( "Set:", h );
+const i = $buffer_constructor();
+$( "Buffer:", i );
+const j = Math();
+$( "Math:", j );
+const k = JSON();
+$( "JSON:", k );
 `````
 
 

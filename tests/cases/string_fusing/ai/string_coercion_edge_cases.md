@@ -51,17 +51,17 @@ $(tmpFree(String($(`test`))));
 With rename=true
 
 `````js filename=intro
-const a = function b($$0 ) {
-  const c = $$0;
+const a = function $free($$0 ) {
+  const b = $$0;
   debugger;
-  const d = 42 + c;
-  const e = d + true;
-  return e;
+  const c = 42 + b;
+  const d = c + true;
+  return d;
 };
-const f = $( "test" );
-const g = $coerce( f, "string" );
-const h = i( a, g );
-$( h );
+const e = $( "test" );
+const f = $coerce( e, "string" );
+const g = h( a, f );
+$( g );
 `````
 
 

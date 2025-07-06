@@ -66,22 +66,22 @@ $(tmpFree$1($(120) / 12));
 With rename=true
 
 `````js filename=intro
-const a = function b($$0 ) {
-  const c = $$0;
+const a = function $free($$0 ) {
+  const b = $$0;
   debugger;
-  const d = $Math_pow( 2, c );
-  const e = 0 * d;
-  const f = e / 695;
-  const g = $Math_sin( f );
-  const h = 1000000 * g;
-  const i = $Math_min( 10000, h );
-  const j = $Math_max( -10000, i );
-  return j;
+  const c = $Math_pow( 2, b );
+  const d = 0 * c;
+  const e = d / 695;
+  const f = $Math_sin( e );
+  const g = 1000000 * f;
+  const h = $Math_min( 10000, g );
+  const i = $Math_max( -10000, h );
+  return i;
 };
-const k = $( 120 );
-const l = k / 12;
-const m = n( a, l );
-$( m );
+const j = $( 120 );
+const k = j / 12;
+const l = m( a, k );
+$( l );
 `````
 
 

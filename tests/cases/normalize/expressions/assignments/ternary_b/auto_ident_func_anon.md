@@ -57,7 +57,7 @@ With rename=true
 `````js filename=intro
 const a = $( 1 );
 if (a) {
-  const b = function c() {
+  const b = function $pcompiled() {
     debugger;
     return undefined;
   };
@@ -65,13 +65,13 @@ if (a) {
   $( b );
 }
 else {
-  const d = $( 200 );
-  $( d );
-  const e = {
+  const c = $( 200 );
+  $( c );
+  const d = {
     a: 999,
     b: 1000,
   };
-  $( e );
+  $( d );
 }
 `````
 

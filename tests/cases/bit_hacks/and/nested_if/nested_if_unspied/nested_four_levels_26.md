@@ -84,26 +84,26 @@ if (tmpFree$1(x)) {
 With rename=true
 
 `````js filename=intro
-const a = function b($$0 ) {
-  const c = $$0;
+const a = function $free($$0 ) {
+  const b = $$0;
   debugger;
-  const d = c & 10;
-  const e = d === 10;
-  return e;
+  const c = b & 10;
+  const d = c === 10;
+  return d;
 };
-const f = function b($$0 ) {
-  const g = $$0;
+const e = function $free($$0 ) {
+  const f = $$0;
   debugger;
-  const h = g & 48;
-  const i = h === 48;
-  return i;
+  const g = f & 48;
+  const h = g === 48;
+  return h;
 };
-const j = $spy( 26 );
-const k = +j;
-const l = m( a, k );
-if (l) {
-  const n = m( f, k );
-  if (n) {
+const i = $spy( 26 );
+const j = +i;
+const k = l( a, j );
+if (k) {
+  const m = l( e, j );
+  if (m) {
     $( "it is 58" );
   }
 }

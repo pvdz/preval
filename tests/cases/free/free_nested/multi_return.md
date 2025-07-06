@@ -84,29 +84,29 @@ $(g(x, $(200) * 1));
 With rename=true
 
 `````js filename=intro
-const a = function b($$0,$$1 ) {
-  const c = $$0;
-  const d = $$1;
+const a = function $free($$0,$$1 ) {
+  const b = $$0;
+  const c = $$1;
   debugger;
-  const e = c * 20;
-  const f = d * 40;
-  const g = e + f;
-  const h = g * 10;
-  const i = h > 40;
-  if (i) {
-    const j = h * 10;
-    return j;
+  const d = b * 20;
+  const e = c * 40;
+  const f = d + e;
+  const g = f * 10;
+  const h = g > 40;
+  if (h) {
+    const i = g * 10;
+    return i;
   }
   else {
-    return h;
+    return g;
   }
 };
-const k = $( 100 );
-const l = k * 1;
-const m = $( 200 );
-const n = m * 1;
-const o = p( a, l, n );
-$( o );
+const j = $( 100 );
+const k = j * 1;
+const l = $( 200 );
+const m = l * 1;
+const n = o( a, k, m );
+$( n );
 `````
 
 

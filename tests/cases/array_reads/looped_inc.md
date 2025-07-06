@@ -59,19 +59,19 @@ while (true) {
 With rename=true
 
 `````js filename=intro
-const a = function b($$0 ) {
-  const c = $$0;
+const a = function $free($$0 ) {
+  const b = $$0;
   debugger;
-  const d = $coerce( c, "number" );
-  const e = d + 1;
-  return e;
+  const c = $coerce( b, "number" );
+  const d = c + 1;
+  return d;
 };
-const f = [ 1, 2, 3 ];
+const e = [ 1, 2, 3 ];
 while ($LOOP_NO_UNROLLS_LEFT) {
-  const g = f[ 0 ];
-  const h = i( a, g );
-  f[0] = h;
-  $( h );
+  const f = e[ 0 ];
+  const g = h( a, f );
+  e[0] = g;
+  $( g );
 }
 `````
 

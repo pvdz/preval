@@ -250,71 +250,71 @@ const f = e.name;
 $( "assigned_named_name", f );
 $( "assigned_named_called" );
 $( "iife_called" );
-const g = function h() {
+const g = function $pcompiled() {
   debugger;
   return undefined;
 };
-const i = g.name;
-$( "iife_name", i );
-const j = function() {
+const h = g.name;
+$( "iife_name", h );
+const i = function() {
   debugger;
   $( "method_prop_called" );
   return undefined;
 };
-const k = function() {
+const j = function() {
   debugger;
   $( "arrow_prop_called" );
   return undefined;
 };
-const l = {
-  method_prop: j,
+const k = {
+  method_prop: i,
   shorthand_method(  ) {
     debugger;
     $( "shorthand_method_called" );
     return undefined;
   },
-  arrow_prop: k,
+  arrow_prop: j,
   get getter_prop() {
-    const m = this;
+    const l = this;
     debugger;
     $( "getter_name_check" );
-    const n = m._val;
-    return n;
+    const m = l._val;
+    return m;
   },
   set setter_prop( $$0 ) {
-    const o = this;
-    const p = $$0;
+    const n = this;
+    const o = $$0;
     debugger;
     $( "setter_name_check" );
-    o._val = p;
+    n._val = o;
     return undefined;
   },
 };
-const q = l.method_prop;
-const r = q.name;
-$( "method_prop_name", r );
-const s = l.shorthand_method;
-const t = s.name;
-$( "shorthand_method_name", t );
-const u = l.arrow_prop;
-const v = u.name;
-$( "arrow_prop_name", v );
-const w = l.method_prop;
-$dotCall( w, l, "method_prop" );
-const x = l.shorthand_method;
-$dotCall( x, l, "shorthand_method" );
-const y = $( "val_for_setter", 123 );
-l.setter_prop = y;
-const z = l.getter_prop;
-$( "getter_val_check", z );
-const ba = l.arrow_prop;
-$dotCall( ba, l, "arrow_prop" );
-const bb = {};
-const bc = $( "this_arg", bb );
-const bd = $dotCall( $function_bind, a, "bind", bc );
-const be = bd.name;
-$( "bound_func_name", be );
-bd();
+const p = k.method_prop;
+const q = p.name;
+$( "method_prop_name", q );
+const r = k.shorthand_method;
+const s = r.name;
+$( "shorthand_method_name", s );
+const t = k.arrow_prop;
+const u = t.name;
+$( "arrow_prop_name", u );
+const v = k.method_prop;
+$dotCall( v, k, "method_prop" );
+const w = k.shorthand_method;
+$dotCall( w, k, "shorthand_method" );
+const x = $( "val_for_setter", 123 );
+k.setter_prop = x;
+const y = k.getter_prop;
+$( "getter_val_check", y );
+const z = k.arrow_prop;
+$dotCall( z, k, "arrow_prop" );
+const ba = {};
+const bb = $( "this_arg", ba );
+const bc = $dotCall( $function_bind, a, "bind", bb );
+const bd = bc.name;
+$( "bound_func_name", bd );
+bc();
 `````
 
 

@@ -78,26 +78,26 @@ $(tmpFree(xs, $spy(`y`) + ``));
 With rename=true
 
 `````js filename=intro
-const a = function b($$0,$$1 ) {
-  const c = $$0;
-  const d = $$1;
+const a = function $free($$0,$$1 ) {
+  const b = $$0;
+  const c = $$1;
   debugger;
-  const e = c + 5;
-  const f = $Number_parseInt( e, d );
-  const g = f.slice;
-  const h = $dotCall( g, f, "slice", 1 );
-  h + 0;
-  const i = h.slice;
-  const j = $dotCall( i, h, "slice", 2 );
-  const k = h + j;
-  return k;
+  const d = b + 5;
+  const e = $Number_parseInt( d, c );
+  const f = e.slice;
+  const g = $dotCall( f, e, "slice", 1 );
+  g + 0;
+  const h = g.slice;
+  const i = $dotCall( h, g, "slice", 2 );
+  const j = g + i;
+  return j;
 };
-const l = $spy( "x" );
-const m = $coerce( l, "plustr" );
-const n = $spy( "y" );
-const o = $coerce( n, "plustr" );
-const p = q( a, m, o );
-$( p );
+const k = $spy( "x" );
+const l = $coerce( k, "plustr" );
+const m = $spy( "y" );
+const n = $coerce( m, "plustr" );
+const o = p( a, l, n );
+$( o );
 `````
 
 

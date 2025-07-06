@@ -58,18 +58,18 @@ const a = $( 1 );
 const b = $( 1 );
 const c = a === b;
 if (c) {
-  const d = function e() {
+  const d = function $pcompiled() {
     debugger;
     return undefined;
   };
   $( d );
 }
 else {
-  const f = {
+  const e = {
     a: 999,
     b: 1000,
   };
-  $( f );
+  $( e );
 }
 `````
 

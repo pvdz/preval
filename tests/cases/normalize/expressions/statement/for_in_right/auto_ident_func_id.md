@@ -59,26 +59,26 @@ $({ a: 999, b: 1000 });
 With rename=true
 
 `````js filename=intro
-const a = function b() {
+const a = function $pcompiled() {
   debugger;
   return undefined;
 };
-const c = $forIn( a );
+const b = $forIn( a );
 while ($LOOP_NO_UNROLLS_LEFT) {
-  const d = c();
-  const e = d.done;
-  if (e) {
+  const c = b();
+  const d = c.done;
+  if (d) {
     break;
   }
   else {
-    d.value;
+    c.value;
   }
 }
-const f = {
+const e = {
   a: 999,
   b: 1000,
 };
-$( f );
+$( e );
 `````
 
 

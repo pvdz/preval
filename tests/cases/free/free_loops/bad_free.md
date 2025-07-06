@@ -80,27 +80,27 @@ $(function () {
 With rename=true
 
 `````js filename=intro
-const a = function b($$0,$$1 ) {
-  const c = $$0;
-  const d = $$1;
+const a = function $free($$0,$$1 ) {
+  const b = $$0;
+  const c = $$1;
   debugger;
-  const e = c + 71046;
-  const f = $dotCall( $string_charCodeAt, "\uf051", "charCodeAt", d );
-  const g = e ^ f;
-  return g;
+  const d = b + 71046;
+  const e = $dotCall( $string_charCodeAt, "\uf051", "charCodeAt", c );
+  const f = d ^ e;
+  return f;
 };
 $( a );
-const h = function() {
+const g = function() {
   debugger;
   $coerce( tmpBinBothRhs$32, "string" );
   $coerce( tmpClusterSSA_r$2027, "string" );
   while ($LOOP_NO_UNROLLS_LEFT) {
-    const i = j( a, $, $ );
-    p$171 = p$171 + i;
+    const h = i( a, $, $ );
+    p$171 = p$171 + h;
   }
   return undefined;
 };
-$( h );
+$( g );
 `````
 
 

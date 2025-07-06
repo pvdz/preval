@@ -65,7 +65,7 @@ const a = function() {
   $( b );
   return undefined;
 };
-const e = function f() {
+const e = function $pcompiled() {
   debugger;
   return "win";
 };

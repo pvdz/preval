@@ -83,30 +83,30 @@ $(f(tmpFree(String($(`m#az#e`)))));
 With rename=true
 
 `````js filename=intro
-const a = function b($$0 ) {
-  const c = $$0;
+const a = function $free($$0 ) {
+  const b = $$0;
   debugger;
-  const d = $dotCall( $string_charAt, c, "charAt", 0 );
-  const e = $dotCall( $string_indexOf, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=", "indexOf", d );
-  return e;
+  const c = $dotCall( $string_charAt, b, "charAt", 0 );
+  const d = $dotCall( $string_indexOf, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=", "indexOf", c );
+  return d;
 };
-const f = function($$0 ) {
-  const g = $$0;
+const e = function($$0 ) {
+  const f = $$0;
   debugger;
-  const h = g + b2;
-  outputstr = $coerce( h, "plustr" );
+  const g = f + b2;
+  outputstr = $coerce( g, "plustr" );
   return outputstr;
 };
-const i = $( "co_rn" );
-const j = $coerce( i, "string" );
-const k = l( a, j );
-const m = f( k );
-$( m );
-const n = $( "m#az#e" );
-const o = $coerce( n, "string" );
-const p = l( a, o );
-const q = f( p );
-$( q );
+const h = $( "co_rn" );
+const i = $coerce( h, "string" );
+const j = k( a, i );
+const l = e( j );
+$( l );
+const m = $( "m#az#e" );
+const n = $coerce( m, "string" );
+const o = k( a, n );
+const p = e( o );
+$( p );
 `````
 
 

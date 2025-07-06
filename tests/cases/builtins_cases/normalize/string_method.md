@@ -120,40 +120,40 @@ $(f(String($(`m#az#e`))));
 With rename=true
 
 `````js filename=intro
-const a = function b($$0 ) {
-  const c = $$0;
+const a = function $free($$0 ) {
+  const b = $$0;
   debugger;
-  const d = $dotCall( $string_charAt, c, "charAt", 0 );
-  const e = $dotCall( $string_indexOf, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=", "indexOf", d );
-  const f = $dotCall( $string_charAt, c, "charAt", 1 );
-  const g = $dotCall( $string_indexOf, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=", "indexOf", f );
-  const h = e + g;
-  const i = $coerce( h, "string" );
-  return i;
+  const c = $dotCall( $string_charAt, b, "charAt", 0 );
+  const d = $dotCall( $string_indexOf, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=", "indexOf", c );
+  const e = $dotCall( $string_charAt, b, "charAt", 1 );
+  const f = $dotCall( $string_indexOf, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=", "indexOf", e );
+  const g = d + f;
+  const h = $coerce( g, "string" );
+  return h;
 };
-const j = function($$0 ) {
-  const k = $$0;
+const i = function($$0 ) {
+  const j = $$0;
   debugger;
-  const l = new $regex_constructor( "[^A-Za-z0-9\\+\\/\\=]", "g" );
-  const m = $dotCall( $string_replace, k, "replace", l, "" );
-  const n = m.length;
-  const o = 0 < n;
-  if (o) {
-    const p = q( a, m );
-    return p;
+  const k = new $regex_constructor( "[^A-Za-z0-9\\+\\/\\=]", "g" );
+  const l = $dotCall( $string_replace, j, "replace", k, "" );
+  const m = l.length;
+  const n = 0 < m;
+  if (n) {
+    const o = p( a, l );
+    return o;
   }
   else {
     return "";
   }
 };
-const r = $( "co_rn" );
-const s = $coerce( r, "string" );
-const t = j( s );
-$( t );
-const u = $( "m#az#e" );
-const v = $coerce( u, "string" );
-const w = j( v );
-$( w );
+const q = $( "co_rn" );
+const r = $coerce( q, "string" );
+const s = i( r );
+$( s );
+const t = $( "m#az#e" );
+const u = $coerce( t, "string" );
+const v = i( u );
+$( v );
 `````
 
 

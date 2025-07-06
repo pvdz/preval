@@ -126,35 +126,35 @@ $(f(tmpFree$1()));
 With rename=true
 
 `````js filename=intro
-const a = function b() {
+const a = function $free() {
   debugger;
-  const c = $dotCall( $string_charAt, d, "charAt", 0 );
-  const e = $dotCall( $string_indexOf, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=", "indexOf", c );
-  return e;
+  const b = $dotCall( $string_charAt, c, "charAt", 0 );
+  const d = $dotCall( $string_indexOf, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=", "indexOf", b );
+  return d;
 };
-const f = function b() {
+const e = function $free() {
   debugger;
-  const g = $dotCall( $string_charAt, h, "charAt", 0 );
-  const i = $dotCall( $string_indexOf, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=", "indexOf", g );
-  return i;
+  const f = $dotCall( $string_charAt, g, "charAt", 0 );
+  const h = $dotCall( $string_indexOf, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=", "indexOf", f );
+  return h;
 };
-const j = function($$0 ) {
-  const k = $$0;
+const i = function($$0 ) {
+  const j = $$0;
   debugger;
-  const l = k + b2;
-  unknown = $coerce( l, "plustr" );
+  const k = j + b2;
+  unknown = $coerce( k, "plustr" );
   return unknown;
 };
-const m = $( "co_rn" );
-const h = $coerce( m, "string" );
-const n = o( f );
-const p = j( n );
-$( p );
-const q = $( "m#az#e" );
-const d = $coerce( q, "string" );
-const r = o( a );
-const s = j( r );
-$( s );
+const l = $( "co_rn" );
+const g = $coerce( l, "string" );
+const m = n( e );
+const o = i( m );
+$( o );
+const p = $( "m#az#e" );
+const c = $coerce( p, "string" );
+const q = n( a );
+const r = i( q );
+$( r );
 `````
 
 

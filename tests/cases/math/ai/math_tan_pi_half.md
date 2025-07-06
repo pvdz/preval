@@ -57,20 +57,20 @@ $(b);
 With rename=true
 
 `````js filename=intro
-const a = function b() {
+const a = function $free() {
   debugger;
-  const c = -$Math_PI;
-  const d = c / 2;
-  const e = $Math_tan( d );
-  return e;
+  const b = -$Math_PI;
+  const c = b / 2;
+  const d = $Math_tan( c );
+  return d;
 };
-const f = $Math_PI / 2;
-const g = $Math_tan( f );
-const h = $( g );
-const i = j( a );
-const k = $( i );
-$( h );
-$( k );
+const e = $Math_PI / 2;
+const f = $Math_tan( e );
+const g = $( f );
+const h = i( a );
+const j = $( h );
+$( g );
+$( j );
 `````
 
 

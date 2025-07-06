@@ -47,7 +47,7 @@ $(`end`, function $pcompiled() {
 With rename=true
 
 `````js filename=intro
-const a = function b() {
+const a = function $pcompiled() {
   debugger;
   return NaN;
 };

@@ -45,13 +45,13 @@ $({ valueOf: tmpObjLitVal } + 0.6);
 With rename=true
 
 `````js filename=intro
-const a = function b() {
+const a = function $pcompiled() {
   debugger;
   return 0.30000000000000004;
 };
-const c = { valueOf: a };
-const d = c + 0.6;
-$( d );
+const b = { valueOf: a };
+const c = b + 0.6;
+$( c );
 `````
 
 

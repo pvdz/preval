@@ -86,28 +86,28 @@ $(arr[1]);
 With rename=true
 
 `````js filename=intro
-const a = function b($$0 ) {
-  const c = $$0;
+const a = function $free($$0 ) {
+  const b = $$0;
   debugger;
-  const d = $Number_parseInt( c );
-  const e = d / 1;
-  return e;
+  const c = $Number_parseInt( b );
+  const d = c / 1;
+  return d;
 };
-const f = [ "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k" ];
+const e = [ "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k" ];
 while ($LOOP_NO_UNROLLS_LEFT) {
-  const g = f[ 2 ];
-  $( g );
-  const h = i( a, g );
-  if (h) {
+  const f = e[ 2 ];
+  $( f );
+  const g = h( a, f );
+  if (g) {
     break;
   }
   else {
-    const j = $dotCall( $array_shift, f, "shift" );
-    $dotCall( $array_push, f, "push", j );
+    const i = $dotCall( $array_shift, e, "shift" );
+    $dotCall( $array_push, e, "push", i );
   }
 }
-const k = f[ 1 ];
-$( k );
+const j = e[ 1 ];
+$( j );
 `````
 
 

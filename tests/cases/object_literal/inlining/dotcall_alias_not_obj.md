@@ -49,14 +49,14 @@ $dotCall(alias, { f: g }, `f`, 1);
 With rename=true
 
 `````js filename=intro
-const a = function b() {
+const a = function $pcompiled() {
   debugger;
   return "win";
 };
-const c = $.f;
+const b = $.f;
 $();
-const d = { f: a };
-$dotCall( c, d, "f", 1 );
+const c = { f: a };
+$dotCall( b, c, "f", 1 );
 `````
 
 

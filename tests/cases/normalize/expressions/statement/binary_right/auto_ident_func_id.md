@@ -44,16 +44,16 @@ With rename=true
 
 `````js filename=intro
 const a = $( 100 );
-const b = function c() {
+const b = function $pcompiled() {
   debugger;
   return undefined;
 };
 a + b;
-const d = {
+const c = {
   a: 999,
   b: 1000,
 };
-$( d );
+$( c );
 `````
 
 

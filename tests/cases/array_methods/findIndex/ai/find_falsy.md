@@ -55,14 +55,14 @@ With rename=true
 const a = [ 0, "", false, null, undefined, NaN ];
 const b = $( a );
 const c = b.findIndex;
-const d = function e($$0 ) {
-  const f = $$0;
+const d = function $pcompiled($$0 ) {
+  const e = $$0;
   debugger;
-  const g = f === 0;
-  return g;
+  const f = e === 0;
+  return f;
 };
-const h = $dotCall( c, b, "findIndex", d );
-$( h );
+const g = $dotCall( c, b, "findIndex", d );
+$( g );
 `````
 
 

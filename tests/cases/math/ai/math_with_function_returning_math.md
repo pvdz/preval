@@ -53,17 +53,17 @@ $(
 With rename=true
 
 `````js filename=intro
-const a = function b() {
+const a = function $free() {
   debugger;
-  const c = -$Math_PI;
-  const d = c / 2;
-  const e = $Math_sin( d );
-  const f = $Math_abs( e );
-  return f;
+  const b = -$Math_PI;
+  const c = b / 2;
+  const d = $Math_sin( c );
+  const e = $Math_abs( d );
+  return e;
 };
-const g = h( a );
-const i = $( g );
-$( i );
+const f = g( a );
+const h = $( f );
+$( h );
 `````
 
 

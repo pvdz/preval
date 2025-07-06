@@ -76,18 +76,18 @@ const a = function() {
   const b = $( 1 );
   return b;
 };
-const c = function d($$0 ) {
-  const e = $$0;
+const c = function $pcompiled($$0 ) {
+  const d = $$0;
   debugger;
-  return e;
+  return d;
 };
-const f = class   {
+const e = class   {
 
 };
-export { f as c };
-const g = $( 1 );
-const h = $( g );
-export { h as x };
+export { e as c };
+const f = $( 1 );
+const g = $( f );
+export { g as x };
 export { a as f };
 export { c as g };
 `````

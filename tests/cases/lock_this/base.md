@@ -144,54 +144,54 @@ $(start);
 With rename=true
 
 `````js filename=intro
-const a = function b($$0 ) {
-  const c = $$0;
+const a = function $pcompiled($$0 ) {
+  const b = $$0;
   debugger;
-  c();
+  b();
   return undefined;
 };
-const d = function() {
+const c = function() {
   debugger;
   $( "Hello from e" );
   return undefined;
 };
-const e = function($$0,$$1 ) {
-  const f = $$0;
-  const g = $$1;
+const d = function($$0,$$1 ) {
+  const e = $$0;
+  const f = $$1;
   debugger;
-  const h = i.prototype;
-  h.a = f;
-  i.prototype;
-  h.b = g;
-  const j = new i( k );
-  const l = j.expando;
-  $dotCall( l, j, "expando" );
+  const g = h.prototype;
+  g.a = e;
+  h.prototype;
+  g.b = f;
+  const i = new h( j );
+  const k = i.expando;
+  $dotCall( k, i, "expando" );
   return undefined;
 };
-const i = function($$0 ) {
-  const m = this;
-  const n = $$0;
+const h = function($$0 ) {
+  const l = this;
+  const m = $$0;
   debugger;
-  m.expando = n;
-  m.d = a;
-  m.e = d;
+  l.expando = m;
+  l.d = a;
+  l.e = c;
   return undefined;
 };
-const k = function() {
-  const o = this;
+const j = function() {
+  const n = this;
   debugger;
-  const p = o.p;
-  const q = o.q;
-  const r = p + q;
-  $( r );
-  const s = o.e;
-  const t = o.d;
-  const u = $dotCall( t, o, "d", s );
-  return u;
+  const o = n.p;
+  const p = n.q;
+  const q = o + p;
+  $( q );
+  const r = n.e;
+  const s = n.d;
+  const t = $dotCall( s, n, "d", r );
+  return t;
 };
-e( 100, 200 );
+d( 100, 200 );
 $( undefined );
-$( e );
+$( d );
 `````
 
 

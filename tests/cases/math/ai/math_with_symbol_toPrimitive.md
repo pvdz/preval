@@ -49,14 +49,14 @@ With rename=true
 
 `````js filename=intro
 const a = Symbol.toPrimitive;
-const b = function c() {
+const b = function $pcompiled() {
   debugger;
   return -99;
 };
-const d = { [ a ]: b };
-const e = $Math_abs( d );
-const f = $( e );
-$( f );
+const c = { [ a ]: b };
+const d = $Math_abs( c );
+const e = $( d );
+$( e );
 `````
 
 

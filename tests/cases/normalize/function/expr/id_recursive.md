@@ -61,22 +61,22 @@ $(r($(10)));
 With rename=true
 
 `````js filename=intro
-const a = function b($$0 ) {
-  const c = $$0;
+const a = function $pcompiled($$0 ) {
+  const b = $$0;
   debugger;
-  const d = c > 100;
-  if (d) {
+  const c = b > 100;
+  if (c) {
     return 10;
   }
   else {
-    const e = c + 1;
-    const f = a( e );
-    return f;
+    const d = b + 1;
+    const e = a( d );
+    return e;
   }
 };
-const g = $( 10 );
-const h = a( g );
-$( h );
+const f = $( 10 );
+const g = a( f );
+$( g );
 `````
 
 

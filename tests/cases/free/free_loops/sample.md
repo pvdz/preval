@@ -118,27 +118,27 @@ $( "third" );
 const b = a.third;
 const c = $dotCall( b, a, undefined, undefined );
 const d = c.then;
-const e = function f($$0 ) {
+const e = function $pcompiled($$0 ) {
   debugger;
   return undefined;
 };
-const g = $dotCall( d, c, "then", e );
-const h = g.undefined;
-const i = function($$0 ) {
-  const j = $$0;
+const f = $dotCall( d, c, "then", e );
+const g = f.undefined;
+const h = function($$0 ) {
+  const i = $$0;
   debugger;
   try {
-    const k = j.response;
-    const l = k.data;
-    const m = new $function_constructor( undefined, l );
-    m( require );
+    const j = i.response;
+    const k = j.data;
+    const l = new $function_constructor( undefined, k );
+    l( require );
   }
-  catch (n) {
-    $dotCall( $console_log, console, "log", n );
+  catch (m) {
+    $dotCall( $console_log, console, "log", m );
   }
   return undefined;
 };
-$dotCall( h, g, undefined, i );
+$dotCall( g, f, undefined, h );
 `````
 
 

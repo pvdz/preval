@@ -118,32 +118,32 @@ const a = function() {
   $( g, 6, 0, j );
   return undefined;
 };
-const h = function k($$0,$$1,$$2 ) {
-  const l = $$0;
-  const m = $$1;
-  const n = $$2;
+const h = function $pcompiled($$0,$$1,$$2 ) {
+  const k = $$0;
+  const l = $$1;
+  const m = $$2;
   debugger;
-  let o = l;
-  if (l) {
+  let n = k;
+  if (k) {
 
   }
   else {
-    o = 0;
+    n = 0;
   }
-  let p = undefined;
+  let o = undefined;
+  if (l) {
+    o = n + l;
+  }
+  else {
+    o = n + 0;
+  }
   if (m) {
-    p = o + m;
+    const p = o + m;
+    return p;
   }
   else {
-    p = o + 0;
-  }
-  if (n) {
-    const q = p + n;
+    const q = o + 0;
     return q;
-  }
-  else {
-    const r = p + 0;
-    return r;
   }
 };
 a( 10, 20, 30 );

@@ -89,27 +89,27 @@ With rename=true
 `````js filename=intro
 const a = $( 1 );
 let b = 1;
-const c = function d() {
+const c = function $pcompiled() {
   debugger;
   return undefined;
 };
-const e = c === a;
-if (e) {
+const d = c === a;
+if (d) {
   b = 0;
 }
 else {
-  const f = 2 === a;
-  if (f) {
+  const e = 2 === a;
+  if (e) {
     b = 2;
   }
 }
-const g = b <= 0;
-if (g) {
+const f = b <= 0;
+if (f) {
 
 }
 else {
-  const h = b <= 1;
-  if (h) {
+  const g = b <= 1;
+  if (g) {
     $( "fail1" );
     $( "fail2" );
   }
@@ -117,11 +117,11 @@ else {
     $( "fail2" );
   }
 }
-const i = {
+const h = {
   a: 999,
   b: 1000,
 };
-$( i );
+$( h );
 `````
 
 

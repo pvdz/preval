@@ -3471,6 +3471,83 @@ function _typeTrackedTricks(fdata) {
           }
         }
 
+        // Bit hacky but I need to validate the pattern which is doing
+        // - `const obj = {}; const x = obj[unknownNumber + unknonwnValue]; if (x) ...`
+        // Because we can prove that it can't hit a prototype property and then discard it
+        // The only exception is when the Object.prototype object has been tampered with.
+        if (node.computed && node.object.type === 'Identifier' && node.property.type === 'Identifier') {
+          vlog('- Searching for the pattern that checks if a fresh object has a property that starts with a number...');
+          const ometa = fdata.globallyUniqueNamingRegistry.get(node.object.name);
+          if (
+            ometa?.isConstant &&
+            ometa.varDeclRef.node.type === 'ObjectExpression' &&
+            ometa.varDeclRef.node.properties.length === 0 && // For now we are targeting empty objects
+            // Validate object usage. In our pattern we target exactly one write and two reads:
+            // - the init
+            // - the test ("is cached")
+            // - the prop write after the test failed ("set cache")
+            ometa.writes.length === 1 &&
+            ometa.reads.length === 2 &&
+            // This node should be teh first read (it could be the second but ignore that and wait for it being the first)
+            ometa.reads[0].parentNode === node
+          ) {
+            vlog('  - have a prop lookup whose object is a fresh object, now check composition of property');
+            const pmeta = fdata.globallyUniqueNamingRegistry.get(node.property.name);
+            const init = pmeta.varDeclRef?.node;
+            if (
+              pmeta.isConstant &&
+              init?.type === 'BinaryExpression' &&
+              init.operator === '+' &&
+              init.left.type === 'Identifier' &&
+              fdata.globallyUniqueNamingRegistry.get(init.left.name)?.typing.mustBeType === 'number' &&
+              // Make sure the obj reads are in the same loop as the obj decl. Otherwise the prop writes _are_ observable.
+              ometa.reads[0].innerLoop === ometa.writes[0].innerLoop &&
+              ometa.reads[1].innerLoop === ometa.writes[0].innerLoop
+            ) {
+              vlog('  - and property is result of a binary expression of adding a number to something else');
+              // This means the result is either a string starting with a number (inc NaN and Infinity, which is ok)
+              // or it is an actual number.
+              // This means the property can't possibly hit a builtin prototype property.
+              // Check concrete usages: one must simply read the prop (this is `node`) and the other should write
+              // this same property in the test-failed branch. I guess as long as it writes to the same prop it's fine.
+
+              // We already checked that node is the first read so validate the second one:
+              if (
+                ometa.reads[1].parentNode.type === 'MemberExpression' &&
+                ometa.reads[1].parentProp === 'object' &&
+                ometa.reads[1].parentNode.property.type === 'Identifier' &&
+                ometa.reads[1].parentNode.property.name === node.property.name
+                // We can ignore the `delete` case here.
+                // I don't think it matters if this is actually an assignment or just two reads. So we can skip that check too.
+              ) {
+                vlog('  - ok, pattern found. This is the "not persistent caching" pattern with fresh object and computed prop that starts with a number');
+
+                // Ok it can hit when the prototype is tampered with, so it's a risky rule
+                riskyRule('Fresh object with computed property lookup where property starts with number cannot possibly hit anything other than undefined');
+                example(
+                  'const obj = {}; const prop = Number(y) + z; const x = obj[prop]; if (x) ..; else obj[x] = xyz;',
+                  'const obj = {}; const x = undefined; if (x) ..; else xyz;'
+                );
+                before(ometa.writes[0].blockBody[ometa.writes[0].blockIndex]);
+                before(ometa.reads[0].blockBody[ometa.reads[0].blockIndex]);
+                before(ometa.reads[1].blockBody[ometa.reads[1].blockIndex]);
+
+                // This is replacing the lookup, which we now know to be `undefined`
+                if (parentIndex < 0) parentNode[parentProp] = AST.undef();
+                else parentNode[parentProp][parentIndex] = AST.undef();
+                // This replaces the property assignment, which we know to be unused
+                ometa.reads[1].blockBody[ometa.reads[1].blockIndex] = AST.expressionStatement(ometa.reads[1].blockBody[ometa.reads[1].blockIndex].expression.right);
+
+                after(ometa.writes[0].blockBody[ometa.writes[0].blockIndex]);
+                after(ometa.reads[0].blockBody[ometa.reads[0].blockIndex]);
+                after(ometa.reads[1].blockBody[ometa.reads[1].blockIndex]);
+                changes = changes + 1;
+                return;
+              }
+            }
+          }
+        }
+
         break;
       }
     }

@@ -21,12 +21,12 @@ $(a);
 `````js filename=intro
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
-  const tmpNestedComplexRhs /*:()=>undefined*/ = function $pcompiled() {
+  const f /*:()=>undefined*/ = function $pcompiled() {
     debugger;
     return undefined;
   };
-  $(tmpNestedComplexRhs);
-  $(tmpNestedComplexRhs);
+  $(f);
+  $(f);
 } else {
   const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(200);
   $(tmpClusterSSA_tmpCalleeParam);
@@ -41,9 +41,9 @@ if (tmpIfTest) {
 
 `````js filename=intro
 if ($(1)) {
-  const tmpNestedComplexRhs = function $pcompiled() {};
-  $(tmpNestedComplexRhs);
-  $(tmpNestedComplexRhs);
+  const f = function $pcompiled() {};
+  $(f);
+  $(f);
 } else {
   $($(200));
   $({ a: 999, b: 1000 });
@@ -84,7 +84,7 @@ let a = { a: 999, b: 1000 };
 let tmpCalleeParam = undefined;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  const f = function () {
+  let f = function () {
     debugger;
     return undefined;
   };

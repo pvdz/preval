@@ -54,7 +54,7 @@ while ($LOOP_NO_UNROLLS_LEFT) {
 let a = { a: 999, b: 1000 };
 while (true) {
   $(100);
-  const f = function () {
+  let f = function () {
     debugger;
     return undefined;
   };

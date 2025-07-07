@@ -92,7 +92,7 @@ while ($LOOP_NO_UNROLLS_LEFT) {
   if (tmpIfTest) {
     break;
   } else {
-    const f = function () {
+    let f = function () {
       debugger;
       return undefined;
     };

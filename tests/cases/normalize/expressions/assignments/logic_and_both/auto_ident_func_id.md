@@ -19,12 +19,12 @@ $(a);
 
 
 `````js filename=intro
-const tmpNestedComplexRhs /*:()=>unknown*/ = function $pcompiled() {
+const f$1 /*:()=>unknown*/ = function $pcompiled() {
   debugger;
   return undefined;
 };
-$(tmpNestedComplexRhs);
-$(tmpNestedComplexRhs);
+$(f$1);
+$(f$1);
 `````
 
 
@@ -32,9 +32,9 @@ $(tmpNestedComplexRhs);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpNestedComplexRhs = function $pcompiled() {};
-$(tmpNestedComplexRhs);
-$(tmpNestedComplexRhs);
+const f$1 = function $pcompiled() {};
+$(f$1);
+$(f$1);
 `````
 
 
@@ -63,7 +63,7 @@ const f = function () {
 a = f;
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
-  const f$1 = function () {
+  let f$1 = function () {
     debugger;
     return undefined;
   };

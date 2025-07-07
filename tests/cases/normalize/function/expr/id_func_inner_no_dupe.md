@@ -71,7 +71,7 @@ a();
 `````js filename=intro
 let out = function () {
   debugger;
-  const g$1 = function () {
+  let g$1 = function () {
     debugger;
     let tmpCalleeParam = typeof g$1;
     $(tmpCalleeParam);

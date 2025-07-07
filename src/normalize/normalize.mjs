@@ -15569,7 +15569,8 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
       before(funcNode, node);
 
       // Note: body should be normalized now but parent may not be
-      body.splice(i, 0, AST.varStatement('const', funcNode.id.name, funcNode));
+      // We create a let. The function name can definitely be assigned to, even in strict mode.
+      body.splice(i, 0, AST.varStatement('let', funcNode.id.name, funcNode));
       node.init = AST.identifier(funcNode.id.name);
       funcNode.id = null;
 

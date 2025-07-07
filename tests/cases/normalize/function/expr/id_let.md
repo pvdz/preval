@@ -63,7 +63,7 @@ $( a, "function" );
 (This is what phase1 received the first time)
 
 `````js filename=intro
-const findme = function () {
+let findme = function () {
   debugger;
   let tmpCalleeParam = typeof findme;
   $(tmpCalleeParam);

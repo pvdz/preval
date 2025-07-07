@@ -50,7 +50,7 @@ $( 20, "function" );
 (This is what phase1 received the first time)
 
 `````js filename=intro
-const r = function () {
+let r = function () {
   debugger;
   let r$1 = 20;
   let tmpCalleeParam = typeof r$1;

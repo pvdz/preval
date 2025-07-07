@@ -19,11 +19,11 @@ $(a);
 
 
 `````js filename=intro
-const tmpArrElToSpread /*:()=>undefined*/ = function $pcompiled() {
+const f /*:()=>undefined*/ = function $pcompiled() {
   debugger;
   return undefined;
 };
-[...tmpArrElToSpread];
+[...f];
 const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);
 `````
@@ -33,8 +33,8 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpArrElToSpread = function $pcompiled() {};
-[...tmpArrElToSpread];
+const f = function $pcompiled() {};
+[...f];
 $({ a: 999, b: 1000 });
 `````
 
@@ -61,7 +61,7 @@ $( b );
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const f = function () {
+let f = function () {
   debugger;
   return undefined;
 };

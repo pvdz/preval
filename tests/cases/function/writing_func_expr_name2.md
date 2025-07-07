@@ -1,19 +1,18 @@
 # Preval test case
 
-# auto_ident_func_id.md
+# writing_func_expr_name2.md
 
-> Normalize > Expressions > Bindings > Stmt func top > Auto ident func id
+> Function > Writing func expr name2
 >
-> Normalization of var decls should work the same everywhere they are
+> Writing to a func expr name is ... tricky?
 
 ## Input
 
 `````js filename=intro
-function f() {
-  let a = function f() {};
-  $(a);
-}
-$(f());
+module.exports = function f() {
+  return (f = function() {
+  })();
+};
 `````
 
 
@@ -21,12 +20,11 @@ $(f());
 
 
 `````js filename=intro
-const f$1 /*:()=>unknown*/ = function $pcompiled() {
+const f /*:()=>unknown*/ = function $pcompiled() {
   debugger;
   return undefined;
 };
-$(f$1);
-$(undefined);
+module.exports = f;
 `````
 
 
@@ -34,8 +32,7 @@ $(undefined);
 (This ought to be the final result)
 
 `````js filename=intro
-$(function $pcompiled() {});
-$(undefined);
+module.exports = function $pcompiled() {};
 `````
 
 
@@ -47,8 +44,7 @@ const a = function $pcompiled() {
   debugger;
   return undefined;
 };
-$( a );
-$( undefined );
+module.exports = a;
 `````
 
 
@@ -56,25 +52,26 @@ $( undefined );
 (This is what phase1 received the first time)
 
 `````js filename=intro
+const tmpAssignMemLhsObj = module;
 let f = function () {
   debugger;
-  let f$1 = function () {
+  f = function () {
     debugger;
     return undefined;
   };
-  let a = f$1;
-  $(f$1);
-  return undefined;
+  const tmpCallComplexCallee = f;
+  const tmpReturnArg = f();
+  return tmpReturnArg;
 };
-let tmpCalleeParam = f();
-$(tmpCalleeParam);
+const tmpAssignMemRhs = f;
+tmpAssignMemLhsObj.exports = tmpAssignMemRhs;
 `````
 
 
 ## Todos triggered
 
 
-- (todo) support Identifier as var init in let_hoisting noob check
+None
 
 
 ## Globals
@@ -87,9 +84,7 @@ None
 
 
 Should call `$` with:
- - 1: '<function>'
- - 2: undefined
- - eval returned: undefined
+ - eval returned: ('<crash[ <ref> is not defined ]>')
 
 Pre normalization calls: Same
 

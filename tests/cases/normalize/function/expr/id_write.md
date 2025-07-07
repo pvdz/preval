@@ -28,7 +28,15 @@ $(x, typeof f);
 
 
 `````js filename=intro
-$(20, `function`);
+let funcexprname /*:()=>unknown*/ = function $pcompiled() {
+  debugger;
+  funcexprname = 20;
+  return 20;
+};
+const f /*:unknown*/ = funcexprname;
+const tmpCalleeParam /*:unknown*/ = funcexprname();
+const tmpCalleeParam$1 /*:string*/ /*truthy*/ = typeof f;
+$(tmpCalleeParam, tmpCalleeParam$1);
 `````
 
 
@@ -36,7 +44,12 @@ $(20, `function`);
 (This ought to be the final result)
 
 `````js filename=intro
-$(20, `function`);
+let funcexprname = function $pcompiled() {
+  funcexprname = 20;
+  return 20;
+};
+const f = funcexprname;
+$(funcexprname(), typeof f);
 `````
 
 
@@ -44,7 +57,15 @@ $(20, `function`);
 With rename=true
 
 `````js filename=intro
-$( 20, "function" );
+let a = function $pcompiled() {
+  debugger;
+  a = 20;
+  return 20;
+};
+const b = a;
+const c = a();
+const d = typeof b;
+$( c, d );
 `````
 
 
@@ -52,7 +73,7 @@ $( 20, "function" );
 (This is what phase1 received the first time)
 
 `````js filename=intro
-const funcexprname = function () {
+let funcexprname = function () {
   debugger;
   funcexprname = 20;
   return funcexprname;
@@ -68,7 +89,7 @@ $(tmpCalleeParam, tmpCalleeParam$1);
 ## Todos triggered
 
 
-- (todo) function was marked as $pcompiled but the validator rejected it
+None
 
 
 ## Globals

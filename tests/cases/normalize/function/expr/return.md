@@ -46,7 +46,7 @@ $( a );
 (This is what phase1 received the first time)
 
 `````js filename=intro
-const g = function () {
+let g = function () {
   debugger;
   const tmpReturnArg = $(1);
   return tmpReturnArg;

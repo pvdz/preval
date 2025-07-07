@@ -25,12 +25,12 @@ if (tmpCalleeParam) {
   const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
   $(a);
 } else {
-  const tmpNestedComplexRhs /*:()=>undefined*/ = function $pcompiled() {
+  const f /*:()=>undefined*/ = function $pcompiled() {
     debugger;
     return undefined;
   };
-  $(tmpNestedComplexRhs);
-  $(tmpNestedComplexRhs);
+  $(f);
+  $(f);
 }
 `````
 
@@ -44,9 +44,9 @@ if (tmpCalleeParam) {
   $(tmpCalleeParam);
   $({ a: 999, b: 1000 });
 } else {
-  const tmpNestedComplexRhs = function $pcompiled() {};
-  $(tmpNestedComplexRhs);
-  $(tmpNestedComplexRhs);
+  const f = function $pcompiled() {};
+  $(f);
+  $(f);
 }
 `````
 
@@ -85,7 +85,7 @@ if (tmpCalleeParam) {
   $(tmpCalleeParam);
   $(a);
 } else {
-  const f = function () {
+  let f = function () {
     debugger;
     return undefined;
   };

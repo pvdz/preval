@@ -56,7 +56,7 @@ $( a );
 let a = { a: 999, b: 1000 };
 const tmpSwitchDisc = $(1);
 const tmpBinBothLhs = tmpSwitchDisc;
-const f = function () {
+let f = function () {
   debugger;
   return undefined;
 };

@@ -62,7 +62,7 @@ let f = function ($$0) {
   let p = undefined;
   const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
-    const f$1 = function () {
+    let f$1 = function () {
       debugger;
       return undefined;
     };

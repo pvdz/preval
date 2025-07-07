@@ -84,7 +84,7 @@ $( g );
 (This is what phase1 received the first time)
 
 `````js filename=intro
-const r = function ($$0) {
+let r = function ($$0) {
   let n = $$0;
   debugger;
   const tmpIfTest = n > 100;

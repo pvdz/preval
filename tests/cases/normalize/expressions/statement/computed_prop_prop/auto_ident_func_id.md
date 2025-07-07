@@ -20,11 +20,11 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam /*:()=>undefined*/ = function $pcompiled() {
+const f /*:()=>undefined*/ = function $pcompiled() {
   debugger;
   return undefined;
 };
-$coerce(tmpCalleeParam, `string`);
+$coerce(f, `string`);
 const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);
 `````
@@ -63,7 +63,7 @@ $( b );
 let a = { a: 999, b: 1000 };
 let obj = {};
 const tmpCompObj = obj;
-const f = function () {
+let f = function () {
   debugger;
   return undefined;
 };

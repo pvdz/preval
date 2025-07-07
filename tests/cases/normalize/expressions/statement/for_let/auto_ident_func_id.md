@@ -62,7 +62,7 @@ while ($LOOP_NO_UNROLLS_LEFT) {
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const f = function () {
+let f = function () {
   debugger;
   return undefined;
 };
@@ -78,7 +78,6 @@ while (true) {
 
 
 - (todo) do we want to support ObjectExpression as expression statement in free loops?
-- (todo) objects in isFree check
 
 
 ## Globals

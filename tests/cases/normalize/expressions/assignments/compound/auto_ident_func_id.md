@@ -19,12 +19,12 @@ $(a);
 
 
 `````js filename=intro
-const tmpBinBothRhs /*:()=>undefined*/ = function $pcompiled() {
+const f /*:()=>undefined*/ = function $pcompiled() {
   debugger;
   return undefined;
 };
 const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
-const tmpClusterSSA_a /*:number*/ = a * tmpBinBothRhs;
+const tmpClusterSSA_a /*:number*/ = a * f;
 $(tmpClusterSSA_a);
 $(tmpClusterSSA_a);
 `````
@@ -34,8 +34,8 @@ $(tmpClusterSSA_a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpBinBothRhs = function $pcompiled() {};
-const tmpClusterSSA_a = { a: 999, b: 1000 } * tmpBinBothRhs;
+const f = function $pcompiled() {};
+const tmpClusterSSA_a = { a: 999, b: 1000 } * f;
 $(tmpClusterSSA_a);
 $(tmpClusterSSA_a);
 `````
@@ -65,7 +65,7 @@ $( c );
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpBinBothLhs = a;
-const f = function () {
+let f = function () {
   debugger;
   return undefined;
 };

@@ -66,7 +66,7 @@ if (tmpCalleeParam) {
   $(tmpCalleeParam);
   $(a);
 } else {
-  const f$1 = function () {
+  let f$1 = function () {
     debugger;
     return undefined;
   };

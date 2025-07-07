@@ -19,11 +19,11 @@ $(a);
 
 
 `````js filename=intro
-const tmpThrowArg /*:()=>unknown*/ = function $pcompiled() {
+const f /*:()=>unknown*/ = function $pcompiled() {
   debugger;
   return undefined;
 };
-throw tmpThrowArg;
+throw f;
 `````
 
 
@@ -31,8 +31,8 @@ throw tmpThrowArg;
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpThrowArg = function $pcompiled() {};
-throw tmpThrowArg;
+const f = function $pcompiled() {};
+throw f;
 `````
 
 
@@ -53,7 +53,7 @@ throw a;
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const f = function () {
+let f = function () {
   debugger;
   return undefined;
 };

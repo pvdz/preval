@@ -81,12 +81,12 @@ $(`anon_called`);
 const tmpCalleeParam$1 /*:unknown*/ = a_named_func.name;
 $(`named_func_name`, tmpCalleeParam$1);
 $(`named_called`);
-const assigned_named /*:()=>undefined*/ = function () {
+const actual_name /*:()=>undefined*/ = function () {
   debugger;
   $(`assigned_named_called`);
   return undefined;
 };
-const tmpCalleeParam$3 /*:unknown*/ = assigned_named.name;
+const tmpCalleeParam$3 /*:unknown*/ = actual_name.name;
 $(`assigned_named_name`, tmpCalleeParam$3);
 $(`assigned_named_called`);
 $(`iife_called`);
@@ -340,7 +340,7 @@ const tmpCallComplexCallee = function () {
   let tmpCalleeParam$1 = a_named_func.name;
   $(`named_func_name`, tmpCalleeParam$1);
   a_named_func();
-  const actual_name = function () {
+  let actual_name = function () {
     debugger;
     $(`assigned_named_called`);
     return undefined;
@@ -352,7 +352,7 @@ const tmpCallComplexCallee = function () {
   const tmpCallComplexCallee$1 = function () {
     debugger;
     $(`iife_called`);
-    const iife_inner_named = function () {
+    let iife_inner_named = function () {
       debugger;
       return undefined;
     };

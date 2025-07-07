@@ -97,7 +97,7 @@ let factory = function ($$0) {
   let p_outer = $$0;
   debugger;
   $(`f_init`, p_outer);
-  const inner = function () {
+  let inner = function () {
     debugger;
     $(`i_call`, p_outer);
     return undefined;

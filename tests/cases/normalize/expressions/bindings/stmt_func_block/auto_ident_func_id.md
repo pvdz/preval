@@ -60,7 +60,7 @@ $( undefined );
 `````js filename=intro
 let f = function () {
   debugger;
-  const f$1 = function () {
+  let f$1 = function () {
     debugger;
     return undefined;
   };

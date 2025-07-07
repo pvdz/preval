@@ -49,12 +49,12 @@ $( a );
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const f = function () {
+let f = function () {
   debugger;
   return undefined;
 };
 const tmpBinBothLhs = f;
-const f$1 = function () {
+let f$1 = function () {
   debugger;
   return undefined;
 };

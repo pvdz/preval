@@ -64,7 +64,7 @@ $( c );
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpCalleeParam = [`before `, ` after`];
-const f = function () {
+let f = function () {
   debugger;
   return undefined;
 };

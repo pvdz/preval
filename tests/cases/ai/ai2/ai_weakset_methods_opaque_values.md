@@ -115,7 +115,7 @@ $( "ws_has_val1_after_delete", q );
 let wset = new WeakSet();
 let tmpCalleeParam = {};
 let val1 = $(`ws_val1_methods`, tmpCalleeParam);
-const foo = function () {
+let foo = function () {
   debugger;
   return undefined;
 };

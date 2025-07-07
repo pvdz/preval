@@ -28,11 +28,11 @@ $(a);
 `````js filename=intro
 const tmpSwitchValue /*:unknown*/ = $(1);
 let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
-const tmpBinLhs /*:()=>undefined*/ = function $pcompiled() {
+const f /*:()=>undefined*/ = function $pcompiled() {
   debugger;
   return undefined;
 };
-const tmpIfTest /*:boolean*/ = tmpBinLhs === tmpSwitchValue;
+const tmpIfTest /*:boolean*/ = f === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
@@ -132,7 +132,7 @@ $( h );
 let a = { a: 999, b: 1000 };
 let tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
-const f = function () {
+let f = function () {
   debugger;
   return undefined;
 };

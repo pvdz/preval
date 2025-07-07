@@ -20,11 +20,11 @@ $(a);
 
 `````js filename=intro
 const tmpBinBothLhs /*:unknown*/ = $(100);
-const tmpBinBothRhs /*:()=>undefined*/ = function $pcompiled() {
+const f /*:()=>undefined*/ = function $pcompiled() {
   debugger;
   return undefined;
 };
-tmpBinBothLhs + tmpBinBothRhs;
+tmpBinBothLhs + f;
 const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);
 `````
@@ -63,7 +63,7 @@ $( c );
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpBinBothLhs = $(100);
-const f = function () {
+let f = function () {
   debugger;
   return undefined;
 };

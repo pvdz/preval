@@ -49,7 +49,7 @@ $( 10, undefined );
 
 `````js filename=intro
 const g = 10;
-const g$1 = function () {
+let g$1 = function () {
   debugger;
   let tmpCalleeParam = typeof g$1;
   $(tmpCalleeParam);

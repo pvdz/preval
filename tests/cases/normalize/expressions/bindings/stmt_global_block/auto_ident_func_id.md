@@ -52,7 +52,7 @@ $( a );
 (This is what phase1 received the first time)
 
 `````js filename=intro
-const f = function () {
+let f = function () {
   debugger;
   return undefined;
 };

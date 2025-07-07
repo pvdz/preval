@@ -82,7 +82,7 @@ else {
 
 `````js filename=intro
 const tmpObjLitVal = 10;
-const f = function () {
+let f = function () {
   const tmpPrevalAliasThis = this;
   debugger;
   const tmpIfTest = $(1);

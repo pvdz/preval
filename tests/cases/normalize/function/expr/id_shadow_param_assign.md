@@ -50,7 +50,7 @@ $( 20, "function" );
 (This is what phase1 received the first time)
 
 `````js filename=intro
-const r$1 = function ($$0) {
+let r$1 = function ($$0) {
   let r$2 = $$0;
   debugger;
   r$2 = 20;

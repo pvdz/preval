@@ -18,7 +18,7 @@
   } catch(e) {
     $('doc_all_error', e.name);
     res = defaultVal;
-     $('res_doc_all_error_case', res);
+    $('res_doc_all_error_case', res);
   }
 
   let definitelyNull = null;

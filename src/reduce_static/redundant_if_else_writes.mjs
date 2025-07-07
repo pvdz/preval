@@ -204,10 +204,11 @@ function _redundantWrites(fdata) {
           // We already know it's a closure (that's why we're in the slow path) so that would prevent this rule.
           let pointer = write.blockBodies.length - 1;
           while (--pointer >= 0) {
-            const i = write.blockIndexes[pointer];
-            ASSERT(write.blockBodies[i]);
-            if (write.blockBodies[i].type === 'TryStatement') break; // bad
-            if (write.blockBodies[i].type === 'FunctionExpression') pointer = 0; // ok!
+            const bod = write.blockBodies[pointer];
+            const idx = write.blockIndexes[pointer];
+            ASSERT(bod[idx], 'how?', write.blockBodies.length, pointer, idx, write.blockIndexes, write.blockBodies.map(b => b.length));
+            if (bod[idx].type === 'TryStatement') break; // bad
+            if (bod[idx].type === 'FunctionExpression') pointer = 0; // ok!
           }
           if (pointer < 0) {
             // Looks like no parent is a try so we should be good to go here?
@@ -234,10 +235,11 @@ function _redundantWrites(fdata) {
           // We already know it's a closure (that's why we're in the slow path) so that would prevent this rule.
           let pointer = write.blockBodies.length - 1;
           while (--pointer >= 0) {
-            const i = write.blockIndexes[pointer];
-            ASSERT(write.blockBodies[i]);
-            if (write.blockBodies[i].type === 'TryStatement') break; // bad
-            if (write.blockBodies[i].type === 'FunctionExpression') pointer = 0; // ok!
+            const bod = write.blockBodies[pointer];
+            const idx = write.blockIndexes[pointer];
+            ASSERT(bod[idx], 'how?', write.blockBodies.length, pointer, idx, write.blockIndexes, write.blockBodies.map(b => b.length));
+            if (bod[idx].type === 'TryStatement') break; // bad
+            if (bod[idx].type === 'FunctionExpression') pointer = 0; // ok!
           }
           if (pointer < 0) {
             // Looks like no parent is a `try` so we should be good to go here?

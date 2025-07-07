@@ -183,8 +183,22 @@ export function _freeFuncs(fdata, prng, usePrng, pcodeTestMode) {
                   SO_MESSAGE + '; calling `' + tmat(read.blockBody[read.blockIndex], true) + '`'
                 ));
               } else {
-                if (read.grandIndex < 0) read.grandNode[read.grandProp] = AST.primitive(out);
-                else read.grandNode[read.grandProp][read.grandIndex] = AST.primitive(out);
+                // Note: `out` is a raw value, not an AST node
+                if (Array.isArray(out)) {
+                  // elided elements should be explicit `null` in the AST:
+                  const arr = Array(out.length).fill(null);
+                  out.forEach((e,i) => {
+                    if (e) arr[i] = AST.cloneSimple(e);
+                  })
+                  const newNode = AST.arrayExpression(arr);
+                  if (read.grandIndex < 0) read.grandNode[read.grandProp] = newNode;
+                  else read.grandNode[read.grandProp][read.grandIndex] = newNode;
+                }
+                else if (out === null || ['undefined', 'boolean', 'number', 'string'].includes(typeof out)) {
+                  if (read.grandIndex < 0) read.grandNode[read.grandProp] = AST.primitive(out);
+                  else read.grandNode[read.grandProp][read.grandIndex] = AST.primitive(out);
+                }
+                else ASSERT(false, 'implement this pcode return type:', out); // we allowed it in pcanCompile so we must implement it
               }
 
               after(read.blockBody[read.blockIndex]);

@@ -15,7 +15,6 @@
 import walk from '../../lib/walk.mjs';
 import * as AST from '../ast.mjs';
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, source, assertNoDupeNodes, rule, example, before, after, todo, currentState, } from '../utils.mjs';
-import { pcanCompile, pcompile, pcodeSupportedBuiltinFuncs, runPcode, SO_MESSAGE } from '../pcode.mjs';
 import { SYMBOL_DOTCALL } from '../symbols_preval.mjs';
 import { symbo } from '../symbols_builtins.mjs';
 import { createFreshVar } from '../bindings.mjs';

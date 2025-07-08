@@ -22,8 +22,8 @@
 import walk from '../../lib/walk.mjs';
 import * as AST from '../ast.mjs';
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, source, REF_TRACK_TRACING, assertNoDupeNodes, rule, example, before, after, todo, currentState, clearStdio, } from '../utils.mjs';
-import { runFreeWithPcode } from '../pcode.mjs';
-import { SYMBOL_COERCE, SYMBOL_DOTCALL, SYMBOL_FRFR } from '../symbols_preval.mjs';
+import { pcanCompile, pcodeSupportedBuiltinFuncs, pcompile, runFreeWithPcode } from '../pcode.mjs';
+import { SYMBOL_COERCE, SYMBOL_DOTCALL, SYMBOL_FRFR, SYMBOL_PCOMPILED } from '../symbols_preval.mjs';
 import { PRIMITIVE_TYPE_NAMES_PREVAL, PRIMITIVE_TYPE_NAMES_TYPEOF, setVerboseTracing } from '../constants.mjs';
 import { BUILTIN_SYMBOLS, symbo } from '../symbols_builtins.mjs';
 
@@ -75,6 +75,8 @@ export function _freeLoops(fdata, prng, usePrng) {
   //   - I guess we bail as soon as anything escapes or is otherwise unpredictable
   // - If the loop is free then we should be able to resolve it ...
 
+  const pcodeOutput = new Map;
+  fdata.pcodeOutput = pcodeOutput;
 
   walk(_walker, fdata.tenkoOutput.ast, 'ast');
   function _walker(node, beforeWalk, nodeType, path) {
@@ -313,11 +315,62 @@ function _isFree(node, fdata, callNodeToCalleeSymbol, declaredNameTypes, insideW
         return false;
       }
 
-      vlog('-- call check for', [calleeName], [assignedTo]);
+      vlog('-- call check for', [calleeName], 'as', [assignedTo]);
 
       if (!SUPPORTED_GLOBAL_FUNCS.includes(calleeName)) {
         if (BUILTIN_SYMBOLS.has(calleeName)) {
           todo(`Support this ident in isFree CallExpression: ${calleeName}`);
+        }
+        const cmeta = fdata.globallyUniqueNamingRegistry.get(calleeName);
+        if (
+          cmeta?.isConstant &&
+          cmeta.varDeclRef?.node.id?.name === SYMBOL_PCOMPILED
+        ) {
+          vlog('- returns:', cmeta.typing.returns);
+          if (!cmeta.typing.returns) {
+            todo('function with $pcompiled set has no returns type?');
+            return false;
+          }
+
+          vlog('Checking pcanCompile to get sub dependencies to compile');
+          const compileData = pcanCompile(cmeta.varDeclRef.node, fdata, calleeName);
+          ASSERT(compileData, 'func has $pcompiled marker so should be compilable');
+
+          vlog('Compiling target function', [calleeName]);
+          vlog('Current state of pcodeOutput:', fdata.pcodeOutput);
+          // Compile it now because the sub calls to $frfr must also be compield
+          const pcode = pcompile(cmeta.varDeclRef.node, fdata);
+
+          fdata.pcodeOutput.set(cmeta.varDeclRef.node.$p.npid, { pcode, funcNode: cmeta.varDeclRef.node, name: calleeName });
+          fdata.pcodeOutput.set(calleeName, { pcode, funcNode: cmeta.varDeclRef.node, name: calleeName });
+
+          vlog('');
+          vlog('Main target compiled. Compiling sub calls');
+          compileData.forEach((_, callName) => {
+            if (BUILTIN_SYMBOLS.has(callName)) return;
+            if (callName === SYMBOL_COERCE) return;
+            if (pcodeSupportedBuiltinFuncs.has(callName)) return;
+
+            vgroup();
+            vgroup('');
+            vgroup('compiling sub function', callName);
+            const sfuncNode = fdata.globallyUniqueNamingRegistry.get(callName).varDeclRef.node;
+            const pcode = pcompile(sfuncNode, fdata);
+            fdata.pcodeOutput.set(sfuncNode.$p.npid, { pcode, funcNode: sfuncNode, name: callName });
+            fdata.pcodeOutput.set(callName, { pcode, funcNode: sfuncNode, name: callName });
+
+            vgroupEnd();
+            vgroupEnd();
+            vgroupEnd();
+          });
+
+          vlog('');
+          vlog('Main and sub calls compiled');
+          vlog('');
+
+          if (assignedTo) declaredNameTypes.set(assignedTo, cmeta.typing.returns);
+          callNodeToCalleeSymbol.set(node, calleeName);
+          return true;
         }
         vlog('- bail: not a supported function');
         return false;
@@ -337,7 +390,7 @@ function _isFree(node, fdata, callNodeToCalleeSymbol, declaredNameTypes, insideW
           }
           vlog('- ok: frfr should be safe');
           if (assignedTo) declaredNameTypes.set(assignedTo, t);
-          callNodeToCalleeSymbol.set(node.call, args[0].name);
+          callNodeToCalleeSymbol.set(args[0].name, args[0].name);
           return true;
         }
         case SYMBOL_COERCE: {
@@ -1105,7 +1158,7 @@ function _runExpression(fdata, node, register, callNodeToCalleeSymbol, prng, use
         });
         if (fail) return FAILURE_SYMBOL;
 
-        const outNode = runFreeWithPcode(freeFuncNode, args, fdata, freeFuncName, prng, usePrng);
+        const outNode = runFreeWithPcode(freeFuncNode, args, fdata, freeFuncName, prng, usePrng, fdata.pcodeOutput);
         if (!outNode || !AST.isPrimitive(outNode)) {
           todo('The return value of runFreeWithPcode was not a primitive?');
           break;
@@ -1113,166 +1166,203 @@ function _runExpression(fdata, node, register, callNodeToCalleeSymbol, prng, use
         return AST.getPrimitiveValue(outNode);
       }
       else {
-        const funcName = callNodeToCalleeSymbol.get(node);
+        const calleeName = callNodeToCalleeSymbol.get(node);
+        const cmeta = fdata.globallyUniqueNamingRegistry.get(calleeName);
+        if (
+          cmeta?.isConstant &&
+          // If the func own name is $pcompiled (or $free) then we must have pcode available now...
+          cmeta.varDeclRef?.node.id?.name === SYMBOL_PCOMPILED
+        ) {
+          vlog('- Call pcode compiled function:', callNodeToCalleeSymbol.get(node));
 
-        let targetFuncName = actualFuncName;
-        let targetContextNode = undefined;
-        let args = node.arguments;
-        if (actualFuncName === SYMBOL_DOTCALL) {
-          targetFuncName = args[0].name;
-          targetContextNode = args[1];
-          args = args.slice(3);
+          let fail = false;
+          const args = node.arguments.map(arg => {
+            if (AST.isPrimitive(arg)) return arg;
+            if (arg.type !== 'Identifier') {
+              todo('$pcompile args should be primitives or local vars or we should support whatever is missing', arg);
+              fail = true;
+              return;
+            }
+            if (!register.has(arg.name)) {
+              todo('$pcompile ident args should be local vars or we should support whatever is missing', arg);
+              fail = true;
+              return;
+            }
+            const val = register.get(arg.name);
+            if (!AST.isPrimitive(val)) {
+              todo('$pcompile ident args should be a primitive', arg, val);
+              fail = true;
+              return;
+            }
+            return val;
+          });
+          if (fail) return FAILURE_SYMBOL;
+
+          vlog('pcode cache?', !!fdata.pcodeOutput);
+          const outNode = runFreeWithPcode(cmeta.varDeclRef.node, args, fdata, calleeName, prng, usePrng, fdata.pcodeOutput);
+          if (!outNode || !AST.isPrimitive(outNode)) {
+            todo('The return value of runFreeWithPcode with a pcode func was not a primitive?');
+            break;
+          }
+          return AST.getPrimitiveValue(outNode);
         }
+        else {
+          const funcName = callNodeToCalleeSymbol.get(node);
 
-        ASSERT(funcName && callNodeToCalleeSymbol.get(node) === funcName, 'The callNodeToCalleeSymbol should contain all call nodes, isFree should do that (frfr too but that special case is captured in the other branch above)', node);
+          let targetFuncName = actualFuncName;
+          let targetContextNode = undefined;
+          let args = node.arguments;
+          if (actualFuncName === SYMBOL_DOTCALL) {
+            targetFuncName = args[0].name;
+            targetContextNode = args[1];
+            args = args.slice(3);
+          }
 
-        // The simple stuff that's not part of builtin symbols
-        switch (funcName) {
-          case symbo('array', 'push'): {
-            // The object must be a local var. Find the init.
-            ASSERT(targetContextNode?.name, 'since its a method call it must have an object and since its an array it must be an ident', targetContextNode);
-            const init = register.get(targetContextNode.name);
-            ASSERT(init, 'calling array.push must mean the object is an array must mean it is a local variable which isFree should guarantee', targetContextNode?.name, node);
-            // Go through the list of args, resolve them to their current value if not yet, and push a new node for each
-            args.forEach(arg => {
-              // Each arg must be simple so either it's a primitive or a variable we can lookup
-              // If the variable is a local reference then it must outlive the loop (so it must be defined before the loop)
-              // That's because we'll be eliminating the loop afterwards so that reference will disappear.
-              // There would be an exception for an object that is created and referenced only once. In that case we can compile a node
-              // to instantiate that object rather than the reference. But we'd need to be danged certain about its full state...
+          ASSERT(funcName && callNodeToCalleeSymbol.get(node) === funcName, 'The callNodeToCalleeSymbol should contain all call nodes, isFree should do that (frfr too but that special case is captured in the other branch above)', node);
 
-              if (AST.isPrimitive(arg)) {
-                const argValue = AST.getPrimitiveValue(arg);
-                init.elements.push(AST.primitive(argValue));
-              } else if (arg.type === 'Identifier') {
-                // Resolve it from its init
-                const argInit = register.get(arg.name);
-                if (AST.isPrimitive(argInit)) {
-                  const argValue = AST.getPrimitiveValue(argInit);
+          // The simple stuff that's not part of builtin symbols
+          switch (funcName) {
+            case symbo('array', 'push'): {
+              // The object must be a local var. Find the init.
+              ASSERT(targetContextNode?.name, 'since its a method call it must have an object and since its an array it must be an ident', targetContextNode);
+              const init = register.get(targetContextNode.name);
+              ASSERT(init, 'calling array.push must mean the object is an array must mean it is a local variable which isFree should guarantee', targetContextNode?.name, node);
+              // Go through the list of args, resolve them to their current value if not yet, and push a new node for each
+              args.forEach(arg => {
+                // Each arg must be simple so either it's a primitive or a variable we can lookup
+                // If the variable is a local reference then it must outlive the loop (so it must be defined before the loop)
+                // That's because we'll be eliminating the loop afterwards so that reference will disappear.
+                // There would be an exception for an object that is created and referenced only once. In that case we can compile a node
+                // to instantiate that object rather than the reference. But we'd need to be danged certain about its full state...
+
+                if (AST.isPrimitive(arg)) {
+                  const argValue = AST.getPrimitiveValue(arg);
                   init.elements.push(AST.primitive(argValue));
+                } else if (arg.type === 'Identifier') {
+                  // Resolve it from its init
+                  const argInit = register.get(arg.name);
+                  if (AST.isPrimitive(argInit)) {
+                    const argValue = AST.getPrimitiveValue(argInit);
+                    init.elements.push(AST.primitive(argValue));
+                  } else {
+                    todo('Support pushing a non-primitive into an array');
+                    register.set('', `Support pushing a non-primitive into an array`);
+                    return FAILURE_SYMBOL;
+                  }
                 } else {
-                  todo('Support pushing a non-primitive into an array');
-                  register.set('', `Support pushing a non-primitive into an array`);
+                  todo('Unexpected arg type in call:', arg);
+                  register.set('', `Unexpected arg type in call ${arg.type}`);
                   return FAILURE_SYMBOL;
                 }
-              } else {
-                todo('Unexpected arg type in call:', arg);
-                register.set('', `Unexpected arg type in call ${arg.type}`);
+              });
+              return init.elements.length; // array.push returns the new size of the array
+            }
+            case symbo('array', 'shift'): {
+              // The object must be a local var. Find the init.
+              ASSERT(targetContextNode?.name, 'since its a method call it must have an object and since its an array it must be an ident', targetContextNode);
+              const init = register.get(targetContextNode.name);
+              ASSERT(init, 'calling array.push must mean the object is an array must mean it is a local variable which isFree should guarantee', targetContextNode.name, node);
+              const front = init.elements.shift();
+              return runExpression(fdata, front, register, callNodeToCalleeSymbol, prng, usePrng);
+            }
+            case '$coerce': {
+              const value = runExpression(fdata, args[0], register, callNodeToCalleeSymbol, prng, usePrng);
+              if (value === FAILURE_SYMBOL) return FAILURE_SYMBOL;
+              const targetType = AST.getPrimitiveValue(args[1]) === 'number' ? 'number' : 'string';
+              if (targetType === 'plustr') return value + '';
+              if (targetType === 'string') return String(value);
+              if (targetType === 'number') return value + 0;
+              return ASSERT(false, '$coerce should not have anything else');
+            }
+            case 'isNaN': {
+              const value = runExpression(fdata, args[0], register, callNodeToCalleeSymbol, prng, usePrng);
+              if (value === FAILURE_SYMBOL) return FAILURE_SYMBOL;
+              return isNaN(value);
+            }
+            case symbo('Number', 'isNaN'): {
+              const value = runExpression(fdata, args[0], register, callNodeToCalleeSymbol, prng, usePrng);
+              if (value === FAILURE_SYMBOL) return FAILURE_SYMBOL;
+              return Number.isNaN(value);
+            }
+            case 'isFinite': {
+              const value = runExpression(fdata, args[0], register, callNodeToCalleeSymbol, prng, usePrng);
+              if (value === FAILURE_SYMBOL) return FAILURE_SYMBOL;
+              return isFinite(value);
+            }
+            case symbo('Number', 'isFinite'): {
+              const value = runExpression(fdata, args[0], register, callNodeToCalleeSymbol, prng, usePrng);
+              if (value === FAILURE_SYMBOL) return FAILURE_SYMBOL;
+              return Number.isFinite(value);
+            }
+            case symbo('Number', 'parseInt'): {
+              const value = args[0] ? runExpression(fdata, args[0], register, callNodeToCalleeSymbol, prng, usePrng) : undefined;
+              if (value === FAILURE_SYMBOL) return FAILURE_SYMBOL;
+              const base = args[1] ? runExpression(fdata, args[1], register, callNodeToCalleeSymbol, prng, usePrng) : undefined;
+              if (base === FAILURE_SYMBOL) return FAILURE_SYMBOL;
+              return parseInt(value, base);
+            }
+            case symbo('Number', 'parseFloat'): {
+              const value = args[0] ? runExpression(fdata, args[0], register, callNodeToCalleeSymbol, prng, usePrng) : undefined;
+              if (value === FAILURE_SYMBOL) return FAILURE_SYMBOL;
+              return parseFloat(value);
+            }
+            case symbo('Number', 'isInteger'): {
+              const value = args[0] ? runExpression(fdata, args[0], register, callNodeToCalleeSymbol, prng, usePrng) : undefined;
+              if (value === FAILURE_SYMBOL) return FAILURE_SYMBOL;
+              return Number.isInteger(value);
+            }
+            case symbo('Number', 'isSafeInteger'): {
+              const value = args[0] ? runExpression(fdata, args[0], register, callNodeToCalleeSymbol, prng, usePrng) : undefined;
+              if (value === FAILURE_SYMBOL) return FAILURE_SYMBOL;
+              return Number.isSafeInteger(value);
+            }
+            case symbo('string', 'charAt'): {
+              const value = runExpression(fdata, targetContextNode, register, callNodeToCalleeSymbol, prng, usePrng);
+              if (typeof value !== 'string') {
+                todo('The value was not a string but isFree should have guaranteed it was', targetContextNode);
+                register.set('', `The value was not a string`);
                 return FAILURE_SYMBOL;
               }
-            });
-            return init.elements.length; // array.push returns the new size of the array
-          }
-          case symbo('array', 'shift'): {
-            // The object must be a local var. Find the init.
-            ASSERT(targetContextNode?.name, 'since its a method call it must have an object and since its an array it must be an ident', targetContextNode);
-            const init = register.get(targetContextNode.name);
-            ASSERT(init, 'calling array.push must mean the object is an array must mean it is a local variable which isFree should guarantee', targetContextNode.name, node);
-            const front = init.elements.shift();
-            return runExpression(fdata, front, register, callNodeToCalleeSymbol, prng, usePrng);
-          }
-          case '$coerce': {
-            const value = runExpression(fdata, args[0], register, callNodeToCalleeSymbol, prng, usePrng);
-            if (value === FAILURE_SYMBOL) return FAILURE_SYMBOL;
-            const targetType = AST.getPrimitiveValue(args[1]) === 'number' ? 'number' : 'string';
-            if (targetType === 'plustr') return value + '';
-            if (targetType === 'string') return String(value);
-            if (targetType === 'number') return value + 0;
-            return ASSERT(false, '$coerce should not have anything else');
-          }
-          case 'isNaN': {
-            const value = runExpression(fdata, args[0], register, callNodeToCalleeSymbol, prng, usePrng);
-            if (value === FAILURE_SYMBOL) return FAILURE_SYMBOL;
-            return isNaN(value);
-          }
-          case symbo('Number', 'isNaN'): {
-            const value = runExpression(fdata, args[0], register, callNodeToCalleeSymbol, prng, usePrng);
-            if (value === FAILURE_SYMBOL) return FAILURE_SYMBOL;
-            return Number.isNaN(value);
-          }
-          case 'isFinite': {
-            const value = runExpression(fdata, args[0], register, callNodeToCalleeSymbol, prng, usePrng);
-            if (value === FAILURE_SYMBOL) return FAILURE_SYMBOL;
-            return isFinite(value);
-          }
-          case symbo('Number', 'isFinite'): {
-            const value = runExpression(fdata, args[0], register, callNodeToCalleeSymbol, prng, usePrng);
-            if (value === FAILURE_SYMBOL) return FAILURE_SYMBOL;
-            return Number.isFinite(value);
-          }
-          case symbo('Number', 'parseInt'): {
-            const value = args[0] ? runExpression(fdata, args[0], register, callNodeToCalleeSymbol, prng, usePrng) : undefined;
-            if (value === FAILURE_SYMBOL) return FAILURE_SYMBOL;
-            const base = args[1] ? runExpression(fdata, args[1], register, callNodeToCalleeSymbol, prng, usePrng) : undefined;
-            if (base === FAILURE_SYMBOL) return FAILURE_SYMBOL;
-            return parseInt(value, base);
-          }
-          case symbo('Number', 'parseFloat'): {
-            const value = args[0] ? runExpression(fdata, args[0], register, callNodeToCalleeSymbol, prng, usePrng) : undefined;
-            if (value === FAILURE_SYMBOL) return FAILURE_SYMBOL;
-            return parseFloat(value);
-          }
-          case symbo('Number', 'isInteger'): {
-            const value = args[0] ? runExpression(fdata, args[0], register, callNodeToCalleeSymbol, prng, usePrng) : undefined;
-            if (value === FAILURE_SYMBOL) return FAILURE_SYMBOL;
-            return Number.isInteger(value);
-          }
-          case symbo('Number', 'isSafeInteger'): {
-            const value = args[0] ? runExpression(fdata, args[0], register, callNodeToCalleeSymbol, prng, usePrng) : undefined;
-            if (value === FAILURE_SYMBOL) return FAILURE_SYMBOL;
-            return Number.isSafeInteger(value);
-          }
-          case symbo('string', 'charAt'): {
-            const value = runExpression(fdata, targetContextNode, register, callNodeToCalleeSymbol, prng, usePrng);
-            if (typeof value !== 'string') {
-              todo('The value was not a string but isFree should have guaranteed it was', targetContextNode);
-              register.set('', `The value was not a string`);
-              return FAILURE_SYMBOL;
+              const arg = runExpression(fdata, args[0], register, callNodeToCalleeSymbol, prng, usePrng);
+              if (typeof arg !== 'number') {
+                todo('The arg was not a number but isFree should have guaranteed it was', args[0]);
+                register.set('', `The value was not a number`);
+                return FAILURE_SYMBOL;
+              }
+              const ch = value.charAt(arg);
+              return ch;
             }
-            const arg = runExpression(fdata, args[0], register, callNodeToCalleeSymbol, prng, usePrng);
-            if (typeof arg !== 'number') {
-              todo('The arg was not a number but isFree should have guaranteed it was', args[0]);
-              register.set('', `The value was not a number`);
-              return FAILURE_SYMBOL;
+            case symbo('string', 'charCodeAt'): {
+              const value = runExpression(fdata, targetContextNode, register, callNodeToCalleeSymbol, prng, usePrng);
+              if (typeof value !== 'string') {
+                todo('The value was not a string but isFree should have guaranteed it was', targetContextNode);
+                register.set('', `The value was not a string2`);
+                return FAILURE_SYMBOL;
+              }
+              const arg = runExpression(fdata, args[0], register, callNodeToCalleeSymbol, prng, usePrng);
+              if (typeof arg !== 'number') {
+                todo('The arg was not a number but isFree should have guaranteed it was', args[0]);
+                register.set('', `The value was not a number2`);
+                return FAILURE_SYMBOL;
+              }
+              const ch = value.charCodeAt(arg);
+              return ch;
             }
-            const ch = value.charAt(arg);
-            return ch;
-          }
-          case symbo('string', 'charCodeAt'): {
-            const value = runExpression(fdata, targetContextNode, register, callNodeToCalleeSymbol, prng, usePrng);
-            if (typeof value !== 'string') {
-              todo('The value was not a string but isFree should have guaranteed it was', targetContextNode);
-              register.set('', `The value was not a string2`);
-              return FAILURE_SYMBOL;
+            case symbo('String', 'fromCharCode'): {
+              // You can use any number of args here. Into the thousands. So we must take care here.
+              const resolvedArgs = args.map(a => runExpression(fdata, a, register, callNodeToCalleeSymbol, prng, usePrng));
+              const str = String.fromCharCode.apply(null, resolvedArgs);
+              return str;
             }
-            const arg = runExpression(fdata, args[0], register, callNodeToCalleeSymbol, prng, usePrng);
-            if (typeof arg !== 'number') {
-              todo('The arg was not a number but isFree should have guaranteed it was', args[0]);
-              register.set('', `The value was not a number2`);
-              return FAILURE_SYMBOL;
-            }
-            const ch = value.charCodeAt(arg);
-            return ch;
           }
-          case symbo('String', 'fromCharCode'): {
-            // You can use any number of args here. Into the thousands. So we must take care here.
-            const resolvedArgs = args.map(a => runExpression(fdata, a, register, callNodeToCalleeSymbol, prng, usePrng));
-            const str = String.fromCharCode.apply(null, resolvedArgs);
-            return str;
-          }
-        }
 
-        // The symbols
-        if (
-          funcName.startsWith('string_') ||
-          funcName.startsWith('number_') ||
-          funcName.startsWith('boolean_') ||
-          funcName.startsWith('regex_') ||
-          funcName.startsWith('array_')
-        ) console.dir('free_loops may not have bailed if it implemented `' + funcName + '`');
-        todo('Missing implementation for allowed function call to:', funcName);
-        register.set('', `Missing implementation for allowed function call to ${funcName}`);
-        return FAILURE_SYMBOL;
+          // The symbols
+          if (BUILTIN_SYMBOLS.has(funcName)) todo('free_loops may not have bailed if it implemented `' + funcName + '`');
+          todo('Missing implementation for allowed function call to:', funcName);
+          register.set('', `Missing implementation for allowed function call to ${funcName}`);
+          vlog('Expect to crash hard soon...');
+          return FAILURE_SYMBOL;
+        }
       }
 
       break;

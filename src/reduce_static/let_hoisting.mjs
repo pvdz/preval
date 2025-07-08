@@ -57,11 +57,13 @@ function _letHoisting(fdata) {
     updated = processAttempt3OnlyUsedInOtherScope(fdata);
   }
 
-  //if (!updated) {
+  // if (!updated) {
   //  // TODO: this breaks tests/cases/self_assign_closure/self_assign_closure1.md
   //  //       but it is required for something like tests/cases/ssa/back2back_x_x_plus_1_assign3.md to get around the `x=y; if($) x` case
-  //  //updated = processAttempt2multiScopeWriteReadOnly(fdata);
-  //}
+  //  //       Unsafe case: tests/cases/function/writing_func_expr_name.md                (function escapes, this is observable)
+  //  //       Unsafe case: tests/cases/normalize/dce/return/decl_after_closured.md       (tdz case gets lost)
+  //  updated = processAttempt2multiScopeWriteReadOnly(fdata);
+  // }
 
   log('');
   if (updated) {
@@ -179,7 +181,7 @@ function _letHoisting(fdata) {
 
 
 function processAttempt1MoveVarDeclAboveClosure(fdata) {
-  vlog('\nLet hoisting, attempt 1: try to move var decls above closure references');
+  vlog('\nprocessAttempt1MoveVarDeclAboveClosure; Let hoisting, attempt 1: try to move var decls above closure references');
 
   let updated = 0;
   let blockQueue = new Set(); // Map<block, Array<{from, to}>>
@@ -191,7 +193,7 @@ function processAttempt1MoveVarDeclAboveClosure(fdata) {
     if (meta.isConstant) return;
     //if (!meta.varDeclRef) return; // catch
 
-    vgroup('- `' + meta.uniqueName + '`, writes:', meta.writes.length, ', reads:', meta.reads.length);
+    vgroup('- `' + meta.uniqueName + '`, writes:', meta.writes.length, ', reads:', meta.reads.length, meta.isBuiltin);
 
     const rwOrder = meta.rwOrder;
     vlog('rwOrder:', [rwOrder.map((o) => o.action + ':' + o.kind + ':' + o.node.$p.npid + ':' + o.blockIndex).join(', ')]);
@@ -386,18 +388,16 @@ function processAttempt1MoveVarDeclAboveClosure(fdata) {
   return updated;
 }
 function processAttempt2multiScopeWriteReadOnly(fdata) {
-  vlog('\nLet hoisting, attempt 2: trying cross scope write-read only SSA');
+  vlog('\nprocessAttempt2multiScopeWriteReadOnly; Let hoisting, attempt 2: trying cross scope write-read only SSA');
 
   let updated = 0;
   let toInject = new Map(); // Map<pid, [names]>
 
   new Map(fdata.globallyUniqueNamingRegistry).forEach(function (meta, name) {
-    if (meta.isBuiltin) return;
-    if (meta.isImplicitGlobal) return;
+    if (!meta.isLet) return;
     if (meta.isExport) return; // The initial write may still be observed by an import so skip exports for now
-    if (meta.isConstant) return;
 
-    vgroup('- `' + meta.uniqueName + '`, writes:', meta.writes.length, ', reads:', meta.reads.length);
+    vgroup('- `' + meta.uniqueName + '`, writes:', meta.writes.length, ', reads:', meta.reads.length, meta.isBuiltin);
 
     process2(meta, name);
 
@@ -412,7 +412,7 @@ function processAttempt2multiScopeWriteReadOnly(fdata) {
 
     // We must show that every read was preceded by a write and had no observable side effects between them.
     // If that's the case then the initial binding value must be irrelevant and all writes can be SSA'd.
-    // Must beware of loops.
+    // Must beware of loops and try/catch.
 
     vgroup('First walk of refs');
     let failed = false;
@@ -544,8 +544,6 @@ function processAttempt2multiScopeWriteReadOnly(fdata) {
     vgroupEnd();
 
     rwOrder.forEach((ref) => after(ref.blockBody[ref.blockIndex]));
-
-    const ast = fdata.tenkoOutput.ast;
   }
 
   if (toInject.size) {
@@ -565,7 +563,7 @@ function processAttempt2multiScopeWriteReadOnly(fdata) {
 function processAttempt3OnlyUsedInOtherScope(fdata) {
   // This case seems a bit shallow since it only supports the let being used inside one other function, and the first ref
   // in there must be a write with the others being reads that reach that write. Pretty limited artifact.
-  vlog('\nLet hoisting, attempt 3; if an outer var is only used inside another scope and that scope starts with a write then apply SSA');
+  vlog('\nprocessAttempt3OnlyUsedInOtherScope: Let hoisting, attempt 3; if an outer var is only used inside another scope and that scope starts with a write then apply SSA');
 
   let updated = 0;
 
@@ -575,7 +573,7 @@ function processAttempt3OnlyUsedInOtherScope(fdata) {
     if (meta.isExport) return; // The initial write may still be observed by an import so skip exports for now
     if (meta.isConstant) return;
 
-    vgroup('- `' + meta.uniqueName + '`, writes:', meta.writes.length, ', reads:', meta.reads.length);
+    vgroup('- `' + meta.uniqueName + '`, writes:', meta.writes.length, ', reads:', meta.reads.length, meta.isBuiltin);
 
     // Since we regenerate the pid during every phase1, we should be able to rely on it for DFS ordering.
     const rwOrder = [...meta.reads, ...meta.writes].sort((a, b) => a.node.$p.npid - b.node.$p.npid);

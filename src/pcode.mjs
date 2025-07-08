@@ -46,7 +46,7 @@ const NONE = 0;
 const RETURN = 1;
 const BREAK = 2;
 const SO = 3; // "stack overflow" (or, max call depth exceeded)
-export const SO_MESSAGE = '<max pcode call depth exceeded>';
+export const SO_MESSAGE = '<max pcode call depth exceeded>'; // actually, we should not change the code, maybe add this message or something as a marker, but that's it
 
 /** @var {Set<string>} we need the func node because a let binding can have multiple funcs assigned to it. true means its a built-in we support */
 export const pcodeSupportedBuiltinFuncs = new Set([
@@ -180,31 +180,39 @@ export const pcodeSupportedBuiltinFuncs = new Set([
   //SYMBOL_DOTCALL, // handled explicitly below
 ]);
 
-export function runFreeWithPcode(funcNode, argNodes, fdata, freeFuncName, $prng, usePrng) {
+export function runFreeWithPcode(funcNode, argNodes, fdata, freeFuncName, $prng, usePrng, pcodeOutput = new Map) {
+  vgroup('runFreeWithPcode; cached funcs:', Array.from(pcodeOutput.keys()).filter(x => typeof x === 'string').join(', ') || '<none>');
+
   source(funcNode, true);
   const callsWhenCompiled = pcanCompile(funcNode, fdata, freeFuncName);
   vlog('Can pcode body?', freeFuncName, !!callsWhenCompiled, callsWhenCompiled ? 'Proceeding with compile and run...' : 'Not compiling or running...');
-  if (callsWhenCompiled) {
+  if (!callsWhenCompiled) {
+    vlog('-- ehhh. No.');
+    vgroupEnd();
+    return null;
+  }
+
+  fdata.pcodeOutput = pcodeOutput;
+  if (pcodeOutput.has(funcNode.$p.npid)) {
+    vlog('Skipping compilation: already found in pcodeOutput cache');
+  } else {
     vgroup('Compiling into pcode:');
     const pcode = pcompile(funcNode, fdata);
     vgroupEnd();
-    // Temp
-    fdata.pcodeOutput = new Map;
-    fdata.pcodeOutput.set(funcNode.$p.npid, { pcode, funcNode, name: freeFuncName, bytecode: pcode });
-    fdata.pcodeOutput.set(freeFuncName, { pcode, funcNode, name: freeFuncName, bytecode: pcode });
-    vlog('Compiled pcode:', pcode);
-    vlog('Getting primitives from args:', argNodes, argNodes);
-    const args = argNodes.map(anode => AST.getPrimitiveValue(anode));
-    vlog('Now running pcode with args:', args);
-    const out = runPcode(freeFuncName, args, fdata.pcodeOutput, fdata, $prng, usePrng);
-    vlog('Outcome:', out);
-    // Cleanup
-    fdata.pcodeOutput = undefined;
 
-    return AST.primitive(out);
+    pcodeOutput.set(funcNode.$p.npid, { pcode, funcNode, name: freeFuncName, bytecode: pcode });
+    pcodeOutput.set(freeFuncName, { pcode, funcNode, name: freeFuncName, bytecode: pcode });
+    vlog('Compiled pcode:', pcode);
   }
 
-  return null;
+  vlog('Getting primitives from args:', argNodes, argNodes);
+  const args = argNodes.map(anode => AST.getPrimitiveValue(anode));
+  vlog('Now running pcode with args:', args);
+  const out = runPcode(freeFuncName, args, pcodeOutput, fdata, $prng, usePrng);
+  vlog('Outcome:', out);
+
+  vgroupEnd();
+  return AST.primitive(out);
 }
 
 /**
@@ -297,18 +305,32 @@ function pcanCompileBody(locals, calls, body, fdata) {
         break;
       }
       case 'IfStatement': {
+        vgroup('- if:');
+        vgroup('- test:');
         if (!pcanCompileExpr(locals, calls, stmt.test, fdata, stmt)) {
           vlog('- bail: if test is bad');
+          vgroupEnd();
+          vgroupEnd();
           return false;
         }
+        vgroupEnd();
+        vgroup('- then:');
         if (!pcanCompileBody(locals, calls, stmt.consequent.body, fdata)) {
           vlog('- bail: consequent branch is bad');
+          vgroupEnd();
+          vgroupEnd();
           return false;
         }
+        vgroupEnd();
+        vgroup('- else:');
         if (!pcanCompileBody(locals, calls, stmt.alternate.body, fdata)) {
           vlog('- bail: alternate branch is bad');
+          vgroupEnd();
+          vgroupEnd();
           return false;
         }
+        vgroupEnd();
+        vgroupEnd();
         break;
       }
       case 'DebuggerStatement': {
@@ -413,16 +435,29 @@ function pcanCompileExpr(locals, calls, expr, fdata, stmt, constDeclNameMaybe) {
       //vlog('Checking whether', locals, 'has', [expr.name])
       const has = locals.has(expr.name);
       if (!has) {
+        // Note: call expr should check for regular callee, frfr, and dotcall. dont risk funcs being an init or assign rhs.
+
         // This would only be okay as being called or dotcalled. Pcode doesnt know how to deal with moving around function values (yet).
         // However, we should try to make this work because `const func = num.toString; $dotcall(func, ...` should resolve fine.
         // if (pcodeSupportedBuiltinFuncs.has(expr.name)) {
         //   return true;
         // }
-        if (expr.name === 'Math') {
-          vlog('- accepting Math, temp, until we move these globals to a symbol as well.');
-          return true;
-        }
-        vlog('- bail: found non-local ident', expr.name);
+        // // TODO: update this:
+        // if (expr.name === 'Math') {
+        //   vlog('  - accepting Math, temp, until we move these globals to a symbol as well.');
+        //   return true;
+        // }
+        // const meta = fdata.globallyUniqueNamingRegistry.get(expr.name);
+        // risky due to assignments. instead, builtin symbols should propagate and replace idents, or be allow-listed by cancompile call expr
+        // if (pcodeSupportedBuiltinFuncs.has(expr.name)) {
+        //   vlog('  - accepting allow-listed builtin');
+        //   return true;
+        // }
+        // if (meta?.varDeclRef?.node?.id?.name === '$free') {
+        //   vlog(' - a $free function must be ok');
+        //   return true;
+        // }
+        vlog('  - bail: found non-local ident', expr.name);
       }
       return has;
     }
@@ -567,6 +602,12 @@ export function pcompile(func, fdata) {
   return asm;
 }
 function compileStatement(stmt, regs, fdata, asm) {
+  vgroup('-', stmt.type);
+  const r = _compileStatement(stmt, regs, fdata, asm);
+  vgroupEnd();
+  return r;
+}
+function _compileStatement(stmt, regs, fdata, asm) {
   switch (stmt.type) {
     case 'ExpressionStatement': {
       if (stmt.expression.type === 'AssignmentExpression') {
@@ -863,25 +904,30 @@ export function runPcode(funcName, args, pcodeData, fdata, prng, usePrng, depth 
   let bytecode = obj.bytecode;
   if (!bytecode) {
     vgroup();
+    vgroup('Bytecode not found for', funcName,'. JIT Compiling now...');
     vgroup();
     vgroup();
-    vgroup('Bytecode not found for', funcName,'. Compiling now...');
     bytecode = obj.bytecode = pcompile(obj.funcNode, fdata);
     vgroupEnd();
-    vlog('Compilation finished for', funcName,'. Running', funcName, 'now...');
     // console.dir(bytecode, {depth: null})
     vgroupEnd();
     vgroupEnd();
     vgroupEnd();
+    vlog('');
+    vlog('runPcode: JIT Compilation finished for', funcName);
+    vlog('');
   }
   ASSERT(bytecode);
 
+  vgroup('runPcode: Running', [funcName], 'with these ags:', args);
+  vlog('');
   const registers = {
     $return: undefined,
   };
   for (let i=0; i<args.length; ++i) {
     registers['$$'+i] = args[i];
   }
+  vgroupEnd();
 
   // Note: this may throw when thrown explicitly. or ... if it just happens heh.
   const action = prunStmt(registers, bytecode, pcodeData, fdata, prng, usePrng, depth);
@@ -898,7 +944,7 @@ function prunStmt(registers, bytecode, pcodeData, fdata, prng, usePrng, depth) {
       case 'if': {
         // ['if', 'testReg', 'testLit', consequent[], alternate[]]
         const test = op[1] ? registers[op[1]] : op[2];
-        vgroup('if(', test, ')');
+        vgroup('IF(', test, ')');
         if (test) {
           const action = prunStmt(registers, op[3], pcodeData, fdata, prng, usePrng, depth);
           if (op[3].length === 0) vlog('(empty block)');
@@ -938,29 +984,29 @@ function prunStmt(registers, bytecode, pcodeData, fdata, prng, usePrng, depth) {
 
         if (op[1] === 'neg') { // Extreme edge case but.
           registers.$throw = op[2] ? -registers[op[2]] : -op[3];
-          vlog('throw', registers.$return);
+          vlog('THROW', registers.$return);
           return RETURN;
         }
         else if (op[1] === 'pos') { // Extremer edge case but.
           registers.$throw = op[2] ? +registers[op[2]] : +op[3];
-          vlog('throw', registers.$return);
+          vlog('THROW', registers.$return);
           return RETURN;
         }
         const v = op[1] ? registers[op[1]] : op[2];
-        vlog('throw', v);
+        vlog('THROW', v);
         throw v;
       }
 
       case 'break': {
         // ['return', 'label']
         registers.$break = op[1];
-        vlog('break', registers.$break);
+        vlog('BREAK', registers.$break);
         return BREAK;
       }
 
       case 'label': {
         // ['label', 'name']
-        vgroup('label', op[2]);
+        vgroup('LABEL', op[2]);
         const action = prunStmt(registers, op[2], pcodeData, fdata, prng, usePrng, depth);
         vgroupEnd();
         if (action === BREAK) {
@@ -977,13 +1023,13 @@ function prunStmt(registers, bytecode, pcodeData, fdata, prng, usePrng, depth) {
           // ['r123', 'call', 'parseInt', 'r2']
           // ['r123', 'method', 'Math', 'abs', '', -2]
           registers[opcode] = prunExpr(registers, op, pcodeData, fdata, prng, usePrng, depth);
-          vlog('EXEC:', op[1].padEnd(5, ' '), opcode, 'now contains:', typeof registers[opcode] === 'string' ? JSON.stringify(registers[opcode]) : registers[opcode]);
+          vlog('EXPR:', op[1].padEnd(5, ' '), opcode, 'now contains:', typeof registers[opcode] === 'string' ? JSON.stringify(registers[opcode]) : registers[opcode]);
           if (registers[opcode] === SO_MESSAGE) return SO; // stack overflow
           break;
         }
 
         console.log('wat stmt?', op)
-        TODO // what is this?
+        ASSERT(false, 'missing pcode op while running:', op) // what is this?
         break;
       }
     }
@@ -996,6 +1042,8 @@ function prunStmt(registers, bytecode, pcodeData, fdata, prng, usePrng, depth) {
  */
 function prunExpr(registers, op, pcodeData, fdata, prng, usePrng, depth) {
   // expressions cant return, break, or throw. calls that throw ... um yeah.
+
+  vlog('- prunExpr(', op[1], '):                           ', JSON.stringify(op));
 
   switch (op[1]) {
     case '=': return prunVal(registers, op[2], op[3]);
@@ -1037,7 +1085,11 @@ function prunExpr(registers, op, pcodeData, fdata, prng, usePrng, depth) {
     case 'call': {
       let targetFuncName = op[2];
 
+      vlog('- Getting context');
       let context = prunVal(registers, op[3], op[4]);
+      vlog('  context: ', context);
+
+      vlog('- op:', op);
 
       // If it throws I guess it actually throws...
       const arr = [];
@@ -1045,9 +1097,17 @@ function prunExpr(registers, op, pcodeData, fdata, prng, usePrng, depth) {
         arr.push(prunVal(registers, op[i], op[i+1]))
       }
 
-      ASSERT(pcodeData.has(op[2]) || pcodeSupportedBuiltinFuncs.has(targetFuncName), 'prun should only receive funcs to call that it supports', targetFuncName);
+      vlog('- args:', arr);
+
+      ASSERT(pcodeData.has(op[2]) || pcodeSupportedBuiltinFuncs.has(targetFuncName), 'prun should only receive funcs to call that it supports (or free funcs, which should be pcompiled)', targetFuncName);
 
       switch (targetFuncName) {
+        case '$': {
+          // This is gonna be confusing :(
+          log('- $(): (Note: this is running in pcode, test runner will not receive this. Do not add in test!):', arr);
+          return undefined;
+        }
+
         case symbo('boolean', 'toString'): {
           const r = Boolean.prototype.toString.call(context);
           vlog('Boolean.prototype.toString.call(', context, ') =', [r]);
@@ -1520,10 +1580,12 @@ function prunExpr(registers, op, pcodeData, fdata, prng, usePrng, depth) {
         //default: ASSERT(false, 'Missing impl for builtin which was marked in pcodeSupportedBuiltins?: func', op[2]);
       }
 
+      vlog('- Not calling a builtin:');
       const obj = pcodeData.get(op[2]);
       ASSERT(obj, 'pcode should not compile func calls when that func cannot compile to pcode', [op[2], op]);
       vgroup(op[2], '(', ...arr, ')');
       const r = runPcode(op[2], arr, pcodeData, depth, fdata, prng, usePrng);
+      vlog('- Call result:', r);
       vgroupEnd();
       return r;
     }

@@ -75,6 +75,7 @@ if (isMainThread && CONFIG.threads > 1) {
             }
             case 'start': {
               console.log.apply(console, obj.data);
+              last = obj.data;
               break;
             }
             case 'end': {
@@ -116,7 +117,7 @@ if (isMainThread && CONFIG.threads > 1) {
         });
         worker.on('error', (e) => {
           if (broke) return;
-          console.log('Worker Error:', e);
+          console.log('Worker Error:', e, last);
           console.log('Going to kill all threads and run this test case in verbose mode... : ' + last);
           // We can't abort the workers without fataling nodejs. So instead we mute them and tell the main thread
           // that they've completed. This allows the promise.all to continue and run the failed test case in CLI.

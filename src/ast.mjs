@@ -11,7 +11,7 @@ import {
   THIS_ALIAS_BASE_NAME,
 } from './symbols_preval.mjs';
 import { PRIMITIVE_TYPE_NAMES_PREVAL } from './constants.mjs';
-import { symbo } from './symbols_builtins.mjs';
+import { BUILTIN_SYMBOLS, symbo } from './symbols_builtins.mjs';
 
 export function cloneSimple(node) {
   if (node.type === 'Identifier') {
@@ -1361,16 +1361,10 @@ export function isTruthy(node) {
   if (node.type === 'TemplateLiteral') return node.quasis.some((te) => te.value.cooked !== '');
 
   if (node.type === 'Identifier') {
-    return [
-      'Infinity',
-      symbo('Number', 'NEGATIVE_INFINITY'),
-      symbo('Number', 'POSITIVE_INFINITY'),
-      symbo('Number', 'MAX_SAFE_INTEGER'),
-      symbo('Number', 'MIN_SAFE_INTEGER'),
-    ].includes(node.name);
+    return node.name === 'Infinity' || !!BUILTIN_SYMBOLS.get(node.name)?.typings.mustBeTruthy;
   }
 
-  return ['ThisExpression', 'ArrayExpression', 'ObjectExpression', 'FunctionExpression', 'ClassExpression'].includes(node.type);
+  return ['ThisExpression', 'ArrayExpression', 'ObjectExpression', 'FunctionExpression', 'ClassExpression', 'NewExpression'].includes(node.type);
 }
 
 export function getPrimitiveType(node) {

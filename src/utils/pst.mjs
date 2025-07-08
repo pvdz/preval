@@ -197,7 +197,7 @@ export function ifStatement(test, yes, no) {
 export function importNamed(pairs, source) {
   return {
     type: 'ImportNamed',
-    pairs, // Array<[imported: string, local: Ref]>
+    pairs, // Array<[imported: string | undefined, local: Ref]>. undefined means star
     source, // string
   };
 }

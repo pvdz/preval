@@ -135,7 +135,7 @@ function verifyStatement(node) {
       node.pairs.forEach(pair => {
         expect(Array.isArray(pair), true, node);
         expect(pair.length, 2, node);
-        expect(typeof pair[0], 'string', node);
+        expect(typeof pair[0] === 'string' || typeof pair[0] === 'undefined', true, node);
         verifyRef(pair[1]);
       });
       expect(typeof node.source, 'string', node);

@@ -189,7 +189,10 @@ function convert(node) {
     }
     case 'ImportDeclaration': {
       // Note: in preval we convert the source from a regular string to a templates but in regular AST the source is always a regular string. Support both here.
-      return PST.importNamed(node.specifiers.map(s => [s.imported.name, PST.ref(s.local.name)]), node.source?.quasis?.[0]?.value?.cooked ?? node.source.value);
+      return PST.importNamed(node.specifiers.map(s => {
+        if (s.type === 'ImportNamespaceSpecifier') return [undefined, PST.ref(s.local.name)];
+        return [s.imported.name, PST.ref(s.local.name)]
+      }), node.source?.quasis?.[0]?.value?.cooked ?? node.source.value);
     }
     case 'ImportDefaultSpecifier': {
       REJECT

@@ -847,6 +847,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
               // exports, catch? not sure what else, currently. we normalize everything else.
               ASSERT(
                 parentNode.type === 'ImportSpecifier' ||
+                parentNode.type === 'ImportNamespaceSpecifier' ||
                 parentNode.type === 'CatchClause' ||
                 parentNode.type === 'ClassExpression' || // meh. i'm allowing it for now.
                 // parentNode.type === 'FunctionExpression' || // $free functions, but those branch off above
@@ -1012,7 +1013,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
           if (funcNodeStack.length === 0) TODO('Empty node stack?');
           const funcNode = funcNodeStack[funcNodeStack.length - 1];
           const funcHeaderParamNode = funcNode.params[node.index];
-          ASSERT(funcHeaderParamNode, 'funcHeaderParamNode should be at', node.index, funcNode.params.length);
+          ASSERT(funcHeaderParamNode, 'funcHeaderParamNode should be at', node.index, funcNode.params.length, node);
           ASSERT(funcHeaderParamNode.name === node.name, 'the usage of a Param should map back to the decl', node, funcHeaderParamNode);
 
           // Point from func header node to its var decl ref

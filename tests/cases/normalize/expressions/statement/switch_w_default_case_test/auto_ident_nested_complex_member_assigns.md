@@ -32,7 +32,6 @@ $(a, b, c);
 
 `````js filename=intro
 const tmpSwitchValue /*:unknown*/ = $(1);
-let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
 const b /*:object*/ /*truthy*/ = { x: 1 };
 const tmpInitAssignLhsComputedObj /*:unknown*/ = $(b);
 const tmpInitAssignLhsComputedProp /*:unknown*/ = $(`x`);
@@ -52,6 +51,7 @@ tmpInitAssignLhsComputedObj$5[tmpInitAssignLhsComputedProp$5] = 3;
 tmpInitAssignLhsComputedObj$3[tmpInitAssignLhsComputedProp$3] = 3;
 tmpInitAssignLhsComputedObj$1[tmpInitAssignLhsComputedProp$1] = 3;
 tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = 3;
+let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
 const tmpIfTest /*:boolean*/ = 3 === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
@@ -83,7 +83,6 @@ $(a, b, 3);
 
 `````js filename=intro
 const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 1;
 const b = { x: 1 };
 const tmpInitAssignLhsComputedObj = $(b);
 const tmpInitAssignLhsComputedProp = $(`x`);
@@ -103,6 +102,7 @@ tmpInitAssignLhsComputedObj$5[tmpInitAssignLhsComputedProp$5] = 3;
 tmpInitAssignLhsComputedObj$3[tmpInitAssignLhsComputedProp$3] = 3;
 tmpInitAssignLhsComputedObj$1[tmpInitAssignLhsComputedProp$1] = 3;
 tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = 3;
+let tmpSwitchCaseToStart = 1;
 if (3 === tmpSwitchValue) {
   tmpSwitchCaseToStart = 0;
 } else {
@@ -127,42 +127,42 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-let b = 1;
-const c = { x: 1 };
-const d = $( c );
-const e = $( "x" );
-const f = $( c );
-const g = $( "x" );
-const h = $( c );
-const i = $( "x" );
-const j = $( c );
-const k = $( "x" );
-const l = $( c );
-const m = $( "x" );
-const n = $( c );
-const o = $( "x" );
-n[o] = 3;
-l[m] = 3;
-j[k] = 3;
-h[i] = 3;
-f[g] = 3;
-d[e] = 3;
+const b = { x: 1 };
+const c = $( b );
+const d = $( "x" );
+const e = $( b );
+const f = $( "x" );
+const g = $( b );
+const h = $( "x" );
+const i = $( b );
+const j = $( "x" );
+const k = $( b );
+const l = $( "x" );
+const m = $( b );
+const n = $( "x" );
+m[n] = 3;
+k[l] = 3;
+i[j] = 3;
+g[h] = 3;
+e[f] = 3;
+c[d] = 3;
+let o = 1;
 const p = 3 === a;
 if (p) {
-  b = 0;
+  o = 0;
 }
 else {
   const q = 2 === a;
   if (q) {
-    b = 2;
+    o = 2;
   }
 }
-const r = b <= 0;
+const r = o <= 0;
 if (r) {
 
 }
 else {
-  const s = b <= 1;
+  const s = o <= 1;
   if (s) {
     $( "fail1" );
     $( "fail2" );
@@ -175,7 +175,7 @@ const t = {
   a: 999,
   b: 1000,
 };
-$( t, c, 3 );
+$( t, b, 3 );
 `````
 
 

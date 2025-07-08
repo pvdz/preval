@@ -29,13 +29,13 @@ $(a, arg);
 
 `````js filename=intro
 const tmpSwitchValue /*:unknown*/ = $(1);
-let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
 $(1);
 $(2);
 const arg /*:object*/ /*truthy*/ = { y: 1 };
 const tmpDeleteCompObj /*:unknown*/ = $(arg);
 const tmpDeleteCompProp /*:unknown*/ = $(`y`);
 const tmpBinLhs /*:boolean*/ = delete tmpDeleteCompObj[tmpDeleteCompProp];
+let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
 const tmpIfTest /*:boolean*/ = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
@@ -67,13 +67,14 @@ $(a, arg);
 
 `````js filename=intro
 const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 1;
 $(1);
 $(2);
 const arg = { y: 1 };
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $(`y`);
-if (delete tmpDeleteCompObj[tmpDeleteCompProp] === tmpSwitchValue) {
+const tmpBinLhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
+let tmpSwitchCaseToStart = 1;
+if (tmpBinLhs === tmpSwitchValue) {
   tmpSwitchCaseToStart = 0;
 } else {
   if (2 === tmpSwitchValue) {
@@ -97,29 +98,29 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-let b = 1;
 $( 1 );
 $( 2 );
-const c = { y: 1 };
-const d = $( c );
-const e = $( "y" );
-const f = delete d[ e ];
-const g = f === a;
+const b = { y: 1 };
+const c = $( b );
+const d = $( "y" );
+const e = delete c[ d ];
+let f = 1;
+const g = e === a;
 if (g) {
-  b = 0;
+  f = 0;
 }
 else {
   const h = 2 === a;
   if (h) {
-    b = 2;
+    f = 2;
   }
 }
-const i = b <= 0;
+const i = f <= 0;
 if (i) {
 
 }
 else {
-  const j = b <= 1;
+  const j = f <= 1;
   if (j) {
     $( "fail1" );
     $( "fail2" );
@@ -132,7 +133,7 @@ const k = {
   a: 999,
   b: 1000,
 };
-$( k, c );
+$( k, b );
 `````
 
 

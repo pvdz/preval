@@ -29,7 +29,6 @@ $(a, b);
 
 `````js filename=intro
 const tmpSwitchValue /*:unknown*/ = $(1);
-let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
 const b /*:object*/ /*truthy*/ = { c: 10, d: 20 };
 const tmpInitAssignLhsComputedObj /*:unknown*/ = $(b);
 const tmpInitAssignLhsComputedProp /*:unknown*/ = $(`c`);
@@ -37,6 +36,7 @@ const tmpCompObj /*:unknown*/ = $(b);
 const tmpCalleeParam /*:unknown*/ = $(`d`);
 const tmpInitAssignLhsComputedRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam];
 tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = tmpInitAssignLhsComputedRhs;
+let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
 const tmpIfTest /*:boolean*/ = tmpInitAssignLhsComputedRhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
@@ -68,7 +68,6 @@ $(a, b);
 
 `````js filename=intro
 const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 1;
 const b = { c: 10, d: 20 };
 const tmpInitAssignLhsComputedObj = $(b);
 const tmpInitAssignLhsComputedProp = $(`c`);
@@ -76,6 +75,7 @@ const tmpCompObj = $(b);
 const tmpCalleeParam = $(`d`);
 const tmpInitAssignLhsComputedRhs = tmpCompObj[tmpCalleeParam];
 tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = tmpInitAssignLhsComputedRhs;
+let tmpSwitchCaseToStart = 1;
 if (tmpInitAssignLhsComputedRhs === tmpSwitchValue) {
   tmpSwitchCaseToStart = 0;
 } else {
@@ -100,33 +100,33 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-let b = 1;
-const c = {
+const b = {
   c: 10,
   d: 20,
 };
-const d = $( c );
-const e = $( "c" );
-const f = $( c );
-const g = $( "d" );
-const h = f[ g ];
-d[e] = h;
-const i = h === a;
+const c = $( b );
+const d = $( "c" );
+const e = $( b );
+const f = $( "d" );
+const g = e[ f ];
+c[d] = g;
+let h = 1;
+const i = g === a;
 if (i) {
-  b = 0;
+  h = 0;
 }
 else {
   const j = 2 === a;
   if (j) {
-    b = 2;
+    h = 2;
   }
 }
-const k = b <= 0;
+const k = h <= 0;
 if (k) {
 
 }
 else {
-  const l = b <= 1;
+  const l = h <= 1;
   if (l) {
     $( "fail1" );
     $( "fail2" );
@@ -139,7 +139,7 @@ const m = {
   a: 999,
   b: 1000,
 };
-$( m, c );
+$( m, b );
 `````
 
 

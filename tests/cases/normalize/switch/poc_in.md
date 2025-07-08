@@ -53,8 +53,8 @@ switch (x) {
 
 
 `````js filename=intro
-let tmpSwitchCaseToStart /*:number*/ = 3;
 const tmpBinLhs /*:unknown*/ = $(1);
+let tmpSwitchCaseToStart /*:number*/ = 3;
 const tmpIfTest /*:boolean*/ = tmpBinLhs === 1;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
@@ -94,8 +94,9 @@ if (tmpIfTest$7) {
 (This ought to be the final result)
 
 `````js filename=intro
+const tmpBinLhs = $(1);
 let tmpSwitchCaseToStart = 3;
-if ($(1) === 1) {
+if (tmpBinLhs === 1) {
   tmpSwitchCaseToStart = 0;
 } else {
   if ($(2) === 1) {
@@ -123,36 +124,36 @@ if (tmpSwitchCaseToStart <= 1) {
 With rename=true
 
 `````js filename=intro
-let a = 3;
-const b = $( 1 );
-const c = b === 1;
+const a = $( 1 );
+let b = 3;
+const c = a === 1;
 if (c) {
-  a = 0;
+  b = 0;
 }
 else {
   const d = $( 2 );
   const e = d === 1;
   if (e) {
-    a = 1;
+    b = 1;
   }
   else {
     const f = $( 3 );
     const g = f === 1;
     if (g) {
-      a = 2;
+      b = 2;
     }
   }
 }
-const h = a <= 0;
+const h = b <= 0;
 if (h) {
   $( "A" );
 }
-const i = a <= 1;
+const i = b <= 1;
 if (i) {
   $( "B" );
 }
 else {
-  const j = a <= 2;
+  const j = b <= 2;
   if (j) {
     $( "C" );
   }

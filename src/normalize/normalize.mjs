@@ -14050,7 +14050,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
     }
 
     if (AST.isComplexNode(node.test)) {
-      rule('If test must be simple node');
+      rule('If test must be simple node, is:', node.test.type);
       example('if (f());', 'const tmp = f(); if (tmp);');
       before(node);
 
@@ -14074,7 +14074,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
     transformBlock(node.alternate, undefined, -1, node, false);
     ifelseStack.pop();
 
-    // Check nested ifs
+    // Check nested ifs on the same test
     // TODO: this should not just check the first one but skip any statements that don't have observable side effects before the nested if/else
     if (node.consequent.body[0]?.type === 'IfStatement') {
       const inner = node.consequent.body[0];
@@ -14122,78 +14122,56 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
       return true;
     }
 
-    if (
-      (node.test.type === 'Literal' && (node.test.value === 0 || node.test.value === false || node.test.raw === 'null')) ||
-      AST.isStringValue(node.test, '', true)
-    ) {
+    if (AST.isFalsy(node.test)) {
       rule('Eliminate if-else with falsy test literal');
       example('if (0) f(); else g();', 'g();');
       before(node);
 
-      const finalParent = node.alternate;
-      body[i] = finalParent;
+      body.splice(
+        i,
+        1,
+        AST.expressionStatement(node.test),
+        ...node.alternate.body
+      );
 
-      after(finalParent);
+      after(body[i]);
+      after(node.alternate.body);
       assertNoDupeNodes(body, 'body');
       return true;
     }
 
-    if (node.test.type === 'Literal' || AST.isStringLiteral(node.test, true)) {
+    if (AST.isTruthy(node.test)) {
       // Note: only for templates without expression since we can't (usually) predict the template value that have expressions
-      rule('Eliminate if-else with truthy test literal');
+      rule('Eliminate if-else with truthy test literal;', node.test.type);
       example('if (100) f(); else g();', 'g();');
       before(node);
 
-      const finalParent = node.consequent;
-      body[i] = finalParent;
+      body.splice(
+        i,
+        1,
+        AST.expressionStatement(node.test),
+        ...node.consequent.body
+      );
 
-      after(finalParent);
+
+      after(body[i]);
+      after(node.consequent.body);
       assertNoDupeNodes(body, 'body');
       return true;
     }
 
-    if (node.test.type === 'Identifier') {
-      if (['undefined', 'NaN'].includes(node.test.name)) {
-        rule('Eliminate if-else with falsy identifier');
-        example('if (false) f(); else g();', 'g();');
-        before(node);
+    if (AST.isComplexNode(node.test)) {
+      todo(`Maybe this is truthy/falsy too? ${node.test.type}`);
+      rule('Complex if-test must become ident');
+      example('if ([])', 'const tmp = []; if (tmp)'); // Array is handled, but just as an example
+      before(body[i]);
 
-        const finalParent = node.alternate;
-        body[i] = finalParent;
+      const tmp = createFreshVar('tmpTest');
+      body.splice(i, 0, AST.varStatement('const', tmp, node.test));
+      node.test = AST.identifier(tmp);
 
-        after(finalParent);
-        assertNoDupeNodes(body, 'body');
-        return true;
-      }
-
-      if (['Infinity'].includes(node.test.name)) {
-        rule('Eliminate if-else with truthy identifier');
-        example('if (Infinity) f(); else g();', 'f();');
-        before(node);
-
-        const finalParent = node.consequent;
-        body[i] = finalParent;
-
-        after(finalParent);
-        assertNoDupeNodes(body, 'body');
-        return true;
-      }
-    }
-
-    if (
-      ['ThisExpression', 'FunctionExpression', 'ClassExpression' /*'ArrayExpression', 'ObjectExpression', 'NewExpression'*/].includes(
-        node.test.type,
-      )
-    ) {
-      // Silly conditions. Real world code is unlikely to ever trigger this.
-      // Note: Needs special support for observable side effects. Probably not worth coding out here.
-      rule('Replace truthy if test identifier with `true`');
-      example('if (class{}) f();', 'if (true) f();');
-      before(node);
-
-      node.test = AST.tru();
-
-      after(node);
+      after(body[i]);
+      after(node.consequent.body);
       assertNoDupeNodes(body, 'body');
       return true;
     }
@@ -14487,10 +14465,14 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
       }
     }
 
-    if (node.consequent.$p.returnBreakThrow || node.alternate.$p.returnBreakThrow) {
-      // Be mindful of hoisting variable decls since closures may break over that.
-      // For this reason we cannot apply this trick when there's any functions being created before the If when
-      // there are also var decls in the tail, because they may create closures that would be unreachable when hoisted.
+    // If one branch always completes, tail statements can be moved into the other branch
+    if (!!node.consequent.$p.returnBreakThrow !== !!node.alternate.$p.returnBreakThrow) {
+      // Be mindful of
+      // - hoisting variable decls since closures may break over that. For this reason we cannot
+      //     apply this trick when there's any functions being created before the If when there are
+      //     also var decls in the tail, because they may create closures that would be unreachable
+      //     when hoisted.
+      // - Import and export statements must always be toplevel so they cannot be hoisted into a block.
 
       // Search for functions created before the If (in the same block)
       let hasFunctionsBefore = false;
@@ -14498,28 +14480,34 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
       let hasVarDeclsAfter = false;
 
       let index = 0; // Note: even in a function, the function header can't init/assign functions so it can just scan them too and skip them
-      vlog('Start pre-serach at index', index, 'up to the `if` at', i);
+      vlog('Start pre-search at index', index, 'up to the `if` at', i);
       for (; index < i; ++index) {
-        vlog('-', index, '=', body[index].type);
+        const stmt = body[index];
+        vlog('-', index, '=', stmt.type);
         // Note: these have been visited so var decls are VarStatement now
-        if (body[index].type === 'VarStatement' && body[index].init.type === 'FunctionExpression') {
-          vlog('- `var` at i=', index);
+        if (stmt.type === 'VarStatement' && stmt.init.type === 'FunctionExpression') {
+          vlog('- func as init at i=', index);
           hasFunctionsBefore = true;
           break;
         }
-        if (body[index].type === 'ExpressionStatement' && body[index].expression.type === 'FunctionExpression') {
-          vlog('- `func` at i=', index);
+        else if (stmt.type === 'ExpressionStatement' && stmt.expression.type === 'AssignmentExpression' && stmt.expression.right.type === 'FunctionExpression') {
+          vlog('- func assign at i=', index);
+          hasFunctionsBefore = true;
+          break;
+        }
+        else if (stmt.type === 'ExpressionStatement' && stmt.expression.type === 'FunctionExpression') {
+          vlog('- func as stmt at i=', index);
           hasFunctionsBefore = true;
           break;
         }
       }
 
-      // Checking decls after the If is only relevant to know if there are functions at all
+      // Stop at imports, if there were functions also stop at var decls
       let j = i+1;
-      vlog('Start post-serach at index', j, 'through to the end with last one at', body.length-1);
-      if (hasFunctionsBefore) {
-        for (; j < body.length; ++j) {
-          vlog('-', j, '=', body[j].type);
+      vlog('Start post-search at index', j, 'through to the end with last one at', body.length-1);
+      for (; j < body.length; ++j) {
+        vlog('-', j, '=', body[j].type);
+        if (hasFunctionsBefore) {
           // Note: these have NOT been visited so var decls might still be VariableDeclaration
           if (body[j].type === 'VariableDeclaration' || body[j].type === 'VarStatement') {
             vlog('- `var` at i=', j);
@@ -14527,9 +14515,15 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             break;
           }
         }
-      } else {
-        // when len=3 and If index (i) is 1, then j should be 3 (len-1), j - (i+1) == 1
-        j = body.length;
+        // Note: potentially unvisited so any import/export node type must be checked
+        if ([
+          'ImportDeclaration', 'ImportDefaultSpecifier', 'ImportNamespaceSpecifier', 'ImportSpecifier',
+          'ExportAllDeclaration', 'ExportDefaultDeclaration', 'ExportNamedDeclaration', 'ExportSpecifier',
+        ].includes(body[j].type)) {
+          vlog('- bail: cannot hoist import/export, must stay toplevel');
+          hasVarDeclsAfter = true;
+          break;
+        }
       }
       const statementCountToHoist = j - (i + 1); // i=If, we're not hoisting that, so start counting after the If.
 
@@ -14573,7 +14567,6 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
         return true;
       }
     }
-
 
     vlog(
       BLUE + 'if;returnBreakThrow?' + RESET,
@@ -14655,18 +14648,20 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
       }
     }
 
-    //// TODO: check whether this does anything at all... it was disabled for a long time and it may have been subsumed by another rule
-    //if (
-    //  i &&
-    //  body[i - 1].type === 'IfStatement' &&
-    //  node.test.type === 'Identifier' &&
-    //  body[i - 1].test.type === 'Identifier' &&
-    //  node.test.name === body[i - 1].test.name
-    //) {
+    // TODO: check whether this does anything at all... it was disabled for a long time and it may have been subsumed by another rule
+    // Back to back if on same ident
+    if (
+     i &&
+     body[i - 1].type === 'IfStatement' &&
+     node.test.type === 'Identifier' &&
+     body[i - 1].test.type === 'Identifier' &&
+     node.test.name === body[i - 1].test.name
+    ) {
     //  // This is, if nothing else, a common artifact from our logical operator transform
     //  // Folding them like this might allow certain bindings to be detected as constants, where that was harder before
-    //  const prev = body[i - 1];
-    //  if (prev.consequent.body.length === 0 && node.consequent.body.length === 0) {
+     const prev = body[i - 1];
+     if (prev.consequent.body.length === 0 && node.consequent.body.length === 0) {
+       todo('Enable this normalize rule, A');
     //    // If prev node has no "true" branch then append this if to its alternate
     //    rule('Back to back `if` with same condition can be merged if the first has no consequent branch');
     //    example('if (x) {} else { x = f(); } if (x) { g(); }', 'if (x) {} else { x = f(); if (x) { g(); } }');
@@ -14680,7 +14675,8 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
     //    after(body[i]);
     //    assertNoDupeNodes(body, 'body');
     //    return true;
-    //  } else if (prev.alternate.body.length === 0 && node.alternate.body.length === 0) {
+     } else if (prev.alternate.body.length === 0 && node.alternate.body.length === 0) {
+       todo('Enable this normalize rule, B');
     //    // If prev node has an empty "false" branch then append this if to its consequent
     //    // The idea is that if an ident was truthy before then only the truthy branch may change that
     //    rule('Back to back `if` with same condition can be merged if the first has no alternate branch');
@@ -14695,8 +14691,8 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
     //    after(body[i]);
     //    assertNoDupeNodes(body, 'body');
     //    return true;
-    //  }
-    //}
+     }
+    }
 
     return false;
   }

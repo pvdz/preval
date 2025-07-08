@@ -29,7 +29,6 @@ $(a, b);
 
 `````js filename=intro
 const tmpSwitchValue /*:unknown*/ = $(1);
-let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
 const b /*:object*/ /*truthy*/ = { x: 1 };
 const tmpCalleeParam /*:unknown*/ = $(b);
 const tmpUpdObj /*:unknown*/ = $(tmpCalleeParam);
@@ -37,6 +36,7 @@ const tmpUpdProp /*:unknown*/ = tmpUpdObj.x;
 const tmpUpdNum /*:number*/ = $coerce(tmpUpdProp, `number`);
 const tmpUpdInc /*:number*/ = tmpUpdNum - 1;
 tmpUpdObj.x = tmpUpdInc;
+let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
 const tmpIfTest /*:boolean*/ = tmpUpdNum === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
@@ -68,11 +68,11 @@ $(a, b);
 
 `````js filename=intro
 const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 1;
 const b = { x: 1 };
 const tmpUpdObj = $($(b));
 const tmpUpdNum = Number(tmpUpdObj.x);
 tmpUpdObj.x = tmpUpdNum - 1;
+let tmpSwitchCaseToStart = 1;
 if (tmpUpdNum === tmpSwitchValue) {
   tmpSwitchCaseToStart = 0;
 } else {
@@ -97,30 +97,30 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-let b = 1;
-const c = { x: 1 };
+const b = { x: 1 };
+const c = $( b );
 const d = $( c );
-const e = $( d );
-const f = e.x;
-const g = $coerce( f, "number" );
-const h = g - 1;
-e.x = h;
-const i = g === a;
+const e = d.x;
+const f = $coerce( e, "number" );
+const g = f - 1;
+d.x = g;
+let h = 1;
+const i = f === a;
 if (i) {
-  b = 0;
+  h = 0;
 }
 else {
   const j = 2 === a;
   if (j) {
-    b = 2;
+    h = 2;
   }
 }
-const k = b <= 0;
+const k = h <= 0;
 if (k) {
 
 }
 else {
-  const l = b <= 1;
+  const l = h <= 1;
   if (l) {
     $( "fail1" );
     $( "fail2" );
@@ -133,7 +133,7 @@ const m = {
   a: 999,
   b: 1000,
 };
-$( m, c );
+$( m, b );
 `````
 
 

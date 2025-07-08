@@ -29,8 +29,8 @@ $(a, arg);
 
 `````js filename=intro
 const tmpSwitchValue /*:unknown*/ = $(1);
-let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
 const tmpUnaryArg /*:unknown*/ = $(1);
+let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
 const tmpBinLhs /*:string*/ /*truthy*/ = typeof tmpUnaryArg;
 const tmpIfTest /*:boolean*/ = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
@@ -63,8 +63,8 @@ $(a, 1);
 
 `````js filename=intro
 const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 1;
 const tmpUnaryArg = $(1);
+let tmpSwitchCaseToStart = 1;
 if (typeof tmpUnaryArg === tmpSwitchValue) {
   tmpSwitchCaseToStart = 0;
 } else {
@@ -89,25 +89,25 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-let b = 1;
-const c = $( 1 );
-const d = typeof c;
+const b = $( 1 );
+let c = 1;
+const d = typeof b;
 const e = d === a;
 if (e) {
-  b = 0;
+  c = 0;
 }
 else {
   const f = 2 === a;
   if (f) {
-    b = 2;
+    c = 2;
   }
 }
-const g = b <= 0;
+const g = c <= 0;
 if (g) {
 
 }
 else {
-  const h = b <= 1;
+  const h = c <= 1;
   if (h) {
     $( "fail1" );
     $( "fail2" );

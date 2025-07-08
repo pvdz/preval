@@ -26,8 +26,8 @@ const tmpCalleeParam /*:object*/ /*truthy*/ = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam);
 const tmpClusterSSA_b /*:unknown*/ = tmpNestedAssignObjPatternRhs.b;
 if (tmpNestedAssignObjPatternRhs) {
-  let b /*:unknown*/ = undefined;
   let a /*:unknown*/ = undefined;
+  let b /*:unknown*/ = undefined;
   while ($LOOP_UNROLLS_LEFT_10) {
     $(100);
     const tmpObjLitVal$1 /*:unknown*/ = $(2);
@@ -55,8 +55,8 @@ const tmpObjLitVal = $(2);
 const tmpNestedAssignObjPatternRhs = $({ b: tmpObjLitVal });
 const tmpClusterSSA_b = tmpNestedAssignObjPatternRhs.b;
 if (tmpNestedAssignObjPatternRhs) {
-  let b = undefined;
   let a = undefined;
+  let b = undefined;
   while (true) {
     $(100);
     const tmpObjLitVal$1 = $(2);
@@ -90,8 +90,8 @@ if (c) {
     const g = $( 2 );
     const h = { b: g };
     const i = $( h );
-    e = i.b;
-    f = i;
+    f = i.b;
+    e = i;
     if (i) {
 
     }
@@ -99,7 +99,7 @@ if (c) {
       break;
     }
   }
-  $( f, e );
+  $( e, f );
 }
 else {
   $( c, d );

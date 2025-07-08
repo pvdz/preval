@@ -29,10 +29,10 @@ $(a);
 
 `````js filename=intro
 const tmpSwitchValue /*:unknown*/ = $(1);
-let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
 const b /*:object*/ /*truthy*/ = { x: 1 };
 const tmpChainElementCall /*:unknown*/ = $(b);
 const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
+let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
 let tmpIfTest /*:boolean*/ /*ternaryConst*/ = false;
 if (tmpIfTest$1) {
   tmpIfTest = undefined === tmpSwitchValue;
@@ -71,9 +71,9 @@ $(a);
 
 `````js filename=intro
 const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 1;
 const tmpChainElementCall = $({ x: 1 });
 const tmpIfTest$1 = tmpChainElementCall == null;
+let tmpSwitchCaseToStart = 1;
 let tmpIfTest = false;
 if (tmpIfTest$1) {
   tmpIfTest = undefined === tmpSwitchValue;
@@ -105,34 +105,34 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-let b = 1;
-const c = { x: 1 };
-const d = $( c );
-const e = d == null;
+const b = { x: 1 };
+const c = $( b );
+const d = c == null;
+let e = 1;
 let f = false;
-if (e) {
+if (d) {
   f = undefined === a;
 }
 else {
   const g = $( "x" );
-  const h = d[ g ];
+  const h = c[ g ];
   f = h === a;
 }
 if (f) {
-  b = 0;
+  e = 0;
 }
 else {
   const i = 2 === a;
   if (i) {
-    b = 2;
+    e = 2;
   }
 }
-const j = b <= 0;
+const j = e <= 0;
 if (j) {
 
 }
 else {
-  const k = b <= 1;
+  const k = e <= 1;
   if (k) {
     $( "fail1" );
     $( "fail2" );
@@ -201,7 +201,7 @@ $(a);
 ## Todos triggered
 
 
-- (todo) fixme: spyless vars and labeled nodes
+None
 
 
 ## Globals

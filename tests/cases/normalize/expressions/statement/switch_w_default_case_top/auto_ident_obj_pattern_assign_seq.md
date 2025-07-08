@@ -33,8 +33,8 @@ $(a, x, y);
 let x /*:unknown*/ /*ternaryConst*/ = 1;
 let y /*:unknown*/ /*ternaryConst*/ = 2;
 const tmpSwitchValue /*:unknown*/ = $(1);
-let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
 const tmpBinLhs /*:unknown*/ = $(1);
+let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
 const tmpIfTest /*:boolean*/ = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
@@ -74,8 +74,9 @@ $(a, x, y);
 let x = 1;
 let y = 2;
 const tmpSwitchValue = $(1);
+const tmpBinLhs = $(1);
 let tmpSwitchCaseToStart = 1;
-if ($(1) === tmpSwitchValue) {
+if (tmpBinLhs === tmpSwitchValue) {
   tmpSwitchCaseToStart = 0;
 } else {
   if (2 === tmpSwitchValue) {
@@ -108,19 +109,19 @@ With rename=true
 let a = 1;
 let b = 2;
 const c = $( 1 );
-let d = 1;
-const e = $( 1 );
-const f = e === c;
+const d = $( 1 );
+let e = 1;
+const f = d === c;
 if (f) {
-  d = 0;
+  e = 0;
 }
 else {
   const g = 2 === c;
   if (g) {
-    d = 2;
+    e = 2;
   }
 }
-const h = d <= 0;
+const h = e <= 0;
 if (h) {
   $( 1 );
   $( 2 );
@@ -130,7 +131,7 @@ if (h) {
   b = j;
 }
 else {
-  const k = d <= 1;
+  const k = e <= 1;
   if (k) {
     $( "fail1" );
     $( "fail2" );

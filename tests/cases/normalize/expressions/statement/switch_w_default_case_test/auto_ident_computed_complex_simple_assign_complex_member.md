@@ -29,13 +29,13 @@ $(a, b);
 
 `````js filename=intro
 const tmpSwitchValue /*:unknown*/ = $(1);
-let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
 const b /*:object*/ /*truthy*/ = { c: 10, d: 20 };
 const tmpInitAssignLhsComputedObj /*:unknown*/ = $(b);
 const tmpCompObj /*:unknown*/ = $(b);
 const tmpCalleeParam /*:unknown*/ = $(`d`);
 const tmpInitAssignLhsComputedRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam];
 tmpInitAssignLhsComputedObj.c = tmpInitAssignLhsComputedRhs;
+let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
 const tmpIfTest /*:boolean*/ = tmpInitAssignLhsComputedRhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
@@ -67,13 +67,13 @@ $(a, b);
 
 `````js filename=intro
 const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 1;
 const b = { c: 10, d: 20 };
 const tmpInitAssignLhsComputedObj = $(b);
 const tmpCompObj = $(b);
 const tmpCalleeParam = $(`d`);
 const tmpInitAssignLhsComputedRhs = tmpCompObj[tmpCalleeParam];
 tmpInitAssignLhsComputedObj.c = tmpInitAssignLhsComputedRhs;
+let tmpSwitchCaseToStart = 1;
 if (tmpInitAssignLhsComputedRhs === tmpSwitchValue) {
   tmpSwitchCaseToStart = 0;
 } else {
@@ -98,32 +98,32 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-let b = 1;
-const c = {
+const b = {
   c: 10,
   d: 20,
 };
-const d = $( c );
-const e = $( c );
-const f = $( "d" );
-const g = e[ f ];
-d.c = g;
-const h = g === a;
+const c = $( b );
+const d = $( b );
+const e = $( "d" );
+const f = d[ e ];
+c.c = f;
+let g = 1;
+const h = f === a;
 if (h) {
-  b = 0;
+  g = 0;
 }
 else {
   const i = 2 === a;
   if (i) {
-    b = 2;
+    g = 2;
   }
 }
-const j = b <= 0;
+const j = g <= 0;
 if (j) {
 
 }
 else {
-  const k = b <= 1;
+  const k = g <= 1;
   if (k) {
     $( "fail1" );
     $( "fail2" );
@@ -136,7 +136,7 @@ const l = {
   a: 999,
   b: 1000,
 };
-$( l, c );
+$( l, b );
 `````
 
 

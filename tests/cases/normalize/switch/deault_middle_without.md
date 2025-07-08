@@ -57,8 +57,8 @@ switch (6) {
 
 
 `````js filename=intro
-let tmpSwitchCaseToStart /*:number*/ = 5;
 const tmpBinLhs /*:unknown*/ = $(10);
+let tmpSwitchCaseToStart /*:number*/ = 5;
 const tmpIfTest /*:boolean*/ = tmpBinLhs === 6;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
@@ -120,8 +120,9 @@ if (tmpIfTest$9) {
 (This ought to be the final result)
 
 `````js filename=intro
+const tmpBinLhs = $(10);
 let tmpSwitchCaseToStart = 5;
-if ($(10) === 6) {
+if (tmpBinLhs === 6) {
   tmpSwitchCaseToStart = 0;
 } else {
   if ($(20) === 6) {
@@ -164,59 +165,59 @@ if (tmpSwitchCaseToStart <= 0) {
 With rename=true
 
 `````js filename=intro
-let a = 5;
-const b = $( 10 );
-const c = b === 6;
+const a = $( 10 );
+let b = 5;
+const c = a === 6;
 if (c) {
-  a = 0;
+  b = 0;
 }
 else {
   const d = $( 20 );
   const e = d === 6;
   if (e) {
-    a = 1;
+    b = 1;
   }
   else {
     const f = $( 30 );
     const g = f === 6;
     if (g) {
-      a = 2;
+      b = 2;
     }
     else {
       const h = $( 40 );
       const i = h === 6;
       if (i) {
-        a = 3;
+        b = 3;
       }
       else {
         const j = $( 50 );
         const k = j === 6;
         if (k) {
-          a = 4;
+          b = 4;
         }
       }
     }
   }
 }
-const l = a <= 0;
+const l = b <= 0;
 if (l) {
   $( 1 );
 }
 else {
-  const m = a <= 1;
+  const m = b <= 1;
   if (m) {
     $( 2 );
   }
-  const n = a <= 2;
+  const n = b <= 2;
   if (n) {
     $( 3 );
   }
-  const o = a <= 3;
+  const o = b <= 3;
   if (o) {
     $( 4 );
   }
   else {
-    const p = a <= 4;
+    const p = b <= 4;
     if (p) {
       $( 5 );
     }

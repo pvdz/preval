@@ -31,7 +31,6 @@ $(a, b, c, d);
 
 `````js filename=intro
 const tmpSwitchValue /*:unknown*/ = $(1);
-let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
 const b /*:object*/ /*truthy*/ = { x: 1 };
 const tmpInitAssignLhsComputedObj /*:unknown*/ = $(b);
 const tmpInitAssignLhsComputedProp /*:unknown*/ = $(`x`);
@@ -41,6 +40,7 @@ const tmpInitAssignLhsComputedProp$1 /*:unknown*/ = $(`y`);
 const tmpInitAssignLhsComputedRhs$1 /*:unknown*/ = $(3);
 tmpInitAssignLhsComputedObj$1[tmpInitAssignLhsComputedProp$1] = tmpInitAssignLhsComputedRhs$1;
 tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = tmpInitAssignLhsComputedRhs$1;
+let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
 const tmpIfTest /*:boolean*/ = tmpInitAssignLhsComputedRhs$1 === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
@@ -72,7 +72,6 @@ $(a, b, c, 3);
 
 `````js filename=intro
 const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 1;
 const b = { x: 1 };
 const tmpInitAssignLhsComputedObj = $(b);
 const tmpInitAssignLhsComputedProp = $(`x`);
@@ -82,6 +81,7 @@ const tmpInitAssignLhsComputedProp$1 = $(`y`);
 const tmpInitAssignLhsComputedRhs$1 = $(3);
 tmpInitAssignLhsComputedObj$1[tmpInitAssignLhsComputedProp$1] = tmpInitAssignLhsComputedRhs$1;
 tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = tmpInitAssignLhsComputedRhs$1;
+let tmpSwitchCaseToStart = 1;
 if (tmpInitAssignLhsComputedRhs$1 === tmpSwitchValue) {
   tmpSwitchCaseToStart = 0;
 } else {
@@ -106,32 +106,32 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-let b = 1;
-const c = { x: 1 };
-const d = $( c );
-const e = $( "x" );
-const f = { y: 2 };
-const g = $( f );
-const h = $( "y" );
-const i = $( 3 );
-g[h] = i;
-d[e] = i;
-const j = i === a;
+const b = { x: 1 };
+const c = $( b );
+const d = $( "x" );
+const e = { y: 2 };
+const f = $( e );
+const g = $( "y" );
+const h = $( 3 );
+f[g] = h;
+c[d] = h;
+let i = 1;
+const j = h === a;
 if (j) {
-  b = 0;
+  i = 0;
 }
 else {
   const k = 2 === a;
   if (k) {
-    b = 2;
+    i = 2;
   }
 }
-const l = b <= 0;
+const l = i <= 0;
 if (l) {
 
 }
 else {
-  const m = b <= 1;
+  const m = i <= 1;
   if (m) {
     $( "fail1" );
     $( "fail2" );
@@ -144,7 +144,7 @@ const n = {
   a: 999,
   b: 1000,
 };
-$( n, c, f, 3 );
+$( n, b, e, 3 );
 `````
 
 

@@ -27,9 +27,9 @@ $(a);
 
 `````js filename=intro
 const tmpSwitchValue /*:unknown*/ = $(1);
-let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
 const tmpChainElementCall /*:unknown*/ = $($);
 const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
+let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
 let tmpIfTest /*:boolean*/ /*ternaryConst*/ = false;
 if (tmpIfTest$1) {
   tmpIfTest = undefined === tmpSwitchValue;
@@ -67,9 +67,9 @@ $(a);
 
 `````js filename=intro
 const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 1;
 const tmpChainElementCall = $($);
 const tmpIfTest$1 = tmpChainElementCall == null;
+let tmpSwitchCaseToStart = 1;
 let tmpIfTest = false;
 if (tmpIfTest$1) {
   tmpIfTest = undefined === tmpSwitchValue;
@@ -100,32 +100,32 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-let b = 1;
-const c = $( $ );
-const d = c == null;
+const b = $( $ );
+const c = b == null;
+let d = 1;
 let e = false;
-if (d) {
+if (c) {
   e = undefined === a;
 }
 else {
-  const f = $dotCall( c, $, undefined, 1 );
+  const f = $dotCall( b, $, undefined, 1 );
   e = f === a;
 }
 if (e) {
-  b = 0;
+  d = 0;
 }
 else {
   const g = 2 === a;
   if (g) {
-    b = 2;
+    d = 2;
   }
 }
-const h = b <= 0;
+const h = d <= 0;
 if (h) {
 
 }
 else {
-  const i = b <= 1;
+  const i = d <= 1;
   if (i) {
     $( "fail1" );
     $( "fail2" );

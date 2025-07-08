@@ -34,8 +34,8 @@ $(100);
 $(100);
 $(100);
 $(100);
-let a /*:number*/ = 0;
 let tmpClusterSSA_b$2 /*:number*/ = 12;
+let a /*:number*/ = 0;
 while ($LOOP_NO_UNROLLS_LEFT) {
   $(100);
   tmpClusterSSA_b$2 = tmpClusterSSA_b$2 + 1;
@@ -64,8 +64,8 @@ $(100);
 $(100);
 $(100);
 $(100);
-let a = 0;
 let tmpClusterSSA_b$2 = 12;
+let a = 0;
 while (true) {
   $(100);
   tmpClusterSSA_b$2 = tmpClusterSSA_b$2 + 1;
@@ -93,20 +93,20 @@ $( 100 );
 $( 100 );
 $( 100 );
 $( 100 );
-let a = 0;
-let b = 12;
+let a = 12;
+let b = 0;
 while ($LOOP_NO_UNROLLS_LEFT) {
   $( 100 );
-  b = b + 1;
-  a = b;
-  if (a) {
+  a = a + 1;
+  b = a;
+  if (b) {
 
   }
   else {
     break;
   }
 }
-$( a, b );
+$( b, a );
 `````
 
 

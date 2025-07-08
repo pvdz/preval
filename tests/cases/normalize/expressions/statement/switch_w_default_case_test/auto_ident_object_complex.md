@@ -27,9 +27,9 @@ $(a);
 
 `````js filename=intro
 const tmpSwitchValue /*:unknown*/ = $(1);
-let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
 const tmpObjLitVal /*:unknown*/ = $(1);
 const tmpObjLitVal$3 /*:unknown*/ = $(3);
+let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
 const tmpBinLhs /*:object*/ /*truthy*/ = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
 const tmpIfTest /*:boolean*/ = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
@@ -62,9 +62,9 @@ $(a);
 
 `````js filename=intro
 const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 1;
 const tmpObjLitVal = $(1);
 const tmpObjLitVal$3 = $(3);
+let tmpSwitchCaseToStart = 1;
 if ({ x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 } === tmpSwitchValue) {
   tmpSwitchCaseToStart = 0;
 } else {
@@ -89,30 +89,30 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-let b = 1;
-const c = $( 1 );
-const d = $( 3 );
+const b = $( 1 );
+const c = $( 3 );
+let d = 1;
 const e = {
-  x: c,
+  x: b,
   y: 2,
-  z: d,
+  z: c,
 };
 const f = e === a;
 if (f) {
-  b = 0;
+  d = 0;
 }
 else {
   const g = 2 === a;
   if (g) {
-    b = 2;
+    d = 2;
   }
 }
-const h = b <= 0;
+const h = d <= 0;
 if (h) {
 
 }
 else {
-  const i = b <= 1;
+  const i = d <= 1;
   if (i) {
     $( "fail1" );
     $( "fail2" );

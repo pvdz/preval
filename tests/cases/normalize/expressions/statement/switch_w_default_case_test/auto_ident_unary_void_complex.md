@@ -27,8 +27,8 @@ $(a);
 
 `````js filename=intro
 const tmpSwitchValue /*:unknown*/ = $(1);
-let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
 $(100);
+let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
 const tmpIfTest /*:boolean*/ = undefined === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
@@ -60,8 +60,8 @@ $(a);
 
 `````js filename=intro
 const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 1;
 $(100);
+let tmpSwitchCaseToStart = 1;
 if (undefined === tmpSwitchValue) {
   tmpSwitchCaseToStart = 0;
 } else {
@@ -86,8 +86,8 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-let b = 1;
 $( 100 );
+let b = 1;
 const c = undefined === a;
 if (c) {
   b = 0;

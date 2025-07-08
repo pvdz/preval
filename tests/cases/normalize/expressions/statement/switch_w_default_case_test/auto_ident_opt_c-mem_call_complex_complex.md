@@ -29,11 +29,11 @@ $(a);
 
 `````js filename=intro
 const tmpSwitchValue /*:unknown*/ = $(1);
-let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
-let tmpBinLhs /*:unknown*/ /*ternaryConst*/ = undefined;
 const b /*:object*/ /*truthy*/ = { $: $ };
 const tmpChainElementCall /*:unknown*/ = $(b);
 const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
+let tmpBinLhs /*:unknown*/ /*ternaryConst*/ = undefined;
+let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
 if (tmpIfTest$1) {
 } else {
   const tmpChainRootComputed /*:unknown*/ = $(`\$`);
@@ -76,10 +76,11 @@ $(a);
 
 `````js filename=intro
 const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 1;
-let tmpBinLhs = undefined;
 const tmpChainElementCall = $({ $: $ });
-if (!(tmpChainElementCall == null)) {
+const tmpIfTest$1 = tmpChainElementCall == null;
+let tmpBinLhs = undefined;
+let tmpSwitchCaseToStart = 1;
+if (!tmpIfTest$1) {
   const tmpChainRootComputed = $(`\$`);
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
   if (!(tmpChainElementObject == null)) {
@@ -110,42 +111,42 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-let b = 1;
-let c = undefined;
-const d = { $: $ };
-const e = $( d );
-const f = e == null;
-if (f) {
+const b = { $: $ };
+const c = $( b );
+const d = c == null;
+let e = undefined;
+let f = 1;
+if (d) {
 
 }
 else {
   const g = $( "$" );
-  const h = e[ g ];
+  const h = c[ g ];
   const i = h == null;
   if (i) {
 
   }
   else {
     const j = $( 1 );
-    c = $dotCall( h, e, undefined, j );
+    e = $dotCall( h, c, undefined, j );
   }
 }
-const k = c === a;
+const k = e === a;
 if (k) {
-  b = 0;
+  f = 0;
 }
 else {
   const l = 2 === a;
   if (l) {
-    b = 2;
+    f = 2;
   }
 }
-const m = b <= 0;
+const m = f <= 0;
 if (m) {
 
 }
 else {
-  const n = b <= 1;
+  const n = f <= 1;
   if (n) {
     $( "fail1" );
     $( "fail2" );

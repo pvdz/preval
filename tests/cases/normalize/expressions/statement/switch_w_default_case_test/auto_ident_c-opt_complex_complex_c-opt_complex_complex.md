@@ -29,12 +29,12 @@ $(a);
 
 `````js filename=intro
 const tmpSwitchValue /*:unknown*/ = $(1);
-let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
-let tmpBinLhs /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpObjLitVal /*:object*/ /*truthy*/ = { y: 1 };
 const b /*:object*/ /*truthy*/ = { x: tmpObjLitVal };
 const tmpChainElementCall /*:unknown*/ = $(b);
 const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
+let tmpBinLhs /*:unknown*/ /*ternaryConst*/ = undefined;
+let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
 if (tmpIfTest$1) {
 } else {
   const tmpChainRootComputed /*:unknown*/ = $(`x`);
@@ -77,11 +77,12 @@ $(a);
 
 `````js filename=intro
 const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 1;
-let tmpBinLhs = undefined;
 const tmpObjLitVal = { y: 1 };
 const tmpChainElementCall = $({ x: tmpObjLitVal });
-if (!(tmpChainElementCall == null)) {
+const tmpIfTest$1 = tmpChainElementCall == null;
+let tmpBinLhs = undefined;
+let tmpSwitchCaseToStart = 1;
+if (!tmpIfTest$1) {
   const tmpChainRootComputed = $(`x`);
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
   if (!(tmpChainElementObject == null)) {
@@ -113,43 +114,43 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-let b = 1;
-let c = undefined;
-const d = { y: 1 };
-const e = { x: d };
-const f = $( e );
-const g = f == null;
-if (g) {
+const b = { y: 1 };
+const c = { x: b };
+const d = $( c );
+const e = d == null;
+let f = undefined;
+let g = 1;
+if (e) {
 
 }
 else {
   const h = $( "x" );
-  const i = f[ h ];
+  const i = d[ h ];
   const j = i == null;
   if (j) {
 
   }
   else {
     const k = $( "y" );
-    c = i[ k ];
+    f = i[ k ];
   }
 }
-const l = c === a;
+const l = f === a;
 if (l) {
-  b = 0;
+  g = 0;
 }
 else {
   const m = 2 === a;
   if (m) {
-    b = 2;
+    g = 2;
   }
 }
-const n = b <= 0;
+const n = g <= 0;
 if (n) {
 
 }
 else {
-  const o = b <= 1;
+  const o = g <= 1;
   if (o) {
     $( "fail1" );
     $( "fail2" );

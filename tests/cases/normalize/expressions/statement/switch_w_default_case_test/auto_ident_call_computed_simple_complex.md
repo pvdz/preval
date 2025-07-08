@@ -29,11 +29,11 @@ $(a);
 
 `````js filename=intro
 const tmpSwitchValue /*:unknown*/ = $(1);
-let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
 const tmpMCCP /*:unknown*/ = $(`\$`);
 const b /*:object*/ /*truthy*/ = { $: $ };
 const tmpMCF /*:unknown*/ = b[tmpMCCP];
 const tmpBinLhs /*:unknown*/ = $dotCall(tmpMCF, b, undefined, 1);
+let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
 const tmpIfTest /*:boolean*/ = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
@@ -65,10 +65,11 @@ $(a);
 
 `````js filename=intro
 const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 1;
 const tmpMCCP = $(`\$`);
 const b = { $: $ };
-if (b[tmpMCCP](1) === tmpSwitchValue) {
+const tmpBinLhs = b[tmpMCCP](1);
+let tmpSwitchCaseToStart = 1;
+if (tmpBinLhs === tmpSwitchValue) {
   tmpSwitchCaseToStart = 0;
 } else {
   if (2 === tmpSwitchValue) {
@@ -92,27 +93,27 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-let b = 1;
-const c = $( "$" );
-const d = { $: $ };
-const e = d[ c ];
-const f = $dotCall( e, d, undefined, 1 );
-const g = f === a;
+const b = $( "$" );
+const c = { $: $ };
+const d = c[ b ];
+const e = $dotCall( d, c, undefined, 1 );
+let f = 1;
+const g = e === a;
 if (g) {
-  b = 0;
+  f = 0;
 }
 else {
   const h = 2 === a;
   if (h) {
-    b = 2;
+    f = 2;
   }
 }
-const i = b <= 0;
+const i = f <= 0;
 if (i) {
 
 }
 else {
-  const j = b <= 1;
+  const j = f <= 1;
   if (j) {
     $( "fail1" );
     $( "fail2" );

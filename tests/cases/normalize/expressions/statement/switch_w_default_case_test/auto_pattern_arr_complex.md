@@ -30,9 +30,9 @@ const tmpBindingPatternArrRoot /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 const tmpArrPatternSplat /*:array*/ /*truthy*/ = [...tmpBindingPatternArrRoot];
 const a /*:unknown*/ = tmpArrPatternSplat[0];
 const tmpSwitchValue /*:unknown*/ = $(1);
-let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
 const tmpCalleeParam /*:array*/ /*truthy*/ = [1, 2];
 const tmpBinLhs /*:unknown*/ = $(tmpCalleeParam);
+let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
 const tmpIfTest /*:boolean*/ = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
@@ -67,8 +67,9 @@ if (tmpIfTest$3) {
 const tmpBindingPatternArrRoot = { a: 999, b: 1000 };
 const a = [...tmpBindingPatternArrRoot][0];
 const tmpSwitchValue = $(1);
+const tmpBinLhs = $([1, 2]);
 let tmpSwitchCaseToStart = 1;
-if ($([1, 2]) === tmpSwitchValue) {
+if (tmpBinLhs === tmpSwitchValue) {
   tmpSwitchCaseToStart = 0;
 } else {
   if (2 === tmpSwitchValue) {
@@ -101,25 +102,25 @@ const a = {
 const b = [ ...a ];
 const c = b[ 0 ];
 const d = $( 1 );
-let e = 1;
-const f = [ 1, 2 ];
-const g = $( f );
-const h = g === d;
+const e = [ 1, 2 ];
+const f = $( e );
+let g = 1;
+const h = f === d;
 if (h) {
-  e = 0;
+  g = 0;
 }
 else {
   const i = 2 === d;
   if (i) {
-    e = 2;
+    g = 2;
   }
 }
-const j = e <= 0;
+const j = g <= 0;
 if (j) {
   $( c );
 }
 else {
-  const k = e <= 1;
+  const k = g <= 1;
   if (k) {
     $( "fail1" );
     $( "fail2" );

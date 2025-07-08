@@ -23,8 +23,8 @@ $(a, b);
 `````js filename=intro
 const tmpNestedComplexRhs /*:unknown*/ = $(2);
 if (tmpNestedComplexRhs) {
-  let b /*:unknown*/ = 1;
   let a /*:unknown*/ = undefined;
+  let b /*:unknown*/ = 1;
   while ($LOOP_UNROLLS_LEFT_10) {
     $(1);
     const tmpNestedComplexRhs$1 /*:unknown*/ = $(2);
@@ -48,8 +48,8 @@ if (tmpNestedComplexRhs) {
 `````js filename=intro
 const tmpNestedComplexRhs = $(2);
 if (tmpNestedComplexRhs) {
-  let b = 1;
   let a = undefined;
+  let b = 1;
   while (true) {
     $(1);
     const tmpNestedComplexRhs$1 = $(2);
@@ -72,13 +72,13 @@ With rename=true
 `````js filename=intro
 const a = $( 2 );
 if (a) {
-  let b = 1;
-  let c = undefined;
+  let b = undefined;
+  let c = 1;
   while ($LOOP_UNROLLS_LEFT_10) {
     $( 1 );
     const d = $( 2 );
-    b = d;
     c = d;
+    b = d;
     if (d) {
 
     }
@@ -86,7 +86,7 @@ if (a) {
       break;
     }
   }
-  $( c, b );
+  $( b, c );
 }
 else {
   $( a, a );

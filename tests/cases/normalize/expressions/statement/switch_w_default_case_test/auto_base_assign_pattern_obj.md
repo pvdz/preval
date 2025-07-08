@@ -29,11 +29,11 @@ $(a, b);
 
 `````js filename=intro
 const tmpSwitchValue /*:unknown*/ = $(1);
-let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
 const tmpObjLitVal /*:unknown*/ = $(2);
 const tmpCalleeParam /*:object*/ /*truthy*/ = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam);
 const b /*:unknown*/ = tmpNestedAssignObjPatternRhs.b;
+let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
 const tmpIfTest /*:boolean*/ = tmpNestedAssignObjPatternRhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
@@ -65,10 +65,10 @@ $(a, b);
 
 `````js filename=intro
 const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 1;
 const tmpObjLitVal = $(2);
 const tmpNestedAssignObjPatternRhs = $({ b: tmpObjLitVal });
 const b = tmpNestedAssignObjPatternRhs.b;
+let tmpSwitchCaseToStart = 1;
 if (tmpNestedAssignObjPatternRhs === tmpSwitchValue) {
   tmpSwitchCaseToStart = 0;
 } else {
@@ -93,27 +93,27 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-let b = 1;
-const c = $( 2 );
-const d = { b: c };
-const e = $( d );
-const f = e.b;
-const g = e === a;
+const b = $( 2 );
+const c = { b: b };
+const d = $( c );
+const e = d.b;
+let f = 1;
+const g = d === a;
 if (g) {
-  b = 0;
+  f = 0;
 }
 else {
   const h = 2 === a;
   if (h) {
-    b = 2;
+    f = 2;
   }
 }
-const i = b <= 0;
+const i = f <= 0;
 if (i) {
 
 }
 else {
-  const j = b <= 1;
+  const j = f <= 1;
   if (j) {
     $( "fail1" );
     $( "fail2" );
@@ -126,7 +126,7 @@ const k = {
   a: 999,
   b: 1000,
 };
-$( k, f );
+$( k, e );
 `````
 
 

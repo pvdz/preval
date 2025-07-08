@@ -33,8 +33,8 @@ $('done_switch');
 
 `````js filename=intro
 const discriminant /*:unknown*/ = $(`discriminant`);
-let tmpSwitchCaseToStart /*:number*/ = 3;
 const tmpBinLhs /*:unknown*/ = $(`caseValA`, `valA`);
+let tmpSwitchCaseToStart /*:number*/ = 3;
 const tmpIfTest /*:boolean*/ = tmpBinLhs === discriminant;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
@@ -79,8 +79,9 @@ if (tmpIfTest$7) {
 
 `````js filename=intro
 const discriminant = $(`discriminant`);
+const tmpBinLhs = $(`caseValA`, `valA`);
 let tmpSwitchCaseToStart = 3;
-if ($(`caseValA`, `valA`) === discriminant) {
+if (tmpBinLhs === discriminant) {
   tmpSwitchCaseToStart = 0;
 } else {
   if ($(`caseValB`, `valB`) === discriminant) {
@@ -114,37 +115,37 @@ With rename=true
 
 `````js filename=intro
 const a = $( "discriminant" );
-let b = 3;
-const c = $( "caseValA", "valA" );
-const d = c === a;
+const b = $( "caseValA", "valA" );
+let c = 3;
+const d = b === a;
 if (d) {
-  b = 0;
+  c = 0;
 }
 else {
   const e = $( "caseValB", "valB" );
   const f = e === a;
   if (f) {
-    b = 1;
+    c = 1;
   }
   else {
     const g = $( "caseValC", "valC" );
     const h = g === a;
     if (h) {
-      b = 2;
+      c = 2;
     }
   }
 }
-const i = b <= 0;
+const i = c <= 0;
 if (i) {
   $( "actionA" );
 }
-const j = b <= 1;
+const j = c <= 1;
 if (j) {
   $( "actionB" );
   $( "done_switch" );
 }
 else {
-  const k = b <= 2;
+  const k = c <= 2;
   if (k) {
     $( "actionC" );
     $( "done_switch" );

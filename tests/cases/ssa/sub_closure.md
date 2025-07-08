@@ -54,12 +54,12 @@ $(50);
 $(true);
 if (tmpIfTest$9045) {
 } else {
-  const tmpClusterSSA_secondPart /*:number*/ = tmpBinLhs$1687 | vh;
+  const secondPart /*:number*/ = tmpBinLhs$1687 | vh;
   firstPart;
-  const tmpIfTest$9053 /*:boolean*/ = tmpClusterSSA_secondPart < 56320;
+  const tmpIfTest$9053 /*:boolean*/ = secondPart < 56320;
   if (tmpIfTest$9053) {
   } else {
-    $(tmpClusterSSA_secondPart);
+    $(secondPart);
   }
 }
 `````
@@ -72,10 +72,10 @@ if (tmpIfTest$9045) {
 $(50);
 $(true);
 if (!tmpIfTest$9045) {
-  const tmpClusterSSA_secondPart = tmpBinLhs$1687 | vh;
+  const secondPart = tmpBinLhs$1687 | vh;
   firstPart;
-  if (!(tmpClusterSSA_secondPart < 56320)) {
-    $(tmpClusterSSA_secondPart);
+  if (!(secondPart < 56320)) {
+    $(secondPart);
   }
 }
 `````

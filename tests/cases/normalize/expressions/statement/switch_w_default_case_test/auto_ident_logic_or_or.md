@@ -27,9 +27,9 @@ $(a);
 
 `````js filename=intro
 const tmpSwitchValue /*:unknown*/ = $(1);
-let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
 const tmpCalleeParam /*:unknown*/ = $(0);
 let tmpBinLhs /*:unknown*/ = $(tmpCalleeParam);
+let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
 if (tmpBinLhs) {
 } else {
   const tmpCalleeParam$1 /*:unknown*/ = $(1);
@@ -71,8 +71,8 @@ $(a);
 
 `````js filename=intro
 const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 1;
 let tmpBinLhs = $($(0));
+let tmpSwitchCaseToStart = 1;
 if (!tmpBinLhs) {
   tmpBinLhs = $($(1));
   if (!tmpBinLhs) {
@@ -103,39 +103,39 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-let b = 1;
-const c = $( 0 );
-let d = $( c );
-if (d) {
+const b = $( 0 );
+let c = $( b );
+let d = 1;
+if (c) {
 
 }
 else {
   const e = $( 1 );
-  d = $( e );
-  if (d) {
+  c = $( e );
+  if (c) {
 
   }
   else {
     const f = $( 2 );
-    d = $( f );
+    c = $( f );
   }
 }
-const g = d === a;
+const g = c === a;
 if (g) {
-  b = 0;
+  d = 0;
 }
 else {
   const h = 2 === a;
   if (h) {
-    b = 2;
+    d = 2;
   }
 }
-const i = b <= 0;
+const i = d <= 0;
 if (i) {
 
 }
 else {
-  const j = b <= 1;
+  const j = d <= 1;
   if (j) {
     $( "fail1" );
     $( "fail2" );

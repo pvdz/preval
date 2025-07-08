@@ -32,7 +32,6 @@ $(a, b, c, d, e);
 
 `````js filename=intro
 const tmpSwitchValue /*:unknown*/ = $(1);
-let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
 const b /*:object*/ /*truthy*/ = { x: 1 };
 const tmpInitAssignLhsComputedObj /*:unknown*/ = $(b);
 const tmpInitAssignLhsComputedProp /*:unknown*/ = $(`x`);
@@ -41,6 +40,7 @@ const tmpInitAssignLhsComputedObj$1 /*:unknown*/ = $(c);
 const tmpInitAssignLhsComputedProp$1 /*:unknown*/ = $(`y`);
 tmpInitAssignLhsComputedObj$1[tmpInitAssignLhsComputedProp$1] = 7;
 tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = 7;
+let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
 const tmpIfTest /*:boolean*/ = 7 === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
@@ -72,7 +72,6 @@ $(a, b, c, 3, 4);
 
 `````js filename=intro
 const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 1;
 const b = { x: 1 };
 const tmpInitAssignLhsComputedObj = $(b);
 const tmpInitAssignLhsComputedProp = $(`x`);
@@ -81,6 +80,7 @@ const tmpInitAssignLhsComputedObj$1 = $(c);
 const tmpInitAssignLhsComputedProp$1 = $(`y`);
 tmpInitAssignLhsComputedObj$1[tmpInitAssignLhsComputedProp$1] = 7;
 tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = 7;
+let tmpSwitchCaseToStart = 1;
 if (7 === tmpSwitchValue) {
   tmpSwitchCaseToStart = 0;
 } else {
@@ -105,31 +105,31 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-let b = 1;
-const c = { x: 1 };
-const d = $( c );
-const e = $( "x" );
-const f = { y: 2 };
-const g = $( f );
-const h = $( "y" );
-g[h] = 7;
-d[e] = 7;
+const b = { x: 1 };
+const c = $( b );
+const d = $( "x" );
+const e = { y: 2 };
+const f = $( e );
+const g = $( "y" );
+f[g] = 7;
+c[d] = 7;
+let h = 1;
 const i = 7 === a;
 if (i) {
-  b = 0;
+  h = 0;
 }
 else {
   const j = 2 === a;
   if (j) {
-    b = 2;
+    h = 2;
   }
 }
-const k = b <= 0;
+const k = h <= 0;
 if (k) {
 
 }
 else {
-  const l = b <= 1;
+  const l = h <= 1;
   if (l) {
     $( "fail1" );
     $( "fail2" );
@@ -142,7 +142,7 @@ const m = {
   a: 999,
   b: 1000,
 };
-$( m, c, f, 3, 4 );
+$( m, b, e, 3, 4 );
 `````
 
 

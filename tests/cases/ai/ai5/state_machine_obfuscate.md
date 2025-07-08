@@ -205,6 +205,7 @@ $(result);
 
 
 - (todo) Support this node type in isFree: LabeledStatement
+- (todo) Support this node type in isFree: NewExpression
 - (todo) can try-escaping support this expr node type? Literal
 - (todo) can try-escaping support this expr node type? NewExpression
 

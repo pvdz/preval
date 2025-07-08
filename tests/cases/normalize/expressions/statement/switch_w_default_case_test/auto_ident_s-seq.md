@@ -29,9 +29,9 @@ $(a, x);
 
 `````js filename=intro
 const tmpSwitchValue /*:unknown*/ = $(1);
-let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
 $(1);
 $(2);
+let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
 const tmpIfTest /*:boolean*/ = 1 === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
@@ -63,9 +63,9 @@ $(a, 1);
 
 `````js filename=intro
 const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 1;
 $(1);
 $(2);
+let tmpSwitchCaseToStart = 1;
 if (1 === tmpSwitchValue) {
   tmpSwitchCaseToStart = 0;
 } else {
@@ -90,9 +90,9 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-let b = 1;
 $( 1 );
 $( 2 );
+let b = 1;
 const c = 1 === a;
 if (c) {
   b = 0;

@@ -1,8 +1,12 @@
-// Find functions for which a certain param is always called with a specific primitive
+// Find functions for which a certain param is always called with a specific primitive or builtin symbol
 //
 //     `function f(a) { $(a); } f(1); f(1);`
 // ->
 //     `function f() { $(1); } f(); f();`
+//
+//     `function f(a) { $(a); } f($number_toString); f($number_toString);`
+// ->
+//     `function f() { const a = $number_toString; $(a); } f(); f();`
 //
 // (the opposite is "static arg op outlining")
 //
@@ -24,25 +28,26 @@ import {
   fmat,
   tmat,
   findBodyOffset,
+  currentState,
 } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { createFreshVar } from '../bindings.mjs';
 import { getPrimitiveValue } from '../ast.mjs';
+import { BUILTIN_SYMBOLS } from '../symbols_builtins.mjs';
 
 export function inlineIdenticalParam(fdata) {
   group('\n\n\n[inlineIdenticalParam] Checking for params which are always a certain primitive or the same object literal');
-  //currentState(fdata, 'inlineIdenticalParam', true, fdata);
+  currentState(fdata, 'inlineIdenticalParam', true, fdata);
   const r = _inlineIdenticalParam(fdata);
   groupEnd();
   return r;
 }
 function _inlineIdenticalParam(fdata) {
-  const ast = fdata.tenkoOutput.ast;
-
   // Find arrays which are constants and do not escape and where all member expressions are reads
 
   let changedPhase1 = 0;
   let changedNormal = 0;
+  const queue = [];
 
   fdata.globallyUniqueNamingRegistry.forEach(function (meta, name) {
     if (meta.isBuiltin) return;
@@ -53,7 +58,7 @@ function _inlineIdenticalParam(fdata) {
     if (meta.varDeclRef.node.$p.readsArgumentsLen) return;
 
     vgroup('- `' + name + '` is a constant function');
-    const what = process(meta, name, fdata);
+    const what = process(meta, name, fdata, queue);
     if (what === 'phase1') changedPhase1 += 1;
     if (what === 'normal') changedNormal += 1;
     vgroupEnd();
@@ -61,6 +66,9 @@ function _inlineIdenticalParam(fdata) {
 
   log('');
   if (changedPhase1 || changedNormal) {
+    queue.sort(({ index: a }, { index: b }) => b - a);
+    queue.forEach(({ index, func }) => func());
+
     log('Params replaced:', changedPhase1, ', objlits inlined:', changedNormal);
     if (changedNormal) {
       log('Restarting from normalization to patch up params');
@@ -72,7 +80,7 @@ function _inlineIdenticalParam(fdata) {
   log('Params replaced: 0.');
 }
 
-function process(meta, funcName, fdata) {
+function process(meta, funcName, fdata, queue) {
   const funcNode = meta.varDeclRef.node;
   if (!meta.reads.length) {
     vlog('- bail: There were no reads to this function');
@@ -112,8 +120,8 @@ function process(meta, funcName, fdata) {
 
   vlog('Found func "', funcName, '" that is only called', meta.reads.length, 'times and uses no rest/spread');
 
-  vgroup('tryInliningPrimitives():');
-  if (tryInliningPrimitives(meta, funcNode, params)) {
+  vgroup('tryInliningPrimitiveOrBuiltin():');
+  if (tryInliningPrimitiveOrBuiltin(meta, funcNode, params, queue)) {
     vgroupEnd();
     return 'phase1'; // This is fine to just cycle to phase1
   }
@@ -128,68 +136,82 @@ function process(meta, funcName, fdata) {
 
   return false;
 }
-function tryInliningPrimitives(meta, funcNode, params) {
-  let knownArgs = undefined;
+function tryInliningPrimitiveOrBuiltin(meta, funcNode, params, queue) {
+  let knownArgs = undefined; // bool[]. Set for first call. Next calls must match against these. false=invalidated
   let knownValues = params.map(() => undefined);
   if (
     meta.reads.some((read, ri) => {
       const callNode = read.parentNode;
       const args = callNode['arguments'];
 
+      vgroup('- read', ri);
       if (knownArgs) {
+        vlog('- not first call');
+        // Not first call; args for this call must match knownArgs too. A when an index is false it means invalidation, skip it.
         params.forEach((_, pi) => {
           const anode = args[pi];
 
-          if (anode) {
-            // If arg wasn't already invalidated for this rule
-            if (knownArgs[pi] !== false) {
-              if (!AST.isPrimitive(anode)) {
-                vlog('Param', pi, 'received at least one non-primitive value. No longer considering this param');
+          ASSERT(knownValues[pi] || knownArgs[pi] === false, 'there should be a known value for each param here, whatever it is', knownArgs, knownValues);
+          if (knownArgs[pi] === false) {
+            // Arg is already invalidated. Skip this one.
+            vlog('- arg already invalidated...');
+          }
+          else if (anode) {
+            const isPrim = AST.isPrimitive(anode);
+            const isBuiltin = anode.type === 'Identifier' && BUILTIN_SYMBOLS.has(anode.name);
+
+            if (!isPrim && !isBuiltin) {
+              vlog('- param', pi, 'received at least one non-primitive/non-builtin value. No longer considering this param');
+              knownArgs[pi] = false;
+            } else {
+              let p;
+              if (isPrim) {
+                p = {kind: 'prim', val: getPrimitiveValue(anode)};
+              } else {
+                // It's a builtin symbol identifier
+                p = {kind: 'name', val: anode.name};
+              }
+              if (p.kind !== knownValues[pi].kind || !Object.is(p.val, knownValues[pi].val)) {
+                vlog('- param', pi, 'received at least two distinct values(', p, 'and', knownValues[pi], '. No longer considering this param');
                 knownArgs[pi] = false;
               } else {
-                const p = getPrimitiveValue(anode);
-                if (p !== knownValues[pi]) {
-                  vlog(
-                    'Param',
-                    pi,
-                    'received at least two distinct primitive values(',
-                    p,
-                    'and',
-                    knownValues[pi],
-                    '. No longer considering this param',
-                  );
-                  knownArgs[pi] = false;
-                }
+                vlog('- arg processed');
               }
             }
-          } else {
-            const knownArg = knownArgs[pi];
-            if (knownArg !== false) {
-              if (knownValues[pi] !== undefined) {
-                vlog('Param', pi, 'Received two different primitive values (or none at all). No longer considering this param');
-                knownArgs[pi] = false;
-              }
+          }
+          else {
+            // There were fewer args than params so the value passed on is `undefined`
+            if (knownValues[pi].val !== undefined) {
+              vlog('- Param', pi, 'Received two different values (or none at all). No longer considering this param');
+              knownArgs[pi] = false;
+            } else {
+              vlog('- param', pi, 'has no matching arg so it gets undefined, param already marked as such; ok', knownValues[pi]);
             }
+            // else: arg is same as before, ok
           }
         });
       } else {
         // First call. Initialize the known args accordingly. There must be at least one call.
-
+        vlog('- first call');
         knownArgs = params.map((_, pi) => {
           const anode = args[pi];
           if (!anode) {
-            knownValues[pi] = undefined;
+            knownValues[pi] = {kind: 'prim', val: undefined};
             return true;
           } else if (AST.isPrimitive(anode)) {
-            knownValues[pi] = AST.getPrimitiveValue(anode);
+            knownValues[pi] = {kind: 'prim', val: AST.getPrimitiveValue(anode)};
+            return true;
+          } else if (anode.type === 'Identifier' && BUILTIN_SYMBOLS.has(anode.name)) {
+            knownValues[pi] = {kind: 'name', val: anode.name};
             return true;
           } else {
+            // Note: being a global is not a guarantee for being accessible (due to evaluation order)
             return false;
           }
         });
-
-        vlog('Known args initialized to', knownArgs, knownValues);
+        vlog('- known args now initialized to', knownArgs, 'and', knownValues);
       }
+      vgroupEnd();
 
       if (knownArgs.every((a) => a === false)) return true;
     })
@@ -197,41 +219,78 @@ function tryInliningPrimitives(meta, funcNode, params) {
     return false;
   }
 
-  vlog('Looks like there was at least one param that was always called with the same primitive value. Lets inline it!');
+  vlog('Looks like there was at least one param that was always called with the same value. Lets inline it!');
   vlog('::', knownArgs, knownValues);
 
   const varWrite = meta.writes.find((write) => write.kind === 'var');
   ASSERT(varWrite);
 
-  rule('A function that is always called with the same primitive value can inline that value');
+  rule('A function that is always called with the same primitive value or builtin symbol can inline that value');
   example('function f(a, b) { } f(1, 2); f(1, 4);', 'function f(b) { const a = 1; } f(2); f(4);');
-  before(funcNode, varWrite.blockBody);
+  example('function f(a, b) { } f($number_toString, 2); f($number_toString, 4);', 'function f(b) { const a = $number_toString; } f(2); f(4);');
+  before(varWrite.blockBody[varWrite.blockIndex]);
 
   vlog('Dropping args from calls now...');
   // For every position that is not false, from right to left, remove argument n from all calls to this function
   for (let i = knownArgs.length - 1; i >= 0; --i) {
-    vlog('- Arg', i, knownArgs[i], knownValues[i]);
-    if (knownArgs[i]) {
-      const paramNode = params[i];
+    const pi = i;
+    vgroup('- Arg', pi, 'valid:', knownArgs[pi], ', value:', knownValues[pi]);
+    if (knownArgs[pi]) {
+      const paramNode = params[pi];
       ASSERT(paramNode?.type === 'Param');
 
       if (paramNode.$p.paramVarDeclRef) {
         const varDecl = paramNode.$p.paramVarDeclRef.blockBody[paramNode.$p.paramVarDeclRef.blockIndex];
-        ASSERT(varDecl?.type === 'VarStatement', 'var decl ye?', paramNode.$p.paramVarDeclRef.blockIndex, varDecl, i, paramNode);
+        ASSERT(varDecl?.type === 'VarStatement', 'var decl ye?', paramNode.$p.paramVarDeclRef.blockIndex, varDecl, pi, paramNode);
 
-        params.splice(i, 1);
-        paramNode.$p.paramVarDeclRef.blockBody[paramNode.$p.paramVarDeclRef.blockIndex] = AST.emptyStatement();
-        const freshVarNode = AST.varStatement(varDecl.kind, varDecl.id.name, AST.primitive(knownValues[i]));
-        funcNode.body.body.splice(funcNode.$p.bodyOffset, 0, freshVarNode);
-        //vlog('Added', varDecl.id.name, freshVarNode, knownValues[i], '->', AST.primitive(knownValues[i]))
+        params.splice(pi, 1);
+        const body = paramNode.$p.paramVarDeclRef.blockBody;
+        const index = paramNode.$p.paramVarDeclRef.blockIndex;
+        const oldNode = body[index];
+        body[index] = AST.emptyStatement();
+
+        let initNode;
+        if (knownValues[pi].kind === 'name') {
+          initNode = AST.identifier(knownValues[pi].val);
+        } else {
+          initNode = AST.primitive(knownValues[pi].val);
+        }
+        oldNode.init = initNode;
+
+        // This one should go first
+        vlog('- queued injecting old param decl', pi, 'at body[index]', funcNode.$p.bodyOffset);
+        queue.push({index: funcNode.$p.bodyOffset, func: () => {
+          vlog('-- now injecting old param decl', pi, 'at body[index]:', funcNode.$p.bodyOffset);
+          body.splice(funcNode.$p.bodyOffset, 0, oldNode);
+        }});
+        vlog('- queued splicing out old param decl', pi, 'at body[index]', index);
+        queue.push({index, func: () => {
+          vlog('-- now splicing out old param decl', pi, 'at body[index]:', index, body[index].type);
+          body.splice(index, 1);
+          vlog('-- decreasing the index of params targeting later indices', params.map(p => p.index));
+          for (let p=0; p<params.length; ++p) {
+            if (params[p].index > index) {
+              vlog('  -- param', p, 'was targeting index', params[p].index);
+              params[p].index -= 1;
+            }
+          }
+        }});
+
+        meta.reads.forEach((read,c) => {
+          // Drop this arg from the read call
+          const args = read.parentNode['arguments'];
+          vlog('- queued dropping arg', pi, 'from call', c);
+          queue.push({index: pi, func: () => {
+            vlog('-- now dropping call arg', pi, 'from call', c);
+            args.splice(pi, 1)
+          }});
+        });
       }
 
-      meta.reads.forEach((read) => {
-        // Drop this arg from the read call
-        read.parentNode['arguments'].splice(i, 1);
-      });
     }
+    vgroupEnd();
   }
+
   vlog('Renaming Param nodes to eliminate holes we may have left');
   params.forEach((paramNode, pi) => {
     // Make sure the params are incremental in order. We can't leave any holes.
@@ -246,7 +305,7 @@ function tryInliningPrimitives(meta, funcNode, params) {
     }
   });
 
-  after(funcNode, varWrite.blockBody);
+  after(varWrite.blockBody[varWrite.blockIndex]);
 
   return true;
 }

@@ -72,7 +72,7 @@ $(r);
 
 
 - (todo) access object property that also exists on prototype? $function_toString
-- (todo) support Identifier as var init in let_hoisting noob check
+- (todo) support CallExpression as var init in let_hoisting noob check
 
 
 ## Globals

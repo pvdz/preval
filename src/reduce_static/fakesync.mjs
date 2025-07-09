@@ -31,8 +31,7 @@ export function _fakesync(fdata) {
   const ast = fdata.tenkoOutput.ast;
 
   let changed = 0;
-  const queue = []; // For flattening splice blocks
-  const queue2 = []; // For replacing body with try/catch
+  const queue = []; // not sorted like usual!
 
   fdata.globallyUniqueNamingRegistry.forEach((meta, funcName) => {
     if (!meta.isConstant) return;
@@ -169,28 +168,27 @@ export function _fakesync(fdata) {
         if (beforeWalk) return;
         if (node.type === 'FunctionExpression') return false; // do not go into nested functions
         if (node.type === 'ReturnStatement') {
-
           const parentNode = path.nodes[path.nodes.length - 2];
           const parentProp = path.props[path.props.length - 1];
           const parentIndex = path.indexes[path.indexes.length - 1];
-
-          // `return x` -> `{ const tmp = $promise_resolve(x); return tmp; }`, which is flattened in a queue.
+          // `return x` -> `if (true) { const tmp = $promise_resolve(x); return tmp; }`, which is flattened in a queue.
           // all returns should ever be considered once by this reducer so a single queue should be safe
+          // Note: using `if(true)` as a hack because this reducer may nest and if I use a block to squash then it may squash in the wrong parent
           const tmp = createFreshVar('tmpResolveVal', fdata);
-          const newNode = AST.blockStatement(
+          // Return so index >=0
+          parentNode[parentProp][parentIndex] = AST.ifStatement(AST.tru(), AST.blockStatement(
             AST.varStatement('const', tmp, AST.callExpression(AST.identifier(symbo('Promise', 'resolve')), [node.argument])),
             AST.returnStatement(AST.identifier(tmp))
-          );
-          // Return so index >=0
-          parentNode[parentProp][parentIndex] = newNode;
-          queue.push({index: parentIndex, func: () => { parentNode[parentProp].splice(parentIndex, 1, ...newNode.body)}});
+          ), AST.blockStatement());
         }
       }
       // Do this after the walk otherwise this new return also gets transformed
       // In fact, we need to do this after the first queue because we need to retain the blockBody reference, even in the first queue
       const tmp2 = createFreshVar('tmpRejectVal', fdata);
       // I think this replace should happen once per body and as such the order is not relevant
-      queue2.push(() => {
+      queue.push(() => {
+        vlog('queue2:', funcNode.$p.bodyOffset);
+        ASSERT(funcNode.body.body[funcNode.$p.bodyOffset-1].type === 'DebuggerStatement', 'body offset should not be stale', funcNode.$p.bodyOffset, funcNode.body.body[funcNode.$p.bodyOffset-1].type, funcNode.body.body);
         const oldBody = funcNode.body.body.slice(funcNode.$p.bodyOffset);
         funcNode.body.body.length = funcNode.$p.bodyOffset;
         funcNode.body.body.push(
@@ -211,7 +209,7 @@ export function _fakesync(fdata) {
           )
         );
         vlog('With try/catch wrapper:');
-        after(write.blockBody[write.blockIndex]);
+        after(funcNode);
       });
       vlog('Without try/catch wrapper (that is queued):');
       after(write.blockBody[write.blockIndex]);
@@ -235,7 +233,7 @@ export function _fakesync(fdata) {
       // Do this after the first queue because we need to retain the blockBody reference, even in the first queue
       const tmp2 = createFreshVar('tmpRejectVal', fdata);
       // I think this replace should happen once per body and as such the order is not relevant
-      queue2.push(() => {
+      queue.push(() => {
         const oldBody = funcNode.body.body.slice(funcNode.$p.bodyOffset);
         funcNode.body.body.length = funcNode.$p.bodyOffset;
         funcNode.body.body.push(
@@ -261,9 +259,7 @@ export function _fakesync(fdata) {
   assertNoDupeNodes(ast, 'body');
 
   if (changed) {
-    queue.sort(({index: a}, {index: b}) => b-a);
-    queue.forEach(({func}) => func());
-    queue2.forEach(func => func());
+    queue.forEach(func => func());
 
     log('Async functions deasyncified:', changed, '. Restarting from phase1');
     return {what: 'fakesync', changes: changed, next: 'phase1'};

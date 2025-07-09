@@ -2,11 +2,13 @@
 // `const n = /foo/; while (true) { let x = foo; if (x) { f(x); x = false; } }'
 // -> `const n = /foo/; while (true) { let x = true; if (x) { f(n); x = false; } }'
 
-import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, findBodyOffset } from '../utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, findBodyOffset, currentState, } from '../utils.mjs';
 import * as AST from '../ast.mjs';
+import { createFreshVar } from '../bindings.mjs';
 
 export function readOnce(fdata) {
   group('\n\n\n[readOnce] Looking for self destructing bindings that clear after use\n');
+  // currentState(fdata, 'readOnce', true, fdata);
   const r = _readOnce(fdata);
   groupEnd();
   return r;
@@ -135,9 +137,14 @@ function _readOnce(fdata) {
         before(meta.writes.map((write) => write.blockBody[write.blockIndex]));
         before(meta.reads.map((read) => read.blockBody[read.blockIndex]));
 
+        const tmp = createFreshVar('tmpReadOnce', fdata);
+
         varWrite.parentNode.init = AST.tru();
-        if (readToReplace.parentIndex < 0) readToReplace.parentNode[readToReplace.parentProp] = init;
-        else readToReplace.parentNode[readToReplace.parentProp][readToReplace.parentIndex] = init;
+
+        // Store it in a temp var to prevent replacing something like `return xyz` with a complex template. Another reducer will clean up.
+        if (readToReplace.parentIndex < 0) readToReplace.parentNode[readToReplace.parentProp] = AST.identifier(tmp);
+        else readToReplace.parentNode[readToReplace.parentProp][readToReplace.parentIndex] = AST.identifier(tmp);
+        readToReplace.blockBody.splice(readToReplace.blockIndex, 0, AST.varStatement('const', tmp, init));
 
         after(varWrite.blockBody[varWrite.blockIndex]);
         after(readToReplace.blockBody[readToReplace.blockIndex]);

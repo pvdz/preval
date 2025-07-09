@@ -829,7 +829,7 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
       const rightnow = new Set(funcNode.$p.returnNodes?.map(returnNode => {
         const arg = returnNode.argument;
         if (AST.isPrimitive(arg)) return AST.getPrimitiveType(arg);
-        ASSERT(arg.type === 'Identifier', 'return node arg should be identifier in normalized code');
+        ASSERT(arg.type === 'Identifier', 'return node arg should be a primitive or identifier in normalized code', arg);
         const argMeta = getMeta(arg.name, fdata);
 
         // Edge case: recursion. We can ignore cases of recursive calls as they should not change

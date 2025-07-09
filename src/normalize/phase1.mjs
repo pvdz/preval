@@ -663,7 +663,11 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
           } else if (parentNode.type === 'ExpressionStatement' && parentProp === 'expression') {
             // as an expression statement... can we ignore this. no.
             thisStack[thisStack.length - 1].$p.readsArgumentsAny = true;
+          } else if (parentNode.type === 'CallExpression' && parentProp === 'arguments') {
+            vlog('It is passed on as a call arg...');
+            thisStack[thisStack.length - 1].$p.readsArgumentsAny = true;
           } else {
+            // TODO: like the call arg, this can escape as array element, object key, object value, member prop, etc. It's just bad for us if it does (:
             vlog('This is a failure branch. It most likely means `arguments` was used in global scope or in a function chain that only used arrows');
             console.dir(pathNodes[pathNodes.length - 3])
             ASSERT(parentNode.type === 'VarStatement', 'If `arguments` is not .length then it must be init of alias decl, anything else is bad news...', parentNode);

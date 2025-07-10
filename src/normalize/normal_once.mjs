@@ -164,6 +164,7 @@ export function phaseNormalOnce(fdata) {
   if (VERBOSE_TRACING) vlog('\nState after export normalization\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
 
   // All other transforms in this file can be wrapped in a block, so they shouldn't need to change the parent child count/order.
+  // All loop-statements must have a block as child for otherwise the continue transform fails (replaces block, existing node retains index=-1).
 
   walk(_walker, ast, 'ast');
   function _walker(node, beforeNode, nodeType, path) {
@@ -415,6 +416,15 @@ export function phaseNormalOnce(fdata) {
         if (parentNode.type === 'LabeledStatement') {
           node.$p.parentLabel = parentNode.label.name;
         }
+
+        if (node.body.type !== 'BlockStatement') {
+          rule('do-while-statement body must be block');
+          example('do f(); while(true);', 'do {f();} while(true);');
+          before(parentNode[parentProp][parentIndex]);
+          node.body = AST.blockStatement(node.body);
+          after(parentNode[parentProp][parentIndex]);
+        }
+
         break;
       }
       case 'DoWhileStatement:after': {
@@ -458,6 +468,14 @@ export function phaseNormalOnce(fdata) {
           node.$p.parentLabel = parentNode.label.name;
         }
 
+        if (node.body.type !== 'BlockStatement') {
+          rule('for-statement body must be block');
+          example('for(;;)f();', 'for(;;){f();}');
+          before(parentNode[parentProp][parentIndex]);
+          node.body = AST.blockStatement(node.body);
+          after(parentNode[parentProp][parentIndex]);
+        }
+
         break;
       }
       case 'ForStatement:after': {
@@ -487,6 +505,15 @@ export function phaseNormalOnce(fdata) {
         if (parentNode.type === 'LabeledStatement') {
           node.$p.parentLabel = parentNode.label.name;
         }
+
+        if (node.body.type !== 'BlockStatement') {
+          rule('for-in-statement body must be block');
+          example('for(x in y)f();', 'for(x in y){f();}');
+          before(parentNode[parentProp][parentIndex]);
+          node.body = AST.blockStatement(node.body);
+          after(parentNode[parentProp][parentIndex]);
+        }
+
         break;
       }
       case 'ForInStatement:after': {
@@ -614,6 +641,15 @@ export function phaseNormalOnce(fdata) {
         if (parentNode.type === 'LabeledStatement') {
           node.$p.parentLabel = parentNode.label.name;
         }
+
+        if (node.body.type !== 'BlockStatement') {
+          rule('for-of-statement body must be block');
+          example('for(x of y)f();', 'for(x of y){f();}');
+          before(parentNode[parentProp][parentIndex]);
+          node.body = AST.blockStatement(node.body);
+          after(parentNode[parentProp][parentIndex]);
+        }
+
         break;
       }
       case 'ForOfStatement:after': {
@@ -837,11 +873,9 @@ export function phaseNormalOnce(fdata) {
         break;
       }
       case 'LabeledStatement:before': {
-        // This was never really part of the code so do we need it?
-        //const labelNode = createFreshLabel(node.label.name, fdata);
-        //if (node.label.name !== labelNode.name) {
-        //  node.label = labelNode;
-        //}
+
+        // Note: can't make child a block because this file still needs to find parent labels first.
+
         break;
       }
       case 'Literal:before': {
@@ -1237,7 +1271,7 @@ export function phaseNormalOnce(fdata) {
           example('try { return a(); } finally { b }', 'let $action = 0; let $use = undefined; A: { try { $action = 1; $use = a; break A; } catch (e) { $action = 2; $use = e; } } b; if ($action === 1) return $use; if ($action === 2) throw $use;');
           example('try { return a } finally { return b }', 'let $action = 0; let $use = undefined; A: { try { $action = 1; $use = a; break A; } catch (e) { $action = 2; $use = e; } } return b; if ($action === 1) return $use; if ($action === 2) throw $use;');
 
-          before(node);
+          before(node, parentNode);
 
           // This one is non-trivial but not _that_ difficult
           // We need to collect all abrupt completions that could be trapped by the finally
@@ -1470,7 +1504,7 @@ export function phaseNormalOnce(fdata) {
 
           vlog('Checking if finally is small and simple...');
           if (fbody.length === 1 && fbody[0].type === 'ExpressionStatement' && isSortOfSimpleNode(fbody[0].expression)) {
-            vlog('- Finally has one simplish expression statement');
+            vlog('- yes: Finally has one simplish expression statement');
             newCatchBody = AST.blockStatement(
               AST.expressionStatement(cloneSortOfSimple(fbody[0].expression)),
               AST.throwStatement(AST.identifier(implicitName)),
@@ -1482,7 +1516,7 @@ export function phaseNormalOnce(fdata) {
             fbody[0].type === 'ExpressionStatement' && isSortOfSimpleNode(fbody[0].expression) &&
             fbody[1].type === 'ExpressionStatement' && isSortOfSimpleNode(fbody[1].expression)
           ) {
-            vlog('- Finally has two simplish expression statements');
+            vlog('- yes: Finally has two simplish expression statements');
             newCatchBody = AST.blockStatement(
               AST.expressionStatement(cloneSortOfSimple(fbody[0].expression)),
               AST.expressionStatement(cloneSortOfSimple(fbody[1].expression)),
@@ -1496,7 +1530,7 @@ export function phaseNormalOnce(fdata) {
             fbody[1].type === 'ExpressionStatement' && isSortOfSimpleNode(fbody[1].expression) &&
             fbody[2].type === 'ExpressionStatement' && isSortOfSimpleNode(fbody[2].expression)
           ) {
-            vlog('- Finally has two simplish expression statements');
+            vlog('- yes: Finally has two simplish expression statements');
             newCatchBody = AST.blockStatement(
               AST.expressionStatement(cloneSortOfSimple(fbody[0].expression)),
               AST.expressionStatement(cloneSortOfSimple(fbody[1].expression)),
@@ -1504,6 +1538,8 @@ export function phaseNormalOnce(fdata) {
               AST.throwStatement(AST.identifier(implicitName)),
             );
             skipCatchBoiler = true;
+          } else {
+            vlog('- nope.');
           }
           if (skipCatchBoiler) {
             keywords.unshift(); // Remove the first element, which is the implicit throw
@@ -1515,7 +1551,6 @@ export function phaseNormalOnce(fdata) {
               AST.expressionStatement(AST.assignmentExpression(AST.identifier(keywords[0].argName), AST.identifier(implicitName))),
             );
           }
-
 
           const catchNode = AST.tryCatchStatement(node.block, implicitName, newCatchBody);
           const labelBody = AST.blockStatement(
@@ -1560,10 +1595,13 @@ export function phaseNormalOnce(fdata) {
 
           assertNoDupeNodes(wrapper);
 
+          after(parentNode);
+
+          vlog('Now replacing', parentProp, parentIndex, parentIndex < 0, wrapper);
           if (parentIndex < 0) parentNode[parentProp] = wrapper;
           else parentNode[parentProp][parentIndex] = wrapper;
 
-          after(wrapper);
+          after(wrapper, parentNode);
 
           // byebye TryStatement
           break;
@@ -1576,6 +1614,15 @@ export function phaseNormalOnce(fdata) {
         if (parentNode.type === 'LabeledStatement') {
           node.$p.parentLabel = parentNode.label.name;
         }
+
+        if (node.body.type !== 'BlockStatement') {
+          rule('while-statement body must be block');
+          example('while(true)f();', 'while(true){f();}');
+          before(parentNode[parentProp][parentIndex]);
+          node.body = AST.blockStatement(node.body);
+          after(parentNode[parentProp][parentIndex]);
+        }
+
         break;
       }
       case 'WhileStatement:after': {

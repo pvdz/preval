@@ -77,7 +77,7 @@ function _arrMutation(fdata) {
     const rwIndex = arrMeta.rwOrder.indexOf(write);
     ASSERT(rwIndex >= 0);
 
-    // Find the next read in the same scope (closure reads are not relevant and don't block the transform)
+    // Find the next read in the same _func_ scope (closure reads are not relevant and don't block the transform)
     let read;
     for (let i=rwIndex+1; i<arrMeta.rwOrder.length; ++i) {
       const ref = arrMeta.rwOrder[i];
@@ -89,6 +89,9 @@ function _arrMutation(fdata) {
     }
     if (!read) return vlog('- bail: did not find read after this write in same scope');
 
+    // The read should reach the write so the write blockChain must be prefix of the read blockChain
+    if (!read.blockChain.startsWith(write.blockChain)) return vlog('- bail: read is in upper block scope; we cant prove noops');
+
     // We now have a consecutive write (of array expr) and read (of that binding) in the same scope.
     // We have to confirm whether the array may have mutated in any way between these two refs.
 
@@ -98,6 +101,8 @@ function _arrMutation(fdata) {
     if (write.innerTry !== read.innerTry) return vlog('- bail: Not in same try', write.innerTry, read.innerTry);
 
     // Write and read, consecutive in same scope, same if/loop/try. Now confirm the statements between them don't spy.
+
+    vlog('- why do we feel read can reach that write?', write.blockBody === read.blockBody, write.blockChain, read.blockChain, write.funcChain, read.funcChain);
 
     let has = AST.hasObservableSideEffectsBetweenRefs(write, read);
     if (has) return vlog('- bail: there are observable side effects between the write and the read');

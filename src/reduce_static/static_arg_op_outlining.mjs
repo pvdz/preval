@@ -1179,6 +1179,10 @@ function _staticArgOpOutlining(fdata) {
       outlinedExpr = stmt.init;
       stmt.init = AST.identifier(newLocalParamName);
     }
+    else if (stmt.type !== 'ExpressionStatement') {
+      source(stmt, true);
+      ASSERT(false, 'implement stmt', stmt);
+    }
     else if (stmt.expression.type === 'AssignmentExpression') {
       outlinedExpr = stmt.expression.right;
       stmt.expression.right = AST.identifier(newLocalParamName);
@@ -1186,7 +1190,8 @@ function _staticArgOpOutlining(fdata) {
     else if (
       stmt.expression.type === 'UnaryExpression' ||
       stmt.expression.type === 'BinaryExpression' ||
-      stmt.expression.type === 'CallExpression'
+      stmt.expression.type === 'CallExpression' ||
+      stmt.expression.type === 'TemplateLiteral'
     ) {
       outlinedExpr = stmt.expression;
       stmt.expression = AST.identifier(newLocalParamName);

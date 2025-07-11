@@ -9,6 +9,10 @@
 This is a minimal test case that somehow uncovered that the label store
 was not properly set in phase1 (only in prepare).
 
+## Options
+
+globals: s
+
 ## Input
 
 `````js filename=intro

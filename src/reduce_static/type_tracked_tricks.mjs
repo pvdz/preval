@@ -3476,7 +3476,7 @@ function _typeTrackedTricks(fdata) {
         // Because we can prove that it can't hit a prototype property and then discard it
         // The only exception is when the Object.prototype object has been tampered with.
         if (node.computed && node.object.type === 'Identifier' && node.property.type === 'Identifier') {
-          vlog('- Searching for the pattern that checks if a fresh object has a property that starts with a number...');
+          vlog('- Searching for the pattern that checks if a fresh object has a property that starts with a number...', node.object.name, node.property.name);
           const ometa = fdata.globallyUniqueNamingRegistry.get(node.object.name);
           if (
             ometa?.isConstant &&

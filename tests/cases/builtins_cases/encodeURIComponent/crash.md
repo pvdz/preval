@@ -20,9 +20,9 @@ $(encodeURIComponent("\uDFFF"));
 
 `````js filename=intro
 $(`%F0%90%8F%BF`);
-const tmpCalleeParam$1 /*:string*/ = encodeURIComponent(`\ud800`);
+const tmpCalleeParam$1 /*:string*/ = $Global_encodeURIComponent(`\ud800`);
 $(tmpCalleeParam$1);
-const tmpCalleeParam$3 /*:string*/ = encodeURIComponent(`\udfff`);
+const tmpCalleeParam$3 /*:string*/ = $Global_encodeURIComponent(`\udfff`);
 $(tmpCalleeParam$3);
 `````
 
@@ -32,8 +32,8 @@ $(tmpCalleeParam$3);
 
 `````js filename=intro
 $(`%F0%90%8F%BF`);
-$(encodeURIComponent(`\ud800`));
-$(encodeURIComponent(`\udfff`));
+$($Global_encodeURIComponent(`\ud800`));
+$($Global_encodeURIComponent(`\udfff`));
 `````
 
 
@@ -42,9 +42,9 @@ With rename=true
 
 `````js filename=intro
 $( "%F0%90%8F%BF" );
-const a = encodeURIComponent( "\ud800" );
+const a = $Global_encodeURIComponent( "\ud800" );
 $( a );
-const b = encodeURIComponent( "\udfff" );
+const b = $Global_encodeURIComponent( "\udfff" );
 $( b );
 `````
 
@@ -53,11 +53,11 @@ $( b );
 (This is what phase1 received the first time)
 
 `````js filename=intro
-let tmpCalleeParam = encodeURIComponent(`\ud800\udfff`);
+let tmpCalleeParam = `%F0%90%8F%BF`;
 $(tmpCalleeParam);
-let tmpCalleeParam$1 = encodeURIComponent(`\ud800`);
+let tmpCalleeParam$1 = $Global_encodeURIComponent(`\ud800`);
 $(tmpCalleeParam$1);
-let tmpCalleeParam$3 = encodeURIComponent(`\udfff`);
+let tmpCalleeParam$3 = $Global_encodeURIComponent(`\udfff`);
 $(tmpCalleeParam$3);
 `````
 

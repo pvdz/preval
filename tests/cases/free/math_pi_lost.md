@@ -1,15 +1,18 @@
 # Preval test case
 
-# obj.md
+# math_pi_lost.md
 
-> Builtins cases > EncodeURIComponent > Obj
+> Free > Math pi lost
 >
->
+> For some reason this was letting math.pi into pcode when it didn't want it
 
 ## Input
 
 `````js filename=intro
-$(encodeURIComponent({wat: true}));
+const a/*:unknown*/ = 1;
+const b/*:unknown*/ = $Math_PI;
+const c/*:unknown*/ = a + b;
+$(c);
 `````
 
 
@@ -17,9 +20,7 @@ $(encodeURIComponent({wat: true}));
 
 
 `````js filename=intro
-const tmpCalleeParam$1 /*:object*/ /*truthy*/ = { wat: true };
-const tmpCalleeParam /*:string*/ = $Global_encodeURIComponent(tmpCalleeParam$1);
-$(tmpCalleeParam);
+$(4.141592653589793);
 `````
 
 
@@ -27,7 +28,7 @@ $(tmpCalleeParam);
 (This ought to be the final result)
 
 `````js filename=intro
-$($Global_encodeURIComponent({ wat: true }));
+$(4.141592653589793);
 `````
 
 
@@ -35,9 +36,7 @@ $($Global_encodeURIComponent({ wat: true }));
 With rename=true
 
 `````js filename=intro
-const a = { wat: true };
-const b = $Global_encodeURIComponent( a );
-$( b );
+$( 4.141592653589793 );
 `````
 
 
@@ -45,9 +44,10 @@ $( b );
 (This is what phase1 received the first time)
 
 `````js filename=intro
-let tmpCalleeParam$1 = { wat: true };
-let tmpCalleeParam = $Global_encodeURIComponent(tmpCalleeParam$1);
-$(tmpCalleeParam);
+const a = 1;
+const b = $Math_PI;
+const c = a + b;
+$(c);
 `````
 
 
@@ -67,7 +67,7 @@ None
 
 
 Should call `$` with:
- - 1: '%5Bobject%20Object%5D'
+ - 1: 4.141592653589793
  - eval returned: undefined
 
 Pre normalization calls: Same

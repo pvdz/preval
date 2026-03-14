@@ -304,11 +304,15 @@ function _isNotSpyingValueNode(node, fdata, isVarDecl, isAssign, dontPrint) {
 
     if (
       [
+        symbo('Global', 'parseInt'),
         symbo('Number', 'parseInt'),
+        symbo('Global', 'parseFloat'),
         symbo('Number', 'parseFloat'),
         'isNaN',
+        symbo('Global', 'isNaN'),
         symbo('Number', 'isNaN'),
         'isFinite',
+        symbo('Global', 'isFinite'),
         symbo('Number', 'isFinite'),
         symbo('Number', 'isInteger'),
         symbo('Number', 'isSafeInteger'),

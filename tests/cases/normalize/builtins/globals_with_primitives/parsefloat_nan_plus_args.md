@@ -46,7 +46,7 @@ $( $Number_NaN );
 `````js filename=intro
 const tmpArgOverflow = $Number_NaN;
 implicitGlobal;
-let tmpCalleeParam = $Number_parseFloat(tmpArgOverflow);
+let tmpCalleeParam = $Global_parseFloat(tmpArgOverflow);
 $(tmpCalleeParam);
 `````
 
@@ -54,7 +54,7 @@ $(tmpCalleeParam);
 ## Todos triggered
 
 
-- (todo) type trackeed tricks can possibly support static $Number_parseFloat
+None
 
 
 ## Globals

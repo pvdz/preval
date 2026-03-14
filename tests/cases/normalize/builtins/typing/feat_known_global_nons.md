@@ -144,11 +144,11 @@ const tmpUnaryArg$9 = $boolean_constructor(tmpCalleeParam$15);
 let tmpCalleeParam$13 = typeof tmpUnaryArg$9;
 $(tmpCalleeParam$13);
 let tmpCalleeParam$19 = $spy(`parseInt`);
-const tmpUnaryArg$11 = $Number_parseInt(tmpCalleeParam$19);
+const tmpUnaryArg$11 = $Global_parseInt(tmpCalleeParam$19);
 let tmpCalleeParam$17 = typeof tmpUnaryArg$11;
 $(tmpCalleeParam$17);
 let tmpCalleeParam$23 = $spy(`parseFloat`);
-const tmpUnaryArg$13 = $Number_parseFloat(tmpCalleeParam$23);
+const tmpUnaryArg$13 = $Global_parseFloat(tmpCalleeParam$23);
 let tmpCalleeParam$21 = typeof tmpUnaryArg$13;
 $(tmpCalleeParam$21);
 `````
@@ -160,8 +160,6 @@ $(tmpCalleeParam$21);
 - (todo) type trackeed tricks can possibly support static $Math_hypot
 - (todo) type trackeed tricks can possibly support static $Math_sign
 - (todo) type trackeed tricks can possibly support static $Math_sin
-- (todo) type trackeed tricks can possibly support static $Number_parseFloat
-- (todo) type trackeed tricks can possibly support static $Number_parseInt
 - (todo) type trackeed tricks can possibly support static $boolean_constructor
 
 

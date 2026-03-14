@@ -21,6 +21,8 @@ function _builtinCases(fdata) {
   changes += process_encodeURIComponent(fdata);
   changes += process_decodeURIComponent(fdata);
   changes += process_primidents(fdata);
+  changes += process_escape(fdata);
+  changes += process_unescape(fdata);
 
   if (changes) {
     log('Built-ins transformed:', changes, '. Restarting from phase1 to fix up read/write registry.');
@@ -30,8 +32,74 @@ function _builtinCases(fdata) {
   log('Built-ins transformed: 0.');
 }
 
+function process_escape(fdata) {
+  const meta = fdata.globallyUniqueNamingRegistry.get(symbo('Global', 'escape'));
+  ASSERT(meta);
+  ASSERT(meta.isBuiltin);
+
+  let changes = 0;
+  meta.reads.forEach(read => {
+    if (read.parentNode.type !== 'CallExpression' || read.parentProp !== 'callee') return;
+
+    if (AST.isPrimitive(read.parentNode.arguments[0])) {
+      let value;
+      try {
+        value = escape(AST.getPrimitiveValue(read.parentNode.arguments[0]));
+      } catch {
+        return;
+      }
+
+      rule('A call to escape with a primitive that doesnt crash can be inlined');
+      example('escape("<x>")', '"%3Cx%3E"');
+      before(read.blockBody[read.blockIndex]);
+
+      if (read.grandIndex < 0) read.grandNode[read.grandProp] = AST.primitive(value);
+      else read.grandNode[read.grandProp][read.grandIndex] = AST.primitive(value);
+
+      after(read.blockBody[read.blockIndex]);
+      changes += 1;
+      return;
+    }
+  });
+
+  return changes;
+}
+
+function process_unescape(fdata) {
+  const meta = fdata.globallyUniqueNamingRegistry.get(symbo('Global', 'unescape'));
+  ASSERT(meta);
+  ASSERT(meta.isBuiltin);
+
+  let changes = 0;
+  meta.reads.forEach(read => {
+    if (read.parentNode.type !== 'CallExpression' || read.parentProp !== 'callee') return;
+
+    if (AST.isPrimitive(read.parentNode.arguments[0])) {
+      let value;
+      try {
+        value = unescape(AST.getPrimitiveValue(read.parentNode.arguments[0]));
+      } catch {
+        return;
+      }
+
+      rule('A call to unescape with a primitive that doesnt crash can be inlined');
+      example('unescape("%3Cx%3E")', '"<x>"');
+      before(read.blockBody[read.blockIndex]);
+
+      if (read.grandIndex < 0) read.grandNode[read.grandProp] = AST.primitive(value);
+      else read.grandNode[read.grandProp][read.grandIndex] = AST.primitive(value);
+
+      after(read.blockBody[read.blockIndex]);
+      changes += 1;
+      return;
+    }
+  });
+
+  return changes;
+}
+
 function process_encodeURIComponent(fdata) {
-  const meta = fdata.globallyUniqueNamingRegistry.get('encodeURIComponent');
+  const meta = fdata.globallyUniqueNamingRegistry.get(symbo('Global', 'encodeURIComponent'));
   ASSERT(meta);
   ASSERT(meta.isBuiltin);
 
@@ -64,7 +132,7 @@ function process_encodeURIComponent(fdata) {
 }
 
 function process_decodeURIComponent(fdata) {
-  const meta = fdata.globallyUniqueNamingRegistry.get('decodeURIComponent');
+  const meta = fdata.globallyUniqueNamingRegistry.get(symbo('Global', 'decodeURIComponent'));
   ASSERT(meta);
   ASSERT(meta.isBuiltin);
 

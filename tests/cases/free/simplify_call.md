@@ -46,7 +46,7 @@ const tmpFree$21 /*:(number)=>number*/ = function $free($$0) {
 const _0xb34c4b /*:array*/ /*truthy*/ = [`a`, `b`];
 try {
   const tmpCalleeParam$3 /*:unknown*/ = $(824);
-  const tmpCalleeParam$1 /*:number*/ = $Number_parseInt(tmpCalleeParam$3);
+  const tmpCalleeParam$1 /*:number*/ = $Global_parseInt(tmpCalleeParam$3);
   const tmpIfTest /*:number*/ = $frfr(tmpFree$21, tmpCalleeParam$1);
   if (tmpIfTest) {
   } else {
@@ -72,7 +72,7 @@ const tmpFree$21 = function $free(tmpUnaryArg$489) {
 };
 const _0xb34c4b = [`a`, `b`];
 try {
-  if (!tmpFree$21($Number_parseInt($(824)))) {
+  if (!tmpFree$21($Global_parseInt($(824)))) {
     $dotCall($array_push, _0xb34c4b, `push`, $dotCall($array_shift, _0xb34c4b, `shift`));
   }
 } catch (_0xa7aced$11) {
@@ -96,7 +96,7 @@ const a = function $free($$0 ) {
 const e = [ "a", "b" ];
 try {
   const f = $( 824 );
-  const g = $Number_parseInt( f );
+  const g = $Global_parseInt( f );
   const h = i( a, g );
   if (h) {
 
@@ -130,7 +130,7 @@ const _0xcb1177 = $;
 try {
   let tmpCalleeParam = tmpFree$21;
   let tmpCalleeParam$3 = _0xcb1177(824);
-  let tmpCalleeParam$1 = $Number_parseInt(tmpCalleeParam$3);
+  let tmpCalleeParam$1 = $Global_parseInt(tmpCalleeParam$3);
   const tmpIfTest = $frfr(tmpFree$21, tmpCalleeParam$1);
   if (tmpIfTest) {
   } else {
@@ -156,7 +156,6 @@ $(`thend`);
 - (todo) access object property that also exists on prototype? $array_shift
 - (todo) can try-escaping support this expr node type? CallExpression
 - (todo) support array reads statement type ExpressionStatement
-- (todo) type trackeed tricks can possibly support static $Number_parseInt
 
 
 ## Globals

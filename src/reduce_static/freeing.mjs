@@ -51,6 +51,7 @@ import { pcodeSupportedBuiltinFuncs, runFreeWithPcode } from '../pcode.mjs';
 import { BUILTIN_GLOBAL_FUNC_NAMES } from '../globals.mjs';
 import { GLOBAL_PREVAL_SYMBOLS, SYMBOL_COERCE, SYMBOL_DOTCALL } from '../symbols_preval.mjs';
 
+// Note: <-> pcodeSupportedBuiltinFuncs
 const SUPPORTED_FREE_BUILTINS = new Set([
   symbo('boolean', 'constructor'),
   symbo('boolean', 'toString'),
@@ -108,12 +109,16 @@ const SUPPORTED_FREE_BUILTINS = new Set([
   symbo('Number', 'NEGATIVE_INFINITY'),
   symbo('Number', 'POSITIVE_INFINITY'),
   'isFinite',
+  symbo('Global', 'isFinite'),
   symbo('Number', 'isFinite'),
   symbo('Number', 'isInteger'),
-  symbo('Number', 'isNaN'),
   'isNaN',
+  symbo('Global', 'isNaN'),
+  symbo('Number', 'isNaN'),
   symbo('Number', 'isSafeInteger'),
+  symbo('Global', 'parseFloat'),
   symbo('Number', 'parseFloat'),
+  symbo('Global', 'parseInt'),
   symbo('Number', 'parseInt'),
   symbo('number', 'constructor'),
   symbo('number', 'toExponential'),
@@ -160,6 +165,12 @@ const SUPPORTED_FREE_BUILTINS = new Set([
   symbo('string', 'trimEnd'),
   symbo('string', 'trimStart'),
   symbo('string', 'valueOf'),
+  symbo('Global', 'escape'),
+  symbo('Global', 'unescape'),
+  symbo('Global', 'decodeURI'),
+  symbo('Global', 'encodeURI'),
+  symbo('Global', 'decodeURIComponent'),
+  symbo('Global', 'encodeURIComponent'),
 ])
 
 export function freeing(fdata, $prng, options) {
@@ -852,8 +863,12 @@ function isFreeExpression(exprNode, fdata) {
       ASSERT(meta, 'if missing check if another reducer failed to go to phase1');
       vlog('  - Ident "', funcName, '", meta typing:', JSON.stringify(meta?.typing));
       if (PRIMITIVE_TYPE_NAMES_PREVAL.has(meta.typing.mustBeType) || meta.typing.mustBePrimitive) {
-        vlog('    - ident=ok');
-        return true;
+        if (!BUILTIN_SYMBOLS.has(funcName) || SUPPORTED_FREE_BUILTINS.has(funcName)) {
+          vlog('    - ident=ok');
+          return true;
+        }
+        todo('Support this static built-in number value? ' + funcName);
+        return false;
       }
       if (
         meta.isConstant &&

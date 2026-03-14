@@ -17,7 +17,7 @@ $(parseInt??foo);
 
 
 `````js filename=intro
-$($Number_parseInt);
+$($Global_parseInt);
 `````
 
 
@@ -25,7 +25,7 @@ $($Number_parseInt);
 (This ought to be the final result)
 
 `````js filename=intro
-$($Number_parseInt);
+$($Global_parseInt);
 `````
 
 
@@ -33,7 +33,7 @@ $($Number_parseInt);
 With rename=true
 
 `````js filename=intro
-$( $Number_parseInt );
+$( $Global_parseInt );
 `````
 
 

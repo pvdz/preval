@@ -135,11 +135,11 @@ $( "number", "Number.NaN" );
 
 `````js filename=intro
 let tmpCalleeParam$1 = $spy(`isNaN`);
-const tmpUnaryArg = isNaN(tmpCalleeParam$1);
+const tmpUnaryArg = $Global_isNaN(tmpCalleeParam$1);
 let tmpCalleeParam = typeof tmpUnaryArg;
 $(tmpCalleeParam);
 let tmpCalleeParam$5 = $spy(`isFinite`);
-const tmpUnaryArg$1 = isFinite(tmpCalleeParam$5);
+const tmpUnaryArg$1 = $Global_isFinite(tmpCalleeParam$5);
 let tmpCalleeParam$3 = typeof tmpUnaryArg$1;
 $(tmpCalleeParam$3);
 const tmpMCF = $Number_isFinite;

@@ -2532,19 +2532,24 @@ export function _complexExpressionNodeMightSpy(node, fdata) {
           'URL',
           'isNaN',
           symbo('Number', 'isNaN'),
+          symbo('Global', 'isNaN'),
           'isFinite',
           symbo('Number', 'isFinite'),
+          symbo('Global', 'isFinite'),
           'parseFloat',
           symbo('Number', 'parseFloat'),
+          symbo('Global', 'parseFloat'),
           symbo('Number', 'isInteger'),
           symbo('Number', 'isSafeInteger'),
-          'decodeURI', 'decodeURIComponent', 'encodeURI', 'encodeURIComponent', 'escape', 'unescape', 'btoa', 'atob',
+          'decodeURI', 'decodeURIComponent', 'encodeURI', 'encodeURIComponent',
+          symbo('Global', 'decodeURI'), symbo('Global', 'decodeURIComponent'), symbo('Global', 'encodeURI'), symbo('Global', 'encodeURIComponent'),
+          'escape', 'unescape', symbo('Global', 'escape'), symbo('Global', 'unescape'), 'btoa', 'atob',
         ].includes(node.callee.name)) {
           return !node.arguments[0] || complexExpressionNodeMightSpy(node.arguments[0], fdata);
         }
 
         // Funcs that may coerce (up to) two args
-        if (node.callee.name === 'parseInt' || node.callee.name === symbo('Number', 'parseInt')) {
+        if (node.callee.name === 'parseInt' || node.callee.name === symbo('Number', 'parseInt') || node.callee.name === symbo('Global', 'parseInt')) {
           if (!node.arguments[0]) return true;
           if (node.arguments[0] && complexExpressionNodeMightSpy(node.arguments[0], fdata)) return true;
           if (node.arguments[1] && complexExpressionNodeMightSpy(node.arguments[1], fdata)) return true;

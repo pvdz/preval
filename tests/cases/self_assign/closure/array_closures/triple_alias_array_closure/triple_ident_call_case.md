@@ -148,7 +148,7 @@ const arr /*:array*/ /*truthy*/ = [
 while ($LOOP_NO_UNROLLS_LEFT) {
   $(`loop`);
   const _0x5e349d$1 /*:primitive*/ = arr[112];
-  const tmpBinLhs$166 /*:number*/ = $Number_parseInt(_0x5e349d$1);
+  const tmpBinLhs$166 /*:number*/ = $Global_parseInt(_0x5e349d$1);
   if (tmpBinLhs$166) {
     break;
   } else {
@@ -206,7 +206,7 @@ const arr = [
 ];
 while (true) {
   $(`loop`);
-  if ($Number_parseInt(arr[112])) {
+  if ($Global_parseInt(arr[112])) {
     break;
   } else {
     $dotCall($array_push, arr, `push`, $dotCall($array_shift, arr, `shift`));
@@ -224,7 +224,7 @@ const a = [ "o+qs5DkTS", "displayNam", "VQ5vY4Jbig", "previous", "nk\">", "TqTwn
 while ($LOOP_NO_UNROLLS_LEFT) {
   $( "loop" );
   const b = a[ 112 ];
-  const c = $Number_parseInt( b );
+  const c = $Global_parseInt( b );
   if (c) {
     break;
   }
@@ -313,17 +313,17 @@ while ($LOOP_NO_UNROLLS_LEFT) {
   $(`loop`);
   try {
     let tmpCalleeParam = alias2(714);
-    const tmpUnaryArg$65 = $Number_parseInt(tmpCalleeParam);
+    const tmpUnaryArg$65 = $Global_parseInt(tmpCalleeParam);
     let tmpCalleeParam$1 = alias2(434);
-    const tmpBinLhs$155 = $Number_parseInt(tmpCalleeParam$1);
+    const tmpBinLhs$155 = $Global_parseInt(tmpCalleeParam$1);
     let tmpCalleeParam$3 = alias2(849);
-    const tmpUnaryArg$67 = $Number_parseInt(tmpCalleeParam$3);
+    const tmpUnaryArg$67 = $Global_parseInt(tmpCalleeParam$3);
     let tmpCalleeParam$5 = alias2(679);
-    const tmpBinLhs$162 = $Number_parseInt(tmpCalleeParam$5);
+    const tmpBinLhs$162 = $Global_parseInt(tmpCalleeParam$5);
     let tmpCalleeParam$7 = alias2(599);
-    const tmpUnaryArg$69 = $Number_parseInt(tmpCalleeParam$7);
+    const tmpUnaryArg$69 = $Global_parseInt(tmpCalleeParam$7);
     let tmpCalleeParam$9 = alias2(457);
-    const tmpBinLhs$166 = $Number_parseInt(tmpCalleeParam$9);
+    const tmpBinLhs$166 = $Global_parseInt(tmpCalleeParam$9);
     if (tmpBinLhs$166) {
       break;
     } else {
@@ -356,7 +356,6 @@ $(tmpCalleeParam$11);
 - (todo) can try-escaping support this expr node type? Literal
 - (todo) free with zero args, we can eliminate this?
 - (todo) support array reads statement type ExpressionStatement
-- (todo) type trackeed tricks can possibly support static $Number_parseInt
 - (todo) we can still proceed with the loop as long as there is no let-write anywhere in the loop, inc nested
 
 

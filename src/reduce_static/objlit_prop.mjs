@@ -721,11 +721,15 @@ function _objlitPropAccess(fdata) {
             } else if (calleeMeta.isBuiltin) {
               switch (pnode.value.name) {
                 case symbo('Function', 'constructor'):
+                case symbo('Global', 'parseInt'):
                 case symbo('Number', 'parseInt'):
+                case symbo('Global', 'parseFloat'):
                 case symbo('Number', 'parseFloat'):
                 case 'isNaN':
+                case symbo('Global', 'isNaN'):
                 case symbo('Number', 'isNaN'):
                 case 'isFinite':
+                case symbo('Global', 'isFinite'):
                 case symbo('Number', 'isFinite'):
                 case symbo('Number', 'isInteger'):
                 case symbo('Number', 'isSafeInteger'):

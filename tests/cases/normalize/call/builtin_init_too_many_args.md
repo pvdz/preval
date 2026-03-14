@@ -21,7 +21,7 @@ $(x);
 const tmpArgOverflow /*:unknown*/ = $spy(`a`);
 $spy(`b`);
 $spy(`c`);
-const x /*:boolean*/ = isNaN(tmpArgOverflow);
+const x /*:boolean*/ = $Global_isNaN(tmpArgOverflow);
 $(x);
 `````
 
@@ -33,7 +33,7 @@ $(x);
 const tmpArgOverflow = $spy(`a`);
 $spy(`b`);
 $spy(`c`);
-$(isNaN(tmpArgOverflow));
+$($Global_isNaN(tmpArgOverflow));
 `````
 
 
@@ -44,7 +44,7 @@ With rename=true
 const a = $spy( "a" );
 $spy( "b" );
 $spy( "c" );
-const b = isNaN( a );
+const b = $Global_isNaN( a );
 $( b );
 `````
 
@@ -56,7 +56,7 @@ $( b );
 const tmpArgOverflow = $spy(`a`);
 $spy(`b`);
 $spy(`c`);
-const x = isNaN(tmpArgOverflow);
+const x = $Global_isNaN(tmpArgOverflow);
 $(x);
 `````
 

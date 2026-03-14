@@ -188,51 +188,51 @@ const arr = [
 ];
 while ($LOOP_NO_UNROLLS_LEFT) {
   const _0x3e92de$39 = arr[46];
-  const tmpBinLhs = $Number_parseInt(_0x3e92de$39);
+  const tmpBinLhs = $Global_parseInt(_0x3e92de$39);
   const _0x3e92de$37 = arr[17];
-  const tmpUnaryArg = $Number_parseInt(_0x3e92de$37);
+  const tmpUnaryArg = $Global_parseInt(_0x3e92de$37);
   const tmpBinBothLhs$11 = tmpBinLhs / 1;
   const tmpBinLhs$1 = -tmpUnaryArg;
   const tmpBinBothRhs$11 = tmpBinLhs$1 / 2;
   const tmpBinBothLhs$9 = tmpBinBothLhs$11 * tmpBinBothRhs$11;
   const _0x3e92de$35 = arr[16];
-  const tmpUnaryArg$1 = $Number_parseInt(_0x3e92de$35);
+  const tmpUnaryArg$1 = $Global_parseInt(_0x3e92de$35);
   const tmpBinLhs$3 = -tmpUnaryArg$1;
   const tmpBinBothLhs$13 = tmpBinLhs$3 / 3;
   const _0x3e92de$33 = arr[13];
-  const tmpUnaryArg$3 = $Number_parseInt(_0x3e92de$33);
+  const tmpUnaryArg$3 = $Global_parseInt(_0x3e92de$33);
   const tmpBinLhs$5 = -tmpUnaryArg$3;
   const tmpBinBothRhs$13 = tmpBinLhs$5 / 4;
   const tmpBinBothRhs$9 = tmpBinBothLhs$13 * tmpBinBothRhs$13;
   const tmpBinBothLhs$7 = tmpBinBothLhs$9 + tmpBinBothRhs$9;
   const _0x3e92de$31 = arr[4];
-  const tmpBinLhs$7 = $Number_parseInt(_0x3e92de$31);
+  const tmpBinLhs$7 = $Global_parseInt(_0x3e92de$31);
   const tmpBinBothRhs$7 = tmpBinLhs$7 / 5;
   const tmpBinBothLhs$5 = tmpBinBothLhs$7 + tmpBinBothRhs$7;
   const _0x3e92de$29 = arr[23];
-  const tmpBinLhs$9 = $Number_parseInt(_0x3e92de$29);
+  const tmpBinLhs$9 = $Global_parseInt(_0x3e92de$29);
   const tmpBinBothLhs$15 = tmpBinLhs$9 / 6;
   const _0x3e92de$27 = arr[27];
-  const tmpBinLhs$11 = $Number_parseInt(_0x3e92de$27);
+  const tmpBinLhs$11 = $Global_parseInt(_0x3e92de$27);
   const tmpBinBothRhs$15 = tmpBinLhs$11 / 7;
   const tmpBinBothRhs$5 = tmpBinBothLhs$15 * tmpBinBothRhs$15;
   const tmpBinBothLhs$3 = tmpBinBothLhs$5 + tmpBinBothRhs$5;
   const _0x3e92de$25 = arr[34];
-  const tmpUnaryArg$5 = $Number_parseInt(_0x3e92de$25);
+  const tmpUnaryArg$5 = $Global_parseInt(_0x3e92de$25);
   const tmpBinLhs$13 = -tmpUnaryArg$5;
   const tmpBinBothRhs$3 = tmpBinLhs$13 / 8;
   const tmpBinBothLhs$1 = tmpBinBothLhs$3 + tmpBinBothRhs$3;
   const _0x3e92de$23 = arr[63];
-  const tmpUnaryArg$7 = $Number_parseInt(_0x3e92de$23);
+  const tmpUnaryArg$7 = $Global_parseInt(_0x3e92de$23);
   const tmpBinLhs$15 = -tmpUnaryArg$7;
   const tmpBinBothRhs$1 = tmpBinLhs$15 / 9;
   const tmpBinBothLhs = tmpBinBothLhs$1 + tmpBinBothRhs$1;
   const _0x3e92de$21 = arr[11];
-  const tmpUnaryArg$9 = $Number_parseInt(_0x3e92de$21);
+  const tmpUnaryArg$9 = $Global_parseInt(_0x3e92de$21);
   const tmpBinLhs$17 = -tmpUnaryArg$9;
   const tmpBinBothLhs$17 = tmpBinLhs$17 / 10;
   const _0x3e92de$19 = arr[68];
-  const tmpUnaryArg$11 = $Number_parseInt(_0x3e92de$19);
+  const tmpUnaryArg$11 = $Global_parseInt(_0x3e92de$19);
   const tmpBinLhs$19 = -tmpUnaryArg$11;
   const tmpBinBothRhs$17 = tmpBinLhs$19 / 11;
   const tmpBinBothRhs = tmpBinBothLhs$17 * tmpBinBothRhs$17;
@@ -257,7 +257,6 @@ $(tmpCalleeParam);
 
 - (todo) access object property that also exists on prototype? $array_push
 - (todo) access object property that also exists on prototype? $array_shift
-- (todo) type trackeed tricks can possibly support static $Number_parseInt
 
 
 ## Globals

@@ -74,12 +74,14 @@ export const pcodeSupportedBuiltinFuncs = new Set([
   //'Function', // returns object
 
   // NodeJS / Browser
-  'encodeURI',
-  'decodeURI',
-  'encodeURIComponent',
-  'decodeURIComponent',
-  'escape',
-  'unescape',
+  symbo('Global', 'encodeURI'),
+  symbo('Global', 'decodeURI'),
+  symbo('Global', 'encodeURIComponent'),
+  symbo('Global', 'decodeURIComponent'),
+  symbo('Global', 'escape'),
+  symbo('Global', 'unescape'),
+  symbo('Global', 'escape'),
+  symbo('Global', 'unescape'),
   'btoa',
   'atob',
 
@@ -87,13 +89,16 @@ export const pcodeSupportedBuiltinFuncs = new Set([
   symbo('boolean', 'toString'),
   symbo('boolean', 'valueOf'),
 
+  symbo('Global', 'isFinite'),
   symbo('Number', 'isFinite'),
   symbo('Number', 'isInteger'),
-  'isNaN',
+  symbo('Global', 'isNaN'),
   symbo('Number', 'isNaN'),
   symbo('Number', 'isSafeInteger'),
   symbo('Number', 'parseFloat'),
+  symbo('Global', 'parseFloat'),
   symbo('Number', 'parseInt'),
+  symbo('Global', 'parseInt'),
 
   symbo('number', 'toExponential'),
   symbo('number', 'toFixed'),
@@ -124,6 +129,15 @@ export const pcodeSupportedBuiltinFuncs = new Set([
   symbo('string', 'valueOf'),
 
   // Note: some of the math props are questionable due to rounding errors and lossy serialization of complex floats
+  // Note: some of the math props are questionable due to rounding errors and lossy serialization of complex floats
+  symbo('Math', 'E'),
+  symbo('Math', 'LN10'),
+  symbo('Math', 'LN2'),
+  symbo('Math', 'LOG10E'),
+  symbo('Math', 'LOG2E'),
+  symbo('Math', 'PI'),
+  symbo('Math', 'SQRT1_2'),
+  symbo('Math', 'SQRT2'),
   symbo('Math', 'abs'),
   //symbo('Math', 'acos'),
   //symbo('Math', 'acosh'),
@@ -185,7 +199,7 @@ export function runFreeWithPcode(funcNode, argNodes, fdata, freeFuncName, $prng,
 
   source(funcNode, true);
   const callsWhenCompiled = pcanCompile(funcNode, fdata, freeFuncName);
-  vlog('Can pcode body?', freeFuncName, !!callsWhenCompiled, callsWhenCompiled ? 'Proceeding with compile and run...' : 'Not compiling or running...');
+  vlog('Can pcode body? (2)', freeFuncName, !!callsWhenCompiled, callsWhenCompiled ? 'Proceeding with compile and run...' : 'Not compiling or running...');
   if (!callsWhenCompiled) {
     vlog('-- ehhh. No.');
     vgroupEnd();
@@ -427,7 +441,7 @@ function pcanCompileExpr(locals, calls, expr, fdata, stmt, constDeclNameMaybe) {
       }
 
       // ? this/super/etc?
-      vlog('- bail: callee is not something we can fully infer or support:', expr.callee.type, calleeName);
+      vlog('- bail: pcode callee is not something we can fully infer or support:', expr.callee.type, calleeName);
       return false;
     }
     case 'Identifier': {
@@ -856,6 +870,7 @@ function compileReglit(node, regs) {
     return [s, ''];
   }
   if (node.type === 'Identifier') {
+    vlog('wtf?', [node.name], pcodeSupportedBuiltinFuncs.has(node.name), BUILTIN_SYMBOLS.has(node.name))
     if (pcodeSupportedBuiltinFuncs.has(node.name)) return [node.name, ''];
     if (BUILTIN_SYMBOLS.has(node.name)) ASSERT(false, 'builtin symbol that is not supported by pcode should not reach the compile step', node.name);
 
@@ -1119,6 +1134,7 @@ function prunExpr(registers, op, pcodeData, fdata, prng, usePrng, depth) {
           return r;
         }
 
+        case symbo('Global', 'isFinite'):
         case 'isFinite': {
           // Note: this coerces the first arg, unlike Number.isFinite
           const r = isFinite(...arr);
@@ -1135,6 +1151,7 @@ function prunExpr(registers, op, pcodeData, fdata, prng, usePrng, depth) {
           vlog('Number.isInteger(', arr[0], ') =', [r]);
           return r;
         }
+        case symbo('Global', 'isNaN'):
         case 'isNaN': {
           // Note: this coerces the first arg, unlike Number.isNaN
           const r = isNaN(...arr);
@@ -1151,9 +1168,19 @@ function prunExpr(registers, op, pcodeData, fdata, prng, usePrng, depth) {
           vlog('Number.isSafeInteger(', arr[0], ') =', [r]);
           return r;
         }
+        case symbo('Global', 'parseFloat'): {
+          const r = parseFloat(...arr);
+          vlog('parseFloat(', arr[0], arr[1], ') =', [r]);
+          return r;
+        }
         case symbo('Number', 'parseFloat'): {
           const r = Number.parseFloat(...arr);
           vlog('Number.parseFloat(', arr[0], ') =', [r]);
+          return r;
+        }
+        case symbo('Global', 'parseInt'): {
+          const r = parseInt(...arr);
+          vlog('parseInt(', arr[0], arr[1], ') =', [r]);
           return r;
         }
         case symbo('Number', 'parseInt'): {
@@ -1554,12 +1581,12 @@ function prunExpr(registers, op, pcodeData, fdata, prng, usePrng, depth) {
         case symbo('string', 'constructor'): return String(...arr);
         case symbo('function', 'constructor'): throw new Error('Do not call `Function`');
 
-        case 'encodeURI': return encodeURI(...arr);
-        case 'decodeURI': return decodeURI(...arr);
-        case 'encodeURIComponent': return encodeURIComponent(...arr);
-        case 'decodeURIComponent': return decodeURIComponent(...arr);
-        case 'escape': return escape(...arr);
-        case 'unescape': return unescape(...arr);
+        case symbo('Global', 'encodeURI'): return encodeURI(...arr);
+        case symbo('Global', 'decodeURI'): return decodeURI(...arr);
+        case symbo('Global', 'encodeURIComponent'): return encodeURIComponent(...arr);
+        case symbo('Global', 'decodeURIComponent'): return decodeURIComponent(...arr);
+        case symbo('Global', 'escape'): return escape(...arr);
+        case symbo('Global', 'unescape'): return unescape(...arr);
         case 'btoa': return btoa(...arr);
         case 'atob': return atob(...arr);
 
@@ -1614,6 +1641,55 @@ function prunExpr(registers, op, pcodeData, fdata, prng, usePrng, depth) {
  * @returns {Primitive}
  */
 function prunVal(registers, r1, l1) {
+
+  const sym = BUILTIN_SYMBOLS.get(r1);
+  if (sym) {
+    vlog('  - prunVal(', r1, '(=builtin)) =>', JSON.stringify(sym));
+
+    switch (r1) {
+      case symbo('Math', 'E'): {
+        const v = Math.E;
+        vlog('  - prunVal(', r1, ') =>', v);
+        return v;
+      }
+      case symbo('Math', 'LN10'): {
+        const v = Math.LN10;
+        vlog('  - prunVal(', r1, ') =>', v);
+        return v;
+      }
+      case symbo('Math', 'LN2'): {
+        const v = Math.LN2;
+        vlog('  - prunVal(', r1, ') =>', v);
+        return v;
+      }
+      case symbo('Math', 'LOG10E'): {
+        const v = Math.LOG10E;
+        vlog('  - prunVal(', r1, ') =>', v);
+        return v;
+      }
+      case symbo('Math', 'LOG2E'): {
+        const v = Math.LOG2E;
+        vlog('  - prunVal(', r1, ') =>', v);
+        return v;
+      }
+      case symbo('Math', 'PI'): {
+        const v = Math.PI;
+        vlog('  - prunVal(', r1, ') =>', v);
+        return v;
+      }
+      case symbo('Math', 'SQRT1_2'): {
+        const v = Math.SQRT1_2;
+        vlog('  - prunVal(', r1, ') =>', v);
+        return v;
+      }
+      case symbo('Math', 'SQRT2'): {
+        const v = Math.SQRT2;
+        vlog('  - prunVal(', r1, ') =>', v);
+        return v;
+      }
+    }
+  }
+
   const v = r1 ? registers[r1] : l1;
   vlog('  - prunVal(', r1, ',', l1, ') =>', typeof v === 'string' ? JSON.stringify(v) : v);
   return v;

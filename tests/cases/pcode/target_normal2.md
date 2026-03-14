@@ -74,7 +74,7 @@ const tmpFree /*:(number)=>number*/ = function $free($$0) {
   const $dlr_$$0 /*:number*/ = $$0;
   debugger;
   const div /*:number*/ = $dlr_$$0 / 62;
-  const tmpRet /*:number*/ = $Number_parseInt(div);
+  const tmpRet /*:number*/ = $Global_parseInt(div);
   return tmpRet;
 };
 const pcode /*:(number)=>string*/ = function ($$0) {
@@ -119,7 +119,7 @@ const tmpFree$1 = function $free(perc$1, out_str) {
   return tmpRet$1;
 };
 const tmpFree = function $free($dlr_$$0) {
-  const tmpRet = $Number_parseInt($dlr_$$0 / 62);
+  const tmpRet = $Global_parseInt($dlr_$$0 / 62);
   return tmpRet;
 };
 const pcode = function ($dlr_$$2) {
@@ -166,7 +166,7 @@ const l = function $free($$0 ) {
   const m = $$0;
   debugger;
   const n = m / 62;
-  const o = $Number_parseInt( n );
+  const o = $Global_parseInt( n );
   return o;
 };
 const p = function($$0 ) {
@@ -208,7 +208,7 @@ const tmpFree = function $free($$0) {
   debugger;
   const num_arg = $dlr_$$0;
   const div = num_arg / 62;
-  const tmpRet = $Number_parseInt(div);
+  const tmpRet = $Global_parseInt(div);
   return tmpRet;
 };
 const pcode = function ($$0) {
@@ -247,7 +247,6 @@ $(b);
 
 
 - (todo) find test case where template ends up with multiple expressions
-- (todo) type trackeed tricks can possibly support static $Number_parseInt
 
 
 ## Globals

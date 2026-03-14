@@ -3225,22 +3225,110 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             }
             if (node.name === 'parseInt') {
               rule('parseInt should be a symbol');
-              example('parseInt', symbo('Number', 'parseInt'), () => node.operator === '+');
+              example('parseInt', symbo('Global', 'parseInt'), () => node.operator === '+');
               before(parentNode);
 
-              if (parentIndex < 0) parentNode[parentProp] = AST.identifier(symbo('Number', 'parseInt'));
-              else parentNode[parentProp][parentIndex] = AST.identifier(symbo('Number', 'parseInt'));
+              if (parentIndex < 0) parentNode[parentProp] = AST.identifier(symbo('Global', 'parseInt'));
+              else parentNode[parentProp][parentIndex] = AST.identifier(symbo('Global', 'parseInt'));
 
               after(parentNode, parentNode);
               return true;
             }
             if (node.name === 'parseFloat') {
               rule('parseFloat should be a symbol');
-              example('parseFloat', symbo('Number', 'parseFloat'), () => node.operator === '+');
+              example('parseFloat', symbo('Global', 'parseFloat'), () => node.operator === '+');
               before(parentNode);
 
-              if (parentIndex < 0) parentNode[parentProp] = AST.identifier(symbo('Number', 'parseFloat'));
-              else parentNode[parentProp][parentIndex] = AST.identifier(symbo('Number', 'parseFloat'));
+              if (parentIndex < 0) parentNode[parentProp] = AST.identifier(symbo('Global', 'parseFloat'));
+              else parentNode[parentProp][parentIndex] = AST.identifier(symbo('Global', 'parseFloat'));
+
+              after(parentNode, parentNode);
+              return true;
+            }
+            if (node.name === 'isNaN') {
+              rule('isNaN should be a symbol');
+              example('isNaN', symbo('Global', 'isNaN'), () => node.operator === '+');
+              before(parentNode);
+
+              if (parentIndex < 0) parentNode[parentProp] = AST.identifier(symbo('Global', 'isNaN'));
+              else parentNode[parentProp][parentIndex] = AST.identifier(symbo('Global', 'isNaN'));
+
+              after(parentNode, parentNode);
+              return true;
+            }
+            if (node.name === 'isFinite') {
+              rule('isFinite should be a symbol');
+              example('isFinite', symbo('Global', 'isFinite'), () => node.operator === '+');
+              before(parentNode);
+
+              if (parentIndex < 0) parentNode[parentProp] = AST.identifier(symbo('Global', 'isFinite'));
+              else parentNode[parentProp][parentIndex] = AST.identifier(symbo('Global', 'isFinite'));
+
+              after(parentNode, parentNode);
+              return true;
+            }
+            if (node.name === 'escape') {
+              rule('escape should be a symbol');
+              example('escape', symbo('Global', 'escape'), () => node.operator === '+');
+              before(parentNode);
+
+              if (parentIndex < 0) parentNode[parentProp] = AST.identifier(symbo('Global', 'escape'));
+              else parentNode[parentProp][parentIndex] = AST.identifier(symbo('Global', 'escape'));
+
+              after(parentNode, parentNode);
+              return true;
+            }
+            if (node.name === 'unescape') {
+              rule('unescape should be a symbol');
+              example('unescape', symbo('Global', 'unescape'), () => node.operator === '+');
+              before(parentNode);
+
+              if (parentIndex < 0) parentNode[parentProp] = AST.identifier(symbo('Global', 'unescape'));
+              else parentNode[parentProp][parentIndex] = AST.identifier(symbo('Global', 'unescape'));
+
+              after(parentNode, parentNode);
+              return true;
+            }
+            if (node.name === 'encodeURI') {
+              rule('encodeURI should be a symbol');
+              example('encodeURI', symbo('Global', 'encodeURI'), () => node.operator === '+');
+              before(parentNode);
+
+              if (parentIndex < 0) parentNode[parentProp] = AST.identifier(symbo('Global', 'encodeURI'));
+              else parentNode[parentProp][parentIndex] = AST.identifier(symbo('Global', 'encodeURI'));
+
+              after(parentNode, parentNode);
+              return true;
+            }
+            if (node.name === 'decodeURI') {
+              rule('decodeURI should be a symbol');
+              example('decodeURI', symbo('Global', 'decodeURI'), () => node.operator === '+');
+              before(parentNode);
+
+              if (parentIndex < 0) parentNode[parentProp] = AST.identifier(symbo('Global', 'decodeURI'));
+              else parentNode[parentProp][parentIndex] = AST.identifier(symbo('Global', 'decodeURI'));
+
+              after(parentNode, parentNode);
+              return true;
+            }
+            if (node.name === 'encodeURIComponent') {
+              rule('encodeURIComponent should be a symbol');
+              example('encodeURIComponent', symbo('Global', 'encodeURIComponent'), () => node.operator === '+');
+              before(parentNode);
+
+              if (parentIndex < 0) parentNode[parentProp] = AST.identifier(symbo('Global', 'encodeURIComponent'));
+              else parentNode[parentProp][parentIndex] = AST.identifier(symbo('Global', 'encodeURIComponent'));
+
+              after(parentNode, parentNode);
+              return true;
+            }
+            if (node.name === 'decodeURIComponent') {
+              rule('decodeURIComponent should be a symbol');
+              example('decodeURIComponent', symbo('Global', 'decodeURIComponent'), () => node.operator === '+');
+              before(parentNode);
+
+              if (parentIndex < 0) parentNode[parentProp] = AST.identifier(symbo('Global', 'decodeURIComponent'));
+              else parentNode[parentProp][parentIndex] = AST.identifier(symbo('Global', 'decodeURIComponent'));
 
               after(parentNode, parentNode);
               return true;
@@ -3600,8 +3688,8 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           return true;
         }
 
-        // Important: isNaN and isFinite are NOT equal to their Number counterparts (TODO: this needs to be different)
-        const tmp = new Set(['isNaN', 'isFinite', 'btoa', 'atob']);
+        // Important: isNaN and isFinite are NOT equal to their Number counterparts
+        const tmp = new Set([symbo('Global', 'isNaN'), symbo('Global', 'isFinite'), 'btoa', 'atob']);
 
         if (ASSUME_BUILTINS) {
           if (BUILTIN_GLOBAL_FUNCS_TO_SYMBOL.has(funcName)) {
@@ -3639,7 +3727,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             // - spread after the maxlen number of args: no problem
             // - spread as last arg: take the remaining unclaimed arguments from the spread
             // - otherwise: bail.
-            // Important: isNaN and isFinite are special cased because they don't get symbo'd
+            // Important: isNaN and isFinite are special cased because they don't get symbo'd (TODO: they are now)
 
             // Ignore builtins for which we don't define arg count (because we're unsure or just didn't do it)
             const maxlen = tmp.has(funcName) ? 1 : symbol.typings.maxlen;
@@ -4028,6 +4116,18 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                   }
                   break;
                 }
+                case symbo('Global', 'parseInt'): {
+                  // Coerce the first arg to string, the second to number, drop the stmt
+                  if (args.every((anode, ai) => anode.type !== 'SpreadElement' || ai >= 2)) {
+                    rule('A statement that is parseInt can be eliminated');
+                    example('parseInt(a, b, c);', '""+a; +b; c;');
+
+                    eliminateStatementCallWithCoerce(fdata, body, i, args, contextNode, 2, 'string', 'number');
+                    assertNoDupeNodes(body, 'body');
+                    return true;
+                  }
+                  break;
+                }
                 case symbo('Number', 'parseInt'): {
                   // Coerce the first arg to string, the second to number, drop the stmt
                   if (args.every((anode, ai) => anode.type !== 'SpreadElement' || ai >= 2)) {
@@ -4035,6 +4135,78 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                     example('Number.parseInt(a, b, c);', '""+a; +b; c;');
 
                     eliminateStatementCallWithCoerce(fdata, body, i, args, contextNode, 2, 'string', 'number');
+                    assertNoDupeNodes(body, 'body');
+                    return true;
+                  }
+                  break;
+                }
+                case symbo('Global', 'parseFloat'): {
+                  // Coerce the first arg to string
+                  if (args.every((anode, ai) => anode.type !== 'SpreadElement' || ai >= 2)) {
+                    rule('A statement that is parseFloat can be eliminated');
+                    example('parseFloat(a, b, c);', '""+a; b; c;');
+
+                    eliminateStatementCallWithCoerce(fdata, body, i, args, contextNode, 1, 'string');
+                    assertNoDupeNodes(body, 'body');
+                    return true;
+                  }
+                  break;
+                }
+                case symbo('Number', 'parseFloat'): {
+                  // Coerce the first arg to string
+                  if (args.every((anode, ai) => anode.type !== 'SpreadElement' || ai >= 2)) {
+                    rule('A statement that is Number.parseFloat can be eliminated');
+                    example('Number.parseFloat(a, b, c);', '""+a; b; c;');
+
+                    eliminateStatementCallWithCoerce(fdata, body, i, args, contextNode, 1, 'string');
+                    assertNoDupeNodes(body, 'body');
+                    return true;
+                  }
+                  break;
+                }
+                case symbo('Global', 'isNaN'): {
+                  // Coerce the first arg to string
+                  if (args.every((anode, ai) => anode.type !== 'SpreadElement' || ai >= 2)) {
+                    rule('A statement that is isNaN can be eliminated');
+                    example('isNaN(a, b, c);', '+a; b; c;');
+
+                    eliminateStatementCallWithCoerce(fdata, body, i, args, contextNode, 1, 'number');
+                    assertNoDupeNodes(body, 'body');
+                    return true;
+                  }
+                  break;
+                }
+                case symbo('Number', 'isNaN'): {
+                  // Coerce the first arg to string
+                  if (args.every((anode, ai) => anode.type !== 'SpreadElement' || ai >= 2)) {
+                    rule('A statement that is Number.isNaN can be eliminated');
+                    example('Number.isNaN(a, b, c);', '+a; b; c;');
+
+                    eliminateStatementCallWithCoerce(fdata, body, i, args, contextNode, 1, 'number');
+                    assertNoDupeNodes(body, 'body');
+                    return true;
+                  }
+                  break;
+                }
+                case symbo('Global', 'isFinite'): {
+                  // Coerce the first arg to string
+                  if (args.every((anode, ai) => anode.type !== 'SpreadElement' || ai >= 2)) {
+                    rule('A statement that is isFinite can be eliminated');
+                    example('isFinite(a, b, c);', '+a; b; c;');
+
+                    eliminateStatementCallWithCoerce(fdata, body, i, args, contextNode, 1, 'number');
+                    assertNoDupeNodes(body, 'body');
+                    return true;
+                  }
+                  break;
+                }
+                case symbo('Number.', 'isFinite'): {
+                  // Coerce the first arg to string
+                  if (args.every((anode, ai) => anode.type !== 'SpreadElement' || ai >= 2)) {
+                    rule('A statement that is Number.isFinite can be eliminated');
+                    example('Number.isFinite(a, b, c);', '+a; b; c;');
+
+                    eliminateStatementCallWithCoerce(fdata, body, i, args, contextNode, 1, 'number');
                     assertNoDupeNodes(body, 'body');
                     return true;
                   }
@@ -4587,7 +4759,152 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                 }
                 break;
               }
-              case 'isNaN': {
+              case symbo('Global', 'parseInt'): {
+                if (contextNode) {
+                  // skip.
+                }
+
+                else if (args.length === 0) {
+                  rule('parseInt() no args can be resolved');
+                  example('parseInt()', 'false');
+                  before(body[i]);
+
+                  const v = parseInt();
+
+                  const finalNode = AST.primitive(v);
+                  const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                  body[i] = finalParent;
+
+                  after(body[i]);
+                  assertNoDupeNodes(body, 'body');
+                  return true;
+                }
+
+                else if (args.length === 1 && AST.isPrimitive(firstArgNode)) {
+                  const pv = AST.getPrimitiveValue(firstArgNode);
+                  const v = parseInt(pv);
+
+                  rule('parseInt(x) with one primitive arg x can be resolved');
+                  example('parseInt("500")', '500');
+                  before(body[i]);
+
+                  if (!Object.is(+String(v), v)) todo('precision loss detected 1');
+
+                  const finalNode = AST.primitive(v);
+                  const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                  body[i] = finalParent;
+
+                  after(body[i]);
+                  assertNoDupeNodes(body, 'body');
+                  return true;
+                }
+
+                else if (args.length === 2 && AST.isPrimitive(firstArgNode) && AST.isPrimitive(args[1])) {
+                  rule('parseInt(x) with two primitive args can be resolved');
+                  example('parseInt("500", 15)', '1125');
+                  before(body[i]);
+
+                  const a = AST.getPrimitiveValue(args[0]);
+                  const b = AST.getPrimitiveValue(args[1]);
+
+                  let v;
+                  try {
+                    v = parseInt(a, b);
+                  } catch {}
+
+                  if (!Object.is(+String(v), v)) todo('precision loss detected 2');
+
+                  if (v === undefined) {
+                    body[i] = AST.throwStatement(AST.primitive(`[Preval] Attempted call to parseInt with invalid args: \`${tmat(body[i], true).replace(/\n/g, '\\n')}\``));
+                  } else {
+                    const finalNode = AST.primitive(v);
+                    const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                    body[i] = finalParent;
+                  }
+
+                  after(body[i]);
+                  assertNoDupeNodes(body, 'body');
+                  return true;
+                }
+
+                break;
+              }
+              case symbo('Global', 'parseFloat'): {
+                if (contextNode) {
+                  // skip.
+                }
+
+                else if (args.length === 0) {
+                  rule('parseFloat() no args can be resolved');
+                  example('parseFloat()', 'false');
+                  before(body[i]);
+
+                  const v = parseFloat();
+
+                  const finalNode = AST.primitive(v);
+                  const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                  body[i] = finalParent;
+
+                  after(body[i]);
+                  assertNoDupeNodes(body, 'body');
+                  return true;
+                }
+
+                  // // Note: consider `Number(...x, y)` when x is an empty array. We can't support spread as first arg unless we know the arg.
+                  // if (args.length === 1 && args[0].type !== 'SpreadElement') {
+                  //   rule('A call to `parseFloat` with some args should call `$coerce` with one');
+                  //   example('f(parseFloat(a, b, c));', 'const tmp = a; b; c; f(parseFloat(tmp));');
+                  //   before(node, parentNodeOrWhatever);
+                  //
+                  //   const newNodes = [];
+                  //
+                  //   const tmpArgName = createFreshVar('tmpStringFirstArg', fdata);
+                  //   args.forEach((anode, ai) => {
+                  //     if (ai === 0) {
+                  //       newNodes.push(AST.varStatement('const', tmpArgName, anode));
+                  //     } else {
+                  //       newNodes.push(AST.expressionStatement(anode.type === 'SpreadElement' ? AST.arrayExpression(anode) : anode));
+                  //     }
+                  //   });
+                  //
+                  //   replaceArgs([
+                  //     args[0].type === 'SpreadElement'
+                  //       ? AST.memberExpression(tmpArgName, AST.literal(0), true) // `tmpName[0]`
+                  //       : AST.identifier(tmpArgName),
+                  //   ]);
+                  //
+                  //   body.splice(i, 0,
+                  //     ...newNodes,
+                  //     // Context might not be used but if it is referenced we keep for tdz reasons.
+                  //     ...(contextNode ? [AST.expressionStatement(AST.cloneSimple(contextNode))] : []),
+                  //   );
+                  //
+                  //   after(body.slice(i, newNodes.length + (contextNode ? 1 : 0) + 1));
+                  //   assertNoDupeNodes(body, 'body');
+                  //   return true;
+                // }
+
+                else if (args.length === 1 && AST.isPrimitive(args[0])) {
+                  rule('A primitive value to `parseFloat` should be resolved');
+                  example('f(parseFloat("50foo"))', 'f(50)');
+                  before(body[i]);
+
+                  const pv = AST.getPrimitiveValue(args[0]);
+                  const v = parseFloat(pv);
+                  if (!Object.is(+String(v), v)) todo('precision loss detected 3');
+
+                  const finalNode = AST.primitive(v);
+                  const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                  body[i] = finalParent;
+
+                  after(body[i]);
+                  assertNoDupeNodes(body, 'body');
+                  return true;
+                }
+
+                break;
+              }
+              case symbo('Global', 'isNaN'): {
                 if (contextNode) {
                   // skip.
                 }
@@ -4623,7 +4940,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                 }
                 break;
               }
-              case 'isFinite': {
+              case symbo('Global', 'isFinite'): {
                 if (contextNode) {
                   // skip.
                 }
@@ -4655,6 +4972,246 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
                   after(body[i]);
                   return true;
+                }
+                break;
+              }
+              case symbo('Global', 'escape'): {
+                if (contextNode) {
+                  // skip.
+                }
+
+                else if (args.length === 0) {
+                  rule('escape() no args can be resolved');
+                  example('escape()', '"undefined"');
+                  before(body[i]);
+
+                  const v = escape();
+
+                  const finalNode = AST.primitive(v);
+                  const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                  body[i] = finalParent;
+
+                  after(body[i]);
+                  assertNoDupeNodes(body, 'body');
+                  return true;
+                }
+
+                else if (args.length === 1 && args[0] && AST.isPrimitive(args[0])) {
+                  rule('Calling `escape` on a primitive should resolve');
+                  example('escape("hello")', '"hello"');
+                  before(body[i]);
+
+                  const finalNode = AST.primitive(escape(AST.getPrimitiveValue(firstArgNode)));
+                  const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                  body[i] = finalParent;
+
+                  after(body[i]);
+                  assertNoDupeNodes(body, 'body');
+                  return true;
+                }
+                break;
+              }
+              case symbo('Global', 'unescape'): {
+                if (contextNode) {
+                  // skip.
+                }
+
+                else if (args.length === 0) {
+                  rule('unescape() no args can be resolved');
+                  example('unescape()', '"undefined"');
+                  before(body[i]);
+
+                  const v = unescape();
+
+                  const finalNode = AST.primitive(v);
+                  const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                  body[i] = finalParent;
+
+                  after(body[i]);
+                  assertNoDupeNodes(body, 'body');
+                  return true;
+                }
+
+                else if (args.length === 1 && args[0] && AST.isPrimitive(args[0])) {
+                  rule('Calling `unescape` on a primitive should resolve');
+                  example('unescape("hello")', '"hello"');
+                  before(body[i]);
+
+                  const finalNode = unescape(AST.getPrimitiveValue(firstArgNode)) ? AST.tru() : AST.fals();
+                  const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                  body[i] = finalParent;
+
+                  after(body[i]);
+                  assertNoDupeNodes(body, 'body');
+                  return true;
+                }
+                break;
+              }
+              case symbo('Global', 'encodeURI'): {
+                if (contextNode) {
+                  // skip.
+                }
+
+                else if (args.length === 0) {
+                  rule('encodeURI() no args can be resolved');
+                  example('encodeURI()', '"undefined"');
+                  before(body[i]);
+
+                  const v = AST.primitive(encodeURI());
+
+                  const finalNode = AST.primitive(v);
+                  const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                  body[i] = finalParent;
+
+                  after(body[i]);
+                  assertNoDupeNodes(body, 'body');
+                  return true;
+                }
+
+                else if (args.length === 1 && args[0] && AST.isPrimitive(args[0])) {
+                  let result;
+                  try {
+                    result = encodeURI(AST.getPrimitiveValue(firstArgNode));
+                  } catch {}
+                  if (result !== undefined) {
+                    rule('Calling `encodeURI` on a primitive should resolve');
+                    example('encodeURI("hello")', '"hello"');
+                    before(body[i]);
+
+                    const finalNode = AST.primitive(result);
+                    const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                    body[i] = finalParent;
+
+                    after(body[i]);
+                    assertNoDupeNodes(body, 'body');
+                    return true;
+                  }
+                }
+                break;
+              }
+              case symbo('Global', 'decodeURI'): {
+                if (contextNode) {
+                  // skip.
+                }
+
+                else if (args.length === 0) {
+                  rule('decodeURI() no args can be resolved');
+                  example('decodeURI()', '"undefined"');
+                  before(body[i]);
+
+                  const v = decodeURI();
+
+                  const finalNode = AST.primitive(v);
+                  const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                  body[i] = finalParent;
+
+                  after(body[i]);
+                  assertNoDupeNodes(body, 'body');
+                  return true;
+                }
+
+                else if (args.length === 1 && args[0] && AST.isPrimitive(args[0])) {
+                  let result;
+                  try {
+                    result = decodeURI(AST.getPrimitiveValue(firstArgNode));
+                  } catch {}
+                  if (result !== undefined) {
+                    rule('Calling `decodeURI` on a primitive should resolve');
+                    example('decodeURI("hello")', '"hello"');
+                    before(body[i]);
+
+                    const finalNode = AST.primitive(result);
+                    const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                    body[i] = finalParent;
+
+                    after(body[i]);
+                    assertNoDupeNodes(body, 'body');
+                    return true;
+                  }
+                }
+                break;
+              }
+              case symbo('Global', 'decodeURIComponent'): {
+                if (contextNode) {
+                  // skip.
+                }
+
+                else if (args.length === 0) {
+                  rule('decodeURIComponent() no args can be resolved');
+                  example('decodeURIComponent()', '"undefined"');
+                  before(body[i]);
+
+                  const v = AST.primitive(decodeURIComponent());
+
+                  const finalNode = AST.primitive(v);
+                  const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                  body[i] = finalParent;
+
+                  after(body[i]);
+                  assertNoDupeNodes(body, 'body');
+                  return true;
+                }
+
+                else if (args.length === 1 && args[0] && AST.isPrimitive(args[0])) {
+                  let result;
+                  try{
+                    result = decodeURI(AST.getPrimitiveValue(firstArgNode));
+                  } catch {}
+                  if (result !== undefined) {
+                    rule('Calling `decodeURIComponent` on a primitive should resolve');
+                    example('decodeURIComponent("hello")', '"hello"');
+                    before(body[i]);
+
+                    const finalNode = AST.primitive(result);
+                    const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                    body[i] = finalParent;
+
+                    after(body[i]);
+                    assertNoDupeNodes(body, 'body');
+                    return true;
+                  }
+                }
+                break;
+              }
+              case symbo('Global', 'encodeURIComponent'): {
+                if (contextNode) {
+                  // skip.
+                }
+
+                else if (args.length === 0) {
+                  rule('encodeURIComponent() no args can be resolved');
+                  example('encodeURIComponent()', '"undefined"');
+                  before(body[i]);
+
+                  const v = encodeURIComponent();
+
+                  const finalNode = AST.primitive(v);
+                  const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                  body[i] = finalParent;
+
+                  after(body[i]);
+                  assertNoDupeNodes(body, 'body');
+                  return true;
+                }
+
+                else if (args.length === 1 && args[0] && AST.isPrimitive(args[0])) {
+                  let result;
+                  try {
+                    result = encodeURIComponent(AST.getPrimitiveValue(firstArgNode));
+                  } catch {}
+
+                  if (result !== undefined) {
+                    rule('Calling `encodeURIComponent` on a primitive should resolve');
+                    example('encodeURIComponent("hello")', '"hello"');
+                    before(body[i]);
+                    const finalNode = AST.primitive(result);
+                    const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                    body[i] = finalParent;
+
+                    after(body[i]);
+                    assertNoDupeNodes(body, 'body');
+                    return true;
+                  }
                 }
                 break;
               }
@@ -5017,12 +5574,12 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                 // }
 
                 else if (args.length === 1 && AST.isPrimitive(args[0])) {
-                  rule('A primitive value to `parseFloat` should be resolved');
-                  example('f(parseFloat("50foo"))', 'f(50)');
+                  rule('A primitive value to `Number.parseFloat` should be resolved');
+                  example('f(Number.parseFloat("50foo"))', 'f(50)');
                   before(body[i]);
 
                   const pv = AST.getPrimitiveValue(args[0]);
-                  const v = parseFloat(pv);
+                  const v = Number.parseFloat(pv);
                   if (!Object.is(+String(v), v)) todo('precision loss detected 3');
 
                   const finalNode = AST.primitive(v);
@@ -16657,7 +17214,6 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             if (expr.type === 'MemberExpression') {
               // Is this `arr[123]` ? Ignore anything else for now.
               const b = expr.object.type === 'Identifier' && expr.object.name === arrName && expr.computed && AST.isNumberLiteral(expr.property);
-              ;
               if (!b) vlog('bail; Found bad member expression');
               return b;
             }
@@ -16681,13 +17237,18 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
               // TODO: expand list of known function names to allow
               const b = (
                 expr.callee.type === 'Identifier' &&
+                // Functions in this list need to be supported a bit further down
                 [
                   '$',
+                  symbo('Global', 'parseInt'),
                   symbo('Number', 'parseInt'),
+                  symbo('Global', 'parseFloat'),
                   symbo('Number', 'parseFloat'),
                   'isNaN',
+                  symbo('Global', 'isNaN'),
                   symbo('Number', 'isNaN'),
                   'isFinite',
+                  symbo('Global', 'isFinite'),
                   symbo('Number', 'isFinite'),
                   symbo('Number', 'isInteger'),
                   symbo('Number', 'isSafeInteger'),
@@ -16811,18 +17372,24 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
               }
               else if (step.action === 'call') {
                 if (step.func === symbo('Number', 'parseInt')) {
+                  localNames.set(step.lhs, Number.parseInt(...step.args.map(a => (AST.isPrimitive(a) ? AST.getPrimitiveValue(a) : localNames.get(a.name)))));
+                }
+                else if (step.func === symbo('Global', 'parseInt')) {
                   localNames.set(step.lhs, parseInt(...step.args.map(a => (AST.isPrimitive(a) ? AST.getPrimitiveValue(a) : localNames.get(a.name)))));
                 }
                 else if (step.func === symbo('Number', 'parseFloat')) {
+                  localNames.set(step.lhs, Number.parseFloat(...step.args.map(a => (AST.isPrimitive(a) ? AST.getPrimitiveValue(a) : localNames.get(a.name)))));
+                }
+                else if (step.func === symbo('Global', 'parseFloat')) {
                   localNames.set(step.lhs, parseFloat(...step.args.map(a => (AST.isPrimitive(a) ? AST.getPrimitiveValue(a) : localNames.get(a.name)))));
                 }
-                else if ('isNaN') {
+                else if (symbo('Global', 'isNaN')) {
                   localNames.set(step.lhs, isNaN(...step.args.map(a => (AST.isPrimitive(a) ? AST.getPrimitiveValue(a) : localNames.get(a.name)))));
                 }
                 else if (step.func === symbo('Number', 'isNaN')) {
                   localNames.set(step.lhs, Number.isNaN(...step.args.map(a => (AST.isPrimitive(a) ? AST.getPrimitiveValue(a) : localNames.get(a.name)))));
                 }
-                else if (step.func === 'isFinite') {
+                else if (step.func === symbo('Global', 'isFinite')) {
                   localNames.set(step.lhs, isFinite(...step.args.map(a => (AST.isPrimitive(a) ? AST.getPrimitiveValue(a) : localNames.get(a.name)))));
                 }
                 else if (step.func === symbo('Number', 'isFinite')) {

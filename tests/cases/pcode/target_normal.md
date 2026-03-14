@@ -70,7 +70,7 @@ const tmpFree /*:(number)=>number*/ = function $free($$0) {
   const num_arg /*:number*/ = $$0;
   debugger;
   const div /*:number*/ = num_arg / 62;
-  const tmpRet /*:number*/ = $Number_parseInt(div);
+  const tmpRet /*:number*/ = $Global_parseInt(div);
   return tmpRet;
 };
 const pcode /*:(number)=>string*/ = function ($$0) {
@@ -147,7 +147,7 @@ const tmpFree$1 = function $free(perc$1, out_str) {
   return tmpRet$1;
 };
 const tmpFree = function $free(num_arg) {
-  const tmpRet = $Number_parseInt(num_arg / 62);
+  const tmpRet = $Global_parseInt(num_arg / 62);
   return tmpRet;
 };
 const pcode = function (num_arg$1) {
@@ -215,7 +215,7 @@ const l = function $free($$0 ) {
   const m = $$0;
   debugger;
   const n = m / 62;
-  const o = $Number_parseInt( n );
+  const o = $Global_parseInt( n );
   return o;
 };
 const p = function($$0 ) {
@@ -293,7 +293,7 @@ let pcode = function ($$0) {
   if (tmpIfTest) {
   } else {
     const div = num_arg / 62;
-    const pint = $Number_parseInt(div);
+    const pint = $Global_parseInt(div);
     out_str = pcode(pint);
   }
   const perc = num_arg % 62;
@@ -335,7 +335,6 @@ $(`end`);
 
 - (todo) find test case where template ends up with multiple expressions
 - (todo) support CallExpression as var init in let_hoisting noob check
-- (todo) type trackeed tricks can possibly support static $Number_parseInt
 
 
 ## Globals

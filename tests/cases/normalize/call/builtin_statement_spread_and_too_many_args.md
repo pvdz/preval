@@ -23,7 +23,7 @@ const tmpArrSpread /*:unknown*/ = $(tmpCalleeParam$3);
 const tmpCalleeParamSpread /*:array*/ /*truthy*/ = [...tmpArrSpread];
 const tmpCalleeParam /*:unknown*/ = $spy(`b`);
 const tmpCalleeParam$1 /*:unknown*/ = $spy(`c`);
-const is /*:boolean*/ = isNaN(...tmpCalleeParamSpread, tmpCalleeParam, tmpCalleeParam$1);
+const is /*:boolean*/ = $Global_isNaN(...tmpCalleeParamSpread, tmpCalleeParam, tmpCalleeParam$1);
 $(is);
 `````
 
@@ -36,7 +36,7 @@ const tmpArrSpread = $([1, 2, 3, 4]);
 const tmpCalleeParamSpread = [...tmpArrSpread];
 const tmpCalleeParam = $spy(`b`);
 const tmpCalleeParam$1 = $spy(`c`);
-$(isNaN(...tmpCalleeParamSpread, tmpCalleeParam, tmpCalleeParam$1));
+$($Global_isNaN(...tmpCalleeParamSpread, tmpCalleeParam, tmpCalleeParam$1));
 `````
 
 
@@ -49,7 +49,7 @@ const b = $( a );
 const c = [ ...b ];
 const d = $spy( "b" );
 const e = $spy( "c" );
-const f = isNaN( ...c, d, e );
+const f = $Global_isNaN( ...c, d, e );
 $( f );
 `````
 
@@ -63,7 +63,7 @@ const tmpArrSpread = $(tmpCalleeParam$3);
 let tmpCalleeParamSpread = [...tmpArrSpread];
 let tmpCalleeParam = $spy(`b`);
 let tmpCalleeParam$1 = $spy(`c`);
-const is = isNaN(...tmpCalleeParamSpread, tmpCalleeParam, tmpCalleeParam$1);
+const is = $Global_isNaN(...tmpCalleeParamSpread, tmpCalleeParam, tmpCalleeParam$1);
 $(is);
 `````
 

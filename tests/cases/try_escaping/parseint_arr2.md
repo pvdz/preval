@@ -39,7 +39,7 @@
 const tmpFree /*:(string)=>number*/ = function $free($$0) {
   const a /*:string*/ = $$0;
   debugger;
-  const b /*:number*/ = $Number_parseInt(a);
+  const b /*:number*/ = $Global_parseInt(a);
   const tmpRet /*:number*/ = b / 1;
   return tmpRet;
 };
@@ -65,7 +65,7 @@ $(tmpCalleeParam);
 
 `````js filename=intro
 const tmpFree = function $free(a) {
-  const tmpRet = $Number_parseInt(a) / 1;
+  const tmpRet = $Global_parseInt(a) / 1;
   return tmpRet;
 };
 const arr = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`];
@@ -89,7 +89,7 @@ With rename=true
 const a = function $free($$0 ) {
   const b = $$0;
   debugger;
-  const c = $Number_parseInt( b );
+  const c = $Global_parseInt( b );
   const d = c / 1;
   return d;
 };
@@ -120,7 +120,7 @@ while ($LOOP_NO_UNROLLS_LEFT) {
   const a = arr[2];
   $(a);
   try {
-    const b = $Number_parseInt(a);
+    const b = $Global_parseInt(a);
     const c = b / 1;
     if (c) {
       break;
@@ -144,7 +144,6 @@ $(tmpCalleeParam);
 
 - (todo) access object property that also exists on prototype? $array_push
 - (todo) access object property that also exists on prototype? $array_shift
-- (todo) type trackeed tricks can possibly support static $Number_parseInt
 
 
 ## Globals

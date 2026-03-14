@@ -56,7 +56,7 @@ $( "number" );
 
 `````js filename=intro
 let tmpCalleeParam$1 = $spy(`parseFloat`);
-const tmpUnaryArg = $Number_parseFloat(tmpCalleeParam$1);
+const tmpUnaryArg = $Global_parseFloat(tmpCalleeParam$1);
 let tmpCalleeParam = typeof tmpUnaryArg;
 $(tmpCalleeParam);
 `````
@@ -65,7 +65,7 @@ $(tmpCalleeParam);
 ## Todos triggered
 
 
-- (todo) type trackeed tricks can possibly support static $Number_parseFloat
+None
 
 
 ## Globals

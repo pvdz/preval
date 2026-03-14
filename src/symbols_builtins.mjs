@@ -643,6 +643,19 @@ export const NODEJS_REQUIRE = new Map([
 
 
 
+export const GLOBALS = new Map([
+  [symbo('Global', 'isFinite'),           {prop: 'isFinite',           isProto: false, typings: { sname: symbo('Global', 'isFinite'),           mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, maxlen: 1, returns: 'boolean' }}],
+  [symbo('Global', 'isNaN'),              {prop: 'isNaN',              isProto: false, typings: { sname: symbo('Global', 'isNaN'),              mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, maxlen: 1, returns: 'boolean' }}],
+  [symbo('Global', 'parseFloat'),         {prop: 'parseFloat',         isProto: false, typings: { sname: symbo('Global', 'parseFloat'),         mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, maxlen: 1, returns: 'number' }}],
+  [symbo('Global', 'parseInt'),           {prop: 'parseInt',           isProto: false, typings: { sname: symbo('Global', 'parseInt'),           mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, maxlen: 2, returns: 'number' }}],
+  [symbo('Global', 'escape'),             {prop: 'escape',             isProto: false, typings: { sname: symbo('Global', 'escape'),             mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, maxlen: 1, returns: 'string' }}],
+  [symbo('Global', 'unescape'),           {prop: 'unescape',           isProto: false, typings: { sname: symbo('Global', 'unescape'),           mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, maxlen: 1, returns: 'string' }}],
+  [symbo('Global', 'decodeURI'),          {prop: 'decodeURI',          isProto: false, typings: { sname: symbo('Global', 'decodeURI'),          mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, maxlen: 1, returns: 'string' }}],
+  [symbo('Global', 'encodeURI'),          {prop: 'encodeURI',          isProto: false, typings: { sname: symbo('Global', 'encodeURI'),          mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, maxlen: 1, returns: 'string' }}],
+  [symbo('Global', 'decodeURIComponent'), {prop: 'decodeURIComponent', isProto: false, typings: { sname: symbo('Global', 'decodeURIComponent'), mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, maxlen: 1, returns: 'string' }}],
+  [symbo('Global', 'encodeURIComponent'), {prop: 'encodeURIComponent', isProto: false, typings: { sname: symbo('Global', 'encodeURIComponent'), mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, maxlen: 1, returns: 'string' }}],
+]);
+
 
 
 export const GLOBAL_NAMESPACES_FOR_STATIC_METHODS = new Set([
@@ -664,10 +677,17 @@ export const BUILTIN_GLOBAL_FUNCS_TO_SYMBOL = new Map([
   ['Error', symbo('error', 'constructor')],
   ['TypeError', symbo('typeError', 'constructor')],
 
-  ['parseInt', symbo('Number', 'parseInt')],
-  ['parseFloat', symbo('Number', 'parseFloat')],
-  //['isNaN', symbo('Number', 'isNaN')], // Note: these are NOT equal; the Number variant does NOT coerce the arg.
-  //['isFinite', symbo('Number', 'isFinite')], // Note: these are NOT equal; the Number variant does NOT coerce the arg.
+  ['escape', symbo('Global', 'escape')], // TODO: define a special case global namespace
+  ['unescape', symbo('Global', 'unescape')], // TODO: define a special case global namespace
+  ['decodeURI', symbo('Global', 'decodeURI')],
+  ['encodeURI', symbo('Global', 'encodeURI')],
+  ['decodeURIComponent', symbo('Global', 'decodeURIComponent')],
+  ['encodeURIComponent', symbo('Global', 'encodeURIComponent')],
+
+  ['parseInt', symbo('Global', 'parseInt')], // TODO: wait this isn't true... they're not 100% equal
+  ['parseFloat', symbo('Global', 'parseFloat')], // TODO: wait this isn't true... they're not 100% equal
+  ['isNaN', symbo('Global', 'isNaN')], // Note: these are NOT equal to Number; the Number variant does NOT coerce the arg.
+  ['isFinite', symbo('Global', 'isFinite')], // Note: these are NOT equal to Number; the Number variant does NOT coerce the arg.
 
   // Are there other things that we should map to a global_func ? url encoders, atob, setTimeout, etc
 ]);
@@ -684,6 +704,8 @@ export const SYMBOL_TO_BUILTIN_GLOBAL_FUNCS = new Map(
 
 
 export const BUILTIN_SYMBOLS = new Map([
+  Array.from(GLOBALS.entries()),
+
   Array.from(BOOLEAN.entries()),
   Array.from(NUMBER.entries()),
   Array.from(STRING.entries()),
@@ -793,6 +815,7 @@ export const BUILTIN_FUNCS_NO_CTX_COERCE_FIRST_TO_STRING = new Set([
   'String',
   symbo('Date', 'parse'),
   symbo('Number', 'parseFloat'),
+  symbo('Global', 'parseFloat'),
   symbo('string', 'constructor'),
 ]);
 
@@ -803,6 +826,7 @@ export const BUILTIN_FUNC_NO_CTX = new Set([
   ...BUILTIN_FUNCS_NO_CTX_COERCE_FIRST_TO_NUMBER,
   ...BUILTIN_FUNCS_NO_CTX_COERCE_FIRST_TO_STRING,
   symbo('Number', 'parseInt'),
+  symbo('Global', 'parseInt'),
   symbo('Math', 'pow'), // Not part of the list above...
   symbo('Object', 'is'),
   symbo('Array', 'from'),

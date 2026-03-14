@@ -38,17 +38,29 @@ const SUPPORTED_GLOBAL_FUNCS = [
   symbo('array', 'shift'),
   // symbo('array', 'unshift'),
   'isNaN',
+  symbo('Global', 'isNaN'),
   symbo('Number', 'isNaN'),
   'isFinite',
+  symbo('Global', 'isFinite'),
   symbo('Number', 'isFinite'),
   symbo('Number', 'isInteger'),
   symbo('Number', 'isSafeInteger'),
+  symbo('Global', 'parseFloat'),
   symbo('Number', 'parseFloat'),
+  symbo('Global', 'parseInt'),
   symbo('Number', 'parseInt'),
   symbo('string', 'charAt'),
   symbo('string', 'charCodeAt'),
   symbo('String', 'fromCharCode'),
   symbo('String', 'fromCodePoint'),
+  symbo('Global', 'parseInt'),
+  symbo('Global', 'parseFloat'),
+  symbo('Global', 'decodeURI'),
+  symbo('Global', 'encodeURI'),
+  symbo('Global', 'escape'),
+  symbo('Global', 'unescape'),
+  symbo('Global', 'decodeURIComponent'),
+  symbo('Global', 'encodeURIComponent'),
 ];
 
 export function freeLoops(fdata, prng, options) {
@@ -513,8 +525,10 @@ function _isFree(node, fdata, callNodeToCalleeSymbol, declaredNameTypes, insideW
         }
         case 'isNaN':
         case symbo('Number', 'isNaN'):
+        case symbo('Global', 'isNaN'):
         case 'isFinite':
         case symbo('Number', 'isFinite'):
+        case symbo('Global', 'isFinite'):
         case symbo('Number', 'isInteger'):
         case symbo('Number', 'isSafeInteger'): {
           vlog('- ok');
@@ -522,18 +536,26 @@ function _isFree(node, fdata, callNodeToCalleeSymbol, declaredNameTypes, insideW
           callNodeToCalleeSymbol.set(node, calleeName);
           return true;
         }
+        case symbo('Global', 'parseInt'):
         case symbo('Number', 'parseInt'): {
           vlog('- ok');
           if (assignedTo) declaredNameTypes.set(assignedTo, 'number');
           callNodeToCalleeSymbol.set(node, calleeName);
           return true;
         }
+        case symbo('Global', 'parseFloat'):
         case symbo('Number', 'parseFloat'): {
           vlog('- ok');
           if (assignedTo) declaredNameTypes.set(assignedTo, 'number');
           callNodeToCalleeSymbol.set(node, calleeName);
           return true;
         }
+        case symbo('Global', 'decodeURI'):
+        case symbo('Global', 'encodeURI'):
+        case symbo('Global', 'decodeURIComponent'):
+        case symbo('Global', 'encodeURIComponent'):
+        case symbo('Global', 'escape'):
+        case symbo('Global', 'unescape'):
         case symbo('String', 'fromCharCode'): {
           vlog('- ok');
           if (assignedTo) declaredNameTypes.set(assignedTo, 'string');
@@ -1274,6 +1296,7 @@ function _runExpression(fdata, node, register, callNodeToCalleeSymbol, prng, use
               if (targetType === 'number') return value + 0;
               return ASSERT(false, '$coerce should not have anything else');
             }
+            case symbo('Global', 'isNaN'):
             case 'isNaN': {
               const value = runExpression(fdata, args[0], register, callNodeToCalleeSymbol, prng, usePrng);
               if (value === FAILURE_SYMBOL) return FAILURE_SYMBOL;
@@ -1284,6 +1307,7 @@ function _runExpression(fdata, node, register, callNodeToCalleeSymbol, prng, use
               if (value === FAILURE_SYMBOL) return FAILURE_SYMBOL;
               return Number.isNaN(value);
             }
+            case symbo('Global', 'isFinite'):
             case 'isFinite': {
               const value = runExpression(fdata, args[0], register, callNodeToCalleeSymbol, prng, usePrng);
               if (value === FAILURE_SYMBOL) return FAILURE_SYMBOL;
@@ -1352,6 +1376,54 @@ function _runExpression(fdata, node, register, callNodeToCalleeSymbol, prng, use
               // You can use any number of args here. Into the thousands. So we must take care here.
               const resolvedArgs = args.map(a => runExpression(fdata, a, register, callNodeToCalleeSymbol, prng, usePrng));
               const str = String.fromCharCode.apply(null, resolvedArgs);
+              return str;
+            }
+            case symbo('Global', 'escape'): {
+              // You can use any number of args here. Into the thousands. So we must take care here.
+              const resolvedArgs = args.map(a => runExpression(fdata, a, register, callNodeToCalleeSymbol, prng, usePrng));
+              let str = escape(...resolvedArgs);
+              return str;
+            }
+            case symbo('Global', 'unescape'): {
+              // You can use any number of args here. Into the thousands. So we must take care here.
+              const resolvedArgs = args.map(a => runExpression(fdata, a, register, callNodeToCalleeSymbol, prng, usePrng));
+              let str = unescape(...resolvedArgs);
+              return str;
+            }
+            case symbo('Global', 'decodeURI'): {
+              // You can use any number of args here. Into the thousands. So we must take care here.
+              const resolvedArgs = args.map(a => runExpression(fdata, a, register, callNodeToCalleeSymbol, prng, usePrng));
+              let str = decodeURI(...resolvedArgs);
+              return str;
+            }
+            case symbo('Global', 'encodeURI'): {
+              // You can use any number of args here. Into the thousands. So we must take care here.
+              const resolvedArgs = args.map(a => runExpression(fdata, a, register, callNodeToCalleeSymbol, prng, usePrng));
+              let str = encodeURI(...resolvedArgs);
+              return str;
+            }
+            case symbo('Global', 'decodeURIComponent'): {
+              // You can use any number of args here. Into the thousands. So we must take care here.
+              const resolvedArgs = args.map(a => runExpression(fdata, a, register, callNodeToCalleeSymbol, prng, usePrng));
+              let str = decodeURIComponent(...resolvedArgs);
+              return str;
+            }
+            case symbo('Global', 'encodeURIComponent'): {
+              // You can use any number of args here. Into the thousands. So we must take care here.
+              const resolvedArgs = args.map(a => runExpression(fdata, a, register, callNodeToCalleeSymbol, prng, usePrng));
+              let str = encodeURIComponent(...resolvedArgs);
+              return str;
+            }
+            case symbo('Global', 'parseInt'): {
+              // You can use any number of args here. Into the thousands. So we must take care here.
+              const resolvedArgs = args.map(a => runExpression(fdata, a, register, callNodeToCalleeSymbol, prng, usePrng));
+              let str = parseInt(...resolvedArgs);
+              return str;
+            }
+            case symbo('Global', 'parseFloat'): {
+              // You can use any number of args here. Into the thousands. So we must take care here.
+              const resolvedArgs = args.map(a => runExpression(fdata, a, register, callNodeToCalleeSymbol, prng, usePrng));
+              let str = parseFloat(...resolvedArgs);
               return str;
             }
           }
@@ -1467,5 +1539,6 @@ function _runExpression(fdata, node, register, callNodeToCalleeSymbol, prng, use
     }
   }
 
-  ASSERT(false, 'gotta return early');
+  log(node);
+  ASSERT(false, 'gotta return early', node.type);
 }

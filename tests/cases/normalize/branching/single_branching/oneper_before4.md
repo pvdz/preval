@@ -110,7 +110,7 @@ const X = function ($$0, $$1, $$2, $$3, $$4) {
       }
     }
     const l = +c;
-    const m = isNaN(l);
+    const m = $Global_isNaN(l);
     if (m) {
       const n = a.length;
       const tmpSSA_l = n - 1;

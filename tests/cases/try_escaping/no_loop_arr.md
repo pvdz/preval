@@ -115,38 +115,38 @@ let tmpCalleeParam = `a`;
 $(tmpCalleeParam);
 try {
   const a = arr[286];
-  const b = $Number_parseInt(a);
+  const b = $Global_parseInt(a);
   const c = b / 1;
   const d = arr[181];
-  const e = $Number_parseInt(d);
+  const e = $Global_parseInt(d);
   const f = -e;
   const g = f / 2;
   const h = arr[308];
-  const i = $Number_parseInt(h);
+  const i = $Global_parseInt(h);
   const j = -i;
   const k = j / 3;
   const l = g * k;
   const m = c + l;
   const n = arr[32];
-  const o = $Number_parseInt(n);
+  const o = $Global_parseInt(n);
   const p = -o;
   const q = p / 4;
   const r = m + q;
   const s = arr[86];
-  const t = $Number_parseInt(s);
+  const t = $Global_parseInt(s);
   const u = t / 5;
   const v = r + u;
   const w = arr[87];
-  const x = $Number_parseInt(w);
+  const x = $Global_parseInt(w);
   const y = x / 6;
   const z = v + y;
   const A = arr[30];
-  const B = $Number_parseInt(A);
+  const B = $Global_parseInt(A);
   const C = -B;
   const D = C / 7;
   const E = z + D;
   const F = arr[356];
-  const G = $Number_parseInt(F);
+  const G = $Global_parseInt(F);
   const H = -G;
   const I = H / 8;
   const K = E + I;
@@ -178,7 +178,6 @@ $(arr);
 - (todo) can try-escaping support this expr node type? CallExpression
 - (todo) outline any args for tdz
 - (todo) support array reads statement type ExpressionStatement
-- (todo) type trackeed tricks can possibly support static $Number_parseInt
 
 
 ## Globals

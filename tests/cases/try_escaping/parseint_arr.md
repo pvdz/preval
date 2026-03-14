@@ -37,7 +37,7 @@ const arr /*:array*/ /*truthy*/ = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, 
 while ($LOOP_NO_UNROLLS_LEFT) {
   const x /*:string*/ = arr[0];
   $(x);
-  const y /*:number*/ = $Number_parseInt(x);
+  const y /*:number*/ = $Global_parseInt(x);
   if (y) {
     const el /*:primitive*/ /*truthy*/ = $dotCall($array_shift, arr, `shift`);
     $dotCall($array_push, arr, `push`, el);
@@ -55,7 +55,7 @@ const arr = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`];
 while (true) {
   const x = arr[0];
   $(x);
-  if ($Number_parseInt(x)) {
+  if ($Global_parseInt(x)) {
     $dotCall($array_push, arr, `push`, $dotCall($array_shift, arr, `shift`));
   }
 }
@@ -70,7 +70,7 @@ const a = [ "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k" ];
 while ($LOOP_NO_UNROLLS_LEFT) {
   const b = a[ 0 ];
   $( b );
-  const c = $Number_parseInt( b );
+  const c = $Global_parseInt( b );
   if (c) {
     const d = $dotCall( $array_shift, a, "shift" );
     $dotCall( $array_push, a, "push", d );
@@ -88,7 +88,7 @@ while ($LOOP_NO_UNROLLS_LEFT) {
   const x = arr[0];
   $(x);
   try {
-    const y = $Number_parseInt(x);
+    const y = $Global_parseInt(x);
     if (y) {
       const tmpMCF = arr.shift;
       const el = $dotCall(tmpMCF, arr, `shift`);
@@ -108,7 +108,6 @@ while ($LOOP_NO_UNROLLS_LEFT) {
 
 - (todo) access object property that also exists on prototype? $array_push
 - (todo) access object property that also exists on prototype? $array_shift
-- (todo) type trackeed tricks can possibly support static $Number_parseInt
 
 
 ## Globals

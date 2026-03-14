@@ -16,6 +16,17 @@ export function createBuiltinSymbolGlobals() {
     [symbo('console', 'trace')]: () => { throw new Error('test attempted poisoned access to: ' + symbo('console', 'trace')); },
     [symbo('console', 'traceEnd')]: () => { throw new Error('test attempted poisoned access to: ' + symbo('console', 'traceEnd')); },
 
+    [symbo('Global', 'parseInt')]: parseInt,
+    [symbo('Global', 'parseFloat')]: parseFloat,
+    [symbo('Global', 'escape')]: escape,
+    [symbo('Global', 'unescape')]: unescape,
+    [symbo('Global', 'isFinite')]: isFinite,
+    [symbo('Global', 'isNaN')]: isNaN,
+    [symbo('Global', 'encodeURI')]: encodeURI,
+    [symbo('Global', 'decodeURI')]: decodeURI,
+    [symbo('Global', 'encodeURIComponent')]: encodeURIComponent,
+    [symbo('Global', 'decodeURIComponent')]: decodeURIComponent,
+
     [symbo('Array', 'isArray')]: Array.isArray,
     [symbo('Array', 'from')]: Array.from,
     [symbo('Array', 'fromAsync')]: Array.fromAsync,

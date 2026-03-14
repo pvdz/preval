@@ -106,7 +106,7 @@ const X = function ($$0, $$1, $$2, $$3, $$4) {
       }
     }
     let l = +c;
-    const m = isNaN(l);
+    const m = $Global_isNaN(l);
     if (m) {
       const n = a.length;
       l = n - 1;

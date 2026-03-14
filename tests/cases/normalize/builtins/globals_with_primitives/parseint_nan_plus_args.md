@@ -47,7 +47,7 @@ $( $Number_NaN );
 const tmpArgOverflow = $Number_NaN;
 const tmpArgOverflow$1 = 1;
 implicitGlobal;
-let tmpCalleeParam = $Number_parseInt(tmpArgOverflow, tmpArgOverflow$1);
+let tmpCalleeParam = $Global_parseInt(tmpArgOverflow, tmpArgOverflow$1);
 $(tmpCalleeParam);
 `````
 

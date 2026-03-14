@@ -1,7 +1,7 @@
 // Built-in symbol names and their `typeof` result
 
 import { SYMBOL_FORIN, SYMBOL_FOROF, SYMBOL_DOTCALL, BUILTIN_REST_HANDLER_NAME, SYMBOL_LOOP_UNROLL, SYMBOL_MAX_LOOP_UNROLL, SYMBOL_COERCE, SYMBOL_FULLY_UNROLL, } from './symbols_preval.mjs';
-import { BUILTIN_SYMBOLS, } from './symbols_builtins.mjs';
+import { BUILTIN_SYMBOLS, symbo } from './symbols_builtins.mjs';
 
 // We have to set a max of unrolling infinite loops because we have to predefine their global constant value here.
 // It's fine to up but would have to be upped in code. Can't pass this as an argument. Well. Not without changing smoe logic around first.
@@ -17,7 +17,8 @@ const BUILTIN_GLOBAL_FUNCS = [
   ['setTimeout', 'function'],
   ['isNaN', {mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'boolean'}],
   ['eval', 'function'],
-  ['isFinite', {mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'boolean'}],
+  [symbo('Global', 'isFinite'), {mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'boolean'}],
+  [symbo('Global', 'isNaN'), {mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'boolean'}],
   ['Array', {mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'array'}],
   ['Boolean', {mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'boolean'}],
   ['Date', {mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'date'}],
@@ -37,12 +38,12 @@ const BUILTIN_GLOBAL_FUNCS = [
   ['Uint8Array', {mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: undefined}], // throws without new
 
   // NodeJS / Browser
-  ['encodeURI', {mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string'}],
-  ['decodeURI', {mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string'}],
-  ['encodeURIComponent', {mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string'}],
-  ['decodeURIComponent', {mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string'}],
-  ['escape', {mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string'}],
-  ['unescape', {mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string'}],
+  [symbo('Global', 'escape'), {mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string'}],
+  [symbo('Global', 'unescape'), {mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string'}],
+  [symbo('Global', 'encodeURI'), {mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string'}],
+  [symbo('Global', 'decodeURI'), {mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string'}],
+  [symbo('Global', 'encodeURIComponent'), {mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string'}],
+  [symbo('Global', 'decodeURIComponent'), {mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string'}],
   ['btoa', {mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string'}],
   ['atob', {mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string'}],
   ['Buffer', {mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'buffer'}],

@@ -1,15 +1,17 @@
 # Preval test case
 
-# obj.md
+# serialization.md
 
-> Builtins cases > EncodeURIComponent > Obj
+> Object literal > Serialization
 >
->
+> tostring
 
 ## Input
 
 `````js filename=intro
-$(encodeURIComponent({wat: true}));
+const a = {};
+const b = $coerce(a, `plustr`);
+$(b);
 `````
 
 
@@ -17,9 +19,9 @@ $(encodeURIComponent({wat: true}));
 
 
 `````js filename=intro
-const tmpCalleeParam$1 /*:object*/ /*truthy*/ = { wat: true };
-const tmpCalleeParam /*:string*/ = $Global_encodeURIComponent(tmpCalleeParam$1);
-$(tmpCalleeParam);
+const a /*:object*/ /*truthy*/ = {};
+const b /*:string*/ = $coerce(a, `plustr`);
+$(b);
 `````
 
 
@@ -27,7 +29,7 @@ $(tmpCalleeParam);
 (This ought to be the final result)
 
 `````js filename=intro
-$($Global_encodeURIComponent({ wat: true }));
+$({} + ``);
 `````
 
 
@@ -35,8 +37,8 @@ $($Global_encodeURIComponent({ wat: true }));
 With rename=true
 
 `````js filename=intro
-const a = { wat: true };
-const b = $Global_encodeURIComponent( a );
+const a = {};
+const b = $coerce( a, "plustr" );
 $( b );
 `````
 
@@ -45,9 +47,9 @@ $( b );
 (This is what phase1 received the first time)
 
 `````js filename=intro
-let tmpCalleeParam$1 = { wat: true };
-let tmpCalleeParam = $Global_encodeURIComponent(tmpCalleeParam$1);
-$(tmpCalleeParam);
+const a = {};
+const b = $coerce(a, `plustr`);
+$(b);
 `````
 
 
@@ -67,7 +69,7 @@ None
 
 
 Should call `$` with:
- - 1: '%5Bobject%20Object%5D'
+ - 1: '[object Object]'
  - eval returned: undefined
 
 Pre normalization calls: Same

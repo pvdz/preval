@@ -52,7 +52,7 @@ $( "boolean" );
 
 `````js filename=intro
 let tmpCalleeParam$1 = $spy(`isFinite`);
-const tmpUnaryArg = isFinite(tmpCalleeParam$1);
+const tmpUnaryArg = $Global_isFinite(tmpCalleeParam$1);
 let tmpCalleeParam = typeof tmpUnaryArg;
 $(tmpCalleeParam);
 `````

@@ -46,7 +46,7 @@ $( true );
 `````js filename=intro
 const tmpArgOverflow = $Number_NaN;
 implicitGlobal;
-let tmpCalleeParam = isNaN(tmpArgOverflow);
+let tmpCalleeParam = $Global_isNaN(tmpArgOverflow);
 $(tmpCalleeParam);
 `````
 

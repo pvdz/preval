@@ -21,7 +21,7 @@ $(f());
 
 
 `````js filename=intro
-const tmpCallComplexCallee /*:unknown*/ = $($Number_parseInt);
+const tmpCallComplexCallee /*:unknown*/ = $($Global_parseInt);
 const y /*:unknown*/ = tmpCallComplexCallee();
 const tmpReturnArg /*:unknown*/ = $(y);
 $(tmpReturnArg);
@@ -32,7 +32,7 @@ $(tmpReturnArg);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCallComplexCallee = $($Number_parseInt);
+const tmpCallComplexCallee = $($Global_parseInt);
 $($(tmpCallComplexCallee()));
 `````
 
@@ -41,7 +41,7 @@ $($(tmpCallComplexCallee()));
 With rename=true
 
 `````js filename=intro
-const a = $( $Number_parseInt );
+const a = $( $Global_parseInt );
 const b = a();
 const c = $( b );
 $( c );
@@ -54,7 +54,7 @@ $( c );
 `````js filename=intro
 let f = function () {
   debugger;
-  const tmpCallComplexCallee = $($Number_parseInt);
+  const tmpCallComplexCallee = $($Global_parseInt);
   const y = tmpCallComplexCallee();
   const tmpReturnArg = $(y);
   return tmpReturnArg;

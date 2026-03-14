@@ -28,7 +28,7 @@ while (true) {
 while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpCalleeParam /*:unknown*/ = $(`1`);
   const x /*:string*/ = $coerce(tmpCalleeParam, `string`);
-  const y /*:number*/ = $Number_parseInt(x);
+  const y /*:number*/ = $Global_parseInt(x);
   try {
     $(y);
   } catch (e) {
@@ -43,7 +43,7 @@ while ($LOOP_NO_UNROLLS_LEFT) {
 
 `````js filename=intro
 while (true) {
-  const y = $Number_parseInt(String($(`1`)));
+  const y = $Global_parseInt(String($(`1`)));
   try {
     $(y);
   } catch (e) {
@@ -60,7 +60,7 @@ With rename=true
 while ($LOOP_NO_UNROLLS_LEFT) {
   const a = $( "1" );
   const b = $coerce( a, "string" );
-  const c = $Number_parseInt( b );
+  const c = $Global_parseInt( b );
   try {
     $( c );
   }
@@ -79,7 +79,7 @@ while (true) {
   let tmpCalleeParam = $(`1`);
   const x = $coerce(tmpCalleeParam, `string`);
   try {
-    const y = $Number_parseInt(x);
+    const y = $Global_parseInt(x);
     $(y);
   } catch (e) {
     $(`keepme`);
@@ -92,7 +92,6 @@ while (true) {
 
 
 - (todo) can try-escaping support this expr node type? CallExpression
-- (todo) type trackeed tricks can possibly support static $Number_parseInt
 
 
 ## Globals

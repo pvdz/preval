@@ -17,7 +17,7 @@ $spy(isNaN)($spy('a'), $spy('b'), $spy('c'));
 
 
 `````js filename=intro
-const tmpCallComplexCallee /*:unknown*/ = $spy(isNaN);
+const tmpCallComplexCallee /*:unknown*/ = $spy($Global_isNaN);
 const tmpCalleeParam /*:unknown*/ = $spy(`a`);
 const tmpCalleeParam$1 /*:unknown*/ = $spy(`b`);
 const tmpCalleeParam$3 /*:unknown*/ = $spy(`c`);
@@ -29,7 +29,7 @@ tmpCallComplexCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCallComplexCallee = $spy(isNaN);
+const tmpCallComplexCallee = $spy($Global_isNaN);
 tmpCallComplexCallee($spy(`a`), $spy(`b`), $spy(`c`));
 `````
 
@@ -38,7 +38,7 @@ tmpCallComplexCallee($spy(`a`), $spy(`b`), $spy(`c`));
 With rename=true
 
 `````js filename=intro
-const a = $spy( isNaN );
+const a = $spy( $Global_isNaN );
 const b = $spy( "a" );
 const c = $spy( "b" );
 const d = $spy( "c" );
@@ -50,7 +50,7 @@ a( b, c, d );
 (This is what phase1 received the first time)
 
 `````js filename=intro
-const tmpCallComplexCallee = $spy(isNaN);
+const tmpCallComplexCallee = $spy($Global_isNaN);
 const tmpCallCallee = tmpCallComplexCallee;
 let tmpCalleeParam = $spy(`a`);
 let tmpCalleeParam$1 = $spy(`b`);

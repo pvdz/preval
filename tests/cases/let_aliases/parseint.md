@@ -48,7 +48,7 @@ let f /*:()=>unknown*/ = function () {
 const n /*:unknown*/ = $(`1`);
 let the_let_binding /*:unknown*/ = $(1);
 const a /*:unknown*/ = the_let_binding;
-const m /*:number*/ = $Number_parseInt(n);
+const m /*:number*/ = $Global_parseInt(n);
 $(a, a);
 $(f);
 const mm /*:number*/ = m / 33;
@@ -71,7 +71,7 @@ let f = function () {
 const n = $(`1`);
 let the_let_binding = $(1);
 const a = the_let_binding;
-const m = $Number_parseInt(n);
+const m = $Global_parseInt(n);
 $(a, a);
 $(f);
 $(m / 33);
@@ -95,7 +95,7 @@ let a = function() {
 const d = $( "1" );
 let b = $( 1 );
 const e = b;
-const f = $Number_parseInt( d );
+const f = $Global_parseInt( d );
 $( e, e );
 $( a );
 const g = f / 33;
@@ -120,7 +120,7 @@ let f = function () {
 const n = $(`1`);
 let the_let_binding = $(1);
 const a = the_let_binding;
-const m = $Number_parseInt(n);
+const m = $Global_parseInt(n);
 const mm = m / 33;
 const the_let_alias_to_eliminate = a;
 $(a, a);
@@ -133,7 +133,6 @@ $(mm);
 
 
 - (todo) Found a self-closing function shell but it did not match a known pattern...
-- (todo) type trackeed tricks can possibly support static $Number_parseInt
 
 
 ## Globals

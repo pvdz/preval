@@ -262,7 +262,7 @@ const X_C = function ($$0, $$1, $$2, $$3, $$4, $$5, $$6, $$7, $$8) {
   let i$1 = $$8;
   debugger;
   let l = +c$13;
-  const m = isNaN(l);
+  const m = $Global_isNaN(l);
   if (m) {
     const n = a$13.length;
     l = n - 0;

@@ -34,7 +34,7 @@ while ($LOOP_NO_UNROLLS_LEFT) {
   };
   const x /*:unknown*/ = $(tmpCalleeParam);
   try {
-    const y /*:number*/ = $Number_parseInt(x);
+    const y /*:number*/ = $Global_parseInt(x);
     $(y);
   } catch (e) {}
 }
@@ -52,7 +52,7 @@ while (true) {
     },
   });
   try {
-    $($Number_parseInt(x));
+    $($Global_parseInt(x));
   } catch (e) {}
 }
 `````
@@ -70,7 +70,7 @@ while ($LOOP_NO_UNROLLS_LEFT) {
   } };
   const b = $( a );
   try {
-    const c = $Number_parseInt( b );
+    const c = $Global_parseInt( b );
     $( c );
   }
   catch (d) {
@@ -94,7 +94,7 @@ while (true) {
   };
   const x = $(tmpCalleeParam);
   try {
-    const y = $Number_parseInt(x);
+    const y = $Global_parseInt(x);
     $(y);
   } catch (e) {}
 }
@@ -105,7 +105,6 @@ while (true) {
 
 
 - (todo) objects in isFree check
-- (todo) type trackeed tricks can possibly support static $Number_parseInt
 
 
 ## Globals

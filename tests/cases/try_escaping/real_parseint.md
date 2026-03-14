@@ -29,7 +29,7 @@ while ($LOOP_NO_UNROLLS_LEFT) {
 const arr /*:array*/ /*truthy*/ = [1, 2, 3];
 while ($LOOP_NO_UNROLLS_LEFT) {
   const tmpCalleeParam$1 /*:primitive*/ = arr[0];
-  const tmpCalleeParam /*:number*/ = $Number_parseInt(tmpCalleeParam$1);
+  const tmpCalleeParam /*:number*/ = $Global_parseInt(tmpCalleeParam$1);
   try {
     $(tmpCalleeParam);
     $dotCall($array_reverse, arr, `reverse`);
@@ -46,7 +46,7 @@ while ($LOOP_NO_UNROLLS_LEFT) {
 `````js filename=intro
 const arr = [1, 2, 3];
 while (true) {
-  const tmpCalleeParam = $Number_parseInt(arr[0]);
+  const tmpCalleeParam = $Global_parseInt(arr[0]);
   try {
     $(tmpCalleeParam);
     $dotCall($array_reverse, arr, `reverse`);
@@ -64,7 +64,7 @@ With rename=true
 const a = [ 1, 2, 3 ];
 while ($LOOP_NO_UNROLLS_LEFT) {
   const b = a[ 0 ];
-  const c = $Number_parseInt( b );
+  const c = $Global_parseInt( b );
   try {
     $( c );
     $dotCall( $array_reverse, a, "reverse" );
@@ -84,7 +84,7 @@ const arr = [1, 2, 3];
 while ($LOOP_NO_UNROLLS_LEFT) {
   try {
     let tmpCalleeParam$1 = arr[0];
-    let tmpCalleeParam = $Number_parseInt(tmpCalleeParam$1);
+    let tmpCalleeParam = $Global_parseInt(tmpCalleeParam$1);
     $(tmpCalleeParam);
     const tmpMCF = arr.reverse;
     $dotCall(tmpMCF, arr, `reverse`);
@@ -101,7 +101,6 @@ while ($LOOP_NO_UNROLLS_LEFT) {
 - (todo) access object property that also exists on prototype? $array_reverse
 - (todo) can try-escaping support this expr node type? CallExpression
 - (todo) support builtin $array_reverse for array escape analysis
-- (todo) type trackeed tricks can possibly support static $Number_parseInt
 
 
 ## Globals

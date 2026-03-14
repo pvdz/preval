@@ -33,7 +33,7 @@ const tmpFree /*:(string, string)=>string*/ = function $free($$0, $$1) {
   const ys$1 /*:string*/ = $$1;
   debugger;
   const tmpCalleeParam /*:string*/ = xs$1 + 5;
-  const one /*:number*/ = $Number_parseInt(tmpCalleeParam, 10);
+  const one /*:number*/ = $Global_parseInt(tmpCalleeParam, 10);
   const tmpMCF /*:unknown*/ = one.slice;
   const two /*:unknown*/ = $dotCall(tmpMCF, one, `slice`, 1, ys$1);
   const tmpRet /*:string*/ = $coerce(two, `plustr`);
@@ -53,7 +53,7 @@ $(rs);
 
 `````js filename=intro
 const tmpFree = function $free(xs$1, ys$1) {
-  const one = $Number_parseInt(xs$1 + 5, 10);
+  const one = $Global_parseInt(xs$1 + 5, 10);
   const tmpRet = one.slice(1, ys$1) + ``;
   return tmpRet;
 };
@@ -71,7 +71,7 @@ const a = function $free($$0,$$1 ) {
   const c = $$1;
   debugger;
   const d = b + 5;
-  const e = $Number_parseInt( d, 10 );
+  const e = $Global_parseInt( d, 10 );
   const f = e.slice;
   const g = $dotCall( f, e, "slice", 1, c );
   const h = $coerce( g, "plustr" );
@@ -97,7 +97,7 @@ const f = function $free($$0, $$1, $$2) {
   debugger;
   let tmpCalleeParam = a + 5;
   let tmpCalleeParam$1 = b;
-  const one = $Number_parseInt(tmpCalleeParam, b);
+  const one = $Global_parseInt(tmpCalleeParam, b);
   const tmpMCF = one.slice;
   const two = $dotCall(tmpMCF, one, `slice`, 1, c);
   return two;
@@ -115,7 +115,7 @@ $(rs);
 ## Todos triggered
 
 
-- (todo) type trackeed tricks can possibly support static $Number_parseInt
+None
 
 
 ## Globals

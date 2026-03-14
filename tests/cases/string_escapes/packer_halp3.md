@@ -36,7 +36,7 @@ const tmpFree /*:(number)=>number*/ = function $free($$0) {
   const c$4 /*:number*/ = $$0;
   debugger;
   const tmpCalleeParam$3 /*:number*/ = c$4 / 52;
-  const tmpRet /*:number*/ = $Number_parseInt(tmpCalleeParam$3);
+  const tmpRet /*:number*/ = $Global_parseInt(tmpCalleeParam$3);
   return tmpRet;
 };
 const r /*:object*/ /*truthy*/ = {};
@@ -186,7 +186,7 @@ const tmpFree$1 = function $free(tmpClusterSSA_c$1) {
   return tmpRet$1;
 };
 const tmpFree = function $free(c$4) {
-  const tmpRet = $Number_parseInt(c$4 / 52);
+  const tmpRet = $Global_parseInt(c$4 / 52);
   return tmpRet;
 };
 const r = {};
@@ -331,7 +331,7 @@ const e = function $free($$0 ) {
   const f = $$0;
   debugger;
   const g = f / 52;
-  const h = $Number_parseInt( g );
+  const h = $Global_parseInt( g );
   return h;
 };
 const i = {};
@@ -441,7 +441,7 @@ const tmpCallComplexCallee = function ($$0, $$1, $$2, $$3, $$4, $$5) {
     } else {
       const tmpCallCallee = e;
       let tmpCalleeParam$3 = c$1 / a;
-      let tmpCalleeParam$1 = $Number_parseInt(tmpCalleeParam$3);
+      let tmpCalleeParam$1 = $Global_parseInt(tmpCalleeParam$3);
       tmpBinBothLhs = e(tmpCalleeParam$1);
     }
     let tmpBinBothRhs = undefined;
@@ -602,7 +602,6 @@ $(x);
 - (todo) support LabeledStatement as statement in let_hoisting noob check
 - (todo) support WhileStatement as statement in let_hoisting noob check
 - (todo) support array reads statement type ExpressionStatement
-- (todo) type trackeed tricks can possibly support static $Number_parseInt
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
 
 

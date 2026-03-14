@@ -184,25 +184,25 @@ const thisisanarrayyesyes = [`os_version`, `length`, `hfLrH`, `got`, `error_code
 let x = 5;
 while (true) {
   const tmpCalleeParam = thisisanarrayyesyes[63];
-  const tmpBinLhs$14 = $Number_parseInt(tmpCalleeParam);
+  const tmpBinLhs$14 = $Global_parseInt(tmpCalleeParam);
   const tmpCalleeParam$1 = thisisanarrayyesyes[117];
-  const tmpUnaryArg$13 = $Number_parseInt(tmpCalleeParam$1);
+  const tmpUnaryArg$13 = $Global_parseInt(tmpCalleeParam$1);
   const tmpCalleeParam$3 = thisisanarrayyesyes[42];
-  const tmpUnaryArg$15 = $Number_parseInt(tmpCalleeParam$3);
+  const tmpUnaryArg$15 = $Global_parseInt(tmpCalleeParam$3);
   const tmpCalleeParam$5 = thisisanarrayyesyes[167];
-  const tmpBinLhs$16 = $Number_parseInt(tmpCalleeParam$5);
+  const tmpBinLhs$16 = $Global_parseInt(tmpCalleeParam$5);
   const tmpCalleeParam$7 = thisisanarrayyesyes[146];
-  const tmpUnaryArg$17 = $Number_parseInt(tmpCalleeParam$7);
+  const tmpUnaryArg$17 = $Global_parseInt(tmpCalleeParam$7);
   const tmpCalleeParam$9 = thisisanarrayyesyes[61];
-  const tmpUnaryArg$19 = $Number_parseInt(tmpCalleeParam$9);
+  const tmpUnaryArg$19 = $Global_parseInt(tmpCalleeParam$9);
   const tmpCalleeParam$11 = thisisanarrayyesyes[30];
-  const tmpUnaryArg$21 = $Number_parseInt(tmpCalleeParam$11);
+  const tmpUnaryArg$21 = $Global_parseInt(tmpCalleeParam$11);
   const tmpCalleeParam$13 = thisisanarrayyesyes[183];
-  const tmpBinLhs$18 = $Number_parseInt(tmpCalleeParam$13);
+  const tmpBinLhs$18 = $Global_parseInt(tmpCalleeParam$13);
   const tmpCalleeParam$15 = thisisanarrayyesyes[189];
-  const tmpBinLhs$20 = $Number_parseInt(tmpCalleeParam$15);
+  const tmpBinLhs$20 = $Global_parseInt(tmpCalleeParam$15);
   const tmpCalleeParam$17 = thisisanarrayyesyes[81];
-  const tmpUnaryArg$23 = $Number_parseInt(tmpCalleeParam$17);
+  const tmpUnaryArg$23 = $Global_parseInt(tmpCalleeParam$17);
   try {
     const tmpIfTest = $frfr(
       tmpFree$5,
@@ -249,7 +249,6 @@ $(tmpCalleeParam$23);
 - (todo) access object property that also exists on prototype? $array_push
 - (todo) access object property that also exists on prototype? $array_shift
 - (todo) can try-escaping support this expr node type? CallExpression
-- (todo) type trackeed tricks can possibly support static $Number_parseInt
 
 
 ## Globals

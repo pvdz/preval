@@ -112,9 +112,9 @@ const arrB = [
 while ($LOOP_NO_UNROLLS_LEFT) {
   $(`protect`);
   const a = arrB[51];
-  const aint = $Number_parseInt(a);
+  const aint = $Global_parseInt(a);
   const b = arrB[18];
-  const bint = $Number_parseInt(b);
+  const bint = $Global_parseInt(b);
   const a1 = aint / 1;
   const b2 = bint / 2;
   const ab = a1 * b2;
@@ -146,7 +146,6 @@ $(tmpCalleeParam);
 - (todo) access object property that also exists on prototype? $array_push
 - (todo) access object property that also exists on prototype? $array_shift
 - (todo) phase1_1 support this array method call? tmpMCF
-- (todo) type trackeed tricks can possibly support static $Number_parseInt
 
 
 ## Globals

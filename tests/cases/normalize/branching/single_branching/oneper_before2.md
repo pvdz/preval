@@ -129,7 +129,7 @@ const tmpBranchingB = function () {
   const tmpBranchingC$1 = function () {
     debugger;
     l$1 = +c;
-    m$1 = isNaN(l$1);
+    m$1 = $Global_isNaN(l$1);
     if (m$1) {
       l$1 = 0;
       $(`a`, `b`, c, d, `e`, 1, false, h$1, i$1, l$1, m$1);

@@ -42,7 +42,7 @@ $( "true" );
 (This is what phase1 received the first time)
 
 `````js filename=intro
-const x = encodeURIComponent(true);
+const x = `true`;
 $(x);
 `````
 

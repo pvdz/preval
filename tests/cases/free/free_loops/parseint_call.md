@@ -69,7 +69,7 @@ while ($LOOP_NO_UNROLLS_LEFT) {
   if (test) {
     break;
   } else {
-    const tmpBinLhs = isNaN(counter);
+    const tmpBinLhs = $Global_isNaN(counter);
     const tmpIfTest = tmpBinLhs === 5;
     if (tmpIfTest) {
       counter = counter + 10;

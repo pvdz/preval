@@ -1206,6 +1206,251 @@ function _typeTrackedTricks(fdata) {
             // Resolve object spread in some cases
             break;
           }
+          case symbo('Global', 'parseInt'): {
+            if (
+              !isDotcall &&
+              args.every(arg => !arg || AST.isPrimitive(arg))
+            ) {
+              // e.g. parseInt('red')
+              riskyRule('Calling `parseInt` with primitive args should resolve the call');
+              example(`parseInt("500")`, '500');
+              before(blockBody[blockIndex]);
+
+              const argValues = args.map(arg => arg ? AST.getPrimitiveValue(arg) : undefined);
+              const result = parseInt(...argValues);
+
+              if (parentIndex < 0) parentNode[parentProp] = AST.primitive(result);
+              else parentNode[parentProp][parentIndex] = AST.primitive(result);
+
+              after(blockBody[blockIndex]);
+              ++changes;
+              return;
+            }
+            break;
+          }
+          case symbo('Global', 'parseFloat'): {
+            if (
+              !isDotcall &&
+              args.every(arg => !arg || AST.isPrimitive(arg))
+            ) {
+              // e.g. parseFloat('red')
+              riskyRule('Calling `parseFloat` with primitive args should resolve the call');
+              example(`parseFloat("50.1")`, '50.1');
+              before(blockBody[blockIndex]);
+
+              const argValues = args.map(arg => arg ? AST.getPrimitiveValue(arg) : undefined);
+              const result = parseFloat(...argValues);
+
+              if (parentIndex < 0) parentNode[parentProp] = AST.primitive(result);
+              else parentNode[parentProp][parentIndex] = AST.primitive(result);
+
+              after(blockBody[blockIndex]);
+              ++changes;
+              return;
+            }
+            break;
+          }
+          case symbo('Global', 'escape'): {
+            if (
+              !isDotcall &&
+              args.every(arg => !arg || AST.isPrimitive(arg))
+            ) {
+              // e.g. escape('red')
+              riskyRule('Calling `escape` with primitive args should resolve the call');
+              example(`escape("<foo>")`, '"%3Cfoo%3E"');
+              before(blockBody[blockIndex]);
+
+              const argValues = args.map(arg => arg ? AST.getPrimitiveValue(arg) : undefined);
+              const result = escape(...argValues);
+
+              if (parentIndex < 0) parentNode[parentProp] = AST.primitive(result);
+              else parentNode[parentProp][parentIndex] = AST.primitive(result);
+
+              after(blockBody[blockIndex]);
+              ++changes;
+              return;
+            }
+            break;
+          }
+          case symbo('Global', 'unescape'): {
+            if (
+              !isDotcall &&
+              args.every(arg => !arg || AST.isPrimitive(arg))
+            ) {
+              // e.g. unescape('red')
+              riskyRule('Calling `unescape` with primitive args should resolve the call');
+              example(`unescape("%3Cfoo%3E")`, '"<foo>"');
+              before(blockBody[blockIndex]);
+
+              const argValues = args.map(arg => arg ? AST.getPrimitiveValue(arg) : undefined);
+              const result = unescape(...argValues);
+
+              if (parentIndex < 0) parentNode[parentProp] = AST.primitive(result);
+              else parentNode[parentProp][parentIndex] = AST.primitive(result);
+
+              after(blockBody[blockIndex]);
+              ++changes;
+              return;
+            }
+            break;
+          }
+          case symbo('Global', 'encodeURI'): {
+            if (
+              !isDotcall &&
+              args.every(arg => !arg || AST.isPrimitive(arg))
+            ) {
+              const argValues = args.map(arg => arg ? AST.getPrimitiveValue(arg) : undefined);
+              let result
+              try {
+                result = encodeURI(...argValues);
+              } catch {
+                // Don't care.
+                break;
+              }
+
+              // e.g. encodeURI('red')
+              riskyRule('Calling `encodeURI` with primitive args should resolve the call');
+              example(`encodeURI("foo&bar")`, '"foo%26bar"');
+              before(blockBody[blockIndex]);
+
+              if (parentIndex < 0) parentNode[parentProp] = AST.primitive(result);
+              else parentNode[parentProp][parentIndex] = AST.primitive(result);
+
+              after(blockBody[blockIndex]);
+              ++changes;
+              return;
+            }
+            break;
+          }
+          case symbo('Global', 'decodeURI'): {
+            if (
+              !isDotcall &&
+              args.every(arg => !arg || AST.isPrimitive(arg))
+            ) {
+              const argValues = args.map(arg => arg ? AST.getPrimitiveValue(arg) : undefined);
+              let result
+              try {
+                result = decodeURI(...argValues);
+              } catch {
+                // Don't care.
+                break;
+              }
+
+              // e.g. decodeURI('red')
+              riskyRule('Calling `decodeURI` with primitive args should resolve the call');
+              example(`decodeURI("foo%26bar")`, '"foo&bar"');
+              before(blockBody[blockIndex]);
+
+              if (parentIndex < 0) parentNode[parentProp] = AST.primitive(result);
+              else parentNode[parentProp][parentIndex] = AST.primitive(result);
+
+              after(blockBody[blockIndex]);
+              ++changes;
+              return;
+            }
+            break;
+          }
+          case symbo('Global', 'encodeURIComponent'): {
+            if (
+              !isDotcall &&
+              args.every(arg => !arg || AST.isPrimitive(arg))
+            ) {
+              const argValues = args.map(arg => arg ? AST.getPrimitiveValue(arg) : undefined);
+              let result
+              try {
+                result = encodeURIComponent(...argValues);
+              } catch {
+                // Don't care.
+                break;
+              }
+
+              // e.g. encodeURIComponent('red')
+              riskyRule('Calling `encodeURIComponent` with primitive args should resolve the call');
+              example(`encodeURIComponent("foo&bar")`, '"foo%26bar"');
+              before(blockBody[blockIndex]);
+
+              if (parentIndex < 0) parentNode[parentProp] = AST.primitive(result);
+              else parentNode[parentProp][parentIndex] = AST.primitive(result);
+
+              after(blockBody[blockIndex]);
+              ++changes;
+              return;
+            }
+            break;
+          }
+          case symbo('Global', 'decodeURIComponent'): {
+            if (
+              !isDotcall &&
+              args.every(arg => !arg || AST.isPrimitive(arg))
+            ) {
+              const argValues = args.map(arg => arg ? AST.getPrimitiveValue(arg) : undefined);
+
+              let result
+              try {
+                result = decodeURIComponent(...argValues);
+              } catch {
+                // Don't care.
+                break;
+              }
+
+              // e.g. decodeURIComponent('red')
+              riskyRule('Calling `decodeURIComponent` with primitive args should resolve the call');
+              example(`decodeURIComponent("foo%26bar")`, '"foo&bar"');
+              before(blockBody[blockIndex]);
+
+              if (parentIndex < 0) parentNode[parentProp] = AST.primitive(result);
+              else parentNode[parentProp][parentIndex] = AST.primitive(result);
+
+              after(blockBody[blockIndex]);
+              ++changes;
+              return;
+            }
+            break;
+          }
+          case symbo('Global', 'isNaN'): {
+            if (
+              !isDotcall &&
+              args.every(arg => !arg || AST.isPrimitive(arg))
+            ) {
+              // e.g. isNaN('red')
+              riskyRule('Calling `isNaN` with primitive args should resolve the call');
+              example(`isNaN("xyz")`, 'true');
+              before(blockBody[blockIndex]);
+
+              const argValues = args.map(arg => arg ? AST.getPrimitiveValue(arg) : undefined);
+              const result = isNaN(...argValues);
+
+              if (parentIndex < 0) parentNode[parentProp] = AST.primitive(result);
+              else parentNode[parentProp][parentIndex] = AST.primitive(result);
+
+              after(blockBody[blockIndex]);
+              ++changes;
+              return;
+            }
+            break;
+          }
+          case symbo('Global', 'isFinite'): {
+            if (
+              !isDotcall &&
+              args.every(arg => !arg || AST.isPrimitive(arg))
+            ) {
+              // e.g. isFinite('red')
+              riskyRule('Calling `isNaN` with primitive args should resolve the call');
+              example(`isFinite("xyz")`, 'false');
+              before(blockBody[blockIndex]);
+
+              const argValues = args.map(arg => arg ? AST.getPrimitiveValue(arg) : undefined);
+              const result = isFinite(...argValues);
+
+              if (parentIndex < 0) parentNode[parentProp] = AST.primitive(result);
+              else parentNode[parentProp][parentIndex] = AST.primitive(result);
+
+              after(blockBody[blockIndex]);
+              ++changes;
+              return;
+            }
+            break;
+          }
           case 'eval': {
             // Even more difficult than Function because of direct eval stuffs
             vlog('Skipping eval()');

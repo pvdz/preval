@@ -661,8 +661,7 @@ function runTestCase(
           SYMBOL_COERCE, SYMBOL_PRNG, SYMBOL_FRFR, SYMBOL_FORIN, SYMBOL_FOROF,
         ].includes(key) ||
         key.startsWith(sym_prefix('console', true)) ||
-        BUILTIN_SYMBOLS.has(key
-      ), 'All exposed builtin symbols in the test runner should be declared. Missing:', key);
+        BUILTIN_SYMBOLS.has(key), 'All exposed builtin symbols in the test runner should be declared. Missing:', key);
     }
 
     const max = CONFIG.unrollLimit ?? mdOptions?.unroll ?? 10;

@@ -28,7 +28,7 @@ const tmpMCP /*:regex*/ /*truthy*/ = new $regex_constructor(`x`, ``);
 const stuff /*:unknown*/ = $dotCall(tmpMCF, cook, `match`, tmpMCP);
 if (stuff) {
   const tmpCalleeParam /*:unknown*/ = stuff[1];
-  unknown = decodeURIComponent(tmpCalleeParam);
+  unknown = $Global_decodeURIComponent(tmpCalleeParam);
 } else {
 }
 `````
@@ -41,7 +41,7 @@ if (stuff) {
 const cook = document.cookie;
 const stuff = cook.match(new $regex_constructor(`x`, ``));
 if (stuff) {
-  unknown = decodeURIComponent(stuff[1]);
+  unknown = $Global_decodeURIComponent(stuff[1]);
 }
 `````
 
@@ -56,7 +56,7 @@ const c = new $regex_constructor( "x", "" );
 const d = $dotCall( b, a, "match", c );
 if (d) {
   const e = d[ 1 ];
-  unknown = decodeURIComponent( e );
+  unknown = $Global_decodeURIComponent( e );
 }
 `````
 
@@ -71,7 +71,7 @@ const tmpMCP = new $regex_constructor(`x`, ``);
 const stuff = $dotCall(tmpMCF, cook, `match`, tmpMCP);
 if (stuff) {
   let tmpCalleeParam = stuff[1];
-  const deco = decodeURIComponent(tmpCalleeParam);
+  const deco = $Global_decodeURIComponent(tmpCalleeParam);
   unknown = deco;
 } else {
 }

@@ -21,7 +21,7 @@ $(c);
 
 `````js filename=intro
 const a /*:unknown*/ = inline.value;
-const c /*:string*/ = encodeURIComponent(a);
+const c /*:string*/ = $Global_encodeURIComponent(a);
 $(c);
 `````
 
@@ -30,7 +30,7 @@ $(c);
 (This ought to be the final result)
 
 `````js filename=intro
-$(encodeURIComponent(inline.value));
+$($Global_encodeURIComponent(inline.value));
 `````
 
 
@@ -39,7 +39,7 @@ With rename=true
 
 `````js filename=intro
 const a = inline.value;
-const b = encodeURIComponent( a );
+const b = $Global_encodeURIComponent( a );
 $( b );
 `````
 
@@ -49,7 +49,7 @@ $( b );
 
 `````js filename=intro
 const a = inline.value;
-const b = encodeURIComponent(a);
+const b = $Global_encodeURIComponent(a);
 const c = $coerce(b, `plustr`);
 $(c);
 `````

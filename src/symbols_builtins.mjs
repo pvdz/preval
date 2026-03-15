@@ -684,8 +684,8 @@ export const BUILTIN_GLOBAL_FUNCS_TO_SYMBOL = new Map([
   ['decodeURIComponent', symbo('Global', 'decodeURIComponent')],
   ['encodeURIComponent', symbo('Global', 'encodeURIComponent')],
 
-  ['parseInt', symbo('Global', 'parseInt')], // TODO: wait this isn't true... they're not 100% equal
-  ['parseFloat', symbo('Global', 'parseFloat')], // TODO: wait this isn't true... they're not 100% equal
+  ['parseInt', symbo('Global', 'parseInt')],
+  ['parseFloat', symbo('Global', 'parseFloat')],
   ['isNaN', symbo('Global', 'isNaN')], // Note: these are NOT equal to Number; the Number variant does NOT coerce the arg.
   ['isFinite', symbo('Global', 'isFinite')], // Note: these are NOT equal to Number; the Number variant does NOT coerce the arg.
 

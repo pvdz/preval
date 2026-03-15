@@ -1,8 +1,8 @@
 # Preval test case
 
-# call.md
+# call_this_itself.md
 
-> Expandos > Functions > Call
+> Expandos > Functions > Call this itself
 >
 > Basic expando stuff
 
@@ -10,7 +10,7 @@
 
 `````js filename=intro
 function f() {
-  $(1);
+  $(1, this);
 }
 f.foo = function(){ $('pass'); };
 $(f.foo());
@@ -49,8 +49,9 @@ $( undefined );
 
 `````js filename=intro
 let f = function () {
+  const tmpPrevalAliasThis = this;
   debugger;
-  $(1);
+  $(1, tmpPrevalAliasThis);
   return undefined;
 };
 const tmpAssignMemLhsObj = f;

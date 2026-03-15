@@ -28,7 +28,12 @@ while ($LOOP_NO_UNROLLS_LEFT) {
   if (tmpIfTest) {
     break;
   } else {
-    tmpForInNext.value;
+    const tmpAssignMemLhsObj$1 /*:()=>undefined*/ = function $pcompiled() {
+      debugger;
+      return undefined;
+    };
+    const tmpAssignMemRhs /*:unknown*/ = tmpForInNext.value;
+    tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
   }
 }
 const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
@@ -46,7 +51,8 @@ while (true) {
   if (tmpForInNext.done) {
     break;
   } else {
-    tmpForInNext.value;
+    const tmpAssignMemLhsObj$1 = function $pcompiled() {};
+    tmpAssignMemLhsObj$1.x = tmpForInNext.value;
   }
 }
 $({ a: 999, b: 1000 });
@@ -67,14 +73,19 @@ while ($LOOP_NO_UNROLLS_LEFT) {
     break;
   }
   else {
-    d.value;
+    const f = function $pcompiled() {
+      debugger;
+      return undefined;
+    };
+    const g = d.value;
+    f.x = g;
   }
 }
-const f = {
+const h = {
   a: 999,
   b: 1000,
 };
-$( f );
+$( h );
 `````
 
 

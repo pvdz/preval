@@ -20,6 +20,11 @@ $(a);
 
 
 `````js filename=intro
+const tmpCompObj /*:()=>undefined*/ = function $pcompiled() {
+  debugger;
+  return undefined;
+};
+tmpCompObj.a;
 const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);
 `````
@@ -29,6 +34,7 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
+(function $pcompiled() {}.a);
 $({ a: 999, b: 1000 });
 `````
 
@@ -37,11 +43,16 @@ $({ a: 999, b: 1000 });
 With rename=true
 
 `````js filename=intro
-const a = {
+const a = function $pcompiled() {
+  debugger;
+  return undefined;
+};
+a.a;
+const b = {
   a: 999,
   b: 1000,
 };
-$( a );
+$( b );
 `````
 
 

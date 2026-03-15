@@ -27,8 +27,13 @@ g.prop = apparently_this_is_relevant; // Probably to keep the func around at lea
 
 
 `````js filename=intro
+const g /*:()=>unknown*/ = function () {
+  debugger;
+  $();
+  return undefined;
+};
 $();
-apparently_this_is_relevant;
+g.prop = apparently_this_is_relevant;
 `````
 
 
@@ -36,8 +41,11 @@ apparently_this_is_relevant;
 (This ought to be the final result)
 
 `````js filename=intro
+const g = function () {
+  $();
+};
 $();
-apparently_this_is_relevant;
+g.prop = apparently_this_is_relevant;
 `````
 
 
@@ -45,8 +53,13 @@ apparently_this_is_relevant;
 With rename=true
 
 `````js filename=intro
+const a = function() {
+  debugger;
+  $();
+  return undefined;
+};
 $();
-apparently_this_is_relevant;
+a.prop = apparently_this_is_relevant;
 `````
 
 

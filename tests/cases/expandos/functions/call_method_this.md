@@ -1,8 +1,8 @@
 # Preval test case
 
-# call.md
+# call_method_this.md
 
-> Expandos > Functions > Call
+> Expandos > Functions > Call method this
 >
 > Basic expando stuff
 
@@ -12,7 +12,7 @@
 function f() {
   $(1);
 }
-f.foo = function(){ $('pass'); };
+f.foo = function(){ $('pass', this); };
 $(f.foo());
 `````
 
@@ -21,8 +21,21 @@ $(f.foo());
 
 
 `````js filename=intro
-$(`pass`);
-$(undefined);
+const f /*:()=>undefined*/ = function () {
+  debugger;
+  $(1);
+  return undefined;
+};
+const tmpAssignMemRhs /*:()=>undefined*/ = function (/*uses this*/) {
+  const tmpPrevalAliasThis /*:unknown*/ = this;
+  debugger;
+  $(`pass`, tmpPrevalAliasThis);
+  return undefined;
+};
+f.foo = tmpAssignMemRhs;
+const tmpMCF /*:unknown*/ = f.foo;
+const tmpCalleeParam /*:unknown*/ = $dotCall(tmpMCF, f, `foo`);
+$(tmpCalleeParam);
 `````
 
 
@@ -30,8 +43,13 @@ $(undefined);
 (This ought to be the final result)
 
 `````js filename=intro
-$(`pass`);
-$(undefined);
+const f = function () {
+  $(1);
+};
+f.foo = function () {
+  $(`pass`, this);
+};
+$(f.foo());
 `````
 
 
@@ -39,8 +57,21 @@ $(undefined);
 With rename=true
 
 `````js filename=intro
-$( "pass" );
-$( undefined );
+const a = function() {
+  debugger;
+  $( 1 );
+  return undefined;
+};
+const b = function() {
+  const c = this;
+  debugger;
+  $( "pass", c );
+  return undefined;
+};
+a.foo = b;
+const d = a.foo;
+const e = $dotCall( d, a, "foo" );
+$( e );
 `````
 
 
@@ -55,8 +86,9 @@ let f = function () {
 };
 const tmpAssignMemLhsObj = f;
 const tmpAssignMemRhs = function () {
+  const tmpPrevalAliasThis = this;
   debugger;
-  $(`pass`);
+  $(`pass`, tmpPrevalAliasThis);
   return undefined;
 };
 tmpAssignMemLhsObj.foo = tmpAssignMemRhs;
@@ -82,7 +114,7 @@ None
 
 
 Should call `$` with:
- - 1: 'pass'
+ - 1: 'pass', '<function>'
  - 2: undefined
  - eval returned: undefined
 

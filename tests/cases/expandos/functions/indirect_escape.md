@@ -34,23 +34,16 @@ $(g(4)(), 'outer');
 
 `````js filename=intro
 const g /*:(number)=>function*/ = function ($$0) {
-  const a /*:number*/ = $$0;
+  const a$1 /*:number*/ = $$0;
   debugger;
-  const f /*:()=>number*/ = function () {
-    debugger;
-    $(a, `inner`);
-    return a;
-  };
   if ($) {
-    f.foo = a;
-    const tmpCalleeParam /*:unknown*/ = f.foo;
-    $(tmpCalleeParam, `init`);
+    $(a$1, `init`);
   } else {
   }
   const tmpReturnArg /*:()=>number*/ = function () {
     debugger;
-    $(a, `inner`);
-    return a;
+    $(a$1, `inner`);
+    return a$1;
   };
   return tmpReturnArg;
 };
@@ -73,18 +66,13 @@ $(tmpCalleeParam$7, `outer`);
 (This ought to be the final result)
 
 `````js filename=intro
-const g = function (a) {
-  const f = function () {
-    $(a, `inner`);
-    return a;
-  };
+const g = function (a$1) {
   if ($) {
-    f.foo = a;
-    $(f.foo, `init`);
+    $(a$1, `init`);
   }
   const tmpReturnArg = function () {
-    $(a, `inner`);
-    return a;
+    $(a$1, `inner`);
+    return a$1;
   };
   return tmpReturnArg;
 };
@@ -106,35 +94,28 @@ With rename=true
 const a = function($$0 ) {
   const b = $$0;
   debugger;
+  if ($) {
+    $( b, "init" );
+  }
   const c = function() {
     debugger;
     $( b, "inner" );
     return b;
   };
-  if ($) {
-    c.foo = b;
-    const d = c.foo;
-    $( d, "init" );
-  }
-  const e = function() {
-    debugger;
-    $( b, "inner" );
-    return b;
-  };
-  return e;
+  return c;
 };
-const f = a( 1 );
+const d = a( 1 );
+const e = d();
+$( e, "outer" );
+const f = a( 2 );
 const g = f();
 $( g, "outer" );
-const h = a( 2 );
+const h = a( 3 );
 const i = h();
 $( i, "outer" );
-const j = a( 3 );
+const j = a( 4 );
 const k = j();
 $( k, "outer" );
-const l = a( 4 );
-const m = l();
-$( m, "outer" );
 `````
 
 

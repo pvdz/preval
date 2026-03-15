@@ -66,9 +66,6 @@ while ($LOOP_NO_UNROLLS_LEFT) {
 
 
 `````js filename=intro
-let tmpExpando /*:primitive*/ = undefined;
-let tmpExpando$1 /*:unknown*/ = undefined;
-let tmpExpando$3 /*:unknown*/ = undefined;
 const method /*:(unknown)=>string*/ = function ($$0) {
   const $dlr_$$0 /*:unknown*/ = $$0;
   debugger;
@@ -77,36 +74,39 @@ const method /*:(unknown)=>string*/ = function ($$0) {
   $(tmpCalleeParam);
   return ``;
 };
+let main_target_DjBalz /*:primitive*/ = undefined;
+let main_target_WQNJqp /*:unknown*/ = undefined;
+let main_target_TjeLtB /*:unknown*/ = undefined;
 const main_target /*:(number, boolean)=>unknown*/ = function ($$0, $$1) {
   const tmpOutlinedParam$1 /*:number*/ = $$0;
   const needsPatching /*:boolean*/ = $$1;
   debugger;
   if (needsPatching) {
     $(`patching`);
-    tmpExpando$1 = method;
-    tmpExpando$3 = {};
-    tmpExpando = true;
+    main_target_WQNJqp = method;
+    main_target_TjeLtB = {};
+    main_target_DjBalz = true;
   } else {
   }
-  const the_cache /*:unknown*/ = tmpExpando$3;
+  const the_cache /*:unknown*/ = main_target_TjeLtB;
   const cache_key /*:string*/ /*truthy*/ = `${tmpOutlinedParam$1}CMv0D`;
   const found /*:unknown*/ = the_cache[cache_key];
   if (found) {
     return found;
   } else {
     $(`uncached`);
-    const the_method /*:unknown*/ = tmpExpando$1;
+    const the_method /*:unknown*/ = main_target_WQNJqp;
     const tmpCalleeParam$1 /*:string*/ /*truthy*/ = typeof the_method;
     const the_result /*:unknown*/ = $(`typeof`, tmpCalleeParam$1);
-    tmpExpando$3[cache_key] = the_result;
+    main_target_TjeLtB[cache_key] = the_result;
     return the_result;
   }
 };
 while ($LOOP_NO_UNROLLS_LEFT) {
-  const tmpFrfrOutline /*:boolean*/ = tmpExpando === undefined;
+  const tmpFrfrOutline /*:boolean*/ = main_target_DjBalz === undefined;
   const a /*:unknown*/ = main_target(24, tmpFrfrOutline);
   $(`a:`, a);
-  const tmpFrfrOutline$1 /*:boolean*/ = tmpExpando === undefined;
+  const tmpFrfrOutline$1 /*:boolean*/ = main_target_DjBalz === undefined;
   const b /*:unknown*/ = main_target(40, tmpFrfrOutline$1);
   $(`b:`, b);
 }
@@ -117,37 +117,37 @@ while ($LOOP_NO_UNROLLS_LEFT) {
 (This ought to be the final result)
 
 `````js filename=intro
-let tmpExpando = undefined;
-let tmpExpando$1 = undefined;
-let tmpExpando$3 = undefined;
 const method = function ($dlr_$$0) {
   const tmpMCF = $dlr_$$0.charAt;
   $(typeof tmpMCF);
   return ``;
 };
+let main_target_DjBalz = undefined;
+let main_target_WQNJqp = undefined;
+let main_target_TjeLtB = undefined;
 const main_target = function (tmpOutlinedParam$1, needsPatching) {
   if (needsPatching) {
     $(`patching`);
-    tmpExpando$1 = method;
-    tmpExpando$3 = {};
-    tmpExpando = true;
+    main_target_WQNJqp = method;
+    main_target_TjeLtB = {};
+    main_target_DjBalz = true;
   }
-  const the_cache = tmpExpando$3;
+  const the_cache = main_target_TjeLtB;
   const cache_key = `${tmpOutlinedParam$1}CMv0D`;
   const found = the_cache[cache_key];
   if (found) {
     return found;
   } else {
     $(`uncached`);
-    const the_method = tmpExpando$1;
+    const the_method = main_target_WQNJqp;
     const the_result = $(`typeof`, typeof the_method);
-    tmpExpando$3[cache_key] = the_result;
+    main_target_TjeLtB[cache_key] = the_result;
     return the_result;
   }
 };
 while (true) {
-  $(`a:`, main_target(24, tmpExpando === undefined));
-  $(`b:`, main_target(40, tmpExpando === undefined));
+  $(`a:`, main_target(24, main_target_DjBalz === undefined));
+  $(`b:`, main_target(40, main_target_DjBalz === undefined));
 }
 `````
 
@@ -156,28 +156,28 @@ while (true) {
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-let b = undefined;
-let c = undefined;
-const d = function($$0 ) {
-  const e = $$0;
+const a = function($$0 ) {
+  const b = $$0;
   debugger;
-  const f = e.charAt;
-  const g = typeof f;
-  $( g );
+  const c = b.charAt;
+  const d = typeof c;
+  $( d );
   return "";
 };
+let e = undefined;
+let f = undefined;
+let g = undefined;
 const h = function($$0,$$1 ) {
   const i = $$0;
   const j = $$1;
   debugger;
   if (j) {
     $( "patching" );
-    b = d;
-    c = {};
-    a = true;
+    f = a;
+    g = {};
+    e = true;
   }
-  const k = c;
+  const k = g;
   const l = `${i}CMv0D`;
   const m = k[ l ];
   if (m) {
@@ -185,18 +185,18 @@ const h = function($$0,$$1 ) {
   }
   else {
     $( "uncached" );
-    const n = b;
+    const n = f;
     const o = typeof n;
     const p = $( "typeof", o );
-    c[l] = p;
+    g[l] = p;
     return p;
   }
 };
 while ($LOOP_NO_UNROLLS_LEFT) {
-  const q = a === undefined;
+  const q = e === undefined;
   const r = h( 24, q );
   $( "a:", r );
-  const s = a === undefined;
+  const s = e === undefined;
   const t = h( 40, s );
   $( "b:", t );
 }

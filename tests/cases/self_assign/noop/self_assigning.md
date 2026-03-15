@@ -55,18 +55,19 @@ $(a, b);
 `````js filename=intro
 const arr /*:array*/ /*truthy*/ = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000];
 let arg1 /*:unknown*/ = 3;
+let func_IS_EXPANDO_SET /*:primitive*/ = undefined;
+let func_THIS_IS_AN_EXPANDO /*:unknown*/ = undefined;
 const func /*:(unknown, unused)=>unknown*/ = function ($$0, $$1 /*uses arguments*/) {
   const tmpPrevalAliasArgumentsAny /*:arguments*/ /*truthy*/ = arguments;
   const newArg1 /*:unknown*/ = $$0;
   debugger;
   const index$1 /*:number*/ = newArg1 - 1;
   const arrval /*:primitive*/ = arr[index$1];
-  const tmpBinLhs /*:unknown*/ = func.IS_EXPANDO_SET;
-  const tmpIfTest /*:boolean*/ = tmpBinLhs === undefined;
+  const tmpIfTest /*:boolean*/ = func_IS_EXPANDO_SET === undefined;
   if (tmpIfTest) {
-    func.THIS_IS_AN_EXPANDO = $spy;
+    func_THIS_IS_AN_EXPANDO = $spy;
     arg1 = tmpPrevalAliasArgumentsAny;
-    func.IS_EXPANDO_SET = true;
+    func_IS_EXPANDO_SET = true;
   } else {
   }
   const newIndex /*:number*/ = index$1 + 100;
@@ -74,15 +75,14 @@ const func /*:(unknown, unused)=>unknown*/ = function ($$0, $$1 /*uses arguments
   if (arguments_x) {
     return arguments_x;
   } else {
-    const tmpMCF /*:unknown*/ = func.THIS_IS_AN_EXPANDO;
-    const expando_result /*:unknown*/ = $dotCall(tmpMCF, func, `THIS_IS_AN_EXPANDO`, arrval);
+    const expando_result /*:unknown*/ = $dotCall(func_THIS_IS_AN_EXPANDO, func, `THIS_IS_AN_EXPANDO`, arrval);
     arg1[newIndex] = expando_result;
     return expando_result;
   }
 };
-const a /*:unknown*/ = func(3, 4);
+const tmpClusterSSA_a /*:unknown*/ = func(3, 4);
 const b /*:unknown*/ = func(1, 2);
-$(a, b);
+$(tmpClusterSSA_a, b);
 `````
 
 
@@ -92,21 +92,23 @@ $(a, b);
 `````js filename=intro
 const arr = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000];
 let arg1 = 3;
+let func_IS_EXPANDO_SET = undefined;
+let func_THIS_IS_AN_EXPANDO = undefined;
 const func = function (newArg1, $$1) {
   const tmpPrevalAliasArgumentsAny = arguments;
   const index$1 = newArg1 - 1;
   const arrval = arr[index$1];
-  if (func.IS_EXPANDO_SET === undefined) {
-    func.THIS_IS_AN_EXPANDO = $spy;
+  if (func_IS_EXPANDO_SET === undefined) {
+    func_THIS_IS_AN_EXPANDO = $spy;
     arg1 = tmpPrevalAliasArgumentsAny;
-    func.IS_EXPANDO_SET = true;
+    func_IS_EXPANDO_SET = true;
   }
   const newIndex = index$1 + 100;
   const arguments_x = arg1[newIndex];
   if (arguments_x) {
     return arguments_x;
   } else {
-    const expando_result = func.THIS_IS_AN_EXPANDO(arrval);
+    const expando_result = $dotCall(func_THIS_IS_AN_EXPANDO, func, `THIS_IS_AN_EXPANDO`, arrval);
     arg1[newIndex] = expando_result;
     return expando_result;
   }
@@ -121,33 +123,33 @@ With rename=true
 `````js filename=intro
 const a = [ 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000 ];
 let b = 3;
-const c = function($$0,$$1 ) {
-  const d = e;
-  const f = $$0;
+let c = undefined;
+let d = undefined;
+const e = function($$0,$$1 ) {
+  const f = g;
+  const h = $$0;
   debugger;
-  const g = f - 1;
-  const h = a[ g ];
-  const i = c.IS_EXPANDO_SET;
-  const j = i === undefined;
-  if (j) {
-    c.THIS_IS_AN_EXPANDO = $spy;
-    b = d;
-    c.IS_EXPANDO_SET = true;
+  const i = h - 1;
+  const j = a[ i ];
+  const k = c === undefined;
+  if (k) {
+    d = $spy;
+    b = f;
+    c = true;
   }
-  const k = g + 100;
-  const l = b[ k ];
-  if (l) {
-    return l;
+  const l = i + 100;
+  const m = b[ l ];
+  if (m) {
+    return m;
   }
   else {
-    const m = c.THIS_IS_AN_EXPANDO;
-    const n = $dotCall( m, c, "THIS_IS_AN_EXPANDO", h );
-    b[k] = n;
+    const n = $dotCall( d, e, "THIS_IS_AN_EXPANDO", j );
+    b[l] = n;
     return n;
   }
 };
-const o = c( 3, 4 );
-const p = c( 1, 2 );
+const o = e( 3, 4 );
+const p = e( 1, 2 );
 $( o, p );
 `````
 

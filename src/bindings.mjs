@@ -2861,10 +2861,9 @@ export function verifyWriteValueNotThissable(write, fdata) {
   // - the assigned value is a function expression and it does not access `this`
   // - the assigned value is a primitive of any kind (breaks dotcall the same as regular call)
   // - the assigned value is a built-in function
-  vlog('Checking if dotcall for this value can be rewritten to regular call');
+  vlog('verifyWriteValueNotThissable: Checking if rhs of this write is a primitive or a function that does not use `this`');
   const writeRhs = write.kind === 'var' ? write.parentNode.init : write.parentNode.right;
 
-  vlog(writeRhs);
   let funcNode;
   // Dotcall on a primitive fails just as hard as a regular call so we dont need to keep dotcall for that reason.
   if (writeRhs.type === 'FunctionExpression') {
@@ -2891,7 +2890,7 @@ export function verifyWriteValueNotThissable(write, fdata) {
       return false;
     }
   } else {
-    vlog('- bail: rhs is neither an ident nor a function', [writeRhs], AST.isPrimitive(writeRhs));
+    vlog('- bail: rhs is neither an ident nor a function', writeRhs.type, AST.isPrimitive(writeRhs));
     return false;
   }
 

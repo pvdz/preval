@@ -68,7 +68,6 @@ while ($LOOP_NO_UNROLLS_LEFT) {
 
 
 `````js filename=intro
-const data /*:array*/ /*truthy*/ = [`a`, `b`, `c`, `d`, `e`];
 const method /*:(unknown)=>string*/ = function ($$0) {
   const $dlr_$$0 /*:unknown*/ = $$0;
   debugger;
@@ -77,37 +76,35 @@ const method /*:(unknown)=>string*/ = function ($$0) {
   $(tmpCalleeParam);
   return ``;
 };
-const main_target /*:(unknown)=>unknown*/ = function ($$0) {
-  const arg /*:unknown*/ = $$0;
+let main_target_DjBalz /*:primitive*/ = undefined;
+let main_target_abcxyz /*:unknown*/ = undefined;
+let main_target_TjeLtB /*:unknown*/ = undefined;
+const main_target /*:(number, string)=>unknown*/ = function ($$0, $$1) {
+  const tmpOutlinedParam /*:number*/ = $$0;
+  const val /*:string*/ = $$1;
   debugger;
-  const i$1 /*:number*/ = arg - 180;
-  const val /*:primitive*/ = data[i$1];
-  const patched /*:unknown*/ = main_target.DjBalz;
-  const isPatched /*:boolean*/ = patched === undefined;
+  const isPatched /*:boolean*/ = main_target_DjBalz === undefined;
   if (isPatched) {
-    main_target.abcxyz = method;
-    const cache /*:object*/ /*truthy*/ = {};
-    main_target.TjeLtB = cache;
-    main_target.DjBalz = true;
+    main_target_abcxyz = method;
+    main_target_TjeLtB = {};
+    main_target_DjBalz = true;
   } else {
   }
-  const the_cache /*:unknown*/ = main_target.TjeLtB;
-  const cache_key /*:string*/ /*truthy*/ = `${i$1}abc`;
+  const the_cache /*:unknown*/ = main_target_TjeLtB;
+  const cache_key /*:string*/ /*truthy*/ = `${tmpOutlinedParam}abc`;
   const found /*:unknown*/ = the_cache[cache_key];
   if (found) {
     return found;
   } else {
-    const the_method /*:unknown*/ = main_target.abcxyz;
-    const the_result /*:unknown*/ = $dotCall(the_method, main_target, `abcxyz`, val);
-    const the_cache$1 /*:unknown*/ = main_target.TjeLtB;
-    the_cache$1[cache_key] = the_result;
+    const the_result /*:unknown*/ = main_target_abcxyz(val);
+    main_target_TjeLtB[cache_key] = the_result;
     return the_result;
   }
 };
 while ($LOOP_NO_UNROLLS_LEFT) {
-  const a /*:unknown*/ = main_target(181);
+  const a /*:unknown*/ = main_target(1, `b`);
   $(`a:`, a);
-  const b /*:unknown*/ = main_target(183);
+  const b /*:unknown*/ = main_target(3, `d`);
   $(`b:`, b);
 }
 `````
@@ -117,35 +114,34 @@ while ($LOOP_NO_UNROLLS_LEFT) {
 (This ought to be the final result)
 
 `````js filename=intro
-const data = [`a`, `b`, `c`, `d`, `e`];
 const method = function ($dlr_$$0) {
   const tmpMCF = $dlr_$$0.charAt;
   $(typeof tmpMCF);
   return ``;
 };
-const main_target = function (arg) {
-  const i$1 = arg - 180;
-  const val = data[i$1];
-  if (main_target.DjBalz === undefined) {
-    main_target.abcxyz = method;
-    main_target.TjeLtB = {};
-    main_target.DjBalz = true;
+let main_target_DjBalz = undefined;
+let main_target_abcxyz = undefined;
+let main_target_TjeLtB = undefined;
+const main_target = function (tmpOutlinedParam, val) {
+  if (main_target_DjBalz === undefined) {
+    main_target_abcxyz = method;
+    main_target_TjeLtB = {};
+    main_target_DjBalz = true;
   }
-  const the_cache = main_target.TjeLtB;
-  const cache_key = `${i$1}abc`;
+  const the_cache = main_target_TjeLtB;
+  const cache_key = `${tmpOutlinedParam}abc`;
   const found = the_cache[cache_key];
   if (found) {
     return found;
   } else {
-    const the_result = main_target.abcxyz(val);
-    const the_cache$1 = main_target.TjeLtB;
-    the_cache$1[cache_key] = the_result;
+    const the_result = main_target_abcxyz(val);
+    main_target_TjeLtB[cache_key] = the_result;
     return the_result;
   }
 };
 while (true) {
-  $(`a:`, main_target(181));
-  $(`b:`, main_target(183));
+  $(`a:`, main_target(1, `b`));
+  $(`b:`, main_target(3, `d`));
 }
 `````
 
@@ -154,47 +150,44 @@ while (true) {
 With rename=true
 
 `````js filename=intro
-const a = [ "a", "b", "c", "d", "e" ];
-const b = function($$0 ) {
-  const c = $$0;
+const a = function($$0 ) {
+  const b = $$0;
   debugger;
-  const d = c.charAt;
-  const e = typeof d;
-  $( e );
+  const c = b.charAt;
+  const d = typeof c;
+  $( d );
   return "";
 };
-const f = function($$0 ) {
-  const g = $$0;
+let e = undefined;
+let f = undefined;
+let g = undefined;
+const h = function($$0,$$1 ) {
+  const i = $$0;
+  const j = $$1;
   debugger;
-  const h = g - 180;
-  const i = a[ h ];
-  const j = f.DjBalz;
-  const k = j === undefined;
+  const k = e === undefined;
   if (k) {
-    f.abcxyz = b;
-    const l = {};
-    f.TjeLtB = l;
-    f.DjBalz = true;
+    f = a;
+    g = {};
+    e = true;
   }
-  const m = f.TjeLtB;
-  const n = `${h}abc`;
-  const o = m[ n ];
-  if (o) {
-    return o;
+  const l = g;
+  const m = `${i}abc`;
+  const n = l[ m ];
+  if (n) {
+    return n;
   }
   else {
-    const p = f.abcxyz;
-    const q = $dotCall( p, f, "abcxyz", i );
-    const r = f.TjeLtB;
-    r[n] = q;
-    return q;
+    const o = f( j );
+    g[m] = o;
+    return o;
   }
 };
 while ($LOOP_NO_UNROLLS_LEFT) {
-  const s = f( 181 );
-  $( "a:", s );
-  const t = f( 183 );
-  $( "b:", t );
+  const p = h( 1, "b" );
+  $( "a:", p );
+  const q = h( 3, "d" );
+  $( "b:", q );
 }
 `````
 
@@ -256,7 +249,7 @@ while ($LOOP_NO_UNROLLS_LEFT) {
 ## Todos triggered
 
 
-None
+- (todo) do we want to support ArrayExpression as expression statement in free loops?
 
 
 ## Globals

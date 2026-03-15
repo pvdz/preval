@@ -31,17 +31,10 @@ g(4);
 
 `````js filename=intro
 const g /*:(number)=>undefined*/ = function ($$0) {
-  const a /*:number*/ = $$0;
+  const a$1 /*:number*/ = $$0;
   debugger;
-  const f /*:()=>undefined*/ = function () {
-    debugger;
-    $(a);
-    return undefined;
-  };
   if ($) {
-    f.foo = a;
-    const tmpCalleeParam /*:unknown*/ = f.foo;
-    $(tmpCalleeParam);
+    $(a$1);
     return undefined;
   } else {
     return undefined;
@@ -58,13 +51,9 @@ g(4);
 (This ought to be the final result)
 
 `````js filename=intro
-const g = function (a) {
-  const f = function () {
-    $(a);
-  };
+const g = function (a$1) {
   if ($) {
-    f.foo = a;
-    $(f.foo);
+    $(a$1);
   }
 };
 g(1);
@@ -81,15 +70,8 @@ With rename=true
 const a = function($$0 ) {
   const b = $$0;
   debugger;
-  const c = function() {
-    debugger;
-    $( b );
-    return undefined;
-  };
   if ($) {
-    c.foo = b;
-    const d = c.foo;
-    $( d );
+    $( b );
     return undefined;
   }
   else {

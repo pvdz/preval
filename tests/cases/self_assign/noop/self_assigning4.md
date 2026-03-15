@@ -63,6 +63,8 @@ $(a, b);
 `````js filename=intro
 const arr /*:array*/ /*truthy*/ = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000];
 let arg1 /*:unknown*/ = 3;
+let func_IS_EXPANDO_SET /*:primitive*/ = undefined;
+let func_THIS_IS_AN_EXPANDO /*:unknown*/ = undefined;
 const func /*:(unknown, unknown)=>unknown*/ = function ($$0, $$1 /*uses arguments*/) {
   const tmpPrevalAliasArgumentsAny /*:arguments*/ /*truthy*/ = arguments;
   const newArg1 /*:unknown*/ = $$0;
@@ -72,13 +74,12 @@ const func /*:(unknown, unknown)=>unknown*/ = function ($$0, $$1 /*uses argument
   const index$1 /*:number*/ = newArg1 - 1;
   const arrval /*:primitive*/ = arr[index$1];
   $(`b`, index$1);
-  const tmpBinLhs /*:unknown*/ = func.IS_EXPANDO_SET;
-  const tmpIfTest /*:boolean*/ = tmpBinLhs === undefined;
+  const tmpIfTest /*:boolean*/ = func_IS_EXPANDO_SET === undefined;
   if (tmpIfTest) {
     $(`c`);
-    func.THIS_IS_AN_EXPANDO = $spy;
+    func_THIS_IS_AN_EXPANDO = $spy;
     arg1 = tmpPrevalAliasArgumentsAny;
-    func.IS_EXPANDO_SET = true;
+    func_IS_EXPANDO_SET = true;
   } else {
   }
   const newIndex /*:number*/ = index$1 + 100;
@@ -89,8 +90,7 @@ const func /*:(unknown, unknown)=>unknown*/ = function ($$0, $$1 /*uses argument
     return arguments_x;
   } else {
     $(`f`);
-    const tmpMCF /*:unknown*/ = func.THIS_IS_AN_EXPANDO;
-    const expando_result /*:unknown*/ = $dotCall(tmpMCF, func, `THIS_IS_AN_EXPANDO`, arrval);
+    const expando_result /*:unknown*/ = $dotCall(func_THIS_IS_AN_EXPANDO, func, `THIS_IS_AN_EXPANDO`, arrval);
     const tmpCalleeParam /*:string*/ /*truthy*/ = typeof arg1;
     $(`arg is`, tmpCalleeParam);
     arg1[newIndex] = expando_result;
@@ -98,9 +98,9 @@ const func /*:(unknown, unknown)=>unknown*/ = function ($$0, $$1 /*uses argument
     return expando_result;
   }
 };
-const a /*:unknown*/ = func(3, 4);
+const tmpClusterSSA_a /*:unknown*/ = func(3, 4);
 const b /*:unknown*/ = func(1, 2);
-$(a, b);
+$(tmpClusterSSA_a, b);
 `````
 
 
@@ -110,17 +110,19 @@ $(a, b);
 `````js filename=intro
 const arr = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000];
 let arg1 = 3;
+let func_IS_EXPANDO_SET = undefined;
+let func_THIS_IS_AN_EXPANDO = undefined;
 const func = function (newArg1, unusedNewArg2) {
   const tmpPrevalAliasArgumentsAny = arguments;
   $(`a`, newArg1, unusedNewArg2);
   const index$1 = newArg1 - 1;
   const arrval = arr[index$1];
   $(`b`, index$1);
-  if (func.IS_EXPANDO_SET === undefined) {
+  if (func_IS_EXPANDO_SET === undefined) {
     $(`c`);
-    func.THIS_IS_AN_EXPANDO = $spy;
+    func_THIS_IS_AN_EXPANDO = $spy;
     arg1 = tmpPrevalAliasArgumentsAny;
-    func.IS_EXPANDO_SET = true;
+    func_IS_EXPANDO_SET = true;
   }
   const newIndex = index$1 + 100;
   $(`d`, newIndex);
@@ -130,7 +132,7 @@ const func = function (newArg1, unusedNewArg2) {
     return arguments_x;
   } else {
     $(`f`);
-    const expando_result = func.THIS_IS_AN_EXPANDO(arrval);
+    const expando_result = $dotCall(func_THIS_IS_AN_EXPANDO, func, `THIS_IS_AN_EXPANDO`, arrval);
     $(`arg is`, typeof arg1);
     arg1[newIndex] = expando_result;
     $(`returning`, expando_result);
@@ -147,43 +149,43 @@ With rename=true
 `````js filename=intro
 const a = [ 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000 ];
 let b = 3;
-const c = function($$0,$$1 ) {
-  const d = e;
-  const f = $$0;
-  const g = $$1;
+let c = undefined;
+let d = undefined;
+const e = function($$0,$$1 ) {
+  const f = g;
+  const h = $$0;
+  const i = $$1;
   debugger;
-  $( "a", f, g );
-  const h = f - 1;
-  const i = a[ h ];
-  $( "b", h );
-  const j = c.IS_EXPANDO_SET;
-  const k = j === undefined;
-  if (k) {
+  $( "a", h, i );
+  const j = h - 1;
+  const k = a[ j ];
+  $( "b", j );
+  const l = c === undefined;
+  if (l) {
     $( "c" );
-    c.THIS_IS_AN_EXPANDO = $spy;
-    b = d;
-    c.IS_EXPANDO_SET = true;
+    d = $spy;
+    b = f;
+    c = true;
   }
-  const l = h + 100;
-  $( "d", l );
-  const m = b[ l ];
-  if (m) {
+  const m = j + 100;
+  $( "d", m );
+  const n = b[ m ];
+  if (n) {
     $( "e" );
-    return m;
+    return n;
   }
   else {
     $( "f" );
-    const n = c.THIS_IS_AN_EXPANDO;
-    const o = $dotCall( n, c, "THIS_IS_AN_EXPANDO", i );
+    const o = $dotCall( d, e, "THIS_IS_AN_EXPANDO", k );
     const p = typeof b;
     $( "arg is", p );
-    b[l] = o;
+    b[m] = o;
     $( "returning", o );
     return o;
   }
 };
-const q = c( 3, 4 );
-const r = c( 1, 2 );
+const q = e( 3, 4 );
+const r = e( 1, 2 );
 $( q, r );
 `````
 

@@ -20,8 +20,6 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam /*:object*/ /*truthy*/ = { x: 1, y: 2, z: 3 };
-$coerce(tmpCalleeParam, `string`);
 const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);
 `````
@@ -31,7 +29,6 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-String({ x: 1, y: 2, z: 3 });
 $({ a: 999, b: 1000 });
 `````
 
@@ -41,16 +38,10 @@ With rename=true
 
 `````js filename=intro
 const a = {
-  x: 1,
-  y: 2,
-  z: 3,
-};
-$coerce( a, "string" );
-const b = {
   a: 999,
   b: 1000,
 };
-$( b );
+$( a );
 `````
 
 

@@ -19,10 +19,7 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam$1 /*:object*/ /*truthy*/ = { x: 1, y: 2, z: 3 };
-const tmpBinBothRhs /*:string*/ = $coerce(tmpCalleeParam$1, `string`);
-const tmpCalleeParam /*:string*/ /*truthy*/ = `before  ${tmpBinBothRhs}  after`;
-$(tmpCalleeParam);
+$(`before  [object Object]  after`);
 const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);
 `````
@@ -32,7 +29,7 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-$(`before  ${{ x: 1, y: 2, z: 3 }}  after`);
+$(`before  [object Object]  after`);
 $({ a: 999, b: 1000 });
 `````
 
@@ -41,19 +38,12 @@ $({ a: 999, b: 1000 });
 With rename=true
 
 `````js filename=intro
+$( "before  [object Object]  after" );
 const a = {
-  x: 1,
-  y: 2,
-  z: 3,
-};
-const b = $coerce( a, "string" );
-const c = `before  ${b}  after`;
-$( c );
-const d = {
   a: 999,
   b: 1000,
 };
-$( d );
+$( a );
 `````
 
 

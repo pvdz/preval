@@ -27,8 +27,6 @@ $(1);
 $(2);
 const tmpObjLitVal /*:unknown*/ = $(3);
 const tmpObjLitVal$1 /*:unknown*/ = $(4);
-const tmpNestedAssignObjPatternRhs /*:object*/ /*truthy*/ = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-$coerce(tmpNestedAssignObjPatternRhs, `string`);
 const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a, tmpObjLitVal, tmpObjLitVal$1);
 `````
@@ -42,7 +40,6 @@ $(1);
 $(2);
 const tmpObjLitVal = $(3);
 const tmpObjLitVal$1 = $(4);
-String({ x: tmpObjLitVal, y: tmpObjLitVal$1 });
 $({ a: 999, b: 1000 }, tmpObjLitVal, tmpObjLitVal$1);
 `````
 
@@ -56,15 +53,10 @@ $( 2 );
 const a = $( 3 );
 const b = $( 4 );
 const c = {
-  x: a,
-  y: b,
-};
-$coerce( c, "string" );
-const d = {
   a: 999,
   b: 1000,
 };
-$( d, a, b );
+$( c, a, b );
 `````
 
 

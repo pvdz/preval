@@ -340,6 +340,37 @@ function core(fdata) {
       }
     }
 
+    if (at === 'object') {
+      // If an object can be proven to be fresh and no funkiness happens, then we can safely convert this to string
+      // The object cannot escape though. We must prove it has no methods, or if they do that none of them use `this`
+      // and that in all usages the object does not escape (which will be somewhat tricky with $coerce)
+
+      if (argMeta.rwOrder.length === 2 && argMeta.rwOrder[0].kind === 'var' && argMeta.varDeclRef?.node.type === 'ObjectExpression') {
+        // So this is the declaration and the use here.
+        // Does it have any dangerous properties? toString and valueOf would be the two here
+        const decl = argMeta.varDeclRef?.node;
+        ASSERT(decl.type === 'ObjectExpression', 'init should be obj', decl.type);
+        // I believe the only tricky props are toString/valueOf (coercion) and __proto__ (since that may switch underlying prototype and trigger aforementioned props)
+        if (decl.properties.every(prop => !prop.computed && prop.key.type === 'Identifier' && !['toString', 'valueOf', '__proto__'].includes(prop.key.name))) {
+          rule('Coercing an empty object literal can be predicted safely');
+          example('const x = {}; const y = $coerce(x, "string");', 'const x = {}; const y = "[object Object]"');
+          before(read.blockBody[read.blockIndex]);
+
+          const newNode = AST.primitive('[object Object]');
+          if (read.grandIndex < 0) read.grandNode[read.grandProp] = newNode;
+          else read.grandNode[read.grandProp][read.grandIndex] = newNode;
+
+          after(read.blockBody[read.blockIndex]);
+          ++changes;
+          return;
+        } else {
+          todo('object concat actual properties');
+        }
+      } else {
+        todo('object concat with more than two references');
+      }
+    }
+
     // When:
     // - the arg is coerced to a string / plustr (template would do this)
     // - the arg is known to be a primitive already (must retain no side effects in templates)

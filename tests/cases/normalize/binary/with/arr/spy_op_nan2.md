@@ -331,6 +331,7 @@ $(arr2);
 
 
 - (todo) array reads var statement with init BinaryExpression
+- (todo) object concat with more than two references
 - (todo) support array reads statement type ExpressionStatement
 
 

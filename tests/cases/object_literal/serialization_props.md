@@ -1,16 +1,16 @@
 # Preval test case
 
-# serialization2.md
+# serialization_props.md
 
-> Object literal > Serialization2
+> Object literal > Serialization props
 >
 > tostring
 
 ## Input
 
 `````js filename=intro
-const a = {};
-const b = a + '';
+const a = {x: 1, y: "twee"};
+const b = $coerce(a, `plustr`);
 $(b);
 `````
 
@@ -43,7 +43,7 @@ $( "[object Object]" );
 (This is what phase1 received the first time)
 
 `````js filename=intro
-const a = {};
+const a = { x: 1, y: `twee` };
 const b = $coerce(a, `plustr`);
 $(b);
 `````

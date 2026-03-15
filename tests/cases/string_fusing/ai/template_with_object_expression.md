@@ -20,11 +20,8 @@ $(result);
 
 
 `````js filename=intro
-const tmpObjLitVal /*:unknown*/ = $(`value`);
-const obj /*:object*/ /*truthy*/ = { key: tmpObjLitVal };
-const tmpBinBothRhs /*:string*/ = $coerce(obj, `string`);
-const result /*:string*/ /*truthy*/ = `object: ${tmpBinBothRhs}end`;
-$(result);
+$(`value`);
+$(`object: [object Object]end`);
 `````
 
 
@@ -32,8 +29,8 @@ $(result);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpObjLitVal = $(`value`);
-$(`object: ${{ key: tmpObjLitVal }}end`);
+$(`value`);
+$(`object: [object Object]end`);
 `````
 
 
@@ -41,11 +38,8 @@ $(`object: ${{ key: tmpObjLitVal }}end`);
 With rename=true
 
 `````js filename=intro
-const a = $( "value" );
-const b = { key: a };
-const c = $coerce( b, "string" );
-const d = `object: ${c}end`;
-$( d );
+$( "value" );
+$( "object: [object Object]end" );
 `````
 
 

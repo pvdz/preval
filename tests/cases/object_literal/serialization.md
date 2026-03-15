@@ -19,9 +19,7 @@ $(b);
 
 
 `````js filename=intro
-const a /*:object*/ /*truthy*/ = {};
-const b /*:string*/ = $coerce(a, `plustr`);
-$(b);
+$(`[object Object]`);
 `````
 
 
@@ -29,7 +27,7 @@ $(b);
 (This ought to be the final result)
 
 `````js filename=intro
-$({} + ``);
+$(`[object Object]`);
 `````
 
 
@@ -37,9 +35,7 @@ $({} + ``);
 With rename=true
 
 `````js filename=intro
-const a = {};
-const b = $coerce( a, "plustr" );
-$( b );
+$( "[object Object]" );
 `````
 
 

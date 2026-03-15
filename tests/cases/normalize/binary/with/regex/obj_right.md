@@ -331,6 +331,7 @@ $(tmpCalleeParam$1);
 ## Todos triggered
 
 
+- (todo) object concat with more than two references
 - (todo) support array reads statement type ExpressionStatement
 
 

@@ -26,10 +26,7 @@ $(1);
 $(2);
 const tmpObjLitVal /*:unknown*/ = $(3);
 const tmpObjLitVal$1 /*:unknown*/ = $(4);
-const tmpNestedAssignObjPatternRhs /*:object*/ /*truthy*/ = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-const tmpStringConcatL /*:string*/ = $coerce(tmpNestedAssignObjPatternRhs, `string`);
-const tmpCalleeParam /*:string*/ /*truthy*/ = `before  ${tmpStringConcatL}  after`;
-$(tmpCalleeParam);
+$(`before  [object Object]  after`);
 const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a, tmpObjLitVal, tmpObjLitVal$1);
 `````
@@ -43,7 +40,7 @@ $(1);
 $(2);
 const tmpObjLitVal = $(3);
 const tmpObjLitVal$1 = $(4);
-$(`before  ${{ x: tmpObjLitVal, y: tmpObjLitVal$1 }}  after`);
+$(`before  [object Object]  after`);
 $({ a: 999, b: 1000 }, tmpObjLitVal, tmpObjLitVal$1);
 `````
 
@@ -56,18 +53,12 @@ $( 1 );
 $( 2 );
 const a = $( 3 );
 const b = $( 4 );
+$( "before  [object Object]  after" );
 const c = {
-  x: a,
-  y: b,
-};
-const d = $coerce( c, "string" );
-const e = `before  ${d}  after`;
-$( e );
-const f = {
   a: 999,
   b: 1000,
 };
-$( f, a, b );
+$( c, a, b );
 `````
 
 
@@ -100,7 +91,7 @@ $(a, x, y);
 ## Todos triggered
 
 
-None
+- (todo) object concat with more than two references
 
 
 ## Globals

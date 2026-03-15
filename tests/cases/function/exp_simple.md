@@ -66,26 +66,48 @@ while ($LOOP_NO_UNROLLS_LEFT) {
 
 
 `````js filename=intro
-const main_target /*:(number)=>unknown*/ = function ($$0) {
-  const tmpOutlinedParam$1 /*:number*/ = $$0;
+let tmpExpando /*:primitive*/ = undefined;
+let tmpExpando$1 /*:unknown*/ = undefined;
+let tmpExpando$3 /*:unknown*/ = undefined;
+const method /*:(unknown)=>string*/ = function ($$0) {
+  const $dlr_$$0 /*:unknown*/ = $$0;
   debugger;
-  $(`patching`);
-  const tmpClusterSSA_tmpssa3_tmpExpando$3 /*:object*/ /*truthy*/ = {};
+  const tmpMCF /*:unknown*/ = $dlr_$$0.charAt;
+  const tmpCalleeParam /*:string*/ /*truthy*/ = typeof tmpMCF;
+  $(tmpCalleeParam);
+  return ``;
+};
+const main_target /*:(number, boolean)=>unknown*/ = function ($$0, $$1) {
+  const tmpOutlinedParam$1 /*:number*/ = $$0;
+  const needsPatching /*:boolean*/ = $$1;
+  debugger;
+  if (needsPatching) {
+    $(`patching`);
+    tmpExpando$1 = method;
+    tmpExpando$3 = {};
+    tmpExpando = true;
+  } else {
+  }
+  const the_cache /*:unknown*/ = tmpExpando$3;
   const cache_key /*:string*/ /*truthy*/ = `${tmpOutlinedParam$1}CMv0D`;
-  const found /*:unknown*/ = tmpClusterSSA_tmpssa3_tmpExpando$3[cache_key];
+  const found /*:unknown*/ = the_cache[cache_key];
   if (found) {
     return found;
   } else {
     $(`uncached`);
-    const the_result /*:unknown*/ = $(`typeof`, `function`);
-    tmpClusterSSA_tmpssa3_tmpExpando$3[cache_key] = the_result;
+    const the_method /*:unknown*/ = tmpExpando$1;
+    const tmpCalleeParam$1 /*:string*/ /*truthy*/ = typeof the_method;
+    const the_result /*:unknown*/ = $(`typeof`, tmpCalleeParam$1);
+    tmpExpando$3[cache_key] = the_result;
     return the_result;
   }
 };
 while ($LOOP_NO_UNROLLS_LEFT) {
-  const a /*:unknown*/ = main_target(24);
+  const tmpFrfrOutline /*:boolean*/ = tmpExpando === undefined;
+  const a /*:unknown*/ = main_target(24, tmpFrfrOutline);
   $(`a:`, a);
-  const b /*:unknown*/ = main_target(40);
+  const tmpFrfrOutline$1 /*:boolean*/ = tmpExpando === undefined;
+  const b /*:unknown*/ = main_target(40, tmpFrfrOutline$1);
   $(`b:`, b);
 }
 `````
@@ -95,23 +117,37 @@ while ($LOOP_NO_UNROLLS_LEFT) {
 (This ought to be the final result)
 
 `````js filename=intro
-const main_target = function (tmpOutlinedParam$1) {
-  $(`patching`);
-  const tmpClusterSSA_tmpssa3_tmpExpando$3 = {};
+let tmpExpando = undefined;
+let tmpExpando$1 = undefined;
+let tmpExpando$3 = undefined;
+const method = function ($dlr_$$0) {
+  const tmpMCF = $dlr_$$0.charAt;
+  $(typeof tmpMCF);
+  return ``;
+};
+const main_target = function (tmpOutlinedParam$1, needsPatching) {
+  if (needsPatching) {
+    $(`patching`);
+    tmpExpando$1 = method;
+    tmpExpando$3 = {};
+    tmpExpando = true;
+  }
+  const the_cache = tmpExpando$3;
   const cache_key = `${tmpOutlinedParam$1}CMv0D`;
-  const found = tmpClusterSSA_tmpssa3_tmpExpando$3[cache_key];
+  const found = the_cache[cache_key];
   if (found) {
     return found;
   } else {
     $(`uncached`);
-    const the_result = $(`typeof`, `function`);
-    tmpClusterSSA_tmpssa3_tmpExpando$3[cache_key] = the_result;
+    const the_method = tmpExpando$1;
+    const the_result = $(`typeof`, typeof the_method);
+    tmpExpando$3[cache_key] = the_result;
     return the_result;
   }
 };
 while (true) {
-  $(`a:`, main_target(24));
-  $(`b:`, main_target(40));
+  $(`a:`, main_target(24, tmpExpando === undefined));
+  $(`b:`, main_target(40, tmpExpando === undefined));
 }
 `````
 
@@ -120,28 +156,49 @@ while (true) {
 With rename=true
 
 `````js filename=intro
-const a = function($$0 ) {
-  const b = $$0;
+let a = undefined;
+let b = undefined;
+let c = undefined;
+const d = function($$0 ) {
+  const e = $$0;
   debugger;
-  $( "patching" );
-  const c = {};
-  const d = `${b}CMv0D`;
-  const e = c[ d ];
-  if (e) {
-    return e;
+  const f = e.charAt;
+  const g = typeof f;
+  $( g );
+  return "";
+};
+const h = function($$0,$$1 ) {
+  const i = $$0;
+  const j = $$1;
+  debugger;
+  if (j) {
+    $( "patching" );
+    b = d;
+    c = {};
+    a = true;
+  }
+  const k = c;
+  const l = `${i}CMv0D`;
+  const m = k[ l ];
+  if (m) {
+    return m;
   }
   else {
     $( "uncached" );
-    const f = $( "typeof", "function" );
-    c[d] = f;
-    return f;
+    const n = b;
+    const o = typeof n;
+    const p = $( "typeof", o );
+    c[l] = p;
+    return p;
   }
 };
 while ($LOOP_NO_UNROLLS_LEFT) {
-  const g = a( 24 );
-  $( "a:", g );
-  const h = a( 40 );
-  $( "b:", h );
+  const q = a === undefined;
+  const r = h( 24, q );
+  $( "a:", r );
+  const s = a === undefined;
+  const t = h( 40, s );
+  $( "b:", t );
 }
 `````
 
@@ -251,60 +308,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Post settled calls: BAD!!
- -  1: 'patching'
- -  2: 'uncached'
- -  3: 'typeof', 'function'
- -  4: 'a:', 'typeof'
- - !5: 'patching'
- - !6: 'uncached'
- - !7: 'typeof', 'function'
- - !8: 'b:', 'typeof'
- - !9: 'patching'
- - !10: 'uncached'
- - !11: 'typeof', 'function'
- -  12: 'a:', 'typeof'
- - !13: 'patching'
- - !14: 'uncached'
- - !15: 'typeof', 'function'
- - !16: 'b:', 'typeof'
- - !17: 'patching'
- - !18: 'uncached'
- - !19: 'typeof', 'function'
- -  20: 'a:', 'typeof'
- - !21: 'patching'
- - !22: 'uncached'
- - !23: 'typeof', 'function'
- - !24: 'b:', 'typeof'
- - !25: 'patching'
- - !26: 'uncached'
- -  eval returned: ('<crash[ Loop aborted by Preval test runner (this simply curbs infinite loops in tests) ]>')
+Post settled calls: Same
 
-Denormalized calls: BAD!!
- -  1: 'patching'
- -  2: 'uncached'
- -  3: 'typeof', 'function'
- -  4: 'a:', 'typeof'
- - !5: 'patching'
- - !6: 'uncached'
- - !7: 'typeof', 'function'
- - !8: 'b:', 'typeof'
- - !9: 'patching'
- - !10: 'uncached'
- - !11: 'typeof', 'function'
- -  12: 'a:', 'typeof'
- - !13: 'patching'
- - !14: 'uncached'
- - !15: 'typeof', 'function'
- - !16: 'b:', 'typeof'
- - !17: 'patching'
- - !18: 'uncached'
- - !19: 'typeof', 'function'
- -  20: 'a:', 'typeof'
- - !21: 'patching'
- - !22: 'uncached'
- - !23: 'typeof', 'function'
- - !24: 'b:', 'typeof'
- - !25: 'patching'
- - !26: 'uncached'
- -  eval returned: ('<crash[ Loop aborted by Preval test runner (this simply curbs infinite loops in tests) ]>')
+Denormalized calls: Same

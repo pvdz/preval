@@ -85,7 +85,11 @@ $inlinedFunction: {
       if (tmpIfTest$15) {
         $(`four`);
       } else {
-        $(`def`);
+        const tmpIfTest$17 /*:boolean*/ = tmpSwitchCaseToStart <= 4;
+        if (tmpIfTest$17) {
+          $(`def`);
+        } else {
+        }
       }
     }
   }
@@ -132,7 +136,9 @@ $inlinedFunction: {
       if (tmpSwitchCaseToStart <= 3) {
         $(`four`);
       } else {
-        $(`def`);
+        if (tmpSwitchCaseToStart <= 4) {
+          $(`def`);
+        }
       }
     }
   }
@@ -194,7 +200,10 @@ $inlinedFunction: {
         $( "four" );
       }
       else {
-        $( "def" );
+        const l = b <= 4;
+        if (l) {
+          $( "def" );
+        }
       }
     }
   }

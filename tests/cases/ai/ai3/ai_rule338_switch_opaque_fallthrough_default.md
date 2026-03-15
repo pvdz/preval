@@ -67,8 +67,13 @@ if (tmpIfTest$7) {
     $(`actionC`);
     $(`done_switch`);
   } else {
-    $(`actionDefault`);
-    $(`done_switch`);
+    const tmpIfTest$11 /*:boolean*/ = tmpSwitchCaseToStart <= 3;
+    if (tmpIfTest$11) {
+      $(`actionDefault`);
+      $(`done_switch`);
+    } else {
+      $(`done_switch`);
+    }
   }
 }
 `````
@@ -103,8 +108,12 @@ if (tmpSwitchCaseToStart <= 1) {
     $(`actionC`);
     $(`done_switch`);
   } else {
-    $(`actionDefault`);
-    $(`done_switch`);
+    if (tmpSwitchCaseToStart <= 3) {
+      $(`actionDefault`);
+      $(`done_switch`);
+    } else {
+      $(`done_switch`);
+    }
   }
 }
 `````
@@ -151,8 +160,14 @@ else {
     $( "done_switch" );
   }
   else {
-    $( "actionDefault" );
-    $( "done_switch" );
+    const l = c <= 3;
+    if (l) {
+      $( "actionDefault" );
+      $( "done_switch" );
+    }
+    else {
+      $( "done_switch" );
+    }
   }
 }
 `````

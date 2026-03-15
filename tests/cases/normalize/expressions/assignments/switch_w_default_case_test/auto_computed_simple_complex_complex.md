@@ -43,9 +43,12 @@ if (tmpIfTest) {
 const tmpIfTest$5 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
 if (tmpIfTest$5) {
   $(`fail1`);
+} else {
+}
+const tmpIfTest$7 /*:boolean*/ = tmpSwitchCaseToStart <= 2;
+if (tmpIfTest$7) {
   $(`fail2`);
 } else {
-  $(`fail2`);
 }
 const tmpAssignComMemLhsProp /*:unknown*/ = $(`b`);
 const tmpAssignComputedRhs /*:unknown*/ = $(2);
@@ -71,8 +74,8 @@ if (a === tmpSwitchValue) {
 }
 if (tmpSwitchCaseToStart <= 1) {
   $(`fail1`);
-  $(`fail2`);
-} else {
+}
+if (tmpSwitchCaseToStart <= 2) {
   $(`fail2`);
 }
 const tmpAssignComMemLhsProp = $(`b`);
@@ -103,14 +106,14 @@ else {
 const g = b <= 1;
 if (g) {
   $( "fail1" );
+}
+const h = b <= 2;
+if (h) {
   $( "fail2" );
 }
-else {
-  $( "fail2" );
-}
-const h = $( "b" );
-const i = $( 2 );
-d[h] = i;
+const i = $( "b" );
+const j = $( 2 );
+d[i] = j;
 $( d );
 `````
 

@@ -51,9 +51,12 @@ if (tmpIfTest$3) {
   const tmpIfTest$5 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
   if (tmpIfTest$5) {
     $(`fail1`);
+  } else {
+  }
+  const tmpIfTest$7 /*:boolean*/ = tmpSwitchCaseToStart <= 2;
+  if (tmpIfTest$7) {
     $(`fail2`);
   } else {
-    $(`fail2`);
   }
 }
 const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
@@ -82,8 +85,8 @@ if (tmpIfTest$3) {
 } else {
   if (tmpSwitchCaseToStart <= 1) {
     $(`fail1`);
-    $(`fail2`);
-  } else {
+  }
+  if (tmpSwitchCaseToStart <= 2) {
     $(`fail2`);
   }
 }
@@ -117,17 +120,17 @@ else {
   const h = c <= 1;
   if (h) {
     $( "fail1" );
-    $( "fail2" );
   }
-  else {
+  const i = c <= 2;
+  if (i) {
     $( "fail2" );
   }
 }
-const i = {
+const j = {
   a: 999,
   b: 1000,
 };
-$( i, g, 3 );
+$( j, g, 3 );
 `````
 
 

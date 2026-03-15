@@ -23,16 +23,35 @@ export function ternaryConstBounded(fdata) {
 function _ternaryConstBounded(fdata) {
   let changed = 0;
 
-  vlog('Searching for ternary const where all assigns are primitives...');
+  vlog('Searching for ternary const where all assigns are primitives... assigned in the same if/loop/try scope');
 
   fdata.globallyUniqueNamingRegistry.forEach((meta, varName) => {
     if (!meta.isLet) return;
     if (meta.reads.length < 1) return; // Not observable
+    if (!meta.singleScoped) return; // much harder to prove.
 
     vlog('Checking ternary const:', varName);
+    // Must all be in same sub-scope
+    let ifScope;
+    let loopScope;
+    let tryScope;
+
     if (!meta.writes.every(write => {
+      if (write.kind !== 'var' && write.kind !== 'assign') return;
+      if (write.kind === 'var' && write.reachedByReads?.size === 0) {
+        vlog('- Ignored a write: write is not read');
+        return true;
+      }
+
+      // Make sure the assigns are inside the same if/loop/while scope. Otherwise we can't reliably predict.
+      if (!ifScope) ifScope = write.ifChain;
+      else if (ifScope !== write.ifChain) return;
+      if (!loopScope) loopScope = write.loopChain;
+      else if (loopScope !== write.loopChain) return;
+      if (!tryScope) tryScope = write.tryChain;
+      else if (tryScope !== write.tryChain) return;
+
       if (write.kind === 'var') {
-        if (write.reachedByReads?.size === 0) return true; // Init is ignored.
         return AST.isPrimitive(write.parentNode.init);
       }
       if (write.kind === 'assign') {

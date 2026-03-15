@@ -20,8 +20,8 @@ f.call({}, $(1));
 
 
 `````js filename=intro
-const tmpMCP$1 /*:unknown*/ = $(1);
-if (tmpMCP$1) {
+const arg /*:unknown*/ = $(1);
+if (arg) {
   $(`x`);
 } else {
 }

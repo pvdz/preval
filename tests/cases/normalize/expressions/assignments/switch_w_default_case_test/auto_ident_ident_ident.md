@@ -28,10 +28,22 @@ $(a, b, c);
 
 
 `````js filename=intro
-$(1);
-$(`fail1`);
-$(`fail2`);
-$(2, 2, 2);
+const tmpSwitchValue /*:unknown*/ = $(1);
+let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
+const tmpIfTest /*:boolean*/ = 2 === tmpSwitchValue;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+  $(`fail1`);
+} else {
+  $(`fail1`);
+}
+const tmpIfTest$7 /*:boolean*/ = tmpSwitchCaseToStart <= 2;
+if (tmpIfTest$7) {
+  $(`fail2`);
+  $(2, 2, 2);
+} else {
+  $(2, 2, 2);
+}
 `````
 
 
@@ -39,10 +51,20 @@ $(2, 2, 2);
 (This ought to be the final result)
 
 `````js filename=intro
-$(1);
-$(`fail1`);
-$(`fail2`);
-$(2, 2, 2);
+const tmpSwitchValue = $(1);
+let tmpSwitchCaseToStart = 1;
+if (2 === tmpSwitchValue) {
+  tmpSwitchCaseToStart = 0;
+  $(`fail1`);
+} else {
+  $(`fail1`);
+}
+if (tmpSwitchCaseToStart <= 2) {
+  $(`fail2`);
+  $(2, 2, 2);
+} else {
+  $(2, 2, 2);
+}
 `````
 
 
@@ -50,10 +72,24 @@ $(2, 2, 2);
 With rename=true
 
 `````js filename=intro
-$( 1 );
-$( "fail1" );
-$( "fail2" );
-$( 2, 2, 2 );
+const a = $( 1 );
+let b = 1;
+const c = 2 === a;
+if (c) {
+  b = 0;
+  $( "fail1" );
+}
+else {
+  $( "fail1" );
+}
+const d = b <= 2;
+if (d) {
+  $( "fail2" );
+  $( 2, 2, 2 );
+}
+else {
+  $( 2, 2, 2 );
+}
 `````
 
 

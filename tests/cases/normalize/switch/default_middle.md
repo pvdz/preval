@@ -70,63 +70,73 @@ switch (6) {
 
 ## Settled
 
-
 `````js filename=intro
+
+const val = 6
+let falling = false
+stop: {
+  if ($(10) === x) {
+    $(1);
+    break stop
+  }
+  if ($(20) === x) {
+    $(2);
+    falling = true;
+  }
+
+
+}
+
+
 const tmpBinLhs /*:unknown*/ = $(10);
-let tmpSwitchCaseToStart /*:number*/ = 2;
+let i /*:number*/ = 2;
 const tmpIfTest /*:boolean*/ = tmpBinLhs === 6;
 if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
+  i = 0;
 } else {
   const tmpBinLhs$1 /*:unknown*/ = $(20);
   const tmpIfTest$1 /*:boolean*/ = tmpBinLhs$1 === 6;
   if (tmpIfTest$1) {
-    tmpSwitchCaseToStart = 1;
+    i = 1;
   } else {
     const tmpBinLhs$3 /*:unknown*/ = $(30);
     const tmpIfTest$3 /*:boolean*/ = tmpBinLhs$3 === 6;
     if (tmpIfTest$3) {
-      tmpSwitchCaseToStart = 3;
+      i = 3;
     } else {
       const tmpBinLhs$5 /*:unknown*/ = $(40);
       const tmpIfTest$5 /*:boolean*/ = tmpBinLhs$5 === 6;
       if (tmpIfTest$5) {
-        tmpSwitchCaseToStart = 4;
+        i = 4;
       } else {
         const tmpBinLhs$7 /*:unknown*/ = $(50);
         const tmpIfTest$7 /*:boolean*/ = tmpBinLhs$7 === 6;
         if (tmpIfTest$7) {
-          tmpSwitchCaseToStart = 5;
+          i = 5;
         } else {
         }
       }
     }
   }
 }
-const tmpIfTest$9 /*:boolean*/ = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$9) {
+if (i === 0) {
   $(1);
 } else {
-  const tmpIfTest$11 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
-  if (tmpIfTest$11) {
+  if (i === 1) {
     $(2);
-  } else {
   }
-  const tmpIfTest$13 /*:boolean*/ = tmpSwitchCaseToStart <= 2;
-  if (tmpIfTest$13) {
+  if (i <= 2) {
     $(`d`);
-  } else {
   }
-  const tmpIfTest$15 /*:boolean*/ = tmpSwitchCaseToStart <= 3;
-  if (tmpIfTest$15) {
+  if (i <= 3) {
     $(3);
-  } else {
   }
-  const tmpIfTest$17 /*:boolean*/ = tmpSwitchCaseToStart <= 4;
-  if (tmpIfTest$17) {
+  if (i <= 4) {
     $(4);
   } else {
-    $(5);
+    if (i <= 5) {
+      $(5);
+    }
   }
 }
 `````
@@ -172,7 +182,9 @@ if (tmpSwitchCaseToStart <= 0) {
   if (tmpSwitchCaseToStart <= 4) {
     $(4);
   } else {
-    $(5);
+    if (tmpSwitchCaseToStart <= 5) {
+      $(5);
+    }
   }
 }
 `````
@@ -238,7 +250,10 @@ else {
     $( 4 );
   }
   else {
-    $( 5 );
+    const q = b <= 5;
+    if (q) {
+      $( 5 );
+    }
   }
 }
 `````

@@ -21,10 +21,8 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal /*:unknown*/ = $(1);
 const tmpObjLitVal$3 /*:unknown*/ = $(3);
+$(`before  [object Object]  after`);
 const a /*:object*/ /*truthy*/ = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
-const tmpBinBothRhs /*:string*/ = $coerce(a, `string`);
-const tmpCalleeParam /*:string*/ /*truthy*/ = `before  ${tmpBinBothRhs}  after`;
-$(tmpCalleeParam);
 $(a);
 `````
 
@@ -35,9 +33,8 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal = $(1);
 const tmpObjLitVal$3 = $(3);
-const a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
-$(`before  ${a}  after`);
-$(a);
+$(`before  [object Object]  after`);
+$({ x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 });
 `````
 
 
@@ -47,14 +44,12 @@ With rename=true
 `````js filename=intro
 const a = $( 1 );
 const b = $( 3 );
+$( "before  [object Object]  after" );
 const c = {
   x: a,
   y: 2,
   z: b,
 };
-const d = $coerce( c, "string" );
-const e = `before  ${d}  after`;
-$( e );
 $( c );
 `````
 
@@ -82,7 +77,7 @@ $(a);
 ## Todos triggered
 
 
-- (todo) object concat with more than two references
+- (todo) object concat blocked by invalidated reads
 
 
 ## Globals

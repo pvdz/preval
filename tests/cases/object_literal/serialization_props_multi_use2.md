@@ -1,18 +1,20 @@
 # Preval test case
 
-# auto_ident_object_empty.md
+# serialization_props_multi_use2.md
 
-> Normalize > Expressions > Assignments > Computed prop prop > Auto ident object empty
+> Object literal > Serialization props multi use2
 >
-> Normalization of assignments should work the same everywhere they are
+> tostring
 
 ## Input
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-let obj = {};
-obj[(a = {})];
-$(a);
+const a = {x: 1, y: "twee"};
+const b = $coerce(a, `plustr`);
+a.z = 500;
+$(b);
+const c = $coerce(a, `plustr`);
+$(c);
 `````
 
 
@@ -20,8 +22,8 @@ $(a);
 
 
 `````js filename=intro
-const a /*:object*/ /*truthy*/ = {};
-$(a);
+$(`[object Object]`);
+$(`[object Object]`);
 `````
 
 
@@ -29,7 +31,8 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-$({});
+$(`[object Object]`);
+$(`[object Object]`);
 `````
 
 
@@ -37,8 +40,8 @@ $({});
 With rename=true
 
 `````js filename=intro
-const a = {};
-$( a );
+$( "[object Object]" );
+$( "[object Object]" );
 `````
 
 
@@ -46,13 +49,12 @@ $( a );
 (This is what phase1 received the first time)
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-let obj = {};
-const tmpCompObj = obj;
-a = {};
-const tmpCalleeParam = a;
-tmpCompObj[tmpCalleeParam];
-$(a);
+const a = { x: 1, y: `twee` };
+const b = $coerce(a, `plustr`);
+a.z = 500;
+$(b);
+const c = $coerce(a, `plustr`);
+$(c);
 `````
 
 
@@ -72,7 +74,8 @@ None
 
 
 Should call `$` with:
- - 1: {}
+ - 1: '[object Object]'
+ - 2: '[object Object]'
  - eval returned: undefined
 
 Pre normalization calls: Same

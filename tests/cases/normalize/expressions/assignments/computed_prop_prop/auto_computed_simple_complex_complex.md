@@ -22,10 +22,9 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal /*:unknown*/ = $(1);
-const a /*:object*/ /*truthy*/ = { b: tmpObjLitVal };
-$coerce(a, `string`);
 const tmpAssignComMemLhsProp /*:unknown*/ = $(`b`);
 const tmpAssignComputedRhs /*:unknown*/ = $(2);
+const a /*:object*/ /*truthy*/ = { b: tmpObjLitVal };
 a[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
 $(a);
 `````
@@ -36,10 +35,9 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal = $(1);
-const a = { b: tmpObjLitVal };
-String(a);
 const tmpAssignComMemLhsProp = $(`b`);
 const tmpAssignComputedRhs = $(2);
+const a = { b: tmpObjLitVal };
 a[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
 $(a);
 `````
@@ -50,12 +48,11 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-const b = { b: a };
-$coerce( b, "string" );
-const c = $( "b" );
-const d = $( 2 );
-b[c] = d;
-$( b );
+const b = $( "b" );
+const c = $( 2 );
+const d = { b: a };
+d[b] = c;
+$( d );
 `````
 
 
@@ -83,7 +80,7 @@ $(a);
 ## Todos triggered
 
 
-- (todo) object concat with more than two references
+None
 
 
 ## Globals

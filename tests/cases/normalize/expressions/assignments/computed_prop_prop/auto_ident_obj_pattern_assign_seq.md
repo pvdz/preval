@@ -28,7 +28,6 @@ $(2);
 const tmpObjLitVal /*:unknown*/ = $(3);
 const tmpObjLitVal$1 /*:unknown*/ = $(4);
 const tmpNestedAssignObjPatternRhs /*:object*/ /*truthy*/ = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-$coerce(tmpNestedAssignObjPatternRhs, `string`);
 $(tmpNestedAssignObjPatternRhs, tmpObjLitVal, tmpObjLitVal$1);
 `````
 
@@ -41,9 +40,7 @@ $(1);
 $(2);
 const tmpObjLitVal = $(3);
 const tmpObjLitVal$1 = $(4);
-const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-String(tmpNestedAssignObjPatternRhs);
-$(tmpNestedAssignObjPatternRhs, tmpObjLitVal, tmpObjLitVal$1);
+$({ x: tmpObjLitVal, y: tmpObjLitVal$1 }, tmpObjLitVal, tmpObjLitVal$1);
 `````
 
 
@@ -59,7 +56,6 @@ const c = {
   x: a,
   y: b,
 };
-$coerce( c, "string" );
 $( c, a, b );
 `````
 
@@ -90,7 +86,7 @@ $(a, x, y);
 ## Todos triggered
 
 
-- (todo) object concat with more than two references
+None
 
 
 ## Globals

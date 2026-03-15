@@ -19,10 +19,8 @@ $(a);
 
 
 `````js filename=intro
+$(`before  [object Object]  after`);
 const a /*:object*/ /*truthy*/ = {};
-const tmpBinBothRhs /*:string*/ = $coerce(a, `string`);
-const tmpCalleeParam /*:string*/ /*truthy*/ = `before  ${tmpBinBothRhs}  after`;
-$(tmpCalleeParam);
 $(a);
 `````
 
@@ -31,9 +29,8 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const a = {};
-$(`before  ${a}  after`);
-$(a);
+$(`before  [object Object]  after`);
+$({});
 `````
 
 
@@ -41,10 +38,8 @@ $(a);
 With rename=true
 
 `````js filename=intro
+$( "before  [object Object]  after" );
 const a = {};
-const b = $coerce( a, "string" );
-const c = `before  ${b}  after`;
-$( c );
 $( a );
 `````
 
@@ -69,7 +64,7 @@ $(a);
 ## Todos triggered
 
 
-- (todo) object concat with more than two references
+- (todo) object concat blocked by invalidated reads
 
 
 ## Globals

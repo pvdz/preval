@@ -24,10 +24,8 @@ $(a, x, y);
 `````js filename=intro
 const tmpObjLitVal /*:unknown*/ = $(3);
 const tmpObjLitVal$1 /*:unknown*/ = $(4);
+$(`before  [object Object]  after`);
 const tmpNestedAssignObjPatternRhs /*:object*/ /*truthy*/ = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-const tmpBinBothRhs /*:string*/ = $coerce(tmpNestedAssignObjPatternRhs, `string`);
-const tmpCalleeParam /*:string*/ /*truthy*/ = `before  ${tmpBinBothRhs}  after`;
-$(tmpCalleeParam);
 $(tmpNestedAssignObjPatternRhs, tmpObjLitVal, tmpObjLitVal$1);
 `````
 
@@ -38,9 +36,8 @@ $(tmpNestedAssignObjPatternRhs, tmpObjLitVal, tmpObjLitVal$1);
 `````js filename=intro
 const tmpObjLitVal = $(3);
 const tmpObjLitVal$1 = $(4);
-const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-$(`before  ${tmpNestedAssignObjPatternRhs}  after`);
-$(tmpNestedAssignObjPatternRhs, tmpObjLitVal, tmpObjLitVal$1);
+$(`before  [object Object]  after`);
+$({ x: tmpObjLitVal, y: tmpObjLitVal$1 }, tmpObjLitVal, tmpObjLitVal$1);
 `````
 
 
@@ -50,13 +47,11 @@ With rename=true
 `````js filename=intro
 const a = $( 3 );
 const b = $( 4 );
+$( "before  [object Object]  after" );
 const c = {
   x: a,
   y: b,
 };
-const d = $coerce( c, "string" );
-const e = `before  ${d}  after`;
-$( e );
 $( c, a, b );
 `````
 
@@ -88,7 +83,8 @@ $(a, x, y);
 ## Todos triggered
 
 
-- (todo) object concat with more than two references
+- (todo) object concat blocked by invalidated reads
+- (todo) object concat blocked by invalidated writes
 
 
 ## Globals

@@ -23,7 +23,6 @@ $(a);
 const tmpObjLitVal /*:unknown*/ = $(1);
 const tmpObjLitVal$3 /*:unknown*/ = $(3);
 const a /*:object*/ /*truthy*/ = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
-$coerce(a, `string`);
 $(a);
 `````
 
@@ -34,9 +33,7 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal = $(1);
 const tmpObjLitVal$3 = $(3);
-const a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
-String(a);
-$(a);
+$({ x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 });
 `````
 
 
@@ -51,7 +48,6 @@ const c = {
   y: 2,
   z: b,
 };
-$coerce( c, "string" );
 $( c );
 `````
 
@@ -76,7 +72,7 @@ $(a);
 ## Todos triggered
 
 
-- (todo) object concat with more than two references
+None
 
 
 ## Globals

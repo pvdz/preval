@@ -345,13 +345,48 @@ function core(fdata) {
       // The object cannot escape though. We must prove it has no methods, or if they do that none of them use `this`
       // and that in all usages the object does not escape (which will be somewhat tricky with $coerce)
 
-      if (argMeta.rwOrder.length === 2 && argMeta.rwOrder[0].kind === 'var' && argMeta.varDeclRef?.node.type === 'ObjectExpression') {
-        // So this is the declaration and the use here.
-        // Does it have any dangerous properties? toString and valueOf would be the two here
-        const decl = argMeta.varDeclRef?.node;
-        ASSERT(decl.type === 'ObjectExpression', 'init should be obj', decl.type);
-        // I believe the only tricky props are toString/valueOf (coercion) and __proto__ (since that may switch underlying prototype and trigger aforementioned props)
-        if (decl.properties.every(prop => !prop.computed && prop.key.type === 'Identifier' && !['toString', 'valueOf', '__proto__'].includes(prop.key.name))) {
+      const riskyProps = ['toString', 'valueOf', '__proto__'];
+
+      // If there is a write to this binding before the concrete coerce, then only consider that write instead.
+
+      const neighborWrite = argMeta.writes.find(write => write.blockBody === read.blockBody && write.blockIndex + 1 === read.blockIndex);
+      if (neighborWrite) vlog('Special case: there is a write preceding the coerce so we only consider that ref');
+
+      const writesOkay = (neighborWrite ? [neighborWrite] : argMeta.writes).every(write => {
+        // Must be assigned a plain objlit
+        // Each property must be not one of riskyProps
+
+        let objNode;
+        if (write.kind === 'var') objNode = write.parentNode.init;
+        else if (write.kind === 'assign') objNode = write.parentNode.right;
+        else return false;
+
+        if (objNode.type !== 'ObjectExpression') return false;
+
+        return objNode.properties.every(prop => !prop.computed && prop.key.type === 'Identifier' && !riskyProps.includes(prop.key.name));
+      });
+
+      if (writesOkay) {
+        // If the read was immediately prior to this coerce then skip the reads check: it doesn't matter retroactively
+        const readsOkay = neighborWrite ? true : argMeta.reads.every(objRead => {
+          // Every read use must be to read/write a property, never to call it (but in normalized code that would be a dotcall?)
+          // Writes must not be to computed props and not be one of riskyProps
+          if (objRead.parentNode.type === 'CallExpression') {
+            // Coercion is fine. That's the point here.
+            return objRead.parentNode.callee.type === 'Identifier' && objRead.parentNode.callee.name === SYMBOL_COERCE && objRead.parentProp === 'arguments' && objRead.parentIndex === 0;
+          }
+          if (objRead.parentNode.type !== 'MemberExpression') return false;
+          ASSERT(objRead.grandNode.type !== 'CallExpression', 'Im assuming normalized code will dotcall all of these');
+          // I think that means that either the property is init/assigned to a var, being assigned a value, or is a statement
+          if (objRead.grandNode.type === 'VarStatement') return true; // Read
+          if (objRead.grandNode.type === 'AssignmentExpression') {
+            if (objRead.grandProp === 'right') return true; // Read
+            if (objRead.parentNode.computed) return false; // Write to computed
+            if (riskyProps.includes(objRead.parentNode.property.name)) return false; // Writing to these props makes serialization risky
+            return true; // Writing to safe prop?
+          }
+        });
+        if (readsOkay) {
           rule('Coercing an empty object literal can be predicted safely');
           example('const x = {}; const y = $coerce(x, "string");', 'const x = {}; const y = "[object Object]"');
           before(read.blockBody[read.blockIndex]);
@@ -364,10 +399,10 @@ function core(fdata) {
           ++changes;
           return;
         } else {
-          todo('object concat actual properties');
+          todo('object concat blocked by invalidated reads');
         }
       } else {
-        todo('object concat with more than two references');
+        todo('object concat blocked by invalidated writes');
       }
     }
 

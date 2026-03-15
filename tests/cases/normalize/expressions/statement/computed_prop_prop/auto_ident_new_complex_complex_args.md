@@ -81,7 +81,7 @@ $(a);
 ## Todos triggered
 
 
-- (todo) object concat with more than two references
+- (todo) object concat blocked by invalidated writes
 
 
 ## Globals

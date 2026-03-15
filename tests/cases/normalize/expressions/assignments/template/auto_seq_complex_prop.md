@@ -21,11 +21,9 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal /*:unknown*/ = $(1);
-const a /*:object*/ /*truthy*/ = { b: tmpObjLitVal };
-const tmpBinBothRhs /*:string*/ = $coerce(a, `string`);
-const tmpCalleeParam /*:string*/ /*truthy*/ = `before  ${tmpBinBothRhs}  after`;
-$(tmpCalleeParam);
+$(`before  [object Object]  after`);
 $(1);
+const a /*:object*/ /*truthy*/ = { b: tmpObjLitVal };
 const tmpAssignMemLhsObj$1 /*:unknown*/ = $(a);
 const tmpAssignMemRhs /*:unknown*/ = $(2);
 tmpAssignMemLhsObj$1.b = tmpAssignMemRhs;
@@ -38,9 +36,9 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal = $(1);
-const a = { b: tmpObjLitVal };
-$(`before  ${a}  after`);
+$(`before  [object Object]  after`);
 $(1);
+const a = { b: tmpObjLitVal };
 const tmpAssignMemLhsObj$1 = $(a);
 tmpAssignMemLhsObj$1.b = $(2);
 $(a);
@@ -52,14 +50,12 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-const b = { b: a };
-const c = $coerce( b, "string" );
-const d = `before  ${c}  after`;
-$( d );
+$( "before  [object Object]  after" );
 $( 1 );
-const e = $( b );
-const f = $( 2 );
-e.b = f;
+const b = { b: a };
+const c = $( b );
+const d = $( 2 );
+c.b = d;
 $( b );
 `````
 
@@ -90,7 +86,7 @@ $(a);
 ## Todos triggered
 
 
-- (todo) object concat with more than two references
+- (todo) object concat blocked by invalidated reads
 
 
 ## Globals

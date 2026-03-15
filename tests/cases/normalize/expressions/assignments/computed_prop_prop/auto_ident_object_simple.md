@@ -21,7 +21,6 @@ $(a);
 
 `````js filename=intro
 const a /*:object*/ /*truthy*/ = { x: 1, y: 2, z: 3 };
-$coerce(a, `string`);
 $(a);
 `````
 
@@ -30,9 +29,7 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const a = { x: 1, y: 2, z: 3 };
-String(a);
-$(a);
+$({ x: 1, y: 2, z: 3 });
 `````
 
 
@@ -45,7 +42,6 @@ const a = {
   y: 2,
   z: 3,
 };
-$coerce( a, "string" );
 $( a );
 `````
 
@@ -67,7 +63,7 @@ $(a);
 ## Todos triggered
 
 
-- (todo) object concat with more than two references
+None
 
 
 ## Globals

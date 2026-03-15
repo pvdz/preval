@@ -32,7 +32,7 @@ $(x);
 
 
 `````js filename=intro
-let x /*:number*/ = 0;
+let x /*:number: 0 | 2*/ = 0;
 try {
   fail_early;
 } catch (e) {

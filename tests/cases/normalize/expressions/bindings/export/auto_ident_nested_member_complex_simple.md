@@ -30,7 +30,7 @@ const tmpInitAssignLhsComputedObj$1 /*:unknown*/ = $(c);
 const tmpInitAssignLhsComputedProp$1 /*:unknown*/ = $(`y`);
 tmpInitAssignLhsComputedObj$1[tmpInitAssignLhsComputedProp$1] = 3;
 tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = 3;
-const a /*:number*/ /*truthy*/ = 3;
+const a /*:number: 3*/ /*truthy*/ = 3;
 export { a };
 $(3, b, c, 3);
 `````

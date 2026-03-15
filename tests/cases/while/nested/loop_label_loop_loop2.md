@@ -35,7 +35,7 @@ while(true) {
 
 
 `````js filename=intro
-let x /*:number*/ /*truthy*/ = 10;
+let x /*:number: 10 | 20*/ /*truthy*/ = 10;
 while ($LOOP_NO_UNROLLS_LEFT) {
   foo: {
     while (true) {

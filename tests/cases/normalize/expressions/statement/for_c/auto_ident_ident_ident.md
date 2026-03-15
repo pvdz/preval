@@ -22,7 +22,7 @@ $(a, b, c);
 
 
 `````js filename=intro
-let b /*:number*/ /*ternaryConst*/ /*truthy*/ = 1;
+let b /*:number: 1 | 2*/ /*ternaryConst*/ /*truthy*/ = 1;
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   b = 2;

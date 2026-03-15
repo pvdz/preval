@@ -29,7 +29,7 @@ $(a);
 
 
 `````js filename=intro
-let a /*:primitive*/ /*ternaryConst*/ = undefined;
+let a /*:primitive: 42 | undefined*/ /*ternaryConst*/ = undefined;
 const cond /*:unknown*/ = $(true);
 if (cond) {
 } else {

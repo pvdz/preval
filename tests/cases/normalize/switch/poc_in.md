@@ -54,7 +54,7 @@ switch (x) {
 
 `````js filename=intro
 const tmpBinLhs /*:unknown*/ = $(1);
-let tmpSwitchCaseToStart /*:number*/ = 3;
+let tmpSwitchCaseToStart /*:number: 0 | 1 | 2 | 3*/ = 3;
 const tmpIfTest /*:boolean*/ = tmpBinLhs === 1;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;

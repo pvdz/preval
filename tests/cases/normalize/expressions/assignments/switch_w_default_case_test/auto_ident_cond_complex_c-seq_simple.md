@@ -27,7 +27,7 @@ $(a);
 `````js filename=intro
 let a /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpSwitchValue /*:unknown*/ = $(1);
-let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
+let tmpSwitchCaseToStart /*:number: 0 | 1 | 2*/ /*ternaryConst*/ = 1;
 const tmpIfTest$1 /*:unknown*/ = $(1);
 let tmpIfTest /*:boolean*/ /*ternaryConst*/ = false;
 if (tmpIfTest$1) {

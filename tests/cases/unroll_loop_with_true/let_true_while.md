@@ -30,7 +30,7 @@ const test /*:unknown*/ = $(`first`);
 $(`second`);
 if (test) {
 } else {
-  let tmp /*:boolean*/ = true;
+  let tmp /*:boolean: false | true*/ = true;
   $(`third`);
   while ($LOOP_UNROLLS_LEFT_10) {
     const test$1 /*:unknown*/ = $(`first`);

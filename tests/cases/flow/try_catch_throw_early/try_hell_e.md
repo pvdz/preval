@@ -31,8 +31,8 @@ $(x);
 
 
 `````js filename=intro
-let x /*:number*/ = 0;
-let $implicitThrow /*:boolean*/ = false;
+let x /*:number: 0 | 1*/ = 0;
+let $implicitThrow /*:boolean: false | true*/ = false;
 let $finalCatchArg /*:unknown*/ = undefined;
 try {
   throw_early;

@@ -28,7 +28,7 @@ $(a);
 const tmpBindingPatternArrRoot /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 [...tmpBindingPatternArrRoot];
 const tmpSwitchValue /*:unknown*/ = $(1);
-let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
+let tmpSwitchCaseToStart /*:number: 0 | 1 | 2*/ /*ternaryConst*/ = 1;
 $(10);
 $(20);
 const tmpNestedAssignArrPatternRhs /*:array*/ /*truthy*/ = [1, 2];

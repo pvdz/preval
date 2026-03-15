@@ -48,7 +48,7 @@ $(x, y);
 
 
 `````js filename=intro
-let a /*:primitive*/ = undefined;
+let a /*:primitive: true | undefined*/ = undefined;
 let b /*:unknown*/ = undefined;
 let c /*:unknown*/ = undefined;
 const func /*:(number, unknown)=>unknown*/ = function ($$0, $$1) {

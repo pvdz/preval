@@ -29,7 +29,7 @@ $(a);
 const tmpSwitchValue /*:unknown*/ = $(1);
 const tmpCalleeParam /*:unknown*/ = $(1);
 const tmpBinLhs /*:unknown*/ = $(tmpCalleeParam);
-let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
+let tmpSwitchCaseToStart /*:number: 0 | 1 | 2*/ /*ternaryConst*/ = 1;
 let tmpIfTest /*:boolean*/ /*ternaryConst*/ = false;
 if (tmpBinLhs) {
   const tmpCalleeParam$1 /*:unknown*/ = $(2);

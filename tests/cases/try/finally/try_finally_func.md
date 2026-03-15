@@ -34,9 +34,9 @@ try {
 `````js filename=intro
 const f /*:()=>primitive*/ = function () {
   debugger;
-  let x /*:number*/ /*truthy*/ = 1;
-  let $finalStep /*:boolean*/ = false;
-  let $finalArg /*:primitive*/ = undefined;
+  let x /*:number: 1 | 2*/ /*truthy*/ = 1;
+  let $finalStep /*:boolean: false | true*/ = false;
+  let $finalArg /*:primitive: 100 | undefined*/ = undefined;
   try {
     const tmpIfTest /*:unknown*/ = $();
     if (tmpIfTest) {

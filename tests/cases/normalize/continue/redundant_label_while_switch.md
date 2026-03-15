@@ -47,7 +47,7 @@ if (x) {
   }
   if (x) {
     const tmpSwitchValue /*:unknown*/ = $(1);
-    let tmpSwitchCaseToStart /*:number*/ = 3;
+    let tmpSwitchCaseToStart /*:number: 0 | 1 | 2 | 3*/ = 3;
     const tmpIfTest$1 /*:boolean*/ = 0 === tmpSwitchValue;
     if (tmpIfTest$1) {
       tmpSwitchCaseToStart = 0;
@@ -91,7 +91,7 @@ if (x) {
       }
       if (x) {
         const tmpSwitchValue$1 /*:unknown*/ = $(1);
-        let tmpSwitchCaseToStart$1 /*:number*/ = 3;
+        let tmpSwitchCaseToStart$1 /*:number: 0 | 1 | 2 | 3*/ = 3;
         const tmpIfTest$4 /*:boolean*/ = 0 === tmpSwitchValue$1;
         if (tmpIfTest$4) {
           tmpSwitchCaseToStart$1 = 0;

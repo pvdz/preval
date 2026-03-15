@@ -30,7 +30,7 @@ $(x);
 
 
 `````js filename=intro
-let x /*:primitive*/ = 0;
+let x /*:primitive: 0 | "object"*/ = 0;
 const g /*:(unused, unused)=>undefined*/ = function ($$0, $$1) {
   debugger;
   x = `object`;

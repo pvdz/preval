@@ -33,7 +33,7 @@ f();
 
 
 `````js filename=intro
-let x /*:string*/ /*truthy*/ = `pass`;
+let x /*:string: "fail" | "pass"*/ /*truthy*/ = `pass`;
 try {
   fail_early;
   x = `fail`;

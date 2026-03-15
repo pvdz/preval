@@ -54,8 +54,8 @@ $(x);
 
 
 `````js filename=intro
-let x /*:number*/ /*truthy*/ = 1;
-let $finalAbruptAction /*:number*/ = 0;
+let x /*:number: 1 | 2 | 3*/ /*truthy*/ = 1;
+let $finalAbruptAction /*:number: 0 | 1 | 2*/ = 0;
 let $finalCatchArg /*:unknown*/ = undefined;
 try {
   if ($) {

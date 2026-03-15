@@ -21,7 +21,7 @@ $(a, arg);
 
 
 `````js filename=intro
-const tmpAnonDefaultExport /*:number*/ /*truthy*/ = 1;
+const tmpAnonDefaultExport /*:number: 1*/ /*truthy*/ = 1;
 export { tmpAnonDefaultExport as default };
 $(1, 1);
 `````

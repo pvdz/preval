@@ -36,7 +36,7 @@ $(undefined);
 
 
 `````js filename=intro
-let f /*:boolean*/ = true;
+let f /*:boolean: false | true*/ = true;
 const g /*:()=>unknown*/ = function () {
   debugger;
   if (f) {

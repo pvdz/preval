@@ -41,7 +41,7 @@ $(f());
 `````js filename=intro
 $inlinedFunction: {
   const tmpSwitchValue /*:unknown*/ = $(1);
-  let tmpSwitchCaseToStart /*:number*/ = 4;
+  let tmpSwitchCaseToStart /*:number: 0 | 1 | 2 | 3 | 4*/ = 4;
   const tmpIfTest /*:boolean*/ = 0 === tmpSwitchValue;
   if (tmpIfTest) {
     tmpSwitchCaseToStart = 0;

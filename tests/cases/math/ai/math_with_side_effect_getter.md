@@ -22,7 +22,7 @@ $(triggered);
 
 
 `````js filename=intro
-let triggered /*:boolean*/ = false;
+let triggered /*:boolean: false | true*/ = false;
 const obj /*:object*/ /*truthy*/ = {
   get valueOf() {
     debugger;

@@ -31,7 +31,7 @@ $(2);
 
 
 `````js filename=intro
-let tmpFuncLock /*:boolean*/ = true;
+let tmpFuncLock /*:boolean: false | true*/ = true;
 const g /*:()=>unknown*/ = function () {
   debugger;
   if (tmpFuncLock) {

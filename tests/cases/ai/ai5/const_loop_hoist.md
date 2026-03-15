@@ -47,7 +47,7 @@ $(result);
 `````js filename=intro
 const x /*:unknown*/ = $(1);
 $(0);
-let result /*:number*/ = 0;
+let result /*:number: 0 | 1*/ = 0;
 $(1);
 const tmpIfTest$1 /*:boolean*/ = x === 1;
 if (tmpIfTest$1) {

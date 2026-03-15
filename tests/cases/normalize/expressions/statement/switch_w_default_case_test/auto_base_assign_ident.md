@@ -30,7 +30,7 @@ $(a, b);
 `````js filename=intro
 const tmpSwitchValue /*:unknown*/ = $(1);
 const b /*:unknown*/ = $(2);
-let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
+let tmpSwitchCaseToStart /*:number: 0 | 1 | 2*/ /*ternaryConst*/ = 1;
 const tmpIfTest /*:boolean*/ = b === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;

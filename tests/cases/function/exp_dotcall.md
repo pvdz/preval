@@ -76,7 +76,7 @@ const method /*:(unknown)=>string*/ = function ($$0) {
   $(tmpCalleeParam);
   return ``;
 };
-let main_target_DjBalz /*:primitive*/ = undefined;
+let main_target_DjBalz /*:primitive: true | undefined*/ = undefined;
 let main_target_abcxyz /*:unknown*/ = undefined;
 let main_target_TjeLtB /*:unknown*/ = undefined;
 const main_target /*:(number, string)=>unknown*/ = function ($$0, $$1) {

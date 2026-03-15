@@ -31,7 +31,7 @@ const tmpInitAssignLhsComputedObj$1 /*:unknown*/ = $(c);
 const tmpInitAssignLhsComputedProp$1 /*:unknown*/ = $(`y`);
 tmpInitAssignLhsComputedObj$1[tmpInitAssignLhsComputedProp$1] = 3;
 tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = 3;
-const tmpAnonDefaultExport /*:number*/ /*truthy*/ = 3;
+const tmpAnonDefaultExport /*:number: 3*/ /*truthy*/ = 3;
 export { tmpAnonDefaultExport as default };
 const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a, b, c, 3);

@@ -81,7 +81,7 @@ if (n <= 10) {
 
 `````js filename=intro
 const x /*:unknown*/ = $();
-let n /*:number*/ = 11;
+let n /*:number: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11*/ = 11;
 const t /*:boolean*/ = 0 === x;
 if (t) {
   n = 0;

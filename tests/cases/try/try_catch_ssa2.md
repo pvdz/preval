@@ -52,7 +52,7 @@
 
 
 `````js filename=intro
-let ignore /*:boolean*/ = false;
+let ignore /*:boolean: false | true*/ = false;
 const one /*:()=>undefined*/ = function () {
   debugger;
   $(x);

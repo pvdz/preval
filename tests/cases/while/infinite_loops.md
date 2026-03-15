@@ -86,7 +86,7 @@ $(x); // <- DCE me
 
 
 `````js filename=intro
-let x /*:number*/ /*truthy*/ = 1;
+let x /*:number: 1 | 2*/ /*truthy*/ = 1;
 while ($LOOP_NO_UNROLLS_LEFT) {
   $(x);
   if ($) {

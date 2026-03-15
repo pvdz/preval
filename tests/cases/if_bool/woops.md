@@ -34,7 +34,7 @@ if (test) {
 const test /*:unknown*/ = $(false);
 if (test) {
 } else {
-  let tmp /*:boolean*/ = true;
+  let tmp /*:boolean: false | true*/ = true;
   $(`B`);
   while ($LOOP_NO_UNROLLS_LEFT) {
     $(`D`);

@@ -49,7 +49,7 @@ if ($) {
   $(tmpClusterSSA_x);
   if ($) {
   } else {
-    let tmpLoopRetCode /*:boolean*/ = true;
+    let tmpLoopRetCode /*:boolean: false | true*/ = true;
     while ($LOOP_UNROLLS_LEFT_10) {
       const tmpClusterSSA_x$1 /*:unknown*/ = $(2);
       $(tmpClusterSSA_x$1);

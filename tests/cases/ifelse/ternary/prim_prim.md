@@ -34,7 +34,7 @@ if (softConst) {
 
 
 `````js filename=intro
-let softConst /*:number*/ /*ternaryConst*/ /*truthy*/ = 2;
+let softConst /*:number: 2 | 3*/ /*ternaryConst*/ /*truthy*/ = 2;
 const b /*:unknown*/ = $(1);
 if (b) {
 } else {

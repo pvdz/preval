@@ -40,7 +40,7 @@ $(`before`);
 const tmpBinBothRhs /*:unknown*/ = $(5);
 const x /*:boolean*/ = 0 < tmpBinBothRhs;
 if (x) {
-  let flag /*:boolean*/ = true;
+  let flag /*:boolean: false | true*/ = true;
   $(`inner`, 0);
   let tmpClusterSSA_n /*:number*/ = 1;
   while ($LOOP_UNROLLS_LEFT_10) {

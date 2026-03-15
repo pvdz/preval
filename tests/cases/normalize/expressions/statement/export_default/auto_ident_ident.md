@@ -21,7 +21,7 @@ $(a, b);
 
 
 `````js filename=intro
-const b /*:number*/ /*truthy*/ = 1;
+const b /*:number: 1*/ /*truthy*/ = 1;
 export { b as default };
 const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a, 1);

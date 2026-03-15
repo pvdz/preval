@@ -30,13 +30,13 @@ import { c as c } from 'd';
 `````
 
 `````js filename=d
-const a /*:number*/ /*truthy*/ = 10;
+const a /*:number: 10*/ /*truthy*/ = 10;
 export { a };
-const b /*:number*/ /*truthy*/ = 20;
+const b /*:number: 20*/ /*truthy*/ = 20;
 export { b };
-const c /*:number*/ /*truthy*/ = 30;
+const c /*:number: 30*/ /*truthy*/ = 30;
 export { c };
-const tmpAnonDefaultExport /*:number*/ /*truthy*/ = 100;
+const tmpAnonDefaultExport /*:number: 100*/ /*truthy*/ = 100;
 export { tmpAnonDefaultExport as default };
 `````
 

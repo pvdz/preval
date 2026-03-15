@@ -41,7 +41,7 @@ $(x);
 $(`before`);
 const x /*:unknown*/ = $(`what`);
 if (x) {
-  let flag /*:boolean*/ = true;
+  let flag /*:boolean: false | true*/ = true;
   $(`inner`, 0);
   let tmpClusterSSA_n /*:number*/ = 1;
   while ($LOOP_UNROLLS_LEFT_10) {

@@ -25,7 +25,7 @@ if (tmpLambdaEveryHas) {
   $(tmpLambdaEveryVal);
   $(false);
 } else {
-  let tmpLambdaEveryOut /*:boolean*/ = true;
+  let tmpLambdaEveryOut /*:boolean: false | true*/ = true;
   let tmpClusterSSA_tmpLambdaEveryCounter /*:number*/ = 1;
   while ($LOOP_UNROLLS_LEFT_10) {
     const tmpLambdaEveryTest$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaEveryCounter < 2;

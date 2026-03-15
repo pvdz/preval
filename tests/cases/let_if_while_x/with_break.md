@@ -42,7 +42,7 @@ $(`before`);
 const wat /*:number*/ /*truthy*/ /*|10*/ = s | 10;
 const chk /*:unknown*/ = $(true);
 if (chk) {
-  let count /*:boolean*/ = true;
+  let count /*:boolean: false | true*/ = true;
   $(`inside`);
   let tmpClusterSSA_wat /*:number*/ /*truthy*/ = wat | 10;
   const chk$1 /*:unknown*/ = $(true);

@@ -22,7 +22,7 @@ $(a, b, c);
 
 
 `````js filename=intro
-let b /*:number*/ /*truthy*/ = 1;
+let b /*:number: 1 | 2*/ /*truthy*/ = 1;
 let a /*:unknown*/ /*truthy*/ = { a: 999, b: 1000 };
 const tmpCalleeParam$1 /*:object*/ /*truthy*/ = { x: 1 };
 const tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$1);

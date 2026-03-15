@@ -33,22 +33,22 @@ const f /*:()=>unknown*/ = function $pcompiled() {
   debugger;
   return undefined;
 };
-const a /*:number*/ /*truthy*/ = 1;
+const a /*:number: 1*/ /*truthy*/ = 1;
 export { a };
-const b /*:number*/ /*truthy*/ = 2;
+const b /*:number: 2*/ /*truthy*/ = 2;
 export { b };
 const X /*:class*/ /*truthy*/ = class {};
 export { X };
-const g /*:number*/ /*truthy*/ = 1;
+const g /*:number: 1*/ /*truthy*/ = 1;
 export { g };
-const h /*:number*/ /*truthy*/ = 2;
+const h /*:number: 2*/ /*truthy*/ = 2;
 export { h as i };
 const tmpAnonDefaultExport /*:()=>unknown*/ = function $pcompiled() {
   debugger;
   return undefined;
 };
 export { tmpAnonDefaultExport as default };
-const c /*:number*/ /*truthy*/ = 3;
+const c /*:number: 3*/ /*truthy*/ = 3;
 export { c };
 export { f };
 `````

@@ -23,7 +23,7 @@ $(x + $('prevent inlining'));
 
 
 `````js filename=intro
-let x /*:number*/ /*ternaryConst*/ = 1;
+let x /*:number: 0 | 1*/ /*ternaryConst*/ = 1;
 if ($) {
 } else {
   x = 0;

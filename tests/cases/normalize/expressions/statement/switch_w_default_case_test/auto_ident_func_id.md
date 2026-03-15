@@ -31,7 +31,7 @@ const f /*:()=>undefined*/ = function $pcompiled() {
   debugger;
   return undefined;
 };
-let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
+let tmpSwitchCaseToStart /*:number: 0 | 1 | 2*/ /*ternaryConst*/ = 1;
 const tmpIfTest /*:boolean*/ = f === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;

@@ -34,7 +34,7 @@ const tmpCalleeParam /*:object*/ /*truthy*/ = { $: $ };
 const g /*:unknown*/ = $(tmpCalleeParam);
 const tmpCallComplexCallee /*:unknown*/ = g();
 const f /*:unknown*/ = tmpCallComplexCallee(`ok`);
-let x /*:primitive*/ /*ternaryConst*/ = 1;
+let x /*:primitive: 1 | undefined*/ /*ternaryConst*/ = 1;
 if ($) {
 } else {
   x = undefined;

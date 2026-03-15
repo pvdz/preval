@@ -28,7 +28,7 @@ $(x);
 
 
 `````js filename=intro
-let x /*:number*/ = 0;
+let x /*:number: 0 | 1*/ = 0;
 try {
   fail_early;
   x = 1;

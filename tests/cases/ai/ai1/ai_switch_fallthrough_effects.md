@@ -32,7 +32,7 @@ $('use', path);
 `````js filename=intro
 const val /*:unknown*/ = $(`input`);
 let path /*:string*/ /*ternaryConst*/ = ``;
-let tmpSwitchCaseToStart /*:number*/ = 3;
+let tmpSwitchCaseToStart /*:number: 0 | 1 | 2 | 3*/ = 3;
 const tmpIfTest /*:boolean*/ = 1 === val;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;

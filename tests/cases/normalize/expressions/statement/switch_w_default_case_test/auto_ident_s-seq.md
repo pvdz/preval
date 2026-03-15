@@ -31,7 +31,7 @@ $(a, x);
 const tmpSwitchValue /*:unknown*/ = $(1);
 $(1);
 $(2);
-let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ = 1;
+let tmpSwitchCaseToStart /*:number: 0 | 1 | 2*/ /*ternaryConst*/ = 1;
 const tmpIfTest /*:boolean*/ = 1 === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;

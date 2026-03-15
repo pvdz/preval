@@ -19,7 +19,7 @@ $(a, b, c);
 
 
 `````js filename=intro
-const tmpInitAssignLhsComputedRhs /*:number*/ /*truthy*/ = 3;
+const tmpInitAssignLhsComputedRhs /*:number: 3*/ /*truthy*/ = 3;
 export { tmpInitAssignLhsComputedRhs as a };
 const b /*:object*/ /*truthy*/ = { x: 3 };
 $(3, b, 3);

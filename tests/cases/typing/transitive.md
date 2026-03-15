@@ -27,7 +27,7 @@ while ($LOOP_NO_UNROLLS_LEFT) {
 
 
 `````js filename=intro
-let original_target /*:number*/ /*truthy*/ = 27;
+let original_target /*:number: 7 | 27*/ /*truthy*/ = 27;
 while ($LOOP_NO_UNROLLS_LEFT) {
   const alias_target /*:number*/ /*truthy*/ = original_target;
   $(original_target);

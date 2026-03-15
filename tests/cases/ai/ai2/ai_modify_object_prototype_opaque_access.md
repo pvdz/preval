@@ -42,7 +42,7 @@ const protoKey /*:unknown*/ = $(`op_proto_key_name`, `newProtoPropOnObject`);
 const protoVal /*:unknown*/ = $(`op_proto_val_content`, `fromObjectProto`);
 const originalProtoProperty /*:unknown*/ = $Object_prototype[protoKey];
 const propertyExisted /*:boolean*/ = $dotCall($object_hasOwnProperty, $Object_prototype, `hasOwnProperty`, protoKey);
-let $implicitThrow /*:boolean*/ = false;
+let $implicitThrow /*:boolean: false | true*/ = false;
 let $finalCatchArg /*:unknown*/ = undefined;
 try {
   $Object_prototype[protoKey] = protoVal;

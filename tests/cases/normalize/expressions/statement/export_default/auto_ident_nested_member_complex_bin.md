@@ -32,7 +32,7 @@ const tmpInitAssignLhsComputedObj$1 /*:unknown*/ = $(c);
 const tmpInitAssignLhsComputedProp$1 /*:unknown*/ = $(`y`);
 tmpInitAssignLhsComputedObj$1[tmpInitAssignLhsComputedProp$1] = 7;
 tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = 7;
-const tmpAnonDefaultExport /*:number*/ /*truthy*/ = 7;
+const tmpAnonDefaultExport /*:number: 7*/ /*truthy*/ = 7;
 export { tmpAnonDefaultExport as default };
 const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a, b, c, 3, 4);

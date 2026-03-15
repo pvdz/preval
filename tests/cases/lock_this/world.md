@@ -132,7 +132,7 @@ const three /*:(unknown)=>unknown*/ = function ($$0 /*uses this*/) {
     }
   }
   const tmpCompObj$5 /*:array*/ /*truthy*/ = [1, 0, 0];
-  const tmpCalleeParam$11 /*:number*/ /*truthy*/ = 1;
+  const tmpCalleeParam$11 /*:number: 1*/ /*truthy*/ = 1;
   const tmpReturnArg$9 /*:unknown*/ = _0x5163ed(tmpCalleeParam$11);
   return tmpReturnArg$9;
 };
@@ -153,8 +153,8 @@ const two /*:(unknown)=>unknown*/ = function ($$0 /*uses this*/) {
 const one /*:()=>unknown*/ = function (/*uses this*/) {
   const tmpPrevalAliasThis$3 /*:unknown*/ = this;
   debugger;
-  const tmpBinBothLhs$109 /*:string*/ /*truthy*/ = `\\w+ *\\(\\) *{\\w+ *`;
-  const tmpBinBothRhs$109 /*:string*/ /*truthy*/ = `['|"].+['|"];? *}`;
+  const tmpBinBothLhs$109 /*:string: "\\w+ *\\(\\) *{\\w+ *"*/ /*truthy*/ = `\\w+ *\\(\\) *{\\w+ *`;
+  const tmpBinBothRhs$109 /*:string: "['|\"].+['|\"];? *}"*/ /*truthy*/ = `['|"].+['|"];? *}`;
   const tmpCalleeParam$26 /*:string*/ = tmpBinBothLhs$109 + tmpBinBothRhs$109;
   const _0x2c3587 /*:regex*/ /*truthy*/ = new $regex_constructor(tmpCalleeParam$26);
   const tmpMCOO$3 /*:function*/ /*truthy*/ = two;
@@ -162,7 +162,7 @@ const one /*:()=>unknown*/ = function (/*uses this*/) {
   const tmpMCP$13 /*:unknown*/ = $dotCall(tmpMCF$21, tmpMCOO$3, `toString`);
   $dotCall($regex_test, _0x2c3587, `test`, tmpMCP$13);
   const tmpUpdObj /*:array*/ /*truthy*/ = [1, 0, 0];
-  const tmpUpdVal /*:number*/ /*falsy*/ = 0;
+  const tmpUpdVal /*:number: 0*/ /*falsy*/ = 0;
   const tmpUpdNum /*:number*/ = $coerce(tmpUpdVal, `number`);
   const tmpUpdInc /*:number*/ = tmpUpdNum - 1;
   tmpUpdObj[1] = tmpUpdInc;
@@ -193,7 +193,7 @@ const main /*:(unknown, unknown)=>unknown*/ = function ($$0, $$1) {
     const tmpBinLhs$55 /*:unknown*/ = main.EX_PROP_G;
     const tmpIfTest$17 /*:boolean*/ = tmpBinLhs$55 === undefined;
     if (tmpIfTest$17) {
-      const tmpMCOO$7 /*:undefined*/ /*falsy*/ = undefined;
+      const tmpMCOO$7 /*:undefined: undefined*/ /*falsy*/ = undefined;
       const tmpMCF$33 /*:function*/ /*truthy*/ = one;
       const ret /*:unknown*/ = $dotCall(one, tmpMCOO$7, `EX_PROP_F`);
       main.EX_PROP_G = true;

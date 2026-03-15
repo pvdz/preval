@@ -28,7 +28,7 @@ $(result);
 
 `````js filename=intro
 const template /*:unknown*/ = $(`hello`);
-const tmpBinBothLhs /*:string*/ /*truthy*/ = `world`;
+const tmpBinBothLhs /*:string: "world"*/ /*truthy*/ = `world`;
 const tmpBinBothRhs /*:string*/ = $coerce(template, `string`);
 const tmpBinLhs$1 /*:string*/ /*truthy*/ = `world${tmpBinBothRhs}`;
 const tmpBinLhs /*:string*/ = $coerce(tmpBinLhs$1, `plustr`);

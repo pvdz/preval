@@ -47,7 +47,7 @@ exit: {
 `````js filename=intro
 let x /*:unknown*/ = $(2);
 const tmpSwitchValue /*:unknown*/ = $(100);
-let tmpSwitchCaseToStart /*:number*/ = 3;
+let tmpSwitchCaseToStart /*:number: 0 | 1 | 2 | 3*/ = 3;
 const tmpIfTest /*:boolean*/ = 1 === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;

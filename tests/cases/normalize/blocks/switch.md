@@ -26,7 +26,7 @@ switch ($(1)) {
 `````js filename=intro
 const tmpSwitchValue /*:unknown*/ = $(1);
 const tmpBinLhs /*:unknown*/ = $(2);
-let tmpSwitchCaseToStart /*:number*/ = 5;
+let tmpSwitchCaseToStart /*:number: 0 | 1 | 2 | 3 | 4 | 5*/ = 5;
 const tmpIfTest /*:boolean*/ = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;

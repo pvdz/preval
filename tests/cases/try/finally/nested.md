@@ -29,8 +29,8 @@ try {
 
 
 `````js filename=intro
-let $implicitThrow$3 /*:boolean*/ = false;
-let $finalStep /*:boolean*/ = false;
+let $implicitThrow$3 /*:boolean: false | true*/ = false;
+let $finalStep /*:boolean: false | true*/ = false;
 let $finalCatchArg$3 /*:unknown*/ = undefined;
 let $finalArg /*:unknown*/ = undefined;
 $finally$3: {

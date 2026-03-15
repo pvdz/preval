@@ -20,7 +20,7 @@ $(a, b);
 
 
 `````js filename=intro
-const a /*:number*/ /*truthy*/ = 2;
+const a /*:number: 2*/ /*truthy*/ = 2;
 export { a };
 const b /*:object*/ /*truthy*/ = { c: 2 };
 $(2, b);

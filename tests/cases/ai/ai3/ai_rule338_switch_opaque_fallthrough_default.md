@@ -34,7 +34,7 @@ $('done_switch');
 `````js filename=intro
 const discriminant /*:unknown*/ = $(`discriminant`);
 const tmpBinLhs /*:unknown*/ = $(`caseValA`, `valA`);
-let tmpSwitchCaseToStart /*:number*/ = 3;
+let tmpSwitchCaseToStart /*:number: 0 | 1 | 2 | 3*/ = 3;
 const tmpIfTest /*:boolean*/ = tmpBinLhs === discriminant;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;

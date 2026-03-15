@@ -135,7 +135,7 @@ const d /*:()=>object*/ = function () {
   c = 43;
   return objd;
 };
-let e /*:primitive*/ /*truthy*/ = 12345;
+let e /*:primitive: "faila" | "failb" | "failc" | "faild" | 12345*/ /*truthy*/ = 12345;
 const tmpInitAssignLhsComputedObj /*:unknown*/ = a();
 const tmpInitAssignLhsComputedProp /*:unknown*/ = tmp(`a`);
 const tmpInitAssignLhsComputedObj$1 /*:unknown*/ = b();

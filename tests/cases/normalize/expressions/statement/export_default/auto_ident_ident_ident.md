@@ -22,7 +22,7 @@ $(a, b, c);
 
 
 `````js filename=intro
-const b /*:number*/ /*truthy*/ = 2;
+const b /*:number: 2*/ /*truthy*/ = 2;
 export { b as default };
 const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a, 2, 2);

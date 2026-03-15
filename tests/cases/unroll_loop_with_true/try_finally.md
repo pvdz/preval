@@ -29,7 +29,7 @@ while (true) {
 
 
 `````js filename=intro
-let $finalStep /*:boolean*/ = false;
+let $finalStep /*:boolean: false | true*/ = false;
 try {
   const test /*:unknown*/ = $(`first`);
   $(`second`);
@@ -46,7 +46,7 @@ $(`finally`);
 if ($finalStep) {
 } else {
   while ($LOOP_UNROLLS_LEFT_10) {
-    let $finalStep$1 /*:boolean*/ = false;
+    let $finalStep$1 /*:boolean: false | true*/ = false;
     try {
       const test$1 /*:unknown*/ = $(`first`);
       $(`second`);

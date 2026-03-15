@@ -20,7 +20,7 @@ $(a, arg);
 
 
 `````js filename=intro
-const a /*:boolean*/ /*falsy*/ = false;
+const a /*:boolean: false*/ /*falsy*/ = false;
 export { a };
 $(false, 1);
 `````

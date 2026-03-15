@@ -32,7 +32,7 @@ const tmpInitAssignLhsComputedObj /*:unknown*/ = $(c);
 const tmpInitAssignLhsComputedProp /*:unknown*/ = $(`y`);
 tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = 7;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
-const tmpAnonDefaultExport /*:number*/ /*truthy*/ = 7;
+const tmpAnonDefaultExport /*:number: 7*/ /*truthy*/ = 7;
 export { tmpAnonDefaultExport as default };
 $(7, b, c, 3, 4);
 `````

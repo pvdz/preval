@@ -31,7 +31,7 @@ const tmpLambdaSomeNow /*:unknown*/ = $dotCall(tmpMCP, undefined, undefined);
 if (tmpLambdaSomeNow) {
   $(result, true);
 } else {
-  let tmpLambdaSomeOut /*:boolean*/ = false;
+  let tmpLambdaSomeOut /*:boolean: false | true*/ = false;
   let tmpClusterSSA_tmpLambdaSomeCounter /*:number*/ = 1;
   const tmpMCOO /*:array*/ /*truthy*/ = [1, 2, 3];
   while ($LOOP_UNROLLS_LEFT_10) {

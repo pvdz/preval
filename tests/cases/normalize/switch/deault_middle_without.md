@@ -58,7 +58,7 @@ switch (6) {
 
 `````js filename=intro
 const tmpBinLhs /*:unknown*/ = $(10);
-let tmpSwitchCaseToStart /*:number*/ = 5;
+let tmpSwitchCaseToStart /*:number: 0 | 1 | 2 | 3 | 4 | 5*/ = 5;
 const tmpIfTest /*:boolean*/ = tmpBinLhs === 6;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;

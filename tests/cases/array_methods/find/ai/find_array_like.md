@@ -29,7 +29,7 @@ if (tmpLambdaFindTest) {
   if (tmpLambdaFindNow) {
     $(`b`);
   } else {
-    let tmpLambdaFindOut /*:primitive*/ = undefined;
+    let tmpLambdaFindOut /*:primitive: "b" | undefined*/ = undefined;
     let tmpClusterSSA_tmpLambdaFindCounter /*:number*/ = 1;
     while ($LOOP_UNROLLS_LEFT_10) {
       const tmpLambdaFindTest$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaFindCounter < tmpLambdaFindLen;

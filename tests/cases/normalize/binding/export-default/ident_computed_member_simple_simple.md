@@ -22,7 +22,7 @@ $(a, b, c);
 const tmpInitAssignLhsComputedProp /*:unknown*/ = $(`x`);
 const b /*:object*/ /*truthy*/ = { x: 2 };
 b[tmpInitAssignLhsComputedProp] = 3;
-const a /*:number*/ /*truthy*/ = 3;
+const a /*:number: 3*/ /*truthy*/ = 3;
 export { a };
 $(3, b, 3);
 `````

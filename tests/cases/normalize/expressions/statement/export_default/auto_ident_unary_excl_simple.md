@@ -21,7 +21,7 @@ $(a, arg);
 
 
 `````js filename=intro
-const tmpAnonDefaultExport /*:boolean*/ /*falsy*/ = false;
+const tmpAnonDefaultExport /*:boolean: false*/ /*falsy*/ = false;
 export { tmpAnonDefaultExport as default };
 const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a, 1);

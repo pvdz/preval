@@ -63,7 +63,7 @@ $(a, b);
 `````js filename=intro
 const arr /*:array*/ /*truthy*/ = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000];
 let arg1 /*:unknown*/ = 3;
-let func_IS_EXPANDO_SET /*:primitive*/ = undefined;
+let func_IS_EXPANDO_SET /*:primitive: true | undefined*/ = undefined;
 let func_THIS_IS_AN_EXPANDO /*:unknown*/ = undefined;
 const func /*:(unknown, unknown)=>unknown*/ = function ($$0, $$1 /*uses arguments*/) {
   const tmpPrevalAliasArgumentsAny$2 /*:arguments*/ /*truthy*/ = arguments;

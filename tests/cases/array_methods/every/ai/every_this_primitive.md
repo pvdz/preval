@@ -27,7 +27,7 @@ const tmpMCP /*:()=>undefined*/ = function (/*uses this*/) {
 };
 const tmpLambdaEveryWas /*:unknown*/ = $dotCall(tmpMCP, 42, undefined);
 if (tmpLambdaEveryWas) {
-  let tmpLambdaEveryOut /*:boolean*/ = true;
+  let tmpLambdaEveryOut /*:boolean: false | true*/ = true;
   let tmpClusterSSA_tmpLambdaEveryCounter /*:number*/ = 1;
   const tmpMCOO /*:array*/ /*truthy*/ = [1, 2, 3];
   while ($LOOP_UNROLLS_LEFT_10) {

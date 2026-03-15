@@ -38,7 +38,7 @@ $(x);
 
 
 `````js filename=intro
-let x /*:number*/ /*truthy*/ = 1;
+let x /*:number: 1 | 2*/ /*truthy*/ = 1;
 $(1);
 try {
   $(1);

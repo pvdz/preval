@@ -23,7 +23,7 @@ while (tmpLoopRetCode) {
 `````js filename=intro
 if ($) {
 } else {
-  let tmpLoopRetCode /*:boolean*/ = true;
+  let tmpLoopRetCode /*:boolean: false | true*/ = true;
   while ($LOOP_UNROLLS_LEFT_10) {
     if ($) {
       tmpLoopRetCode = false;

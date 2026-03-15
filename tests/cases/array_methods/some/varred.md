@@ -32,7 +32,7 @@ const f /*:()=>undefined*/ = function () {
     $(true);
     return undefined;
   } else {
-    let tmpLambdaSomeOut /*:boolean*/ = false;
+    let tmpLambdaSomeOut /*:boolean: false | true*/ = false;
     let tmpClusterSSA_tmpLambdaSomeCounter /*:number*/ = 1;
     while ($LOOP_UNROLLS_LEFT_10) {
       const tmpLambdaSomeTest$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaSomeCounter < 3;

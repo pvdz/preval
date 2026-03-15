@@ -85,9 +85,9 @@ if (action === 5) throw use;
 
 
 `````js filename=intro
-let $finalStep /*:boolean*/ = false;
-let $finalStep$1 /*:boolean*/ = false;
-let $finalStep$3 /*:boolean*/ = false;
+let $finalStep /*:boolean: false | true*/ = false;
+let $finalStep$1 /*:boolean: false | true*/ = false;
+let $finalStep$3 /*:boolean: false | true*/ = false;
 let $finalArg /*:unknown*/ = undefined;
 let $finalArg$1 /*:unknown*/ = undefined;
 try {
@@ -123,9 +123,9 @@ if ($finalStep) {
     } else {
       let tmpCalleeParam /*:unknown*/ = undefined;
       while ($LOOP_UNROLLS_LEFT_10) {
-        let $finalStep$2 /*:boolean*/ = false;
-        let $finalStep$4 /*:boolean*/ = false;
-        let $finalStep$6 /*:boolean*/ = false;
+        let $finalStep$2 /*:boolean: false | true*/ = false;
+        let $finalStep$4 /*:boolean: false | true*/ = false;
+        let $finalStep$6 /*:boolean: false | true*/ = false;
         let $finalArg$2 /*:unknown*/ = undefined;
         let $finalArg$4 /*:unknown*/ = undefined;
         try {

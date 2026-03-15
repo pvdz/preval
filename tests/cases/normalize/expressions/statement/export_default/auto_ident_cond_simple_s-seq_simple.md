@@ -19,7 +19,7 @@ $(a);
 
 
 `````js filename=intro
-const tmpAnonDefaultExport /*:number*/ /*truthy*/ = 60;
+const tmpAnonDefaultExport /*:number: 60*/ /*truthy*/ = 60;
 export { tmpAnonDefaultExport as default };
 const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);

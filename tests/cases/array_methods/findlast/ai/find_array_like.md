@@ -30,7 +30,7 @@ if (tmpLambdaFindLastTest) {
   if (tmpLambdaFindLastNow) {
     $(`b`);
   } else {
-    let tmpLambdaFindLastOut /*:primitive*/ = undefined;
+    let tmpLambdaFindLastOut /*:primitive: "b" | undefined*/ = undefined;
     let tmpClusterSSA_tmpLambdaFindLastCounter /*:number*/ = tmpLambdaFindLastCounter - 1;
     while ($LOOP_UNROLLS_LEFT_10) {
       const tmpLambdaFindLastTest$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaFindLastCounter >= 0;

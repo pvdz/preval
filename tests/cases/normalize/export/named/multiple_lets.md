@@ -17,8 +17,8 @@ export let a = 10, b = 20;
 
 
 `````js filename=intro
-const a /*:number*/ /*truthy*/ = 10;
-const b /*:number*/ /*truthy*/ = 20;
+const a /*:number: 10*/ /*truthy*/ = 10;
+const b /*:number: 20*/ /*truthy*/ = 20;
 export { a, b };
 `````
 

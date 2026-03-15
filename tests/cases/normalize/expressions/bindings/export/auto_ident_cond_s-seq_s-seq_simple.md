@@ -18,7 +18,7 @@ $(a);
 
 
 `````js filename=intro
-const a /*:number*/ /*truthy*/ = 60;
+const a /*:number: 60*/ /*truthy*/ = 60;
 export { a };
 $(60);
 `````

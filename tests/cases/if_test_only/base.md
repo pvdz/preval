@@ -26,7 +26,7 @@ while (true) {
 
 
 `````js filename=intro
-let x /*:boolean*/ = true;
+let x /*:boolean: false | true*/ = true;
 while ($LOOP_NO_UNROLLS_LEFT) {
   if (x) {
     x = false;

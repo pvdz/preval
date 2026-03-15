@@ -28,7 +28,7 @@ if ($(2)) {
 
 
 `````js filename=intro
-let x /*:primitive*/ /*ternaryConst*/ = undefined;
+let x /*:primitive: 10 | undefined*/ /*ternaryConst*/ = undefined;
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   x = 10;

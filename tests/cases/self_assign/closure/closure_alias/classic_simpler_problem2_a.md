@@ -45,7 +45,7 @@ while (true) {
 
 
 `````js filename=intro
-let tmpSealed /*:boolean*/ = false;
+let tmpSealed /*:boolean: false | true*/ = false;
 let thisclosurebecomesargumentsobj /*:unknown*/ = 1;
 while ($LOOP_NO_UNROLLS_LEFT) {
   if (tmpSealed) {

@@ -39,7 +39,7 @@ const oops /*:(array)=>undefined*/ = function (...$$0 /*:array*/) {
   x = `fail`;
   return undefined;
 };
-let x /*:primitive*/ /*truthy*/ = 5;
+let x /*:primitive: "fail" | 5 | 10 | 20*/ /*truthy*/ = 5;
 $(5);
 const tmpIfTest /*:unknown*/ = $(false);
 if (tmpIfTest) {

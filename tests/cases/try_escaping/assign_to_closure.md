@@ -37,7 +37,7 @@ const f /*:()=>undefined*/ = function () {
   $(x);
   return undefined;
 };
-let x /*:number*/ /*truthy*/ = 1;
+let x /*:number: 1 | 2*/ /*truthy*/ = 1;
 $(f);
 const arr /*:array*/ /*truthy*/ = [1, 2, 3];
 while ($LOOP_NO_UNROLLS_LEFT) {

@@ -27,7 +27,7 @@ const cb /*:unknown*/ = $(`opaque_every_predicate`);
 const arr /*:array*/ /*truthy*/ = [tmpArrElement, tmpArrElement$1];
 const tmpLambdaEveryWas /*:unknown*/ = $dotCall(cb, undefined, undefined, tmpArrElement, 0, arr);
 if (tmpLambdaEveryWas) {
-  let tmpLambdaEveryOut /*:boolean*/ = true;
+  let tmpLambdaEveryOut /*:boolean: false | true*/ = true;
   let tmpClusterSSA_tmpLambdaEveryCounter /*:number*/ = 1;
   while ($LOOP_UNROLLS_LEFT_10) {
     const tmpLambdaEveryTest$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaEveryCounter < 2;

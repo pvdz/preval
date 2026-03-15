@@ -48,7 +48,7 @@ $(the_self_closing_func()); // This should NOT prevent the transform (!), only t
 
 
 `````js filename=intro
-let tmpSealed /*:boolean*/ = false;
+let tmpSealed /*:boolean: false | true*/ = false;
 const main_data_arr /*:array*/ /*truthy*/ = [`this`, `contents`, `is`, `not`, `relevant`, `here`];
 while ($LOOP_NO_UNROLLS_LEFT) {
   let b /*:number*/ /*ternaryConst*/ = 0;

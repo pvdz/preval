@@ -45,7 +45,7 @@ const f /*:()=>undefined*/ = function () {
   $(undefined);
   return undefined;
 };
-let x /*:primitive*/ = 1;
+let x /*:primitive: 1 | undefined*/ = 1;
 f();
 $(f);
 $(x);

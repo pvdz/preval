@@ -34,7 +34,7 @@ const ctx /*:object*/ /*truthy*/ = { mult: 2 };
 const tmpMCOO /*:array*/ /*truthy*/ = [1, 2, 3];
 const tmpLambdaEveryWas /*:unknown*/ = $dotCall(tmpMCP, ctx, undefined, 1, 0, tmpMCOO);
 if (tmpLambdaEveryWas) {
-  let tmpLambdaEveryOut /*:boolean*/ = true;
+  let tmpLambdaEveryOut /*:boolean: false | true*/ = true;
   let tmpClusterSSA_tmpLambdaEveryCounter /*:number*/ = 1;
   while ($LOOP_UNROLLS_LEFT_10) {
     const tmpLambdaEveryTest$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaEveryCounter < 3;

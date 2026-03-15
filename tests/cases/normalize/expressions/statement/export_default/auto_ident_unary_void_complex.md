@@ -20,7 +20,7 @@ $(a);
 
 `````js filename=intro
 $(100);
-const tmpAnonDefaultExport /*:undefined*/ /*falsy*/ = undefined;
+const tmpAnonDefaultExport /*:undefined: undefined*/ /*falsy*/ = undefined;
 export { tmpAnonDefaultExport as default };
 const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);

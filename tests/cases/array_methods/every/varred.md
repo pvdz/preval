@@ -29,7 +29,7 @@ const f /*:()=>undefined*/ = function () {
   const arr /*:array*/ /*truthy*/ = [1, 2, 3];
   const tmpLambdaEveryWas /*:unknown*/ = $dotCall($, undefined, undefined, 1, 0, arr);
   if (tmpLambdaEveryWas) {
-    let tmpLambdaEveryOut /*:boolean*/ = true;
+    let tmpLambdaEveryOut /*:boolean: false | true*/ = true;
     let tmpClusterSSA_tmpLambdaEveryCounter /*:number*/ = 1;
     while ($LOOP_UNROLLS_LEFT_10) {
       const tmpLambdaEveryTest$1 /*:boolean*/ = tmpClusterSSA_tmpLambdaEveryCounter < 3;

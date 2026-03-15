@@ -25,7 +25,7 @@ $(result);
 
 `````js filename=intro
 let counter /*:number*/ = 0;
-const tmpBinBothLhs /*:string*/ /*truthy*/ = `count: `;
+const tmpBinBothLhs /*:string: "count: "*/ /*truthy*/ = `count: `;
 const tmpPostUpdArgIdent /*:number*/ = $coerce(counter, `number`);
 counter = tmpPostUpdArgIdent + 1;
 let tmpCalleeParam /*:number*/ = counter;

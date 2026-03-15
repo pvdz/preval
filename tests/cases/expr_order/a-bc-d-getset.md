@@ -42,7 +42,7 @@ let b /*:unknown*/ = {
     return 7;
   },
 };
-let d /*:primitive*/ = 3;
+let d /*:primitive: null | 3 | undefined*/ = 3;
 b.c = 3;
 $(3, b, d);
 `````

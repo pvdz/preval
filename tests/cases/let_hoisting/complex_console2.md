@@ -30,7 +30,7 @@ $(x);
 
 `````js filename=intro
 const f /*:unknown*/ = $(`ok`);
-let x /*:primitive*/ /*ternaryConst*/ = 1;
+let x /*:primitive: 1 | undefined*/ /*ternaryConst*/ = 1;
 if ($) {
 } else {
   x = undefined;

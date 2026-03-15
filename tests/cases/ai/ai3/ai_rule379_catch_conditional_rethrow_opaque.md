@@ -114,7 +114,7 @@ try {
   }
 }
 $(`log`, `final_val after err2: initial_val_modified_in_catch2`);
-let final_val2 /*:string*/ /*truthy*/ = `modified_by_inner_catch3_outer_try_continued`;
+let final_val2 /*:string: "modified_by_inner_catch3_outer_try_continued" | "modified_by_outer_catch3"*/ /*truthy*/ = `modified_by_inner_catch3_outer_try_continued`;
 try {
   $(`log`, `throwing error 3`);
   try {

@@ -29,7 +29,7 @@ const f /*:()=>undefined*/ = function () {
   debugger;
   return undefined;
 };
-const foo /*:number*/ /*truthy*/ = 1;
+const foo /*:number: 1*/ /*truthy*/ = 1;
 const obj /*:object*/ /*truthy*/ = { x: foo };
 $(obj);
 `````

@@ -26,7 +26,7 @@ $(x);
 `````js filename=intro
 const f /*:()=>undefined*/ = function () {
   debugger;
-  let tmpLambdaEveryOut /*:boolean*/ /*ternaryConst*/ = true;
+  let tmpLambdaEveryOut /*:boolean: false | true*/ /*ternaryConst*/ = true;
   const tmpMCOO /*:array*/ /*truthy*/ = [1, 2, 3];
   const tmpLambdaEveryWas /*:unknown*/ = $dotCall($, undefined, undefined, 1, 0, tmpMCOO);
   if (tmpLambdaEveryWas) {

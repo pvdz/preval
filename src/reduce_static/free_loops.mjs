@@ -21,9 +21,30 @@
 
 import walk from '../../lib/walk.mjs';
 import * as AST from '../ast.mjs';
-import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, source, REF_TRACK_TRACING, assertNoDupeNodes, rule, example, before, after, todo, currentState, clearStdio, } from '../utils.mjs';
+import {
+  ASSERT,
+  log,
+  group,
+  groupEnd,
+  vlog,
+  vgroup,
+  vgroupEnd,
+  tmat,
+  fmat,
+  source,
+  REF_TRACK_TRACING,
+  assertNoDupeNodes,
+  rule,
+  example,
+  before,
+  after,
+  todo,
+  currentState,
+  clearStdio,
+  setStdio,
+} from '../utils.mjs';
 import { pcanCompile, pcodeSupportedBuiltinFuncs, pcompile, runFreeWithPcode } from '../pcode.mjs';
-import { SYMBOL_COERCE, SYMBOL_DOTCALL, SYMBOL_FRFR, SYMBOL_PCOMPILED } from '../symbols_preval.mjs';
+import { SYMBOL_COERCE, SYMBOL_DOTCALL, SYMBOL_FREE, SYMBOL_FRFR, SYMBOL_PCOMPILED } from '../symbols_preval.mjs';
 import { PRIMITIVE_TYPE_NAMES_PREVAL, PRIMITIVE_TYPE_NAMES_TYPEOF, setVerboseTracing } from '../constants.mjs';
 import { BUILTIN_SYMBOLS, symbo } from '../symbols_builtins.mjs';
 
@@ -336,7 +357,7 @@ function _isFree(node, fdata, callNodeToCalleeSymbol, declaredNameTypes, insideW
         const cmeta = fdata.globallyUniqueNamingRegistry.get(calleeName);
         if (
           cmeta?.isConstant &&
-          cmeta.varDeclRef?.node.id?.name === SYMBOL_PCOMPILED
+          (cmeta.varDeclRef?.node.id?.name === SYMBOL_PCOMPILED || cmeta.varDeclRef?.node.id?.name === SYMBOL_FREE)
         ) {
           vlog('- returns:', cmeta.typing.returns);
           if (!cmeta.typing.returns) {
@@ -384,7 +405,7 @@ function _isFree(node, fdata, callNodeToCalleeSymbol, declaredNameTypes, insideW
           callNodeToCalleeSymbol.set(node, calleeName);
           return true;
         }
-        vlog('- bail: not a supported function');
+        vlog('- bail: not a supported function', [!cmeta?.isConstant ? 'not a constant' : '', cmeta.varDeclRef?.node.id?.name !== SYMBOL_PCOMPILED ? 'func name is not pcompiled symbol' : '', cmeta.varDeclRef?.node.id?.name, SYMBOL_PCOMPILED]);
         return false;
       }
 
@@ -646,15 +667,8 @@ function _isFree(node, fdata, callNodeToCalleeSymbol, declaredNameTypes, insideW
         if (assignedTo) declaredNameTypes.set(assignedTo, declaredNameTypes.get(node.name));
         return true;
       }
-      if (SUPPORTED_GLOBAL_FUNCS.includes(node.name)) {
-        if (declaredNameTypes) {
-          // Hmmm..
-          vlog('Bail on aliasing a builtin. I think normalization should take a look at that.');
-          return false;
-        }
-        return true;
-      }
       if (node.name === '$frfr') {
+        FIXME // this is captured above because $frfr is in the SUPPORTED_GLOBAL_FUNCS list
         ASSERT(false, '$frfr is not a real value; it should not be passed around at all ever', node);
         return true;
       }
@@ -834,6 +848,13 @@ function _isFree(node, fdata, callNodeToCalleeSymbol, declaredNameTypes, insideW
         return true;
       }
 
+      if (init.type === 'Identifier' && SUPPORTED_GLOBAL_FUNCS.includes(init.name)) {
+        // `let x = $array_push;`  // another rule should normalize this first
+        vlog('Bail on aliasing a builtin (', node.name, '->', declaredNameTypes.get(node.name), '). I think normalization should take a look at that.', declaredNameTypes);
+        return false;
+      }
+
+
       if (!insideWhile) {
         if (init.type === 'CallExpression' && init.callee.type === 'Identifier' && init.callee.name === 'require') {
           vlog('- Skipping decl that is a require call. If the id `', id.name ,'` appears inside the while, we break.');
@@ -853,7 +874,9 @@ function _isFree(node, fdata, callNodeToCalleeSymbol, declaredNameTypes, insideW
         return false;
       }
       vlog('  - init', [id.name], 'passes isFree, results in', [declaredNameTypes.get(id.name)]);
-      ASSERT(declaredNameTypes.get(id.name), 'the type should be set by the sub call');
+      if (!SUPPORTED_GLOBAL_FUNCS.includes(id.name)) {
+        ASSERT(declaredNameTypes.get(id.name), 'the type should be set by the sub call', [id.name]);
+      }
       return true;
     }
     case 'WhileStatement': {
@@ -1153,39 +1176,7 @@ function _runExpression(fdata, node, register, callNodeToCalleeSymbol, prng, use
         ASSERT(node.arguments[0]?.type === 'Identifier', '$frfr is controlled by us and first arg should be the free func ref');
         // The func decl node for this $free func should be stored in the callNodeToCalleeSymbol for this argument node ref (see isFree)
         const freeFuncName = node.arguments[0].name;
-        const meta = fdata.globallyUniqueNamingRegistry.get(freeFuncName);
-        const freeFuncNode = meta.varDeclRef.node;
-        ASSERT(meta.writes.length === 1 && freeFuncNode && freeFuncNode.id?.name === '$free', 'we created the free func and it should be a constant...', freeFuncNode.id?.name, meta.writes.length);
-
-        let fail = false;
-        const args = node.arguments.slice(1).map(arg => {
-          if (AST.isPrimitive(arg)) return arg;
-          if (arg.type !== 'Identifier') {
-            todo('frfr args should be primitives or local vars or we should support whatever is missing', arg);
-            fail = true;
-            return;
-          }
-          if (!register.has(arg.name)) {
-            todo('frfr ident args should be local vars or we should support whatever is missing', arg);
-            fail = true;
-            return;
-          }
-          const val = register.get(arg.name);
-          if (!AST.isPrimitive(val)) {
-            todo('frfr ident args should be a primitive', arg, val);
-            fail = true;
-            return;
-          }
-          return val;
-        });
-        if (fail) return FAILURE_SYMBOL;
-
-        const outNode = runFreeWithPcode(freeFuncNode, args, fdata, freeFuncName, prng, usePrng, fdata.pcodeOutput);
-        if (!outNode || !AST.isPrimitive(outNode)) {
-          todo('The return value of runFreeWithPcode was not a primitive?');
-          break;
-        }
-        return AST.getPrimitiveValue(outNode);
+        return prunFreeFunc(freeFuncName, node);
       }
       else {
         const calleeName = callNodeToCalleeSymbol.get(node);
@@ -1431,6 +1422,11 @@ function _runExpression(fdata, node, register, callNodeToCalleeSymbol, prng, use
           // The symbols
           if (BUILTIN_SYMBOLS.has(funcName)) todo('free_loops may not have bailed if it implemented `' + funcName + '`');
           todo('Missing implementation for allowed function call to:', funcName);
+
+          if (fdata.pcodeOutput.has(funcName)) {
+            return prunFreeFunc(funcName, node);
+          }
+
           register.set('', `Missing implementation for allowed function call to ${funcName}`);
           vlog('Expect to crash hard soon...');
           return FAILURE_SYMBOL;
@@ -1537,6 +1533,42 @@ function _runExpression(fdata, node, register, callNodeToCalleeSymbol, prng, use
       register.set('', `missing support for expression when running a free loop? ${node.type}`);
       return FAILURE_SYMBOL;
     }
+  }
+
+  function prunFreeFunc(calleeName, callNode) {
+    const meta = fdata.globallyUniqueNamingRegistry.get(calleeName);
+    const freeFuncNode = meta.varDeclRef.node;
+    ASSERT(meta.writes.length === 1 && freeFuncNode && freeFuncNode.id?.name === '$free', 'we created the free func and it should be a constant...', freeFuncNode.id?.name, meta.writes.length);
+
+    let fail = false;
+    const args = callNode.arguments.slice(1).map(arg => {
+      if (AST.isPrimitive(arg)) return arg;
+      if (arg.type !== 'Identifier') {
+        todo('frfr args should be primitives or local vars or we should support whatever is missing', arg);
+        fail = true;
+        return;
+      }
+      if (!register.has(arg.name)) {
+        todo('frfr ident args should be local vars or we should support whatever is missing', arg);
+        fail = true;
+        return;
+      }
+      const val = register.get(arg.name);
+      if (!AST.isPrimitive(val)) {
+        todo('frfr ident args should be a primitive', arg, val);
+        fail = true;
+        return;
+      }
+      return val;
+    });
+    if (fail) return FAILURE_SYMBOL;
+
+    const outNode = runFreeWithPcode(freeFuncNode, args, fdata, calleeName, prng, usePrng, fdata.pcodeOutput);
+    if (!outNode || !AST.isPrimitive(outNode)) {
+      todo('The return value of runFreeWithPcode was not a primitive?');
+      throw new Error('return value of runFreeWithPcode?');
+    }
+    return AST.getPrimitiveValue(outNode);
   }
 
   log(node);

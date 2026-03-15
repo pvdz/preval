@@ -76,19 +76,18 @@ const method /*:(unknown)=>string*/ = function ($$0) {
   $(tmpCalleeParam);
   return ``;
 };
-let main_target_DjBalz /*:primitive: true | undefined*/ = undefined;
+let main_target_DjBalz /*:boolean: false | true*/ = false;
 let main_target_abcxyz /*:unknown*/ = undefined;
 let main_target_TjeLtB /*:unknown*/ = undefined;
 const main_target /*:(number, string)=>unknown*/ = function ($$0, $$1) {
   const tmpOutlinedParam /*:number*/ = $$0;
   const val /*:string*/ = $$1;
   debugger;
-  const isPatched /*:boolean*/ = main_target_DjBalz === undefined;
-  if (isPatched) {
+  if (main_target_DjBalz) {
+  } else {
     main_target_abcxyz = method;
     main_target_TjeLtB = {};
     main_target_DjBalz = true;
-  } else {
   }
   const the_cache /*:unknown*/ = main_target_TjeLtB;
   const cache_key /*:string*/ /*truthy*/ = `${tmpOutlinedParam}abc`;
@@ -119,11 +118,11 @@ const method = function ($dlr_$$0) {
   $(typeof tmpMCF);
   return ``;
 };
-let main_target_DjBalz = undefined;
+let main_target_DjBalz = false;
 let main_target_abcxyz = undefined;
 let main_target_TjeLtB = undefined;
 const main_target = function (tmpOutlinedParam, val) {
-  if (main_target_DjBalz === undefined) {
+  if (!main_target_DjBalz) {
     main_target_abcxyz = method;
     main_target_TjeLtB = {};
     main_target_DjBalz = true;
@@ -158,36 +157,38 @@ const a = function($$0 ) {
   $( d );
   return "";
 };
-let e = undefined;
+let e = false;
 let f = undefined;
 let g = undefined;
 const h = function($$0,$$1 ) {
   const i = $$0;
   const j = $$1;
   debugger;
-  const k = e === undefined;
-  if (k) {
+  if (e) {
+
+  }
+  else {
     f = a;
     g = {};
     e = true;
   }
-  const l = g;
-  const m = `${i}abc`;
-  const n = l[ m ];
-  if (n) {
-    return n;
+  const k = g;
+  const l = `${i}abc`;
+  const m = k[ l ];
+  if (m) {
+    return m;
   }
   else {
-    const o = f( j );
-    g[m] = o;
-    return o;
+    const n = f( j );
+    g[l] = n;
+    return n;
   }
 };
 while ($LOOP_NO_UNROLLS_LEFT) {
-  const p = h( 1, "b" );
-  $( "a:", p );
-  const q = h( 3, "d" );
-  $( "b:", q );
+  const o = h( 1, "b" );
+  $( "a:", o );
+  const p = h( 3, "d" );
+  $( "b:", p );
 }
 `````
 

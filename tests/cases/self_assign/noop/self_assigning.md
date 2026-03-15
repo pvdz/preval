@@ -55,7 +55,7 @@ $(a, b);
 `````js filename=intro
 const arr /*:array*/ /*truthy*/ = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000];
 let arg1 /*:unknown*/ = 3;
-let func_IS_EXPANDO_SET /*:primitive: true | undefined*/ = undefined;
+let func_IS_EXPANDO_SET /*:boolean: false | true*/ = false;
 let func_THIS_IS_AN_EXPANDO /*:unknown*/ = undefined;
 const func /*:(unknown, unused)=>unknown*/ = function ($$0, $$1 /*uses arguments*/) {
   const tmpPrevalAliasArgumentsAny /*:arguments*/ /*truthy*/ = arguments;
@@ -63,12 +63,11 @@ const func /*:(unknown, unused)=>unknown*/ = function ($$0, $$1 /*uses arguments
   debugger;
   const index$1 /*:number*/ = newArg1 - 1;
   const arrval /*:primitive*/ = arr[index$1];
-  const tmpIfTest /*:boolean*/ = func_IS_EXPANDO_SET === undefined;
-  if (tmpIfTest) {
+  if (func_IS_EXPANDO_SET) {
+  } else {
     func_THIS_IS_AN_EXPANDO = $spy;
     arg1 = tmpPrevalAliasArgumentsAny;
     func_IS_EXPANDO_SET = true;
-  } else {
   }
   const newIndex /*:number*/ = index$1 + 100;
   const arguments_x /*:unknown*/ = arg1[newIndex];
@@ -92,13 +91,13 @@ $(tmpClusterSSA_a, b);
 `````js filename=intro
 const arr = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000];
 let arg1 = 3;
-let func_IS_EXPANDO_SET = undefined;
+let func_IS_EXPANDO_SET = false;
 let func_THIS_IS_AN_EXPANDO = undefined;
 const func = function (newArg1, $$1) {
   const tmpPrevalAliasArgumentsAny = arguments;
   const index$1 = newArg1 - 1;
   const arrval = arr[index$1];
-  if (func_IS_EXPANDO_SET === undefined) {
+  if (!func_IS_EXPANDO_SET) {
     func_THIS_IS_AN_EXPANDO = $spy;
     arg1 = tmpPrevalAliasArgumentsAny;
     func_IS_EXPANDO_SET = true;
@@ -123,7 +122,7 @@ With rename=true
 `````js filename=intro
 const a = [ 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000 ];
 let b = 3;
-let c = undefined;
+let c = false;
 let d = undefined;
 const e = function($$0,$$1 ) {
   const f = g;
@@ -131,26 +130,28 @@ const e = function($$0,$$1 ) {
   debugger;
   const i = h - 1;
   const j = a[ i ];
-  const k = c === undefined;
-  if (k) {
+  if (c) {
+
+  }
+  else {
     d = $spy;
     b = f;
     c = true;
   }
-  const l = i + 100;
-  const m = b[ l ];
-  if (m) {
-    return m;
+  const k = i + 100;
+  const l = b[ k ];
+  if (l) {
+    return l;
   }
   else {
-    const n = $dotCall( d, e, "THIS_IS_AN_EXPANDO", j );
-    b[l] = n;
-    return n;
+    const m = $dotCall( d, e, "THIS_IS_AN_EXPANDO", j );
+    b[k] = m;
+    return m;
   }
 };
-const o = e( 3, 4 );
-const p = e( 1, 2 );
-$( o, p );
+const n = e( 3, 4 );
+const o = e( 1, 2 );
+$( n, o );
 `````
 
 

@@ -48,19 +48,18 @@ $(x, y);
 
 
 `````js filename=intro
-let a /*:primitive: true | undefined*/ = undefined;
+let a /*:boolean: false | true*/ = false;
 let b /*:unknown*/ = undefined;
 let c /*:unknown*/ = undefined;
 const func /*:(number, unknown)=>unknown*/ = function ($$0, $$1) {
   const $dlr_$$1 /*:number*/ = $$0;
   const $dlr_$$3 /*:unknown*/ = $$1;
   debugger;
-  const test /*:boolean*/ = a === undefined;
-  if (test) {
+  if (a) {
+  } else {
     b = $;
     c = {};
     a = true;
-  } else {
   }
   const c_prime /*:unknown*/ = c;
   const concatted /*:string*/ /*truthy*/ = `${$dlr_$$1}a`;
@@ -83,11 +82,11 @@ $(x, y);
 (This ought to be the final result)
 
 `````js filename=intro
-let a = undefined;
+let a = false;
 let b = undefined;
 let c = undefined;
 const func = function ($dlr_$$1, $dlr_$$3) {
-  if (a === undefined) {
+  if (!a) {
     b = $;
     c = {};
     a = true;
@@ -111,34 +110,36 @@ $(func(22, tmpOAL), func(12, tmpOAL$1));
 With rename=true
 
 `````js filename=intro
-let a = undefined;
+let a = false;
 let b = undefined;
 let c = undefined;
 const d = function($$0,$$1 ) {
   const e = $$0;
   const f = $$1;
   debugger;
-  const g = a === undefined;
-  if (g) {
+  if (a) {
+
+  }
+  else {
     b = $;
     c = {};
     a = true;
   }
-  const h = c;
-  const i = `${e}a`;
-  const j = h[ i ];
-  if (j) {
-    return j;
+  const g = c;
+  const h = `${e}a`;
+  const i = g[ h ];
+  if (i) {
+    return i;
   }
   else {
-    const k = b( f );
-    c[i] = k;
-    return k;
+    const j = b( f );
+    c[h] = j;
+    return j;
   }
 };
-const l = d( 22, tmpOAL );
-const m = d( 12, tmpOAL$1 );
-$( l, m );
+const k = d( 22, tmpOAL );
+const l = d( 12, tmpOAL$1 );
+$( k, l );
 `````
 
 

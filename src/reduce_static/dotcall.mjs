@@ -8,6 +8,7 @@
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, rule, example, before, source, after, todo } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { SYMBOL_DOTCALL } from '../symbols_preval.mjs';
+import { verifyWriteValueNotThissable } from '../bindings.mjs';
 
 export function simplifyDotCall(fdata) {
   group('\n\n\n[simplifyDotCall] Trying to simplify $dotCall occurrences\n');
@@ -23,7 +24,7 @@ function _dotCall(fdata) {
   const meta = fdata.globallyUniqueNamingRegistry.get(SYMBOL_DOTCALL);
   if (!meta) return;
 
-  meta.reads.forEach(read => {
+  meta.reads.forEach((read, readVarName) => {
     ASSERT(read.parentNode.type === 'CallExpression', 'When is the $dotCall not a CallExpression? We create this, we control this 100%', read.parentNode.type);
 
     ASSERT(read.parentNode.arguments.length >= 3, '$dotcall should have at least a func, context, and prop arg.', read.parentNode, read.parentNode.arguments);
@@ -44,6 +45,39 @@ function _dotCall(fdata) {
     const contextType = (AST.isPrimitive(context) && AST.getPrimitiveType(context)) || (context.type === 'Identifier' && fdata.globallyUniqueNamingRegistry.get(context.name).typing.mustBeType);
 
     log(`- $dotCall(): ident=${funcArg.name}, context type=${contextType}, original prop=${prop}`);
+
+    const calleeName = funcArg.name;
+    const calleeMeta = fdata.globallyUniqueNamingRegistry.get(calleeName);
+
+    if (calleeMeta.isBuiltin) {
+      vlog('- bail: skippign builtins'); // We would know whether builtins depend on `this`, though...?
+    }
+    else if (calleeMeta.isImplicitGlobal) {
+      vlog('- bail: skipping implicit global');
+    }
+    else if (calleeMeta.writes.every(write => verifyWriteValueNotThissable(write, fdata))) {
+      rule('Dotcall on a value that is either primitive or a function that does not refer to `this` should be a regular call');
+      example(SYMBOL_DOTCALL + '(func, ctx, "prop", a, b, c)', 'func, ctx, func(args, a, b, c)');
+      before(read.blockBody[read.blockIndex]);
+
+      // Must preserve reference order of func and ctx (even though in practice I think that's implicitly guaranteed? but ok)
+      read.grandNode[read.grandProp] = AST.callExpression(read.parentNode.arguments[0], read.parentNode.arguments.slice(3));
+      // Put the function first. It ought to be an ident honestly
+      ASSERT(read.parentNode.arguments[0]?.type === 'Identifier' || AST.isPrimitive(read.parentNode.arguments[0]), 'not sure if dotcall first arg could ever be something other than an identifier? but perhaps a primitive..? runtime error but ok in normalized');
+      read.blockBody.splice(read.blockIndex, 0,
+        AST.expressionStatement(AST.cloneSimple(read.parentNode.arguments[0])),
+        AST.expressionStatement(read.parentNode.arguments[1]), // No need to clone this since we won't reuse it
+      );
+      // The third arg (the string that is the original prop name) can just be dropped. It's either a string or undefined by nature of our DSL.
+      // The rest is reused so we should be all settled here
+
+      after(read.blockBody[read.blockIndex]);
+      after(read.blockBody[read.blockIndex + 1]);
+      after(read.blockBody[read.blockIndex + 2]);
+      ++changed;
+      return;
+    }
+
 
     //switch (contextType) {
     //  case 'undefined': {

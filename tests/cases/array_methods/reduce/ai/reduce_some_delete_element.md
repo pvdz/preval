@@ -19,9 +19,7 @@ $(arr, x);
 
 
 `````js filename=intro
-delete (1)[1];
 $(1);
-delete (2)[1];
 $(undefined);
 const arr /*:array*/ /*truthy*/ = [1, 2, 3];
 $(arr, undefined);
@@ -32,9 +30,7 @@ $(arr, undefined);
 (This ought to be the final result)
 
 `````js filename=intro
-delete (1)[1];
 $(1);
-delete (2)[1];
 $(undefined);
 $([1, 2, 3], undefined);
 `````
@@ -44,9 +40,7 @@ $([1, 2, 3], undefined);
 With rename=true
 
 `````js filename=intro
-delete 1[ 1 ];
 $( 1 );
-delete 2[ 1 ];
 $( undefined );
 const a = [ 1, 2, 3 ];
 $( a, undefined );

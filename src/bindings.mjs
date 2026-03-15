@@ -2853,3 +2853,53 @@ export function hasSingleScopedWrites(meta) {
     return true;
   });
 }
+
+export function verifyWriteValueNotThissable(write, fdata) {
+  // The goal of this function is to see if a dotcall can be changed to a regular call.
+  // Note: the given write may not be a function value at all so we do have to assert that for every write
+  // This function returns true when either
+  // - the assigned value is a function expression and it does not access `this`
+  // - the assigned value is a primitive of any kind (breaks dotcall the same as regular call)
+  // - the assigned value is a built-in function
+  vlog('Checking if dotcall for this value can be rewritten to regular call');
+  const writeRhs = write.kind === 'var' ? write.parentNode.init : write.parentNode.right;
+
+  vlog(writeRhs);
+  let funcNode;
+  // Dotcall on a primitive fails just as hard as a regular call so we dont need to keep dotcall for that reason.
+  if (writeRhs.type === 'FunctionExpression') {
+    // ok func
+    vlog('- the value is a function...');
+    funcNode = writeRhs;
+  } else if (AST.isPrimitive(writeRhs)) {
+    vlog('- allow primitive. dotcall goes bust all the same as a regular call');
+    return true;
+  } else if (writeRhs.type === 'Identifier') {
+    const rhsMeta = fdata.globallyUniqueNamingRegistry.get(writeRhs.name);
+    vlog('- the value is an ident (', [writeRhs.name], ')', rhsMeta.isConstant, rhsMeta.typing.mustBeType);
+    // reference to const function?
+    if (rhsMeta.isConstant && rhsMeta.typing.mustBeType === 'function') {
+      vlog('- the ident refers to a mustBeType function');
+      ASSERT(rhsMeta.varDeclRef?.node, 'how else are const funcs defined now?');
+      funcNode = rhsMeta.varDeclRef.node;
+      ASSERT(funcNode.type === 'FunctionExpression', 'right? func?');
+    } else if (BUILTIN_SYMBOLS.has(writeRhs.name)) {
+      vlog('- bail: the ident is a builtin. unsafe (array shift etc)');
+      return false;
+    } else {
+      vlog('- bail: rhs is an ident that is not a function', [rhsMeta.kind], AST.isPrimitive(writeRhs));
+      return false;
+    }
+  } else {
+    vlog('- bail: rhs is neither an ident nor a function', [writeRhs], AST.isPrimitive(writeRhs));
+    return false;
+  }
+
+  if (funcNode.$p.thisAccess) {
+    // TODO: Could go the extra mile and trace the usage to rule out certain usages as safe
+    vlog('- bail: method references `this`, function might leak');
+    return false;
+  }
+  vlog('- ok; function does not reference `this`');
+  return true;
+}

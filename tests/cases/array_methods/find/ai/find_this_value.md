@@ -68,7 +68,9 @@ $(result, x);
 
 - (todo) access object property that also exists on prototype? $array_push
 - (todo) array reads var statement with init ObjectExpression
+- (todo) do we want to support ObjectExpression as expression statement in free loops?
 - (todo) objects in isFree check
+- (todo) support ExpressionStatement as statement in let_hoisting noob check
 - (todo) support array reads statement type ExpressionStatement
 - (todo) type trackeed tricks can possibly support static $array_find
 

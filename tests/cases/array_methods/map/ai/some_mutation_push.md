@@ -85,6 +85,7 @@ $(result, x);
 - (todo) array reads var statement with init CallExpression
 - (todo) do we want to support Literal as expression statement in free loops?
 - (todo) fixme: spyless vars and labeled nodes
+- (todo) support Identifier as var init in let_hoisting noob check
 - (todo) support array reads statement type ExpressionStatement
 - (todo) type trackeed tricks can possibly support static $array_map
 

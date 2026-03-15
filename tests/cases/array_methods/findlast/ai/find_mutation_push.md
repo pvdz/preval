@@ -87,6 +87,7 @@ $(result, x);
 - (todo) find me fast
 - (todo) fixme: spyless vars and labeled nodes
 - (todo) regular property access of an ident feels tricky;
+- (todo) support Identifier as var init in let_hoisting noob check
 - (todo) support array reads statement type ExpressionStatement
 - (todo) type trackeed tricks can possibly support static $array_findLast
 

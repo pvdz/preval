@@ -67,6 +67,7 @@ $(x);
 
 - (todo) array reads var statement with init CallExpression
 - (todo) regular property access of an ident feels tricky;
+- (todo) support Identifier as var init in let_hoisting noob check
 - (todo) type trackeed tricks can possibly support static $array_find
 
 

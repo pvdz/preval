@@ -76,6 +76,7 @@ $(result, x);
 - (todo) do we want to support Literal as expression statement in free loops?
 - (todo) fixme: spyless vars and labeled nodes
 - (todo) outline any args for tdz
+- (todo) support Identifier as var init in let_hoisting noob check
 - (todo) support array reads statement type ExpressionStatement
 - (todo) type trackeed tricks can possibly support static $array_map
 - (todo) type trackeed tricks can possibly support static $array_pop

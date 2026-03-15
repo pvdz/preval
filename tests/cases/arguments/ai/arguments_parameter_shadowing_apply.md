@@ -200,7 +200,6 @@ testArgsParameterShadowingApply(10, 20, 30);
 - (todo) Can we inline a function that uses arguments, anyways?
 - (todo) access object property that also exists on prototype? $function_apply
 - (todo) array reads var statement with init CallExpression
-- (todo) harden the check for being an arguments object, a prefix check seems brittle
 - (todo) inline arguments when function does not have that many params yet
 
 

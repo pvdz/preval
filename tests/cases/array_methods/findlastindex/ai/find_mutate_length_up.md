@@ -72,7 +72,6 @@ $(result, x);
 ## Todos triggered
 
 
-- (todo) Support $frfr that has multiple/no/generic returns type;
 - (todo) Support this node type in isFree: LabeledStatement
 - (todo) access object property that also exists on prototype? $array_push
 - (todo) array reads var statement with init CallExpression

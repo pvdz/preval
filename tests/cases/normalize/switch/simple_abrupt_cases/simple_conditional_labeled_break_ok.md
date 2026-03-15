@@ -79,11 +79,7 @@ ok: {
       if (tmpIfTest$13) {
         $(`four`);
       } else {
-        const tmpIfTest$15 /*:boolean*/ = tmpSwitchCaseToStart <= 4;
-        if (tmpIfTest$15) {
-          $(`def`);
-        } else {
-        }
+        $(`def`);
       }
     }
   }
@@ -128,9 +124,7 @@ ok: {
       if (tmpSwitchCaseToStart <= 3) {
         $(`four`);
       } else {
-        if (tmpSwitchCaseToStart <= 4) {
-          $(`def`);
-        }
+        $(`def`);
       }
     }
   }
@@ -189,10 +183,7 @@ ok: {
         $( "four" );
       }
       else {
-        const k = b <= 4;
-        if (k) {
-          $( "def" );
-        }
+        $( "def" );
       }
     }
   }

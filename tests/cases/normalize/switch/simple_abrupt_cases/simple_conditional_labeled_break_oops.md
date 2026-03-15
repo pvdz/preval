@@ -75,11 +75,7 @@ if (tmpIfTest$9) {
     if (tmpIfTest$13) {
       $(`four`);
     } else {
-      const tmpIfTest$15 /*:boolean*/ = tmpSwitchCaseToStart <= 4;
-      if (tmpIfTest$15) {
-        $(`def`);
-      } else {
-      }
+      $(`def`);
     }
   }
 }
@@ -120,9 +116,7 @@ if (tmpSwitchCaseToStart <= 1) {
     if (tmpSwitchCaseToStart <= 3) {
       $(`four`);
     } else {
-      if (tmpSwitchCaseToStart <= 4) {
-        $(`def`);
-      }
+      $(`def`);
     }
   }
 }
@@ -177,10 +171,7 @@ else {
       $( "four" );
     }
     else {
-      const k = b <= 4;
-      if (k) {
-        $( "def" );
-      }
+      $( "def" );
     }
   }
 }

@@ -19,8 +19,8 @@ $(y);
 
 `````js filename=intro
 const tmpCalleeParam /*:object*/ /*truthy*/ = { y: `pass2` };
-const tmpSSA_tmpOPAD /*:unknown*/ = $(tmpCalleeParam);
-const tmpOPBD$1 /*:unknown*/ = tmpSSA_tmpOPAD.y;
+const tmpClusterSSA_tmpOPAD /*:unknown*/ = $(tmpCalleeParam);
+const tmpOPBD$1 /*:unknown*/ = tmpClusterSSA_tmpOPAD.y;
 const tmpIfTest$1 /*:boolean*/ = tmpOPBD$1 === undefined;
 if (tmpIfTest$1) {
   y = $(`fail`);

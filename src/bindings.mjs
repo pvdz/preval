@@ -486,6 +486,7 @@ export function registerGlobalIdent(
     // rangeMin: false, // Set in phase1, used in phase1.1, when isRangeBound is true, this is the lower bound
     // rangeMax: false, // Set in phase1, used in phase1.1, when isRangeBound is true, this is the upper bound
     // rangeStep: false, // Set in phase1, used in phase1.1, when isRangeBound is true, this is the step value
+    allAssignedValues: null, // Set<value> | null, created in phase 1.1; when set it means the binding was only assigned primitive values and this is the complete set (actual values, not ast nodes/refs)
 
     // Array<undefined | ReturnType<getPrimitiveType>>, available after phase1.1
     // Only set for functions that get called at least once. And only for "ident" calls (that

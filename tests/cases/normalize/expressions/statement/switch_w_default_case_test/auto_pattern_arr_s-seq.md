@@ -32,18 +32,13 @@ const a /*:unknown*/ = tmpArrPatternSplat[0];
 const tmpSwitchValue /*:unknown*/ = $(1);
 $(10);
 $(20);
-let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ /*truthy*/ = 1;
 const tmpIfTest$1 /*:boolean*/ = 2 === tmpSwitchValue;
 if (tmpIfTest$1) {
-  tmpSwitchCaseToStart = 2;
-} else {
-  $(`fail1`);
-}
-const tmpIfTest$7 /*:boolean*/ = tmpSwitchCaseToStart <= 2;
-if (tmpIfTest$7) {
   $(`fail2`);
   $(a);
 } else {
+  $(`fail1`);
+  $(`fail2`);
   $(a);
 }
 `````
@@ -58,16 +53,12 @@ const a = [...tmpBindingPatternArrRoot][0];
 const tmpSwitchValue = $(1);
 $(10);
 $(20);
-let tmpSwitchCaseToStart = 1;
 if (2 === tmpSwitchValue) {
-  tmpSwitchCaseToStart = 2;
-} else {
-  $(`fail1`);
-}
-if (tmpSwitchCaseToStart <= 2) {
   $(`fail2`);
   $(a);
 } else {
+  $(`fail1`);
+  $(`fail2`);
   $(a);
 }
 `````
@@ -86,20 +77,14 @@ const c = b[ 0 ];
 const d = $( 1 );
 $( 10 );
 $( 20 );
-let e = 1;
-const f = 2 === d;
-if (f) {
-  e = 2;
-}
-else {
-  $( "fail1" );
-}
-const g = e <= 2;
-if (g) {
+const e = 2 === d;
+if (e) {
   $( "fail2" );
   $( c );
 }
 else {
+  $( "fail1" );
+  $( "fail2" );
   $( c );
 }
 `````

@@ -70,12 +70,9 @@ if (tmpIfTest$7) {
 const tmpIfTest$9 /*:boolean*/ = tmpSwitchCaseToStart <= 2;
 if (tmpIfTest$9) {
   $(`c`);
-} else {
-}
-const tmpIfTest$11 /*:boolean*/ = tmpSwitchCaseToStart <= 3;
-if (tmpIfTest$11) {
   $(`d`);
 } else {
+  $(`d`);
 }
 `````
 
@@ -105,8 +102,8 @@ if (tmpSwitchCaseToStart <= 1) {
 }
 if (tmpSwitchCaseToStart <= 2) {
   $(`c`);
-}
-if (tmpSwitchCaseToStart <= 3) {
+  $(`d`);
+} else {
   $(`d`);
 }
 `````
@@ -148,9 +145,9 @@ if (j) {
 const k = b <= 2;
 if (k) {
   $( "c" );
+  $( "d" );
 }
-const l = b <= 3;
-if (l) {
+else {
   $( "d" );
 }
 `````

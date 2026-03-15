@@ -27,17 +27,12 @@ $(a);
 
 `````js filename=intro
 const tmpSwitchValue /*:unknown*/ = $(1);
-let tmpSwitchCaseToStart /*:number*/ /*ternaryConst*/ /*truthy*/ = 1;
 const tmpIfTest$1 /*:boolean*/ = 2 === tmpSwitchValue;
 if (tmpIfTest$1) {
-  tmpSwitchCaseToStart = 2;
-} else {
-  $(`fail1`);
-}
-const tmpIfTest$7 /*:boolean*/ = tmpSwitchCaseToStart <= 2;
-if (tmpIfTest$7) {
   $(`fail2`);
 } else {
+  $(`fail1`);
+  $(`fail2`);
 }
 const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);
@@ -49,13 +44,10 @@ $(a);
 
 `````js filename=intro
 const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 1;
 if (2 === tmpSwitchValue) {
-  tmpSwitchCaseToStart = 2;
+  $(`fail2`);
 } else {
   $(`fail1`);
-}
-if (tmpSwitchCaseToStart <= 2) {
   $(`fail2`);
 }
 $({ a: 999, b: 1000 });
@@ -67,23 +59,19 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-let b = 1;
-const c = 2 === a;
-if (c) {
-  b = 2;
+const b = 2 === a;
+if (b) {
+  $( "fail2" );
 }
 else {
   $( "fail1" );
-}
-const d = b <= 2;
-if (d) {
   $( "fail2" );
 }
-const e = {
+const c = {
   a: 999,
   b: 1000,
 };
-$( e );
+$( c );
 `````
 
 

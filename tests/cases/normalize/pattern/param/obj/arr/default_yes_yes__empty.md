@@ -22,8 +22,8 @@ $(f());
 `````js filename=intro
 const tmpObjLitVal /*:array*/ /*truthy*/ = [`fail2`];
 const tmpCalleeParam /*:object*/ /*truthy*/ = { x: tmpObjLitVal };
-const tmpSSA_tmpBindingPatternObjRoot /*:unknown*/ = $(tmpCalleeParam);
-const tmpOPBD /*:unknown*/ = tmpSSA_tmpBindingPatternObjRoot.x;
+const tmpClusterSSA_tmpBindingPatternObjRoot /*:unknown*/ = $(tmpCalleeParam);
+const tmpOPBD /*:unknown*/ = tmpClusterSSA_tmpBindingPatternObjRoot.x;
 let tmpOPAD /*:unknown*/ /*ternaryConst*/ = undefined;
 const tmpIfTest$1 /*:boolean*/ = tmpOPBD === undefined;
 if (tmpIfTest$1) {

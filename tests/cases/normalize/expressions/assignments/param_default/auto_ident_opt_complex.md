@@ -29,9 +29,9 @@ if (tmpIfTest$1) {
   $(undefined);
   $(undefined);
 } else {
-  const tmpClusterSSA_tmpSSA_a /*:unknown*/ = tmpChainElementCall.x;
+  const tmpClusterSSA_a$1 /*:unknown*/ = tmpChainElementCall.x;
   $(undefined);
-  $(tmpClusterSSA_tmpSSA_a);
+  $(tmpClusterSSA_a$1);
 }
 `````
 
@@ -45,9 +45,9 @@ if (tmpChainElementCall == null) {
   $(undefined);
   $(undefined);
 } else {
-  const tmpClusterSSA_tmpSSA_a = tmpChainElementCall.x;
+  const tmpClusterSSA_a$1 = tmpChainElementCall.x;
   $(undefined);
-  $(tmpClusterSSA_tmpSSA_a);
+  $(tmpClusterSSA_a$1);
 }
 `````
 

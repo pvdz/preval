@@ -126,11 +126,7 @@ if (tmpIfTest$9) {
   if (tmpIfTest$17) {
     $(4);
   } else {
-    const tmpIfTest$19 /*:boolean*/ = tmpSwitchCaseToStart <= 5;
-    if (tmpIfTest$19) {
-      $(5);
-    } else {
-    }
+    $(5);
   }
 }
 `````
@@ -176,9 +172,7 @@ if (tmpSwitchCaseToStart <= 0) {
   if (tmpSwitchCaseToStart <= 4) {
     $(4);
   } else {
-    if (tmpSwitchCaseToStart <= 5) {
-      $(5);
-    }
+    $(5);
   }
 }
 `````
@@ -244,10 +238,7 @@ else {
     $( 4 );
   }
   else {
-    const q = b <= 5;
-    if (q) {
-      $( 5 );
-    }
+    $( 5 );
   }
 }
 `````

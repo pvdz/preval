@@ -20,8 +20,8 @@ $(f());
 
 
 `````js filename=intro
-const tmpSSA_tmpBindingPatternArrRoot /*:unknown*/ = $(`pass`);
-[...tmpSSA_tmpBindingPatternArrRoot];
+const tmpClusterSSA_tmpBindingPatternArrRoot /*:unknown*/ = $(`pass`);
+[...tmpClusterSSA_tmpBindingPatternArrRoot];
 $(`ok`);
 `````
 
@@ -30,8 +30,8 @@ $(`ok`);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpSSA_tmpBindingPatternArrRoot = $(`pass`);
-[...tmpSSA_tmpBindingPatternArrRoot];
+const tmpClusterSSA_tmpBindingPatternArrRoot = $(`pass`);
+[...tmpClusterSSA_tmpBindingPatternArrRoot];
 $(`ok`);
 `````
 

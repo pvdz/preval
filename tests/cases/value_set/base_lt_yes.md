@@ -81,52 +81,52 @@ if (n <= 11) {
 
 `````js filename=intro
 const x /*:unknown*/ = $();
-let n /*:number*/ = 11;
 const t /*:boolean*/ = 0 === x;
 if (t) {
-  n = 0;
+  $(`pass`);
 } else {
   const tmpClusterSSA_t /*:boolean*/ = 1 === x;
   if (tmpClusterSSA_t) {
-    n = 1;
+    $(`pass`);
   } else {
     const tmpClusterSSA_t$1 /*:boolean*/ = 2 === x;
     if (tmpClusterSSA_t$1) {
-      n = 2;
+      $(`pass`);
     } else {
       const tmpClusterSSA_t$3 /*:boolean*/ = 3 === x;
       if (tmpClusterSSA_t$3) {
-        n = 3;
+        $(`pass`);
       } else {
         const tmpClusterSSA_t$5 /*:boolean*/ = 4 === x;
         if (tmpClusterSSA_t$5) {
-          n = 4;
+          $(`pass`);
         } else {
           const tmpClusterSSA_t$7 /*:boolean*/ = 5 === x;
           if (tmpClusterSSA_t$7) {
-            n = 5;
+            $(`pass`);
           } else {
             const tmpClusterSSA_t$9 /*:boolean*/ = 6 === x;
             if (tmpClusterSSA_t$9) {
-              n = 6;
+              $(`pass`);
             } else {
               const tmpClusterSSA_t$11 /*:boolean*/ = 7 === x;
               if (tmpClusterSSA_t$11) {
-                n = 7;
+                $(`pass`);
               } else {
                 const tmpClusterSSA_t$13 /*:boolean*/ = 8 === x;
                 if (tmpClusterSSA_t$13) {
-                  n = 8;
+                  $(`pass`);
                 } else {
                   const tmpClusterSSA_t$15 /*:boolean*/ = 10 === x;
                   if (tmpClusterSSA_t$15) {
-                    n = 9;
+                    $(`pass`);
                   } else {
                     const tmpClusterSSA_t$17 /*:boolean*/ = 9 === x;
                     if (tmpClusterSSA_t$17) {
-                      n = 10;
+                      $(`pass`);
                     } else {
                       $(`must be 11`);
+                      $(`pass`);
                     }
                   }
                 }
@@ -137,12 +137,6 @@ if (t) {
       }
     }
   }
-}
-const tmpIfTest /*:boolean*/ = n <= 11;
-if (tmpIfTest) {
-  $(`pass`);
-} else {
-  $(`fail`);
 }
 `````
 
@@ -152,41 +146,41 @@ if (tmpIfTest) {
 
 `````js filename=intro
 const x = $();
-let n = 11;
 if (0 === x) {
-  n = 0;
+  $(`pass`);
 } else {
   if (1 === x) {
-    n = 1;
+    $(`pass`);
   } else {
     if (2 === x) {
-      n = 2;
+      $(`pass`);
     } else {
       if (3 === x) {
-        n = 3;
+        $(`pass`);
       } else {
         if (4 === x) {
-          n = 4;
+          $(`pass`);
         } else {
           if (5 === x) {
-            n = 5;
+            $(`pass`);
           } else {
             if (6 === x) {
-              n = 6;
+              $(`pass`);
             } else {
               if (7 === x) {
-                n = 7;
+                $(`pass`);
               } else {
                 if (8 === x) {
-                  n = 8;
+                  $(`pass`);
                 } else {
                   if (10 === x) {
-                    n = 9;
+                    $(`pass`);
                   } else {
                     if (9 === x) {
-                      n = 10;
+                      $(`pass`);
                     } else {
                       $(`must be 11`);
+                      $(`pass`);
                     }
                   }
                 }
@@ -197,11 +191,6 @@ if (0 === x) {
       }
     }
   }
-}
-if (n <= 11) {
-  $(`pass`);
-} else {
-  $(`fail`);
 }
 `````
 
@@ -211,80 +200,73 @@ With rename=true
 
 `````js filename=intro
 const a = $();
-let b = 11;
-const c = 0 === a;
-if (c) {
-  b = 0;
-}
-else {
-  const d = 1 === a;
-  if (d) {
-    b = 1;
-  }
-  else {
-    const e = 2 === a;
-    if (e) {
-      b = 2;
-    }
-    else {
-      const f = 3 === a;
-      if (f) {
-        b = 3;
-      }
-      else {
-        const g = 4 === a;
-        if (g) {
-          b = 4;
-        }
-        else {
-          const h = 5 === a;
-          if (h) {
-            b = 5;
-          }
-          else {
-            const i = 6 === a;
-            if (i) {
-              b = 6;
-            }
-            else {
-              const j = 7 === a;
-              if (j) {
-                b = 7;
-              }
-              else {
-                const k = 8 === a;
-                if (k) {
-                  b = 8;
-                }
-                else {
-                  const l = 10 === a;
-                  if (l) {
-                    b = 9;
-                  }
-                  else {
-                    const m = 9 === a;
-                    if (m) {
-                      b = 10;
-                    }
-                    else {
-                      $( "must be 11" );
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-}
-const n = b <= 11;
-if (n) {
+const b = 0 === a;
+if (b) {
   $( "pass" );
 }
 else {
-  $( "fail" );
+  const c = 1 === a;
+  if (c) {
+    $( "pass" );
+  }
+  else {
+    const d = 2 === a;
+    if (d) {
+      $( "pass" );
+    }
+    else {
+      const e = 3 === a;
+      if (e) {
+        $( "pass" );
+      }
+      else {
+        const f = 4 === a;
+        if (f) {
+          $( "pass" );
+        }
+        else {
+          const g = 5 === a;
+          if (g) {
+            $( "pass" );
+          }
+          else {
+            const h = 6 === a;
+            if (h) {
+              $( "pass" );
+            }
+            else {
+              const i = 7 === a;
+              if (i) {
+                $( "pass" );
+              }
+              else {
+                const j = 8 === a;
+                if (j) {
+                  $( "pass" );
+                }
+                else {
+                  const k = 10 === a;
+                  if (k) {
+                    $( "pass" );
+                  }
+                  else {
+                    const l = 9 === a;
+                    if (l) {
+                      $( "pass" );
+                    }
+                    else {
+                      $( "must be 11" );
+                      $( "pass" );
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }
 `````
 

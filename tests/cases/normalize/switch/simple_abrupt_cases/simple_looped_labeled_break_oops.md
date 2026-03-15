@@ -86,13 +86,8 @@ if (tmpIfTest$11) {
       $(`four`);
       $(undefined);
     } else {
-      const tmpIfTest$17 /*:boolean*/ = tmpSwitchCaseToStart <= 4;
-      if (tmpIfTest$17) {
-        $(`def`);
-        $(undefined);
-      } else {
-        $(undefined);
-      }
+      $(`def`);
+      $(undefined);
     }
   }
 }
@@ -138,12 +133,8 @@ if (tmpSwitchCaseToStart <= 1) {
       $(`four`);
       $(undefined);
     } else {
-      if (tmpSwitchCaseToStart <= 4) {
-        $(`def`);
-        $(undefined);
-      } else {
-        $(undefined);
-      }
+      $(`def`);
+      $(undefined);
     }
   }
 }
@@ -204,14 +195,8 @@ else {
       $( undefined );
     }
     else {
-      const l = b <= 4;
-      if (l) {
-        $( "def" );
-        $( undefined );
-      }
-      else {
-        $( undefined );
-      }
+      $( "def" );
+      $( undefined );
     }
   }
 }

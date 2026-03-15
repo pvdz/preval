@@ -1247,6 +1247,36 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
   const msix = enableTiming && performance.now();
   TIMING.six = msix - mfive;
 
+  vlog('Collecting the complete set of primitive for bindings that only get primitives assigned to them');
+  fdata.globallyUniqueNamingRegistry.forEach((meta,name) => {
+    if (meta.isBuiltin) return;
+    if (meta.isImplicitGlobal) return;
+    const set = new Set
+    let bail = false;
+    meta.writes.every(write => {
+      let valNode;
+      if (write.kind === 'var') valNode = write.parentNode.init;
+      else if (write.kind === 'assign') valNode = write.parentNode.right;
+      else {
+        bail = true;
+        return;
+      }
+      if (AST.isPrimitive(valNode)) {
+        set.add(AST.getPrimitiveValue(valNode));
+        return true;
+      }
+      // catch or whatever. Can't prove the full set of values.
+      bail = true;
+    });
+    if (bail) {
+      meta.allAssignedValues = null;
+      // console.debug('okay the set for', name, 'cannot be determined')
+    } else {
+      meta.allAssignedValues = set;
+      // console.debug('okay the complete set for', name, 'is', [...set])
+    }
+  });
+
   assertNoDupeNodes(ast, 'body');
 
   setVerboseTracing(tracingValueBefore);

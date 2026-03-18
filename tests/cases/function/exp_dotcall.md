@@ -76,20 +76,20 @@ const method /*:(unknown)=>string*/ = function ($$0) {
   $(tmpCalleeParam);
   return ``;
 };
-let main_target_DjBalz /*:boolean: false | true*/ = false;
 let main_target_abcxyz /*:unknown*/ = undefined;
 let main_target_TjeLtB /*:unknown*/ = undefined;
 const main_target /*:(number, string)=>unknown*/ = function ($$0, $$1) {
   const tmpOutlinedParam /*:number*/ = $$0;
   const val /*:string*/ = $$1;
   debugger;
-  if (main_target_DjBalz) {
+  let the_cache /*:unknown*/ /*ternaryConst*/ = undefined;
+  if (main_target_abcxyz) {
+    the_cache = main_target_TjeLtB;
   } else {
     main_target_abcxyz = method;
     main_target_TjeLtB = {};
-    main_target_DjBalz = true;
+    the_cache = main_target_TjeLtB;
   }
-  const the_cache /*:unknown*/ = main_target_TjeLtB;
   const cache_key /*:string*/ /*truthy*/ = `${tmpOutlinedParam}abc`;
   const found /*:unknown*/ = the_cache[cache_key];
   if (found) {
@@ -118,16 +118,17 @@ const method = function ($dlr_$$0) {
   $(typeof tmpMCF);
   return ``;
 };
-let main_target_DjBalz = false;
 let main_target_abcxyz = undefined;
 let main_target_TjeLtB = undefined;
 const main_target = function (tmpOutlinedParam, val) {
-  if (!main_target_DjBalz) {
+  let the_cache = undefined;
+  if (main_target_abcxyz) {
+    the_cache = main_target_TjeLtB;
+  } else {
     main_target_abcxyz = method;
     main_target_TjeLtB = {};
-    main_target_DjBalz = true;
+    the_cache = main_target_TjeLtB;
   }
-  const the_cache = main_target_TjeLtB;
   const cache_key = `${tmpOutlinedParam}abc`;
   const found = the_cache[cache_key];
   if (found) {
@@ -157,38 +158,37 @@ const a = function($$0 ) {
   $( d );
   return "";
 };
-let e = false;
+let e = undefined;
 let f = undefined;
-let g = undefined;
-const h = function($$0,$$1 ) {
-  const i = $$0;
-  const j = $$1;
+const g = function($$0,$$1 ) {
+  const h = $$0;
+  const i = $$1;
   debugger;
+  let j = undefined;
   if (e) {
-
+    j = f;
   }
   else {
-    f = a;
-    g = {};
-    e = true;
+    e = a;
+    f = {};
+    j = f;
   }
-  const k = g;
-  const l = `${i}abc`;
-  const m = k[ l ];
-  if (m) {
+  const k = `${h}abc`;
+  const l = j[ k ];
+  if (l) {
+    return l;
+  }
+  else {
+    const m = e( i );
+    f[k] = m;
     return m;
-  }
-  else {
-    const n = f( j );
-    g[l] = n;
-    return n;
   }
 };
 while ($LOOP_NO_UNROLLS_LEFT) {
-  const o = h( 1, "b" );
-  $( "a:", o );
-  const p = h( 3, "d" );
-  $( "b:", p );
+  const n = g( 1, "b" );
+  $( "a:", n );
+  const o = g( 3, "d" );
+  $( "b:", o );
 }
 `````
 

@@ -120,6 +120,7 @@ import { objlitPropWrite } from '../reduce_static/objlit_prop_write.mjs';
 import { lockThis } from '../reduce_static/lock_this.mjs';
 import { letScoping } from '../reduce_static/let_scoping.mjs';
 import { ifIndirectBooly } from '../reduce_static/if_indirect_booly.mjs';
+import { ifSealerProxy } from '../reduce_static/if_sealer_proxy.mjs';
 
 //import { phasePrimitiveArgInlining } from '../reduce_static/phase_primitive_arg_inlining.mjs';
 
@@ -235,6 +236,7 @@ export const BASE_PHASE2_RULES_LIST = [
   ['lockThis', lockThis],
   ['letScoping', letScoping],
   ['ifIndirectBooly', ifIndirectBooly],
+  ['ifSealerProxy', ifSealerProxy],
 
   ['freeLoops', freeLoops], // Most other stuff should probably precede this?
 

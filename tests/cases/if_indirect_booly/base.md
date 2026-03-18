@@ -48,20 +48,20 @@ $(x, y);
 
 
 `````js filename=intro
-let a /*:boolean: false | true*/ = false;
 let b /*:unknown*/ = undefined;
 let c /*:unknown*/ = undefined;
 const func /*:(number, unknown)=>unknown*/ = function ($$0, $$1) {
   const $dlr_$$1 /*:number*/ = $$0;
   const $dlr_$$3 /*:unknown*/ = $$1;
   debugger;
-  if (a) {
+  let c_prime /*:unknown*/ /*ternaryConst*/ = undefined;
+  if (b) {
+    c_prime = c;
   } else {
     b = $;
     c = {};
-    a = true;
+    c_prime = c;
   }
-  const c_prime /*:unknown*/ = c;
   const concatted /*:string*/ /*truthy*/ = `${$dlr_$$1}a`;
   const lookup /*:unknown*/ = c_prime[concatted];
   if (lookup) {
@@ -82,16 +82,17 @@ $(x, y);
 (This ought to be the final result)
 
 `````js filename=intro
-let a = false;
 let b = undefined;
 let c = undefined;
 const func = function ($dlr_$$1, $dlr_$$3) {
-  if (!a) {
+  let c_prime = undefined;
+  if (b) {
+    c_prime = c;
+  } else {
     b = $;
     c = {};
-    a = true;
+    c_prime = c;
   }
-  const c_prime = c;
   const concatted = `${$dlr_$$1}a`;
   const lookup = c_prime[concatted];
   if (lookup) {
@@ -110,36 +111,35 @@ $(func(22, tmpOAL), func(12, tmpOAL$1));
 With rename=true
 
 `````js filename=intro
-let a = false;
+let a = undefined;
 let b = undefined;
-let c = undefined;
-const d = function($$0,$$1 ) {
-  const e = $$0;
-  const f = $$1;
+const c = function($$0,$$1 ) {
+  const d = $$0;
+  const e = $$1;
   debugger;
+  let f = undefined;
   if (a) {
-
+    f = b;
   }
   else {
-    b = $;
-    c = {};
-    a = true;
+    a = $;
+    b = {};
+    f = b;
   }
-  const g = c;
-  const h = `${e}a`;
-  const i = g[ h ];
-  if (i) {
+  const g = `${d}a`;
+  const h = f[ g ];
+  if (h) {
+    return h;
+  }
+  else {
+    const i = a( e );
+    b[g] = i;
     return i;
   }
-  else {
-    const j = b( f );
-    c[h] = j;
-    return j;
-  }
 };
-const k = d( 22, tmpOAL );
-const l = d( 12, tmpOAL$1 );
-$( k, l );
+const j = c( 22, tmpOAL );
+const k = c( 12, tmpOAL$1 );
+$( j, k );
 `````
 
 

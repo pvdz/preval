@@ -122,6 +122,18 @@ export function arrayExpression(...elements) {
     $p: $p(),
   };
 }
+export function isSameArrayExpression(a, b) {
+  // Assumes normalized code!
+  ASSERT(arguments.length === isSameArrayExpression.length, 'arg count');
+  ASSERT(a.type === 'ArrayExpression', 'must already have validated the node type', a);
+  ASSERT(b.type === 'ArrayExpression', 'must already have validated the node type', b);
+
+  if (a.elements.length !== b.elements.length) return false;
+  for (let i=0; i<a.elements.length; i++) {
+    if (!isSameExpression(a.elements[i], b.elements[i])) return false;
+  }
+  return true;
+}
 
 export function awaitExpression(argument) {
   ASSERT(argument, 'await argument must be given');
@@ -132,6 +144,14 @@ export function awaitExpression(argument) {
     argument,
     $p: $p(),
   };
+}
+export function isSameAwaitExpression(a, b) {
+  // Assumes normalized code!
+  ASSERT(arguments.length === isSameAwaitExpression.length, 'arg count');
+  ASSERT(a.type === 'AwaitExpression', 'must already have validated the node type', a);
+  ASSERT(b.type === 'AwaitExpression', 'must already have validated the node type', b);
+
+  return isSameExpression(a.argument, b.argument);
 }
 
 export function assignmentExpression(left, right, operator = '=') {
@@ -146,6 +166,28 @@ export function assignmentExpression(left, right, operator = '=') {
     right,
     $p: $p(),
   };
+}
+export function isSameAssignmentExpression(a, b) {
+  ASSERT(arguments.length === isSameAssignmentExpression.length, 'arg count');
+  ASSERT(a.type === 'AssignmentExpression', 'must already have validated the node type', a);
+  ASSERT(b.type === 'AssignmentExpression', 'must already have validated the node type', b);
+
+  // This will come to haunt me but this is not an exhaustive comparison yet
+  // This assumes normalized code
+
+  const aLeft = a.left;
+  const bLeft = b.left;
+
+  if (aLeft.type !== a.right.type) return false;
+  if (aLeft.type === 'Identifier') {
+    return isSameIdentifier(aLeft, bLeft);
+  }
+  else if (aLeft.type === 'MemberExpression') {
+    return isSameMemberExpression(aLeft, bLeft);
+  }
+  else ASSERT(false, 'normalized assigns can only be to ident or prop');
+
+  return isSameExpression(a.right, b.right);
 }
 
 export function binaryExpression(operator, left, right) {
@@ -163,6 +205,15 @@ export function binaryExpression(operator, left, right) {
     right,
     $p: $p(),
   };
+}
+export function isSameBinaryExpression(a, b) {
+  // Assumes normalized code!
+  ASSERT(arguments.length === isSameBinaryExpression.length, 'arg count');
+  ASSERT(a.type === 'BinaryExpression', 'must already have validated the node type', a);
+  ASSERT(b.type === 'BinaryExpression', 'must already have validated the node type', b);
+
+  if (a.operator !== b.operator) return false;
+  return isSameExpression(a.left, b.left) && isSameExpression(a.right, b.right);
 }
 
 export function blockStatement(...body) {
@@ -187,6 +238,38 @@ export function blockStatement(...body) {
     $p: $p(),
   };
 }
+export function isSameBlockStatement(a, b) {
+  // Assumes normalized code!
+  ASSERT(arguments.length === isSameBlockStatement.length, 'arg count');
+  ASSERT(a.type === 'BlockStatement', 'must already have validated the node type', a);
+  ASSERT(b.type === 'BlockStatement', 'must already have validated the node type', b);
+
+  if (a.body.length !== b.body.length) return false;
+  for (let i=0; i<a.body.length; i++) {
+    if (!isSameStatement(a.body[i], b.body[i])) return false;
+  }
+  return true;
+}
+export function isSameStatement(a, b) {
+  // Assumes normalized code!
+  ASSERT(arguments.length === isSameBlockStatement.length, 'arg count');
+
+  if (a.type !== b.type) return false;
+  if (isPrimitive(a)) return isPrimitive(b) && isSamePrimitive(a, b);
+  switch (a.type) {
+    case 'BlockStatement': return isSameBlockStatement(a, b);
+    case 'BreakStatement': return isSameBreakStatement(a, b);
+    case 'ReturnStatement': return isSameReturnStatement(a, b);
+    case 'DebuggerStatement': return true;
+    case 'EmptyStatement': return true;
+    case 'IfStatement': return isSameIfStatement(a, b);
+    case 'ThrowStatement': return isSameThrowStatement(a, b);
+    case 'WhileStatement': return isSameWhileStatement(a, b);
+  }
+
+  // We have to bail on var statement, label, and try because the names will be different
+  return false;
+}
 
 export function blockEndsWith(node, nodeName) {
   const len = node.body.length;
@@ -201,6 +284,16 @@ export function breakStatement(label = null) {
     label,
     $p: $p(),
   };
+}
+export function isSameBreakStatement(a, b) {
+  // Assumes normalized code!
+  ASSERT(arguments.length === isSameBreakStatement.length, 'arg count');
+  ASSERT(a.type === 'BreakStatement', 'must already have validated the node type', a);
+  ASSERT(b.type === 'BreakStatement', 'must already have validated the node type', b);
+
+  if (!!a.label !== !!b.label) return false;
+  if (a.label && a.label.name !== b.label.name) return false;
+  return isSameStatement(a.body, b.body);
 }
 
 export function callExpression(callee, args, optional = false) {
@@ -224,7 +317,7 @@ export function isSameCallExpression(nodeA, nodeB) {
     if (nodeA.callee.name !== nodeB.callee.name) return false;
   }
   else if (nodeA.callee.type === 'MemberExpression') {
-    if (!isSameSimpleMemberExpression(nodeA.callee, nodeB.callee)) return false;
+    if (!isSameMemberExpression(nodeA.callee, nodeB.callee)) return false;
   }
   else {
     // Currently only used for ident calls. Expand this func when necessary.
@@ -237,39 +330,21 @@ export function isSameCallExpression(nodeA, nodeB) {
 
   if (nodeA.arguments.length === 0) return true;
 
-  return nodeA.arguments.every((anodeA, i) => {
-    const anodeB = nodeB.arguments[i];
+  return isSameCallArguments(nodeA.arguments, nodeB.arguments);
+}
+export function isSameCallArguments(a, b) {
+  for (let i=0; i<a.length; ++i) {
+    const anodeA = a[i];
+    const anodeB = b[i];
 
     if (anodeA.type !== anodeB.type) return false;
-
     if (anodeA.type === 'SpreadElement') {
-      ASSERT(!isComplexNode(anodeA.argument));
-      ASSERT(!isComplexNode(anodeB.argument));
-
-      if (isPrimitive(anodeA.argument)) {
-        return isPrimitive(anodeB.argument) && getPrimitiveValue(anodeA.argument) === getPrimitiveValue(anodeB.argument);
-      }
-      if (isPrimitive(anodeB.argument)) return false;
-
-      ASSERT(anodeA.argument.type === 'Identifier', 'in normalized code, spreads should be primitives or idents... right?');
-      ASSERT(anodeB.argument.type === 'Identifier', 'in normalized code, spreads should be primitives or idents... right?');
-
-      return anodeA.argument.name === anodeB.argument.name;
+      if (!isSameExpression(anodeA.argument, anodeB.argument)) return false;
+    } else {
+      if (!isSameExpression(anodeA, anodeB)) return false;
     }
-
-    ASSERT(!isComplexNode(anodeA));
-    ASSERT(!isComplexNode(anodeB));
-
-    if (isPrimitive(anodeA)) {
-      return isPrimitive(anodeB) && getPrimitiveValue(anodeA) === getPrimitiveValue(anodeB);
-    }
-    if (isPrimitive(anodeB)) return false;
-
-    ASSERT(anodeA.type === 'Identifier', 'in normalized code, args should be primitives, spreads, or idents... right?');
-    ASSERT(anodeB.type === 'Identifier', 'in normalized code, args should be primitives, spreads, or idents... right?');
-
-    return anodeA.name === anodeB.name;
-  });
+  }
+  return true;
 }
 
 export function classExpression(id = null, superClass = null, body) {
@@ -389,6 +464,38 @@ export function expressionStatement(expression) {
     $p: $p(),
   };
 }
+export function isSameExpressionStatement(a, b) {
+  // Assumes normalized code!
+  ASSERT(arguments.length === isSameExpressionStatement.length, 'arg count');
+  ASSERT(a.type === 'ExpressionStatement', 'must already have validated the node type', a);
+  ASSERT(b.type === 'ExpressionStatement', 'must already have validated the node type', b);
+
+  return isSameExpression(a.expression, b.expression);
+}
+export function isSameExpression(a, b) {
+  // Assumes normalized code!
+  ASSERT(arguments.length === isSameExpression.length, 'arg count');
+
+  if (a.type !== b.type) return false;
+
+  if (isPrimitive(a)) return isPrimitive(b) && isSamePrimitive(a, b);
+  switch (a.type) {
+    case 'ArrayExpression': return isSameArrayExpression(a, b);
+    case 'AssignmentExpression': return isSameAssignmentExpression(a, b);
+    case 'AwaitExpression': return isSameAwaitExpression(a, b);
+    case 'BinaryExpression': return isSameBinaryExpression(a, b);
+    case 'CallExpression': return isSameCallExpression(a, b);
+    case 'Identifier': return isSameIdentifier(a, b);
+    case 'MemberExpression': return isSameMemberExpression(a, b);
+    case 'NewExpression': return isSameNewExpression(a, b);
+    case 'ObjectExpression': return isSameObjectExpression(a, b);
+    case 'UnaryExpression': return isSameUnaryExpression(a, b);
+    case 'YiedExpression': return isSameYieldExpression(a, b);
+  }
+
+  // classes?
+  return false;
+}
 
 export function fals() {
   return literal(false);
@@ -493,6 +600,9 @@ export function identifier(name, nonComputedProperty = false) {
     $p: $p(),
   };
 }
+export function isSameIdentifier(a, b) {
+  return a.name === b.name;
+}
 
 export function ifStatement(test, consequent, alternate = null) {
   ASSERT(test, 'test defined');
@@ -506,6 +616,16 @@ export function ifStatement(test, consequent, alternate = null) {
     alternate,
     $p: $p(),
   };
+}
+export function isSameIfStatement(a, b) {
+  // Assumes normalized code!
+  ASSERT(arguments.length === isSameIfStatement.length, 'arg count');
+  ASSERT(a.type === 'IfStatement', 'must already have validated the node type', a);
+  ASSERT(b.type === 'IfStatement', 'must already have validated the node type', b);
+
+  if (!isSameExpression(a.test, b.test)) return false;
+  if (!isSameStatement(a.consequent, b.consequent)) return false;
+  return isSameStatement(a.alternate, b.alternate);
 }
 
 export function ifElseChain(testConsequentArr, lastElseNode = null, treatLastAsElse = false) {
@@ -701,8 +821,7 @@ export function memberExpression(object, property, computed = false, optional = 
     $p: $p(),
   };
 }
-
-export function isSameSimpleMemberExpression(nodeA, nodeB) {
+export function isSameMemberExpression(nodeA, nodeB) {
   // Assumes normalized code... so member object must be simple, computed property an ident
   ASSERT(!isComplexNode(nodeA.object) && !isComplexNode(nodeB.object), 'object should be simple');
   ASSERT(!nodeA.optional && !nodeB.optional, 'optional chaining is not normalized');
@@ -739,6 +858,15 @@ export function newExpression(callee, args) {
     $p: $p(),
   };
 }
+export function isSameNewExpression(a, b) {
+  // Assumes normalized code!
+  ASSERT(arguments.length === isSameNewExpression.length, 'arg count');
+  ASSERT(a.type === 'NewExpression', 'must already have validated the node type', a);
+  ASSERT(b.type === 'NewExpression', 'must already have validated the node type', b);
+
+  if (!isSameExpression(a.callee, b.callee)) return false;
+  return isSameCallArguments(a.arguments, b.arguments);
+}
 
 export function nan() {
   return identifier('NaN');
@@ -766,6 +894,18 @@ export function objectExpression(...properties) {
     properties, // Should be list of AST.property() !
     $p: $p(),
   };
+}
+export function isSameObjectExpression(a, b) {
+  // Assumes normalized code!
+  ASSERT(arguments.length === isSameObjectExpression.length, 'arg count');
+  ASSERT(a.type === 'ObjectExpression', 'must already have validated the node type', a);
+  ASSERT(b.type === 'ObjectExpression', 'must already have validated the node type', b);
+
+  if (a.properties.length !== b.properties.length) return false;
+  for (let i=0; i<a.properties.length; ++i) {
+    if (!isSameProperty(a.properties[i], b.properties[i])) return false;
+  }
+  return true;
 }
 
 export function one() {
@@ -806,6 +946,24 @@ export function property(key, value, shorthand = false, computed = false, kind =
     $p: $p(),
   };
 }
+export function isSameProperty(a, b) {
+  // Assumes normalized code!
+  ASSERT(arguments.length === isSameProperty.length, 'arg count');
+  ASSERT(a.type === 'Property', 'must already have validated the node type', a);
+  ASSERT(b.type === 'Property', 'must already have validated the node type', b);
+
+  if (a.computed !== b.computed) return false;  // bool
+  if (a.kind !== b.kind) return false; // string enum
+  if (a.method !== b.method) return false; // string enum
+
+  if (a.computed) {
+    if (!isSameExpression(a.key, b.key)) return false;
+  } else {
+    if (!isSameIdentifier(a.key, b.key)) return false;
+  }
+
+  return isSameExpression(a.value, b.value);
+}
 
 export function restElement(argument) {
   return {
@@ -822,6 +980,16 @@ export function returnStatement(argument = null) {
     argument,
     $p: $p(),
   };
+}
+export function isSameReturnStatement(a, b) {
+  // Assumes normalized code!
+  ASSERT(arguments.length === isSameBlockStatement.length, 'arg count');
+  ASSERT(a.type === 'ReturnStatement', 'must already have validated the node type', a);
+  ASSERT(b.type === 'ReturnStatement', 'must already have validated the node type', b);
+
+  if (!!a.argument && !!b.argument) return false;
+  if (a.argument === b.argument) return true;
+  return isSameExpression(a.argument, b.argument);
 }
 
 export function sequenceExpression(...expressions) {
@@ -990,6 +1158,14 @@ export function throwStatement(argument) {
     $p: $p(),
   };
 }
+export function isSameThrowStatement(a, b) {
+  // Assumes normalized code!
+  ASSERT(arguments.length === isSameWhileStatement.length, 'arg count');
+  ASSERT(a.type === 'ThrowStatement', 'must already have validated the node type', a);
+  ASSERT(b.type === 'ThrowStatement', 'must already have validated the node type', b);
+
+  return isSameExpression(a.argument, b.argument);
+}
 
 export function tru() {
   return literal(true);
@@ -1078,6 +1254,14 @@ export function unaryExpression(operator, argument) {
     argument,
     $p: $p(),
   };
+}
+export function isSameUnaryExpression(a, b) {
+  // Assumes normalized code!
+  ASSERT(arguments.length === isSameUnaryExpression.length, 'arg count');
+  ASSERT(a.type === 'UnaryExpression', 'must already have validated the node type', a);
+  ASSERT(b.type === 'UnaryExpression', 'must already have validated the node type', b);
+
+  return a.operator === b.operator && isSameExpression(a.argument, b.argument);
 }
 
 export function undef() {
@@ -1174,6 +1358,15 @@ export function whileStatement(test, body) {
     $p: $p(),
   };
 }
+export function isSameWhileStatement(a, b) {
+  // Assumes normalized code!
+  ASSERT(arguments.length === isSameWhileStatement.length, 'arg count');
+  ASSERT(a.type === 'WhileStatement', 'must already have validated the node type', a);
+  ASSERT(b.type === 'WhileStatement', 'must already have validated the node type', b);
+
+  if (!isSameExpression(a.test, b.test)) return false;
+  return isSameStatement(a.body, b.body);
+}
 
 export function yieldExpression(arg, delegate) {
   if (typeof arg === 'string') arg = identifier(arg);
@@ -1186,6 +1379,17 @@ export function yieldExpression(arg, delegate) {
     argument: arg,
     $p: $p(),
   }
+}
+export function isSameYieldExpression(a, b) {
+  // Assumes normalized code!
+  ASSERT(arguments.length === isSameYieldExpression.length, 'arg count');
+  ASSERT(a.type === 'YieldExpression', 'must already have validated the node type', a);
+  ASSERT(b.type === 'YieldExpression', 'must already have validated the node type', b);
+
+  if (a.delegate !== b.delegate) return false;
+  if (!!a.argument !== !!b.argument) return false;
+  if (!a.argument) return true;
+  return isSameExpression(a.argument, b.argument);
 }
 
 export function zero() {
@@ -1456,7 +1660,7 @@ export function isSamePrimitive(node1, node2) {
   if (node1.type !== node2.type) return false;
 
   if (node1.type === 'Literal') {
-    return node1.raw === node2.raw;
+    return Object.is(node1.raw, node2.raw);
   }
 
   if (node1.type === 'TemplateLiteral') {
@@ -1468,7 +1672,7 @@ export function isSamePrimitive(node1, node2) {
   if (node1.type === 'Identifier') return node1.name === node2.name;
 
   if (node1.type === 'UnaryExpression') {
-    return isSamePrimitive(node1.argument, node2.argument);
+    return node1.operator === node2.operator && isSamePrimitive(node1.argument, node2.argument);
   }
 
   ASSERT(false, 'isPrimitive should make this unreachable', node1, node2);

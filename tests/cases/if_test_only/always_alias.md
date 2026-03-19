@@ -1,31 +1,30 @@
 # Preval test case
 
-# longer.md
+# always_alias.md
 
-> If test only > Longer
+> If test only > Always alias
 >
-> More complex case
-
-Point is that we know that when the code would call aliasMaybe, we should be able to know that it is set regardless.
-If we do then we may as well alias it immediately since there is no other observation of that fact, provided the aliased function is a constant.
-First step is to eliminate the sealer and replace that with the proxyMaybe itself
+> A sealer that is always a const alias
 
 ## Input
 
 `````js filename=intro
-const proxy = function(){ $('spy'); };
-let sealed = false;
-let proxyMaybe = undefined;
-const f = function() {
-  if (!sealed) {
-    proxyMaybe = proxy;
-    sealed = true;
-  }
-  const t = proxyMaybe();
-  return t;
+const proxy = function() {
+  $(`spy`);
 };
-$(f); // dont collapse entirely (it would, otherwise)
-$(f());
+let proxyMaybe = undefined; // if falsy it is aliased, if truthy it is alias
+const f = function() {
+  if (proxyMaybe) {
+    const tmpClusterSSA_t = proxyMaybe(); // <- must be proxy, always
+    return tmpClusterSSA_t;
+  } else {
+    proxyMaybe = proxy;
+    $(`spy`); // <-- already unwrapped
+  }
+};
+$(f);
+const tmp = f();
+$(tmp);
 `````
 
 
@@ -102,21 +101,21 @@ const proxy = function () {
   $(`spy`);
   return undefined;
 };
-let sealed = false;
 let proxyMaybe = undefined;
 const f = function () {
   debugger;
-  if (sealed) {
+  if (proxyMaybe) {
+    const tmpClusterSSA_t = proxyMaybe();
+    return tmpClusterSSA_t;
   } else {
     proxyMaybe = proxy;
-    sealed = true;
+    $(`spy`);
+    return undefined;
   }
-  const t = proxyMaybe();
-  return t;
 };
 $(f);
-let tmpCalleeParam = f();
-$(tmpCalleeParam);
+const tmp = f();
+$(tmp);
 `````
 
 

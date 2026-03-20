@@ -259,10 +259,11 @@ export function isSameStatement(a, b) {
   switch (a.type) {
     case 'BlockStatement': return isSameBlockStatement(a, b);
     case 'BreakStatement': return isSameBreakStatement(a, b);
-    case 'ReturnStatement': return isSameReturnStatement(a, b);
     case 'DebuggerStatement': return true;
     case 'EmptyStatement': return true;
+    case 'ExpressionStatement': return isSameExpression(a.expression, b.expression);
     case 'IfStatement': return isSameIfStatement(a, b);
+    case 'ReturnStatement': return isSameReturnStatement(a, b);
     case 'ThrowStatement': return isSameThrowStatement(a, b);
     case 'WhileStatement': return isSameWhileStatement(a, b);
   }
@@ -986,8 +987,8 @@ export function isSameReturnStatement(a, b) {
   ASSERT(arguments.length === isSameBlockStatement.length, 'arg count');
   ASSERT(a.type === 'ReturnStatement', 'must already have validated the node type', a);
   ASSERT(b.type === 'ReturnStatement', 'must already have validated the node type', b);
+  ASSERT(a.argument && b.argument);
 
-  if (!!a.argument && !!b.argument) return false;
   if (a.argument === b.argument) return true;
   return isSameExpression(a.argument, b.argument);
 }

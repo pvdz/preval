@@ -32,20 +32,13 @@ $(tmp);
 
 
 `````js filename=intro
-let proxyMaybe /*:boolean: false | true*/ = false;
 const f /*:()=>unknown*/ = function () {
   debugger;
-  if (proxyMaybe) {
-    $(`spy`);
-    return undefined;
-  } else {
-    proxyMaybe = true;
-    $(`spy`);
-    return undefined;
-  }
+  $(`spy`);
+  return undefined;
 };
 $(f);
-f();
+$(`spy`);
 $(undefined);
 `````
 
@@ -54,17 +47,10 @@ $(undefined);
 (This ought to be the final result)
 
 `````js filename=intro
-let proxyMaybe = false;
-const f = function () {
-  if (proxyMaybe) {
-    $(`spy`);
-  } else {
-    proxyMaybe = true;
-    $(`spy`);
-  }
-};
-$(f);
-f();
+$(function () {
+  $(`spy`);
+});
+$(`spy`);
 $(undefined);
 `````
 
@@ -73,21 +59,13 @@ $(undefined);
 With rename=true
 
 `````js filename=intro
-let a = false;
-const b = function() {
+const a = function() {
   debugger;
-  if (a) {
-    $( "spy" );
-    return undefined;
-  }
-  else {
-    a = true;
-    $( "spy" );
-    return undefined;
-  }
+  $( "spy" );
+  return undefined;
 };
-$( b );
-b();
+$( a );
+$( "spy" );
 $( undefined );
 `````
 

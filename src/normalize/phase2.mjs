@@ -122,6 +122,7 @@ import { letScoping } from '../reduce_static/let_scoping.mjs';
 import { ifIndirectBooly } from '../reduce_static/if_indirect_booly.mjs';
 import { ifSealerProxy } from '../reduce_static/if_sealer_proxy.mjs';
 import { sealedAlias } from '../reduce_static/sealed_alias.mjs';
+import { ifTestSealerUseless } from '../reduce_static/if_test_sealer_useless.mjs';
 
 //import { phasePrimitiveArgInlining } from '../reduce_static/phase_primitive_arg_inlining.mjs';
 
@@ -239,6 +240,7 @@ export const BASE_PHASE2_RULES_LIST = [
   ['ifIndirectBooly', ifIndirectBooly],
   ['ifSealerProxy', ifSealerProxy],
   ['sealedAlias', sealedAlias],
+  ['ifTestSealerUseless', ifTestSealerUseless],
 
   ['freeLoops', freeLoops], // Most other stuff should probably precede this?
 

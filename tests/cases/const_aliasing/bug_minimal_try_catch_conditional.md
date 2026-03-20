@@ -27,18 +27,8 @@ $(a, x);
 
 
 `````js filename=intro
-let x /*:unknown*/ = $(`val`);
-const a /*:unknown*/ = x;
-try {
-  throw 1;
-} catch (e) {
-  const tmpIfTest /*:boolean*/ = e === 1;
-  if (tmpIfTest) {
-    x = `changed`;
-  } else {
-  }
-}
-$(a, x);
+const x /*:unknown*/ = $(`val`);
+$(x, `changed`);
 `````
 
 
@@ -46,16 +36,7 @@ $(a, x);
 (This ought to be the final result)
 
 `````js filename=intro
-let x = $(`val`);
-const a = x;
-try {
-  throw 1;
-} catch (e) {
-  if (e === 1) {
-    x = `changed`;
-  }
-}
-$(a, x);
+$($(`val`), `changed`);
 `````
 
 
@@ -63,18 +44,8 @@ $(a, x);
 With rename=true
 
 `````js filename=intro
-let a = $( "val" );
-const b = a;
-try {
-  throw 1;
-}
-catch (c) {
-  const d = c === 1;
-  if (d) {
-    a = "changed";
-  }
-}
-$( b, a );
+const a = $( "val" );
+$( a, "changed" );
 `````
 
 
@@ -84,16 +55,14 @@ $( b, a );
 `````js filename=intro
 let x = $(`val`);
 const a = x;
-try {
-  throw 1;
-} catch (e) {
-  const tmpIfTest = e === 1;
-  if (tmpIfTest) {
-    x = `changed`;
-  } else {
-  }
+let e = 1;
+const tmpIfTest = e === 1;
+if (tmpIfTest) {
+  x = `changed`;
+  $(a, x);
+} else {
+  $(a, x);
 }
-$(a, x);
 `````
 
 

@@ -28,21 +28,7 @@ try { $(f()); } catch {}
 
 
 `````js filename=intro
-try {
-  throw `Some error`;
-} catch (e) {}
-try {
-  throw `Some error`;
-} catch (e$1) {}
-try {
-  throw `Some error`;
-} catch (e$3) {}
-try {
-  throw `Some error`;
-} catch (e$5) {}
-try {
-  throw `Some error`;
-} catch (e$7) {}
+
 `````
 
 
@@ -50,21 +36,7 @@ try {
 (This ought to be the final result)
 
 `````js filename=intro
-try {
-  throw `Some error`;
-} catch (e) {}
-try {
-  throw `Some error`;
-} catch (e$1) {}
-try {
-  throw `Some error`;
-} catch (e$3) {}
-try {
-  throw `Some error`;
-} catch (e$5) {}
-try {
-  throw `Some error`;
-} catch (e$7) {}
+
 `````
 
 
@@ -72,36 +44,7 @@ try {
 With rename=true
 
 `````js filename=intro
-try {
-  throw "Some error";
-}
-catch (a) {
 
-}
-try {
-  throw "Some error";
-}
-catch (b) {
-
-}
-try {
-  throw "Some error";
-}
-catch (c) {
-
-}
-try {
-  throw "Some error";
-}
-catch (d) {
-
-}
-try {
-  throw "Some error";
-}
-catch (e) {
-
-}
 `````
 
 

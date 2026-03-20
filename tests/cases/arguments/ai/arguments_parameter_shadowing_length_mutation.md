@@ -33,12 +33,7 @@ testArgsParameterShadowingLengthMutation(1, 2, 3);
 
 
 `````js filename=intro
-try {
-  throw `Preval: Cannot write to const binding \`tmpPrevalAliasArgumentsLen\``;
-} catch (e) {
-  const tmpCalleeParam /*:unknown*/ = e.name;
-  $(tmpCalleeParam, 3, 3);
-}
+$(`prototype`, 3, 3);
 `````
 
 
@@ -46,11 +41,7 @@ try {
 (This ought to be the final result)
 
 `````js filename=intro
-try {
-  throw `Preval: Cannot write to const binding \`tmpPrevalAliasArgumentsLen\``;
-} catch (e) {
-  $(e.name, 3, 3);
-}
+$(`prototype`, 3, 3);
 `````
 
 
@@ -58,13 +49,7 @@ try {
 With rename=true
 
 `````js filename=intro
-try {
-  throw "Preval: Cannot write to const binding `tmpPrevalAliasArgumentsLen`";
-}
-catch (a) {
-  const b = a.name;
-  $( b, 3, 3 );
-}
+$( "prototype", 3, 3 );
 `````
 
 
@@ -117,9 +102,9 @@ Normalized calls: BAD!? (expected)
  -  eval returned: undefined
 
 Post settled calls: BAD!! (expected)
- - !1: undefined, 3, 3
+ - !1: 'prototype', 3, 3
  -  eval returned: undefined
 
 Denormalized calls: BAD!! (expected)
- - !1: undefined, 3, 3
+ - !1: 'prototype', 3, 3
  -  eval returned: undefined

@@ -27,11 +27,7 @@ f();
 
 
 `````js filename=intro
-try {
-  throw `yes`;
-} catch (e) {
-  $(`caught`);
-}
+$(`caught`);
 $(`pass`);
 `````
 
@@ -40,11 +36,7 @@ $(`pass`);
 (This ought to be the final result)
 
 `````js filename=intro
-try {
-  throw `yes`;
-} catch (e) {
-  $(`caught`);
-}
+$(`caught`);
 $(`pass`);
 `````
 
@@ -53,12 +45,7 @@ $(`pass`);
 With rename=true
 
 `````js filename=intro
-try {
-  throw "yes";
-}
-catch (a) {
-  $( "caught" );
-}
+$( "caught" );
 $( "pass" );
 `````
 

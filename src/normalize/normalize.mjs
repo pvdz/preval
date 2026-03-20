@@ -15889,6 +15889,24 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
       return true;
     }
 
+    if (node.block.body.length === 1 && node.block.body[0].type === 'ThrowStatement') {
+      // - ``
+      rule('When a try/catch only throws, drop it');
+      example('try { throw x; } catch (y) { $(y); }', 'let y = x; $(y);');
+      before(body[i]);
+
+      body[i] = body[i].handler.body;
+      if (node.handler.param) {
+        body[i].body.unshift(AST.varStatement('let', node.handler.param, node.block.body[0].argument));
+      } else {
+        body[i].body.unshift(AST.expressionStatement(node.block.body[0].argument));
+      }
+
+      after(body[i]);
+      assertNoDupeNodes(body, 'body');
+      return true;
+    }
+
     return false;
   }
 

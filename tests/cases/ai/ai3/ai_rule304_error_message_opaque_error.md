@@ -27,13 +27,8 @@ $('final_message', message);
 `````js filename=intro
 const tmpCalleeParam /*:object*/ /*truthy*/ = new $error_constructor(`test error`);
 const e /*:unknown*/ = $(`e`, tmpCalleeParam);
-let message /*:unknown*/ = undefined;
-try {
-  throw e;
-} catch (caughtError) {
-  const tmpCalleeParam$1 /*:unknown*/ = caughtError.message;
-  message = $(`message`, tmpCalleeParam$1);
-}
+const tmpCalleeParam$1 /*:unknown*/ = e.message;
+const message /*:unknown*/ = $(`message`, tmpCalleeParam$1);
 $(`final_message`, message);
 `````
 
@@ -42,14 +37,7 @@ $(`final_message`, message);
 (This ought to be the final result)
 
 `````js filename=intro
-const e = $(`e`, new $error_constructor(`test error`));
-let message = undefined;
-try {
-  throw e;
-} catch (caughtError) {
-  message = $(`message`, caughtError.message);
-}
-$(`final_message`, message);
+$(`final_message`, $(`message`, $(`e`, new $error_constructor(`test error`)).message));
 `````
 
 
@@ -59,15 +47,9 @@ With rename=true
 `````js filename=intro
 const a = new $error_constructor( "test error" );
 const b = $( "e", a );
-let c = undefined;
-try {
-  throw b;
-}
-catch (d) {
-  const e = d.message;
-  c = $( "message", e );
-}
-$( "final_message", c );
+const c = b.message;
+const d = $( "message", c );
+$( "final_message", d );
 `````
 
 
@@ -78,12 +60,9 @@ $( "final_message", c );
 let tmpCalleeParam = new $error_constructor(`test error`);
 let e = $(`e`, tmpCalleeParam);
 let message = undefined;
-try {
-  throw e;
-} catch (caughtError) {
-  let tmpCalleeParam$1 = caughtError.message;
-  message = $(`message`, tmpCalleeParam$1);
-}
+let caughtError = e;
+let tmpCalleeParam$1 = caughtError.message;
+message = $(`message`, tmpCalleeParam$1);
 $(`final_message`, message);
 `````
 

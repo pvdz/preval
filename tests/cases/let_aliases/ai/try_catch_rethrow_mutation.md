@@ -27,12 +27,7 @@ $(a, b);
 
 `````js filename=intro
 $(`val`);
-try {
-  throw 1;
-} catch (e) {
-  throw e;
-}
-throw `Preval: This statement contained a read that reached no writes: binding: x, code: x;`;
+throw 1;
 `````
 
 
@@ -41,12 +36,7 @@ throw `Preval: This statement contained a read that reached no writes: binding: 
 
 `````js filename=intro
 $(`val`);
-try {
-  throw 1;
-} catch (e) {
-  throw e;
-}
-throw `Preval: This statement contained a read that reached no writes: binding: x, code: x;`;
+throw 1;
 `````
 
 
@@ -55,13 +45,7 @@ With rename=true
 
 `````js filename=intro
 $( "val" );
-try {
-  throw 1;
-}
-catch (a) {
-  throw a;
-}
-throw "Preval: This statement contained a read that reached no writes: binding: x, code: x;";
+throw 1;
 `````
 
 
@@ -71,14 +55,10 @@ throw "Preval: This statement contained a read that reached no writes: binding: 
 `````js filename=intro
 let x = $(`val`);
 const a = x;
-try {
-  throw 1;
-} catch (e) {
-  x = `changed`;
-  throw e;
-}
-const b = x;
-$(a, x);
+let e = 1;
+x = `changed`;
+throw e;
+const b = 0;
 `````
 
 

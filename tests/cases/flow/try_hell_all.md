@@ -266,17 +266,8 @@ $(1);
 $(0);
 $(0);
 $(1);
-try {
-  throw `one`;
-} catch (e$19) {}
 $(1);
-try {
-  throw `one`;
-} catch (e$21) {}
 $(1);
-try {
-  throw `one`;
-} catch (e$23) {}
 $(2);
 `````
 
@@ -299,17 +290,8 @@ $(1);
 $(0);
 $(0);
 $(1);
-try {
-  throw `one`;
-} catch (e$19) {}
 $(1);
-try {
-  throw `one`;
-} catch (e$21) {}
 $(1);
-try {
-  throw `one`;
-} catch (e$23) {}
 $(2);
 `````
 
@@ -332,26 +314,8 @@ $( 1 );
 $( 0 );
 $( 0 );
 $( 1 );
-try {
-  throw "one";
-}
-catch (a) {
-
-}
 $( 1 );
-try {
-  throw "one";
-}
-catch (b) {
-
-}
 $( 1 );
-try {
-  throw "one";
-}
-catch (c) {
-
-}
 $( 2 );
 `````
 
@@ -581,16 +545,13 @@ if ($implicitThrow) {
             let $finalArg$3 = undefined;
             $finally$23: {
               try {
-                throw `one`;
-              } catch (e$19) {
-                try {
-                  $finalStep$13 = true;
-                  $finalArg$3 = `two`;
-                  break $finally$23;
-                } catch ($finalImplicit$23) {
-                  $implicitThrow$23 = true;
-                  $finalCatchArg$23 = $finalImplicit$23;
-                }
+                let e$19 = `one`;
+                $finalStep$13 = true;
+                $finalArg$3 = `two`;
+                break $finally$23;
+              } catch ($finalImplicit$23) {
+                $implicitThrow$23 = true;
+                $finalCatchArg$23 = $finalImplicit$23;
               }
             }
             x$27 = 1;
@@ -630,17 +591,14 @@ if ($implicitThrow) {
             let $finalCatchArg$27 = undefined;
             let $finalArg$7 = undefined;
             try {
-              throw `one`;
-            } catch (e$23) {
-              try {
-                x$31 = 2;
-                $finalStep$17 = true;
-                $finalArg$7 = `two`;
-                return undefined;
-              } catch ($finalImplicit$27) {
-                $implicitThrow$27 = true;
-                $finalCatchArg$27 = $finalImplicit$27;
-              }
+              let e$23 = `one`;
+              x$31 = 2;
+              $finalStep$17 = true;
+              $finalArg$7 = `two`;
+              return undefined;
+            } catch ($finalImplicit$27) {
+              $implicitThrow$27 = true;
+              $finalCatchArg$27 = $finalImplicit$27;
             }
             return undefined;
           };

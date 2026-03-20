@@ -28,11 +28,7 @@ while ($LOOP_NO_UNROLLS_LEFT) {
 
 `````js filename=intro
 while ($LOOP_NO_UNROLLS_LEFT) {
-  try {
-    throw `Preval: Cannot write to const binding \`arr\``;
-  } catch (e) {
-    $(`fail`);
-  }
+  $(`fail`);
 }
 `````
 
@@ -42,11 +38,7 @@ while ($LOOP_NO_UNROLLS_LEFT) {
 
 `````js filename=intro
 while (true) {
-  try {
-    throw `Preval: Cannot write to const binding \`arr\``;
-  } catch (e) {
-    $(`fail`);
-  }
+  $(`fail`);
 }
 `````
 
@@ -56,12 +48,7 @@ With rename=true
 
 `````js filename=intro
 while ($LOOP_NO_UNROLLS_LEFT) {
-  try {
-    throw "Preval: Cannot write to const binding `arr`";
-  }
-  catch (a) {
-    $( "fail" );
-  }
+  $( "fail" );
 }
 `````
 

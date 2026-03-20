@@ -36,13 +36,9 @@ $(x);
 `````js filename=intro
 let x /*:number: 0 | 2*/ = 0;
 try {
-  throw `one`;
-} catch (e) {
-  try {
-    throw_early;
-    x = 2;
-  } catch ($finalImplicit) {}
-}
+  throw_early;
+  x = 2;
+} catch ($finalImplicit) {}
 $(x);
 `````
 
@@ -53,13 +49,9 @@ $(x);
 `````js filename=intro
 let x = 0;
 try {
-  throw `one`;
-} catch (e) {
-  try {
-    throw_early;
-    x = 2;
-  } catch ($finalImplicit) {}
-}
+  throw_early;
+  x = 2;
+} catch ($finalImplicit) {}
 $(x);
 `````
 
@@ -70,16 +62,11 @@ With rename=true
 `````js filename=intro
 let a = 0;
 try {
-  throw "one";
+  throw_early;
+  a = 2;
 }
 catch (b) {
-  try {
-    throw_early;
-    a = 2;
-  }
-  catch (c) {
 
-  }
 }
 $( a );
 `````
@@ -96,18 +83,15 @@ let f = function () {
   let $finalCatchArg = undefined;
   let $finalArg = undefined;
   try {
-    throw `one`;
-  } catch (e) {
-    try {
-      throw_early;
-      x = 2;
-      $finalStep = true;
-      $finalArg = `two`;
-      return undefined;
-    } catch ($finalImplicit) {
-      $implicitThrow = true;
-      $finalCatchArg = $finalImplicit;
-    }
+    let e = `one`;
+    throw_early;
+    x = 2;
+    $finalStep = true;
+    $finalArg = `two`;
+    return undefined;
+  } catch ($finalImplicit) {
+    $implicitThrow = true;
+    $finalCatchArg = $finalImplicit;
   }
   return undefined;
 };
@@ -120,7 +104,7 @@ $(x);
 ## Todos triggered
 
 
-None
+- (todo) can try-escaping support this expr node type? TemplateLiteral
 
 
 ## Globals

@@ -26,9 +26,6 @@ $(a, x);
 
 `````js filename=intro
 const x /*:unknown*/ = $(`val`);
-try {
-  throw 1;
-} catch (e) {}
 $(x, `changed`);
 `````
 
@@ -37,11 +34,7 @@ $(x, `changed`);
 (This ought to be the final result)
 
 `````js filename=intro
-const x = $(`val`);
-try {
-  throw 1;
-} catch (e) {}
-$(x, `changed`);
+$($(`val`), `changed`);
 `````
 
 
@@ -50,12 +43,6 @@ With rename=true
 
 `````js filename=intro
 const a = $( "val" );
-try {
-  throw 1;
-}
-catch (b) {
-
-}
 $( a, "changed" );
 `````
 
@@ -66,11 +53,8 @@ $( a, "changed" );
 `````js filename=intro
 let x = $(`val`);
 const a = x;
-try {
-  throw 1;
-} catch (e) {
-  x = `changed`;
-}
+let e = 1;
+x = `changed`;
 $(a, x);
 `````
 

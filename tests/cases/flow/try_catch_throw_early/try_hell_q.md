@@ -35,12 +35,8 @@ $(x);
 
 `````js filename=intro
 try {
-  throw `one`;
-} catch (e) {
-  try {
-    throw_early;
-  } catch ($finalImplicit) {}
-}
+  throw_early;
+} catch ($finalImplicit) {}
 $(1);
 `````
 
@@ -50,12 +46,8 @@ $(1);
 
 `````js filename=intro
 try {
-  throw `one`;
-} catch (e) {
-  try {
-    throw_early;
-  } catch ($finalImplicit) {}
-}
+  throw_early;
+} catch ($finalImplicit) {}
 $(1);
 `````
 
@@ -65,15 +57,10 @@ With rename=true
 
 `````js filename=intro
 try {
-  throw "one";
+  throw_early;
 }
 catch (a) {
-  try {
-    throw_early;
-  }
-  catch (b) {
 
-  }
 }
 $( 1 );
 `````

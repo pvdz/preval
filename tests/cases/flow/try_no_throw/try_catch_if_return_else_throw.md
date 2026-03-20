@@ -34,11 +34,7 @@ f();
 `````js filename=intro
 if ($) {
 } else {
-  try {
-    throw `too`;
-  } catch (e) {
-    $(`caught`);
-  }
+  $(`caught`);
   $(`pass`);
 }
 `````
@@ -49,11 +45,7 @@ if ($) {
 
 `````js filename=intro
 if (!$) {
-  try {
-    throw `too`;
-  } catch (e) {
-    $(`caught`);
-  }
+  $(`caught`);
   $(`pass`);
 }
 `````
@@ -67,12 +59,7 @@ if ($) {
 
 }
 else {
-  try {
-    throw "too";
-  }
-  catch (a) {
-    $( "caught" );
-  }
+  $( "caught" );
   $( "pass" );
 }
 `````

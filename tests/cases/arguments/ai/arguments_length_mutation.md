@@ -32,12 +32,7 @@ testArgsLengthMutation(1, 2, 3);
 
 
 `````js filename=intro
-try {
-  throw `Preval: Cannot write to const binding \`tmpPrevalAliasArgumentsLen\``;
-} catch (e) {
-  const tmpCalleeParam /*:unknown*/ = e.name;
-  $(tmpCalleeParam, 3, 3);
-}
+$(`prototype`, 3, 3);
 `````
 
 
@@ -45,11 +40,7 @@ try {
 (This ought to be the final result)
 
 `````js filename=intro
-try {
-  throw `Preval: Cannot write to const binding \`tmpPrevalAliasArgumentsLen\``;
-} catch (e) {
-  $(e.name, 3, 3);
-}
+$(`prototype`, 3, 3);
 `````
 
 
@@ -57,13 +48,7 @@ try {
 With rename=true
 
 `````js filename=intro
-try {
-  throw "Preval: Cannot write to const binding `tmpPrevalAliasArgumentsLen`";
-}
-catch (a) {
-  const b = a.name;
-  $( b, 3, 3 );
-}
+$( "prototype", 3, 3 );
 `````
 
 

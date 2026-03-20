@@ -48,13 +48,7 @@
 
 
 `````js filename=intro
-try {
-  throw `one`;
-} catch (e) {}
 $(1);
-try {
-  throw `one`;
-} catch (e$3) {}
 $(2);
 `````
 
@@ -63,13 +57,7 @@ $(2);
 (This ought to be the final result)
 
 `````js filename=intro
-try {
-  throw `one`;
-} catch (e) {}
 $(1);
-try {
-  throw `one`;
-} catch (e$3) {}
 $(2);
 `````
 
@@ -78,19 +66,7 @@ $(2);
 With rename=true
 
 `````js filename=intro
-try {
-  throw "one";
-}
-catch (a) {
-
-}
 $( 1 );
-try {
-  throw "one";
-}
-catch (b) {
-
-}
 $( 2 );
 `````
 
@@ -130,17 +106,14 @@ let f$1 = function () {
   let $finalCatchArg$1 = undefined;
   let $finalArg$1 = undefined;
   try {
-    throw `one`;
-  } catch (e$1) {
-    try {
-      x$1 = 2;
-      $finalStep$1 = true;
-      $finalArg$1 = `two`;
-      return undefined;
-    } catch ($finalImplicit$1) {
-      $implicitThrow$1 = true;
-      $finalCatchArg$1 = $finalImplicit$1;
-    }
+    let e$1 = `one`;
+    x$1 = 2;
+    $finalStep$1 = true;
+    $finalArg$1 = `two`;
+    return undefined;
+  } catch ($finalImplicit$1) {
+    $implicitThrow$1 = true;
+    $finalCatchArg$1 = $finalImplicit$1;
   }
   return undefined;
 };
@@ -154,6 +127,7 @@ $(x$1);
 
 
 - (todo) can try-escaping support this expr node type? Literal
+- (todo) can try-escaping support this expr node type? TemplateLiteral
 
 
 ## Globals

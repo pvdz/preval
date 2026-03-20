@@ -30,14 +30,10 @@ try {
 `````js filename=intro
 const protoKey /*:unknown*/ = $(`op_proto_key_name`, `newProtoPropOnObject`);
 let $implicitThrow /*:boolean: false | true*/ /*ternaryConst*/ = false;
-let $finalCatchArg /*:unknown*/ /*ternaryConst*/ = undefined;
+let $finalCatchArg /*:primitive: 0 | undefined*/ /*ternaryConst*/ /*falsy*/ = undefined;
 if ($) {
-  try {
-    throw 0;
-  } catch ($finalImplicit) {
-    $implicitThrow = true;
-    $finalCatchArg = $finalImplicit;
-  }
+  $implicitThrow = true;
+  $finalCatchArg = 0;
 } else {
 }
 const tmpUnaryArg /*:boolean*/ = $dotCall($object_hasOwnProperty, $Object_prototype, `hasOwnProperty`, protoKey);
@@ -63,12 +59,8 @@ const protoKey = $(`op_proto_key_name`, `newProtoPropOnObject`);
 let $implicitThrow = false;
 let $finalCatchArg = undefined;
 if ($) {
-  try {
-    throw 0;
-  } catch ($finalImplicit) {
-    $implicitThrow = true;
-    $finalCatchArg = $finalImplicit;
-  }
+  $implicitThrow = true;
+  $finalCatchArg = 0;
 }
 if ($dotCall($object_hasOwnProperty, $Object_prototype, `hasOwnProperty`, protoKey)) {
   $(`op_proto_cleanup_done`, $Object_prototype[protoKey] === originalProtoProperty);
@@ -89,19 +81,14 @@ const a = $( "op_proto_key_name", "newProtoPropOnObject" );
 let b = false;
 let c = undefined;
 if ($) {
-  try {
-    throw 0;
-  }
-  catch (d) {
-    b = true;
-    c = d;
-  }
+  b = true;
+  c = 0;
 }
-const e = $dotCall( $object_hasOwnProperty, $Object_prototype, "hasOwnProperty", a );
-if (e) {
-  const f = $Object_prototype[ a ];
-  const g = f === originalProtoProperty;
-  $( "op_proto_cleanup_done", g );
+const d = $dotCall( $object_hasOwnProperty, $Object_prototype, "hasOwnProperty", a );
+if (d) {
+  const e = $Object_prototype[ a ];
+  const f = e === originalProtoProperty;
+  $( "op_proto_cleanup_done", f );
 }
 else {
   $( "op_proto_cleanup_done", true );

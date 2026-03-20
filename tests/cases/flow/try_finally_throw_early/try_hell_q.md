@@ -34,9 +34,6 @@ $(x);
 
 
 `````js filename=intro
-try {
-  throw `one`;
-} catch (e) {}
 throw_early;
 $(1);
 `````
@@ -46,9 +43,6 @@ $(1);
 (This ought to be the final result)
 
 `````js filename=intro
-try {
-  throw `one`;
-} catch (e) {}
 throw_early;
 $(1);
 `````
@@ -58,12 +52,6 @@ $(1);
 With rename=true
 
 `````js filename=intro
-try {
-  throw "one";
-}
-catch (a) {
-
-}
 throw_early;
 $( 1 );
 `````

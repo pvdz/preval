@@ -35,12 +35,8 @@ $(x);
 
 `````js filename=intro
 try {
-  throw `one`;
-} catch (e) {
-  try {
-    throw_early;
-  } catch ($finalImplicit) {}
-}
+  throw_early;
+} catch ($finalImplicit) {}
 $(1);
 `````
 
@@ -50,12 +46,8 @@ $(1);
 
 `````js filename=intro
 try {
-  throw `one`;
-} catch (e) {
-  try {
-    throw_early;
-  } catch ($finalImplicit) {}
-}
+  throw_early;
+} catch ($finalImplicit) {}
 $(1);
 `````
 
@@ -65,15 +57,10 @@ With rename=true
 
 `````js filename=intro
 try {
-  throw "one";
+  throw_early;
 }
 catch (a) {
-  try {
-    throw_early;
-  }
-  catch (b) {
 
-  }
 }
 $( 1 );
 `````
@@ -91,17 +78,14 @@ let f = function () {
   let $finalArg = undefined;
   $finally: {
     try {
-      throw `one`;
-    } catch (e) {
-      try {
-        throw_early;
-        $finalStep = true;
-        $finalArg = `two`;
-        break $finally;
-      } catch ($finalImplicit) {
-        $implicitThrow = true;
-        $finalCatchArg = $finalImplicit;
-      }
+      let e = `one`;
+      throw_early;
+      $finalStep = true;
+      $finalArg = `two`;
+      break $finally;
+    } catch ($finalImplicit) {
+      $implicitThrow = true;
+      $finalCatchArg = $finalImplicit;
     }
   }
   x = 1;
@@ -116,6 +100,7 @@ $(x);
 ## Todos triggered
 
 
+- (todo) can try-escaping support this expr node type? TemplateLiteral
 - (todo) support LabeledStatement as statement in let_hoisting noob check
 
 

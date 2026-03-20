@@ -25,12 +25,8 @@ $('after_try_catch');
 
 `````js filename=intro
 const tmpCalleeParam /*:object*/ /*truthy*/ = new $error_constructor(`test_error`);
-const x /*:unknown*/ = $(`x`, tmpCalleeParam);
-try {
-  throw x;
-} catch (unusedError) {
-  $(`side_effect_in_catch`);
-}
+$(`x`, tmpCalleeParam);
+$(`side_effect_in_catch`);
 $(`after_try_catch`);
 `````
 
@@ -39,12 +35,8 @@ $(`after_try_catch`);
 (This ought to be the final result)
 
 `````js filename=intro
-const x = $(`x`, new $error_constructor(`test_error`));
-try {
-  throw x;
-} catch (unusedError) {
-  $(`side_effect_in_catch`);
-}
+$(`x`, new $error_constructor(`test_error`));
+$(`side_effect_in_catch`);
 $(`after_try_catch`);
 `````
 
@@ -54,13 +46,8 @@ With rename=true
 
 `````js filename=intro
 const a = new $error_constructor( "test_error" );
-const b = $( "x", a );
-try {
-  throw b;
-}
-catch (c) {
-  $( "side_effect_in_catch" );
-}
+$( "x", a );
+$( "side_effect_in_catch" );
 $( "after_try_catch" );
 `````
 
@@ -71,11 +58,8 @@ $( "after_try_catch" );
 `````js filename=intro
 let tmpCalleeParam = new $error_constructor(`test_error`);
 let x = $(`x`, tmpCalleeParam);
-try {
-  throw x;
-} catch (unusedError) {
-  $(`side_effect_in_catch`);
-}
+let unusedError = x;
+$(`side_effect_in_catch`);
 $(`after_try_catch`);
 `````
 

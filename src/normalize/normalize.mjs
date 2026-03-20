@@ -15907,6 +15907,31 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
       return true;
     }
 
+    if (
+      node.block.body.length === 1 &&
+      node.block.body[0].type === 'ExpressionStatement' &&
+      node.block.body[0].expression.type === 'Identifier' &&
+      (!node.handler.body.body.length || !node.handler.param)
+    ) {
+      // - ``
+      rule('When a try/catch traps only an identifier and either has no catch body or no catch clause, drop it, drop it');
+      example('try { implicit_error_or_not; } catch (y) { }', '');
+      example('try { implicit_error_or_not; } catch { $(); }', '$();');
+      before(body[i]);
+
+      if (!node.handler.body.body.length) {
+        // There was no body so even if it tripped, nothing executed, so this must be a noop.
+        body[i] = AST.emptyStatement();
+      } else {
+        // There was no catch clause so we can just execute the catch body regardless
+        body[i] = body[i].handler.body;
+      }
+
+      after(body[i]);
+      assertNoDupeNodes(body, 'body');
+      return true;
+    }
+
     return false;
   }
 

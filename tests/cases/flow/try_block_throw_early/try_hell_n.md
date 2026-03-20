@@ -33,9 +33,6 @@ $(x);
 
 
 `````js filename=intro
-try {
-  fail_early;
-} catch ($finalImplicit) {}
 $(0);
 `````
 
@@ -44,9 +41,6 @@ $(0);
 (This ought to be the final result)
 
 `````js filename=intro
-try {
-  fail_early;
-} catch ($finalImplicit) {}
 $(0);
 `````
 
@@ -55,12 +49,6 @@ $(0);
 With rename=true
 
 `````js filename=intro
-try {
-  fail_early;
-}
-catch (a) {
-
-}
 $( 0 );
 `````
 
@@ -103,7 +91,7 @@ None
 ## Globals
 
 
-None (except for the 1 globals expected by the test)
+None
 
 
 ## Runtime Outcome

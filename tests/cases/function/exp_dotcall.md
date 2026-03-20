@@ -68,25 +68,16 @@ while ($LOOP_NO_UNROLLS_LEFT) {
 
 
 `````js filename=intro
-const method /*:(unknown)=>string*/ = function ($$0) {
-  const $dlr_$$0 /*:unknown*/ = $$0;
-  debugger;
-  const tmpMCF /*:unknown*/ = $dlr_$$0.charAt;
-  const tmpCalleeParam /*:string*/ /*truthy*/ = typeof tmpMCF;
-  $(tmpCalleeParam);
-  return ``;
-};
-let main_target_abcxyz /*:unknown*/ = undefined;
+let main_target_abcxyz /*:boolean: false | true*/ = false;
 let main_target_TjeLtB /*:unknown*/ = undefined;
-const main_target /*:(number, string)=>unknown*/ = function ($$0, $$1) {
+const main_target /*:(number)=>unknown*/ = function ($$0) {
   const tmpOutlinedParam /*:number*/ = $$0;
-  const val /*:string*/ = $$1;
   debugger;
   let the_cache /*:unknown*/ /*ternaryConst*/ = undefined;
   if (main_target_abcxyz) {
     the_cache = main_target_TjeLtB;
   } else {
-    main_target_abcxyz = method;
+    main_target_abcxyz = true;
     main_target_TjeLtB = {};
     the_cache = main_target_TjeLtB;
   }
@@ -95,15 +86,15 @@ const main_target /*:(number, string)=>unknown*/ = function ($$0, $$1) {
   if (found) {
     return found;
   } else {
-    const the_result /*:unknown*/ = main_target_abcxyz(val);
-    main_target_TjeLtB[cache_key] = the_result;
-    return the_result;
+    $(`function`);
+    main_target_TjeLtB[cache_key] = ``;
+    return ``;
   }
 };
 while ($LOOP_NO_UNROLLS_LEFT) {
-  const a /*:unknown*/ = main_target(1, `b`);
+  const a /*:unknown*/ = main_target(1);
   $(`a:`, a);
-  const b /*:unknown*/ = main_target(3, `d`);
+  const b /*:unknown*/ = main_target(3);
   $(`b:`, b);
 }
 `````
@@ -113,19 +104,14 @@ while ($LOOP_NO_UNROLLS_LEFT) {
 (This ought to be the final result)
 
 `````js filename=intro
-const method = function ($dlr_$$0) {
-  const tmpMCF = $dlr_$$0.charAt;
-  $(typeof tmpMCF);
-  return ``;
-};
-let main_target_abcxyz = undefined;
+let main_target_abcxyz = false;
 let main_target_TjeLtB = undefined;
-const main_target = function (tmpOutlinedParam, val) {
+const main_target = function (tmpOutlinedParam) {
   let the_cache = undefined;
   if (main_target_abcxyz) {
     the_cache = main_target_TjeLtB;
   } else {
-    main_target_abcxyz = method;
+    main_target_abcxyz = true;
     main_target_TjeLtB = {};
     the_cache = main_target_TjeLtB;
   }
@@ -134,14 +120,14 @@ const main_target = function (tmpOutlinedParam, val) {
   if (found) {
     return found;
   } else {
-    const the_result = main_target_abcxyz(val);
-    main_target_TjeLtB[cache_key] = the_result;
-    return the_result;
+    $(`function`);
+    main_target_TjeLtB[cache_key] = ``;
+    return ``;
   }
 };
 while (true) {
-  $(`a:`, main_target(1, `b`));
-  $(`b:`, main_target(3, `d`));
+  $(`a:`, main_target(1));
+  $(`b:`, main_target(3));
 }
 `````
 
@@ -150,45 +136,36 @@ while (true) {
 With rename=true
 
 `````js filename=intro
-const a = function($$0 ) {
-  const b = $$0;
+let a = false;
+let b = undefined;
+const c = function($$0 ) {
+  const d = $$0;
   debugger;
-  const c = b.charAt;
-  const d = typeof c;
-  $( d );
-  return "";
-};
-let e = undefined;
-let f = undefined;
-const g = function($$0,$$1 ) {
-  const h = $$0;
-  const i = $$1;
-  debugger;
-  let j = undefined;
-  if (e) {
-    j = f;
+  let e = undefined;
+  if (a) {
+    e = b;
   }
   else {
-    e = a;
-    f = {};
-    j = f;
+    a = true;
+    b = {};
+    e = b;
   }
-  const k = `${h}abc`;
-  const l = j[ k ];
-  if (l) {
-    return l;
+  const f = `${d}abc`;
+  const g = e[ f ];
+  if (g) {
+    return g;
   }
   else {
-    const m = e( i );
-    f[k] = m;
-    return m;
+    $( "function" );
+    b[f] = "";
+    return "";
   }
 };
 while ($LOOP_NO_UNROLLS_LEFT) {
-  const n = g( 1, "b" );
-  $( "a:", n );
-  const o = g( 3, "d" );
-  $( "b:", o );
+  const h = c( 1 );
+  $( "a:", h );
+  const i = c( 3 );
+  $( "b:", i );
 }
 `````
 
@@ -251,6 +228,7 @@ while ($LOOP_NO_UNROLLS_LEFT) {
 
 
 - (todo) do we want to support ArrayExpression as expression statement in free loops?
+- (todo) support Identifier as var init in let_hoisting noob check
 
 
 ## Globals

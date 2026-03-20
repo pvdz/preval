@@ -48,7 +48,7 @@ $(x, y);
 
 
 `````js filename=intro
-let b /*:unknown*/ = undefined;
+let b /*:boolean: false | true*/ = false;
 let c /*:unknown*/ = undefined;
 const func /*:(number, unknown)=>unknown*/ = function ($$0, $$1) {
   const $dlr_$$1 /*:number*/ = $$0;
@@ -58,7 +58,7 @@ const func /*:(number, unknown)=>unknown*/ = function ($$0, $$1) {
   if (b) {
     c_prime = c;
   } else {
-    b = $;
+    b = true;
     c = {};
     c_prime = c;
   }
@@ -67,7 +67,7 @@ const func /*:(number, unknown)=>unknown*/ = function ($$0, $$1) {
   if (lookup) {
     return lookup;
   } else {
-    const real /*:unknown*/ = b($dlr_$$3);
+    const real /*:unknown*/ = $($dlr_$$3);
     c[concatted] = real;
     return real;
   }
@@ -82,14 +82,14 @@ $(x, y);
 (This ought to be the final result)
 
 `````js filename=intro
-let b = undefined;
+let b = false;
 let c = undefined;
 const func = function ($dlr_$$1, $dlr_$$3) {
   let c_prime = undefined;
   if (b) {
     c_prime = c;
   } else {
-    b = $;
+    b = true;
     c = {};
     c_prime = c;
   }
@@ -98,7 +98,7 @@ const func = function ($dlr_$$1, $dlr_$$3) {
   if (lookup) {
     return lookup;
   } else {
-    const real = b($dlr_$$3);
+    const real = $($dlr_$$3);
     c[concatted] = real;
     return real;
   }
@@ -111,7 +111,7 @@ $(func(22, tmpOAL), func(12, tmpOAL$1));
 With rename=true
 
 `````js filename=intro
-let a = undefined;
+let a = false;
 let b = undefined;
 const c = function($$0,$$1 ) {
   const d = $$0;
@@ -122,7 +122,7 @@ const c = function($$0,$$1 ) {
     f = b;
   }
   else {
-    a = $;
+    a = true;
     b = {};
     f = b;
   }
@@ -132,7 +132,7 @@ const c = function($$0,$$1 ) {
     return h;
   }
   else {
-    const i = a( e );
+    const i = $( e );
     b[g] = i;
     return i;
   }

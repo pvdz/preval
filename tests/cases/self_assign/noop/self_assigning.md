@@ -55,7 +55,7 @@ $(a, b);
 `````js filename=intro
 const arr /*:array*/ /*truthy*/ = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000];
 let arg1 /*:unknown*/ = 3;
-let func_THIS_IS_AN_EXPANDO /*:unknown*/ = undefined;
+let func_THIS_IS_AN_EXPANDO /*:boolean: false | true*/ = false;
 const func /*:(unknown, unused)=>unknown*/ = function ($$0, $$1 /*uses arguments*/) {
   const tmpPrevalAliasArgumentsAny /*:arguments*/ /*truthy*/ = arguments;
   const newArg1 /*:unknown*/ = $$0;
@@ -64,7 +64,7 @@ const func /*:(unknown, unused)=>unknown*/ = function ($$0, $$1 /*uses arguments
   const arrval /*:primitive*/ = arr[index$1];
   if (func_THIS_IS_AN_EXPANDO) {
   } else {
-    func_THIS_IS_AN_EXPANDO = $spy;
+    func_THIS_IS_AN_EXPANDO = true;
     arg1 = tmpPrevalAliasArgumentsAny;
   }
   const newIndex /*:number*/ = index$1 + 100;
@@ -72,7 +72,7 @@ const func /*:(unknown, unused)=>unknown*/ = function ($$0, $$1 /*uses arguments
   if (arguments_x) {
     return arguments_x;
   } else {
-    const expando_result /*:unknown*/ = $dotCall(func_THIS_IS_AN_EXPANDO, func, `THIS_IS_AN_EXPANDO`, arrval);
+    const expando_result /*:unknown*/ = $dotCall($spy, func, `THIS_IS_AN_EXPANDO`, arrval);
     arg1[newIndex] = expando_result;
     return expando_result;
   }
@@ -89,13 +89,13 @@ $(tmpClusterSSA_a, b);
 `````js filename=intro
 const arr = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000];
 let arg1 = 3;
-let func_THIS_IS_AN_EXPANDO = undefined;
+let func_THIS_IS_AN_EXPANDO = false;
 const func = function (newArg1, $$1) {
   const tmpPrevalAliasArgumentsAny = arguments;
   const index$1 = newArg1 - 1;
   const arrval = arr[index$1];
   if (!func_THIS_IS_AN_EXPANDO) {
-    func_THIS_IS_AN_EXPANDO = $spy;
+    func_THIS_IS_AN_EXPANDO = true;
     arg1 = tmpPrevalAliasArgumentsAny;
   }
   const newIndex = index$1 + 100;
@@ -103,7 +103,7 @@ const func = function (newArg1, $$1) {
   if (arguments_x) {
     return arguments_x;
   } else {
-    const expando_result = $dotCall(func_THIS_IS_AN_EXPANDO, func, `THIS_IS_AN_EXPANDO`, arrval);
+    const expando_result = $dotCall($spy, func, `THIS_IS_AN_EXPANDO`, arrval);
     arg1[newIndex] = expando_result;
     return expando_result;
   }
@@ -118,7 +118,7 @@ With rename=true
 `````js filename=intro
 const a = [ 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000 ];
 let b = 3;
-let c = undefined;
+let c = false;
 const d = function($$0,$$1 ) {
   const e = f;
   const g = $$0;
@@ -129,7 +129,7 @@ const d = function($$0,$$1 ) {
 
   }
   else {
-    c = $spy;
+    c = true;
     b = e;
   }
   const j = h + 100;
@@ -138,7 +138,7 @@ const d = function($$0,$$1 ) {
     return k;
   }
   else {
-    const l = $dotCall( c, d, "THIS_IS_AN_EXPANDO", i );
+    const l = $dotCall( $spy, d, "THIS_IS_AN_EXPANDO", i );
     b[j] = l;
     return l;
   }

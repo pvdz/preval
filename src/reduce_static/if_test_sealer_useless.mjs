@@ -21,6 +21,7 @@ export function ifTestSealerUseless(fdata) {
 }
 function _ifTestSealerUseless(fdata) {
   let changes = 0;
+  const queue = [];
 
   fdata.globallyUniqueNamingRegistry.forEach((meta, varName) => {
     if (meta.isImplicitGlobal) return;
@@ -90,15 +91,41 @@ function _ifTestSealerUseless(fdata) {
     before(testRead.blockBody[testRead.blockIndex]);
 
     // Preserve init if not primitive
-    if (AST.isPrimitive(initWrite.parentNode.init)) initWrite.blockBody.splice(initWrite.blockIndex, 1);
-    else initWrite.blockBody[initWrite.blockIndex] = AST.expressionStatement(initWrite.parentNode.init);
+    const pre = [];
+    if (!AST.isPrimitive(initWrite.parentNode.init)) pre.push(AST.expressionStatement(initWrite.parentNode.init));
+    initWrite.blockBody[initWrite.blockIndex] = AST.blockStatement(...pre);
+
+    queue.push({
+      i: initWrite.parentNode.$p.npid,
+      j: initWrite.blockIndex,
+      func: () => {
+        before(initWrite.blockBody);
+        const huh = initWrite.blockBody[initWrite.blockIndex].body;
+        initWrite.blockBody.splice(initWrite.blockIndex, 1, ...huh);
+        after(initWrite.blockBody);
+      }
+    });
+
     // Preserve assigned value if not primitive, unless it wasn't visited at all
-    if (!assignVisited) assignWrite.blockBody.splice(assignWrite.blockIndex, 1);
-    else if (AST.isPrimitive(assignWrite.parentNode.right)) assignWrite.blockBody.splice(assignWrite.blockIndex, 1);
-    else assignWrite.blockBody[assignWrite.blockIndex] = AST.expressionStatement(assignWrite.parentNode.right);
-    // Splat the branch with the assign to replace the if-node
-    if (conOffset) testRead.blockBody.splice(testRead.blockIndex, 1, ...ifNode.consequent.body);
-    else testRead.blockBody.splice(testRead.blockIndex, 1, ...ifNode.alternate.body);
+    let assignLeftover = [];
+    if (assignVisited && !AST.isPrimitive(assignWrite.parentNode.right)) {
+      assignLeftover.push(AST.expressionStatement(assignWrite.parentNode.right));
+    }
+    if (conOffset) testRead.blockBody[testRead.blockIndex] = ifNode.consequent;
+    else testRead.blockBody[testRead.blockIndex] = ifNode.alternate;
+
+    queue.push({
+      i: testRead.parentNode.$p.npid,
+      j: testRead.blockIndex,
+      func: () => {
+        before(testRead.blockBody);
+        testRead.blockBody.splice(testRead.blockIndex, 1,
+          ...assignLeftover, // Inject the assignment rhs if it wasn't a primitive
+          ...testRead.blockBody[testRead.blockIndex].body.slice(1)
+        );
+        after(testRead.blockBody);
+      }
+    });
 
     after(initWrite.blockBody[initWrite.blockIndex]);
     if (ifNode.consequent.body.length === 0) after(AST.emptyStatement());
@@ -108,6 +135,10 @@ function _ifTestSealerUseless(fdata) {
   });
 
   if (changes > 0) {
+    vlog('\nSplatting blocks');
+    queue.sort(({ i: i1, j: j1 }, { i: i2, j: j2 }) => i1 - i2 || j1 - j2); // desc, first stmt then index
+    queue.forEach(({ func }) => vlog('\n') || func());
+
     log('Dead sealers eliminated:', changes, '. Restarting from phase1 to fix up read/write registry.');
     return {what: 'ifTestSealerUseless', changes, next: 'phase1'};
   }

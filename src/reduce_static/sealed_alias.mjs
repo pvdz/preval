@@ -12,7 +12,7 @@ import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, b
 import * as AST from '../ast.mjs';
 
 export function sealedAlias(fdata) {
-  currentState(fdata, 'sealedAlias', true, fdata);
+  // currentState(fdata, 'sealedAlias', true, fdata);
 
   group('\n\n\n[sealedAlias] Looking for sealed const aliases to replace\n');
   const r = _sealedAlias(fdata);
@@ -44,31 +44,35 @@ function _sealedAlias(fdata) {
     const initWrite = write0.kind === 'var' ? write0 : write1;
     const assignWrite = write0.kind === 'assign' ? write0 : write1;
 
+    vlog('Considering', [varName]);
 
     let startAsTruthy;
 
     // This should work either way (truthy and falsy init)
-    if (+useRead.node.$p.npid > +ifNode.consequent.$p.npid && +useRead.node.$p.npid < +ifNode.alternate.$p.npid) {
+    if (useRead.node.$p.npid > ifNode.consequent.$p.npid && useRead.node.$p.npid < ifNode.alternate.$p.npid) {
       // Read is in the consequent, so write must be in the alternate branch
-      if (assignWrite.blockBody !== ifNode.alternate.body) return; // assign must be in falsy block
+      if (assignWrite.blockBody !== ifNode.alternate.body) return vlog('- bail: assign must be in falsy block');
       startAsTruthy = false;
     }
-    else if (+useRead.node.$p.npid > +ifNode.alternate.$p.npid && +useRead.node.$p.npid < +ifNode.alternate.$p.lastPid) {
-      if (assignWrite.blockBody !== ifNode.consequent.body) return; // assign must be in truthy block
+    else if (useRead.node.$p.npid > ifNode.alternate.$p.npid && useRead.node.$p.npid < ifNode.alternate.$p.lastPid) {
+      if (assignWrite.blockBody !== ifNode.consequent.body) return; vlog(' - bail: assign must be in truthy block');
       startAsTruthy = true;
+    }
+    else if (useRead.node.$p.npid > ifNode.alternate.$p.lastPid && useRead.node.$p.npid < testRead.blockBody[testRead.blockBody.length - 1].$p.lastPid) {
+      // The read was after the if-node, but in same block as if-node, so we should still be able to proceed
     }
     else {
       // read was not inside the if, so bail
-      return;
+      return vlog('- bail: read was not inside the if-node at all');
     }
 
     // For now we'll require the assign to be the first statement; this way this rule can't be broken by abrupt completions
-    if (assignWrite.blockIndex !== 0) return; // TODO: we can improve this but by checking if it's the first we know the write is unconditional (and not susceptible to abrupt completions)
+    if (assignWrite.blockIndex !== 0) return vlog('- bail: not first stmt'); // TODO: we can improve this but by checking if it's the first we know the write is unconditional (and not susceptible to abrupt completions)
 
-    if (assignWrite.parentNode.right.type !== 'Identifier') return; // Only care about assigning a constant (the thing being aliased)
+    if (assignWrite.parentNode.right.type !== 'Identifier') return vlog('- bail: Only care about assigning a constant (the thing being aliased)');
     const rhsName = assignWrite.parentNode.right.name;
     const rhsMeta = fdata.globallyUniqueNamingRegistry.get(rhsName);
-    if (!rhsMeta.isConstant && rhsMeta.isBuiltin) return;
+    if (!rhsMeta.isConstant && !rhsMeta.isBuiltin) return vlog('- bail: ident that was assigned is not a constant nor a builtin');
 
     vlog('Okay replace the read with this ident:', [varName]);
 

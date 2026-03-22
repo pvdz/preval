@@ -68,16 +68,14 @@ while ($LOOP_NO_UNROLLS_LEFT) {
 
 
 `````js filename=intro
-let main_target_abcxyz /*:boolean: false | true*/ = false;
 let main_target_TjeLtB /*:unknown*/ = undefined;
 const main_target /*:(number)=>unknown*/ = function ($$0) {
   const tmpOutlinedParam /*:number*/ = $$0;
   debugger;
   let the_cache /*:unknown*/ /*ternaryConst*/ = undefined;
-  if (main_target_abcxyz) {
+  if (main_target_TjeLtB) {
     the_cache = main_target_TjeLtB;
   } else {
-    main_target_abcxyz = true;
     main_target_TjeLtB = {};
     the_cache = main_target_TjeLtB;
   }
@@ -104,14 +102,12 @@ while ($LOOP_NO_UNROLLS_LEFT) {
 (This ought to be the final result)
 
 `````js filename=intro
-let main_target_abcxyz = false;
 let main_target_TjeLtB = undefined;
 const main_target = function (tmpOutlinedParam) {
   let the_cache = undefined;
-  if (main_target_abcxyz) {
+  if (main_target_TjeLtB) {
     the_cache = main_target_TjeLtB;
   } else {
-    main_target_abcxyz = true;
     main_target_TjeLtB = {};
     the_cache = main_target_TjeLtB;
   }
@@ -136,36 +132,34 @@ while (true) {
 With rename=true
 
 `````js filename=intro
-let a = false;
-let b = undefined;
-const c = function($$0 ) {
-  const d = $$0;
+let a = undefined;
+const b = function($$0 ) {
+  const c = $$0;
   debugger;
-  let e = undefined;
+  let d = undefined;
   if (a) {
-    e = b;
+    d = a;
   }
   else {
-    a = true;
-    b = {};
-    e = b;
+    a = {};
+    d = a;
   }
-  const f = `${d}abc`;
-  const g = e[ f ];
-  if (g) {
-    return g;
+  const e = `${c}abc`;
+  const f = d[ e ];
+  if (f) {
+    return f;
   }
   else {
     $( "function" );
-    b[f] = "";
+    a[e] = "";
     return "";
   }
 };
 while ($LOOP_NO_UNROLLS_LEFT) {
-  const h = c( 1 );
-  $( "a:", h );
-  const i = c( 3 );
-  $( "b:", i );
+  const g = b( 1 );
+  $( "a:", g );
+  const h = b( 3 );
+  $( "b:", h );
 }
 `````
 

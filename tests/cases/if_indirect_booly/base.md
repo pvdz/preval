@@ -48,17 +48,15 @@ $(x, y);
 
 
 `````js filename=intro
-let b /*:boolean: false | true*/ = false;
 let c /*:unknown*/ = undefined;
 const func /*:(number, unknown)=>unknown*/ = function ($$0, $$1) {
   const $dlr_$$1 /*:number*/ = $$0;
   const $dlr_$$3 /*:unknown*/ = $$1;
   debugger;
   let c_prime /*:unknown*/ /*ternaryConst*/ = undefined;
-  if (b) {
+  if (c) {
     c_prime = c;
   } else {
-    b = true;
     c = {};
     c_prime = c;
   }
@@ -82,14 +80,12 @@ $(x, y);
 (This ought to be the final result)
 
 `````js filename=intro
-let b = false;
 let c = undefined;
 const func = function ($dlr_$$1, $dlr_$$3) {
   let c_prime = undefined;
-  if (b) {
+  if (c) {
     c_prime = c;
   } else {
-    b = true;
     c = {};
     c_prime = c;
   }
@@ -111,35 +107,33 @@ $(func(22, tmpOAL), func(12, tmpOAL$1));
 With rename=true
 
 `````js filename=intro
-let a = false;
-let b = undefined;
-const c = function($$0,$$1 ) {
-  const d = $$0;
-  const e = $$1;
+let a = undefined;
+const b = function($$0,$$1 ) {
+  const c = $$0;
+  const d = $$1;
   debugger;
-  let f = undefined;
+  let e = undefined;
   if (a) {
-    f = b;
+    e = a;
   }
   else {
-    a = true;
-    b = {};
-    f = b;
+    a = {};
+    e = a;
   }
-  const g = `${d}a`;
-  const h = f[ g ];
-  if (h) {
+  const f = `${c}a`;
+  const g = e[ f ];
+  if (g) {
+    return g;
+  }
+  else {
+    const h = $( d );
+    a[f] = h;
     return h;
   }
-  else {
-    const i = $( e );
-    b[g] = i;
-    return i;
-  }
 };
-const j = c( 22, tmpOAL );
-const k = c( 12, tmpOAL$1 );
-$( j, k );
+const i = b( 22, tmpOAL );
+const j = b( 12, tmpOAL$1 );
+$( i, j );
 `````
 
 

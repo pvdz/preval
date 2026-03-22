@@ -44,16 +44,14 @@ $(a,b);
 
 
 `````js filename=intro
-let sealer_alias /*:boolean: false | true*/ = false;
 let sealer_cache /*:unknown*/ = undefined;
 const proxy_func /*:(number)=>unknown*/ = function ($$0) {
   const str$1 /*:number*/ = $$0;
   debugger;
   let the_alias_to_strip /*:unknown*/ /*ternaryConst*/ = undefined;
-  if (sealer_alias) {
+  if (sealer_cache) {
     the_alias_to_strip = sealer_cache;
   } else {
-    sealer_alias = true;
     sealer_cache = {};
     the_alias_to_strip = sealer_cache;
   }
@@ -77,14 +75,12 @@ $(a, b);
 (This ought to be the final result)
 
 `````js filename=intro
-let sealer_alias = false;
 let sealer_cache = undefined;
 const proxy_func = function (str$1) {
   let the_alias_to_strip = undefined;
-  if (sealer_alias) {
+  if (sealer_cache) {
     the_alias_to_strip = sealer_cache;
   } else {
-    sealer_alias = true;
     sealer_cache = {};
     the_alias_to_strip = sealer_cache;
   }
@@ -105,34 +101,32 @@ $(proxy_func(22), proxy_func(12));
 With rename=true
 
 `````js filename=intro
-let a = false;
-let b = undefined;
-const c = function($$0 ) {
-  const d = $$0;
+let a = undefined;
+const b = function($$0 ) {
+  const c = $$0;
   debugger;
-  let e = undefined;
+  let d = undefined;
   if (a) {
-    e = b;
+    d = a;
   }
   else {
-    a = true;
-    b = {};
-    e = b;
+    a = {};
+    d = a;
   }
-  const f = `${d}a`;
-  const g = e[ f ];
-  if (g) {
-    return g;
+  const e = `${c}a`;
+  const f = d[ e ];
+  if (f) {
+    return f;
   }
   else {
     $( "inner" );
-    b[f] = undefined;
+    a[e] = undefined;
     return undefined;
   }
 };
-const h = c( 22 );
-const i = c( 12 );
-$( h, i );
+const g = b( 22 );
+const h = b( 12 );
+$( g, h );
 `````
 
 

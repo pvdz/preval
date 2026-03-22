@@ -23,6 +23,8 @@ import {
 } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 
+const TRUTHY_TYPES = ['ArrayExpression', 'ObjectExpression', 'NewExpression', 'FunctionExpression', 'ClassExpression'];
+
 export function ifSealerProxy(fdata) {
   // currentState(fdata, 'ifSealerProxy', true, fdata);
 
@@ -98,7 +100,11 @@ function _ifSealerProxy(fdata) {
       if (branch[i].type !== 'ExpressionStatement') return vlog('- bail: found non-expr before seal');
       if (branch[i].expression.type !== 'AssignmentExpression') return vlog('- bail: found non-assign before seal'); // Or maybe allow var? others?
       if (branch[i].expression.left.type !== 'Identifier') return vlog('- bail: was not assign to ident'); // Member
-      if (branch[i].expression.right.type !== 'Identifier' && !AST.isPrimitive(branch[i].expression.right)) return vlog('- bail: assigned value was not a primitive or ident');
+      if (
+        !AST.isPrimitive(branch[i].expression.right) &&
+        branch[i].expression.right.type !== 'Identifier' &&
+        !TRUTHY_TYPES.includes(branch[i].expression.right.type)
+      ) return vlog('- bail: assigned value was not a primitive, ident, or object-like truthy value');
 
       // Confirm if this is a booly and that the read comes after this if-statement yet nested in the parent block
       // (This guarantees that IF the read is evaluated, the value must be sealed at that point)
@@ -139,7 +145,7 @@ function _ifSealerProxy(fdata) {
         let assignedBoolyState;
         if (AST.isPrimitive(assignRhs)) {
           assignedBoolyState = !!AST.getPrimitiveValue(assignRhs);
-        } else if (['FunctionExpression', 'ArrayExpression', 'ObjectExpression'].includes(assignRhs.type)) {
+        } else if (TRUTHY_TYPES.includes(assignRhs.type)) {
           assignedBoolyState = true;
         } else if (assignRhs.type === 'Identifier') {
           const imeta = fdata.globallyUniqueNamingRegistry.get(assignRhs.name);

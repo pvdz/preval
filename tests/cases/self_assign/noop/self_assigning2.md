@@ -40,26 +40,10 @@ $(a, b, c);
 
 
 `````js filename=intro
-let arg1 /*:unknown*/ = 3;
-const func /*:(number)=>undefined*/ = function ($$0) {
-  const newArg1 /*:number*/ = $$0;
-  debugger;
-  if (arg1) {
-    $(`always arg1:`, arg1);
-    return undefined;
-  } else {
-    const tmpPrevalAliasArgumentsAny /*:array*/ /*truthy*/ = [newArg1, ,];
-    arg1 = tmpPrevalAliasArgumentsAny;
-    $(`always arg1:`, tmpPrevalAliasArgumentsAny);
-    return undefined;
-  }
-};
-func(3);
-const b /*:unknown*/ = arg1;
-func(1);
-const a /*:unknown*/ = arg1;
-func(5);
-$(a, b, arg1);
+$(`always arg1:`, 3);
+$(`always arg1:`, 3);
+$(`always arg1:`, 3);
+$(3, 3, 3);
 `````
 
 
@@ -67,22 +51,10 @@ $(a, b, arg1);
 (This ought to be the final result)
 
 `````js filename=intro
-let arg1 = 3;
-const func = function (newArg1) {
-  if (arg1) {
-    $(`always arg1:`, arg1);
-  } else {
-    const tmpPrevalAliasArgumentsAny = [newArg1, ,];
-    arg1 = tmpPrevalAliasArgumentsAny;
-    $(`always arg1:`, tmpPrevalAliasArgumentsAny);
-  }
-};
-func(3);
-const b = arg1;
-func(1);
-const a = arg1;
-func(5);
-$(a, b, arg1);
+$(`always arg1:`, 3);
+$(`always arg1:`, 3);
+$(`always arg1:`, 3);
+$(3, 3, 3);
 `````
 
 
@@ -90,27 +62,10 @@ $(a, b, arg1);
 With rename=true
 
 `````js filename=intro
-let a = 3;
-const b = function($$0 ) {
-  const c = $$0;
-  debugger;
-  if (a) {
-    $( "always arg1:", a );
-    return undefined;
-  }
-  else {
-    const d = [ c, , ];
-    a = d;
-    $( "always arg1:", d );
-    return undefined;
-  }
-};
-b( 3 );
-const e = a;
-b( 1 );
-const f = a;
-b( 5 );
-$( f, e, a );
+$( "always arg1:", 3 );
+$( "always arg1:", 3 );
+$( "always arg1:", 3 );
+$( 3, 3, 3 );
 `````
 
 
@@ -154,7 +109,6 @@ $(a, b, c);
 
 
 - (todo) Can we inline a function that uses arguments, anyways?
-- (todo) support array reads statement type ExpressionStatement
 
 
 ## Globals

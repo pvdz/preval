@@ -68,31 +68,23 @@ while ($LOOP_NO_UNROLLS_LEFT) {
 
 
 `````js filename=intro
-let main_target_TjeLtB /*:unknown*/ = undefined;
-const main_target /*:(number)=>unknown*/ = function ($$0) {
-  const tmpOutlinedParam /*:number*/ = $$0;
+const main_target_TjeLtB /*:object*/ /*truthy*/ = {};
+const main_target /*:(string)=>unknown*/ = function ($$0) {
+  const tmpOutlinedParam$1 /*:string*/ = $$0;
   debugger;
-  let the_cache /*:unknown*/ /*ternaryConst*/ = undefined;
-  if (main_target_TjeLtB) {
-    the_cache = main_target_TjeLtB;
-  } else {
-    main_target_TjeLtB = {};
-    the_cache = main_target_TjeLtB;
-  }
-  const cache_key /*:string*/ /*truthy*/ = `${tmpOutlinedParam}abc`;
-  const found /*:unknown*/ = the_cache[cache_key];
+  const found /*:unknown*/ = main_target_TjeLtB[tmpOutlinedParam$1];
   if (found) {
     return found;
   } else {
     $(`function`);
-    main_target_TjeLtB[cache_key] = ``;
+    main_target_TjeLtB[tmpOutlinedParam$1] = ``;
     return ``;
   }
 };
 while ($LOOP_NO_UNROLLS_LEFT) {
-  const a /*:unknown*/ = main_target(1);
+  const a /*:unknown*/ = main_target(`1abc`);
   $(`a:`, a);
-  const b /*:unknown*/ = main_target(3);
+  const b /*:unknown*/ = main_target(`3abc`);
   $(`b:`, b);
 }
 `````
@@ -102,28 +94,20 @@ while ($LOOP_NO_UNROLLS_LEFT) {
 (This ought to be the final result)
 
 `````js filename=intro
-let main_target_TjeLtB = undefined;
-const main_target = function (tmpOutlinedParam) {
-  let the_cache = undefined;
-  if (main_target_TjeLtB) {
-    the_cache = main_target_TjeLtB;
-  } else {
-    main_target_TjeLtB = {};
-    the_cache = main_target_TjeLtB;
-  }
-  const cache_key = `${tmpOutlinedParam}abc`;
-  const found = the_cache[cache_key];
+const main_target_TjeLtB = {};
+const main_target = function (tmpOutlinedParam$1) {
+  const found = main_target_TjeLtB[tmpOutlinedParam$1];
   if (found) {
     return found;
   } else {
     $(`function`);
-    main_target_TjeLtB[cache_key] = ``;
+    main_target_TjeLtB[tmpOutlinedParam$1] = ``;
     return ``;
   }
 };
 while (true) {
-  $(`a:`, main_target(1));
-  $(`b:`, main_target(3));
+  $(`a:`, main_target(`1abc`));
+  $(`b:`, main_target(`3abc`));
 }
 `````
 
@@ -132,34 +116,25 @@ while (true) {
 With rename=true
 
 `````js filename=intro
-let a = undefined;
+const a = {};
 const b = function($$0 ) {
   const c = $$0;
   debugger;
-  let d = undefined;
-  if (a) {
-    d = a;
-  }
-  else {
-    a = {};
-    d = a;
-  }
-  const e = `${c}abc`;
-  const f = d[ e ];
-  if (f) {
-    return f;
+  const d = a[ c ];
+  if (d) {
+    return d;
   }
   else {
     $( "function" );
-    a[e] = "";
+    a[c] = "";
     return "";
   }
 };
 while ($LOOP_NO_UNROLLS_LEFT) {
-  const g = b( 1 );
-  $( "a:", g );
-  const h = b( 3 );
-  $( "b:", h );
+  const e = b( "1abc" );
+  $( "a:", e );
+  const f = b( "3abc" );
+  $( "b:", f );
 }
 `````
 
@@ -221,7 +196,9 @@ while ($LOOP_NO_UNROLLS_LEFT) {
 ## Todos triggered
 
 
+- (todo) Support this node type in isFree: TemplateLiteral
 - (todo) do we want to support ArrayExpression as expression statement in free loops?
+- (todo) objects in isFree check
 - (todo) support Identifier as var init in let_hoisting noob check
 
 

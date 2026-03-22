@@ -14733,7 +14733,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
       return true;
     }
 
-    ASSERT(node.test.type === 'Identifier', 'Is there a normalized case where the if-test is not an identifier at this point?');
+    ASSERT(node.test.type === 'Identifier', 'Is there a normalized case where the if-test is not an identifier at this point?', node);
 
     if (
       node.consequent.body.length === 1 &&

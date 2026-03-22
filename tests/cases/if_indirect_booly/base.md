@@ -48,30 +48,24 @@ $(x, y);
 
 
 `````js filename=intro
-let c /*:unknown*/ = undefined;
-const func /*:(number, unknown)=>unknown*/ = function ($$0, $$1) {
-  const $dlr_$$1 /*:number*/ = $$0;
-  const $dlr_$$3 /*:unknown*/ = $$1;
+const c /*:object*/ /*truthy*/ = {};
+const func /*:(unknown, string)=>unknown*/ = function ($$0, $$1) {
+  const $dlr_$$3 /*:unknown*/ = $$0;
+  const tmpOutlinedParam /*:string*/ = $$1;
   debugger;
-  let c_prime /*:unknown*/ /*ternaryConst*/ = undefined;
-  if (c) {
-    c_prime = c;
-  } else {
-    c = {};
-    c_prime = c;
-  }
-  const concatted /*:string*/ /*truthy*/ = `${$dlr_$$1}a`;
-  const lookup /*:unknown*/ = c_prime[concatted];
+  const lookup /*:unknown*/ = c[tmpOutlinedParam];
   if (lookup) {
     return lookup;
   } else {
     const real /*:unknown*/ = $($dlr_$$3);
-    c[concatted] = real;
+    c[tmpOutlinedParam] = real;
     return real;
   }
 };
-const x /*:unknown*/ = func(22, tmpOAL);
-const y /*:unknown*/ = func(12, tmpOAL$1);
+const x /*:unknown*/ = func(tmpOAL, `22a`);
+tmpOAL;
+const y /*:unknown*/ = func(tmpOAL$1, `12a`);
+tmpOAL$1;
 $(x, y);
 `````
 
@@ -80,26 +74,22 @@ $(x, y);
 (This ought to be the final result)
 
 `````js filename=intro
-let c = undefined;
-const func = function ($dlr_$$1, $dlr_$$3) {
-  let c_prime = undefined;
-  if (c) {
-    c_prime = c;
-  } else {
-    c = {};
-    c_prime = c;
-  }
-  const concatted = `${$dlr_$$1}a`;
-  const lookup = c_prime[concatted];
+const c = {};
+const func = function ($dlr_$$3, tmpOutlinedParam) {
+  const lookup = c[tmpOutlinedParam];
   if (lookup) {
     return lookup;
   } else {
     const real = $($dlr_$$3);
-    c[concatted] = real;
+    c[tmpOutlinedParam] = real;
     return real;
   }
 };
-$(func(22, tmpOAL), func(12, tmpOAL$1));
+const x = func(tmpOAL, `22a`);
+tmpOAL;
+const y = func(tmpOAL$1, `12a`);
+tmpOAL$1;
+$(x, y);
 `````
 
 
@@ -107,33 +97,26 @@ $(func(22, tmpOAL), func(12, tmpOAL$1));
 With rename=true
 
 `````js filename=intro
-let a = undefined;
+const a = {};
 const b = function($$0,$$1 ) {
   const c = $$0;
   const d = $$1;
   debugger;
-  let e = undefined;
-  if (a) {
-    e = a;
+  const e = a[ d ];
+  if (e) {
+    return e;
   }
   else {
-    a = {};
-    e = a;
-  }
-  const f = `${c}a`;
-  const g = e[ f ];
-  if (g) {
-    return g;
-  }
-  else {
-    const h = $( d );
-    a[f] = h;
-    return h;
+    const f = $( c );
+    a[d] = f;
+    return f;
   }
 };
-const i = b( 22, tmpOAL );
-const j = b( 12, tmpOAL$1 );
-$( i, j );
+const g = b( tmpOAL, "22a" );
+tmpOAL;
+const h = b( tmpOAL$1, "12a" );
+tmpOAL$1;
+$( g, h );
 `````
 
 

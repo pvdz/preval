@@ -44,29 +44,21 @@ $(a,b);
 
 
 `````js filename=intro
-let sealer_cache /*:unknown*/ = undefined;
-const proxy_func /*:(number)=>unknown*/ = function ($$0) {
-  const str$1 /*:number*/ = $$0;
+const sealer_cache /*:object*/ /*truthy*/ = {};
+const proxy_func /*:(string)=>unknown*/ = function ($$0) {
+  const tmpOutlinedParam /*:string*/ = $$0;
   debugger;
-  let the_alias_to_strip /*:unknown*/ /*ternaryConst*/ = undefined;
-  if (sealer_cache) {
-    the_alias_to_strip = sealer_cache;
-  } else {
-    sealer_cache = {};
-    the_alias_to_strip = sealer_cache;
-  }
-  const cache_key /*:string*/ /*truthy*/ = `${str$1}a`;
-  const cached_val /*:unknown*/ = the_alias_to_strip[cache_key];
+  const cached_val /*:unknown*/ = sealer_cache[tmpOutlinedParam];
   if (cached_val) {
     return cached_val;
   } else {
     $(`inner`);
-    sealer_cache[cache_key] = undefined;
+    sealer_cache[tmpOutlinedParam] = undefined;
     return undefined;
   }
 };
-const a /*:unknown*/ = proxy_func(22);
-const b /*:unknown*/ = proxy_func(12);
+const a /*:unknown*/ = proxy_func(`22a`);
+const b /*:unknown*/ = proxy_func(`12a`);
 $(a, b);
 `````
 
@@ -75,25 +67,17 @@ $(a, b);
 (This ought to be the final result)
 
 `````js filename=intro
-let sealer_cache = undefined;
-const proxy_func = function (str$1) {
-  let the_alias_to_strip = undefined;
-  if (sealer_cache) {
-    the_alias_to_strip = sealer_cache;
-  } else {
-    sealer_cache = {};
-    the_alias_to_strip = sealer_cache;
-  }
-  const cache_key = `${str$1}a`;
-  const cached_val = the_alias_to_strip[cache_key];
+const sealer_cache = {};
+const proxy_func = function (tmpOutlinedParam) {
+  const cached_val = sealer_cache[tmpOutlinedParam];
   if (cached_val) {
     return cached_val;
   } else {
     $(`inner`);
-    sealer_cache[cache_key] = undefined;
+    sealer_cache[tmpOutlinedParam] = undefined;
   }
 };
-$(proxy_func(22), proxy_func(12));
+$(proxy_func(`22a`), proxy_func(`12a`));
 `````
 
 
@@ -101,32 +85,23 @@ $(proxy_func(22), proxy_func(12));
 With rename=true
 
 `````js filename=intro
-let a = undefined;
+const a = {};
 const b = function($$0 ) {
   const c = $$0;
   debugger;
-  let d = undefined;
-  if (a) {
-    d = a;
-  }
-  else {
-    a = {};
-    d = a;
-  }
-  const e = `${c}a`;
-  const f = d[ e ];
-  if (f) {
-    return f;
+  const d = a[ c ];
+  if (d) {
+    return d;
   }
   else {
     $( "inner" );
-    a[e] = undefined;
+    a[c] = undefined;
     return undefined;
   }
 };
-const g = b( 22 );
-const h = b( 12 );
-$( g, h );
+const e = b( "22a" );
+const f = b( "12a" );
+$( e, f );
 `````
 
 

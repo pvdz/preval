@@ -1531,43 +1531,33 @@ export function isPrimitive(node) {
 
 export function isFalsy(node) {
   // If this function does not return true, it does not automatically mean it's a truthy. Just that we can't determine it to be falsy.
+  if (isPrimitive(node)) return !getPrimitiveValue(node);
   if (node.type === 'Literal') {
-    if (node.raw === 'null') return true;
-    if (node.type === 'Literal' && (node.raw === 'null' || node.value === '' || node.value === false || node.value === 0)) return true;
-    if (node.type === 'TemplateLiteral' && node.expressions.length === 0) return node.quasis[0].value.cooked === '';
-    if (node.type === 'Identifier' && (node.name === 'undefined' || node.name === 'NaN')) return true;
     if (node.regex) return false;
-    return false;
+    return false; // ?
   }
 
   if (node.type === 'TemplateLiteral') return node.expressions.length === 0 && node.quasis[0].value.cooked === '';
 
-  if (node.type === 'Identifier') {
-    [
-      'undefined',
-      'NaN',
-      symbo('Number', 'NaN'),
-    ].includes(node.name);
-  }
+  // TODO: I think builtin symbols are not relevant for falsy state, right? the only falsy cases are primitives.
 
   return false;
 }
 export function isTruthy(node) {
   // If this function does not return true, it does not automatically mean it's a falsy. Just that we can't determine it to be truthy.
+  if (isPrimitive(node)) return !!getPrimitiveValue(node);
+
   if (node.type === 'Literal') {
-    if (node.raw === 'null') return false;
-    if (typeof node.value === 'string') return node.value !== '';
-    if (typeof node.value === 'boolean') return node.value === true;
-    if (typeof node.value === 'number') return node.value !== 0;
-    if (node.regex) return true;
-    // All other literals are auto truthy I think? What about 0 big int?
-    return true;
+    if (node.regex) return true; // TODO: I don't think we have regex literals anymore in normalized code? So this is dead?
+    return false; // ?
   }
   if (node.type === 'TemplateLiteral') return node.quasis.some((te) => te.value.cooked !== '');
 
   if (node.type === 'Identifier') {
     return node.name === 'Infinity' || !!BUILTIN_SYMBOLS.get(node.name)?.typings.mustBeTruthy;
   }
+
+  // TODO: builtin symbols? we can guarantee truthy state over many of them..?
 
   return ['ThisExpression', 'ArrayExpression', 'ObjectExpression', 'FunctionExpression', 'ClassExpression', 'NewExpression'].includes(node.type);
 }

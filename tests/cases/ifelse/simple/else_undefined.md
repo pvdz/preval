@@ -42,11 +42,7 @@ $( 2 );
 (This is what phase1 received the first time)
 
 `````js filename=intro
-if (undefined) {
-  $(1);
-} else {
-  $(2);
-}
+$(2);
 `````
 
 

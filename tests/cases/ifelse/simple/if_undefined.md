@@ -41,10 +41,7 @@ With rename=true
 (This is what phase1 received the first time)
 
 `````js filename=intro
-if (undefined) {
-  $();
-} else {
-}
+
 `````
 
 

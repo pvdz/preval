@@ -291,6 +291,19 @@ export function getIdentUsageKind(parentNode, parentProp) {
       return 'read';
     case 'Super':
       throw ASSERT(false, 'normalized code does not have this node: ', parentNode.type, parentNode);
+    case 'SuperCall': {
+      return 'read'; // Must be an arg here. `super(a, b, ...c)` does not leave other options
+    }
+    case 'SuperMethodCall': {
+      if (parentProp === 'property' && parentNode.computed) return 'read';
+      if (parentProp === 'property') return 'none';
+      ASSERT(parentProp === 'arguments', 'so the ident is an argument?', parentProp, parentNode);
+      return 'read';
+    }
+    case 'SuperProp': {
+      if (parentNode.computed) return 'read';
+      return 'none';
+    }
     case 'SwitchCase':
       ASSERT(
         parentProp === 'test',

@@ -306,7 +306,11 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
           options?.onAfterPhase?.(2, passes, phaseLoop, fdata, changed, options);
           if (!changed) {
             // Force a normalize pass before moving to phase3. Loop if it changed anything anyways.
-            changed = phaseNormalize(fdata, fname, false, prng,  { allowEval: options.allowEval, prngSeed: options.prngSeed });
+            changed =
+              phaseNormalize(fdata, fname, false, prng,  { allowEval: options.allowEval, prngSeed: options.prngSeed })
+                // We need to set the next to phase1 (at least) since something changed. Otherwise it won't run phase1 again.
+                ? {next: 'phase1'}
+                : false;
             options.onAfterPhase?.(2.1, passes, phaseLoop, fdata, false, options, fi);
             if (changed) vlog('The pre-phase3 normal did change something! starting from phase0');
           }

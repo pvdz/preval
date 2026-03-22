@@ -65,7 +65,7 @@ const B /*:class*/ /*truthy*/ = class extends A {
     const tmpPrevalAliasThis$1 /*:unknown*/ = this;
     debugger;
     const a /*:unknown*/ = $(`important`);
-    const x$1 /*:unknown*/ = super(a);
+    const x$1 /*:object*/ /*truthy*/ = super(a);
     $(x$1, tmpPrevalAliasThis$1);
     return undefined;
   }

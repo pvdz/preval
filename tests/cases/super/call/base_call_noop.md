@@ -38,7 +38,7 @@ const A /*:class*/ /*truthy*/ = class {
 const B /*:class*/ /*truthy*/ = class extends A {
   constructor() {
     debugger;
-    const tmpCalleeParam /*:unknown*/ = super();
+    const tmpCalleeParam /*:object*/ /*truthy*/ = super();
     $(`inner`, tmpCalleeParam);
     $(`cB`);
     return undefined;

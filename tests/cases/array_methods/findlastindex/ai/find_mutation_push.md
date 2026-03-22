@@ -82,7 +82,6 @@ $(result, x);
 - (todo) arr push case with at least one observable statement between?
 - (todo) array reads var statement with init BinaryExpression
 - (todo) array reads var statement with init CallExpression
-- (todo) array reads var statement with init MemberExpression
 - (todo) do we want to support Literal as expression statement in free loops?
 - (todo) find me fast
 - (todo) fixme: spyless vars and labeled nodes

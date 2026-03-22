@@ -180,14 +180,13 @@ export function isSameAssignmentExpression(a, b) {
 
   if (aLeft.type !== a.right.type) return false;
   if (aLeft.type === 'Identifier') {
-    return isSameIdentifier(aLeft, bLeft);
+    return isSameIdentifier(aLeft, bLeft) && isSameExpression(a.right, b.right);
   }
   else if (aLeft.type === 'MemberExpression') {
-    return isSameMemberExpression(aLeft, bLeft);
+    return isSameMemberExpression(aLeft, bLeft) && isSameExpression(a.right, b.right);
   }
-  else ASSERT(false, 'normalized assigns can only be to ident or prop');
 
-  return isSameExpression(a.right, b.right);
+  ASSERT(false, 'normalized assigns can only be to ident or prop');
 }
 
 export function binaryExpression(operator, left, right) {

@@ -1,6 +1,7 @@
 // Find a sealer where the if-branches are equal without the sealer.
 //
 //    `let a = false; if (a) { $(x); return undefined; } else { a = true; $(x);  return undefined; }`
+//                             ^^^^^^^^^^^^^^^^^^^^^^^                    ^^^^^^^^^^^^^^^^^^^^^^^^
 // ->
 //    `$(x); return undefined;`
 //
@@ -66,7 +67,7 @@ function _ifTestSealerUseless(fdata) {
       return; // assign not inside if-statement
     }
 
-    vlog('- Assign is inside if, is it visited?', assignVisited);
+    vlog('- Assign is inside if, is it visited?', assignVisited); // When not visited it was just dead code, oh well
 
     // Now confirm the branches are equal without that assignment
     // The branch with the assignment will have offset+1

@@ -191,6 +191,7 @@ function _freeing(fdata, $prng, usePrng) {
 
   const funcQueue = [];
 
+  vlog('Note: will visit blocks on the way back');
   walk(_walker, fdata.tenkoOutput.ast, 'ast');
   function _walker(blockNode, beforeWalk, nodeType, path) {
     if (blockNode.type === 'FunctionExpression' && blockNode.id?.name === '$free') {
@@ -220,8 +221,8 @@ function _freeing(fdata, $prng, usePrng) {
 
   function processBlock(blockNode, path) {
     vlog('Block @', blockNode.$p.npid, blockNode.$p.predictable, 'has', blockNode.body.length, 'statements, parent:', path.nodes[path.nodes.length - 2]?.type);
-    if (blockNode.$p.predictable === false) return; // May already have been visited entirely when walking recursively
-    if (blockNode.body.length < 2) return; // Not worth it
+    if (blockNode.$p.predictable === false) return vlog('- bail: block.$p.predictable is already marked as false'); // May already have been visited entirely when walking recursively
+    if (blockNode.body.length < 2) return vlog('- bail: body has less than 2 statements: not worth it'); // Not worth it
 
     let lastStart = 0;
     let index = 0;
@@ -238,7 +239,7 @@ function _freeing(fdata, $prng, usePrng) {
       if (isFreeStatement(blockNode.body[index],  fdata)) {
         vlog('  == stmt[' + index + '] = predictable');
       } else {
-        vlog('  == stmt[' + index + '] = NOT predictable');
+        vlog('  == stmt[' + index + '] = NOT predictable, lets see what we got so far!');
         for (let i=lastStart; i<index; ++i) {
           const updated = withPredictableStatements(blockNode.body, i, index - 1, fdata, funcQueue, $prng, usePrng);
           if (updated) {
@@ -386,13 +387,14 @@ function _freeing(fdata, $prng, usePrng) {
 
 function withPredictableStatements(body, firstIndex, lastIndex, fdata, funcQueue, $prng, usePrng) {
   if (!(lastIndex > firstIndex)) { // Note: inclusive range
+    vlog('- bail: range is too small');
     return false;
   }
 
-  vlog('- withRange(', firstIndex, ',', lastIndex, ')');
+  vlog('- have predictable statements, can we free them? (', firstIndex, ',', lastIndex, ')');
   // Two+ consecutive predictable statements. We can potentially join these!
   // - Any var decl created cannot be referenced later, except if it is the last statement
-  // - If if two statements are calling free functions back to back then maybe we can merge them
+  // - If two statements are calling free functions back to back then maybe we can merge them
 
   // Now verify whether these names are accessed later (or before in closures ...)
   // Basically, if there's any ref with a pid before or after the region then we must
@@ -427,17 +429,19 @@ function withPredictableStatements(body, firstIndex, lastIndex, fdata, funcQueue
     }
   }
 
-  // All refs are local to the statements we are about to pack. All statements are predictable.
-  // We should be good to go now.
-  vlog('Found some statements to wrap in a $free function:', firstIndex, lastIndex, firstPid, lastPid);
-  //source(AST.blockStatement(body.slice(firstIndex, lastIndex)), true);
-
-
-  if (body[lastIndex].type !== 'VarStatement' && !(body[lastIndex].type === 'ExpressionStatement' && body[lastIndex].expression.type === 'AssignmentExpression')) {
-    vlog('Last statement was neither a var decl nor an assignment and these statements are not observable so we can drop them?');
+  if (
+    body[lastIndex].type !== 'VarStatement' &&
+    !(body[lastIndex].type === 'ExpressionStatement' && body[lastIndex].expression.type === 'AssignmentExpression')
+  ) {
+    vlog('- bail: last statement was neither a var decl nor an assignment and these statements are not observable so we can drop them?');
     //source(body.slice(firstIndex, lastIndex+1), true);
     return;
   }
+
+  // All refs are local to the statements we are about to pack. All statements are predictable.
+  // We should be good to go now.
+  vlog('- yes, found some statements to wrap in a $free function:', firstIndex, lastIndex, firstPid, lastPid);
+  //source(AST.blockStatement(body.slice(firstIndex, lastIndex)), true);
 
   // Now walk the statements again and collect all the vars being declared and all the vars being referenced
   // We need that to determine the params of the new func and then to rename all their references to a unique name
@@ -713,6 +717,13 @@ function collectFromSimpleOrFail(node, reffed) {
 }
 
 function isFreeStatement(stmtNode, fdata) {
+  vgroup('isFreeStatement:', stmtNode.type);
+  const r = _isFreeStatement(stmtNode, fdata);
+  vlog('was statement free?', r, '(', stmtNode.type, ')');
+  vgroupEnd();
+  return r;
+}
+function _isFreeStatement(stmtNode, fdata) {
   // A statement is predictable when the execution of it in itself has no observable side effects.
   // In concrete terms: when there's no way it could trigger a `console.log()` or `alert()`.
 
@@ -722,6 +733,7 @@ function isFreeStatement(stmtNode, fdata) {
 
   switch (stmtNode.type) {
     case 'VarStatement': {
+      vlog('- var statement', [stmtNode.id.name], '=', stmtNode.init.type);
       // Special case: this is only okay to capture if the variable is not
       //               used before/after the $free function. The exception
       //               is when that variable is the last statement being
@@ -762,12 +774,20 @@ function isFreeStatement(stmtNode, fdata) {
 
     default: {
       // Not sure yet
+      vlog('- bail: statement not (yet) supported:', stmtNode.type);
       stmtNode.$p.predictable = false;
       return false;
     }
   }
 }
 function isFreeExpression(exprNode, fdata) {
+  vgroup('isFreeExpression:', exprNode.type);
+  const r = _isFreeExpression(exprNode, fdata);
+  vlog('was expression free?', r, '(', exprNode.type, ')');
+  vgroupEnd();
+  return r;
+}
+function _isFreeExpression(exprNode, fdata) {
   // Do we need the predictable tag here or is that redundant if parent statements already do this?
   // TODO: this needs to be in sync with pcode. Can we generalize that?
 
@@ -800,7 +820,7 @@ function isFreeExpression(exprNode, fdata) {
         return !isFreeExpression(anode, fdata);
       })) {
         // At least one arg was not predictable
-        vlog('  - has bad args :(');
+        vlog('  - bail: has bad args :(');
         return false;
       }
 
@@ -814,7 +834,7 @@ function isFreeExpression(exprNode, fdata) {
           vlog('  - ok! its a coerce call with primitive arg:', funcName);
           return true; // $coerce on a primitive is safe and predictable
         }
-        vlog('  - no. its a coerce call but the arg is not a primitive:', funcName);
+        vlog('  - bail: its a coerce call but the arg is not a primitive:', funcName);
         return false; // $coerce may have side effects on non-primitives. That's why we do this in $coerce in the first place.
       }
 
@@ -826,7 +846,7 @@ function isFreeExpression(exprNode, fdata) {
           return true; // Ok as long as args are ok
         }
         //todo('  - the ident call is not accepted (can it be?):', [funcName]);
-        vlog('  - the dotcalled ident is not a supported name');
+        vlog('  - bail: the dotcalled ident is not a supported name');
         return false;
       }
 
@@ -838,7 +858,7 @@ function isFreeExpression(exprNode, fdata) {
 
       // Anything else is an exception? Not my problem here.
       //todo('  - the ident call is not accepted (can it be?):', [funcName]);
-      vlog('  - No, supported func name call');
+      vlog('  - bail: supported func name call', funcName);
       return false;
     }
     case 'Identifier': {
@@ -868,6 +888,7 @@ function isFreeExpression(exprNode, fdata) {
           return true;
         }
         todo('Support this static built-in number value? ' + funcName);
+        vlog('- bail: static built-in number value', funcName, meta.typing.mustBeType);
         return false;
       }
       if (
@@ -889,7 +910,7 @@ function isFreeExpression(exprNode, fdata) {
       }
 
       // rest: tbd
-
+      vlog('- bail: tbd', funcName);
       return false;
     }
     case 'Literal': {
@@ -917,54 +938,69 @@ function isFreeExpression(exprNode, fdata) {
     }
 
     case 'FunctionExpression': {
+      vlog('- bail: contains func expr');
       return false;
     }
     case 'MemberExpression': {
       // TODO: Some things can definitely be supported. This is a property lookup.
+      vlog('- bail: contains member expression');
       return false;
     }
     case 'AssignmentExpression': {
       // TODO: This should be considered fine for local bindings
+      vlog('- bail: contains assignment expression');
       return false;
     }
     case 'Param': {
       // Can happen when scanning Blocks where we don't know that it's a function. Just ignore.
+      vlog('- bail: contains param');
       return false;
     }
     case 'ArrayExpression': {
       // TODO: maybe if it doesn't escape?
+      vlog('- bail: contains array expr');
       return false;
     }
     case 'ObjectExpression': {
       // TODO: maybe if it doesn't escape?
+      vlog('- bail: contains obj expr');
       return false;
     }
     case 'AwaitExpression': {
+      vlog('- bail: contains await expression');
       return false;
     }
     case 'YieldExpression': {
+      vlog('- bail: contains yield expression');
       return false;
     }
     case 'SuperCall': {
+      vlog('- bail: contains super call');
       return false;
     }
     case 'SuperMethodCall': {
+      vlog('- bail: contains super method call');
       return false;
     }
     case 'SuperProp': {
+      vlog('- bail: contains super prop');
       return false;
     }
     case 'ThisExpression': {
       // Can happen when scanning Blocks where we don't know that it's a function. Just ignore.
+      vlog('- bail: contains this');
       return false;
     }
     case 'NewExpression': {
+      vlog('- bail: contains new expression');
       return false;
     }
     case 'ClassExpression': {
+      vlog('- bail: contains class expression');
       return false;
     }
     case 'SpreadElement': {
+      vlog('- bail: contains spread element');
       return false;
     }
   }

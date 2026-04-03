@@ -142,22 +142,7 @@ export function tmat(ast, shouldPrint = VERBOSE_TRACING) {
 export function fmat(code, shouldPrint = VERBOSE_TRACING, silentError = true, ignoreErrorInSilence = false) {
   if (!shouldPrint) return code; // '<verbose=false>';
   try {
-    return Prettier.format(code, {
-      parser: 'babel',
-      ...{
-        // maybe keep in sync with prettierrc? prolly fairly immutable and irrelevant for tests anyways...
-        printWidth: 140,
-        tabWidth: 2,
-        useTabs: false,
-        semi: true,
-        singleQuote: true,
-        quoteProps: 'as-needed',
-        trailingComma: 'all',
-        bracketSpacing: true,
-        arrowParens: 'always',
-        endOfLine: 'lf',
-      },
-    }).trim();
+    return Prettier(code);
   } catch (e) {
     // Prettier error implies invalid transformation. Uups.
     if (!silentError) {

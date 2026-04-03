@@ -21,12 +21,12 @@ $(f(''));
 
 `````js filename=intro
 const tmpCalleeParam$1 /*:object*/ /*truthy*/ = { x: `pass2` };
-const tmpClusterSSA_tmpArrPatternStep /*:unknown*/ = $(tmpCalleeParam$1);
-const tmpOPBD /*:unknown*/ = tmpClusterSSA_tmpArrPatternStep.x;
+const tmpSSA_tmpArrPatternStep /*:unknown*/ = $(tmpCalleeParam$1);
+const tmpOPBD /*:unknown*/ = tmpSSA_tmpArrPatternStep.x;
 const tmpIfTest$3 /*:boolean*/ = tmpOPBD === undefined;
 if (tmpIfTest$3) {
-  const tmpClusterSSA_x /*:unknown*/ = $(`pass`);
-  $(tmpClusterSSA_x);
+  const tmpClusterSSA_tmpCalleeParam$3 /*:unknown*/ = $(`pass`);
+  $(tmpClusterSSA_tmpCalleeParam$3);
 } else {
   $(tmpOPBD);
 }

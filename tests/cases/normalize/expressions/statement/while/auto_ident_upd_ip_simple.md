@@ -21,6 +21,7 @@ $(a, b);
 
 
 `````js filename=intro
+let b /*:number*/ = 12;
 $(100);
 $(100);
 $(100);
@@ -30,19 +31,18 @@ $(100);
 $(100);
 $(100);
 $(100);
-let tmpClusterSSA_b$2 /*:number*/ = 12;
 $(100);
 while ($LOOP_NO_UNROLLS_LEFT) {
   $(100);
-  const tmpPostUpdArgIdent$1 /*:number*/ = tmpClusterSSA_b$2;
-  tmpClusterSSA_b$2 = tmpClusterSSA_b$2 + 1;
+  const tmpPostUpdArgIdent$1 /*:number*/ = b;
+  b = b + 1;
   if (tmpPostUpdArgIdent$1) {
   } else {
     break;
   }
 }
 const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
-$(a, tmpClusterSSA_b$2);
+$(a, b);
 `````
 
 
@@ -50,6 +50,7 @@ $(a, tmpClusterSSA_b$2);
 (This ought to be the final result)
 
 `````js filename=intro
+let b = 12;
 $(100);
 $(100);
 $(100);
@@ -59,17 +60,16 @@ $(100);
 $(100);
 $(100);
 $(100);
-let tmpClusterSSA_b$2 = 12;
 $(100);
 while (true) {
   $(100);
-  const tmpPostUpdArgIdent$1 = tmpClusterSSA_b$2;
-  tmpClusterSSA_b$2 = tmpClusterSSA_b$2 + 1;
+  const tmpPostUpdArgIdent$1 = b;
+  b = b + 1;
   if (!tmpPostUpdArgIdent$1) {
     break;
   }
 }
-$({ a: 999, b: 1000 }, tmpClusterSSA_b$2);
+$({ a: 999, b: 1000 }, b);
 `````
 
 
@@ -77,16 +77,16 @@ $({ a: 999, b: 1000 }, tmpClusterSSA_b$2);
 With rename=true
 
 `````js filename=intro
-$( 100 );
-$( 100 );
-$( 100 );
-$( 100 );
-$( 100 );
-$( 100 );
-$( 100 );
-$( 100 );
-$( 100 );
 let a = 12;
+$( 100 );
+$( 100 );
+$( 100 );
+$( 100 );
+$( 100 );
+$( 100 );
+$( 100 );
+$( 100 );
+$( 100 );
 $( 100 );
 while ($LOOP_NO_UNROLLS_LEFT) {
   $( 100 );

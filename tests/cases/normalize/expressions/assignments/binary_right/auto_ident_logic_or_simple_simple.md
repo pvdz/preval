@@ -20,8 +20,8 @@ $(a);
 
 `````js filename=intro
 const tmpBinBothLhs /*:unknown*/ = $(100);
-const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + 2;
-$(tmpCalleeParam);
+const tmpClusterSSA_tmpCalleeParam$1 /*:primitive*/ = tmpBinBothLhs + 2;
+$(tmpClusterSSA_tmpCalleeParam$1);
 $(2);
 `````
 

@@ -22,8 +22,8 @@ $((f($(16))));
 
 
 `````js filename=intro
-const tmpCalleeParam$1 /*:unknown*/ = $(16);
-const x$1 /*:number*/ /*&13*/ = tmpCalleeParam$1 & 13;
+const a /*:unknown*/ = $(16);
+const x$1 /*:number*/ /*&13*/ = a & 13;
 if (x$1) {
   const tmpReturnArg /*:string*/ /*truthy*/ = `this is ${x$1}`;
   $(tmpReturnArg);

@@ -82,7 +82,7 @@ $(a);
 ## Todos triggered
 
 
-- (todo) We should be able to resolve the $frfr call but pcode failed to complete with a Node, hasExplicitGlobal=false
+None
 
 
 ## Globals

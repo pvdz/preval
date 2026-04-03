@@ -28,8 +28,8 @@ if (tmpIfTest) {
   $(undefined);
 } else {
   const tmpCalleeParam /*:unknown*/ = $(1);
-  const tmpClusterSSA_tmpReturnArg /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam);
-  $(tmpClusterSSA_tmpReturnArg);
+  const tmpClusterSSA_tmpCalleeParam$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam);
+  $(tmpClusterSSA_tmpCalleeParam$1);
 }
 const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);

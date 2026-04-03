@@ -24,8 +24,8 @@ $(g());
 
 
 `````js filename=intro
-const y /*:unknown*/ = $(10);
-$(y);
+const tmpReturnArg /*:unknown*/ = $(10);
+$(tmpReturnArg);
 `````
 
 

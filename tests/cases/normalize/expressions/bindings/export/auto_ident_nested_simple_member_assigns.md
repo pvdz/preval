@@ -21,8 +21,8 @@ $(a, b, c);
 
 
 `````js filename=intro
-const a /*:number: 3*/ /*truthy*/ = 3;
-export { a };
+const tmpInitAssignLhsComputedRhs$1 /*:number: 3*/ /*truthy*/ = 3;
+export { tmpInitAssignLhsComputedRhs$1 as a };
 const b /*:object*/ /*truthy*/ = { x: 3 };
 $(3, b, 3);
 `````
@@ -32,8 +32,8 @@ $(3, b, 3);
 (This ought to be the final result)
 
 `````js filename=intro
-const a = 3;
-export { a };
+const tmpInitAssignLhsComputedRhs$1 = 3;
+export { tmpInitAssignLhsComputedRhs$1 as a };
 $(3, { x: 3 }, 3);
 `````
 

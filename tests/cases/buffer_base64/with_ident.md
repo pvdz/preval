@@ -88,6 +88,7 @@ $(tmpCalleeParam);
 
 
 - (todo) access object property that also exists on prototype? $buffer_toString
+- (todo) these should be eliminated by eliminating builtin-globals-as-statements in normalize
 - (todo) type trackeed tricks can possibly support static $Buffer_from
 
 

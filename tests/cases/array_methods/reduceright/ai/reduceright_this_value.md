@@ -70,7 +70,6 @@ $(result, x);
 - (todo) access object property that also exists on prototype? $array_push
 - (todo) array reads var statement with init BinaryExpression
 - (todo) array reads var statement with init ObjectExpression
-- (todo) do we want to support Literal as expression statement in free loops?
 - (todo) do we want to support ObjectExpression as expression statement in free loops?
 - (todo) fixme: spyless vars and labeled nodes
 - (todo) objects in isFree check

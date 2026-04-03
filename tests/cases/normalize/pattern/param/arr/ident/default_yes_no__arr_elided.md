@@ -20,8 +20,8 @@ $(f([, , 1], 200));
 
 
 `````js filename=intro
-const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(`pass`);
-$(tmpClusterSSA_tmpCalleeParam);
+const tmpSSA_tmpCalleeParam /*:unknown*/ = $(`pass`);
+$(tmpSSA_tmpCalleeParam);
 `````
 
 

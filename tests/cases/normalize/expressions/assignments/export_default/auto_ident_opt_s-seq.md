@@ -21,8 +21,8 @@ $(a);
 
 
 `````js filename=intro
-const tmpAnonDefaultExport /*:number: 1*/ /*truthy*/ = 1;
-export { tmpAnonDefaultExport as default };
+const tmpClusterSSA_a /*:number: 1*/ /*truthy*/ = 1;
+export { tmpClusterSSA_a as default };
 $(1);
 `````
 
@@ -31,8 +31,8 @@ $(1);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpAnonDefaultExport = 1;
-export { tmpAnonDefaultExport as default };
+const tmpClusterSSA_a = 1;
+export { tmpClusterSSA_a as default };
 $(1);
 `````
 
@@ -70,7 +70,7 @@ $(a);
 ## Todos triggered
 
 
-- (todo) nodeMightMutateNameUntrapped; Which statement are we missing here? ExportNamedDeclaration
+None
 
 
 ## Globals

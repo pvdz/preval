@@ -27,8 +27,8 @@ $(r);
 
 
 `````js filename=intro
-const toString /*:unknown*/ = $(`toString`);
-const tmpMCF /*:unknown*/ = $string_constructor[toString];
+const p /*:unknown*/ = $(`toString`);
+const tmpMCF /*:unknown*/ = $string_constructor[p];
 const y /*:unknown*/ = $dotCall(tmpMCF, $string_constructor, undefined);
 $(y);
 `````
@@ -38,8 +38,8 @@ $(y);
 (This ought to be the final result)
 
 `````js filename=intro
-const toString = $(`toString`);
-$($string_constructor[toString]());
+const p = $(`toString`);
+$($string_constructor[p]());
 `````
 
 

@@ -21,9 +21,9 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam$1 /*:unknown*/ = $(1);
 const tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam$1);
-const tmpForInGen /*:unknown*/ = $forIn(tmpClusterSSA_a);
+const tmpClusterSSA_tmpForInGen /*:unknown*/ = $forIn(tmpClusterSSA_a);
 while ($LOOP_NO_UNROLLS_LEFT) {
-  const tmpForInNext /*:unknown*/ = tmpForInGen();
+  const tmpForInNext /*:unknown*/ = tmpClusterSSA_tmpForInGen();
   const tmpIfTest /*:unknown*/ = tmpForInNext.done;
   if (tmpIfTest) {
     break;
@@ -40,9 +40,9 @@ $(tmpClusterSSA_a);
 
 `````js filename=intro
 const tmpClusterSSA_a = $($(1));
-const tmpForInGen = $forIn(tmpClusterSSA_a);
+const tmpClusterSSA_tmpForInGen = $forIn(tmpClusterSSA_a);
 while (true) {
-  const tmpForInNext = tmpForInGen();
+  const tmpForInNext = tmpClusterSSA_tmpForInGen();
   if (tmpForInNext.done) {
     break;
   } else {

@@ -27,8 +27,8 @@ if (tmpIfTest) {
   const tmpCalleeParam$3 /*:unknown*/ = $(100);
   const tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam$3);
   const tmpClusterSSA_tmpBinBothRhs /*:string*/ = $coerce(tmpClusterSSA_a, `string`);
-  const tmpClusterSSA_tmpCalleeParam /*:string*/ /*truthy*/ = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
-  $(tmpClusterSSA_tmpCalleeParam);
+  const tmpClusterSSA_tmpCalleeParam$1 /*:string*/ /*truthy*/ = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
+  $(tmpClusterSSA_tmpCalleeParam$1);
   $(tmpClusterSSA_a);
 }
 `````
@@ -95,7 +95,8 @@ $(a);
 ## Todos triggered
 
 
-None
+- (todo) We should be able to resolve the $frfr call but pcode failed to complete with a Node, hasExplicitGlobal=false
+- (todo) free with zero args, we can eliminate this?
 
 
 ## Globals

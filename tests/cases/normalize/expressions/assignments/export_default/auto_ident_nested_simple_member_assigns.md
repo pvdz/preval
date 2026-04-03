@@ -22,8 +22,8 @@ $(a, b, c);
 
 
 `````js filename=intro
-const tmpAnonDefaultExport /*:number: 3*/ /*truthy*/ = 3;
-export { tmpAnonDefaultExport as default };
+const tmpInitAssignLhsComputedRhs /*:number: 3*/ /*truthy*/ = 3;
+export { tmpInitAssignLhsComputedRhs as default };
 const b /*:object*/ /*truthy*/ = { x: 3 };
 $(3, b, 3);
 `````
@@ -33,8 +33,8 @@ $(3, b, 3);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpAnonDefaultExport = 3;
-export { tmpAnonDefaultExport as default };
+const tmpInitAssignLhsComputedRhs = 3;
+export { tmpInitAssignLhsComputedRhs as default };
 $(3, { x: 3 }, 3);
 `````
 

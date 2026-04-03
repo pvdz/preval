@@ -21,8 +21,8 @@ $(x);
 
 `````js filename=intro
 const tmpAssignRhsCompProp /*:unknown*/ = $(`foo`);
-const obj /*:object*/ /*truthy*/ = { foo: 10 };
-const x /*:unknown*/ = obj[tmpAssignRhsCompProp];
+const tmpAssignRhsCompObj /*:object*/ /*truthy*/ = { foo: 10 };
+const x /*:unknown*/ = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
 $(x);
 `````
 

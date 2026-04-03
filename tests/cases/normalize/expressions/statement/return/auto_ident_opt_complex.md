@@ -30,8 +30,8 @@ const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest) {
   $(undefined);
 } else {
-  const tmpClusterSSA_tmpReturnArg /*:unknown*/ = tmpChainElementCall.x;
-  $(tmpClusterSSA_tmpReturnArg);
+  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = tmpChainElementCall.x;
+  $(tmpClusterSSA_tmpCalleeParam);
 }
 const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);

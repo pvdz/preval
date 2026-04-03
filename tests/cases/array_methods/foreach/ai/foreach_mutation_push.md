@@ -83,7 +83,6 @@ $(result);
 - (todo) Support this binary expression operator:
 - (todo) access object property that also exists on prototype? $array_push
 - (todo) array reads var statement with init BinaryExpression
-- (todo) do we want to support Literal as expression statement in free loops?
 - (todo) fixme: spyless vars and labeled nodes
 - (todo) support array reads statement type ExpressionStatement
 - (todo) type trackeed tricks can possibly support static $array_forEach

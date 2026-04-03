@@ -26,8 +26,8 @@ const tmpIfTest /*:boolean*/ = $ == null;
 if (tmpIfTest) {
   $(undefined);
 } else {
-  const tmpClusterSSA_tmpReturnArg /*:unknown*/ = $(1);
-  $(tmpClusterSSA_tmpReturnArg);
+  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(1);
+  $(tmpClusterSSA_tmpCalleeParam);
 }
 const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
 $(a);

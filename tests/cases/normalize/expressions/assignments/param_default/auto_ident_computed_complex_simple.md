@@ -24,9 +24,9 @@ $(a, b);
 `````js filename=intro
 const b /*:object*/ /*truthy*/ = { c: 1 };
 const tmpCompObj /*:unknown*/ = $(b);
-const tmpClusterSSA_a /*:unknown*/ = tmpCompObj.c;
+const tmpSSA_a /*:unknown*/ = tmpCompObj.c;
 $(undefined);
-$(tmpClusterSSA_a, b);
+$(tmpSSA_a, b);
 `````
 
 
@@ -35,9 +35,9 @@ $(tmpClusterSSA_a, b);
 
 `````js filename=intro
 const b = { c: 1 };
-const tmpClusterSSA_a = $(b).c;
+const tmpSSA_a = $(b).c;
 $(undefined);
-$(tmpClusterSSA_a, b);
+$(tmpSSA_a, b);
 `````
 
 

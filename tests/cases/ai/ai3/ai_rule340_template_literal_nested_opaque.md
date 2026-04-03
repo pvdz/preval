@@ -26,9 +26,9 @@ const name /*:unknown*/ = $(`name`);
 const place /*:unknown*/ = $(`place`);
 const tmpBinBothRhs /*:unknown*/ = $(`num`, 1);
 const count /*:primitive*/ = 1 + tmpBinBothRhs;
-const tmpBinBothRhs$5 /*:string*/ = $coerce(name, `string`);
+const tmpStringConcatL /*:string*/ = $coerce(name, `string`);
 const tmpBinBothRhs$3 /*:string*/ = $coerce(place, `string`);
-const result /*:string*/ /*truthy*/ = `Hello ${tmpBinBothRhs$5}, welcome to ${tmpBinBothRhs$3}! Count: ${count}.`;
+const result /*:string*/ /*truthy*/ = `Hello ${tmpStringConcatL}, welcome to ${tmpBinBothRhs$3}! Count: ${count}.`;
 $(`final_result`, result);
 `````
 
@@ -41,9 +41,9 @@ const name = $(`name`);
 const place = $(`place`);
 const tmpBinBothRhs = $(`num`, 1);
 const count = 1 + tmpBinBothRhs;
-const tmpBinBothRhs$5 = String(name);
+const tmpStringConcatL = String(name);
 const tmpBinBothRhs$3 = String(place);
-$(`final_result`, `Hello ${tmpBinBothRhs$5}, welcome to ${tmpBinBothRhs$3}! Count: ${count}.`);
+$(`final_result`, `Hello ${tmpStringConcatL}, welcome to ${tmpBinBothRhs$3}! Count: ${count}.`);
 `````
 
 

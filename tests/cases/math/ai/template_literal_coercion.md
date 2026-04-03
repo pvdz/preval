@@ -31,8 +31,8 @@ $(e);
 
 `````js filename=intro
 const a /*:unknown*/ = $(0.30000000000000004);
-const tmpBinBothRhs /*:string*/ = $coerce(a, `string`);
-$(tmpBinBothRhs);
+const s /*:string*/ = $coerce(a, `string`);
+$(s);
 const b /*:unknown*/ = $(123.456);
 const tmpMCF /*:unknown*/ = b.toFixed;
 const c /*:unknown*/ = $dotCall(tmpMCF, b, `toFixed`, 2);

@@ -79,13 +79,11 @@ $(a, x);
 ## Todos triggered
 
 
-- (todo) - at least one of the call args to
 - (todo) Support non-primitive in first arg to $coerce
 - (todo) Support this binary expression operator:
 - (todo) Support this node type in isFree: DebuggerStatement
 - (todo) array reads var statement with init BinaryExpression
 - (todo) do we want to support BinaryExpression as expression statement in free loops?
-- (todo) do we want to support Literal as expression statement in free loops?
 - (todo) regular property access of an ident feels tricky;
 - (todo) support array reads statement type ExpressionStatement
 - (todo) type trackeed tricks can possibly support static $array_forEach

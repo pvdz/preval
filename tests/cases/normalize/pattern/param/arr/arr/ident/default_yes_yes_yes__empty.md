@@ -36,8 +36,8 @@ const tmpArrPatternSplat$1 /*:array*/ /*truthy*/ = [...tmpArrPatternStep];
 const tmpAPBD$1 /*:unknown*/ = tmpArrPatternSplat$1[0];
 const tmpIfTest$3 /*:boolean*/ = tmpAPBD$1 === undefined;
 if (tmpIfTest$3) {
-  const tmpClusterSSA_x /*:unknown*/ = $(`fail`);
-  $(tmpClusterSSA_x);
+  const tmpClusterSSA_tmpCalleeParam$3 /*:unknown*/ = $(`fail`);
+  $(tmpClusterSSA_tmpCalleeParam$3);
 } else {
   $(tmpAPBD$1);
 }

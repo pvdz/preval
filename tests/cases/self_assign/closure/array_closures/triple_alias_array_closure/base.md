@@ -67,8 +67,8 @@ $(f()); // Won't be reached in the test
 const arr /*:array*/ /*truthy*/ = [`trash`, `fire`, `is`, `hot`];
 while ($LOOP_NO_UNROLLS_LEFT) {
   $(`loop`);
-  const str /*:primitive*/ = arr[112];
-  const tmpBinLhs$166 /*:number*/ = $Global_parseInt(str);
+  const str$2 /*:primitive*/ = arr[112];
+  const tmpBinLhs$166 /*:number*/ = $Global_parseInt(str$2);
   if (tmpBinLhs$166) {
     break;
   } else {
@@ -185,7 +185,7 @@ $(tmpCalleeParam);
 - (todo) access object property that also exists on prototype? $array_push
 - (todo) access object property that also exists on prototype? $array_shift
 - (todo) can try-escaping support this expr node type? CallExpression
-- (todo) support CallExpression as var init in let_hoisting noob check
+- (todo) can try-escaping support this expr node type? Literal
 - (todo) support array reads statement type ExpressionStatement
 - (todo) we can still proceed with the loop as long as there is no let-write anywhere in the loop, inc nested
 

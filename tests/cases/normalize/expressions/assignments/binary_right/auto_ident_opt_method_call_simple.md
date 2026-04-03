@@ -24,8 +24,8 @@ $(a);
 const tmpBinBothLhs /*:unknown*/ = $(100);
 const b /*:object*/ /*truthy*/ = { c: $ };
 const tmpClusterSSA_a /*:unknown*/ = $dotCall($, b, `c`, 1);
-const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + tmpClusterSSA_a;
-$(tmpCalleeParam);
+const tmpClusterSSA_tmpCalleeParam$1 /*:primitive*/ = tmpBinBothLhs + tmpClusterSSA_a;
+$(tmpClusterSSA_tmpCalleeParam$1);
 $(tmpClusterSSA_a);
 `````
 

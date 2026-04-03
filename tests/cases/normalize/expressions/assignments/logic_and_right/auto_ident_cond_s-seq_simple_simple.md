@@ -21,9 +21,9 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(100);
 if (tmpCalleeParam) {
-  const tmpSSA_tmpNestedComplexRhs /*:unknown*/ = $(2);
-  $(tmpSSA_tmpNestedComplexRhs);
-  $(tmpSSA_tmpNestedComplexRhs);
+  const tmpNestedComplexRhs /*:unknown*/ = $(2);
+  $(tmpNestedComplexRhs);
+  $(tmpNestedComplexRhs);
 } else {
   $(tmpCalleeParam);
   const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
@@ -38,9 +38,9 @@ if (tmpCalleeParam) {
 `````js filename=intro
 const tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
-  const tmpSSA_tmpNestedComplexRhs = $(2);
-  $(tmpSSA_tmpNestedComplexRhs);
-  $(tmpSSA_tmpNestedComplexRhs);
+  const tmpNestedComplexRhs = $(2);
+  $(tmpNestedComplexRhs);
+  $(tmpNestedComplexRhs);
 } else {
   $(tmpCalleeParam);
   $({ a: 999, b: 1000 });

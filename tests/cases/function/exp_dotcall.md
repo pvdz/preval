@@ -197,7 +197,6 @@ while ($LOOP_NO_UNROLLS_LEFT) {
 
 
 - (todo) Support this node type in isFree: TemplateLiteral
-- (todo) do we want to support ArrayExpression as expression statement in free loops?
 - (todo) objects in isFree check
 - (todo) support Identifier as var init in let_hoisting noob check
 

@@ -21,8 +21,8 @@ $(f({ x: undefined, a: 11, b: 12 }, 10));
 
 `````js filename=intro
 const tmpCalleeParam /*:array*/ /*truthy*/ = [`pass2`];
-const tmpClusterSSA_tmpOPAD /*:unknown*/ = $(tmpCalleeParam);
-[...tmpClusterSSA_tmpOPAD];
+const tmpSSA_tmpOPAD /*:unknown*/ = $(tmpCalleeParam);
+[...tmpSSA_tmpOPAD];
 $(`bad`);
 `````
 
@@ -31,8 +31,8 @@ $(`bad`);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpClusterSSA_tmpOPAD = $([`pass2`]);
-[...tmpClusterSSA_tmpOPAD];
+const tmpSSA_tmpOPAD = $([`pass2`]);
+[...tmpSSA_tmpOPAD];
 $(`bad`);
 `````
 

@@ -23,9 +23,9 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal$1 /*:object*/ /*truthy*/ = { e: $ };
 const tmpClusterSSA_a /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
-const tmpForInGen /*:unknown*/ = $forIn(tmpClusterSSA_a);
+const tmpClusterSSA_tmpForInGen /*:unknown*/ = $forIn(tmpClusterSSA_a);
 while ($LOOP_NO_UNROLLS_LEFT) {
-  const tmpForInNext /*:unknown*/ = tmpForInGen();
+  const tmpForInNext /*:unknown*/ = tmpClusterSSA_tmpForInGen();
   const tmpIfTest$1 /*:unknown*/ = tmpForInNext.done;
   if (tmpIfTest$1) {
     break;
@@ -42,9 +42,9 @@ $(tmpClusterSSA_a);
 
 `````js filename=intro
 const tmpClusterSSA_a = $dotCall($, { e: $ }, `e`, 1);
-const tmpForInGen = $forIn(tmpClusterSSA_a);
+const tmpClusterSSA_tmpForInGen = $forIn(tmpClusterSSA_a);
 while (true) {
-  const tmpForInNext = tmpForInGen();
+  const tmpForInNext = tmpClusterSSA_tmpForInGen();
   if (tmpForInNext.done) {
     break;
   } else {

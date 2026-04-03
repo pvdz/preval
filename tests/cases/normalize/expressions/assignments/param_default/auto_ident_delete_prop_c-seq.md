@@ -26,9 +26,9 @@ $(1);
 $(2);
 const arg /*:object*/ /*truthy*/ = { y: 1 };
 const tmpDeleteObj /*:unknown*/ = $(arg);
-const tmpClusterSSA_a /*:boolean*/ = delete tmpDeleteObj.y;
+const tmpSSA_a /*:boolean*/ = delete tmpDeleteObj.y;
 $(undefined);
-$(tmpClusterSSA_a, arg);
+$(tmpSSA_a, arg);
 `````
 
 
@@ -40,9 +40,9 @@ $(1);
 $(2);
 const arg = { y: 1 };
 const tmpDeleteObj = $(arg);
-const tmpClusterSSA_a = delete tmpDeleteObj.y;
+const tmpSSA_a = delete tmpDeleteObj.y;
 $(undefined);
-$(tmpClusterSSA_a, arg);
+$(tmpSSA_a, arg);
 `````
 
 

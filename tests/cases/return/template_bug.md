@@ -35,8 +35,8 @@ $(tmpReturnArg);
 const tmpReturnArg /*:()=>string*/ = function () {
   debugger;
   const x /*:unknown*/ = $();
-  const tmpBinBothRhs$2 /*:string*/ = $coerce(x, `string`);
-  const tmpReadOnce /*:string*/ /*truthy*/ = `${tmpBinBothRhs$2}B`;
+  const tmpBinBothRhs$1 /*:string*/ = $coerce(x, `string`);
+  const tmpReadOnce /*:string*/ /*truthy*/ = `${tmpBinBothRhs$1}B`;
   return tmpReadOnce;
 };
 $(tmpReturnArg);

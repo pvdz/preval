@@ -26,9 +26,9 @@ if (tmpIfTest) {
   const a /*:object*/ /*truthy*/ = { a: 999, b: 1000 };
   $(a);
 } else {
-  const tmpSSA_tmpNestedComplexRhs /*:unknown*/ = $(2);
-  $(tmpSSA_tmpNestedComplexRhs);
-  $(tmpSSA_tmpNestedComplexRhs);
+  const tmpNestedComplexRhs /*:unknown*/ = $(2);
+  $(tmpNestedComplexRhs);
+  $(tmpNestedComplexRhs);
 }
 `````
 
@@ -41,9 +41,9 @@ if ($(0)) {
   $($(100));
   $({ a: 999, b: 1000 });
 } else {
-  const tmpSSA_tmpNestedComplexRhs = $(2);
-  $(tmpSSA_tmpNestedComplexRhs);
-  $(tmpSSA_tmpNestedComplexRhs);
+  const tmpNestedComplexRhs = $(2);
+  $(tmpNestedComplexRhs);
+  $(tmpNestedComplexRhs);
 }
 `````
 

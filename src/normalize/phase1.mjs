@@ -1,6 +1,6 @@
 import walk from '../../lib/walk.mjs';
 import { VERBOSE_TRACING, RED, BLUE, DIM, RESET, setVerboseTracing, PRIMITIVE_TYPE_NAMES_PREVAL } from '../constants.mjs';
-import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, source, REF_TRACK_TRACING, assertNoDupeNodes, currentState, ENABLE_REF_TRACKING, } from '../utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, source, REF_TRACK_TRACING, assertNoDupeNodes, currentState, ENABLE_REF_TRACKING, example, rule, after, before as before_func } from '../utils.mjs';
 import { $p, resetUid, getUid } from '../$p.mjs';
 import * as AST from '../ast.mjs';
 import { createReadRef, createWriteRef, getCleanTypingObject, getIdentUsageKind, getUnknownTypingObject, inferNodeTyping, mergeTyping, registerGlobalIdent, } from '../bindings.mjs';
@@ -209,6 +209,41 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
     const parentProp = pathProps[pathProps.length - 1];
     const parentIndex = pathIndexes[pathIndexes.length - 1];
     const grandIndex = pathIndexes[pathIndexes.length - 2];
+
+    // Normalize some superficial stuff to make it easier for transforms without a whole normalization loop
+    if (before) {
+      if ((parentNode?.type === 'BlockStatement' || parentNode?.type === 'Program') && node.type === 'BlockStatement') {
+        rule('Nested blocks must be squashed');
+        example('{ x { y } }', '{ x }');
+        before_func(parentNode);
+
+        ASSERT(parentNode.body[parentIndex] === node);
+        parentNode.body.splice(parentIndex, 1, ...node.body);
+
+        after(parentNode);
+        return; // Node changed so it will revisit
+      }
+      if (node.type === 'EmptyStatement') {
+        // I think normalized code should never have an empty statement it can't remove
+
+        rule('Empty statements must be dropped');
+        example('a; ; b;', 'a; b;');
+        before_func(parentNode);
+
+        ASSERT(parentNode.body[parentIndex] === node);
+        parentNode.body.splice(parentIndex, 1);
+        return; // Node changed so it will revisit
+      }
+      if (node.type === 'ExpressionStatement' && AST.isPrimitive(node.expression)) {
+        rule('Expression statement that is a primitive is a noop');
+        example('a(); true; b();', 'a(); b();');
+        before_func(parentNode);
+
+        ASSERT(parentNode.body[parentIndex] === node);
+        parentNode.body.splice(parentIndex, 1);
+        return; // Node changed so it will revisit
+      }
+    }
 
     if (before) {
       ASSERT(!parentNode || parentNode.$p);

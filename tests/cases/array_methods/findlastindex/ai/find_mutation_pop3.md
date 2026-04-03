@@ -86,7 +86,6 @@ $(result, undefined);
 
 - (todo) - at least one of the call args to
 - (todo) Support this ident in isFree CallExpression: $array_unshift
-- (todo) do we want to support Literal as expression statement in free loops?
 - (todo) find me fast
 - (todo) fixme: spyless vars and labeled nodes
 - (todo) outline any args for tdz

@@ -25,9 +25,9 @@ $(result);
 const a /*:unknown*/ = $(`a`);
 const b /*:unknown*/ = $(`b`);
 const c /*:unknown*/ = $(`c`);
-const tmpBinBothRhs$1 /*:string*/ = $coerce(a, `string`);
+const tmpStringConcatL /*:string*/ = $coerce(a, `string`);
 const tmpBinBothRhs /*:string*/ = $coerce(b, `string`);
-const multiExpr /*:string*/ /*truthy*/ = `start${tmpBinBothRhs$1}middle${tmpBinBothRhs}end`;
+const multiExpr /*:string*/ /*truthy*/ = `start${tmpStringConcatL}middle${tmpBinBothRhs}end`;
 const result /*:string*/ = multiExpr + c;
 $(result);
 `````
@@ -40,9 +40,9 @@ $(result);
 const a = $(`a`);
 const b = $(`b`);
 const c = $(`c`);
-const tmpBinBothRhs$1 = String(a);
+const tmpStringConcatL = String(a);
 const tmpBinBothRhs = String(b);
-$(`start${tmpBinBothRhs$1}middle${tmpBinBothRhs}end` + c);
+$(`start${tmpStringConcatL}middle${tmpBinBothRhs}end` + c);
 `````
 
 

@@ -18,10 +18,10 @@ $(`abc ${ $(10) } ${ $(20) } def`);
 
 `````js filename=intro
 const tmpCalleeParam$1 /*:unknown*/ = $(10);
-const tmpBinBothRhs$1 /*:string*/ = $coerce(tmpCalleeParam$1, `string`);
+const tmpStringConcatL /*:string*/ = $coerce(tmpCalleeParam$1, `string`);
 const tmpCalleeParam$3 /*:unknown*/ = $(20);
 const tmpBinBothRhs /*:string*/ = $coerce(tmpCalleeParam$3, `string`);
-const tmpCalleeParam /*:string*/ /*truthy*/ = `abc ${tmpBinBothRhs$1} ${tmpBinBothRhs} def`;
+const tmpCalleeParam /*:string*/ /*truthy*/ = `abc ${tmpStringConcatL} ${tmpBinBothRhs} def`;
 $(tmpCalleeParam);
 `````
 
@@ -30,9 +30,9 @@ $(tmpCalleeParam);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpBinBothRhs$1 = String($(10));
+const tmpStringConcatL = String($(10));
 const tmpBinBothRhs = String($(20));
-$(`abc ${tmpBinBothRhs$1} ${tmpBinBothRhs} def`);
+$(`abc ${tmpStringConcatL} ${tmpBinBothRhs} def`);
 `````
 
 

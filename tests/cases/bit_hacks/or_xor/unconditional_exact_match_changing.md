@@ -24,9 +24,9 @@ $(setAssignable($(100 | 16)));
 
 
 `````js filename=intro
-const tmpCalleeParam$1 /*:unknown*/ = $(116);
-tmpCalleeParam$1 ** 0;
-const c /*:number*/ /*&-17*/ = tmpCalleeParam$1 & -17;
+const a /*:unknown*/ = $(116);
+a ** 0;
+const c /*:number*/ /*&-17*/ = a & -17;
 $(c);
 `````
 
@@ -35,9 +35,9 @@ $(c);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCalleeParam$1 = $(116);
-tmpCalleeParam$1 ** 0;
-$(tmpCalleeParam$1 & -17);
+const a = $(116);
+a ** 0;
+$(a & -17);
 `````
 
 

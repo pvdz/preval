@@ -62,7 +62,7 @@ c();
 const b /*:()=>undefined*/ = function () {
   debugger;
   $(`before`);
-  a = function () {
+  tmpSSA_a = function () {
     debugger;
     $(`replaced`);
     return undefined;
@@ -70,10 +70,10 @@ const b /*:()=>undefined*/ = function () {
   $(`after`);
   return undefined;
 };
-let a /*:function*/ /*truthy*/ = b;
+let tmpSSA_a /*:function*/ /*truthy*/ = b;
 b();
 b();
-a();
+tmpSSA_a();
 b();
 `````
 
@@ -84,15 +84,15 @@ b();
 `````js filename=intro
 const b = function () {
   $(`before`);
-  a = function () {
+  tmpSSA_a = function () {
     $(`replaced`);
   };
   $(`after`);
 };
-let a = b;
+let tmpSSA_a = b;
 b();
 b();
-a();
+tmpSSA_a();
 b();
 `````
 

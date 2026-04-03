@@ -21,9 +21,9 @@ $(x, a, 'final');
 
 
 `````js filename=intro
-const x /*:unknown*/ = $(10);
+const tmpSSA_a /*:unknown*/ = $(10);
 const tmpClusterSSA_x /*:unknown*/ = $(20);
-$(tmpClusterSSA_x, x, `final`);
+$(tmpClusterSSA_x, tmpSSA_a, `final`);
 `````
 
 
@@ -31,8 +31,8 @@ $(tmpClusterSSA_x, x, `final`);
 (This ought to be the final result)
 
 `````js filename=intro
-const x = $(10);
-$($(20), x, `final`);
+const tmpSSA_a = $(10);
+$($(20), tmpSSA_a, `final`);
 `````
 
 

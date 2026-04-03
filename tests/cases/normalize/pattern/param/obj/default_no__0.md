@@ -68,7 +68,7 @@ $(tmpCalleeParam);
 ## Todos triggered
 
 
-- (todo) type trackeed tricks can possibly support static $boolean_constructor
+None
 
 
 ## Globals

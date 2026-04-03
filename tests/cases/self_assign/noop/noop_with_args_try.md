@@ -52,10 +52,10 @@ while ($LOOP_NO_UNROLLS_LEFT) {
 `````js filename=intro
 const main_data_arr /*:array*/ /*truthy*/ = [`this`, `contents`, `is`, `not`, `relevant`, `here`];
 while ($LOOP_NO_UNROLLS_LEFT) {
-  const tmp2 /*:unknown*/ = main_data_arr[-385];
-  const b /*:number*/ = $Number_parseInt(tmp2);
+  const tmp2$1 /*:unknown*/ = main_data_arr[-385];
+  const b /*:number*/ = $Number_parseInt(tmp2$1);
   try {
-    $(`testing`, tmp2, b);
+    $(`testing`, tmp2$1, b);
     if (b) {
       break;
     } else {
@@ -77,10 +77,10 @@ while ($LOOP_NO_UNROLLS_LEFT) {
 `````js filename=intro
 const main_data_arr = [`this`, `contents`, `is`, `not`, `relevant`, `here`];
 while (true) {
-  const tmp2 = main_data_arr[-385];
-  const b = $Number_parseInt(tmp2);
+  const tmp2$1 = main_data_arr[-385];
+  const b = $Number_parseInt(tmp2$1);
   try {
-    $(`testing`, tmp2, b);
+    $(`testing`, tmp2$1, b);
     if (b) {
       break;
     } else {
@@ -169,8 +169,8 @@ while ($LOOP_NO_UNROLLS_LEFT) {
 
 
 - (todo) can try-escaping support this expr node type? CallExpression
+- (todo) can try-escaping support this expr node type? Literal
 - (todo) computed property access of an array but not index prop
-- (todo) support CallExpression as var init in let_hoisting noob check
 - (todo) support array reads statement type ExpressionStatement
 - (todo) type trackeed tricks can possibly support static $Number_parseInt
 - (todo) we can still proceed with the loop as long as there is no let-write anywhere in the loop, inc nested

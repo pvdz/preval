@@ -32,18 +32,19 @@ $(100);
 $(100);
 $(100);
 $(100);
-let tmpClusterSSA_b$1 /*:number*/ = 12;
+let tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_b /*:number*/ = 12;
 while ($LOOP_NO_UNROLLS_LEFT) {
   $(100);
-  const tmpPostUpdArgIdent$1 /*:number*/ = tmpClusterSSA_b$1;
-  tmpClusterSSA_b$1 = tmpClusterSSA_b$1 + 1;
+  const tmpPostUpdArgIdent$1 /*:number*/ = tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_b;
+  tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_b =
+    tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_b + 1;
   a = tmpPostUpdArgIdent$1;
   if (tmpPostUpdArgIdent$1) {
   } else {
     break;
   }
 }
-$(a, tmpClusterSSA_b$1);
+$(a, tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_b);
 `````
 
 
@@ -62,17 +63,18 @@ $(100);
 $(100);
 $(100);
 $(100);
-let tmpClusterSSA_b$1 = 12;
+let tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_b = 12;
 while (true) {
   $(100);
-  const tmpPostUpdArgIdent$1 = tmpClusterSSA_b$1;
-  tmpClusterSSA_b$1 = tmpClusterSSA_b$1 + 1;
+  const tmpPostUpdArgIdent$1 = tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_b;
+  tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_b =
+    tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_b + 1;
   a = tmpPostUpdArgIdent$1;
   if (!tmpPostUpdArgIdent$1) {
     break;
   }
 }
-$(a, tmpClusterSSA_b$1);
+$(a, tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_tmpClusterSSA_tmpSSA_b);
 `````
 
 
@@ -132,7 +134,6 @@ $(a, b);
 ## Todos triggered
 
 
-- (todo) do we want to support Literal as expression statement in free loops?
 - (todo) do we want to support ObjectExpression as expression statement in free loops?
 - (todo) objects in isFree check
 

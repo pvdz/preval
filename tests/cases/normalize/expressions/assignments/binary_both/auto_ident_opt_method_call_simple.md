@@ -25,8 +25,8 @@ const b /*:object*/ /*truthy*/ = { c: $ };
 const tmpClusterSSA_tmpBinBothLhs /*:unknown*/ = $dotCall($, b, `c`, 1);
 const tmpChainElementObject$1 /*:unknown*/ = b.c;
 const tmpClusterSSA_a$2 /*:unknown*/ = $dotCall(tmpChainElementObject$1, b, `c`, 1);
-const tmpCalleeParam /*:primitive*/ = tmpClusterSSA_tmpBinBothLhs + tmpClusterSSA_a$2;
-$(tmpCalleeParam);
+const tmpClusterSSA_tmpCalleeParam$1 /*:primitive*/ = tmpClusterSSA_tmpBinBothLhs + tmpClusterSSA_a$2;
+$(tmpClusterSSA_tmpCalleeParam$1);
 $(tmpClusterSSA_a$2);
 `````
 

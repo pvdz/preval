@@ -31,8 +31,8 @@ if (tmpIfTest) {
   $(100);
   $(undefined, `result`);
 } else {
-  const tmpClusterSSA_x /*:unknown*/ = $(2, `b`);
-  $(tmpClusterSSA_x, `result`);
+  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(2, `b`);
+  $(tmpClusterSSA_tmpCalleeParam, `result`);
 }
 `````
 

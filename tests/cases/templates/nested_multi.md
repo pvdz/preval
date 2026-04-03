@@ -24,9 +24,9 @@ $(`A${`A${a}B${b}C`}B${`A${a}B${b}C`}C`);
 `````js filename=intro
 const a /*:unknown*/ = $(`x`);
 const b /*:unknown*/ = $(`y`);
-const tmpBinBothRhs$1 /*:string*/ = $coerce(a, `string`);
+const tmpStringConcatL /*:string*/ = $coerce(a, `string`);
 const tmpBinBothRhs /*:string*/ = $coerce(b, `string`);
-const tmpCalleeParam /*:string*/ /*truthy*/ = `A${tmpBinBothRhs$1}B${tmpBinBothRhs}C`;
+const tmpCalleeParam /*:string*/ /*truthy*/ = `A${tmpStringConcatL}B${tmpBinBothRhs}C`;
 $(tmpCalleeParam);
 const tmpStringConcatL$1 /*:string*/ = $coerce(a, `string`);
 const tmpBinBothRhs$7 /*:string*/ = $coerce(b, `string`);
@@ -43,9 +43,9 @@ $(tmpCalleeParam$1);
 `````js filename=intro
 const a = $(`x`);
 const b = $(`y`);
-const tmpBinBothRhs$1 = String(a);
+const tmpStringConcatL = String(a);
 const tmpBinBothRhs = String(b);
-$(`A${tmpBinBothRhs$1}B${tmpBinBothRhs}C`);
+$(`A${tmpStringConcatL}B${tmpBinBothRhs}C`);
 const tmpStringConcatL$1 = String(a);
 const tmpBinBothRhs$7 = String(b);
 const tmpStringConcatL$5 = String(a);

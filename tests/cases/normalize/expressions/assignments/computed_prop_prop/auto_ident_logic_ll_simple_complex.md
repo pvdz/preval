@@ -21,9 +21,9 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam$1 /*:unknown*/ = $(1);
-const tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam$1);
-$coerce(tmpClusterSSA_a, `string`);
-$(tmpClusterSSA_a);
+const tmpSSA_a /*:unknown*/ = $(tmpCalleeParam$1);
+$coerce(tmpSSA_a, `string`);
+$(tmpSSA_a);
 `````
 
 
@@ -31,9 +31,9 @@ $(tmpClusterSSA_a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpClusterSSA_a = $($(1));
-String(tmpClusterSSA_a);
-$(tmpClusterSSA_a);
+const tmpSSA_a = $($(1));
+String(tmpSSA_a);
+$(tmpSSA_a);
 `````
 
 

@@ -25,8 +25,8 @@ const tmpClusterSSA_tmpBindingPatternObjRoot /*:unknown*/ = $(tmpCalleeParam);
 const tmpOPBD /*:unknown*/ = tmpClusterSSA_tmpBindingPatternObjRoot.x;
 const tmpIfTest$1 /*:boolean*/ = tmpOPBD === undefined;
 if (tmpIfTest$1) {
-  const tmpClusterSSA_x /*:unknown*/ = $(`fail`);
-  $(tmpClusterSSA_x);
+  const tmpClusterSSA_tmpCalleeParam$1 /*:unknown*/ = $(`fail`);
+  $(tmpClusterSSA_tmpCalleeParam$1);
 } else {
   $(tmpOPBD);
 }

@@ -29,8 +29,8 @@ $(f());
 `````js filename=intro
 x;
 $(undefined);
-$(undefined);
 x;
+$(undefined);
 `````
 
 
@@ -40,8 +40,8 @@ x;
 `````js filename=intro
 x;
 $(undefined);
-$(undefined);
 x;
+$(undefined);
 `````
 
 
@@ -51,8 +51,8 @@ With rename=true
 `````js filename=intro
 x;
 $( undefined );
-$( undefined );
 x;
+$( undefined );
 `````
 
 

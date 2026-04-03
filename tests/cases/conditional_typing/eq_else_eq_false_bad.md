@@ -33,8 +33,8 @@ const x /*:boolean*/ = a === 67636;
 if (x) {
   $(true);
 } else {
-  const tmpBool /*:boolean*/ = $boolean_constructor($);
-  $(tmpBool);
+  const tmpClusterSSA_x$1 /*:boolean*/ = $boolean_constructor($);
+  $(tmpClusterSSA_x$1);
 }
 `````
 

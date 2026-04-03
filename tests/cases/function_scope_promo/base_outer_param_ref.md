@@ -30,7 +30,7 @@ $(h($(10)));
 
 
 `````js filename=intro
-const tmpCalleeParam$1 /*:unknown*/ = $(10);
+const x /*:unknown*/ = $(10);
 if ($) {
   $(`prevent`);
   $(`simple`);
@@ -43,15 +43,15 @@ if ($) {
       $(`prevent`);
       $(`simple`);
       $(`inlining`);
-      $(tmpCalleeParam$1);
+      $(x);
     } else {
-      $(tmpCalleeParam$1);
+      $(x);
     }
   } else {
-    $(tmpCalleeParam$1);
+    $(x);
   }
 } else {
-  $(tmpCalleeParam$1);
+  $(x);
 }
 `````
 
@@ -60,7 +60,7 @@ if ($) {
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCalleeParam$1 = $(10);
+const x = $(10);
 if ($) {
   $(`prevent`);
   $(`simple`);
@@ -73,15 +73,15 @@ if ($) {
       $(`prevent`);
       $(`simple`);
       $(`inlining`);
-      $(tmpCalleeParam$1);
+      $(x);
     } else {
-      $(tmpCalleeParam$1);
+      $(x);
     }
   } else {
-    $(tmpCalleeParam$1);
+    $(x);
   }
 } else {
-  $(tmpCalleeParam$1);
+  $(x);
 }
 `````
 

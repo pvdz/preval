@@ -104,6 +104,7 @@ $(tmpCalleeParam$7);
 
 
 - (todo) array reads var statement with init CallExpression
+- (todo) type trackeed tricks can possibly support static $string_constructor
 
 
 ## Globals

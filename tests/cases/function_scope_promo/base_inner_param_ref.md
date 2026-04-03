@@ -36,7 +36,7 @@ if ($) {
   $(`inlining`);
 } else {
 }
-const tmpCalleeParam /*:unknown*/ = $(10);
+const x /*:unknown*/ = $(10);
 if ($) {
   $(`prevent`);
   $(`simple`);
@@ -45,12 +45,12 @@ if ($) {
     $(`prevent`);
     $(`simple`);
     $(`inlining`);
-    $(tmpCalleeParam);
+    $(x);
   } else {
-    $(tmpCalleeParam);
+    $(x);
   }
 } else {
-  $(tmpCalleeParam);
+  $(x);
 }
 `````
 
@@ -64,7 +64,7 @@ if ($) {
   $(`simple`);
   $(`inlining`);
 }
-const tmpCalleeParam = $(10);
+const x = $(10);
 if ($) {
   $(`prevent`);
   $(`simple`);
@@ -73,12 +73,12 @@ if ($) {
     $(`prevent`);
     $(`simple`);
     $(`inlining`);
-    $(tmpCalleeParam);
+    $(x);
   } else {
-    $(tmpCalleeParam);
+    $(x);
   }
 } else {
-  $(tmpCalleeParam);
+  $(x);
 }
 `````
 

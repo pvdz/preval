@@ -22,8 +22,8 @@ $(q);
 
 
 `````js filename=intro
-const r /*:unknown*/ = $(undefined);
-$(r);
+const q /*:unknown*/ = $(undefined);
+$(q);
 `````
 
 
@@ -67,7 +67,7 @@ $(q);
 ## Todos triggered
 
 
-- (todo) support CallExpression as var init in let_hoisting noob check
+None
 
 
 ## Globals

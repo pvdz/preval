@@ -51,7 +51,7 @@ $(result);
 ## Todos triggered
 
 
-None
+- (todo) type trackeed tricks can possibly support static $number_constructor
 
 
 ## Globals

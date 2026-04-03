@@ -36,7 +36,7 @@ $(arr);
 ## Todos triggered
 
 
-None
+- (todo) - bail: No support for assigns to properties, yet
 
 
 ## Pcode result

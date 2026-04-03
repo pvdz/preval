@@ -65,6 +65,7 @@ $(arr);
 ## Todos triggered
 
 
+- (todo) - bail: No support for assigns to properties, yet
 - (todo) support array reads statement type ExpressionStatement
 
 

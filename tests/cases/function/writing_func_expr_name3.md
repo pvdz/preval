@@ -98,6 +98,7 @@ g();
 ## Todos triggered
 
 
+- (todo) - bail: No support for assigns to properties, yet
 - (todo) Found a self-closing function shell but it did not match a known pattern...
 
 

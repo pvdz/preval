@@ -36,10 +36,10 @@
 // - i dont think we want to allow loops
 // - we may allow try/catch because why not
 
-import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, tmat, todo, } from './utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, tmat, todo, vgroupDepth, } from './utils.mjs';
 import * as AST from './ast.mjs';
 import { VERBOSE_TRACING, setVerboseTracing, YELLOW, ORANGE_DIM, PURPLE, RESET, DIM, ORANGE, PRIMITIVE_TYPE_NAMES_PREVAL, PRIMITIVE_TYPE_NAMES_TYPEOF, } from './constants.mjs';
-import { SYMBOL_COERCE, SYMBOL_DOTCALL, SYMBOL_FRFR, SYMBOL_PCOMPILED } from './symbols_preval.mjs';
+import { SYMBOL_COERCE, SYMBOL_DOTCALL, SYMBOL_FREE, SYMBOL_FRFR, SYMBOL_PCOMPILED } from './symbols_preval.mjs';
 import { BUILTIN_SYMBOLS, symbo } from './symbols_builtins.mjs';
 
 const NONE = 0;
@@ -199,9 +199,9 @@ export function runFreeWithPcode(funcNode, argNodes, fdata, freeFuncName, $prng,
 
   source(funcNode, true);
   const callsWhenCompiled = pcanCompile(funcNode, fdata, freeFuncName);
-  vlog('Can pcode body? (2)', freeFuncName, !!callsWhenCompiled, callsWhenCompiled ? 'Proceeding with compile and run...' : 'Not compiling or running...');
+  vlog('Can pcode body? name=', freeFuncName, ', can=', !!callsWhenCompiled, ', verdict:', callsWhenCompiled ? 'Proceeding with compile and run...' : 'Not compiling or running...');
   if (!callsWhenCompiled) {
-    vlog('-- ehhh. No.');
+    vlog('-- failed to pcanCompile, cannot run', freeFuncName);
     vgroupEnd();
     return null;
   }
@@ -277,7 +277,10 @@ export function pcanCompile(funcNode, fdata, funcName) {
   return false;
 }
 function pcanCompileBody(locals, calls, body, fdata) {
-  vlog('pcanCompileBody()');
+  ASSERT(pcanCompileBody.length === arguments.length, 'arg count');
+  ASSERT(Array.isArray(body), 'body is body array', body);
+
+  vlog('pcanCompileBody()', body.length);
   for (let i=0; i<body.length; ++i) {
     const stmt = body[i];
     //vlog('-', stmt.type);
@@ -413,12 +416,12 @@ function pcanCompileExpr(locals, calls, expr, fdata, stmt, constDeclNameMaybe) {
       }
 
       if (contextNode && !pcanCompileExpr(locals, calls, contextNode, fdata, stmt)) {
-        vlog('- the context node could not be compiled', contextNode);
+        vlog('- bail: the context node could not be compiled', contextNode);
         return false;
       }
 
       if (!args.every(anode => anode.type !== 'SpreadElement' && pcanCompileExpr(locals, calls, anode, fdata, stmt))) {
-        vlog('- at least one arg was a spread or not compileable');
+        vlog('- bail: at least one arg was a spread or not compileable');
         return false;
       }
 
@@ -449,38 +452,42 @@ function pcanCompileExpr(locals, calls, expr, fdata, stmt, constDeclNameMaybe) {
       // Only allowed to refer to local variables (the callee for ident calls don't reach here)
       //vlog('Checking whether', locals, 'has', [expr.name])
       const has = locals.has(expr.name);
-      if (!has) {
-        // Note: call expr should check for regular callee, frfr, and dotcall. dont risk funcs being an init or assign rhs.
+      vlog('canexpr ident', [expr.name], has);
+      if (has) return true;
 
-        // This would only be okay as being called or dotcalled. Pcode doesnt know how to deal with moving around function values (yet).
-        // However, we should try to make this work because `const func = num.toString; $dotcall(func, ...` should resolve fine.
-        // if (pcodeSupportedBuiltinFuncs.has(expr.name)) {
-        //   return true;
-        // }
-        // // TODO: update this:
-        // if (expr.name === 'Math') {
-        //   vlog('  - accepting Math, temp, until we move these globals to a symbol as well.');
-        //   return true;
-        // }
-        // const meta = fdata.globallyUniqueNamingRegistry.get(expr.name);
-        // risky due to assignments. instead, builtin symbols should propagate and replace idents, or be allow-listed by cancompile call expr
-        // if (pcodeSupportedBuiltinFuncs.has(expr.name)) {
-        //   vlog('  - accepting allow-listed builtin');
-        //   return true;
-        // }
-        // if (meta?.varDeclRef?.node?.id?.name === '$free') {
-        //   vlog(' - a $free function must be ok');
-        //   return true;
-        // }
-        vlog('  - bail: found non-local ident', expr.name);
-      }
-      return has;
+      // Note: call expr should check for regular callee, frfr, and dotcall. dont risk funcs being an init or assign rhs.
+
+      // This would only be okay as being called or dotcalled. Pcode doesnt know how to deal with moving around function values (yet).
+      // However, we should try to make this work because `const func = num.toString; $dotcall(func, ...` should resolve fine.
+      // if (pcodeSupportedBuiltinFuncs.has(expr.name)) {
+      //   return true;
+      // }
+      // // TODO: update this:
+      // if (expr.name === 'Math') {
+      //   vlog('  - accepting Math, temp, until we move these globals to a symbol as well.');
+      //   return true;
+      // }
+      // const meta = fdata.globallyUniqueNamingRegistry.get(expr.name);
+      // risky due to assignments. instead, builtin symbols should propagate and replace idents, or be allow-listed by cancompile call expr
+      // if (pcodeSupportedBuiltinFuncs.has(expr.name)) {
+      //   vlog('  - accepting allow-listed builtin');
+      //   return true;
+      // }
+      // if (meta?.varDeclRef?.node?.id?.name === '$free') {
+      //   vlog(' - a $free function must be ok');
+      //   return true;
+      // }
+      vlog('  - bail: found non-local identy', expr.name);
+      return false;
     }
     case 'Param': {
       return true;
     }
     case 'AssignmentExpression': {
-      if (expr.left.type !== 'Identifier') return false; // No support for assigns to properties, yet (TODO)
+      if (expr.left.type !== 'Identifier') {
+        todo('- bail: No support for assigns to properties, yet');
+        return false;
+      }
       return pcanCompileExpr(locals, calls, expr.left, fdata, stmt) && pcanCompileExpr(locals, calls, expr.right, fdata, stmt);
     }
     case 'MemberExpression': {
@@ -569,7 +576,11 @@ function pcanCompileExpr(locals, calls, expr, fdata, stmt, constDeclNameMaybe) {
       // Templates are fine because all references should be primitives
       // Let's let them normalize to simple expressions though, and in particular no nested templates
       return expr.expressions.every(enode => {
-        if (enode.type === 'TemplateLiteral') return false; // Normalize it first. If this trips, figure out why there's a nested template literal in normalized code. That's probably a bug.
+        if (enode.type === 'TemplateLiteral') {
+          // Normalize it first. If this trips, figure out why there's a nested template literal in normalized code. That's probably a bug.
+          vlog('- bail: normalize template first');
+          return false;
+        }
         if (AST.isPrimitive(enode)) return true;
         ASSERT(enode.type === 'Identifier', 'I think all expressions are idents or prims (or nested templates) in normalized code...?', enode);
         return pcanCompileExpr(locals, calls, enode, fdata, stmt)
@@ -617,7 +628,7 @@ export function pcompile(func, fdata) {
   return asm;
 }
 function compileStatement(stmt, regs, fdata, asm) {
-  vgroup('-', stmt.type);
+  vgroup('-', stmt.type, ...stmt.type === 'VarStatement' ? [[stmt.id.name]] : []);
   const r = _compileStatement(stmt, regs, fdata, asm);
   vgroupEnd();
   return r;
@@ -783,6 +794,7 @@ function compileExpression(exprNode, regs, fdata, stmt, withAssign, asm) {
     case 'Identifier': {
       vlog('- compiling identifier', [exprNode.name]);
       const r = compileReglit(exprNode, regs);
+      vlog('    - as', r);
       if (withAssign) return['=', ...r];
       return r;
     }
@@ -845,7 +857,7 @@ function compileExpression(exprNode, regs, fdata, stmt, withAssign, asm) {
         return ['', AST.getPrimitiveValue(exprNode)];
       }
 
-      ASSERT(false, 'support me?', exprNode, stmt);
+      ASSERT(false, 'support me?', exprNode.type, exprNode, stmt.type, stmt);
     }
   }
   ASSERT(false, 'add me expr', exprNode, stmt);
@@ -871,7 +883,6 @@ function compileReglit(node, regs) {
     return [s, ''];
   }
   if (node.type === 'Identifier') {
-    vlog('wtf?', [node.name], pcodeSupportedBuiltinFuncs.has(node.name), BUILTIN_SYMBOLS.has(node.name))
     if (pcodeSupportedBuiltinFuncs.has(node.name)) return [node.name, ''];
     if (BUILTIN_SYMBOLS.has(node.name)) ASSERT(false, 'builtin symbol that is not supported by pcode should not reach the compile step', node.name);
 
@@ -1016,7 +1027,7 @@ function prunStmt(registers, bytecode, pcodeData, fdata, prng, usePrng, depth) {
       case 'break': {
         // ['return', 'label']
         registers.$break = op[1];
-        vlog('BREAK', registers.$break);
+        vlog('BREAK', registers.$break ?? '<unlabeled>');
         return BREAK;
       }
 
@@ -1266,14 +1277,14 @@ function prunExpr(registers, op, pcodeData, fdata, prng, usePrng, depth) {
           vlog('String.prototype.lastIndexOf.call(', context, ',', arr[0], ') =', [r]);
           return r;
         }
-        case symbo('string', 'match'): { ASSERT(false, 'TODO string match') }
-        case symbo('string', 'replace'): { ASSERT(false, 'TODO string replace') }
+        case symbo('string', 'match'): { return ASSERT(false, 'TODO string match') }
+        case symbo('string', 'replace'): { return ASSERT(false, 'TODO string replace') }
         case symbo('string', 'slice'): {
           const r = String.prototype.slice.call(context, ...arr);
           vlog('String.prototype.slice.call(', context, ',', arr[0], ') =', [r]);
           return r;
         }
-        case symbo('string', 'split'): { ASSERT(false, 'TODO string split') }
+        case symbo('string', 'split'): { return ASSERT(false, 'TODO string split') }
         case symbo('string', 'substring'): {
           const r = String.prototype.substring.call(context, ...arr);
           vlog('String.prototype.substring.call(', context, ',', arr[0], ') =', [r]);
@@ -1698,10 +1709,10 @@ function prunVal(registers, r1, l1) {
 
 export function serializePcode(pcode, ind, regs) {
   return JSON.stringify(pcode, undefined, 2)
-  // As long as the tests don't use comma's in strings, we should be fine (:
-  .replace(/([a-z0-9"]),\n.*?([0-9a-z"])/g, '$1, $2')
-  .replace(/\[\n.*?([0-9a-z"])/g, '[ $1')
-  .replace(/([a-z0-9"])\n.*?]/g, '$1 ]')
+    // As long as the tests don't use comma's in strings, we should be fine (:
+    .replace(/([a-z0-9"]),\n.*?([0-9a-z"])/g, '$1, $2')
+    .replace(/\[\n.*?([0-9a-z"])/g, '[ $1')
+    .replace(/([a-z0-9"])\n.*?]/g, '$1 ]')
 }
 
 function serializeBytecode(bc) {
@@ -1715,9 +1726,9 @@ function serializeBytecode(bc) {
     return value;
   });
   return j
-  .replace(/_____UNDEFINED_____/g, 'undefined')
-  .replace(/_____INFINITY_____/g, 'Infinity')
-  .replace(/_____NAN_____/g, 'NaN')
+    .replace(/_____UNDEFINED_____/g, 'undefined')
+    .replace(/_____INFINITY_____/g, 'Infinity')
+    .replace(/_____NAN_____/g, 'NaN')
 }
 
 export function printPcode(pcode, ind=0) {

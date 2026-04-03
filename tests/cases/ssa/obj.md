@@ -98,6 +98,7 @@ if ($) {
 ## Todos triggered
 
 
+- (todo) - bail: No support for assigns to properties, yet
 - (todo) support ObjectExpression as var init in let_hoisting noob check
 
 

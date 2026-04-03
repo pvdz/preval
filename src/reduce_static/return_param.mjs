@@ -280,7 +280,6 @@ function _returnsParam(fdata) {
       // Note: the init was already validated so we can assume stuff here.
       let transformedInit;
       if (returnsParam) {
-        vlog('ok wtf shouldnt this work?', [returnedName], cloneArgIfParamElseCloneNode(AST.identifier(returnedName)))
         transformedInit = cloneArgIfParamElseCloneNode(AST.identifier(returnedName)); // lazy tsktsk
       } else {
         switch (returnedInit.type) {

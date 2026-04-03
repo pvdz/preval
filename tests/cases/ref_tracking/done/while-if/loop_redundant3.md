@@ -30,11 +30,11 @@
 (Annotated with pids)
 
 `````filename=intro
-let /*___4__*/ a = `unobservable`;
-while (/*___8__*/ $LOOP_UNROLLS_LEFT_500) {
-  /*9~21*/ /*___13__*/ a = $;
-  if ($) {
-    /*16~20*/ $(/*___20__*/ a);
+/* stmt(3): */ let /*___4__*/ a = `unobservable`;
+/* stmt(7): */ while (/*___8__*/ $LOOP_UNROLLS_LEFT_500) {
+  /*9~21*/ /* stmt(10): */ /*___13__*/ a = $;
+  /* stmt(14): */ if ($) {
+    /*16~20*/ /* stmt(17): */ $(/*___20__*/ a);
   } /*21~21*/ else {
   }
 }

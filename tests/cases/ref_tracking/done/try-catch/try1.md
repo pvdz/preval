@@ -26,8 +26,8 @@ $(x);
 (Annotated with pids)
 
 `````filename=intro
-let /*___4__*/ x = 1;
-$(/*___9__*/ x);
+/* stmt(3): */ let /*___4__*/ x = 1;
+/* stmt(6): */ $(/*___9__*/ x);
 `````
 
 

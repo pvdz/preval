@@ -25,11 +25,11 @@ while ($LOOP_NO_UNROLLS_LEFT) {
 (Annotated with pids)
 
 `````filename=intro
-let /*___5__*/ dathing = `jhayon.vercel.app`;
-const /*___9__*/ d = $(`x`);
-while (/*___15__*/ $LOOP_NO_UNROLLS_LEFT) {
-  /*16~24*/ /*___20__*/ dathing = $;
-  $($);
+/* stmt(4): */ let /*___5__*/ dathing = `jhayon.vercel.app`;
+/* stmt(8): */ const /*___9__*/ d = $(`x`);
+/* stmt(14): */ while (/*___15__*/ $LOOP_NO_UNROLLS_LEFT) {
+  /*16~24*/ /* stmt(17): */ /*___20__*/ dathing = $;
+  /* stmt(21): */ $($);
 }
 `````
 

@@ -33,20 +33,20 @@ $(x, y);
 (Annotated with pids)
 
 `````filename=intro
-const /*___6__*/ arr = [1, 2, 3];
-let /*___12__*/ x = /*___13__*/ undefined;
-let /*___15__*/ y = 1;
-try /*18~51*/ {
-  let /*___22__*/ tmpCalleeParam = /*___24__*/ arr[0];
-  $(/*___29__*/ tmpCalleeParam);
-  /*___33__*/ x = /*___32__*/ arr;
-  const /*___35__*/ tmpMCF = /*___37__*/ arr./*___38__*/ reverse;
-  /*___41__*/ $dotCall(/*___42__*/ tmpMCF, /*___43__*/ arr, `reverse`);
-  /*___51__*/ y = [5, 6];
+/* stmt(5): */ const /*___6__*/ arr = [1, 2, 3];
+/* stmt(11): */ let /*___12__*/ x = /*___13__*/ undefined;
+/* stmt(14): */ let /*___15__*/ y = 1;
+/* stmt(17): */ try /*18~51*/ {
+  /* stmt(21): */ let /*___22__*/ tmpCalleeParam = /*___24__*/ arr[0];
+  /* stmt(26): */ $(/*___29__*/ tmpCalleeParam);
+  /* stmt(30): */ /*___33__*/ x = /*___32__*/ arr;
+  /* stmt(34): */ const /*___35__*/ tmpMCF = /*___37__*/ arr./*___38__*/ reverse;
+  /* stmt(39): */ /*___41__*/ $dotCall(/*___42__*/ tmpMCF, /*___43__*/ arr, `reverse`);
+  /* stmt(46): */ /*___51__*/ y = [5, 6];
 } catch (/*___53__*/ e) /*54~59*/ {
-  $(`fail`);
+  /* stmt(55): */ $(`fail`);
 }
-$(/*___63__*/ x, /*___64__*/ y);
+/* stmt(60): */ $(/*___63__*/ x, /*___64__*/ y);
 `````
 
 

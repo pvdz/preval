@@ -36,7 +36,7 @@ $(f());
 (Annotated with pids)
 
 `````filename=intro
-let /*___5__*/ f = function () /*7*/ {
+/* stmt(4): */ let /*___5__*/ f = function () /*7*/ {
     debugger;
     let /*___15__*/ x = 1;
     let /*___18__*/ $implicitThrow = false;
@@ -44,26 +44,26 @@ let /*___5__*/ f = function () /*7*/ {
     let /*___24__*/ $finalCatchArg = /*___25__*/ undefined;
     let /*___27__*/ $finalArg = /*___28__*/ undefined;
     /*___30__*/ $finally: /*31~64*/ {
-      try /*33~53*/ {
-        /*___41__*/ x = $(2, `prevent optim`);
-        /*___43__*/ do_observe_assignment;
-        /*___47__*/ $finalStep = true;
-        /*___51__*/ $finalArg = /*___50__*/ x;
-        break /*___53__*/ $finally;
+      /* stmt(32): */ try /*33~53*/ {
+        /* stmt(34): */ /*___41__*/ x = $(2, `prevent optim`);
+        /* stmt(42): */ /*___43__*/ do_observe_assignment;
+        /* stmt(44): */ /*___47__*/ $finalStep = true;
+        /* stmt(48): */ /*___51__*/ $finalArg = /*___50__*/ x;
+        /* stmt(52): */ break /*___53__*/ $finally;
       } catch (/*___55__*/ $finalImplicit) /*56~64*/ {
-        /*___60__*/ $implicitThrow = true;
-        /*___64__*/ $finalCatchArg = /*___63__*/ $finalImplicit;
+        /* stmt(57): */ /*___60__*/ $implicitThrow = true;
+        /* stmt(61): */ /*___64__*/ $finalCatchArg = /*___63__*/ $finalImplicit;
       }
     }
     /*___72__*/ x = $(3, `prevent optim`);
     if (/*___74__*/ $implicitThrow) {
-      /*75~77*/ throw /*___77__*/ $finalCatchArg;
+      /*75~77*/ /* stmt(76): */ throw /*___77__*/ $finalCatchArg;
     } /*78~81*/ else {
-      return /*___81__*/ $finalArg;
+      /* stmt(79): */ return /*___81__*/ $finalArg;
     }
   };
-let /*___83__*/ tmpCalleeParam = /*___85__*/ f();
-$(/*___89__*/ tmpCalleeParam);
+/* stmt(82): */ let /*___83__*/ tmpCalleeParam = /*___85__*/ f();
+/* stmt(86): */ $(/*___89__*/ tmpCalleeParam);
 `````
 
 

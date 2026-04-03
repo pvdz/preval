@@ -36,31 +36,31 @@ $(x);          // x=2 3 4. not 1: a throw in the Catch does not reach here
 (Annotated with pids)
 
 `````filename=intro
-let /*___6__*/ x = 1;
-let /*___9__*/ $implicitThrow = false;
-let /*___12__*/ $finalCatchArg = /*___13__*/ undefined;
-try /*15~40*/ {
-  try /*17~25*/ {
-    $(/*___21__*/ x);
-    /*___25__*/ x = 2;
+/* stmt(5): */ let /*___6__*/ x = 1;
+/* stmt(8): */ let /*___9__*/ $implicitThrow = false;
+/* stmt(11): */ let /*___12__*/ $finalCatchArg = /*___13__*/ undefined;
+/* stmt(14): */ try /*15~40*/ {
+  /* stmt(16): */ try /*17~25*/ {
+    /* stmt(18): */ $(/*___21__*/ x);
+    /* stmt(22): */ /*___25__*/ x = 2;
   } catch (/*___27__*/ e) /*28~36*/ {
-    $(/*___32__*/ x);
-    /*___36__*/ x = 3;
+    /* stmt(29): */ $(/*___32__*/ x);
+    /* stmt(33): */ /*___36__*/ x = 3;
   }
-  $(/*___40__*/ x);
+  /* stmt(37): */ $(/*___40__*/ x);
 } catch (/*___42__*/ $finalImplicit) /*43~51*/ {
-  /*___47__*/ $implicitThrow = true;
-  /*___51__*/ $finalCatchArg = /*___50__*/ $finalImplicit;
+  /* stmt(44): */ /*___47__*/ $implicitThrow = true;
+  /* stmt(48): */ /*___51__*/ $finalCatchArg = /*___50__*/ $finalImplicit;
 }
-$(/*___55__*/ x);
-if ($1) {
-  /*58~62*/ /*___62__*/ x = 4;
+/* stmt(52): */ $(/*___55__*/ x);
+/* stmt(56): */ if ($1) {
+  /*58~62*/ /* stmt(59): */ /*___62__*/ x = 4;
 } /*63~63*/ else {
 }
-if (/*___65__*/ $implicitThrow) {
-  /*66~68*/ throw /*___68__*/ $finalCatchArg;
+/* stmt(64): */ if (/*___65__*/ $implicitThrow) {
+  /*66~68*/ /* stmt(67): */ throw /*___68__*/ $finalCatchArg;
 } /*69~73*/ else {
-  $(/*___73__*/ x);
+  /* stmt(70): */ $(/*___73__*/ x);
 }
 `````
 

@@ -34,16 +34,16 @@ $(x);         // x: Can only reach the last write, but preval should detect at l
 (Annotated with pids)
 
 `````filename=intro
-let /*___5__*/ y = $();
-let /*___9__*/ x = 1;
-while (true) {
-  /*13~24*/ if (/*___15__*/ x) {
-    /*16~22*/ /*___22__*/ x = $(0);
+/* stmt(4): */ let /*___5__*/ y = $();
+/* stmt(8): */ let /*___9__*/ x = 1;
+/* stmt(11): */ while (true) {
+  /*13~24*/ /* stmt(14): */ if (/*___15__*/ x) {
+    /*16~22*/ /* stmt(17): */ /*___22__*/ x = $(0);
   } /*23~24*/ else {
-    break;
+    /* stmt(24): */ break;
   }
 }
-$(/*___28__*/ x);
+/* stmt(25): */ $(/*___28__*/ x);
 `````
 
 

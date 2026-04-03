@@ -35,26 +35,26 @@ while ($) {
 (Annotated with pids)
 
 `````filename=intro
-let /*___4__*/ x = 1;
-while (true) {
-  /*8~49*/ if ($) {
-    /*11~47*/ /*___13__*/ $continue: /*14~47*/ {
-      const /*___17__*/ tmpIfTest = $(false);
-      if (/*___22__*/ tmpIfTest) {
-        /*23~29*/ $(/*___27__*/ x);
-        break /*___29__*/ $continue;
+/* stmt(3): */ let /*___4__*/ x = 1;
+/* stmt(6): */ while (true) {
+  /*8~49*/ /* stmt(9): */ if ($) {
+    /*11~47*/ /* stmt(12): */ /*___13__*/ $continue: /*14~47*/ {
+      /* stmt(16): */ const /*___17__*/ tmpIfTest = $(false);
+      /* stmt(21): */ if (/*___22__*/ tmpIfTest) {
+        /*23~29*/ /* stmt(24): */ $(/*___27__*/ x);
+        /* stmt(28): */ break /*___29__*/ $continue;
       } /*30~47*/ else {
-        if ($) {
-          /*33~42*/ $(/*___37__*/ x);
-          /*___41__*/ x = 6;
-          break;
+        /* stmt(31): */ if ($) {
+          /*33~42*/ /* stmt(34): */ $(/*___37__*/ x);
+          /* stmt(38): */ /*___41__*/ x = 6;
+          /* stmt(42): */ break;
         } /*43~47*/ else {
-          /*___47__*/ x = 3;
+          /* stmt(44): */ /*___47__*/ x = 3;
         }
       }
     }
   } /*48~49*/ else {
-    break;
+    /* stmt(49): */ break;
   }
 }
 `````

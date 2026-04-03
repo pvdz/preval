@@ -42,39 +42,39 @@
 (Annotated with pids)
 
 `````filename=intro
-let /*___6__*/ x = 1;
-$(/*___11__*/ x);
-let /*___13__*/ $implicitThrow$1 = false;
-let /*___16__*/ $finalCatchArg$1 = /*___17__*/ undefined;
-try /*19~60*/ {
-  let /*___23__*/ $implicitThrow = false;
-  let /*___26__*/ $finalCatchArg = /*___27__*/ undefined;
-  try /*29~37*/ {
-    $(/*___33__*/ x);
-    /*___37__*/ x = 2;
+/* stmt(5): */ let /*___6__*/ x = 1;
+/* stmt(8): */ $(/*___11__*/ x);
+/* stmt(12): */ let /*___13__*/ $implicitThrow$1 = false;
+/* stmt(15): */ let /*___16__*/ $finalCatchArg$1 = /*___17__*/ undefined;
+/* stmt(18): */ try /*19~60*/ {
+  /* stmt(22): */ let /*___23__*/ $implicitThrow = false;
+  /* stmt(25): */ let /*___26__*/ $finalCatchArg = /*___27__*/ undefined;
+  /* stmt(28): */ try /*29~37*/ {
+    /* stmt(30): */ $(/*___33__*/ x);
+    /* stmt(34): */ /*___37__*/ x = 2;
   } catch (/*___39__*/ $finalImplicit) /*40~46*/ {
-    $(/*___44__*/ x);
-    throw /*___46__*/ $finalImplicit;
+    /* stmt(41): */ $(/*___44__*/ x);
+    /* stmt(45): */ throw /*___46__*/ $finalImplicit;
   }
-  $(/*___50__*/ x);
-  if (/*___52__*/ $implicitThrow) {
-    /*53~55*/ throw /*___55__*/ $finalCatchArg;
+  /* stmt(47): */ $(/*___50__*/ x);
+  /* stmt(51): */ if (/*___52__*/ $implicitThrow) {
+    /*53~55*/ /* stmt(54): */ throw /*___55__*/ $finalCatchArg;
   } /*56~60*/ else {
-    $(/*___60__*/ x);
+    /* stmt(57): */ $(/*___60__*/ x);
   }
 } catch (/*___62__*/ e) /*63~78*/ {
-  try /*65~69*/ {
-    $(/*___69__*/ x);
+  /* stmt(64): */ try /*65~69*/ {
+    /* stmt(66): */ $(/*___69__*/ x);
   } catch (/*___71__*/ $finalImplicit$1) /*72~78*/ {
-    $(/*___76__*/ x);
-    throw /*___78__*/ $finalImplicit$1;
+    /* stmt(73): */ $(/*___76__*/ x);
+    /* stmt(77): */ throw /*___78__*/ $finalImplicit$1;
   }
 }
-$(/*___82__*/ x);
-if (/*___84__*/ $implicitThrow$1) {
-  /*85~87*/ throw /*___87__*/ $finalCatchArg$1;
+/* stmt(79): */ $(/*___82__*/ x);
+/* stmt(83): */ if (/*___84__*/ $implicitThrow$1) {
+  /*85~87*/ /* stmt(86): */ throw /*___87__*/ $finalCatchArg$1;
 } /*88~92*/ else {
-  $(/*___92__*/ x);
+  /* stmt(89): */ $(/*___92__*/ x);
 }
 `````
 

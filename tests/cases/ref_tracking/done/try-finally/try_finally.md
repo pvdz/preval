@@ -31,23 +31,23 @@ $(a);   // can only observe 3
 (Annotated with pids)
 
 `````filename=intro
-let /*___6__*/ a = 1;
-let /*___9__*/ $implicitThrow = false;
-let /*___12__*/ $finalCatchArg = /*___13__*/ undefined;
-try /*15~23*/ {
-  $(/*___19__*/ a);
-  /*___23__*/ a = 2;
+/* stmt(5): */ let /*___6__*/ a = 1;
+/* stmt(8): */ let /*___9__*/ $implicitThrow = false;
+/* stmt(11): */ let /*___12__*/ $finalCatchArg = /*___13__*/ undefined;
+/* stmt(14): */ try /*15~23*/ {
+  /* stmt(16): */ $(/*___19__*/ a);
+  /* stmt(20): */ /*___23__*/ a = 2;
 } catch (/*___25__*/ $finalImplicit) /*26~36*/ {
-  $(/*___30__*/ a);
-  /*___34__*/ a = 3;
-  throw /*___36__*/ $finalImplicit;
+  /* stmt(27): */ $(/*___30__*/ a);
+  /* stmt(31): */ /*___34__*/ a = 3;
+  /* stmt(35): */ throw /*___36__*/ $finalImplicit;
 }
-$(/*___40__*/ a);
-/*___44__*/ a = 3;
-if (/*___46__*/ $implicitThrow) {
-  /*47~49*/ throw /*___49__*/ $finalCatchArg;
+/* stmt(37): */ $(/*___40__*/ a);
+/* stmt(41): */ /*___44__*/ a = 3;
+/* stmt(45): */ if (/*___46__*/ $implicitThrow) {
+  /*47~49*/ /* stmt(48): */ throw /*___49__*/ $finalCatchArg;
 } /*50~54*/ else {
-  $(/*___54__*/ a);
+  /* stmt(51): */ $(/*___54__*/ a);
 }
 `````
 

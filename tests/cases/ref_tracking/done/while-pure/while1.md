@@ -27,10 +27,10 @@ $(x); // unreachable, else x=1 2
 (Annotated with pids)
 
 `````filename=intro
-let /*___4__*/ x = 1;
-while (true) {
-  /*8~16*/ /*___12__*/ x = 2;
-  $(/*___16__*/ x);
+/* stmt(3): */ let /*___4__*/ x = 1;
+/* stmt(6): */ while (true) {
+  /*8~16*/ /* stmt(9): */ /*___12__*/ x = 2;
+  /* stmt(13): */ $(/*___16__*/ x);
 }
 `````
 

@@ -33,26 +33,26 @@ $(a); // x=2 3
 (Annotated with pids)
 
 `````filename=intro
-let /*___7__*/ a = 1;
-let /*___10__*/ $implicitThrow = false;
-let /*___13__*/ $finalCatchArg = /*___14__*/ undefined;
-try /*16~24*/ {
-  $(/*___20__*/ a);
-  /*___24__*/ a = 2;
+/* stmt(6): */ let /*___7__*/ a = 1;
+/* stmt(9): */ let /*___10__*/ $implicitThrow = false;
+/* stmt(12): */ let /*___13__*/ $finalCatchArg = /*___14__*/ undefined;
+/* stmt(15): */ try /*16~24*/ {
+  /* stmt(17): */ $(/*___20__*/ a);
+  /* stmt(21): */ /*___24__*/ a = 2;
 } catch (/*___26__*/ $finalImplicit) /*27~35*/ {
-  /*___31__*/ $implicitThrow = true;
-  /*___35__*/ $finalCatchArg = /*___34__*/ $finalImplicit;
+  /* stmt(28): */ /*___31__*/ $implicitThrow = true;
+  /* stmt(32): */ /*___35__*/ $finalCatchArg = /*___34__*/ $finalImplicit;
 }
-$(/*___39__*/ a);
-const /*___41__*/ tmpIfTest = $();
-if (/*___45__*/ tmpIfTest) {
-  /*46~50*/ /*___50__*/ a = 3;
+/* stmt(36): */ $(/*___39__*/ a);
+/* stmt(40): */ const /*___41__*/ tmpIfTest = $();
+/* stmt(44): */ if (/*___45__*/ tmpIfTest) {
+  /*46~50*/ /* stmt(47): */ /*___50__*/ a = 3;
 } /*51~51*/ else {
 }
-if (/*___53__*/ $implicitThrow) {
-  /*54~56*/ throw /*___56__*/ $finalCatchArg;
+/* stmt(52): */ if (/*___53__*/ $implicitThrow) {
+  /*54~56*/ /* stmt(55): */ throw /*___56__*/ $finalCatchArg;
 } /*57~61*/ else {
-  $(/*___61__*/ a);
+  /* stmt(58): */ $(/*___61__*/ a);
 }
 `````
 

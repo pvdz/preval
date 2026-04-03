@@ -48,7 +48,7 @@ $(f);
 (Annotated with pids)
 
 `````filename=intro
-let /*___5__*/ f = function () /*7*/ {
+/* stmt(4): */ let /*___5__*/ f = function () /*7*/ {
     debugger;
     let /*___12__*/ THIS_IS_DA____$1 = function () /*14*/ {
         debugger;
@@ -59,12 +59,12 @@ let /*___5__*/ f = function () /*7*/ {
     $(/*___31__*/ tmpCalleeParam);
     return /*___34__*/ undefined;
   };
-let /*___36__*/ g = function () /*38*/ {
+/* stmt(35): */ let /*___36__*/ g = function () /*38*/ {
     debugger;
     $(`always here`);
     return /*___47__*/ undefined;
   };
-$(/*___51__*/ f);
+/* stmt(48): */ $(/*___51__*/ f);
 `````
 
 

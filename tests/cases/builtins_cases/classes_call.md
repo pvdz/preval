@@ -179,7 +179,7 @@ Should call `$` with:
  - 3: 'String:', ''
  - 4: 'Array:', []
  - 5: 'Object:', {}
- - 6: 'Date:', 66
+ - 6: 'Date:', 64
  - 7: 'Function:', '<function>'
  - 8: 'RegExp:', {}
  - eval returned: ("<crash[ Constructor Map requires 'new' ]>")

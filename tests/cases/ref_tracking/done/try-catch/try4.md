@@ -27,11 +27,11 @@ $(x); // 1 or 2 ("the assignment _could_ fail")
 (Annotated with pids)
 
 `````filename=intro
-let /*___4__*/ x = 1;
-try /*7~11*/ {
-  /*___11__*/ x = 2;
+/* stmt(3): */ let /*___4__*/ x = 1;
+/* stmt(6): */ try /*7~11*/ {
+  /* stmt(8): */ /*___11__*/ x = 2;
 } catch (/*___13__*/ e) /*14~14*/ {}
-$(/*___18__*/ x);
+/* stmt(15): */ $(/*___18__*/ x);
 `````
 
 

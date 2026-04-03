@@ -45,40 +45,40 @@
 (Annotated with pids)
 
 `````filename=intro
-let /*___4__*/ x = $(1);
-if (/*___9__*/ x) {
-  /*10~109*/ /*___12__*/ here: /*13~95*/ {
-    $(/*___20__*/ x);
-    /*___26__*/ x = $(2);
-    $(/*___30__*/ x);
-    /*___36__*/ x = $(3);
-    let /*___38__*/ $implicitThrow = false;
-    let /*___41__*/ $finalStep = false;
-    let /*___44__*/ $finalCatchArg = /*___45__*/ undefined;
-    /*___47__*/ $finally: /*48~77*/ {
-      try /*50~66*/ {
-        $(/*___54__*/ x);
-        /*___60__*/ x = $(4);
-        /*___64__*/ $finalStep = true;
-        break /*___66__*/ $finally;
+/* stmt(3): */ let /*___4__*/ x = $(1);
+/* stmt(8): */ if (/*___9__*/ x) {
+  /*10~109*/ /* stmt(11): */ /*___12__*/ here: /*13~95*/ {
+    /* stmt(17): */ $(/*___20__*/ x);
+    /* stmt(21): */ /*___26__*/ x = $(2);
+    /* stmt(27): */ $(/*___30__*/ x);
+    /* stmt(31): */ /*___36__*/ x = $(3);
+    /* stmt(37): */ let /*___38__*/ $implicitThrow = false;
+    /* stmt(40): */ let /*___41__*/ $finalStep = false;
+    /* stmt(43): */ let /*___44__*/ $finalCatchArg = /*___45__*/ undefined;
+    /* stmt(46): */ /*___47__*/ $finally: /*48~77*/ {
+      /* stmt(49): */ try /*50~66*/ {
+        /* stmt(51): */ $(/*___54__*/ x);
+        /* stmt(55): */ /*___60__*/ x = $(4);
+        /* stmt(61): */ /*___64__*/ $finalStep = true;
+        /* stmt(65): */ break /*___66__*/ $finally;
       } catch (/*___68__*/ $finalImplicit) /*69~77*/ {
-        /*___73__*/ $implicitThrow = true;
-        /*___77__*/ $finalCatchArg = /*___76__*/ $finalImplicit;
+        /* stmt(70): */ /*___73__*/ $implicitThrow = true;
+        /* stmt(74): */ /*___77__*/ $finalCatchArg = /*___76__*/ $finalImplicit;
       }
     }
-    $(/*___81__*/ x);
-    /*___87__*/ x = $(5);
-    if (/*___89__*/ $implicitThrow) {
-      /*90~92*/ throw /*___92__*/ $finalCatchArg;
+    /* stmt(78): */ $(/*___81__*/ x);
+    /* stmt(82): */ /*___87__*/ x = $(5);
+    /* stmt(88): */ if (/*___89__*/ $implicitThrow) {
+      /*90~92*/ /* stmt(91): */ throw /*___92__*/ $finalCatchArg;
     } /*93~95*/ else {
-      break /*___95__*/ here;
+      /* stmt(94): */ break /*___95__*/ here;
     }
   }
-  $(/*___99__*/ x);
-  /*___105__*/ x = $(7);
-  $(/*___109__*/ x);
+  /* stmt(96): */ $(/*___99__*/ x);
+  /* stmt(100): */ /*___105__*/ x = $(7);
+  /* stmt(106): */ $(/*___109__*/ x);
 } /*110~114*/ else {
-  $(/*___114__*/ x);
+  /* stmt(111): */ $(/*___114__*/ x);
 }
 `````
 

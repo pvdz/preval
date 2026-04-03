@@ -32,26 +32,26 @@ $(f());
 (Annotated with pids)
 
 `````filename=intro
-let /*___5__*/ f = function () /*7*/ {
+/* stmt(4): */ let /*___5__*/ f = function () /*7*/ {
     debugger;
     const /*___12__*/ obj = { /*___15__*/ a: 10, /*___18__*/ b: 20 };
     const /*___21__*/ tmpForInGen = /*___23__*/ $forIn(/*___24__*/ obj);
     while (/*___26__*/ $LOOP_NO_UNROLLS_LEFT) {
-      /*27~60*/ const /*___31__*/ tmpForInNext = /*___33__*/ tmpForInGen();
-      const /*___35__*/ tmpIfTest = /*___37__*/ tmpForInNext./*___38__*/ done;
-      if (/*___40__*/ tmpIfTest) {
-        /*41~42*/ break;
+      /*27~60*/ /* stmt(30): */ const /*___31__*/ tmpForInNext = /*___33__*/ tmpForInGen();
+      /* stmt(34): */ const /*___35__*/ tmpIfTest = /*___37__*/ tmpForInNext./*___38__*/ done;
+      /* stmt(39): */ if (/*___40__*/ tmpIfTest) {
+        /*41~42*/ /* stmt(42): */ break;
       } /*43~60*/ else {
-        const /*___47__*/ x = /*___49__*/ tmpForInNext./*___50__*/ value;
-        const /*___52__*/ tmpReturnArg = $(1, `return`);
-        return /*___60__*/ tmpReturnArg;
+        /* stmt(46): */ const /*___47__*/ x = /*___49__*/ tmpForInNext./*___50__*/ value;
+        /* stmt(51): */ const /*___52__*/ tmpReturnArg = $(1, `return`);
+        /* stmt(58): */ return /*___60__*/ tmpReturnArg;
       }
     }
     $(`keep, do not eval`);
     return /*___67__*/ undefined;
   };
-let /*___69__*/ tmpCalleeParam = /*___71__*/ f();
-$(/*___75__*/ tmpCalleeParam);
+/* stmt(68): */ let /*___69__*/ tmpCalleeParam = /*___71__*/ f();
+/* stmt(72): */ $(/*___75__*/ tmpCalleeParam);
 `````
 
 

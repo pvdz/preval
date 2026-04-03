@@ -33,16 +33,16 @@ if ($) {
 (Annotated with pids)
 
 `````filename=intro
-let /*___4__*/ x = 1;
-/*___7__*/ loopStop: /*8~14*/ {
-  if ($) {
+/* stmt(3): */ let /*___4__*/ x = 1;
+/* stmt(6): */ /*___7__*/ loopStop: /*8~14*/ {
+  /* stmt(9): */ if ($) {
     /*11~11*/
   } /*12~14*/ else {
-    break /*___14__*/ loopStop;
+    /* stmt(13): */ break /*___14__*/ loopStop;
   }
 }
-if ($) {
-  /*17~21*/ $(/*___21__*/ x);
+/* stmt(15): */ if ($) {
+  /*17~21*/ /* stmt(18): */ $(/*___21__*/ x);
 } /*22~22*/ else {
 }
 `````

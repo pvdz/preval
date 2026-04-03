@@ -41,25 +41,25 @@
 (Annotated with pids)
 
 `````filename=intro
-let /*___7__*/ x = 1;
-$(/*___12__*/ x);
-let /*___14__*/ $implicitThrow = false;
-let /*___17__*/ $finalStep = false;
-let /*___20__*/ $finalCatchArg = /*___21__*/ undefined;
-/*___23__*/ $finally: /*24~51*/ {
-  try /*26~40*/ {
-    $(/*___30__*/ x);
-    /*___34__*/ x = 2;
-    /*___38__*/ $finalStep = true;
-    break /*___40__*/ $finally;
+/* stmt(6): */ let /*___7__*/ x = 1;
+/* stmt(9): */ $(/*___12__*/ x);
+/* stmt(13): */ let /*___14__*/ $implicitThrow = false;
+/* stmt(16): */ let /*___17__*/ $finalStep = false;
+/* stmt(19): */ let /*___20__*/ $finalCatchArg = /*___21__*/ undefined;
+/* stmt(22): */ /*___23__*/ $finally: /*24~51*/ {
+  /* stmt(25): */ try /*26~40*/ {
+    /* stmt(27): */ $(/*___30__*/ x);
+    /* stmt(31): */ /*___34__*/ x = 2;
+    /* stmt(35): */ /*___38__*/ $finalStep = true;
+    /* stmt(39): */ break /*___40__*/ $finally;
   } catch (/*___42__*/ $finalImplicit) /*43~51*/ {
-    /*___47__*/ $implicitThrow = true;
-    /*___51__*/ $finalCatchArg = /*___50__*/ $finalImplicit;
+    /* stmt(44): */ /*___47__*/ $implicitThrow = true;
+    /* stmt(48): */ /*___51__*/ $finalCatchArg = /*___50__*/ $finalImplicit;
   }
 }
-$(/*___55__*/ x);
-/*___59__*/ x = 3;
-$(/*___63__*/ x);
+/* stmt(52): */ $(/*___55__*/ x);
+/* stmt(56): */ /*___59__*/ x = 3;
+/* stmt(60): */ $(/*___63__*/ x);
 `````
 
 

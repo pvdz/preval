@@ -37,25 +37,25 @@
 (Annotated with pids)
 
 `````filename=intro
-let /*___4__*/ x = 1;
-$(/*___9__*/ x);
-while (true) {
-  /*12~59*/ /*___18__*/ x = 2;
-  let /*___20__*/ $implicitThrow = false;
-  let /*___23__*/ $finalCatchArg = /*___24__*/ undefined;
-  try /*26~30*/ {
-    $(/*___30__*/ x);
+/* stmt(3): */ let /*___4__*/ x = 1;
+/* stmt(6): */ $(/*___9__*/ x);
+/* stmt(10): */ while (true) {
+  /*12~59*/ /* stmt(15): */ /*___18__*/ x = 2;
+  /* stmt(19): */ let /*___20__*/ $implicitThrow = false;
+  /* stmt(22): */ let /*___23__*/ $finalCatchArg = /*___24__*/ undefined;
+  /* stmt(25): */ try /*26~30*/ {
+    /* stmt(27): */ $(/*___30__*/ x);
   } catch (/*___32__*/ $finalImplicit) /*33~41*/ {
-    /*___37__*/ $implicitThrow = true;
-    /*___41__*/ $finalCatchArg = /*___40__*/ $finalImplicit;
+    /* stmt(34): */ /*___37__*/ $implicitThrow = true;
+    /* stmt(38): */ /*___41__*/ $finalCatchArg = /*___40__*/ $finalImplicit;
   }
-  if ($) {
-    /*44~52*/ $(/*___48__*/ x);
-    /*___52__*/ x = 3;
+  /* stmt(42): */ if ($) {
+    /*44~52*/ /* stmt(45): */ $(/*___48__*/ x);
+    /* stmt(49): */ /*___52__*/ x = 3;
   } /*53~53*/ else {
   }
-  if (/*___55__*/ $implicitThrow) {
-    /*56~58*/ throw /*___58__*/ $finalCatchArg;
+  /* stmt(54): */ if (/*___55__*/ $implicitThrow) {
+    /*56~58*/ /* stmt(57): */ throw /*___58__*/ $finalCatchArg;
   } /*59~59*/ else {
   }
 }

@@ -113,21 +113,21 @@ $(x); // x=5 or x=6
 (Annotated with pids)
 
 `````filename=intro
-let /*___4__*/ x = 5;
-while (true) {
-  /*8~37*/ const /*___12__*/ tmpIfTest = $(false);
-  if (/*___17__*/ tmpIfTest) {
-    /*18~22*/ /*___22__*/ x = 6;
+/* stmt(3): */ let /*___4__*/ x = 5;
+/* stmt(6): */ while (true) {
+  /*8~37*/ /* stmt(11): */ const /*___12__*/ tmpIfTest = $(false);
+  /* stmt(16): */ if (/*___17__*/ tmpIfTest) {
+    /*18~22*/ /* stmt(19): */ /*___22__*/ x = 6;
   } /*23~27*/ else {
-    $(/*___27__*/ x);
+    /* stmt(24): */ $(/*___27__*/ x);
   }
-  const /*___29__*/ tmpIfTest$1 = $(true);
-  if (/*___34__*/ tmpIfTest$1) {
-    /*35~36*/ break;
+  /* stmt(28): */ const /*___29__*/ tmpIfTest$1 = $(true);
+  /* stmt(33): */ if (/*___34__*/ tmpIfTest$1) {
+    /*35~36*/ /* stmt(36): */ break;
   } /*37~37*/ else {
   }
 }
-$(/*___41__*/ x);
+/* stmt(38): */ $(/*___41__*/ x);
 `````
 
 

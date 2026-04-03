@@ -36,15 +36,15 @@ $(x); // unreachable
 (Annotated with pids)
 
 `````filename=intro
-let /*___4__*/ x = 1;
-while (true) {
-  /*8~29*/ /*___10__*/ nestedLoop: /*11~29*/ {
-    if ($) {
-      /*14~18*/ $(/*___18__*/ x);
+/* stmt(3): */ let /*___4__*/ x = 1;
+/* stmt(6): */ while (true) {
+  /*8~29*/ /* stmt(9): */ /*___10__*/ nestedLoop: /*11~29*/ {
+    /* stmt(12): */ if ($) {
+      /*14~18*/ /* stmt(15): */ $(/*___18__*/ x);
     } /*19~29*/ else {
-      $(/*___23__*/ x);
-      /*___27__*/ x = 2;
-      break /*___29__*/ nestedLoop;
+      /* stmt(20): */ $(/*___23__*/ x);
+      /* stmt(24): */ /*___27__*/ x = 2;
+      /* stmt(28): */ break /*___29__*/ nestedLoop;
     }
   }
 }

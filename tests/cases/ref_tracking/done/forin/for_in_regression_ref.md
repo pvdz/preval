@@ -31,23 +31,23 @@ $(x);
 (Annotated with pids)
 
 `````filename=intro
-$(/*___9__*/ undefined);
-let /*___11__*/ x = /*___12__*/ undefined;
-const /*___14__*/ list = [100];
-let /*___18__*/ arr = /*___19__*/ undefined;
-const /*___21__*/ tmpForInGenNext = /*___23__*/ $forIn(/*___24__*/ list);
-while (/*___26__*/ $LOOP_NO_UNROLLS_LEFT) {
-  /*27~59*/ const /*___31__*/ tmpForInNext = /*___33__*/ tmpForInGenNext();
-  const /*___35__*/ tmpIfTest = /*___37__*/ tmpForInNext./*___38__*/ done;
-  if (/*___40__*/ tmpIfTest) {
-    /*41~42*/ break;
+/* stmt(6): */ $(/*___9__*/ undefined);
+/* stmt(10): */ let /*___11__*/ x = /*___12__*/ undefined;
+/* stmt(13): */ const /*___14__*/ list = [100];
+/* stmt(17): */ let /*___18__*/ arr = /*___19__*/ undefined;
+/* stmt(20): */ const /*___21__*/ tmpForInGenNext = /*___23__*/ $forIn(/*___24__*/ list);
+/* stmt(25): */ while (/*___26__*/ $LOOP_NO_UNROLLS_LEFT) {
+  /*27~59*/ /* stmt(30): */ const /*___31__*/ tmpForInNext = /*___33__*/ tmpForInGenNext();
+  /* stmt(34): */ const /*___35__*/ tmpIfTest = /*___37__*/ tmpForInNext./*___38__*/ done;
+  /* stmt(39): */ if (/*___40__*/ tmpIfTest) {
+    /*41~42*/ /* stmt(42): */ break;
   } /*43~59*/ else {
-    /*___49__*/ arr = /*___47__*/ tmpForInNext./*___48__*/ value;
-    /*___53__*/ x = /*___52__*/ arr;
-    $(/*___57__*/ arr, `for`);
+    /* stmt(44): */ /*___49__*/ arr = /*___47__*/ tmpForInNext./*___48__*/ value;
+    /* stmt(50): */ /*___53__*/ x = /*___52__*/ arr;
+    /* stmt(54): */ $(/*___57__*/ arr, `for`);
   }
 }
-$(/*___63__*/ x);
+/* stmt(60): */ $(/*___63__*/ x);
 `````
 
 

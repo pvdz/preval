@@ -30,20 +30,20 @@ while ($) {
 (Annotated with pids)
 
 `````filename=intro
-let /*___4__*/ x = 1;
-while (true) {
-  /*8~36*/ if ($) {
-    /*11~34*/ /*___13__*/ $continue: /*14~34*/ {
-      const /*___17__*/ tmpIfTest = $(false);
-      if (/*___22__*/ tmpIfTest) {
-        /*23~29*/ /*___27__*/ x = 3;
-        break /*___29__*/ $continue;
+/* stmt(3): */ let /*___4__*/ x = 1;
+/* stmt(6): */ while (true) {
+  /*8~36*/ /* stmt(9): */ if ($) {
+    /*11~34*/ /* stmt(12): */ /*___13__*/ $continue: /*14~34*/ {
+      /* stmt(16): */ const /*___17__*/ tmpIfTest = $(false);
+      /* stmt(21): */ if (/*___22__*/ tmpIfTest) {
+        /*23~29*/ /* stmt(24): */ /*___27__*/ x = 3;
+        /* stmt(28): */ break /*___29__*/ $continue;
       } /*30~34*/ else {
-        $(/*___34__*/ x);
+        /* stmt(31): */ $(/*___34__*/ x);
       }
     }
   } /*35~36*/ else {
-    break;
+    /* stmt(36): */ break;
   }
 }
 `````

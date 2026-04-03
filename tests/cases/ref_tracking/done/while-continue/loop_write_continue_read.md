@@ -29,17 +29,17 @@ while (true) {
 (Annotated with pids)
 
 `````filename=intro
-let /*___4__*/ x = 0;
-while (true) {
-  /*8~40*/ /*___10__*/ $continue: /*11~40*/ {
-    /*___18__*/ x = /*___16__*/ x + 1;
-    $(/*___22__*/ x, 1);
-    const /*___25__*/ tmpIfTest = /*___27__*/ x < 4;
-    if (/*___30__*/ tmpIfTest) {
-      /*31~33*/ break /*___33__*/ $continue;
+/* stmt(3): */ let /*___4__*/ x = 0;
+/* stmt(6): */ while (true) {
+  /*8~40*/ /* stmt(9): */ /*___10__*/ $continue: /*11~40*/ {
+    /* stmt(13): */ /*___18__*/ x = /*___16__*/ x + 1;
+    /* stmt(19): */ $(/*___22__*/ x, 1);
+    /* stmt(24): */ const /*___25__*/ tmpIfTest = /*___27__*/ x < 4;
+    /* stmt(29): */ if (/*___30__*/ tmpIfTest) {
+      /*31~33*/ /* stmt(32): */ break /*___33__*/ $continue;
     } /*34~40*/ else {
-      $(/*___38__*/ x, 2);
-      break;
+      /* stmt(35): */ $(/*___38__*/ x, 2);
+      /* stmt(40): */ break;
     }
   }
 }

@@ -41,43 +41,43 @@ $(x, 5);              // x=4 5
 (Annotated with pids)
 
 `````filename=intro
-let /*___6__*/ x = 1;
-let /*___9__*/ $implicitThrow$1 = false;
-let /*___12__*/ $finalCatchArg$1 = /*___13__*/ undefined;
-try /*15~75*/ {
-  $(/*___21__*/ x, 1);
-  /*___26__*/ x = 2;
-  let /*___28__*/ $implicitThrow = false;
-  let /*___31__*/ $finalCatchArg = /*___32__*/ undefined;
-  try /*34~43*/ {
-    $(/*___38__*/ x, 2);
-    /*___43__*/ x = 3;
+/* stmt(5): */ let /*___6__*/ x = 1;
+/* stmt(8): */ let /*___9__*/ $implicitThrow$1 = false;
+/* stmt(11): */ let /*___12__*/ $finalCatchArg$1 = /*___13__*/ undefined;
+/* stmt(14): */ try /*15~75*/ {
+  /* stmt(18): */ $(/*___21__*/ x, 1);
+  /* stmt(23): */ /*___26__*/ x = 2;
+  /* stmt(27): */ let /*___28__*/ $implicitThrow = false;
+  /* stmt(30): */ let /*___31__*/ $finalCatchArg = /*___32__*/ undefined;
+  /* stmt(33): */ try /*34~43*/ {
+    /* stmt(35): */ $(/*___38__*/ x, 2);
+    /* stmt(40): */ /*___43__*/ x = 3;
   } catch (/*___45__*/ $finalImplicit) /*46~54*/ {
-    /*___50__*/ $implicitThrow = true;
-    /*___54__*/ $finalCatchArg = /*___53__*/ $finalImplicit;
+    /* stmt(47): */ /*___50__*/ $implicitThrow = true;
+    /* stmt(51): */ /*___54__*/ $finalCatchArg = /*___53__*/ $finalImplicit;
   }
-  $(/*___58__*/ x, 2, 3);
-  /*___64__*/ x = 4;
-  $(/*___68__*/ x, 4);
-  if (/*___71__*/ $implicitThrow) {
-    /*72~74*/ throw /*___74__*/ $finalCatchArg;
+  /* stmt(55): */ $(/*___58__*/ x, 2, 3);
+  /* stmt(61): */ /*___64__*/ x = 4;
+  /* stmt(65): */ $(/*___68__*/ x, 4);
+  /* stmt(70): */ if (/*___71__*/ $implicitThrow) {
+    /*72~74*/ /* stmt(73): */ throw /*___74__*/ $finalCatchArg;
   } /*75~75*/ else {
   }
 } catch (/*___77__*/ e) /*78~111*/ {
-  try /*80~97*/ {
-    $(/*___84__*/ x, 1, 2, 3, 4);
-    /*___92__*/ x = 5;
-    $(/*___96__*/ x, 5);
+  /* stmt(79): */ try /*80~97*/ {
+    /* stmt(81): */ $(/*___84__*/ x, 1, 2, 3, 4);
+    /* stmt(89): */ /*___92__*/ x = 5;
+    /* stmt(93): */ $(/*___96__*/ x, 5);
   } catch (/*___99__*/ $finalImplicit$1) /*100~111*/ {
-    $(/*___104__*/ x, 1, 2, 3, 4, 5);
-    throw /*___111__*/ $finalImplicit$1;
+    /* stmt(101): */ $(/*___104__*/ x, 1, 2, 3, 4, 5);
+    /* stmt(110): */ throw /*___111__*/ $finalImplicit$1;
   }
 }
-$(/*___115__*/ x, 1, 2, 3, 4, 5);
-if (/*___122__*/ $implicitThrow$1) {
-  /*123~125*/ throw /*___125__*/ $finalCatchArg$1;
+/* stmt(112): */ $(/*___115__*/ x, 1, 2, 3, 4, 5);
+/* stmt(121): */ if (/*___122__*/ $implicitThrow$1) {
+  /*123~125*/ /* stmt(124): */ throw /*___125__*/ $finalCatchArg$1;
 } /*126~131*/ else {
-  $(/*___130__*/ x, 5);
+  /* stmt(127): */ $(/*___130__*/ x, 5);
 }
 `````
 

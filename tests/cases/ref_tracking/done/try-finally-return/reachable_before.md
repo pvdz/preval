@@ -31,7 +31,7 @@ $(f);
 (Annotated with pids)
 
 `````filename=intro
-let /*___4__*/ f = function () /*6*/ {
+/* stmt(3): */ let /*___4__*/ f = function () /*6*/ {
     debugger;
     let /*___14__*/ x = 1;
     let /*___17__*/ $implicitThrow = false;
@@ -39,32 +39,32 @@ let /*___4__*/ f = function () /*6*/ {
     let /*___23__*/ $finalCatchArg = /*___24__*/ undefined;
     let /*___26__*/ $finalArg = /*___27__*/ undefined;
     /*___29__*/ $finally: /*30~64*/ {
-      try /*32~55*/ {
-        const /*___35__*/ tmpIfTest = $();
-        if (/*___39__*/ tmpIfTest) {
-          /*40~50*/ /*___44__*/ $finalStep = true;
-          /*___48__*/ $finalArg = /*___47__*/ undefined;
-          break /*___50__*/ $finally;
+      /* stmt(31): */ try /*32~55*/ {
+        /* stmt(34): */ const /*___35__*/ tmpIfTest = $();
+        /* stmt(38): */ if (/*___39__*/ tmpIfTest) {
+          /*40~50*/ /* stmt(41): */ /*___44__*/ $finalStep = true;
+          /* stmt(45): */ /*___48__*/ $finalArg = /*___47__*/ undefined;
+          /* stmt(49): */ break /*___50__*/ $finally;
         } /*51~55*/ else {
-          /*___55__*/ x = 2;
+          /* stmt(52): */ /*___55__*/ x = 2;
         }
       } catch (/*___57__*/ $finalImplicit) /*58~64*/ {
-        $(/*___62__*/ x);
-        throw /*___64__*/ $finalImplicit;
+        /* stmt(59): */ $(/*___62__*/ x);
+        /* stmt(63): */ throw /*___64__*/ $finalImplicit;
       }
     }
     $(/*___68__*/ x);
     if (/*___70__*/ $implicitThrow) {
-      /*71~73*/ throw /*___73__*/ $finalCatchArg;
+      /*71~73*/ /* stmt(72): */ throw /*___73__*/ $finalCatchArg;
     } /*74~83*/ else {
-      if (/*___76__*/ $finalStep) {
-        /*77~80*/ return /*___80__*/ $finalArg;
+      /* stmt(75): */ if (/*___76__*/ $finalStep) {
+        /*77~80*/ /* stmt(78): */ return /*___80__*/ $finalArg;
       } /*81~83*/ else {
-        return /*___83__*/ undefined;
+        /* stmt(82): */ return /*___83__*/ undefined;
       }
     }
   };
-$(/*___87__*/ f);
+/* stmt(84): */ $(/*___87__*/ f);
 `````
 
 

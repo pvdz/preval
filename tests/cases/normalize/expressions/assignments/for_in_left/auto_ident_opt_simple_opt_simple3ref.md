@@ -49,29 +49,29 @@ $(a);
 (Annotated with pids)
 
 `````filename=intro
-let /*___7__*/ a = { /*___10__*/ a: 999, /*___13__*/ b: 1000 };
-const /*___16__*/ tmpCalleeParam$1 = { /*___19__*/ x: 1 };
-const /*___22__*/ tmpForInGenNext = /*___24__*/ $forIn(/*___25__*/ tmpCalleeParam$1);
-const /*___27__*/ tmpObjLitVal = { /*___30__*/ y: $ };
-while (/*___33__*/ $LOOP_NO_UNROLLS_LEFT) {
-  /*34~82*/ const /*___38__*/ tmpForInNext = /*___40__*/ tmpForInGenNext();
-  const /*___42__*/ tmpIfTest = /*___44__*/ tmpForInNext./*___45__*/ done;
-  if (/*___47__*/ tmpIfTest) {
-    /*48~49*/ break;
+/* stmt(6): */ let /*___7__*/ a = { /*___10__*/ a: 999, /*___13__*/ b: 1000 };
+/* stmt(15): */ const /*___16__*/ tmpCalleeParam$1 = { /*___19__*/ x: 1 };
+/* stmt(21): */ const /*___22__*/ tmpForInGenNext = /*___24__*/ $forIn(/*___25__*/ tmpCalleeParam$1);
+/* stmt(26): */ const /*___27__*/ tmpObjLitVal = { /*___30__*/ y: $ };
+/* stmt(32): */ while (/*___33__*/ $LOOP_NO_UNROLLS_LEFT) {
+  /*34~82*/ /* stmt(37): */ const /*___38__*/ tmpForInNext = /*___40__*/ tmpForInGenNext();
+  /* stmt(41): */ const /*___42__*/ tmpIfTest = /*___44__*/ tmpForInNext./*___45__*/ done;
+  /* stmt(46): */ if (/*___47__*/ tmpIfTest) {
+    /*48~49*/ /* stmt(49): */ break;
   } /*50~82*/ else {
-    /*___57__*/ a = /*___56__*/ undefined;
-    const /*___59__*/ tmpChainElementObject = /*___60__*/ tmpObjLitVal;
-    const /*___62__*/ tmpIfTest$3 = /*___64__*/ tmpChainElementObject == null;
-    let /*___67__*/ tmpAssignMemLhsObj$1 = /*___68__*/ undefined;
-    if (/*___70__*/ tmpIfTest$3) {
+    /* stmt(54): */ /*___57__*/ a = /*___56__*/ undefined;
+    /* stmt(58): */ const /*___59__*/ tmpChainElementObject = /*___60__*/ tmpObjLitVal;
+    /* stmt(61): */ const /*___62__*/ tmpIfTest$3 = /*___64__*/ tmpChainElementObject == null;
+    /* stmt(66): */ let /*___67__*/ tmpAssignMemLhsObj$1 = /*___68__*/ undefined;
+    /* stmt(69): */ if (/*___70__*/ tmpIfTest$3) {
       /*71~71*/
     } /*72~82*/ else {
-      /*___78__*/ a = /*___76__*/ tmpChainElementObject./*___77__*/ y;
-      /*___82__*/ tmpAssignMemLhsObj$1 = /*___81__*/ a;
+      /* stmt(73): */ /*___78__*/ a = /*___76__*/ tmpChainElementObject./*___77__*/ y;
+      /* stmt(79): */ /*___82__*/ tmpAssignMemLhsObj$1 = /*___81__*/ a;
     }
   }
 }
-$(/*___86__*/ a);
+/* stmt(83): */ $(/*___86__*/ a);
 `````
 
 

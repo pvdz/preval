@@ -39,17 +39,17 @@ $(x); // Unreachable
 (Annotated with pids)
 
 `````filename=intro
-let /*___4__*/ x = 1;
-while (true) {
-  /*8~37*/ const /*___11__*/ tmpIfTest = $();
-  if (/*___15__*/ tmpIfTest) {
-    /*16~20*/ /*___20__*/ x = 2;
+/* stmt(3): */ let /*___4__*/ x = 1;
+/* stmt(6): */ while (true) {
+  /*8~37*/ /* stmt(10): */ const /*___11__*/ tmpIfTest = $();
+  /* stmt(14): */ if (/*___15__*/ tmpIfTest) {
+    /*16~20*/ /* stmt(17): */ /*___20__*/ x = 2;
   } /*21~21*/ else {
   }
-  while (true) {
-    /*24~37*/ const /*___27__*/ tmpIfTest$1 = $();
-    if (/*___31__*/ tmpIfTest$1) {
-      /*32~36*/ /*___36__*/ x = 3;
+  /* stmt(22): */ while (true) {
+    /*24~37*/ /* stmt(26): */ const /*___27__*/ tmpIfTest$1 = $();
+    /* stmt(30): */ if (/*___31__*/ tmpIfTest$1) {
+      /*32~36*/ /* stmt(33): */ /*___36__*/ x = 3;
     } /*37~37*/ else {
     }
   }

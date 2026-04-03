@@ -32,20 +32,20 @@ $(x); // 5 or 6
 (Annotated with pids)
 
 `````filename=intro
-let /*___4__*/ x = 5;
-while (true) {
-  /*8~31*/ $(/*___12__*/ x);
-  if ($) {
-    /*15~30*/ const /*___18__*/ tmpIfTest = $(false);
-    if (/*___23__*/ tmpIfTest) {
-      /*24~28*/ /*___28__*/ x = 6;
+/* stmt(3): */ let /*___4__*/ x = 5;
+/* stmt(6): */ while (true) {
+  /*8~31*/ /* stmt(9): */ $(/*___12__*/ x);
+  /* stmt(13): */ if ($) {
+    /*15~30*/ /* stmt(17): */ const /*___18__*/ tmpIfTest = $(false);
+    /* stmt(22): */ if (/*___23__*/ tmpIfTest) {
+      /*24~28*/ /* stmt(25): */ /*___28__*/ x = 6;
     } /*29~29*/ else {
     }
-    break;
+    /* stmt(30): */ break;
   } /*31~31*/ else {
   }
 }
-$(/*___35__*/ x);
+/* stmt(32): */ $(/*___35__*/ x);
 `````
 
 

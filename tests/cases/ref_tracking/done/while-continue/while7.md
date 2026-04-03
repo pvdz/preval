@@ -32,15 +32,15 @@ $(x); // unreachable
 (Annotated with pids)
 
 `````filename=intro
-let /*___4__*/ x = 1;
-while (/*___7__*/ $LOOP_NO_UNROLLS_LEFT) {
-  /*8~29*/ /*___10__*/ $continue: /*11~29*/ {
-    if ($) {
-      /*14~20*/ $(/*___18__*/ x);
-      break /*___20__*/ $continue;
+/* stmt(3): */ let /*___4__*/ x = 1;
+/* stmt(6): */ while (/*___7__*/ $LOOP_NO_UNROLLS_LEFT) {
+  /*8~29*/ /* stmt(9): */ /*___10__*/ $continue: /*11~29*/ {
+    /* stmt(12): */ if ($) {
+      /*14~20*/ /* stmt(15): */ $(/*___18__*/ x);
+      /* stmt(19): */ break /*___20__*/ $continue;
     } /*21~29*/ else {
-      $(/*___25__*/ x);
-      /*___29__*/ x = 2;
+      /* stmt(22): */ $(/*___25__*/ x);
+      /* stmt(26): */ /*___29__*/ x = 2;
     }
   }
 }

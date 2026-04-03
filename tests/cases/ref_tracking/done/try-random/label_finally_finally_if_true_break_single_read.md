@@ -44,53 +44,53 @@ $(x); // x=7 9 (the break still jumps over 9 once)
 (Annotated with pids)
 
 `````filename=intro
-let /*___4__*/ x = 1;
-/*___7__*/ back: /*8~121*/ {
-  let /*___15__*/ $implicitThrow$1 = false;
-  let /*___18__*/ $finalCatchArg$1 = /*___19__*/ undefined;
-  try /*21~25*/ {
-    /*___25__*/ x = 2;
+/* stmt(3): */ let /*___4__*/ x = 1;
+/* stmt(6): */ /*___7__*/ back: /*8~121*/ {
+  /* stmt(14): */ let /*___15__*/ $implicitThrow$1 = false;
+  /* stmt(17): */ let /*___18__*/ $finalCatchArg$1 = /*___19__*/ undefined;
+  /* stmt(20): */ try /*21~25*/ {
+    /* stmt(22): */ /*___25__*/ x = 2;
   } catch (/*___27__*/ $finalImplicit$1) /*28~36*/ {
-    /*___32__*/ $implicitThrow$1 = true;
-    /*___36__*/ $finalCatchArg$1 = /*___35__*/ $finalImplicit$1;
+    /* stmt(29): */ /*___32__*/ $implicitThrow$1 = true;
+    /* stmt(33): */ /*___36__*/ $finalCatchArg$1 = /*___35__*/ $finalImplicit$1;
   }
-  /*___40__*/ x = 3;
-  let /*___42__*/ $implicitThrow = false;
-  let /*___45__*/ $finalStep = false;
-  let /*___48__*/ $finalCatchArg = /*___49__*/ undefined;
-  /*___51__*/ $finally: /*52~91*/ {
-    try /*54~82*/ {
-      /*___59__*/ x = 4;
-      const /*___61__*/ tmpIfTest = $(true);
-      if (/*___66__*/ tmpIfTest) {
-        /*67~77*/ /*___71__*/ x = 5;
-        /*___75__*/ $finalStep = true;
-        break /*___77__*/ $finally;
+  /* stmt(37): */ /*___40__*/ x = 3;
+  /* stmt(41): */ let /*___42__*/ $implicitThrow = false;
+  /* stmt(44): */ let /*___45__*/ $finalStep = false;
+  /* stmt(47): */ let /*___48__*/ $finalCatchArg = /*___49__*/ undefined;
+  /* stmt(50): */ /*___51__*/ $finally: /*52~91*/ {
+    /* stmt(53): */ try /*54~82*/ {
+      /* stmt(56): */ /*___59__*/ x = 4;
+      /* stmt(60): */ const /*___61__*/ tmpIfTest = $(true);
+      /* stmt(65): */ if (/*___66__*/ tmpIfTest) {
+        /*67~77*/ /* stmt(68): */ /*___71__*/ x = 5;
+        /* stmt(72): */ /*___75__*/ $finalStep = true;
+        /* stmt(76): */ break /*___77__*/ $finally;
       } /*78~82*/ else {
-        /*___82__*/ x = 6;
+        /* stmt(79): */ /*___82__*/ x = 6;
       }
     } catch (/*___84__*/ $finalImplicit) /*85~91*/ {
-      /*___89__*/ x = 7;
-      throw /*___91__*/ $finalImplicit;
+      /* stmt(86): */ /*___89__*/ x = 7;
+      /* stmt(90): */ throw /*___91__*/ $finalImplicit;
     }
   }
-  /*___95__*/ x = 7;
-  if (/*___97__*/ $implicitThrow) {
-    /*98~100*/ throw /*___100__*/ $finalCatchArg;
+  /* stmt(92): */ /*___95__*/ x = 7;
+  /* stmt(96): */ if (/*___97__*/ $implicitThrow) {
+    /*98~100*/ /* stmt(99): */ throw /*___100__*/ $finalCatchArg;
   } /*101~121*/ else {
-    if (/*___103__*/ $finalStep) {
-      /*104~106*/ break /*___106__*/ back;
+    /* stmt(102): */ if (/*___103__*/ $finalStep) {
+      /*104~106*/ /* stmt(105): */ break /*___106__*/ back;
     } /*107~121*/ else {
-      /*___111__*/ x = 8;
-      if (/*___113__*/ $implicitThrow$1) {
-        /*114~116*/ throw /*___116__*/ $finalCatchArg$1;
+      /* stmt(108): */ /*___111__*/ x = 8;
+      /* stmt(112): */ if (/*___113__*/ $implicitThrow$1) {
+        /*114~116*/ /* stmt(115): */ throw /*___116__*/ $finalCatchArg$1;
       } /*117~121*/ else {
-        /*___121__*/ x = 9;
+        /* stmt(118): */ /*___121__*/ x = 9;
       }
     }
   }
 }
-$(/*___125__*/ x);
+/* stmt(122): */ $(/*___125__*/ x);
 `````
 
 

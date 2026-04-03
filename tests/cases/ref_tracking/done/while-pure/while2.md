@@ -26,9 +26,9 @@ $(x);
 (Annotated with pids)
 
 `````filename=intro
-let /*___4__*/ x = 1;
-while (true) {
-  /*8~12*/ $(/*___12__*/ x);
+/* stmt(3): */ let /*___4__*/ x = 1;
+/* stmt(6): */ while (true) {
+  /*8~12*/ /* stmt(9): */ $(/*___12__*/ x);
 }
 `````
 

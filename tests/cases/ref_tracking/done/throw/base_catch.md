@@ -29,27 +29,27 @@ $(x); // unreachable (code always throws before this point)
 (Annotated with pids)
 
 `````filename=intro
-let /*___8__*/ x = 1;
-let /*___11__*/ $implicitThrow = false;
-let /*___14__*/ $finalStep = false;
-let /*___17__*/ $finalCatchArg = /*___18__*/ undefined;
-let /*___20__*/ $finalArg = /*___21__*/ undefined;
-/*___23__*/ $finally: /*24~50*/ {
-  try /*26~41*/ {
-    /*___30__*/ x = 2;
-    /*___34__*/ $finalStep = true;
-    /*___39__*/ $finalArg = `abc`;
-    break /*___41__*/ $finally;
+/* stmt(7): */ let /*___8__*/ x = 1;
+/* stmt(10): */ let /*___11__*/ $implicitThrow = false;
+/* stmt(13): */ let /*___14__*/ $finalStep = false;
+/* stmt(16): */ let /*___17__*/ $finalCatchArg = /*___18__*/ undefined;
+/* stmt(19): */ let /*___20__*/ $finalArg = /*___21__*/ undefined;
+/* stmt(22): */ /*___23__*/ $finally: /*24~50*/ {
+  /* stmt(25): */ try /*26~41*/ {
+    /* stmt(27): */ /*___30__*/ x = 2;
+    /* stmt(31): */ /*___34__*/ $finalStep = true;
+    /* stmt(35): */ /*___39__*/ $finalArg = `abc`;
+    /* stmt(40): */ break /*___41__*/ $finally;
   } catch (/*___43__*/ $finalImplicit) /*44~50*/ {
-    /*___48__*/ x = 3;
-    throw /*___50__*/ $finalImplicit;
+    /* stmt(45): */ /*___48__*/ x = 3;
+    /* stmt(49): */ throw /*___50__*/ $finalImplicit;
   }
 }
-/*___54__*/ x = 3;
-if (/*___56__*/ $implicitThrow) {
-  /*57~59*/ throw /*___59__*/ $finalCatchArg;
+/* stmt(51): */ /*___54__*/ x = 3;
+/* stmt(55): */ if (/*___56__*/ $implicitThrow) {
+  /*57~59*/ /* stmt(58): */ throw /*___59__*/ $finalCatchArg;
 } /*60~62*/ else {
-  throw /*___62__*/ $finalArg;
+  /* stmt(61): */ throw /*___62__*/ $finalArg;
 }
 `````
 

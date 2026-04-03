@@ -36,13 +36,13 @@ top of their func owner scope before further treatment. spec be damned
 (Annotated with pids)
 
 `````filename=intro
-let /*___5__*/ THIS_IS_DA____$1 = function () /*7*/ {
+/* stmt(4): */ let /*___5__*/ THIS_IS_DA____$1 = function () /*7*/ {
     debugger;
     $(`hello`);
     return /*___16__*/ undefined;
   };
-let /*___18__*/ tmpCalleeParam = /*___20__*/ THIS_IS_DA____();
-$(/*___24__*/ tmpCalleeParam);
+/* stmt(17): */ let /*___18__*/ tmpCalleeParam = /*___20__*/ THIS_IS_DA____();
+/* stmt(21): */ $(/*___24__*/ tmpCalleeParam);
 `````
 
 

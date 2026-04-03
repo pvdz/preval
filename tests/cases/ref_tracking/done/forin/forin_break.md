@@ -29,20 +29,20 @@ $('after');
 (Annotated with pids)
 
 `````filename=intro
-const /*___5__*/ obj = { /*___8__*/ a: 10, /*___11__*/ b: 20 };
-const /*___14__*/ tmpForInGen = /*___16__*/ $forIn(/*___17__*/ obj);
-while (/*___19__*/ $LOOP_NO_UNROLLS_LEFT) {
-  /*20~47*/ const /*___24__*/ tmpForInNext = /*___26__*/ tmpForInGen();
-  const /*___28__*/ tmpIfTest = /*___30__*/ tmpForInNext./*___31__*/ done;
-  if (/*___33__*/ tmpIfTest) {
-    /*34~35*/ break;
+/* stmt(4): */ const /*___5__*/ obj = { /*___8__*/ a: 10, /*___11__*/ b: 20 };
+/* stmt(13): */ const /*___14__*/ tmpForInGen = /*___16__*/ $forIn(/*___17__*/ obj);
+/* stmt(18): */ while (/*___19__*/ $LOOP_NO_UNROLLS_LEFT) {
+  /*20~47*/ /* stmt(23): */ const /*___24__*/ tmpForInNext = /*___26__*/ tmpForInGen();
+  /* stmt(27): */ const /*___28__*/ tmpIfTest = /*___30__*/ tmpForInNext./*___31__*/ done;
+  /* stmt(32): */ if (/*___33__*/ tmpIfTest) {
+    /*34~35*/ /* stmt(35): */ break;
   } /*36~47*/ else {
-    const /*___39__*/ x = /*___41__*/ tmpForInNext./*___42__*/ value;
-    $(/*___46__*/ x);
-    break;
+    /* stmt(38): */ const /*___39__*/ x = /*___41__*/ tmpForInNext./*___42__*/ value;
+    /* stmt(43): */ $(/*___46__*/ x);
+    /* stmt(47): */ break;
   }
 }
-$(`after`);
+/* stmt(48): */ $(`after`);
 `````
 
 

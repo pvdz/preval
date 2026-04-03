@@ -29,17 +29,17 @@ $(f);
 (Annotated with pids)
 
 `````filename=intro
-let /*___4__*/ f = function () /*6*/ {
+/* stmt(3): */ let /*___4__*/ f = function () /*6*/ {
     debugger;
     let /*___10__*/ x = $(1);
     if ($) {
-      /*16~19*/ return /*___19__*/ undefined;
+      /*16~19*/ /* stmt(17): */ return /*___19__*/ undefined;
     } /*20~26*/ else {
-      $(/*___24__*/ x);
-      return /*___26__*/ undefined;
+      /* stmt(21): */ $(/*___24__*/ x);
+      /* stmt(25): */ return /*___26__*/ undefined;
     }
   };
-$(/*___30__*/ f);
+/* stmt(27): */ $(/*___30__*/ f);
 `````
 
 

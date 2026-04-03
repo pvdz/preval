@@ -46,20 +46,20 @@ $(a);
 (Annotated with pids)
 
 `````filename=intro
-let /*___7__*/ a = {};
-let /*___10__*/ tmpCalleeParam$1 = [];
-let /*___13__*/ tmpCalleeParam = $(/*___16__*/ tmpCalleeParam$1);
-const /*___18__*/ tmpForOfGen = /*___20__*/ $forOf(/*___21__*/ tmpCalleeParam);
-while (/*___23__*/ $LOOP_NO_UNROLLS_LEFT) {
-  /*24~46*/ const /*___28__*/ tmpForOfNext = /*___30__*/ tmpForOfGen();
-  const /*___32__*/ tmpIfTest = /*___34__*/ tmpForOfNext./*___35__*/ done;
-  if (/*___37__*/ tmpIfTest) {
-    /*38~39*/ break;
+/* stmt(6): */ let /*___7__*/ a = {};
+/* stmt(9): */ let /*___10__*/ tmpCalleeParam$1 = [];
+/* stmt(12): */ let /*___13__*/ tmpCalleeParam = $(/*___16__*/ tmpCalleeParam$1);
+/* stmt(17): */ const /*___18__*/ tmpForOfGen = /*___20__*/ $forOf(/*___21__*/ tmpCalleeParam);
+/* stmt(22): */ while (/*___23__*/ $LOOP_NO_UNROLLS_LEFT) {
+  /*24~46*/ /* stmt(27): */ const /*___28__*/ tmpForOfNext = /*___30__*/ tmpForOfGen();
+  /* stmt(31): */ const /*___32__*/ tmpIfTest = /*___34__*/ tmpForOfNext./*___35__*/ done;
+  /* stmt(36): */ if (/*___37__*/ tmpIfTest) {
+    /*38~39*/ /* stmt(39): */ break;
   } /*40~46*/ else {
-    /*___46__*/ a = /*___44__*/ tmpForOfNext./*___45__*/ value;
+    /* stmt(41): */ /*___46__*/ a = /*___44__*/ tmpForOfNext./*___45__*/ value;
   }
 }
-$(/*___50__*/ a);
+/* stmt(47): */ $(/*___50__*/ a);
 `````
 
 

@@ -37,27 +37,27 @@ $(x, y);  // <-- _if_ it breaks, then it must have overwritten x, so init is not
 (Annotated with pids)
 
 `````filename=intro
-const /*___6__*/ arr = [1, 2, 3];
-let /*___12__*/ x = /*___13__*/ undefined;
-let /*___15__*/ y = 1;
-while (/*___18__*/ $LOOP_NO_UNROLLS_LEFT) {
-  /*19~73*/ try /*21~65*/ {
-    let /*___26__*/ tmpCalleeParam = /*___28__*/ arr[0];
-    $(/*___33__*/ tmpCalleeParam);
-    /*___37__*/ x = /*___36__*/ arr;
-    const /*___39__*/ tmpMCF = /*___41__*/ arr./*___42__*/ reverse;
-    /*___45__*/ $dotCall(/*___46__*/ tmpMCF, /*___47__*/ arr, `reverse`);
-    /*___55__*/ y = [5, 6];
-    const /*___57__*/ tmpIfTest = /*___59__*/ y === $;
-    if (/*___62__*/ tmpIfTest) {
-      /*63~64*/ break;
+/* stmt(5): */ const /*___6__*/ arr = [1, 2, 3];
+/* stmt(11): */ let /*___12__*/ x = /*___13__*/ undefined;
+/* stmt(14): */ let /*___15__*/ y = 1;
+/* stmt(17): */ while (/*___18__*/ $LOOP_NO_UNROLLS_LEFT) {
+  /*19~73*/ /* stmt(20): */ try /*21~65*/ {
+    /* stmt(25): */ let /*___26__*/ tmpCalleeParam = /*___28__*/ arr[0];
+    /* stmt(30): */ $(/*___33__*/ tmpCalleeParam);
+    /* stmt(34): */ /*___37__*/ x = /*___36__*/ arr;
+    /* stmt(38): */ const /*___39__*/ tmpMCF = /*___41__*/ arr./*___42__*/ reverse;
+    /* stmt(43): */ /*___45__*/ $dotCall(/*___46__*/ tmpMCF, /*___47__*/ arr, `reverse`);
+    /* stmt(50): */ /*___55__*/ y = [5, 6];
+    /* stmt(56): */ const /*___57__*/ tmpIfTest = /*___59__*/ y === $;
+    /* stmt(61): */ if (/*___62__*/ tmpIfTest) {
+      /*63~64*/ /* stmt(64): */ break;
     } /*65~65*/ else {
     }
   } catch (/*___67__*/ e) /*68~73*/ {
-    $(`fail`);
+    /* stmt(69): */ $(`fail`);
   }
 }
-$(/*___77__*/ x, /*___78__*/ y);
+/* stmt(74): */ $(/*___77__*/ x, /*___78__*/ y);
 `````
 
 

@@ -242,6 +242,22 @@ export function runFreeWithPcode(funcNode, argNodes, fdata, freeFuncName, $prng,
  * it can't guarantee pureness it will return false. Always room for improvement.
  */
 export function pcanCompile(funcNode, fdata, funcName) {
+  ASSERT(pcanCompile.length === arguments.length, 'arg count');
+  ASSERT(funcNode.type === 'FunctionExpression', 'must be func node', funcNode);
+  ASSERT(typeof funcName === 'string', 'func name is string', funcName);
+
+  if (pcodeSupportedBuiltinFuncs.has(funcName)) {
+    vlog('- function is a supported builtin');
+    return [];
+  }
+
+  if (BUILTIN_SYMBOLS.has(funcName)) {
+    todo(`- bail: built in symbol not yet supported by pcode; ${funcName}`);
+    return false;
+  }
+
+  vlog('pcanCompile(', funcName, ')');
+
   // Note: the func will return a set of zero or more idents. If it does then
   // this func is only compilable if all those idents are too: it calls them.
 

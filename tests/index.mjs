@@ -214,13 +214,16 @@ testCases.some((tc, i) => {
   try {
     runTestCase({ ...tc, withOutput: testCases.length === 1 && !CONFIG.onlyNormalized }, i)
   } catch (e) {
-    console.log(RED + `At least one test crashed hard ( ${lastStartedFile} )`  + RESET);
-    // If you're not seeing a stack trace then it's probably happening in preval. Enable next line:
-    console.log(e);
+    const msg = RED + `At least one test crashed hard ( ${lastStartedFile} )`  + RESET;
+    fail += 1;
     if (isMainThread) {
+      console.log(msg);
+      // If you're not seeing a stack trace then it's probably happening in preval. Enable next line:
+      console.log('[' + lastStartedFile +']', e);
       return true;
     } else {
-      parentPort.postMessage({ptype: 'msg', data: [RED + `At least one test crashed hard ( ${lastStartedFile} )`  + RESET + '\n' + e.stack]});
+      parentPort.postMessage({ptype: 'msg', data: [msg + '\n' + '[' + lastStartedFile +'] ' + e.stack]});
+      parentPort.postMessage({ptype: 'crash', file: lastStartedFile});
     }
   }
 });
@@ -1004,7 +1007,7 @@ function runTestCase(
           return testArgs.map(vals => {
             if (VERBOSE_TRACING) console.group('\nTest Running', funcName, '(', JSON.stringify(vals), ')');
             rngSeed = initialPrngSeed;
-            const out = runPcode(funcName, Array.isArray(vals) ? vals : [vals], pcodeData, output, $prng, rngSeed);
+            const out = runPcode(funcName, Array.isArray(vals) ? vals : [vals], pcodeData, output, $prng, rngSeed, 0);
 
             const argStr = Array.isArray(vals) ? vals.map(v => JSON.stringify(v)).join(', ') : JSON.stringify(vals);
 
@@ -1093,7 +1096,9 @@ function runTestCase(
 
       throw ('(the test case failed...)'); // dont show stack trace for this
     } else {
-      parentPort.postMessage({ptype: 'crash', file: sname, message: lastError.message, stack: lastError.stack});
+      const msg = RED + `At least one test crashed hard ( ${lastStartedFile} )`  + RESET;
+      parentPort.postMessage({ptype: 'msg', data: [msg + '\n' + '[' + lastStartedFile +'] ' + lastError.stack]});
+      parentPort.postMessage({ptype: 'crash', file: sname});
     }
   }
 

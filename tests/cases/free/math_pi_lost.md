@@ -20,7 +20,8 @@ $(c);
 
 
 `````js filename=intro
-$(4.141592653589793);
+const c /*:number*/ = 1 + $Math_PI;
+$(c);
 `````
 
 
@@ -28,7 +29,7 @@ $(4.141592653589793);
 (This ought to be the final result)
 
 `````js filename=intro
-$(4.141592653589793);
+$(1 + $Math_PI);
 `````
 
 
@@ -36,7 +37,8 @@ $(4.141592653589793);
 With rename=true
 
 `````js filename=intro
-$( 4.141592653589793 );
+const a = 1 + $Math_PI;
+$( a );
 `````
 
 

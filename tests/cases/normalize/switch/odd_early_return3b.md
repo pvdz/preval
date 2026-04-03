@@ -31,7 +31,10 @@ if ($) {
 
 
 `````js filename=intro
-
+if ($) {
+  $ ** 0;
+} else {
+}
 `````
 
 
@@ -39,7 +42,9 @@ if ($) {
 (This ought to be the final result)
 
 `````js filename=intro
-
+if ($) {
+  $ ** 0;
+}
 `````
 
 
@@ -47,7 +52,9 @@ if ($) {
 With rename=true
 
 `````js filename=intro
-
+if ($) {
+  $ ** 0;
+}
 `````
 
 

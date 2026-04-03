@@ -38,8 +38,16 @@ $(f);
 `````js filename=intro
 const f /*:()=>unknown*/ = function () {
   debugger;
-  implicitGlobalOops;
-  return undefined;
+  if (implicitGlobalOops) {
+    if ($) {
+      $ ** 0;
+      return undefined;
+    } else {
+      return undefined;
+    }
+  } else {
+    return undefined;
+  }
 };
 $(f);
 `````
@@ -50,7 +58,11 @@ $(f);
 
 `````js filename=intro
 $(function () {
-  implicitGlobalOops;
+  if (implicitGlobalOops) {
+    if ($) {
+      $ ** 0;
+    }
+  }
 });
 `````
 
@@ -61,8 +73,18 @@ With rename=true
 `````js filename=intro
 const a = function() {
   debugger;
-  implicitGlobalOops;
-  return undefined;
+  if (implicitGlobalOops) {
+    if ($) {
+      $ ** 0;
+      return undefined;
+    }
+    else {
+      return undefined;
+    }
+  }
+  else {
+    return undefined;
+  }
 };
 $( a );
 `````

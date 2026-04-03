@@ -383,16 +383,17 @@ function pcanCompileExpr(locals, calls, expr, fdata, stmt, constDeclNameMaybe) {
   if (AST.isPrimitive(expr)) return true;
   switch (expr.type) {
     case 'BinaryExpression': {
-      // Binary expressions are alright as long as the args are local or prims
-      const is = (
-        '+/-*'.includes(expr.operator) ||
-        pcanCompileExpr(locals, calls, expr.left, fdata, stmt) ||
-        pcanCompileExpr(locals, calls, expr.right, fdata, stmt)
-      );
-      if (!is) {
-        vlog('- bail: bin expr is bad');
+      vlog('- bin', expr.operator, expr.left.name, expr.right.name);
+      // Binary expressions are alright for most ops, as long as the args are local or prims
+      const okOp = '+/-**!===&|^%<<=>>>='.includes(expr.operator);
+      const okLeft = okOp && pcanCompileExpr(locals, calls, expr.left, fdata, stmt);
+      const okRight = okLeft && pcanCompileExpr(locals, calls, expr.right, fdata, stmt);
+      const isOk = okOp && okLeft && okRight;
+      vlog('isOk?', isOk, '; only first fail is relevant (lazy eval):', okOp, '(op =', [expr.operator], ')', okLeft, okRight);
+      if (!isOk) {
+        vlog('- bail: bin expr is bad', okOp, okLeft, okRight);
       }
-      return is;
+      return isOk;
     }
     case 'UnaryExpression': {
       if (expr.operator === 'delete') return false;

@@ -28,7 +28,7 @@ $(a);
 
 
 `````js filename=intro
-const a /*:unknown*/ = $($Number_NaN);
+const a /*:unknown*/ = $(1.23);
 $(a);
 `````
 
@@ -37,7 +37,7 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-$($($Number_NaN));
+$($(1.23));
 `````
 
 
@@ -45,7 +45,7 @@ $($($Number_NaN));
 With rename=true
 
 `````js filename=intro
-const a = $( $Number_NaN );
+const a = $( 1.23 );
 $( a );
 `````
 
@@ -73,7 +73,8 @@ $(a);
 ## Todos triggered
 
 
-None
+- (todo) support Identifier as var init in let_hoisting noob check
+- (todo) type trackeed tricks can possibly support static $Math_round
 
 
 ## Globals
@@ -94,12 +95,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Post settled calls: BAD!!
- - !1: NaN
- - !2: NaN
- -  eval returned: undefined
+Post settled calls: Same
 
-Denormalized calls: BAD!!
- - !1: NaN
- - !2: NaN
- -  eval returned: undefined
+Denormalized calls: Same

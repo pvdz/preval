@@ -21,7 +21,7 @@ $(f($number_toString, 4));
 
 
 `````js filename=intro
-$($Number_NaN);
+$(`function toString() { [native code] }2`);
 $(`function toString() { [native code] }4`);
 `````
 
@@ -30,7 +30,7 @@ $(`function toString() { [native code] }4`);
 (This ought to be the final result)
 
 `````js filename=intro
-$($Number_NaN);
+$(`function toString() { [native code] }2`);
 $(`function toString() { [native code] }4`);
 `````
 
@@ -39,7 +39,7 @@ $(`function toString() { [native code] }4`);
 With rename=true
 
 `````js filename=intro
-$( $Number_NaN );
+$( "function toString() { [native code] }2" );
 $( "function toString() { [native code] }4" );
 `````
 
@@ -86,12 +86,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Post settled calls: BAD!!
- - !1: NaN
- -  2: 'function() { [native code] }4'
- -  eval returned: undefined
+Post settled calls: Same
 
-Denormalized calls: BAD!!
- - !1: NaN
- -  2: 'function() { [native code] }4'
- -  eval returned: undefined
+Denormalized calls: Same

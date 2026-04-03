@@ -24,7 +24,7 @@ $(result);
 const tmpCalleeParam /*:array*/ /*truthy*/ = [1, 2, 3];
 const arr /*:unknown*/ = $(tmpCalleeParam);
 const tmpMCF /*:unknown*/ = arr.findLast;
-const tmpMCP /*:(unknown, unknown, unknown)=>boolean*/ = function $pcompiled($$0, $$1, $$2) {
+const tmpMCP /*:(unknown, unknown, unknown)=>boolean*/ = function ($$0, $$1, $$2) {
   const value /*:unknown*/ = $$0;
   const index /*:unknown*/ = $$1;
   const array /*:unknown*/ = $$2;
@@ -54,7 +54,7 @@ $(result);
 const arr = $([1, 2, 3]);
 const tmpMCF = arr.findLast;
 $(
-  $dotCall(tmpMCF, arr, `findLast`, function $pcompiled(value, index, array) {
+  $dotCall(tmpMCF, arr, `findLast`, function (value, index, array) {
     if (value === 2) {
       if (index === 1) {
         const tmpClusterSSA_tmpReturnArg$1 = array === arr;
@@ -77,7 +77,7 @@ With rename=true
 const a = [ 1, 2, 3 ];
 const b = $( a );
 const c = b.findLast;
-const d = function $pcompiled($$0,$$1,$$2 ) {
+const d = function($$0,$$1,$$2 ) {
   const e = $$0;
   const f = $$1;
   const g = $$2;

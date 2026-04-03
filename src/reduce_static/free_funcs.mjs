@@ -12,9 +12,9 @@ import { pcanCompile, pcompile, pcodeSupportedBuiltinFuncs, runPcode, SO_MESSAGE
 // so this will have to happen at runtime through a counter of sorts.
 
 export function freeFuncs(fdata, prng, options, pcodeTestMode = false) {
+  // currentState(fdata, 'freeFuncs', true, fdata);
   const usePrng = !!options.prngSeed
   group('\n\n\n[freeFuncs] Checking for free function calls to simulate and resolve\n');
-  //if (pcodeTestMode) currentState(fdata, 'freeFuncs', true, fdata);
   const r = _freeFuncs(fdata, prng, usePrng, pcodeTestMode);
   groupEnd();
   return r;
@@ -54,11 +54,11 @@ export function _freeFuncs(fdata, prng, usePrng, pcodeTestMode) {
 
     const pathNodes = path.nodes;
     const pathProps = path.props;
-    const pathIndexes = path.indexes;
+    // const pathIndexes = path.indexes;
 
     const parentNode = pathNodes[pathNodes.length - 2];
     const parentProp = pathProps[pathProps.length - 1];
-    const parentIndex = pathIndexes[pathIndexes.length - 1];
+    // const parentIndex = pathIndexes[pathIndexes.length - 1];
 
     if (parentNode.type === 'Property') {
       // Object method. Skip.
@@ -178,10 +178,14 @@ export function _freeFuncs(fdata, prng, usePrng, pcodeTestMode) {
 
               if (out === SO_MESSAGE) {
                 // This returned the stack overflow error message. Assuming that's what it was.
+                // TODO: we may need other signals like SO but for "BAIL" purposes that aren't SO
                 vlog('Compiling a stack overflow error');
                 read.blockBody[read.blockIndex] = AST.throwStatement(AST.primitive(
                   SO_MESSAGE + '; calling `' + tmat(read.blockBody[read.blockIndex], true) + '`'
                 ));
+
+                after(read.blockBody[read.blockIndex]);
+                changed += 1;
               } else {
                 // Note: `out` is a raw value, not an AST node
                 if (Array.isArray(out)) {
@@ -199,10 +203,10 @@ export function _freeFuncs(fdata, prng, usePrng, pcodeTestMode) {
                   else read.grandNode[read.grandProp][read.grandIndex] = AST.primitive(out);
                 }
                 else ASSERT(false, 'implement this pcode return type:', out); // we allowed it in pcanCompile so we must implement it
-              }
 
-              after(read.blockBody[read.blockIndex]);
-              changed += 1;
+                after(read.blockBody[read.blockIndex]);
+                changed += 1;
+              }
             }
           });
         }

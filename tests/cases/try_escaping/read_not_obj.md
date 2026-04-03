@@ -99,7 +99,7 @@ while ($LOOP_NO_UNROLLS_LEFT) {
 ## Todos triggered
 
 
-- (todo) - at least one of the call args to
+- (todo) Support this ident in isFree CallExpression: $array_reverse
 - (todo) access object property that also exists on prototype? $array_reverse
 - (todo) array reads var statement with init ObjectExpression
 - (todo) can try-escaping support this expr node type? CallExpression

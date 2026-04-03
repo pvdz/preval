@@ -126,7 +126,6 @@ $(x);
 ## Todos triggered
 
 
-- (todo) - at least one of the call args to
 - (todo) Support this binary expression operator:
 - (todo) Support this node type in isFree: DebuggerStatement
 - (todo) array reads var statement with init BinaryExpression

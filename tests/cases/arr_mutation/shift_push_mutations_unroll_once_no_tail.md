@@ -109,7 +109,7 @@ while ($LOOP_UNROLLS_LEFT_2) {
 ## Todos triggered
 
 
-- (todo) - at least one of the call args to
+- (todo) Calling array push on a var that was not in scope of the free loop
 - (todo) access object property that also exists on prototype? $array_push
 - (todo) access object property that also exists on prototype? $array_shift
 - (todo) array reads var statement with init CallExpression

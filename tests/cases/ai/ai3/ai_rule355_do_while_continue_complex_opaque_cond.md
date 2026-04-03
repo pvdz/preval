@@ -236,7 +236,6 @@ $(`loop_done`, i);
 ## Todos triggered
 
 
-- (todo) - at least one of the call args to
 - (todo) Support this node type in isFree: LabeledStatement
 
 

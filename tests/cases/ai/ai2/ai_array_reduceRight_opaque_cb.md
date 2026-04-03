@@ -104,7 +104,6 @@ $(`reduceRight_result`, result);
 ## Todos triggered
 
 
-- (todo) - at least one of the call args to
 - (todo) access object property that also exists on prototype? $array_reduceRight
 - (todo) array reads var statement with init BinaryExpression
 - (todo) array reads var statement with init CallExpression

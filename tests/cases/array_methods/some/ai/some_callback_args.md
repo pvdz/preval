@@ -86,7 +86,6 @@ $(x);
 ## Todos triggered
 
 
-- (todo) - at least one of the call args to
 - (todo) Support this binary expression operator:
 - (todo) array reads var statement with init BinaryExpression
 - (todo) array reads var statement with init CallExpression

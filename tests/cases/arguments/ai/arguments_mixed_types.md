@@ -183,7 +183,6 @@ testMixedTypes(`string`, 42, true, null, undefined, tmpCalleeParam, tmpCalleePar
 ## Todos triggered
 
 
-- (todo) - at least one of the call args to
 - (todo) Can we inline a function that uses arguments, anyways?
 - (todo) Support this node type in isFree: DebuggerStatement
 - (todo) access object property that also exists on prototype? $array_push

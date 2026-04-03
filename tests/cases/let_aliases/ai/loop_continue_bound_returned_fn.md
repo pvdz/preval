@@ -165,7 +165,7 @@ $(a, x);
 ## Todos triggered
 
 
-- (todo) - at least one of the call args to
+- (todo) Support this ident in isFree CallExpression: $function_bind
 - (todo) Support this node type in isFree: LabeledStatement
 - (todo) nodeMightMutateNameUntrapped; Which statement are we missing here? BlockStatement
 - (todo) this may support .call .apply and .bind but I think that different reducers should tackle it

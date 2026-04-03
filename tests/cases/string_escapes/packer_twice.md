@@ -124,7 +124,7 @@ eval(tmpCalleeParam);
 ## Todos triggered
 
 
-- (todo) - at least one of the call args to
+- (todo) Support this ident in isFree CallExpression: $string_replace
 - (todo) array reads var statement with init ObjectExpression
 - (todo) can we always safely clone ident refs in this case?
 - (todo) objects in isFree check

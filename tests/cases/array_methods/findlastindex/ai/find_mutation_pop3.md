@@ -84,7 +84,7 @@ $(result, undefined);
 ## Todos triggered
 
 
-- (todo) - at least one of the call args to
+- (todo) Calling array shift on a var that was not in scope of the free loop
 - (todo) Support this ident in isFree CallExpression: $array_unshift
 - (todo) find me fast
 - (todo) fixme: spyless vars and labeled nodes

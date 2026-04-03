@@ -1,3 +1,4 @@
+
 // Given a loop that is preceded by predictable statements and that contains free statements and expressions that only operate on
 // those or local statements, and everything is free and/or predictable, then we can precompile and resolve them.
 // This is mostly obfuscation land but it might also be tiny dev overhead.
@@ -42,6 +43,7 @@ import {
   currentState,
   clearStdio,
   setStdio,
+  vgroupDepth,
 } from '../utils.mjs';
 import { pcanCompile, pcodeSupportedBuiltinFuncs, pcompile, runFreeWithPcode } from '../pcode.mjs';
 import { SYMBOL_COERCE, SYMBOL_DOTCALL, SYMBOL_FREE, SYMBOL_FRFR, SYMBOL_PCOMPILED } from '../symbols_preval.mjs';
@@ -84,10 +86,18 @@ const SUPPORTED_GLOBAL_FUNCS = [
   symbo('Global', 'encodeURIComponent'),
 ];
 
+// Need this to distinct an internal throw from a logic/code throw.
+class PthrowCarrier extends Error {
+  constructor(payload) {
+    super();
+    this.payload = payload;
+  }
+}
+
 export function freeLoops(fdata, prng, options) {
   const usePrng = !!options.prngSeed;
   group('\n\n\n[freeLoops] Checking for free loops to simulate and resolve\n');
-  //currentState(fdata, 'freeLoops', true, fdata);
+  // currentState(fdata, 'freeLoops', true, fdata);
   const r = _freeLoops(fdata, prng, usePrng);
   groupEnd();
   return r;
@@ -175,12 +185,22 @@ export function _freeLoops(fdata, prng, usePrng) {
     vlog('\n\nStart of running freeloop\n\n');
 
     let failed = false;
-    for (let i=fromIndex; i<=whileIndex; ++i) {
-      const node = blockBody[i];
-      if (runStatement(fdata, node, register, callNodeToCalleeSymbol, prng, usePrng, i===whileIndex) === FAILURE_SYMBOL) {
-        failed = true;
-        break;
+    const currentDepth = vgroupDepth();
+    try {
+      for (let i=fromIndex; i<=whileIndex; ++i) {
+        const node = blockBody[i];
+        if (runStatement(fdata, node, register, callNodeToCalleeSymbol, prng, usePrng, i===whileIndex) === FAILURE_SYMBOL) {
+          failed = true;
+          break;
+        }
       }
+    } catch (e) {
+      if (e instanceof PthrowCarrier) {
+        vlog('- bail: Prun failed:', PthrowCarrier.payload);
+        return;
+      }
+    } finally {
+      vgroupDepth(currentDepth);
     }
 
     vlog('Storing final values of pre-loop variables');
@@ -339,12 +359,16 @@ function _isFree(node, fdata, callNodeToCalleeSymbol, declaredNameTypes, insideW
       const args = node.callee.name === SYMBOL_DOTCALL ? node.arguments.slice(3) : node.arguments;
 
       // All call args must be resolvable if we are to unroll this loop (even including special args of $frfr $dotcall etc)
+      let theNotFreeNode;
       if (node.arguments.some((arg, i) => {
         if (!i) return false;
         const r = isFree(arg, fdata, callNodeToCalleeSymbol, declaredNameTypes, insideWhile, undefined);
-        return (!r || r === FAILURE_SYMBOL);
+        if (!r || r === FAILURE_SYMBOL) {
+          theNotFreeNode = arg;
+        }
+        return false;
       })) {
-        todo('- at least one of the call args to', calleeName, 'was not isFree, bailing');
+        todo('- at least one of the call args to', calleeName, 'was not isFree, bailing', [theNotFreeNode]);
         return false;
       }
 
@@ -357,7 +381,7 @@ function _isFree(node, fdata, callNodeToCalleeSymbol, declaredNameTypes, insideW
         const cmeta = fdata.globallyUniqueNamingRegistry.get(calleeName);
         if (
           cmeta?.isConstant &&
-          (cmeta.varDeclRef?.node.id?.name === SYMBOL_PCOMPILED || cmeta.varDeclRef?.node.id?.name === SYMBOL_FREE)
+          (calleeName === SYMBOL_PCOMPILED || calleeName === SYMBOL_FREE)
         ) {
           vlog('- returns:', cmeta.typing.returns);
           if (!cmeta.typing.returns) {
@@ -405,7 +429,7 @@ function _isFree(node, fdata, callNodeToCalleeSymbol, declaredNameTypes, insideW
           callNodeToCalleeSymbol.set(node, calleeName);
           return true;
         }
-        vlog('- bail: not a supported function', [!cmeta?.isConstant ? 'not a constant' : '', cmeta.varDeclRef?.node.id?.name !== SYMBOL_PCOMPILED ? 'func name is not pcompiled symbol' : '', cmeta.varDeclRef?.node.id?.name, SYMBOL_PCOMPILED]);
+        vlog('- bail: not a supported function', [!cmeta?.isConstant ? 'not a constant' : '', calleeName !== SYMBOL_PCOMPILED ? 'func name is not pcompiled symbol' : '', 'name=', [calleeName], SYMBOL_PCOMPILED]);
         return false;
       }
 
@@ -684,7 +708,7 @@ function _isFree(node, fdata, callNodeToCalleeSymbol, declaredNameTypes, insideW
         return false;
       }
 
-      vlog('- bail: ident', node.name, 'did not pass any of the other cases where ident would be okay here. it was not defined before the loop and its not a supported global func');
+      vlog('- bail: ident', [node.name], 'did not pass any of the other cases where ident would be okay here. it was not defined before the loop and its not a supported global func');
       return false; // Maybe there are more valid cases but I don't know what that looks like right now
     }
     case 'IfStatement': {
@@ -898,7 +922,7 @@ function _isFree(node, fdata, callNodeToCalleeSymbol, declaredNameTypes, insideW
 }
 
 function runStatement(fdata, node, register, callNodeToCalleeSymbol, prng, usePrng, insideWhile) {
-  vgroup('# ', node.type);
+  vgroup('# ', node.type, node.$p.npid);
   const r = _runStatement(fdata, node, register, callNodeToCalleeSymbol, prng, usePrng, insideWhile);
   vgroupEnd();
   return r;
@@ -964,7 +988,8 @@ function _runStatement(fdata, node, register, callNodeToCalleeSymbol, prng, useP
 
       try {
         return runStatement(fdata, node.block, register, callNodeToCalleeSymbol, prng, usePrng, insideWhile);
-      } catch {
+      } catch (e) {
+        if (e instanceof PthrowCarrier) throw e;
         return runStatement(fdata, node.handler.body, register, callNodeToCalleeSymbol, prng, usePrng, insideWhile);
       }
     }
@@ -1184,7 +1209,7 @@ function _runExpression(fdata, node, register, callNodeToCalleeSymbol, prng, use
         if (
           cmeta?.isConstant &&
           // If the func own name is $pcompiled (or $free) then we must have pcode available now...
-          cmeta.varDeclRef?.node.id?.name === SYMBOL_PCOMPILED
+          calleeName === SYMBOL_PCOMPILED
         ) {
           vlog('- Call pcode compiled function:', callNodeToCalleeSymbol.get(node));
 
@@ -1566,7 +1591,7 @@ function _runExpression(fdata, node, register, callNodeToCalleeSymbol, prng, use
     const outNode = runFreeWithPcode(freeFuncNode, args, fdata, calleeName, prng, usePrng, fdata.pcodeOutput);
     if (!outNode || !AST.isPrimitive(outNode)) {
       todo('The return value of runFreeWithPcode was not a primitive?');
-      throw new Error('return value of runFreeWithPcode?');
+      throw new PthrowCarrier('bad return value of runFreeWithPcode?');
     }
     return AST.getPrimitiveValue(outNode);
   }

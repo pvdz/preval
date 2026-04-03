@@ -1684,7 +1684,7 @@ $(tmpCalleeParam$3);
 ## Todos triggered
 
 
-- (todo) - at least one of the call args to
+- (todo) Support $frfr that has multiple/no/generic returns type;
 - (todo) Support string.charCodeAt when the arg is not a string literal
 - (todo) Support string.charCodeAt when the object is not a string literal
 - (todo) Support this ident in isFree CallExpression: $string_indexOf

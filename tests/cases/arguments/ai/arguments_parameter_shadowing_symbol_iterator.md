@@ -175,7 +175,6 @@ testArgsParameterShadowingSymbolIterator(`a`, `b`, `c`);
 ## Todos triggered
 
 
-- (todo) - at least one of the call args to
 - (todo) Can we inline a function that uses arguments, anyways?
 - (todo) access object property that also exists on prototype? $array_push
 - (todo) array reads var statement with init MemberExpression

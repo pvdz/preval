@@ -134,7 +134,7 @@ $(x);
 ## Todos triggered
 
 
-- (todo) - at least one of the call args to
+- (todo) Support $frfr that has multiple/no/generic returns type;
 
 
 ## Globals

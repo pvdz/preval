@@ -165,7 +165,6 @@ $(y);
 ## Todos triggered
 
 
-- (todo) - at least one of the call args to
 - (todo) array reads var statement with init CallExpression
 - (todo) regular property access of an ident feels tricky;
 - (todo) type trackeed tricks can possibly support static $Math_max

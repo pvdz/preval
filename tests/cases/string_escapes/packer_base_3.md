@@ -141,7 +141,7 @@ $(p);
 ## Todos triggered
 
 
-- (todo) - at least one of the call args to
+- (todo) Support this ident in isFree CallExpression: $string_replace
 - (todo) can we always safely clone ident refs in this case?
 - (todo) objects in isFree check
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

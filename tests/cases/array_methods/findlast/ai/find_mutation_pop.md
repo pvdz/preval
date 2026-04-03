@@ -66,7 +66,7 @@ $(result, x);
 ## Todos triggered
 
 
-- (todo) - at least one of the call args to
+- (todo) Calling array push on a var that was not in scope of the free loop
 - (todo) Support this ident in isFree CallExpression: $array_pop
 - (todo) access object property that also exists on prototype? $array_pop
 - (todo) access object property that also exists on prototype? $array_push

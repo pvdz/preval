@@ -90,9 +90,12 @@ $(DATA_ARRAY);
 ## Todos triggered
 
 
-- (todo) Missing implementation for allowed function call to:
+- (todo) Calling array push on a var that was not in scope of the free loop
 - (todo) access object property that also exists on prototype? $array_push
 - (todo) access object property that also exists on prototype? $array_shift
+- (todo) array reads var statement with init CallExpression
+- (todo) outline any args for tdz
+- (todo) regular property access of an ident feels tricky;
 - (todo) support array reads statement type ExpressionStatement
 - (todo) type trackeed tricks can possibly support static $Number_parseInt
 

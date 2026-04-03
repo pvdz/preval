@@ -118,11 +118,26 @@ export function vlog(...args) {
   if (VERBOSE_TRACING) log(...args);
 }
 export function vgroup(...args) {
-  if (VERBOSE_TRACING) group(...args);
+  if (VERBOSE_TRACING) {
+    group(...args);
+  }
 }
 export function vgroupEnd(...args) {
   ASSERT(args.length === 0, 'vgroup does not accept args');
-  if (VERBOSE_TRACING) groupEnd(...args);
+  if (VERBOSE_TRACING) {
+    groupEnd(...args);
+  }
+}
+export function vgroupDepth(set) {
+  if (VERBOSE_TRACING) {
+    if (set !== undefined) {
+      ASSERT(isFinite(set));
+      while (indent > set) {
+        vgroupEnd();
+      }
+    }
+  }
+  return indent;
 }
 
 let todoSink;

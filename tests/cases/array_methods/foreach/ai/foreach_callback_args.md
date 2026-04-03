@@ -77,7 +77,6 @@ $dotCall(tmpMCF, tmpMCOO, `forEach`, tmpMCP);
 ## Todos triggered
 
 
-- (todo) - at least one of the call args to
 - (todo) Support this binary expression operator:
 - (todo) array reads var statement with init BinaryExpression
 - (todo) fixme: spyless vars and labeled nodes

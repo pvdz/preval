@@ -55,11 +55,11 @@ function _ifTestSealerUseless(fdata) {
     //
     // I think this only requires knowing the _initial_ value, since that determines whether the assign is dead or not.
     let assignVisited = false;
-    if (assignWrite.blockBody !== ifNode.consequent.body) {
+    if (assignWrite.blockBody === ifNode.consequent.body) {
       if (AST.isTruthy(initWrite.parentNode.init)) assignVisited = true;
       else if (!AST.isFalsy(initWrite.parentNode.init)) return; // If we can't determine it, we must bail
     }
-    else if (assignWrite.blockBody !== ifNode.alternate.body) {
+    else if (assignWrite.blockBody === ifNode.alternate.body) {
       if (AST.isFalsy(initWrite.parentNode.init)) assignVisited = true;
       else if (!AST.isTruthy(initWrite.parentNode.init)) return; // If we can't determine it, we must bail
     }
@@ -85,7 +85,7 @@ function _ifTestSealerUseless(fdata) {
 
     // Okay, the branches are same so we should be good to go now!
 
-    rule('A sealer that causes two equal if-branches is dead code');
+    rule('A sealer that causes two equal if-branches is dead code (if_test_sealer_useless)');
     example('let x = false; if (x) { $(a); return undefined; } else { x = $("ok"); $(a); return undefined; }', '$("ok"); $(a); return undefined;');
     example('let x = true; if (x) { $(a); return undefined; } else { x = $("fail"); $(a); return undefined; }', '$(a); return undefined;');
     before(initWrite.blockBody[initWrite.blockIndex]);

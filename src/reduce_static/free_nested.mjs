@@ -93,39 +93,144 @@ function _freeNested(fdata, $prng, usePrng) {
     if (statementCount === 1) {
       vlog('- func has one statement');
       const last = body[body.length - 1];
-      ASSERT(last?.type === 'ReturnStatement', '$free functions should always result in a return...', last);
+      ASSERT(last, 'we checked this so wtf?', body);
 
-      // Get the function alias for this $free func
-      const funcAlias =
-        parentNode.type === 'VarStatement'
-        ? parentNode.id.name
-        : parentNode.type === 'AssignmentExpression' && parentNode.left.type === 'Identifier'
-        ? parentNode.left.name
-        : ASSERT(false, 'what', parentNode);
+      // This can be a return-statement, if-statement, or while-statement. cannot be assign/var because of normalization
 
-      ASSERT(funcAlias);
-      const meta = fdata.globallyUniqueNamingRegistry.get(funcAlias);
-      meta.reads.forEach(read => {
-        // Change me if this fails :)
-        ASSERT(read.parentNode.type === 'CallExpression', 'not sure if $free refs should ever be shuffled around...');
-        ASSERT(read.parentNode.callee.name === '$frfr', 'I think $free funcs should only ever be the arg to $frfr');
-        ASSERT(read.parentNode.arguments[0] === read.node, 'I think the arg should always be the first to $frfr');
+      // These tricks must not be done in reverse when freeing or whatever because that's an infinite transform loop.
 
-        rule('If a $free function has one statement then it can be folded back up');
-        example('const f = function $free(x) { return x; }; const x = $frfr(f, 1);', 'const x = 1;');
-        before(parentNode);
-        before(read.blockBody[read.blockIndex]);
+      if (last.type === 'ReturnStatement') {
+        vlog('- the only statement of this func is a return. We can fold up the function.');
+        // Get the function alias for this $free func
+        const funcAlias =
+          parentNode.type === 'VarStatement'
+          ? parentNode.id.name
+          : parentNode.type === 'AssignmentExpression' && parentNode.left.type === 'Identifier'
+          ? parentNode.left.name
+          : ASSERT(false, 'what', parentNode);
 
-        // Have to resolve a returned ident back to its param so we can do the mapping on the call side of things
-        const finalNode = valueNodeToArgNode(last.argument, funcNode, read.parentNode);
-        if (read.grandIndex < 0) read.grandNode[read.grandProp] = finalNode;
-        else read.grandNode[read.grandProp][read.grandIndex] = finalNode;
+        ASSERT(funcAlias);
+        const meta = fdata.globallyUniqueNamingRegistry.get(funcAlias);
+        meta.reads.forEach(read => {
+          // Change me if this fails :)
+          ASSERT(read.parentNode.type === 'CallExpression', 'not sure if $free refs should ever be shuffled around...');
+          ASSERT(read.parentNode.callee.name === '$frfr', 'I think $free funcs should only ever be the arg to $frfr');
+          ASSERT(read.parentNode.arguments[0] === read.node, 'I think the arg should always be the first to $frfr');
 
-        after(read.blockBody[read.blockIndex]);
-        changed += 1;
-      });
+          rule('If a $free function has one statement then it can be folded back up');
+          example('const f = function $free(x) { return x; }; const x = $frfr(f, 1);', 'const x = 1;');
+          before(parentNode);
+          before(read.blockBody[read.blockIndex]);
 
-      return true;
+          // Have to resolve a returned ident back to its param so we can do the mapping on the call side of things
+          const finalNode = valueNodeToArgNode(last.argument, funcNode, read.parentNode);
+          if (read.grandIndex < 0) read.grandNode[read.grandProp] = finalNode;
+          else read.grandNode[read.grandProp][read.grandIndex] = finalNode;
+
+          after(read.blockBody[read.blockIndex]);
+          changed += 1;
+        });
+
+        return;
+      }
+      else if (last.type === 'IfStatement') {
+        vlog('- the only statement of this func is an if. We need to check if we can fold it up.');
+        // If both branches of the `if` have one return statement then we should outline the whole
+        // function because it's essentially become a ternary expression. For better or worse. I think worse.
+
+        if (last.consequent.body.length === 1 && last.alternate.body.length === 1) {
+          ASSERT(last.consequent.body[0].type === 'ReturnStatement', 'normalized code, if was only statement, so if-branch must end with return');
+          ASSERT(last.alternate.body[0].type === 'ReturnStatement', 'normalized code, if was only statement, so else-branch must end with return');
+
+          vlog('- both branches are only returning so we should outline this ternary');
+
+          // Get the function alias for this $free func
+          const funcAlias =
+            parentNode.type === 'VarStatement'
+            ? parentNode.id.name
+            : parentNode.type === 'AssignmentExpression' && parentNode.left.type === 'Identifier'
+            ? parentNode.left.name
+            : ASSERT(false, 'what', parentNode);
+          ASSERT(funcAlias);
+
+          const meta = fdata.globallyUniqueNamingRegistry.get(funcAlias);
+          meta.reads.forEach(read => {
+            // Change me if this fails :)
+            ASSERT(read.parentNode.type === 'CallExpression', 'not sure if $free refs should ever be shuffled around...');
+            ASSERT(read.parentNode.callee.name === '$frfr', 'I think $free funcs should only ever be the arg to $frfr');
+            ASSERT(read.parentNode.arguments[0] === read.node, 'I think the arg should always be the first to $frfr');
+
+            // Have to resolve which argument is test, consequent return, and alternate return. Same for all reads.
+            const testValue = valueNodeToArgNode(last.test, funcNode, read.parentNode);
+            const consValue = valueNodeToArgNode(last.consequent.body[0].argument, funcNode, read.parentNode);
+            const altValue = valueNodeToArgNode(last.alternate.body[0].argument, funcNode, read.parentNode);
+
+            if (read.grandNode.type === 'AssignmentExpression') {
+              rule('When a $free function is an if that only returns then it should be eliminated');
+              example('const f = function $free(x, y, z){ if (x) return y; else return z; } x = $frfr(a, b, c);', 'if (a) x = b; else x = c;');
+              before(parentNode);
+              before(read.blockBody[read.blockIndex]);
+
+              read.blockBody[read.blockIndex] = AST.ifStatement(
+                AST.cloneSimpleOrTemplate(testValue),
+                AST.blockStatement([AST.expressionStatement(AST.assignmentExpression(
+                  AST.cloneSimple(read.grandNode.left),
+                  AST.cloneSimpleOrTemplate(consValue),
+                ))]),
+                AST.blockStatement([AST.expressionStatement(AST.assignmentExpression(
+                  AST.cloneSimple(read.grandNode.left),
+                  AST.cloneSimpleOrTemplate(altValue),
+                ))]),
+              );
+
+              after(read.blockBody[read.blockIndex]);
+              changed += 1;
+            } else if (read.grandNode.type === 'VarStatement') {
+              rule('When a $free function is an if that only returns then it should be eliminated');
+              example('const f = function $free(x, y, z){ if (x) return y; else return z; } const r = $frfr(a, b, c);', 'let r; if (a) r = b; else r = c;');
+              before(parentNode);
+              before(read.blockBody[read.blockIndex]);
+
+              read.blockBody.splice(read.blockIndex, 1,
+                AST.varStatement(
+                  'let', // It's now a `let`, regardless of what it was
+                  read.grandNode.id.name,
+                  AST.undef()
+                ),
+                AST.ifStatement(
+                  AST.cloneSimpleOrTemplate(testValue),
+                  AST.blockStatement([AST.expressionStatement(AST.assignmentExpression(
+                    AST.identifier(read.grandNode.id.name),
+                    AST.cloneSimpleOrTemplate(consValue),
+                  ))]),
+                  AST.blockStatement([AST.expressionStatement(AST.assignmentExpression(
+                    AST.identifier(read.grandNode.id.name),
+                    AST.cloneSimpleOrTemplate(altValue),
+                  ))]),
+                )
+              );
+
+              after(read.blockBody[read.blockIndex]);
+              changed += 1;
+            } else {
+              todo(`Support this statement for single read for free_nested: ${read.grandNode.type}`);
+            }
+          });
+
+          return;
+        }
+
+        return;
+      }
+      else if (last.type === 'WhileStatement') {
+        vlog('- the only statement of this func is a while. We need to check if we can fold it up.');
+        // The function can be rolled up in some niche cases but generally not?
+        return;
+      }
+      else {
+        // Or try/catch?
+        ASSERT(false, 'at this time, $free functions can not have anything other than return/if/while as only statement');
+      }
     }
 
     const last = body[body.length - 1];

@@ -37,7 +37,7 @@ import {
 import { addLabelReference, registerGlobalLabel } from '../labels.mjs';
 import { SYMBOL_COERCE, SYMBOL_FREE, SYMBOL_PCOMPILED } from '../symbols_preval.mjs';
 
-// This phase is fairly mechanical and should only do discovery, no AST changes.
+// This phase is fairly mechanical and should only do discovery, no AST changes except for some initial flattening.
 // It sets up scope tracking, imports/exports tracking, return value analysis, ref tracking (which binding can see which binding). That sort of thing.
 // It does replace Identifier nodes in the AST that are $$123 param names with a special custom Param node
 // It runs twice; once for actual input code and once on normalized code.

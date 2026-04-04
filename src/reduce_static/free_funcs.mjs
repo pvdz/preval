@@ -173,7 +173,7 @@ export function _freeFuncs(fdata, prng, usePrng, pcodeTestMode) {
 
               const args = read.parentNode.arguments.map(anode => AST.getPrimitiveValue(anode));
               vlog('Simulating a call to "', funcName, '" with args', args);
-              const out = runPcode(funcName, args, fdata.pcodeOutput, fdata, prng, usePrng);
+              const out = runPcode(funcName, args, fdata.pcodeOutput, fdata, prng, usePrng, 0);
               vlog('pcode result:', out);
 
               if (out === SO_MESSAGE) {

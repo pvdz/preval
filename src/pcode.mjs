@@ -45,8 +45,9 @@ import { BUILTIN_SYMBOLS, symbo } from './symbols_builtins.mjs';
 const NONE = 0;
 const RETURN = 1;
 const BREAK = 2;
-const SO = 3; // "stack overflow" (or, max call depth exceeded)
+const SO = 3; // "stack overflow" (or, max call depth exceeded, or infinite loop)
 export const SO_MESSAGE = '<max pcode call depth exceeded>'; // actually, we should not change the code, maybe add this message or something as a marker, but that's it
+const MAX_OP_CODE_LIMIT = 1_000_000; // once a single prun executes this many statements, consider it an infinite loop or whatever and bail
 
 /** @var {Set<string>} we need the func node because a let binding can have multiple funcs assigned to it. true means its a built-in we support */
 export const pcodeSupportedBuiltinFuncs = new Set([
@@ -222,7 +223,7 @@ export function runFreeWithPcode(funcNode, argNodes, fdata, freeFuncName, $prng,
   vlog('Getting primitives from args:', argNodes, argNodes);
   const args = argNodes.map(anode => AST.getPrimitiveValue(anode));
   vlog('Now running pcode with args:', args);
-  const out = runPcode(freeFuncName, args, pcodeOutput, fdata, $prng, usePrng);
+  const out = runPcode(freeFuncName, args, fdata.pcodeOutput, fdata, $prng, usePrng, 0);
   vlog('Outcome:', out);
 
   vgroupEnd();
@@ -382,8 +383,12 @@ function pcanCompileBody(locals, calls, body, fdata) {
         break;
       }
       case 'WhileStatement': {
-        vlog('- bail: no loops yet');
-        return false;
+        vgroup();
+        vgroup();
+        const r = pcanCompileBody(locals, calls, stmt.body.body, fdata);
+        vgroupEnd();
+        vgroupEnd();
+        return r;
       }
       case 'TryStatement': {
         // We should be able to cover this just fine...
@@ -739,6 +744,20 @@ function _compileStatement(stmt, regs, fdata, asm) {
       asm.push(['if', ...test, cons, alt]);
       return;
     }
+    case 'WhileStatement': {
+      vgroup('source:  ', DIM, 'while(true)', RESET);
+      vgroup();
+      const body = [];
+      stmt.body.body.forEach(e => {
+        vgroup();
+        compileStatement(e, regs, fdata, body);
+        vgroupEnd();
+      })
+      vgroupEnd();
+      vgroupEnd();
+      asm.push(['while', body]);
+      return;
+    }
     case 'DebuggerStatement': {
       return;
     }
@@ -934,7 +953,9 @@ function compileReglit(node, regs) {
  * @param {Map<name | pid, name, node, pcode?} pcodeData
  * @returns {Primitive}
  */
-export function runPcode(funcName, args, pcodeData, fdata, prng, usePrng, depth = 0) {
+export function runPcode(funcName, args, pcodeData, fdata, prng, usePrng, depth) {
+  ASSERT(runPcode.length === arguments.length, 'arg len');
+  ASSERT(pcodeData, 'should receive a pcodeData object');
   if (depth === 0) vlog('runPcode:', funcName, '(', args, ')');
   ++depth;
   const obj = pcodeData.get(funcName);
@@ -965,6 +986,7 @@ export function runPcode(funcName, args, pcodeData, fdata, prng, usePrng, depth 
   vgroup('runPcode: Running', [funcName], 'with these ags:', args);
   vlog('');
   const registers = {
+    $ops: 0,
     $return: undefined,
   };
   for (let i=0; i<args.length; ++i) {
@@ -981,6 +1003,11 @@ export function runPcode(funcName, args, pcodeData, fdata, prng, usePrng, depth 
 
 function prunStmt(registers, bytecode, pcodeData, fdata, prng, usePrng, depth) {
   for (let i=0; i<bytecode.length; ++i) {
+    registers.$ops += 1;
+    if (registers.$ops > MAX_OP_CODE_LIMIT) {
+      vlog('- bail: tripped op count limit breaker. Preventing infinite loops etc.');
+      return SO;
+    }
     const op = bytecode[i];
     const opcode = op[0];
     switch (opcode) {
@@ -989,16 +1016,74 @@ function prunStmt(registers, bytecode, pcodeData, fdata, prng, usePrng, depth) {
         const test = op[1] ? registers[op[1]] : op[2];
         vgroup('IF(', test, ')');
         if (test) {
-          const action = prunStmt(registers, op[3], pcodeData, fdata, prng, usePrng, depth);
           if (op[3].length === 0) vlog('(empty block)');
-          vgroupEnd();
-          if (action !== NONE) return action;
+          const action = prunStmt(registers, op[3], pcodeData, fdata, prng, usePrng, depth);
+          if (action !== NONE) {
+            vgroupEnd();
+            return action;
+          }
         } else {
-          const action = prunStmt(registers, op[4], pcodeData, fdata, prng, usePrng, depth);
           if (op[4].length === 0) vlog('(empty block)');
-          vgroupEnd();
-          if (action !== NONE) return action;
+          const action = prunStmt(registers, op[4], pcodeData, fdata, prng, usePrng, depth);
+          if (action !== NONE) {
+            vgroupEnd();
+            return action;
+          }
         }
+        vgroupEnd();
+        break;
+      }
+
+      case 'while': {
+        vlog('Running while...', op);
+        vgroup();
+        vgroup();
+        const body = op[1];
+        // ['while', body[]]
+        let loopBreaker = MAX_OP_CODE_LIMIT; // Whatever. Some artificial ceiling to prevent infinite loops
+        while (true) {
+          if (--loopBreaker <= 0) {
+            vgroupEnd();
+            vgroupEnd();
+            vgroupEnd();
+            vlog('/while (loop breaker)');
+            return SO;
+          }
+          if (body.length === 0) {
+            vgroupEnd();
+            vgroupEnd();
+            vgroupEnd();
+            vlog('/while (no body)');
+            return SO; // infinite loop
+          }
+          const action = prunStmt(registers, body, pcodeData, fdata, prng, usePrng, depth);
+          if (action === BREAK) {
+            // An unlabeled break ends here, turn it into a regular completion
+            vlog('- Loop found break, label =', [registers.$break]);
+            if (registers.$break) {
+              vlog('- The break does not end here, propagating it...');
+              vgroupEnd();
+              vgroupEnd();
+              vgroupEnd();
+              vlog('/while (labeled break)');
+              return BREAK;
+            }
+            vlog('- The break has no label so it ends here. Propagating a normal completion...');
+            vgroupEnd();
+            vgroupEnd();
+            vgroupEnd();
+            vlog('/while (unlabeled break)');
+            break; // do not return, break here will resume with statement after the while
+          }
+          if (action !== NONE) {
+            vgroupEnd();
+            vgroupEnd();
+            vgroupEnd();
+            vlog('/while (abrupt completion)');
+            return action;
+          }
+        }
+        // Reached after an unlabeled BREAK
         break;
       }
 
@@ -1632,14 +1717,13 @@ function prunExpr(registers, op, pcodeData, fdata, prng, usePrng, depth) {
           break;
         }
 
-        //default: ASSERT(false, 'Missing impl for builtin which was marked in pcodeSupportedBuiltins?: func', op[2]);
+        //default: ASSERT(false, 'Missing impl for builtin which was marked in pcodeSupportedBuiltins?: func', calleeName);
       }
 
-      vlog('- Not calling a builtin:');
-      const obj = pcodeData.get(op[2]);
-      ASSERT(obj, 'pcode should not compile func calls when that func cannot compile to pcode', [op[2], op]);
-      vgroup(op[2], '(', ...arr, ')');
-      const r = runPcode(op[2], arr, pcodeData, depth, fdata, prng, usePrng);
+      let calleeName = targetFuncName; // tmp
+      vlog('- Not calling a builtin, hope its compiled... runPcode:');
+      vgroup(calleeName, '(', ...arr, ')');
+      const r = runPcode(calleeName, arr, pcodeData, fdata, prng, usePrng, depth);
       vlog('- Call result:', r);
       vgroupEnd();
       return r;

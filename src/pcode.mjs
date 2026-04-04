@@ -247,6 +247,17 @@ export function pcanCompile(funcNode, fdata, funcName) {
   ASSERT(funcNode.type === 'FunctionExpression', 'must be func node', funcNode);
   ASSERT(typeof funcName === 'string', 'func name is string', funcName);
 
+  // TODO: this should work but it doesn't. some tests will break with it.
+  // if (funcNode.id?.name === SYMBOL_FREE) {
+  //   vlog('- function is $free, accepting it without further checks');
+  //   return [];
+  // }
+  //
+  // if (funcNode.id?.name === SYMBOL_PCOMPILED) {
+  //   vlog('- function is $pcompiled, accepting it without further checks');
+  //   return [];
+  // }
+
   if (pcodeSupportedBuiltinFuncs.has(funcName)) {
     vlog('- function is a supported builtin');
     return [];
@@ -850,11 +861,39 @@ function compileExpression(exprNode, regs, fdata, stmt, withAssign, asm) {
       } else {
         ASSERT(exprNode.callee.name, 'and the ident has a name?', exprNode);
         vlog('This is a regular ident call to', exprNode.callee.name, exprNode.arguments.length, ', we will compile an undefined as "first arg" for context');
-        const opcode = ['call', exprNode.callee.name];
-        opcode.push(...compileExpression(AST.undef(), regs, fdata, stmt, false, asm)); // This is the unused context position. only used for $dotcall.
-        for (let i=0; i<exprNode.arguments.length; ++i) {
+        const isFrfr = exprNode.callee.name === SYMBOL_FRFR;
+          // for $frfr, call the free func directly. it's always the first arg of the $frfr call
+        const calleeName = isFrfr ? exprNode.arguments[0].name : exprNode.callee.name;
+        if (isFrfr) vlog('- This is $frfr so the real call is to', calleeName);
+        const opcode = [
+          'call',
+          calleeName,
+          // This is the unused context position which is only used for $dotcall. Always undefined here.
+          ...compileExpression(AST.undef(), regs, fdata, stmt, false, asm),
+        ];
+
+        // When frfr, skip the first arg because that is the function we call, already fixed above
+        for (let i=isFrfr?1:0; i<exprNode.arguments.length; ++i) {
           opcode.push(...compileExpression(exprNode.arguments[i], regs, fdata, stmt, false, asm));
         }
+
+        if (isFrfr) {
+          vlog('- checking if the frfr arg is compiled...', [calleeName], '=>', fdata.pcodeOutput.get(calleeName));
+          // For frfr we need to make sure to compile the frfr
+          ASSERT(exprNode.arguments[0].type === 'Identifier', 'we control frfr and first arg must be ident', exprNode.arguments);
+          if (!fdata.pcodeOutput.has(calleeName)) {
+            vlog('Compiled a frfr..., must also make sure the free func is (pre) compiled:', [calleeName]);
+            const meta = fdata.globallyUniqueNamingRegistry.get(calleeName);
+            const funcNode = meta.varDeclRef.node;
+            vgroup('pCompiling func node now...');
+            vgroup();
+            const pcode = pcompile(funcNode, fdata);
+            fdata.pcodeOutput.set(calleeName, { pcode, funcNode, name: calleeName, bytecode: pcode });
+            vgroupEnd();
+            vgroupEnd();
+          }
+        }
+
         return opcode;
       }
     }
@@ -1226,8 +1265,18 @@ function prunExpr(registers, op, pcodeData, fdata, prng, usePrng, depth) {
       }
 
       vlog('- args:', arr);
+      vlog('Checking if func', [op[2]], 'has pcode...');
+      let calleeName = op[2];
+      if (calleeName === SYMBOL_FRFR) {
+        calleeName = arr[0];
+        ASSERT(calleeName, 'frfr is controlled by us');
+      }
 
-      ASSERT(pcodeData.has(op[2]) || pcodeSupportedBuiltinFuncs.has(targetFuncName), 'prun should only receive funcs to call that it supports (or free funcs, which should be pcompiled)', targetFuncName);
+      if (!pcodeData.has(calleeName)) {
+        if (!pcodeSupportedBuiltinFuncs.has(targetFuncName)) {
+          ASSERT(false, 'prun should only receive funcs to call that it supports (or free funcs, which should be pcompiled)', targetFuncName);
+        }
+      }
 
       switch (targetFuncName) {
         case '$': {
@@ -1720,7 +1769,6 @@ function prunExpr(registers, op, pcodeData, fdata, prng, usePrng, depth) {
         //default: ASSERT(false, 'Missing impl for builtin which was marked in pcodeSupportedBuiltins?: func', calleeName);
       }
 
-      let calleeName = targetFuncName; // tmp
       vlog('- Not calling a builtin, hope its compiled... runPcode:');
       vgroup(calleeName, '(', ...arr, ')');
       const r = runPcode(calleeName, arr, pcodeData, fdata, prng, usePrng, depth);

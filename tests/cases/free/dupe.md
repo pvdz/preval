@@ -12,9 +12,9 @@
 const tmpUnaryArg = $spy(1);
 const x = +tmpUnaryArg;
 if (x) {
-  const tmpIfTest$3 = x & 48;
-  const tmpIfTest$5 = tmpIfTest$3 === 48;
-  if (tmpIfTest$5) {
+  const a = x & 48;
+  const b = a === 48;
+  if (b) {
     $(`it is 58`);
   } else {}
 } else {}
@@ -28,15 +28,15 @@ if (x) {
 const tmpFree /*:(number)=>boolean*/ = function $free($$0) {
   const x$1 /*:number*/ = $$0;
   debugger;
-  const tmpIfTest$3 /*:number*/ /*&48*/ = x$1 & 48;
-  const tmpRet /*:boolean*/ = tmpIfTest$3 === 48;
+  const a /*:number*/ /*&48*/ = x$1 & 48;
+  const tmpRet /*:boolean*/ = a === 48;
   return tmpRet;
 };
 const tmpUnaryArg /*:unknown*/ = $spy(1);
 const x /*:number*/ = +tmpUnaryArg;
 if (x) {
-  const tmpIfTest$5 /*:boolean*/ = $frfr(tmpFree, x);
-  if (tmpIfTest$5) {
+  const b /*:boolean*/ = $frfr(tmpFree, x);
+  if (b) {
     $(`it is 58`);
   } else {
   }
@@ -92,9 +92,9 @@ if (f) {
 const tmpUnaryArg = $spy(1);
 const x = +tmpUnaryArg;
 if (x) {
-  const tmpIfTest$3 = x & 48;
-  const tmpIfTest$5 = tmpIfTest$3 === 48;
-  if (tmpIfTest$5) {
+  const a = x & 48;
+  const b = a === 48;
+  if (b) {
     $(`it is 58`);
   } else {
   }

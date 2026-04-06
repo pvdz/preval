@@ -221,6 +221,38 @@ export function before(node, parentNode = undefined, returnOnly = false, force =
   return '';
 }
 
+export function snippet(node, parentNode = undefined, returnOnly = false, force = false) {
+  if (VERBOSE_TRACING || force) {
+    if (Array.isArray(node)) {
+      return node.map((n, i) => snippet(n, i ? undefined : parentNode, returnOnly)).join('\n');
+    }
+    ASSERT(node?.type, 'should receive a node...?', typeof node, node);
+
+    const anon = node.type.includes('Function') && 'id' in node && !node.id;
+    if (anon) node.id = { type: 'Identifier', name: 'anon' };
+
+    const parentCode =
+      parentNode &&
+      (Array.isArray(parentNode)
+        ? '\n  ' + parentNode.map((node) => (typeof node === 'string' ? node : tmat(node, true).replace(/\n/g, ' '))).join('\n  ')
+        : typeof node === 'string'
+          ? node
+          : tmat(parentNode).replace(/\n/g, ' '));
+    const nodeCode = typeof node === 'string' ? node : tmat(node, true).replace(/\n/g, ' ');
+
+    let output = PURPLE + 'Snippet: ' + RESET + nodeCode;
+
+    if (parentNode && parentCode !== nodeCode) {
+      output = DIM + 'Parent: ' + parentCode + RESET + '\n' + output;
+    }
+    if (anon) node.id = null;
+
+    if (returnOnly) return output;
+    log(output);
+  }
+  return '';
+}
+
 export function source(node, force = false, callCount = 0) {
   if (VERBOSE_TRACING || force) {
     if (Array.isArray(node)) node.forEach((n) => source(n, force, callCount++));

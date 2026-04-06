@@ -1308,6 +1308,9 @@ export function varStatement(kind, id, init) {
   if (typeof id === 'string') id = identifier(id);
   ASSERT(typeof init !== 'string', 'var init should be node, strings are not converted to idents');
   ASSERT(init && typeof init === 'object', 'init must be node, was:', init); // prevent issues with string as primitive vs string as ident
+  ASSERT(id.name !== undefined && id.name !== 'undefined', 'if we are trying to create a var statement named "undefined" we probably have a bug.');
+  ASSERT(!Object.is(id.name, NaN) && id.name !== 'NaN', 'if we are trying to create a var statement named "NaN" we probably have a bug.');
+  ASSERT(id.name !== Infinity && id.name !== 'Infinity', 'if we are trying to create a var statement named "Infinity" we probably have a bug.');
 
   const node = {
     type: 'VarStatement',
@@ -3264,7 +3267,7 @@ export function isStatementCallingFunc(stmtNode, funcName) {
   // Assumes normalized code. Returns CallNode or undefined
 
   const call = isStatementCalling(stmtNode);
-  if (call && call.callee.type === 'Identifier' && call.callee.name === funcName) {
+  if (call && (!funcName || (call.callee.type === 'Identifier' && call.callee.name === funcName))) {
     return call;
   }
   return undefined;

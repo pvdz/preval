@@ -15911,12 +15911,10 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
       node.block.body.length === 1 &&
       node.block.body[0].type === 'ExpressionStatement' &&
       node.block.body[0].expression.type === 'Identifier' &&
-      (!node.handler.body.body.length || !node.handler.param)
+      !node.handler.body.body.length
     ) {
-      // - ``
-      rule('When a try/catch traps only an identifier and either has no catch body or no catch clause, drop it, drop it');
+      rule('When a try/catch traps only an identifier and has no catch body, drop it');
       example('try { implicit_error_or_not; } catch (y) { }', '');
-      example('try { implicit_error_or_not; } catch { $(); }', '$();');
       before(body[i]);
 
       if (!node.handler.body.body.length) {

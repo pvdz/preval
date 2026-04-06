@@ -206,7 +206,7 @@ Preval goes apeshit if you allow it
 
 
 `````js filename=intro
-const tmpFree$3 /*:(number, primitive, number)=>primitive*/ = function $free($$0, $$1, $$2) {
+const tmpFree$1 /*:(number, primitive, number)=>primitive*/ = function $free($$0, $$1, $$2) {
   const _0x5b220f /*:number*/ = $$0;
   const tmpBinBothRhs$59 /*:primitive*/ = $$1;
   const tmpClusterSSA__0x2f4501$2 /*:number*/ = $$2;
@@ -588,7 +588,7 @@ const DECODER_FUNC /*:()=>string*/ = function () {
     const tmpIfTest$13 /*:boolean*/ = tmpClusterSSA__0x2f4501$1 < 256;
     if (tmpIfTest$13) {
       const tmpBinBothRhs$1 /*:primitive*/ = _0x23cc4c[tmpClusterSSA__0x2f4501$1];
-      const tmpBinBothLhs$55 /*:primitive*/ = $frfr(tmpFree$3, _0x5b220f$1, tmpBinBothRhs$1, tmpClusterSSA__0x2f4501$1);
+      const tmpBinBothLhs$55 /*:primitive*/ = $frfr(tmpFree$1, _0x5b220f$1, tmpBinBothRhs$1, tmpClusterSSA__0x2f4501$1);
       _0x5b220f$1 = tmpBinBothLhs$55 % 256;
       const tmpClusterSSA__0x1a8c54 /*:primitive*/ = _0x23cc4c[tmpClusterSSA__0x2f4501$1];
       const tmpAssignComputedRhs /*:primitive*/ = _0x23cc4c[_0x5b220f$1];
@@ -642,7 +642,7 @@ $(tmpCalleeParam$3);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpFree$3 = function $free(_0x5b220f, tmpBinBothRhs$59, tmpClusterSSA__0x2f4501$2) {
+const tmpFree$1 = function $free(_0x5b220f, tmpBinBothRhs$59, tmpClusterSSA__0x2f4501$2) {
   const tmpBinBothRhs$57 = $dotCall($string_charCodeAt, `s6T^`, `charCodeAt`, tmpClusterSSA__0x2f4501$2 % 4);
   const tmpRet = _0x5b220f + tmpBinBothRhs$59 + tmpBinBothRhs$57;
   return tmpRet;
@@ -983,7 +983,7 @@ const DECODER_FUNC = function () {
   ];
   while (true) {
     if (tmpClusterSSA__0x2f4501$1 < 256) {
-      _0x5b220f$1 = tmpFree$3(_0x5b220f$1, _0x23cc4c[tmpClusterSSA__0x2f4501$1], tmpClusterSSA__0x2f4501$1) % 256;
+      _0x5b220f$1 = tmpFree$1(_0x5b220f$1, _0x23cc4c[tmpClusterSSA__0x2f4501$1], tmpClusterSSA__0x2f4501$1) % 256;
       const tmpClusterSSA__0x1a8c54 = _0x23cc4c[tmpClusterSSA__0x2f4501$1];
       const tmpAssignComputedRhs = _0x23cc4c[_0x5b220f$1];
       _0x23cc4c[tmpClusterSSA__0x2f4501$1] = tmpAssignComputedRhs;

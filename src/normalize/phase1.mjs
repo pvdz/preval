@@ -36,6 +36,7 @@ import {
 } from '../utils/ref_tracking.mjs';
 import { addLabelReference, registerGlobalLabel } from '../labels.mjs';
 import { SYMBOL_COERCE, SYMBOL_FREE, SYMBOL_PCOMPILED } from '../symbols_preval.mjs';
+import { BUILTIN_SYMBOLS } from '../symbols_builtins.mjs';
 
 // This phase is fairly mechanical and should only do discovery, no AST changes except for some initial flattening.
 // It sets up scope tracking, imports/exports tracking, return value analysis, ref tracking (which binding can see which binding). That sort of thing.
@@ -234,14 +235,26 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         parentNode.body.splice(parentIndex, 1);
         return; // Node changed so it will revisit
       }
-      if (node.type === 'ExpressionStatement' && AST.isPrimitive(node.expression)) {
-        rule('Expression statement that is a primitive is a noop');
-        example('a(); true; b();', 'a(); b();');
-        before_func(parentNode);
+      if (node.type === 'ExpressionStatement') {
+        if (AST.isPrimitive(node.expression)) {
+          rule('Expression statement that is a primitive is a noop');
+          example('a(); true; b();', 'a(); b();');
+          before_func(parentNode);
 
-        ASSERT(parentNode.body[parentIndex] === node);
-        parentNode.body.splice(parentIndex, 1);
-        return; // Node changed so it will revisit
+          ASSERT(parentNode.body[parentIndex] === node);
+          parentNode.body.splice(parentIndex, 1);
+          return; // Node changed so it will revisit
+        }
+        // Wish we could just eliminate all idents this way but we want to maintain tdz semantics if possible
+        if (node.expression.type === 'Identifier' && BUILTIN_SYMBOLS.has(node.expression.name)) {
+          rule('Expression statement that is an ident that is a builtin global is a noop');
+          example('a(); $string_slice; b();', 'a(); b();');
+          before_func(parentNode);
+
+          ASSERT(parentNode.body[parentIndex] === node);
+          parentNode.body.splice(parentIndex, 1);
+          return; // Node changed so it will revisit
+        }
       }
     }
 

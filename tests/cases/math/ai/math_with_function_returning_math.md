@@ -20,15 +20,15 @@ $(a);
 
 
 `````js filename=intro
-const tmpFree /*:()=>number*/ = function $free() {
+const tmpFree$1 /*:()=>number*/ = function $free() {
   debugger;
   const tmpBinLhs /*:number*/ = -$Math_PI;
   const tmpCalleeParam$1 /*:number*/ = tmpBinLhs / 2;
-  const tmpMCP /*:number*/ = $Math_sin(tmpCalleeParam$1);
-  const tmpRet$1 /*:number*/ = $Math_abs(tmpMCP);
-  return tmpRet$1;
+  const tmpRet$1 /*:number*/ = $Math_sin(tmpCalleeParam$1);
+  const tmpRet$2 /*:number*/ = $Math_abs(tmpRet$1);
+  return tmpRet$2;
 };
-const tmpCalleeParam /*:number*/ = $frfr(tmpFree);
+const tmpCalleeParam /*:number*/ = $frfr(tmpFree$1);
 const a /*:unknown*/ = $(tmpCalleeParam);
 $(a);
 `````
@@ -41,8 +41,8 @@ $(a);
 $(
   $(
     (function $free() {
-      const tmpRet$1 = $Math_abs($Math_sin(-$Math_PI / 2));
-      return tmpRet$1;
+      const tmpRet$2 = $Math_abs($Math_sin(-$Math_PI / 2));
+      return tmpRet$2;
     })(),
   ),
 );

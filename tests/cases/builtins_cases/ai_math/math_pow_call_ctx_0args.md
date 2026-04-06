@@ -54,6 +54,7 @@ $(tmpCalleeParam);
 ## Todos triggered
 
 
+- (todo) type trackeed tricks can possibly support static $Math_pow
 - (todo) type trackeed tricks can possibly support static $Number_isNaN
 
 

@@ -2,7 +2,7 @@
 
 # exp_dotcall_this.md
 
-> Function > Exp dotcall this
+> If test lazy init > Exp dotcall this
 >
 > Expandos on constant functions
 > The properties on this main_target function could just as well be global variables.

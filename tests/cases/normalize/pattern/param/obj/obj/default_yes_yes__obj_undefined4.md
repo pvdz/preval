@@ -36,7 +36,8 @@ f(tmpCalleeParam);
 
 
 `````js filename=intro
-throw `Preval: This statement contained a read that reached no writes: binding: tmpOPND, code: let tmpObjPatternCrashTest = tmpOPND === null;`;
+null.cannotDestructureThis;
+throw `[Preval]: Can not reach here`;
 `````
 
 
@@ -44,7 +45,8 @@ throw `Preval: This statement contained a read that reached no writes: binding: 
 (This ought to be the final result)
 
 `````js filename=intro
-throw `Preval: This statement contained a read that reached no writes: binding: tmpOPND, code: let tmpObjPatternCrashTest = tmpOPND === null;`;
+null.cannotDestructureThis;
+throw `[Preval]: Can not reach here`;
 `````
 
 
@@ -52,7 +54,8 @@ throw `Preval: This statement contained a read that reached no writes: binding: 
 With rename=true
 
 `````js filename=intro
-throw "Preval: This statement contained a read that reached no writes: binding: tmpOPND, code: let tmpObjPatternCrashTest = tmpOPND === null;";
+null.cannotDestructureThis;
+throw "[Preval]: Can not reach here";
 `````
 
 
@@ -106,8 +109,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Post settled calls: BAD!!
- - !eval returned: ("<crash[ Cannot access '<ref>' before initialization ]>")
+Post settled calls: Same
 
-Denormalized calls: BAD!!
- - !eval returned: ("<crash[ Cannot access '<ref>' before initialization ]>")
+Denormalized calls: Same

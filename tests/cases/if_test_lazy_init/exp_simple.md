@@ -2,7 +2,7 @@
 
 # exp_simple.md
 
-> Function > Exp simple
+> If test lazy init > Exp simple
 >
 > Expandos on constant functions
 > The properties on this main_target function could just as well be global variables.

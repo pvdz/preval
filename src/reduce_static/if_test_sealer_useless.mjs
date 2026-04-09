@@ -136,8 +136,8 @@ function _ifTestSealerUseless(fdata) {
   });
 
   if (changes > 0) {
-    vlog('\nSplatting blocks');
-    queue.sort(({ i: i1, j: j1 }, { i: i2, j: j2 }) => i1 - i2 || j1 - j2); // desc, first stmt then index
+    vlog('\nSplatting blocks', queue.length);
+    queue.sort(({ i: i1, j: j1 }, { i: i2, j: j2 }) => i2 - i1 || j2 - j1); // desc, first stmt then index
     queue.forEach(({ func }) => vlog('\n') || func());
 
     log('Dead sealers eliminated:', changes, '. Restarting from phase1 to fix up read/write registry.');

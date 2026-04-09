@@ -48,7 +48,7 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
 
   const tracingValueBefore = VERBOSE_TRACING;
   if (!verboseTracing /*&& (passes > 1 || phase1s > 1)*/) {
-    vlog('(Disabling verbose tracing for phase 1 after the first pass)');
+    vlog('(Disabling verbose tracing for phase 1 after the first pass, use --trace to show)', passes, phase1s);
     setVerboseTracing(false);
     // setPrintPids(true);
     // currentState(fdata, 'phase1.1', true, fdata);

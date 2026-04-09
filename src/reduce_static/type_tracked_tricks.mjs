@@ -705,12 +705,13 @@ function _typeTrackedTricks(fdata) {
                 // Covered: tests/cases/bit_hacks/and_eq_bad.md
                 rule('Strict n/equal comparison between a primitive and an ident depends on their type');
                 example('const x = 1 * f(2); g("" === x);', 'const x = 1 * f(2); g(false);');
+                before(blockBody[blockIndex]);
                 // Note: we're acting as if op is ===
 
                 if (parentIndex < 0) parentNode[parentProp] = AST.primitive(node.operator === '!==');
                 else parentNode[parentProp][parentIndex] = AST.primitive(node.operator === '!==');
 
-                after(AST.fals(), grandNode);
+                after(blockBody[blockIndex]);
                 ++changes;
                 break;
               } else {
